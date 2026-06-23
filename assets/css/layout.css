@@ -76,13 +76,16 @@ main, .footer, .rail { position: relative; z-index: 10; }
   -webkit-backdrop-filter: blur(14px) saturate(140%);
   border-bottom: 1px solid var(--line);
 }
-.brand { display: flex; align-items: center; gap: 0.6rem; font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.04em; }
+.brand { display: flex; align-items: center; gap: 0.65rem; font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.04em; }
+.brand-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; object-position: center 18%; border: 1px solid var(--line); flex: none; }
 .brand-glyph { color: var(--ink); }
 .brand-glyph b { color: var(--green-2); font-weight: 500; }
 
-.nav { display: flex; gap: 1.2rem; margin-left: auto; font-family: var(--mono); font-size: 0.74rem; }
+.nav { display: flex; gap: 1rem; margin-left: auto; font-family: var(--mono); font-size: 0.72rem; white-space: nowrap; }
 .nav a { color: var(--ink-dim); transition: color .2s; }
 .nav a:hover { color: var(--green-2); }
+.nav a.is-current { color: var(--ink); border-bottom: 1px solid var(--green); padding-bottom: 2px; }
+a.footer-mid:hover { color: var(--green-2); }
 .nav-idx { color: var(--mute); margin-right: 0.3em; font-size: 0.62rem; }
 
 /* quick links — Résumé / LinkedIn / GitHub, always visible up top */
@@ -95,10 +98,12 @@ main, .footer, .rail { position: relative; z-index: 10; }
   transition: transform .25s var(--ease), background .25s, border-color .25s, color .25s;
 }
 .ql svg { width: 15px; height: 15px; }
-.ql--resume   { background: var(--green); color: #05140c; border-color: var(--green); font-weight: 500; }
+.ql--resume   { order: 2; background: var(--green); color: #05140c; border-color: var(--green); font-weight: 500; }
 .ql--resume:hover   { background: var(--green-2); border-color: var(--green-2); }
-.ql--linkedin:hover { border-color: var(--blue); color: var(--blue-2); }
-.ql--github:hover   { border-color: var(--gold); color: var(--gold); }
+.ql--linkedin { background: var(--blue); color: #04101f; border-color: var(--blue); font-weight: 500; }
+.ql--linkedin:hover { background: var(--blue-2); border-color: var(--blue-2); }
+.ql--github   { background: var(--gold); color: #1a1405; border-color: var(--gold); font-weight: 500; }
+.ql--github:hover   { background: #ffd766; border-color: #ffd766; }
 
 @media (max-width: 1080px) { .nav { display: none; } }
 @media (max-width: 560px) {
