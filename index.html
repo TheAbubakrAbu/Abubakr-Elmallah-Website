@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Abubakr Elmallah — UC Irvine Computer Science (Class of 2028) and iOS app developer. Swift & SwiftUI." />
+<meta name="theme-color" content="#08080a" />
+<title>Abubakr Elmallah — iOS Developer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="assets/css/base.css" />
+<link rel="stylesheet" href="assets/css/layout.css" />
+<link rel="stylesheet" href="assets/css/components.css" />
+</head>
+<body>
+
+<!-- overlays -->
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<canvas id="field" aria-hidden="true"></canvas>
+
+<!-- custom cursor -->
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+<!-- left rail -->
+<aside class="rail" aria-hidden="true">
+  <span class="rail-mark">AE</span>
+  <span class="rail-line"></span>
+  <span class="rail-meta" id="clock">--:--:--</span>
+  <span class="rail-meta">33.64°N · 117.84°W</span>
+</aside>
+
+<!-- ─────────────── STICKY HEADER ─────────────── -->
+<header class="topbar">
+  <a href="#index" class="brand" data-magnetic>
+    <span class="brand-glyph"><b>Abubakr</b> Elmallah</span>
+  </a>
+
+  <nav class="nav">
+    <a href="#work" data-magnetic>Apps</a>
+    <a href="#bots" data-magnetic>Bots</a>
+    <a href="#highschool" data-magnetic>School</a>
+    <a href="#flyers" data-magnetic>Flyers</a>
+    <a href="#wallpapers" data-magnetic>Wallpapers</a>
+    <a href="#about" data-magnetic>About</a>
+    <a href="#contact" data-magnetic>Contact</a>
+  </nav>
+
+  <!-- Résumé / LinkedIn / GitHub — always front and center -->
+  <div class="quicklinks">
+    <a class="ql ql--resume" href="https://drive.google.com/file/d/1o_S34-5F7B7Kb6jZfOuIz2TYWOfNs55s/view?usp=sharing" target="_blank" rel="noopener" data-magnetic>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M8 13h8M8 17h6"/></svg>
+      <span class="ql-label">Résumé</span>
+    </a>
+    <a class="ql ql--linkedin" href="https://www.linkedin.com/in/abubakr-elmallah" target="_blank" rel="noopener" data-magnetic>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C21.4 8.75 22 11 22 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21h-4z"/></svg>
+      <span class="ql-label">LinkedIn</span>
+    </a>
+    <a class="ql ql--github" href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener" data-magnetic>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+      <span class="ql-label">GitHub</span>
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ─────────────── HERO ─────────────── -->
+  <section class="hero" id="index">
+    <div class="hero-text">
+      <p class="kicker"><span>(000 / Index)</span><span>UC Irvine — Computer Science, Class of 2028</span></p>
+
+      <h1 class="display">
+        <span class="line" data-scramble>Abubakr</span>
+        <span class="line line--italic" data-scramble>Elmallah</span>
+      </h1>
+
+      <p class="role">
+        <span>iOS App Developer</span><i>/</i><span>CS @ UCI</span>
+      </p>
+
+      <div class="hero-foot">
+        <p class="lede">
+          I’m a Computer Science student at UC Irvine and an iOS developer.
+          I design and ship native apps in Swift &amp; SwiftUI — sweating the
+          details most people never notice.
+        </p>
+      </div>
+    </div>
+
+    <figure class="portrait" data-magnetic>
+      <img src="assets/img/Abubakr2.jpeg" alt="Abubakr Elmallah outside Jack Langson Library at UC Irvine" loading="eager" />
+      <figcaption><span>Abubakr Elmallah</span><span>UCI ’28</span></figcaption>
+    </figure>
+
+    <div class="scroll-hint" aria-hidden="true"><i></i><span>scroll</span></div>
+  </section>
+
+  <!-- ─────────────── MARQUEE ─────────────── -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Swift</span><b>✦</b><span>SwiftUI</span><b>✦</b><span>iOS</span><b>✦</b><span>Interface &amp; Motion</span><b>✦</b><span>Anteaters</span><b>✦</b>
+      <span>Swift</span><b>✦</b><span>SwiftUI</span><b>✦</b><span>iOS</span><b>✦</b><span>Interface &amp; Motion</span><b>✦</b><span>Anteaters</span><b>✦</b>
+    </div>
+  </div>
+
+  <!-- ─────────────── APPLE APPS ─────────────── -->
+  <section class="work" id="work">
+    <div class="sec-head reveal">
+      <span class="sec-idx">01</span>
+      <h2>Apple Apps</h2>
+      <a class="sec-note sec-link" href="https://apps.apple.com/tr/developer/abubakr-elmallah/id1690310648" target="_blank" rel="noopener" data-magnetic>All my apps ↗</a>
+    </div>
+
+    <div class="filters reveal" role="group" aria-label="Filter apps by theme">
+      <button class="chip is-active" data-filter="all">All <em>9</em></button>
+      <button class="chip" data-filter="islamic">Islamic <em>4</em></button>
+      <button class="chip" data-filter="starwars">Star Wars <em>2</em></button>
+      <button class="chip" data-filter="uci">UCI <em>3</em></button>
+    </div>
+
+    <div class="apps-grid" id="appsGrid">
+
+      <!-- Al-Islam (Islamic · award) -->
+      <article class="app-card app-card--feature reveal" data-cat="islamic" data-magnetic>
+        <div class="app-head">
+          <img class="app-icon" src="assets/img/al-islam.jpg" alt="Al-Islam | Islamic Pillars app icon" loading="lazy" />
+          <a class="app-badge" href="https://www.congressionalappchallenge.us/" target="_blank" rel="noopener">🏆 Congressional App Challenge ’23</a>
+        </div>
+        <span class="app-cat app-cat--islamic">Islamic</span>
+        <h3>Al-Islam · Islamic Pillars</h3>
+        <p class="app-sub">2023 · All-in-one Muslim companion</p>
+        <p>An all-in-one companion for lifelong Muslims and converts alike — Traveling Mode, Beginner Arabic Mode, prayer times, qibla direction, Quran access, and tools to deepen faith and connect with Allah.</p>
+        <div class="app-shots" aria-label="Award proof">
+          <figure><a href="assets/img/al-islam-award-1.png" target="_blank" rel="noopener"><img src="assets/img/al-islam-award-1.png" alt="Congressional App Challenge winner announcement for Abubakr Elmallah" loading="lazy" /></a><figcaption>Best Original Idea</figcaption></figure>
+          <figure><a href="assets/img/al-islam-award-2.jpeg" target="_blank" rel="noopener"><img src="assets/img/al-islam-award-2.jpeg" alt="House of Representatives Certificate of Congressional Recognition" loading="lazy" /></a><figcaption>House of Reps.</figcaption></figure>
+        </div>
+        <div class="app-foot">
+          <span class="app-tags">iOS · iPadOS · watchOS · macOS</span>
+          <span class="app-links">
+            <a href="https://apps.apple.com/us/app/al-islam-islamic-pillars/id6449729655?platform=iphone" target="_blank" rel="noopener">App Store ↗</a>
+            <a href="https://github.com/TheAbubakrAbu/Al-Islam-Islamic-Pillars" target="_blank" rel="noopener">GitHub ↗</a>
+          </span>
+        </div>
+      </article>
+
+      <!-- Al-Quran (Islamic · award) -->
+      <article class="app-card app-card--feature reveal" data-cat="islamic" data-magnetic>
+        <div class="app-head">
+          <img class="app-icon" src="assets/img/al-quran.png" alt="Al-Quran | Beginner Quran app icon" loading="lazy" />
+          <a class="app-badge" href="https://developer.apple.com/swift-student-challenge/" target="_blank" rel="noopener">🏆 Swift Student Challenge ’24</a>
+        </div>
+        <span class="app-cat app-cat--islamic">Islamic</span>
+        <h3>Al-Quran · Beginner Quran</h3>
+        <p class="app-sub">2023 · Learn &amp; study the Holy Quran</p>
+        <p>Makes learning and studying the Holy Quran accessible — Arabic Beginner Mode, ayah sharing, recitations, and tools for enhancing your spiritual journey.</p>
+        <div class="app-shots" aria-label="Award proof">
+          <figure><a href="assets/img/al-quran-award-1.png" target="_blank" rel="noopener"><img src="assets/img/al-quran-award-1.png" alt="Swift Student Challenge 2024 award for Al-Quran" loading="lazy" /></a><figcaption>Swift Student Challenge</figcaption></figure>
+          <figure><a href="assets/img/al-quran-award-2.jpeg" target="_blank" rel="noopener"><img src="assets/img/al-quran-award-2.jpeg" alt="Apple Worldwide Developer Relations letter congratulating Abubakr Elmallah" loading="lazy" /></a><figcaption>Apple · WWDR letter</figcaption></figure>
+        </div>
+        <div class="app-foot">
+          <span class="app-tags">iOS · iPadOS · watchOS · macOS</span>
+          <span class="app-links">
+            <a href="https://apps.apple.com/us/app/al-quran-beginner-quran/id6474894373?platform=iphone" target="_blank" rel="noopener">App Store ↗</a>
+            <a href="https://github.com/TheAbubakrAbu/Al-Quran-Beginner-Quran" target="_blank" rel="noopener">GitHub ↗</a>
+          </span>
+        </div>
+      </article>
+
+      <!-- Datapad (Star Wars · award) -->
+      <article class="app-card app-card--feature reveal" data-cat="starwars" data-magnetic>
+        <div class="app-head">
+          <img class="app-icon" src="assets/img/datapad.jpg" alt="Datapad app icon" loading="lazy" />
+          <span class="app-badge">🏆 Top 10 · Entertainment</span>
+        </div>
+        <span class="app-cat app-cat--starwars">Star Wars</span>
+        <h3>Datapad</h3>
+        <p class="app-sub">2023 · Aurebesh Translator · 4.9 ★</p>
+        <p>The ultimate tool for Star Wars fans to explore and translate the galactic alphabet Aurebesh in all its forms — a custom Aurebesh keyboard, immersive features, and a galactic-themed interface.</p>
+        <div class="app-shots" aria-label="App Store proof">
+          <figure><a href="assets/img/datapad-shot-1.png" target="_blank" rel="noopener"><img src="assets/img/datapad-shot-1.png" alt="Datapad ranked #10 on the App Store Entertainment Top Charts" loading="lazy" /></a><figcaption>#10 · Top Charts</figcaption></figure>
+          <figure><a href="assets/img/datapad-shot-2.png" target="_blank" rel="noopener"><img src="assets/img/datapad-shot-2.png" alt="Datapad App Store listing showing a 4.9 star rating" loading="lazy" /></a><figcaption>4.9 ★ · 22 ratings</figcaption></figure>
+        </div>
+        <div class="app-foot">
+          <span class="app-tags">iOS · iPadOS · watchOS · macOS</span>
+          <span class="app-links">
+            <a href="https://apps.apple.com/us/app/datapad-aurebesh-translator/id6450498054?platform=iphone" target="_blank" rel="noopener">App Store ↗</a>
+          </span>
+        </div>
+      </article>
+
+      <!-- Aurebesh Translator (Star Wars) -->
+      <article class="app-card reveal" data-cat="starwars" data-magnetic>
+        <div class="app-head">
+          <img class="app-icon" src="assets/img/aurebesh-translator.jpg" alt="Aurebesh Translator app icon" loading="lazy" />
+        </div>
+        <span class="app-cat app-cat--starwars">Star Wars</span>
+        <h3>Aurebesh Translator</h3>
+        <p class="app-sub">2024 · Free, ad-free edition</p>
+        <p>The free version of Datapad — a simple, ad-free way to translate between English and Aurebesh, fully offline, with a distraction-free interface.</p>
+        <div class="app-foot">
+          <span class="app-tags">iOS · iPadOS · watchOS · macOS</span>
+          <span class="app-links">
+            <a href="https://apps.apple.com/us/app/aurebesh-translator/id6670201513?platform=iphone" target="_blank" rel="noopener">App Store ↗</a>
+            <a href="https://github.com/TheAbubakrAbu/Aurebesh-Translator" target="_blank" rel="noopener">GitHub ↗</a>
+          </span>
+        </div>
+      </article>
+
+      <!-- Al-Adhan (Islamic) -->
+      <article class="app-card reveal" data-cat="islamic" data-magnetic>
+        <div class="app-head">
+          <img class="app-icon" src="assets/img/al-adhan.png" alt="Al-Adhan | Prayer Times app icon" loading="lazy" />
+        </div>
+        <span class="app-cat app-cat--islamic">Islamic</span>
+        <h3>Al-Adhan · Prayer Times</h3>
+        <p class="app-sub">2023 · Prayer times &amp; qibla</p>
+        <p>An offshoot of Al-Islam that enhances daily worship with precise prayer times, real-time qibla direction, and a unique Traveling Mode for on-the-go adjustments.</p>
+        <div class="app-foot">
+          <span class="app-tags">iOS · iPadOS · watchOS · macOS</span>
+          <span class="app-links">
+            <a href="https://apps.apple.com/us/app/al-adhan-prayer-times/id6475015493?platform=iphone" target="_blank" rel="noopener">App Store ↗</a>
+            <a href="https://github.com/TheAbubakrAbu/Al-Adhan-Prayer-Times" target="_blank" rel="noopener">GitHub ↗</a>
+          </span>
+        </div>
+      </article>
+
+      <!-- ICOI (Islamic) -->
+      <article class="app-card reveal" data-cat="islamic" data-magnetic>
+        <div class="app-head">
+          <img class="app-icon" src="assets/img/icoi.png" alt="Islamic Center of Irvine (ICOI) app icon" loading="lazy" />
+        </div>
+        <span class="app-cat app-cat--islamic">Islamic</span>
+        <h3>Islamic Center of Irvine</h3>
+        <p class="app-sub">2023 · Community mosque app</p>
+        <p>Built for the Irvine Muslim community — accurate mosque prayer times, important links, Quran access, Islamic tools, and local business support.</p>
+        <div class="app-foot">
+          <span class="app-tags">iOS · iPadOS · watchOS · macOS</span>
+          <span class="app-links">
+            <a href="https://apps.apple.com/us/app/islamic-center-of-irvine/id6463835936?platform=iphone" target="_blank" rel="noopener">App Store ↗</a>
+            <a href="https://github.com/TheAbubakrAbu/Islamic-Center-of-Irvine" target="_blank" rel="noopener">GitHub ↗</a>
+          </span>
+        </div>
+      </article>
+
+      <!-- ZOTFinder (UCI) -->
+      <article class="app-card reveal" data-cat="uci" data-magnetic>
+        <div class="app-head">
+          <img class="app-icon" src="assets/img/ZotFinder.png" alt="ZOTFinder app icon" loading="lazy" />
+        </div>
+        <span class="app-cat app-cat--uci">UCI</span>
+        <h3>ZOTFinder</h3>
+        <p class="app-sub">2024 · Interactive campus map</p>
+        <p>A free interactive campus map for UCI — search buildings, find professor offices, view emergency info, and get directions with estimated travel times.</p>
+        <div class="app-foot">
+          <span class="app-tags">iOS · SwiftUI · MapKit</span>
+          <span class="app-links">
+            <a href="https://apps.apple.com/us/app/zotfinder/id915256719?platform=iphone" target="_blank" rel="noopener">App Store ↗</a>
+          </span>
+        </div>
+      </article>
+
+      <!-- UCI Now (UCI) -->
+      <article class="app-card reveal" data-cat="uci" data-magnetic>
+        <div class="app-head">
+          <img class="app-icon" src="assets/img/UCINow.png" alt="UCI Now app icon" loading="lazy" />
+        </div>
+        <span class="app-cat app-cat--uci">UCI</span>
+        <h3>UCI Now</h3>
+        <p class="app-sub">2024 · Student Center companion</p>
+        <p>Navigate the Student Center, book study rooms, find Ring Mall events, and view real-time campus activities with searchable maps and listings.</p>
+        <div class="app-foot">
+          <span class="app-tags">iOS · SwiftUI · Maps</span>
+          <span class="app-links">
+            <a href="https://apps.apple.com/us/app/uci-now/id1382415698?platform=iphone" target="_blank" rel="noopener">App Store ↗</a>
+          </span>
+        </div>
+      </article>
+
+      <!-- UCI Esports (UCI) -->
+      <article class="app-card reveal" data-cat="uci" data-magnetic>
+        <div class="app-head">
+          <img class="app-icon" src="assets/img/Esports.png" alt="UCI Esports app icon" loading="lazy" />
+        </div>
+        <span class="app-cat app-cat--uci">UCI</span>
+        <h3>UCI Esports</h3>
+        <p class="app-sub">2025 · Arena &amp; events</p>
+        <p>Check arena hours, reserve PCs, discover tournaments and events, watch live Twitch streams, and get reminders so you never miss a match.</p>
+        <div class="app-foot">
+          <span class="app-tags">iOS · SwiftUI · Live</span>
+          <span class="app-links">
+            <a href="https://apps.apple.com/us/app/uci-esports/id6751213697" target="_blank" rel="noopener">App Store ↗</a>
+          </span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ─────────────── DISCORD BOTS ─────────────── -->
+  <section class="work bots" id="bots">
+    <div class="sec-head reveal">
+      <span class="sec-idx">02</span>
+      <h2>Discord Bots</h2>
+      <a class="sec-note sec-link" href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener" data-magnetic>GitHub ↗</a>
+    </div>
+
+    <div class="apps-grid apps-grid--2">
+      <article class="app-card reveal" data-magnetic>
+        <div class="app-head">
+          <img class="app-icon" src="assets/img/sabacc-droid.png" alt="Sabacc Droid icon" loading="lazy" onerror="this.removeAttribute('src');this.classList.add('img-missing')" />
+        </div>
+        <span class="app-cat app-cat--starwars">Star Wars</span>
+        <h3>Sabacc Droid</h3>
+        <p class="app-sub">2024 · Play Sabacc on Discord</p>
+        <p>A Discord bot that brings the Star Wars card game Sabacc to your server — multiplayer rounds, rules variants, and a galaxy-flavored interface.</p>
+        <div class="app-foot">
+          <span class="app-tags">Discord · Python</span>
+          <span class="app-links">
+            <a href="https://discord.ly/sabaac-droid" target="_blank" rel="noopener">Add to Discord ↗</a>
+            <a href="https://github.com/TheAbubakrAbu/Sabacc-Droid" target="_blank" rel="noopener">GitHub ↗</a>
+          </span>
+        </div>
+      </article>
+
+      <article class="app-card reveal" data-magnetic>
+        <div class="app-head">
+          <img class="app-icon" src="assets/img/aurebesh-droid.png" alt="Aurebesh Droid icon" loading="lazy" onerror="this.removeAttribute('src');this.classList.add('img-missing')" />
+        </div>
+        <span class="app-cat app-cat--starwars">Star Wars</span>
+        <h3>Aurebesh Droid</h3>
+        <p class="app-sub">2025 · Aurebesh, on Discord</p>
+        <p>Translate English to and from Aurebesh right inside Discord — fast, server-friendly, and written in C++ for speed.</p>
+        <div class="app-foot">
+          <span class="app-tags">Discord · C++</span>
+          <span class="app-links">
+            <a href="https://discord.ly/aurebesh-droid" target="_blank" rel="noopener">Add to Discord ↗</a>
+            <a href="https://github.com/TheAbubakrAbu/Aurebesh-Droid" target="_blank" rel="noopener">GitHub ↗</a>
+          </span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ─────────────── HIGH SCHOOL ─────────────── -->
+  <section class="work highschool" id="highschool">
+    <div class="sec-head reveal">
+      <span class="sec-idx">03</span>
+      <h2>High School</h2>
+      <a class="sec-note sec-link" href="https://docs.google.com/document/d/1T7b_Pa1ShLFYjpGPapTChNVMuvpCA-K38JaWMgspUy0/edit?usp=sharing" target="_blank" rel="noopener" data-magnetic>Activities &amp; awards ↗</a>
+    </div>
+
+    <div class="hs-grid">
+      <article class="proj-card reveal" data-magnetic>
+        <a class="proj-media" href="https://studio.code.org/projects/applab/3GTPl_9o0qf9zWutRclvLYYoJRopnjTmVTdm3cXHELc" target="_blank" rel="noopener">
+          <img src="assets/img/hs-datapad.png" alt="Star Wars Datapad — Code.org App Lab project" loading="lazy" />
+        </a>
+        <div class="proj-info">
+          <div class="proj-titlerow"><h3>Star Wars Datapad</h3><span class="proj-yr">2021</span></div>
+          <span class="app-tags">Code.org · JavaScript</span>
+          <div class="app-links">
+            <a href="https://studio.code.org/projects/applab/3GTPl_9o0qf9zWutRclvLYYoJRopnjTmVTdm3cXHELc" target="_blank" rel="noopener">Code.org ↗</a>
+            <a href="https://github.com/TheAbubakrAbu/Star-Wars-Datapad" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj-card reveal" data-magnetic>
+        <a class="proj-media" href="https://studio.code.org/projects/applab/3WR9OYo6Ec9k-4s11Py6MJgsYf2YXyuzsq3icY61NWg" target="_blank" rel="noopener">
+          <img src="assets/img/hs-calculator.png" alt="Calculator — Code.org App Lab project" loading="lazy" />
+        </a>
+        <div class="proj-info">
+          <div class="proj-titlerow"><h3>Calculator</h3><span class="proj-yr">2021</span></div>
+          <span class="app-tags">Code.org · JavaScript</span>
+          <div class="app-links">
+            <a href="https://studio.code.org/projects/applab/3WR9OYo6Ec9k-4s11Py6MJgsYf2YXyuzsq3icY61NWg" target="_blank" rel="noopener">Code.org ↗</a>
+            <a href="https://github.com/TheAbubakrAbu/Calculator" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj-card reveal" data-magnetic>
+        <a class="proj-media" href="https://studio.code.org/projects/applab/n4gY-ijCWHme3Gd-qkeYFzcloQkXAf257XCrDwGSxRg" target="_blank" rel="noopener">
+          <img src="assets/img/hs-periodic-table.png" alt="Periodic Table — Code.org App Lab project" loading="lazy" />
+        </a>
+        <div class="proj-info">
+          <div class="proj-titlerow"><h3>Periodic Table</h3><span class="proj-yr">2022</span></div>
+          <span class="app-tags">Code.org · JavaScript</span>
+          <div class="app-links">
+            <a href="https://studio.code.org/projects/applab/n4gY-ijCWHme3Gd-qkeYFzcloQkXAf257XCrDwGSxRg" target="_blank" rel="noopener">Code.org ↗</a>
+            <a href="https://github.com/TheAbubakrAbu/Periodic-Table" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj-card reveal" data-magnetic>
+        <a class="proj-media" href="https://studio.code.org/projects/applab/40V7TcnK87l1VxSAjbI-VFHSF06Hk2F6qvp6tzq_kRM" target="_blank" rel="noopener">
+          <img src="assets/img/hs-games.png" alt="Games — Hangman, Wordle and Two-Player Checkers" loading="lazy" />
+        </a>
+        <div class="proj-info">
+          <div class="proj-titlerow"><h3>Games</h3><span class="proj-yr">2022</span></div>
+          <span class="app-tags">Hangman · Wordle · Checkers</span>
+          <div class="app-links">
+            <a href="https://studio.code.org/projects/applab/40V7TcnK87l1VxSAjbI-VFHSF06Hk2F6qvp6tzq_kRM" target="_blank" rel="noopener">Code.org ↗</a>
+            <a href="https://github.com/TheAbubakrAbu/Games" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj-card reveal" data-magnetic>
+        <a class="proj-media" href="https://scratch.mit.edu/projects/566525662/" target="_blank" rel="noopener">
+          <img src="assets/img/hs-order66.png" alt="Star Wars: Order 66 — a Scratch game" loading="lazy" />
+        </a>
+        <div class="proj-info">
+          <div class="proj-titlerow"><h3>Star Wars: Order 66</h3><span class="proj-yr">2021</span></div>
+          <span class="app-tags">Scratch · Game</span>
+          <div class="app-links">
+            <a href="https://scratch.mit.edu/projects/566525662/" target="_blank" rel="noopener">Play on Scratch ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj-card reveal" data-magnetic>
+        <a class="proj-media" href="https://app.codingrooms.com/w/Yxexan1LM35u" target="_blank" rel="noopener">
+          <img src="assets/img/hs-periodic-explorer.png" alt="Periodic Table Explorer — a Java console application" loading="lazy" />
+        </a>
+        <div class="proj-info">
+          <div class="proj-titlerow"><h3>Periodic Table Explorer</h3><span class="proj-yr">2023</span></div>
+          <span class="app-tags">Java · Console</span>
+          <div class="app-links">
+            <a href="https://app.codingrooms.com/w/Yxexan1LM35u" target="_blank" rel="noopener">Codingrooms ↗</a>
+            <a href="https://github.com/TheAbubakrAbu/Periodic-Table-Explorer" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="hs-extra reveal">
+      <a href="https://learnsalah.com/attribution" target="_blank" rel="noopener" data-magnetic>🎙 Voice of learnsalah.com — 2023 ↗</a>
+      <a href="https://www.youtube.com/@MinshawiAbubakr" target="_blank" rel="noopener" data-magnetic>▶ Minshawi-style Quran recitations ↗</a>
+    </div>
+  </section>
+
+  <!-- ─────────────── CUSTOM FLYERS ─────────────── -->
+  <section class="work flyers" id="flyers">
+    <div class="sec-head reveal">
+      <span class="sec-idx">04</span>
+      <h2>Custom Flyers</h2>
+      <span class="sec-note">Posters I designed for clubs &amp; workshops.</span>
+    </div>
+
+    <div class="flyer-grid">
+      <a class="flyer reveal" href="assets/img/flyer-minecraft.png" target="_blank" rel="noopener">
+        <img src="assets/img/flyer-minecraft.png" alt="Minecraft coding workshop flyer" loading="lazy" />
+        <span class="flyer-cap"><b>Minecraft Workshop</b><i>2021</i></span>
+      </a>
+      <a class="flyer reveal" href="assets/img/flyer-starwars.png" target="_blank" rel="noopener">
+        <img src="assets/img/flyer-starwars.png" alt="Star Wars coding workshop flyer" loading="lazy" />
+        <span class="flyer-cap"><b>Star Wars Workshop</b><i>2022</i></span>
+      </a>
+      <a class="flyer reveal" href="assets/img/flyer-codecombat.png" target="_blank" rel="noopener">
+        <img src="assets/img/flyer-codecombat.png" alt="Code Combat coding workshop flyer" loading="lazy" />
+        <span class="flyer-cap"><b>Code Combat Workshop</b><i>2022</i></span>
+      </a>
+      <a class="flyer reveal" href="assets/img/flyer-cyberpatriot.png" target="_blank" rel="noopener">
+        <img src="assets/img/flyer-cyberpatriot.png" alt="CyberPatriot club flyer" loading="lazy" />
+        <span class="flyer-cap"><b>CyberPatriot</b><i>2023</i></span>
+      </a>
+      <a class="flyer reveal" href="assets/img/flyer-girlswhocode.png" target="_blank" rel="noopener">
+        <img src="assets/img/flyer-girlswhocode.png" alt="Girls Who Code club flyer" loading="lazy" />
+        <span class="flyer-cap"><b>Girls Who Code</b><i>2023</i></span>
+      </a>
+      <a class="flyer reveal" href="assets/img/flyer-msa.png" target="_blank" rel="noopener">
+        <img src="assets/img/flyer-msa.png" alt="Muslim Student Association flyer" loading="lazy" />
+        <span class="flyer-cap"><b>Muslim Student Assoc.</b><i>2023</i></span>
+      </a>
+      <a class="flyer reveal" href="assets/img/flyer-blooddrive.png" target="_blank" rel="noopener">
+        <img src="assets/img/flyer-blooddrive.png" alt="Blood drive flyer" loading="lazy" />
+        <span class="flyer-cap"><b>Blood Drive</b><i>2024</i></span>
+      </a>
+      <a class="flyer reveal" href="assets/img/flyer-cs-classes.jpg" target="_blank" rel="noopener">
+        <img src="assets/img/flyer-cs-classes.jpg" alt="AP and IB Computer Science classes flyer" loading="lazy" />
+        <span class="flyer-cap"><b>Computer Science Classes</b><i>2024</i></span>
+      </a>
+      <a class="flyer reveal" href="assets/img/flyer-solar.jpg" target="_blank" rel="noopener">
+        <img src="assets/img/flyer-solar.jpg" alt="Environmental Science solar energy flyer" loading="lazy" />
+        <span class="flyer-cap"><b>Environmental Science · Solar</b><i>2024</i></span>
+      </a>
+      <a class="flyer reveal" href="assets/img/flyer-ios-workshop.png" target="_blank" rel="noopener">
+        <img src="assets/img/flyer-ios-workshop.png" alt="iOS App Development workshop flyer — Al-Quran project" loading="lazy" onerror="this.removeAttribute('src');this.closest('.flyer').classList.add('flyer-missing')" />
+        <span class="flyer-cap"><b>iOS App Workshop</b><i>2025</i></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ─────────────── CUSTOM WALLPAPERS ─────────────── -->
+  <section class="work wallpapers" id="wallpapers">
+    <div class="sec-head reveal">
+      <span class="sec-idx">05</span>
+      <h2>Custom Wallpapers</h2>
+      <span class="sec-note">Islamic art for every screen.</span>
+    </div>
+
+    <div class="flyer-grid flyer-grid--4">
+      <a class="flyer reveal" href="assets/img/wp-palestine.png" target="_blank" rel="noopener">
+        <img src="assets/img/wp-palestine.png" alt="Palestine wallpaper — Indeed Allah's help is near" loading="lazy" onerror="this.removeAttribute('src');this.closest('.flyer').classList.add('flyer-missing')" />
+        <span class="flyer-cap"><b>Palestine</b><i>Phone</i></span>
+      </a>
+      <a class="flyer reveal" href="assets/img/wp-phone.png" target="_blank" rel="noopener">
+        <img src="assets/img/wp-phone.png" alt="Islamic phone wallpaper" loading="lazy" onerror="this.removeAttribute('src');this.closest('.flyer').classList.add('flyer-missing')" />
+        <span class="flyer-cap"><b>Phone</b><i>9:19.5</i></span>
+      </a>
+      <a class="flyer reveal" href="assets/img/wp-laptop.png" target="_blank" rel="noopener">
+        <img src="assets/img/wp-laptop.png" alt="Islamic laptop wallpaper, 16:9" loading="lazy" onerror="this.removeAttribute('src');this.closest('.flyer').classList.add('flyer-missing')" />
+        <span class="flyer-cap"><b>Laptop</b><i>16:9</i></span>
+      </a>
+      <a class="flyer reveal" href="assets/img/wp-desktop.png" target="_blank" rel="noopener">
+        <img src="assets/img/wp-desktop.png" alt="Islamic ultrawide desktop wallpaper, 21:9" loading="lazy" onerror="this.removeAttribute('src');this.closest('.flyer').classList.add('flyer-missing')" />
+        <span class="flyer-cap"><b>Desktop</b><i>21:9</i></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ─────────────── ABOUT ─────────────── -->
+  <section class="about" id="about">
+    <div class="sec-head reveal">
+      <span class="sec-idx">06</span>
+      <h2>About</h2>
+      <span class="sec-note">The short version.</span>
+    </div>
+
+    <div class="about-grid">
+      <figure class="about-photo reveal">
+        <img src="assets/img/Abubakr1.jpeg" alt="Abubakr Elmallah on the UC Irvine campus" loading="lazy" />
+        <figcaption>On campus · <b>UC Irvine</b></figcaption>
+      </figure>
+
+      <div>
+        <p class="about-lede reveal">
+          I’m <em>Abubakr</em> — a CS student at UC&nbsp;Irvine who cares about
+          the parts most people don’t notice: the easing on a transition, the
+          latency of a tap, the wording of an empty state.
+        </p>
+        <div class="about-body reveal">
+          <p>
+            I build for iOS in Swift and SwiftUI, and I’m comfortable across
+            the wider stack. I like small teams, sharp constraints, and tools
+            that respect the person holding them.
+          </p>
+          <p>
+            When I’m not shipping, I’m probably taking something apart to see
+            how it was put together.
+          </p>
+        </div>
+
+        <dl class="facts reveal">
+          <div><dt>Focus</dt><dd>iOS development, interface &amp; motion</dd></div>
+          <div><dt>Stack</dt><dd>Swift, SwiftUI, UIKit — and the wider web</dd></div>
+          <div><dt>School</dt><dd>UC Irvine · CS · Class of 2028</dd></div>
+          <div><dt>Status</dt><dd>Open to internships</dd></div>
+          <div><dt>Based</dt><dd>Irvine, California</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── CONTACT ─────────────── -->
+  <section class="contact" id="contact">
+    <div class="sec-head reveal">
+      <span class="sec-idx">07</span>
+      <h2>Contact</h2>
+      <span class="sec-note">Say something.</span>
+    </div>
+
+    <a class="big-mail reveal" href="mailto:ammelmallah@gmail.com" data-magnetic data-scramble-hover>
+      ammelmallah@gmail.com
+    </a>
+
+    <ul class="socials reveal">
+      <li><a href="https://drive.google.com/file/d/1o_S34-5F7B7Kb6jZfOuIz2TYWOfNs55s/view?usp=sharing" target="_blank" rel="noopener" data-magnetic>Résumé ↗</a></li>
+      <li><a href="https://www.linkedin.com/in/abubakr-elmallah" target="_blank" rel="noopener" data-magnetic>LinkedIn ↗</a></li>
+      <li><a href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener" data-magnetic>GitHub ↗</a></li>
+      <li><a href="mailto:ammelmallah@gmail.com" data-magnetic>Email ↗</a></li>
+    </ul>
+  </section>
+
+  <!-- ─────────────── CLOSING VERSE ─────────────── -->
+  <section class="verse reveal" aria-label="Quran verse">
+    <p class="verse-ar" lang="ar" dir="rtl">وَيَمْكُرُونَ وَيَمْكُرُ ٱللَّهُ ۖ وَٱللَّهُ خَيْرُ ٱلْمَـٰكِرِين</p>
+    <p class="verse-en">“But they plan, and Allah plans. And Allah is the best of planners.”</p>
+    <p class="verse-ref">Holy Quran · Al-Anfal 8:30</p>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <span>© 2026 Abubakr Elmallah</span>
+  <span class="footer-mid">Built by hand — no templates.</span>
+  <button class="totop" id="totop" data-magnetic>Back to top ↑</button>
+</footer>
+
+<!-- scripts: classic files, loaded in order (work over file://) -->
+<script src="assets/js/utils.js"></script>
+<script src="assets/js/cursor.js"></script>
+<script src="assets/js/magnetic.js"></script>
+<script src="assets/js/scramble.js"></script>
+<script src="assets/js/reveal.js"></script>
+<script src="assets/js/filter.js"></script>
+<script src="assets/js/clock.js"></script>
+<script src="assets/js/flowfield.js"></script>
+</body>
+</html>
