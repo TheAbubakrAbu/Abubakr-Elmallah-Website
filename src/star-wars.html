@@ -74,7 +74,7 @@
   <section class="work starwars">
     <h3 class="subsec reveal">Apple Apps</h3>
     <div class="apps-grid apps-grid--2">
-      <article class="app-card app-card--feature reveal" data-magnetic>
+      <article class="app-card app-card--feature reveal">
         <div class="app-head">
           <img class="app-icon" src="../assets/img/apps/datapad.jpg" alt="Datapad app icon" loading="lazy" />
           <span class="app-badge">🏆 Top 10 · Entertainment</span>
@@ -92,7 +92,7 @@
         </div>
       </article>
 
-      <article class="app-card reveal" data-magnetic>
+      <article class="app-card reveal">
         <div class="app-head"><img class="app-icon" src="../assets/img/apps/aurebesh-translator.jpg" alt="Aurebesh Translator app icon" loading="lazy" /></div>
         <h3>Aurebesh Translator</h3>
         <p class="app-sub">2024 · Free, ad-free edition</p>
@@ -109,7 +109,7 @@
 
     <h3 class="subsec reveal">Discord Bots</h3>
     <div class="apps-grid apps-grid--2">
-      <article class="app-card reveal" data-magnetic>
+      <article class="app-card reveal">
         <div class="app-head"><img class="app-icon" src="../assets/img/bots/sabacc-droid.png" alt="Sabacc Droid icon" loading="lazy" /></div>
         <h3>Sabacc Droid</h3>
         <p class="app-sub">2024 · Play Sabacc on Discord</p>
@@ -123,7 +123,7 @@
         </div>
       </article>
 
-      <article class="app-card reveal" data-magnetic>
+      <article class="app-card reveal">
         <div class="app-head"><img class="app-icon" src="../assets/img/bots/aurebesh-droid.png" alt="Aurebesh Droid icon" loading="lazy" /></div>
         <h3>Aurebesh Droid</h3>
         <p class="app-sub">2025 · Aurebesh, on Discord</p>
@@ -140,7 +140,7 @@
 
     <h3 class="subsec reveal">High School</h3>
     <div class="hs-grid">
-      <article class="proj-card reveal" data-magnetic>
+      <article class="proj-card reveal">
         <a class="proj-media" href="https://studio.code.org/projects/applab/3GTPl_9o0qf9zWutRclvLYYoJRopnjTmVTdm3cXHELc" target="_blank" rel="noopener"><img src="../assets/img/highschool/datapad.png" alt="Star Wars Datapad — Code.org App Lab project" loading="lazy" /></a>
         <div class="proj-info">
           <div class="proj-titlerow"><h3>Star Wars Datapad</h3><span class="proj-yr">2021</span></div>
@@ -151,7 +151,7 @@
           </div>
         </div>
       </article>
-      <article class="proj-card reveal" data-magnetic>
+      <article class="proj-card reveal">
         <a class="proj-media" href="https://scratch.mit.edu/projects/566525662/" target="_blank" rel="noopener"><img src="../assets/img/highschool/order66.png" alt="Star Wars: Order 66 — a Scratch game" loading="lazy" /></a>
         <div class="proj-info">
           <div class="proj-titlerow"><h3>Star Wars: Order 66</h3><span class="proj-yr">2021</span></div>
@@ -166,6 +166,13 @@
 
 </main>
 
+<!-- shared image lightbox (same one the High School photos open in) -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Close">✕</button>
+  <span class="lightbox-title"></span>
+  <div class="lightbox-imgs"></div>
+</div>
+
 <footer class="footer">
   <span>© 2026 Abubakr Elmallah</span>
   <a class="footer-mid" href="../index.html" data-magnetic>← Back to home</a>
@@ -178,6 +185,7 @@
 <script src="../assets/js/reveal.js"></script>
 <script src="../assets/js/clock.js"></script>
 <script src="../assets/js/flowfield.js"></script>
+<script src="../assets/js/gallery.js"></script>
 <script src="../assets/js/intro.js"></script>
 <script src="../assets/js/cardlink.js"></script>
 </body>

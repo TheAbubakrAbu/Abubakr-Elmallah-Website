@@ -46,6 +46,20 @@ body {
 
 @media (hover: none) { body { cursor: auto; } }
 
+/* custom cursor turned off (user preference) — restore the native cursor everywhere */
+html.cursor-off, html.cursor-off * { cursor: auto !important; }
+/* interactive elements AND their children (icons, labels, name spans) get the pointer,
+   otherwise the text I-beam leaks onto the text inside links/buttons */
+html.cursor-off a, html.cursor-off a *,
+html.cursor-off button, html.cursor-off button *,
+html.cursor-off [data-magnetic], html.cursor-off [data-magnetic] *,
+html.cursor-off .is-clickable, html.cursor-off .is-clickable *,
+html.cursor-off .year-card, html.cursor-off .year-card *,
+html.cursor-off .lightbox-close, html.cursor-off .chip, html.cursor-off .totop {
+  cursor: pointer !important;
+}
+html.cursor-off .cursor, html.cursor-off .cursor-dot { display: none !important; }
+
 ::selection { background: var(--green); color: #08080a; }
 
 a { color: inherit; text-decoration: none; }
