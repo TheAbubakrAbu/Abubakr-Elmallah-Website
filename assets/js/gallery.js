@@ -25,6 +25,17 @@
   document.querySelectorAll('.year-card').forEach(card => {
     card.addEventListener('click', () => open(card.dataset.label, (card.dataset.images || '').split(',').filter(Boolean)));
   });
+
+  // app proof screenshots (Datapad / awards) open in the same lightbox instead of a new tab
+  document.querySelectorAll('.app-shots').forEach(shots => {
+    const card = shots.closest('.app-card, .proj-card');
+    const h3 = card && card.querySelector('h3');
+    const label = h3 ? h3.textContent.trim() : '';
+    const links = Array.from(shots.querySelectorAll('a'));
+    const images = links.map(a => a.getAttribute('href')).filter(Boolean);
+    links.forEach(a => a.addEventListener('click', e => { e.preventDefault(); open(label, images); }));
+  });
+
   lb.querySelector('.lightbox-close').addEventListener('click', close);
   lb.addEventListener('click', e => { if (e.target === lb) close(); });
   addEventListener('keydown', e => { if (e.key === 'Escape') close(); });

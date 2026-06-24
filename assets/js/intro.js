@@ -11,7 +11,7 @@
     ov.innerHTML =
       '<div class="intro-panel intro-panel--l"></div>' +
       '<div class="intro-panel intro-panel--r"></div>' +
-      '<div class="intro-center"><span class="intro-name">Abubakr Elmallah<span class="dot">.</span></span><span class="intro-line"></span></div>';
+      '<div class="intro-center"><span class="intro-name">Abubakr Elmallah</span><span class="intro-line"></span></div>';
   } else if (type === 'starwars') {
     ov.innerHTML = '<canvas class="intro-stars"></canvas><span class="intro-sw">Star&nbsp;Wars</span>';
   } else if (type === 'alislam') {
@@ -23,24 +23,24 @@
   } else if (type === 'projects') {
     // grouped: UCI Work · Star Wars · Islam
     const icons = ['apps/zotfinder.png', 'apps/uci-now.png', 'apps/uci-esports.png',
-                   'apps/aurebesh-translator.jpg', 'apps/datapad.jpg', 'bots/sabacc-droid.png', 'bots/aurebesh-droid.png',
-                   'apps/icoi.png', 'apps/al-adhan.png', 'apps/al-islam.jpg', 'apps/al-quran.png'];
+                   'apps/datapad.jpg', 'bots/sabacc-droid.png', 'bots/aurebesh-droid.png',
+                   'apps/al-adhan.png', 'apps/al-islam.jpg', 'apps/al-quran.png'];
     ov.innerHTML =
       '<div class="intro-mosaic">' +
       icons.map((s, i) => '<img class="intro-tile" style="animation-delay:' + (i * 28) + 'ms" src="../assets/img/' + s + '" alt="" aria-hidden="true">').join('') +
-      '</div><span class="intro-proj-title">Projects<span class="dot">.</span></span>';
+      '</div><span class="intro-proj-title">Projects</span>';
   } else if (type === 'school') {
-    const ph = ['year-freshman.jpeg', 'year-sophomore-1.jpeg', 'year-junior.jpeg', 'year-senior-1.jpg'];
+    const ph = ['year-freshman.jpg', 'year-sophomore-1.jpg', 'year-junior.jpg', 'year-senior-1.jpg'];
     ov.innerHTML =
       '<div class="intro-fan">' +
       ph.map((s, i) => '<img class="intro-photo" style="animation-delay:' + (i * 55) + 'ms" src="../assets/img/highschool/' + s + '" alt="" aria-hidden="true">').join('') +
-      '</div><span class="intro-school-title">High&nbsp;School<span class="dot">.</span></span>';
+      '</div><span class="intro-school-title">High&nbsp;School</span>';
   } else if (type === 'resume') {
     ov.innerHTML =
       '<div class="intro-paper"><span class="ln" style="--w:55%"></span><span class="ln" style="--w:90%"></span><span class="ln" style="--w:78%"></span><span class="ln" style="--w:92%"></span><span class="ln" style="--w:68%"></span></div>' +
-      '<span class="intro-resume-title">Résumé<span class="dot">.</span></span>';
+      '<span class="intro-resume-title">Résumé</span>';
   } else {
-    ov.innerHTML = '<span class="intro-name">Abubakr Elmallah<span class="dot">.</span></span>';
+    ov.innerHTML = '<span class="intro-name">Abubakr Elmallah</span>';
   }
 
   document.body.appendChild(ov);
