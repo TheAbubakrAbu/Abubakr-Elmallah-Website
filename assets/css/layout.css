@@ -77,7 +77,7 @@ main, .footer, .rail { position: relative; z-index: 10; }
   border-bottom: 1px solid var(--line);
 }
 .brand { display: flex; align-items: center; gap: 0.65rem; font-family: var(--mono); font-size: 0.82rem; letter-spacing: 0.04em; }
-.brand-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; object-position: center 18%; border: 1px solid var(--line); flex: none; }
+.brand-avatar { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; object-position: center; border: 1px solid var(--line); flex: none; }
 .brand-glyph { color: var(--ink); }
 .brand-glyph b { color: var(--green-2); font-weight: 500; }
 
@@ -111,7 +111,7 @@ a.footer-mid:hover { color: var(--green-2); }
   .brand { width: 100%; }
   .ql .ql-label { display: none; }
   .ql { padding: 0.55rem 0.7rem; }
-  .quicklinks { margin-left: auto; }
+  .quicklinks { margin-left: 0; margin-right: auto; }
 }
 
 /* ───────────── Shell ───────────── */

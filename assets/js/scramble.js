@@ -30,12 +30,23 @@
 
   document.querySelectorAll('[data-scramble]').forEach((el, i) => {
     const text = el.textContent.trim();
+    el.dataset.scrambleText = text;   // keep original so hover can reuse it
     el.textContent = '';
     setTimeout(() => scrambleTo(el, text), 250 + i * 260);
   });
 
   document.querySelectorAll('[data-scramble-hover]').forEach(el => {
-    const text = el.textContent.trim();
-    el.addEventListener('mouseenter', () => scrambleTo(el, text, 26));
+    // prefer the stashed text — for elements that also load-scramble, the
+    // visible text has already been cleared by the loop above
+    const text = el.dataset.scrambleText || el.textContent.trim();
+    let last = -Infinity;
+    el.addEventListener('mouseenter', () => {
+      // cooldown absorbs the rapid re-enters caused by the magnetic drift,
+      // so the scramble plays once per hover instead of looping
+      const now = performance.now();
+      if (now - last < 700) return;
+      last = now;
+      scrambleTo(el, text, 26);
+    });
   });
 })();
