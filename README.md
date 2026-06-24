@@ -5,7 +5,7 @@
 A hand-built, dark-mode portfolio showcasing my apps, Discord bots, and high-school
 projects. No frameworks, no templates — just HTML, CSS, and vanilla JavaScript.
 
-🔗 **Live:** https://theabubakrabu.github.io/Abubakr-Elmallah-Website/
+🔗 **Live:** https://abubakrelmallah.com/
 
 ## Pages
 

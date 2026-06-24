@@ -3,6 +3,7 @@
 (function intro() {
   if (reduceMotion) return;
   const type = document.body.dataset.intro || 'veil';
+  if (type === 'none') return;   // pages that opt out of the launch animation (e.g. résumé)
 
   const ov = document.createElement('div');
   ov.className = 'intro intro--' + type;
@@ -35,10 +36,6 @@
       '<div class="intro-fan">' +
       ph.map((s, i) => '<img class="intro-photo" style="animation-delay:' + (i * 55) + 'ms" src="../assets/img/highschool/' + s + '" alt="" aria-hidden="true">').join('') +
       '</div><span class="intro-school-title">High&nbsp;School</span>';
-  } else if (type === 'resume') {
-    ov.innerHTML =
-      '<div class="intro-paper"><span class="ln" style="--w:55%"></span><span class="ln" style="--w:90%"></span><span class="ln" style="--w:78%"></span><span class="ln" style="--w:92%"></span><span class="ln" style="--w:68%"></span></div>' +
-      '<span class="intro-resume-title">Résumé</span>';
   } else {
     ov.innerHTML = '<span class="intro-name">Abubakr Elmallah</span>';
   }
@@ -49,7 +46,7 @@
 
   if (type === 'starwars') warp(ov.querySelector('.intro-stars'));
 
-  const DUR = { home: 820, starwars: 900, alislam: 900, projects: 900, school: 900, resume: 900, veil: 650 }[type] || 650;
+  const DUR = { home: 820, starwars: 900, alislam: 900, projects: 900, school: 900, veil: 650 }[type] || 650;
   setTimeout(() => {
     ov.classList.add('is-done');
     document.documentElement.classList.remove('intro-lock');

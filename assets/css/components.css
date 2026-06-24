@@ -83,18 +83,11 @@
   width: 100%; max-width: 380px;
 }
 .portrait img {
-  width: 100%; aspect-ratio: 3 / 4; object-fit: cover;
-  border: 1px solid var(--line);
+  width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block;
+  border: 1px solid var(--line); border-radius: 16px;
   filter: none;
-  transition: filter .6s var(--ease), transform .6s var(--ease);
+  transition: filter .6s var(--ease);
 }
-.portrait:hover img { transform: translateY(-4px); }
-.portrait::before {
-  content: ""; position: absolute; inset: -1px;
-  border-top: 2px solid var(--green); border-right: 2px solid var(--gold);
-  pointer-events: none; transition: inset .4s var(--ease);
-}
-.portrait:hover::before { inset: -8px; }
 .portrait figcaption {
   font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--mute);
@@ -217,6 +210,8 @@ a.app-badge:hover {
   filter: saturate(1.05); transition: transform .4s var(--ease), border-color .4s;
 }
 .app-shots figure:hover img { transform: translateY(-3px); border-color: var(--gold); }
+/* nudge a shot's framing slightly left within its figure */
+.app-shots img.shift-left { position: relative; right: 16px; }
 .app-shots figcaption {
   font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--mute); margin-top: 0.5rem; text-align: center;
@@ -356,6 +351,50 @@ a.app-badge:hover {
 .flyer-cap b { font-weight: 400; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .flyer-cap i { font-style: normal; color: var(--mute); flex: none; }
 
+/* ───────────── WWDC 2024 gallery (home) ───────────── */
+.wwdc { padding-bottom: 5rem; }
+.wwdc-note {
+  max-width: 82ch; margin: 0 0 2.2rem;
+  color: var(--ink-dim); font-size: 1.02rem; line-height: 1.8;
+}
+.wwdc-note b { color: var(--ink); font-weight: 600; }
+.wwdc-note a { color: var(--green-2); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.wwdc-note a:hover { color: var(--green); }
+
+/* Swift Student Challenge — a separated sub-block inside the WWDC section */
+.wwdc-sub { margin-top: 3.4rem; padding-top: 2.6rem; border-top: 1px solid var(--line); }
+.wwdc-subhead {
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em;
+  font-size: clamp(1.7rem, 3.5vw, 2.4rem); line-height: 1; margin-bottom: 1.1rem;
+  color: var(--green-2);
+}
+.wwdc-grid--ssc .wwdc-shot img { height: 380px; }
+.wwdc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.4rem;
+}
+.wwdc-shot {
+  display: flex; flex-direction: column;
+  border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+  background: var(--bg-2);
+  transition: transform .4s var(--ease), border-color .4s, box-shadow .4s;
+}
+.wwdc-shot:hover {
+  transform: translateY(-5px); border-color: var(--green);
+  box-shadow: 0 22px 50px -24px rgba(0,0,0,0.9);
+}
+.wwdc-shot img {
+  width: 100%; height: 300px; object-fit: cover;
+  transition: transform .6s var(--ease);
+}
+.wwdc-shot:hover img { transform: scale(1.04); }
+/* the scholars screenshot reads as a document — show it whole rather than crop */
+.wwdc-shot--doc img {
+  object-fit: contain; padding: 0.7rem;
+  background: radial-gradient(120% 120% at 50% 0%, #15151b, #0a0a0d);
+}
+
 /* ───────────── Wallpapers (masonry, natural ratios) ───────────── */
 .wall-grid { column-count: 4; column-gap: 1.4rem; }
 @media (max-width: 1100px) { .wall-grid { column-count: 3; } }
@@ -417,6 +456,23 @@ a.app-badge:hover {
 .subsec:first-of-type { margin-top: 0; }
 .subsec::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 .subsec .subsec-yr { color: var(--mute); letter-spacing: 0.1em; }
+
+/* App Store developer-page link beneath a section grid */
+.dev-link {
+  display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.5rem;
+  font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.03em;
+  color: var(--ink-dim); border: 1px solid var(--line); border-radius: 100px;
+  padding: 0.65rem 1.15rem;
+  transition: color .25s, border-color .25s, background .25s;
+}
+.dev-link svg { width: 15px; height: 15px; flex: none; opacity: 0.85; }
+.dev-link i { font-style: normal; color: var(--mute); transition: color .25s, transform .25s; }
+.dev-link:hover {
+  color: var(--green-2);
+  border-color: color-mix(in srgb, var(--green) 50%, transparent);
+  background: rgba(31,157,92,0.05);
+}
+.dev-link:hover i { color: var(--green-2); transform: translate(2px, -2px); }
 
 /* ═════════════ Launch intro animations ═════════════ */
 html.intro-lock { overflow: hidden; }
@@ -535,32 +591,6 @@ html.intro-lock { overflow: hidden; }
 .intro-school-title .dot { color: var(--gold); }
 .intro--school.run .intro-school-title { animation: intro-rise .4s var(--ease) .55s forwards; }
 
-/* RESUME — a sheet rises, lines write in, then title */
-.intro--resume { background: var(--bg); flex-direction: column; gap: 1.4rem; }
-.intro--resume.is-done { opacity: 0; visibility: hidden; }
-.intro-paper {
-  width: clamp(150px, 32vw, 220px); aspect-ratio: 3 / 4; background: #f4f2ec;
-  border-radius: 8px; box-shadow: 0 20px 50px -18px #000;
-  padding: 16% 13% 0; display: flex; flex-direction: column; gap: 8%;
-  opacity: 0; transform: translateY(20px) scale(.92);
-}
-.intro--resume.run .intro-paper { animation: intro-rise .4s var(--ease) forwards; }
-.intro-paper .ln { height: 6.5%; background: #cdc8bd; border-radius: 3px; width: 0; }
-.intro-paper .ln:first-child { background: var(--green); }
-.intro--resume.run .intro-paper .ln { animation: ln-draw .3s var(--ease) forwards; }
-.intro-paper .ln:nth-child(1) { animation-delay: .22s; }
-.intro-paper .ln:nth-child(2) { animation-delay: .30s; }
-.intro-paper .ln:nth-child(3) { animation-delay: .38s; }
-.intro-paper .ln:nth-child(4) { animation-delay: .46s; }
-.intro-paper .ln:nth-child(5) { animation-delay: .54s; }
-@keyframes ln-draw { to { width: var(--w); } }
-.intro-resume-title {
-  font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em; font-size: clamp(2rem, 8vw, 4.5rem);
-  letter-spacing: -0.02em; color: var(--ink); opacity: 0;
-}
-.intro-resume-title .dot { color: var(--gold); }
-.intro--resume.run .intro-resume-title { animation: intro-rise .4s var(--ease) .55s forwards; }
-
 /* ───────────── Education block (High School) ───────────── */
 .edu {
   display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem 2.5rem;
@@ -571,8 +601,11 @@ html.intro-lock { overflow: hidden; }
   font-size: 1.9rem; width: 60px; height: 60px; flex: none;
   display: grid; place-items: center; border: 1px solid var(--line);
   border-radius: 14px; background: var(--bg-2);
+  transition: border-color .25s, background .25s;
 }
-.edu-meta h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em; font-size: 1.5rem; line-height: 1; }
+.edu-meta h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em; font-size: 1.5rem; line-height: 1; transition: color .25s; }
+.edu-row:hover .edu-pic { border-color: var(--green); background: rgba(31,157,92,0.06); }
+.edu-row:hover .edu-meta h3 { color: var(--green-2); }
 .edu-meta p { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-dim); margin-top: 0.45rem; letter-spacing: 0.04em; }
 .cta--big { margin-left: auto; padding: 1.1rem 1.8rem; font-size: 0.85rem; }
 .cta--big:hover { background: var(--green); color: #05140c; border-color: var(--green); }
@@ -595,6 +628,7 @@ html.intro-lock { overflow: hidden; }
   border: 1px solid var(--line); border-radius: 16px; padding: 1.1rem 1.2rem;
   background: rgba(255,255,255,0.012);
 }
+.acad-stat:hover { border-color: color-mix(in srgb, var(--green) 55%, transparent); background: rgba(31,157,92,0.05); }
 .acad-k {
   display: block; font-family: var(--mono); font-size: 0.6rem;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 0.55rem;
@@ -619,6 +653,8 @@ html.intro-lock { overflow: hidden; }
 }
 .course-label--ap { color: var(--gold); border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent); }
 .course-label--ib { color: var(--blue-2); border: 1px solid color-mix(in srgb, var(--blue) 45%, transparent); }
+.course-label--ap:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold) 12%, transparent); }
+.course-label--ib:hover { border-color: var(--blue-2); background: color-mix(in srgb, var(--blue) 12%, transparent); }
 .course-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .course-chips li {
   font-family: var(--mono); font-size: 0.74rem; color: var(--ink-dim);
@@ -720,10 +756,20 @@ html.intro-lock { overflow: hidden; }
 }
 .about-photo { position: relative; }
 .about-photo img {
-  width: 100%; aspect-ratio: 4 / 5; object-fit: cover;
-  border: 1px solid var(--line); filter: none;
+  width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block;
+  border: 1px solid var(--line); border-radius: 16px; filter: none;
   transition: filter .6s var(--ease);
 }
+/* shared portrait frame: green sides, blue top, gold bottom — caption sits outside it */
+.pic-frame { position: relative; display: block; }
+.pic-frame::before {
+  content: ""; position: absolute; inset: -1px; border-radius: 17px; z-index: 1;
+  border: 2px solid transparent;
+  border-left-color: var(--green); border-right-color: var(--green);
+  border-top-color: var(--blue); border-bottom-color: var(--gold);
+  pointer-events: none; transition: inset .4s var(--ease);
+}
+.pic-frame:hover::before { inset: -7px; }
 .about-photo figcaption {
   font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--mute); margin-top: 0.8rem;
@@ -763,3 +809,21 @@ html.intro-lock { overflow: hidden; }
   color: var(--ink-dim); transition: color .25s; white-space: nowrap;
 }
 .mail-link:hover { color: var(--green-2); }
+
+/* custom-cursor on/off toggle, beside the email */
+.cursor-toggle {
+  display: inline-flex; align-items: center; gap: 0.55rem; margin-top: 0.4rem;
+  font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.03em;
+  color: var(--ink-dim); background: none;
+  border: 1px solid var(--line); border-radius: 100px; padding: 0.55rem 1.05rem;
+  transition: color .25s, border-color .25s, background .25s;
+}
+.cursor-toggle svg { width: 15px; height: 15px; flex: none; opacity: 0.85; }
+.cursor-toggle i { font-style: normal; color: var(--green-2); }
+.cursor-toggle[aria-pressed="false"] i { color: var(--mute); }
+.cursor-toggle:hover {
+  color: var(--green-2);
+  border-color: color-mix(in srgb, var(--green) 50%, transparent);
+  background: rgba(31,157,92,0.05);
+}
+@media (hover: none) { .cursor-toggle { display: none; } }
