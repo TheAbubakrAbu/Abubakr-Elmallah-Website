@@ -6,9 +6,9 @@
 <meta name="description" content="Al-Islam apps by Abubakr Elmallah — Al-Islam, Al-Quran, and Al-Adhan. Award-winning Islamic apps for the Apple ecosystem." />
 <meta name="theme-color" content="#08080a" />
 
-<link rel="icon" type="image/png" href="../assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="../assets/img/me/abubakr-circle.png" />
-<meta property="og:image" content="../assets/img/me/abubakr-circle.png" />
+<link rel="icon" type="image/jpeg" href="../assets/img/me/abubakr-circle.jpg" />
+<link rel="apple-touch-icon" href="../assets/img/me/abubakr-circle.jpg" />
+<meta property="og:image" content="../assets/img/me/abubakr-circle.jpg" />
 <meta property="og:type" content="website" />
 <title>Al-Islam — Abubakr Elmallah</title>
 
@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="../assets/css/components.css" />
 </head>
 <body data-intro="alislam">
+<div id="introCover" aria-hidden="true" style="position:fixed;inset:0;z-index:11000;background:#08080a"></div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -29,23 +30,26 @@
 <div class="cursor" id="cursor" aria-hidden="true"></div>
 <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
-<aside class="rail" aria-hidden="true">
-  <span class="rail-mark">AE</span>
-  <span class="rail-line"></span>
-  <span class="rail-meta" id="clock">--:--:--</span>
-  <span class="rail-meta">33.64°N · 117.84°W</span>
+<aside class="rail">
+  <span class="rail-mark" aria-hidden="true">AE</span>
+  <span class="rail-line" aria-hidden="true"><i id="railFill"></i></span>
+  <span class="rail-meta" id="clock" aria-hidden="true">--:--:--</span>
+  <span class="rail-meta" aria-hidden="true">33.64°N · 117.84°W</span>
 </aside>
 
 <header class="topbar">
   <a href="../index.html" class="brand" data-magnetic>
-    <img class="brand-avatar" src="../assets/img/me/abubakr-circle.png" alt="Abubakr Elmallah" /><span class="brand-glyph"><b>Abubakr</b> Elmallah</span>
+    <img class="brand-avatar" src="../assets/img/me/abubakr-circle.jpg" alt="Abubakr Elmallah" /><span class="brand-glyph"><b>Abubakr</b> Elmallah</span>
   </a>
-  <nav class="nav">
+  <!-- top nav controls hidden — using the bottom tab bar instead
+<nav class="nav">
     <a href="projects.html" data-magnetic>Projects</a>
     <a href="star-wars.html" data-magnetic>Star Wars</a>
     <a href="al-islam.html" class="is-current" data-magnetic>Al-Islam</a>
     <a href="high-school.html" data-magnetic>High School</a>
   </nav>
+  -->
+  <div class="toggles"><button class="ql ql--sound is-on" id="soundToggle" type="button" aria-pressed="true" aria-label="Toggle interface sounds" data-magnetic><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><button class="ql ql--cursor" id="cursorToggle" type="button" data-cursor-toggle aria-pressed="true" aria-label="Toggle custom cursor" data-magnetic><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg></button></div>
   <div class="quicklinks">
     <a class="ql ql--resume" href="resume.html" data-magnetic>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M8 13h8M8 17h6"/></svg>
@@ -70,9 +74,9 @@
     <div class="hero-head">
       <h1 class="page-title"><em>Al-Islam</em></h1>
       <div class="hero-gallery" aria-hidden="true">
-        <img class="g-side" src="../assets/img/apps/al-quran.png" alt="" loading="eager" />
+        <img class="g-side" src="../assets/img/apps/al-adhan.jpg" alt="" loading="eager" />
         <img class="g-main" src="../assets/img/apps/al-islam.jpg" alt="" loading="eager" />
-        <img class="g-side" src="../assets/img/apps/al-adhan.png" alt="" loading="eager" />
+        <img class="g-side" src="../assets/img/apps/al-quran.jpg" alt="" loading="eager" />
       </div>
     </div>
     <p class="lede">A family of Islamic apps for the whole Apple ecosystem — an all-in-one companion, a beginner-friendly Quran, and precise prayer times. Two of them earned national recognition.</p>
@@ -80,6 +84,20 @@
 
   <section class="work alislam">
     <div class="apps-grid">
+      <article class="app-card reveal">
+        <div class="app-head"><img class="app-icon" src="../assets/img/apps/al-adhan.jpg" alt="Al-Adhan | Prayer Times app icon" loading="lazy" /></div>
+        <h3>Al-Adhan · Prayer Times</h3>
+        <p class="app-sub">2023 · Prayer times &amp; qibla</p>
+        <p>An offshoot of Al-Islam that enhances daily worship with precise prayer times, real-time qibla direction, and a unique Traveling Mode for on-the-go adjustments.</p>
+        <div class="app-foot">
+          <span class="app-tags">iOS · iPadOS · watchOS · macOS</span>
+          <span class="app-links">
+            <a href="https://apps.apple.com/us/app/al-adhan-prayer-times/id6475015493?platform=iphone" target="_blank" rel="noopener">App Store ↗</a>
+            <a href="https://github.com/TheAbubakrAbu/Al-Adhan-Prayer-Times" target="_blank" rel="noopener">GitHub ↗</a>
+          </span>
+        </div>
+      </article>
+
       <article class="app-card app-card--feature reveal">
         <div class="app-head">
           <img class="app-icon" src="../assets/img/apps/al-islam.jpg" alt="Al-Islam | Islamic Pillars app icon" loading="lazy" />
@@ -89,7 +107,7 @@
         <p class="app-sub">2023 · All-in-one Muslim companion</p>
         <p>An all-in-one companion for lifelong Muslims and converts alike — Traveling Mode, Beginner Arabic Mode, prayer times, qibla direction, Quran access, and tools to deepen faith and connect with Allah.</p>
         <div class="app-shots" aria-label="Award proof">
-          <figure><a href="../assets/img/awards/al-islam-congressional.png"><img class="shift-left" src="../assets/img/awards/al-islam-congressional.png" alt="Congressional App Challenge winner announcement for Abubakr Elmallah" loading="lazy" /></a><figcaption>Best Original Idea</figcaption></figure>
+          <figure><a href="../assets/img/awards/al-islam-congressional.jpg"><img class="shift-left" src="../assets/img/awards/al-islam-congressional.jpg" alt="Congressional App Challenge winner announcement for Abubakr Elmallah" loading="lazy" /></a><figcaption>Best Original Idea</figcaption></figure>
           <figure><a href="../assets/img/awards/al-islam-certificate.jpg"><img src="../assets/img/awards/al-islam-certificate.jpg" alt="House of Representatives Certificate of Congressional Recognition" loading="lazy" /></a><figcaption>House of Reps.</figcaption></figure>
         </div>
         <div class="app-foot">
@@ -103,14 +121,14 @@
 
       <article class="app-card app-card--feature reveal">
         <div class="app-head">
-          <img class="app-icon" src="../assets/img/apps/al-quran.png" alt="Al-Quran | Beginner Quran app icon" loading="lazy" />
+          <img class="app-icon" src="../assets/img/apps/al-quran.jpg" alt="Al-Quran | Beginner Quran app icon" loading="lazy" />
           <a class="app-badge" href="https://developer.apple.com/swift-student-challenge/" target="_blank" rel="noopener">🏆 Swift Student Challenge ’24</a>
         </div>
         <h3>Al-Quran · Beginner Quran</h3>
         <p class="app-sub">2023 · Learn &amp; study the Holy Quran</p>
         <p>Makes learning and studying the Holy Quran accessible — Arabic Beginner Mode, ayah sharing, recitations, and tools for enhancing your spiritual journey.</p>
         <div class="app-shots" aria-label="Award proof">
-          <figure><a href="../assets/img/awards/al-quran-ssc.png"><img src="../assets/img/awards/al-quran-ssc.png" alt="Swift Student Challenge 2024 award for Al-Quran" loading="lazy" /></a><figcaption>Swift Student Challenge</figcaption></figure>
+          <figure><a href="../assets/img/awards/al-quran-ssc.jpg"><img src="../assets/img/awards/al-quran-ssc.jpg" alt="Swift Student Challenge 2024 award for Al-Quran" loading="lazy" /></a><figcaption>Swift Student Challenge</figcaption></figure>
           <figure><a href="../assets/img/awards/al-quran-apple-letter.jpg"><img src="../assets/img/awards/al-quran-apple-letter.jpg" alt="Apple Worldwide Developer Relations letter congratulating Abubakr Elmallah" loading="lazy" /></a><figcaption>Apple · WWDC letter</figcaption></figure>
         </div>
         <div class="app-foot">
@@ -118,20 +136,6 @@
           <span class="app-links">
             <a href="https://apps.apple.com/us/app/al-quran-beginner-quran/id6474894373?platform=iphone" target="_blank" rel="noopener">App Store ↗</a>
             <a href="https://github.com/TheAbubakrAbu/Al-Quran-Beginner-Quran" target="_blank" rel="noopener">GitHub ↗</a>
-          </span>
-        </div>
-      </article>
-
-      <article class="app-card reveal">
-        <div class="app-head"><img class="app-icon" src="../assets/img/apps/al-adhan.png" alt="Al-Adhan | Prayer Times app icon" loading="lazy" /></div>
-        <h3>Al-Adhan · Prayer Times</h3>
-        <p class="app-sub">2023 · Prayer times &amp; qibla</p>
-        <p>An offshoot of Al-Islam that enhances daily worship with precise prayer times, real-time qibla direction, and a unique Traveling Mode for on-the-go adjustments.</p>
-        <div class="app-foot">
-          <span class="app-tags">iOS · iPadOS · watchOS · macOS</span>
-          <span class="app-links">
-            <a href="https://apps.apple.com/us/app/al-adhan-prayer-times/id6475015493?platform=iphone" target="_blank" rel="noopener">App Store ↗</a>
-            <a href="https://github.com/TheAbubakrAbu/Al-Adhan-Prayer-Times" target="_blank" rel="noopener">GitHub ↗</a>
           </span>
         </div>
       </article>
@@ -157,12 +161,24 @@
   <button class="totop" id="totop" data-magnetic>Back to top ↑</button>
 </footer>
 
+<!-- mobile bottom tab bar -->
+<nav class="tabbar" aria-label="Primary">
+  <a href="../index.html"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg><span>Home</span></a>
+  <a href="projects.html"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Projects</span></a>
+  <a href="star-wars.html"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.1 1.2 6L12 16.9 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg><span>Star Wars</span></a>
+  <a href="al-islam.html" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 1 0 10.5 10.5z"/></svg><span>Al-Islam</span></a>
+  <a href="high-school.html"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1 2.5 2 5 2s5-1 5-2v-5"/></svg><span>School</span></a>
+</nav>
+
 <script src="../assets/js/utils.js"></script>
 <script src="../assets/js/cursor.js"></script>
 <script src="../assets/js/magnetic.js"></script>
 <script src="../assets/js/reveal.js"></script>
 <script src="../assets/js/clock.js"></script>
 <script src="../assets/js/flowfield.js"></script>
+<script src="../assets/js/tilt.js"></script>
+<script src="../assets/js/scroll.js"></script>
+<script src="../assets/js/sound.js"></script>
 <script src="../assets/js/intro.js"></script>
 <script src="../assets/js/cardlink.js"></script>
 <script src="../assets/js/gallery.js"></script>

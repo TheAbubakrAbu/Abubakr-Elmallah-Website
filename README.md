@@ -18,7 +18,7 @@ projects. No frameworks, no templates — just HTML, CSS, and vanilla JavaScript
 ## Highlights
 
 - 🏆 Datapad — Top 10 on the App Store Entertainment chart
-- 🏆 Al-Islam — Congressional Challenge Winner (2023)
+- 🏆 Al-Islam — Congressional App Challenge Winner (2023)
 - 🏆 Al-Quran — Swift Student Challenge Winner (2024)
 
 ## Built with

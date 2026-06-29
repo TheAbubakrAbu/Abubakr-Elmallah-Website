@@ -6,6 +6,16 @@
   let w, h, dpr, particles = [], t = 0;
   const mouse = { x: -999, y: -999 };
 
+  // calm (slow particle) → hot (fast particle) colors, themed per page via <body data-intro>
+  const THEMES = {
+    home:     { calm: [31, 157, 92],  hot: [245, 198, 60] },  // Islamic green → UCI gold
+    alislam:  { calm: [31, 157, 92],  hot: [63, 213, 137] },  // green → emerald
+    starwars: { calm: [120, 92, 24],  hot: [255, 232, 31] },  // amber → Star Wars yellow
+    school:   { calm: [47, 127, 214], hot: [245, 198, 60] },  // UCI blue → gold
+    projects: { calm: [47, 127, 214], hot: [95, 163, 236] },  // navy → sky blue
+  };
+  const theme = THEMES[document.body.dataset.intro] || THEMES.home;
+
   function resize() {
     dpr = Math.min(devicePixelRatio || 1, 2);
     w = canvas.width = innerWidth * dpr;
@@ -56,10 +66,9 @@
 
       const speed = Math.hypot(p.vx, p.vy);
       const hot = Math.min(speed / 2.2, 1);
-      // calm = Islamic green (31,157,92) → fast = UCI gold (245,198,60)
-      const cr = Math.round(31 + hot * 214);
-      const cg = Math.round(157 + hot * 41);
-      const cb = Math.round(92 - hot * 32);
+      const cr = Math.round(theme.calm[0] + (theme.hot[0] - theme.calm[0]) * hot);
+      const cg = Math.round(theme.calm[1] + (theme.hot[1] - theme.calm[1]) * hot);
+      const cb = Math.round(theme.calm[2] + (theme.hot[2] - theme.calm[2]) * hot);
       ctx.fillStyle = `rgba(${cr}, ${cg}, ${cb}, ${0.18 + hot * 0.5})`;
       const radius = (0.6 + hot * 1.6) * dpr;
       ctx.beginPath();

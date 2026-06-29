@@ -61,8 +61,25 @@ main, .footer, .rail { position: relative; z-index: 10; }
   z-index: 50; pointer-events: none;
 }
 .rail-mark { writing-mode: vertical-rl; letter-spacing: 0.4em; color: var(--ink-dim); }
-.rail-line { flex: 1; width: 1px; background: linear-gradient(var(--line), transparent); margin: 1rem 0; }
+.rail-line { flex: 1; width: 1px; background: var(--line); margin: 1rem 0; position: relative; overflow: hidden; }
+.rail-line i { position: absolute; inset: 0; transform: scaleY(0); transform-origin: top;
+  background: linear-gradient(var(--green-2), var(--blue)); will-change: transform; }
 .rail-meta { writing-mode: vertical-rl; }
+/* sound toggle lives in the rail (rail itself is click-through, so re-enable it here) */
+.rail-sound {
+  pointer-events: auto; cursor: none;
+  width: 26px; height: 26px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1px solid var(--line); background: transparent; color: var(--mute);
+  transition: color .25s, border-color .25s, background .25s;
+}
+.rail-sound svg { width: 13px; height: 13px; }
+.rail-sound .ico-on { display: none; }
+.rail-sound.is-on { color: var(--green-2); border-color: color-mix(in srgb, var(--green) 50%, transparent); }
+.rail-sound.is-on .ico-on { display: block; }
+.rail-sound.is-on .ico-off { display: none; }
+.rail-sound:hover { color: var(--ink); border-color: var(--mute); }
+@media (hover: none) { .rail-sound { cursor: pointer; } }
 @media (max-width: 820px) { .rail { display: none; } }
 
 /* ───────────── Sticky header ───────────── */
@@ -105,14 +122,84 @@ a.footer-mid:hover { color: var(--green-2); }
 .ql--github   { background: var(--gold); color: #1a1405; border-color: var(--gold); font-weight: 500; }
 .ql--github:hover   { background: #ffd766; border-color: #ffd766; }
 
+/* sound toggle — sits in the top-bar quicklinks, icon-only, swaps on/off glyph */
+.ql--sound { padding: 0.55rem; color: var(--ink-dim); background: transparent; }
+.ql--sound svg { width: 16px; height: 16px; }
+.ql--sound .ico-on { display: none; }
+.ql--sound.is-on { color: var(--green-2); border-color: color-mix(in srgb, var(--green) 45%, transparent); }
+.ql--sound.is-on .ico-on { display: block; }
+.ql--sound.is-on .ico-off { display: none; }
+.ql--sound:hover { color: var(--ink); border-color: var(--mute); }
+
+/* custom-cursor toggle — same icon-only treatment, state via aria-pressed */
+.ql--cursor { padding: 0.55rem; color: var(--ink-dim); background: transparent; }
+.ql--cursor svg { width: 16px; height: 16px; }
+.ql--cursor .ico-off { display: none; }
+.ql--cursor[aria-pressed="true"] { color: var(--green-2); border-color: color-mix(in srgb, var(--green) 45%, transparent); }
+.ql--cursor[aria-pressed="false"] .ico-on { display: none; }
+.ql--cursor[aria-pressed="false"] .ico-off { display: block; }
+.ql--cursor:hover { color: var(--ink); border-color: var(--mute); }
+
+/* toggle group (sound + cursor) sits just before the quicklinks */
+.toggles { display: flex; align-items: center; gap: 0.6rem; }
+
 @media (max-width: 1080px) { .nav { display: none; } }
+/* top nav controls are commented out — push the toggle+quicklinks group to the right */
+@media (min-width: 561px) { .topbar .toggles { margin-left: auto; } }
 @media (max-width: 560px) {
   .topbar { gap: 0.6rem; padding: 0.7rem 1rem; flex-wrap: wrap; }
-  .brand { width: 100%; }
+  /* brand + toggles share the top row (toggles pinned right); social pills wrap below */
+  .brand { width: auto; }
+  .topbar .toggles { margin-left: auto; }
+  .topbar .quicklinks { width: 100%; margin-left: 0; margin-right: auto; }
   .ql .ql-label { display: none; }
   .ql { padding: 0.55rem 0.7rem; }
-  .quicklinks { margin-left: 0; margin-right: auto; }
 }
+
+/* ───────────── Bottom tab bar — floating liquid glass (now shown on every screen) ───────────── */
+
+.tabbar {
+  display: flex;
+  position: fixed; z-index: 200;
+  left: 50%; transform: translateX(-50%);
+  bottom: calc(0.9rem + env(safe-area-inset-bottom, 0px));
+  width: min(92vw, 460px);
+  justify-content: space-around; align-items: stretch;
+  padding: 0.45rem 0.5rem;
+  border-radius: 26px;
+  /* liquid glass: translucent fill + heavy blur + bright edge + soft drop */
+  background:
+    linear-gradient(155deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02) 42%, rgba(8,8,10,0.18)),
+    rgba(14, 14, 18, 0.55);
+  backdrop-filter: blur(26px) saturate(180%);
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.18) inset,   /* top sheen */
+    0 -1px 0 rgba(0,0,0,0.25) inset,        /* bottom depth */
+    0 16px 40px rgba(0, 0, 0, 0.5),         /* lifted shadow */
+    0 2px 10px rgba(0, 0, 0, 0.35);
+}
+.tabbar a {
+  flex: 1 1 0;
+  display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+  padding: 0.4rem 0.2rem;
+  border-radius: 18px;
+  font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.02em;
+  color: var(--ink-dim); text-align: center;
+  transition: color .25s var(--ease), background .25s, transform .25s var(--ease);
+}
+.tabbar a svg { width: 21px; height: 21px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+.tabbar a:hover { color: var(--green-2); }
+.tabbar a:active { transform: scale(0.92); }
+.tabbar a.is-current {
+  color: var(--green-2);
+  background: linear-gradient(160deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03));
+  box-shadow: 0 1px 0 rgba(255,255,255,0.16) inset, 0 4px 12px rgba(0,0,0,0.28);
+}
+
+/* keep content & footer clear of the floating bar */
+body { padding-bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
 
 /* ───────────── Shell ───────────── */
 
