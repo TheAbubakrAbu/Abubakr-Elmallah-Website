@@ -6,9 +6,9 @@
 <meta name="description" content="Abubakr Elmallah's high-school work — programming projects, custom flyers, and custom wallpapers." />
 <meta name="theme-color" content="#08080a" />
 
-<link rel="icon" type="image/png" href="../assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="../assets/img/me/abubakr-circle.png" />
-<meta property="og:image" content="../assets/img/me/abubakr-circle.png" />
+<link rel="icon" type="image/jpeg" href="../assets/img/me/abubakr-circle.jpg" />
+<link rel="apple-touch-icon" href="../assets/img/me/abubakr-circle.jpg" />
+<meta property="og:image" content="../assets/img/me/abubakr-circle.jpg" />
 <meta property="og:type" content="website" />
 <title>High School — Abubakr Elmallah</title>
 
@@ -21,6 +21,7 @@
 <link rel="stylesheet" href="../assets/css/components.css" />
 </head>
 <body data-intro="school">
+<div id="introCover" aria-hidden="true" style="position:fixed;inset:0;z-index:11000;background:#08080a"></div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -29,23 +30,26 @@
 <div class="cursor" id="cursor" aria-hidden="true"></div>
 <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
 
-<aside class="rail" aria-hidden="true">
-  <span class="rail-mark">AE</span>
-  <span class="rail-line"></span>
-  <span class="rail-meta" id="clock">--:--:--</span>
-  <span class="rail-meta">33.64°N · 117.84°W</span>
+<aside class="rail">
+  <span class="rail-mark" aria-hidden="true">AE</span>
+  <span class="rail-line" aria-hidden="true"><i id="railFill"></i></span>
+  <span class="rail-meta" id="clock" aria-hidden="true">--:--:--</span>
+  <span class="rail-meta" aria-hidden="true">33.64°N · 117.84°W</span>
 </aside>
 
 <header class="topbar">
   <a href="../index.html" class="brand" data-magnetic>
-    <img class="brand-avatar" src="../assets/img/me/abubakr-circle.png" alt="Abubakr Elmallah" /><span class="brand-glyph"><b>Abubakr</b> Elmallah</span>
+    <img class="brand-avatar" src="../assets/img/me/abubakr-circle.jpg" alt="Abubakr Elmallah" /><span class="brand-glyph"><b>Abubakr</b> Elmallah</span>
   </a>
-  <nav class="nav">
+  <!-- top nav controls hidden — using the bottom tab bar instead
+<nav class="nav">
     <a href="projects.html" data-magnetic>Projects</a>
     <a href="star-wars.html" data-magnetic>Star Wars</a>
     <a href="al-islam.html" data-magnetic>Al-Islam</a>
     <a href="high-school.html" class="is-current" data-magnetic>High School</a>
   </nav>
+  -->
+  <div class="toggles"><button class="ql ql--sound is-on" id="soundToggle" type="button" aria-pressed="true" aria-label="Toggle interface sounds" data-magnetic><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><button class="ql ql--cursor" id="cursorToggle" type="button" data-cursor-toggle aria-pressed="true" aria-label="Toggle custom cursor" data-magnetic><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg></button></div>
   <div class="quicklinks">
     <a class="ql ql--resume" href="resume.html" data-magnetic>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M8 13h8M8 17h6"/></svg>
@@ -200,10 +204,10 @@
 
     <h3 class="subsec reveal">Custom Wallpapers</h3>
     <div class="wall-grid">
-      <a class="wall reveal" href="../assets/img/wallpapers/palestine.png" target="_blank" rel="noopener"><img src="../assets/img/wallpapers/palestine.png" alt="Palestine wallpaper — Indeed Allah's help is near" loading="lazy" /><span class="flyer-cap"><b>Palestine</b><i>Phone</i></span></a>
-      <a class="wall reveal" href="../assets/img/wallpapers/phone.png" target="_blank" rel="noopener"><img src="../assets/img/wallpapers/phone.png" alt="Islamic phone wallpaper" loading="lazy" /><span class="flyer-cap"><b>Phone</b><i>9:19.5</i></span></a>
-      <a class="wall reveal" href="../assets/img/wallpapers/laptop.png" target="_blank" rel="noopener"><img src="../assets/img/wallpapers/laptop.png" alt="Islamic laptop wallpaper, 16:9" loading="lazy" /><span class="flyer-cap"><b>Laptop</b><i>16:9</i></span></a>
-      <a class="wall reveal" href="../assets/img/wallpapers/desktop.png" target="_blank" rel="noopener"><img src="../assets/img/wallpapers/desktop.png" alt="Islamic ultrawide desktop wallpaper, 21:9" loading="lazy" /><span class="flyer-cap"><b>Desktop</b><i>21:9</i></span></a>
+      <a class="wall reveal" href="../assets/img/wallpapers/palestine.jpg" target="_blank" rel="noopener"><img src="../assets/img/wallpapers/palestine.jpg" alt="Palestine wallpaper — Indeed Allah's help is near" loading="lazy" /><span class="flyer-cap"><b>Palestine</b><i>Phone</i></span></a>
+      <a class="wall reveal" href="../assets/img/wallpapers/phone.jpg" target="_blank" rel="noopener"><img src="../assets/img/wallpapers/phone.jpg" alt="Islamic phone wallpaper" loading="lazy" /><span class="flyer-cap"><b>Phone</b><i>9:19.5</i></span></a>
+      <a class="wall reveal" href="../assets/img/wallpapers/laptop.jpg" target="_blank" rel="noopener"><img src="../assets/img/wallpapers/laptop.jpg" alt="Islamic laptop wallpaper, 16:9" loading="lazy" /><span class="flyer-cap"><b>Laptop</b><i>16:9</i></span></a>
+      <a class="wall reveal" href="../assets/img/wallpapers/desktop.jpg" target="_blank" rel="noopener"><img src="../assets/img/wallpapers/desktop.jpg" alt="Islamic ultrawide desktop wallpaper, 21:9" loading="lazy" /><span class="flyer-cap"><b>Desktop</b><i>21:9</i></span></a>
     </div>
 
     <h3 class="subsec reveal">Academics <span class="subsec-yr">Class of 2024</span></h3>
@@ -252,12 +256,24 @@
   <button class="totop" id="totop" data-magnetic>Back to top ↑</button>
 </footer>
 
+<!-- mobile bottom tab bar -->
+<nav class="tabbar" aria-label="Primary">
+  <a href="../index.html"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg><span>Home</span></a>
+  <a href="projects.html"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Projects</span></a>
+  <a href="star-wars.html"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.1 1.2 6L12 16.9 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg><span>Star Wars</span></a>
+  <a href="al-islam.html"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 1 0 10.5 10.5z"/></svg><span>Al-Islam</span></a>
+  <a href="high-school.html" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1 2.5 2 5 2s5-1 5-2v-5"/></svg><span>School</span></a>
+</nav>
+
 <script src="../assets/js/utils.js"></script>
 <script src="../assets/js/cursor.js"></script>
 <script src="../assets/js/magnetic.js"></script>
 <script src="../assets/js/reveal.js"></script>
 <script src="../assets/js/clock.js"></script>
 <script src="../assets/js/flowfield.js"></script>
+<script src="../assets/js/tilt.js"></script>
+<script src="../assets/js/scroll.js"></script>
+<script src="../assets/js/sound.js"></script>
 <script src="../assets/js/intro.js"></script>
 <script src="../assets/js/gallery.js"></script>
 <script src="../assets/js/cardlink.js"></script>

@@ -68,6 +68,12 @@
 /* hero actions: CTA + quick buttons + section links */
 .hero-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1.1rem; }
 .hero-buttons { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; }
+/* mobile: full-width hero buttons so they read as app buttons and line up flush */
+@media (max-width: 560px) {
+  .hero-actions { align-self: stretch; }
+  .hero-buttons { width: 100%; }
+  .hero-buttons .cta { flex: 1 1 100%; width: 100%; justify-content: space-between; }
+}
 .hero-nav { display: none; flex-wrap: wrap; gap: 0.6rem; }
 .hero-nav a {
   font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em;
@@ -75,7 +81,7 @@
   padding: 0.5rem 0.95rem; transition: color .2s, border-color .2s, background .2s;
 }
 .hero-nav a:hover { color: var(--green-2); border-color: var(--mute); }
-@media (max-width: 1080px) { .hero-nav { display: flex; } }
+/* hero-nav stays hidden — on mobile the bottom tab bar covers these links */
 
 /* hero portrait */
 .portrait {
@@ -167,6 +173,15 @@
 @media (hover: none) { .app-card.is-clickable, .proj-card.is-clickable { cursor: pointer; } }
 .app-card:hover { transform: translateY(-6px); border-color: transparent; background: rgba(31,157,92,0.04); }
 .app-card:hover::after { opacity: 1; }
+
+/* 3D tilt glare (added by tilt.js) — a soft highlight that tracks the pointer */
+.card-glare {
+  position: absolute; inset: 0; border-radius: inherit; z-index: 2;
+  pointer-events: none; opacity: 0; transition: opacity .3s;
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%),
+    rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 45%);
+  mix-blend-mode: soft-light;
+}
 
 .app-head {
   display: flex; align-items: flex-start; justify-content: space-between;
@@ -415,6 +430,11 @@ a.app-badge:hover {
 
 /* ───────────── Sub-page hero (Star Wars / Al-Islam) ───────────── */
 .page-hero { padding: 7rem var(--gutter) 2.5rem; max-width: var(--maxw); }
+@media (max-width: 640px) {
+  .page-hero { padding-top: 2rem; }
+  /* top "← Back home" is redundant on mobile — the bottom nav has Home (footer link stays) */
+  .back-link { display: none; }
+}
 .back-link {
   font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.05em;
   color: var(--ink-dim); display: inline-block; margin-bottom: 1.8rem;
@@ -509,9 +529,11 @@ html.intro-lock { overflow: hidden; }
 .intro--home.is-done .intro-center { opacity: 0; }
 
 /* STAR WARS — hyperspace warp + receding logo */
-.intro--starwars { background: #000; }
+.intro--starwars { background: #000; transition: opacity .55s ease, visibility .55s; }
 .intro--starwars.is-done { opacity: 0; visibility: hidden; }
-.intro-stars { position: absolute; inset: 0; width: 100%; height: 100%; }
+.intro-stars { position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity .65s ease; }
+/* hyperspace eases down and fades out first, before the backdrop leaves */
+.intro--starwars.warp-out .intro-stars { opacity: 0; }
 .intro-sw {
   position: relative; z-index: 2;
   font-family: var(--sans); font-weight: 700; text-transform: uppercase;
@@ -526,29 +548,85 @@ html.intro-lock { overflow: hidden; }
   100% { transform: perspective(420px) translateZ(-680px) scale(.12); opacity: 0; }
 }
 
-/* AL-ISLAM — Al-Islam first, then Al-Quran & Al-Adhan emerge from it */
-.intro--alislam { background: radial-gradient(circle at 50% 50%, #0d2a1d, #06120c 70%); }
-.intro--alislam.is-done { opacity: 0; visibility: hidden; }
-.intro-isl-glow {
-  position: absolute; width: 460px; height: 460px; max-width: 90vw; max-height: 90vw;
-  border-radius: 50%; opacity: 0;
-  background: radial-gradient(circle, rgba(63,213,137,.4), transparent 65%);
+/* AL-ISLAM — mirrors the app's LaunchScreen: glow + rings bloom, glass logo card
+   rises with a shimmer sweep, Al-Quran & Al-Adhan companion cards tilt out, title rises */
+.intro--alislam {
+  flex-direction: column; gap: clamp(1.4rem, 5vw, 2.4rem);
+  background: radial-gradient(circle at 50% 42%, #0d2a1d, #06120c 70%);
 }
-.intro--alislam.run .intro-isl-glow { animation: isl-glow .85s ease forwards; }
-@keyframes isl-glow { 0%{opacity:0;transform:scale(.4)} 45%{opacity:1;transform:scale(1)} 100%{opacity:.55;transform:scale(1.12)} }
+.intro--alislam.is-done { opacity: 0; visibility: hidden; }
+
+/* centered stage holding the glow, rings, and three icons */
+.intro-isl-stage {
+  position: relative; z-index: 3;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* soft radial bloom — centered on the stage (the logo card) */
+.intro-isl-glow {
+  position: absolute; top: 50%; left: 50%; translate: -50% -50%;
+  width: 460px; height: 460px; max-width: 92vw; max-height: 92vw;
+  border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle, rgba(63,213,137,.42), transparent 66%);
+}
+.intro--alislam.run .intro-isl-glow { animation: isl-glow .9s ease forwards; }
+@keyframes isl-glow { 0%{opacity:0;transform:scale(.4)} 50%{opacity:1;transform:scale(1)} 100%{opacity:.6;transform:scale(1.14)} }
+
+/* concentric rings that scale-bloom out (like the launch screen's twin circles) */
+.intro-isl-ring {
+  position: absolute; top: 50%; left: 50%; translate: -50% -50%;
+  width: clamp(210px, 56vw, 320px); aspect-ratio: 1; border-radius: 50%;
+  border: 1.5px solid rgba(63,213,137,.22); opacity: 0; transform: scale(.8);
+}
+.intro-isl-ring--2 { width: clamp(250px, 66vw, 380px); border-color: rgba(255,255,255,.14); }
+.intro--alislam.run .intro-isl-ring  { animation: isl-ring .8s var(--ease) .12s forwards; }
+.intro--alislam.run .intro-isl-ring--2 { animation: isl-ring .8s var(--ease) .2s forwards; }
+@keyframes isl-ring { to { opacity: 1; transform: scale(1.06); } }
 .intro-isl {
-  position: absolute; width: clamp(96px, 17vw, 148px); height: auto; border-radius: 26px;
+  width: clamp(86px, 24vw, 132px); height: auto; border-radius: 24px;
   box-shadow: 0 24px 70px -22px #000; opacity: 0;
 }
-.intro-isl--main { z-index: 3; transform: scale(.4); }
-.intro--alislam.run .intro-isl--main { animation: isl-main .45s var(--ease) .05s forwards; }
-@keyframes isl-main { to { opacity: 1; transform: scale(1); } }
-.intro-isl--left  { z-index: 2; }
-.intro-isl--right { z-index: 2; }
-.intro--alislam.run .intro-isl--left  { animation: isl-left  .55s var(--ease) .32s forwards; }
-.intro--alislam.run .intro-isl--right { animation: isl-right .55s var(--ease) .32s forwards; }
-@keyframes isl-left  { from{opacity:0;transform:translateX(0) scale(.8)} to{opacity:.85;transform:translateX(calc(-1 * clamp(200px,36vw,340px))) scale(.92)} }
-@keyframes isl-right { from{opacity:0;transform:translateX(0) scale(.8)} to{opacity:.85;transform:translateX(clamp(200px,36vw,340px)) scale(.92)} }
+
+/* main "Al-Islam" glass logo card */
+.intro-isl-card {
+  position: relative; z-index: 3; display: block; border-radius: 30px;
+  padding: clamp(8px, 2.4vw, 14px);
+  background: linear-gradient(155deg, rgba(255,255,255,.16), rgba(255,255,255,.03) 55%, rgba(6,18,12,.25));
+  border: 1px solid rgba(255,255,255,.22);
+  box-shadow: 0 1px 0 rgba(255,255,255,.3) inset, 0 26px 60px -20px #000;
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  opacity: 0; transform: translateY(16px) rotate(-7deg) scale(.78); transform-origin: center;
+  overflow: hidden;
+}
+.intro-isl-card .intro-isl--main { display: block; opacity: 1; box-shadow: none; border-radius: 18px; }
+.intro--alislam.run .intro-isl-card { animation: isl-main .5s var(--ease) .05s forwards; }
+@keyframes isl-main { to { opacity: 1; transform: translateY(0) rotate(0) scale(1); } }
+
+/* diagonal shimmer sweeping across the card */
+.intro-isl-shine {
+  position: absolute; top: -40%; bottom: -40%; left: -60%; width: 45%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent);
+  transform: rotate(18deg); opacity: 0;
+}
+.intro--alislam.run .intro-isl-shine { animation: isl-shine .8s ease .35s forwards; }
+@keyframes isl-shine { 0%{opacity:0;left:-60%} 25%{opacity:1} 100%{opacity:0;left:140%} }
+
+/* companion cards flank the main one, then float/tilt outward — responsive so they stay on-screen */
+.intro-isl--left, .intro-isl--right {
+  position: absolute; z-index: 2; top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(.7);
+}
+.intro--alislam.run .intro-isl--left  { animation: isl-left  .6s var(--ease) .34s forwards; }
+.intro--alislam.run .intro-isl--right { animation: isl-right .6s var(--ease) .34s forwards; }
+@keyframes isl-left  { to { opacity: .92; transform: translate(calc(-50% - clamp(92px,27vw,150px)), -58%) scale(.86) rotate(-7deg); } }
+@keyframes isl-right { to { opacity: .92; transform: translate(calc(-50% + clamp(92px,27vw,150px)), -58%) scale(.86) rotate(7deg); } }
+
+.intro-isl-title {
+  position: relative; z-index: 3;
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em;
+  font-size: clamp(2rem, 7vw, 4.4rem); color: #eafff3; opacity: 0;
+}
+.intro--alislam.run .intro-isl-title { animation: intro-rise .42s var(--ease) .5s forwards; }
 
 /* PROJECTS — icon mosaic pops in, then title */
 .intro--projects { background: var(--bg); flex-direction: column; gap: 1.8rem; }
@@ -571,17 +649,17 @@ html.intro-lock { overflow: hidden; }
 /* SCHOOL — yearbook polaroids fan out, then title */
 .intro--school { background: var(--bg); flex-direction: column; gap: 1.8rem; }
 .intro--school.is-done { opacity: 0; visibility: hidden; }
-.intro-fan { position: relative; width: clamp(280px, 62vw, 480px); height: clamp(150px, 30vw, 220px); }
+.intro-fan { position: relative; width: clamp(240px, 60vw, 480px); height: clamp(150px, 30vw, 220px); }
 .intro-photo {
-  position: absolute; top: 0; left: 50%; width: clamp(108px, 22vw, 150px); aspect-ratio: 3 / 4;
+  position: absolute; top: 0; left: 50%; width: clamp(88px, 23vw, 150px); aspect-ratio: 3 / 4;
   object-fit: cover; object-position: center 18%; border-radius: 10px; border: 3px solid #fff;
   box-shadow: 0 16px 44px -18px #000; opacity: 0;
   transform: translate(-50%, 0) rotate(0) scale(.5);
 }
-.intro-photo:nth-child(1) { --rot: -18deg; --x: -156px; }
-.intro-photo:nth-child(2) { --rot: -6deg;  --x: -54px; }
-.intro-photo:nth-child(3) { --rot: 6deg;   --x: 54px; }
-.intro-photo:nth-child(4) { --rot: 18deg;  --x: 156px; }
+.intro-photo:nth-child(1) { --rot: -18deg; --x: calc(-1 * clamp(86px, 28vw, 156px)); }
+.intro-photo:nth-child(2) { --rot: -6deg;  --x: calc(-1 * clamp(30px, 10vw, 54px)); }
+.intro-photo:nth-child(3) { --rot: 6deg;   --x: clamp(30px, 10vw, 54px); }
+.intro-photo:nth-child(4) { --rot: 18deg;  --x: clamp(86px, 28vw, 156px); }
 .intro--school.run .intro-photo { animation: fan-in .42s var(--ease) forwards; }
 @keyframes fan-in { to { opacity: 1; transform: translate(calc(-50% + var(--x)), 0) rotate(var(--rot)) scale(1); } }
 .intro-school-title {
