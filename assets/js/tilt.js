@@ -1,4 +1,4 @@
-/* tilt.js — pointer-tracked 3D tilt + glare on cards, images, and the hero name */
+/* tilt.js — pointer-tracked 3D tilt + glare on cards and images */
 (function tilt() {
   if (!fine || reduceMotion) return;
 
@@ -33,7 +33,5 @@
   document.querySelectorAll('.app-card, .proj-card').forEach(el => bind(el, 7, -6));
   // standalone images / media tilt a touch harder
   document.querySelectorAll('.pic-frame, .flyer, .wall, .year-card').forEach(el => bind(el, 9, 0));
-  // the big hero name — subtle
-  const name = document.querySelector('.display');
-  if (name) bind(name, 5, 0);
+  // the hero name uses the magnetic drift effect instead (see magnetic.js)
 })();

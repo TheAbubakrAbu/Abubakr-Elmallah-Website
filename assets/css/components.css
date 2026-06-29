@@ -171,6 +171,14 @@
 }
 .app-card.is-clickable, .proj-card.is-clickable { cursor: none; }
 @media (hover: none) { .app-card.is-clickable, .proj-card.is-clickable { cursor: pointer; } }
+
+/* whole-card link: a stretched anchor overlay (see cardlink.js) so a click —
+   or right-click "Copy link address" — anywhere on the card hits the primary
+   link, while real inner links/buttons stay above and keep their own behavior */
+.is-clickable { position: relative; isolation: isolate; }
+.card-link-overlay { position: absolute; inset: 0; z-index: 1; cursor: inherit; }
+.is-clickable a:not(.card-link-overlay),
+.is-clickable button { position: relative; z-index: 3; }
 .app-card:hover { transform: translateY(-6px); border-color: transparent; background: rgba(31,157,92,0.04); }
 .app-card:hover::after { opacity: 1; }
 
@@ -225,8 +233,12 @@ a.app-badge:hover {
   filter: saturate(1.05); transition: transform .4s var(--ease), border-color .4s;
 }
 .app-shots figure:hover img { transform: translateY(-3px); border-color: var(--gold); }
-/* nudge a shot's framing slightly left within its figure */
-.app-shots img.shift-left { position: relative; right: 16px; }
+/* shift the crop window left of center so a screenshot's left-aligned text
+   isn't clipped (visually moves the content to the right). two strengths:
+   shift-right = gentle (al-islam-congressional), shift-right-lg = stronger
+   for a wider screenshot (al-quran-ssc) */
+.app-shots img.shift-right    { object-position: 20% top; }
+.app-shots img.shift-right-lg { object-position: 45% top; }
 .app-shots figcaption {
   font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--mute); margin-top: 0.5rem; text-align: center;
