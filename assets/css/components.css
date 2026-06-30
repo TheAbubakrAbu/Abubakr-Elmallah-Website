@@ -643,7 +643,7 @@ html.intro-lock { overflow: hidden; }
 /* PROJECTS — icon mosaic pops in, then title */
 .intro--projects { background: var(--bg); flex-direction: column; gap: 1.8rem; }
 .intro--projects.is-done { opacity: 0; visibility: hidden; }
-.intro-mosaic { display: grid; grid-template-columns: repeat(3, clamp(58px, 15vw, 92px)); gap: 0.8rem; }
+.intro-mosaic { display: grid; grid-template-columns: repeat(4, clamp(54px, 13vw, 88px)); gap: 0.8rem; }
 .intro-tile {
   width: 100%; aspect-ratio: 1; border-radius: 16px; object-fit: cover;
   box-shadow: 0 14px 40px -16px #000;

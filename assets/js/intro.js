@@ -36,10 +36,10 @@
       '</div>' +
       '<span class="intro-isl-title">Al-Islam</span>';
   } else if (type === 'projects') {
-    // grouped: UCI Work · Star Wars · Islam
-    const icons = ['apps/zotfinder.jpg', 'apps/uci-now.jpg', 'apps/uci-esports.jpg',
-                   'apps/datapad.jpg', 'bots/sabacc-droid.png', 'bots/aurebesh-droid.png',
-                   'apps/al-adhan.jpg', 'apps/al-islam.jpg', 'apps/al-quran.jpg'];
+    // grouped one row per theme: UCI Work · Star Wars · Islam (4 tiles each)
+    const icons = ['apps/zotfinder.jpg', 'apps/uci-now.jpg', 'apps/uci-esports.jpg', 'apps/peterplate.jpg',
+                   'apps/aurebesh-translator.jpg', 'apps/datapad.jpg', 'bots/aurebesh-droid.png', 'bots/sabacc-droid.png',
+                   'apps/al-adhan.jpg', 'apps/al-islam.jpg', 'apps/al-quran.jpg', 'apps/icoi.jpg'];
     ov.innerHTML =
       '<div class="intro-mosaic">' +
       icons.map((s, i) => '<img class="intro-tile" style="animation-delay:' + (i * 28) + 'ms" src="../assets/img/' + s + '" alt="" aria-hidden="true">').join('') +
@@ -60,15 +60,15 @@
   dropCover();   // overlay now covers the screen — safe to remove the static cover
 
   if (type === 'starwars') {
-    // Staged exit: the hyperspace streaks ease down and fade out FIRST, then the black
-    // backdrop + logo fade — so nothing snaps off mid-warp.
+    // One hyperspace jump: warp in, fade the starfield to black, then dismiss.
     const stopWarp = warp(ov.querySelector('.intro-stars'));
-    setTimeout(() => ov.classList.add('warp-out'), 1000);   // begin decelerating + fading the starfield
+    setTimeout(() => ov.classList.add('warp-out'), 1100);   // fade the starfield to black (no second warp)
     setTimeout(() => {
-      ov.classList.add('is-done');                          // now fade the rest away
+      stopWarp();                                           // starfield is black now — kill the canvas loop
+      ov.classList.add('is-done');                          // dismiss the (now black) overlay
       document.documentElement.classList.remove('intro-lock');
-      setTimeout(() => { stopWarp(); ov.remove(); }, 600);
-    }, 1650);
+      setTimeout(() => ov.remove(), 550);
+    }, 1750);
     return;
   }
 
@@ -79,12 +79,11 @@
     setTimeout(() => ov.remove(), 480);
   }, DUR);
 
-  /* hyperspace starfield warp for the Star Wars intro. Returns a stop() fn — the caller keeps it
-     running through the fade-out so the streaks ease down instead of freezing on a stale frame. */
+  /* hyperspace starfield warp for the Star Wars intro. Single acceleration into lightspeed;
+     the caller fades the canvas to black (CSS) and then calls the returned stop() fn. */
   function warp(canvas) {
     if (!canvas) return function () {};
     const ctx = canvas.getContext('2d');
-    const ov = canvas.closest('.intro');
     let w, h, cx, cy, raf, running = true;
     const dpr = Math.min(devicePixelRatio || 1, 2);
     function size() {
@@ -99,21 +98,18 @@
     const max = Math.hypot(w, h);
     function frame() {
       if (!running) return;
-      const fading = ov && ov.classList.contains('warp-out');
-      // heavier clear while fading wipes the trails so the field dims cleanly
-      ctx.fillStyle = 'rgba(0,0,0,' + (fading ? 0.34 : 0.22) + ')';
+      ctx.fillStyle = 'rgba(0,0,0,0.22)';
       ctx.fillRect(0, 0, w, h);
       ctx.strokeStyle = 'rgba(255,255,255,0.9)';
       for (const s of stars) {
-        if (fading) s.sp *= 0.94;          // decelerate out of lightspeed
-        else s.sp *= 1.024;                // accelerate into it (gentler than before)
+        s.sp *= 1.024;                     // accelerate into lightspeed
         s.r += s.sp;
         const tail = s.sp * 2.2;
         const x1 = cx + Math.cos(s.a) * s.r, y1 = cy + Math.sin(s.a) * s.r;
         const x2 = cx + Math.cos(s.a) * (s.r - tail), y2 = cy + Math.sin(s.a) * (s.r - tail);
         ctx.lineWidth = Math.min(s.r / 140, 2.4) * dpr;
         ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
-        if (s.r > max && !fading) { Object.assign(s, mk(), { r: Math.random() * 30 * dpr }); }
+        if (s.r > max) { Object.assign(s, mk(), { r: Math.random() * 30 * dpr }); }
       }
       raf = requestAnimationFrame(frame);
     }
