@@ -83,63 +83,7 @@
   </section>
 
   <section class="work alislam">
-    <div class="apps-grid">
-      <article class="app-card reveal">
-        <div class="app-head"><img class="app-icon" src="../assets/img/apps/al-adhan.jpg" alt="Al-Adhan | Prayer Times app icon" loading="lazy" /></div>
-        <h3>Al-Adhan · Prayer Times</h3>
-        <p class="app-sub">December 31, 2023</p>
-        <p>An offshoot of Al-Islam that enhances daily worship with precise prayer times, real-time qibla direction, and a unique Traveling Mode for on-the-go adjustments.</p>
-        <div class="app-foot">
-          <span class="app-tags">iOS · iPadOS · watchOS · macOS</span>
-          <span class="app-links">
-            <a href="https://apps.apple.com/us/app/al-adhan-prayer-times/id6475015493?platform=iphone" target="_blank" rel="noopener">App Store ↗</a>
-            <a href="https://github.com/TheAbubakrAbu/Al-Adhan-Prayer-Times" target="_blank" rel="noopener">GitHub ↗</a>
-          </span>
-        </div>
-      </article>
-
-      <article class="app-card app-card--feature reveal">
-        <div class="app-head">
-          <img class="app-icon" src="../assets/img/apps/al-islam.jpg" alt="Al-Islam | Islamic Pillars app icon" loading="lazy" />
-          <a class="app-badge" href="https://www.congressionalappchallenge.us/" target="_blank" rel="noopener">🏆 Congressional Challenge ’23</a>
-        </div>
-        <h3>Al-Islam · Islamic Pillars</h3>
-        <p class="app-sub">July 26, 2023</p>
-        <p>An all-in-one companion for lifelong Muslims and converts alike — Traveling Mode, Beginner Arabic Mode, prayer times, qibla direction, Quran access, and tools to deepen faith and connect with Allah.</p>
-        <div class="app-shots" aria-label="Award proof">
-          <figure><a href="../assets/img/awards/al-islam-congressional.jpg"><img class="shift-right" src="../assets/img/awards/al-islam-congressional.jpg" alt="Congressional App Challenge winner announcement for Abubakr Elmallah" loading="lazy" /></a><figcaption>Best Original Idea</figcaption></figure>
-          <figure><a href="../assets/img/awards/al-islam-certificate.jpg"><img src="../assets/img/awards/al-islam-certificate.jpg" alt="House of Representatives Certificate of Congressional Recognition" loading="lazy" /></a><figcaption>House of Reps.</figcaption></figure>
-        </div>
-        <div class="app-foot">
-          <span class="app-tags">iOS · iPadOS · watchOS · macOS</span>
-          <span class="app-links">
-            <a href="https://apps.apple.com/us/app/al-islam-islamic-pillars/id6449729655?platform=iphone" target="_blank" rel="noopener">App Store ↗</a>
-            <a href="https://github.com/TheAbubakrAbu/Al-Islam-Islamic-Pillars" target="_blank" rel="noopener">GitHub ↗</a>
-          </span>
-        </div>
-      </article>
-
-      <article class="app-card app-card--feature reveal">
-        <div class="app-head">
-          <img class="app-icon" src="../assets/img/apps/al-quran.jpg" alt="Al-Quran | Beginner Quran app icon" loading="lazy" />
-          <a class="app-badge" href="https://developer.apple.com/swift-student-challenge/" target="_blank" rel="noopener">🏆 Swift Student Challenge ’24</a>
-        </div>
-        <h3>Al-Quran · Beginner Quran</h3>
-        <p class="app-sub">December 26, 2023</p>
-        <p>Makes learning and studying the Holy Quran accessible — Arabic Beginner Mode, ayah sharing, recitations, and tools for enhancing your spiritual journey.</p>
-        <div class="app-shots" aria-label="Award proof">
-          <figure><a href="../assets/img/awards/al-quran-ssc.jpg"><img class="shift-right-lg" src="../assets/img/awards/al-quran-ssc.jpg" alt="Swift Student Challenge 2024 award for Al-Quran" loading="lazy" /></a><figcaption>Swift Student Challenge</figcaption></figure>
-          <figure><a href="../assets/img/awards/al-quran-apple-letter.jpg"><img src="../assets/img/awards/al-quran-apple-letter.jpg" alt="Apple Worldwide Developer Relations letter congratulating Abubakr Elmallah" loading="lazy" /></a><figcaption>Apple · WWDC letter</figcaption></figure>
-        </div>
-        <div class="app-foot">
-          <span class="app-tags">iOS · iPadOS · watchOS · macOS</span>
-          <span class="app-links">
-            <a href="https://apps.apple.com/us/app/al-quran-beginner-quran/id6474894373?platform=iphone" target="_blank" rel="noopener">App Store ↗</a>
-            <a href="https://github.com/TheAbubakrAbu/Al-Quran-Beginner-Quran" target="_blank" rel="noopener">GitHub ↗</a>
-          </span>
-        </div>
-      </article>
-    </div>
+    <div class="apps-grid" data-cards="al-adhan,al-islam,al-quran"></div>
   </section>
 
   <section class="verse reveal" aria-label="Quran verse">
@@ -170,6 +114,9 @@
   <a href="high-school.html"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1 2.5 2 5 2s5-1 5-2v-5"/></svg><span>School</span></a>
 </nav>
 
+<!-- card data + renderer (must load before reveal.js / tilt.js / cardlink.js) -->
+<script src="../assets/js/apps-data.js"></script>
+<script src="../assets/js/cards.js"></script>
 <script src="../assets/js/utils.js"></script>
 <script src="../assets/js/cursor.js"></script>
 <script src="../assets/js/magnetic.js"></script>
