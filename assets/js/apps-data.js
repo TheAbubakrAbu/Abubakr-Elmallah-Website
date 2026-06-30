@@ -74,8 +74,8 @@ window.APP_CARDS = {
     badge: { text: '🏆 Top 10 · Entertainment' },
     cat: { label: 'Star Wars ↗', href: 'star-wars.html', cls: 'app-cat--starwars' },
     shots: [
-      { src: 'awards/datapad-chart.jpg', alt: 'Datapad ranked #10 on the App Store Entertainment Top Charts', caption: '#10 · Top Charts' },
-      { src: 'awards/datapad-rating.jpg', alt: 'Datapad App Store listing showing a 4.9 star rating', caption: '#11 · Top Charts' },
+      { src: 'awards/datapad-chart.jpg', alt: 'Datapad ranked #10 on the App Store Entertainment Top Charts', caption: '#10 · Top Charts', imgClass: 'shift-down' },
+      { src: 'awards/datapad-rating.jpg', alt: 'Datapad App Store listing showing a 4.9 star rating', caption: '#11 · Top Charts', imgClass: 'shift-down' },
     ],
     links: [{ label: 'App Store ↗', href: 'https://apps.apple.com/us/app/datapad-aurebesh-translator/id6450498054?platform=iphone' }],
   },

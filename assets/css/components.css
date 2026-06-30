@@ -239,6 +239,8 @@ a.app-badge:hover {
    for a wider screenshot (al-quran-ssc) */
 .app-shots img.shift-right    { object-position: 20% top; }
 .app-shots img.shift-right-lg { object-position: 45% top; }
+/* shift the crop window DOWN so the iOS status bar (clock/battery) is cropped out */
+.app-shots img.shift-down     { object-position: center 24%; }
 .app-shots figcaption {
   font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--mute); margin-top: 0.5rem; text-align: center;
