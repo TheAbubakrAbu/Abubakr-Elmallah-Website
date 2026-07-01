@@ -1,0 +1,5 @@
+# GitHub Pages / Jekyll config
+# jekyll-redirect-from generates redirect stubs at the old /src/*.html URLs
+# so previously shared links (and search-indexed pages) don't 404.
+plugins:
+  - jekyll-redirect-from
