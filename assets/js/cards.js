@@ -43,11 +43,12 @@
   }
 
   function foot(d) {
+    var links = (d.links || []).map(function (l) {
+      return '<a href="' + l.href + '" target="_blank" rel="noopener">' + l.label + '</a>';
+    }).join('');
     var right = d.dead
-      ? '<span class="app-dead">' + d.deadNote + '</span>'
-      : '<span class="app-links">' + (d.links || []).map(function (l) {
-          return '<a href="' + l.href + '" target="_blank" rel="noopener">' + l.label + '</a>';
-        }).join('') + '</span>';
+      ? '<span class="app-links"><span class="app-dead">' + d.deadNote + '</span>' + links + '</span>'
+      : '<span class="app-links">' + links + '</span>';
     return '<div class="app-foot"><span class="app-tags">' + d.tags + '</span>' + right + '</div>';
   }
 
@@ -59,6 +60,7 @@
     var cls = 'app-card';
     if (d.feature) cls += ' app-card--feature';
     if (d.dead) cls += ' app-card--dead';
+    if (d.stackLinks) cls += ' app-card--stack';
     cls += ' reveal';
     return '<article class="' + cls + '">'
       + head(d)

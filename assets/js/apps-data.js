@@ -10,6 +10,7 @@
      desc      required — paragraph
      tags      required — footer tech line (use ' · ' separators)
      links     footer links: [{ label, href }]   (omit for a dead app)
+     stackLinks true  -> stack the footer links vertically instead of side by side
      feature   true  -> adds .app-card--feature
      dead      true  -> adds .app-card--dead (no links; shows deadNote instead)
      deadNote  text shown in place of links when dead
@@ -46,7 +47,7 @@ window.APP_CARDS = {
     icon: 'apps/peterplate.jpg', alt: 'PeterPlate app icon',
     title: 'PeterPlate', sub: '2025 · Dining menu viewer',
     desc: "A menu viewer for UCI's Brandywine and Anteatery dining halls — browse current and upcoming menus, check allergen and dietary info, follow dining events, and rate dishes to plan your meal swipes and nutrition goals.",
-    tags: 'Web · TypeScript · Next.js',
+    tags: 'Web · Next.js',
     links: [
       { label: 'Website ↗', href: 'https://peterplate.com/' },
       { label: 'GitHub ↗', href: 'https://github.com/icssc/PeterPlate' },
@@ -59,7 +60,7 @@ window.APP_CARDS = {
     title: 'Aurebesh Translator', sub: 'October 22, 2024',
     desc: 'The free version of Datapad — a simple, ad-free way to translate between English and Aurebesh, fully offline, with a distraction-free interface.',
     tags: 'iOS · iPadOS · watchOS · macOS',
-    cat: { label: 'Star Wars ↗', href: 'star-wars.html', cls: 'app-cat--starwars' },
+    cat: { label: 'Star Wars ↗', href: '/star-wars/', cls: 'app-cat--starwars' },
     links: [
       { label: 'App Store ↗', href: 'https://apps.apple.com/us/app/aurebesh-translator/id6670201513?platform=iphone' },
       { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Aurebesh-Translator' },
@@ -72,7 +73,7 @@ window.APP_CARDS = {
     tags: 'iOS · iPadOS · watchOS · macOS',
     feature: true,
     badge: { text: '🏆 Top 10 · Entertainment' },
-    cat: { label: 'Star Wars ↗', href: 'star-wars.html', cls: 'app-cat--starwars' },
+    cat: { label: 'Star Wars ↗', href: '/star-wars/', cls: 'app-cat--starwars' },
     shots: [
       { src: 'awards/datapad-chart.jpg', alt: 'Datapad ranked #10 on the App Store Entertainment Top Charts', caption: '#10 · Top Charts', imgClass: 'shift-down' },
       { src: 'awards/datapad-rating.jpg', alt: 'Datapad App Store listing showing a 4.9 star rating', caption: '#11 · Top Charts', imgClass: 'shift-down' },
@@ -84,7 +85,7 @@ window.APP_CARDS = {
     title: 'Sabacc Droid', sub: '2024 · Play Sabacc on Discord',
     desc: 'A Discord bot that brings the Star Wars card game Sabacc to your server — multiplayer rounds, rules variants, and a galaxy-flavored interface.',
     tags: 'Discord · Python',
-    cat: { label: 'Star Wars ↗', href: 'star-wars.html', cls: 'app-cat--starwars' },
+    cat: { label: 'Star Wars ↗', href: '/star-wars/', cls: 'app-cat--starwars' },
     links: [
       { label: 'Add to Discord ↗', href: 'https://discord.ly/sabaac-droid' },
       { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Sabacc-Droid' },
@@ -95,7 +96,7 @@ window.APP_CARDS = {
     title: 'Aurebesh Droid', sub: '2025 · Aurebesh Translator on Discord',
     desc: 'Translate English to and from Aurebesh right inside Discord — fast, server-friendly, and written in C++ for speed.',
     tags: 'Discord · C++',
-    cat: { label: 'Star Wars ↗', href: 'star-wars.html', cls: 'app-cat--starwars' },
+    cat: { label: 'Star Wars ↗', href: '/star-wars/', cls: 'app-cat--starwars' },
     links: [
       { label: 'Add to Discord ↗', href: 'https://discord.ly/aurebesh-droid' },
       { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Aurebesh-Droid' },
@@ -105,10 +106,11 @@ window.APP_CARDS = {
   /* ---- Islam ---- */
   'al-adhan': {
     icon: 'apps/al-adhan.jpg', alt: 'Al-Adhan | Prayer Times app icon',
-    title: 'Al-Adhan · Prayer Times', sub: 'December 31, 2023',
+    title: 'Al-Adhan ·<br>Prayer Times', sub: 'December 31, 2023',
     desc: 'An offshoot of Al-Islam that enhances daily worship with precise prayer times, real-time qibla direction, and a unique Traveling Mode for on-the-go adjustments.',
-    tags: 'iOS · iPadOS · watchOS · macOS',
-    cat: { label: 'Islamic ↗', href: 'al-islam.html', cls: 'app-cat--islamic' },
+    tags: 'iOS · iPadOS<br>watchOS · macOS',
+    cat: { label: 'Islamic ↗', href: '/al-islam/', cls: 'app-cat--islamic' },
+    stackLinks: true,
     links: [
       { label: 'App Store ↗', href: 'https://apps.apple.com/us/app/al-adhan-prayer-times/id6475015493?platform=iphone' },
       { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Al-Adhan-Prayer-Times' },
@@ -116,12 +118,13 @@ window.APP_CARDS = {
   },
   'al-islam': {
     icon: 'apps/al-islam.jpg', alt: 'Al-Islam | Islamic Pillars app icon',
-    title: 'Al-Islam · Islamic Pillars', sub: 'July 26, 2023',
+    title: 'Al-Islam ·<br>Islamic Pillars', sub: 'July 26, 2023',
     desc: 'An all-in-one companion for lifelong Muslims and converts alike — Traveling Mode, Beginner Arabic Mode, prayer times, qibla direction, Quran access, and tools to deepen faith and connect with Allah.',
-    tags: 'iOS · iPadOS · watchOS · macOS',
+    tags: 'iOS · iPadOS<br>watchOS · macOS',
     feature: true,
     badge: { text: '🏆 Congressional Challenge ’23', href: 'https://www.congressionalappchallenge.us/' },
-    cat: { label: 'Islamic ↗', href: 'al-islam.html', cls: 'app-cat--islamic' },
+    cat: { label: 'Islamic ↗', href: '/al-islam/', cls: 'app-cat--islamic' },
+    stackLinks: true,
     shots: [
       { src: 'awards/al-islam-congressional.jpg', alt: 'Congressional App Challenge winner announcement for Abubakr Elmallah', caption: 'Best Original Idea', imgClass: 'shift-right' },
       { src: 'awards/al-islam-certificate.jpg', alt: 'House of Representatives Certificate of Congressional Recognition', caption: 'House of Reps.' },
@@ -133,12 +136,13 @@ window.APP_CARDS = {
   },
   'al-quran': {
     icon: 'apps/al-quran.jpg', alt: 'Al-Quran | Beginner Quran app icon',
-    title: 'Al-Quran · Beginner Quran', sub: 'December 26, 2023',
+    title: 'Al-Quran ·<br>Beginner Quran', sub: 'December 26, 2023',
     desc: 'Makes learning and studying the Holy Quran accessible — Arabic Beginner Mode, ayah sharing, recitations, and tools for enhancing your spiritual journey.',
-    tags: 'iOS · iPadOS · watchOS · macOS',
+    tags: 'iOS · iPadOS<br>watchOS · macOS',
     feature: true,
     badge: { text: '🏆 Swift Student Challenge ’24', href: 'https://developer.apple.com/swift-student-challenge/' },
-    cat: { label: 'Islamic ↗', href: 'al-islam.html', cls: 'app-cat--islamic' },
+    cat: { label: 'Islamic ↗', href: '/al-islam/', cls: 'app-cat--islamic' },
+    stackLinks: true,
     shots: [
       { src: 'awards/al-quran-ssc.jpg', alt: 'Swift Student Challenge 2024 award for Al-Quran', caption: 'Swift Student Challenge', imgClass: 'shift-right-lg' },
       { src: 'awards/al-quran-apple-letter.jpg', alt: 'Apple Worldwide Developer Relations letter congratulating Abubakr Elmallah', caption: 'Apple · WWDC letter' },
@@ -154,11 +158,15 @@ window.APP_CARDS = {
     icon: 'apps/icoi.jpg', alt: 'Islamic Center of Irvine (ICOI) app icon',
     title: 'Islamic Center of Irvine', sub: 'October 3, 2023',
     desc: 'Built for the Irvine Muslim community — accurate mosque prayer times, important links, Quran access, Islamic tools, and local business support.',
-    tags: 'iOS · iPadOS · watchOS · macOS',
+    tags: 'iOS',
     dead: true,
-    deadNote: 'No longer available — taken off the App Store',
+    deadNote: 'No longer available',
     badge: { text: 'Deprecated', dead: true },
-    cat: { label: 'Islamic ↗', href: 'al-islam.html', cls: 'app-cat--islamic' },
+    cat: { label: 'Islamic ↗', href: '/al-islam/', cls: 'app-cat--islamic' },
+    stackLinks: true,
+    links: [
+      { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Islamic-Center-of-Irvine' },
+    ],
   },
 
 };

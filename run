@@ -1,0 +1,18 @@
+#!/bin/bash
+# Run the site locally:  ./run   (from this project folder in the terminal)
+# Starts the Jekyll dev server, then opens http://127.0.0.1:4000/ (generic localhost).
+# Press Ctrl+C to stop the server.
+
+cd "$(dirname "$0")" || exit 1
+
+# Use the Homebrew Ruby (falls back to whatever's on PATH if not present)
+if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
+  export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+fi
+
+# Open the browser a few seconds after the server has had time to boot
+( sleep 3; open "http://127.0.0.1:4000/" ) &
+
+echo "Starting local site at http://127.0.0.1:4000/  (Ctrl+C to stop)"
+# --livereload auto-refreshes the browser whenever you save a file
+exec bundle exec jekyll serve --host 127.0.0.1 --port 4000 --livereload

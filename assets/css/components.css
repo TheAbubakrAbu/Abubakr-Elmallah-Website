@@ -253,7 +253,8 @@ a.app-badge:hover {
   font-family: var(--mono); font-size: 0.72rem;
 }
 .app-tags { color: var(--mute); }
-.app-links { display: flex; gap: 1rem; flex: none; }
+.app-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; flex: none; }
+.app-foot .app-links { justify-content: flex-end; text-align: right; }
 .app-links a { color: var(--ink); transition: color .25s; white-space: nowrap; }
 .app-links a:hover { color: var(--green-2); }
 
@@ -267,10 +268,19 @@ a.app-badge:hover {
   border-color: color-mix(in srgb, #d3897e 40%, transparent);
   background: color-mix(in srgb, #d3897e 8%, transparent);
 }
-.app-dead { font-family: var(--mono); font-size: 0.72rem; color: var(--mute); }
+.app-dead { font-family: var(--mono); font-size: 0.72rem; color: var(--mute); flex-basis: 100%; }
+
+/* stacked (vertical) footer links — opt-in per card via stackLinks (Islamic apps) */
+.app-card--stack .app-links { flex-direction: column; align-items: flex-end; }
+.app-card--stack .app-dead { flex-basis: auto; }
 
 /* two-up grid (Discord bots) */
 .apps-grid--2 { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); }
+
+/* four-up grid (UCI work, Al-Islam apps) */
+.apps-grid--4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1100px) { .apps-grid--4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px)  { .apps-grid--4 { grid-template-columns: 1fr; } }
 
 /* filter chips */
 .filters { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; }
@@ -340,7 +350,7 @@ a.app-badge:hover {
 }
 .proj-card:hover .proj-titlerow h3 { color: var(--green-2); }
 .proj-yr { font-family: var(--mono); font-size: 0.7rem; color: var(--mute); flex: none; }
-.proj-info .app-links { margin-top: auto; padding-top: 0.4rem; font-size: 0.72rem; }
+.proj-info .app-links { margin-top: auto; padding-top: 0.4rem; font-size: 0.72rem; justify-content: flex-end; }
 
 .hs-extra {
   display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem;
