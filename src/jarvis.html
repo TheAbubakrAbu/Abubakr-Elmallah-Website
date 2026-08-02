@@ -1,0 +1,272 @@
+---
+permalink: /jarvis/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="J.A.R.V.I.S., a Stark-inspired heads-up interface for Abubakr Elmallah's portfolio." />
+<meta name="theme-color" content="#00060b" />
+
+<link rel="icon" type="image/png" href="../assets/img/me/abubakr-circle.png" />
+<link rel="apple-touch-icon" href="../assets/img/me/abubakr-circle.png" />
+<meta property="og:image" content="../assets/img/me/abubakr-circle.png" />
+<meta property="og:type" content="website" />
+<title>J.A.R.V.I.S. · Abubakr Elmallah</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="../assets/css/jarvis.css?v={{ site.time | date: '%s' }}" />
+<!-- the HUD reveals itself from JS; without JS, show everything immediately -->
+<noscript><style>
+  .jv-boot { display: none; }
+  .jv-shell { opacity: 1 !important; }
+  .jv-mod, .jv-reactor { opacity: 1 !important; transform: none !important; }
+  .jv-bar i { width: var(--v, 0%) !important; }
+</style></noscript>
+</head>
+<body class="jv">
+
+<!-- ═══════════ boot ═══════════ -->
+<div class="jv-boot" id="jvBoot">
+  <div class="jv-boot-mark">J.A.R.V.I.S.</div>
+  <div class="jv-boot-log" id="jvBootLog"></div>
+  <div class="jv-boot-bar"><i id="jvBootBar"></i></div>
+  <button class="jv-skip" id="jvSkip" type="button">SKIP SEQUENCE</button>
+</div>
+
+<!-- ═══════════ background field ═══════════ -->
+<div class="jv-field" aria-hidden="true">
+  <div class="jv-grid" data-par="14"></div>
+  <div class="jv-halo"></div>
+  <div class="jv-scan"></div>
+  <div class="jv-roll"></div>
+  <div class="jv-vig"></div>
+</div>
+<span class="jv-corner jv-corner--tl" aria-hidden="true"></span>
+<span class="jv-corner jv-corner--tr" aria-hidden="true"></span>
+<span class="jv-corner jv-corner--bl" aria-hidden="true"></span>
+<span class="jv-corner jv-corner--br" aria-hidden="true"></span>
+<div class="jv-reticle" id="jvReticle" aria-hidden="true"></div>
+
+<!-- ═══════════ top strip ═══════════ -->
+<header class="jv-top">
+  <a class="jv-home" href="/" title="Back to the main site (Esc)">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>EXIT</span>
+  </a>
+  <div class="jv-days" id="jvDays" aria-hidden="true"></div>
+  <div class="jv-top-meta">IRVINE, CA · 33.64°N 117.84°W</div>
+</header>
+
+<div class="jv-shell">
+  <div class="jv-stage">
+
+    <!-- ─────────── LEFT ─────────── -->
+    <section class="jv-col jv-col--l" data-par="10">
+
+      <article class="jv-mod">
+        <div class="jv-mod-h"><span class="jv-dot"></span>Operator</div>
+        <div class="jv-id-name">ABUBAKR<br />ELMALLAH</div>
+        <div class="jv-id-role">iOS Developer · CS @ UC Irvine ’28</div>
+        <div class="jv-id-greet" id="jvGreet"></div>
+      </article>
+
+      <article class="jv-mod">
+        <div class="jv-mod-h"><span class="jv-dot"></span>Diagnostics</div>
+        <div class="jv-gauges">
+          <div class="jv-gauge" data-val="100">
+            <svg viewBox="0 0 100 100"><circle class="ticks" cx="50" cy="50" r="46"/><circle class="track" cx="50" cy="50" r="38"/><circle class="arc" cx="50" cy="50" r="38"/></svg>
+            <div class="jv-gauge-lbl"><span class="jv-gauge-v">12</span><span class="jv-gauge-k">Units</span></div>
+          </div>
+          <div class="jv-gauge" data-val="100">
+            <svg viewBox="0 0 100 100"><circle class="ticks" cx="50" cy="50" r="46"/><circle class="track" cx="50" cy="50" r="38"/><circle class="arc" cx="50" cy="50" r="38"/></svg>
+            <div class="jv-gauge-lbl"><span class="jv-gauge-v">04</span><span class="jv-gauge-k">Platforms</span></div>
+          </div>
+          <div class="jv-gauge" id="jvLoad" data-val="54">
+            <svg viewBox="0 0 100 100"><circle class="ticks" cx="50" cy="50" r="46"/><circle class="track" cx="50" cy="50" r="38"/><circle class="arc" cx="50" cy="50" r="38"/></svg>
+            <div class="jv-gauge-lbl"><span class="jv-gauge-v" id="jvLoadV">54%</span><span class="jv-gauge-k">Load</span></div>
+          </div>
+        </div>
+        <div class="jv-rows" style="margin-top:1rem">
+          <div class="jv-meter">
+            <div class="jv-meter-top"><span>Reactor Output</span><i>100%</i></div>
+            <div class="jv-bar" style="--v:100%"><i></i></div>
+          </div>
+          <div class="jv-meter">
+            <div class="jv-meter-top"><span>Archive Integrity</span><i>NOMINAL</i></div>
+            <div class="jv-bar jv-bar--seg" style="--v:92%"><i></i></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="jv-mod">
+        <div class="jv-mod-h"><span class="jv-dot"></span>Languages · Online</div>
+        <div class="jv-rows">
+          <div class="jv-row"><span>Primary</span><span>SWIFT · SWIFTUI</span></div>
+          <div class="jv-row"><span>Secondary</span><span>PYTHON · C++ · JAVA</span></div>
+          <div class="jv-row"><span>Tertiary</span><span>JAVASCRIPT · BASH</span></div>
+          <div class="jv-row"><span>Targets</span><span>iOS · iPadOS · watchOS · macOS</span></div>
+          <div class="jv-row"><span>Session</span><span id="jvUptime">00H 00M 00S</span></div>
+        </div>
+      </article>
+
+      <article class="jv-mod">
+        <div class="jv-mod-h"><span class="jv-dot"></span>Directories</div>
+        <nav class="jv-links">
+          <a class="jv-link" href="/"><i></i>Main Interface<em>HOME</em></a>
+          <a class="jv-link" href="/work/"><i></i>Work<em>UCI</em></a>
+          <a class="jv-link" href="/projects/"><i></i>Projects<em>ALL</em></a>
+          <a class="jv-link" href="/star-wars/"><i></i>Star Wars<em>AUREBESH</em></a>
+          <a class="jv-link" href="/al-islam/"><i></i>Al-Islam<em>ISLAMIC</em></a>
+          <a class="jv-link" href="/college/"><i></i>College<em>UCI ’28</em></a>
+          <a class="jv-link" href="/high-school/"><i></i>High School<em>ARCHIVE</em></a>
+          <a class="jv-link" href="/resume/"><i></i>Résumé<em>DOC</em></a>
+        </nav>
+      </article>
+
+    </section>
+
+    <!-- ─────────── CENTRE ─────────── -->
+    <section class="jv-core" data-par="20">
+
+      <div class="jv-reactor">
+        <svg viewBox="0 0 400 400" aria-hidden="true">
+          <!-- outer shell -->
+          <circle class="r-line-b" cx="200" cy="200" r="196"/>
+          <g class="spin-slow"><circle class="r-tick-l" cx="200" cy="200" r="186"/></g>
+          <circle class="r-line" cx="200" cy="200" r="176"/>
+
+          <!-- outer data ring -->
+          <g class="spin-cw">
+            <circle class="r-arc" cx="200" cy="200" r="164" stroke-dasharray="240 130 96 130 60 380"/>
+          </g>
+          <g class="spin-ccw"><circle class="r-tick" cx="200" cy="200" r="150"/></g>
+
+          <!-- warning arc -->
+          <g class="spin-fast">
+            <circle class="r-arc r-arc-red" cx="200" cy="200" r="138" stroke-dasharray="70 800"/>
+          </g>
+          <circle class="r-line-b" cx="200" cy="200" r="128"/>
+
+          <!-- amber sector -->
+          <g class="spin-ccw">
+            <circle class="r-arc r-arc-am" cx="200" cy="200" r="116" stroke-dasharray="120 610" stroke-width="1.5"/>
+          </g>
+
+          <!-- inner engine -->
+          <circle class="r-line" cx="200" cy="200" r="100"/>
+          <g class="spin-cw"><circle class="r-tick" cx="200" cy="200" r="88" stroke-width="10"/></g>
+          <circle class="r-line-b" cx="200" cy="200" r="74"/>
+          <g class="spin-ccw">
+            <circle class="r-arc" cx="200" cy="200" r="62" stroke-dasharray="52 78" stroke-width="1.5"/>
+          </g>
+
+          <!-- crosshairs -->
+          <g class="r-line-b">
+            <path d="M200 2 v34 M200 364 v34 M2 200 h34 M364 200 h34"/>
+            <path d="M60 60 l26 26 M340 60 l-26 26 M60 340 l26 -26 M340 340 l-26 -26"/>
+          </g>
+          <g class="r-line">
+            <path d="M200 92 v22 M200 286 v22 M92 200 h22 M286 200 h22"/>
+          </g>
+        </svg>
+
+        <div class="jv-sweep" aria-hidden="true"></div>
+        <div class="jv-core-orb" aria-hidden="true"></div>
+      </div>
+
+      <div>
+        <div class="jv-core-cap">ELMALLAH INDUSTRIES</div>
+        <div class="jv-core-sub">Arc Reactor · Stable · Output 100%</div>
+      </div>
+
+      <div class="jv-wave-wrap">
+        <div class="jv-wave-head"><span>Telemetry · Build Pipeline</span><span>LIVE</span></div>
+        <canvas id="jvWave"></canvas>
+      </div>
+
+    </section>
+
+    <!-- ─────────── RIGHT ─────────── -->
+    <section class="jv-col jv-col--r" data-par="10">
+
+      <article class="jv-mod">
+        <div class="jv-mod-h"><span class="jv-dot"></span>Chronometer</div>
+        <div class="jv-clock" id="jvTime">--:--<small>:<span id="jvSecs">--</span> <span id="jvTz">UTC</span></small></div>
+        <div class="jv-rows" style="margin-top:0.8rem">
+          <div class="jv-row"><span>Gregorian</span><span id="jvDate">···</span></div>
+          <div class="jv-row"><span>Hijri</span><span id="jvHijri">···</span></div>
+          <div class="jv-row"><span>Lunar Phase</span><span id="jvMoon">···</span></div>
+          <div class="jv-row"><span>Solar Cycle</span><span id="jvDoy">···</span></div>
+        </div>
+      </article>
+
+      <article class="jv-mod">
+        <div class="jv-mod-h"><span class="jv-dot"></span>Deployments</div>
+        <div class="jv-feed">
+          <div class="jv-feed-item is-live"><i></i><div class="jv-feed-body">
+            <div class="jv-feed-t">UCI Esports</div><div class="jv-feed-m">2025 · Swift · App Store</div></div></div>
+          <div class="jv-feed-item is-live"><i></i><div class="jv-feed-body">
+            <div class="jv-feed-t">PeterPlate</div><div class="jv-feed-m">2025 · Next.js · Web</div></div></div>
+          <div class="jv-feed-item is-live"><i></i><div class="jv-feed-body">
+            <div class="jv-feed-t">Al-Quran · Beginner Quran</div><div class="jv-feed-m">2023 · 4 Platforms</div></div></div>
+          <div class="jv-feed-item is-live"><i></i><div class="jv-feed-body">
+            <div class="jv-feed-t">Datapad · Aurebesh</div><div class="jv-feed-m">2023 · Top 10 Entertainment</div></div></div>
+          <div class="jv-feed-item"><i></i><div class="jv-feed-body">
+            <div class="jv-feed-t">Islamic Center of Irvine</div><div class="jv-feed-m">2023 · Decommissioned</div></div></div>
+        </div>
+        <a class="jv-link" href="/projects/" style="margin-top:0.7rem"><i></i>Full Catalog<em>12 UNITS</em></a>
+      </article>
+
+      <article class="jv-mod jv-notes">
+        <div class="jv-mod-h"><span class="jv-dot"></span>Mission Log</div>
+        <ul>
+          <li class="done">Congressional App Challenge, won ’23</li>
+          <li class="done">Swift Student Challenge, won ’24</li>
+          <li class="done">WWDC24 · Apple Park · met Tim Cook</li>
+          <li class="done">Ship 4 apps for UC Irvine</li>
+          <li>B.S. Computer Science · UCI ’28</li>
+          <li>Open to internships</li>
+        </ul>
+      </article>
+
+      <article class="jv-mod">
+        <div class="jv-mod-h"><span class="jv-dot"></span>Comms</div>
+        <nav class="jv-links">
+          <a class="jv-link" href="mailto:ammelmallah@gmail.com"><i></i>Secure Mail<em>EMAIL</em></a>
+          <a class="jv-link" href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener"><i></i>Source Vault<em>GITHUB</em></a>
+          <a class="jv-link" href="https://www.linkedin.com/in/abubakr-elmallah" target="_blank" rel="noopener"><i></i>Network<em>LINKEDIN</em></a>
+          <a class="jv-link" href="https://apps.apple.com/tr/developer/abubakr-elmallah/id1690310648" target="_blank" rel="noopener"><i></i>Distribution<em>APP STORE</em></a>
+        </nav>
+      </article>
+
+    </section>
+  </div>
+
+  <!-- ═══════════ bottom ═══════════ -->
+  <footer class="jv-bottom">
+    <a class="jv-back" href="/">◄ RETURN TO MAIN INTERFACE</a>
+    <div class="jv-ticker" aria-hidden="true"><div>
+      <span><b>STATUS</b> ALL SYSTEMS NOMINAL</span>
+      <span><b>OPERATOR</b> ABUBAKR ELMALLAH</span>
+      <span><b>CATALOG</b> 10 APPS · 2 DISCORD BOTS</span>
+      <span><b>AWARDS</b> CONGRESSIONAL APP CHALLENGE ’23 · SWIFT STUDENT CHALLENGE ’24</span>
+      <span><b>STACK</b> SWIFT · SWIFTUI · PYTHON · C++ · JAVA</span>
+      <span><b>BASE</b> IRVINE, CALIFORNIA</span>
+      <span><b>STATUS</b> ALL SYSTEMS NOMINAL</span>
+      <span><b>OPERATOR</b> ABUBAKR ELMALLAH</span>
+      <span><b>CATALOG</b> 10 APPS · 2 DISCORD BOTS</span>
+      <span><b>AWARDS</b> CONGRESSIONAL APP CHALLENGE ’23 · SWIFT STUDENT CHALLENGE ’24</span>
+      <span><b>STACK</b> SWIFT · SWIFTUI · PYTHON · C++ · JAVA</span>
+      <span><b>BASE</b> IRVINE, CALIFORNIA</span>
+    </div></div>
+    <span>J.A.R.V.I.S. v1.0</span>
+  </footer>
+</div>
+
+<script src="../assets/js/jarvis.js?v={{ site.time | date: '%s' }}"></script>
+</body>
+</html>

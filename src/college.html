@@ -1,21 +1,19 @@
 ---
-permalink: /projects/
-redirect_from:
-  - /src/projects.html
+permalink: /college/
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="All projects by Abubakr Elmallah: UCI apps, personal Apple ecosystem apps, Discord bots, and high-school programming." />
+<meta name="description" content="Abubakr Elmallah at UC Irvine. Computer Science, Class of 2028, and the apps he builds as an iOS Developer on campus." />
 <meta name="theme-color" content="#08080a" />
 
 <link rel="icon" type="image/png" href="../assets/img/me/abubakr-circle.png" />
 <link rel="apple-touch-icon" href="../assets/img/me/abubakr-circle.png" />
 <meta property="og:image" content="../assets/img/me/abubakr-circle.png" />
 <meta property="og:type" content="website" />
-<title>Projects · Abubakr Elmallah</title>
+<title>College · Abubakr Elmallah</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,7 +23,7 @@ redirect_from:
 <link rel="stylesheet" href="../assets/css/layout.css?v={{ site.time | date: '%s' }}" />
 <link rel="stylesheet" href="../assets/css/components.css?v={{ site.time | date: '%s' }}" />
 </head>
-<body data-intro="projects">
+<body data-intro="veil">
 <div id="introCover" aria-hidden="true" style="position:fixed;inset:0;z-index:11000;background:#08080a"></div>
 
 <div class="grain" aria-hidden="true"></div>
@@ -49,8 +47,8 @@ redirect_from:
   <!-- top nav controls hidden, using the bottom tab bar instead
 <nav class="nav">
     <a href="/work/" data-magnetic>Work</a>
-    <a href="/projects/" class="is-current" data-magnetic>Projects</a>
-    <a href="/education/" data-magnetic>Education</a>
+    <a href="/projects/" data-magnetic>Projects</a>
+    <a href="/education/" class="is-current" data-magnetic>Education</a>
     <a href="/franchises/" data-magnetic>Franchises</a>
   </nav>
   -->
@@ -75,112 +73,85 @@ redirect_from:
 
   <section class="page-hero">
     <a class="back-link" href="/" data-magnetic>← Back home</a>
-    <p class="kicker"><span>(Catalog)</span><span>Everything I’ve built</span></p>
-    <h1 class="page-title"><em>Projects</em></h1>
-    <p class="lede">The full catalog: UCI apps, my personal Apple ecosystem apps, Discord bots, and the high-school projects where it began. Dive into the <a href="/star-wars/" data-magnetic>Star Wars</a> and <a href="/al-islam/" data-magnetic>Al-Islam</a> collections for themed views.</p>
+    <p class="kicker"><span>(Now)</span><span>Where I am today</span></p>
+    <h1 class="page-title"><em>College</em></h1>
+    <p class="lede">Computer Science at UC Irvine, Class of 2028, plus the campus apps I ship as an iOS Developer here. For where it all started, see <a href="/high-school/" data-magnetic>High School</a>.</p>
   </section>
 
-  <section class="work">
+  <section class="work college">
+    <div class="edu reveal">
+      <div class="edu-row" data-magnetic>
+        <span class="edu-pic">🎓</span>
+        <div class="edu-meta"><h3>University of California, Irvine</h3><p>2024 – 2028 · Irvine, CA</p></div>
+      </div>
+      <div class="edu-row" data-magnetic>
+        <span class="edu-pic">💻</span>
+        <div class="edu-meta"><h3>B.S. Computer Science</h3><p>Class of 2028</p></div>
+      </div>
+      <a class="cta cta--big" href="/work/" data-magnetic>
+        <span>See my work at UCI</span>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
 
-    <h3 class="subsec reveal">My UCI Work</h3>
+    <!-- TODO(abubakr): "Through the Years" photo grid, same pattern as the High School page.
+         Drop photos in assets/img/college/ and uncomment. The lightbox below already exists.
+    <h3 class="subsec reveal">Through the Years</h3>
+    <div class="years-grid">
+      <button class="year-card reveal" data-label="Freshman ’25" data-images="../assets/img/college/year-freshman.jpg">
+        <img src="../assets/img/college/year-freshman.jpg" alt="Abubakr Elmallah, freshman year at UCI" loading="lazy" />
+        <span class="year-cap">Freshman <i>’25</i></span>
+      </button>
+    </div>
+    -->
+
+    <!-- lightbox for expanded photos (shared with the year grid above) -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="lightbox-close" aria-label="Close">✕</button>
+      <span class="lightbox-title"></span>
+      <div class="lightbox-imgs"></div>
+    </div>
+
+    <h3 class="subsec reveal">What I’ve Built at UCI</h3>
     <div class="apps-grid apps-grid--2" data-cards="zotfinder,uci-now,uci-esports,peterplate"></div>
     <a class="dev-link reveal" href="https://apps.apple.com/us/developer/uci-student-center/id1382415697" target="_blank" rel="noopener" data-magnetic>
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.78c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.13 5.84c.64-.78 1.07-1.85.95-2.93-.92.04-2.04.61-2.7 1.38-.59.68-1.11 1.79-.97 2.84 1.03.08 2.08-.52 2.72-1.29z"/></svg>
       <span>View the UCI Apple Developer Page</span><i>↗</i>
     </a>
 
-    <h3 class="subsec reveal">My Apple Ecosystem Apps</h3>
-    <!-- one three-up grid: row 1 = Star Wars + ICOI, row 2 = the Islamic apps -->
-    <div class="apps-grid apps-grid--3" data-cards="aurebesh-translator,datapad,icoi,al-adhan,al-islam,al-quran"></div>
-    <a class="dev-link reveal" href="https://apps.apple.com/tr/developer/abubakr-elmallah/id1690310648" target="_blank" rel="noopener" data-magnetic>
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.78c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.13 5.84c.64-.78 1.07-1.85.95-2.93-.92.04-2.04.61-2.7 1.38-.59.68-1.11 1.79-.97 2.84 1.03.08 2.08-.52 2.72-1.29z"/></svg>
-      <span>View My Apple Developer Page</span><i>↗</i>
-    </a>
-
-    <h3 class="subsec reveal">My Discord Bots</h3>
-    <div class="apps-grid apps-grid--2" data-cards="sabacc-droid,aurebesh-droid"></div>
-
-    <h3 class="subsec reveal">My High School Projects</h3>
-    <div class="hs-grid">
-      <article class="proj-card reveal">
-        <a class="proj-media" href="https://studio.code.org/projects/applab/3GTPl_9o0qf9zWutRclvLYYoJRopnjTmVTdm3cXHELc" target="_blank" rel="noopener"><img src="../assets/img/highschool/datapad.png" alt="Star Wars Datapad, a Code.org App Lab project" loading="lazy" /></a>
-        <div class="proj-info">
-          <div class="proj-titlerow"><h3>Star Wars Datapad</h3><span class="proj-yr">2021</span></div>
-          <span class="app-tags">Code.org · JavaScript</span>
-          <div class="app-links">
-            <a href="https://studio.code.org/projects/applab/3GTPl_9o0qf9zWutRclvLYYoJRopnjTmVTdm3cXHELc" target="_blank" rel="noopener">Code.org ↗</a>
-            <a href="https://github.com/TheAbubakrAbu/Star-Wars-Datapad" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
+    <h3 class="subsec reveal">Academics <span class="subsec-yr">Class of 2028</span></h3>
+    <div class="acad reveal">
+      <p class="acad-lede">Studying <b>Computer Science</b> at the <b>Donald Bren School of Information &amp; Computer Sciences</b> at UC Irvine.</p>
+      <!-- TODO(abubakr): fill in real numbers before uncommenting. Nothing here is guessed for you.
+      <div class="acad-stats">
+        <div class="acad-stat" data-magnetic><span class="acad-k">Cumulative GPA</span><span class="acad-v">···</span></div>
+        <div class="acad-stat" data-magnetic><span class="acad-k">Major GPA</span><span class="acad-v">···</span></div>
+        <div class="acad-stat" data-magnetic><span class="acad-k">Units Completed</span><span class="acad-v">···</span></div>
+        <div class="acad-stat" data-magnetic><span class="acad-k">Standing</span><span class="acad-v">···</span></div>
+      </div>
+      -->
+      <!-- TODO(abubakr): coursework chips, same markup as the High School page.
+      <div class="acad-courses">
+        <div class="course-group">
+          <span class="course-label course-label--ap" data-magnetic="0.5">CS</span>
+          <ul class="course-chips">
+            <li data-magnetic="0.5">ICS 31</li><li data-magnetic="0.5">ICS 32</li><li data-magnetic="0.5">ICS 33</li>
+          </ul>
         </div>
-      </article>
-      <article class="proj-card reveal">
-        <a class="proj-media" href="https://studio.code.org/projects/applab/3WR9OYo6Ec9k-4s11Py6MJgsYf2YXyuzsq3icY61NWg" target="_blank" rel="noopener"><img src="../assets/img/highschool/calculator.png" alt="Calculator, a Code.org App Lab project" loading="lazy" /></a>
-        <div class="proj-info">
-          <div class="proj-titlerow"><h3>Calculator</h3><span class="proj-yr">2021</span></div>
-          <span class="app-tags">Code.org · JavaScript</span>
-          <div class="app-links">
-            <a href="https://studio.code.org/projects/applab/3WR9OYo6Ec9k-4s11Py6MJgsYf2YXyuzsq3icY61NWg" target="_blank" rel="noopener">Code.org ↗</a>
-            <a href="https://github.com/TheAbubakrAbu/Calculator" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </div>
-      </article>
-      <article class="proj-card reveal">
-        <a class="proj-media" href="https://studio.code.org/projects/applab/n4gY-ijCWHme3Gd-qkeYFzcloQkXAf257XCrDwGSxRg" target="_blank" rel="noopener"><img src="../assets/img/highschool/periodic-table.png" alt="Periodic Table, a Code.org App Lab project" loading="lazy" /></a>
-        <div class="proj-info">
-          <div class="proj-titlerow"><h3>Periodic Table</h3><span class="proj-yr">2022</span></div>
-          <span class="app-tags">Code.org · JavaScript</span>
-          <div class="app-links">
-            <a href="https://studio.code.org/projects/applab/n4gY-ijCWHme3Gd-qkeYFzcloQkXAf257XCrDwGSxRg" target="_blank" rel="noopener">Code.org ↗</a>
-            <a href="https://github.com/TheAbubakrAbu/Periodic-Table" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </div>
-      </article>
-      <article class="proj-card reveal">
-        <a class="proj-media" href="https://studio.code.org/projects/applab/40V7TcnK87l1VxSAjbI-VFHSF06Hk2F6qvp6tzq_kRM" target="_blank" rel="noopener"><img src="../assets/img/highschool/games.png" alt="Games: Hangman, Wordle and Two-Player Checkers" loading="lazy" /></a>
-        <div class="proj-info">
-          <div class="proj-titlerow"><h3>Games</h3><span class="proj-yr">2022</span></div>
-          <span class="app-tags">Code.org · JavaScript</span>
-          <div class="app-links">
-            <a href="https://studio.code.org/projects/applab/40V7TcnK87l1VxSAjbI-VFHSF06Hk2F6qvp6tzq_kRM" target="_blank" rel="noopener">Code.org ↗</a>
-            <a href="https://github.com/TheAbubakrAbu/Games" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </div>
-      </article>
-      <article class="proj-card reveal">
-        <a class="proj-media" href="https://scratch.mit.edu/projects/566525662/" target="_blank" rel="noopener"><img src="../assets/img/highschool/order66.png" alt="Star Wars: Order 66, a Scratch game" loading="lazy" /></a>
-        <div class="proj-info">
-          <div class="proj-titlerow"><h3>Star Wars: Order 66</h3><span class="proj-yr">2021</span></div>
-          <span class="app-tags">Scratch · Game</span>
-          <div class="app-links">
-            <a href="https://scratch.mit.edu/projects/566525662/" target="_blank" rel="noopener">Play on Scratch ↗</a>
-          </div>
-        </div>
-      </article>
-      <article class="proj-card reveal">
-        <a class="proj-media" href="https://app.codingrooms.com/w/Yxexan1LM35u" target="_blank" rel="noopener"><img src="../assets/img/highschool/periodic-table-explorer.png" alt="Periodic Table Explorer, a Java console application" loading="lazy" /></a>
-        <div class="proj-info">
-          <div class="proj-titlerow"><h3>Periodic Table Explorer</h3><span class="proj-yr">2023</span></div>
-          <span class="app-tags">Java · Console</span>
-          <div class="app-links">
-            <a href="https://app.codingrooms.com/w/Yxexan1LM35u" target="_blank" rel="noopener">Codingrooms ↗</a>
-            <a href="https://github.com/TheAbubakrAbu/Periodic-Table-Explorer" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
-        </div>
-      </article>
+      </div>
+      -->
     </div>
+
+    <!-- TODO(abubakr): clubs & activities at UCI (ICSSC, MSA, etc.): mirror the High School
+         "Activities & Awards" section, or embed a Google Doc the way that page does. -->
 
     <div class="hs-extra reveal">
-      <a href="/college/" data-magnetic>↳ See what I’m doing now on the College page ↗</a>
-      <a href="/high-school/" data-magnetic>↳ See flyers &amp; wallpapers on the High School page ↗</a>
+      <a href="/high-school/" data-magnetic>↳ Where it started: High School ↗</a>
+      <a href="/projects/" data-magnetic>↳ Browse everything I’ve built ↗</a>
+      <a href="/resume/" data-magnetic>↳ Résumé ↗</a>
     </div>
-
   </section>
 
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lightbox-close" aria-label="Close">✕</button>
-    <span class="lightbox-title"></span>
-    <div class="lightbox-imgs"></div>
-  </div>
 </main>
 
 <footer class="footer">
@@ -189,12 +160,12 @@ redirect_from:
   <button class="totop" id="totop" data-magnetic>Back to top ↑</button>
 </footer>
 
-<!-- mobile bottom tab bar -->
+<!-- bottom tab bar -->
 <nav class="tabbar" aria-label="Primary">
   <a href="/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg><span>Home</span></a>
   <a href="/work/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/><path d="M3 12.5h18"/></svg><span>Work</span></a>
-  <a href="/projects/" class="is-current"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Projects</span></a>
-  <a href="/education/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1 2.5 2 5 2s5-1 5-2v-5"/></svg><span>Education</span></a>
+  <a href="/projects/"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Projects</span></a>
+  <a href="/education/" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1 2.5 2 5 2s5-1 5-2v-5"/></svg><span>Education</span></a>
   <a href="/franchises/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Franchises</span></a>
 </nav>
 

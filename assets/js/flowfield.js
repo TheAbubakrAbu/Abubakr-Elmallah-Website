@@ -1,84 +1,145 @@
-/* flowfield.js — ambient particle field (green → gold), repelled by cursor */
-(function flowField() {
+/* flowfield.js : ambient circuit field.
+   Light packets run along the same lattice the CSS HUD grid draws, cornering at
+   intersections like traces on a board. Colours come from <body data-intro>, so
+   every page routes its own palette. The cursor brightens and accelerates any
+   packet it gets close to. (Replaces the old organic particle trails.) */
+(function circuitField() {
   const canvas = document.getElementById('field');
   if (!canvas || reduceMotion) return;
   const ctx = canvas.getContext('2d');
-  let w, h, dpr, particles = [], t = 0;
-  const mouse = { x: -999, y: -999 };
 
-  // calm (slow particle) → hot (fast particle) colors, themed per page via <body data-intro>
+  /* trace colour, then head colour */
   const THEMES = {
-    home:     { calm: [31, 157, 92],  hot: [245, 198, 60] },  // Islamic green → UCI gold
-    alislam:  { calm: [31, 157, 92],  hot: [63, 213, 137] },  // green → emerald
-    starwars: { calm: [120, 92, 24],  hot: [255, 232, 31] },  // amber → Star Wars yellow
-    school:   { calm: [47, 127, 214], hot: [245, 198, 60] },  // UCI blue → gold
-    projects: { calm: [47, 127, 214], hot: [95, 163, 236] },  // navy → sky blue
+    home:       { line: [47, 127, 214], head: [245, 198, 60] },  // UCI blue, gold head
+    alislam:    { line: [31, 157, 92],  head: [63, 213, 137] },  // green, emerald head
+    starwars:   { line: [120, 92, 24],  head: [255, 232, 31] },  // amber, yellow head
+    school:     { line: [47, 127, 214], head: [245, 198, 60] },
+    education:  { line: [47, 127, 214], head: [245, 198, 60] },
+    projects:   { line: [47, 127, 214], head: [63, 213, 137] },
+    work:       { line: [47, 127, 214], head: [95, 163, 236] },
+    franchises: { line: [120, 92, 24],  head: [245, 198, 60] },
+    veil:       { line: [47, 127, 214], head: [63, 213, 137] },
   };
-  const theme = THEMES[document.body.dataset.intro] || THEMES.home;
+  const theme = THEMES[document.body.dataset.intro] || THEMES.veil;
+  const rgba = (c, a) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
 
-  function resize() {
+  /* pitch follows the CSS HUD grid so the traces sit exactly on it */
+  const cssCell = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hud-cell'));
+  const STEP = cssCell > 8 ? cssCell : 52;
+
+  const TAIL = 7;                        // nodes of trail dragged behind the head
+  const mouse = { x: -9999, y: -9999 };
+  let w, h, dpr, cols, rows, packets = [], sparks = [];
+
+  const X = c => c * STEP;
+  const Y = r => r * STEP;
+
+  function spawn(offscreen) {
+    const dirs = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+    const d = dirs[(Math.random() * 4) | 0];
+    let c, r;
+    if (offscreen) {                                   // re-enter from an edge
+      if (d[0] === 1)       { c = -1;       r = (Math.random() * rows) | 0; }
+      else if (d[0] === -1) { c = cols + 1; r = (Math.random() * rows) | 0; }
+      else if (d[1] === 1)  { r = -1;       c = (Math.random() * cols) | 0; }
+      else                  { r = rows + 1; c = (Math.random() * cols) | 0; }
+    } else {
+      c = (Math.random() * cols) | 0;
+      r = (Math.random() * rows) | 0;
+    }
+    return {
+      c, r, dc: d[0], dr: d[1],
+      t: 0,                                            // progress toward the next node
+      speed: 0.5 + Math.random() * 0.9,                // nodes per second
+      turn: 0.22 + Math.random() * 0.3,                // chance of cornering at a node
+      life: 240 + Math.random() * 420,                 // nodes before it recycles
+      trail: [],
+    };
+  }
+
+  function size() {
     dpr = Math.min(devicePixelRatio || 1, 2);
-    w = canvas.width = innerWidth * dpr;
-    h = canvas.height = innerHeight * dpr;
-    canvas.style.width = innerWidth + 'px';
-    canvas.style.height = innerHeight + 'px';
-    const count = Math.min(140, Math.floor((innerWidth * innerHeight) / 12000));
-    particles = Array.from({ length: count }, () => ({
-      x: Math.random() * w, y: Math.random() * h,
-      vx: 0, vy: 0, life: Math.random() * 100,
-    }));
+    w = innerWidth; h = innerHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cols = Math.ceil(w / STEP); rows = Math.ceil(h / STEP);
+    const count = Math.max(9, Math.min(26, Math.round(w * h / 78000)));
+    packets = Array.from({ length: count }, () => spawn(false));
+    sparks = [];
   }
 
-  // pseudo flow field from layered sines — cheap and organic
-  function angleAt(x, y) {
-    const s = 0.0013;
-    return (Math.sin(x * s + t * 0.0006) + Math.cos(y * s - t * 0.0005)) * Math.PI;
-  }
+  addEventListener('resize', size);
+  addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+  addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
+  size();
 
-  addEventListener('mousemove', e => { mouse.x = e.clientX * dpr; mouse.y = e.clientY * dpr; }, { passive: true });
-  addEventListener('mouseout', () => { mouse.x = -999; mouse.y = -999; });
+  let last = 0;
+  function frame(ts) {
+    const dt = last ? Math.min((ts - last) / 1000, 0.05) : 0;
+    last = ts;
+    ctx.clearRect(0, 0, w, h);
 
-  function frame() {
-    t++;
-    ctx.fillStyle = 'rgba(8,8,10,0.10)';
-    ctx.fillRect(0, 0, w, h);
+    for (const p of packets) {
+      const px = X(p.c + p.dc * p.t), py = Y(p.r + p.dr * p.t);
+      const dist = Math.hypot(px - mouse.x, py - mouse.y);
+      const near = dist < 220 ? 1 - dist / 220 : 0;    // cursor proximity, 0..1
 
-    for (const p of particles) {
-      const a = angleAt(p.x, p.y);
-      p.vx += Math.cos(a) * 0.10;
-      p.vy += Math.sin(a) * 0.10;
+      p.t += p.speed * (1 + near * 2.2) * dt;
 
-      const dx = p.x - mouse.x, dy = p.y - mouse.y;
-      const d2 = dx * dx + dy * dy;
-      if (d2 < (160 * dpr) ** 2) {
-        const d = Math.sqrt(d2) || 1;
-        p.vx += (dx / d) * 1.1;
-        p.vy += (dy / d) * 1.1;
+      while (p.t >= 1) {                               // reached the next node
+        p.t -= 1;
+        p.trail.push({ c: p.c, r: p.r });
+        if (p.trail.length > TAIL) p.trail.shift();
+        p.c += p.dc; p.r += p.dr;
+        p.life--;
+        sparks.push({ x: X(p.c), y: Y(p.r), a: 1 });
+
+        if (Math.random() < p.turn + near * 0.35) {    // corner, like a board trace
+          const left = [p.dr, -p.dc], right = [-p.dr, p.dc];
+          let pick;
+          if (near > 0.15 && Math.random() < near) {   // near the cursor, steer toward it
+            const vx = mouse.x - X(p.c), vy = mouse.y - Y(p.r);
+            pick = (left[0] * vx + left[1] * vy) > (right[0] * vx + right[1] * vy) ? left : right;
+          } else {
+            pick = Math.random() < 0.5 ? left : right;
+          }
+          p.dc = pick[0]; p.dr = pick[1];
+        }
+        if (p.life <= 0 || p.c < -3 || p.c > cols + 3 || p.r < -3 || p.r > rows + 3) {
+          Object.assign(p, spawn(true));
+        }
       }
 
-      p.vx *= 0.92; p.vy *= 0.92;
-      p.x += p.vx; p.y += p.vy;
-      p.life--;
+      const pts = p.trail.concat([{ c: p.c + p.dc * p.t, r: p.r + p.dr * p.t }]);
+      for (let i = 1; i < pts.length; i++) {           // trail brightens toward the head
+        ctx.strokeStyle = rgba(theme.line, (i / pts.length) * 0.5 * (0.55 + near * 0.75));
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(X(pts[i - 1].c), Y(pts[i - 1].r));
+        ctx.lineTo(X(pts[i].c), Y(pts[i].r));
+        ctx.stroke();
+      }
 
-      if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
-      if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
-      if (p.life < 0) { p.x = Math.random() * w; p.y = Math.random() * h; p.life = 100 + Math.random() * 120; p.vx = p.vy = 0; }
-
-      const speed = Math.hypot(p.vx, p.vy);
-      const hot = Math.min(speed / 2.2, 1);
-      const cr = Math.round(theme.calm[0] + (theme.hot[0] - theme.calm[0]) * hot);
-      const cg = Math.round(theme.calm[1] + (theme.hot[1] - theme.calm[1]) * hot);
-      const cb = Math.round(theme.calm[2] + (theme.hot[2] - theme.calm[2]) * hot);
-      ctx.fillStyle = `rgba(${cr}, ${cg}, ${cb}, ${0.18 + hot * 0.5})`;
-      const radius = (0.6 + hot * 1.6) * dpr;
+      ctx.fillStyle = rgba(theme.head, 0.5 + near * 0.5);
+      ctx.shadowBlur = 8 + near * 12;
+      ctx.shadowColor = rgba(theme.head, 0.85);
       ctx.beginPath();
-      ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+      ctx.arc(px, py, 1.5 + near * 1.4, 0, Math.PI * 2);
       ctx.fill();
+      ctx.shadowBlur = 0;
     }
+
+    for (let i = sparks.length - 1; i >= 0; i--) {     // intersection sparks decay
+      const s = sparks[i];
+      s.a -= dt * 1.6;
+      if (s.a <= 0) { sparks.splice(i, 1); continue; }
+      ctx.fillStyle = rgba(theme.head, s.a * 0.35);
+      ctx.fillRect(s.x - 1.5, s.y - 1.5, 3, 3);
+    }
+    if (sparks.length > 400) sparks.splice(0, sparks.length - 400);
+
     requestAnimationFrame(frame);
   }
-
-  resize();
-  addEventListener('resize', resize);
-  frame();
+  requestAnimationFrame(frame);
 })();

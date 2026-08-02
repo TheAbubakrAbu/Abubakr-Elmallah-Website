@@ -28,6 +28,61 @@
   pointer-events: none; opacity: 0.55;
 }
 
+/* ───────────── HUD backdrop ─────────────
+   A whisper of the J.A.R.V.I.S. / E.L.M.A.L.L.A.H. terminals on the normal site:
+   engineering grid + CRT scanlines + one slow travelling sweep line. It sits
+   above the flowfield and below all content, so nothing else is affected.
+
+   TO TUNE: change the values below. They're the only knobs.
+   TO REMOVE: delete this whole block. Nothing else references it. */
+:root {
+  --hud-grid:  rgba(95, 163, 236, 0.085);   /* grid lines, UCI blue */
+  --hud-cell:  52px;                        /* grid spacing */
+  --hud-scan:  rgba(236, 234, 227, 0.022);  /* scanlines */
+  --hud-sweep: rgba(63, 213, 137, 0.055);   /* travelling scan line, green */
+  --hud-lit:   rgba(125, 195, 255, 0.34);   /* grid lit up under the cursor */
+  --hud-halo:  rgba(63, 213, 137, 0.07);    /* soft light around the cursor */
+  --hud-reach: 240px;                       /* how far the cursor light spreads */
+}
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background-image:
+    linear-gradient(var(--hud-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hud-grid) 1px, transparent 1px),
+    repeating-linear-gradient(to bottom, var(--hud-scan) 0 1px, transparent 1px 3px);
+  background-size: var(--hud-cell) var(--hud-cell), var(--hud-cell) var(--hud-cell), 100% 3px;
+  /* fade the grid out toward the edges so it reads as depth, not wallpaper */
+  mask-image: radial-gradient(ellipse 120% 95% at 50% 15%, #000 25%, transparent 95%);
+  -webkit-mask-image: radial-gradient(ellipse 120% 95% at 50% 15%, #000 25%, transparent 95%);
+}
+body::after {
+  content: ""; position: fixed; left: 0; right: 0; height: 150px;
+  z-index: 1; pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--hud-sweep), transparent);
+  animation: hud-sweep 19s linear infinite;
+}
+@keyframes hud-sweep { from { top: -150px; } to { top: 100%; } }
+@media (prefers-reduced-motion: reduce) { body::after { display: none; } }
+
+/* Cursor light: the same lattice, drawn bright, but only visible inside a soft
+   circle that follows the pointer. --mx / --my are published by utils.js, eased,
+   so the grid ignites under the cursor and dims again behind it. */
+html::before {
+  content: ""; position: fixed; inset: 0; z-index: 2; pointer-events: none;
+  opacity: 0; transition: opacity .45s ease;
+  background-image:
+    linear-gradient(var(--hud-lit) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hud-lit) 1px, transparent 1px),
+    radial-gradient(circle at var(--mx, 50%) var(--my, 50%), var(--hud-halo), transparent 60%);
+  background-size: var(--hud-cell) var(--hud-cell), var(--hud-cell) var(--hud-cell), 100% 100%;
+  mask-image: radial-gradient(circle var(--hud-reach) at var(--mx, 50%) var(--my, 50%),
+              #000 0%, rgba(0,0,0,0.55) 42%, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle var(--hud-reach) at var(--mx, 50%) var(--my, 50%),
+              #000 0%, rgba(0,0,0,0.55) 42%, transparent 72%);
+}
+html.has-beacon::before { opacity: 1; }
+@media (prefers-reduced-motion: reduce), (hover: none) { html::before { display: none; } }
+
 main, .footer, .rail { position: relative; z-index: 10; }
 
 /* ───────────── Custom cursor ───────────── */

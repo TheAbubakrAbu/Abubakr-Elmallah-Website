@@ -1,0 +1,297 @@
+---
+permalink: /elmallah/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="E.L.M.A.L.L.A.H., a holoterminal interface for Abubakr Elmallah's portfolio. Embedded Logic Matrix · Adaptive Learning, Language & Archive Hub." />
+<meta name="theme-color" content="#03070d" />
+
+<link rel="icon" type="image/png" href="../assets/img/me/abubakr-circle.png" />
+<link rel="apple-touch-icon" href="../assets/img/me/abubakr-circle.png" />
+<meta property="og:image" content="../assets/img/me/abubakr-circle.png" />
+<meta property="og:type" content="website" />
+<title>E.L.M.A.L.L.A.H. · Abubakr Elmallah</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="../assets/css/elmallah.css?v={{ site.time | date: '%s' }}" />
+<noscript><style>
+  .el-boot { display: none; }
+  .el-shell { opacity: 1 !important; }
+  .el-panel, .el-holo { opacity: 1 !important; transform: none !important; }
+  .el-bar i { width: var(--v, 0%) !important; }
+</style></noscript>
+</head>
+<body class="el">
+
+<!-- ═══════════ boot ═══════════ -->
+<div class="el-boot" id="elBoot">
+  <div class="el-boot-mark">E.L.M.A.L.L.A.H.</div>
+  <div class="el-boot-sub">Embedded Logic Matrix · Adaptive Learning, Language &amp; Archive Hub</div>
+  <div class="el-boot-log" id="elBootLog"></div>
+  <div class="el-boot-bar"><i id="elBootBar"></i></div>
+  <button class="el-skip" id="elSkip" type="button">BYPASS</button>
+</div>
+
+<!-- ═══════════ field ═══════════ -->
+<div class="el-field" aria-hidden="true">
+  <canvas id="elStars"></canvas>
+  <div class="el-hex" data-par="12"></div>
+  <div class="el-aura"></div>
+  <div class="el-vig"></div>
+</div>
+<div class="el-frame" aria-hidden="true"></div>
+<div class="el-cursor" id="elCursor" aria-hidden="true"></div>
+<div class="el-lock" id="elLock" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+<a class="el-home" href="/" title="Back to the main site (Esc)">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>EXIT TO BASE</span>
+</a>
+
+<!-- ═══════════ spine ═══════════ -->
+<aside class="el-spine" aria-hidden="true">
+  <b>Holoterminal</b>
+  <i></i>
+  <em>SECTOR · IRVINE</em>
+</aside>
+
+<div class="el-shell">
+
+  <!-- ── top ribbon ── -->
+  <div class="el-ribbon">
+    <span class="el-chip el-chip--ok">◆ ARCHIVE ONLINE</span>
+    <span class="el-chip">STARDATE <b id="elStar">···</b></span>
+    <span class="el-chip">GST <b id="elTime">--:--:--</b></span>
+    <span class="el-spacer"></span>
+    <span class="el-chip el-chip--y">CLEARANCE · OPERATOR</span>
+    <span class="el-chip">33.64°N 117.84°W</span>
+  </div>
+
+  <div class="el-grid">
+
+    <!-- ─────────── LEFT ─────────── -->
+    <section class="el-col" data-par="9">
+
+      <article class="el-panel"><div>
+        <div class="el-h">Operator Manifest</div>
+        <div class="el-name">ABUBAKR<br />ELMALLAH</div>
+        <div class="el-desig">iOS Developer · CS @ UC Irvine ’28</div>
+        <div class="el-say" id="elSay"></div>
+      </div></article>
+
+      <article class="el-panel"><div>
+        <div class="el-h el-h--y">Ship Systems</div>
+        <div class="el-meters">
+          <div>
+            <div class="el-meter-top"><span>Hyperdrive · Swift</span><i>PRIMARY</i></div>
+            <div class="el-bar el-bar--g" style="--v:100%"><i></i></div>
+          </div>
+          <div>
+            <div class="el-meter-top"><span>Navigation · Python · C++ · Java</span><i>SECONDARY</i></div>
+            <div class="el-bar" style="--v:78%"><i></i></div>
+          </div>
+          <div>
+            <div class="el-meter-top"><span>Comms · JavaScript · Bash</span><i>SUPPORT</i></div>
+            <div class="el-bar el-bar--y" style="--v:58%"><i></i></div>
+          </div>
+        </div>
+        <div class="el-rows" style="margin-top:0.9rem">
+          <div class="el-row"><span>Targets</span><span>iOS · iPadOS · watchOS · macOS</span></div>
+          <div class="el-row"><span>Registry</span><span><b data-count="10">0</b> APPS · <b data-count="2">0</b> DROIDS · <b data-count="8">0</b> PERSONAL</span></div>
+          <div class="el-row"><span>Shields</span><span class="ok">NOMINAL</span></div>
+          <div class="el-row"><span>Session</span><span id="elUp">00:00:00</span></div>
+        </div>
+      </div></article>
+
+      <article class="el-panel"><div>
+        <div class="el-h">Sector Charts</div>
+        <nav class="el-links">
+          <a class="el-link" data-lock href="/">Main Base<em>HOME</em></a>
+          <a class="el-link" data-lock href="/work/">Work<em>UCI</em></a>
+          <a class="el-link" data-lock href="/projects/">Projects<em>ALL</em></a>
+          <a class="el-link" data-lock href="/education/">Education<em>SCHOOLS</em></a>
+          <a class="el-link" data-lock href="/franchises/">Franchises<em>THEMED</em></a>
+          <a class="el-link" data-lock href="/resume/">Résumé<em>DOC</em></a>
+        </nav>
+      </div></article>
+
+      <article class="el-panel"><div>
+        <div class="el-h">Comm Chatter</div>
+        <div class="el-log" id="elLog"></div>
+      </div></article>
+
+    </section>
+
+    <!-- ─────────── HOLOTABLE ─────────── -->
+    <section class="el-holo-wrap" data-par="18">
+
+      <div class="el-holo" id="elHolo">
+        <div class="el-floor" aria-hidden="true"></div>
+        <svg class="el-rings" viewBox="0 0 400 400" aria-hidden="true">
+          <g class="r-spin-a"><path class="r-hex" d="M200 10 L364.5 105 L364.5 295 L200 390 L35.5 295 L35.5 105 Z"/></g>
+          <g class="r-spin-b"><path class="r-hex r-dash" d="M200 40 L338.6 120 L338.6 280 L200 360 L61.4 280 L61.4 120 Z"/></g>
+          <circle class="r-tick" cx="200" cy="200" r="176"/>
+          <g class="r-spin-c"><circle class="r-arc" cx="200" cy="200" r="150" stroke-dasharray="150 793"/></g>
+          <g class="r-spin-d"><path class="r-hex r-thin" d="M200 80 L303.9 140 L303.9 260 L200 320 L96.1 260 L96.1 140 Z"/></g>
+          <g class="r-spoke">
+            <path d="M398 200 h-16 M340 340 l-11.3 -11.3 M200 398 v-16 M60 340 l11.3 -11.3
+                     M2 200 h16 M60 60 l11.3 11.3 M200 2 v16 M340 60 l-11.3 11.3"/>
+          </g>
+          <g class="r-label">
+            <text x="200" y="30" text-anchor="middle">01</text>
+            <text x="352" y="118" text-anchor="middle">02</text>
+            <text x="352" y="290" text-anchor="middle">03</text>
+            <text x="200" y="378" text-anchor="middle">04</text>
+            <text x="48" y="290" text-anchor="middle">05</text>
+            <text x="48" y="118" text-anchor="middle">06</text>
+          </g>
+        </svg>
+        <div class="el-plate" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        <div class="el-beam" aria-hidden="true"></div>
+        <div class="el-motes" id="elMotes" aria-hidden="true"></div>
+        <div class="el-cube-stage" id="elStage">
+          <div class="el-cube" id="elCube" aria-hidden="true">
+            <span class="f1"><img src="../assets/img/apps/datapad.jpg" alt="" /></span>
+            <span class="f2"><img src="../assets/img/apps/aurebesh-translator.jpg" alt="" /></span>
+            <span class="f3"><img src="../assets/img/bots/sabacc-droid.png" alt="" /></span>
+            <span class="f4"><img src="../assets/img/bots/aurebesh-droid.png" alt="" /></span>
+            <span class="f5"><img src="../assets/img/apps/datapad.jpg" alt="" /></span>
+            <span class="f6"><img src="../assets/img/apps/aurebesh-translator.jpg" alt="" /></span>
+          </div>
+          <div class="el-heart" aria-hidden="true"></div>
+          <div class="el-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+        </div>
+        <div class="el-holo-scan" aria-hidden="true"></div>
+        <div class="el-holo-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      </div>
+
+      <div class="el-holo-cap">
+        <b id="elMark" data-glitch="E.L.M.A.L.L.A.H.">E.L.M.A.L.L.A.H.</b>
+        <span>Embedded Logic Matrix</span>
+        <em>Adaptive Learning, Language &amp; Archive Hub</em>
+      </div>
+
+      <div class="el-strip">
+        <div class="el-strip-head"><span>Holocron Schematic · Live Trace</span><span>▲ STABLE</span></div>
+        <canvas id="elScope"></canvas>
+      </div>
+
+    </section>
+
+    <!-- ─────────── RIGHT ─────────── -->
+    <section class="el-col" data-par="9">
+
+      <article class="el-panel"><div>
+        <div class="el-h">Chronometer</div>
+        <div class="el-rows">
+          <div class="el-row"><span>Local</span><span id="elDate">···</span></div>
+          <div class="el-row"><span>Hijri</span><span id="elHijri">···</span></div>
+          <div class="el-row"><span>Base</span><span>IRVINE, CALIFORNIA</span></div>
+          <div class="el-row"><span>Status</span><span class="ok">OPEN TO INTERNSHIPS</span></div>
+        </div>
+        <div class="el-scan" style="margin-top:0.9rem">
+          <svg viewBox="0 0 200 200" aria-hidden="true">
+            <circle class="s-line" cx="100" cy="100" r="98"/>
+            <circle class="s-hex" cx="100" cy="100" r="72"/>
+            <circle class="s-hex" cx="100" cy="100" r="46"/>
+            <circle class="s-hex" cx="100" cy="100" r="20"/>
+            <path class="s-hex" d="M100 2 v196 M2 100 h196"/>
+            <path class="s-line" d="M100 26 l64 37 v74 l-64 37 -64 -37 v-74z"/>
+            <circle class="s-blip" cx="132" cy="72" r="3"/>
+            <circle class="s-blip--g" cx="70" cy="124" r="3"/>
+            <circle class="s-blip" cx="112" cy="140" r="2.5"/>
+            <circle class="s-blip--g" cx="62" cy="78" r="2"/>
+          </svg>
+          <div class="el-scan-sweep"></div>
+        </div>
+      </div></article>
+
+      <article class="el-panel"><div>
+        <div class="el-h el-h--y">Personal Fleet</div>
+        <div class="el-craft">
+          <a class="el-craft-row" href="/star-wars/" data-lock>
+            <img src="../assets/img/apps/aurebesh-translator.jpg" alt="" />
+            <span class="el-craft-b"><span class="el-craft-t">Aurebesh Translator</span><span class="el-craft-m">2024 · Free · 4 platforms</span></span>
+            <span class="el-craft-s">ACTIVE</span>
+          </a>
+          <a class="el-craft-row" href="/star-wars/" data-lock>
+            <img src="../assets/img/apps/datapad.jpg" alt="" />
+            <span class="el-craft-b"><span class="el-craft-t">Datapad</span><span class="el-craft-m">2023 · Top 10 · Entertainment</span></span>
+            <span class="el-craft-s">ACTIVE</span>
+          </a>
+          <a class="el-craft-row" href="/star-wars/" data-lock>
+            <img src="../assets/img/bots/sabacc-droid.png" alt="" />
+            <span class="el-craft-b"><span class="el-craft-t">Sabacc Droid</span><span class="el-craft-m">2024 · Discord · Python</span></span>
+            <span class="el-craft-s">ACTIVE</span>
+          </a>
+          <a class="el-craft-row" href="/star-wars/" data-lock>
+            <img src="../assets/img/bots/aurebesh-droid.png" alt="" />
+            <span class="el-craft-b"><span class="el-craft-t">Aurebesh Droid</span><span class="el-craft-m">2025 · Discord · C++</span></span>
+            <span class="el-craft-s">ACTIVE</span>
+          </a>
+          <a class="el-craft-row is-off" href="/projects/" data-lock>
+            <img src="../assets/img/apps/icoi.jpg" alt="" />
+            <span class="el-craft-b"><span class="el-craft-t">Islamic Center of Irvine</span><span class="el-craft-m">2023 · Decommissioned</span></span>
+            <span class="el-craft-s off">OFFLINE</span>
+          </a>
+          <a class="el-craft-row" href="/al-islam/" data-lock>
+            <img src="../assets/img/apps/al-adhan.jpg" alt="" />
+            <span class="el-craft-b"><span class="el-craft-t">Al-Adhan</span><span class="el-craft-m">2023 · Prayer times · qibla</span></span>
+            <span class="el-craft-s">ACTIVE</span>
+          </a>
+          <a class="el-craft-row" href="/al-islam/" data-lock>
+            <img src="../assets/img/apps/al-islam.jpg" alt="" />
+            <span class="el-craft-b"><span class="el-craft-t">Al-Islam</span><span class="el-craft-m">2023 · Congressional ’23</span></span>
+            <span class="el-craft-s">ACTIVE</span>
+          </a>
+          <a class="el-craft-row" href="/al-islam/" data-lock>
+            <img src="../assets/img/apps/al-quran.jpg" alt="" />
+            <span class="el-craft-b"><span class="el-craft-t">Al-Quran</span><span class="el-craft-m">2023 · Swift Student ’24</span></span>
+            <span class="el-craft-s">ACTIVE</span>
+          </a>
+        </div>
+      </div></article>
+
+      <article class="el-panel"><div>
+        <div class="el-h el-h--y">Commendations</div>
+        <div class="el-rows">
+          <div class="el-row"><span>Congressional</span><span class="warn">APP CHALLENGE ’23</span></div>
+          <div class="el-row"><span>Apple</span><span class="warn">SWIFT STUDENT ’24</span></div>
+          <div class="el-row"><span>App Store</span><span>TOP 10 · ENTERTAINMENT</span></div>
+          <div class="el-row"><span>WWDC</span><span>APPLE PARK ’24</span></div>
+        </div>
+        <nav class="el-links" style="margin-top:0.8rem">
+          <a class="el-link" data-lock href="mailto:ammelmallah@gmail.com">Transmit<em>MAIL</em></a>
+          <a class="el-link" data-lock href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener">Source Vault<em>GITHUB</em></a>
+          <a class="el-link" data-lock href="https://www.linkedin.com/in/abubakr-elmallah" target="_blank" rel="noopener">Network<em>LINKEDIN</em></a>
+        </nav>
+      </div></article>
+
+    </section>
+  </div>
+
+  <!-- ═══════════ bottom ═══════════ -->
+  <footer class="el-bottom">
+    <a class="el-exit" href="/">◄ RETURN TO BASE</a>
+    <div class="el-marquee" aria-hidden="true"><div>
+      <span><b>E.L.M.A.L.L.A.H.</b> EMBEDDED LOGIC MATRIX · ADAPTIVE LEARNING, LANGUAGE &amp; ARCHIVE HUB</span>
+      <span><b>OPERATOR</b> ABUBAKR ELMALLAH · UC IRVINE ’28</span>
+      <span><b>REGISTRY</b> 10 APPS · 2 DISCORD DROIDS · 4 APPLE PLATFORMS</span>
+      <span><b>COMMENDATIONS</b> CONGRESSIONAL APP CHALLENGE ’23 · SWIFT STUDENT CHALLENGE ’24</span>
+      <span><b>E.L.M.A.L.L.A.H.</b> EMBEDDED LOGIC MATRIX · ADAPTIVE LEARNING, LANGUAGE &amp; ARCHIVE HUB</span>
+      <span><b>OPERATOR</b> ABUBAKR ELMALLAH · UC IRVINE ’28</span>
+      <span><b>REGISTRY</b> 10 APPS · 2 DISCORD DROIDS · 4 APPLE PLATFORMS</span>
+      <span><b>COMMENDATIONS</b> CONGRESSIONAL APP CHALLENGE ’23 · SWIFT STUDENT CHALLENGE ’24</span>
+    </div></div>
+    <a class="el-exit el-exit--alt" href="/jarvis/">J.A.R.V.I.S. ►</a>
+  </footer>
+</div>
+
+<script src="../assets/js/elmallah.js?v={{ site.time | date: '%s' }}"></script>
+</body>
+</html>

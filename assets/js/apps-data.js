@@ -25,7 +25,7 @@ window.APP_CARDS = {
   'zotfinder': {
     icon: 'apps/zotfinder.jpg', alt: 'ZOTFinder app icon',
     title: 'ZOTFinder', sub: '2024 · Interactive campus map',
-    desc: 'A free interactive campus map for UCI — search buildings, find professor offices, view emergency info, and get directions with estimated travel times.',
+    desc: 'A free interactive campus map for UCI. Search buildings, find professor offices, view emergency info, and get directions with estimated travel times.',
     tags: 'iOS · Swift · SwiftUI',
     links: [{ label: 'App Store ↗', href: 'https://apps.apple.com/us/app/zotfinder/id915256719?platform=iphone' }],
   },
@@ -46,7 +46,7 @@ window.APP_CARDS = {
   'peterplate': {
     icon: 'apps/peterplate.jpg', alt: 'PeterPlate app icon',
     title: 'PeterPlate', sub: '2025 · Dining menu viewer',
-    desc: "A menu viewer for UCI's Brandywine and Anteatery dining halls — browse current and upcoming menus, check allergen and dietary info, follow dining events, and rate dishes to plan your meal swipes and nutrition goals.",
+    desc: "A menu viewer for UCI's Brandywine and Anteatery dining halls. Browse current and upcoming menus, check allergen and dietary info, follow dining events, and rate dishes to plan your meal swipes and nutrition goals.",
     tags: 'Web · Next.js',
     links: [
       { label: 'Website ↗', href: 'https://peterplate.com/' },
@@ -58,7 +58,7 @@ window.APP_CARDS = {
   'aurebesh-translator': {
     icon: 'apps/aurebesh-translator.jpg', alt: 'Aurebesh Translator app icon',
     title: 'Aurebesh Translator', sub: 'October 22, 2024',
-    desc: 'The free version of Datapad — a simple, ad-free way to translate between English and Aurebesh, fully offline, with a distraction-free interface.',
+    desc: 'The free version of Datapad: a simple, ad-free way to translate between English and Aurebesh, fully offline, with a distraction-free interface.',
     tags: 'iOS · iPadOS · watchOS · macOS',
     cat: { label: 'Star Wars ↗', href: '/star-wars/', cls: 'app-cat--starwars' },
     links: [
@@ -69,7 +69,7 @@ window.APP_CARDS = {
   'datapad': {
     icon: 'apps/datapad.jpg', alt: 'Datapad app icon',
     title: 'Datapad', sub: 'June 26, 2023',
-    desc: 'The ultimate tool for Star Wars fans to explore and translate the galactic alphabet Aurebesh in all its forms — a custom Aurebesh keyboard, immersive features, and a galactic-themed interface.',
+    desc: 'The ultimate tool for Star Wars fans to explore and translate the galactic alphabet Aurebesh in all its forms, with a custom Aurebesh keyboard, immersive features, and a galactic-themed interface.',
     tags: 'iOS · iPadOS · watchOS · macOS',
     feature: true,
     badge: { text: '🏆 Top 10 · Entertainment' },
@@ -83,7 +83,7 @@ window.APP_CARDS = {
   'sabacc-droid': {
     icon: 'bots/sabacc-droid.png', alt: 'Sabacc Droid icon',
     title: 'Sabacc Droid', sub: '2024 · Play Sabacc on Discord',
-    desc: 'A Discord bot that brings the Star Wars card game Sabacc to your server — multiplayer rounds, rules variants, and a galaxy-flavored interface.',
+    desc: 'A Discord bot that brings the Star Wars card game Sabacc to your server, with multiplayer rounds, rules variants, and a galaxy-flavored interface.',
     tags: 'Discord · Python',
     cat: { label: 'Star Wars ↗', href: '/star-wars/', cls: 'app-cat--starwars' },
     links: [
@@ -94,7 +94,7 @@ window.APP_CARDS = {
   'aurebesh-droid': {
     icon: 'bots/aurebesh-droid.png', alt: 'Aurebesh Droid icon',
     title: 'Aurebesh Droid', sub: '2025 · Aurebesh Translator on Discord',
-    desc: 'Translate English to and from Aurebesh right inside Discord — fast, server-friendly, and written in C++ for speed.',
+    desc: 'Translate English to and from Aurebesh right inside Discord. Fast, server-friendly, and written in C++ for speed.',
     tags: 'Discord · C++',
     cat: { label: 'Star Wars ↗', href: '/star-wars/', cls: 'app-cat--starwars' },
     links: [
@@ -119,7 +119,7 @@ window.APP_CARDS = {
   'al-islam': {
     icon: 'apps/al-islam.jpg', alt: 'Al-Islam | Islamic Pillars app icon',
     title: 'Al-Islam ·<br>Islamic Pillars', sub: 'July 26, 2023',
-    desc: 'An all-in-one companion for lifelong Muslims and converts alike — Traveling Mode, Beginner Arabic Mode, prayer times, qibla direction, Quran access, and tools to deepen faith and connect with Allah.',
+    desc: 'An all-in-one companion for lifelong Muslims and converts alike, with Traveling Mode, Beginner Arabic Mode, prayer times, qibla direction, Quran access, and tools to deepen faith and connect with Allah.',
     tags: 'iOS · iPadOS<br>watchOS · macOS',
     feature: true,
     badge: { text: '🏆 Congressional Challenge ’23', href: 'https://www.congressionalappchallenge.us/' },
@@ -137,7 +137,7 @@ window.APP_CARDS = {
   'al-quran': {
     icon: 'apps/al-quran.jpg', alt: 'Al-Quran | Beginner Quran app icon',
     title: 'Al-Quran ·<br>Beginner Quran', sub: 'December 26, 2023',
-    desc: 'Makes learning and studying the Holy Quran accessible — Arabic Beginner Mode, ayah sharing, recitations, and tools for enhancing your spiritual journey.',
+    desc: 'Makes learning and studying the Holy Quran accessible, with Arabic Beginner Mode, ayah sharing, recitations, and tools for enhancing your spiritual journey.',
     tags: 'iOS · iPadOS<br>watchOS · macOS',
     feature: true,
     badge: { text: '🏆 Swift Student Challenge ’24', href: 'https://developer.apple.com/swift-student-challenge/' },
@@ -157,7 +157,7 @@ window.APP_CARDS = {
   'icoi': {
     icon: 'apps/icoi.jpg', alt: 'Islamic Center of Irvine (ICOI) app icon',
     title: 'Islamic Center of Irvine', sub: 'October 3, 2023',
-    desc: 'Built for the Irvine Muslim community — accurate mosque prayer times, important links, Quran access, Islamic tools, and local business support.',
+    desc: 'Built for the Irvine Muslim community. Accurate mosque prayer times, important links, Quran access, Islamic tools, and local business support.',
     tags: 'iOS',
     dead: true,
     deadNote: 'No longer available',

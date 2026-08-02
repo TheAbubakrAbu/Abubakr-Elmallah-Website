@@ -1,5 +1,5 @@
 /* intro.js — per-page launch animation.
-   Type comes from <body data-intro="home|starwars|alislam">; default = "veil". */
+   Type comes from <body data-intro="home|starwars|alislam|projects|work|school">; default = "veil". */
 (function intro() {
   // Instant cover (inline-styled in the HTML) hides the page from the very first paint so the
   // real content never flashes before the launch overlay mounts. Drop it the moment we no longer
@@ -11,8 +11,11 @@
   const type = document.body.dataset.intro || 'veil';
   if (type === 'none') { dropCover(); return; }   // pages that opt out of the launch animation (e.g. résumé)
 
+  // some pages borrow another page's intro styling (mosaic = projects, photo fan = school)
+  const skin = { work: 'projects', franchises: 'projects', education: 'school' }[type] || type;
+
   const ov = document.createElement('div');
-  ov.className = 'intro intro--' + type;
+  ov.className = 'intro intro--' + skin;
 
   if (type === 'home') {
     ov.innerHTML =
@@ -44,12 +47,31 @@
       '<div class="intro-mosaic">' +
       icons.map((s, i) => '<img class="intro-tile" style="animation-delay:' + (i * 28) + 'ms" src="../assets/img/' + s + '" alt="" aria-hidden="true">').join('') +
       '</div><span class="intro-proj-title">Projects</span>';
-  } else if (type === 'school') {
+  } else if (type === 'work') {
+    // one row: the four UCI apps
+    const icons = ['apps/zotfinder.jpg', 'apps/uci-now.jpg', 'apps/uci-esports.jpg', 'apps/peterplate.jpg'];
+    ov.innerHTML =
+      '<div class="intro-mosaic">' +
+      icons.map((s, i) => '<img class="intro-tile" style="animation-delay:' + (i * 45) + 'ms" src="../assets/img/' + s + '" alt="" aria-hidden="true">').join('') +
+      '</div><span class="intro-proj-title">Work</span>';
+  } else if (type === 'franchises') {
+    // Star Wars row of four, then the three Islamic apps centered beneath
+    const rows = [
+      ['apps/aurebesh-translator.jpg', 'apps/datapad.jpg', 'bots/aurebesh-droid.png', 'bots/sabacc-droid.png'],
+      ['apps/al-adhan.jpg', 'apps/al-islam.jpg', 'apps/al-quran.jpg'],
+    ];
+    let n = 0;
+    ov.innerHTML =
+      '<div class="intro-mosaic intro-mosaic--rows">' +
+      rows.map(row => '<div class="intro-row">' + row.map(s =>
+        '<img class="intro-tile" style="animation-delay:' + (n++ * 34) + 'ms" src="../assets/img/' + s + '" alt="" aria-hidden="true">').join('') + '</div>').join('') +
+      '</div><span class="intro-proj-title">Franchises</span>';
+  } else if (type === 'school' || type === 'education') {
     const ph = ['year-freshman.jpg', 'year-sophomore-1.jpg', 'year-junior.jpg', 'year-senior-1.jpg'];
     ov.innerHTML =
       '<div class="intro-fan">' +
       ph.map((s, i) => '<img class="intro-photo" style="animation-delay:' + (i * 55) + 'ms" src="../assets/img/highschool/' + s + '" alt="" aria-hidden="true">').join('') +
-      '</div><span class="intro-school-title">High&nbsp;School</span>';
+      '</div><span class="intro-school-title">' + (type === 'education' ? 'Education' : 'High&nbsp;School') + '</span>';
   } else {
     ov.innerHTML = '<span class="intro-name">Abubakr Elmallah</span>';
   }
@@ -72,7 +94,8 @@
     return;
   }
 
-  const DUR = { home: 820, alislam: 1050, projects: 900, school: 900, veil: 650 }[type] || 650;
+  const DUR = { home: 820, alislam: 1050, projects: 900, work: 820, franchises: 880,
+                school: 900, education: 900, veil: 650 }[type] || 650;
   setTimeout(() => {
     ov.classList.add('is-done');
     document.documentElement.classList.remove('intro-lock');
