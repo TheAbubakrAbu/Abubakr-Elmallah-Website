@@ -1,25 +1,27 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Abubakr Elmallah — UC Irvine Computer Science (Class of 2028) and iOS app developer. Swift & SwiftUI." />
+<meta name="description" content="Abubakr Elmallah. UC Irvine Computer Science (Class of 2028) and iOS app developer. Swift & SwiftUI." />
 <meta name="theme-color" content="#08080a" />
 
 <link rel="icon" type="image/png" href="assets/img/me/abubakr-circle.png" />
 <link rel="apple-touch-icon" href="assets/img/me/abubakr-circle.png" />
 <meta property="og:image" content="assets/img/me/abubakr-circle.png" />
-<meta property="og:title" content="Abubakr Elmallah — iOS Developer" />
+<meta property="og:title" content="Abubakr Elmallah · iOS Developer" />
 <meta property="og:type" content="website" />
-<title>Abubakr Elmallah — iOS Developer</title>
+<title>Abubakr Elmallah · iOS Developer</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="assets/css/base.css" />
-<link rel="stylesheet" href="assets/css/layout.css" />
-<link rel="stylesheet" href="assets/css/components.css" />
+<link rel="stylesheet" href="assets/css/base.css?v={{ site.time | date: '%s' }}" />
+<link rel="stylesheet" href="assets/css/layout.css?v={{ site.time | date: '%s' }}" />
+<link rel="stylesheet" href="assets/css/components.css?v={{ site.time | date: '%s' }}" />
 </head>
 <body data-intro="home">
 <div id="introCover" aria-hidden="true" style="position:fixed;inset:0;z-index:11000;background:#08080a"></div>
@@ -47,16 +49,16 @@
     <img class="brand-avatar" src="assets/img/me/abubakr-circle.png" alt="Abubakr Elmallah" /><span class="brand-glyph"><b>Abubakr</b> Elmallah</span>
   </a>
 
-  <!-- top nav controls hidden — using the bottom tab bar instead
+  <!-- top nav controls hidden, using the bottom tab bar instead
 <nav class="nav">
+    <a href="/work/" data-magnetic>Work</a>
     <a href="/projects/" data-magnetic>Projects</a>
-    <a href="/star-wars/" data-magnetic>Star Wars</a>
-    <a href="/al-islam/" data-magnetic>Al-Islam</a>
-    <a href="/high-school/" data-magnetic>High School</a>
+    <a href="/education/" data-magnetic>Education</a>
+    <a href="/franchises/" data-magnetic>Franchises</a>
   </nav>
   -->
 
-  <!-- Résumé / LinkedIn / GitHub — always front and center -->
+  <!-- Résumé / LinkedIn / GitHub: always front and center -->
   <div class="toggles"><button class="ql ql--sound is-on" id="soundToggle" type="button" aria-pressed="true" aria-label="Toggle interface sounds" data-magnetic><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><button class="ql ql--cursor" id="cursorToggle" type="button" data-cursor-toggle aria-pressed="true" aria-label="Toggle custom cursor" data-magnetic><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg></button></div>
   <div class="quicklinks">
     <a class="ql ql--resume" href="/resume/" data-magnetic>
@@ -79,7 +81,7 @@
   <!-- ─────────────── HERO ─────────────── -->
   <section class="hero" id="index">
     <div class="hero-text">
-      <p class="kicker"><span>(000 / Index)</span><span>UC Irvine — Class of 2028</span></p>
+      <p class="kicker"><span>(000 / Index)</span><span>UC Irvine · Class of 2028</span></p>
 
       <h1 class="display" data-magnetic>
         <span class="line" data-scramble>Abubakr</span>
@@ -120,10 +122,10 @@
             </a>
           </div>
           <nav class="hero-nav" aria-label="Sections">
+            <a href="/work/" data-magnetic>Work</a>
             <a href="/projects/" data-magnetic>Projects</a>
-            <a href="/star-wars/" data-magnetic>Star Wars</a>
-            <a href="/al-islam/" data-magnetic>Al-Islam</a>
-            <a href="/high-school/" data-magnetic>High School</a>
+            <a href="/education/" data-magnetic>Education</a>
+            <a href="/franchises/" data-magnetic>Franchises</a>
           </nav>
         </div>
       </div>
@@ -186,6 +188,11 @@
           <div><dt>Status</dt><dd>Open to internships</dd></div>
           <div><dt>Based</dt><dd>Irvine, California</dd></div>
         </dl>
+
+        <div class="hs-extra reveal">
+          <a href="/education/" data-magnetic>🎓 Education: UCI &amp; high school ↗</a>
+          <a href="/franchises/" data-magnetic>✦ Franchises: Star Wars &amp; Al-Islam ↗</a>
+        </div>
       </div>
     </div>
   </section>
@@ -199,10 +206,10 @@
     </div>
 
     <p class="wwdc-note reveal">
-      Every June, Apple holds its <b>Worldwide Developers Conference (WWDC)</b> at Apple Park in Cupertino — a week where
+      Every June, Apple holds its <b>Worldwide Developers Conference (WWDC)</b> at Apple Park in Cupertino, a week where
       developers from all over the world gather for Apple’s biggest announcements, hands-on labs, and sessions. I had the
       chance to attend in <b>2024</b>, and it was unforgettable: walking the Apple Park campus, meeting <b>Tim Cook</b>, and
-      standing under the WWDC24 sign was an absolute pleasure — easily one of the highlights of my life so far. Apple Park
+      standing under the WWDC24 sign was an absolute pleasure, easily one of the highlights of my life so far. Apple Park
       itself is genuinely breathtaking in person.
     </p>
 
@@ -225,11 +232,11 @@
       <h3 class="wwdc-subhead">Swift Student Challenge</h3>
       <p class="wwdc-note">
         The reason I was there was the <a href="https://developer.apple.com/swift-student-challenge/" target="_blank" rel="noopener" data-magnetic>Swift
-        Student Challenge</a> — Apple’s annual competition where students around the world build an interactive app in Swift and tell the
+        Student Challenge</a>, Apple’s annual competition where students around the world build an interactive app in Swift and tell the
         story behind it. Each year only a few hundred students are selected out of tens of thousands of submissions. I <b>won in 2024</b>
         for <b>Al-Quran</b>, my app for learning and studying the Holy Quran, which also earned a personal congratulatory letter from
-        Apple’s Worldwide Developer Relations team. Being recognized among student developers from across the globe — and getting to
-        celebrate it at Apple Park — meant the world to me.
+        Apple’s Worldwide Developer Relations team. Being recognized among student developers from across the globe, and getting to
+        celebrate it at Apple Park, meant the world to me.
       </p>
       <div class="wwdc-grid wwdc-grid--ssc">
         <a class="wwdc-shot wwdc-shot--doc reveal" href="assets/img/awards/wwdc-scholars-2024.jpg" data-label="WWDC 2024 Scholar · Swift Student Challenge" target="_blank" rel="noopener">
@@ -261,6 +268,31 @@
     </div>
   </section>
 
+  <!-- ─────────────── E.L.M.A.L.L.A.H. ─────────────── -->
+  <section class="jarvis-sec" id="terminals">
+    <a class="jarvis-cta elm-cta reveal" href="/elmallah/" data-magnetic>
+      <span class="elm-holo" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="jarvis-txt">
+        <span class="jarvis-k">Holoterminal · Interface</span>
+        <h3>E.L.M.A.L.L.A.H.</h3>
+        <p><b>E</b>mbedded <b>L</b>ogic <b>M</b>atrix · <b>A</b>daptive <b>L</b>earning, <b>L</b>anguage &amp; <b>A</b>rchive <b>H</b>ub. A Star Wars holotable in UCI blue, Trabuco gold and Islamic green. Spinning holocron, drifting starfield, sector scan, stardate.</p>
+      </span>
+      <span class="jarvis-go">ENGAGE ↗</span>
+    </a>
+  </section>
+
+  <!-- ─────────────── J.A.R.V.I.S. ─────────────── -->
+  <section class="jarvis-sec" id="jarvis">
+    <a class="jarvis-cta reveal" href="/jarvis/" data-magnetic>
+      <span class="jarvis-orb" aria-hidden="true"></span>
+      <span class="jarvis-txt">
+        <span class="jarvis-k">Easter egg · Interface</span>
+        <h3>J.A.R.V.I.S.</h3>
+        <p>A Stark-inspired heads-up display of everything above: arc reactor, live chronometer with the Hijri date, telemetry, and every page wired into one console.</p>
+      </span>
+      <span class="jarvis-go">BOOT INTERFACE ↗</span>
+    </a>
+  </section>
 
 </main>
 
@@ -279,24 +311,24 @@
 <!-- mobile bottom tab bar -->
 <nav class="tabbar" aria-label="Primary">
   <a href="index.html" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg><span>Home</span></a>
+  <a href="/work/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/><path d="M3 12.5h18"/></svg><span>Work</span></a>
   <a href="/projects/"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Projects</span></a>
-  <a href="/star-wars/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.1 1.2 6L12 16.9 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z"/></svg><span>Star Wars</span></a>
-  <a href="/al-islam/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 1 0 10.5 10.5z"/></svg><span>Al-Islam</span></a>
-  <a href="/high-school/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1 2.5 2 5 2s5-1 5-2v-5"/></svg><span>School</span></a>
+  <a href="/education/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1 2.5 2 5 2s5-1 5-2v-5"/></svg><span>Education</span></a>
+  <a href="/franchises/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Franchises</span></a>
 </nav>
 
 <!-- scripts: classic files, loaded in order (work over file://) -->
-<script src="assets/js/utils.js"></script>
-<script src="assets/js/cursor.js"></script>
-<script src="assets/js/magnetic.js"></script>
-<script src="assets/js/scramble.js"></script>
-<script src="assets/js/reveal.js"></script>
-<script src="assets/js/clock.js"></script>
-<script src="assets/js/flowfield.js"></script>
-<script src="assets/js/gallery.js"></script>
-<script src="assets/js/tilt.js"></script>
-<script src="assets/js/scroll.js"></script>
-<script src="assets/js/sound.js"></script>
-<script src="assets/js/intro.js"></script>
+<script src="assets/js/utils.js?v={{ site.time | date: '%s' }}"></script>
+<script src="assets/js/cursor.js?v={{ site.time | date: '%s' }}"></script>
+<script src="assets/js/magnetic.js?v={{ site.time | date: '%s' }}"></script>
+<script src="assets/js/scramble.js?v={{ site.time | date: '%s' }}"></script>
+<script src="assets/js/reveal.js?v={{ site.time | date: '%s' }}"></script>
+<script src="assets/js/clock.js?v={{ site.time | date: '%s' }}"></script>
+<script src="assets/js/flowfield.js?v={{ site.time | date: '%s' }}"></script>
+<script src="assets/js/gallery.js?v={{ site.time | date: '%s' }}"></script>
+<script src="assets/js/tilt.js?v={{ site.time | date: '%s' }}"></script>
+<script src="assets/js/scroll.js?v={{ site.time | date: '%s' }}"></script>
+<script src="assets/js/sound.js?v={{ site.time | date: '%s' }}"></script>
+<script src="assets/js/intro.js?v={{ site.time | date: '%s' }}"></script>
 </body>
 </html>
