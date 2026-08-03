@@ -1,0 +1,181 @@
+---
+permalink: /franchises/game-of-thrones/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Game of Thrones as a fandom: the great houses and their words, the eight seasons, and the battles that defined them." />
+<meta name="theme-color" content="#08080a" />
+
+<link rel="icon" type="image/png" href="/assets/img/me/abubakr-circle.png" />
+<link rel="apple-touch-icon" href="/assets/img/me/abubakr-circle.png" />
+<meta property="og:image" content="/assets/img/me/abubakr-circle.png" />
+<meta property="og:type" content="website" />
+<title>Game of Thrones · Abubakr Elmallah</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="/assets/css/base.css?v={{ site.time | date: '%s' }}" />
+<link rel="stylesheet" href="/assets/css/layout.css?v={{ site.time | date: '%s' }}" />
+<link rel="stylesheet" href="/assets/css/components.css?v={{ site.time | date: '%s' }}" />
+<link rel="stylesheet" href="/assets/css/fanpages.css?v={{ site.time | date: '%s' }}" />
+</head>
+<body data-intro="none" data-fan="got">
+
+<!-- cold steel, and a map under it -->
+<div class="got-sky" aria-hidden="true"></div>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<canvas id="field" aria-hidden="true"></canvas>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+<aside class="rail">
+  <span class="rail-mark" aria-hidden="true">AE</span>
+  <span class="rail-line" aria-hidden="true"><i id="railFill"></i></span>
+  <span class="rail-meta" id="clock" aria-hidden="true">--:--:--</span>
+  <span class="rail-meta" aria-hidden="true">33.64°N · 117.84°W</span>
+</aside>
+
+<header class="topbar">
+  <a href="/" class="brand" data-magnetic>
+    <img class="brand-avatar" src="/assets/img/me/abubakr-circle.png" alt="Abubakr Elmallah" /><span class="brand-glyph"><b>Abubakr</b> Elmallah</span>
+  </a>
+  <div class="toggles"><button class="ql ql--sound is-on" id="soundToggle" type="button" aria-pressed="true" aria-label="Toggle interface sounds" data-magnetic><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><button class="ql ql--cursor" id="cursorToggle" type="button" data-cursor-toggle aria-pressed="true" aria-label="Toggle custom cursor" data-magnetic><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg></button></div>
+  <div class="quicklinks">
+    <a class="ql ql--resume" href="/resume/" data-magnetic>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M8 13h8M8 17h6"/></svg>
+      <span class="ql-label">Résumé</span>
+    </a>
+    <a class="ql ql--linkedin" href="https://www.linkedin.com/in/abubakr-elmallah" target="_blank" rel="noopener" data-magnetic>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C21.4 8.75 22 11 22 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21h-4z"/></svg>
+      <span class="ql-label">LinkedIn</span>
+    </a>
+    <a class="ql ql--github" href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener" data-magnetic>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+      <span class="ql-label">GitHub</span>
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <section class="fan-hero">
+    <a class="back-link" href="/franchises/" data-magnetic>← Back to franchises</a>
+    <p class="fan-kicker"><span>Franchise · Primary · 2011 – 2019</span></p>
+    <h1 class="fan-title">Game of Thrones</h1>
+    <p class="fan-lede-hero">The high-water mark for television scale, and a lesson in how hard endings are. The great houses and their words, the eight seasons, and the six hours everyone still talks about.</p>
+    <div class="fan-links">
+      <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
+    </div>
+  </section>
+
+  <div class="crest-grid">
+    <article class="crest reveal" style="--h1:#c9cdd2;--h2:#8f98a2">
+      <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><path d="M50 4 92 18v38c0 26-20 41-42 52C28 97 8 82 8 56V18z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 34l6 12-4 14 8 10 10 4 10-4 8-10-4-14 6-12-12 6H42z" fill="currentColor"/><circle cx="42" cy="52" r="2.6" fill="#000" opacity=".55"/><circle cx="58" cy="52" r="2.6" fill="#000" opacity=".55"/><path d="M50 62l-4 5h8z" fill="#000" opacity=".5"/></svg>
+      <h4>House Stark</h4>
+      <span class="crest-sub">Winter Is Coming</span>
+      <p>Wardens of the North, Winterfell, and a family the story spends eight seasons taking apart and putting back together.</p>
+      <div class="crest-tags"><span>Direwolf</span><span>The North</span><span>Honour</span></div>
+    </article>
+    <article class="crest reveal" style="--h1:#d0b040;--h2:#a8823a">
+      <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><path d="M50 4 92 18v38c0 26-20 41-42 52C28 97 8 82 8 56V18z" fill="none" stroke="currentColor" stroke-width="3"/><g fill="currentColor"><path d="M50 20 L54 30 L46 30 Z" transform="rotate(0 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(30 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(60 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(90 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(120 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(150 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(180 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(210 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(240 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(270 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(300 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(330 50 48)"/></g><circle cx="50" cy="48" r="14" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="44.5" cy="45" r="2.2" fill="currentColor"/><circle cx="55.5" cy="45" r="2.2" fill="currentColor"/><path d="M50 50l-4 4.5h8z" fill="currentColor"/><path d="M45 57c2.6 3 7.4 3 10 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      <h4>House Lannister</h4>
+      <span class="crest-sub">Hear Me Roar</span>
+      <p>Casterly Rock, the crown’s debts, and three siblings who between them drive most of the plot.</p>
+      <div class="crest-tags"><span>Lion</span><span>Gold</span><span>Debts</span></div>
+    </article>
+    <article class="crest reveal" style="--h1:#c0392b;--h2:#d0803a">
+      <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><path d="M50 4 92 18v38c0 26-20 41-42 52C28 97 8 82 8 56V18z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M26 44c10-10 20-10 24-2 4-8 14-8 24 2-6 0-10 2-12 6 6 2 10 8 10 14-6-6-12-8-16-6l-6 16-6-16c-4-2-10 0-16 6 0-6 4-12 10-14-2-4-6-6-12-6z" fill="currentColor"/><circle cx="50" cy="44" r="3" fill="#000" opacity=".5"/></svg>
+      <h4>House Targaryen</h4>
+      <span class="crest-sub">Fire and Blood</span>
+      <p>Three hundred years of Westeros under dragons, ended by a rebellion and restarted by the last of them.</p>
+      <div class="crest-tags"><span>Dragon</span><span>Valyria</span><span>Blood</span></div>
+    </article>
+    <article class="crest reveal" style="--h1:#e0a020;--h2:#c07a20">
+      <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><path d="M50 4 92 18v38c0 26-20 41-42 52C28 97 8 82 8 56V18z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M50 44c-7 0-12 6-12 14s5 16 12 20c7-4 12-12 12-20s-5-14-12-14z" fill="currentColor"/><path d="M40 42 30 26M40 42l-12 2M40 42l-4-12M60 42l10-16M60 42l12 2M60 42l4-12" stroke="currentColor" stroke-width="3.4" fill="none" stroke-linecap="round"/></svg>
+      <h4>House Baratheon</h4>
+      <span class="crest-sub">Ours Is the Fury</span>
+      <p>Storm’s End, a warhammer, and a king who won a kingdom and then had no idea what to do with it.</p>
+      <div class="crest-tags"><span>Stag</span><span>Storms</span><span>Rebellion</span></div>
+    </article>
+    <article class="crest reveal" style="--h1:#5f7f8f;--h2:#3f5f6f">
+      <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><path d="M50 4 92 18v38c0 26-20 41-42 52C28 97 8 82 8 56V18z" fill="none" stroke="currentColor" stroke-width="3"/><ellipse cx="50" cy="42" rx="11" ry="14" fill="currentColor"/><path d="M42 56c-4 10-12 12-18 8M46 58c-2 12-8 18-16 18M54 58c2 12 8 18 16 18M58 56c4 10 12 12 18 8M50 60v20" stroke="currentColor" stroke-width="3.2" fill="none" stroke-linecap="round"/></svg>
+      <h4>House Greyjoy</h4>
+      <span class="crest-sub">We Do Not Sow</span>
+      <p>The Iron Islands: salt, iron, and the Old Way. What is dead may never die.</p>
+      <div class="crest-tags"><span>Kraken</span><span>Ironborn</span><span>Reaving</span></div>
+    </article>
+    <article class="crest reveal" style="--h1:#4f9a4f;--h2:#7fbf5f">
+      <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><path d="M50 4 92 18v38c0 26-20 41-42 52C28 97 8 82 8 56V18z" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="50" r="8" fill="currentColor"/><path d="M50 30c9 0 14 6 14 12s-5 8-14 8-14-2-14-8 5-12 14-12zM30 50c0-9 6-14 12-14s8 5 8 14-2 14-8 14-12-5-12-14zM70 50c0 9-6 14-12 14s-8-5-8-14 2-14 8-14 12 5 12 14zM50 70c-9 0-14-6-14-12s5-8 14-8 14 2 14 8-5 12-14 12z" fill="currentColor" opacity=".55"/></svg>
+      <h4>House Tyrell</h4>
+      <span class="crest-sub">Growing Strong</span>
+      <p>Highgarden and the Reach: the richest house in the Seven Kingdoms, run by its grandmother.</p>
+      <div class="crest-tags"><span>Rose</span><span>The Reach</span><span>Wealth</span></div>
+    </article>
+  </div>
+  <section class="got-map reveal">
+    <div class="got-parch">
+      <svg viewBox="0 0 240 250" role="img" aria-label="Westeros, with the great seats marked">
+        <path d="M132 16 L162 26 L156 46 L178 62 L172 86 L190 102 L182 126 L198 148 L184 170 L194 192 L168 208 L150 234 L124 214 L110 192 L94 178 L104 154 L82 136 L96 112 L78 90 L100 72 L114 46 Z" fill="rgba(185,194,204,.05)" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+        <path d="M96 30 H186" stroke="rgba(200,235,255,.75)" stroke-width="3.4" stroke-linecap="round"/>
+        <text x="90" y="26" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="5" fill="rgba(200,235,255,.75)">700 ft of ice</text>
+      <g class="got-seat"><circle cx="134" cy="34" r="3.2" fill="currentColor"/><text x="141" y="36" text-anchor="start">The Wall</text></g>
+      <g class="got-seat"><circle cx="140" cy="66" r="3.2" fill="currentColor"/><text x="147" y="68" text-anchor="start">Winterfell</text></g>
+      <g class="got-seat"><circle cx="92" cy="108" r="3.2" fill="currentColor"/><text x="85" y="110" text-anchor="end">Pyke</text></g>
+      <g class="got-seat"><circle cx="172" cy="100" r="3.2" fill="currentColor"/><text x="179" y="102" text-anchor="start">The Eyrie</text></g>
+      <g class="got-seat"><circle cx="126" cy="128" r="3.2" fill="currentColor"/><text x="133" y="130" text-anchor="start">Riverrun</text></g>
+      <g class="got-seat"><circle cx="100" cy="142" r="3.2" fill="currentColor"/><text x="93" y="144" text-anchor="end">Casterly Rock</text></g>
+      <g class="got-seat"><circle cx="158" cy="158" r="3.2" fill="currentColor"/><text x="165" y="160" text-anchor="start">King's Landing</text></g>
+      <g class="got-seat"><circle cx="184" cy="180" r="3.2" fill="currentColor"/><text x="191" y="182" text-anchor="start">Storm's End</text></g>
+      <g class="got-seat"><circle cx="116" cy="194" r="3.2" fill="currentColor"/><text x="109" y="196" text-anchor="end">Highgarden</text></g>
+      <g class="got-seat"><circle cx="150" cy="220" r="3.2" fill="currentColor"/><text x="157" y="222" text-anchor="start">Sunspear</text></g>
+      </svg>
+    </div>
+    <div class="got-legend">
+      <h4>Westeros</h4>
+      <p>Seven kingdoms on one continent, held together by a chair made of swords and not much else. The Wall runs along the top: seven hundred feet of ice, three hundred miles long, and manned at the end by about a hundred men.</p>
+      <div class="got-oath">
+        <p>Night gathers, and now my watch begins. It shall not end until my death. I shall live and die at my post. I am the sword in the darkness. I am the watcher on the walls. I am the shield that guards the realms of men.</p>
+        <span>The Night’s Watch oath</span>
+      </div>
+    </div>
+  </section>
+
+  <div id="fanBody"></div>
+
+</main>
+
+<footer class="footer">
+  <span>© 2026 Abubakr Elmallah</span>
+  <a class="footer-mid" href="/franchises/" data-magnetic>← Back to franchises</a>
+  <button class="totop" id="totop" data-magnetic>Back to top ↑</button>
+</footer>
+
+<nav class="tabbar" aria-label="Primary">
+  <a href="/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg><span>Home</span></a>
+  <a href="/work/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/><path d="M3 12.5h18"/></svg><span>Work</span></a>
+  <a href="/projects/"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Projects</span></a>
+  <a href="/education/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1 2.5 2 5 2s5-1 5-2v-5"/></svg><span>Education</span></a>
+  <a href="/franchises/" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Franchises</span></a>
+</nav>
+
+<script src="/assets/js/utils.js?v={{ site.time | date: '%s' }}"></script>
+<!-- page content: data then the shared renderer, before reveal.js -->
+<script src="/assets/js/fan-got.js?v={{ site.time | date: '%s' }}"></script>
+<script src="/assets/js/fanpage.js?v={{ site.time | date: '%s' }}"></script>
+<script src="/assets/js/cursor.js?v={{ site.time | date: '%s' }}"></script>
+<script src="/assets/js/magnetic.js?v={{ site.time | date: '%s' }}"></script>
+<script src="/assets/js/reveal.js?v={{ site.time | date: '%s' }}"></script>
+<script src="/assets/js/clock.js?v={{ site.time | date: '%s' }}"></script>
+<script src="/assets/js/flowfield.js?v={{ site.time | date: '%s' }}"></script>
+<script src="/assets/js/scroll.js?v={{ site.time | date: '%s' }}"></script>
+<script src="/assets/js/sound.js?v={{ site.time | date: '%s' }}"></script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 /* ============================================================
-   base.css — design tokens, reset, typography
+   base.css: design tokens, reset, typography
    Palette: Islamic green (primary) + UCI blue & gold (accents)
    ============================================================ */
 
@@ -11,10 +11,10 @@
   --mute:    #5d5c64;
   --line:    #1c1c20;
 
-  /* Islamic green — primary accent */
+  /* Islamic green, primary accent */
   --green:   #1f9d5c;
   --green-2: #3fd589;
-  /* UCI navy blue + gold — secondary accents */
+  /* UCI navy blue + gold, secondary accents */
   --blue:    #2f7fd6;
   --blue-2:  #5fa3ec;
   --gold:    #f5c63c;
@@ -46,7 +46,7 @@ body {
 
 @media (hover: none) { body { cursor: auto; } }
 
-/* custom cursor turned off (user preference) — restore the native cursor everywhere */
+/* custom cursor turned off (user preference), restore the native cursor everywhere */
 html.cursor-off, html.cursor-off * { cursor: auto !important; }
 /* interactive elements AND their children (icons, labels, name spans) get the pointer,
    otherwise the text I-beam leaks onto the text inside links/buttons */

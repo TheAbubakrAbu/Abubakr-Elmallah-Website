@@ -1,4 +1,4 @@
-/* reveal.js — fade/slide elements in as they enter the viewport */
+/* reveal.js: fade/slide elements in as they enter the viewport */
 (function reveal() {
   const io = new IntersectionObserver((entries) => {
     entries.forEach(en => {

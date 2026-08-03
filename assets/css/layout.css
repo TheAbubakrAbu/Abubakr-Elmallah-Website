@@ -1,5 +1,5 @@
 /* ============================================================
-   layout.css — overlays, cursor, rail, header, footer, shell
+   layout.css: overlays, cursor, rail, header, footer, shell
    ============================================================ */
 
 /* ───────────── Overlays: grain, vignette, canvas ───────────── */
@@ -160,7 +160,7 @@ main, .footer, .rail { position: relative; z-index: 10; }
 a.footer-mid:hover { color: var(--green-2); }
 .nav-idx { color: var(--mute); margin-right: 0.3em; font-size: 0.62rem; }
 
-/* quick links — Résumé / LinkedIn / GitHub, always visible up top */
+/* quick links: Résumé / LinkedIn / GitHub, always visible up top */
 .quicklinks { display: flex; align-items: center; gap: 0.6rem; }
 .ql {
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -177,7 +177,7 @@ a.footer-mid:hover { color: var(--green-2); }
 .ql--github   { background: var(--gold); color: #1a1405; border-color: var(--gold); font-weight: 500; }
 .ql--github:hover   { background: #ffd766; border-color: #ffd766; }
 
-/* sound toggle — sits in the top-bar quicklinks, icon-only, swaps on/off glyph */
+/* sound toggle: sits in the top-bar quicklinks, icon-only, swaps on/off glyph */
 .ql--sound { padding: 0.55rem; color: var(--ink-dim); background: transparent; }
 .ql--sound svg { width: 16px; height: 16px; }
 .ql--sound .ico-on { display: none; }
@@ -186,7 +186,7 @@ a.footer-mid:hover { color: var(--green-2); }
 .ql--sound.is-on .ico-off { display: none; }
 .ql--sound:hover { color: var(--ink); border-color: var(--mute); }
 
-/* custom-cursor toggle — same icon-only treatment, state via aria-pressed */
+/* custom-cursor toggle: same icon-only treatment, state via aria-pressed */
 .ql--cursor { padding: 0.55rem; color: var(--ink-dim); background: transparent; }
 .ql--cursor svg { width: 16px; height: 16px; }
 .ql--cursor .ico-off { display: none; }
@@ -199,7 +199,7 @@ a.footer-mid:hover { color: var(--green-2); }
 .toggles { display: flex; align-items: center; gap: 0.6rem; }
 
 @media (max-width: 1080px) { .nav { display: none; } }
-/* top nav controls are commented out — push the toggle+quicklinks group to the right */
+/* top nav controls are commented out, push the toggle+quicklinks group to the right */
 @media (min-width: 561px) { .topbar .toggles { margin-left: auto; } }
 @media (max-width: 560px) {
   .topbar { gap: 0.6rem; padding: 0.7rem 1rem; flex-wrap: wrap; }
@@ -211,7 +211,7 @@ a.footer-mid:hover { color: var(--green-2); }
   .ql { padding: 0.55rem 0.7rem; }
 }
 
-/* ───────────── Bottom tab bar — floating liquid glass (now shown on every screen) ───────────── */
+/* ───────────── Bottom tab bar, floating liquid glass (now shown on every screen) ───────────── */
 
 .tabbar {
   display: flex;

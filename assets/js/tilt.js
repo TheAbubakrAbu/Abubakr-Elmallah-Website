@@ -1,4 +1,4 @@
-/* tilt.js — pointer-tracked 3D tilt + glare on cards and images */
+/* tilt.js: pointer-tracked 3D tilt + glare on cards and images */
 (function tilt() {
   if (!fine || reduceMotion) return;
 

@@ -1,4 +1,4 @@
-/* cursor.js — custom lerped cursor that grows over interactive targets,
+/* cursor.js: custom lerped cursor that grows over interactive targets,
    with a saved on/off preference (toggled from the button near the email). */
 (function cursor() {
   const KEY = 'customCursor';

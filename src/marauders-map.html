@@ -1,0 +1,122 @@
+---
+permalink: /marauders-map/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="The Marauder's Map: a Harry Potter parchment terminal for Abubakr Elmallah's portfolio, with corridors, footprints and every room on the site." />
+<meta name="theme-color" content="#120c07" />
+
+<link rel="icon" type="image/png" href="/assets/img/me/abubakr-circle.png" />
+<link rel="apple-touch-icon" href="/assets/img/me/abubakr-circle.png" />
+<meta property="og:image" content="/assets/img/me/abubakr-circle.png" />
+<meta property="og:type" content="website" />
+<title>The Marauder's Map · Abubakr Elmallah</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="/assets/css/marauders.css?v={{ site.time | date: '%s' }}" />
+</head>
+<body class="mm" id="mm">
+
+<div class="mm-sheet">
+  <div class="mm-inner">
+
+    <header class="mm-top">
+      <a class="mm-exit" href="/" title="Back to the main site">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Fold the map</span>
+      </a>
+      <span>Hogwarts School of Witchcraft and Wizardry</span>
+      <span id="mmTime">··:··</span>
+    </header>
+
+    <p class="mm-oath">I solemnly swear that I am up to no good.</p>
+    <h1 class="mm-title">The Marauder's Map</h1>
+    <p class="mm-sub">Every room on this site, drawn as corridors. The footprints move on their own, the ink shows who is where, and the map folds itself away when you are done with it.</p>
+    <p class="mm-makers">Messrs Moony, Wormtail, Padfoot &amp; Prongs, purveyors of aids to magical mischief-makers</p>
+
+    <!-- ═══════════ the corridors ═══════════ -->
+    <section class="mm-map">
+      <span class="mm-map-h">The castle · ground floor and above</span>
+
+      <div class="mm-steps" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div class="mm-you" aria-hidden="true"><b></b>You are here</div>
+
+      <div class="mm-rooms">
+        <a class="mm-room" href="/"><b>The Entrance Hall</b><span>Home</span></a>
+        <a class="mm-room" href="/work/"><b>The Trophy Room</b><span>Work at UC Irvine</span></a>
+        <a class="mm-room" href="/projects/"><b>The Room of Requirement</b><span>Every project</span></a>
+        <a class="mm-room" href="/education/"><b>The Great Hall</b><span>Education</span></a>
+        <a class="mm-room" href="/franchises/"><b>The Library</b><span>All 31 franchises</span></a>
+        <a class="mm-room" href="/franchises/harry-potter/"><b>Gryffindor Tower</b><span>Harry Potter</span></a>
+        <a class="mm-room" href="/al-islam/"><b>The Quiet Courtyard</b><span>Al-Islam</span></a>
+        <a class="mm-room" href="/star-wars/"><b>The Astronomy Tower</b><span>Star Wars apps</span></a>
+        <a class="mm-room" href="/holocron/"><b>The Restricted Section</b><span>Holocron terminal</span></a>
+        <a class="mm-room" href="/jarvis/"><b>The Headmaster's Office</b><span>J.A.R.V.I.S. terminal</span></a>
+        <a class="mm-room" href="/elmallah/"><b>The Owlery</b><span>E.L.M.A.L.L.A.H. holotable</span></a>
+        <a class="mm-room" href="/resume/"><b>The Records Office</b><span>Résumé</span></a>
+      </div>
+    </section>
+
+    <!-- ═══════════ two panels ═══════════ -->
+    <div class="mm-cols">
+      <section class="mm-panel">
+        <div class="mm-h">Charms on this parchment</div>
+        <div class="mm-list">
+          <div class="mm-spell"><b>Homonculous Charm</b><span>Shows every person in the castle, and where they are walking.</span></div>
+          <div class="mm-spell"><b>Confundus Charm</b><span>Insults anyone who tries to read it without the oath.</span></div>
+          <div class="mm-spell"><b>Lumos</b><span>Light at the wand tip. Nox puts it out again.</span></div>
+          <div class="mm-spell"><b>Mischief Managed</b><span>Wipes the map blank. The button below does the same thing.</span></div>
+        </div>
+      </section>
+
+      <section class="mm-panel">
+        <div class="mm-h">The record</div>
+        <div class="mm-list">
+          <div class="mm-item"><span>Keeper</span><i>Abubakr Elmallah</i></div>
+          <div class="mm-item"><span>House</span><i>Sorted by the reader</i></div>
+          <div class="mm-item"><span>Year</span><i>UC Irvine, class of 2028</i></div>
+          <div class="mm-item"><span>Apps shipped</span><i>Twelve, four platforms</i></div>
+          <div class="mm-item"><span>Franchise pages</span><i>Thirty-one</i></div>
+          <div class="mm-item"><span>Drawn with</span><i>CSS only, no images</i></div>
+        </div>
+      </section>
+    </div>
+
+    <button class="mm-manage" id="mmManage" type="button">Mischief managed.</button>
+
+  </div>
+</div>
+
+<!-- the blank parchment, after the map is wiped -->
+<div class="mm-done" id="mmDone">
+  <div>
+    <p>Mischief managed.</p>
+    <a href="/">Return to the entrance hall</a>
+  </div>
+</div>
+
+<script>
+  (function map() {
+    var t = document.getElementById('mmTime');
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function tick() {
+      var d = new Date();
+      if (t) t.textContent = pad(d.getHours()) + ':' + pad(d.getMinutes());
+    }
+    tick(); setInterval(tick, 20000);
+
+    var btn = document.getElementById('mmManage');
+    if (btn) btn.addEventListener('click', function () {
+      document.getElementById('mm').classList.add('is-managed');
+    });
+  })();
+</script>
+</body>
+</html>

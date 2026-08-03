@@ -24,9 +24,18 @@ redirect_from:
 <link rel="stylesheet" href="../assets/css/base.css?v={{ site.time | date: '%s' }}" />
 <link rel="stylesheet" href="../assets/css/layout.css?v={{ site.time | date: '%s' }}" />
 <link rel="stylesheet" href="../assets/css/components.css?v={{ site.time | date: '%s' }}" />
+<link rel="stylesheet" href="../assets/css/al-islam.css?v={{ site.time | date: '%s' }}" />
 </head>
 <body data-intro="alislam">
 <div id="introCover" aria-hidden="true" style="position:fixed;inset:0;z-index:11000;background:#08080a"></div>
+
+<!-- geometric backdrop: lamplight, an eight-point lattice, a turning rosette -->
+<div class="isl-sky" aria-hidden="true">
+  <span class="isl-nur"></span>
+  <span class="isl-rose"></span>
+  <span class="isl-geo isl-geo--1"></span>
+  <span class="isl-geo isl-geo--2"></span>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -97,6 +106,30 @@ redirect_from:
     <p class="verse-ref">Holy Quran · Al-Anfal 8:30</p>
   </section>
 
+  <section class="mosques">
+    <h3 class="subsec subsec--isl reveal">The Three Holy Mosques<span class="subsec-yr">الحرمان والأقصى</span></h3>
+    <p class="isl-lede reveal">The three mosques the Prophet ﷺ said are worth setting out to travel for: <b>Makkah</b>, <b>Madinah</b>, and <b>Jerusalem</b>. Every mosque here is drawn, not photographed: each one is an SVG elevation built from the same parts, in its own architectural language.</p>
+    <div class="holy-grid" id="holyMosques"></div>
+
+    <h3 class="subsec subsec--isl reveal">A Few More<span class="subsec-yr">the first mosques, and the oldest still standing</span></h3>
+    <div class="msq-grid" id="famousMosques"></div>
+  </section>
+
+  <section class="scholars">
+    <h3 class="subsec subsec--isl reveal">Scholars<span class="subsec-yr">the athari chain</span></h3>
+    <p class="isl-lede reveal">The line the ummah’s knowledge actually travelled down: the rightly guided caliphs, the ten promised Jannah, the Muhājirūn and the Anṣār, the two generations after them, then the four imāms, the ḥadīth masters, the writers of ʿaqīdah and tafsīr, Ibn Taymiyyah’s circle in Damascus, and the revivalists after them. Filter by generation.</p>
+
+    <div class="salaf-card reveal">
+      <p class="salaf-ar" lang="ar" dir="rtl">خَيْرُ النَّاسِ قَرْنِي، ثُمَّ الَّذِينَ يَلُونَهُمْ، ثُمَّ الَّذِينَ يَلُونَهُمْ</p>
+      <p class="salaf-en">“The best of people are my generation, then those who come after them, then those who come after them.”</p>
+      <span class="salaf-src">Ṣaḥīḥ al-Bukhārī · Ṣaḥīḥ Muslim</span>
+      <p class="salaf-note">Those three generations are <b>as-Salaf aṣ-Ṣāliḥ</b>: the Companions, the Tābiʿūn who met them, and the Atbāʿ at-Tābiʿīn after them. Every group tagged <b>Salaf</b> below is one of the three; everyone listed after them is measured against what they understood.</p>
+    </div>
+
+    <div id="scholars"></div>
+    <p class="isl-foot reveal">Dates are given as the year of death in the Hijri calendar with the Gregorian equivalent; classical sources differ by a year or two on some of them. Names are transliterated with the standard diacritics. No faces are depicted, each scholar is marked with a Rubʿ al-Ḥizb and his name in Arabic.</p>
+  </section>
+
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button class="lightbox-close" aria-label="Close">✕</button>
     <span class="lightbox-title"></span>
@@ -123,6 +156,10 @@ redirect_from:
 <script src="../assets/js/apps-data.js?v={{ site.time | date: '%s' }}"></script>
 <script src="../assets/js/cards.js?v={{ site.time | date: '%s' }}"></script>
 <script src="../assets/js/utils.js?v={{ site.time | date: '%s' }}"></script>
+<!-- mosques + scholars: data then renderer, before magnetic.js / reveal.js -->
+<script src="../assets/js/mosques-data.js?v={{ site.time | date: '%s' }}"></script>
+<script src="../assets/js/scholars-data.js?v={{ site.time | date: '%s' }}"></script>
+<script src="../assets/js/islam.js?v={{ site.time | date: '%s' }}"></script>
 <script src="../assets/js/cursor.js?v={{ site.time | date: '%s' }}"></script>
 <script src="../assets/js/magnetic.js?v={{ site.time | date: '%s' }}"></script>
 <script src="../assets/js/reveal.js?v={{ site.time | date: '%s' }}"></script>

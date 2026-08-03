@@ -1,4 +1,4 @@
-/* sound.js — subtle synthesized UI ticks (WebAudio, no asset files).
+/* sound.js: subtle synthesized UI ticks (WebAudio, no asset files).
    Off by default; toggled from the rail and remembered in localStorage. */
 (function sound() {
   const toggle = document.getElementById('soundToggle');
@@ -21,7 +21,7 @@
     return ac;
   }
 
-  // one short enveloped sine — a soft tick, not a beep
+  // one short enveloped sine: a soft tick, not a beep
   function tick(freq, dur, vol) {
     if (!on) return;
     const a = ctx();

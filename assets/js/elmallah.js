@@ -1,4 +1,4 @@
-/* elmallah.js — drives the E.L.M.A.L.L.A.H. holoterminal (/elmallah/):
+/* elmallah.js: drives the E.L.M.A.L.L.A.H. holoterminal (/elmallah/):
    boot sequence, drifting starfield with hyperspace bursts, chronometer,
    schematic scope, glyph scramble and pointer parallax. No dependencies. */
 (function () {
@@ -92,7 +92,7 @@
     } catch (e) { return '···'; }
   }
 
-  // "Galactic Standard" stardate — a decorative encoding of the real date
+  // "Galactic Standard" stardate, a decorative encoding of the real date
   function stardate(d) {
     var start = new Date(d.getFullYear(), 0, 0);
     var doy = (d - start) / 86400000;
@@ -146,7 +146,7 @@
       return null;
     }
 
-    // hyperspace jump — fired at the end of the boot sequence
+    // hyperspace jump, fired at the end of the boot sequence
     var boost = 0;
     function burst() {
       boost = 1;

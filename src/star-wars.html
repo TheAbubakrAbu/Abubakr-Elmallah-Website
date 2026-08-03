@@ -24,9 +24,21 @@ redirect_from:
 <link rel="stylesheet" href="../assets/css/base.css?v={{ site.time | date: '%s' }}" />
 <link rel="stylesheet" href="../assets/css/layout.css?v={{ site.time | date: '%s' }}" />
 <link rel="stylesheet" href="../assets/css/components.css?v={{ site.time | date: '%s' }}" />
+<link rel="stylesheet" href="../assets/css/star-wars.css?v={{ site.time | date: '%s' }}" />
 </head>
 <body data-intro="starwars">
 <div id="introCover" aria-hidden="true" style="position:fixed;inset:0;z-index:11000;background:#08080a"></div>
+
+<!-- deep-space backdrop: nebulae, three parallax starfields, hyperspace
+     streaks, and a battle station parked a very long way off -->
+<div class="sw-space" aria-hidden="true">
+  <span class="sw-neb"></span>
+  <span class="sw-stars sw-stars--1"></span>
+  <span class="sw-stars sw-stars--2"></span>
+  <span class="sw-stars sw-stars--3"></span>
+  <span class="sw-ds"><i></i></span>
+  <span class="sw-streaks"><i></i><i></i><i></i><i></i></span>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -113,6 +125,12 @@ redirect_from:
     </div>
   </section>
 
+  <section class="planets">
+    <h3 class="subsec subsec--sw reveal">Planets<span class="subsec-yr">Galactic Atlas</span></h3>
+    <p class="pl-lede reveal">Every world from the films, the shows, and the games I grew up on: sorted by era, the way my <b>Datapad</b> app sorts them. Each planet is drawn entirely in CSS: no images, just gradients, a rotating surface layer, and its own atmosphere. Hover one to scan it.</p>
+    <div id="planetAtlas"></div>
+  </section>
+
 </main>
 
 <!-- shared image lightbox (same one the High School photos open in) -->
@@ -141,6 +159,9 @@ redirect_from:
 <script src="../assets/js/apps-data.js?v={{ site.time | date: '%s' }}"></script>
 <script src="../assets/js/cards.js?v={{ site.time | date: '%s' }}"></script>
 <script src="../assets/js/utils.js?v={{ site.time | date: '%s' }}"></script>
+<!-- planet atlas: data then renderer, before magnetic.js / reveal.js see the cards -->
+<script src="../assets/js/planets-data.js?v={{ site.time | date: '%s' }}"></script>
+<script src="../assets/js/planets.js?v={{ site.time | date: '%s' }}"></script>
 <script src="../assets/js/cursor.js?v={{ site.time | date: '%s' }}"></script>
 <script src="../assets/js/magnetic.js?v={{ site.time | date: '%s' }}"></script>
 <script src="../assets/js/reveal.js?v={{ site.time | date: '%s' }}"></script>

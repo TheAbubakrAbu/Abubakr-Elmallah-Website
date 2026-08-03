@@ -1,0 +1,529 @@
+/* ============================================================
+   star-wars.css: loaded only by /star-wars/
+   1. the deep-space backdrop (nebulae, three parallax starfields,
+      hyperspace streaks, a very distant battle station)
+   2. the galactic atlas: every planet drawn in CSS, no images
+   ============================================================ */
+
+/* ───────────── page theme: the HUD goes amber here ───────────── */
+body[data-intro="starwars"] {
+  --hud-grid:  rgba(245, 198, 60, 0.05);
+  --hud-scan:  rgba(255, 232, 31, 0.018);
+  --hud-sweep: rgba(255, 232, 31, 0.04);
+  --hud-lit:   rgba(255, 232, 31, 0.22);
+  --hud-halo:  rgba(245, 198, 60, 0.06);
+}
+body[data-intro="starwars"] #field { opacity: 0.32; }
+
+/* ═════════════ 1. Space backdrop ═════════════
+   Sits behind the circuit field and the HUD grid (z-index 0, first in the DOM),
+   fixed, so the whole page floats in it. --sy is written by planets.js on
+   scroll; each layer multiplies it, so the near stars slide fastest. */
+.sw-space {
+  position: fixed; inset: -8% -4%; z-index: 0;
+  pointer-events: none; overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 50% -10%, #0b1020 0%, #05060c 45%, #030308 100%);
+}
+.sw-space > * { position: absolute; inset: 0; display: block; }
+
+/* nebulae: two slow clouds, amber (Tatooine) against blue (deep field) */
+.sw-neb {
+  background:
+    radial-gradient(38% 30% at 76% 18%, rgba(245, 198, 60, 0.10), transparent 70%),
+    radial-gradient(46% 34% at 18% 34%, rgba(47, 127, 214, 0.11), transparent 72%),
+    radial-gradient(60% 40% at 50% 96%, rgba(160, 60, 220, 0.07), transparent 74%);
+  filter: blur(6px);
+  animation: sw-breathe 34s ease-in-out infinite alternate;
+}
+@keyframes sw-breathe { from { opacity: 0.75; } to { opacity: 1; } }
+
+/* starfields: repeating tiles of tiny radial dots, three depths */
+.sw-stars { background-repeat: repeat; will-change: transform; }
+
+.sw-stars--1 {
+  transform: translate3d(0, calc(var(--sy, 0px) * -1), 0);
+  background-size: 260px 260px;
+  background-image:
+    radial-gradient(1px 1px at 22px 34px,   rgba(255,255,255,.75), transparent),
+    radial-gradient(1px 1px at 96px 12px,   rgba(255,255,255,.5),  transparent),
+    radial-gradient(1px 1px at 154px 78px,  rgba(255,255,255,.65), transparent),
+    radial-gradient(1px 1px at 210px 46px,  rgba(200,225,255,.55), transparent),
+    radial-gradient(1px 1px at 48px 128px,  rgba(255,255,255,.45), transparent),
+    radial-gradient(1px 1px at 132px 168px, rgba(255,255,255,.6),  transparent),
+    radial-gradient(1px 1px at 238px 142px, rgba(255,240,215,.5),  transparent),
+    radial-gradient(1px 1px at 76px 216px,  rgba(255,255,255,.55), transparent),
+    radial-gradient(1px 1px at 186px 234px, rgba(255,255,255,.4),  transparent),
+    radial-gradient(1px 1px at 12px 190px,  rgba(210,230,255,.5),  transparent);
+}
+.sw-stars--2 {
+  transform: translate3d(0, calc(var(--sy, 0px) * -2.2), 0);
+  background-size: 380px 380px;
+  background-image:
+    radial-gradient(1.4px 1.4px at 40px 60px,   rgba(255,255,255,.85), transparent),
+    radial-gradient(1.4px 1.4px at 168px 24px,  rgba(255,246,220,.7),  transparent),
+    radial-gradient(1.4px 1.4px at 300px 108px, rgba(255,255,255,.8),  transparent),
+    radial-gradient(1.4px 1.4px at 96px 190px,  rgba(200,224,255,.7),  transparent),
+    radial-gradient(1.4px 1.4px at 254px 250px, rgba(255,255,255,.75), transparent),
+    radial-gradient(1.4px 1.4px at 32px 318px,  rgba(255,255,255,.6),  transparent),
+    radial-gradient(1.4px 1.4px at 348px 340px, rgba(255,235,200,.7),  transparent),
+    radial-gradient(1.4px 1.4px at 210px 148px, rgba(255,255,255,.5),  transparent);
+  animation: sw-twinkle 6.5s ease-in-out infinite alternate;
+}
+.sw-stars--3 {
+  transform: translate3d(0, calc(var(--sy, 0px) * -3.6), 0);
+  background-size: 560px 560px;
+  background-image:
+    radial-gradient(2px 2px at 88px 96px,   rgba(255,255,255,.95), transparent),
+    radial-gradient(2px 2px at 402px 62px,  rgba(255,226,170,.85), transparent),
+    radial-gradient(2px 2px at 236px 288px, rgba(190,220,255,.9),  transparent),
+    radial-gradient(2px 2px at 512px 372px, rgba(255,255,255,.85), transparent),
+    radial-gradient(2px 2px at 64px 452px,  rgba(255,255,255,.8),  transparent),
+    radial-gradient(2px 2px at 330px 500px, rgba(255,210,150,.8),  transparent);
+  filter: drop-shadow(0 0 3px rgba(255,255,255,.5));
+}
+@keyframes sw-twinkle { from { opacity: 0.55; } to { opacity: 1; } }
+
+/* hyperspace streaks: rare, fast, mostly off to the sides */
+.sw-streaks i {
+  position: absolute; top: -10%; left: var(--x, 50%);
+  width: 1px; height: 14vh;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,.85), transparent);
+  opacity: 0;
+  animation: sw-streak 17s linear infinite;
+  animation-delay: var(--d, 0s);
+}
+.sw-streaks i:nth-child(1) { --x: 12%; --d: 2s;  }
+.sw-streaks i:nth-child(2) { --x: 68%; --d: 7s;  height: 20vh; }
+.sw-streaks i:nth-child(3) { --x: 88%; --d: 11s; }
+.sw-streaks i:nth-child(4) { --x: 38%; --d: 14s; height: 9vh; }
+@keyframes sw-streak {
+  0%, 92%  { transform: translateY(0);     opacity: 0; }
+  93%      { opacity: 0.9; }
+  100%     { transform: translateY(125vh); opacity: 0; }
+}
+
+/* a battle station, very far away */
+.sw-ds {
+  inset: auto 4% auto auto; top: 12%;
+  width: clamp(160px, 22vw, 300px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, #2a2e35, #101318 58%, #06080b 100%);
+  box-shadow: inset -14px -18px 34px rgba(0,0,0,.9), 0 0 60px -20px rgba(150,190,230,.35);
+  opacity: 0.16;
+  animation: sw-drift 60s ease-in-out infinite alternate;
+}
+.sw-ds::after {                                   /* equatorial trench */
+  content: ""; position: absolute; left: 0; right: 0; top: 52%; height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,.9) 18%, rgba(0,0,0,.9) 82%, transparent);
+}
+.sw-ds i {                                        /* superlaser dish */
+  position: absolute; left: 24%; top: 20%; width: 30%; aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 42% 40%, #3c434c, #12161b 66%);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.6);
+}
+@keyframes sw-drift { from { transform: translate(0, 0); } to { transform: translate(-2.5%, 3%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .sw-streaks { display: none; }
+}
+@media (max-width: 640px) { .sw-ds { opacity: 0.1; } }
+
+/* ═════════════ 2. Galactic atlas ═════════════ */
+
+.planets { padding-bottom: 4rem; }
+.planets .pl-lede {
+  max-width: 66ch; margin: -0.4rem 0 2rem;
+  color: var(--ink-dim); font-size: 0.98rem; line-height: 1.75;
+}
+.planets .pl-lede b { color: var(--gold); font-weight: 500; }
+
+/* era filter chips */
+.pl-filters { margin-bottom: 2.2rem; }
+.chip--sw:hover { color: var(--ink); border-color: color-mix(in srgb, var(--gold) 55%, transparent); }
+.chip--sw.is-active { background: var(--gold); color: #1a1405; border-color: var(--gold); }
+.chip--sw.is-active em { opacity: 0.75; }
+
+/* group heading: gold, with a world count on the right */
+.subsec--sw { color: var(--gold); }
+.subsec--sw .pl-count {
+  order: 3; color: var(--mute); letter-spacing: 0.1em;
+  border: 1px solid var(--line); border-radius: 100px; padding: 0.15rem 0.6rem;
+}
+.pl-group + .pl-group { margin-top: 0.6rem; }
+
+.pl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* ───────────── card ───────────── */
+.pl-card {
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  padding: 1.4rem 1.2rem 1.2rem;
+  border: 1px solid var(--line); border-radius: 18px;
+  background:
+    radial-gradient(120% 90% at 50% -10%, rgba(255,255,255,0.035), transparent 60%),
+    rgba(8, 8, 12, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  transition: transform .45s var(--ease), border-color .45s, box-shadow .45s;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 300px;
+}
+.pl-card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--glow) 45%, transparent);
+  box-shadow: 0 24px 50px -28px #000, 0 0 40px -26px var(--glow);
+  outline: none;
+}
+
+.pl-body { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.45rem; }
+.pl-titlerow { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; }
+.pl-titlerow h4 {
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em;
+  font-size: 1.12rem; line-height: 1.1; transition: color .3s;
+}
+.pl-card:hover .pl-titlerow h4 { color: var(--glow); }
+.pl-src { font-family: var(--mono); font-size: 0.62rem; color: var(--mute); flex: none; }
+.pl-desc { font-size: 0.84rem; line-height: 1.6; color: var(--ink-dim); }
+.pl-meta {
+  margin-top: auto; padding-top: 0.5rem;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+/* ───────────── the sphere ───────────── */
+.pl-globe {
+  position: relative; width: 64%; max-width: 138px; aspect-ratio: 1;
+  margin: 0.2rem auto 0;
+}
+.planet {
+  position: absolute; inset: 0; border-radius: 50%; overflow: hidden;
+  background: radial-gradient(circle at 34% 30%, var(--c3), var(--c1) 44%, var(--c2) 94%);
+  box-shadow:
+    0 0 26px -4px color-mix(in srgb, var(--glow) 55%, transparent),
+    0 16px 34px -18px #000;
+}
+.pl-skin { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; }
+
+/* the surface is twice as wide as the sphere and slides exactly one tile per
+   cycle, so the seam never shows and the world reads as rotating */
+.pl-band, .pl-cloud {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 200%;
+  background-repeat: repeat; background-size: 50% 100%;
+  animation: pl-spin var(--spin, 44s) linear infinite;
+  will-change: transform;
+}
+.pl-cloud {
+  opacity: 0;
+  animation-duration: calc(var(--spin, 44s) * 1.8);
+  background-image:
+    repeating-linear-gradient(180deg, rgba(255,255,255,.14) 0 1.5%, transparent 1.5% 11%),
+    radial-gradient(ellipse 18% 5% at 30% 26%, rgba(255,255,255,.5), transparent 70%),
+    radial-gradient(ellipse 14% 4% at 72% 58%, rgba(255,255,255,.42), transparent 70%),
+    radial-gradient(ellipse 20% 5% at 48% 78%, rgba(255,255,255,.36), transparent 72%);
+}
+@keyframes pl-spin { to { transform: translateX(-50%); } }
+
+/* static sphere lighting: lit limb top-left, terminator bottom-right */
+.pl-shade {
+  position: absolute; inset: 0; border-radius: 50%;
+  background:
+    radial-gradient(circle at 27% 23%, rgba(255,255,255,.34), rgba(255,255,255,0) 44%),
+    radial-gradient(circle at 76% 80%, rgba(0,0,0,.8), rgba(0,0,0,0) 64%),
+    radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 56%, rgba(0,0,0,.55) 100%);
+  box-shadow: inset 0 0 20px -6px rgba(0,0,0,.95);
+}
+
+/* scan reticle on hover / keyboard focus */
+.pl-scan {
+  position: absolute; inset: -13%; border-radius: 50%;
+  border: 1px dashed color-mix(in srgb, var(--glow) 60%, transparent);
+  opacity: 0; transform: scale(.86);
+  transition: opacity .35s ease, transform .5s var(--ease);
+}
+.pl-card:hover .pl-scan {
+  opacity: .75; transform: scale(1); animation: pl-rot 11s linear infinite;
+}
+@keyframes pl-rot { to { transform: rotate(360deg); } }
+
+/* ring system (Geonosis, Denab): back half behind the sphere, front half masked */
+.pl-ring {
+  position: absolute; left: -32%; right: -32%; top: 26%; bottom: 26%;
+  border-radius: 50%;
+  border: 3px solid color-mix(in srgb, var(--c3) 40%, transparent);
+  border-top-color: color-mix(in srgb, var(--c3) 16%, transparent);
+  transform: rotate(-17deg);
+  box-shadow: 0 0 12px -4px color-mix(in srgb, var(--glow) 60%, transparent);
+}
+.pl-ring--front {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0 50%, #000 50%);
+  mask-image: linear-gradient(to bottom, transparent 0 50%, #000 50%);
+}
+
+/* a moon on a slow orbit */
+.pl-moon { position: absolute; inset: -20%; animation: pl-rot 30s linear infinite; }
+.pl-moon i {
+  position: absolute; top: 0; left: 50%; translate: -50% 0;
+  width: 12%; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, #e8e8f0, #43434c 72%);
+  box-shadow: 0 0 8px -2px rgba(255,255,255,.45);
+}
+
+/* battle-station extras */
+.pl-dish {
+  position: absolute; left: 23%; top: 19%; width: 32%; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 42% 38%, #aeb8c2, #2b3138 60%, #14171c);
+  box-shadow: inset 0 0 0 1.5px rgba(0,0,0,.55);
+}
+.pl-dish::after {
+  content: ""; position: absolute; inset: 33%; border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--glow) 95%, transparent), transparent 72%);
+}
+.pl-wip {                                   /* unfinished superstructure */
+  position: absolute; inset: 0;
+  background-color: rgba(2,3,5,.72);
+  background-image:
+    repeating-linear-gradient(90deg, rgba(140,158,175,.45) 0 1px, transparent 1px 6%),
+    repeating-linear-gradient(180deg, rgba(140,158,175,.3) 0 1px, transparent 1px 7%);
+  -webkit-mask-image: conic-gradient(from 168deg at 62% 46%, #000 0 24%, transparent 24%);
+  mask-image: conic-gradient(from 168deg at 62% 46%, #000 0 24%, transparent 24%);
+}
+.pl-weapon {                                /* Starkiller Base's weapon well */
+  position: absolute; left: 29%; top: 33%; width: 42%; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, #fff 6%, #ff4a24 30%, #7d1206 60%, transparent 74%);
+  box-shadow: 0 0 30px -6px #ff5230;
+  animation: pl-pulse 4.5s ease-in-out infinite;
+}
+@keyframes pl-pulse { 0%, 100% { opacity: .75; } 50% { opacity: 1; } }
+
+/* ───────────── surface patterns ─────────────
+   Horizontal (180deg) gradients are seamless by definition; anything running
+   across the sphere uses percentage stops so the tile repeats exactly. */
+
+.planet[data-type="desert"] .pl-band {
+  background-image:
+    repeating-linear-gradient(180deg,
+      color-mix(in srgb, var(--c2) 30%, transparent) 0 3%, transparent 3% 7%,
+      color-mix(in srgb, var(--c3) 20%, transparent) 7% 9%, transparent 9% 15%),
+    radial-gradient(ellipse 15% 6% at 26% 38%, color-mix(in srgb, var(--c2) 55%, transparent), transparent 72%),
+    radial-gradient(ellipse 11% 5% at 70% 64%, color-mix(in srgb, var(--c2) 45%, transparent), transparent 72%);
+}
+.planet[data-type="desert"] .pl-cloud { opacity: .3; }
+
+.planet[data-type="junk"] .pl-band {
+  background-image:
+    repeating-linear-gradient(90deg, rgba(120,132,146,.2) 0 0.6%, transparent 0.6% 14%),
+    repeating-linear-gradient(180deg,
+      color-mix(in srgb, var(--c2) 34%, transparent) 0 2.5%, transparent 2.5% 8%),
+    radial-gradient(ellipse 13% 5% at 32% 44%, color-mix(in srgb, #4a4f58 70%, transparent), transparent 72%),
+    radial-gradient(ellipse 9% 4% at 74% 68%, color-mix(in srgb, #4a4f58 60%, transparent), transparent 72%);
+}
+.planet[data-type="junk"] .pl-cloud { opacity: .22; }
+
+.planet[data-type="ice"] .pl-band {
+  background-image:
+    repeating-linear-gradient(90deg, rgba(120,170,215,.13) 0 0.5%, transparent 0.5% 12%),
+    repeating-linear-gradient(180deg, rgba(255,255,255,.4) 0 2%, transparent 2% 9%),
+    radial-gradient(ellipse 16% 8% at 30% 44%, rgba(255,255,255,.7), transparent 72%),
+    radial-gradient(ellipse 12% 6% at 72% 62%, color-mix(in srgb, var(--c2) 45%, transparent), transparent 74%);
+}
+.planet[data-type="ice"] .pl-shade::before,
+.planet[data-type="salt"] .pl-shade::before,
+.planet[data-type="plains"] .pl-shade::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  background:
+    radial-gradient(ellipse 44% 15% at 50% -3%, rgba(255,255,255,.85), transparent 70%),
+    radial-gradient(ellipse 50% 17% at 50% 103%, rgba(255,255,255,.75), transparent 70%);
+}
+.planet[data-type="ice"] .pl-cloud { opacity: .5; }
+
+.planet[data-type="ocean"] .pl-band {
+  background-image:
+    radial-gradient(ellipse 17% 9% at 28% 36%, color-mix(in srgb, var(--c3) 70%, transparent), transparent 72%),
+    radial-gradient(ellipse 12% 7% at 62% 66%, color-mix(in srgb, var(--c3) 55%, transparent), transparent 72%),
+    radial-gradient(ellipse 9% 5% at 82% 28%, color-mix(in srgb, var(--c3) 45%, transparent), transparent 72%),
+    repeating-linear-gradient(180deg, rgba(255,255,255,.06) 0 1.5%, transparent 1.5% 8%);
+}
+.planet[data-type="ocean"] .pl-cloud { opacity: .72; }
+
+.planet[data-type="tropic"] .pl-band {
+  background-image:
+    radial-gradient(ellipse 20% 10% at 30% 42%, color-mix(in srgb, var(--c3) 75%, transparent), transparent 68%),
+    radial-gradient(ellipse 14% 8% at 68% 62%, color-mix(in srgb, var(--c3) 60%, transparent), transparent 70%),
+    radial-gradient(ellipse 26% 6% at 50% 88%, rgba(255,255,255,.35), transparent 72%),
+    repeating-linear-gradient(180deg, rgba(255,255,255,.08) 0 1.2%, transparent 1.2% 7%);
+}
+.planet[data-type="tropic"] .pl-cloud { opacity: .6; }
+
+/* an ecumenopolis: a fine street grid, then warm districts burning through it */
+.planet[data-type="city"] .pl-band {
+  background-image:
+    radial-gradient(ellipse 9% 5% at 24% 34%, color-mix(in srgb, var(--glow) 85%, transparent), transparent 72%),
+    radial-gradient(ellipse 6% 3% at 58% 56%, color-mix(in srgb, var(--glow) 75%, transparent), transparent 72%),
+    radial-gradient(ellipse 7% 4% at 84% 74%, color-mix(in srgb, var(--glow) 65%, transparent), transparent 72%),
+    radial-gradient(ellipse 5% 3% at 44% 18%, color-mix(in srgb, var(--glow) 55%, transparent), transparent 72%),
+    radial-gradient(ellipse 4% 2% at 70% 30%, color-mix(in srgb, var(--glow) 50%, transparent), transparent 72%),
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--c3) 9%, transparent) 0 0.35%, transparent 0.35% 2%),
+    repeating-linear-gradient(180deg, color-mix(in srgb, var(--c3) 7%, transparent) 0 0.35%, transparent 0.35% 2.4%);
+}
+.planet[data-type="city"] .pl-cloud { opacity: .18; }
+
+/* lava seas first, then a couple of long fissures: no grid */
+.planet[data-type="volcanic"] .pl-band {
+  background-image:
+    radial-gradient(ellipse 16% 8% at 30% 42%, color-mix(in srgb, var(--glow) 90%, transparent), transparent 70%),
+    radial-gradient(ellipse 11% 6% at 67% 65%, color-mix(in srgb, var(--glow) 80%, transparent), transparent 70%),
+    radial-gradient(ellipse 8% 4% at 82% 28%, color-mix(in srgb, var(--glow) 65%, transparent), transparent 70%),
+    radial-gradient(ellipse 6% 3% at 47% 78%, color-mix(in srgb, var(--glow) 60%, transparent), transparent 70%),
+    repeating-linear-gradient(90deg,
+      color-mix(in srgb, var(--glow) 45%, transparent) 0 0.5%, transparent 0.5% 24%),
+    repeating-linear-gradient(180deg, rgba(0,0,0,.4) 0 3%, transparent 3% 11%);
+}
+.planet[data-type="volcanic"] { box-shadow: 0 0 40px -6px color-mix(in srgb, var(--glow) 70%, transparent), 0 16px 34px -18px #000; }
+.planet[data-type="volcanic"] .pl-cloud { opacity: .3; }
+
+.planet[data-type="gas"] .pl-band {
+  background-image:
+    repeating-linear-gradient(180deg,
+      color-mix(in srgb, var(--c2) 40%, transparent) 0 2.5%, transparent 2.5% 6%,
+      color-mix(in srgb, var(--c3) 34%, transparent) 6% 8.5%, transparent 8.5% 13%),
+    radial-gradient(ellipse 13% 6% at 66% 62%, color-mix(in srgb, var(--c3) 60%, transparent), transparent 68%);
+}
+.planet[data-type="gas"] .pl-cloud { opacity: .4; }
+
+/* canopy: overlapping dark stands with lighter clearings between them, so it
+   reads as land rather than the banding a gas giant gets */
+.planet[data-type="forest"] .pl-band,
+.planet[data-type="jungle"] .pl-band {
+  background-image:
+    radial-gradient(ellipse 19% 13% at 26% 32%, color-mix(in srgb, var(--c2) 92%, transparent), transparent 68%),
+    radial-gradient(ellipse 14% 10% at 38% 46%, color-mix(in srgb, var(--c2) 78%, transparent), transparent 68%),
+    radial-gradient(ellipse 16% 11% at 64% 62%, color-mix(in srgb, var(--c2) 88%, transparent), transparent 68%),
+    radial-gradient(ellipse 10% 8% at 78% 76%, color-mix(in srgb, var(--c2) 70%, transparent), transparent 68%),
+    radial-gradient(ellipse 12% 8% at 84% 26%, color-mix(in srgb, var(--c3) 55%, transparent), transparent 68%),
+    radial-gradient(ellipse 13% 7% at 46% 82%, color-mix(in srgb, var(--c3) 45%, transparent), transparent 68%),
+    radial-gradient(ellipse 8% 6% at 12% 66%, color-mix(in srgb, var(--c3) 40%, transparent), transparent 68%),
+    repeating-linear-gradient(180deg, rgba(0,0,0,.08) 0 2%, transparent 2% 11%);
+}
+.planet[data-type="jungle"] .pl-band { filter: saturate(1.15); }
+.planet[data-type="forest"] .pl-cloud { opacity: .5; }
+.planet[data-type="jungle"] .pl-cloud { opacity: .58; }
+
+.planet[data-type="swamp"] .pl-band {
+  background-image:
+    repeating-linear-gradient(180deg,
+      color-mix(in srgb, var(--c2) 45%, transparent) 0 3%, transparent 3% 7%),
+    radial-gradient(ellipse 18% 8% at 32% 46%, color-mix(in srgb, var(--c2) 65%, transparent), transparent 72%),
+    radial-gradient(ellipse 12% 6% at 70% 66%, color-mix(in srgb, var(--c3) 35%, transparent), transparent 72%);
+}
+.planet[data-type="swamp"] .pl-cloud { opacity: .66; }
+
+/* craters: a dark floor with a lit north rim, so they read as dents */
+.planet[data-type="rock"] .pl-band {
+  background-image:
+    radial-gradient(ellipse 7% 7% at 30% 36%, color-mix(in srgb, var(--c3) 55%, transparent) 40%, color-mix(in srgb, var(--c2) 85%, transparent) 52%, transparent 74%),
+    radial-gradient(ellipse 4.5% 4.5% at 57% 24%, color-mix(in srgb, var(--c2) 80%, transparent) 45%, transparent 72%),
+    radial-gradient(ellipse 9% 9% at 71% 62%, color-mix(in srgb, var(--c3) 45%, transparent) 38%, color-mix(in srgb, var(--c2) 80%, transparent) 50%, transparent 74%),
+    radial-gradient(ellipse 4% 4% at 43% 73%, color-mix(in srgb, var(--c2) 75%, transparent) 45%, transparent 72%),
+    radial-gradient(ellipse 5.5% 5.5% at 84% 38%, color-mix(in srgb, var(--c2) 70%, transparent) 45%, transparent 72%),
+    radial-gradient(ellipse 3% 3% at 20% 66%, color-mix(in srgb, var(--c2) 70%, transparent) 45%, transparent 72%);
+}
+.planet[data-type="rock"] .pl-cloud { opacity: .12; }
+
+.planet[data-type="crystal"] .pl-band {
+  background-image:
+    repeating-linear-gradient(90deg,
+      color-mix(in srgb, var(--c3) 45%, transparent) 0 0.6%, transparent 0.6% 4%,
+      color-mix(in srgb, var(--c2) 40%, transparent) 4% 4.8%, transparent 4.8% 9%),
+    radial-gradient(ellipse 12% 7% at 34% 40%, color-mix(in srgb, var(--c3) 70%, transparent), transparent 70%),
+    radial-gradient(ellipse 9% 5% at 70% 64%, color-mix(in srgb, var(--c3) 55%, transparent), transparent 70%);
+}
+.planet[data-type="crystal"] .pl-cloud { opacity: .3; }
+
+.planet[data-type="storm"] .pl-band {
+  background-image:
+    repeating-linear-gradient(180deg,
+      color-mix(in srgb, var(--c2) 55%, transparent) 0 2%, transparent 2% 6%,
+      color-mix(in srgb, var(--c3) 22%, transparent) 6% 7.5%, transparent 7.5% 12%),
+    radial-gradient(ellipse 16% 8% at 34% 44%, color-mix(in srgb, var(--c2) 70%, transparent), transparent 70%),
+    radial-gradient(ellipse 12% 6% at 72% 66%, color-mix(in srgb, var(--c3) 40%, transparent), transparent 70%);
+}
+.planet[data-type="storm"] .pl-cloud { opacity: .55; }
+.planet[data-type="storm"] .pl-skin::after {          /* lightning */
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 11% 8% at 42% 56%, rgba(255,255,255,.9), transparent 70%),
+    radial-gradient(ellipse 7% 5% at 66% 38%, rgba(255,255,255,.7), transparent 70%);
+  opacity: 0; animation: pl-flash 8s steps(1, end) infinite;
+}
+@keyframes pl-flash {
+  0%, 61%, 100% { opacity: 0; }
+  62% { opacity: .85; }
+  63% { opacity: 0; }
+  66% { opacity: .6; }
+  67% { opacity: 0; }
+}
+
+.planet[data-type="station"] .pl-band {
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.12) 0 0.4%, transparent 0.4% 4%),
+    repeating-linear-gradient(180deg, rgba(0,0,0,.35) 0 0.5%, transparent 0.5% 5%),
+    repeating-linear-gradient(180deg, rgba(255,255,255,.05) 0 2%, transparent 2% 16%);
+}
+.planet[data-type="station"] .pl-shade::after {       /* equatorial trench */
+  content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 5%;
+  transform: translateY(-50%);
+  background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.9) 45%, rgba(255,255,255,.14) 62%, rgba(0,0,0,.3));
+}
+
+.planet[data-type="salt"] .pl-band {
+  background-image:
+    repeating-linear-gradient(90deg,
+      color-mix(in srgb, var(--c2) 55%, transparent) 0 0.5%, transparent 0.5% 6%),
+    repeating-linear-gradient(180deg, rgba(255,255,255,.45) 0 2.5%, transparent 2.5% 7%),
+    radial-gradient(ellipse 14% 7% at 36% 48%, color-mix(in srgb, var(--c2) 55%, transparent), transparent 72%);
+}
+.planet[data-type="salt"] .pl-cloud { opacity: .25; }
+
+.planet[data-type="toxic"] .pl-band {
+  background-image:
+    radial-gradient(ellipse 15% 8% at 30% 40%, color-mix(in srgb, var(--glow) 60%, transparent), transparent 70%),
+    radial-gradient(ellipse 11% 6% at 68% 64%, color-mix(in srgb, var(--glow) 45%, transparent), transparent 70%),
+    repeating-linear-gradient(180deg, color-mix(in srgb, var(--c2) 45%, transparent) 0 2%, transparent 2% 7%);
+}
+.planet[data-type="toxic"] .pl-cloud { opacity: .45; }
+
+.planet[data-type="plains"] .pl-band {
+  background-image:
+    radial-gradient(ellipse 18% 9% at 28% 38%, color-mix(in srgb, var(--c2) 60%, transparent), transparent 70%),
+    radial-gradient(ellipse 12% 6% at 64% 62%, color-mix(in srgb, var(--c2) 50%, transparent), transparent 70%),
+    radial-gradient(ellipse 8% 4% at 46% 56%, color-mix(in srgb, #2f7fd6 55%, transparent), transparent 70%),
+    radial-gradient(ellipse 10% 5% at 80% 32%, color-mix(in srgb, var(--c3) 40%, transparent), transparent 70%),
+    repeating-linear-gradient(180deg, rgba(0,0,0,.1) 0 2%, transparent 2% 9%);
+}
+.planet[data-type="plains"] .pl-cloud { opacity: .55; }
+
+.planet[data-type="mist"] .pl-band {
+  background-image:
+    repeating-linear-gradient(180deg,
+      color-mix(in srgb, var(--c3) 30%, transparent) 0 3%, transparent 3% 8%),
+    radial-gradient(ellipse 22% 9% at 34% 44%, color-mix(in srgb, var(--c3) 45%, transparent), transparent 74%);
+  filter: blur(1px);
+}
+.planet[data-type="mist"] .pl-cloud { opacity: .8; }
+
+/* ───────────── reduced motion & small screens ───────────── */
+@media (prefers-reduced-motion: reduce) {
+  .pl-band, .pl-cloud, .pl-moon, .pl-scan, .pl-weapon,
+  .planet[data-type="storm"] .pl-skin::after { animation: none !important; }
+}
+@media (max-width: 560px) {
+  .pl-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .pl-card { padding: 1.1rem 0.9rem 1rem; }
+  .pl-globe { width: 70%; }
+  .pl-desc { font-size: 0.8rem; }
+}

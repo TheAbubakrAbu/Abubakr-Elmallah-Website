@@ -1,7 +1,7 @@
-/* gallery.js — lightbox for photos & image links.
+/* gallery.js: lightbox for photos & image links.
 
    IMAGE POLICY: every in-page link that points to an image opens in THIS
-   lightbox overlay — never a new browser tab. (The overlay reads far better
+   lightbox overlay, never a new browser tab. (The overlay reads far better
    than dumping the raw file in a tab.) That covers the "Through the Years"
    photos, app/award proof shots, flyers, wallpapers, and the WWDC photos.
    The target="_blank" left on those <a>s is just a no-JS fallback; the click
@@ -29,12 +29,12 @@
     document.documentElement.classList.remove('intro-lock');
   }
 
-  // "Through the Years" year cards — each opens its full set of photos
+  // "Through the Years" year cards, each opens its full set of photos
   document.querySelectorAll('.year-card').forEach(card => {
     card.addEventListener('click', () => open(card.dataset.label, (card.dataset.images || '').split(',').filter(Boolean)));
   });
 
-  // app / award proof screenshots — grouped per card, open together
+  // app / award proof screenshots: grouped per card, open together
   document.querySelectorAll('.app-shots').forEach(shots => {
     const card = shots.closest('.app-card, .proj-card');
     const h3 = card && card.querySelector('h3');
