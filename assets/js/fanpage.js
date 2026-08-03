@@ -11,6 +11,9 @@
      kind: 'tiles'     compact colour-chips (sabers, spells, ores, stones)
      kind: 'quotes'    pull quotes with an attribution
 
+   A section may also carry `season: N`, which tags it so a page can react to
+   it on scroll (Stranger Things repaints its backdrop season by season).
+
    Every item may carry `accent` (a colour) which the CSS picks up as --a.
    Loads AFTER its data file and BEFORE reveal.js. */
 (function fanpage() {
@@ -90,7 +93,8 @@
 
   root.innerHTML = (page.sections || []).map(function (s) {
     var build = KINDS[s.kind] || KINDS.cards;
-    return '<section class="fan-sec" id="' + esc(s.id || '') + '">'
+    return '<section class="fan-sec" id="' + esc(s.id || '') + '"'
+      + (s.season ? ' data-season="' + s.season + '"' : '') + '>'
       + '<h3 class="subsec subsec--fan reveal">' + esc(s.title)
       +   (s.note ? '<span class="subsec-yr">' + esc(s.note) + '</span>' : '')
       + '</h3>'

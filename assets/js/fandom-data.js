@@ -38,7 +38,7 @@ window.FANDOMS = [
       desc: 'Practical effects that still hold up after thirty years, and the first film that scared me properly.' },
 
     { name: 'Stranger Things', wm: 'stranger', glyph: 'bulbs', c1: '#e8261d', c2: '#26090a',
-      meta: 'Series · 2016', href: '/franchises/stranger-things/', desc: 'Eighties synth, a wall of Christmas lights, and kids on bikes.' },
+      meta: 'Series · 2016', href: '/franchises/stranger-things/', desc: 'Eighties synth, a wall of bulbs on the plaster, and kids on bikes.' },
 
     { name: 'Game of Thrones', wm: 'thrones', glyph: 'crown', c1: '#b9c2cc', c2: '#161a1f',
       meta: 'Series · 2011', href: '/franchises/game-of-thrones/', desc: 'The first six seasons are still the high-water mark for television scale.' },
@@ -48,22 +48,35 @@ window.FANDOMS = [
 
   ] },
   { id: 'secondary', label: 'Secondary', note: 'in regular rotation', items: [
-                { name: 'Red Dead Redemption', wm: 'reddead', glyph: 'badge', c1: '#c9402f', c2: '#26100c',
+    { name: 'Red Dead Redemption', wm: 'reddead', glyph: 'badge', c1: '#c9402f', c2: '#26100c',
       meta: 'Game · 2010', href: '/franchises/red-dead/', desc: 'A western that respects your time and then breaks your heart in the epilogue.' },
+
     { name: 'Ninjago', wm: 'ninjago', glyph: 'spinner', c1: '#e0b040', c2: '#20180a',
       meta: 'Animation · 2011', href: '/franchises/ninjago/', desc: 'Somehow a LEGO toy line grew into a genuinely good sixteen-season saga.' },
+
     { name: 'The Simpsons', wm: 'simpsons', glyph: 'donut', c1: '#ffd21f', c2: '#1a2438',
       meta: 'Animation · 1989', href: '/franchises/the-simpsons/', desc: 'The golden-age seasons wrote half the jokes the internet still runs on.' },
+
     { name: 'The Office', wm: 'office', glyph: 'mug', c1: '#e8e6e0', c2: '#191b20',
       meta: 'Series · 2005', href: '/franchises/the-office/', desc: 'The comfort rewatch. Nothing else works as background noise this well.' },
+
     { name: 'The Boys', wm: 'boys', glyph: 'splat', c1: '#e02a2a', c2: '#210b0b',
       meta: 'Series · 2019', href: '/franchises/the-boys/', desc: 'Superheroes as a PR department, which is a much scarier idea than a villain.' },
-    { name: 'Batman', wm: 'batman', glyph: 'bat', c1: '#c9cdd2', c2: '#121417',
-      meta: 'Comics · 1939', href: '/franchises/batman/', desc: 'No powers, just preparation: the animated series and the Arkham games especially.' },
-    { name: 'Spider-Man', wm: 'spiderman', glyph: 'spider', c1: '#e02a3a', c2: '#1a0e14',
-      meta: 'Comics · 1962', href: '/franchises/spider-man/', desc: 'The one superhero whose problems are the same size as everyone else’s.' },
+
     { name: 'Pokémon', wm: 'pokemon', glyph: 'pokeball', c1: '#ffd43f', c2: '#152040',
       meta: 'Game · 1996', href: '/franchises/pokemon/', desc: 'A hundred and fifty creatures memorised before I memorised the times tables.' },
+
+    { name: 'The Justice League', wm: 'jl', glyph: 'league', c1: '#5f9fe0', c2: '#0d1730',
+      meta: 'Comics · 1960', href: '/franchises/justice-league/',
+      desc: 'Seven of the biggest names in comics at one table, and the animated series that made all of them work at once.' },
+
+    { name: 'Batman', wm: 'batman', glyph: 'bat', c1: '#c9cdd2', c2: '#121417',
+      meta: 'Comics · 1939', href: '/franchises/batman/', desc: 'No powers, just preparation: the animated series and the Arkham games especially.' },
+
+    { name: 'Spider-Man', wm: 'spiderman', glyph: 'spider', c1: '#e02a3a', c2: '#1a0e14',
+      meta: 'Comics · 1962', href: '/franchises/spider-man/', desc: 'The one superhero whose problems are the same size as everyone else’s.' },
+
+    
   ] },
 
   { id: 'tertiary', label: 'Tertiary', note: 'good, and picked up when the mood hits', items: [
@@ -79,14 +92,14 @@ window.FANDOMS = [
       meta: 'Books · 1954', href: '/franchises/lord-of-the-rings/', desc: 'The trilogy every fantasy since has been quietly measured against.' },
     { name: 'Breaking Bad', wm: 'breakingbad', glyph: '', c1: '#4fbf7f', c2: '#101a14',
       meta: 'Series · 2008', href: '/franchises/breaking-bad/', desc: 'Five seasons without a wasted scene, and the best-shot show on this list.' },
-    { name: 'Kung Fu Panda', wm: 'kungfu', glyph: 'panda', c1: '#e0703a', c2: '#231108',
-      meta: 'Animation · 2008', href: '/franchises/kung-fu-panda/', desc: 'A slapstick premise that turned out to have a real film underneath it.' },
+    { name: 'Percy Jackson', wm: 'percy', glyph: 'trident', c1: '#5fa8e0', c2: '#0e1a2a',
+      meta: 'Books · 2005', href: '/franchises/percy-jackson/', desc: 'Greek mythology retold for kids who were about to be handed the Iliad.' },
     { name: 'Avatar', wm: 'avatar', glyph: 'seed', c1: '#5fd6e0', c2: '#0c1e26',
       meta: 'Film · 2009', href: '/franchises/avatar/', desc: 'Pandora at 48 frames a second is still the closest cinema has come to a place.' },
     { name: 'Invincible', wm: 'invincible', glyph: 'mask', c1: '#f0d040', c2: '#161a2a',
       meta: 'Animation · 2021', href: '/franchises/invincible/', desc: 'Starts as a superhero cartoon and turns, in one episode, into something else.' },
-    { name: 'Percy Jackson', wm: 'percy', glyph: 'trident', c1: '#5fa8e0', c2: '#0e1a2a',
-      meta: 'Books · 2005', href: '/franchises/percy-jackson/', desc: 'Greek mythology retold for kids who were about to be handed the Iliad.' },
+    { name: 'Kung Fu Panda', wm: 'kungfu', glyph: 'panda', c1: '#e0703a', c2: '#231108',
+      meta: 'Animation · 2008', href: '/franchises/kung-fu-panda/', desc: 'A slapstick premise that turned out to have a real film underneath it.' },
     { name: 'Dune', wm: 'dune', glyph: 'worm', c1: '#e0a050', c2: '#241a0e',
       meta: 'Books · 1965', href: '/franchises/dune/', desc: 'Ecology, religion and empire in one desert. The 2021 adaptation finally did it justice.' },
 
@@ -94,6 +107,10 @@ window.FANDOMS = [
       meta: 'Toy · 1958', href: '/franchises/lego/',
       desc: 'The clutch power patent is from 1958 and a brick from then still fits one moulded this morning.' },
 
+    
+      ] },
+
+  { id: 'parks', label: 'Theme Parks', note: 'the ones worth the drive', items: [
     { name: 'Disney', wm: 'disney', glyph: 'castle', c1: '#9fd0ff', c2: '#0d1430',
       meta: 'Studio · 1923', href: '/franchises/disney/',
       desc: 'Six resorts, twelve parks, and most of the other franchises on this page now live under the same roof.' },
@@ -101,6 +118,11 @@ window.FANDOMS = [
     { name: 'Universal Studios', wm: 'universal', glyph: 'globe', c1: '#8fb8e8', c2: '#0b1424',
       meta: 'Studio · 1912', href: '/franchises/universal-studios/',
       desc: 'A working backlot you can ride through, and the parks that build the best themed lands going.' },
+
+    { name: 'Knott\u2019s Berry Farm', wm: 'knotts', glyph: 'saloon', c1: '#b06fd8', c2: '#1e0f26',
+      meta: 'Park \u00b7 1920', href: '/franchises/knotts/',
+      desc: 'A berry stand that grew a ghost town around the queue for its chicken dinners, fifteen years before Disneyland opened.' },
+
   ] },
 
 ];

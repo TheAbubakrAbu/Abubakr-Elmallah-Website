@@ -37,6 +37,38 @@ window.FAN_PAGE = { sections: [
       { title: 'Fairy', accent: '#ee99ac', sub: 'Added in Gen VI to answer Dragon' },
     ] },
 
+  { id: 'stuck', kind: 'cards', title: 'The Ones That Stuck', note: 'no accounting for taste',
+    items: [
+      { title: 'Pikachu', sub: 'No. 025 · Electric', tag: 'Mascot', desc: 'Was not the mascot originally. Clefairy was the plan until the anime put this one on Ash\u2019s shoulder and refused to put it in a ball.', meta: 'Gen I' },
+      { title: 'Charizard', sub: 'No. 006 · Fire, Flying', tag: 'Starter', desc: 'Not part Dragon, which every child on a playground has argued about at least once.', meta: 'Gen I' },
+      { title: 'Mewtwo', sub: 'No. 150 · Psychic', tag: 'Legendary', desc: 'Made in a lab from Mew\u2019s DNA, and the first Pok\u00e9mon the series let be genuinely angry about it.', meta: 'Cerulean Cave' },
+      { title: 'Eevee', sub: 'No. 133 · Normal', tag: 'Branching', desc: 'Eight evolutions and counting, which turned one design into an entire mechanic.', meta: 'Gen I onward' },
+      { title: 'Gengar', sub: 'No. 094 · Ghost, Poison', tag: 'Fan favourite', desc: 'Grins in the background of half the games and has the best competitive history of any Ghost type.', meta: 'Gen I' },
+      { title: 'Snorlax', sub: 'No. 143 · Normal', tag: 'Obstacle', desc: 'Blocks a road until you play a flute at it. An entire route design built around one sleeping animal.', meta: 'Gen I' },
+      { title: 'Lucario', sub: 'No. 448 · Fighting, Steel', tag: 'Gen IV', desc: 'Reads aura, carries a film on its own, and has been in every crossover since.', meta: 'Sinnoh' },
+      { title: 'Greninja', sub: 'No. 658 · Water, Dark', tag: 'Gen VI', desc: 'A ninja frog that throws shuriken made of compressed water. Voted the single most popular Pok\u00e9mon in a global poll.', meta: 'Kalos' },
+    ] },
+
+  { id: 'start', kind: 'rank', title: 'Where To Start', note: 'if you are picking one up now',
+    items: [
+      { title: 'HeartGold and SoulSilver', sub: '2009 · DS', desc: 'Two regions, sixteen gyms, and your lead Pok\u00e9mon walks behind you. Widely rated the best remakes ever made.' },
+      { title: 'Emerald', sub: '2004 · GBA', desc: 'Hoenn with both villain teams, the Battle Frontier, and the tightest of the early-generation games.' },
+      { title: 'Platinum', sub: '2008 · DS', desc: 'Sinnoh fixed: better pacing, better dex, and the Distortion World.' },
+      { title: 'Black and White', sub: '2010 · DS', desc: 'A completely new dex until the credits roll, and the only game in the series with a villain who has a point.' },
+      { title: 'Legends: Arceus', sub: '2022 · Switch', desc: 'Throws out the formula: no gyms, real-time catching, and an open region two hundred years before the rest.' },
+      { title: 'Scarlet and Violet', sub: '2022 · Switch', desc: 'Fully open, three storylines at once, and a frame rate everybody argued about for a year.' },
+    ] },
+
+  { id: 'beyond', kind: 'tiles', title: 'Beyond The Games', note: 'the rest of the machine',
+    items: [
+      { title: 'The anime', accent: '#f8d030', sub: '1997, still running', desc: 'Over twelve hundred episodes. Ash finally won a world championship in 2022 and then handed the show over.' },
+      { title: 'The trading card game', accent: '#6890f0', sub: 'Since 1996', desc: 'Over sixty billion cards printed, and a first edition Charizard that sells for the price of a car.' },
+      { title: 'Pok\u00e9mon GO', accent: '#78c850', sub: '2016', desc: 'Put the entire concept outside for one strange summer, and is still one of the highest-grossing mobile games ever.' },
+      { title: 'Detective Pikachu', accent: '#f0c840', sub: '2019', desc: 'The one live-action film that understood the assignment: make them look like animals, not toys.' },
+      { title: 'The competitive scene', accent: '#c03028', sub: 'VGC', desc: 'Double battles, team preview, and a world championship with a real prize pool.' },
+      { title: 'Highest-grossing media franchise', accent: '#a040a0', sub: 'Anywhere', desc: 'Ahead of Star Wars, Marvel and Mickey Mouse. A hundred billion dollars and counting, from a game about catching bugs.' },
+    ] },
+
   { id: 'starters', kind: 'cards', title: 'First Partners', note: 'the choice you make in the first five minutes',
     items: [
       { title: 'Kanto', sub: 'Bulbasaur · Charmander · Squirtle', tag: 'Gen I', desc: 'The one everybody has an opinion about, thirty years later.', meta: 'Prof. Oak' },

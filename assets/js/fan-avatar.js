@@ -20,6 +20,25 @@ window.FAN_PAGE = { sections: [
       { title: 'Four minutes', accent: '#c04a3a', sub: 'Exopack off', desc: 'That is how long a human lasts breathing Pandoran air. It matters twice.' },
     ] },
 
+  { id: 'tech', kind: 'tiles', title: 'The Hardware', note: 'what the humans brought',
+    items: [
+      { title: 'AMP suits', accent: '#c9a05f', sub: 'Amplified Mobility Platform', desc: 'Four metres of walking exoskeleton with a knife the size of a car door, and the final fight is one of them against a bow.' },
+      { title: 'Exopacks', accent: '#8fd0e0', sub: 'Four minutes', desc: 'The Pandoran atmosphere is breathable for about four minutes before it kills you. The mask is the whole tension of every outdoor scene.' },
+      { title: 'The link beds', accent: '#5fd6e0', sub: 'Psionic link', desc: 'A coffin of a machine that puts a driver into a grown body several kilometres away.' },
+      { title: 'Dragon gunship', accent: '#c04a3a', sub: 'RDA air power', desc: 'The assault ship built for the Hometree operation, and the thing the film wants you to hate.' },
+      { title: 'Unobtanium', accent: '#e0c060', sub: 'The reason', desc: 'A room-temperature superconductor worth twenty million a kilo, which is why anyone is on the moon at all.' },
+      { title: 'The Sea Dragon', accent: '#4f9fd0', sub: 'Film two', desc: 'A hunting vessel built to take tulkun, and the sequence that makes the second film work.' },
+    ] },
+
+  { id: 'made', kind: 'timeline', title: 'How It Was Shot', note: 'the technology is the story of the production',
+    items: [
+      { when: '1994', title: 'The treatment', desc: 'Cameron writes eighty pages and then shelves it, on the grounds that nothing available can shoot it.' },
+      { when: '2005 to 2009', title: 'Performance capture', desc: 'A purpose-built camera rig with a head-mounted lens per actor, and a virtual camera that let him walk a set that did not exist.' },
+      { when: '2009', title: 'The Fusion camera', desc: 'A stereo rig he co-developed to shoot native 3D rather than convert it, and the reason every cinema on earth bought new projectors.' },
+      { when: '2017 to 2020', title: 'Underwater capture', desc: 'Nobody had motion-captured underwater before, because the surface scatters the markers. They solved it and shot the cast holding their breath for minutes at a time.' },
+      { when: '2022', title: 'High frame rate', desc: 'The Way of Water runs at 48 frames a second for the action and 24 for the rest, switching inside scenes.' },
+    ] },
+
   { id: 'clans', kind: 'cards', title: 'The Clans', note: 'Na’vi, by biome',
     items: [
       { title: 'Omatikaya', sub: 'Forest', tag: 'Film I', desc: 'The Hometree clan: riders of ikran, weavers, and the people Jake is sent to study.', meta: 'Hallelujah Mountains' },

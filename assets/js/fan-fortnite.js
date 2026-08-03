@@ -21,6 +21,27 @@ window.FAN_PAGE = { sections: [
       { title: 'Zero Build', accent: '#7fd07f', sub: '2022', desc: 'Overshield instead of walls. Half the playerbase never went back.' },
     ] },
 
+  { id: 'loot', kind: 'tiles', title: 'The Loot', note: 'rarity, by colour',
+    lede: 'You learn the colours before you learn the guns. A gold glow across a room ends whatever conversation you were having.',
+    items: [
+      { title: 'Common', accent: '#9aa0a8', sub: 'Grey', desc: 'The one you drop the moment anything else appears.' },
+      { title: 'Uncommon', accent: '#5fd07f', sub: 'Green', desc: 'Perfectly fine, and quietly what most wins are actually built on.' },
+      { title: 'Rare', accent: '#4f9fd0', sub: 'Blue', desc: 'The point where the gun stops being an apology.' },
+      { title: 'Epic', accent: '#a06fe0', sub: 'Purple', desc: 'Worth crossing open ground for.' },
+      { title: 'Legendary', accent: '#e08a3a', sub: 'Orange', desc: 'The glow you can see through a wall of your own building.' },
+      { title: 'Mythic', accent: '#f0d040', sub: 'Gold', desc: 'One per match, usually held by a boss, and everyone in the lobby knows where it is.' },
+    ] },
+
+  { id: 'cross', kind: 'cards', title: 'The Crossovers', note: 'everything ends up here eventually',
+    items: [
+      { title: 'Marvel', sub: 'Since 2018', tag: 'Film', desc: 'Thanos in a limited mode, then a whole Nexus War season with Galactus at the end of it.', meta: 'Season 4 · Chapter 2' },
+      { title: 'Star Wars', sub: 'Since 2019', tag: 'Film', desc: 'A live scene from The Rise of Skywalker screened inside the game before the film was out, plus lightsabers on the ground.', meta: 'Risky Reels' },
+      { title: 'Dragon Ball, Naruto, Attack on Titan', sub: 'Since 2022', tag: 'Anime', desc: 'Full anime crossovers with their own mechanics, not just skins.', meta: 'Chapter 3 onward' },
+      { title: 'John Wick', sub: '2019', tag: 'Film', desc: 'An entire mode built around him, and a skin that predated the official licence by a season.', meta: 'Wick\u2019s Bounty' },
+      { title: 'LEGO Fortnite', sub: '2023', tag: 'Games', desc: 'A survival crafting game inside the launcher, with every skin rebuilt as a minifigure.', meta: 'Chapter 5' },
+      { title: 'The concerts', sub: 'Since 2019', tag: 'Music', desc: 'Marshmello, Travis Scott, Ariana Grande, Eminem. Tens of millions of people in one venue with the guns switched off.', meta: 'Soundwave · Big Bang' },
+    ] },
+
   { id: 'events', kind: 'cards', title: 'The Live Events', note: 'everyone in one server, once',
     items: [
       { title: 'The Rocket Launch', sub: 'June 2018', tag: 'Season 4', desc: 'The first one: a rocket, a crack in the sky, and the moment people realised the map was a story.', meta: '~20 minutes' },

@@ -28,6 +28,27 @@ window.FAN_PAGE = { sections: [
       { title: 'Guarma', accent: '#4fb0a0', sub: 'Chapter 5', desc: 'The detour everybody complains about, and the one that finally breaks Dutch.' },
     ] },
 
+  { id: 'chapters', kind: 'timeline', title: 'Six Chapters and Two Epilogues', note: 'RDR2, 1899',
+    items: [
+      { when: 'Chapter 1', title: 'Colter', desc: 'Snowbound in the mountains after Blackwater goes wrong. Everyone is cold, hungry and lying about how bad it is.' },
+      { when: 'Chapter 2', title: 'Horseshoe Overlook', desc: 'The best the gang ever is: camp songs, a full table, and the last stretch where the plan still sounds possible.' },
+      { when: 'Chapter 3', title: 'Clemens Point', desc: 'Lemoyne, the Grays and the Braithwaites, and a feud the gang walks into for money.' },
+      { when: 'Chapter 4', title: 'Saint Denis', desc: 'A city, a trolley station, a bank, and the job that ends the gang as a functioning thing.' },
+      { when: 'Chapter 5', title: 'Guarma', desc: 'The detour everybody complains about, and the one where Dutch finally stops pretending.' },
+      { when: 'Chapter 6', title: 'Beaver Hollow', desc: 'Everyone who is leaving has left. Arthur spends it deciding what to do with the time he has.' },
+      { when: 'Epilogue', title: 'Beecher\u2019s Hope', desc: 'Hours of fence-building and cattle-driving as John, which is the whole point: the quiet is what Arthur bought.' },
+    ] },
+
+  { id: 'detail', kind: 'cards', title: 'The Detail', note: 'the reason it took eight years',
+    items: [
+      { title: 'Guns rust', sub: 'Maintenance', tag: 'Systems', desc: 'Leave a revolver dirty and it jams and loses accuracy. Oil it at camp and it comes back.', meta: 'Gun oil · cleaning kit' },
+      { title: 'The horse remembers', sub: 'Bonding', tag: 'Systems', desc: 'Feed it, brush it, calm it in a fight, and it gains stats and lets you do things it would not before.', meta: 'Four bonding levels' },
+      { title: 'Arthur changes shape', sub: 'Weight & beard', tag: 'Systems', desc: 'Eat too little and he thins out and loses stamina. Eat too much and he slows. The beard grows on its own clock.', meta: 'Barbers · campfire stew' },
+      { title: 'NPCs hold a grudge', sub: 'Memory', tag: 'Systems', desc: 'Rob a shop and the owner recognises you weeks later. Save a stranger and they turn up again to repay it.', meta: 'Stranger encounters' },
+      { title: 'Pelts have quality', sub: 'Hunting', tag: 'Systems', desc: 'The right weapon, a clean kill and a three-star animal is the difference between a trapper\u2019s coat and nothing.', meta: 'Legendary animals' },
+      { title: 'The camp is a ledger', sub: 'Economy', tag: 'Systems', desc: 'Donate money and supplies or the camp degrades, the food runs out, and people start saying so.', meta: 'Pearson · Dutch\u2019s tithing box' },
+    ] },
+
   { id: 'lines', kind: 'quotes', title: 'Lines', note: 'the ones that stuck',
     items: [
       { title: 'We can’t change what’s done. We can only move on.', sub: 'Arthur Morgan' },

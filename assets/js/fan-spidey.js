@@ -23,6 +23,26 @@ window.FAN_PAGE = { sections: [
       { title: 'The Lizard', accent: '#5f9a4f', sub: 'Curt Connors', desc: 'A one-armed scientist chasing regeneration, and the first mentor Peter loses to his own work.' },
     ] },
 
+  { id: 'suits', kind: 'tiles', title: 'The Suits', note: 'the costume is half the character',
+    items: [
+      { title: 'The classic', accent: '#e02a3a', sub: 'Ditko, 1962', desc: 'Full mask, no visible skin, webbing across the whole thing. Designed so anyone could be under it, which is the point.' },
+      { title: 'The black suit', accent: '#c9cdd2', sub: '1984', desc: 'Picked up on an alien battleworld, and it turns out to be alive and to want to stay.' },
+      { title: 'The Iron Spider', accent: '#c9a040', sub: '2007', desc: 'Stark-built, with the arms. Reused in the films for exactly the same effect.' },
+      { title: 'The Advanced Suit', accent: '#4f8fd0', sub: '2018 game', desc: 'The white spider, designed for the PS4 game and adopted by the comics afterwards.' },
+      { title: 'The Scarlet Spider', accent: '#c04a3a', sub: '1994', desc: 'A hoodie over the suit, from the clone saga, and beloved out of all proportion to that story.' },
+      { title: 'The Noir coat', accent: '#8f8f9a', sub: 'Earth-90214', desc: 'A trench coat, a fedora and goggles, in a world with no colour in it.' },
+    ] },
+
+  { id: 'runs', kind: 'cards', title: 'The Runs', note: 'sixty years of comics, five worth starting with',
+    items: [
+      { title: 'Lee and Ditko', sub: '1962 to 1966', tag: 'Original', desc: 'Thirty-eight issues that invent the character, the rogues, the money problems and the guilt, and then Ditko leaves over the Green Goblin.', meta: 'Amazing Spider-Man #1 to #38' },
+      { title: 'The Night Gwen Stacy Died', sub: '1973', tag: 'Turning point', desc: 'Conway and Kane end the silver age in two issues. The snap at the end of the web line is still argued about.', meta: 'ASM #121 and #122' },
+      { title: 'Kraven\u2019s Last Hunt', sub: '1987', tag: 'Peak', desc: 'Buried alive for two weeks while the hunter wears his suit. The best single Spider-Man story there is.', meta: 'DeMatteis and Zeck' },
+      { title: 'Ultimate Spider-Man', sub: '2000 to 2011', tag: 'Restart', desc: 'Bendis and Bagley retell it from scratch for a new century, run it for 160 issues straight, and then hand the mask to Miles.', meta: 'Earth-1610' },
+      { title: 'Superior Spider-Man', sub: '2013', tag: 'Swerve', desc: 'Otto Octavius in Peter\u2019s body, trying to be a better Spider-Man and being a much worse person. It should not work.', meta: 'Dan Slott' },
+      { title: 'Spider-Verse', sub: '2014', tag: 'Multiverse', desc: 'Every spider from every reality in one book, and the source of the two best animated films of the decade.', meta: 'Slott and Coipel' },
+    ] },
+
   { id: 'best', kind: 'rank', title: 'The Best Of It', note: 'films and games',
     items: [
       { title: 'Into the Spider-Verse', sub: '2018', desc: 'Rewrote what animation is allowed to look like, and it has not been beaten since.' },

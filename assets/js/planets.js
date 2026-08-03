@@ -48,8 +48,8 @@
       + '</article>';
   }
 
-  function group(g) {
-    return '<section class="pl-group" data-era="' + g.id + '">'
+  function group(g, i) {
+    return '<section class="pl-group" data-era="' + g.id + '"' + (i === 0 ? '' : ' hidden') + '>'
       + '<h3 class="subsec subsec--sw reveal">' + esc(g.label)
       +   '<span class="subsec-yr">' + esc(g.note) + '</span>'
       +   '<span class="pl-count">' + g.worlds.length + '</span>'
@@ -58,14 +58,12 @@
       + '</section>';
   }
 
-  /* ── filter chips ── */
-  var total = groups.reduce(function (n, g) { return n + g.worlds.length; }, 0);
-  var chips = '<button class="chip chip--sw is-active" type="button" data-era="all" data-magnetic>'
-            + 'All <em>' + total + '</em></button>'
-            + groups.map(function (g) {
-                return '<button class="chip chip--sw" type="button" data-era="' + g.id + '" data-magnetic>'
-                     + esc(g.label.replace(' Planets', '')) + ' <em>' + g.worlds.length + '</em></button>';
-              }).join('');
+  /* ── filter chips: one era at a time, opening on the first ── */
+  var chips = groups.map(function (g, i) {
+    return '<button class="chip chip--sw' + (i === 0 ? ' is-active' : '') + '" type="button" data-era="'
+         + g.id + '" data-magnetic>' + esc(g.label.replace(' Planets', ''))
+         + ' <em>' + g.worlds.length + '</em></button>';
+  }).join('');
 
   root.innerHTML = '<div class="filters pl-filters reveal">' + chips + '</div>'
                  + groups.map(group).join('');
@@ -80,7 +78,7 @@
       c.classList.toggle('is-active', c === btn);
     });
     sections.forEach(function (s) {
-      var show = era === 'all' || s.dataset.era === era;
+      var show = s.dataset.era === era;
       s.hidden = !show;
       // sections revealed after their scroll trigger already fired stay hidden
       if (show) s.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });

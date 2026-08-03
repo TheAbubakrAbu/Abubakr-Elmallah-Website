@@ -33,6 +33,18 @@ window.FAN_PAGE = { sections: [
       { title: 'Minion Land', accent: '#f0c840', sub: 'Since 2012', desc: 'Illumination’s side of the business, and the most profitable animation studio in the group.' },
     ] },
 
+  { id: 'rides', kind: 'cards', title: 'The Rides', note: 'what Universal actually builds',
+    items: [
+      { title: 'Forbidden Journey', sub: '2010', tag: 'Wizarding World', desc: 'A robotic arm on a track, inside Hogwarts, and the ride system that made every other park rethink what a dark ride could do.',
+        href: 'https://www.universalorlando.com/', link: 'universalorlando.com', meta: 'Orlando · Hollywood · Japan' },
+      { title: 'Escape from Gringotts', sub: '2014', tag: 'Wizarding World', desc: 'A coaster, a dark ride and a 3D projection show at once, reached through a bank lobby with animatronic goblins in it.', meta: 'Orlando' },
+      { title: 'Hagrid\u2019s Motorbike Adventure', sub: '2019', tag: 'Coaster', desc: 'Seven launches, a vertical drop track, and queue times that stayed over two hours for years.', meta: 'Islands of Adventure' },
+      { title: 'VelociCoaster', sub: '2021', tag: 'Coaster', desc: 'Widely rated the best coaster in America. Two launches, a stall over the lagoon, and a raptor paddock queue.', meta: 'Islands of Adventure' },
+      { title: 'Mario Kart', sub: '2021', tag: 'Super Nintendo World', desc: 'Augmented reality visors on a trackless ride where you actually steer and throw shells. Nobody else has attempted this.', meta: 'Japan · Hollywood · Orlando' },
+      { title: 'The Studio Tour', sub: '1964', tag: 'Hollywood', desc: 'An hour on a tram through working backlot streets, the Psycho house, the flash flood, King Kong 360 and Fast & Furious. The oldest thing on the property.',
+        href: 'https://www.universalstudioshollywood.com/', link: 'universalstudioshollywood.com', meta: 'Hollywood only' },
+    ] },
+
   { id: 'studio', kind: 'timeline', title: 'The Studio', note: 'Universal Pictures, since 1912',
     items: [
       { when: '1912', title: 'Carl Laemmle founds it', desc: 'One of the oldest surviving film studios in the world, and the first to open its backlot to visitors.' },

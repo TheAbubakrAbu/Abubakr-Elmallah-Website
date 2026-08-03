@@ -21,6 +21,28 @@ window.FAN_PAGE = { sections: [
       { title: 'Half-Blood Hill', accent: '#7fbf5f', sub: 'Thalia’s pine', desc: 'The border, the Golden Fleece, and the tree that was a girl.' },
     ] },
 
+  { id: 'gods', kind: 'cards', title: 'The Olympians', note: 'twelve thrones, and three who matter most',
+    items: [
+      { title: 'Zeus', sub: 'Sky, the eldest brother', tag: 'Big Three', desc: 'Holds the throne, keeps the pact, breaks it, and blames everybody else. The missing bolt is the plot of book one.', meta: 'Master bolt' },
+      { title: 'Poseidon', sub: 'The sea', tag: 'Big Three', desc: 'Percy\u2019s father, and the only Olympian in the series who consistently behaves like a parent.', meta: 'Cabin 3' },
+      { title: 'Hades', sub: 'The underworld', tag: 'Big Three', desc: 'Written as the villain of book one and revealed to be the one nobody gave a cabin, a seat or the benefit of the doubt.', meta: 'No throne on Olympus' },
+      { title: 'Athena', sub: 'Wisdom and strategy', tag: 'Olympian', desc: 'Annabeth\u2019s mother. Her children are born from thought rather than birth, which the books treat matter of factly.', meta: 'Cabin 6' },
+      { title: 'Ares', sub: 'War', tag: 'Olympian', desc: 'A biker with sunglasses, and the first god Percy fights. Losing to a twelve year old does not improve his mood.', meta: 'Cabin 5' },
+      { title: 'Hermes', sub: 'Messengers and travellers', tag: 'Olympian', desc: 'Takes in every unclaimed demigod at camp, and has the worst relationship with his own son in the series.', meta: 'Cabin 11' },
+      { title: 'Artemis and Apollo', sub: 'The twins', tag: 'Olympian', desc: 'The Hunters and the haiku. One of them takes the sky on her shoulders in book three.', meta: 'Cabins 7 and 8' },
+      { title: 'Dionysus', sub: 'Mr D', tag: 'Camp director', desc: 'Sentenced to run a summer camp for a century as a punishment, and he makes sure everyone knows it.', meta: 'Diet Coke' },
+    ] },
+
+  { id: 'prophecy', kind: 'timeline', title: 'The Great Prophecy', note: 'delivered in book one, paid off in book five',
+    lede: 'Riordan puts the whole ending in the first book in five lines, and then spends four more making you forget you read it.',
+    items: [
+      { when: 'Line one', title: 'A half-blood of the eldest gods', desc: 'Which narrows it to a child of Zeus, Poseidon or Hades, and there are almost none of those left on purpose.' },
+      { when: 'Line two', title: 'Shall reach sixteen against all odds', desc: 'The pact was broken, so the odds are the point. Monsters find the big three\u2019s children fastest.' },
+      { when: 'Line three', title: 'And see the world in endless sleep', desc: 'Manhattan, asleep, in the last book, while the war happens over the top of it.' },
+      { when: 'Line four', title: 'The hero\u2019s soul, cursed blade shall reap', desc: 'The line everybody reads as Percy dying, which is exactly what it is written to make you think.' },
+      { when: 'Line five', title: 'A single choice shall end his days', desc: 'And the choice turns out to belong to somebody else entirely, which is the best trick in the series.' },
+    ] },
+
   { id: 'more', kind: 'cards', title: 'Beyond the First Five', note: 'the same world, wider',
     items: [
       { title: 'The Heroes of Olympus', sub: '2010–14', tag: 'Sequel', desc: 'Five more books, Roman demigods at Camp Jupiter, and a cast of seven instead of three.', meta: 'The Lost Hero → The Blood of Olympus' },

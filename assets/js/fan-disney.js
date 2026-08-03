@@ -39,6 +39,29 @@ window.FAN_PAGE = { sections: [
         href: 'https://www.disneyplus.com/', link: 'disneyplus.com', meta: 'Nov 2019' },
     ] },
 
+  { id: 'rides', kind: 'cards', title: 'The Rides', note: 'the ones that turn up in more than one park',
+    items: [
+      { title: 'Pirates of the Caribbean', sub: '1967', tag: 'Dark ride', desc: 'The last attraction Walt personally worked on, and the only ride that has ever produced a film franchise rather than the other way round.',
+        href: 'https://disneyland.disney.go.com/attractions/disneyland/pirates-of-the-caribbean/', link: 'disneyland.disney.go.com', meta: 'Anaheim · Orlando · Paris · Tokyo · Shanghai' },
+      { title: 'Haunted Mansion', sub: '1969', tag: 'Dark ride', desc: 'Nine hundred and ninety-nine happy haunts, room for a thousand, and a stretching room that is an elevator in Anaheim and a lift-free room in Orlando.',
+        href: 'https://disneyworld.disney.go.com/attractions/magic-kingdom/haunted-mansion/', link: 'disneyworld.disney.go.com', meta: 'Four resorts' },
+      { title: 'it\u2019s a small world', sub: '1964', tag: 'Boat ride', desc: 'Built for the New York World\u2019s Fair in eleven months, moved to Anaheim afterwards, and the song has never once stopped.', meta: 'Five resorts' },
+      { title: 'Space Mountain', sub: '1975', tag: 'Coaster', desc: 'An indoor coaster in the dark, which is a simple trick that no amount of speed has improved on.', meta: 'Five resorts' },
+      { title: 'Tower of Terror', sub: '1994', tag: 'Drop', desc: 'A ride system built specifically for it: the cabin is pulled down faster than gravity, and it moves horizontally halfway through.', meta: 'Orlando · Tokyo · Paris' },
+      { title: 'Rise of the Resistance', sub: '2019', tag: 'Trackless', desc: 'Four ride systems in one attraction, and widely called the most ambitious thing the company has ever built.',
+        href: 'https://disneyworld.disney.go.com/attractions/hollywood-studios/star-wars-rise-of-the-resistance/', link: 'disneyworld.disney.go.com', meta: 'Anaheim · Orlando' },
+    ] },
+
+  { id: 'numbers', kind: 'tiles', title: 'The Numbers', note: 'the scale of it',
+    items: [
+      { title: 'Opening day, 1955', accent: '#9fd0ff', sub: 'A disaster', desc: 'Counterfeit tickets, a gas leak, tarmac still setting in the heat. Walt called it Black Sunday, and it recovered inside a month.' },
+      { title: 'Twice Manhattan', accent: '#7fd0ff', sub: 'Walt Disney World', desc: 'Around a hundred square kilometres in Florida, bought quietly through shell companies so the price would not move.' },
+      { title: 'Most visited park', accent: '#f0c840', sub: 'Magic Kingdom', desc: 'Roughly seventeen million people a year, more than any other theme park on earth.' },
+      { title: '1937', accent: '#e0a0d0', sub: 'Snow White', desc: 'Called Disney\u2019s Folly right up until it became the highest-grossing film in the world.' },
+      { title: '100 years', accent: '#c9a05f', sub: '1923 to 2023', desc: 'Started as the Disney Brothers Cartoon Studio in a garage in Los Angeles.' },
+      { title: '12 parks', accent: '#5fd0a0', sub: 'Six resorts', desc: 'Plus a cruise line, two private islands, and a seventh resort under discussion more or less permanently.' },
+    ] },
+
   { id: 'eras', kind: 'timeline', title: 'The Animation Eras', note: '1937 – now',
     items: [
       { when: '1937 – 1942', title: 'The Golden Age', desc: 'Snow White, Pinocchio, Fantasia, Dumbo, Bambi. Five films that invented the form and nearly bankrupted the studio.' },
