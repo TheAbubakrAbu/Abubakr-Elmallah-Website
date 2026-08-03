@@ -1,6 +1,6 @@
-/* scramble.js — decode/scramble text on load (hero) and on hover (email) */
+/* scramble.js: decode/scramble text on load (hero) and on hover (email) */
 (function scramble() {
-  const glyphs = '!<>-_\\/[]{}—=+*^?#________ABCDEFGHIJKLMNPQRSTUVWXYZ0123456789';
+  const glyphs = '!<>-_\\/[]{}, =+*^?#________ABCDEFGHIJKLMNPQRSTUVWXYZ0123456789';
   const rand = arr => arr[Math.floor(Math.random() * arr.length)];
 
   function scrambleTo(el, finalText, frames = 38) {
@@ -36,7 +36,7 @@
   });
 
   document.querySelectorAll('[data-scramble-hover]').forEach(el => {
-    // prefer the stashed text — for elements that also load-scramble, the
+    // prefer the stashed text: for elements that also load-scramble, the
     // visible text has already been cleared by the loop above
     const text = el.dataset.scrambleText || el.textContent.trim();
     let last = -Infinity;

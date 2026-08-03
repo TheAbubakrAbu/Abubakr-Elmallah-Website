@@ -1,0 +1,276 @@
+/* ============================================================
+   fandom.css: the franchise tiles on /franchises/
+   Every tile is type + a drawn emblem. No studio logos, no
+   posters, no photographs: each lettering style below is a nod
+   built out of the fonts already on the machine.
+   ============================================================ */
+
+.fandoms { padding-bottom: 4rem; }
+.fandoms .fr-lede {
+  max-width: 70ch; margin: -0.4rem 0 2.4rem;
+  color: var(--ink-dim); font-size: 0.98rem; line-height: 1.75;
+}
+.fandoms .fr-lede b { color: var(--gold); font-weight: 500; }
+
+.subsec--fr { color: var(--gold); }
+.subsec--fr .fr-count {
+  order: 3; color: var(--mute); letter-spacing: 0.1em;
+  border: 1px solid var(--line); border-radius: 100px; padding: 0.15rem 0.6rem;
+}
+
+.fr-grid {
+  display: grid; gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+}
+.fr-group--core      .fr-grid { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 900px) { .fr-group--core .fr-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .fr-group--core .fr-grid { grid-template-columns: 1fr; } }
+.fr-group--primary   .fr-grid { grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); }
+.fr-group--tertiary  .fr-grid { grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); }
+.fr-group + .fr-group { margin-top: 0.6rem; }
+
+/* ───────────── tile ───────────── */
+.fr-card {
+  display: flex; flex-direction: column; overflow: hidden;
+  border: 1px solid var(--line); border-radius: 18px;
+  background: rgba(8, 8, 12, 0.55);
+  transition: transform .45s var(--ease), border-color .45s, box-shadow .45s;
+  content-visibility: auto; contain-intrinsic-size: auto 300px;
+}
+.fr-card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--c1) 45%, transparent);
+  box-shadow: 0 24px 52px -30px #000, 0 0 44px -26px var(--c1);
+}
+
+/* the plate the name sits on */
+.fr-plate {
+  position: relative; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0.7rem;
+  min-height: 150px; padding: 1.6rem 1.2rem;
+  text-align: center; color: var(--c1);
+  background:
+    radial-gradient(110% 90% at 50% 0%, color-mix(in srgb, var(--c1) 12%, transparent), transparent 62%),
+    linear-gradient(170deg, var(--c2), #06070a 78%);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+.fr-group--core .fr-plate { min-height: 210px; }
+.fr-group--primary .fr-plate { min-height: 170px; }
+.fr-group--tertiary .fr-plate { min-height: 130px; }
+.fr-plate::before {                       /* faint scan texture, keeps it from going flat */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(255,255,255,.025) 0 1px, transparent 1px 4px);
+  opacity: .6;
+}
+.fr-glyph {
+  width: 30px; height: 30px; flex: none; opacity: .9;
+  transition: transform .5s var(--ease), opacity .4s;
+}
+.fr-group--core .fr-glyph { width: 42px; height: 42px; }
+.fr-card:hover .fr-glyph { transform: translateY(-2px) scale(1.12); opacity: 1; }
+
+.fr-enter {
+  position: absolute; right: 0.8rem; bottom: 0.7rem;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--c1); opacity: 0;
+  transition: opacity .35s;
+}
+.fr-card:hover .fr-enter { opacity: .85; }
+
+.fr-body { padding: 1rem 1.1rem 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+.fr-desc { font-size: 0.84rem; line-height: 1.6; color: var(--ink-dim); }
+.fr-meta {
+  margin-top: auto; padding-top: 0.4rem;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+/* ───────────── lettering ─────────────
+   The base: everything is one line of type, then each franchise bends it. */
+.fr-name {
+  position: relative; z-index: 1; display: block;
+  font-family: var(--serif); font-weight: 700; font-size: 1.34rem;
+  line-height: 1.15; letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.fr-group--tertiary .fr-name { font-size: 1.14rem; }
+.fr-group--core .fr-name { font-size: 1.7rem; }
+
+/* stacks that exist on most machines, with honest fallbacks */
+.wm--starwars {
+  font-family: var(--serif); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; text-shadow: 0 0 26px rgba(255,232,31,.45);
+}
+.wm--potter {
+  font-family: Georgia, "Times New Roman", serif; font-weight: 700;
+  letter-spacing: 0.01em; text-shadow: 0 2px 18px rgba(217,180,95,.4);
+}
+.wm--avengers {
+  font-family: Impact, Haettenschweiler, "Arial Narrow", sans-serif; font-weight: 400;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.wm--minecraft {
+  font-family: var(--mono); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.02em; text-shadow: 3px 3px 0 #1d2a12;
+}
+.wm--pirates {
+  font-family: Georgia, "Times New Roman", serif; font-weight: 400;
+  font-variant: small-caps; letter-spacing: 0.09em;
+  text-shadow: 0 2px 14px rgba(0,0,0,.8);
+}
+.wm--jurassic {
+  font-family: Impact, Haettenschweiler, "Arial Narrow", sans-serif;
+  text-transform: uppercase; letter-spacing: 0.03em;
+  -webkit-text-stroke: 1px #120a04;
+}
+.wm--stranger {
+  font-family: Georgia, "Times New Roman", serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  text-shadow: 0 0 6px rgba(232,38,29,.9), 0 0 22px rgba(232,38,29,.7), 0 0 44px rgba(232,38,29,.4);
+}
+.wm--thrones {
+  font-family: Copperplate, "Copperplate Gothic Light", Georgia, serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.16em; font-size: 1.16rem;
+  background: linear-gradient(180deg, #f2f6fa, #8b98a5 55%, #dfe7ee);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.wm--atla {
+  font-family: Papyrus, "Bradley Hand", Georgia, fantasy; font-weight: 400;
+  letter-spacing: 0.03em; font-size: 1.2rem;
+}
+.wm--reddead {
+  font-family: "American Typewriter", "Courier New", var(--mono); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.wm--ninjago {
+  font-family: var(--serif); font-weight: 700; font-style: italic;
+  text-transform: uppercase; letter-spacing: 0.05em; transform: skewX(-7deg);
+  background: linear-gradient(180deg, #ffe9a8, #e0b040 60%, #a87a20);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.wm--simpsons {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.01em;
+  text-shadow: 3px 3px 0 #1a3a80;
+}
+.wm--office {
+  font-family: var(--sans); font-weight: 600; letter-spacing: 0.02em;
+}
+.wm--office::after { content: "."; color: var(--c1); }
+.wm--boys {
+  font-family: Impact, Haettenschweiler, "Arial Narrow", sans-serif;
+  text-transform: uppercase; letter-spacing: 0.02em; transform: skewX(-5deg);
+}
+.wm--batman {
+  font-family: Impact, Haettenschweiler, "Arial Narrow", sans-serif;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  background: linear-gradient(180deg, #eef2f6, #7f8894);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.wm--spiderman {
+  font-family: var(--serif); font-weight: 700; font-style: italic;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  -webkit-text-stroke: 1px #14060a;
+}
+.wm--pokemon {
+  font-family: var(--serif); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.03em; transform: skewX(-6deg);
+  -webkit-text-stroke: 1.4px #2b4b9b;
+  paint-order: stroke fill;
+}
+.wm--fnaf {
+  font-family: var(--mono); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; font-size: 1.02rem;
+  animation: fr-flicker 6s steps(1, end) infinite;
+}
+@keyframes fr-flicker {
+  0%, 78%, 100% { opacity: 1; }
+  79% { opacity: .35; } 80% { opacity: 1; }
+  86% { opacity: .5; }  87% { opacity: 1; }
+}
+.wm--fortnite {
+  font-family: Futura, "Century Gothic", "Trebuchet MS", var(--sans); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; font-style: italic;
+  background: linear-gradient(120deg, #8fd0ff, #6f7fff 60%, #b06fff);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.wm--indiana {
+  font-family: Georgia, "Times New Roman", serif; font-weight: 700;
+  font-variant: small-caps; letter-spacing: 0.08em;
+}
+.wm--parks {
+  font-family: "Trebuchet MS", var(--sans); font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.wm--parks::after {
+  content: ""; display: block; width: 46px; height: 3px; margin: 0.45rem auto 0;
+  background: var(--c1); border-radius: 2px; opacity: .8;
+}
+.wm--lotr {
+  font-family: Copperplate, "Copperplate Gothic Light", Georgia, serif; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.18em; font-size: 1.02rem;
+}
+.wm--kungfu {
+  font-family: "Bradley Hand", "Brush Script MT", "Comic Sans MS", cursive; font-weight: 700;
+  letter-spacing: 0.01em; font-size: 1.34rem;
+}
+.wm--avatar {
+  font-family: Papyrus, "Bradley Hand", Georgia, fantasy; font-weight: 400;
+  text-transform: uppercase; letter-spacing: 0.22em; font-size: 1.2rem;
+  text-shadow: 0 0 20px rgba(95,214,224,.5);
+}
+.wm--invincible {
+  font-family: Impact, Haettenschweiler, "Arial Narrow", sans-serif;
+  text-transform: uppercase; letter-spacing: 0.03em;
+  -webkit-text-stroke: 1.4px #2a3a7a; paint-order: stroke fill;
+}
+.wm--percy {
+  font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-style: italic;
+  letter-spacing: 0.01em;
+}
+.wm--dune {
+  font-family: var(--sans); font-weight: 300; text-transform: uppercase;
+  letter-spacing: 0.42em; font-size: 1.02rem; text-indent: 0.42em;
+}
+
+.wm--lego {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  text-shadow: 2px 2px 0 #d01012, 4px 4px 0 rgba(0,0,0,.5);
+}
+.wm--disney {
+  font-family: "Snell Roundhand", "Brush Script MT", "Bradley Hand", cursive;
+  font-weight: 700; font-style: italic; font-size: 1.7rem; letter-spacing: 0.01em;
+  text-shadow: 0 0 24px rgba(159,208,255,.5);
+}
+.wm--universal {
+  font-family: var(--sans); font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.2em; font-size: 1.02rem;
+  background: linear-gradient(180deg, #eaf2ff, #7f9ec4 60%, #dce8f8);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* Breaking Bad writes its own two elements */
+.wm--breakingbad {
+  font-family: var(--sans); font-weight: 500; text-transform: lowercase;
+  letter-spacing: 0.01em; color: var(--ink); font-size: 1.16rem;
+}
+.bb-tile {
+  display: inline-flex; flex-direction: column; align-items: flex-start;
+  vertical-align: -0.32em; font-style: normal;
+  padding: 0.22rem 0.34rem 0.16rem; margin-right: 0.06em;
+  border-radius: 3px; background: var(--c1); color: #08120c;
+  line-height: 1;
+}
+.bb-tile b { font-weight: 700; font-size: 1.05rem; }
+.bb-tile em { font-style: normal; font-size: 0.5rem; opacity: .75; margin-top: 1px; }
+
+@media (prefers-reduced-motion: reduce) { .wm--fnaf { animation: none; } }
+@media (max-width: 560px) {
+  .fr-grid,
+  .fr-group--primary .fr-grid,
+  .fr-group--tertiary .fr-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .fr-plate, .fr-group--core .fr-plate, .fr-group--primary .fr-plate { min-height: 120px; padding: 1.1rem 0.8rem; }
+  .fr-name, .fr-group--core .fr-name, .fr-group--primary .fr-name { font-size: 1.02rem; }
+}

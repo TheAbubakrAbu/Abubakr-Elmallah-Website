@@ -1,12 +1,12 @@
-/* cards.js — renders app/bot cards from APP_CARDS (see apps-data.js).
+/* cards.js: renders app/bot cards from APP_CARDS (see apps-data.js).
 
    Markup parity: produces the exact same .app-card structure the pages used to
    hand-write, so cardlink.js / tilt.js / reveal.js / gallery.js keep working.
 
-   Usage in a page — give a grid the IDs to render, in order:
+   Usage in a page: give a grid the IDs to render, in order:
      <div class="apps-grid" data-cards="zotfinder,uci-now,uci-esports,peterplate"></div>
    Add the `data-cards-cat` attribute to also show each card's theme pill
-   ("Star Wars ↗" / "Islamic ↗") — used on the projects catalog, omitted on the
+   ("Star Wars ↗" / "Islamic ↗"): used on the projects catalog, omitted on the
    themed pages. This file must load AFTER apps-data.js and BEFORE
    reveal.js / tilt.js / cardlink.js so those enhancers see the cards. */
 (function () {

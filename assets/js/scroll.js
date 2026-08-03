@@ -1,4 +1,4 @@
-/* scroll.js — scroll-driven hero (home) + a scroll-progress fill in the left rail */
+/* scroll.js: scroll-driven hero (home) + a scroll-progress fill in the left rail */
 (function scrollFx() {
   const railFill = document.getElementById('railFill');
   const lines = document.querySelectorAll('.hero .display .line');

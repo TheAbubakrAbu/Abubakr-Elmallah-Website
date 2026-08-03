@@ -1,5 +1,13 @@
-/* intro.js — per-page launch animation.
-   Type comes from <body data-intro="home|starwars|alislam|projects|work|school">; default = "veil". */
+/* intro.js: per-page launch animation.
+   Type comes from <body data-intro="home|starwars|alislam|projects|work|school">; default = "veil".
+
+   Two rules keep it from becoming friction:
+     1. A page only gets a launch screen if it owns one. Pages that borrow
+        another page's skin (work, franchises, education) and the generic
+        "veil" fall straight through with no animation at all.
+     2. Each launch screen plays at most once per browsing session. Walking
+        into a section, out to a page inside it, and back again is instant the
+        second time. Reload the tab (or open a new one) to see them again. */
 (function intro() {
   // Instant cover (inline-styled in the HTML) hides the page from the very first paint so the
   // real content never flashes before the launch overlay mounts. Drop it the moment we no longer
@@ -12,7 +20,19 @@
   if (type === 'none') { dropCover(); return; }   // pages that opt out of the launch animation (e.g. résumé)
 
   // some pages borrow another page's intro styling (mosaic = projects, photo fan = school)
-  const skin = { work: 'projects', franchises: 'projects', education: 'school' }[type] || type;
+  const BORROWED = { work: 'projects', franchises: 'projects', education: 'school' };
+
+  // rule 1: no launch screen unless this page has one of its own
+  if (type === 'veil' || BORROWED[type]) { dropCover(); return; }
+
+  // rule 2: once per session, per launch screen
+  const KEY = 'ae-intro-seen';
+  let seen = [];
+  try { seen = JSON.parse(sessionStorage.getItem(KEY)) || []; } catch (e) { seen = []; }
+  if (seen.indexOf(type) !== -1) { dropCover(); return; }
+  try { sessionStorage.setItem(KEY, JSON.stringify(seen.concat(type))); } catch (e) { /* private mode */ }
+
+  const skin = BORROWED[type] || type;
 
   const ov = document.createElement('div');
   ov.className = 'intro intro--' + skin;
@@ -79,14 +99,14 @@
   document.body.appendChild(ov);
   document.documentElement.classList.add('intro-lock');
   requestAnimationFrame(() => ov.classList.add('run'));
-  dropCover();   // overlay now covers the screen — safe to remove the static cover
+  dropCover();   // overlay now covers the screen: safe to remove the static cover
 
   if (type === 'starwars') {
     // One hyperspace jump: warp in, fade the starfield to black, then dismiss.
     const stopWarp = warp(ov.querySelector('.intro-stars'));
     setTimeout(() => ov.classList.add('warp-out'), 1100);   // fade the starfield to black (no second warp)
     setTimeout(() => {
-      stopWarp();                                           // starfield is black now — kill the canvas loop
+      stopWarp();                                           // starfield is black now, kill the canvas loop
       ov.classList.add('is-done');                          // dismiss the (now black) overlay
       document.documentElement.classList.remove('intro-lock');
       setTimeout(() => ov.remove(), 550);

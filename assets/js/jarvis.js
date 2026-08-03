@@ -1,4 +1,4 @@
-/* jarvis.js — drives the /jarvis/ HUD: boot sequence, chronometer, gauges,
+/* jarvis.js: drives the /jarvis/ HUD: boot sequence, chronometer, gauges,
    telemetry canvas, pointer reticle and parallax. No dependencies. */
 (function () {
   'use strict';
@@ -162,7 +162,7 @@
     });
   }
 
-  // decorative live load meter — HUD flavour, not a real measurement
+  // decorative live load meter: HUD flavour, not a real measurement
   function loadMeter() {
     var g = $('#jvLoad'), v = $('#jvLoadV');
     if (!g || reduce) return;

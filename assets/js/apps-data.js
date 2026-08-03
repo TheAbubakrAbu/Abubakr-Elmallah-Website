@@ -1,14 +1,14 @@
-/* apps-data.js — single source of truth for every app/bot "card".
+/* apps-data.js: single source of truth for every app/bot "card".
    Edit an app HERE once and it updates on every page that lists it
    (projects.html, star-wars.html, al-islam.html). cards.js does the rendering.
 
    Field reference (all optional unless noted):
-     icon      required — path under assets/img/  (e.g. 'apps/datapad.jpg')
-     alt       required — icon alt text
-     title     required — card heading
-     sub       required — small line under the title (date or tagline)
-     desc      required — paragraph
-     tags      required — footer tech line (use ' · ' separators)
+     icon      required, path under assets/img/  (e.g. 'apps/datapad.jpg')
+     alt       required, icon alt text
+     title     required, card heading
+     sub       required, small line under the title (date or tagline)
+     desc      required: paragraph
+     tags      required: footer tech line (use ' · ' separators)
      links     footer links: [{ label, href }]   (omit for a dead app)
      stackLinks true  -> stack the footer links vertically instead of side by side
      feature   true  -> adds .app-card--feature

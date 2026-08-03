@@ -1,7 +1,7 @@
-/* cardlink.js — make a whole card act like a link to its primary destination.
+/* cardlink.js: make a whole card act like a link to its primary destination.
    A transparent stretched <a> overlay covers the card, so a left-click anywhere
    navigates AND a right-click anywhere offers the browser's native
-   "Copy link address" — just like clicking the real link. Inner links
+   "Copy link address": just like clicking the real link. Inner links
    (GitHub, App Store, image popups, category tags) sit above the overlay and
    keep their own behavior. */
 (function cardLinks() {
@@ -12,7 +12,7 @@
 
     card.classList.add('is-clickable');
 
-    // a real anchor stretched over the whole card — gives native navigation
+    // a real anchor stretched over the whole card, gives native navigation
     // and the native right-click "Copy link address" menu item
     const overlay = document.createElement('a');
     overlay.className = 'card-link-overlay';

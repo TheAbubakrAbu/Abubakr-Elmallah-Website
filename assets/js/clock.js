@@ -1,4 +1,4 @@
-/* clock.js — live Pacific-time clock for the left rail + back-to-top */
+/* clock.js: live Pacific-time clock for the left rail + back-to-top */
 (function clock() {
   const el = document.getElementById('clock');
   if (el) {

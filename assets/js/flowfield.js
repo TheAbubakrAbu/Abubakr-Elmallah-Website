@@ -19,8 +19,15 @@
     work:       { line: [47, 127, 214], head: [95, 163, 236] },
     franchises: { line: [120, 92, 24],  head: [245, 198, 60] },
     veil:       { line: [47, 127, 214], head: [63, 213, 137] },
+    /* the franchise fan pages, keyed off <body data-fan> */
+    sw:         { line: [120, 92, 24],  head: [255, 232, 31] },   // crawl yellow
+    hp:         { line: [110, 60, 20],  head: [211, 166, 37] },   // candlelight
+    mcu:        { line: [120, 40, 34],  head: [224, 72, 58] },    // Stark red
+    mc:         { line: [60, 100, 45],  head: [127, 191, 79] },   // grass green
+    potc:       { line: [110, 85, 45],  head: [216, 176, 106] },  // lantern gold
+    jp:         { line: [120, 60, 24],  head: [224, 100, 42] },   // amber
   };
-  const theme = THEMES[document.body.dataset.intro] || THEMES.veil;
+  const theme = THEMES[document.body.dataset.fan || document.body.dataset.intro] || THEMES.veil;
   const rgba = (c, a) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
 
   /* pitch follows the CSS HUD grid so the traces sit exactly on it */

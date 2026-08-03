@@ -1,4 +1,4 @@
-/* magnetic.js — elements drift toward the cursor */
+/* magnetic.js: elements drift toward the cursor */
 (function magnetic() {
   if (!fine || reduceMotion) return;
   document.querySelectorAll('[data-magnetic]').forEach(el => {

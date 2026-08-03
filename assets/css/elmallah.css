@@ -1,17 +1,17 @@
-/* elmallah.css — E.L.M.A.L.L.A.H. holoterminal (/elmallah/).
+/* elmallah.css: E.L.M.A.L.L.A.H. holoterminal (/elmallah/).
    Sibling to jarvis.css but a different machine entirely: angular hex-cut panels
    instead of circles, a projected holocron instead of an arc reactor, and the
-   site's own tri-colour — UCI blue, Trabuco gold, Islamic green — instead of cyan. */
+   site's own tri-colour: UCI blue, Trabuco gold, Islamic green: instead of cyan. */
 
 :root {
-  --b:       #5fa3ec;   /* UCI blue — primary */
+  --b:       #5fa3ec;   /* UCI blue: primary */
   --b-hi:    #cfe6ff;
   --b-mid:   rgba(95, 163, 236, 0.55);
   --b-dim:   rgba(95, 163, 236, 0.26);
   --b-faint: rgba(95, 163, 236, 0.11);
-  --y:       #f5c63c;   /* Trabuco gold — accent */
+  --y:       #f5c63c;   /* Trabuco gold: accent */
   --y-dim:   rgba(245, 198, 60, 0.5);
-  --g:       #ffd76a;   /* light gold — status OK */
+  --g:       #ffd76a;   /* light gold: status OK */
   --g-dim:   rgba(255, 215, 106, 0.45);
   --bg:      #03070d;
   --panel:   linear-gradient(158deg, rgba(95,163,236,0.075), rgba(3,7,13,0.92));
@@ -125,7 +125,7 @@ body.el.is-live .el-shell { opacity: 1; }
 }
 @media (max-width: 720px) { .el-spine { display: none; } }
 
-/* persistent exit — pinned past the spine */
+/* persistent exit, pinned past the spine */
 .el-home {
   position: fixed; z-index: 9; top: 14px; left: calc(clamp(2.2rem, 4vw, 3.4rem) + 12px);
   display: inline-flex; align-items: center; gap: 0.42rem;
@@ -220,7 +220,7 @@ body.el.is-live .el-panel { animation: panel-in .7s var(--ease) forwards; }
 .el-caret { display: inline-block; width: 6px; height: 0.95em; background: var(--g); vertical-align: -0.12em; animation: caret 1s steps(1) infinite; }
 @keyframes caret { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
 
-/* bars — angled ends */
+/* bars, angled ends */
 .el-meters { display: flex; flex-direction: column; gap: 0.6rem; }
 .el-meter-top {
   display: flex; justify-content: space-between;
@@ -517,7 +517,7 @@ body.el.is-live .el-holo { animation: holo-in 1.1s var(--ease) .2s forwards, hol
   100% { opacity: 0; transform: translateY(-190px) translateX(var(--dx, 0px)) scale(1.3); }
 }
 
-/* wordmark glitch — RGB split, rare and quick */
+/* wordmark glitch: RGB split, rare and quick */
 .el-holo-cap b { position: relative; display: inline-block; }
 .el-holo-cap b::before, .el-holo-cap b::after {
   content: attr(data-glitch); position: absolute; inset: 0; opacity: 0; pointer-events: none;
