@@ -25,7 +25,8 @@
 .fr-group--core      .fr-grid { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 900px) { .fr-group--core .fr-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 620px) { .fr-group--core .fr-grid { grid-template-columns: 1fr; } }
-.fr-group--primary   .fr-grid { grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); }
+.fr-group--primary   .fr-grid,
+.fr-group--parks     .fr-grid { grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); }
 .fr-group--tertiary  .fr-grid { grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); }
 .fr-group + .fr-group { margin-top: 0.6rem; }
 
@@ -56,7 +57,8 @@
   overflow: hidden;
 }
 .fr-group--core .fr-plate { min-height: 210px; }
-.fr-group--primary .fr-plate { min-height: 170px; }
+.fr-group--primary .fr-plate,
+.fr-group--parks .fr-plate { min-height: 170px; }
 .fr-group--tertiary .fr-plate { min-height: 130px; }
 .fr-plate::before {                       /* faint scan texture, keeps it from going flat */
   content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -249,6 +251,19 @@
   letter-spacing: 0.2em; font-size: 1.02rem;
   background: linear-gradient(180deg, #eaf2ff, #7f9ec4 60%, #dce8f8);
   -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+.wm--jl {
+  font-family: var(--serif); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; font-size: 1.14rem;
+  background: linear-gradient(180deg, #eaf2ff, #5f9fe0 58%, #d8b45f);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+.wm--knotts {
+  font-family: "American Typewriter", Georgia, serif; font-weight: 700;
+  font-variant: small-caps; letter-spacing: 0.07em;
+  text-shadow: 0 2px 12px rgba(0,0,0,.75);
 }
 
 /* Breaking Bad writes its own two elements */

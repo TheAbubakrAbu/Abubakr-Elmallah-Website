@@ -10,6 +10,60 @@ window.FAN_PAGE = { sections: [
       { num: '05', title: 'The Final Season', sub: '2025', desc: 'Back to Hawkins, with the gates open and the party grown up.' },
     ] },
 
+
+  { id: 's1', season: 1, kind: 'cards', title: 'Season One', note: '1983 · the Demogorgon',
+    lede: 'A boy misses a turn on the way home from a campaign and the whole town starts pulling at a thread.',
+    items: [
+      { title: 'The Demogorgon', sub: 'Named off a character sheet', tag: 'The thing', desc: 'A petal-faced hunter with no eyes, drawn to blood and to sound. The kids name it after a monster in their campaign because nobody has a better word.', meta: 'Mirkwood · the gate' },
+      { title: 'Eleven', sub: 'Subject 011', tag: 'The girl', desc: 'Walks out of the woods in a stolen jacket with a shaved head and no idea what a friend is. Closes the gate at the cost of herself.', meta: 'Eggos · the void' },
+      { title: 'The wall of lights', sub: 'Joyce', tag: 'The mother', desc: 'Everyone thought she was falling apart. She was reading an alphabet off a string of bulbs, and she was right.', meta: 'The Byers house' },
+      { title: 'Hawkins Lab', sub: 'Dr Brenner', tag: 'The cause', desc: 'A sanctioned programme with a gate in the basement, and a director the children were made to call Papa.', meta: 'Department of Energy' },
+      { title: 'Barb', sub: 'Barbara Holland', tag: 'The cost', desc: 'Taken at the pool in episode two, and the show spends a season and a half admitting that mattered.', meta: 'Justice for Barb' },
+      { title: 'The campaign', sub: 'The frame', tag: 'The kids', desc: 'The whole season is structured like the D&D game it opens on: a party, a monster, a bad roll, and a plan made on the fly.', meta: 'The Wheeler basement' },
+    ] },
+
+  { id: 's2', season: 2, kind: 'cards', title: 'Season Two', note: '1984 · the fields turn',
+    lede: 'A year later. The harvest is rotting, the tunnels are spreading under the farmland, and Will is bringing something back with him.',
+    items: [
+      { title: 'The Mind Flayer', sub: 'The shadow', tag: 'The thing', desc: 'Not a creature so much as a weather system with a will. It thinks of everything below it as a limb, including Will.', meta: 'The Upside Down' },
+      { title: 'The tunnels', sub: 'Under the farms', tag: 'The spread', desc: 'A root system crawling out from the gate, killing the crops above it. The pumpkin fields going black is the first sign anyone can actually see.', meta: 'Merrill\u2019s farm' },
+      { title: 'Dart', sub: 'A polliwog', tag: 'The pet', desc: 'Dustin adopts something he finds in the bins, feeds it nougat, and it grows into exactly what you would fear.', meta: 'D\u2019Artagnan' },
+      { title: 'Max and Billy', sub: 'New in town', tag: 'The arrivals', desc: 'A stepsister who beats the arcade high score under the name MADMAX, and a stepbrother the show is honest about.', meta: 'Dig Dug · the Camaro' },
+      { title: 'Bob Newby', sub: 'Superhero', tag: 'The best of them', desc: 'The kindest adult the series ever wrote, and he works out the maze from a drawing.', meta: 'RadioShack' },
+      { title: 'The Snow Ball', sub: 'The last scene', tag: 'The ending', desc: 'A school dance, the party in borrowed suits, and one shot of the Mind Flayer standing over the school from the other side.', meta: 'Hawkins Middle' },
+    ] },
+
+  { id: 's3', season: 3, kind: 'cards', title: 'Season Three', note: '1985 · Starcourt, and the fair',
+    lede: 'The brightest the show ever looks. A new mall has killed the old high street, the fair is in town, and there is a Soviet base under the food court.',
+    items: [
+      { title: 'Starcourt Mall', sub: 'The centrepiece', tag: 'The place', desc: 'Neon, fountains, a food court and a cinema, shot like a advert for the decade. It is also a front, and it burns down by the end.', meta: 'Gap · Sam Goody · Scoops Ahoy' },
+      { title: 'Scoops Ahoy', sub: 'Steve and Robin', tag: 'The pairing', desc: 'A sailor hat, an ice cream counter, and the best new double act the show has produced.', meta: 'The USS Butterscotch' },
+      { title: 'The Fun Fair', sub: 'Independence Day', tag: 'The setpiece', desc: 'Ferris wheel, ring toss, funnel cake, and the whole town in one field while the finale detonates under the mall.', meta: 'Hawkins fairground' },
+      { title: 'The Flayed', sub: 'Built from rats', tag: 'The thing', desc: 'The Mind Flayer rebuilds itself out of whatever it can take apart, which turns the horror body-shaped and much closer.', meta: 'Brimborn Steel Works' },
+      { title: 'The Russians', sub: 'Under the mall', tag: 'The plot', desc: 'A machine trying to force the gate open again, several floors below the shoppers, reached by a lift and a code cracked in a mall food court.', meta: 'The keys' },
+      { title: 'Hopper and Joyce', sub: 'The heart', tag: 'The cost', desc: 'A dinner that never happens, an argument in a car, and a letter read at the end that lands harder than any monster in the season.', meta: 'Three inches' },
+    ] },
+
+  { id: 's4', season: 4, kind: 'cards', title: 'Season Four', note: '1986 · Vecna',
+    lede: 'The horror stops being a creature and becomes a person with a plan, and the show finally explains where the gate came from.',
+    items: [
+      { title: 'Vecna', sub: 'Henry Creel · One', tag: 'The villain', desc: 'The first subject, the first gate, and the intelligence behind everything since. The first villain the series lets speak.', meta: 'Creel House · 1959' },
+      { title: 'The curse', sub: 'Four chimes', tag: 'The rules', desc: 'A headache, a nosebleed, a clock striking four, and a victim walking into a trance in front of their friends.', meta: 'The grandfather clock' },
+      { title: 'Running Up That Hill', sub: 'Max', tag: 'The escape', desc: 'A song on a Walkman as a lifeline, and four minutes of television that put a 1985 record back at the top of the charts in 2022.', meta: 'Kate Bush' },
+      { title: 'Eddie Munson', sub: 'Hellfire Club', tag: 'The outsider', desc: 'Accused by the town for something the town cannot see, and he plays a guitar solo in the Upside Down as a distraction anyway.', meta: 'Master of Puppets' },
+      { title: 'The Nina project', sub: 'Brenner again', tag: 'The past', desc: 'Eleven recovering her memories in a tank in the desert, and the massacre at the lab told properly at last.', meta: 'Nevada' },
+      { title: 'Four gates', sub: 'The ending', tag: 'The break', desc: 'Hawkins splits open along a fault line and the two worlds stop being separate. The first ending that is not a win.', meta: 'March 1986' },
+    ] },
+
+  { id: 's5', season: 5, kind: 'cards', title: 'Season Five', note: '2025 · the last one',
+    lede: 'Hawkins is a quarantine zone, the gates are open, and the kids from the first season are old enough to be the adults in this one.',
+    items: [
+      { title: 'The town, sealed', sub: 'After the split', tag: 'The setting', desc: 'A military cordon, a curfew, and a place that has stopped pretending nothing is happening under it.', meta: 'Hawkins, 1987' },
+      { title: 'The party, grown', sub: 'Eight years on screen', tag: 'The cast', desc: 'The children who were on bikes in 1983 finish the story as the people responsible for it, which is the whole point of running it in real time.', meta: 'Since 2016' },
+      { title: 'Vecna, unfinished', sub: 'The last piece', tag: 'The villain', desc: 'The one thread the fourth season deliberately left hanging, and the reason the split ending worked.', meta: 'One' },
+      { title: 'Where it ends', sub: 'The Upside Down', tag: 'The place', desc: 'Everything since 1983 has been about one town, one lab and one gate. It closes where it opened.', meta: 'Mirkwood' },
+    ] },
+
   { id: 'party', kind: 'cards', title: 'The Party', note: 'rule one: friends don’t lie',
     items: [
       { title: 'Eleven', sub: 'Jane Hopper', tag: '011', desc: 'Raised in a lab as a test subject, escapes into a world of Eggos and walkie-talkies, and closes gates with a nosebleed.', meta: 'Telekinetic · the void' },
@@ -19,7 +73,7 @@ window.FAN_PAGE = { sections: [
       { title: 'Will Byers', sub: 'The one who was taken', tag: 'Party', desc: 'Spends four seasons carrying what happened in the Upside Down, and feeling it before anyone else does.', meta: 'Castle Byers' },
       { title: 'Max Mayfield', sub: 'Zoomer', tag: 'Party', desc: 'Beats the arcade high score, then beats Vecna with a Kate Bush song on a Walkman.', meta: 'Skateboard · S2 onward' },
       { title: 'Jim Hopper', sub: 'Chief of police', tag: 'Adults', desc: 'A grieving small-town cop who becomes the closest thing Eleven has to a father.', meta: 'Cabin · three rules' },
-      { title: 'Joyce Byers', sub: 'Christmas lights', tag: 'Adults', desc: 'Everyone thought she was losing it. She was reading the alphabet off a wall, and she was right.', meta: 'Melvald’s General Store' },
+      { title: 'Joyce Byers', sub: 'The wall of bulbs', tag: 'Adults', desc: 'Everyone thought she was losing it. She was reading the alphabet off a wall, and she was right.', meta: 'Melvald’s General Store' },
       { title: 'Steve Harrington', sub: 'The nanny', tag: 'Adults', desc: 'Starts as the guy you dislike, ends up the guy holding a bat with nails in it in front of four kids.', meta: 'Scoops Ahoy · Family Video' },
       { title: 'Eddie Munson', sub: 'Hellfire Club', tag: 'S4', desc: 'The most metal thing on this list: a guitar solo in the Upside Down as a distraction.', meta: 'Master of Puppets' },
     ] },
@@ -39,7 +93,7 @@ window.FAN_PAGE = { sections: [
     items: [
       { title: 'Hawkins National Laboratory', sub: 'Department of Energy', tag: 'Front', desc: 'MKUltra with a state budget: Brenner, the tank, the children with numbers, and the gate they tore open under it.', meta: 'Est. 1953 · closed 1984' },
       { title: 'Starcourt Mall', sub: 'Opened 1985', tag: 'Season 3', desc: 'Scoops Ahoy, the food court, and a Soviet base under the floor. Burned down at the Fourth of July fair.', meta: 'Gap · Sam Goody · Orange Julius' },
-      { title: 'The Byers House', sub: 'Mirkwood', tag: 'Season 1', desc: 'Christmas lights, an axe, a bear trap, and a wall that a mother read the alphabet off.', meta: 'Where the wall is' },
+      { title: 'The Byers House', sub: 'Mirkwood', tag: 'Season 1', desc: 'A string of bulbs on the plaster, an axe, a bear trap, and a wall that a mother read an alphabet off.', meta: 'Where the wall is' },
       { title: 'The Wheeler Basement', sub: 'Campaign HQ', tag: 'All seasons', desc: 'The D&D table, the blanket fort, and the room where the party actually forms.', meta: 'Demogorgon, 1983' },
       { title: 'Castle Byers', sub: 'The fort', tag: 'Season 1', desc: 'Built out of scrap in the woods. The place Will hides, and the place Joyce finds what is left.', meta: 'Mirkwood woods' },
       { title: 'Creel House', sub: '1959', tag: 'Season 4', desc: 'The murders that were never solved, the grandfather clock, and where Vecna actually starts.', meta: 'Victor Creel' },

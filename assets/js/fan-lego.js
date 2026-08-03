@@ -27,6 +27,27 @@ window.FAN_PAGE = { sections: [
       { title: 'LEGO Architecture', sub: 'Since 2008', tag: 'Adult', desc: 'Landmarks in greys and tans, and the theme that proved the bricks could be a display object.', meta: 'Skylines' },
     ] },
 
+  { id: 'numbers', kind: 'tiles', title: 'The Numbers', note: 'the scale of the thing',
+    items: [
+      { title: '36,000 a minute', accent: '#ffd21f', sub: 'Elements moulded', desc: 'Across the factories in Billund, Hungary, Mexico, China and Vietnam, running more or less constantly.' },
+      { title: '18 in a million', accent: '#d01012', sub: 'Rejected', desc: 'The out of tolerance rate. Everything else clutches correctly with everything made since 1958.' },
+      { title: '400 billion', accent: '#0055bf', sub: 'Bricks produced', desc: 'Enough to build a tower to the moon, several times over, which somebody has of course calculated.' },
+      { title: 'Largest tyre maker', accent: '#00852b', sub: 'On earth', desc: 'By unit count, LEGO makes more tyres per year than any car manufacturer. They are very small tyres.' },
+      { title: '8 billion minifigures', accent: '#f2cd37', sub: 'Since 1978', desc: 'More minifigures than people, and each one has the same four centimetre body.' },
+      { title: 'One company', accent: '#ff8c00', sub: 'Still family owned', desc: 'The Kristiansen family has held it for four generations, which is why it can take twenty year decisions.' },
+    ] },
+
+  { id: 'century', kind: 'timeline', title: 'The Century', note: 'Billund, Denmark',
+    items: [
+      { when: '1932', title: 'A carpenter', desc: 'Ole Kirk Christiansen loses his joinery business in the depression and starts making wooden toys instead.' },
+      { when: '1934', title: 'The name', desc: 'From leg godt, Danish for play well. It also happens to read as I assemble in Latin, which the company found out later.' },
+      { when: '1949', title: 'Automatic Binding Bricks', desc: 'The first plastic bricks, hollow underneath, and they fall apart if you tip the model.' },
+      { when: '1958', title: 'The tube', desc: 'The patent that fixes the clutch, filed on 28 January at 1.58pm, a time the company still quotes.' },
+      { when: '1978', title: 'The minifigure and the System', desc: 'Yellow head, printed face, moving arms and legs, and themed lines built around them.' },
+      { when: '1998 to 2003', title: 'Nearly gone', desc: 'Overextended into clothing, watches, parks and video games. By 2003 it is losing money faster than any toy company in Europe.' },
+      { when: '2004 onward', title: 'Back to the brick', desc: 'A new chief executive cuts the element count by half, refocuses on the system, and the company becomes the largest toy manufacturer in the world.' },
+    ] },
+
   { id: 'sets', kind: 'rank', title: 'The Big Ones', note: 'by piece count',
     items: [
       { title: 'World Map', sub: '11,695 pieces · 2021', desc: 'A mosaic, and the largest LEGO set ever released by count.' },

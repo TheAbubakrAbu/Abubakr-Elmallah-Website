@@ -21,6 +21,29 @@ window.FAN_PAGE = { sections: [
       { title: 'Kwisatz Haderach', accent: '#e0c060', sub: 'The shortening of the way', desc: 'The one who can be in many places at once, and the thing the sisterhood spent ninety generations trying to control.' },
     ] },
 
+  { id: 'people', kind: 'cards', title: 'The People', note: 'House Atreides, and the ones waiting on Arrakis',
+    items: [
+      { title: 'Paul Atreides', sub: 'Muad\u2019Dib', tag: 'Atreides', desc: 'Fifteen at the start, trained by a Mentat, a swordmaster and a Bene Gesserit mother, and the books are clear that this is a warning rather than a triumph.', meta: 'Kwisatz Haderach' },
+      { title: 'Lady Jessica', sub: 'Bene Gesserit', tag: 'Atreides', desc: 'Told to bear a daughter and bore a son anyway, out of love, and broke a ninety generation programme doing it.', meta: 'The Voice' },
+      { title: 'Duke Leto', sub: 'The Red Duke', tag: 'Atreides', desc: 'Knows Arrakis is a trap, walks into it anyway because refusing is also a trap, and spends his last months trying to earn the Fremen.', meta: 'Caladan' },
+      { title: 'Chani', sub: 'Fremen', tag: 'Arrakis', desc: 'Sayyadina, fighter, and in Villeneuve\u2019s version the character who refuses the myth everybody else is building.', meta: 'Sietch Tabr' },
+      { title: 'Stilgar', sub: 'Naib', tag: 'Arrakis', desc: 'Leads Sietch Tabr, tests Paul properly rather than sentimentally, and slowly turns from sceptic into believer.', meta: 'Water discipline' },
+      { title: 'Baron Harkonnen', sub: 'Vladimir', tag: 'Harkonnen', desc: 'Runs the whole plot from a floating chair and is written to be genuinely repellent rather than charming.', meta: 'Giedi Prime' },
+      { title: 'Gurney and Duncan', sub: 'The swordmasters', tag: 'Atreides', desc: 'One teaches Paul to fight and to sing, the other dies buying him twenty seconds. Both come back in the sequels.', meta: 'Ginaz · the ballisets' },
+      { title: 'Alia', sub: 'Born aware', tag: 'Atreides', desc: 'Awakened in the womb by the water of life, and the price the family pays for the shortcut.', meta: 'St Alia of the Knife' },
+    ] },
+
+  { id: 'words', kind: 'tiles', title: 'The Vocabulary', note: 'Herbert borrowed heavily, and openly',
+    lede: 'A great deal of the language of Dune is Arabic and Islamic in origin, reshaped for a desert people ten thousand years from now. Reading it with that in mind changes the book considerably.',
+    items: [
+      { title: 'Lisan al-Gaib', accent: '#e0c060', sub: 'The voice from the outer world', desc: 'The offworld prophet of Fremen legend, and a title the Bene Gesserit planted centuries in advance for exactly this.' },
+      { title: 'Mahdi', accent: '#e0a050', sub: 'The one who will lead', desc: 'Used by the Fremen alongside Lisan al-Gaib. Herbert is explicit that both are seeded prophecy rather than revelation.' },
+      { title: 'Sietch', accent: '#c98040', sub: 'A place of assembly in danger', desc: 'The cave communities, hidden in rock, each holding millions of decalitres of water against a plan centuries long.' },
+      { title: 'Shai-Hulud', accent: '#d0a060', sub: 'Old Man of the Desert', desc: 'The worm, and also a way of swearing. The Fremen do not separate the animal from the religion.' },
+      { title: 'Kwisatz Haderach', accent: '#c0a0d0', sub: 'The shortening of the way', desc: 'From Hebrew rather than Arabic, and the only name in the book for what the sisterhood was actually breeding.' },
+      { title: 'Crysknife', accent: '#a8c0c8', sub: 'From a worm\u2019s tooth', desc: 'Drawn only when it will draw blood, and never shown to an outsider who leaves alive.' },
+    ] },
+
   { id: 'books', kind: 'timeline', title: 'The Books & The Films', note: 'Herbert, 1965 onward',
     items: [
       { when: '1965', title: 'Dune', desc: 'Rejected by twenty publishers and printed by a car-manual company. Now the best-selling science fiction novel ever written.' },

@@ -84,11 +84,16 @@ permalink: /franchises/star-wars/
     </div>
     <div class="fan-links">
       <a class="fan-link" href="/star-wars/" data-magnetic>The apps I built for it ↗</a>
-      <a class="fan-link" href="/star-wars/#planets" data-magnetic>The planet atlas ↗</a>
+      <a class="fan-link" href="#planets" data-magnetic>The planet atlas ↗</a>
       <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
     </div>
   </section>
 
+  <section class="planets" id="planets">
+    <h3 class="subsec subsec--fan reveal">Planets<span class="subsec-yr">Galactic Atlas</span></h3>
+    <p class="fan-lede reveal">Every world from the films, the shows and the games, sorted by era, the way my Datapad app sorts them. Each planet is drawn entirely in CSS: no images, just gradients, a rotating surface layer, and its own atmosphere. Pick an era, and hover one to scan it.</p>
+    <div id="planetAtlas"></div>
+  </section>
 
   <div id="fanBody"></div>
 
@@ -111,6 +116,7 @@ permalink: /franchises/star-wars/
 <script src="/assets/js/utils.js?v={{ site.time | date: '%s' }}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
 <script src="/assets/js/fan-sw.js?v={{ site.time | date: '%s' }}"></script>
+<script src="/assets/js/planets-data.js?v={{ site.time | date: '%s' }}"></script><script src="/assets/js/planets.js?v={{ site.time | date: '%s' }}"></script>
 <script src="/assets/js/fanpage.js?v={{ site.time | date: '%s' }}"></script>
 <script src="/assets/js/cursor.js?v={{ site.time | date: '%s' }}"></script>
 <script src="/assets/js/magnetic.js?v={{ site.time | date: '%s' }}"></script>

@@ -26,8 +26,8 @@ permalink: /franchises/stranger-things/
 </head>
 <body data-intro="none" data-fan="st">
 
-<!-- spores drifting up out of the Upside Down -->
-<div class="st-sky" aria-hidden="true"></div>
+<!-- one backdrop per season, crossfaded on scroll -->
+<div class="st-sky" aria-hidden="true"><span class="st-era st-era--1"></span><span class="st-era st-era--2"></span><span class="st-era st-era--3"></span><span class="st-era st-era--4"></span><span class="st-era st-era--5"></span></div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -70,7 +70,7 @@ permalink: /franchises/stranger-things/
     <a class="back-link" href="/franchises/" data-magnetic>← Back to franchises</a>
     <p class="fan-kicker"><span>Franchise · Primary · since 2016</span></p>
     <h1 class="fan-title">Stranger Things</h1>
-    <p class="fan-lede-hero">Eighties synth, a wall of Christmas lights, and kids on bikes. Five seasons, the party that grew up on screen, and every layer of the Upside Down in the order it showed up.</p>
+    <p class="fan-lede-hero">Eighties synth, a wall of bulbs on the plaster, and kids on bikes. Five seasons, one at a time, with the backdrop changing under you as you go: the party growing up, and every layer of the Upside Down in the order it showed up.</p>
     <div class="st-lights" aria-hidden="true"><i style="--b:#e8261d;animation-delay:-0.0s"></i><i style="--b:#f0c040;animation-delay:-0.4s"></i><i style="--b:#4fd07f;animation-delay:-0.8s"></i><i style="--b:#4f9fd0;animation-delay:-1.3s"></i><i style="--b:#e07ad0;animation-delay:-1.7s"></i><i style="--b:#f08030;animation-delay:-2.1s"></i><i style="--b:#8f6fd0;animation-delay:-2.5s"></i><i style="--b:#5fd0d0;animation-delay:-2.9s"></i></div>
     <div class="fan-links">
       <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
@@ -86,6 +86,7 @@ permalink: /franchises/stranger-things/
     <button class="st-flip" id="stFlip" type="button">Turn it upside down</button>
   </section>
   <script>document.getElementById("stFlip").addEventListener("click",function(){var b=document.body;b.classList.toggle("is-upside-down");this.textContent=b.classList.contains("is-upside-down")?"Right side up":"Turn it upside down";});</script>
+  <script>(function seasons(){var b=document.body;b.dataset.season="1";var secs=document.querySelectorAll("[data-season]");if(!secs.length)return;var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){b.dataset.season=e.target.dataset.season;}});},{rootMargin:"-45% 0px -45% 0px"});secs.forEach(function(s){io.observe(s);});})();</script>
 
   <div id="fanBody"></div>
 
@@ -108,6 +109,7 @@ permalink: /franchises/stranger-things/
 <script src="/assets/js/utils.js?v={{ site.time | date: '%s' }}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
 <script src="/assets/js/fan-st.js?v={{ site.time | date: '%s' }}"></script>
+
 <script src="/assets/js/fanpage.js?v={{ site.time | date: '%s' }}"></script>
 <script src="/assets/js/cursor.js?v={{ site.time | date: '%s' }}"></script>
 <script src="/assets/js/magnetic.js?v={{ site.time | date: '%s' }}"></script>

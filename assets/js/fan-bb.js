@@ -31,6 +31,24 @@ window.FAN_PAGE = { sections: [
       { title: 'Half Measures', accent: '#a06fd0', sub: 'S3E12', desc: 'Mike’s story, and then Walt driving over two dealers. Run.' },
     ] },
 
+  { id: 'craft', kind: 'tiles', title: 'The Craft', note: 'why it looks like nothing else on television',
+    items: [
+      { title: 'The cold opens', accent: '#4fbf7f', sub: 'Every episode', desc: 'A teddy bear in a pool, a fly, a corrido sung about Heisenberg. Half of them are flash-forwards you do not understand for a year.' },
+      { title: 'POV shots', accent: '#8fd0ff', sub: 'The signature', desc: 'Cameras mounted inside a barrel, a shovel, a roomba, a car boot. Objects watch the characters instead of the other way round.' },
+      { title: 'Colour coding', accent: '#f0c840', sub: 'Costume', desc: 'Every main character has a palette and it shifts with them. Walt drifts from beige to black across five seasons.' },
+      { title: 'The time-lapses', accent: '#c04a3a', sub: 'New Mexico', desc: 'Long lens desert skies between scenes, and the reason a show about a chemistry teacher feels enormous.' },
+      { title: 'Ozymandias', accent: '#a06fe0', sub: 'Directed by Rian Johnson', desc: 'Opens with a flashback to the first cook in the same spot, then takes everything apart in one hour.' },
+      { title: 'The foreshadowing', accent: '#5fd0d0', sub: 'Season two', desc: 'The pink bear turns up in four cold opens across a season before you learn what it is. Nothing on the show is accidental.' },
+    ] },
+
+  { id: 'after', kind: 'cards', title: 'The Rest Of It', note: 'the universe Gilligan kept building',
+    items: [
+      { title: 'Better Call Saul', sub: '2015 to 2022', tag: 'Prequel', desc: 'Six seasons on how Jimmy McGill becomes Saul Goodman, and a lot of people will tell you it is the better show. They have a case.', meta: 'Bob Odenkirk · Rhea Seehorn' },
+      { title: 'El Camino', sub: '2019', tag: 'Film', desc: 'What happens to Jesse in the hours after the finale. A quiet epilogue rather than a victory lap.', meta: 'Netflix' },
+      { title: 'Kim Wexler', sub: 'Saul\u2019s best invention', tag: 'Character', desc: 'Not in Breaking Bad at all, and now impossible to watch the original without wondering where she is.', meta: 'Created for the prequel' },
+      { title: 'The overlap', sub: 'Same universe', tag: 'Detail', desc: 'Gus, Mike, Tuco, Hector and the twins all cross over, and the prequel makes every one of them better in hindsight.', meta: 'Albuquerque' },
+    ] },
+
   { id: 'lines', kind: 'quotes', title: 'Lines', note: 'the ones that stuck',
     items: [
       { title: 'I am the one who knocks.', sub: 'Walter White' },

@@ -23,6 +23,26 @@ window.FAN_PAGE = { sections: [
       { title: 'Treehouse of Horror V', sub: 'S6E6', desc: 'The Shinning, Time and Punishment, and Nightmare Cafeteria in twenty-two minutes.' },
     ] },
 
+  { id: 'town', kind: 'cards', title: 'Springfield', note: 'state deliberately never given',
+    items: [
+      { title: "Moe's Tavern", sub: 'Walnut Street', tag: 'Bar', desc: 'The prank calls, the Love Tester, and a bartender whose whole character is that nobody comes here for the drinks.', meta: 'Est. as Moe\u2019s' },
+      { title: 'Kwik-E-Mart', sub: 'Apu Nahasapeemapetilon', tag: 'Shop', desc: 'Squishees, expired hot dogs, and a 24-hour clerk with a PhD in computer science.', meta: 'Thank you, come again' },
+      { title: 'Springfield Nuclear Power Plant', sub: 'Sector 7-G', tag: 'Work', desc: 'Three safety inspectors, one of whom is Homer, and a river that glows.', meta: 'Owned by C. M. Burns' },
+      { title: 'Springfield Elementary', sub: 'Principal Skinner', tag: 'School', desc: 'Asbestos, Groundskeeper Willie, and a teacher\u2019s lounge that has been on strike at least once.', meta: 'Home of the Atoms' },
+      { title: '742 Evergreen Terrace', sub: 'The house', tag: 'Home', desc: 'Two floors, one couch, and a garage that has been every kind of business at least once.', meta: 'The couch gag' },
+      { title: 'Krusty Burger', sub: 'Ribwich', tag: 'Food', desc: 'A clown\u2019s name on a burger chain, and the Ribwich tour that follows the meat availability.', meta: 'Krusty the Clown' },
+    ] },
+
+  { id: 'voices', kind: 'tiles', title: 'The Voices', note: 'six people, most of the town',
+    items: [
+      { title: 'Dan Castellaneta', accent: '#ffd21f', sub: 'Homer, Abe, Krusty, Barney, Willie', desc: 'The Homer voice started as a Walter Matthau impression and drifted into its own thing by season two.' },
+      { title: 'Julie Kavner', accent: '#7fd0ff', sub: 'Marge, Patty, Selma', desc: 'Records all three sisters, and the rasp is her actual voice.' },
+      { title: 'Nancy Cartwright', accent: '#f08030', sub: 'Bart, Nelson, Ralph, Todd', desc: 'Auditioned for Lisa, read Bart instead, and got the part in the room.' },
+      { title: 'Yeardley Smith', accent: '#5fd07f', sub: 'Lisa', desc: 'The only one of the six who voices a single character.' },
+      { title: 'Hank Azaria', accent: '#a06fe0', sub: 'Moe, Chief Wiggum, Comic Book Guy', desc: 'Wiggum is an Edward G. Robinson impression that nobody asked him to stop doing.' },
+      { title: 'Harry Shearer', accent: '#e04a3a', sub: 'Burns, Smithers, Flanders, Skinner', desc: 'Reads Burns and Smithers in the same scene, live, without a break.' },
+    ] },
+
   { id: 'lines', kind: 'quotes', title: 'Lines', note: 'permanently in the language',
     items: [
       { title: 'Ah, the Internet: is that thing still around?', sub: 'Homer Simpson' },

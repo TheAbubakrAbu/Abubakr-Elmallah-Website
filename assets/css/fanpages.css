@@ -416,6 +416,80 @@ body[data-fan="st"] { --a: #e8261d; }
   position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
   background: radial-gradient(80% 60% at 50% 0%, #2a0a0c 0%, #140708 45%, #060405 100%);
 }
+.st-era {                              /* one layer per season, crossfaded on scroll */
+  position: absolute; inset: 0; opacity: 0;
+  transition: opacity 1.1s ease;
+}
+body[data-season="1"] .st-era--1,
+body[data-season="2"] .st-era--2,
+body[data-season="3"] .st-era--3,
+body[data-season="4"] .st-era--4,
+body[data-season="5"] .st-era--5 { opacity: 1; }
+/* 1 and 2 are the same family: dark, warm, underground */
+.st-era--1 {
+  background:
+    radial-gradient(70% 50% at 50% 0%, rgba(232,38,29,.16), transparent 70%),
+    linear-gradient(180deg, #1a0a0c 0%, #10070a 50%, #060406 100%);
+}
+.st-era--2 {
+  background:
+    radial-gradient(70% 50% at 50% 0%, rgba(224,112,42,.18), transparent 70%),
+    linear-gradient(180deg, #241206 0%, #170c07 52%, #080505 100%);
+}
+/* 3 is the outlier: mall neon, bright and plastic */
+.st-era--3 {
+  background:
+    radial-gradient(50% 40% at 22% 10%, rgba(255,95,176,.20), transparent 70%),
+    radial-gradient(50% 40% at 78% 22%, rgba(63,224,208,.16), transparent 70%),
+    linear-gradient(180deg, #2a0a2e 0%, #140a26 48%, #06060f 100%);
+}
+/* 4 and 5 are the same family: Vecna, dark violet, veined */
+.st-era--4 {
+  background:
+    radial-gradient(70% 50% at 50% 0%, rgba(162,75,255,.18), transparent 70%),
+    linear-gradient(180deg, #1a0a20 0%, #100612 52%, #050308 100%);
+}
+.st-era--5 {
+  background:
+    radial-gradient(70% 46% at 50% 0%, rgba(200,60,180,.18), transparent 68%),
+    radial-gradient(60% 40% at 50% 100%, rgba(232,38,29,.14), transparent 70%),
+    linear-gradient(180deg, #16060e 0%, #0c0409 54%, #040204 100%);
+}
+.st-era--2::after {                    /* season two: the fields, rotting */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(102deg, rgba(224,112,42,.05) 0 2px, transparent 2px 26px);
+}
+.st-era--3::after {                    /* season three: fair lights */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 12% 26%, rgba(255,120,190,.55), transparent),
+    radial-gradient(2px 2px at 38% 14%, rgba(120,230,255,.5), transparent),
+    radial-gradient(2px 2px at 62% 30%, rgba(255,220,120,.5), transparent),
+    radial-gradient(2px 2px at 86% 18%, rgba(190,140,255,.5), transparent);
+  background-size: 340px 340px;
+}
+.st-era--4::after, .st-era--5::after {  /* the vines */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(74deg, rgba(162,75,255,.06) 0 1px, transparent 1px 38px),
+    repeating-linear-gradient(-64deg, rgba(200,60,180,.05) 0 1px, transparent 1px 52px);
+}
+
+/* the season heading rule picks up the season's own colour */
+.fan-sec[data-season] .subsec--fan { color: var(--sc, var(--a)); }
+.fan-sec[data-season="1"] { --sc: #e8261d; }
+.fan-sec[data-season="2"] { --sc: #e0702a; }
+.fan-sec[data-season="3"] { --sc: #ff5fb0; }
+.fan-sec[data-season="4"] { --sc: #a24bff; }
+.fan-sec[data-season="5"] { --sc: #d84ac0; }
+.fan-sec[data-season] .fan-card:hover,
+.fan-sec[data-season] .fan-tile:hover { border-color: color-mix(in srgb, var(--sc) 55%, transparent); }
+.fan-sec[data-season] .fan-swatch { background: var(--sc); box-shadow: 0 0 12px -1px var(--sc); }
+.fan-sec[data-season] .fan-sub,
+.fan-sec[data-season] .fan-tag,
+.fan-sec[data-season] .fan-num { color: var(--sc); }
+
 .st-sky::before {                      /* drifting spores */
   content: ""; position: absolute; inset: -20%;
   background-image:
@@ -1133,3 +1207,1279 @@ body.is-upside-down .st-sky::before { animation-duration: 9s; opacity: 1; }
 .atla-legend p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
 .atla-legend p + p { margin-top: 0.7rem; }
 @media (prefers-reduced-motion: reduce) { .atla-wheel > i { animation: none; } }
+
+
+/* ═════════════ Red Dead: a wanted poster and the honour meter ═════════════ */
+.rdr-kit {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.4rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) { .rdr-kit { grid-template-columns: 0.62fr 1.38fr; } }
+
+.rdr-poster {
+  position: relative; padding: 1.4rem 1.2rem 1.6rem; text-align: center;
+  color: #2a1a0c; border-radius: 2px;
+  background: radial-gradient(120% 90% at 50% 0%, #e2cfa4, #c9b184 60%, #b09769);
+  box-shadow: 0 24px 50px -28px #000, inset 0 0 40px 8px rgba(90,55,20,.35);
+  transform: rotate(-1.4deg);
+  font-family: "American Typewriter", "Courier New", var(--mono);
+}
+.rdr-poster::before {                    /* nail holes */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(circle 3px at 12px 12px, rgba(60,35,12,.55), transparent 60%),
+    radial-gradient(circle 3px at calc(100% - 12px) 12px, rgba(60,35,12,.55), transparent 60%);
+}
+.rdr-poster b { display: block; font-size: 1.5rem; letter-spacing: 0.22em; }
+.rdr-poster i {
+  display: block; font-style: normal; font-size: 0.62rem;
+  letter-spacing: 0.24em; margin: 0.3rem 0 0.9rem;
+}
+.rdr-poster u {
+  display: block; text-decoration: none; font-size: 1.15rem; font-weight: 700;
+  letter-spacing: 0.06em; padding: 0.5rem 0; margin: 0.4rem 0;
+  border-top: 2px solid rgba(42,26,12,.5); border-bottom: 2px solid rgba(42,26,12,.5);
+}
+.rdr-poster s { display: block; text-decoration: none; font-size: 2rem; font-weight: 700; letter-spacing: 0.04em; }
+.rdr-poster span {
+  display: block; margin-top: 0.7rem; font-size: 0.56rem;
+  letter-spacing: 0.14em; opacity: .75;
+}
+
+.rdr-honor { display: flex; flex-direction: column; gap: 0.6rem; }
+.rdr-honor h4 {
+  font-family: "American Typewriter", "Courier New", var(--mono); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em; font-size: 1.05rem; color: var(--a);
+}
+.rdr-honor p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+.rdr-scale {
+  display: flex; justify-content: space-between;
+  font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
+}
+.rdr-track {
+  position: relative; height: 10px; border-radius: 6px; margin: 0.15rem 0 0.2rem;
+  background: linear-gradient(90deg, #7a1c14 0%, #3a2a1c 46%, #e8dcc0 100%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.rdr-track i {
+  position: absolute; top: -5px; left: 50%; width: 3px; height: 20px; border-radius: 2px;
+  background: #f2e6c8; box-shadow: 0 0 10px 2px rgba(242,230,200,.6);
+  animation: rdr-honour 14s ease-in-out infinite alternate;
+}
+@keyframes rdr-honour { from { left: 26%; } to { left: 82%; } }
+@media (prefers-reduced-motion: reduce) { .rdr-track i { animation: none; left: 72%; } }
+
+/* ═════════════ Ninjago: the Spinjitzu tornado ═════════════ */
+.nj-spin {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) { .nj-spin { grid-template-columns: 0.75fr 1.25fr; } }
+.nj-tornado {
+  position: relative; width: min(300px, 74vw); aspect-ratio: 1; margin: 0 auto;
+  display: grid; place-items: center;
+}
+.nj-tornado i {
+  position: absolute; border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: var(--e); border-right-color: color-mix(in srgb, var(--e) 45%, transparent);
+  box-shadow: 0 0 22px -6px var(--e);
+  animation: nj-whirl var(--sp, 6s) linear infinite;
+}
+.nj-tornado i:nth-child(1) { inset: 0;   --e: #e04a3a; --sp: 5.5s; }
+.nj-tornado i:nth-child(2) { inset: 8%;  --e: #4f9fd0; --sp: 4.6s; }
+.nj-tornado i:nth-child(3) { inset: 16%; --e: #8f8f9a; --sp: 3.9s; }
+.nj-tornado i:nth-child(4) { inset: 24%; --e: #dff2ff; --sp: 3.2s; }
+.nj-tornado i:nth-child(5) { inset: 32%; --e: #5fd07f; --sp: 2.6s; }
+.nj-tornado i:nth-child(6) { inset: 40%; --e: #c9cdd2; --sp: 2.1s; }
+@keyframes nj-whirl { to { transform: rotate(360deg); } }
+.nj-core {
+  position: relative; z-index: 2; width: 44%; aspect-ratio: 1; border-radius: 50%;
+  display: grid; place-items: center; text-align: center;
+  background: radial-gradient(circle at 36% 30%, rgba(255,233,168,.35), rgba(224,176,64,.08) 70%);
+  border: 1px solid rgba(224,176,64,.45);
+  box-shadow: 0 0 40px -10px rgba(224,176,64,.8);
+}
+.nj-core b {
+  font-family: var(--serif); font-style: italic; font-weight: 700;
+  text-transform: uppercase; font-size: 0.98rem; letter-spacing: 0.04em; color: #ffe9a8;
+}
+.nj-legend h4 {
+  font-family: var(--serif); font-style: italic; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.05em; font-size: 1.2rem; color: var(--a); margin-bottom: 0.6rem;
+}
+.nj-legend p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+.nj-legend p + p { margin-top: 0.7rem; }
+@media (prefers-reduced-motion: reduce) { .nj-tornado i { animation: none; } }
+
+/* ═════════════ The Simpsons: Bart's chalkboard ═════════════ */
+.sim-board { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; }
+.sim-frame {
+  padding: clamp(0.6rem, 1.6vw, 1rem); border-radius: 4px;
+  background: linear-gradient(180deg, #7a5330, #5c3d22);
+  box-shadow: 0 26px 54px -32px #000;
+}
+.sim-chalk {
+  position: relative; overflow: hidden;
+  padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 2.2rem);
+  border-radius: 2px; background: #274a35;
+  box-shadow: inset 0 0 60px 12px rgba(0,0,0,.45);
+}
+.sim-chalk::before {                     /* chalk dust left on the slate */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    repeating-linear-gradient(96deg, rgba(255,255,255,.035) 0 2px, transparent 2px 9px),
+    radial-gradient(ellipse 40% 30% at 22% 30%, rgba(255,255,255,.05), transparent 70%),
+    radial-gradient(ellipse 34% 26% at 78% 70%, rgba(255,255,255,.04), transparent 70%);
+}
+.sim-chalk p {
+  position: relative;
+  font-family: "Bradley Hand", "Chalkboard SE", "Comic Sans MS", cursive;
+  font-size: clamp(0.95rem, 2.4vw, 1.35rem); line-height: 2;
+  color: rgba(245, 248, 240, .88);
+  text-shadow: 0 0 6px rgba(255,255,255,.18);
+  white-space: nowrap; overflow: hidden; text-overflow: clip;
+}
+.sim-chalk p:nth-child(2) { opacity: .92; transform: translateX(2px) rotate(-.2deg); }
+.sim-chalk p:nth-child(3) { opacity: .86; transform: translateX(-1px) rotate(.25deg); }
+.sim-chalk p:nth-child(4) { opacity: .8;  transform: translateX(3px) rotate(-.3deg); }
+.sim-chalk p:last-child {                /* the line he never finishes */
+  opacity: .7; width: 62%;
+  animation: sim-write 7s steps(28, end) infinite;
+}
+@keyframes sim-write { 0% { width: 4%; } 70%, 100% { width: 62%; } }
+.sim-tray {
+  height: 12px; margin-top: 0.4rem; border-radius: 0 0 4px 4px;
+  background: linear-gradient(180deg, #8a5f37, #6b4626);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.12);
+}
+.sim-board-cap {
+  margin-top: 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+@media (prefers-reduced-motion: reduce) { .sim-chalk p:last-child { animation: none; } }
+
+
+/* ───────── The Justice League: the Watchtower, in orbit ───────── */
+body[data-fan="jl"] { --a: #5f9fe0; }
+.jl-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(85% 65% at 50% 0%, #0e1c3a 0%, #081026 46%, #03060e 100%);
+}
+.jl-sky::before {                      /* the curve of the earth, far below */
+  content: ""; position: absolute; left: 50%; bottom: -62vw; translate: -50% 0;
+  width: 150vw; height: 150vw; border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, rgba(95,159,224,.18), rgba(95,159,224,.05) 55%, transparent 70%);
+  box-shadow: 0 -20px 90px -30px rgba(140,200,255,.5);
+}
+.jl-sky::after {                       /* stars */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1.4px 1.4px at 18% 22%, rgba(255,255,255,.75), transparent),
+    radial-gradient(1.2px 1.2px at 64% 38%, rgba(200,225,255,.6), transparent),
+    radial-gradient(1.6px 1.6px at 42% 64%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1.2px 1.2px at 86% 14%, rgba(216,180,95,.6), transparent);
+  background-size: 260px 260px;
+}
+body[data-fan="jl"] .fan-title {
+  text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700;
+  background: linear-gradient(180deg, #eaf2ff, #5f9fe0 56%, #d8b45f);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* the roster ring: seven emblems around the table */
+.jl-ring {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 860px) { .jl-ring { grid-template-columns: 0.85fr 1.15fr; } }
+.jl-table { position: relative; width: min(360px, 80vw); aspect-ratio: 1; margin: 0 auto; }
+.jl-table > i {
+  position: absolute; inset: 6%; border-radius: 50%;
+  border: 1px solid rgba(95,159,224,.28);
+  animation: jl-orbit 70s linear infinite;
+}
+.jl-table > i::after {
+  content: ""; position: absolute; inset: 14%; border-radius: 50%;
+  border: 1px dashed rgba(216,180,95,.22);
+}
+@keyframes jl-orbit { to { transform: rotate(360deg); } }
+.jl-seat {
+  position: absolute; width: 27%; aspect-ratio: 1; border-radius: 50%;
+  display: grid; place-items: center; text-align: center;
+  background: radial-gradient(circle at 36% 30%, color-mix(in srgb, var(--m) 42%, transparent), transparent 72%);
+  border: 1px solid color-mix(in srgb, var(--m) 60%, transparent);
+  box-shadow: 0 0 26px -8px var(--m);
+}
+.jl-seat b { display: block; font-family: var(--serif); font-size: 0.8rem; color: var(--m); line-height: 1.1; }
+.jl-seat span {
+  display: block; margin-top: 0.15rem; font-family: var(--mono); font-size: 0.46rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
+}
+.jl-seat:nth-child(2) { top: 0;    left: 36.5%; }
+.jl-seat:nth-child(3) { top: 16%;  right: 2%; }
+.jl-seat:nth-child(4) { top: 52%;  right: 0; }
+.jl-seat:nth-child(5) { bottom: 0; right: 20%; }
+.jl-seat:nth-child(6) { bottom: 0; left: 20%; }
+.jl-seat:nth-child(7) { top: 52%;  left: 0; }
+.jl-seat:nth-child(8) { top: 16%;  left: 2%; }
+.jl-core {
+  position: absolute; inset: 34%; border-radius: 50%;
+  display: grid; place-items: center; text-align: center;
+  background: radial-gradient(circle, rgba(216,180,95,.16), transparent 70%);
+  border: 1px solid rgba(216,180,95,.35);
+}
+.jl-core b {
+  font-family: var(--serif); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; font-size: 0.72rem; color: #e8d8a8;
+}
+.jl-legend h4 {
+  font-family: var(--serif); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; font-size: 1.2rem; color: var(--a); margin-bottom: 0.6rem;
+}
+.jl-legend p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+.jl-legend p + p { margin-top: 0.7rem; }
+@media (prefers-reduced-motion: reduce) { .jl-table > i { animation: none; } }
+
+
+/* ═════════════ The Office: a Dundie, and a talking head ═════════════ */
+.off-kit {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) { .off-kit { grid-template-columns: 0.55fr 1.45fr; } }
+
+.off-dundie { display: grid; place-items: end center; }
+.off-trophy { position: relative; width: 132px; isolation: isolate; }
+.off-cup {                               /* the cup */
+  position: relative; z-index: 1; width: 76px; height: 60px; margin: 0 auto;
+  border-radius: 0 0 42% 42%;
+  background: linear-gradient(180deg, #f0d78a, #c9a349 55%, #8f6f26);
+  box-shadow: inset 0 4px 0 rgba(255,255,255,.35), 0 12px 26px -14px #000;
+}
+.off-cup::before, .off-cup::after {      /* handles, tucked behind the cup */
+  content: ""; position: absolute; top: 4px; z-index: -1; width: 26px; height: 36px;
+  border: 5px solid #b8933f; border-radius: 50%;
+}
+.off-cup::before { left: -19px; border-right-color: transparent; }
+.off-cup::after  { right: -19px; border-left-color: transparent; }
+.off-stem { width: 12px; height: 20px; margin: 0 auto; background: linear-gradient(180deg, #c9a349, #8f6f26); }
+.off-base {
+  width: 96px; height: 30px; margin: 0 auto; border-radius: 3px;
+  background: linear-gradient(180deg, #6b4626, #4a2f18);
+  display: grid; place-items: center; box-shadow: 0 16px 30px -18px #000;
+}
+.off-base span {
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: #e8d9a8;
+}
+
+.off-talk {                              /* the documentary interview frame */
+  position: relative; padding: 1.4rem 1.5rem 1.5rem;
+  border-radius: 4px; border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(214,206,190,.10), rgba(214,206,190,.03) 60%, transparent),
+    rgba(18, 20, 24, .6);
+}
+.off-talk::before {                      /* rec dot */
+  content: ""; position: absolute; top: 12px; right: 14px;
+  width: 8px; height: 8px; border-radius: 50%; background: #e04a3a;
+  box-shadow: 0 0 12px 2px rgba(224,74,58,.6);
+  animation: off-rec 2.6s ease-in-out infinite;
+}
+@keyframes off-rec { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+.off-talk h4 { font-family: var(--sans); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem; }
+.off-talk p { font-size: 0.95rem; line-height: 1.75; color: var(--ink-dim); max-width: 62ch; }
+.off-talk p + p { margin-top: 0.7rem; }
+.off-talk cite {
+  display: block; margin-top: 0.9rem; font-style: normal;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+@media (prefers-reduced-motion: reduce) { .off-talk::before { animation: none; } }
+
+/* ═════════════ The Boys: a vial of V, and a redacted memo ═════════════ */
+.boys-kit {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) { .boys-kit { grid-template-columns: 0.4fr 1.6fr; } }
+
+.boys-vial { position: relative; width: 92px; margin: 0 auto; }
+.boys-cap {
+  width: 46px; height: 16px; margin: 0 auto; border-radius: 3px 3px 0 0;
+  background: linear-gradient(180deg, #6b7079, #3a3f47);
+}
+.boys-glass {
+  position: relative; width: 62px; height: 156px; margin: 0 auto;
+  border-radius: 6px 6px 22px 22px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.16);
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+  box-shadow: inset -8px 0 16px -10px #000, 0 18px 34px -20px #000;
+}
+.boys-glass i {                          /* the compound itself */
+  position: absolute; left: 0; right: 0; bottom: 0; height: 62%;
+  background: linear-gradient(180deg, #6fd0ff, #2f7fd6 60%, #1a4f9a);
+  box-shadow: 0 0 26px 6px rgba(111,208,255,.45);
+  animation: boys-slosh 6s ease-in-out infinite alternate;
+}
+.boys-glass i::after {                   /* the meniscus */
+  content: ""; position: absolute; top: -3px; left: 0; right: 0; height: 6px;
+  border-radius: 50%; background: rgba(180,235,255,.7);
+}
+@keyframes boys-slosh { from { height: 60%; } to { height: 65%; } }
+.boys-vial span {
+  display: block; margin-top: 0.7rem; text-align: center;
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+.boys-memo {
+  position: relative; padding: 1.4rem 1.5rem 1.5rem;
+  border: 1px solid var(--line); border-radius: 3px;
+  background: rgba(16, 12, 12, .62);
+}
+.boys-memo-h {
+  display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  padding-bottom: 0.7rem; margin-bottom: 0.9rem; border-bottom: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--a);
+}
+.boys-memo p { font-size: 0.95rem; line-height: 1.9; color: var(--ink-dim); max-width: 66ch; }
+.boys-memo p + p { margin-top: 0.6rem; }
+.redact {
+  position: relative; background: #0a0708; color: transparent;
+  border-radius: 2px; padding: 0 0.2em; cursor: help;
+  transition: background .35s, color .35s;
+  user-select: none;
+}
+.redact:hover { background: rgba(224,42,42,.12); color: var(--ink); }
+.boys-memo cite {
+  display: block; margin-top: 1rem; font-style: normal;
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+@media (prefers-reduced-motion: reduce) { .boys-glass i { animation: none; } }
+
+
+/* ───────── Knott's Berry Farm: a boardwalk at dusk ───────── */
+body[data-fan="knotts"] { --a: #b06fd8; }
+.kn-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: linear-gradient(180deg, #2e1638 0%, #1d1026 30%, #140b18 62%, #070409 100%);
+}
+.kn-sky::before {                      /* dusk over the ghost town, boysenberry rather than gold */
+  content: ""; position: absolute; left: 50%; top: 6%; translate: -50% 0;
+  width: clamp(260px, 40vw, 560px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, rgba(176,111,216,.20), rgba(240,180,90,.06) 55%, transparent 70%);
+}
+.kn-sky::after {                       /* dust in the air */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1.6px 1.6px at 22% 40%, rgba(226,190,240,.35), transparent),
+    radial-gradient(1.2px 1.2px at 68% 62%, rgba(240,200,150,.28), transparent),
+    radial-gradient(1.4px 1.4px at 46% 82%, rgba(226,190,240,.25), transparent);
+  background-size: 320px 320px;
+}
+body[data-fan="knotts"] .fan-title {
+  font-family: "American Typewriter", Georgia, serif; font-weight: 700;
+  font-variant: small-caps; letter-spacing: 0.04em;
+}
+
+/* the ghost town facade, drawn in CSS */
+.kn-town {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+}
+.kn-street {
+  position: relative; display: flex; align-items: flex-end; gap: 0;
+  padding-top: 28px;                   /* room for the false fronts to stand up in */
+  overflow: hidden; border-radius: 6px 6px 0 0;
+  background: linear-gradient(180deg, rgba(240,180,90,.10), transparent 60%);
+}
+.kn-shop {
+  position: relative; flex: 1 1 0; min-width: 0;
+  height: clamp(150px, 22vw, 230px);
+  background: linear-gradient(180deg, var(--w1), var(--w2));
+  border-left: 2px solid rgba(0,0,0,.35);
+  box-shadow: inset 0 -18px 26px -18px rgba(0,0,0,.8);
+}
+.kn-shop::before {                     /* the false front */
+  content: ""; position: absolute; left: -2px; right: -2px; top: -26px; height: 28px;
+  background: linear-gradient(180deg, var(--w1), var(--w2));
+  clip-path: var(--top, polygon(0 100%, 0 32%, 50% 0, 100% 32%, 100% 100%));
+  border-bottom: 2px solid rgba(0,0,0,.3);
+}
+.kn-shop::after {                      /* boardwalk shadow */
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 12px;
+  background: repeating-linear-gradient(90deg, rgba(0,0,0,.35) 0 2px, transparent 2px 12px);
+}
+.kn-sign {
+  position: absolute; left: 8%; right: 8%; top: 16%;
+  padding: 0.25rem 0.2rem; text-align: center; border-radius: 2px;
+  background: rgba(30,18,8,.75); border: 1px solid rgba(240,200,150,.25);
+  font-family: "American Typewriter", Georgia, serif; font-variant: small-caps;
+  font-size: clamp(0.5rem, 1.3vw, 0.72rem); letter-spacing: 0.06em; color: #f0d9a8;
+}
+.kn-win {
+  position: absolute; left: 14%; right: 14%; bottom: 24%; height: 26%;
+  background: linear-gradient(180deg, rgba(255,220,150,.28), rgba(255,190,90,.10));
+  border: 2px solid rgba(0,0,0,.35);
+}
+.kn-door {
+  position: absolute; left: 42%; width: 16%; bottom: 12px; height: 22%;
+  background: rgba(20,12,6,.75); border-radius: 3px 3px 0 0;
+}
+.kn-walk {
+  height: 16px; border-radius: 0 0 6px 6px;
+  background: repeating-linear-gradient(90deg, #6b4626 0 14px, #5a3a1e 14px 16px);
+  box-shadow: inset 0 3px 0 rgba(255,255,255,.06);
+}
+.kn-town-cap {
+  margin-top: 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+
+/* ═════════════ Pokémon: a Pokédex, open on the desk ═════════════ */
+.pkm-dex {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 860px) { .pkm-dex { grid-template-columns: 0.85fr 1.15fr; } }
+
+.dex {
+  position: relative; width: min(330px, 82vw); margin: 0 auto;
+  padding: 14px 14px 18px; border-radius: 10px 10px 14px 14px;
+  background: linear-gradient(180deg, #d8382e, #a5241d 70%, #7f1a14);
+  box-shadow: 0 26px 54px -30px #000, inset 0 2px 0 rgba(255,255,255,.25),
+              inset 0 -6px 12px rgba(0,0,0,.35);
+}
+.dex-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.dex-lens {
+  position: relative; width: 52px; height: 52px; border-radius: 50%; flex: none;
+  background: radial-gradient(circle at 34% 28%, #bfe8ff, #3f8fd0 46%, #1d4f8a);
+  box-shadow: 0 0 0 4px #f0f2f4, 0 0 0 6px #8f1a14, inset 0 0 10px rgba(0,0,0,.35);
+}
+.dex-lens::after {
+  content: ""; position: absolute; left: 24%; top: 18%; width: 26%; height: 20%;
+  border-radius: 50%; background: rgba(255,255,255,.75); filter: blur(1px);
+}
+.dex-leds { display: flex; gap: 7px; }
+.dex-leds i {
+  width: 12px; height: 12px; border-radius: 50%;
+  box-shadow: inset 0 -2px 3px rgba(0,0,0,.35);
+  animation: dex-blink 3.4s ease-in-out infinite;
+}
+.dex-leds i:nth-child(1) { background: #e04a3a; }
+.dex-leds i:nth-child(2) { background: #f0c840; animation-delay: .5s; }
+.dex-leds i:nth-child(3) { background: #5fd07f; animation-delay: 1s; }
+@keyframes dex-blink { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+
+.dex-screen {
+  position: relative; padding: 12px 12px 14px; border-radius: 6px;
+  background: linear-gradient(180deg, #16321f, #0d2116);
+  border: 6px solid #e8e8e8; box-shadow: inset 0 0 22px rgba(0,0,0,.55);
+  overflow: hidden;
+}
+.dex-screen::after {                     /* LCD scanlines */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px);
+}
+.dex-no {
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #7fd08f;
+}
+.dex-name {
+  font-family: var(--serif); font-weight: 700; font-size: 1.24rem;
+  color: #dff8e4; margin: 0.15rem 0 0.35rem;
+}
+.dex-type { display: flex; gap: 5px; margin-bottom: 0.5rem; }
+.dex-type span {
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 0.14rem 0.42rem; border-radius: 100px;
+  background: var(--t); color: #0d2116; font-weight: 500;
+}
+.dex-text { font-size: 0.8rem; line-height: 1.6; color: rgba(200,240,210,.85); }
+.dex-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+.dex-pad { position: relative; width: 46px; height: 46px; }
+.dex-pad::before, .dex-pad::after {
+  content: ""; position: absolute; background: #1d1f22; border-radius: 3px;
+  box-shadow: inset 0 -2px 3px rgba(0,0,0,.5);
+}
+.dex-pad::before { left: 16px; top: 0; width: 14px; height: 46px; }
+.dex-pad::after  { top: 16px; left: 0; height: 14px; width: 46px; }
+.dex-btns { display: flex; gap: 8px; }
+.dex-btns i { width: 26px; height: 9px; border-radius: 3px; background: #2a2d31; box-shadow: inset 0 -2px 3px rgba(0,0,0,.5); }
+.dex-cap {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+.pkm-legend h4 {
+  text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700;
+  font-size: 1.2rem; color: var(--a); margin-bottom: 0.6rem;
+}
+.pkm-legend p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+.pkm-legend p + p { margin-top: 0.7rem; }
+@media (prefers-reduced-motion: reduce) { .dex-leds i { animation: none; } }
+
+
+/* ═════════════ Batman: the utility belt ═════════════ */
+.bat-belt {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+}
+.bat-strap {
+  position: relative; display: flex; align-items: stretch; gap: 6px;
+  padding: 10px; border-radius: 8px;
+  background: linear-gradient(180deg, #4a3b22, #2e2415 60%, #1d1710);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.10), inset 0 -8px 14px rgba(0,0,0,.5), 0 22px 44px -28px #000;
+}
+.bat-strap::before, .bat-strap::after {  /* stitching */
+  content: ""; position: absolute; left: 10px; right: 10px; height: 1px;
+  background: repeating-linear-gradient(90deg, rgba(240,220,160,.35) 0 5px, transparent 5px 11px);
+}
+.bat-strap::before { top: 5px; }
+.bat-strap::after  { bottom: 5px; }
+.bat-pouch {
+  position: relative; flex: 1 1 0; min-width: 0;
+  padding: 0.9rem 0.7rem 0.8rem; border-radius: 5px; text-align: center;
+  background: linear-gradient(180deg, #6b5730, #40331d);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.14), inset 0 -6px 10px rgba(0,0,0,.45);
+  transition: transform .35s var(--ease), background .35s;
+}
+.bat-pouch:hover { transform: translateY(-5px); background: linear-gradient(180deg, #7d6737, #4a3b22); }
+.bat-pouch::before {                     /* the flap */
+  content: ""; position: absolute; left: 8%; right: 8%; top: 5px; height: 34%;
+  border-radius: 3px; background: linear-gradient(180deg, rgba(0,0,0,.28), transparent);
+  border-bottom: 1px solid rgba(0,0,0,.4);
+}
+.bat-pouch b {
+  position: relative; display: block; font-family: var(--serif); font-weight: 600;
+  font-size: 0.86rem; color: #f0e4c0; line-height: 1.2;
+}
+.bat-pouch span {
+  position: relative; display: block; margin-top: 0.25rem;
+  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(240,228,192,.6);
+}
+.bat-belt-cap {
+  margin-top: 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+@media (max-width: 720px) { .bat-strap { flex-wrap: wrap; } .bat-pouch { flex: 1 1 30%; } }
+
+/* ═════════════ Spider-Man: three panels ═════════════ */
+.spdr-strip {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(0.7rem, 2vw, 1.2rem);
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+.spdr-panel {
+  position: relative; overflow: hidden; min-height: 190px;
+  padding: 1.1rem 1.1rem 1.2rem;
+  border: 3px solid #10060a; border-radius: 2px;
+  background: linear-gradient(160deg, var(--p1), var(--p2));
+  box-shadow: 0 20px 40px -26px #000;
+}
+.spdr-panel::before {                    /* ben-day dots */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(0,0,0,.22) 1px, transparent 1.3px);
+  background-size: 6px 6px; opacity: .5;
+}
+.spdr-cap {                              /* the yellow caption box */
+  position: relative; display: inline-block; margin-bottom: 0.7rem;
+  padding: 0.28rem 0.55rem; border: 2px solid #10060a; border-radius: 2px;
+  background: #f2d64a; color: #10060a;
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.spdr-say {                              /* speech balloon */
+  position: relative; padding: 0.7rem 0.85rem; border-radius: 14px;
+  border: 2px solid #10060a; background: #f6f4ef; color: #10060a;
+  font-family: Georgia, serif; font-size: 0.9rem; line-height: 1.45;
+}
+.spdr-say::after {
+  content: ""; position: absolute; left: 22px; bottom: -11px;
+  border: 6px solid transparent; border-top-color: #10060a;
+}
+.spdr-say b { font-weight: 700; }
+.spdr-panel p {
+  position: relative; margin-top: 0.7rem; font-size: 0.82rem; line-height: 1.55;
+  color: rgba(255,255,255,.82);
+}
+.spdr-strip-cap {
+  grid-column: 1 / -1; text-align: center; margin-top: 0.2rem;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+
+/* ═════════════ FNAF: the office monitor ═════════════ */
+.fnaf-office {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1rem, 2.4vw, 1.8rem); grid-template-columns: 1fr;
+}
+@media (min-width: 860px) { .fnaf-office { grid-template-columns: 1.3fr 0.7fr; align-items: start; } }
+.fnaf-mon {
+  position: relative; padding: 14px; border-radius: 8px;
+  background: linear-gradient(180deg, #2a2723, #17140f);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.08), 0 24px 48px -30px #000;
+}
+.fnaf-feed {
+  position: relative; aspect-ratio: 16 / 9; border-radius: 3px; overflow: hidden;
+  background: radial-gradient(120% 100% at 50% 40%, #1b1d1a, #0a0b09 70%);
+  border: 1px solid rgba(255,255,255,.08);
+}
+.fnaf-feed::before {                     /* static */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 3px),
+    radial-gradient(rgba(255,255,255,.10) .6px, transparent 1px);
+  background-size: 100% 3px, 3px 3px;
+  animation: fnaf-snow 1.4s steps(3, end) infinite;
+}
+@keyframes fnaf-snow { 0% { opacity: .5; } 33% { opacity: .8; } 66% { opacity: .4; } 100% { opacity: .65; } }
+.fnaf-feed::after {                      /* a shape at the end of the hall */
+  content: ""; position: absolute; left: 46%; bottom: 6%; width: 9%; height: 46%;
+  border-radius: 40% 40% 0 0;
+  background: linear-gradient(180deg, rgba(140,110,80,.55), rgba(50,38,26,.35));
+  filter: blur(1px);
+  animation: fnaf-lurk 7s ease-in-out infinite;
+}
+@keyframes fnaf-lurk { 0%, 62%, 100% { opacity: 0; } 70%, 88% { opacity: .85; } }
+.fnaf-lbl {
+  position: absolute; left: 10px; top: 8px; z-index: 2;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em;
+  color: rgba(220,235,220,.75); text-shadow: 0 0 6px rgba(0,0,0,.9);
+}
+.fnaf-rec {
+  position: absolute; right: 10px; top: 8px; z-index: 2; display: flex; align-items: center; gap: 5px;
+  font-family: var(--mono); font-size: 0.58rem; color: #e04a3a;
+}
+.fnaf-rec i { width: 7px; height: 7px; border-radius: 50%; background: #e04a3a; animation: off-rec 2.2s ease-in-out infinite; }
+.fnaf-cams { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+.fnaf-cams span {
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.08em;
+  padding: 0.22rem 0.45rem; border-radius: 2px;
+  background: rgba(255,255,255,.05); color: rgba(220,225,215,.6);
+  border: 1px solid rgba(255,255,255,.07);
+}
+.fnaf-cams span.is-on { background: rgba(200,240,200,.16); color: #dff0d8; border-color: rgba(200,240,200,.3); }
+.fnaf-hud { display: flex; flex-direction: column; gap: 0.9rem; }
+.fnaf-panel {
+  padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: 4px;
+  background: rgba(14, 12, 10, .6);
+}
+.fnaf-panel h5 {
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--a); margin-bottom: 0.5rem;
+}
+.fnaf-power { display: flex; align-items: baseline; gap: 0.5rem; }
+.fnaf-power b { font-family: var(--mono); font-size: 1.5rem; color: #dff0d8; }
+.fnaf-power span { font-family: var(--mono); font-size: 0.58rem; color: var(--mute); }
+.fnaf-usage { display: flex; gap: 4px; margin-top: 0.5rem; }
+.fnaf-usage i { width: 16px; height: 12px; background: rgba(255,255,255,.12); }
+.fnaf-usage i.is-on { background: #5fd07f; box-shadow: 0 0 8px rgba(95,208,127,.6); }
+.fnaf-usage i.is-on:nth-child(3) { background: #f0c840; box-shadow: 0 0 8px rgba(240,200,64,.6); }
+.fnaf-usage i.is-on:nth-child(4) { background: #e04a3a; box-shadow: 0 0 8px rgba(224,74,58,.6); }
+.fnaf-hour { font-family: var(--mono); font-size: 1.6rem; color: #dff0d8; }
+.fnaf-hour span { font-size: 0.7rem; color: var(--mute); margin-left: 0.3rem; }
+.fnaf-note { font-size: 0.82rem; line-height: 1.6; color: var(--ink-dim); }
+
+/* ═════════════ Fortnite: the build HUD ═════════════ */
+.fn-hud {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1rem, 2.4vw, 1.8rem); grid-template-columns: 1fr;
+}
+@media (min-width: 820px) { .fn-hud { grid-template-columns: 1fr 1fr; align-items: center; } }
+.fn-mats { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.fn-mat {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 0.8rem; border-radius: 6px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.10);
+}
+.fn-mat i { width: 16px; height: 16px; border-radius: 3px; background: var(--m); box-shadow: 0 0 10px -2px var(--m); }
+.fn-mat b { font-family: var(--mono); font-size: 0.86rem; color: var(--ink); }
+.fn-builds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin-top: 1rem; }
+.fn-build {
+  position: relative; aspect-ratio: 1; border-radius: 6px;
+  border: 1px solid rgba(140,180,255,.35);
+  background: rgba(90,130,220,.10);
+  display: grid; place-items: center;
+  transition: background .3s, transform .3s var(--ease);
+}
+.fn-build:hover { background: rgba(120,160,255,.2); transform: translateY(-4px); }
+.fn-build svg { width: 58%; height: 58%; fill: none; stroke: #a8c8ff; stroke-width: 1.6; }
+.fn-build span {
+  position: absolute; bottom: 5px; left: 0; right: 0; text-align: center;
+  font-family: var(--mono); font-size: 0.48rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(200,220,255,.7);
+}
+.fn-hud-note h4 {
+  font-family: Futura, "Century Gothic", "Trebuchet MS", var(--sans); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; font-size: 1.15rem;
+  color: var(--a); margin-bottom: 0.6rem;
+}
+.fn-hud-note p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 56ch; }
+.fn-hud-note p + p { margin-top: 0.7rem; }
+
+/* ═════════════ Indiana Jones: the Grail Diary ═════════════ */
+.ij-diary {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+}
+.ij-book {
+  display: grid; grid-template-columns: 1fr; gap: 0;
+  border-radius: 4px; overflow: hidden;
+  box-shadow: 0 30px 60px -34px #000;
+}
+@media (min-width: 760px) { .ij-book { grid-template-columns: 1fr 1fr; } }
+.ij-page {
+  position: relative; padding: clamp(1.2rem, 3vw, 2rem);
+  background: radial-gradient(120% 90% at 50% 0%, #e6d2a8, #cdb583 62%, #b59a68);
+  color: #2f2110; min-height: 260px;
+}
+.ij-page::before {                       /* foxing */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 24% 18% at 18% 22%, rgba(140,100,50,.18), transparent 70%),
+    radial-gradient(ellipse 20% 16% at 82% 72%, rgba(140,100,50,.16), transparent 70%);
+}
+.ij-page--l { box-shadow: inset -14px 0 26px -14px rgba(60,36,12,.7); }
+.ij-page--r { box-shadow: inset 14px 0 26px -14px rgba(60,36,12,.7); }
+.ij-hand {
+  position: relative; font-family: "Bradley Hand", "Brush Script MT", Georgia, cursive;
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem); line-height: 1.8;
+}
+.ij-hand b { font-weight: 700; }
+.ij-label {
+  position: relative; font-family: "American Typewriter", "Courier New", monospace;
+  font-size: 0.56rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(47,33,16,.65); margin-bottom: 0.6rem;
+}
+.ij-sketch { position: relative; display: block; width: 70%; margin: 0 auto 0.8rem; color: #3a2812; }
+.ij-sketch svg { width: 100%; height: auto; fill: none; stroke: currentColor; stroke-width: 1.4; }
+.ij-diary-cap {
+  margin-top: 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+/* ═════════════ Parks and Rec: the department sign ═════════════ */
+.pk-sign { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; text-align: center; }
+.pk-board {
+  position: relative; display: inline-block; max-width: 100%;
+  padding: 1.4rem clamp(1.4rem, 5vw, 3.4rem);
+  border-radius: 6px; border: 6px solid #3a2716;
+  background: linear-gradient(180deg, #6b4a2a, #4a3220);
+  box-shadow: inset 0 3px 0 rgba(255,255,255,.10), inset 0 -8px 16px rgba(0,0,0,.45), 0 24px 44px -28px #000;
+}
+.pk-board::before, .pk-board::after {    /* the posts */
+  content: ""; position: absolute; bottom: -34px; width: 16px; height: 40px;
+  background: linear-gradient(180deg, #5a3d24, #3a2716);
+}
+.pk-board::before { left: 16%; }
+.pk-board::after  { right: 16%; }
+.pk-board b {
+  display: block; font-family: "Trebuchet MS", var(--sans); font-weight: 700;
+  font-size: clamp(1.1rem, 3.4vw, 1.9rem); letter-spacing: 0.02em; line-height: 1.25;
+  color: #eae2cd; text-shadow: 0 2px 0 rgba(0,0,0,.45);
+}
+.pk-board i {
+  display: block; margin-top: 0.5rem; font-style: normal;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #9fd0a8;
+}
+.pk-board u {
+  display: block; margin-top: 0.9rem; padding-top: 0.7rem; text-decoration: none;
+  border-top: 2px solid rgba(255,255,255,.14);
+  font-family: "Trebuchet MS", var(--sans); font-size: 0.82rem; color: rgba(234,226,205,.8);
+}
+.pk-sign-cap {
+  margin-top: 3rem; font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute);
+}
+
+
+/* ═════════════ LOTR: the ring, and what is written on it ═════════════ */
+.lotr-ring {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 860px) { .lotr-ring { grid-template-columns: 0.8fr 1.2fr; } }
+.ring-stage { position: relative; width: min(330px, 80vw); aspect-ratio: 1; margin: 0 auto; }
+.ring-band {
+  position: absolute; inset: 12%; border-radius: 50%;
+  border: clamp(16px, 3.4vw, 30px) solid transparent;
+  background:
+    linear-gradient(#0b0906, #0b0906) padding-box,
+    conic-gradient(from 210deg, #7a5a1c, #f2dc9a 22%, #b8912f 44%, #6b4c14 62%, #e8cf85 82%, #7a5a1c) border-box;
+  box-shadow: 0 0 60px -12px rgba(217,180,95,.6), inset 0 0 40px -14px rgba(217,180,95,.5);
+}
+.ring-text { position: absolute; inset: 0; animation: lotr-turn 90s linear infinite; }
+.ring-text svg { width: 100%; height: 100%; overflow: visible; }
+.ring-text text {
+  font-family: "JetBrains Mono", monospace; font-size: 5.2px;
+  letter-spacing: 1.4px; text-transform: uppercase;
+  fill: #ffd98a;
+}
+@keyframes lotr-turn { to { transform: rotate(360deg); } }
+.ring-glow {
+  position: absolute; inset: 24%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,190,90,.18), transparent 68%);
+  animation: lotr-breathe 8s ease-in-out infinite alternate;
+}
+@keyframes lotr-breathe { from { opacity: .5; } to { opacity: 1; } }
+.ring-note h4 {
+  font-family: Copperplate, Georgia, serif; text-transform: uppercase;
+  letter-spacing: 0.14em; font-size: 1.1rem; color: var(--a); margin-bottom: 0.6rem;
+}
+.ring-note p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 56ch; }
+.ring-note p + p, .ring-note blockquote + p { margin-top: 0.7rem; }
+.ring-note blockquote {
+  margin-top: 0.9rem; padding-left: 1rem; border-left: 2px solid color-mix(in srgb, var(--a) 55%, transparent);
+  font-family: Georgia, serif; font-style: italic; font-size: 1rem; line-height: 1.7; color: #f0e2bc;
+}
+@media (prefers-reduced-motion: reduce) { .ring-text, .ring-glow { animation: none; } }
+
+/* ═════════════ Breaking Bad: the batch ═════════════ */
+.bb-lab {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.4rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) { .bb-lab { grid-template-columns: 0.42fr 1.58fr; } }
+.bb-flask { position: relative; width: 150px; margin: 0 auto; }
+.bb-neck { width: 26px; height: 46px; margin: 0 auto; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); border-bottom: 0; }
+.bb-body {
+  position: relative; width: 150px; height: 120px; overflow: hidden;
+  clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%);
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+}
+.bb-liquid {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 58%;
+  background: linear-gradient(180deg, #7fe0ff, #2f9fd6 55%, #1a6fa8);
+  box-shadow: 0 0 34px 6px rgba(95,208,255,.4);
+}
+.bb-liquid::after {
+  content: ""; position: absolute; top: -4px; left: 0; right: 0; height: 8px;
+  border-radius: 50%; background: rgba(190,240,255,.75);
+}
+.bb-bub { position: absolute; inset: 0; }
+.bb-bub i {
+  position: absolute; bottom: 6%; width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(220,250,255,.6); animation: bb-rise 4.5s linear infinite;
+}
+.bb-bub i:nth-child(1) { left: 36%; animation-delay: 0s; }
+.bb-bub i:nth-child(2) { left: 52%; animation-delay: 1.4s; width: 4px; height: 4px; }
+.bb-bub i:nth-child(3) { left: 62%; animation-delay: 2.8s; width: 5px; height: 5px; }
+@keyframes bb-rise { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: .8; } 100% { transform: translateY(-58px); opacity: 0; } }
+.bb-tag {
+  margin-top: 0.8rem; text-align: center;
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+.bb-read { display: flex; flex-direction: column; gap: 1rem; }
+.bb-purity { display: flex; align-items: baseline; gap: 0.6rem; }
+.bb-purity b { font-family: var(--mono); font-size: clamp(2rem, 6vw, 3.2rem); color: var(--a); line-height: 1; }
+.bb-purity span { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); }
+.bb-track { height: 8px; border-radius: 5px; background: rgba(255,255,255,.08); overflow: hidden; }
+.bb-track i { display: block; height: 100%; width: 96.2%; background: linear-gradient(90deg, #2f9fd6, #7fe0ff); box-shadow: 0 0 14px rgba(95,208,255,.5); }
+.bb-read p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 60ch; }
+
+/* ═════════════ Kung Fu Panda: the Dragon Scroll ═════════════ */
+.kfp-scroll { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; }
+.kfp-rollers { display: flex; align-items: stretch; justify-content: center; }
+.kfp-rod {
+  width: 22px; flex: none; border-radius: 6px;
+  background: linear-gradient(90deg, #5a3a1e, #8a5f37 40%, #4a2f18);
+  box-shadow: 0 10px 22px -12px #000;
+}
+.kfp-rod::before, .kfp-rod::after {
+  content: ""; display: block; height: 14px; margin: -7px -5px; border-radius: 50%;
+  background: linear-gradient(180deg, #d8a850, #8a5f20);
+}
+.kfp-paper {
+  flex: 1 1 auto; max-width: 620px; padding: clamp(1.4rem, 4vw, 2.6rem) clamp(1rem, 3vw, 2rem);
+  text-align: center;
+  background: linear-gradient(180deg, #f0d9a0, #d8b872 60%, #c2a05c);
+  box-shadow: inset 0 0 40px 10px rgba(120,80,20,.25);
+}
+.kfp-mirror {
+  position: relative; margin: 0 auto 1rem; width: min(420px, 100%); height: clamp(90px, 18vw, 140px);
+  border-radius: 4px; overflow: hidden;
+  background: linear-gradient(115deg, #f6e9c8 0%, #fffdf4 22%, #e2cf9a 42%, #fffdf4 60%, #e8d6a4 100%);
+  box-shadow: inset 0 0 0 2px rgba(120,80,20,.25), inset 0 0 30px rgba(120,80,20,.2);
+}
+.kfp-mirror::after {                     /* the sheen that makes it read as reflective */
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.65) 46%, transparent 60%);
+  animation: kfp-sheen 6s ease-in-out infinite;
+}
+@keyframes kfp-sheen { 0%, 100% { transform: translateX(-30%); } 50% { transform: translateX(30%); } }
+.kfp-paper b {
+  display: block; font-family: "Bradley Hand", "Brush Script MT", Georgia, cursive;
+  font-size: clamp(1.1rem, 3vw, 1.6rem); color: #4a2f10;
+}
+.kfp-paper span {
+  display: block; margin-top: 0.5rem; font-family: var(--mono);
+  font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(74,47,16,.65);
+}
+.kfp-scroll-cap {
+  margin-top: 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+@media (prefers-reduced-motion: reduce) { .kfp-mirror::after { animation: none; } }
+
+/* ═════════════ Avatar: the link tank ═════════════ */
+.av-tank {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) { .av-tank { grid-template-columns: 0.44fr 1.56fr; } }
+.av-glass {
+  position: relative; width: min(200px, 62vw); height: 300px; margin: 0 auto;
+  border-radius: 100px 100px 16px 16px; overflow: hidden;
+  border: 2px solid rgba(140,220,255,.28);
+  background: linear-gradient(180deg, rgba(20,60,80,.65), rgba(8,26,38,.85));
+  box-shadow: inset -14px 0 26px -16px #000, 0 26px 50px -30px #000, 0 0 40px -14px rgba(95,214,224,.5);
+}
+.av-glass::before {                      /* fluid */
+  content: ""; position: absolute; inset: 6% 6% 4%;
+  border-radius: 90px 90px 12px 12px;
+  background: linear-gradient(180deg, rgba(95,214,224,.30), rgba(40,140,190,.22) 60%, rgba(20,80,120,.3));
+}
+.av-body {                               /* the avatar, floating */
+  position: absolute; left: 50%; top: 22%; translate: -50% 0;
+  width: 42%; height: 58%;
+  background: radial-gradient(60% 40% at 50% 12%, rgba(120,190,255,.55), transparent 70%),
+              linear-gradient(180deg, rgba(70,150,220,.5), rgba(30,90,150,.35));
+  border-radius: 50% 50% 46% 46%;
+  filter: blur(1px);
+  animation: av-float 9s ease-in-out infinite alternate;
+}
+@keyframes av-float { from { transform: translate(-50%, -6px); } to { transform: translate(-50%, 8px); } }
+.av-glass i {                            /* bubbles */
+  position: absolute; bottom: 8%; width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(190,245,255,.6); animation: av-bub 5.5s linear infinite;
+}
+.av-glass i:nth-child(1) { left: 28%; }
+.av-glass i:nth-child(2) { left: 62%; animation-delay: 1.8s; }
+.av-glass i:nth-child(3) { left: 46%; animation-delay: 3.4s; }
+@keyframes av-bub { 0% { transform: translateY(0); opacity: 0; } 12% { opacity: .8; } 100% { transform: translateY(-190px); opacity: 0; } }
+.av-tank-cap {
+  margin-top: 0.8rem; text-align: center;
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+.av-note h4 {
+  font-family: Papyrus, "Bradley Hand", Georgia, fantasy;
+  font-size: 1.3rem; letter-spacing: 0.04em; color: var(--a); margin-bottom: 0.6rem;
+}
+.av-note p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+.av-note p + p { margin-top: 0.7rem; }
+@media (prefers-reduced-motion: reduce) { .av-body, .av-glass i { animation: none; } }
+
+
+/* ═════════════ Invincible: a comic cover ═════════════ */
+.inv-cover {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) { .inv-cover { grid-template-columns: 0.5fr 1.5fr; } }
+.inv-book {
+  position: relative; width: min(300px, 74vw); margin: 0 auto; aspect-ratio: 2 / 3;
+  border: 3px solid #0c0e18; border-radius: 2px; overflow: hidden;
+    box-shadow: 0 28px 56px -30px #000;
+}
+.inv-book { background: linear-gradient(170deg, #22284a, #0e1226 65%, #080a16); }
+.inv-book::before {                      /* ben-day wash */
+  content: ""; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(240,208,64,.12) 1px, transparent 1.4px);
+  background-size: 9px 9px;
+}
+.inv-bar {
+  position: relative; display: flex; align-items: center; justify-content: space-between;
+  gap: 0.5rem; padding: 0.5rem 0.6rem; background: #f0d040; color: #0c0e18;
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.14em; text-transform: uppercase;
+}
+.inv-title {
+  position: relative; padding: 1.1rem 0.8rem 0.4rem; text-align: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow", sans-serif;
+  font-size: clamp(1.8rem, 6vw, 2.6rem); letter-spacing: 0.02em; text-transform: uppercase;
+  color: #f0d040; -webkit-text-stroke: 2px #1a2a6a; paint-order: stroke fill;
+  line-height: 0.95;
+}
+.inv-splash {
+  position: relative; margin: 0.4rem 0.8rem; height: 42%;
+  border: 2px solid #0c0e18; border-radius: 2px;
+  background:
+    radial-gradient(60% 50% at 50% 30%, rgba(240,208,64,.22), transparent 70%),
+    linear-gradient(180deg, #2a3160, #141a35);
+  display: grid; place-items: center;
+}
+.inv-splash span {
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: rgba(220,230,255,.55); text-align: center; padding: 0 1rem;
+}
+.inv-splat {                             /* one restrained splash of red */
+  position: absolute; right: -8%; bottom: -6%;
+  width: 46%; aspect-ratio: 1;
+  border-radius: 46% 54% 38% 62% / 52% 40% 60% 48%;
+  background: radial-gradient(circle at 42% 38%, rgba(190,26,26,.55), transparent 70%);
+  filter: blur(2px);
+}
+.inv-foot {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.45rem 0.6rem; background: rgba(8,10,22,.85);
+  font-family: var(--mono); font-size: 0.46rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(220,230,255,.6);
+}
+.inv-barcode { display: flex; gap: 1px; align-items: flex-end; height: 14px; }
+.inv-barcode i { width: 2px; background: rgba(220,230,255,.6); }
+.inv-note h4 {
+  font-family: Impact, Haettenschweiler, "Arial Narrow", sans-serif;
+  text-transform: uppercase; letter-spacing: 0.04em; font-size: 1.3rem;
+  color: var(--a); margin-bottom: 0.6rem;
+}
+.inv-note p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+.inv-note p + p { margin-top: 0.7rem; }
+
+/* ═════════════ Percy Jackson: the camp necklace ═════════════ */
+.pj-beads { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; text-align: center; }
+.pj-cord {
+  position: relative; display: inline-flex; align-items: center; gap: 0;
+  padding: 1.2rem 0; max-width: 100%; flex-wrap: wrap; justify-content: center;
+}
+.pj-cord::before {                       /* the leather cord */
+  content: ""; position: absolute; left: 4%; right: 4%; top: 50%; height: 3px;
+  background: linear-gradient(90deg, transparent, #6b4626 8%, #6b4626 92%, transparent);
+  border-radius: 2px;
+}
+.pj-bead {
+  position: relative; width: clamp(62px, 11vw, 86px); aspect-ratio: 1; margin: 0 4px;
+  border-radius: 50%; display: grid; place-items: center;
+  background: radial-gradient(circle at 34% 28%, color-mix(in srgb, var(--b) 70%, #fff 18%), var(--b) 62%, color-mix(in srgb, var(--b) 55%, #000));
+  box-shadow: inset -4px -5px 10px rgba(0,0,0,.4), 0 10px 20px -12px #000;
+  transition: transform .35s var(--ease);
+}
+.pj-bead:hover { transform: translateY(-6px) rotate(-4deg); }
+.pj-bead svg { width: 52%; height: 52%; fill: none; stroke: rgba(20,16,10,.75); stroke-width: 1.6; }
+.pj-bead b {
+  position: absolute; bottom: -1.5rem; left: 50%; translate: -50% 0; white-space: nowrap;
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute);
+}
+.pj-beads-cap {
+  margin-top: 2.6rem; font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute);
+}
+
+/* ═════════════ Dune: the stillsuit ═════════════ */
+.dn-suit {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) { .dn-suit { grid-template-columns: 0.55fr 1.45fr; } }
+.dn-figure { position: relative; width: min(260px, 70vw); margin: 0 auto; }
+.dn-figure svg { width: 100%; height: auto; color: #e0a050; }
+.dn-figure svg .body { fill: rgba(224,160,80,.10); stroke: currentColor; stroke-width: 1.4; }
+.dn-figure svg .lead { stroke: rgba(224,160,80,.55); stroke-width: .8; stroke-dasharray: 3 3; }
+.dn-figure svg text {
+  font-family: "JetBrains Mono", monospace; font-size: 5px;
+  letter-spacing: .6px; fill: rgba(240,210,170,.85); text-transform: uppercase;
+}
+.dn-water { display: flex; flex-direction: column; gap: 0.9rem; }
+.dn-water h4 {
+  text-transform: uppercase; letter-spacing: 0.24em; font-weight: 300;
+  font-size: 1.05rem; color: var(--a);
+}
+.dn-water p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+.dn-stat {
+  display: flex; align-items: baseline; gap: 0.7rem;
+  padding-top: 0.7rem; border-top: 1px solid var(--line);
+}
+.dn-stat b { font-family: var(--mono); font-size: 1.6rem; color: var(--a); }
+.dn-stat span { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
+
+/* ═════════════ LEGO: the brick, in section ═════════════ */
+.lg-brick {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) { .lg-brick { grid-template-columns: 0.9fr 1.1fr; } }
+.lg-piece { position: relative; width: min(320px, 82vw); margin: 0 auto; }
+.lg-studs { display: flex; gap: 8px; justify-content: center; margin-bottom: -6px; position: relative; z-index: 2; }
+.lg-studs i {
+  width: 44px; height: 18px; border-radius: 8px 8px 4px 4px;
+  background: linear-gradient(180deg, #ff5a4a, #c9241c);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.4), 0 3px 0 rgba(0,0,0,.25);
+}
+.lg-slab {
+  height: 76px; border-radius: 4px;
+  background: linear-gradient(180deg, #e8382c, #b81f18);
+  box-shadow: inset 0 3px 0 rgba(255,255,255,.28), inset 0 -8px 14px rgba(0,0,0,.3), 0 16px 30px -18px #000;
+}
+.lg-under {
+  display: flex; gap: 10px; justify-content: center; margin-top: 10px;
+  padding: 12px 10px; border-radius: 4px;
+  background: linear-gradient(180deg, #8f1a14, #6b120d);
+  box-shadow: inset 0 4px 10px rgba(0,0,0,.5);
+}
+.lg-under i {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 4px solid #d8352b; background: rgba(0,0,0,.35);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.6);
+}
+.lg-dims { display: flex; justify-content: space-between; margin-top: 0.7rem; }
+.lg-dims span {
+  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute);
+}
+.lg-note h4 {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.03em; font-size: 1.2rem;
+  color: var(--a); margin-bottom: 0.6rem;
+}
+.lg-note p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+.lg-note p + p { margin-top: 0.7rem; }
+
+
+/* ═════════════ Knott's: a jar of the berry that saved the place ═════════════ */
+.kn-jar-row {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) { .kn-jar-row { grid-template-columns: 0.34fr 1.66fr; } }
+.kn-jar { position: relative; width: 120px; margin: 0 auto; }
+.kn-lid {
+  width: 92px; height: 22px; margin: 0 auto -4px; border-radius: 8px 8px 4px 4px;
+  background: repeating-linear-gradient(90deg, #8f5fc0 0 5px, #7a4aa8 5px 10px);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.25);
+}
+.kn-glass {
+  position: relative; height: 132px; border-radius: 8px 8px 14px 14px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.14);
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  box-shadow: inset -10px 0 18px -12px #000, 0 16px 30px -20px #000;
+}
+.kn-jam {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 78%;
+  background: linear-gradient(180deg, #9b4fb8, #6b2a86 60%, #4a1a60);
+  box-shadow: 0 0 26px 4px rgba(155,79,184,.35);
+}
+.kn-jam::after { content: ""; position: absolute; top: -4px; left: 0; right: 0; height: 8px; border-radius: 50%; background: rgba(210,150,235,.7); }
+.kn-label {
+  position: absolute; left: 10%; right: 10%; top: 34%; padding: 0.35rem 0.2rem;
+  text-align: center; border-radius: 2px; background: #f0e2c0; color: #3a1f10;
+  font-family: "American Typewriter", Georgia, serif; font-variant: small-caps;
+  font-size: 0.6rem; letter-spacing: 0.06em; line-height: 1.2;
+}
+.kn-jar-cap {
+  margin-top: 0.7rem; text-align: center; font-family: var(--mono);
+  font-size: 0.52rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
+}
+.kn-jar-note h4 {
+  font-family: "American Typewriter", Georgia, serif; font-weight: 700;
+  font-variant: small-caps; letter-spacing: 0.05em; font-size: 1.25rem;
+  color: var(--a); margin-bottom: 0.6rem;
+}
+.kn-jar-note p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+.kn-jar-note p + p { margin-top: 0.7rem; }
+
+/* ═════════════ Disney: a castle, and fireworks over it ═════════════ */
+.dz-castle { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; }
+.dz-stage {
+  position: relative; overflow: hidden; border-radius: 10px;
+  padding: clamp(2rem, 6vw, 4rem) 1rem 0;
+  background: linear-gradient(180deg, #0d1636 0%, #131c44 46%, #1b2350 100%);
+}
+.dz-burst {
+  position: absolute; width: 190px; height: 190px; border-radius: 50%;
+  background:
+    repeating-conic-gradient(from 0deg, var(--f) 0 .8deg, transparent .8deg 11deg);
+  mask-image: radial-gradient(circle, transparent 12%, #000 26%, transparent 58%);
+  -webkit-mask-image: radial-gradient(circle, transparent 12%, #000 26%, transparent 58%);
+  opacity: 0; animation: dz-pop 7s ease-out infinite;
+}
+.dz-burst:nth-child(1) { left: 12%; top: 8%;  --f: rgba(255,190,220,.8); animation-delay: 0s; }
+.dz-burst:nth-child(2) { right: 14%; top: 4%; --f: rgba(190,225,255,.8); animation-delay: 2.2s; }
+.dz-burst:nth-child(3) { left: 44%; top: -4%; --f: rgba(255,235,180,.8); animation-delay: 4.4s; }
+@keyframes dz-pop {
+  0% { opacity: 0; transform: scale(.2); }
+  8% { opacity: 1; transform: scale(1); }
+  30% { opacity: 0; transform: scale(1.25); }
+  100% { opacity: 0; transform: scale(1.25); }
+}
+.dz-castle svg { position: relative; display: block; width: 100%; max-width: 720px; margin: 0 auto; height: auto; }
+.dz-castle svg .stone { fill: #dfe6f5; }
+.dz-castle svg .roof  { fill: #6f8fd0; }
+.dz-castle svg .win   { fill: #f6d98a; }
+.dz-castle svg .dark  { fill: #b9c4dd; }
+.dz-castle-cap {
+  margin-top: 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+@media (prefers-reduced-motion: reduce) { .dz-burst { animation: none; opacity: .35; } }
+
+/* ═════════════ Universal: the Studio Tour tram ═════════════ */
+.uni-tram { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; }
+.uni-road {
+  position: relative; padding: clamp(1.4rem, 4vw, 2.6rem) 0 0;
+  border-radius: 10px; overflow: hidden;
+  background: linear-gradient(180deg, rgba(143,184,232,.08), transparent 60%), rgba(8,16,28,.6);
+}
+.uni-cars { display: flex; align-items: flex-end; justify-content: center; gap: 6px; padding: 0 1rem; }
+.uni-car { position: relative; width: clamp(88px, 15vw, 132px); flex: none; }
+.uni-canopy {
+  height: 14px; border-radius: 4px 4px 0 0;
+  background: repeating-linear-gradient(90deg, #e8e8ea 0 10px, #d84a4a 10px 20px);
+  box-shadow: 0 2px 0 rgba(0,0,0,.3);
+}
+.uni-posts { display: flex; justify-content: space-between; padding: 0 6px; margin-top: -2px; }
+.uni-posts i { width: 2px; height: 20px; background: rgba(220,232,248,.5); }
+.uni-cab {
+  height: 34px; border-radius: 3px;
+  background: linear-gradient(180deg, #4f6f9a, #2f4569);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.18);
+  display: grid; place-items: center;
+}
+.uni-cab span {
+  font-family: var(--mono); font-size: 0.46rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(220,232,248,.75);
+}
+.uni-wheels { display: flex; justify-content: space-around; margin-top: -4px; }
+.uni-wheels i { width: 16px; height: 16px; border-radius: 50%; background: #1a1f28; border: 3px solid #39424f; }
+.uni-asphalt {
+  margin-top: 6px; height: 26px;
+  background: linear-gradient(180deg, #2a2f38, #1a1e25);
+  border-radius: 0 0 10px 10px;
+  position: relative;
+}
+.uni-asphalt::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 11px; height: 3px;
+  background: repeating-linear-gradient(90deg, rgba(240,200,90,.65) 0 26px, transparent 26px 52px);
+}
+.uni-tram-cap {
+  margin-top: 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}

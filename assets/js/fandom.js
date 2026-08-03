@@ -76,6 +76,13 @@
              + '<ellipse cx="12" cy="12" rx="4" ry="9.4" fill="none" stroke="currentColor" stroke-width="1.2"/>'
              + '<path d="M2.9 9h18.2M2.9 15h18.2" stroke="currentColor" stroke-width="1.2"/>'
              + '<rect x="1" y="10.8" width="22" height="2.4" rx="1.2" opacity=".9"/>',
+    league:  '<circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/>'
+             + '<path d="M6.4 17.6 17.6 6.4" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>'
+             + '<path d="M12 6.6l1.5 3.6 3.9.3-3 2.5.9 3.8L12 14.8 8.7 16.8l.9-3.8-3-2.5 3.9-.3z"/>',
+    saloon:  '<path d="M3 21V9.4l9-6.4 9 6.4V21z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>'
+             + '<path d="M2 21h20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'
+             + '<path d="M9.4 21v-6.2a2.6 2.6 0 0 1 5.2 0V21z"/>'
+             + '<path d="M5.8 10.4h3.2v3H5.8zM15 10.4h3.2v3H15z" opacity=".65"/>',
   };
 
   function glyph(key) {

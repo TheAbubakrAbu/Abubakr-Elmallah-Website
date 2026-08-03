@@ -24,6 +24,28 @@ window.FAN_PAGE = { sections: [
       { title: 'Damian Wayne', accent: '#d0a040', sub: 'Robin V', desc: 'Raised by the League of Assassins, and ten years old.' },
     ] },
 
+  { id: 'gotham', kind: 'cards', title: 'Gotham', note: 'the city as a character',
+    items: [
+      { title: 'The Batcave', sub: 'Under Wayne Manor', tag: 'Base', desc: 'A cave he fell into as a child, turned into the best-equipped forensics lab on the east coast. The dinosaur and the giant penny are canon.', meta: 'Alfred keeps it running' },
+      { title: 'Arkham Asylum', sub: 'The revolving door', tag: 'Institution', desc: 'A hospital that has never once cured anybody, and the reason the rogues gallery keeps coming back.', meta: 'Amadeus Arkham' },
+      { title: 'Crime Alley', sub: 'Park Row', tag: 'Origin', desc: 'Where the Waynes were killed leaving a cinema. He goes back every year on the date.', meta: 'The pearls' },
+      { title: 'The GCPD roof', sub: 'The signal', tag: 'Alliance', desc: 'Gordon lights it, turns around, and Batman is already gone. The oldest bit in the character and still the best.', meta: 'Commissioner Gordon' },
+      { title: 'Ace Chemicals', sub: 'The vat', tag: 'Origin', desc: 'Where a failed comedian went in and something else came out, in most versions of the story.', meta: 'One bad day' },
+      { title: 'Blackgate', sub: 'The prison', tag: 'Institution', desc: 'For the ones the courts rule sane, which is a distinction Gotham makes badly.', meta: 'Across the water' },
+    ] },
+
+  { id: 'eras', kind: 'timeline', title: 'The Eras', note: '1939 to now',
+    items: [
+      { when: '1939', title: 'Detective Comics #27', desc: 'A pulp vigilante with a gun and no origin, six issues before either of those get fixed.' },
+      { when: '1966', title: 'The Adam West era', desc: 'Camp, bright, and a smash hit. It defined the character in the public eye for twenty years.' },
+      { when: '1986', title: 'The Dark Knight Returns and Year One', desc: 'Miller writes both ends of the life in the same two years, and the character is grim again for good.' },
+      { when: '1989', title: 'Burton', desc: 'Gothic, Danny Elfman, and the merchandising campaign that proved comic films could print money.' },
+      { when: '1992', title: 'The Animated Series', desc: 'Painted on black card, scored like noir, and the definitive version of most of the cast.' },
+      { when: '2005', title: 'Nolan', desc: 'A crime trilogy with a cape, and the film that made the genre respectable to people who dislike the genre.' },
+      { when: '2009', title: 'Arkham Asylum', desc: 'The first game that felt like being him: the detective work, the gliding, and the dread.' },
+      { when: '2022', title: 'The Batman', desc: 'Year two, in the rain, as a serial killer procedural. The most patient version yet.' },
+    ] },
+
   { id: 'best', kind: 'rank', title: 'The Best Of It', note: 'across every medium',
     items: [
       { title: 'Batman: The Animated Series', sub: '1992–95', desc: 'Painted on black card, scored like a noir, and still the definitive version of nearly every character in it.' },

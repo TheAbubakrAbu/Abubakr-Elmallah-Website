@@ -362,16 +362,15 @@
 
   var schRoot = document.getElementById('scholars');
   if (schRoot && S) {
-    var total = S.reduce(function (n, g) { return n + g.people.length; }, 0);
-    var chips = '<button class="chip chip--isl is-active" type="button" data-gen="all" data-magnetic>All <em>' + total + '</em></button>'
-      + S.map(function (g) {
-          return '<button class="chip chip--isl" type="button" data-gen="' + g.id + '" data-magnetic>'
-            + esc(g.label) + ' <em>' + g.people.length + '</em></button>';
-        }).join('');
+    /* one generation at a time, opening on the rightly guided caliphs */
+    var chips = S.map(function (g, i) {
+      return '<button class="chip chip--isl' + (i === 0 ? ' is-active' : '') + '" type="button" data-gen="'
+        + g.id + '" data-magnetic>' + esc(g.label) + ' <em>' + g.people.length + '</em></button>';
+    }).join('');
 
     schRoot.innerHTML = '<div class="filters sch-filters reveal">' + chips + '</div>'
-      + S.map(function (g) {
-          return '<section class="sch-group" data-gen="' + g.id + '">'
+      + S.map(function (g, i) {
+          return '<section class="sch-group" data-gen="' + g.id + '"' + (i === 0 ? '' : ' hidden') + '>'
             + '<h3 class="subsec subsec--isl reveal">' + esc(g.label)
             +   (g.sahabah ? '<span class="sch-tag sch-tag--sahabah">Ṣaḥābah</span>' : '')
             +   (g.salaf ? '<span class="sch-tag sch-tag--salaf">Salaf</span>' : '')
@@ -389,7 +388,7 @@
       var gen = btn.dataset.gen;
       schRoot.querySelectorAll('.chip--isl').forEach(function (c) { c.classList.toggle('is-active', c === btn); });
       groups.forEach(function (s) {
-        var show = gen === 'all' || s.dataset.gen === gen;
+        var show = s.dataset.gen === gen;
         s.hidden = !show;
         if (show) s.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
       });

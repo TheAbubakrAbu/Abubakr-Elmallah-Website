@@ -23,6 +23,27 @@ window.FAN_PAGE = { sections: [
       { title: 'Glamrock Freddy', sub: 'Security Breach', tag: 'Modern', desc: 'The first one on your side, and the reason that game plays like a mall stealth game.', meta: 'Mega Pizzaplex' },
     ] },
 
+  { id: 'lore', kind: 'timeline', title: 'The Story, In Order', note: 'assembled by the fanbase out of minigames and cutscenes',
+    lede: 'None of this is told to you directly. It is pieced together from eight-bit minigames, newspaper clippings on the loading screens, and lines hidden in the phone calls.',
+    items: [
+      { when: 'Fredbear\u2019s', title: 'The bite', desc: 'A birthday, a group of older kids, and a child lifted into an animatronic mouth. The event the whole series circles.' },
+      { when: 'Freddy Fazbear\u2019s Pizza', title: 'The missing children', desc: 'Five children lured away by a man in a spare suit. The bodies are never found, and the restaurant starts to smell.' },
+      { when: 'After', title: 'The suits', desc: 'The animatronics begin moving on their own at night, and the company writes it off as a servo fault.' },
+      { when: 'The spring locks', title: 'What happens to him', desc: 'The man hides inside a spring lock suit to escape, and the springs fail. He does not get out, and he does not quite die either.' },
+      { when: 'Fazbear\u2019s Fright', title: 'The horror attraction', desc: 'Thirty years on, someone builds a haunted attraction out of the salvage and finds one suit still standing.' },
+      { when: 'Pizzeria Simulator', title: 'The trap', desc: 'A restaurant built specifically as a lure, by the one man who wanted all of it in the same room, with one exit.' },
+      { when: 'The Pizzaplex', title: 'The mall', desc: 'A three-storey entertainment complex built on top of the ruins, which is exactly as bad an idea as it sounds.' },
+    ] },
+
+  { id: 'beyond', kind: 'cards', title: 'Beyond The Games', note: 'a horror game that became an industry',
+    items: [
+      { title: 'The theory channels', sub: 'Since 2014', tag: 'Fandom', desc: 'Frame-by-frame analysis of eight-bit minigames became an entire YouTube genre. The games are written to be read that way.', meta: 'Game Theory · Dawko' },
+      { title: 'The novels', sub: 'Since 2015', tag: 'Books', desc: 'The Silver Eyes and the Fazbear Frights collections, which tell parallel versions rather than canon.', meta: 'Scott Cawthon · Kira Breed-Wrisley' },
+      { title: 'Help Wanted', sub: '2019 · VR', tag: 'Game', desc: 'The whole series remade as VR minigames, which is a genuinely cruel idea and works perfectly.', meta: 'Steel Wool' },
+      { title: 'The film', sub: '2023', tag: 'Film', desc: 'Jim Henson\u2019s Creature Shop built the animatronics practically. Critics disliked it, and it made nearly three hundred million.', meta: 'Blumhouse' },
+      { title: 'Made by one person', sub: 'Scott Cawthon', tag: 'Origin', desc: 'A developer whose previous game was criticised for characters that looked like stiff animatronics, who took the note and built a horror franchise out of it.', meta: 'Five months' },
+    ] },
+
   { id: 'games', kind: 'rank', title: 'The Games', note: '2014 – now',
     items: [
       { title: 'Five Nights at Freddy’s', sub: '2014', desc: 'Made in months by one person, and it reset what a horror game needed to be.' },

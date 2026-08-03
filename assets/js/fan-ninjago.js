@@ -22,6 +22,26 @@ window.FAN_PAGE = { sections: [
       { when: 'S11–15', title: 'Crystalized & Dragons Rising', desc: 'Realms merge, timelines fold, and a LEGO show ends up with continuity most franchises would envy.' },
     ] },
 
+  { id: 'weapons', kind: 'tiles', title: 'The Four Golden Weapons', note: 'forged by the First Spinjitzu Master',
+    lede: 'Made from the four weapons he used to create Ninjago, hidden apart because together they are too much for anyone to hold.',
+    items: [
+      { title: 'Scythe of Quakes', accent: '#8f8f9a', sub: 'Cole \u00b7 Earth', desc: 'Splits the ground open. Hidden in the Caves of Despair.' },
+      { title: 'Nunchucks of Lightning', accent: '#4f9fd0', sub: 'Jay \u00b7 Lightning', desc: 'Calls a storm down. Hidden in the Floating Ruins.' },
+      { title: 'Shurikens of Ice', accent: '#dff2ff', sub: 'Zane \u00b7 Ice', desc: 'Freezes anything they touch. Hidden in the Frozen Wasteland.' },
+      { title: 'Sword of Fire', accent: '#e04a3a', sub: 'Kai \u00b7 Fire', desc: 'Melts through stone. Hidden in the Fire Temple, guarded by a dragon.' },
+      { title: 'The Mega Weapon', accent: '#e0b040', sub: 'All four', desc: 'What you get when they are combined, and the reason they were separated in the first place.' },
+    ] },
+
+  { id: 'villains', kind: 'cards', title: 'The Villains', note: 'one arc at a time',
+    items: [
+      { title: 'Lord Garmadon', sub: 'Four arms', tag: 'Season 1+', desc: 'Bitten by the Great Devourer as a child, and the show spends a decade deciding whether that is an excuse.', meta: 'Wu\u2019s brother · Lloyd\u2019s father' },
+      { title: 'The Serpentine', sub: 'Five tribes', tag: 'Season 1', desc: 'Sealed underground for generations and released by one kid with a map. Pythor unites them.', meta: 'Hypnobrai · Fangpyre · Anacondrai' },
+      { title: 'The Overlord', sub: 'The dark half', tag: 'Season 2 & 3', desc: 'As old as the First Spinjitzu Master and the other half of the same creation. Comes back as a computer virus.', meta: 'The Golden Master' },
+      { title: 'Nadakhan', sub: 'Djinn', tag: 'Skybound', desc: 'Grants wishes and twists every one. The season that ends with the timeline rewritten and one death undone.', meta: 'Djinn blade' },
+      { title: 'The Oni', sub: 'The Omega', tag: 'Sons of Garmadon', desc: 'Where Garmadon\u2019s darkness came from originally, arriving in person to swallow the realm.', meta: 'March of the Oni' },
+      { title: 'The Crystal King', sub: 'Crystalized', tag: 'Season 15', desc: 'Every previous villain assembled under one, which is the sort of thing sixteen seasons earn you.', meta: 'The Overlord, again' },
+    ] },
+
   { id: 'lines', kind: 'quotes', title: 'Lines', note: 'the ones that stuck',
     items: [
       { title: 'Ninja-go!', sub: 'all six, constantly' },

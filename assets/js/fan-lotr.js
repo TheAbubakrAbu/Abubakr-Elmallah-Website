@@ -21,6 +21,28 @@ window.FAN_PAGE = { sections: [
       { title: 'The One', accent: '#e0b040', sub: 'Sauron', desc: 'Forged in Orodruin, and the only place it can be unmade. Everything else is logistics.' },
     ] },
 
+  { id: 'peoples', kind: 'cards', title: 'The Peoples', note: 'who is in Middle-earth',
+    items: [
+      { title: 'Hobbits', sub: 'Halflings', tag: 'Shire', desc: 'Three and a half feet, no shoes, six meals a day, and the only people in the story the Ring cannot corrupt quickly. That is the entire thesis.', meta: 'Harfoots · Stoors · Fallohides' },
+      { title: 'Elves', sub: 'The Firstborn', tag: 'Immortal', desc: 'They do not die of age and they do leave. The whole trilogy happens during their long goodbye.', meta: 'Rivendell · Lothlórien · Mirkwood' },
+      { title: 'Dwarves', sub: 'Khazad', tag: 'Stone', desc: 'Made by Aulë before the elves woke, and set to sleep until they did. Seven fathers, one language, and a grudge that outlives everybody.', meta: 'Erebor · Moria · the Iron Hills' },
+      { title: 'Men', sub: 'The Secondborn', tag: 'Mortal', desc: 'Gondor and Rohan hold the south. Their weakness is the one Sauron plans around, and their recovery is what the ending is about.', meta: 'Númenor · Gondor · Rohan' },
+      { title: 'Ents', sub: 'Shepherds of the trees', tag: 'Old', desc: 'Older than the elves, slower than anyone, and the only force in the book that takes down Isengard.', meta: 'Fangorn · Treebeard' },
+      { title: 'The Istari', sub: 'Wizards', tag: 'Maiar', desc: 'Five sent in old bodies specifically so they would have to persuade rather than command. Two of them forget that.', meta: 'Gandalf · Saruman · Radagast' },
+      { title: 'Orcs', sub: 'Ruined', tag: 'Mordor', desc: 'Bred rather than made, because Tolkien\u2019s rules do not let evil create anything, only spoil it.', meta: 'Uruk-hai · Moria · Mordor' },
+      { title: 'The Eagles', sub: 'Servants of Manwë', tag: 'Above', desc: 'Not a taxi service. They answer to somebody else entirely, which is why the obvious plan never works.', meta: 'Gwaihir' },
+    ] },
+
+  { id: 'pub', kind: 'timeline', title: 'On The Page And Screen', note: '1937 to now',
+    items: [
+      { when: '1937', title: 'The Hobbit', desc: 'A children\u2019s book written for his own children, with a ring in it that is barely important.' },
+      { when: '1954 and 1955', title: 'The Lord of the Rings', desc: 'Seventeen years of writing, published in three volumes because paper was expensive, which is why people call a six-book novel a trilogy.' },
+      { when: '1977', title: 'The Silmarillion', desc: 'Published after his death by his son Christopher, out of decades of drafts. The mythology the rest is standing on.' },
+      { when: '2001 to 2003', title: 'The Jackson trilogy', desc: 'Shot back to back in New Zealand over 438 days, and the last film took eleven Academy Awards from eleven nominations.' },
+      { when: '2012 to 2014', title: 'The Hobbit films', desc: 'One short book stretched to three films, and the argument about that has not stopped.' },
+      { when: '2022', title: 'The Rings of Power', desc: 'The Second Age, adapted from the appendices, and the most expensive television ever commissioned.' },
+    ] },
+
   { id: 'places', kind: 'timeline', title: 'The Road', note: 'Bag End to Mount Doom',
     items: [
       { when: 'The Shire', title: 'Where it starts', desc: 'A party, a ring left on a mantelpiece, and seventeen years before anybody moves.' },
