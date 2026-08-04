@@ -52,4 +52,15 @@ window.FAN_PAGE = { sections: [
       { title: 'The Disney+ Series', sub: '2023 –', tag: 'Adaptation', desc: 'Riordan in the writers’ room, cast at the right ages, and finally faithful.', meta: 'Season 2 onward' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Rick Riordan', href: 'https://rickriordan.com/',
+        desc: 'The author’s own site, and he still updates it.' },
+      { title: 'Riordan Wiki', href: 'https://riordan.fandom.com/wiki/Riordan_Wiki',
+        desc: 'Every camp, every god, every prophecy across all five series.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Percy_Jackson',
+        desc: 'The books, the films, and the series.' },
+    ] },
+
 ] };

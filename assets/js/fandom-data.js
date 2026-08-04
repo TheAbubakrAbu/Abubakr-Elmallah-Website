@@ -17,7 +17,7 @@ window.FANDOMS = [
   { id: 'core', label: 'The Core Three', note: 'the ones I know by heart', items: [
     { name: 'Star Wars', wm: 'starwars', glyph: 'burst', c1: '#ffe81f', c2: '#2a2408',
       meta: 'Film · 1977', href: '/franchises/star-wars/',
-      desc: 'Prequels, Clone Wars, and the Aurebesh alphabet I ended up shipping twice. Its own page: the eras, the saga, the spinoffs, kyber.' },
+      desc: 'Prequels, Clone Wars, and the Aurebesh alphabet I ended up shipping twice. Its own page: the eras, the prequels, Order 66, the saga, kyber, and a planet atlas drawn in CSS.' },
     { name: 'Harry Potter', wm: 'potter', glyph: 'bolt', c1: '#d9b45f', c2: '#241d10',
       meta: 'Books · 1997', href: '/franchises/harry-potter/',
       desc: 'Read the whole set before I could tell you what a compiler was. Still the best world-building in a children’s series.' },

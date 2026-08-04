@@ -10,7 +10,12 @@ permalink: /franchises/stranger-things/
 <meta name="theme-color" content="#08080a" />
 
 <link rel="icon" type="image/png" href="/assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="/assets/img/me/abubakr-circle.png" />
+<link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Abubakr" />
 <meta property="og:image" content="/assets/img/me/abubakr-circle.png" />
 <meta property="og:type" content="website" />
 <title>Stranger Things · Abubakr Elmallah</title>
@@ -19,15 +24,77 @@ permalink: /franchises/stranger-things/
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="/assets/css/base.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/layout.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/components.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/fanpages.css?v={{ site.time | date: '%s' }}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 </head>
 <body data-intro="none" data-fan="st">
 
 <!-- one backdrop per season, crossfaded on scroll -->
-<div class="st-sky" aria-hidden="true"><span class="st-era st-era--1"></span><span class="st-era st-era--2"></span><span class="st-era st-era--3"></span><span class="st-era st-era--4"></span><span class="st-era st-era--5"></span></div>
+<div class="st-sky" aria-hidden="true">
+  <span class="st-era st-era--0"></span>
+  <span class="st-era st-era--1"></span>
+  <span class="st-era st-era--2"></span>
+  <span class="st-era st-era--3"></span>
+  <span class="st-era st-era--4"></span>
+  <span class="st-era st-era--5"></span>
+  <!-- one drawn prop per season, swapped with the palette -->
+  <span class="st-prop st-prop--1">
+    <svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice">
+      <g class="stp-tree">
+        <path d="M60 400V250l-40 10 40-70-30 6 44-76 44 76-30-6 40 70-40-10v150z"/>
+        <path d="M250 400V286l-30 8 30-56-22 5 34-60 34 60-22-5 30 56-30-8v114z"/>
+        <path d="M980 400V262l-34 9 34-62-25 6 38-68 38 68-25-6 34 62-34-9v138z"/>
+        <path d="M1150 400V300l-26 7 26-50-19 5 30-54 30 54-19-5 26 50-26-7v100z"/>
+      </g>
+      <g class="stp-bike"><circle cx="600" cy="360" r="26"/><circle cx="676" cy="360" r="26"/>
+        <path d="M600 360l34-56h34M634 304l24 56M676 360l-18-56 18-10"/></g>
+    </svg>
+  </span>
+  <span class="st-prop st-prop--2">
+    <svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice">
+      <g class="stp-flayer">
+        <path d="M600 330c0-70 26-120 26-180 0 46 22 60 40 92 10-40-4-70-4-104 26 40 44 74 50 128"/>
+        <path d="M600 330c0-70-26-120-26-180 0 46-22 60-40 92-10-40 4-70 4-104-26 40-44 74-50 128"/>
+        <path d="M600 150c-16-40-46-64-92-72 34 30 46 56 52 92"/>
+        <path d="M600 150c16-40 46-64 92-72-34 30-46 56-52 92"/>
+        <path d="M470 400c0-90 58-140 130-140s130 50 130 140"/>
+      </g>
+    </svg>
+  </span>
+  <span class="st-prop st-prop--3"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+  <span class="st-prop st-prop--4">
+    <svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid meet">
+      <g class="stp-clock">
+        <path d="M540 60h120v300H540z"/>
+        <path d="M528 46h144v18H528zM528 356h144v18H528z"/>
+        <circle cx="600" cy="140" r="52"/>
+        <path d="M600 104v36l26 18"/>
+        <path d="M556 232h88M556 268h88M556 304h88"/>
+        <path d="M600 0v46M566 14l12 32M634 14l-12 32"/>
+      </g>
+    </svg>
+  </span>
+  <span class="st-prop st-prop--5">
+    <svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice">
+      <g class="stp-rift">
+        <path d="M100 200q120-40 200 10t180-20 200 30 180-40 240 20"/>
+        <path d="M60 260q140-30 220 20t200-14 190 24 200-34 210 14"/>
+        <path d="M140 140q110-34 190 8t170-16 190 24 170-30 200 12"/>
+      </g>
+    </svg>
+  </span>
+</div>
+
+<!-- names whichever season you are currently scrolled into -->
+<div class="st-hud" id="stHud" aria-hidden="true">
+  <span class="st-hud-num" id="stHudNum">1</span>
+  <span class="st-hud-text">
+    <b id="stHudLabel">The Vanishing of Will Byers</b>
+    <i id="stHudYear">1983</i>
+  </span>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -77,18 +144,67 @@ permalink: /franchises/stranger-things/
     </div>
   </section>
 
+  <div class="st-flipbar st-flipbar--top">
+    <button class="st-flip" type="button" data-flip aria-pressed="false">Turn it upside down</button>
+  </div>
+
   <section class="st-wall reveal">
     <div class="st-paper">
       <div class="st-cord" aria-hidden="true"></div>
-      <div class="st-letters" aria-label="Alphabet wall spelling RUN"><span class="st-letter"><i class="st-bulb"></i><b>A</b></span><span class="st-letter"><i class="st-bulb"></i><b>B</b></span><span class="st-letter"><i class="st-bulb"></i><b>C</b></span><span class="st-letter"><i class="st-bulb"></i><b>D</b></span><span class="st-letter"><i class="st-bulb"></i><b>E</b></span><span class="st-letter"><i class="st-bulb"></i><b>F</b></span><span class="st-letter"><i class="st-bulb"></i><b>G</b></span><span class="st-letter"><i class="st-bulb"></i><b>H</b></span><span class="st-letter"><i class="st-bulb"></i><b>I</b></span><span class="st-letter"><i class="st-bulb"></i><b>J</b></span><span class="st-letter"><i class="st-bulb"></i><b>K</b></span><span class="st-letter"><i class="st-bulb"></i><b>L</b></span><span class="st-letter"><i class="st-bulb"></i><b>M</b></span><span class="st-letter" data-seq="3"><i class="st-bulb"></i><b>N</b></span><span class="st-letter"><i class="st-bulb"></i><b>O</b></span><span class="st-letter"><i class="st-bulb"></i><b>P</b></span><span class="st-letter"><i class="st-bulb"></i><b>Q</b></span><span class="st-letter" data-seq="1"><i class="st-bulb"></i><b>R</b></span><span class="st-letter"><i class="st-bulb"></i><b>S</b></span><span class="st-letter"><i class="st-bulb"></i><b>T</b></span><span class="st-letter" data-seq="2"><i class="st-bulb"></i><b>U</b></span><span class="st-letter"><i class="st-bulb"></i><b>V</b></span><span class="st-letter"><i class="st-bulb"></i><b>W</b></span><span class="st-letter"><i class="st-bulb"></i><b>X</b></span><span class="st-letter"><i class="st-bulb"></i><b>Y</b></span><span class="st-letter"><i class="st-bulb"></i><b>Z</b></span></div>
+      <div class="st-letters" aria-hidden="true"><span class="st-letter" data-char="A"><i class="st-bulb"></i><b>A</b></span><span class="st-letter" data-char="B"><i class="st-bulb"></i><b>B</b></span><span class="st-letter" data-char="C"><i class="st-bulb"></i><b>C</b></span><span class="st-letter" data-char="D"><i class="st-bulb"></i><b>D</b></span><span class="st-letter" data-char="E"><i class="st-bulb"></i><b>E</b></span><span class="st-letter" data-char="F"><i class="st-bulb"></i><b>F</b></span><span class="st-letter" data-char="G"><i class="st-bulb"></i><b>G</b></span><span class="st-letter" data-char="H"><i class="st-bulb"></i><b>H</b></span><span class="st-letter" data-char="I"><i class="st-bulb"></i><b>I</b></span><span class="st-letter" data-char="J"><i class="st-bulb"></i><b>J</b></span><span class="st-letter" data-char="K"><i class="st-bulb"></i><b>K</b></span><span class="st-letter" data-char="L"><i class="st-bulb"></i><b>L</b></span><span class="st-letter" data-char="M"><i class="st-bulb"></i><b>M</b></span><span class="st-letter" data-char="N"><i class="st-bulb"></i><b>N</b></span><span class="st-letter" data-char="O"><i class="st-bulb"></i><b>O</b></span><span class="st-letter" data-char="P"><i class="st-bulb"></i><b>P</b></span><span class="st-letter" data-char="Q"><i class="st-bulb"></i><b>Q</b></span><span class="st-letter" data-char="R"><i class="st-bulb"></i><b>R</b></span><span class="st-letter" data-char="S"><i class="st-bulb"></i><b>S</b></span><span class="st-letter" data-char="T"><i class="st-bulb"></i><b>T</b></span><span class="st-letter" data-char="U"><i class="st-bulb"></i><b>U</b></span><span class="st-letter" data-char="V"><i class="st-bulb"></i><b>V</b></span><span class="st-letter" data-char="W"><i class="st-bulb"></i><b>W</b></span><span class="st-letter" data-char="X"><i class="st-bulb"></i><b>X</b></span><span class="st-letter" data-char="Y"><i class="st-bulb"></i><b>Y</b></span><span class="st-letter" data-char="Z"><i class="st-bulb"></i><b>Z</b></span></div>
     </div>
-    <p class="st-wall-cap">Joyce’s wall, spelling it out one bulb at a time</p>
-    <button class="st-flip" id="stFlip" type="button">Turn it upside down</button>
+    <div class="st-say">
+      <label for="stSay">Spell something on it</label>
+      <input id="stSay" type="text" value="RUN" maxlength="28" autocomplete="off" spellcheck="false" />
+    </div>
+    <p class="st-wall-cap">Joyce’s wall, one bulb at a time · A–Z and spaces, and it loops</p>
   </section>
-  <script>document.getElementById("stFlip").addEventListener("click",function(){var b=document.body;b.classList.toggle("is-upside-down");this.textContent=b.classList.contains("is-upside-down")?"Right side up":"Turn it upside down";});</script>
-  <script>(function seasons(){var b=document.body;b.dataset.season="1";var secs=document.querySelectorAll("[data-season]");if(!secs.length)return;var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){b.dataset.season=e.target.dataset.season;}});},{rootMargin:"-45% 0px -45% 0px"});secs.forEach(function(s){io.observe(s);});})();</script>
+
+
+  <section class="st-mall reveal">
+    <svg viewBox="0 0 900 300" role="img" aria-label="Starcourt Mall at night">
+      <g class="stm-sky"><path d="M0 0h900v250H0z"/></g>
+      <g class="stm-build">
+        <path d="M40 250V132h820v118z"/>
+        <path d="M120 132V96h660v36z"/>
+        <path d="M300 96V60h300v36z"/>
+      </g>
+      <g class="stm-glass">
+        <path d="M70 250v-96h120v96zM210 250v-96h120v96zM350 250v-96h200v96zM570 250v-96h120v96zM710 250v-96h120v96z"/>
+      </g>
+      <g class="stm-frame">
+        <path d="M70 154h760M70 202h760"/>
+        <path d="M190 154v96M330 154v96M450 154v96M550 154v96M690 154v96"/>
+      </g>
+      <g class="stm-star">
+        <path d="M450 18l11 30 32 2-25 21 8 31-26-18-26 18 8-31-25-21 32-2z"/>
+      </g>
+      <g class="stm-sign">
+        <rect x="330" y="66" width="240" height="24" rx="4"/>
+        <path d="M348 78h20M376 78h16M400 78h18M426 78h14M448 78h20M476 78h16M500 78h18M526 78h16"/>
+      </g>
+      <g class="stm-neon">
+        <path d="M120 116h660"/>
+        <path d="M40 138h820"/>
+      </g>
+      <g class="stm-lot">
+        <path d="M0 250h900v50H0z"/>
+        <path d="M60 262v30M140 262v30M220 262v30M300 262v30M380 262v30M460 262v30M540 262v30M620 262v30M700 262v30M780 262v30M860 262v30"/>
+      </g>
+      <g class="stm-lamp">
+        <path d="M96 250v-52M96 198h26M804 250v-52M804 198h-26"/>
+        <circle cx="126" cy="198" r="7"/><circle cx="774" cy="198" r="7"/>
+      </g>
+    </svg>
+    <p class="st-wall-cap">Starcourt Mall, Hawkins · summer 1985 · closed for renovation, permanently</p>
+  </section>
 
   <div id="fanBody"></div>
+
+  <div class="st-flipbar st-flipbar--bottom">
+    <button class="st-flip" type="button" data-flip aria-pressed="false">Turn it upside down</button>
+  </div>
+
 
 </main>
 
@@ -106,17 +222,20 @@ permalink: /franchises/stranger-things/
   <a href="/franchises/" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Franchises</span></a>
 </nav>
 
-<script src="/assets/js/utils.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
-<script src="/assets/js/fan-st.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/fan-st.js' %}"></script>
 
-<script src="/assets/js/fanpage.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/cursor.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/magnetic.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/reveal.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/clock.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/flowfield.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/scroll.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/sound.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/fanpage.js' %}"></script>
+<script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
+<script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
+<script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
+<!-- after reveal.js on purpose: page-specific UI must never be able to
+     stop the reveal pass and leave the whole page invisible -->
+<script src="{% include v.html f='/assets/js/fan-st-ui.js' %}"></script>
+<script src="{% include v.html f='/assets/js/clock.js' %}"></script>
+<script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
+<script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
+<script src="{% include v.html f='/assets/js/sound.js' %}"></script>
 </body>
 </html>

@@ -26,3 +26,30 @@ const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     raf = (Math.abs(tx - x) > 0.4 || Math.abs(ty - y) > 0.4) ? requestAnimationFrame(loop) : 0;
   }
 })();
+
+/* Service worker: the caching layer (see /sw.js).
+
+   GitHub Pages pins Cache-Control to 600s and will not let us change it, so
+   this is what makes repeat visits instant. Registered from here because
+   utils.js is the one script every page already loads first.
+
+   Only over https (or localhost); file:// and http:// are skipped, and a
+   failure here must never take the page down with it. */
+(function serviceWorker() {
+  if (!('serviceWorker' in navigator)) return;
+  if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
+  addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').then(function (reg) {
+      // once it is running, tell it to pull the rest of the site down so the
+      // whole thing works with no connection at all
+      if (reg.active) reg.active.postMessage({ type: 'prefetch' });
+    }).catch(function () { /* not fatal */ });
+  });
+
+  // the worker says so when every page and image is on the device
+  navigator.serviceWorker.addEventListener('message', function (e) {
+    if (e.data && e.data.type === 'offline-ready') {
+      document.documentElement.dataset.offline = 'ready';
+    }
+  });
+})();

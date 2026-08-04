@@ -79,4 +79,24 @@ window.FAN_PAGE = { sections: [
       { title: 'Paldea', sub: 'Sprigatito · Fuecoco · Quaxly', tag: 'Gen IX', desc: 'Three routes through an open region, in any order you like.', meta: 'Prof. Sada / Turo' },
     ] },
 
+
+  { id: 'played', kind: 'gallery', title: 'Pixelmon', note: 'my own screenshot · Pokémon inside Minecraft',
+    lede: 'The way a lot of us actually played the most Pokémon: a Minecraft mod that rebuilt the whole capture-and-battle system block by block, on a public server with its own economy.',
+    items: [
+      { title: 'A level 100 Mewtwo at spawn', src: '/assets/img/franchises/minecraft-pixelmon.jpg',
+        alt: 'A Pixelmon server spawn in Minecraft with a level 100 Mewtwo sent out',
+        desc: 'Mewtwo and Flareon at level 100, with Emboar, Raichu, Staraptor and a badly neglected Seadra behind them. The server is telling me off for sending Mewtwo out at spawn, which is fair.',
+        meta: 'Pixelmon · aelmallah' },
+    ] },
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Pokemon.com', href: 'https://www.pokemon.com/us',
+        desc: 'The official site: games, cards, and the anime.' },
+      { title: 'Bulbapedia', href: 'https://bulbapedia.bulbagarden.net/',
+        desc: 'The reference. Base stats, learnsets, type charts, everything.' },
+      { title: 'Serebii', href: 'https://www.serebii.net/',
+        desc: 'The other reference, and the faster one for a new generation’s data.' },
+    ] },
+
 ] };

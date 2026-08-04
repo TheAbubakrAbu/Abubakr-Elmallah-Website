@@ -1,0 +1,14 @@
+{%- comment -%}
+  Per-file cache busting.
+
+  Usage:  <link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
+
+  Emits the path with ?v=<that file's own modified time>. The point is that the
+  version only changes when THAT file changes, so a deploy that touches one CSS
+  file does not force every visitor to re-download all 16 MB of images.
+
+  The old `?v={{ site.time }}` did the opposite: site.time is the build time, so
+  every rebuild invalidated every asset on the site.
+{%- endcomment -%}
+{%- assign _f = site.static_files | where: "path", include.f | first -%}
+{%- if _f -%}{{ include.f }}?v={{ _f.modified_time | date: '%s' }}{%- else -%}{{ include.f }}{%- endif -%}

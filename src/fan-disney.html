@@ -10,7 +10,12 @@ permalink: /franchises/disney/
 <meta name="theme-color" content="#08080a" />
 
 <link rel="icon" type="image/png" href="/assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="/assets/img/me/abubakr-circle.png" />
+<link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Abubakr" />
 <meta property="og:image" content="/assets/img/me/abubakr-circle.png" />
 <meta property="og:type" content="website" />
 <title>Disney · Abubakr Elmallah</title>
@@ -19,10 +24,10 @@ permalink: /franchises/disney/
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="/assets/css/base.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/layout.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/components.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/fanpages.css?v={{ site.time | date: '%s' }}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 </head>
 <body data-intro="none" data-fan="disney">
 
@@ -104,17 +109,17 @@ permalink: /franchises/disney/
   <a href="/franchises/" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Franchises</span></a>
 </nav>
 
-<script src="/assets/js/utils.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
-<script src="/assets/js/fan-disney.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/fan-disney.js' %}"></script>
 
-<script src="/assets/js/fanpage.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/cursor.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/magnetic.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/reveal.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/clock.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/flowfield.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/scroll.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/sound.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/fanpage.js' %}"></script>
+<script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
+<script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
+<script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
+<script src="{% include v.html f='/assets/js/clock.js' %}"></script>
+<script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
+<script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
+<script src="{% include v.html f='/assets/js/sound.js' %}"></script>
 </body>
 </html>

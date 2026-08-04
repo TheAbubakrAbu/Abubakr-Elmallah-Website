@@ -10,7 +10,12 @@ permalink: /franchises/jurassic-park/
 <meta name="theme-color" content="#08080a" />
 
 <link rel="icon" type="image/png" href="/assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="/assets/img/me/abubakr-circle.png" />
+<link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Abubakr" />
 <meta property="og:image" content="/assets/img/me/abubakr-circle.png" />
 <meta property="og:type" content="website" />
 <title>Jurassic Park · Abubakr Elmallah</title>
@@ -19,15 +24,31 @@ permalink: /franchises/jurassic-park/
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="/assets/css/base.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/layout.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/components.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/fanpages.css?v={{ site.time | date: '%s' }}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 </head>
 <body data-intro="none" data-fan="jp">
 
 <!-- amber light and helix rails -->
-<div class="jp-sky" aria-hidden="true"></div>
+<!-- night on the island: storm sky, lightning, rain, the perimeter fence
+     glowing through the treeline, and jungle in front of all of it -->
+<div class="jp-sky" aria-hidden="true">
+  <span class="jp-storm"></span>
+  <span class="jp-bolt"></span>
+  <span class="jp-fence"></span>
+  <span class="jp-rain"></span>
+  <span class="jp-jungle">
+    <svg viewBox="0 0 1200 260" preserveAspectRatio="none">
+      <path class="jp-canopy-back" d="M0 260V150q40-34 78-8t76 2 70-30 74 24 82-6 78 22 74-28 80 6 76-24 74 28 80-10 78 22 82-12v124z"/>
+      <path class="jp-canopy-mid"  d="M0 260V186q52-30 96-6t88 4 84-24 92 20 86-4 90 18 88-22 96 8 90-20 96 24 94-8v110z"/>
+    </svg>
+    <span class="jp-fern jp-fern--1"></span>
+    <span class="jp-fern jp-fern--2"></span>
+    <span class="jp-fern jp-fern--3"></span>
+  </span>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -77,7 +98,73 @@ permalink: /franchises/jurassic-park/
     </div>
   </section>
 
-  <div class="fan-sec jp-herohead reveal"><svg class="jp-amber" viewBox="0 0 120 150" aria-hidden="true"><defs><radialGradient id="amb" cx="38%" cy="30%"><stop offset="0" stop-color="#ffd98a"/><stop offset="55%" stop-color="#e0902a"/><stop offset="100%" stop-color="#8f4f10"/></radialGradient></defs><path d="M60 4c26 0 50 26 50 62 0 44-24 80-50 80S10 110 10 66C10 30 34 4 60 4z" fill="url(#amb)"/><path d="M60 4c26 0 50 26 50 62 0 44-24 80-50 80" fill="none" stroke="#ffe6a8" stroke-width="2" opacity=".45"/><g fill="#3a2408" opacity=".85"><ellipse cx="60" cy="74" rx="4" ry="12"/><circle cx="60" cy="60" r="5"/><path d="M60 62c-14-10-22-8-28-2 8 0 16 4 26 8zM60 62c14-10 22-8 28-2-8 0-16 4-26 8z"/><path d="M58 86l-10 16M62 86l10 16M56 78l-14 6M64 78l14 6" stroke="#3a2408" stroke-width="2" fill="none"/></g></svg><p class="fan-lede" style="margin:0">A mosquito that fed on a dinosaur, trapped in tree resin a hundred million years ago. Everything in the park comes out of one drop of blood in one piece of amber, and the gaps in that genome are the plot of all six films.</p></div>
+  <div class="fan-art fan-art--jp reveal">
+    <div class="fan-art-fig">
+      <svg viewBox="0 0 520 340" role="img" aria-label="The gates of Jurassic Park, opening">
+        <g class="jp-wall">
+          <path d="M0 336V150q54-10 96 0v186zM520 336V150q-54-10-96 0v186z"/>
+        </g>
+        <g class="jp-post">
+          <rect x="86" y="60"  width="52" height="276"/>
+          <rect x="382" y="60" width="52" height="276"/>
+          <rect x="72" y="42"  width="80" height="26"/>
+          <rect x="368" y="42" width="80" height="26"/>
+        </g>
+        <g class="jp-lintel">
+          <rect x="86" y="76" width="348" height="30"/>
+          <rect x="150" y="106" width="220" height="12"/>
+        </g>
+        <!-- the two leaves, swung part-open -->
+        <g class="jp-gate jp-gate--l">
+          <rect x="140" y="128" width="112" height="208"/>
+          <path d="M140 168h112M140 214h112M140 262h112M140 308h112"/>
+          <path d="M168 128v208M224 128v208"/>
+        </g>
+        <g class="jp-gate jp-gate--r">
+          <rect x="268" y="128" width="112" height="208"/>
+          <path d="M268 168h112M268 214h112M268 262h112M268 308h112"/>
+          <path d="M296 128v208M352 128v208"/>
+        </g>
+        <!-- flaming torches on the posts -->
+        <g class="jp-torch">
+          <rect x="102" y="132" width="20" height="34"/>
+          <rect x="398" y="132" width="20" height="34"/>
+          <path class="jp-flame" d="M112 128q-16-18-6-34 2 12 10 14 6-10 2-24 18 16 12 44z"/>
+          <path class="jp-flame" d="M408 128q-16-18-6-34 2 12 10 14 6-10 2-24 18 16 12 44z"/>
+        </g>
+        <g class="jp-light">
+          <path d="M252 128v208M268 128v208"/>
+        </g>
+        <g class="jp-ground"><path d="M0 336h520"/></g>
+      </svg>
+      <!-- Hammond's cane: the amber head, with the mosquito the whole park
+           is built out of still inside it -->
+      <svg class="jp-cane" viewBox="0 0 460 150" role="img" aria-label="John Hammond's cane, with a mosquito in amber">
+        <defs><radialGradient id="jpAmber" cx="38%" cy="30%"><stop offset="0" stop-color="#ffd98a"/><stop offset="55%" stop-color="#e0902a"/><stop offset="100%" stop-color="#8f4f10"/></radialGradient></defs>
+        <g class="jpc-shaft">
+          <path d="M132 74h296q8 0 8 6t-8 6H132z"/>
+          <path d="M170 74v12M212 74v12M256 74v12M300 74v12M344 74v12M388 74v12"/>
+        </g>
+        <g class="jpc-collar"><rect x="112" y="64" width="22" height="32" rx="4"/></g>
+        <g class="jpc-amber">
+          <path class="jpa-body" d="M64 6c30 0 50 26 50 62 0 34-20 60-50 60S14 102 14 68C14 32 34 6 64 6z"/>
+          <path class="jpa-hi"   d="M64 6c30 0 50 26 50 62" fill="none"/>
+          <g class="jpa-fly">
+            <ellipse cx="64" cy="80" rx="4" ry="12"/>
+            <circle cx="64" cy="63" r="5"/>
+            <path d="M64 66c-14-10-22-8-28-2 8 0 16 4 26 8zM64 66c14-10 22-8 28-2-8 0-16 4-26 8z"/>
+            <path class="jpa-legs" d="M62 92l-10 16M66 92l10 16M60 82l-14 6M68 82l14 6"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="fan-art-body">
+      <q>Welcome… to Jurassic Park.</q>
+      <span class="fan-art-by">John Hammond · 1993</span>
+      <p>A mosquito in amber, a hundred million years old, with a belly full of dinosaur blood. Everything in six films comes out of one drop of it, and out of the gaps in that genome, which they fill with frog DNA because it was the nearest thing to hand. Nobody in the room stops to ask what else frogs can do.</p>
+      <p>Fourteen minutes of dinosaur across two hours, most of it a nine-thousand-pound hydraulic machine being rained on, and it has never once been bettered. Life, uh, finds a way.</p>
+    </div>
+  </div>
 
   <div id="fanBody"></div>
 
@@ -97,17 +184,17 @@ permalink: /franchises/jurassic-park/
   <a href="/franchises/" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Franchises</span></a>
 </nav>
 
-<script src="/assets/js/utils.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
-<script src="/assets/js/fan-jp.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/fan-jp.js' %}"></script>
 
-<script src="/assets/js/fanpage.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/cursor.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/magnetic.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/reveal.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/clock.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/flowfield.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/scroll.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/sound.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/fanpage.js' %}"></script>
+<script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
+<script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
+<script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
+<script src="{% include v.html f='/assets/js/clock.js' %}"></script>
+<script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
+<script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
+<script src="{% include v.html f='/assets/js/sound.js' %}"></script>
 </body>
 </html>

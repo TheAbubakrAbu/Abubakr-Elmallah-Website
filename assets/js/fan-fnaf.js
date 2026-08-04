@@ -55,4 +55,15 @@ window.FAN_PAGE = { sections: [
       { title: 'Help Wanted & Security Breach', sub: '2019 · 2021', desc: 'VR, then a full 3D open mall. The series in a body it did not have before.' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Scott Games', href: 'https://scottgames.com/',
+        desc: 'Scott Cawthon’s own site, which is where every teaser landed first.' },
+      { title: 'FNaF Wiki', href: 'https://freddy-fazbears-pizza.fandom.com/wiki/Five_Nights_at_Freddy%27s_Wiki',
+        desc: 'The lore, the timeline, and the arguments about both.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Five_Nights_at_Freddy%27s',
+        desc: 'The series, and how a one-man project became a film.' },
+    ] },
+
 ] };

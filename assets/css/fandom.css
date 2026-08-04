@@ -30,7 +30,9 @@
 .fr-group--tertiary  .fr-grid { grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); }
 .fr-group + .fr-group { margin-top: 0.6rem; }
 
-/* ───────────── tile ───────────── */
+/* ───────────── tile ─────────────
+   a.fr-card: the whole plate + blurb is one click target, so anywhere on the
+   tile opens the franchise, not just the "Enter ↗" corner. */
 .fr-card {
   display: flex; flex-direction: column; overflow: hidden;
   border: 1px solid var(--line); border-radius: 18px;
@@ -38,11 +40,14 @@
   transition: transform .45s var(--ease), border-color .45s, box-shadow .45s;
   content-visibility: auto; contain-intrinsic-size: auto 300px;
 }
-.fr-card:hover {
+a.fr-card { cursor: pointer; }
+.fr-card:hover,
+.fr-card:focus-visible {
   transform: translateY(-6px);
   border-color: color-mix(in srgb, var(--c1) 45%, transparent);
   box-shadow: 0 24px 52px -30px #000, 0 0 44px -26px var(--c1);
 }
+.fr-card:focus-visible { outline: 2px solid var(--c1); outline-offset: 3px; }
 
 /* the plate the name sits on */
 .fr-plate {
@@ -78,10 +83,12 @@
   text-transform: uppercase; color: var(--c1); opacity: 0;
   transition: opacity .35s;
 }
-.fr-card:hover .fr-enter { opacity: .85; }
+.fr-card:hover .fr-enter,
+.fr-card:focus-visible .fr-enter { opacity: .85; }
 
 .fr-body { padding: 1rem 1.1rem 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
 .fr-desc { font-size: 0.84rem; line-height: 1.6; color: var(--ink-dim); }
+.fr-card:hover .fr-desc { color: var(--ink); }
 .fr-meta {
   margin-top: auto; padding-top: 0.4rem;
   font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em;

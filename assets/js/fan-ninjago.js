@@ -49,4 +49,15 @@ window.FAN_PAGE = { sections: [
       { title: 'Never trust a snake.', sub: 'Ninjago, learning the hard way' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'LEGO NINJAGO', href: 'https://www.lego.com/en-us/themes/ninjago',
+        desc: 'The official theme page, sets and all.' },
+      { title: 'Ninjago Wiki', href: 'https://ninjago.fandom.com/wiki/Ninjago_Wiki',
+        desc: 'Fifteen seasons of continuity, tracked properly.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Ninjago',
+        desc: 'The whole run, from spinner game to series.' },
+    ] },
+
 ] };

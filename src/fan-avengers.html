@@ -6,11 +6,16 @@ permalink: /franchises/avengers/
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="The Avengers as a fandom: the original six, the Infinity Stones, the Infinity Saga timeline and the films that hold up." />
+<meta name="description" content="The MCU as a fandom: the Infinity, Multiverse and Mutant Sagas, every film to Endgame, the Avengers and New Avengers, the six Infinity Stones, the Spider-Man films, Guardians of the Galaxy, the Fantastic Four and X-Men." />
 <meta name="theme-color" content="#08080a" />
 
 <link rel="icon" type="image/png" href="/assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="/assets/img/me/abubakr-circle.png" />
+<link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Abubakr" />
 <meta property="og:image" content="/assets/img/me/abubakr-circle.png" />
 <meta property="og:type" content="website" />
 <title>Avengers · Abubakr Elmallah</title>
@@ -19,15 +24,33 @@ permalink: /franchises/avengers/
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="/assets/css/base.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/layout.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/components.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/fanpages.css?v={{ site.time | date: '%s' }}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 </head>
 <body data-intro="none" data-fan="mcu">
 
-<!-- arc reactor rings, very faint -->
-<div class="mcu-sky" aria-hidden="true"><i></i><i></i><i></i></div>
+<!-- the backdrop: arc-reactor rings turning inside a field of portals, the
+     way they open over the ruins at the end of Endgame. All CSS. -->
+<div class="mcu-sky" aria-hidden="true">
+  <i></i><i></i><i></i>
+  <b class="mcu-portal mcu-portal--1"></b>
+  <b class="mcu-portal mcu-portal--2"></b>
+  <b class="mcu-portal mcu-portal--3"></b>
+  <b class="mcu-portal mcu-portal--4"></b>
+  <b class="mcu-portal mcu-portal--5"></b>
+  <span class="mcu-embers"></span>
+  <!-- the six stones, loose and circling, each on its own tilted orbit -->
+  <span class="mcu-orbits">
+    <i class="mcu-orbit" style="--r:46vmin;--t:38s;--tilt:74deg;--c:#3f8fe0"><s></s></i>
+    <i class="mcu-orbit" style="--r:62vmin;--t:56s;--tilt:66deg;--c:#f0d040;--d:-9s"><s></s></i>
+    <i class="mcu-orbit" style="--r:34vmin;--t:29s;--tilt:80deg;--c:#e0403a;--d:-4s"><s></s></i>
+    <i class="mcu-orbit mcu-orbit--rev" style="--r:74vmin;--t:71s;--tilt:70deg;--c:#a04fe0;--d:-17s"><s></s></i>
+    <i class="mcu-orbit mcu-orbit--rev" style="--r:54vmin;--t:44s;--tilt:78deg;--c:#4fd07f;--d:-22s"><s></s></i>
+    <i class="mcu-orbit" style="--r:88vmin;--t:83s;--tilt:62deg;--c:#e08a3a;--d:-31s"><s></s></i>
+  </span>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -70,39 +93,148 @@ permalink: /franchises/avengers/
     <a class="back-link" href="/franchises/" data-magnetic>← Back to franchises</a>
     <p class="fan-kicker"><span>Franchise · Primary · since 2008</span></p>
     <h1 class="fan-title">Avengers</h1>
-    <p class="fan-lede-hero">Twenty-three films that told one story, which nobody had managed on film before. The original six, the six stones, the saga in order, and the reason there is a J.A.R.V.I.S. terminal on this site.</p>
+    <p class="fan-lede-hero">Twenty-three films that told one story, which nobody had managed on film before, and then a decade of trying to do it again. Three sagas, six stones, every film to Endgame, the whole roster, and the reason there is a J.A.R.V.I.S. terminal on this site. This is the cinematic universe: I am not much of a comics guy.</p>
     <div class="fan-links">
+      <a class="fan-link" href="#favourites" data-magnetic>My four ↗</a>
+      <a class="fan-link" href="#stones" data-magnetic>The six stones ↗</a>
+      <a class="fan-link" href="#villains" data-magnetic>The villains ↗</a>
+      <a class="fan-link" href="#guardians" data-magnetic>Guardians ↗</a>
       <a class="fan-link" href="/jarvis/" data-magnetic>The J.A.R.V.I.S. terminal ↗</a>
-      <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
+    </div>
+
+    <!-- the gauntlet, built from discrete parts rather than one freehand
+         path: cuff, back of the hand, four fingers, a thumb, and the six
+         stones set across the knuckles, the thumb and the back of the hand. -->
+    <div class="fan-art fan-art--mcu reveal">
+      <div class="fan-art-fig">
+        <svg viewBox="0 0 340 330" role="img" aria-label="The Infinity Gauntlet, with all six stones set">
+        <g class="g-plate">
+          <!-- forearm cuff -->
+          <path d="M104 322v-46q0-12 12-14l52-8q6-1 12 0l52 8q12 2 12 14v46z"/>
+          <!-- back of the hand -->
+          <rect x="106" y="150" width="128" height="132" rx="26"/>
+          <!-- four fingers -->
+          <rect x="112" y="70"  width="30" height="96" rx="15"/>
+          <rect x="146" y="52"  width="30" height="114" rx="15"/>
+          <rect x="180" y="44"  width="30" height="122" rx="15"/>
+          <rect x="214" y="66"  width="28" height="100" rx="14"/>
+          <!-- thumb, folded across -->
+          <path d="M104 186q-22 4-30 22t-2 40q6 20 26 24l18 4v-84z"/>
+        </g>
+        <g class="g-seam">
+          <path d="M112 108h30M146 92h30M180 84h30M214 104h28"/>
+          <path d="M112 136h30M146 122h30M180 114h30M214 132h28"/>
+          <path d="M106 210h128M106 246h128"/>
+          <path d="M104 286h140"/>
+          <path d="M78 216q14-6 26 0M78 240q14-6 26 0"/>
+        </g>
+        <g class="g-stones">
+          <circle class="gem" cx="127" cy="94"  r="11" style="--g:#a04fe0"/>
+          <circle class="gem" cx="161" cy="76"  r="11" style="--g:#3f8fe0"/>
+          <circle class="gem" cx="195" cy="68"  r="11" style="--g:#e0403a"/>
+          <circle class="gem" cx="228" cy="90"  r="10" style="--g:#4fd07f"/>
+          <circle class="gem" cx="88"  cy="228" r="12" style="--g:#e08a3a"/>
+          <circle class="gem" cx="170" cy="192" r="17" style="--g:#f0d040"/>
+        </g>
+        <g class="g-rivet">
+          <circle cx="118" cy="300" r="3"/><circle cx="146" cy="300" r="3"/>
+          <circle cx="174" cy="300" r="3"/><circle cx="202" cy="300" r="3"/><circle cx="230" cy="300" r="3"/>
+        </g>
+      </svg></div>
+      <div class="fan-art-body">
+        <q>There was an idea to bring together a group of remarkable people, so that when we needed them, they could fight the battles that we never could.</q>
+        <span class="fan-art-by">Nick Fury · the Avengers Initiative</span>
+        <p>Six singularities that existed before the universe did, compressed into stones by cosmic beings who wanted them portable, and then scattered so that nobody could hold all six at once. Every film in the Infinity Saga is, underneath, somebody moving one of them from one place to another.</p>
+        <p>Thanos spent twenty-two films collecting them and used them exactly twice: once to win, and once to make sure nobody could undo it. Then Tony Stark put the glove on for four seconds, which was all it took and all he had.</p>
+      </div>
     </div>
   </section>
 
-  <div class="mcu-stones">
-    <div class="mcu-stone reveal" style="--s:#3f8fe0">
-      <div class="mcu-gem" aria-hidden="true"></div>
-      <b>Space</b><i>The Tesseract</i><em>Moves anything anywhere. Sat in a S.H.I.E.L.D. vault for seventy years.</em>
+  <section class="fan-sec" id="stones">
+    <h3 class="subsec subsec--fan reveal">The Six Stones<span class="subsec-yr">singularities older than the universe</span></h3>
+    <p class="fan-lede reveal">Six remnants of six singularities that existed before the universe did, each one compressed into a stone by cosmic beings who wanted them portable. Every film in the Infinity Saga is, underneath, somebody moving one of these from one place to another.</p>
+    <div class="crest-grid crest-grid--stones">
+    <article class="crest crest--stone reveal" style="--h1:#3f8fe0;--h2:#8fc4f0;--hl:#8fc4f0">
+      <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><circle cx="50" cy="52" r="34" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="52" r="26" fill="currentColor" opacity=".9"/><circle cx="41" cy="42" r="9" fill="#fff" opacity=".3"/><circle cx="50" cy="52" r="44" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".35"/></svg>
+      <h4>Space</h4>
+      <span class="crest-sub">The Tesseract</span>
+      <p>Moves anything anywhere. Sat in a S.H.I.E.L.D. vault for seventy years, opened a hole over New York, and Loki walked off with it in 2012 twice.</p>
+      <div class="crest-tags"><span>Tesseract</span><span>Blue</span><span>Loki</span><span>Portals</span></div>
+    </article>
+    <article class="crest crest--stone reveal" style="--h1:#f0d040;--h2:#f6e8a8;--hl:#f6e8a8">
+      <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><circle cx="50" cy="52" r="34" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="52" r="26" fill="currentColor" opacity=".9"/><circle cx="41" cy="42" r="9" fill="#fff" opacity=".3"/><circle cx="50" cy="52" r="44" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".35"/></svg>
+      <h4>Mind</h4>
+      <span class="crest-sub">The Sceptre</span>
+      <p>Turned agents into puppets in 2012, hid inside Loki’s sceptre for three films, then became a person: Vision, born with it in his forehead.</p>
+      <div class="crest-tags"><span>Sceptre</span><span>Yellow</span><span>Vision</span><span>Ultron</span></div>
+    </article>
+    <article class="crest crest--stone reveal" style="--h1:#e0403a;--h2:#f09a90;--hl:#f09a90">
+      <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><circle cx="50" cy="52" r="34" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="52" r="26" fill="currentColor" opacity=".9"/><circle cx="41" cy="42" r="9" fill="#fff" opacity=".3"/><circle cx="50" cy="52" r="44" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".35"/></svg>
+      <h4>Reality</h4>
+      <span class="crest-sub">The Aether</span>
+      <p>A liquid rather than a stone, which is why it is the odd one out. Handed to the Collector for safekeeping, which went about as well as everything else he was given.</p>
+      <div class="crest-tags"><span>Aether</span><span>Red</span><span>Jane</span><span>Collector</span></div>
+    </article>
+    <article class="crest crest--stone reveal" style="--h1:#a04fe0;--h2:#c99af0;--hl:#c99af0">
+      <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><circle cx="50" cy="52" r="34" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="52" r="26" fill="currentColor" opacity=".9"/><circle cx="41" cy="42" r="9" fill="#fff" opacity=".3"/><circle cx="50" cy="52" r="44" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".35"/></svg>
+      <h4>Power</h4>
+      <span class="crest-sub">The Orb</span>
+      <p>Kills anyone who holds it alone. It takes all four Guardians holding hands to survive it, which is the whole thesis of that film in one shot.</p>
+      <div class="crest-tags"><span>Orb</span><span>Purple</span><span>Ronan</span><span>Xandar</span></div>
+    </article>
+    <article class="crest crest--stone reveal" style="--h1:#4fd07f;--h2:#9ae8bd;--hl:#9ae8bd">
+      <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><circle cx="50" cy="52" r="34" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="52" r="26" fill="currentColor" opacity=".9"/><circle cx="41" cy="42" r="9" fill="#fff" opacity=".3"/><circle cx="50" cy="52" r="44" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".35"/></svg>
+      <h4>Time</h4>
+      <span class="crest-sub">The Eye of Agamotto</span>
+      <p>Fourteen million six hundred and five futures, checked one at a time, and exactly one of them works. Strange hands it over to buy that one.</p>
+      <div class="crest-tags"><span>Eye</span><span>Green</span><span>Strange</span><span>Kamar-Taj</span></div>
+    </article>
+    <article class="crest crest--stone reveal" style="--h1:#e08a3a;--h2:#f0bd8f;--hl:#f0bd8f">
+      <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><circle cx="50" cy="52" r="34" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="50" cy="52" r="26" fill="currentColor" opacity=".9"/><circle cx="41" cy="42" r="9" fill="#fff" opacity=".3"/><circle cx="50" cy="52" r="44" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".35"/></svg>
+      <h4>Soul</h4>
+      <span class="crest-sub">Vormir</span>
+      <p>The only one with a price: a soul for a soul, and no way to give it back. It costs Gamora, then Natasha, and neither of them return.</p>
+      <div class="crest-tags"><span>Vormir</span><span>Orange</span><span>Red Skull</span><span>A soul</span></div>
+    </article>
     </div>
-    <div class="mcu-stone reveal" style="--s:#f0d040">
-      <div class="mcu-gem" aria-hidden="true"></div>
-      <b>Mind</b><i>The Sceptre</i><em>Turned agents into puppets in 2012, then made Vision in 2015.</em>
+  </section>
+
+  <section class="fan-sec" id="villains">
+    <h3 class="subsec subsec--fan reveal">The Villains<span class="subsec-yr">drawn, badly, by hand</span></h3>
+    <p class="fan-lede reveal">Five caricatures, all of them line and fill and nothing else. The MCU’s villain problem is famous and mostly fair, but these five are the exceptions, and one of them never even got to happen.</p>
+    <div class="bust-grid">
+      <article class="bust reveal" style="--v:#3fbf6f">
+        <svg class="bust-art" viewBox="0 0 100 104" aria-hidden="true"><path class="b-fill" d="M50 94c-15 0-25-10-25-24 0-11 4-21 10-29h30c6 8 10 18 10 29 0 14-10 24-25 24z"/><path class="b-fill" d="M33 42C28 27 22 15 8 4c4 18 10 30 20 40z"/><path class="b-fill" d="M67 42C72 27 78 15 92 4c-4 18-10 30-20 40z"/><path class="b-line" d="M38 58q6-4 12 0M50 58q6-4 12 0"/><path class="b-line" d="M40 80q10 6 20 0"/></svg>
+        <h4>Loki</h4>
+        <span class="bust-sub">God of Mischief · 2011 – 2023</span>
+        <p>The best villain the MCU ever had, and the only one it liked enough to keep. Dies in the first ten minutes of Infinity War, comes back through a Tesseract, and ends up sitting alone at the end of time holding every timeline together by hand.</p>
+      </article>
+      <article class="bust reveal" style="--v:#c0392b">
+        <svg class="bust-art" viewBox="0 0 100 104" aria-hidden="true"><path class="b-fill" d="M50 96c-16 0-27-12-27-28V38q0-16 14-22h26q14 6 14 22v30c0 16-11 28-27 28z"/><path class="b-line" d="M50 14v-8"/><path class="b-dark" d="M31 46l14-6 3 12-15 6z"/><path class="b-dark" d="M69 46l-14-6-3 12 15 6z"/><path class="b-dark" d="M38 72h24l-4 16H42z"/><path class="b-line" d="M42 74v14M50 74v14M58 74v14"/></svg>
+        <h4>Ultron</h4>
+        <span class="bust-sub">Age of Ultron · 2015</span>
+        <p>Built in an afternoon out of the Mind Stone and Tony’s worst instincts, and correct about almost everything except the solution. He is the argument the rest of the saga has: the thing you build to protect people is the thing that comes for them.</p>
+      </article>
+      <article class="bust reveal" style="--v:#8f5fd0">
+        <svg class="bust-art" viewBox="0 0 100 104" aria-hidden="true"><path class="b-fill" d="M50 98c-18 0-30-12-30-30V44c0-16 12-28 30-28s30 12 30 28v24c0 18-12 30-30 30z"/><path class="b-dark" d="M20 34h60l-4-10H24z"/><path class="b-line" d="M34 52q7-6 14 0M52 52q7-6 14 0"/><path class="b-line" d="M36 72h28M38 80h24M40 88h20"/><path class="b-line" d="M26 44v22M74 44v22"/></svg>
+        <h4>Thanos</h4>
+        <span class="bust-sub">The Mad Titan · 2014 – 2019</span>
+        <p>The only MCU villain given a whole film to himself. He wins, sits down, and watches the sun come up on a grateful universe. Then he is beheaded twenty minutes into the next one, which is the boldest thing Endgame does.</p>
+      </article>
+      <article class="bust reveal" style="--v:#3fbfb0">
+        <svg class="bust-art" viewBox="0 0 100 104" aria-hidden="true"><path class="b-fill" d="M50 96c-16 0-27-11-27-26V42q0-18 27-18t27 18v28c0 15-11 26-27 26z"/><path class="b-dark" d="M23 40q27-16 54 0l-6-16q-21-10-42 0z"/><path class="b-line" d="M50 6v18M38 12l4 12M62 12l-4 12"/><path class="b-dark" d="M34 54h12v8H34zM54 54h12v8H54z"/><path class="b-line" d="M42 80h16"/></svg>
+        <h4>Kang the Conqueror</h4>
+        <span class="bust-sub">Cast out · 2021 – 2023</span>
+        <p>Set up across Loki and Quantumania as the Thanos of the Multiverse Saga, with infinite variants and a whole film named after him. Then Marvel parted ways with Jonathan Majors, The Kang Dynasty was cancelled, and the saga had to find a new ending.</p>
+      </article>
+      <article class="bust reveal" style="--v:#3f7f5f">
+        <svg class="bust-art" viewBox="0 0 100 104" aria-hidden="true"><path class="b-fill" d="M50 98c-17 0-28-12-28-28V40q0-18 28-18t28 18v30c0 16-11 28-28 28z"/><path class="b-line" d="M22 40q-6-24 10-32 18-9 36 0 16 8 10 32"/><path class="b-dark" d="M32 52h14v9H32zM54 52h14v9H54z"/><path class="b-dark" d="M40 76h20l-3 12H43z"/><path class="b-line" d="M44 78h12M43 83h14"/><circle class="b-line-f" cx="27" cy="46" r="2"/><circle class="b-line-f" cx="73" cy="46" r="2"/><circle class="b-line-f" cx="27" cy="68" r="2"/><circle class="b-line-f" cx="73" cy="68" r="2"/></svg>
+        <h4>Doctor Doom</h4>
+        <span class="bust-sub">Doomsday · 2026</span>
+        <p>The Multiverse Saga’s new ending, played by the man who played Tony Stark. Nobody outside Marvel knows yet how those two facts are supposed to fit together, and that is the most interesting question in the run right now.</p>
+      </article>
     </div>
-    <div class="mcu-stone reveal" style="--s:#e0403a">
-      <div class="mcu-gem" aria-hidden="true"></div>
-      <b>Reality</b><i>The Aether</i><em>A liquid rather than a stone, handed to the Collector for safekeeping.</em>
-    </div>
-    <div class="mcu-stone reveal" style="--s:#a04fe0">
-      <div class="mcu-gem" aria-hidden="true"></div>
-      <b>Power</b><i>The Orb</i><em>Kills anyone who holds it alone. Ronan carried it on a hammer.</em>
-    </div>
-    <div class="mcu-stone reveal" style="--s:#4fd07f">
-      <div class="mcu-gem" aria-hidden="true"></div>
-      <b>Time</b><i>The Eye of Agamotto</i><em>Fourteen million six hundred and five futures, checked one at a time.</em>
-    </div>
-    <div class="mcu-stone reveal" style="--s:#e08a3a">
-      <div class="mcu-gem" aria-hidden="true"></div>
-      <b>Soul</b><i>Vormir</i><em>The only one with a price: a soul for a soul, and no way to give it back.</em>
-    </div>
-  </div>
+  </section>
 
   <div id="fanBody"></div>
 
@@ -122,17 +254,18 @@ permalink: /franchises/avengers/
   <a href="/franchises/" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Franchises</span></a>
 </nav>
 
-<script src="/assets/js/utils.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
-<script src="/assets/js/fan-mcu.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/fan-mcu.js' %}"></script>
 
-<script src="/assets/js/fanpage.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/cursor.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/magnetic.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/reveal.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/clock.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/flowfield.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/scroll.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/sound.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/fanpage.js' %}"></script>
+<script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
+<script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
+<script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
+<script src="{% include v.html f='/assets/js/tilt.js' %}"></script>
+<script src="{% include v.html f='/assets/js/clock.js' %}"></script>
+<script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
+<script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
+<script src="{% include v.html f='/assets/js/sound.js' %}"></script>
 </body>
 </html>

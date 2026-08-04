@@ -100,20 +100,23 @@
     return '<span class="fr-name wm--' + f.wm + '">' + esc(f.name) + '</span>';
   }
 
+  /* The whole tile is the link, not just the plate: clicking the blurb, the
+     meta line or any dead space opens the page. The plate keeps data-magnetic
+     so it still drifts toward the cursor inside the card. */
   function tile(f) {
-    var tag = f.href ? 'a' : 'div';
-    var attr = f.href ? ' href="' + f.href + '" data-magnetic' : '';
-    return '<article class="fr-card reveal" style="--c1:' + f.c1 + ';--c2:' + f.c2 + '">'
-      + '<' + tag + ' class="fr-plate"' + attr + '>'
+    var tag = f.href ? 'a' : 'article';
+    var attr = f.href ? ' href="' + f.href + '"' : '';
+    return '<' + tag + ' class="fr-card reveal" style="--c1:' + f.c1 + ';--c2:' + f.c2 + '"' + attr + '>'
+      + '<span class="fr-plate"' + (f.href ? ' data-magnetic' : '') + '>'
       +   glyph(f.glyph)
       +   lettering(f)
       +   (f.href ? '<span class="fr-enter">Enter ↗</span>' : '')
-      + '</' + tag + '>'
-      + '<div class="fr-body">'
-      +   '<p class="fr-desc">' + esc(f.desc) + '</p>'
+      + '</span>'
+      + '<span class="fr-body">'
+      +   '<span class="fr-desc">' + esc(f.desc) + '</span>'
       +   '<span class="fr-meta">' + esc(f.meta) + '</span>'
-      + '</div>'
-      + '</article>';
+      + '</span>'
+      + '</' + tag + '>';
   }
 
   var total = data.reduce(function (n, g) { return n + g.items.length; }, 0);

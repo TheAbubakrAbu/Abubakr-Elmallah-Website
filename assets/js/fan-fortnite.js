@@ -52,4 +52,15 @@ window.FAN_PAGE = { sections: [
       { title: 'The Big Bang', sub: 'Dec 2023', tag: 'Chapter 5', desc: 'The event that launched three separate games out of one lobby.', meta: 'LEGO · Rocket Racing · Festival' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Fortnite.com', href: 'https://www.fortnite.com/',
+        desc: 'The official site: current season, map and modes.' },
+      { title: 'Fortnite Wiki', href: 'https://fortnite.fandom.com/wiki/Fortnite_Wiki',
+        desc: 'Every season, every weapon, every map change.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Fortnite',
+        desc: 'The game, and what it did to the industry.' },
+    ] },
+
 ] };

@@ -38,6 +38,38 @@ body[data-intro="starwars"] #field { opacity: 0.32; }
 }
 @keyframes sw-breathe { from { opacity: 0.75; } to { opacity: 1; } }
 
+/* the galaxy: a barred disc seen edge-on and well off-axis, with a dark dust
+   lane cutting through the core. Sits behind every star layer, so the near
+   stars read as foreground against it. Blurred hard, because at this distance
+   nothing has an edge. */
+.sw-galaxy {
+  inset: auto -18% auto -18%; top: 40%;
+  height: 52vh;
+  transform: rotate(-13deg);
+  background:
+    radial-gradient(58% 46% at 50% 50%, rgba(186,206,255,.13), transparent 72%),
+    radial-gradient(30% 26% at 46% 50%, rgba(255,228,186,.14), transparent 74%),
+    radial-gradient(16% 15% at 46% 50%, rgba(255,244,224,.16), transparent 78%),
+    radial-gradient(64% 9%  at 52% 53%, rgba(6,6,14,.6), transparent 72%);
+  filter: blur(16px);
+  opacity: .85;
+  animation: sw-breathe 46s ease-in-out infinite alternate;
+}
+
+/* twin suns, low and small: the only shot everyone can picture from memory */
+.sw-suns { inset: auto auto 14% 7%; width: 190px; height: 130px; opacity: .62; }
+.sw-suns i { position: absolute; display: block; border-radius: 50%; }
+.sw-suns i:nth-child(1) {
+  width: 56px; height: 56px; left: 0; top: 18px;
+  background: radial-gradient(circle at 40% 36%, #fff8e4 0%, #f3ba62 52%, rgba(240,150,60,0) 76%);
+  box-shadow: 0 0 64px 20px rgba(245,182,92,.16);
+}
+.sw-suns i:nth-child(2) {
+  width: 34px; height: 34px; left: 54px; top: 48px;
+  background: radial-gradient(circle at 40% 36%, #fff2d2 0%, #e89545 52%, rgba(230,130,50,0) 76%);
+  box-shadow: 0 0 46px 14px rgba(236,152,72,.13);
+}
+
 /* starfields: repeating tiles of tiny radial dots, three depths */
 .sw-stars { background-repeat: repeat; will-change: transform; }
 

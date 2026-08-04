@@ -61,4 +61,15 @@ window.FAN_PAGE = { sections: [
       { title: 'Dreams are messages from the deep.', sub: 'Dune, 2021' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Dune Wiki', href: 'https://dune.fandom.com/wiki/Dune_Wiki',
+        desc: 'Houses, the spice, the Bene Gesserit, and ten thousand years of it.' },
+      { title: 'Dune Novels', href: 'https://www.dunenovels.com/',
+        desc: 'The official home of the books.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Dune_(franchise)',
+        desc: 'Herbert’s 1965 novel and everything that came after.' },
+    ] },
+
 ] };

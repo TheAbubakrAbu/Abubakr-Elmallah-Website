@@ -10,7 +10,12 @@ permalink: /franchises/harry-potter/
 <meta name="theme-color" content="#08080a" />
 
 <link rel="icon" type="image/png" href="/assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="/assets/img/me/abubakr-circle.png" />
+<link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Abubakr" />
 <meta property="og:image" content="/assets/img/me/abubakr-circle.png" />
 <meta property="og:type" content="website" />
 <title>Harry Potter · Abubakr Elmallah</title>
@@ -19,15 +24,77 @@ permalink: /franchises/harry-potter/
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="/assets/css/base.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/layout.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/components.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/fanpages.css?v={{ site.time | date: '%s' }}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 </head>
 <body data-intro="none" data-fan="hp">
 
 <!-- candlelit Great Hall: floating candles over a dark ceiling -->
-<div class="hp-sky" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+<!-- the enchanted ceiling: night sky and a moon, the castle on the ridge below
+     it, and the Great Hall candles floating in between. All CSS and one inline
+     SVG; no artwork. Candles are <span>, everything else <i>, and the CSS uses
+     nth-of-type so the two never get tangled. -->
+<div class="hp-sky" aria-hidden="true">
+  <i class="hp-stars"></i>
+  <i class="hp-moon"></i>
+  <svg class="hp-castle" viewBox="0 0 1200 320" preserveAspectRatio="xMidYMax slice">
+    <g class="hp-rock">
+      <path d="M0 320V258q90-17 178-8t150 2 156-14 168 10 152 16 148-14 148-6v76z"/>
+    </g>
+    <g class="hp-stone">
+      <rect x="120" y="155" width="40" height="105"/><path d="M113 155l27-50 27 50z"/>
+      <rect x="175" y="120" width="55" height="140"/><path d="M167 120l35-58 36 58z"/>
+      <rect x="245" y="175" width="90" height="85"/><path d="M239 175l51-36 51 36z"/>
+      <rect x="350" y="100" width="48" height="160"/><path d="M342 100l32-56 32 56z"/>
+      <rect x="415" y="160" width="110" height="100"/><path d="M409 160l61-38 61 38z"/>
+      <rect x="545" y="62" width="64" height="198"/><path d="M535 62l42-62 42 62z"/>
+      <rect x="625" y="130" width="44" height="130"/><path d="M618 130l29-52 29 52z"/>
+      <rect x="685" y="170" width="130" height="90"/><path d="M679 170l71-36 71 36z"/>
+      <rect x="830" y="105" width="52" height="155"/><path d="M822 105l34-55 34 55z"/>
+      <rect x="900" y="150" width="40" height="110"/><path d="M894 150l26-48 26 48z"/>
+      <rect x="955" y="180" width="80" height="80"/><path d="M949 180l46-32 46 32z"/>
+      <rect x="1050" y="125" width="46" height="135"/><path d="M1043 125l30-53 30 53z"/>
+    </g>
+    <g class="hp-lit">
+      <rect x="132" y="182" width="6" height="9"/><rect x="144" y="206" width="6" height="9"/>
+      <rect x="190" y="150" width="6" height="9"/><rect x="209" y="150" width="6" height="9"/>
+      <rect x="199" y="192" width="6" height="9"/>
+      <rect x="268" y="198" width="6" height="9"/><rect x="299" y="198" width="6" height="9"/>
+      <rect x="365" y="132" width="6" height="9"/><rect x="378" y="170" width="6" height="9"/>
+      <rect x="446" y="186" width="6" height="9"/><rect x="482" y="186" width="6" height="9"/>
+      <rect x="562" y="96" width="7" height="10"/><rect x="586" y="96" width="7" height="10"/>
+      <rect x="570" y="146" width="7" height="10"/><rect x="574" y="196" width="7" height="10"/>
+      <rect x="639" y="160" width="6" height="9"/>
+      <rect x="716" y="196" width="6" height="9"/><rect x="752" y="196" width="6" height="9"/>
+      <rect x="788" y="196" width="6" height="9"/>
+      <rect x="845" y="136" width="6" height="9"/><rect x="858" y="182" width="6" height="9"/>
+      <rect x="912" y="178" width="6" height="9"/>
+      <rect x="982" y="204" width="6" height="9"/><rect x="1008" y="204" width="6" height="9"/>
+      <rect x="1063" y="156" width="6" height="9"/><rect x="1076" y="200" width="6" height="9"/>
+    </g>
+    <!-- the Quidditch pitch, down the slope to the left of the castle:
+         three hoops on posts at each end, and the spectator towers behind -->
+    <g class="hp-pitch">
+      <path class="hp-pitch-ground" d="M0 300q60-18 132-16t128 12v24H0z"/>
+      <g class="hp-hoops">
+        <rect x="38" y="248" width="3" height="44"/><circle cx="39.5" cy="242" r="9"/>
+        <rect x="62" y="238" width="3" height="54"/><circle cx="63.5" cy="231" r="11"/>
+        <rect x="86" y="250" width="3" height="42"/><circle cx="87.5" cy="244" r="9"/>
+        <rect x="196" y="256" width="3" height="36"/><circle cx="197.5" cy="251" r="7"/>
+        <rect x="214" y="248" width="3" height="44"/><circle cx="215.5" cy="242" r="8.5"/>
+        <rect x="232" y="257" width="3" height="35"/><circle cx="233.5" cy="252" r="7"/>
+      </g>
+      <g class="hp-stands">
+        <path d="M4 292v-30l14-9 14 9v30z"/><path d="M104 292v-26l13-8 13 8v26z"/>
+        <path d="M152 292v-24l12-7 12 7v24z"/><path d="M248 292v-22l11-7 11 7v22z"/>
+      </g>
+    </g>
+  </svg>
+  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -68,37 +135,168 @@ permalink: /franchises/harry-potter/
 
   <section class="fan-hero">
     <a class="back-link" href="/franchises/" data-magnetic>← Back to franchises</a>
-    <p class="fan-kicker"><span>Franchise · Primary · since 1997</span></p>
+    <p class="fan-kicker"><span>Franchise · Primary · since 1997</span><span class="hp-mine">Ravenclaw</span></p>
     <h1 class="fan-title">Harry Potter</h1>
-    <p class="fan-lede-hero">Seven books read before I knew what a compiler was. The houses, the spellbook, the seven Horcruxes and the three Hallows: the whole architecture of the thing, laid out.</p>
+    <p class="fan-lede-hero">Seven books read before I knew what a compiler was. The houses, the spellbook, Quidditch, the wandlore, the seven Horcruxes and the three Hallows: the whole architecture of the thing, laid out. And for the record, before the Hat below gets a say in it: <b>I am a Ravenclaw</b>, and I have never once been talked out of it.</p>
     <div class="fan-links">
       <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
+    </div>
+    <!-- Hogwarts, front elevation, left to right: the boathouse and the covered
+         bridge, the Great Hall with its arched windows, the clock tower, the
+         central keep, and the Astronomy Tower standing highest as it should.
+         Line drawing only; the windows are the only filled shapes. -->
+    <div class="fan-art fan-art--hp reveal">
+      <div class="fan-art-fig">
+        <svg viewBox="0 0 720 340" role="img" aria-label="Hogwarts School of Witchcraft and Wizardry">
+        <g class="art-line">
+          <!-- the rock the whole castle stands on -->
+          <path d="M8 332q54-16 104-14t92 6 118-8 122 10 116-4 152 10"/>
+
+          <!-- boathouse and the covered bridge, far left -->
+          <path d="M30 330v-34l26-20 26 20v34"/>
+          <path d="M30 300h52"/>
+          <path d="M82 286h74v14H82z"/>
+          <path d="M92 300v30M110 300v30M128 300v30M146 300v30"/>
+
+          <!-- west wing -->
+          <path d="M156 330V214l30-34 30 34v116"/>
+          <path d="M156 214h60"/>
+          <path d="M186 180v-26"/>
+          <path d="M216 330V244l22-26 22 26v86"/>
+
+          <!-- the Great Hall: long roof, buttresses, tall arched windows -->
+          <path d="M260 330V186l58-46 58 46v144"/>
+          <path d="M260 186h116"/>
+          <path d="M276 330v-96a14 14 0 0 1 28 0v96"/>
+          <path d="M332 330v-96a14 14 0 0 1 28 0v96"/>
+          <path d="M304 330v-72a14 14 0 0 1 28 0v72"/>
+          <path d="M318 140v-22"/>
+
+          <!-- clock tower -->
+          <path d="M376 330V178l26-30 26 30v152"/>
+          <path d="M376 178h52"/>
+          <path d="M402 148v-30l-12 18h24l-12-18"/>
+          <circle cx="402" cy="212" r="17"/>
+          <path d="M402 200v12l9 6"/>
+
+          <!-- the central keep -->
+          <path d="M428 330V158l34-40 34 40v172"/>
+          <path d="M428 158h68"/>
+          <path d="M462 118V86"/>
+          <path d="M444 330v-56a18 18 0 0 1 36 0v56"/>
+
+          <!-- courtyard colonnade -->
+          <path d="M496 330v-46h56v46"/>
+          <path d="M506 330v-26a8 8 0 0 1 16 0v26M528 330v-26a8 8 0 0 1 16 0v26"/>
+
+          <!-- east wing -->
+          <path d="M552 330V208l28-32 28 32v122"/>
+          <path d="M552 208h56"/>
+          <path d="M580 176v-28"/>
+
+          <!-- the Astronomy Tower, tallest thing on the site -->
+          <path d="M612 330V96l32-58 32 58v234"/>
+          <path d="M612 96h64"/>
+          <path d="M644 38V8"/>
+          <path d="M604 96h80"/>
+          <path d="M620 96v-14h48v14"/>
+          <path d="M626 330v-58a18 18 0 0 1 36 0v58"/>
+        </g>
+
+        <g class="art-soft">
+          <!-- crenellations along the wall walks -->
+          <path d="M156 214h6v-8h8v8h8v-8h8v8h8M216 244h6v-7h8v7h8v-7h8v7h8"/>
+          <path d="M496 284h6v-8h8v8h8v-8h8v8h8v-8h8v8h8"/>
+          <!-- pennants -->
+          <path d="M186 154l16 6-16 6M318 118l16 6-16 6M462 86l16 6-16 6M644 8l18 7-18 7M580 148l14 6-14 6"/>
+          <!-- roof lines -->
+          <path d="M270 190h96M386 182h32M438 162h48M620 100h48"/>
+          <!-- the lake edge -->
+          <path d="M8 336h704"/>
+        </g>
+
+        <g class="art-lit">
+          <!-- Great Hall arched windows -->
+          <path d="M284 262a6 6 0 0 1 12 0v42h-12zM340 262a6 6 0 0 1 12 0v42h-12zM312 286a6 6 0 0 1 12 0v18h-12z"/>
+          <!-- west wing -->
+          <rect x="170" y="238" width="9" height="13" rx="2"/><rect x="192" y="238" width="9" height="13" rx="2"/>
+          <rect x="180" y="276" width="9" height="13" rx="2"/>
+          <rect x="228" y="272" width="9" height="13" rx="2"/><rect x="246" y="272" width="9" height="13" rx="2"/>
+          <!-- clock tower -->
+          <rect x="386" y="248" width="9" height="13" rx="2"/><rect x="408" y="248" width="9" height="13" rx="2"/>
+          <rect x="397" y="288" width="9" height="13" rx="2"/>
+          <!-- keep -->
+          <rect x="440" y="186" width="9" height="13" rx="2"/><rect x="474" y="186" width="9" height="13" rx="2"/>
+          <rect x="440" y="222" width="9" height="13" rx="2"/><rect x="474" y="222" width="9" height="13" rx="2"/>
+          <rect x="457" y="292" width="9" height="13" rx="2"/>
+          <!-- east wing -->
+          <rect x="564" y="238" width="9" height="13" rx="2"/><rect x="586" y="238" width="9" height="13" rx="2"/>
+          <rect x="575" y="280" width="9" height="13" rx="2"/>
+          <!-- Astronomy Tower, lit all the way up -->
+          <rect x="624" y="130" width="9" height="13" rx="2"/><rect x="654" y="130" width="9" height="13" rx="2"/>
+          <rect x="624" y="176" width="9" height="13" rx="2"/><rect x="654" y="176" width="9" height="13" rx="2"/>
+          <rect x="624" y="222" width="9" height="13" rx="2"/><rect x="654" y="222" width="9" height="13" rx="2"/>
+          <rect x="639" y="292" width="9" height="13" rx="2"/>
+          <!-- boathouse lamp -->
+          <rect x="50" y="304" width="8" height="12" rx="2"/>
+        </g>
+      </svg>
+        <!-- a wand under the castle: knobbly handle, tapered shaft, lit tip -->
+        <svg class="hp-wand" viewBox="0 0 720 90" role="img" aria-label="A wand with its tip lit">
+          <g class="wand-wood">
+            <path d="M44 44q14-10 30-8l24 4 500 22q22 1 22 5t-22 5l-500 22-24 4q-16 2-30-8z"/>
+          </g>
+          <g class="wand-grip">
+            <ellipse cx="74" cy="45" rx="9" ry="15"/>
+            <ellipse cx="104" cy="45" rx="8" ry="13"/>
+            <ellipse cx="134" cy="45" rx="7" ry="11"/>
+            <path d="M160 36q16 2 30 7-14 5-30 7z"/>
+          </g>
+          <g class="wand-grain">
+            <path d="M180 44h420M204 39h352M214 50h332"/>
+          </g>
+          <g class="wand-lumos">
+            <circle class="wl-halo" cx="628" cy="45" r="30"/>
+            <circle class="wl-core" cx="628" cy="45" r="7"/>
+            <g class="wl-spark">
+              <circle cx="668" cy="30" r="2.4"/><circle cx="686" cy="52" r="1.8"/>
+              <circle cx="656" cy="66" r="2"/><circle cx="700" cy="38" r="1.5"/>
+              <circle cx="672" cy="60" r="1.4"/>
+            </g>
+          </g>
+        </svg></div>
+      <div class="fan-art-body">
+        <q>Hogwarts School of Witchcraft and Wizardry</q>
+        <span class="fan-art-by">Draco dormiens nunquam titillandus · never tickle a sleeping dragon</span>
+        <p>A castle in the Scottish Highlands, founded around the year 990 by four of the greatest witches and wizards of the age, three of whom got along. Unplottable, Muggle-repelling, and to anyone who should not be there it looks like a ruin with a sign warning them off.</p>
+        <p>Below it, a wand: a length of wood and a core of something that was alive, and the single most personal object anyone in this world owns. Eleven inches of holly and a phoenix feather is a different life from fifteen inches of elder and a thestral tail hair, and Ollivander could tell you which was which by the feel of it.</p>
+      </div>
     </div>
   </section>
 
   <div class="crest-grid">
-    <article class="crest reveal" style="--h1:#ae0001;--h2:#d3a625">
+    <article class="crest reveal" style="--h1:#ae0001;--h2:#d3a625;--hl:#e8524a">
       <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><path d="M50 4 92 18v38c0 26-20 41-42 52C28 97 8 82 8 56V18z" fill="none" stroke="currentColor" stroke-width="3"/><g fill="currentColor"><path d="M50 20 L54 30 L46 30 Z" transform="rotate(0 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(30 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(60 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(90 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(120 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(150 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(180 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(210 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(240 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(270 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(300 50 48)"/><path d="M50 20 L54 30 L46 30 Z" transform="rotate(330 50 48)"/></g><circle cx="50" cy="48" r="14" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="44.5" cy="45" r="2.2" fill="currentColor"/><circle cx="55.5" cy="45" r="2.2" fill="currentColor"/><path d="M50 50l-4 4.5h8z" fill="currentColor"/><path d="M45 57c2.6 3 7.4 3 10 0" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
       <h4>Gryffindor</h4>
       <span class="crest-sub">Godric Gryffindor</span>
       <p>Courage, nerve and chivalry, and a common room up a staircase behind a portrait. The sword only comes to a Gryffindor who needs it.</p>
       <div class="crest-tags"><span>Brave</span><span>Reckless</span><span>Lion</span><span>Fire</span></div>
     </article>
-    <article class="crest reveal" style="--h1:#2a623d;--h2:#aaaaaa">
+    <article class="crest reveal" style="--h1:#2a623d;--h2:#aaaaaa;--hl:#4cc47f">
       <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><path d="M50 4 92 18v38c0 26-20 41-42 52C28 97 8 82 8 56V18z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M62 32c-10-6-24-2-24 8s18 8 18 16-12 12-20 6" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><circle cx="64" cy="31" r="4" fill="currentColor"/><path d="M36 66l-6 6M36 66l-7 1" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
       <h4>Slytherin</h4>
       <span class="crest-sub">Salazar Slytherin</span>
       <p>Ambition, cunning and resourcefulness, in a dungeon common room under the lake. Not one house of villains, just the one that keeps score.</p>
       <div class="crest-tags"><span>Ambitious</span><span>Cunning</span><span>Serpent</span><span>Water</span></div>
     </article>
-    <article class="crest reveal" style="--h1:#222f5b;--h2:#946b2d">
+    <article class="crest crest--mine reveal" style="--h1:#222f5b;--h2:#946b2d;--hl:#7b9be0"><span class="crest-mine">My house</span>
       <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><path d="M50 4 92 18v38c0 26-20 41-42 52C28 97 8 82 8 56V18z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M50 30a5 5 0 0 0-5 5c0 1.7.9 3.2 2.2 4l-1.6 4.4h8.8L52.8 39A4.9 4.9 0 0 0 55 35a5 5 0 0 0-5-5z" fill="currentColor"/><path d="M62 33.5l9-2.5-8.4 5.6z" fill="currentColor"/><path d="M45.5 45 21 38.5c-4-1-6.4 2.2-3.2 4.4l17 10.4-12.6 1.6c-3 .4-3.2 4.2-.2 4.8L45.5 65z" fill="currentColor"/><path d="M54.5 45 79 38.5c4-1 6.4 2.2 3.2 4.4l-17 10.4 12.6 1.6c3 .4 3.2 4.2.2 4.8L54.5 65z" fill="currentColor"/><path d="M45.6 62h8.8L50 80z" fill="currentColor"/></svg>
       <h4>Ravenclaw</h4>
       <span class="crest-sub">Rowena Ravenclaw</span>
       <p>Wit, learning and wisdom, behind a door that asks a riddle instead of a password. Get it wrong and you wait for someone cleverer.</p>
       <div class="crest-tags"><span>Clever</span><span>Curious</span><span>Eagle</span><span>Air</span></div>
     </article>
-    <article class="crest reveal" style="--h1:#ecb939;--h2:#372e29">
+    <article class="crest reveal" style="--h1:#ecb939;--h2:#372e29;--hl:#f5c94f">
       <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><path d="M50 4 92 18v38c0 26-20 41-42 52C28 97 8 82 8 56V18z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M50 30c-12 0-21 9-21 21s9 20 21 20 21-9 21-20-9-21-21-21z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M42 34v33M50 32v37M58 34v33" stroke="currentColor" stroke-width="4"/><circle cx="42" cy="47" r="2.6" fill="currentColor"/><circle cx="58" cy="47" r="2.6" fill="currentColor"/></svg>
       <h4>Hufflepuff</h4>
       <span class="crest-sub">Helga Hufflepuff</span>
@@ -107,9 +305,41 @@ permalink: /franchises/harry-potter/
     </article>
   </div>
 
+  <!-- the Sorting Hat: fan-hp-ui.js drives it, and it lights the crest above -->
+  <section class="fan-sec sorting" id="sorting">
+    <h3 class="subsec subsec--fan reveal">The Sorting<span class="subsec-yr">the Hat has never been wrong, it says</span></h3>
+    <p class="fan-lede reveal">A thousand-year-old hat that reads you and shouts. It takes your own choice into account, which is the single most important rule in the series and the reason Harry is not in Slytherin. Mine put me in <b>Ravenclaw</b> and I did not argue. Put it on and see what it does with you.</p>
+    <div class="hat-panel reveal">
+      <div class="hat-stage">
+        <svg class="hat" id="hat" viewBox="0 0 200 200" aria-hidden="true">
+          <path class="hat-felt" d="M100 172c-40 0-56-5-56-11 0-7 8-19 13-32 8-21 12-44 15-66 3-24 10-45 23-52 11-6 21 1 22 13 1 12-5 27-13 45-10 22-17 43-19 61-1 12 3 21 10 28 5 5 3 14-5 14z"/>
+          <path class="hat-brim" d="M30 168q70 26 140 0-16-18-70-18t-70 18z"/>
+          <path class="hat-fold" d="M57 129q22 9 44 4"/>
+          <path class="hat-eye" d="M66 112q9-6 18 0"/>
+          <path class="hat-eye" d="M92 105q9-6 18 0"/>
+          <path class="hat-mouth" id="hatMouth" d="M56 148q26 14 52 0"/>
+        </svg>
+      </div>
+      <div class="hat-body">
+        <p class="hat-say" id="hatSay" role="status" aria-live="polite">Put me on, then.</p>
+        <button class="hat-go" id="hatGo" type="button">Try me on</button>
+        <p class="hat-tally" id="hatTally" aria-live="off"></p>
+        <p class="hat-note">It sorts at random, the way a hat that reads minds cannot. Argue with it and it will sort you again.</p>
+      </div>
+    </div>
+  </section>
+
   <div id="fanBody"></div>
 
 </main>
+
+<!-- the shared image lightbox: every link to an image on this page opens here
+     rather than in a new tab (see gallery.js). -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Close">✕</button>
+  <span class="lightbox-title"></span>
+  <div class="lightbox-imgs"></div>
+</div>
 
 <footer class="footer">
   <span>© 2026 Abubakr Elmallah</span>
@@ -125,17 +355,22 @@ permalink: /franchises/harry-potter/
   <a href="/franchises/" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Franchises</span></a>
 </nav>
 
-<script src="/assets/js/utils.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
-<script src="/assets/js/fan-hp.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/fan-hp.js' %}"></script>
 
-<script src="/assets/js/fanpage.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/cursor.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/magnetic.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/reveal.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/clock.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/flowfield.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/scroll.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/sound.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/fanpage.js' %}"></script>
+<!-- after fanpage.js: the gallery images do not exist until it has run -->
+<script src="{% include v.html f='/assets/js/gallery.js' %}"></script>
+<!-- after fanpage.js: the spell tiles do not exist until it has run -->
+<script src="{% include v.html f='/assets/js/fan-hp-ui.js' %}"></script>
+<script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
+<script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
+<script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
+<script src="{% include v.html f='/assets/js/tilt.js' %}"></script>
+<script src="{% include v.html f='/assets/js/clock.js' %}"></script>
+<script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
+<script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
+<script src="{% include v.html f='/assets/js/sound.js' %}"></script>
 </body>
 </html>
