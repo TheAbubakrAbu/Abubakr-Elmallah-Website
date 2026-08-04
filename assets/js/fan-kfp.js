@@ -57,4 +57,15 @@ window.FAN_PAGE = { sections: [
       { title: 'Skadoosh.', sub: 'Po' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'DreamWorks', href: 'https://www.dreamworks.com/movies/kung-fu-panda',
+        desc: 'The official film home.' },
+      { title: 'Kung Fu Panda Wiki', href: 'https://kungfupanda.fandom.com/wiki/Kung_Fu_Panda_Wiki',
+        desc: 'The Furious Five, the styles, and the whole Valley of Peace.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Kung_Fu_Panda_(franchise)',
+        desc: 'All four films and the series.' },
+    ] },
+
 ] };

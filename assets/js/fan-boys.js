@@ -71,4 +71,13 @@ window.FAN_PAGE = { sections: [
       { title: 'Diabolical.', sub: 'Billy Butcher' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'The Boys Wiki', href: 'https://the-boys.fandom.com/wiki/The_Boys_Wiki',
+        desc: 'Supes, Vought, and the comics the show diverges from.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/The_Boys_(TV_series)',
+        desc: 'Season by season, with the comic differences noted.' },
+    ] },
+
 ] };

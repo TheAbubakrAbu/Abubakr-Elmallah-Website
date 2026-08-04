@@ -10,7 +10,12 @@ permalink: /franchises/game-of-thrones/
 <meta name="theme-color" content="#08080a" />
 
 <link rel="icon" type="image/png" href="/assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="/assets/img/me/abubakr-circle.png" />
+<link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Abubakr" />
 <meta property="og:image" content="/assets/img/me/abubakr-circle.png" />
 <meta property="og:type" content="website" />
 <title>Game of Thrones · Abubakr Elmallah</title>
@@ -19,15 +24,40 @@ permalink: /franchises/game-of-thrones/
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="/assets/css/base.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/layout.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/components.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/fanpages.css?v={{ site.time | date: '%s' }}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 </head>
 <body data-intro="none" data-fan="got">
 
 <!-- cold steel, and a map under it -->
-<div class="got-sky" aria-hidden="true"></div>
+<!-- a cold sky over Westeros: snow coming down, the Wall across the north,
+     Winterfell under it and King's Landing burning away to the south -->
+<div class="got-sky" aria-hidden="true">
+  <span class="got-snow got-snow--far"></span>
+  <span class="got-snow got-snow--near"></span>
+  <span class="got-wall"></span>
+  <span class="got-skyline">
+    <svg viewBox="0 0 1400 300" preserveAspectRatio="xMidYMax slice">
+      <!-- Winterfell, left: squat grey towers behind a curtain wall -->
+      <g class="gs-north">
+        <path d="M40 300v-96h300v96z"/>
+        <path d="M40 204h8v-14h10v14h12v-14h10v14h12v-14h10v14h12v-14h10v14h12v-14h10v14h12v-14h10v14h12v-14h10v14h12v-14h10v14h12v-14h10v14h12v-14h10v14h12v-14h10v14h12v-14h10v14h12v-14h10v14h12v-14h10v14"/>
+        <path d="M74 204v-90h44v90zM68 114h56v-16H68zM196 204v-116h52v116zM190 88h64v-18h-64zM290 204v-72h40v72zM284 132h52v-14h-52z"/>
+        <path d="M96 98V74M222 70V44M310 118V96"/>
+      </g>
+      <!-- King's Landing, right: the Red Keep and the Sept over the bay -->
+      <g class="gs-south">
+        <path d="M1060 300v-72h300v72z"/>
+        <path d="M1100 228v-84h56v84zM1094 144h68v-14h-68zM1200 228v-108h44v108zM1194 120h56v-14h-56zM1290 228v-62h40v62z"/>
+        <path d="M1128 130V104M1222 106V78"/>
+        <circle cx="1260" cy="182" r="30"/>
+        <path d="M1230 182h60M1260 152v-22M1244 136h32"/>
+      </g>
+    </svg>
+  </span>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -68,20 +98,62 @@ permalink: /franchises/game-of-thrones/
 
   <section class="fan-hero">
     <a class="back-link" href="/franchises/" data-magnetic>← Back to franchises</a>
-    <p class="fan-kicker"><span>Franchise · Primary · 2011 – 2019</span></p>
+    <p class="fan-kicker"><span>Franchise · Primary · 2011 – 2019</span><span class="got-mine">House Stark</span></p>
     <h1 class="fan-title">Game of Thrones</h1>
-    <p class="fan-lede-hero">The high-water mark for television scale, and a lesson in how hard endings are. The great houses and their words, the eight seasons, and the six hours everyone still talks about.</p>
+    <p class="fan-lede-hero">The high-water mark for television scale, and a lesson in how hard endings are. Westeros, the great houses and their words, every Valyrian blade in the story, the eight seasons, and the six hours everyone still talks about. For the record: <b>House Stark, all the way.</b> Winter is coming.</p>
     <div class="fan-links">
       <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
     </div>
   </section>
 
+  <div class="fan-art fan-art--got reveal">
+    <div class="fan-art-fig">
+      <div class="got-parch">
+        <svg viewBox="0 0 240 250" role="img" aria-label="Westeros, with the great seats marked">
+        <path d="M132 16 L162 26 L156 46 L178 62 L172 86 L190 102 L182 126 L198 148 L184 170 L194 192 L168 208 L150 234 L124 214 L110 192 L94 178 L104 154 L82 136 L96 112 L78 90 L100 72 L114 46 Z" fill="rgba(185,194,204,.05)" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+        <path d="M96 30 H186" stroke="rgba(200,235,255,.75)" stroke-width="3.4" stroke-linecap="round"/>
+        <text x="90" y="26" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="5" fill="rgba(200,235,255,.75)">700 ft of ice</text>
+      <g class="got-seat"><circle cx="134" cy="34" r="3.2" fill="currentColor"/><text x="141" y="36" text-anchor="start">The Wall</text></g>
+      <g class="got-seat"><circle cx="140" cy="66" r="3.2" fill="currentColor"/><text x="147" y="68" text-anchor="start">Winterfell</text></g>
+      <g class="got-seat"><circle cx="92" cy="108" r="3.2" fill="currentColor"/><text x="85" y="110" text-anchor="end">Pyke</text></g>
+      <g class="got-seat"><circle cx="172" cy="100" r="3.2" fill="currentColor"/><text x="179" y="102" text-anchor="start">The Eyrie</text></g>
+      <g class="got-seat"><circle cx="126" cy="128" r="3.2" fill="currentColor"/><text x="133" y="130" text-anchor="start">Riverrun</text></g>
+      <g class="got-seat"><circle cx="100" cy="142" r="3.2" fill="currentColor"/><text x="93" y="144" text-anchor="end">Casterly Rock</text></g>
+      <g class="got-seat"><circle cx="158" cy="158" r="3.2" fill="currentColor"/><text x="165" y="160" text-anchor="start">King's Landing</text></g>
+      <g class="got-seat"><circle cx="184" cy="180" r="3.2" fill="currentColor"/><text x="191" y="182" text-anchor="start">Storm's End</text></g>
+      <g class="got-seat"><circle cx="116" cy="194" r="3.2" fill="currentColor"/><text x="109" y="196" text-anchor="end">Highgarden</text></g>
+      <g class="got-seat"><circle cx="150" cy="220" r="3.2" fill="currentColor"/><text x="157" y="222" text-anchor="start">Sunspear</text></g>
+      </svg>
+      </div>
+      <!-- Ice: a Valyrian greatsword, laid flat under the map -->
+      <svg class="got-sword" viewBox="0 0 700 130" role="img" aria-label="Ice, a Valyrian steel greatsword">
+        <g class="gsw-blade">
+          <path d="M150 48h430l86 17-86 17H150z"/>
+          <path d="M158 65h420"/>
+          <path class="gsw-ripple" d="M210 56q10 9 0 18M270 56q10 9 0 18M330 56q10 9 0 18M390 56q10 9 0 18M450 56q10 9 0 18M510 56q10 9 0 18"/>
+        </g>
+        <g class="gsw-hilt">
+          <path d="M126 18h24v94h-24z"/>
+          <rect x="58" y="55" width="70" height="20" rx="4"/>
+          <path d="M44 50h16v30H44z"/>
+          <circle cx="30" cy="65" r="15"/>
+        </g>
+      </svg>
+    </div>
+    <div class="fan-art-body">
+      <q>When you play the game of thrones, you win or you die. There is no middle ground.</q>
+      <span class="fan-art-by">Cersei Lannister · A Game of Thrones</span>
+      <p>Seven kingdoms on one continent, held together by a chair made out of a thousand surrendered swords and nothing else. The Wall in the north, King's Landing in the south, and about eight hundred miles of people who would rather be ruling.</p>
+      <p>The blade is Ice: four hundred years of Valyrian steel, wide as a man's hand, and Ned Stark swings it himself because the man who passes the sentence should swing the sword. Tywin Lannister has it melted down into two smaller ones, which tells you everything about both houses.</p>
+    </div>
+  </div>
+
   <div class="crest-grid">
-    <article class="crest reveal" style="--h1:#c9cdd2;--h2:#8f98a2">
+    <article class="crest crest--mine reveal" style="--h1:#c9cdd2;--h2:#8f98a2;--hl:#e4ecf4"><span class="crest-mine">My house</span>
       <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><path d="M50 4 92 18v38c0 26-20 41-42 52C28 97 8 82 8 56V18z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M30 34l6 12-4 14 8 10 10 4 10-4 8-10-4-14 6-12-12 6H42z" fill="currentColor"/><circle cx="42" cy="52" r="2.6" fill="#000" opacity=".55"/><circle cx="58" cy="52" r="2.6" fill="#000" opacity=".55"/><path d="M50 62l-4 5h8z" fill="#000" opacity=".5"/></svg>
       <h4>House Stark</h4>
       <span class="crest-sub">Winter Is Coming</span>
-      <p>Wardens of the North, Winterfell, and a family the story spends eight seasons taking apart and putting back together.</p>
+      <p>Wardens of the North, Winterfell, and a family the story spends eight seasons taking apart and putting back together. Mine, without hesitation, and it was never close.</p>
       <div class="crest-tags"><span>Direwolf</span><span>The North</span><span>Honour</span></div>
     </article>
     <article class="crest reveal" style="--h1:#d0b040;--h2:#a8823a">
@@ -120,33 +192,6 @@ permalink: /franchises/game-of-thrones/
       <div class="crest-tags"><span>Rose</span><span>The Reach</span><span>Wealth</span></div>
     </article>
   </div>
-  <section class="got-map reveal">
-    <div class="got-parch">
-      <svg viewBox="0 0 240 250" role="img" aria-label="Westeros, with the great seats marked">
-        <path d="M132 16 L162 26 L156 46 L178 62 L172 86 L190 102 L182 126 L198 148 L184 170 L194 192 L168 208 L150 234 L124 214 L110 192 L94 178 L104 154 L82 136 L96 112 L78 90 L100 72 L114 46 Z" fill="rgba(185,194,204,.05)" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
-        <path d="M96 30 H186" stroke="rgba(200,235,255,.75)" stroke-width="3.4" stroke-linecap="round"/>
-        <text x="90" y="26" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="5" fill="rgba(200,235,255,.75)">700 ft of ice</text>
-      <g class="got-seat"><circle cx="134" cy="34" r="3.2" fill="currentColor"/><text x="141" y="36" text-anchor="start">The Wall</text></g>
-      <g class="got-seat"><circle cx="140" cy="66" r="3.2" fill="currentColor"/><text x="147" y="68" text-anchor="start">Winterfell</text></g>
-      <g class="got-seat"><circle cx="92" cy="108" r="3.2" fill="currentColor"/><text x="85" y="110" text-anchor="end">Pyke</text></g>
-      <g class="got-seat"><circle cx="172" cy="100" r="3.2" fill="currentColor"/><text x="179" y="102" text-anchor="start">The Eyrie</text></g>
-      <g class="got-seat"><circle cx="126" cy="128" r="3.2" fill="currentColor"/><text x="133" y="130" text-anchor="start">Riverrun</text></g>
-      <g class="got-seat"><circle cx="100" cy="142" r="3.2" fill="currentColor"/><text x="93" y="144" text-anchor="end">Casterly Rock</text></g>
-      <g class="got-seat"><circle cx="158" cy="158" r="3.2" fill="currentColor"/><text x="165" y="160" text-anchor="start">King's Landing</text></g>
-      <g class="got-seat"><circle cx="184" cy="180" r="3.2" fill="currentColor"/><text x="191" y="182" text-anchor="start">Storm's End</text></g>
-      <g class="got-seat"><circle cx="116" cy="194" r="3.2" fill="currentColor"/><text x="109" y="196" text-anchor="end">Highgarden</text></g>
-      <g class="got-seat"><circle cx="150" cy="220" r="3.2" fill="currentColor"/><text x="157" y="222" text-anchor="start">Sunspear</text></g>
-      </svg>
-    </div>
-    <div class="got-legend">
-      <h4>Westeros</h4>
-      <p>Seven kingdoms on one continent, held together by a chair made of swords and not much else. The Wall runs along the top: seven hundred feet of ice, three hundred miles long, and manned at the end by about a hundred men.</p>
-      <div class="got-oath">
-        <p>Night gathers, and now my watch begins. It shall not end until my death. I shall live and die at my post. I am the sword in the darkness. I am the watcher on the walls. I am the shield that guards the realms of men.</p>
-        <span>The Night’s Watch oath</span>
-      </div>
-    </div>
-  </section>
 
   <div id="fanBody"></div>
 
@@ -166,17 +211,18 @@ permalink: /franchises/game-of-thrones/
   <a href="/franchises/" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Franchises</span></a>
 </nav>
 
-<script src="/assets/js/utils.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
-<script src="/assets/js/fan-got.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/fan-got.js' %}"></script>
 
-<script src="/assets/js/fanpage.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/cursor.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/magnetic.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/reveal.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/clock.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/flowfield.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/scroll.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/sound.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/fanpage.js' %}"></script>
+<script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
+<script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
+<script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
+<script src="{% include v.html f='/assets/js/tilt.js' %}"></script>
+<script src="{% include v.html f='/assets/js/clock.js' %}"></script>
+<script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
+<script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
+<script src="{% include v.html f='/assets/js/sound.js' %}"></script>
 </body>
 </html>

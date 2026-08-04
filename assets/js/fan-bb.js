@@ -57,4 +57,15 @@ window.FAN_PAGE = { sections: [
       { title: 'Yeah, science!', sub: 'Jesse Pinkman' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Sony Pictures', href: 'https://www.sonypictures.com/tv/breakingbad',
+        desc: 'The studio’s own series page, with the full episode guide.' },
+      { title: 'Breaking Bad Wiki', href: 'https://breakingbad.fandom.com/wiki/Breaking_Bad_Wiki',
+        desc: 'Every episode, and Better Call Saul alongside it.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Breaking_Bad',
+        desc: 'Five seasons, and why the ending works.' },
+    ] },
+
 ] };

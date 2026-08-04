@@ -74,4 +74,32 @@ window.FAN_PAGE = { sections: [
         href: 'https://www.lego.com/', link: 'lego.com' },
     ] },
 
+
+  { id: 'played', kind: 'gallery', title: 'The LEGO Games', note: 'thirty years of them, and a lot of gold bricks',
+    lede: 'LEGO games turned thirty in 2025, and a genuinely unreasonable share of my childhood is inside them. The formula never changed and it never needed to: smash everything, collect the studs, unlock the character, come back with the right ability.',
+    items: [
+      { title: 'Thirty years of LEGO games', src: '/assets/img/franchises/lego-games-30-years.jpg',
+        alt: 'The LEGO Games 30th anniversary page',
+        desc: 'LEGO’s own anniversary page for the games. Three decades from LEGO Island to the Skywalker Saga, and the studs never stopped being satisfying to hoover up.',
+        meta: '#LEGOGames30' },
+      { title: 'LEGO Star Wars, all of it', src: '/assets/img/franchises/star-wars-lego-100.jpg',
+        alt: 'Completion screens from five LEGO Star Wars games, all at 100 percent',
+        desc: 'The Complete Saga, The Clone Wars, The Force Awakens and The Skywalker Saga, every one of them taken to a hundred percent. The Skywalker Saga alone is 1,200 Kyber bricks and 380 characters.',
+        meta: 'Five games · 100.0% each' },
+      { title: 'LEGO Pirates of the Caribbean', src: '/assets/img/franchises/lego-pirates-100.jpg',
+        alt: 'LEGO Pirates of the Caribbean paused at 100 percent completion',
+        desc: 'A hundred percent and eleven and a half billion studs. The four-film adaptation, and the best of the non-Star-Wars LEGO games.',
+        meta: '100.0%' },
+    ] },
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'LEGO.com', href: 'https://www.lego.com/',
+        desc: 'The official site.' },
+      { title: 'Brickipedia', href: 'https://brickipedia.fandom.com/wiki/Brickipedia',
+        desc: 'Every set, every minifigure, every theme since 1949.' },
+      { title: 'BrickLink', href: 'https://www.bricklink.com/',
+        desc: 'The parts marketplace, and the best part catalogue anywhere.' },
+    ] },
+
 ] };

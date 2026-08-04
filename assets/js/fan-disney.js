@@ -71,4 +71,15 @@ window.FAN_PAGE = { sections: [
       { when: '2010 – now', title: 'The Revival', desc: 'Tangled, Frozen, Zootopia, Encanto: computer animation with the Renaissance’s instincts back in place.' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Disney.com', href: 'https://www.disney.com/',
+        desc: 'The official home.' },
+      { title: 'Disney Wiki', href: 'https://disney.fandom.com/wiki/The_Walt_Disney_Company',
+        desc: 'Every film, short, park and character.' },
+      { title: 'Disneyland', href: 'https://disneyland.disney.go.com/',
+        desc: 'The park down the road from me.' },
+    ] },
+
 ] };

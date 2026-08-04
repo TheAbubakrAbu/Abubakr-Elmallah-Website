@@ -29,8 +29,8 @@
     });
   }
 
-  // cards lift as they tilt
-  document.querySelectorAll('.app-card, .proj-card').forEach(el => bind(el, 7, -6));
+  // cards lift as they tilt (.crest = the Hogwarts / Westerosi / bending crests)
+  document.querySelectorAll('.app-card, .proj-card, .crest').forEach(el => bind(el, 7, -6));
   // standalone images / media tilt a touch harder
   document.querySelectorAll('.pic-frame, .flyer, .wall, .year-card').forEach(el => bind(el, 9, 0));
   // the hero name uses the magnetic drift effect instead (see magnetic.js)

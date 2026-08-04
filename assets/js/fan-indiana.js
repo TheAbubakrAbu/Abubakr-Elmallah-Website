@@ -48,4 +48,15 @@ window.FAN_PAGE = { sections: [
       { title: 'He chose… poorly.', sub: 'The Grail Knight' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'IndianaJones.com', href: 'https://www.indianajones.com/',
+        desc: 'The official site.' },
+      { title: 'Indiana Jones Wiki', href: 'https://indianajones.fandom.com/wiki/Main_Page',
+        desc: 'All five films, the artefacts, and the Young Indy series.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Indiana_Jones',
+        desc: 'Raiders through Dial of Destiny.' },
+    ] },
+
 ] };

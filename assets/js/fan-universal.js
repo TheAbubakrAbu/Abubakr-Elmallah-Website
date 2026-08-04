@@ -55,4 +55,15 @@ window.FAN_PAGE = { sections: [
       { when: '2025', title: 'Epic Universe opens', desc: 'The first entirely new major theme park in Orlando since 1999.' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Universal Studios Hollywood', href: 'https://www.universalstudioshollywood.com/',
+        desc: 'The park, the backlot tram, and the Lower Lot.' },
+      { title: 'Universal Orlando', href: 'https://www.universalorlando.com/',
+        desc: 'The Florida resort, and Epic Universe.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Universal_Pictures',
+        desc: 'The studio, founded 1912.' },
+    ] },
+
 ] };

@@ -63,4 +63,15 @@ window.FAN_PAGE = { sections: [
       { title: 'I am vengeance. I am the night. I am Batman.', sub: 'Batman: The Animated Series' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'DC.com', href: 'https://www.dc.com/characters/batman',
+        desc: 'The official character home.' },
+      { title: 'Batman Wiki', href: 'https://batman.fandom.com/wiki/Batman_Wiki',
+        desc: 'Every incarnation, comics through film.' },
+      { title: 'DC Database', href: 'https://dc.fandom.com/wiki/DC_Comics_Database',
+        desc: 'The wider universe he sits in.' },
+    ] },
+
 ] };

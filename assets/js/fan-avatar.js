@@ -49,4 +49,15 @@ window.FAN_PAGE = { sections: [
       { title: 'The Avatars', sub: 'Driver-linked bodies', tag: 'Tech', desc: 'Human-Na’vi hybrids grown for a specific driver’s DNA, and later, the recombinants.', meta: 'Link beds' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Avatar.com', href: 'https://www.avatar.com/',
+        desc: 'The official site for Pandora.' },
+      { title: 'Avatar Wiki', href: 'https://james-camerons-avatar.fandom.com/wiki/Avatar_Wiki',
+        desc: 'The flora, fauna, Na’vi language and the RDA.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Avatar_(2009_film)',
+        desc: 'The film, and the technology built to make it.' },
+    ] },
+
 ] };

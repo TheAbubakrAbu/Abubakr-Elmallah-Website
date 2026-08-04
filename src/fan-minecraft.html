@@ -10,7 +10,12 @@ permalink: /franchises/minecraft/
 <meta name="theme-color" content="#08080a" />
 
 <link rel="icon" type="image/png" href="/assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="/assets/img/me/abubakr-circle.png" />
+<link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Abubakr" />
 <meta property="og:image" content="/assets/img/me/abubakr-circle.png" />
 <meta property="og:type" content="website" />
 <title>Minecraft · Abubakr Elmallah</title>
@@ -19,15 +24,45 @@ permalink: /franchises/minecraft/
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="/assets/css/base.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/layout.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/components.css?v={{ site.time | date: '%s' }}" />
-<link rel="stylesheet" href="/assets/css/fanpages.css?v={{ site.time | date: '%s' }}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 </head>
 <body data-intro="none" data-fan="mc">
 
-<!-- overworld above, stone below -->
-<div class="mc-sky" aria-hidden="true"></div>
+<!-- a cross-section of the world: sky, grass line, dirt, stone, deepslate and
+     bedrock, with ore glinting at roughly the right depths and lava at the
+     bottom. Plus a few blocks drifting past. All CSS. -->
+<div class="mc-sky" aria-hidden="true">
+  <span class="mc-strata"></span>
+  <span class="mc-ores">
+    <i data-ore="coal" class="ore ore--stone" style="--o:#2a2a2a;--x:6%;--y:44%;--d:-0.4s"></i>
+    <i data-ore="coal" class="ore ore--stone" style="--o:#2a2a2a;--x:78%;--y:46%;--d:-3.1s"></i>
+    <i data-ore="copper" class="ore ore--stone" style="--o:#e08a5f;--x:17%;--y:47%;--d:-1.2s"></i>
+    <i data-ore="copper" class="ore ore--stone" style="--o:#e08a5f;--x:62%;--y:50%;--d:-4.6s"></i>
+    <i data-ore="emerald" class="ore ore--stone" style="--o:#3fd06f;--x:35%;--y:43%;--d:-2.2s"></i>
+    <i data-ore="iron" class="ore ore--stone" style="--o:#d8d8d8;--x:27%;--y:54%;--d:-5.0s"></i>
+    <i data-ore="iron" class="ore ore--stone" style="--o:#d8d8d8;--x:88%;--y:57%;--d:-1.8s"></i>
+    <i data-ore="lapis" class="ore ore--deep" style="--o:#3f6fd0;--x:48%;--y:65%;--d:-2.9s"></i>
+    <i data-ore="gold" class="ore ore--deep" style="--o:#f0c840;--x:13%;--y:71%;--d:-0.9s"></i>
+    <i data-ore="gold" class="ore ore--deep" style="--o:#f0c840;--x:70%;--y:75%;--d:-4.1s"></i>
+    <i data-ore="redstone" class="ore ore--deep" style="--o:#e04a3a;--x:56%;--y:82%;--d:-3.6s"></i>
+    <i data-ore="redstone" class="ore ore--deep" style="--o:#e04a3a;--x:92%;--y:86%;--d:-1.4s"></i>
+    <i data-ore="diamond" class="ore ore--deep" style="--o:#4fd0d6;--x:33%;--y:85%;--d:-2.6s"></i>
+    <i data-ore="diamond" class="ore ore--deep" style="--o:#4fd0d6;--x:81%;--y:88%;--d:-5.4s"></i>
+  </span>
+  <span class="mc-lava"></span>
+  <span class="mc-voxels">
+    <i style="--x:8%;--s:26px;--t:34s;--d:-4s;--c:#7fbf4f"></i>
+    <i style="--x:22%;--s:16px;--t:47s;--d:-19s;--c:#8f8f8f"></i>
+    <i style="--x:39%;--s:22px;--t:39s;--d:-11s;--c:#4fd0d6"></i>
+    <i style="--x:57%;--s:14px;--t:53s;--d:-27s;--c:#e08a5f"></i>
+    <i style="--x:71%;--s:30px;--t:31s;--d:-7s;--c:#a9763f"></i>
+    <i style="--x:86%;--s:18px;--t:44s;--d:-22s;--c:#e04a3a"></i>
+    <i style="--x:95%;--s:24px;--t:37s;--d:-15s;--c:#3fd06f"></i>
+  </span>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -74,16 +109,111 @@ permalink: /franchises/minecraft/
     <div class="fan-links">
       <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
     </div>
+    <div class="fan-art fan-art--mc reveal">
+      <div class="fan-art-fig">
+        <svg viewBox="0 0 460 260" role="img" aria-label="A grass block with a pickaxe, and a sword swung at an enderman">
+          <!-- isometric grass block -->
+          <g class="mc-block">
+            <path class="mcb-top"   d="M92 26 172 66 92 106 12 66z"/>
+            <path class="mcb-left"  d="M12 66 92 106v82L12 148z"/>
+            <path class="mcb-right" d="M172 66 92 106v82l80-40z"/>
+            <g class="mcb-px-top"><path d="M76 42l16 8-16 8-16-8zM124 58l16 8-16 8-16-8zM60 74l16 8-16 8-16-8z"/></g>
+            <g class="mcb-px-left"><path d="M24 86l14 7v14l-14-7zM52 102l14 7v14l-14-7zM24 128l14 7v14l-14-7z"/></g>
+            <g class="mcb-px-right"><path d="M146 94l14-7v14l-14 7zM118 118l14-7v14l-14 7z"/></g>
+            <path class="mcb-lip" d="M12 66 92 106v13L12 79z"/>
+            <path class="mcb-lip" d="M172 66 92 106v13l80-40z"/>
+          </g>
+
+          <!-- the pickaxe, laid across the block -->
+          <g class="mc-pick" transform="translate(138 132) rotate(-38)">
+            <rect class="mcp-handle"  x="-6" y="-6" width="13" height="86"/>
+            <rect class="mcp-handle2" x="-6" y="-6" width="6"  height="86"/>
+            <path class="mcp-head"  d="M-42 -32h84v13h-84z"/>
+            <path class="mcp-head"  d="M-42 -45h18v26h-18zM24 -45h18v26h-18z"/>
+            <path class="mcp-head"  d="M-12 -19h24v11h-24z"/>
+            <path class="mcp-shine" d="M-38 -41h9v9h-9zM-38 -28h50v5h-50z"/>
+          </g>
+
+          <!-- an enderman, holding a block it picked up on the way past -->
+          <g class="mc-ender">
+            <rect class="mce-body" x="366" y="70"  width="26" height="60"/>
+            <rect class="mce-body" x="360" y="34"  width="38" height="34"/>
+            <rect class="mce-body" x="352" y="72"  width="10" height="86"/>
+            <rect class="mce-body" x="396" y="72"  width="10" height="86"/>
+            <rect class="mce-body" x="368" y="132" width="10" height="94"/>
+            <rect class="mce-body" x="382" y="132" width="10" height="94"/>
+            <g class="mce-eye"><rect x="362" y="46" width="14" height="7"/><rect x="382" y="46" width="14" height="7"/></g>
+            <g class="mce-held"><rect x="336" y="150" width="20" height="20"/></g>
+            <g class="mce-motes">
+              <rect x="344" y="18" width="5" height="5"/><rect x="412" y="58" width="4" height="4"/>
+              <rect x="330" y="96" width="4" height="4"/><rect x="418" y="128" width="5" height="5"/>
+              <rect x="340" y="196" width="4" height="4"/><rect x="414" y="188" width="4" height="4"/>
+            </g>
+          </g>
+
+          <!-- and a sword, mid-swing at it -->
+          <g class="mc-sword" transform="translate(268 128)">
+            <g class="mc-sword-arm">
+              <rect class="mcs-handle"  x="-6" y="14" width="13" height="52"/>
+              <rect class="mcs-handle2" x="-6" y="14" width="6"  height="52"/>
+              <path class="mcs-guard" d="M-24 2h48v13h-48z"/>
+              <path class="mcs-blade" d="M-8 -76h17v78h-17z"/>
+              <path class="mcs-blade" d="M-8 -88h17v12h-17z"/>
+              <path class="mcs-shine" d="M-5 -72h6v58h-6z"/>
+            </g>
+            <g class="mc-swish">
+              <path d="M22 -58a86 86 0 0 1 30 56"/>
+              <path d="M34 -66a104 104 0 0 1 36 68"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="fan-art-body">
+        <q>Once upon a time, there was a player. The player was you.</q>
+        <span class="fan-art-by">The End Poem · Julian Gough</span>
+        <p>A world of one-metre cubes, generated forever in every direction from a single number, with no goal printed anywhere and no tutorial. Punch a tree, and about forty hours later you are standing on an obsidian pillar shooting an end crystal off the top of it.</p>
+        <p>Redstone was my first logic gate and command blocks were my first scripting language, which is a genuinely strange sentence and completely true. Below: the tiers, the depths, the three dimensions, everything that lives in them, and the servers a whole generation grew up on.</p>
+      </div>
+    </div>
   </section>
 
-  <div class="mc-hud reveal" aria-hidden="true">
-    <div class="mc-hearts"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <div class="mc-bar"><div class="mc-slot" title="Dirt"><b style="background:#7a5a3a"></b></div><div class="mc-slot" title="Cobblestone"><b style="background:#8a8a8a"></b></div><div class="mc-slot" title="Iron"><b style="background:#d8d8d8"></b></div><div class="mc-slot" title="Gold"><b style="background:#f0c840"></b></div><div class="mc-slot is-sel" title="Diamond"><b style="background:#4fd0d6"></b></div><div class="mc-slot" title="Netherite"><b style="background:#8a6a5f"></b></div><div class="mc-slot" title="Redstone"><b style="background:#e04a3a"></b></div><div class="mc-slot" title="Emerald"><b style="background:#3fd06f"></b></div><div class="mc-slot" title="TNT"><b style="background:#d04a3a"></b></div></div>
+  <!-- a real hotbar: pick a tier and the pickaxe, the sword and the matching
+       ore in the background all change to it. Number keys 1-7 work too. -->
+  <div class="mc-hud reveal">
+    <div class="mc-hearts" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="mc-bar" role="group" aria-label="Choose a tool tier">
+      <button class="mc-slot" type="button" data-tier="wood" data-tool="#a9763f" data-tool2="#c99a63"
+              aria-pressed="false"><b style="background:#a9763f"></b><u>1</u><span class="mc-slot-name">Wood</span></button>
+      <button class="mc-slot" type="button" data-tier="stone" data-tool="#8f8f8f" data-tool2="#b4b4b4"
+              aria-pressed="false"><b style="background:#8f8f8f"></b><u>2</u><span class="mc-slot-name">Stone</span></button>
+      <button class="mc-slot" type="button" data-tier="copper" data-tool="#e08a5f" data-tool2="#f0ad8a"
+              aria-pressed="false"><b style="background:#e08a5f"></b><u>3</u><span class="mc-slot-name">Copper</span></button>
+      <button class="mc-slot" type="button" data-tier="iron" data-tool="#e0e0e0" data-tool2="#f4f4f4"
+              aria-pressed="false"><b style="background:#e0e0e0"></b><u>4</u><span class="mc-slot-name">Iron</span></button>
+      <button class="mc-slot" type="button" data-tier="gold" data-tool="#f0c840" data-tool2="#ffe38a"
+              aria-pressed="false"><b style="background:#f0c840"></b><u>5</u><span class="mc-slot-name">Gold</span></button>
+      <button class="mc-slot is-sel" type="button" data-tier="diamond" data-tool="#4fd0d6" data-tool2="#b0f2f5"
+              aria-pressed="true"><b style="background:#4fd0d6"></b><u>6</u><span class="mc-slot-name">Diamond</span></button>
+      <button class="mc-slot" type="button" data-tier="netherite" data-tool="#8a6a5f" data-tool2="#b09287"
+              aria-pressed="false"><b style="background:#8a6a5f"></b><u>7</u><span class="mc-slot-name">Netherite</span></button>
+      <span class="mc-slot is-empty" aria-hidden="true"><u>8</u></span>
+      <span class="mc-slot is-empty" aria-hidden="true"><u>9</u></span>
+    </div>
+    <p class="mc-hint">Selected: <b id="mcTier">Diamond</b> — press <kbd>1</kbd>–<kbd>7</kbd> or click a slot.</p>
+  </div>
   </div>
 
   <div id="fanBody"></div>
 
 </main>
+
+<!-- the shared image lightbox: every link to an image on this page opens here
+     rather than in a new tab (see gallery.js). -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Close">✕</button>
+  <span class="lightbox-title"></span>
+  <div class="lightbox-imgs"></div>
+</div>
 
 <footer class="footer">
   <span>© 2026 Abubakr Elmallah</span>
@@ -99,17 +229,20 @@ permalink: /franchises/minecraft/
   <a href="/franchises/" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Franchises</span></a>
 </nav>
 
-<script src="/assets/js/utils.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
-<script src="/assets/js/fan-mc.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/fan-mc.js' %}"></script>
 
-<script src="/assets/js/fanpage.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/cursor.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/magnetic.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/reveal.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/clock.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/flowfield.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/scroll.js?v={{ site.time | date: '%s' }}"></script>
-<script src="/assets/js/sound.js?v={{ site.time | date: '%s' }}"></script>
+<script src="{% include v.html f='/assets/js/fanpage.js' %}"></script>
+<!-- after fanpage.js: the gallery images do not exist until it has run -->
+<script src="{% include v.html f='/assets/js/gallery.js' %}"></script>
+<script src="{% include v.html f='/assets/js/fan-mc-ui.js' %}"></script>
+<script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
+<script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
+<script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
+<script src="{% include v.html f='/assets/js/clock.js' %}"></script>
+<script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
+<script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
+<script src="{% include v.html f='/assets/js/sound.js' %}"></script>
 </body>
 </html>

@@ -12,6 +12,17 @@ window.FAN_PAGE = { sections: [
       { num: 'VI', title: 'Dominion', sub: '2022', desc: 'Both casts, locusts, and dinosaurs loose in the world at last.' },
     ] },
 
+  { id: 'favourites', kind: 'films', title: 'My Three', note: 'the ones I actually rewatch',
+    lede: 'Six films, and these are the three that work. The other three are about the same island getting worse.',
+    items: [
+      { num: 'I', title: 'Jurassic Park', sub: '1993 · Spielberg', accent: '#e0642a', meta: 'Isla Nublar',
+        desc: 'Fourteen minutes of dinosaur across two hours and it is still the most convincing they have ever looked, because most of them are physical objects being rained on. The kitchen, the glass of water, the goat leg on the sunroof, and a T. rex that arrives because the power went off rather than because a plot needed it.' },
+      { num: 'II', title: 'The Lost World', sub: '1997 · Spielberg', accent: '#7fbf4f', meta: 'Isla Sorna',
+        desc: 'Much meaner than the first, and deliberately so. The trailer over the cliff with the cracking glass is the best sustained sequence in the series, and the long grass raptor scene is the scariest thing Spielberg shot in the nineties.' },
+      { num: 'III', title: 'Jurassic World', sub: '2015 · Trevorrow', accent: '#3fbf9f', meta: 'The park, open',
+        desc: 'The one that finally shows you the park working, full of bored tourists who think dinosaurs are boring now, which is a genuinely sharp idea. Then the Indominus gets out, and the last ten minutes hand the film to the T. rex and Blue and it absolutely earns it.' },
+    ] },
+
   { id: 'animals', kind: 'cards', title: 'The Animals', note: 'period · diet · size on screen',
     lede: 'The park’s genomes were patched with modern DNA to fill the gaps, which is the entire plot of every film in one sentence.',
     items: [
@@ -36,6 +47,52 @@ window.FAN_PAGE = { sections: [
       { when: 'The real failure', title: 'One programmer', desc: 'Every fence, every door and every camera ran on a system one underpaid man could switch off, and did, for a can of shaving cream.' },
     ] },
 
+  { id: 'practical', kind: 'cards', title: 'How They Made It Real', note: 'why 1993 still looks better than 2022',
+    lede: 'The reason the first film holds up is that most of what you are looking at is a physical object with a light on it. Stan Winston’s shop built full-size animatronics and ILM only filled in the wide shots, and the total dinosaur screen time is about fourteen minutes.',
+    items: [
+      { title: 'The T. rex', sub: 'Stan Winston Studio', tag: 'Animatronic', accent: '#e0642a',
+        desc: 'Twenty feet tall, nine thousand pounds, hydraulically driven, and it kept absorbing water in the rain and shaking on its own between takes. What you see in the paddock scene is almost entirely that machine.',
+        meta: '9,000 lb · hydraulic' },
+      { title: 'The water glass', sub: 'A guitar string', tag: 'Practical', accent: '#7fc0f0',
+        desc: 'The ripples were made with a guitar string tied under the dashboard and plucked off-camera, because nobody could get the vibration to look right any other way. Ten seconds of film and it is the most quoted image in the series.',
+        meta: 'Plucked by hand' },
+      { title: 'The kitchen raptors', sub: 'Two men in suits', tag: 'Suits', accent: '#7fbf4f',
+        desc: 'People in raptor suits, shot low and cut fast. The reflection in the steel, the breath on the glass, the door handle: all of it works because there was something physically in the room.',
+        meta: 'No CG at all' },
+      { title: 'The Dilophosaurus', sub: 'Entirely invented', tag: 'Fiction', accent: '#e0a05f',
+        desc: 'The frill and the venom are both made up. Crichton put them in the book because the real animal was not frightening enough, and it is now what most people picture when they hear the name.',
+        meta: 'Not a real trait' },
+      { title: 'The feathers problem', sub: 'The films are wrong', tag: 'Science', accent: '#c0a8e0',
+        desc: 'We have known since the nineties that Velociraptor had feathers and was about the size of a turkey. The films know too, and Dr Wu explains it away in Jurassic World: they were never dinosaurs, they were what the park’s customers wanted to see.',
+        meta: 'Addressed in-universe' },
+      { title: 'The sound', sub: 'Gary Rydstrom', tag: 'Audio', accent: '#f0c840',
+        desc: 'The T. rex roar is a baby elephant, an alligator and a tiger layered together. The raptor call is a tortoise mating. The Dilophosaurus is a swan and a howler monkey. None of it is a dinosaur, obviously, and all of it is now what dinosaurs sound like.',
+        meta: 'Tortoises, mating' },
+    ] },
+
+  { id: 'parks', kind: 'cards', title: 'Where It Exists', note: 'the park you can actually visit',
+    lede: 'The joke writes itself: the only Jurassic Park that has ever opened successfully is the one at Universal. It has been running since 1996 without a single containment breach, which is one more than the films manage.',
+    items: [
+      { title: 'Jurassic World · The Ride', sub: 'Universal Studios Hollywood', tag: '1996', accent: '#e0642a',
+        desc: 'Opened in 1996 as Jurassic Park: The Ride and rethemed in 2019. An eighty-four-foot final drop in the dark past a T. rex, and you get properly soaked. The closest one to me.',
+        meta: '84-foot drop' },
+      { title: 'Jurassic Park River Adventure', sub: 'Islands of Adventure, Orlando', tag: '1999', accent: '#e0642a',
+        desc: 'The Florida twin, opened with the park in 1999, with the same drop and the same raptors in the maintenance shed.',
+        meta: 'Same drop, different island' },
+      { title: 'Jurassic World VelociCoaster', sub: 'Islands of Adventure, Orlando', tag: '2021', accent: '#3fbf6f',
+        desc: 'Widely rated one of the best roller coasters on Earth: two launches, a 155-foot top hat, a 12-storey inverted stall, and a near-miss over the lagoon at 70mph.',
+        meta: '70 mph · four inversions' },
+      { title: 'The Flying Dinosaur', sub: 'Universal Studios Japan', tag: '2016', accent: '#c0a8e0',
+        desc: 'A flying coaster where a Pteranodon carries you face-down for the whole ride. It held the world record for longest flying-coaster track when it opened.',
+        meta: 'Face-down, the whole way' },
+      { title: 'Jurassic World Isla Nublar', sub: 'Universal Beijing', tag: '2021', accent: '#e0a05f',
+        desc: 'The newest land, opened with the Beijing resort in 2021.',
+        meta: 'China' },
+      { title: 'Raptor Encounter', sub: 'Orlando and Hollywood', tag: 'Meet', accent: '#7fbf4f',
+        desc: 'A full-size Blue puppet on a handler’s leash, operated well enough that grown adults flinch. No ride, no queue theming, just a very good puppet.',
+        meta: 'Blue, in person' },
+    ] },
+
   { id: 'lines', kind: 'quotes', title: 'Lines', note: 'the ones that stuck',
     items: [
       { title: 'Life finds a way.', sub: 'Dr Ian Malcolm' },
@@ -44,6 +101,16 @@ window.FAN_PAGE = { sections: [
       { title: 'Clever girl.', sub: 'Robert Muldoon' },
       { title: 'Welcome… to Jurassic Park.', sub: 'John Hammond' },
       { title: 'We spared no expense.', sub: 'John Hammond · repeatedly' },
+    ] },
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Jurassic World', href: 'https://www.jurassicworld.com/',
+        desc: 'The official site for the current run of films.' },
+      { title: 'Jurassic Park Wiki', href: 'https://jurassicpark.fandom.com/wiki/Jurassic_Park_Wiki',
+        desc: 'Every species, every island, every failure of judgement.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Jurassic_Park_(film)',
+        desc: 'The 1993 film, and the practical-effects work that still holds up.' },
     ] },
 
 ] };

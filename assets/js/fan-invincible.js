@@ -45,4 +45,15 @@ window.FAN_PAGE = { sections: [
       { when: '2021 · Amazon', title: 'The adaptation', desc: 'Animated, adult, and unusually faithful to the panels it comes from.' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Skybound', href: 'https://www.skybound.com/invincible',
+        desc: 'The publisher’s home for the comic and the show.' },
+      { title: 'Invincible Wiki', href: 'https://invincible.fandom.com/wiki/Invincible_Wiki',
+        desc: 'Viltrumites, the Guardians, and 144 issues of continuity.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Invincible_(comics)',
+        desc: 'Kirkman’s run, start to finish.' },
+    ] },
+
 ] };

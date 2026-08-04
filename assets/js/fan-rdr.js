@@ -57,4 +57,15 @@ window.FAN_PAGE = { sections: [
       { title: 'You’re a good woman, Miss Adler.', sub: 'Arthur Morgan' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Rockstar Games', href: 'https://www.rockstargames.com/reddeadredemption2',
+        desc: 'The official site for Red Dead Redemption 2.' },
+      { title: 'Red Dead Wiki', href: 'https://reddead.fandom.com/wiki/Red_Dead_Wiki',
+        desc: 'Every mission, every animal, every stranger encounter in the map.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Red_Dead_Redemption_2',
+        desc: 'The eight-year development, in detail.' },
+    ] },
+
 ] };

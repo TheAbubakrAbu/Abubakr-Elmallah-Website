@@ -63,4 +63,15 @@ window.FAN_PAGE = { sections: [
       { title: 'I am no man.', sub: 'Éowyn' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Tolkien Gateway', href: 'https://tolkiengateway.net/',
+        desc: 'The most careful Tolkien wiki, sourced back to the texts.' },
+      { title: 'The One Wiki to Rule Them All', href: 'https://lotr.fandom.com/wiki/Main_Page',
+        desc: 'The films and the books together.' },
+      { title: 'The Tolkien Estate', href: 'https://www.tolkienestate.com/',
+        desc: 'The official estate site: letters, paintings, and maps in his own hand.' },
+    ] },
+
 ] };

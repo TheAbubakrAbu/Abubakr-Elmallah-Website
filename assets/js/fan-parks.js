@@ -53,4 +53,13 @@ window.FAN_PAGE = { sections: [
       { title: 'I am a goddess. A glorious female warrior.', sub: 'Leslie Knope' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Parks and Rec Wiki', href: 'https://parksandrecreation.fandom.com/wiki/Parks_and_Recreation_Wiki',
+        desc: 'Pawnee, the department, and every Li’l Sebastian reference.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Parks_and_Recreation',
+        desc: 'Seven seasons, and the turnaround after season one.' },
+    ] },
+
 ] };

@@ -60,4 +60,24 @@ window.FAN_PAGE = { sections: [
       { title: 'Sometimes you gotta take a leap of faith first.', sub: 'Peter B. Parker' },
     ] },
 
+
+  { id: 'played', kind: 'gallery', title: 'All Three, Platinum', note: 'my own screenshots · 100%',
+    lede: 'Insomniac made the best superhero games ever built, and I have finished all three of them completely.',
+    items: [
+      { title: 'The Insomniac trilogy', src: '/assets/img/franchises/spider-man-games.jpg',
+        alt: 'Spider-Man 2, Miles Morales and Spider-Man Remastered, each marked 100% Complete',
+        desc: 'Spider-Man Remastered, Miles Morales and Spider-Man 2. Every side mission, every backpack, every suit. The web-swinging in these is the closest a game has come to making a superpower feel like a skill.',
+        meta: 'Three games · 100.0% each' },
+    ] },
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Marvel.com', href: 'https://www.marvel.com/characters/spider-man-peter-parker',
+        desc: 'The official character home.' },
+      { title: 'Spider-Man Wiki', href: 'https://spiderman.fandom.com/wiki/Spider-Man_Wiki',
+        desc: 'Every suit, every rogue, every continuity.' },
+      { title: 'Marvel Database', href: 'https://marvel.fandom.com/wiki/Spider-Man_(Peter_Parker)',
+        desc: 'The comics record, issue by issue.' },
+    ] },
+
 ] };

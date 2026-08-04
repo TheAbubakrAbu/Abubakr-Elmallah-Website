@@ -66,4 +66,15 @@ window.FAN_PAGE = { sections: [
       { when: '2011 to now', title: 'New 52 and after', desc: 'Cyborg joins the founding line-up, the films arrive, and the roster keeps rotating.' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'DC.com', href: 'https://www.dc.com/',
+        desc: 'The official home of the whole universe.' },
+      { title: 'DC Database', href: 'https://dc.fandom.com/wiki/DC_Comics_Database',
+        desc: 'Every character, every crisis, every continuity reset.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Justice_League',
+        desc: 'The team, since 1960.' },
+    ] },
+
 ] };

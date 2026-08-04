@@ -67,4 +67,13 @@ window.FAN_PAGE = { sections: [
       { title: 'Knott\u2019s Berry Farm jam', sub: 'In supermarkets', tag: 'Retail', desc: 'The preserves outlived the family ownership and are still on shelves nationally.', meta: 'Since the 1920s' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Knott’s Berry Farm', href: 'https://www.knotts.com/',
+        desc: 'The official park site: hours, rides and Ghost Town.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Knott%27s_Berry_Farm',
+        desc: 'A boysenberry stand in 1920 that turned into a theme park.' },
+    ] },
+
 ] };

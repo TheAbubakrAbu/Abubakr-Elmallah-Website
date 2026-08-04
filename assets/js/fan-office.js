@@ -69,4 +69,13 @@ window.FAN_PAGE = { sections: [
       { title: 'That’s what she said.', sub: 'Michael Scott · 27 times' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'Dunder Mifflin Wiki', href: 'https://theoffice.fandom.com/wiki/Main_Page',
+        desc: 'Every cold open, every talking head, every Dundie.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/The_Office_(American_TV_series)',
+        desc: 'Nine seasons, and how the tone changed across them.' },
+    ] },
+
 ] };

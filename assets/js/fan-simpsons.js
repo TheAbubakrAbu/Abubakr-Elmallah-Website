@@ -52,4 +52,15 @@ window.FAN_PAGE = { sections: [
       { title: 'Stupid sexy Flanders.', sub: 'Homer Simpson' },
     ] },
 
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
+    items: [
+      { title: 'On FOX', href: 'https://www.fox.com/the-simpsons/',
+        desc: 'The official site for the longest-running scripted show on television.' },
+      { title: 'Simpsons Wiki', href: 'https://simpsons.fandom.com/wiki/Simpsons_Wiki',
+        desc: 'Every episode of every season, and every one-line character.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/The_Simpsons',
+        desc: 'Thirty-five years of it, summarised.' },
+    ] },
+
 ] };
