@@ -1,0 +1,193 @@
+/* minecraft.css -- loaded only by /minecraft. Split out of fanpages.css. */
+
+.mc-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: linear-gradient(180deg, #0c1620 0%, #101d27 26%, #14202b 33%);
+}
+
+.mc-sky > * { position: absolute; inset: 0; display: block; }
+
+/* the strata: sky, a grass line, dirt, stone, deepslate, then bedrock */
+.mc-strata {
+  background: linear-gradient(180deg,
+    transparent 0 33%,
+    #2f5a24 33% 34.6%,          /* grass */
+    #46301c 34.6% 41%,          /* dirt */
+    #3a3a3d 41% 62%,            /* stone */
+    #24242a 62% 63%,            /* the Y=0 line */
+    #1c1c22 63% 90%,            /* deepslate */
+    #0d0d10 90% 96%,
+    #08080a 96% 100%);          /* bedrock */
+}
+
+.mc-strata::after {                 /* block grid over the whole section */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.022) 0 1px, transparent 1px 34px),
+    repeating-linear-gradient(0deg,  rgba(0,0,0,.20)       0 1px, transparent 1px 34px);
+}
+
+/* real ore blocks, sat at roughly the depth each one generates at. Stone base
+   above Y 0, deepslate below it, and mineral blobs in the ore's own colour.
+   Selecting a tier in the hotbar flares that ore (see body[data-ore]). */
+.mc-ores i {
+  position: absolute; left: var(--x); top: var(--y);
+  width: 34px; height: 34px; opacity: .5;
+  background-color: #3a3a3d;
+  background-image:
+    radial-gradient(4.5px 4.5px at 24% 26%, var(--o), transparent 62%),
+    radial-gradient(5.5px 5.5px at 66% 44%, var(--o), transparent 62%),
+    radial-gradient(4px 4px   at 38% 74%, var(--o), transparent 62%),
+    radial-gradient(3px 3px   at 78% 78%, var(--o), transparent 62%);
+  box-shadow: inset -4px -4px 0 rgba(0,0,0,.4), inset 4px 4px 0 rgba(255,255,255,.05);
+  animation: mc-ore-glint 7s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+  transition: opacity .5s, filter .5s, transform .5s var(--ease);
+}
+
+.mc-ores .ore--deep { background-color: #1f1f25; }
+
+/* the ore matching the selected tool tier lights up */
+body[data-ore] .mc-ores i { opacity: .26; }
+
+body[data-ore="copper"]  .mc-ores i[data-ore="copper"],
+body[data-ore="iron"]    .mc-ores i[data-ore="iron"],
+body[data-ore="gold"]    .mc-ores i[data-ore="gold"],
+body[data-ore="diamond"] .mc-ores i[data-ore="diamond"] {
+  opacity: 1; transform: scale(1.16); animation: none;
+  filter: drop-shadow(0 0 14px var(--o)) drop-shadow(0 0 34px var(--o));
+}
+
+/* lava pooling in the bottom of the section */
+.mc-lava {
+  background:
+    radial-gradient(60% 24% at 26% 100%, rgba(224,110,40,.28), transparent 72%),
+    radial-gradient(48% 20% at 76% 100%, rgba(224,88,32,.22),  transparent 74%);
+  filter: blur(6px);
+  animation: mc-lava-glow 9s ease-in-out infinite alternate;
+}
+
+/* a few blocks drifting up through the section */
+.mc-voxels i {
+  position: absolute; left: var(--x); bottom: -12%;
+  width: var(--s); height: var(--s);
+  background: var(--c); opacity: .1;
+  box-shadow: inset -4px -4px 0 rgba(0,0,0,.4), inset 4px 4px 0 rgba(255,255,255,.12);
+  animation: mc-rise var(--t, 40s) linear infinite;
+  animation-delay: var(--d, 0s);
+}
+
+.mcb-top   { fill: #6aa832; }
+
+.mcb-left  { fill: #6b4a2b; }
+
+.mcb-right { fill: #533618; }
+
+.mcb-lip   { fill: #4f8226; }
+
+.mcb-px-top   { fill: #5e9a2a; }
+
+.mcb-px-left  { fill: #7c583a; opacity: .8; }
+
+.mcb-px-right { fill: #3f2810; opacity: .8; }
+
+.mc-block path { shape-rendering: crispEdges; }
+
+/* --tool / --tool2 are written by fan-mc-ui.js from the selected hotbar slot */
+.fan-art--mc { --tool: #4fd0d6; --tool2: #b0f2f5; }
+
+.mcp-handle, .mcs-handle   { fill: #7a5a3a; }
+
+.mcp-handle2, .mcs-handle2 { fill: #9a7550; }
+
+.mcp-head, .mcs-blade, .mcs-guard { fill: var(--tool); transition: fill .35s; }
+
+.mcp-shine, .mcs-shine     { fill: var(--tool2); transition: fill .35s; }
+
+.mc-pick, .mc-sword {
+  filter: drop-shadow(0 0 12px color-mix(in srgb, var(--tool) 45%, transparent));
+  transition: filter .35s;
+}
+
+.mc-pick rect, .mc-pick path,
+.mc-sword rect, .mc-sword path,
+.mc-ender rect { shape-rendering: crispEdges; }
+
+/* the sword swings when you change tier */
+.mc-sword-arm { transform-box: view-box; transform-origin: 268px 190px; }
+
+.mc-sword.is-swinging .mc-sword-arm { animation: mc-swing .6s var(--ease); }
+
+.mc-swish {
+  fill: none; stroke: var(--tool2); stroke-width: 5; stroke-linecap: round;
+  opacity: 0; transition: stroke .35s;
+}
+
+.mc-sword.is-swinging .mc-swish { animation: mc-swish .6s ease-out; }
+
+/* the enderman taking it */
+.mce-body { fill: #101014; }
+
+.mce-eye  { fill: #c9a8ff; filter: drop-shadow(0 0 6px rgba(201,168,255,.9)); }
+
+.mce-held { fill: #6aa832; }
+
+.mce-motes {
+  fill: #a08fd0;
+  animation: mc-motes 4.2s ease-in-out infinite alternate;
+}
+
+.mc-ender { animation: mc-ender-bob 5.5s ease-in-out infinite alternate; }
+
+/* hotbar + hearts */
+.mc-hud { padding: 0 var(--gutter); max-width: var(--maxw); margin-bottom: 2.6rem; }
+
+.mc-hearts { display: flex; gap: 3px; margin-bottom: 0.6rem; }
+
+.mc-hearts i {
+  width: 15px; height: 14px; background: #d94a3a;
+  clip-path: polygon(50% 100%, 0 40%, 0 15%, 25% 0, 50% 20%, 75% 0, 100% 15%, 100% 40%);
+}
+
+.mc-hearts i:nth-child(n+9) { background: #3a2422; }
+
+.mc-bar { display: flex; gap: 4px; }
+
+.mc-slot {
+  width: 44px; height: 44px; flex: none;
+  background: rgba(255,255,255,.06);
+  border: 2px solid rgba(255,255,255,.12);
+  box-shadow: inset -3px -3px 0 rgba(0,0,0,.4);
+  display: grid; place-items: center;
+}
+
+.mc-slot b { width: 24px; height: 24px; display: block; box-shadow: inset -3px -3px 0 rgba(0,0,0,.35); }
+
+.mc-slot { position: relative; cursor: pointer; padding: 0; }
+
+.mc-slot.is-empty { cursor: default; opacity: .5; }
+
+.mc-slot u {
+  position: absolute; top: 1px; left: 3px; text-decoration: none;
+  font-family: var(--mono); font-size: 0.5rem; color: rgba(255,255,255,.4);
+}
+
+.mc-slot-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+.mc-slot:hover:not(.is-empty) { border-color: rgba(255,255,255,.55); }
+
+.mc-slot:focus-visible { outline: 2px solid #7fbf4f; outline-offset: 2px; }
+
+.mc-hint {
+  margin-top: 0.7rem; font-family: var(--mono); font-size: 0.62rem;
+  letter-spacing: 0.06em; color: var(--mute);
+}
+
+.mc-hint b { color: #7fbf4f; font-weight: 500; }
+
+.mc-hint kbd {
+  font-family: var(--mono); font-size: 0.58rem; padding: 0.1rem 0.32rem;
+  border: 1px solid var(--line); border-radius: 3px; color: var(--ink-dim);
+}
+
+@media (max-width: 560px) { .mc-slot { width: 34px; height: 34px; } .mc-slot b { width: 18px; height: 18px; } }

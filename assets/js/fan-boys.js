@@ -1,15 +1,15 @@
 /* fan-boys.js: content for /franchises/the-boys/. Rendered by fanpage.js.
    Kept deliberately restrained: the show is not, but a portfolio page can be. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: 'Summer 2022, going into 11th grade', note: 'The summer between tenth and eleventh grade \u2014 2022 \u2014 and it was absolutely fire.' },
+  sections: [
 
   { id: 'premise', kind: 'cards', title: 'The Premise', note: 'supes as a product line',
     items: [
       { title: 'Vought International', sub: 'The company', tag: 'Corporate', desc: 'A pharmaceutical firm that manufactures heroes, sells the film rights, and manages the fallout with a PR department.', meta: 'Compound V · Vought Tower' },
-      { title: 'The Seven', sub: 'The flagship team', tag: 'Supes', desc: 'A superhero team assembled the way a boy band is assembled, with the same amount of say in the matter.', meta: 'Homelander · Queen Maeve · A-Train' },
-      { title: 'The Boys', sub: 'The other side', tag: 'Humans', desc: 'A handful of people with no powers and a lot of grievances, working out how to hold the untouchable to account.', meta: 'Butcher · Hughie · Mother’s Milk' },
+      { title: 'The Seven', sub: 'The flagship team', tag: 'Supes', desc: 'A superhero team assembled the way a boy band is assembled, with the same amount of say in the matter.', meta: 'Seven slots · one brand' },
+      { title: 'The Boys', sub: 'The other side', tag: 'Humans', desc: 'A handful of people with no powers and a lot of grievances, working out how to hold the untouchable to account.', meta: 'No powers · no budget' },
       { title: 'Compound V', sub: 'The secret', tag: 'Chemistry', desc: 'Nobody was born with anything. Every hero on the shelf was made in a lab and sold a story about destiny.', meta: 'The whole conspiracy' },
-      { title: 'Homelander', sub: 'The problem', tag: 'Supes', desc: 'What actually happens if the strongest person alive was raised by a corporation and needs to be loved.', meta: 'The Seven · leader' },
-      { title: 'Billy Butcher', sub: 'The other problem', tag: 'Humans', desc: 'Right about the supes, wrong about almost everything else, and willing to burn anyone standing near the fire.', meta: 'Oi, mate' },
     ] },
 
   { id: 'seven', kind: 'cards', title: 'The Seven', note: 'the flagship team, as a product line',
@@ -31,12 +31,30 @@ window.FAN_PAGE = { sections: [
       { title: 'Kimiko', sub: 'The Female', tag: 'Crew', desc: 'Almost entirely silent, and the most expressive performance in the show.', meta: 'Superhuman · mute' },
     ] },
 
-  { id: 'seasons', kind: 'rank', title: 'The Seasons', note: '2019 –',
+  { id: 'seasons', kind: 'rank', title: 'The Seasons', note: '2019 – 2026 · finished',
     items: [
       { num: '01', title: 'Season One', sub: '2019', desc: 'Establishes the joke and then stops treating it as one, a satire that keeps finding the sad thing under the gag.' },
       { num: '02', title: 'Season Two', sub: '2020', desc: 'Stormfront, and the show’s sharpest point about how a brand launders an ideology.' },
       { num: '03', title: 'Season Three', sub: '2022', desc: 'Soldier Boy, and the argument that the cure looks a lot like the disease.' },
       { num: '04', title: 'Season Four', sub: '2024', desc: 'The politics turn from subtext into text, and the walls come in.' },
+      { num: '05', title: 'Season Five', sub: '2026 · the finale', desc: 'The last one, and the only season I did not watch at home — I saw it in a cinema, in 4DX, with the seat moving. A satire about spectacle, watched as spectacle. Five seasons is the right length: it ends before the joke wears through, which is more than most of these get.' },
+    ] },
+
+  { id: 'finale', kind: 'cards', title: 'The Finale', note: 'season five, 2026, in 4DX',
+    lede: 'The Boys ended in 2026 after five seasons, which was the plan for a long time rather than a cancellation. I watched the last one in a cinema in 4DX — the moving seat, the whole thing — which is a genuinely absurd way to watch a series that spent five years taking apart the business of selling spectacle to people. Absolutely worth it.',
+    items: [
+      { title: 'It ended on purpose', sub: 'Five seasons', tag: 'The run', accent: '#e02a2a',
+        desc: 'Announced as the final season well ahead of time, so it got to be written as an ending instead of stopping mid-sentence. Almost nothing on this page’s list of shows manages that.',
+        meta: '2019 – 2026' },
+      { title: '4DX', sub: 'In a cinema, in a moving seat', tag: 'How I saw it', accent: '#c9a05f',
+        desc: 'A show about how spectacle is manufactured and sold, watched in the single most manufactured format available. I do not think the irony was lost on anyone in the room. It ruled.',
+        meta: 'The seat moves' },
+      { title: 'The right length', sub: 'No filler season', tag: 'Why it works', accent: '#6f9fd0',
+        desc: 'Five is enough to escalate and not so many that the satire goes blunt from repetition. The premise has a ceiling built into it — once the joke is fully explained there is nowhere left — and it stopped near it.',
+        meta: 'Ends before it dulls' },
+      { title: 'And Gen V with it', sub: 'Two seasons', tag: 'The universe', accent: '#8f6fd0',
+        desc: 'The spinoff wrapped too, and stayed small enough to matter. The whole thing is now a closed set you can watch start to finish, which is rare for something this size.',
+        meta: 'Closed set' },
     ] },
 
   { id: 'bench', kind: 'cards', title: 'Beyond The Seven', note: 'the rest of the roster',
@@ -61,7 +79,7 @@ window.FAN_PAGE = { sections: [
 
   { id: 'spin', kind: 'cards', title: 'The Wider Universe', note: 'spinoffs',
     items: [
-      { title: 'Gen V', sub: '2023 –', tag: 'Series', desc: 'Godolkin University: the supe school, which is really a story about what a system does to the students inside it.', meta: 'Same universe' },
+      { title: 'Gen V', sub: '2023 – 2025 · 2 seasons', tag: 'Series', desc: 'Godolkin University: the supe school, which is really a story about what a system does to the students inside it. Two seasons and done, feeding back into the main show rather than sprawling — the rare spinoff that knew its own size.', meta: 'Finished' },
       { title: 'Diabolical', sub: '2022', tag: 'Animation', desc: 'Eight short animated episodes in eight different styles, and a couple of them are canon.', meta: 'Anthology' },
     ] },
 
@@ -81,3 +99,20 @@ window.FAN_PAGE = { sections: [
     ] },
 
 ] };
+
+/* The interactive block, rendered by fan-play.js. */
+window.FAN_PLAY = {
+  kind: "pick",
+  title: "The Seven, As A Product Line",
+  intro: "Vought does not have heroes, it has assets \u2014 and each one is a brand with a marketing plan, a merchandising line and a crisis file. Pick one and read the file rather than the poster.",
+  prompt: "Open a personnel file.",
+  said: "%.",
+  items: [
+    { n: "Compound V", s: "The product", c: "#4fd0ff", d: "M9 3h6v4l3 10a3 3 0 0 1-3 4H9a3 3 0 0 1-3-4l3-10z M9 13h6", note: "Nobody was born with anything. Every hero on the shelf was made in a lab as an infant and sold a story about destiny afterwards. That single fact is the whole show." },
+    { n: "V24", s: "Temporary dose", c: "#8f6fd0", d: "M4 12h5l2-5 3 10 2-5h4", note: "Twenty-four hours of powers for anyone. The moment the humans stop being clean, and the show is careful to make it feel like a relief before it makes it feel like a mistake." },
+    { n: "Vought News Network", s: "VNN", c: "#e02a2a", d: "M4 6h16v12H4z M8 10h8 M8 14h5 M17 3v3", note: "A news channel owned by the company the news is about, played completely straight, which is far more effective than satire that winks." },
+    { n: "Brave Maeve", s: "The campaign", c: "#5fd07f", d: "M12 3l2.6 6.5L21 12l-6.4 2.5L12 21l-2.6-6.5L3 12l6.4-2.5z", note: "A rainbow marketing push approved by the same executives managing her private life against her will. The most pointed joke in the show, and it is barely a joke." },
+    { n: "Voughtland", s: "The theme park", c: "#f0c840", d: "M12 3l7 5v12H5V8z M9 20v-6h6v6 M12 3v-1", note: "Of course there is a theme park. Of course there is a ride themed to the thing that killed somebody." },
+    { n: "Dawn of the Seven", s: "The film", c: "#c9a05f", d: "M4 5h16v14H4z M4 9h16 M8 5v4 M16 5v4 M8 19v-4 M16 19v-4", note: "A superhero blockbuster made inside a superhero satire, complete with reshoots, a director quietly removed, and a marketing push. The show gets a lot of mileage out of the film being obviously bad." },
+  ],
+};

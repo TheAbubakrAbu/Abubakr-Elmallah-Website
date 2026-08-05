@@ -28,11 +28,30 @@ permalink: /franchises/invincible/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/invincible.css' %}" />
 </head>
 <body data-intro="none" data-fan="invincible">
 
 <!-- ben-day dots, and one splash -->
-<div class="inv-sky" aria-hidden="true"></div>
+<div class="inv-sky" aria-hidden="true">
+  <div class="inv-cloud"></div>
+  <div class="inv-city">
+    <svg viewBox="0 0 1400 320" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path class="invc-far" d="M0 200h90v120H0zM120 160h70v160h-70zM220 220h100v100H220zM350 140h60v180h-60zM440 190h110v130H440zM580 170h80v150h-80zM690 230h90v90h-90zM810 150h70v170h-70zM910 200h100v120H910zM1040 180h70v140h-70zM1140 230h90v90h-90zM1260 160h140v160h-140z"/>
+      <g class="invc-win">
+        <path d="M18 218h12v16H18zM48 218h12v16H48zM18 250h12v16H18zM138 178h12v16h-12zM168 178h12v16h-12zM138 210h12v16h-12zM368 158h12v16h-12zM368 190h12v16h-12zM828 168h12v16h-12zM828 200h12v16h-12zM1278 178h12v16h-12zM1310 178h12v16h-12zM1278 210h12v16h-12z"/>
+      </g>
+      <path class="invc-crack" d="M470 320l30-70 -18-6 46-64"/>
+    </svg>
+  </div>
+  <div class="inv-trail">
+    <svg viewBox="0 0 1400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path class="invt-line" d="M-60 380C240 300 420 180 700 150s520 60 780-10"/>
+      <g class="invt-fig"><path d="M0-9l16 9-16 9-6-9z"/><path d="M-2-9l-16-7 6 16-6 16 16-7z"/></g>
+    </svg>
+  </div>
+  <div class="inv-spatter"></div>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -81,20 +100,50 @@ permalink: /franchises/invincible/
     </div>
   </section>
 
-  <section class="inv-cover reveal">
-    <div>
-      <div class="inv-book">
-        <div class="inv-bar"><span>Image Comics</span><span>No. 1 · $2.95</span></div>
-        <div class="inv-title">Invincible</div>
-        <div class="inv-splash"><span>A seventeen year old finds out what his father actually is</span></div>
-        <span class="inv-splat"></span>
-        <div class="inv-foot"><span>Kirkman · Walker · Rathburn</span><span class="inv-barcode"><i style="height:14px"></i><i style="height:8px"></i><i style="height:12px"></i><i style="height:6px"></i><i style="height:14px"></i><i style="height:10px"></i><i style="height:7px"></i><i style="height:13px"></i><i style="height:9px"></i><i style="height:14px"></i><i style="height:6px"></i><i style="height:11px"></i></span></div>
+  <div id="fanPlay"></div>
+
+  <section class="fan-art fan-art--inv reveal">
+    <figure class="fan-art-fig inv-book">
+      <div class="inv-bar"><span>Image Comics</span><span>No. 1 · $2.95</span></div>
+      <div class="inv-title">Invincible</div>
+      <div class="inv-splash">
+        <svg viewBox="0 0 320 210" aria-hidden="true">
+          <rect class="invb-sky" x="0" y="0" width="320" height="210"/>
+          <g class="invb-ray"><path d="M160 40l-150 170h300z"/></g>
+          <g class="invb-town">
+            <path d="M0 176h22v34H0zM30 162h18v48H30zM56 182h26v28H56zM90 154h16v56H90zM214 158h16v52h-16zM222 176h26v34h-26zM256 150h18v60h-18zM282 172h20v38h-20z"/>
+          </g>
+          <!-- the father, above; the son, below. The whole book in one frame. -->
+          <g class="invb-dad">
+            <path class="invb-cape" d="M160 42l-30 -14 8 30-12 26 34-14 34 14-12-26 8-30z"/>
+            <circle class="invb-skin" cx="160" cy="34" r="9"/>
+            <path class="invb-suit" d="M148 44h24l6 30h-36z"/>
+            <path class="invb-suit" d="M150 74h8v22h-8zM162 74h8v22h-8z"/>
+            <path class="invb-arm" d="M148 48l-22 10 4 7 20-9zM172 48l22 10-4 7-20-9z"/>
+            <path class="invb-tash" d="M153 37h14v3h-14z"/>
+          </g>
+          <g class="invb-son">
+            <circle class="invb-skin" cx="160" cy="126" r="8"/>
+            <path class="invb-suit2" d="M150 134h20l5 26h-30z"/>
+            <path class="invb-suit2" d="M152 160h7v20h-7zM161 160h7v20h-7z"/>
+            <path class="invb-arm2" d="M150 138l-20 12 4 6 18-11zM170 138l20 12-4 6-18-11z"/>
+            <path class="invb-mask" d="M152 122h16v5h-16z"/>
+          </g>
+          <g class="invb-blood">
+            <path d="M120 96l6 12-9 3zM196 104l7 10-10 2zM138 112l4 8-6 2zM182 90l5 9-8 2z"/>
+            <circle cx="112" cy="118" r="3"/><circle cx="206" cy="122" r="4"/><circle cx="132" cy="86" r="2.5"/>
+            <circle cx="190" cy="132" r="2.5"/><circle cx="146" cy="140" r="2"/><circle cx="176" cy="148" r="3"/>
+          </g>
+        </svg>
       </div>
-    </div>
-    <div class="inv-note">
-      <h4>The bait and switch</h4>
-      <p>Everything about the presentation is deliberately ordinary: bright costume, high school, a supportive dad who happens to be the strongest man on the planet. The art is clean and friendly and the first issues read like a book you have read a hundred times.</p>
-      <p>That is the setup. The last page of the first episode of the show, and the corresponding beat in the comic, is the moment the genre it is imitating stops being available to it, and both versions spend everything afterwards dealing with the consequences rather than resetting.</p>
+      <span class="inv-splat"></span>
+      <div class="inv-foot"><span>Kirkman · Walker · Rathburn</span><span class="inv-barcode"><i style="height:14px"></i><i style="height:8px"></i><i style="height:12px"></i><i style="height:6px"></i><i style="height:14px"></i><i style="height:10px"></i><i style="height:7px"></i><i style="height:13px"></i><i style="height:9px"></i><i style="height:14px"></i><i style="height:6px"></i><i style="height:11px"></i></span></div>
+    </figure>
+    <div class="fan-art-body">
+      <q>Think, Mark.</q>
+      <p class="fan-art-by">Nolan Grayson, mid-fight</p>
+      <p>Everything about the presentation is deliberately ordinary: bright costume, high school, a supportive dad who happens to be the strongest man on the planet. The art is clean and friendly and the first issues read like a book you have read a hundred times before.</p>
+      <p>That is the setup. The last page of the first episode — and the matching beat in the comic — is the moment the genre it has been imitating stops being available to it, and both versions spend everything afterwards dealing with the consequences instead of resetting.</p>
     </div>
   </section>
 
@@ -128,5 +177,7 @@ permalink: /franchises/invincible/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

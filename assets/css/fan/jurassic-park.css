@@ -1,0 +1,137 @@
+/* jurassic-park.css -- loaded only by /jurassic-park. Split out of fanpages.css. */
+
+.jp-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(80% 60% at 50% 0%, #241608 0%, #140c06 46%, #070504 100%);
+}
+
+.jp-sky::before {                   /* helix rails */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(224,100,42,.07) 0 1px, transparent 1px 90px);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 10%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 10%, transparent 85%);
+}
+
+.jp-sky > * { position: absolute; inset: 0; display: block; }
+
+/* storm cloud rolling over the island */
+.jp-storm {
+  background:
+    radial-gradient(52% 34% at 22% 12%, rgba(90,70,60,.22), transparent 70%),
+    radial-gradient(46% 30% at 68% 6%,  rgba(70,58,54,.20), transparent 72%),
+    radial-gradient(60% 26% at 46% 26%, rgba(50,42,40,.18), transparent 74%);
+  filter: blur(10px);
+  animation: jp-storm-drift 80s ease-in-out infinite alternate;
+}
+
+/* lightning: mostly nothing, then two fast strikes */
+.jp-bolt {
+  background: linear-gradient(180deg, rgba(216,226,240,.5), transparent 46%);
+  opacity: 0;
+  animation: jp-lightning 13s linear infinite;
+}
+
+/* the perimeter fence, glowing somewhere back in the trees */
+.jp-fence {
+  background:
+    radial-gradient(30% 12% at 14% 62%, rgba(224,100,42,.18), transparent 72%),
+    radial-gradient(26% 10% at 52% 58%, rgba(240,140,60,.14), transparent 74%),
+    radial-gradient(30% 12% at 86% 64%, rgba(224,100,42,.16), transparent 72%);
+  filter: blur(4px);
+  animation: jp-fence-buzz 5s steps(1, end) infinite;
+}
+
+/* rain, two sheets at different speeds and angles */
+.jp-rain {
+  inset: -20% -20% 0 -20%;
+  background-image:
+    repeating-linear-gradient(76deg, rgba(190,205,220,.10) 0 1px, transparent 1px 9px),
+    repeating-linear-gradient(74deg, rgba(170,190,210,.07) 0 1px, transparent 1px 15px);
+  mask-image: linear-gradient(180deg, transparent 0, #000 18%, #000 72%, transparent 96%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 18%, #000 72%, transparent 96%);
+  animation: jp-rainfall 1.05s linear infinite;
+}
+
+/* jungle in the foreground */
+.jp-jungle { inset: auto 0 0 0; height: 46%; }
+
+.jp-jungle svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.jp-canopy-back { fill: #0a1108; }
+
+.jp-canopy-mid  { fill: #060c06; }
+
+.jp-fern {
+  position: absolute; bottom: -4%;
+  width: 240px; height: 200px;
+  background:
+    conic-gradient(from 200deg at 50% 100%, transparent 0 8deg, #050a05 8deg 13deg, transparent 13deg 22deg,
+      #050a05 22deg 27deg, transparent 27deg 36deg, #050a05 36deg 41deg, transparent 41deg 50deg,
+      #050a05 50deg 55deg, transparent 55deg 64deg, #050a05 64deg 69deg, transparent 69deg 78deg,
+      #050a05 78deg 83deg, transparent 83deg 100deg);
+  animation: jp-sway 11s ease-in-out infinite alternate;
+}
+
+.jp-fern--1 { left: -3%;  transform-origin: 50% 100%; }
+
+.jp-fern--2 { left: 42%;  width: 300px; height: 240px; animation-delay: -4s; transform-origin: 50% 100%; }
+
+.jp-fern--3 { right: -2%; width: 260px; height: 210px; animation-delay: -7s; transform-origin: 50% 100%; }
+
+/* Hammond's cane, and the mosquito the whole park comes out of */
+.jp-cane { margin-top: -0.4rem; }
+
+.jpc-shaft path  { fill: #3a2410; stroke: #8a5a2a; stroke-width: 1.6; }
+
+.jpc-shaft path + path { fill: none; stroke: #8a5a2a; stroke-width: 1.4; opacity: .4; }
+
+.jpc-collar rect { fill: #b8913f; stroke: #7a5c22; stroke-width: 1.6; }
+
+.jpa-body {
+  fill: url(#jpAmber);
+  stroke: #b9782a; stroke-width: 2.4;
+}
+
+.jpa-hi   { stroke: #ffe6a8; stroke-width: 2.4; opacity: .45; }
+
+.jpa-fly  { fill: #3a2408; opacity: .85; }
+
+.jpa-legs { fill: none; stroke: #3a2408; stroke-width: 2; stroke-linecap: round; }
+
+.jp-cane {
+  filter: drop-shadow(0 0 16px rgba(224,144,42,.35));
+}
+
+.jp-wall   { fill: #100b07; }
+
+.jp-post, .jp-lintel { fill: #241608; stroke: #8a5a2a; stroke-width: 2.6; stroke-linejoin: round; }
+
+.jp-gate rect { fill: #2c1c0c; stroke: #a06a30; stroke-width: 2.6; }
+
+.jp-gate path { fill: none; stroke: #a06a30; stroke-width: 1.8; opacity: .55; }
+
+.jp-gate { transform-box: view-box; transition: transform .6s var(--ease); }
+
+.jp-gate--l { transform-origin: 140px 232px; animation: jp-open-l 9s ease-in-out infinite alternate; }
+
+.jp-gate--r { transform-origin: 380px 232px; animation: jp-open-r 9s ease-in-out infinite alternate; }
+
+.jp-torch rect { fill: #3a2410; stroke: #8a5a2a; stroke-width: 2; }
+
+.jp-flame {
+  fill: #f0902a;
+  filter: drop-shadow(0 0 10px rgba(240,144,42,.9)) drop-shadow(0 0 26px rgba(224,100,42,.6));
+  transform-box: fill-box; transform-origin: 50% 100%;
+  animation: jp-flicker 1.5s ease-in-out infinite alternate;
+}
+
+.jp-light  { fill: none; stroke: #f0b46a; stroke-width: 3; opacity: .35; }
+
+.jp-ground { fill: none; stroke: #8a5a2a; stroke-width: 2.4; opacity: .5; }
+
+.jp-hazard {                        /* the warning stripe under the hero */
+  height: 10px; margin: 1.8rem 0 0;
+  background: repeating-linear-gradient(135deg, #e0642a 0 14px, #120b06 14px 28px);
+  opacity: .8;
+}

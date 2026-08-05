@@ -1,0 +1,219 @@
+/* percy-jackson.css -- loaded only by /percy-jackson. Split out of fanpages.css. */
+
+.pj-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(80% 60% at 50% 0%, #0b2138 0%, #071523 46%, #030810 100%);
+}
+
+.pj-sky::before {                      /* a Greek key border, running down both edges */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(95,168,224,.12) 0 2px, transparent 2px 10px),
+    repeating-linear-gradient(90deg, rgba(95,168,224,.12) 0 2px, transparent 2px 10px);
+  background-size: 40px 40px;
+  mask-image: linear-gradient(90deg, #000 0 42px, transparent 42px calc(100% - 42px), #000 calc(100% - 42px));
+  -webkit-mask-image: linear-gradient(90deg, #000 0 42px, transparent 42px calc(100% - 42px), #000 calc(100% - 42px));
+  opacity: .5;
+}
+
+/* Long Island Sound, with Olympus above it. Capped at .36 by the global rule. */
+.pj-sky > * { position: absolute; inset: 0; }
+
+.pj-sea { inset: auto 0 0 0; height: 46%; }
+
+.pj-sea svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.pjw-1, .pjw-2, .pjw-3 { fill: #0e2a44; }
+
+.pjw-2 { fill: #0b2036; opacity: .9; }
+
+.pjw-3 { fill: #081828; }
+
+/* Three swells at different speeds -- parallax is what stops it reading as one
+   flat shape sliding about. */
+.pjw-1 { animation: pj-swell 17s ease-in-out infinite alternate; }
+
+.pjw-2 { animation: pj-swell 23s ease-in-out infinite alternate-reverse; }
+
+.pjw-3 { animation: pj-swell 29s ease-in-out infinite alternate; }
+
+.pj-temple { inset: auto 0 42% 0; height: 30%; opacity: .5; }
+
+.pj-temple svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.pjt-col, .pjt-step, .pjt-arch { fill: #24384f; }
+
+.pjt-ped { fill: #1b2b3e; }
+
+.pj-bolts i {
+  position: absolute; top: 8%; width: 3px; height: 26%;
+  background: linear-gradient(180deg, transparent, #9fd0ff 40%, transparent);
+  filter: drop-shadow(0 0 8px rgba(159,208,255,.9));
+  opacity: 0;
+  animation: pj-strike 13s steps(1, end) infinite;
+}
+
+.pj-bolts i:nth-child(1) { left: 24%; transform: skewX(-8deg); }
+
+.pj-bolts i:nth-child(2) { left: 73%; transform: skewX(9deg); animation-delay: -6.5s; }
+
+/* ── the claiming ── */
+.pj-claim {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.4rem); grid-template-columns: 1fr; align-items: center;
+}
+
+@media (min-width: 860px) { .pj-claim { grid-template-columns: 0.8fr 1.2fr; } }
+
+.pj-claim-stage {
+  position: relative; min-height: 300px; border-radius: 10px; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  padding: 1.4rem 1rem 1.2rem;
+  background: radial-gradient(70% 60% at 50% 78%, #12324a, #071726 70%);
+  transition: box-shadow .5s ease;
+}
+
+.pj-claim-stage.is-claimed { box-shadow: inset 0 0 90px -20px var(--g, #4f9fd0); }
+
+.pj-fire { position: absolute; left: 50%; bottom: 14%; translate: -50% 0; display: flex; gap: 5px; }
+
+.pj-fire i {
+  width: 11px; height: 26px; border-radius: 50% 50% 40% 40%;
+  background: linear-gradient(180deg, #f0d88a, #e07f3a);
+  filter: blur(1px); transform-origin: 50% 100%;
+  animation: pj-flick 1.7s ease-in-out infinite;
+}
+
+.pj-fire i:nth-child(2) { height: 34px; animation-delay: -.5s; }
+
+.pj-fire i:nth-child(3) { animation-delay: -1s; }
+
+.pj-figure { position: relative; z-index: 1; width: 66px; opacity: .85; }
+
+.pj-figure svg { width: 100%; height: auto; fill: #0a1622; stroke: #3f7fb0; stroke-width: 1.6; }
+
+/* The symbol burns into the air above your head. Nothing else on the page
+   moves while it does. */
+.pj-sigil {
+  position: absolute; left: 50%; top: 16%; translate: -50% 0;
+  width: 78px; height: 78px; opacity: 0; scale: .4;
+}
+
+.pj-sigil svg { width: 100%; height: 100%; fill: none; stroke: var(--g, #f0d88a); stroke-width: 1.5;
+  stroke-linecap: round; stroke-linejoin: round; }
+
+.pj-claim-say {
+  position: relative; z-index: 1; margin-top: .9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em;
+  color: rgba(220,235,245,.75); min-height: 2.2em; line-height: 1.7;
+}
+
+.pj-claim-panel h4 { font-family: var(--sans); font-weight: 650; font-size: 1.15rem; margin-bottom: 0.6rem; }
+
+.pj-claim-panel > p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 62ch; }
+
+.pj-claim-go {
+  margin-top: 1.1rem; font: inherit; cursor: pointer;
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.6rem 1.1rem; border-radius: 3px; color: #dff0ff;
+  background: rgba(79,159,208,.14); border: 1px solid rgba(79,159,208,.4);
+  transition: background .15s ease, border-color .15s ease;
+}
+
+.pj-claim-go:hover:not(:disabled) { background: rgba(79,159,208,.26); border-color: rgba(79,159,208,.7); }
+
+.pj-claim-go:disabled { opacity: .45; cursor: default; }
+
+.pj-claim-go:focus-visible { outline: 2px solid #6fc0f0; outline-offset: 2px; }
+
+.pj-claim-out { display: flex; flex-wrap: wrap; gap: 1.4rem; margin-top: 1.2rem; }
+
+.pj-claim-out div { display: grid; gap: 0.2rem; }
+
+.pj-claim-out dt {
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+.pj-claim-out dd { margin: 0; font-family: var(--sans); font-size: 0.98rem; font-weight: 600; color: var(--ink); }
+
+.pj-claim-note { margin-top: 0.9rem; font-size: 0.92rem; line-height: 1.75; color: var(--ink-dim); max-width: 62ch; }
+
+.pj-claim-tally {
+  margin-top: 0.8rem; font-family: var(--mono); font-size: 0.56rem;
+  letter-spacing: 0.08em; color: var(--mute); line-height: 1.7;
+}
+
+/* ── Riptide ── */
+.fan-art--pj .pj-stage {
+  border-radius: 10px; overflow: hidden; max-width: 420px; margin-inline: auto;
+}
+
+.fan-art--pj .pj-stage svg { display: block; width: 100%; height: auto; }
+
+.fan-art--pj .pj-stage figcaption {
+  margin: 0; padding: .9rem 1rem 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.7;
+}
+
+@media (min-width: 820px) { .fan-art--pj { grid-template-columns: minmax(0, .9fr) minmax(0, 1.2fr); } }
+
+.pjh-bg     { fill: #081726; }
+
+.pjh-glow   { fill: #2f7fbf; opacity: .18; filter: blur(22px); }
+
+.pjh-sword  { filter: drop-shadow(0 6px 14px rgba(0,0,0,.55)); }
+
+.pjh-blade  { fill: #c9954a; }
+
+.pjh-edge   { fill: #e8c27a; }
+
+.pjh-guard  { fill: #a8763a; }
+
+.pjh-grip   { fill: #4a3620; }
+
+.pjh-wrap   { fill: #6a4c2a; }
+
+.pjh-pommel { fill: #c9954a; }
+
+.pjh-trident path { fill: none; stroke: #4fd0c0; stroke-width: 4; stroke-linecap: round; opacity: .55; }
+
+.pjh-drop   { fill: #6fc0f0; opacity: .6; animation: pj-bob 7s ease-in-out infinite alternate; }
+
+/* ═════════════ Percy Jackson: the camp necklace ═════════════ */
+.pj-beads { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; text-align: center; }
+
+.pj-cord {
+  position: relative; display: inline-flex; align-items: center; gap: 0;
+  padding: 1.2rem 0; max-width: 100%; flex-wrap: wrap; justify-content: center;
+}
+
+.pj-cord::before {                       /* the leather cord */
+  content: ""; position: absolute; left: 4%; right: 4%; top: 50%; height: 3px;
+  background: linear-gradient(90deg, transparent, #6b4626 8%, #6b4626 92%, transparent);
+  border-radius: 2px;
+}
+
+.pj-bead {
+  position: relative; width: clamp(62px, 11vw, 86px); aspect-ratio: 1; margin: 0 4px;
+  border-radius: 50%; display: grid; place-items: center;
+  background: radial-gradient(circle at 34% 28%, color-mix(in srgb, var(--b) 70%, #fff 18%), var(--b) 62%, color-mix(in srgb, var(--b) 55%, #000));
+  box-shadow: inset -4px -5px 10px rgba(0,0,0,.4), 0 10px 20px -12px #000;
+  transition: transform .35s var(--ease);
+}
+
+.pj-bead:hover { transform: translateY(-6px) rotate(-4deg); }
+
+.pj-bead svg { width: 52%; height: 52%; fill: none; stroke: rgba(20,16,10,.75); stroke-width: 1.6; }
+
+.pj-bead b {
+  position: absolute; bottom: -1.5rem; left: 50%; translate: -50% 0; white-space: nowrap;
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+.pj-beads-cap {
+  margin-top: 2.6rem; font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute);
+}

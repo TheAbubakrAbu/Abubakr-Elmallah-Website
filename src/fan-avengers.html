@@ -28,6 +28,7 @@ permalink: /franchises/avengers/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/avengers.css' %}" />
 </head>
 <body data-intro="none" data-fan="mcu">
 
@@ -150,6 +151,8 @@ permalink: /franchises/avengers/
     </div>
   </section>
 
+  <div id="fanPlay"></div>
+
   <section class="fan-sec" id="stones">
     <h3 class="subsec subsec--fan reveal">The Six Stones<span class="subsec-yr">singularities older than the universe</span></h3>
     <p class="fan-lede reveal">Six remnants of six singularities that existed before the universe did, each one compressed into a stone by cosmic beings who wanted them portable. Every film in the Infinity Saga is, underneath, somebody moving one of these from one place to another.</p>
@@ -267,5 +270,7 @@ permalink: /franchises/avengers/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

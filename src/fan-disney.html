@@ -28,11 +28,39 @@ permalink: /franchises/disney/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/disney.css' %}" />
 </head>
 <body data-intro="none" data-fan="disney">
 
 <!-- fireworks over a night sky -->
-<div class="dz-sky" aria-hidden="true"></div>
+<!-- the castle at night with fireworks going up over it -->
+<div class="dz-sky" aria-hidden="true">
+  <span class="dz-stars"></span>
+  <span class="dz-castle">
+    <svg viewBox="0 0 1000 420" preserveAspectRatio="xMidYMax meet">
+      <g class="dzc-stone">
+        <path d="M430 420V236h140v184z"/><path d="M418 236l82-94 82 94z"/>
+        <path d="M338 420V276h64v144z"/><path d="M328 276l36-58 36 58z"/>
+        <path d="M598 420V276h64v144z"/><path d="M588 276l36-58 36 58z"/>
+        <path d="M262 420V318h52v102z"/><path d="M252 318l28-46 28 46z"/>
+        <path d="M686 420V318h52v102z"/><path d="M676 318l28-46 28 46z"/>
+        <path d="M200 420V352h44v68z"/><path d="M192 352l22-38 22 38z"/>
+        <path d="M756 420V352h44v68z"/><path d="M748 352l22-38 22 38z"/>
+        <path d="M470 420V318h60v102z"/><path d="M462 318q38-34 76 0z"/>
+        <path d="M170 406h660v14H170z"/>
+      </g>
+      <g class="dzc-lit">
+        <rect x="482" y="266" width="13" height="17"/><rect x="506" y="266" width="13" height="17"/>
+        <rect x="356" y="304" width="11" height="15"/><rect x="376" y="304" width="11" height="15"/>
+        <rect x="616" y="304" width="11" height="15"/><rect x="636" y="304" width="11" height="15"/>
+        <rect x="280" y="344" width="10" height="14"/><rect x="704" y="344" width="10" height="14"/>
+        <rect x="490" y="344" width="20" height="34"/>
+      </g>
+      <g class="dzc-spire"><path d="M500 142v-42M364 218v-32M624 218v-32M280 272v-26M704 272v-26"/></g>
+    </svg>
+  </span>
+  <span class="dz-fw"><i></i><i></i><i></i><i></i><i></i></span>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -83,12 +111,20 @@ permalink: /franchises/disney/
     </div>
   </section>
 
-  <section class="dz-castle reveal">
-    <div class="dz-stage">
+  <div id="fanPlay"></div>
+
+  <section class="fan-art fan-art--dz reveal">
+    <figure class="fan-art-fig dz-stage">
       <span class="dz-burst"></span><span class="dz-burst"></span><span class="dz-burst"></span>
       <svg viewBox="0 0 600 300" aria-hidden="true"><path class="roof" d="M96 120 118 60 140 120z"/><rect class="stone" x="104" y="118" width="28" height="120"/><path class="roof" d="M460 120 482 60 504 120z"/><rect class="stone" x="468" y="118" width="28" height="120"/><rect class="stone" x="230" y="120" width="140" height="118"/><path class="roof" d="M226 122 300 26 374 122z"/><path class="dark" d="M296 12h8v18h-8z"/><path class="win" d="M292 8h16l-8 10z"/><rect class="stone" x="176" y="150" width="46" height="88"/><path class="roof" d="M170 152 199 96 228 152z"/><rect class="stone" x="378" y="150" width="46" height="88"/><path class="roof" d="M372 152 401 96 430 152z"/><rect class="stone" x="140" y="196" width="320" height="44"/><path class="dark" d="M276 240v-26a24 24 0 0 1 48 0v26z"/><path class="stone" d="M140 190h16v8h-16zM172 190h16v8h-16zM204 190h16v8h-16zM236 190h16v8h-16zM268 190h16v8h-16zM300 190h16v8h-16zM332 190h16v8h-16zM364 190h16v8h-16zM396 190h16v8h-16zM428 190h16v8h-16z"/><path class="win" d="M262 150h14v20h-14zM324 150h14v20h-14zM292 146h16v24h-16zM192 176h14v18h-14zM394 176h14v18h-14zM112 156h12v16h-12zM476 156h12v16h-12z"/><rect class="dark" x="60" y="238" width="480" height="4" opacity=".5"/></svg>
+      <figcaption>A castle drawn for this page, not any one park’s — every resort has its own, and the newest is always the tallest</figcaption>
+    </figure>
+    <div class="fan-art-body">
+      <q>Disneyland will never be completed. It will continue to grow as long as there is imagination left in the world.</q>
+      <p class="fan-art-by">Walt Disney</p>
+      <p>It started with one park in Anaheim in 1955, on land Walt bought because he was tired of sitting on a bench at a fairground watching his daughters ride a carousel with nothing built for him to do. Seventy years later it is twelve parks on three continents, and the castle in the middle of each one is the same shape drawn at a different scale.</p>
+      <p>What holds it together is not the films — it is that every one of these places is built to be walked through in a particular order, with the sightlines controlled the whole way. You are never allowed to see the next land until you are meant to. That is the actual craft, and nobody else does it as well.</p>
     </div>
-    <p class="dz-castle-cap">A castle drawn for this page, not any one park’s. Every resort has its own, and the newest is the tallest</p>
   </section>
 
   <div id="fanBody"></div>
@@ -121,5 +157,7 @@ permalink: /franchises/disney/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

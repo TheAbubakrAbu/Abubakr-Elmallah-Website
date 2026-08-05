@@ -1,0 +1,175 @@
+/* the-boys.css -- loaded only by /the-boys. Split out of fanpages.css. */
+
+.boys-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(80% 60% at 50% 0%, #250c0c 0%, #140808 46%, #060404 100%);
+}
+
+.boys-sky::before {                    /* halftone print dots */
+  content: ""; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(224,42,42,.10) 1px, transparent 1.4px);
+  background-size: 14px 14px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 10%, #000 10%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 10%, #000 10%, transparent 80%);
+}
+
+/* The city, Vought Tower over it, and a laser sweep. The whole layer is capped
+   at .36 further up, so these values are what survives that -- they read hotter
+   here in the source than they do on the page. */
+.boys-sky > * { position: absolute; inset: 0; }
+
+.boys-city { inset: auto 0 0 0; height: 52%; }
+
+.boys-city svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.bys-block    { fill: #1c0f10; }
+
+.bys-tower    { fill: #241214; }
+
+.bys-win      { fill: #e0a83a; opacity: .30; }
+
+.bys-towerwin { fill: #e0c05a; opacity: .22; }
+
+.bys-mast     { fill: #6f3a3a; }
+
+.bys-v {
+  fill: #e02a2a;
+  filter: drop-shadow(0 0 10px rgba(224,42,42,.45));
+  animation: bys-pulse 6s ease-in-out infinite;
+}
+
+.boys-dots {
+  background-image: radial-gradient(rgba(224,42,42,.11) 1px, transparent 1.4px);
+  background-size: 14px 14px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 10%, #000 10%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 10%, #000 10%, transparent 80%);
+}
+
+/* A single laser line crossing the sky. Slow, and only one -- this is the show's
+   one visual signature and it stops being one if it is everywhere. */
+.boys-scan {
+  background: linear-gradient(180deg, transparent 0, rgba(255,90,70,.55) 48%, rgba(255,160,120,.75) 50%, rgba(255,90,70,.55) 52%, transparent 100%);
+  height: 3px; inset: 22% 0 auto 0;
+  filter: blur(.4px) drop-shadow(0 0 8px rgba(255,80,60,.6));
+  animation: bys-scan 11s ease-in-out infinite;
+}
+
+.boys-beams i {
+  position: absolute; bottom: 0; width: 34%; height: 82%;
+  background: linear-gradient(to top, rgba(224,42,42,.10), transparent 72%);
+  filter: blur(16px);
+  animation: bys-sweep 19s ease-in-out infinite alternate;
+}
+
+.boys-beams i:nth-child(1) { left: 6%;  transform-origin: bottom center; }
+
+.boys-beams i:nth-child(2) { right: 6%; transform-origin: bottom center; animation-delay: -9s; }
+
+/* ── the hero drawing ── */
+.fan-art--boys .boys-stage {
+  background: linear-gradient(180deg, #1a0c0d 0%, #0d0607 100%);
+  border-radius: 10px; overflow: hidden; max-width: 460px; margin-inline: auto;
+}
+
+.fan-art--boys .boys-stage svg { display: block; width: 100%; height: auto; }
+
+.fan-art--boys .boys-stage figcaption {
+  margin: 0; padding: 0 1rem 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.7;
+}
+
+@media (min-width: 820px) { .fan-art--boys { grid-template-columns: minmax(0, .95fr) minmax(0, 1.15fr); } }
+
+.byh-bg    { fill: #14090a; }
+
+.byh-ring  { fill: none; stroke: #e02a2a; stroke-width: 3; opacity: .45; }
+
+.byh-ring2 { fill: none; stroke: #e02a2a; stroke-width: 1.4; opacity: .22; }
+
+.byh-v {
+  fill: #e02a2a;
+  filter: drop-shadow(0 0 14px rgba(224,42,42,.5));
+  animation: byh-pulse 6s ease-in-out infinite;
+}
+
+.byh-word {
+  fill: #c9a05f; opacity: .6; text-anchor: middle;
+  font-family: var(--mono); font-size: 15px; letter-spacing: 2.4px;
+}
+
+/* ═════════════ The Boys: a vial of V, and a redacted memo ═════════════ */
+.boys-kit {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 820px) { .boys-kit { grid-template-columns: 0.4fr 1.6fr; } }
+
+.boys-vial { position: relative; width: 92px; margin: 0 auto; }
+
+.boys-cap {
+  width: 46px; height: 16px; margin: 0 auto; border-radius: 3px 3px 0 0;
+  background: linear-gradient(180deg, #6b7079, #3a3f47);
+}
+
+.boys-glass {
+  position: relative; width: 62px; height: 156px; margin: 0 auto;
+  border-radius: 6px 6px 22px 22px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.16);
+  background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+  box-shadow: inset -8px 0 16px -10px #000, 0 18px 34px -20px #000;
+}
+
+.boys-glass i {                          /* the compound itself */
+  position: absolute; left: 0; right: 0; bottom: 0; height: 62%;
+  background: linear-gradient(180deg, #6fd0ff, #2f7fd6 60%, #1a4f9a);
+  box-shadow: 0 0 26px 6px rgba(111,208,255,.45);
+  animation: boys-slosh 6s ease-in-out infinite alternate;
+}
+
+.boys-glass i::after {                   /* the meniscus */
+  content: ""; position: absolute; top: -3px; left: 0; right: 0; height: 6px;
+  border-radius: 50%; background: rgba(180,235,255,.7);
+}
+
+.boys-vial span {
+  display: block; margin-top: 0.7rem; text-align: center;
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+.boys-memo {
+  position: relative; padding: 1.4rem 1.5rem 1.5rem;
+  border: 1px solid var(--line); border-radius: 3px;
+  background: rgba(16, 12, 12, .62);
+}
+
+.boys-memo-h {
+  display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  padding-bottom: 0.7rem; margin-bottom: 0.9rem; border-bottom: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--a);
+}
+
+.boys-memo p { font-size: 0.95rem; line-height: 1.9; color: var(--ink-dim); max-width: 66ch; }
+
+.boys-memo p + p { margin-top: 0.6rem; }
+
+.redact {
+  position: relative; background: #0a0708; color: transparent;
+  border-radius: 2px; padding: 0 0.2em; cursor: help;
+  transition: background .35s, color .35s;
+  user-select: none;
+}
+
+.redact:hover { background: rgba(224,42,42,.12); color: var(--ink); }
+
+.boys-memo cite {
+  display: block; margin-top: 1rem; font-style: normal;
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+@media (prefers-reduced-motion: reduce) { .boys-glass i { animation: none; } }

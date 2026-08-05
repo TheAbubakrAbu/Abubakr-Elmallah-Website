@@ -28,11 +28,28 @@ permalink: /franchises/lord-of-the-rings/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/lotr.css' %}" />
 </head>
 <body data-intro="none" data-fan="lotr">
 
 <!-- one ring, still warm -->
-<div class="lotr-sky" aria-hidden="true"></div>
+<div class="lotr-sky" aria-hidden="true">
+  <div class="lotr-stars"></div>
+  <!-- the beacons of Gondor: seven peaks, lighting one after another -->
+  <div class="lotr-beacons">
+    <svg viewBox="0 0 1400 420" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path class="lb-far" d="M0 300l130-110 120 80 140-130 130 110 150-90 140 120 150-100 130 90 160-70 150 100v220H0z"/>
+      <path class="lb-near" d="M0 360l160-80 140 60 170-70 150 66 160-56 170 74 150-60 140 66h160v160H0z"/>
+      <g class="lb-fire">
+        <path style="--i:0" d="M118 196c8-16 4-26-4-34 16 4 30 18 30 34a26 26 0 0 1-52 0c0-8 4-14 10-18-2 10 6 18 16 18z" transform="translate(12 -14)"/>
+        <path style="--i:1" d="M383 168c8-16 4-26-4-34 16 4 30 18 30 34a26 26 0 0 1-52 0c0-8 4-14 10-18-2 10 6 18 16 18z" transform="translate(10 -12)"/>
+        <path style="--i:2" d="M647 196c8-16 4-26-4-34 16 4 30 18 30 34a26 26 0 0 1-52 0c0-8 4-14 10-18-2 10 6 18 16 18z" transform="translate(10 -14)"/>
+        <path style="--i:3" d="M912 186c8-16 4-26-4-34 16 4 30 18 30 34a26 26 0 0 1-52 0c0-8 4-14 10-18-2 10 6 18 16 18z" transform="translate(8 -12)"/>
+        <path style="--i:4" d="M1176 216c8-16 4-26-4-34 16 4 30 18 30 34a26 26 0 0 1-52 0c0-8 4-14 10-18-2 10 6 18 16 18z" transform="translate(10 -14)"/>
+      </g>
+    </svg>
+  </div>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -81,6 +98,40 @@ permalink: /franchises/lord-of-the-rings/
     </div>
   </section>
 
+  <div id="fanPlay"></div>
+
+  <section class="fan-art fan-art--lotr reveal">
+    <figure class="fan-art-fig lotr-doors">
+      <svg viewBox="0 0 340 340" aria-hidden="true">
+        <rect class="ld-rock" x="0" y="0" width="340" height="340"/>
+        <path class="ld-arch" d="M74 340V166a96 96 0 0 1 192 0v174z"/>
+        <path class="ld-jamb" d="M86 340V166a84 84 0 0 1 168 0v174h-9V166a75 75 0 0 0-150 0v174z"/>
+        <path class="ld-line" d="M170 340V196"/>
+        <g class="ld-tree">
+          <path d="M124 300v-52M124 268l-16-16M124 278l16-16M124 256l-12-14M124 288l14-12"/>
+          <path d="M216 300v-52M216 268l16-16M216 278l-16-16M216 256l12-14M216 288l-14-12"/>
+        </g>
+        <g class="ld-crown"><path d="M148 150h44l-8 16h-28z"/><path d="M152 150l-6-14 12 8 12-14 12 14 12-8-6 14z"/></g>
+        <path class="ld-star" d="M170 106l6 20 20 6-20 6-6 20-6-20-20-6 20-6z"/>
+        <g class="ld-anvil"><path d="M158 176h24v6h-24zM164 182h12v10h-12zM156 192h28v6h-28z"/></g>
+        <!-- The real inscription is in Tengwar, which is not a font I can rely
+             on being installed. Rather than set the wrong writing system on
+             Tolkien's door, this is an arc of neutral marks suggesting script. -->
+        <g class="ld-script">
+          <path d="M96 172a76 76 0 0 1 148 0"/>
+          <path d="M112 156v9M124 150v10M137 145v10M150 141v10M163 139v11M177 139v11M190 141v10M203 145v10M216 150v10M228 156v9"/>
+        </g>
+      </svg>
+      <figcaption>The Doors of Durin — drawn for this page, visible only by starlight</figcaption>
+    </figure>
+    <div class="fan-art-body">
+      <q>Speak, friend, and enter.</q>
+      <p class="fan-art-by">The West-gate of Moria</p>
+      <p>The best puzzle in the book, and the joke is that it is not a puzzle at all. Gandalf spends hours trying every opening spell he knows because he has mistranslated his own inscription. It does not say <em>speak the password and enter</em>. It says <em>say “friend” and enter</em>. The door was never locked to anyone willing to be neighbourly — which is a very Tolkien idea about how doors, and people, ought to work.</p>
+      <p>The trilogy every fantasy since has been quietly measured against, and it earns that by being built from the ground up rather than the top down: languages first, then histories, then a map, and only then a story walking across it.</p>
+    </div>
+  </section>
+
   <section class="lotr-ring reveal">
     <div class="ring-stage">
       <span class="ring-band"></span>
@@ -125,5 +176,7 @@ permalink: /franchises/lord-of-the-rings/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

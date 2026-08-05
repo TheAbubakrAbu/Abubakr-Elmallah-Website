@@ -28,11 +28,31 @@ permalink: /franchises/universal-studios/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/universal.css' %}" />
 </head>
 <body data-intro="none" data-fan="universal">
 
 <!-- the globe, turning -->
-<div class="uni-sky" aria-hidden="true"><i></i></div>
+<!-- the globe turning over a backlot at dusk, arc lights on -->
+<div class="uni-sky" aria-hidden="true">
+  <i></i>
+  <span class="uni-lot">
+    <svg viewBox="0 0 1400 300" preserveAspectRatio="xMidYMax slice">
+      <g class="unl-stage">
+        <path d="M60 300V168h260v132z"/><path d="M50 168h280l-14-20H64z"/>
+        <path d="M360 300V196h200v104z"/><path d="M352 196h216l-12-16H364z"/>
+        <path d="M1080 300V182h240v118z"/><path d="M1070 182h260l-14-18h-232z"/>
+      </g>
+      <g class="unl-num"><path d="M152 212h28v46h-28zM422 234h24v40h-24zM1172 226h28v44h-28z"/></g>
+      <g class="unl-truss">
+        <path d="M640 300V150M700 300V150M640 150h60M640 190h60M640 230h60M640 270h60M640 150l60 40M700 150l-60 40M640 190l60 40M700 190l-60 40"/>
+        <path d="M860 300V172M920 300V172M860 172h60M860 212h60M860 252h60M860 172l60 40M920 172l-60 40"/>
+      </g>
+      <g class="unl-lamp"><circle cx="670" cy="138" r="13"/><circle cx="890" cy="160" r="11"/></g>
+    </svg>
+  </span>
+  <span class="uni-beam"></span>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -80,6 +100,37 @@ permalink: /franchises/universal-studios/
       <a class="fan-link" href="https://www.universalstudios.com/" target="_blank" rel="noopener" data-magnetic>universalstudios.com ↗</a>
       <a class="fan-link" href="https://www.universaldestinationsandexperiences.com/" target="_blank" rel="noopener" data-magnetic>All parks ↗</a>
       <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
+    </div>
+  </section>
+
+  <div id="fanPlay"></div>
+
+  <section class="fan-art fan-art--uni reveal">
+    <figure class="fan-art-fig uni-globefig">
+      <svg viewBox="0 0 400 400" aria-hidden="true">
+        <defs>
+          <clipPath id="uniBall"><circle cx="200" cy="196" r="132"/></clipPath>
+        </defs>
+        <circle class="ung-ball" cx="200" cy="196" r="132"/>
+        <g class="ung-grid" clip-path="url(#uniBall)">
+          <path d="M200 64v264M68 196h264"/>
+          <ellipse cx="200" cy="196" rx="66" ry="132"/>
+          <ellipse cx="200" cy="196" rx="112" ry="132"/>
+          <ellipse cx="200" cy="196" rx="132" ry="52"/>
+          <ellipse cx="200" cy="196" rx="132" ry="104"/>
+        </g>
+        <circle class="ung-rim" cx="200" cy="196" r="132"/>
+        <path class="ung-band" d="M32 214a168 168 0 0 0 336 0v-32a168 168 0 0 1-336 0z"/>
+        <path class="ung-bandline" d="M32 182a168 168 0 0 0 336 0M32 214a168 168 0 0 0 336 0"/>
+        <text class="ung-word" x="200" y="212">UNIVERSAL</text>
+      </svg>
+      <figcaption>The globe, drawn in SVG — the one that turns before every film the studio has ever released</figcaption>
+    </figure>
+    <div class="fan-art-body">
+      <q>Ride the Movies.</q>
+      <p class="fan-art-by">Universal Studios Hollywood, since 1964</p>
+      <p>Universal is the oldest of them — 1912, older than Disney by eleven years — and it started letting people onto the lot to watch films being shot before it ever thought of itself as a theme park. The tram tour came first; the rides were built along the route afterwards.</p>
+      <p>That origin still shows. Disney builds you a place and asks you to believe you live in it. Universal builds you a set and lets you see the seams on purpose, because the point was always that a film was made here. Both work. Universal is just funnier about it, and it takes bigger swings on the rides.</p>
     </div>
   </section>
 
@@ -146,5 +197,7 @@ permalink: /franchises/universal-studios/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

@@ -4,7 +4,9 @@
    Y-levels and durability are for current Java Edition. Copper gear and the
    copper golem arrived in the 2025 drops, so those are described in words
    rather than quoted at with numbers I would only be half sure of. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: 'Since I was a kid', note: 'Around for most of my childhood. Redstone was my first logic gate and command blocks were my first scripting language.' },
+  sections: [
 
   { id: 'tiers', kind: 'tiles', title: 'Tool Tiers', note: 'durability · what it can mine',
     lede: 'The whole progression loop is one ladder: punch a tree, and eventually you are standing in the End. Copper is the newest rung, slotted between stone and iron after fourteen years of that gap sitting empty.',

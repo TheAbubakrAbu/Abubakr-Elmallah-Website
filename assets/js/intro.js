@@ -1,13 +1,19 @@
 /* intro.js: per-page launch animation.
-   Type comes from <body data-intro="home|starwars|alislam|projects|work|school">; default = "veil".
+   Type comes from <body data-intro="...">; default = "veil".
 
-   Two rules keep it from becoming friction:
-     1. A page only gets a launch screen if it owns one. Pages that borrow
-        another page's skin (work, franchises, education) and the generic
-        "veil" fall straight through with no animation at all.
-     2. Each launch screen plays at most once per browsing session. Walking
-        into a section, out to a page inside it, and back again is instant the
-        second time. Reload the tab (or open a new one) to see them again. */
+   ONLY THREE PAGES USE THIS NOW: the home page ("Abubakr Elmallah"), Star Wars
+   Apps, and Al-Islam. Every other page is data-intro="none" and ships no cover
+   element at all, so nothing can strand it hidden and nothing replays when you
+   navigate back into it. The projects/work/school skins below are kept because
+   the markup still works and re-enabling one is a single attribute -- but no
+   page currently asks for them.
+
+   Two rules keep the remaining three from becoming friction:
+     1. A page only gets a launch screen if it owns one. Borrowed skins and the
+        generic "veil" fall straight through with no animation at all.
+     2. Each launch screen plays at most once per browsing session. Walking into
+        a section, out to a page inside it, and back again is instant the second
+        time. Reload the tab (or open a new one) to see them again. */
 (function intro() {
   // Instant cover (inline-styled in the HTML) hides the page from the very first paint so the
   // real content never flashes before the launch overlay mounts. Drop it the moment we no longer

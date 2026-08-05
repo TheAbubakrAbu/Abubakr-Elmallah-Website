@@ -1,0 +1,144 @@
+/* fortnite.css -- loaded only by /fortnite. Split out of fanpages.css. */
+
+.fn-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(80% 60% at 50% 0%, #191f44 0%, #0e1128 46%, #05060f 100%);
+}
+
+.fn-sky::before {                      /* the closing circle */
+  content: ""; position: absolute; left: 50%; top: 6%; translate: -50% 0;
+  width: clamp(320px, 52vw, 760px); aspect-ratio: 1; border-radius: 50%;
+  border: 2px solid rgba(140,120,255,.18);
+  box-shadow: 0 0 90px -20px rgba(140,120,255,.35) inset;
+  animation: fn-close 26s ease-in-out infinite alternate;
+}
+
+/* Sunset over the island: storm wall, the Battle Bus coming in, and the
+   Chapter 1 skyline. Capped at .36 by the global -sky rule further up. */
+.fn-sky > * { position: absolute; }
+
+.fn-sky > .fn-storm, .fn-sky > .fn-grid { inset: 0; }
+
+.fn-storm {
+  background:
+    radial-gradient(60% 44% at 50% 8%, rgba(190,120,255,.20), transparent 72%),
+    radial-gradient(74% 40% at 50% 100%, rgba(240,150,80,.14), transparent 70%);
+  animation: fn-roll 24s ease-in-out infinite alternate;
+}
+
+.fn-grid {
+  background-image:
+    linear-gradient(rgba(140,180,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(140,180,255,.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(transparent 40%, #000 100%);
+  -webkit-mask-image: linear-gradient(transparent 40%, #000 100%);
+}
+
+.fn-isle { inset: auto 0 0 0; height: 32%; }
+
+.fn-isle svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.fni-far   { fill: #141a38; }
+
+.fni-near  { fill: #0c1026; }
+
+.fni-build { fill: #1e2a52; }
+
+/* The bus drifts across once a minute. Slow on purpose -- it is scenery, and
+   anything faster reads as an animation demanding attention. */
+.fn-bus { top: 12%; left: -14%; width: clamp(90px, 11vw, 150px); animation: fn-fly 58s linear infinite; }
+
+.fn-bus svg { width: 100%; height: auto; display: block; }
+
+.fnb-balloon { fill: #d8503f; }
+
+.fnb-panel   { fill: #e8e2d0; opacity: .8; }
+
+.fnb-rope    { stroke: #6f7890; stroke-width: 3; fill: none; }
+
+.fnb-body    { fill: #3f6fc0; }
+
+.fnb-stripe  { fill: #2a4d90; }
+
+.fnb-win     { fill: #a8d0f0; opacity: .85; }
+
+.fnb-wheel   { fill: #14182a; }
+
+/* ── the Omega mark ── */
+.fan-art--fn .fn-stage {
+  background: linear-gradient(180deg, #1a1240 0%, #0a0a1c 100%);
+  border-radius: 10px; overflow: hidden; max-width: 420px; margin-inline: auto;
+}
+
+.fan-art--fn .fn-stage svg { display: block; width: 100%; height: auto; padding: 1rem; }
+
+.fan-art--fn .fn-stage figcaption {
+  margin: 0; padding: 0 1rem 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.7;
+}
+
+@media (min-width: 820px) { .fan-art--fn { grid-template-columns: minmax(0, .9fr) minmax(0, 1.2fr); } }
+
+.fnh-ring { fill: none; stroke: #a86ff0; stroke-width: 2.2; opacity: .35; }
+
+.fnh-ring--2 { stroke: #f0b040; opacity: .22; }
+
+.fnh-omega {
+  fill: #c96ff0;
+  filter: drop-shadow(0 0 12px rgba(201,111,240,.55));
+  animation: fnh-glow 6s ease-in-out infinite;
+}
+
+.fnh-pip { fill: #f0b040; opacity: .8; }
+
+/* ═════════════ Fortnite: the build HUD ═════════════ */
+.fn-hud {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1rem, 2.4vw, 1.8rem); grid-template-columns: 1fr;
+}
+
+@media (min-width: 820px) { .fn-hud { grid-template-columns: 1fr 1fr; align-items: center; } }
+
+.fn-mats { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+
+.fn-mat {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 0.8rem; border-radius: 6px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.10);
+}
+
+.fn-mat i { width: 16px; height: 16px; border-radius: 3px; background: var(--m); box-shadow: 0 0 10px -2px var(--m); }
+
+.fn-mat b { font-family: var(--mono); font-size: 0.86rem; color: var(--ink); }
+
+.fn-builds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin-top: 1rem; }
+
+.fn-build {
+  position: relative; aspect-ratio: 1; border-radius: 6px;
+  border: 1px solid rgba(140,180,255,.35);
+  background: rgba(90,130,220,.10);
+  display: grid; place-items: center;
+  transition: background .3s, transform .3s var(--ease);
+}
+
+.fn-build:hover { background: rgba(120,160,255,.2); transform: translateY(-4px); }
+
+.fn-build svg { width: 58%; height: 58%; fill: none; stroke: #a8c8ff; stroke-width: 1.6; }
+
+.fn-build span {
+  position: absolute; bottom: 5px; left: 0; right: 0; text-align: center;
+  font-family: var(--mono); font-size: 0.48rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(200,220,255,.7);
+}
+
+.fn-hud-note h4 {
+  font-family: Futura, "Century Gothic", "Trebuchet MS", var(--sans); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em; font-size: 1.15rem;
+  color: var(--a); margin-bottom: 0.6rem;
+}
+
+.fn-hud-note p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 56ch; }
+
+.fn-hud-note p + p { margin-top: 0.7rem; }

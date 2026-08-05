@@ -20,6 +20,9 @@
    A section may also carry `season: N`, which tags it so a page can react to
    it on scroll (Stranger Things repaints its backdrop season by season).
 
+   A section may carry `symbiote: true`, which tags it so Spider-Man can flip
+   the whole page to black-and-white while you are inside it.
+
    A section may carry `mount: 'end'`, which sends it to #fanBodyEnd instead of
    #fanBody. Star Wars uses that: its planet atlas is hand-written into the page
    between the two, so the Links block still lands underneath it. Pages without
@@ -198,7 +201,8 @@
   function markup(s) {
     var build = KINDS[s.kind] || KINDS.cards;
     return '<section class="fan-sec" id="' + esc(s.id || '') + '"'
-      + (s.season ? ' data-season="' + s.season + '"' : '') + '>'
+      + (s.season ? ' data-season="' + s.season + '"' : '')
+      + (s.symbiote ? ' data-symbiote="1"' : '') + '>'
       + '<h3 class="subsec subsec--fan reveal">' + esc(s.title)
       +   (s.note ? '<span class="subsec-yr">' + esc(s.note) + '</span>' : '')
       + '</h3>'
@@ -213,7 +217,22 @@
   var all = page.sections || [];
   var main = tail ? all.filter(function (s) { return s.mount !== 'end'; }) : all;
 
-  root.innerHTML = main.map(markup).join('');
+  /* `when` is page-level rather than a section: it belongs above everything,
+     and every page has exactly one. Rendered only if the data file sets it. */
+  var when = page.when
+    ? '<aside class="fan-when reveal">'
+      + '<span class="fan-when-k">When I got into it</span>'
+      + '<b>' + esc(page.when.at) + '</b>'
+      + (page.when.note ? '<span class="fan-when-n">' + esc(page.when.note) + '</span>' : '')
+      + '</aside>'
+    : '';
+  root.innerHTML = when + main.map(markup).join('');
+  /* These nodes carry .reveal, so they start invisible until reveal.js observes
+     them. It scans once on load; this file currently runs before it, but making
+     that a load-order dependency is how the atlas on /star-wars/ ended up blank.
+     Handing the markup back is idempotent and makes the order irrelevant. */
+  if (typeof window.AEreveal === 'function') window.AEreveal(root);
+
   if (tail) {
     tail.innerHTML = all.filter(function (s) { return s.mount === 'end'; }).map(markup).join('');
   }

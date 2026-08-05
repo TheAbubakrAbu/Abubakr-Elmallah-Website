@@ -1,0 +1,200 @@
+/* justice-league.css -- loaded only by /justice-league. Split out of fanpages.css. */
+
+/* ── comic-book treatment, Justice League only ──
+   Ben-Day dots, panel borders and action stars. Scoped to body[data-fan="jl"]
+   so none of it leaks onto the other 32 fan pages, which share this stylesheet. */
+.jl-benday {
+  background-image: radial-gradient(rgba(79,143,224,.16) 1.1px, transparent 1.5px);
+  background-size: 9px 9px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 20%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, #000 20%, transparent 85%);
+}
+
+.jl-bursts svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.jlb-star {
+  fill: none; stroke: #f0c840; stroke-width: 3; opacity: .34;
+  transform-box: view-box; transform-origin: 278px 172px;
+  animation: jl-pow 9s ease-in-out infinite;
+}
+
+.jlb-star--2 { transform-origin: 1158px 402px; animation-delay: -4.5s; }
+
+/* The Watchtower in orbit over a city. Capped at .36 by the global rule up top. */
+.jl-sky > * { position: absolute; inset: 0; }
+
+.jl-stars {
+  background-size: 300px 300px;
+  background-image:
+    radial-gradient(1.3px 1.3px at 30px 50px, rgba(190,215,255,.55), transparent),
+    radial-gradient(1.1px 1.1px at 150px 20px, rgba(170,200,255,.45), transparent),
+    radial-gradient(1.5px 1.5px at 230px 130px, rgba(210,230,255,.5), transparent),
+    radial-gradient(1.2px 1.2px at 80px 210px, rgba(180,205,255,.4), transparent);
+  opacity: .55;
+}
+
+.jl-aurora {
+  background:
+    radial-gradient(58% 40% at 22% 26%, rgba(79,143,224,.16), transparent 70%),
+    radial-gradient(52% 38% at 78% 62%, rgba(79,208,127,.11), transparent 70%);
+  animation: jl-drift 26s ease-in-out infinite alternate;
+}
+
+.jl-signals svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.jls-orbit { fill: none; stroke: #4f8fe0; stroke-width: 1.4; opacity: .22; }
+
+.jls-hub   { fill: #d8e4f8; opacity: .5; }
+
+.jls-hubring { fill: none; stroke: #8fb8e8; stroke-width: 1.6; opacity: .3; animation: jl-ping 7s ease-out infinite; }
+
+/* Each node carries its member's colour through a custom property, so the
+   emblem colours and the backdrop stay in step from one place. */
+.jls-node circle { fill: var(--m); opacity: .75; filter: drop-shadow(0 0 6px var(--m)); animation: jl-blip 5s ease-in-out infinite; }
+
+.jls-node circle:nth-child(2) { animation-delay: -.8s; }
+
+.jls-node circle:nth-child(3) { animation-delay: -1.6s; }
+
+.jls-node circle:nth-child(4) { animation-delay: -2.4s; }
+
+.jls-node circle:nth-child(5) { animation-delay: -3.2s; }
+
+.jls-node circle:nth-child(6) { animation-delay: -4s; }
+
+.jl-city { inset: auto 0 0 0; height: 26%; }
+
+.jl-city svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.jlc-b { fill: #0d1424; }
+
+/* ── the four emblems ── */
+.fan-art--jl .jl-stage {
+  background: linear-gradient(180deg, #0d1526 0%, #070b14 100%);
+  border-radius: 10px; overflow: hidden; max-width: 440px; margin-inline: auto;
+}
+
+.fan-art--jl .jl-stage svg { display: block; width: 100%; height: auto; padding: 1.1rem; }
+
+.fan-art--jl .jl-stage figcaption {
+  margin: 0; padding: 0 1rem 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.7;
+}
+
+@media (min-width: 820px) { .fan-art--jl { grid-template-columns: minmax(0, .95fr) minmax(0, 1.15fr); } }
+
+.jlh-disc { fill: color-mix(in srgb, var(--m) 14%, #0a0f1c); }
+
+.jlh-edge { fill: none; stroke: var(--m); stroke-width: 2.4; opacity: .8; }
+
+.jlh-mark { fill: var(--m); }
+
+.jlh-let  { fill: #0a0f1c; font-family: var(--sans); font-weight: 800; font-size: 44px; text-anchor: middle; }
+
+/* The bolt gets a faster flicker than the others -- it is the Flash. */
+.jlh-flash { animation: jl-strike 4s steps(1, end) infinite; }
+
+.jlh-cell { animation: jl-emblem 8s ease-in-out infinite; transform-box: view-box; transform-origin: center; }
+
+.jlh-cell:nth-child(2) { animation-delay: -2s; }
+
+.jlh-cell:nth-child(3) { animation-delay: -4s; }
+
+.jlh-cell:nth-child(4) { animation-delay: -6s; }
+
+.jl-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(85% 65% at 50% 0%, #0e1c3a 0%, #081026 46%, #03060e 100%);
+}
+
+.jl-sky::before {                      /* the curve of the earth, far below */
+  content: ""; position: absolute; left: 50%; bottom: -62vw; translate: -50% 0;
+  width: 150vw; height: 150vw; border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, rgba(95,159,224,.18), rgba(95,159,224,.05) 55%, transparent 70%);
+  box-shadow: 0 -20px 90px -30px rgba(140,200,255,.5);
+}
+
+.jl-sky::after {                       /* stars */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1.4px 1.4px at 18% 22%, rgba(255,255,255,.75), transparent),
+    radial-gradient(1.2px 1.2px at 64% 38%, rgba(200,225,255,.6), transparent),
+    radial-gradient(1.6px 1.6px at 42% 64%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1.2px 1.2px at 86% 14%, rgba(216,180,95,.6), transparent);
+  background-size: 260px 260px;
+}
+
+/* the roster ring: seven emblems around the table */
+.jl-ring {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 860px) { .jl-ring { grid-template-columns: 0.85fr 1.15fr; } }
+
+.jl-table { position: relative; width: min(360px, 80vw); aspect-ratio: 1; margin: 0 auto; }
+
+.jl-table > i {
+  position: absolute; inset: 6%; border-radius: 50%;
+  border: 1px solid rgba(95,159,224,.28);
+  animation: jl-orbit 70s linear infinite;
+}
+
+.jl-table > i::after {
+  content: ""; position: absolute; inset: 14%; border-radius: 50%;
+  border: 1px dashed rgba(216,180,95,.22);
+}
+
+.jl-seat {
+  position: absolute; width: 27%; aspect-ratio: 1; border-radius: 50%;
+  display: grid; place-items: center; text-align: center;
+  background: radial-gradient(circle at 36% 30%, color-mix(in srgb, var(--m) 42%, transparent), transparent 72%);
+  border: 1px solid color-mix(in srgb, var(--m) 60%, transparent);
+  box-shadow: 0 0 26px -8px var(--m);
+}
+
+.jl-seat b { display: block; font-family: var(--serif); font-size: 0.8rem; color: var(--m); line-height: 1.1; }
+
+.jl-seat span {
+  display: block; margin-top: 0.15rem; font-family: var(--mono); font-size: 0.46rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
+}
+
+.jl-seat:nth-child(2) { top: 0;    left: 36.5%; }
+
+.jl-seat:nth-child(3) { top: 16%;  right: 2%; }
+
+.jl-seat:nth-child(4) { top: 52%;  right: 0; }
+
+.jl-seat:nth-child(5) { bottom: 0; right: 20%; }
+
+.jl-seat:nth-child(6) { bottom: 0; left: 20%; }
+
+.jl-seat:nth-child(7) { top: 52%;  left: 0; }
+
+.jl-seat:nth-child(8) { top: 16%;  left: 2%; }
+
+.jl-core {
+  position: absolute; inset: 34%; border-radius: 50%;
+  display: grid; place-items: center; text-align: center;
+  background: radial-gradient(circle, rgba(216,180,95,.16), transparent 70%);
+  border: 1px solid rgba(216,180,95,.35);
+}
+
+.jl-core b {
+  font-family: var(--serif); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; font-size: 0.72rem; color: #e8d8a8;
+}
+
+.jl-legend h4 {
+  font-family: var(--serif); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; font-size: 1.2rem; color: var(--a); margin-bottom: 0.6rem;
+}
+
+.jl-legend p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+
+.jl-legend p + p { margin-top: 0.7rem; }
+
+@media (prefers-reduced-motion: reduce) { .jl-table > i { animation: none; } }

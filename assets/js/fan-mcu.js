@@ -5,7 +5,9 @@
 
    The six Infinity Stones (as crests) and the five villain caricatures are
    drawn in the page itself, in fan-avengers.html. Everything below is data. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: '7th grade, 2018 \u00b7 Infinity War', note: 'Infinity War is what pulled me in, in seventh grade, and Endgame the year after, in eighth, is still my favourite film of all time. Nothing else has ever matched that opening weekend.' },
+  sections: [
 
   { id: 'favourites', kind: 'cards', title: 'My Four', note: 'the ones I actually turn up for',
     lede: 'Everything else on this page is the map. These four are why I keep walking back into the cinema.',
@@ -95,8 +97,10 @@ window.FAN_PAGE = { sections: [
         desc: 'Grieving Tony on a school trip, and Mysterio running the best illusion sequence Marvel has put on screen.' },
       { num: 'III', title: 'Spider-Man: No Way Home', sub: '2021', accent: '#e08a3a',
         desc: 'Three Spider-Men, five villains from two other studios’ films, and an ending that erases him from every person he has ever loved.' },
-      { num: 'IV', title: 'Spider-Man: Brand New Day', sub: '2026', accent: '#3fd07f',
+      { num: 'IV', title: 'Spider-Man: Brand New Day', sub: '2026 · Cretton', accent: '#3fd07f',
         desc: 'The next one, and the title is a promise: no Stark tech, no mentor, no safety net, nobody who remembers him. Just the kid, which is what the character has needed since 2016.' },
+      { num: '—', title: 'The Insomniac games', sub: '2018 · 2020 · 2023 · not film canon', accent: '#e0a020',
+        desc: 'Worth saying here because they are the best superhero games ever made and their Peter belongs in any honest list. Marvel’s Spider-Man, Miles Morales and Spider-Man 2: the swinging finally feels like momentum rather than an animation, and the Peter half is as good as the Spider-Man half. Their own continuity, Earth-1048.' },
     ] },
 
   { id: 'roster', kind: 'tiles', compact: true, title: 'The Avengers', note: 'everyone who has carried the name',
@@ -226,3 +230,20 @@ window.FAN_PAGE = { sections: [
     ] },
 
 ] };
+
+/* The interactive block, rendered by fan-play.js. */
+window.FAN_PLAY = {
+  kind: "pick",
+  title: "The Infinity Stones",
+  intro: "Six singularities from before the universe, each governing one aspect of existence. Pick one up \u2014 carefully, since almost everybody who has held one bare-handed has regretted it.",
+  prompt: "Six stones. Choose.",
+  said: "%. It burns.",
+  items: [
+    { n: "Space", s: "Tesseract \u00b7 blue", c: "#4f9fe0", d: "M12 3l8 4.5v9L12 21l-8-4.5v-9z M12 3v18 M4 7.5l16 9 M20 7.5l-16 9", note: "Lets you be anywhere. Spends most of the Infinity Saga as a glowing cube being fought over, and it is the first stone the films ever show you." },
+    { n: "Mind", s: "Sceptre \u00b7 yellow", c: "#f0d040", d: "M12 4a5 5 0 0 1 5 5c0 3-2 4-2 7h-6c0-3-2-4-2-7a5 5 0 0 1 5-5z M10 19h4", note: "Controls thought, and creates one \u2014 Ultron and then Vision come out of it. Vision is the only being who wears a stone and stays himself." },
+    { n: "Reality", s: "Aether \u00b7 red", c: "#e0483a", d: "M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z", note: "The odd one, a liquid rather than a stone. Makes anything true. Barely used, which is a shame, because it is the most frightening of the six." },
+    { n: "Power", s: "Orb \u00b7 purple", c: "#a86ff0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M12 7v10 M7 12h10", note: "Destroys anything, and destroys whoever holds it \u2014 until Thanos picks it up in the opening ten minutes of Infinity War and simply is not harmed, which tells you the whole film in one shot." },
+    { n: "Time", s: "Eye of Agamotto \u00b7 green", c: "#4fd07f", d: "M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16z M12 8v4l3 2", note: "Strange uses it to loop Dormammu into agreeing to leave, which is the only time a Marvel film has been won by being annoying. Also how he sees fourteen million futures." },
+    { n: "Soul", s: "Vormir \u00b7 orange", c: "#e0902a", d: "M12 21s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.4-7 10-7 10z", note: "The one with a price. A soul for a soul \u2014 you must lose what you love to hold it. Thanos passes that test, and the film makes you sit with the fact that he genuinely did love her." },
+  ],
+};

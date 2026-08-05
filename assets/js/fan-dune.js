@@ -1,5 +1,7 @@
 /* fan-dune.js: content for /franchises/dune/. Rendered by fanpage.js. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: '2021 and 2024, 10th and 12th grade', note: 'One of the greatest experiences I have ever had in a cinema. Tenth grade for the first and twelfth for the second. I fell asleep in both \u2014 sleep deprivation, not boredom \u2014 and still walked out knowing they were great. I rewatched both properly, do not worry.' },
+  sections: [
 
   { id: 'factions', kind: 'cards', title: 'The Powers', note: 'the Imperium, in balance',
     items: [
@@ -51,6 +53,24 @@ window.FAN_PAGE = { sections: [
       { when: '1984', title: 'Lynch’s Dune', desc: 'A beautiful mess made under studio conditions nobody could have survived.' },
       { when: '2000 · 2003', title: 'The miniseries', desc: 'Sci-Fi Channel, low budget, surprisingly faithful.' },
       { when: '2021 · 2024', title: 'Villeneuve', desc: 'Part One and Part Two, the adaptation that finally had the runtime and the nerve to keep the ending bitter.' },
+      { when: '2026', title: 'Dune: Part Three', desc: 'Messiah, and the book that exists specifically to tell you Paul was never the hero. Dated for December — the same day as Avengers: Doomsday, which is an absurd thing for a calendar to do.' },
+    ] },
+
+  { id: 'three', kind: 'cards', title: 'Part Three', note: 'December 2026 · and it shares the day with Doomsday',
+    lede: 'Villeneuve is adapting Messiah, which is the strangest possible follow-up and exactly the right one. And it is scheduled against Avengers: Doomsday on the same December date — two of the biggest films either studio has, opening head to head. Whatever happens, that weekend is going to be ridiculous.',
+    items: [
+      { title: 'Messiah is the correction', sub: 'The 1969 book', tag: 'The story', accent: '#e0a050',
+        desc: 'Herbert wrote it because readers came away from Dune thinking Paul was a hero, and he had meant the opposite the whole time. It picks up twelve years later with the jihad already fought in his name and billions dead, and it is about a man trapped inside a myth he cannot stop.',
+        meta: 'Set 12 years on' },
+      { title: 'Part Two already set it up', sub: 'The ending', tag: 'The setup', accent: '#c9a05f',
+        desc: 'Villeneuve changed the ending specifically to point here — Chani walking away rather than accepting it. The film refuses to let the coronation play as a victory, which is the single best decision in either part.',
+        meta: 'Chani walks' },
+      { title: 'Against Doomsday', sub: 'Same day', tag: 'The clash', accent: '#4f8fbf',
+        desc: 'The Avengers film and the Dune film on one date. Two completely opposite kinds of enormous — one a decade-long crossover payoff, the other a bleak art film about the cost of being worshipped — and I am going to see both.',
+        meta: 'Both. Obviously.' },
+      { title: 'It should not work as a blockbuster', sub: 'And that is the appeal', tag: 'Why I care', accent: '#8f7fc0',
+        desc: 'A two-hundred-million-dollar film whose argument is that the audience was wrong to cheer at the end of the last one. Nobody gets to make these, and somebody is about to make one anyway.',
+        meta: 'The anti-sequel' },
     ] },
 
   { id: 'lines', kind: 'quotes', title: 'Lines', note: 'the ones that stuck',
@@ -73,3 +93,25 @@ window.FAN_PAGE = { sections: [
     ] },
 
 ] };
+
+/* The interactive block, rendered by fan-play.js. */
+window.FAN_PLAY = {
+  kind: "roll",
+  title: "Walk Without Rhythm",
+  intro: "Anything with a regular step draws a worm. The Fremen developed a walk with no pattern in it \u2014 drag, pause, shuffle, long stride \u2014 so the sand reads them as weather rather than as prey. Try crossing.",
+  prompt: "Open sand. Two hundred metres to rock.",
+  button: "Cross the sand",
+  again: "Cross again",
+  wait: [
+        "You step off the rock.",
+        "Drag. Pause. Long stride.",
+        "Something under the sand shifts."
+      ],
+  items: [
+    { n: "You make it", s: "Clean crossing", c: "#e0a050", w: 4, said: "Rock under your boots. Nothing followed you.", d: "M3 17c3-2 5 2 8 0s5-3 8-1 M6 13v.01 M14 11v.01", note: "The walk works, which is the point \u2014 it is not luck, it is a technique an entire culture developed because the alternative was dying. Everything about the Fremen is like this." },
+    { n: "Worm sign", s: "Northeast, closing", c: "#c04a3a", w: 3, said: "Worm sign. Big one. Run for the rock.", d: "M4 19c0-6 3-11 8-11s6 4 6 7-2 5-5 4 M15 12a4 4 0 1 0 .1 0", note: "A ridge travelling across the dunes, and the only correct response is to stop being on the sand. Stilgar can read the distance from the shape of it." },
+    { n: "A thumper", s: "Deliberate rhythm", c: "#c9a05f", w: 2, said: "You plant a thumper and walk away from it. Let it call something else.", d: "M12 4v9 M8 13h8l1 7H7z M10 16h4", note: "A stake that beats the sand steadily, used to draw a worm somewhere you are not \u2014 or to call one deliberately, if you intend to get on it." },
+    { n: "You ride it", s: "The maker hooks", c: "#f0c840", w: 1, said: "You get the hooks in and it turns. You are riding it.", d: "M3 16c4-4 8 2 12-1s5-4 6-2 M7 12l2-3 M15 10l2-3", note: "Prying a ring segment open forces the worm to roll that part above the sand so it does not get abrasive grit inside. Riding one is how a Fremen becomes an adult." },
+    { n: "Spice blow", s: "The sand goes orange", c: "#8f6fd0", w: 2, said: "The sand ahead turns orange and the air goes sharp with cinnamon.", d: "M12 3v18 M5 8l14 8 M19 8L5 16 M12 12a3 3 0 1 0 .1 0", note: "A pre-spice mass reaching the surface. It is worth a fortune, it means a worm is close, and both of those are true at the same time \u2014 which is Arrakis in one image." },
+  ],
+};

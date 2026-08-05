@@ -335,17 +335,74 @@
   }
 
   var holyRoot = document.getElementById('holyMosques');
-  var famRoot = document.getElementById('famousMosques');
   if (holyRoot && M) holyRoot.innerHTML = M.holy.map(holyCard).join('');
-  if (famRoot && M) famRoot.innerHTML = M.famous.map(mosqueCard).join('');
 
-  /* ───────────── scholars ───────────── */
+
+  /* The medallion mark, shared by the prophets and the scholars below.
+     Defined here because the prophets render first -- when this sat inside
+     the scholars section, `var` hoisting meant it existed but was still
+     undefined when the prophet cards were built, and every medallion
+     rendered the literal string "undefined". */
   // Rubʿ al-Ḥizb: two overlaid squares, the classic eight-point star
   var STAR = '<svg class="sch-star" viewBox="0 0 100 100" aria-hidden="true">'
     + '<rect x="22" y="22" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.2"/>'
     + '<rect x="22" y="22" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.2" transform="rotate(45 50 50)"/>'
     + '<circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width=".7" opacity=".55"/>'
     + '</svg>';
+
+  /* ───────────── prophets ─────────────
+     Same furniture as the scholars below: a Rubʿ al-Ḥizb medallion with the
+     name in Arabic, and one generation-style group visible at a time. No faces,
+     which is why the medallion carries the name instead of a portrait. */
+  var P = window.ISL_PROPHETS;
+  var prRoot = document.getElementById('prophets');
+  if (prRoot && P) {
+    var prChips = P.map(function (g, i) {
+      return '<button class="chip chip--isl' + (i === 0 ? ' is-active' : '') + '" type="button" data-pgen="'
+        + g.id + '" data-magnetic>' + esc(g.label) + ' <em>' + g.people.length + '</em></button>';
+    }).join('');
+
+    function prophetCard(p) {
+      return '<article class="sch-card reveal">'
+        + '<div class="sch-medal">' + STAR + '<span class="sch-ar" lang="ar" dir="rtl">' + esc(p.ar) + '</span></div>'
+        + '<div class="sch-body">'
+        +   '<div class="sch-titlerow"><h4>' + esc(p.name) + '</h4>'
+        +     (p.azm ? '<span class="sch-tag sch-tag--azm">Ulul-\u02BFAzm</span>' : '') + '</div>'
+        /* The English name where there is one. Hud and Salih have no biblical
+           counterpart at all, so they say so rather than being left blank. */
+        +   (p.en ? '<span class="sch-en">' + (p.en === '\u2014'
+                ? 'No biblical equivalent' : esc(p.en)) + '</span>' : '')
+        +   '<span class="sch-died">' + esc(p.sent) + '</span>'
+        +   '<p class="sch-desc">' + esc(p.desc) + '</p>'
+        +   (p.meaning ? '<p class="sch-meaning">' + esc(p.meaning) + '</p>' : '')
+        +   '<span class="sch-meta">' + esc(p.sura) + '</span>'
+        + '</div>'
+        + '</article>';
+    }
+
+    prRoot.innerHTML = '<div class="filters sch-filters reveal">' + prChips + '</div>'
+      + P.map(function (g, i) {
+          return '<section class="sch-group" data-pgen="' + g.id + '"' + (i === 0 ? '' : ' hidden') + '>'
+            + '<h3 class="subsec subsec--isl reveal">' + esc(g.label)
+            +   '<span class="subsec-yr">' + esc(g.note) + '</span></h3>'
+            + '<div class="sch-grid">' + g.people.map(prophetCard).join('') + '</div>'
+            + '</section>';
+        }).join('');
+
+    prRoot.addEventListener('click', function (e) {
+      var btn = e.target.closest('.chip--isl');
+      if (!btn || !btn.dataset.pgen) return;
+      prRoot.querySelectorAll('.chip--isl').forEach(function (c) {
+        c.classList.toggle('is-active', c === btn);
+      });
+      prRoot.querySelectorAll('.sch-group').forEach(function (g) {
+        g.hidden = g.dataset.pgen !== btn.dataset.pgen;
+      });
+      if (typeof window.AEreveal === 'function') window.AEreveal(prRoot);
+    });
+  }
+
+  /* ───────────── scholars ───────────── */
 
   function scholarCard(p) {
     return '<article class="sch-card reveal">'
@@ -379,6 +436,12 @@
             + '</h3>'
             + '<div class="sch-grid">' + g.people.map(scholarCard).join('') + '</div>'
             + '</section>';
+  /* These nodes carry .reveal, so they start invisible until reveal.js observes
+     them. It scans once on load; this file currently runs before it, but making
+     that a load-order dependency is how the atlas on /star-wars/ ended up blank.
+     Handing the markup back is idempotent and makes the order irrelevant. */
+  if (typeof window.AEreveal === 'function') window.AEreveal(schRoot);
+
         }).join('');
 
     var groups = schRoot.querySelectorAll('.sch-group');

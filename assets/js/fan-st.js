@@ -1,5 +1,7 @@
 /* fan-st.js: content for /franchises/stranger-things/. Rendered by fanpage.js. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: '2nd year of college, 2025\u201326', note: 'Second year of college, right after Game of Thrones.' },
+  sections: [
 
   { id: 'seasons', kind: 'rank', title: 'The Seasons', note: '2016 – 2025 · scroll and the world changes under you',
     lede: 'Five seasons, and the backdrop of this page follows whichever one you are reading: 1983 in the woods, 1984 rotting in the fields, 1985 under mall neon, 1986 in Vecna’s violet, 1987 with the rifts open. Three is my favourite and by a distance the most fun — silly in places, and that is exactly the bit that made me love this show. One is the one that started all of it, and it is the best television of the five by a mile. Scroll outside the season run and the whole thing blends into one.',
@@ -133,7 +135,7 @@ window.FAN_PAGE = { sections: [
         desc: 'Buys every string of Christmas lights in Melvald’s and paints the alphabet on her wall, and she is completely right. Nobody in television has ever been more correct while being treated as more unstable.',
         meta: 'Melvald’s · the bulbs' },
       { title: 'Ted Wheeler', sub: 'Joe Chrest', tag: 'Recliner', accent: '#8f8f6f',
-        desc: 'A masterpiece. Asleep in the La-Z-Boy in every scene, opinion on nothing, awake only for the news and a plate of chicken. His entire arc across five seasons is that a government agent sits in his living room and he offers them a drink.',
+        desc: 'A masterpiece. Asleep in the La-Z-Boy in every scene, opinion on nothing, awake only for the news and a plate of chicken. His entire arc across five seasons is that a government agent sits in his living room and he offers them the good chair.',
         meta: 'Asleep · in the chair' },
       { title: 'Karen Wheeler', sub: 'Cara Buono', tag: 'Mother', accent: '#e07ad0',
         desc: 'The only parent on the street who keeps asking her children what is going on, and gets lied to every single time. Season three gives her the Billy subplot and then, mercifully, thinks better of it.',

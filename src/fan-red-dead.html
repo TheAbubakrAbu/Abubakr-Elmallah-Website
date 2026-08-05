@@ -28,11 +28,38 @@ permalink: /franchises/red-dead/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/red-dead.css' %}" />
 </head>
 <body data-intro="none" data-fan="rdr">
 
 <!-- dust on the horizon -->
-<div class="rdr-sky" aria-hidden="true"></div>
+<!-- a red sunset over the plains: a low sun, mesas on the horizon, telegraph
+     poles going west, and dust in the air. All CSS and one inline SVG. -->
+<div class="rdr-sky" aria-hidden="true">
+  <span class="rdr-sun"></span>
+  <span class="rdr-land">
+    <svg viewBox="0 0 1400 320" preserveAspectRatio="xMidYMax slice">
+      <path class="rdl-far"  d="M0 320V196q90-14 150-46t130 22 120-30 150 44 140-56 160 40 130-24 140 36 130-18v132z"/>
+      <g class="rdl-mesa">
+        <path d="M170 208h150v112H170zM160 208l14-20h142l14 20z"/>
+        <path d="M1050 224h190v96h-190zM1038 224l16-22h182l16 22z"/>
+      </g>
+      <path class="rdl-near" d="M0 320V262q150-30 260 4t250-16 240 24 300-30 350 22v54z"/>
+      <g class="rdl-poles">
+        <path d="M250 262v-84M248 190h34M248 204h34"/>
+        <path d="M560 268v-72M558 204h30M558 216h30"/>
+        <path d="M860 272v-62M858 218h26M858 228h26"/>
+        <path d="M1120 276v-52M1118 230h22M1118 239h22"/>
+        <path d="M250 182l310 18 300 12 260 12"/>
+      </g>
+      <g class="rdl-cactus">
+        <path d="M700 320v-56M700 288q-18 0-18-20v-8M700 276q18 0 18-18v-10"/>
+        <path d="M420 320v-40M420 300q-14 0-14-15v-6"/>
+      </g>
+    </svg>
+  </span>
+  <span class="rdr-dust"></span>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -79,7 +106,42 @@ permalink: /franchises/red-dead/
     <div class="fan-links">
       <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
     </div>
+    <div class="fan-art fan-art--rdr reveal">
+      <div class="fan-art-fig">
+        <!-- a cattleman revolver and a hat on the table -->
+        <svg viewBox="0 0 620 420" role="img" aria-label="A revolver and a cowboy hat">
+          <g class="rdr-hat">
+            <path class="rh-brim" d="M40 300q170 62 340 0-24-44-170-44T40 300z"/>
+            <path class="rh-crown" d="M126 262q-14-96 44-124 20-10 44 0 58 28 44 124-66 20-132 0z"/>
+            <path class="rh-dent" d="M170 146q22 34 44 0"/>
+            <path class="rh-band" d="M124 244q66 22 136 0l4 20q-72 24-144 0z"/>
+            <circle class="rh-stud" cx="196" cy="252" r="7"/>
+          </g>
+          <g class="rdr-gun">
+            <path class="rg-barrel" d="M300 176h250v30H300z"/>
+            <path class="rg-sight"  d="M534 176h12v-12h-12z"/>
+            <path class="rg-cyl"    d="M262 164h58v54h-58z"/>
+            <circle class="rg-chamber" cx="291" cy="191" r="17"/>
+            <circle class="rg-pin" cx="291" cy="191" r="5"/>
+            <path class="rg-frame"  d="M236 164h30v66h-30z"/>
+            <path class="rg-hammer" d="M240 164v-24h20l6 16-8 8z"/>
+            <path class="rg-guard"  d="M244 230q-8 40 26 40h22q22 0 22-24h-18q-12 0-14-16z"/>
+            <path class="rg-trigger" d="M268 232v26"/>
+            <path class="rg-grip"   d="M236 230q-16 78 6 116 30 8 44-8 16-52 10-108z"/>
+            <path class="rg-grain"  d="M244 262q22 6 40 0M242 288q22 6 40 0M244 314q20 6 34 0"/>
+          </g>
+        </svg>
+      </div>
+      <div class="fan-art-body">
+        <q>You’re a good man, Arthur Morgan.</q>
+        <span class="fan-art-by">Sadie Adler · Red Dead Redemption 2</span>
+        <p>A western that respects your time and then breaks your heart in the epilogue. A gang running out of country in 1899, watching the frontier close around them a season at a time, led by a man who keeps saying he has a plan.</p>
+        <p>It is really about a man finding out he is dying and deciding, quite late, what he wants the last of it to have been for. Nothing else in games has an ending quite like it.</p>
+      </div>
+    </div>
   </section>
+
+  <div id="fanPlay"></div>
 
   <section class="rdr-kit reveal">
     <div class="rdr-poster">
@@ -129,5 +191,7 @@ permalink: /franchises/red-dead/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

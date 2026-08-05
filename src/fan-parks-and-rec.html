@@ -28,11 +28,30 @@ permalink: /franchises/parks-and-recreation/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/parks-and-rec.css' %}" />
 </head>
 <body data-intro="none" data-fan="parks">
 
 <!-- Pawnee, at the tree line -->
-<div class="pk-sky" aria-hidden="true"></div>
+<div class="pk-sky" aria-hidden="true">
+  <div class="pk-hills">
+    <svg viewBox="0 0 1400 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path class="pkh-far" d="M0 250q180-70 340-14t360-30 340 44 360-30v180H0z"/>
+      <path class="pkh-near" d="M0 320q220-56 400-6t380-24 340 40 280-20v90H0z"/>
+      <g class="pkh-tree">
+        <path d="M120 300l-24 44h48zM118 320l-30 52h60zM116 342h6v22h-6z"/>
+        <path d="M1240 296l-26 46h52zM1238 316l-32 54h64zM1236 340h6v22h-6z"/>
+        <path d="M300 316l-20 36h40zM298 332l-25 44h50zM296 350h5v18h-5z"/>
+        <path d="M1080 312l-21 38h42zM1078 328l-26 46h52zM1076 348h5v18h-5z"/>
+      </g>
+      <g class="pkh-swing"><path d="M640 296h120M652 296v52M748 296v52M666 348h26v6h-26zM708 348h26v6h-26z"/></g>
+      <g class="pkh-bench"><path d="M420 344h64v6h-64zM426 350v14M478 350v14M420 332h64v6h-64z"/></g>
+      <g class="pkh-lamp"><path d="M900 300v58"/><circle cx="900" cy="294" r="9"/></g>
+    </svg>
+  </div>
+  <div class="pk-sun"></div>
+  <div class="pk-motes"></div>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -81,6 +100,36 @@ permalink: /franchises/parks-and-recreation/
     </div>
   </section>
 
+  <div id="fanPlay"></div>
+
+  <section class="fan-art fan-art--pk reveal">
+    <figure class="fan-art-fig pk-stage">
+      <svg viewBox="0 0 420 300" aria-hidden="true">
+        <path class="pks-sky" d="M0 0h420v300H0z"/>
+        <path class="pks-grass" d="M0 224h420v76H0z"/>
+        <!-- the pit that becomes Lot 48 that becomes a park -->
+        <path class="pks-pit" d="M96 224q28-52 114-52t114 52z"/>
+        <g class="pks-post"><path d="M104 130h12v96h-12zM304 130h12v96h-12z"/></g>
+        <path class="pks-board" d="M78 60h264v78H78z"/>
+        <path class="pks-inner" d="M88 70h244v58H88z"/>
+        <text class="pks-t1" x="210" y="94">PAWNEE</text>
+        <text class="pks-t2" x="210" y="116">PARKS &amp; RECREATION</text>
+        <g class="pks-bolt"><circle cx="92" cy="74" r="3"/><circle cx="328" cy="74" r="3"/><circle cx="92" cy="124" r="3"/><circle cx="328" cy="124" r="3"/></g>
+        <g class="pks-grassblade">
+          <path d="M40 224q6-18 14-24-4 14-4 24zM70 224q5-14 12-19-3 11-3 19zM348 224q6-18 14-24-4 14-4 24zM380 224q5-14 12-19-3 11-3 19z"/>
+        </g>
+        <g class="pks-sun"><circle cx="366" cy="46" r="22"/></g>
+      </svg>
+      <figcaption>The sign for a park that does not exist yet — drawn for this page</figcaption>
+    </figure>
+    <div class="fan-art-body">
+      <q>What I hear when I’m being yelled at is people caring loudly at me.</q>
+      <p class="fan-art-by">Leslie Knope</p>
+      <p>The rare comedy with no cruelty in it. Nobody gets humiliated for the audience, everybody is genuinely competent at something, and it is still funny — which is much harder to write than meanness, and is why it has aged better than almost anything else from its era.</p>
+      <p>The whole series is one woman trying to turn a pit into a park while a town that keeps voting against its own interests makes it as difficult as possible. Seven seasons, and the thing it is actually about is that caring a lot about a small job is not embarrassing. Skip the first six episodes; the show had not worked that out yet either.</p>
+    </div>
+  </section>
+
   <section class="pk-sign reveal">
     <div class="pk-board">
       <b>Pawnee Parks and<br>Recreation Department</b>
@@ -120,5 +169,7 @@ permalink: /franchises/parks-and-recreation/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

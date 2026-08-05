@@ -1,5 +1,7 @@
 /* fan-fnaf.js: content for /franchises/five-nights-at-freddys/. Rendered by fanpage.js. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: 'Middle school, around 2017\u201320', note: 'Picked it up in middle school, mostly through the theory videos before I ever played it properly.' },
+  sections: [
 
   { id: 'rules', kind: 'tiles', title: 'The Rules', note: 'the entire first game, in five mechanics',
     lede: 'You cannot move, you cannot fight, and you have a battery. Everything else is arithmetic.',
@@ -23,6 +25,23 @@ window.FAN_PAGE = { sections: [
       { title: 'Glamrock Freddy', sub: 'Security Breach', tag: 'Modern', desc: 'The first one on your side, and the reason that game plays like a mall stealth game.', meta: 'Mega Pizzaplex' },
     ] },
 
+  { id: 'sound', kind: 'cards', title: 'It Is All Sound', note: 'the part people underrate',
+    lede: 'Take the audio away and the first game is a slideshow of still images. Almost the entire horror budget is spent on things you hear and cannot see, which is also why it ran on anything — sound is cheap and imagination is free.',
+    items: [
+      { title: 'You listen more than you look', sub: 'The core trick', tag: 'Design', accent: '#c98f4f',
+        desc: 'Footsteps in the hall, the clatter when Foxy starts running, the groan of a door. The camera tells you where something was; the audio tells you where it is now. Players end up navigating an entire building by ear, through a monitor that only shows one room at a time.',
+        meta: 'The building is audio-only' },
+      { title: 'The music box', sub: 'FNAF 2', tag: 'Best mechanic', accent: '#b8935a',
+        desc: 'A box you have to keep winding from the camera panel or the Puppet comes for you. It is a timer you can hear running down while you are busy elsewhere, and it makes every other task feel expensive. Probably the single best piece of design in the series.',
+        meta: 'Wind it or else' },
+      { title: 'The phone calls', sub: 'Phone Guy', tag: 'Storytelling', accent: '#c9a05f',
+        desc: 'The tutorial is a colleague leaving increasingly worrying voicemails, delivered in a cheerful corporate register that slowly stops matching what he is describing. All the exposition arrives through a man trying not to alarm you.',
+        meta: 'Cheerful, then not' },
+      { title: 'Silence as a weapon', sub: 'FNAF 4', tag: 'The scariest', accent: '#8f7040',
+        desc: 'The fourth game removes the cameras entirely and asks you to stand at a door and listen for breathing. If you hear it, hold the door. If you do not, open it. Nothing on screen helps you. It is the most uncomfortable the series has ever been.',
+        meta: 'Headphones required' },
+    ] },
+
   { id: 'lore', kind: 'timeline', title: 'The Story, In Order', note: 'assembled by the fanbase out of minigames and cutscenes',
     lede: 'None of this is told to you directly. It is pieced together from eight-bit minigames, newspaper clippings on the loading screens, and lines hidden in the phone calls.',
     items: [
@@ -40,7 +59,7 @@ window.FAN_PAGE = { sections: [
       { title: 'The theory channels', sub: 'Since 2014', tag: 'Fandom', desc: 'Frame-by-frame analysis of eight-bit minigames became an entire YouTube genre. The games are written to be read that way.', meta: 'Game Theory · Dawko' },
       { title: 'The novels', sub: 'Since 2015', tag: 'Books', desc: 'The Silver Eyes and the Fazbear Frights collections, which tell parallel versions rather than canon.', meta: 'Scott Cawthon · Kira Breed-Wrisley' },
       { title: 'Help Wanted', sub: '2019 · VR', tag: 'Game', desc: 'The whole series remade as VR minigames, which is a genuinely cruel idea and works perfectly.', meta: 'Steel Wool' },
-      { title: 'The film', sub: '2023', tag: 'Film', desc: 'Jim Henson\u2019s Creature Shop built the animatronics practically. Critics disliked it, and it made nearly three hundred million.', meta: 'Blumhouse' },
+      { title: 'The films', sub: '2023 · 2025', tag: 'Film', desc: 'Jim Henson\u2019s Creature Shop built the animatronics practically rather than in a computer, which is the right call and the best thing about them. Critics disliked the first one and it made nearly three hundred million anyway, so a sequel followed.', meta: 'Blumhouse' },
       { title: 'Made by one person', sub: 'Scott Cawthon', tag: 'Origin', desc: 'A developer whose previous game was criticised for characters that looked like stiff animatronics, who took the note and built a horror franchise out of it.', meta: 'Five months' },
     ] },
 

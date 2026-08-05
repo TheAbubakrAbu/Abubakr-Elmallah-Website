@@ -1,6 +1,8 @@
 /* fan-avatar.js: content for /franchises/avatar/ (Pandora, not the Airbender).
    Rendered by fanpage.js. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: '11th grade, 2022, for Way of Water', note: 'Way of Water in December of eleventh grade is what did it.' },
+  sections: [
 
   { id: 'films', kind: 'rank', title: 'The Films', note: '2009 – now',
     items: [

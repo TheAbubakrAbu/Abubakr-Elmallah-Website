@@ -68,6 +68,21 @@
   root.innerHTML = '<div class="filters pl-filters reveal">' + chips + '</div>'
                  + groups.map(group).join('');
 
+  /* Every card in here carries .reveal, which means it starts at opacity 0 and
+     only appears once reveal.js observes it. reveal.js scans once on load, so
+     if this file happens to run after it -- as it does on /star-wars/, where
+     the script tags are in the wrong order -- nothing would ever be observed
+     and the whole atlas would render as blank space.
+
+     Handing the new markup back to reveal.js makes the order irrelevant, which
+     is better than depending on a script tag staying where it is. */
+  if (typeof window.AEreveal === 'function') {
+    window.AEreveal(root);
+  } else {
+    var late = root.querySelectorAll('.reveal');
+    for (var i = 0; i < late.length; i++) late[i].classList.add('in');
+  }
+
   /* ── filtering: show one era, or all of them ── */
   var sections = root.querySelectorAll('.pl-group');
   root.addEventListener('click', function (e) {

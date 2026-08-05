@@ -1,0 +1,135 @@
+/* universal.css -- loaded only by /universal. Split out of fanpages.css. */
+
+/* ── Universal: the backlot at dusk ── */
+.uni-lot { inset: auto 0 0 0; height: 46%; opacity: .5; }
+
+.uni-lot svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.unl-stage { fill: #1a1208; stroke: #a8763a; stroke-width: 2.4; stroke-linejoin: round; }
+
+.unl-num   { fill: #f0a83a; opacity: .5; }
+
+.unl-truss { fill: none; stroke: #8a6a3a; stroke-width: 2.2; }
+
+.unl-lamp circle {
+  fill: #f0c86a;
+  filter: drop-shadow(0 0 10px rgba(240,200,106,.8));
+  animation: uni-arc 5s ease-in-out infinite alternate;
+}
+
+.uni-beam {
+  background:
+    conic-gradient(from 200deg at 22% 100%, transparent 0 12deg, rgba(240,168,58,.10) 16deg, transparent 22deg),
+    conic-gradient(from 300deg at 78% 100%, transparent 0 12deg, rgba(240,200,106,.09) 16deg, transparent 22deg);
+  animation: uni-sweep 22s ease-in-out infinite alternate;
+}
+
+.uni-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background:
+    radial-gradient(70% 52% at 50% 0%, rgba(240,168,58,.12), transparent 70%),
+    linear-gradient(180deg, #241505 0%, #150d06 46%, #060403 100%);
+}
+
+.uni-sky i {                           /* the globe itself */
+  position: absolute; right: 4%; top: 10%;
+  width: clamp(220px, 32vw, 480px); aspect-ratio: 1; border-radius: 50%;
+  border: 1px solid rgba(143,184,232,.22);
+  background:
+    repeating-linear-gradient(0deg, rgba(143,184,232,.10) 0 1px, transparent 1px 26px);
+  box-shadow: inset 0 0 60px -20px rgba(143,184,232,.5);
+  animation: uni-turn 60s linear infinite;
+}
+
+.uni-sky i::before {                   /* meridians */
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  background: repeating-linear-gradient(90deg, rgba(143,184,232,.10) 0 1px, transparent 1px 26px);
+}
+
+.uni-sky i::after {                    /* the band across it */
+  content: ""; position: absolute; left: -6%; right: -6%; top: 46%;
+  height: 9%; border-radius: 4px;
+  background: linear-gradient(90deg, transparent, rgba(200,225,255,.22), transparent);
+}
+
+.fan-art--uni .uni-globefig { max-width: 420px; margin-inline: auto; }
+
+.ung-ball  { fill: #10203c; }
+
+.ung-grid  { fill: none; stroke: #4a7fb0; stroke-width: 1.6; opacity: .55; }
+
+.ung-rim   { fill: none; stroke: #6fa8d8; stroke-width: 2.6; }
+
+.ung-band  { fill: #f0a83a; }
+
+.ung-bandline { fill: none; stroke: #b87820; stroke-width: 1.6; opacity: .7; }
+
+.ung-word  {
+  fill: #1a0e02; font-family: var(--mono); font-size: 40px; font-weight: 700;
+  letter-spacing: 3px; text-anchor: middle;
+}
+
+/* The meridians squash to a line and open out again: a globe turning, without
+   redrawing it. transform-box must be view-box here -- fill-box would measure
+   the group's own bounds and drift the spin off the sphere's centre. */
+.uni-globefig .ung-grid {
+  animation: ung-turn 26s linear infinite;
+  transform-box: view-box; transform-origin: 200px 196px;
+}
+
+/* ═════════════ Universal: the Studio Tour tram ═════════════ */
+.uni-tram { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; }
+
+.uni-road {
+  position: relative; padding: clamp(1.4rem, 4vw, 2.6rem) 0 0;
+  border-radius: 10px; overflow: hidden;
+  background: linear-gradient(180deg, rgba(143,184,232,.08), transparent 60%), rgba(8,16,28,.6);
+}
+
+.uni-cars { display: flex; align-items: flex-end; justify-content: center; gap: 6px; padding: 0 1rem; }
+
+.uni-car { position: relative; width: clamp(88px, 15vw, 132px); flex: none; }
+
+.uni-canopy {
+  height: 14px; border-radius: 4px 4px 0 0;
+  background: repeating-linear-gradient(90deg, #e8e8ea 0 10px, #d84a4a 10px 20px);
+  box-shadow: 0 2px 0 rgba(0,0,0,.3);
+}
+
+.uni-posts { display: flex; justify-content: space-between; padding: 0 6px; margin-top: -2px; }
+
+.uni-posts i { width: 2px; height: 20px; background: rgba(220,232,248,.5); }
+
+.uni-cab {
+  height: 34px; border-radius: 3px;
+  background: linear-gradient(180deg, #4f6f9a, #2f4569);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.18);
+  display: grid; place-items: center;
+}
+
+.uni-cab span {
+  font-family: var(--mono); font-size: 0.46rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(220,232,248,.75);
+}
+
+.uni-wheels { display: flex; justify-content: space-around; margin-top: -4px; }
+
+.uni-wheels i { width: 16px; height: 16px; border-radius: 50%; background: #1a1f28; border: 3px solid #39424f; }
+
+.uni-asphalt {
+  margin-top: 6px; height: 26px;
+  background: linear-gradient(180deg, #2a2f38, #1a1e25);
+  border-radius: 0 0 10px 10px;
+  position: relative;
+}
+
+.uni-asphalt::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 11px; height: 3px;
+  background: repeating-linear-gradient(90deg, rgba(240,200,90,.65) 0 26px, transparent 26px 52px);
+}
+
+.uni-tram-cap {
+  margin-top: 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}

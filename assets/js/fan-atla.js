@@ -1,6 +1,8 @@
 /* fan-atla.js: content for /franchises/avatar-last-airbender/. Rendered by fanpage.js.
    The four bending arts are drawn in the page itself. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: 'Elementary school', note: 'Somewhere in elementary school, and it has held up better on every rewatch since.' },
+  sections: [
 
   { id: 'books', kind: 'rank', title: 'The Three Books', note: '2005 – 2008 · sixty-one episodes',
     items: [
@@ -162,3 +164,25 @@ window.FAN_PAGE = { sections: [
     ] },
 
 ] };
+
+/* The interactive block, rendered by fan-play.js. */
+window.FAN_PLAY = {
+  kind: "roll",
+  title: "Which Element Bends For You",
+  intro: "Every child in the Fire Nation colonies is given four objects and told to reach for one. Bending is not chosen \u2014 you are born to one element and one only, and the Avatar is the single person alive who is born to all four.",
+  prompt: "Four objects on a mat in front of you.",
+  button: "Face the four",
+  again: "Try again",
+  wait: [
+        "You reach.",
+        "Something answers.",
+        "The room goes quiet."
+      ],
+  items: [
+    { n: "Water", s: "Northern and Southern Tribes", c: "#5fa8e0", w: 3, said: "The water moves toward your hand.", d: "M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z", note: "Change and adaptation. The only bending art that also heals, and the only one with a form \u2014 bloodbending \u2014 that the show treats as genuinely unforgivable." },
+    { n: "Earth", s: "Ba Sing Se and beyond", c: "#5fbf7f", w: 3, said: "The stone shifts under you.", d: "M4 18h16 M7 18l3-8 3 5 2-3 2 6", note: "Substance and stubbornness. Earthbenders wait and endure rather than attack \u2014 and Toph then invents metalbending by noticing that metal is just earth that got refined badly." },
+    { n: "Fire", s: "The Fire Nation", c: "#e0642a", w: 3, said: "Heat rises off your palms.", d: "M12 3c3 5 5 7 5 10a5 5 0 0 1-10 0c0-2 1-3 2-5 1 3 3 2 3 0 0-2 0-3 0-5z", note: "Desire and drive. The show does something clever with it: fire is taught as rage, and Zuko only becomes good at it once he learns it was never supposed to come from anger." },
+    { n: "Air", s: "The four temples", c: "#d8d0b0", w: 1, said: "The air lifts around you. There are not supposed to be any more of you.", d: "M3 9h11a3 3 0 1 0-3-3 M3 14h14a3 3 0 1 1-3 3", note: "Freedom and evasion. Wiped out in the first strike of the war, which is why drawing air means something the other three do not \u2014 there is only one airbender left when the series opens." },
+    { n: "The Avatar", s: "All four", c: "#e8a13f", w: 1, said: "All four move at once. Oh no.", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M12 3a4.5 4.5 0 0 1 0 9 4.5 4.5 0 0 0 0 9 M12 7.5v.01 M12 16.5v.01", note: "One person per generation, cycling through the nations in order, and the only bridge between the physical and spirit worlds. Also a child who did not want the job and ran away from it for a hundred years." },
+  ],
+};

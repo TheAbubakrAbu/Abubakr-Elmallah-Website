@@ -1,0 +1,239 @@
+/* ───────── the page backdrop ─────────
+   A graticule with great-circle arcs drawing themselves across it. The arcs
+   curve because that is what a long-haul route actually looks like on a flat
+   map -- straight lines would read as a network diagram, not travel. */
+.tv-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background:
+    radial-gradient(80% 55% at 50% 0%, #0d1a2a 0%, #080f18 46%, #04070b 100%);
+}
+.tv-sky > * { position: absolute; inset: 0; }
+.tv-grid {
+  background-image:
+    linear-gradient(rgba(127,184,232,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(127,184,232,.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 20%, #000 20%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 20%, #000 20%, transparent 85%);
+}
+.tv-globe svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tvs-lat, .tvs-lon { fill: none; stroke: #4f7fa8; stroke-width: 1; opacity: .16; }
+/* Each arc draws itself, holds, then fades -- staggered by --i so the sky is
+   never doing all four at once. */
+.tvs-arc path {
+  fill: none; stroke: #7fb8e8; stroke-width: 1.6; stroke-linecap: round;
+  stroke-dasharray: 900; stroke-dashoffset: 900;
+  animation: tv-fly 18s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 3.4s);
+  filter: drop-shadow(0 0 5px rgba(127,184,232,.55));
+}
+@keyframes tv-fly {
+  0%        { stroke-dashoffset: 900; opacity: 0; }
+  8%        { opacity: .75; }
+  42%       { stroke-dashoffset: 0; opacity: .75; }
+  62%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+.tvs-pin circle {
+  fill: #9fd0f5; opacity: .5;
+  filter: drop-shadow(0 0 6px rgba(159,208,245,.9));
+  animation: tv-pin 6s ease-in-out infinite alternate;
+}
+.tvs-pin circle:nth-child(even) { animation-delay: -3s; }
+@keyframes tv-pin { from { opacity: .28; } to { opacity: .85; } }
+.tv-glow {
+  background:
+    radial-gradient(55% 34% at 22% 78%, rgba(127,184,232,.10), transparent 70%),
+    radial-gradient(45% 30% at 80% 26%, rgba(200,168,120,.07), transparent 70%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tvs-arc path { animation: none; stroke-dashoffset: 0; opacity: .4; }
+  .tvs-pin circle { animation: none; }
+}
+
+/* travels.css — /travels/ only. Kept out of fanpages.css because this is not a
+   fan page and has no business inheriting from that file's themes. */
+
+body[data-fan="travels"] { --a: #7fb8e8; }
+
+/* ───────── summary ───────── */
+.tv-summary { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 1.8rem; }
+.tv-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem 1.4rem; }
+@media (min-width: 620px) { .tv-stats { grid-template-columns: repeat(4, 1fr); } }
+.tv-stats div { display: grid; gap: 0.2rem; }
+.tv-stats b { font-family: var(--mono); font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1; color: var(--a); }
+.tv-stats span {
+  font-family: var(--mono); font-size: 0.53rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+.tv-flagwall { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.4rem; }
+.tv-flagwall span {
+  font-size: 1.35rem; line-height: 1; padding: 0.3rem 0.4rem; border-radius: 4px;
+  background: rgba(255,255,255,.04); border: 1px solid var(--line);
+}
+.tv-lock {
+  margin-top: 1.3rem; font: inherit; cursor: pointer;
+  font-family: var(--mono); font-size: 0.53rem; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.42rem 0.8rem; border-radius: 3px; color: var(--mute);
+  background: transparent; border: 1px solid var(--line);
+}
+.tv-lock:hover { color: var(--ink); border-color: var(--a); }
+
+/* ───────── the short version ─────────
+   Words first, flag as a marker. Readable in ten seconds, and every row jumps
+   to the full entry below. */
+.tv-short { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 2.4rem; }
+.tv-short > h2 {
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--mute); margin-bottom: 1.2rem;
+}
+.tv-shortgrp { margin-bottom: 1.5rem; }
+.tv-shortgrp h3 { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.4rem; }
+.tv-shortgrp h3 span {
+  font-family: var(--sans); font-size: 0.82rem; font-weight: 600; color: var(--a);
+}
+.tv-shortgrp h3 i { flex: 1; height: 1px; background: var(--line); }
+.tv-shortgrp h3 em {
+  font-style: normal; font-family: var(--mono); font-size: 0.52rem;
+  letter-spacing: 0.12em; color: var(--mute);
+}
+.tv-shortgrp ul { list-style: none; }
+/* A fixed grid, not a flex row. Trips carry between one and three flags, so a
+   flowing layout pushed every place name to a different x -- the columns are
+   pinned instead, and the flag cell is sized for the widest case. */
+.tv-shortgrp a {
+  display: grid; align-items: center; gap: 0 0.7rem;
+  grid-template-columns: 3.6rem 2.2rem minmax(0, 1fr) auto;
+  padding: 0.34rem 0.5rem; border-radius: 4px; text-decoration: none;
+  border-left: 2px solid transparent; transition: background .13s ease, border-color .13s ease;
+}
+.tv-shortgrp a:hover { background: rgba(255,255,255,.045); border-left-color: var(--c); }
+.tv-s-flag { font-size: 0.9rem; line-height: 1; letter-spacing: -0.06em; white-space: nowrap; }
+.tv-s-when { font-family: var(--mono); font-size: 0.55rem; color: var(--mute); }
+.tv-s-place { font-size: 0.92rem; color: var(--ink); }
+.tv-s-tag, .tv-s-via { justify-self: end; }
+@media (max-width: 560px) {
+  .tv-shortgrp a { grid-template-columns: 3.2rem 2rem minmax(0, 1fr); }
+  .tv-s-tag, .tv-s-via { grid-column: 3; justify-self: start; }
+}
+.tv-s-tag {
+  font-family: var(--mono); font-size: 0.46rem; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.12rem 0.36rem; border-radius: 2px; color: #e6d5a2;
+  background: rgba(216,198,138,.14); border: 1px solid rgba(216,198,138,.3);
+}
+.tv-s-via { font-family: var(--mono); font-size: 0.5rem; color: var(--mute); opacity: .75; }
+
+/* ───────── grade headers in the long list ───────── */
+.tv-grade {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 2rem auto 0.8rem;
+}
+.tv-gradehead {
+  display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap;
+  padding-bottom: 0.6rem; border-bottom: 1px solid var(--line);
+}
+.tv-gradehead h2 {
+  font-family: var(--sans); font-weight: 650; font-size: clamp(1.1rem, 2.6vw, 1.4rem); color: var(--ink);
+}
+.tv-gradehead span {
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+/* ───────── one section per trip ─────────
+   Each carries its own two colours through --c1/--c2, and a data-look that
+   picks which shapes get drawn behind it. One set of rules, eighteen looks. */
+.tv-trip {
+  position: relative; overflow: hidden;
+  padding: clamp(1.1rem, 2.4vw, 1.6rem) var(--gutter);
+  margin: 0 auto 0.6rem; max-width: var(--maxw);
+  border: 1px solid var(--line); border-radius: 10px;
+  background: linear-gradient(155deg, var(--c2), #06070a 78%);
+}
+.tv-trip-bg { position: absolute; inset: 0; pointer-events: none; opacity: .5; }
+.tv-trip-bg i { position: absolute; display: block; }
+.tv-trip-in { position: relative; max-width: 62ch; }
+.tv-trip-head { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 0.35rem; }
+.tv-trip-flags { letter-spacing: -0.06em; white-space: nowrap; }
+.tv-trip-flags { font-size: 1.15rem; line-height: 1; }
+.tv-trip-when {
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+.tv-trip-tag {
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.18rem 0.45rem; border-radius: 2px; color: #e6d5a2;
+  background: rgba(216,198,138,.14); border: 1px solid rgba(216,198,138,.34);
+}
+.tv-trip h3 {
+  font-family: var(--sans); font-weight: 650; font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  color: var(--c1); line-height: 1.25;
+}
+.tv-trip-c {
+  margin-top: 0.2rem; font-family: var(--mono); font-size: 0.62rem;
+  letter-spacing: 0.06em; color: var(--ink-dim);
+}
+.tv-trip-c em { font-style: normal; color: var(--mute); opacity: .8; margin-left: 0.6rem; }
+.tv-trip-n { margin-top: 0.5rem; font-size: 0.92rem; line-height: 1.65; color: var(--ink-dim); }
+.tv-trip-grade {
+  position: absolute; right: var(--gutter); bottom: 0.8rem;
+  font-family: var(--mono); font-size: 0.48rem; letter-spacing: 0.12em;
+  color: var(--mute); opacity: .5;
+}
+
+/* the eighteen backdrops, all built from the trip's own two colours */
+[data-look="coast"]  .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 42%; background: radial-gradient(80% 100% at 50% 100%, var(--c1), transparent 70%); opacity: .3; }
+[data-look="coast"]  .tv-trip-bg i:nth-child(2) { right: 8%; top: 14%; width: 90px; height: 90px; border-radius: 50%; background: var(--c1); opacity: .18; }
+[data-look="reef"]   .tv-trip-bg i:nth-child(1) { inset: 0; background: repeating-linear-gradient(115deg, transparent 0 26px, color-mix(in srgb, var(--c1) 12%, transparent) 26px 28px); }
+[data-look="dome"]   .tv-trip-bg i:nth-child(1) { right: 6%; bottom: -14%; width: 190px; height: 190px; border-radius: 50% 50% 0 0; background: var(--c1); opacity: .16; }
+[data-look="dome"]   .tv-trip-bg i:nth-child(2) { right: 15%; bottom: 44%; width: 5px; height: 74px; background: var(--c1); opacity: .3; }
+[data-look="arches"] .tv-trip-bg i:nth-child(1) { right: 4%; bottom: 0; width: 260px; height: 60%; background: repeating-linear-gradient(90deg, color-mix(in srgb, var(--c1) 22%, transparent) 0 4px, transparent 4px 52px); mask-image: radial-gradient(60% 100% at 50% 100%, #000 60%, transparent); }
+[data-look="desert"] .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 46%; background: radial-gradient(120% 100% at 30% 100%, var(--c1), transparent 62%); opacity: .26; }
+[data-look="canyon"] .tv-trip-bg i:nth-child(1) { right: 0; top: 0; bottom: 0; width: 40%; background: linear-gradient(100deg, transparent, color-mix(in srgb, var(--c1) 26%, transparent)); clip-path: polygon(40% 0, 100% 0, 100% 100%, 8% 100%); }
+[data-look="haram"]  .tv-trip-bg i:nth-child(1) { right: 8%; top: 50%; translate: 0 -50%; width: 150px; height: 150px; border: 1px solid var(--c1); border-radius: 50%; opacity: .3; }
+[data-look="haram"]  .tv-trip-bg i:nth-child(2) { right: 8%; top: 50%; translate: 0 -50%; width: 100px; height: 100px; border: 1px solid var(--c1); border-radius: 50%; opacity: .22; }
+[data-look="haram"]  .tv-trip-bg i:nth-child(3) { right: 12.4%; top: 50%; translate: 0 -50%; width: 58px; height: 58px; background: var(--c2); border: 1px solid var(--c1); opacity: .5; }
+[data-look="skyline"] .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 34%; background: repeating-linear-gradient(90deg, color-mix(in srgb, var(--c1) 24%, transparent) 0 18px, transparent 18px 30px); mask-image: linear-gradient(transparent, #000); }
+[data-look="tiles"]  .tv-trip-bg i:nth-child(1) { inset: 0; background-image: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--c1) 16%, transparent) 3px, transparent 4px); background-size: 34px 34px; }
+[data-look="ruins"]  .tv-trip-bg i:nth-child(1) { right: 5%; bottom: 0; width: 220px; height: 55%; background: repeating-linear-gradient(90deg, color-mix(in srgb, var(--c1) 20%, transparent) 0 10px, transparent 10px 46px); }
+[data-look="medina"] .tv-trip-bg i:nth-child(1) { inset: 0; background-image: repeating-linear-gradient(45deg, color-mix(in srgb, var(--c1) 9%, transparent) 0 2px, transparent 2px 18px), repeating-linear-gradient(-45deg, color-mix(in srgb, var(--c1) 9%, transparent) 0 2px, transparent 2px 18px); }
+[data-look="limestone"] .tv-trip-bg i:nth-child(1) { inset: 0; background: repeating-linear-gradient(0deg, color-mix(in srgb, var(--c1) 10%, transparent) 0 1px, transparent 1px 22px); }
+[data-look="mountains"] .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 44%; background: var(--c1); opacity: .2; clip-path: polygon(0 100%, 14% 34%, 28% 76%, 46% 20%, 62% 66%, 78% 30%, 100% 82%, 100% 100%); }
+[data-look="volcano"] .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 50%; background: var(--c1); opacity: .18; clip-path: polygon(0 100%, 40% 12%, 60% 12%, 100% 100%); }
+[data-look="andes"]  .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 46%; background: var(--c1); opacity: .16; clip-path: polygon(0 100%, 22% 22%, 44% 70%, 66% 8%, 88% 60%, 100% 40%, 100% 100%); }
+[data-look="cliffs"] .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 40%; background: linear-gradient(180deg, color-mix(in srgb, var(--c1) 30%, transparent), transparent); clip-path: polygon(0 30%, 30% 0, 62% 22%, 100% 6%, 100% 100%, 0 100%); }
+[data-look="torii"]  .tv-trip-bg i:nth-child(1) { right: 9%; bottom: 12%; width: 150px; height: 10px; background: var(--c1); opacity: .3; }
+[data-look="torii"]  .tv-trip-bg i:nth-child(2) { right: 13%; bottom: 12%; width: 9px; height: 110px; background: var(--c1); opacity: .3; }
+[data-look="torii"]  .tv-trip-bg i:nth-child(3) { right: 30%; bottom: 12%; width: 9px; height: 110px; background: var(--c1); opacity: .3; }
+
+/* Photos, for when they get added. Nothing renders until a trip has a `shots`
+   array, so this sits dormant rather than leaving an empty frame. */
+.tv-shots {
+  display: grid; gap: 0.6rem; margin-top: 1.2rem;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+.tv-shots a { display: block; border-radius: 6px; overflow: hidden; border: 1px solid var(--line); }
+.tv-shots img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 3; display: block;
+  transition: transform .3s ease; }
+.tv-shots a:hover img { transform: scale(1.05); }
+
+@media (prefers-reduced-motion: reduce) { .tv-shots a:hover img { transform: none; } }
+
+/* ── selection ──
+   Cards are real controls: clickable, focusable, Enter/Space. Picking one dims
+   the rest so a single entry can be read on its own; picking it again clears. */
+.tv-trip { cursor: pointer; transition: border-color .18s ease, opacity .25s ease, transform .18s ease; }
+.tv-trip:hover { border-color: color-mix(in srgb, var(--c1) 45%, transparent); }
+.tv-trip:focus-visible { outline: 2px solid var(--c1); outline-offset: 2px; }
+.is-picking .tv-trip { opacity: .32; }
+.is-picking .tv-trip.is-sel {
+  opacity: 1;
+  border-color: var(--c1);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--c1) 40%, transparent),
+              0 18px 40px -26px var(--c1);
+}
+.is-picking .tv-trip.is-sel .tv-trip-bg { opacity: .85; }
+.is-picking .tv-grade { opacity: .4; }
+.tv-shortgrp a.is-sel {
+  background: color-mix(in srgb, var(--c) 16%, transparent);
+  border-left-color: var(--c);
+}
+@media (prefers-reduced-motion: reduce) { .tv-trip { transition: none; } }

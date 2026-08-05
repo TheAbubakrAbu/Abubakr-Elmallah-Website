@@ -1,0 +1,130 @@
+/* batman.css -- loaded only by /batman. Split out of fanpages.css. */
+
+.bat-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(90% 70% at 50% 100%, #10131a 0%, #0a0c11 50%, #030405 100%);
+}
+
+.bat-sky > * { position: absolute; inset: 0; display: block; }
+
+/* Gotham is meant to be unlit. Everything here stays low on purpose. */
+.bat-sky { }
+
+.bat-city { inset: auto 0 0 0; height: 54%; }
+
+.bat-city svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.bc-far  { fill: #0c0f16; }
+
+.bc-near { fill: #06080d; }
+
+.bc-lit  { fill: #6a5a2a; opacity: .55; }
+
+/* the signal, thrown on the cloud base */
+.bat-signal {
+  inset: 4% auto auto 50%; translate: -50% 0;
+  width: clamp(200px, 28vw, 420px); aspect-ratio: 1; opacity: .12;
+}
+
+.bat-signal svg { width: 100%; height: 100%; display: block; }
+
+.bsg-beam { fill: #e8d9a4; }
+
+.bat-signal {
+  filter: blur(1px);
+  animation: bat-flicker 9s ease-in-out infinite alternate;
+}
+
+/* rain, two sheets */
+.bat-rain {
+  inset: -20% -20% 0 -20%;
+  background-image:
+    repeating-linear-gradient(78deg, rgba(170,190,215,.07) 0 1px, transparent 1px 11px),
+    repeating-linear-gradient(76deg, rgba(150,175,205,.05) 0 1px, transparent 1px 17px);
+  mask-image: linear-gradient(180deg, transparent 0, #000 20%, #000 78%, transparent 98%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 20%, #000 78%, transparent 98%);
+  animation: bat-fall 1.1s linear infinite;
+}
+
+/* fill only, no stroke: the two mirrored halves meet down the centreline and a
+   stroke would draw a seam straight through the middle of the blade */
+.btr-body  { fill: #262b33; }
+
+.btr-bevel { fill: #39414b; }
+
+.btr-edge  { fill: none; stroke: #cdd8e4; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+
+.btr {
+  transform-box: view-box; transform-origin: 200px 84px;
+  animation: bat-spin 7s cubic-bezier(.45,0,.55,1) infinite;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,.7));
+}
+
+.bat-sky::before {                     /* the searchlight cone */
+  content: ""; position: absolute; left: 50%; bottom: -10%; translate: -50% 0;
+  width: 120vw; height: 120vh;
+  background: conic-gradient(from 200deg at 50% 100%, transparent 0 24deg, rgba(200,215,235,.055) 30deg, transparent 36deg);
+  filter: blur(6px);
+}
+
+.bat-sky::after {                      /* the disc it throws */
+  content: ""; position: absolute; left: 50%; top: 10%; translate: -50% 0;
+  width: clamp(180px, 26vw, 380px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, rgba(210,225,245,.09), transparent 68%);
+}
+
+/* ═════════════ Batman: the utility belt ═════════════ */
+.bat-belt {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+}
+
+.bat-strap {
+  position: relative; display: flex; align-items: stretch; gap: 6px;
+  padding: 10px; border-radius: 8px;
+  background: linear-gradient(180deg, #4a3b22, #2e2415 60%, #1d1710);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.10), inset 0 -8px 14px rgba(0,0,0,.5), 0 22px 44px -28px #000;
+}
+
+.bat-strap::before, .bat-strap::after {  /* stitching */
+  content: ""; position: absolute; left: 10px; right: 10px; height: 1px;
+  background: repeating-linear-gradient(90deg, rgba(240,220,160,.35) 0 5px, transparent 5px 11px);
+}
+
+.bat-strap::before { top: 5px; }
+
+.bat-strap::after  { bottom: 5px; }
+
+.bat-pouch {
+  position: relative; flex: 1 1 0; min-width: 0;
+  padding: 0.9rem 0.7rem 0.8rem; border-radius: 5px; text-align: center;
+  background: linear-gradient(180deg, #6b5730, #40331d);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.14), inset 0 -6px 10px rgba(0,0,0,.45);
+  transition: transform .35s var(--ease), background .35s;
+}
+
+.bat-pouch:hover { transform: translateY(-5px); background: linear-gradient(180deg, #7d6737, #4a3b22); }
+
+.bat-pouch::before {                     /* the flap */
+  content: ""; position: absolute; left: 8%; right: 8%; top: 5px; height: 34%;
+  border-radius: 3px; background: linear-gradient(180deg, rgba(0,0,0,.28), transparent);
+  border-bottom: 1px solid rgba(0,0,0,.4);
+}
+
+.bat-pouch b {
+  position: relative; display: block; font-family: var(--serif); font-weight: 600;
+  font-size: 0.86rem; color: #f0e4c0; line-height: 1.2;
+}
+
+.bat-pouch span {
+  position: relative; display: block; margin-top: 0.25rem;
+  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(240,228,192,.6);
+}
+
+.bat-belt-cap {
+  margin-top: 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+@media (max-width: 720px) { .bat-strap { flex-wrap: wrap; } .bat-pouch { flex: 1 1 30%; } }

@@ -27,10 +27,9 @@ permalink: /college/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/transcript.css' %}" />
 </head>
-<body data-intro="veil">
-<div id="introCover" aria-hidden="true" style="position:fixed;inset:0;z-index:11000;background:#08080a"></div>
-
+<body data-intro="none">
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
 <canvas id="field" aria-hidden="true"></canvas>
@@ -117,12 +116,108 @@ permalink: /college/
       <div class="lightbox-imgs"></div>
     </div>
 
+    <h3 class="subsec reveal">Roles &amp; Leadership <span class="subsec-yr">by year</span></h3>
+
+    <section class="yr-block reveal">
+      <div class="yr-head">
+        <h4>First Year</h4>
+        <span class="yr-span">2024&#8211;25</span>
+        <span class="yr-count">3 roles</span>
+      </div>
+      <p class="yr-note">A job on campus, and then helping start something. Both of the things I still spend the most time on began this year.</p>
+    </section>
+    <ol class="roles">
+      <li class="role reveal" data-yr="1st year">
+        <div class="role-when"><b>Feb 2024 &#8211; Jan 2026</b><span>carried over &#183; 2 yrs</span></div>
+        <div class="role-body">
+          <h4>iOS App Development Teacher &#183; STEM Heroes Academy</h4>
+          <p>Started in high school and ran through both college years. See the <a href="/high-school/">high school page</a> for the whole story.</p>
+          <span class="role-tag">Ended Jan 2026</span>
+        </div>
+      </li>
+      <li class="role reveal role--now" data-yr="1st year">
+        <div class="role-when"><b>Mar 2025 &#8211; now</b><span>1st year &#183; part-time</span></div>
+        <div class="role-body">
+          <h4>iOS App Developer &#183; UCI Student Center &amp; Event Services</h4>
+          <ul class="role-points">
+            <li>Develop and maintain UCI&#8217;s official iOS apps, including <b>UCI Now</b> and <b>Zotfinder</b>, in UIKit.</li>
+            <li>Implement new features, fix bugs, and optimise performance.</li>
+            <li>Integrate real-time campus data, location services and APIs, working with campus departments.</li>
+          </ul>
+          <span class="role-tag">Remote &#183; Irvine, California</span>
+          <span class="role-tag">iOS &#183; UIKit</span>
+        </div>
+      </li>
+      <li class="role reveal role--now" data-yr="1st year">
+        <div class="role-when"><b>Apr 2025 &#8211; now</b><span>1st year &#183; part-time</span></div>
+        <div class="role-body">
+          <h4>Co-Founder &amp; Vice President &#183; Muslim Tech Collaborative</h4>
+          <ul class="role-points">
+            <li>Co-founded the <b>UCI chapter</b> of MTC, a national organisation empowering Muslims in tech through education, professional development, community projects and workshops.</li>
+            <li>Lead and manage every project-based initiative: client consulting, technical workshops, and beginner development programmes.</li>
+            <li>Coordinate cross-functional teams building websites, tools and apps for masjids, nonprofits and Muslim-owned businesses.</li>
+            <li>Moved up through the chapter: VP of Workshops, then VP of Projects, and now <b>Vice President</b>.</li>
+          </ul>
+          <span class="role-tag">Founding team</span>
+          <span class="role-tag">Vice President</span>
+          <span class="role-tag">On-site &#183; Irvine, California</span>
+        </div>
+      </li>
+    </ol>
+
+    <section class="yr-block reveal">
+      <div class="yr-head">
+        <h4>Second Year</h4>
+        <span class="yr-span">2025&#8211;26</span>
+        <span class="yr-count">4 roles</span>
+      </div>
+      <p class="yr-note">Every role from first year widened, and two more arrived on top of them.</p>
+    </section>
+    <ol class="roles">
+      <li class="role reveal" data-yr="2nd year">
+        <div class="role-when"><b>Sep 2025</b><span>2nd year</span></div>
+        <div class="role-body">
+          <h4>Bros Social Coordinator &#183; Muslim Student Union</h4>
+          <p>Took this on at the start of second year, running the social side for the brothers at UCI MSU.</p>
+        </div>
+      </li>
+      <li class="role reveal" data-yr="2nd year">
+        <div class="role-when"><b>2nd year</b><span>2025&#8211;26</span></div>
+        <div class="role-body">
+          <h4>Ignite Counseling &#183; Muslim Tech Collaborative</h4>
+          <p>Kickstarted Ignite Counseling under MTC in my second year, alongside the VP role above.</p>
+          <span class="role-tag">Founded under MTC</span>
+        </div>
+      </li>
+      <li class="role reveal" data-yr="2nd year">
+        <div class="role-when"><b>Nov 2025</b><span>2nd year</span></div>
+        <div class="role-body">
+          <h4>Developer &#183; PeterPlate, ICSSC</h4>
+          <p>Joined the Information &amp; Computer Science Student Council as a developer on PeterPlate.</p>
+        </div>
+      </li>
+      <li class="role reveal role--now" data-yr="2nd year">
+        <div class="role-when"><b>Feb 2026</b><span>2nd year</span></div>
+        <div class="role-body">
+          <h4>Co-Lead Developer &#183; PeterPlate, ICSSC</h4>
+          <p>Moved up to co-lead about three months after joining, now leading a team of <b>12+</b> developers.</p>
+          <span class="role-tag">Team of 12+</span>
+        </div>
+      </li>
+    </ol>
+
     <h3 class="subsec reveal">What I’ve Built at UCI</h3>
     <div class="apps-grid apps-grid--2" data-cards="zotfinder,uci-now,uci-esports,peterplate"></div>
     <a class="dev-link reveal" href="https://apps.apple.com/us/developer/uci-student-center/id1382415697" target="_blank" rel="noopener" data-magnetic>
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.78c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.13 5.84c.64-.78 1.07-1.85.95-2.93-.92.04-2.04.61-2.7 1.38-.59.68-1.11 1.79-.97 2.84 1.03.08 2.08-.52 2.72-1.29z"/></svg>
       <span>View the UCI Apple Developer Page</span><i>↗</i>
     </a>
+
+    <h3 class="subsec reveal">Activities &amp; Awards</h3>
+    <div class="embed-wrap reveal">
+      <iframe class="embed-frame" src="https://docs.google.com/document/d/1zioMjAZAw8NhcJAiqedlRzqNQ3OM0sFF8d6uAy7p1v4/preview" title="College activities and awards document" loading="lazy"></iframe>
+      <p class="embed-note"><b>Full document above.</b> Or <a href="https://docs.google.com/document/d/1zioMjAZAw8NhcJAiqedlRzqNQ3OM0sFF8d6uAy7p1v4/edit?usp=sharing" target="_blank" rel="noopener">open it in Google Docs &#8599;</a>.</p>
+    </div>
 
     <h3 class="subsec reveal">Academics <span class="subsec-yr">Class of 2028</span></h3>
     <div class="acad reveal">

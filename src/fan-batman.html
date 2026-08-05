@@ -28,11 +28,56 @@ permalink: /franchises/batman/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/batman.css' %}" />
 </head>
 <body data-intro="none" data-fan="batman">
 
 <!-- a signal thrown at the cloud -->
-<div class="bat-sky" aria-hidden="true"></div>
+<!-- Gotham at night: rain, the skyline, and the signal on the clouds. Kept
+     deliberately dark — the whole point of this city is that it is unlit. -->
+<div class="bat-sky" aria-hidden="true">
+  <span class="bat-signal">
+    <svg viewBox="0 0 400 400">
+      <defs>
+        <path id="bsgHalf" d="M200 150 L222 178 C242 162 280 152 318 155 L350 169
+                              C326 177 312 187 306 200 L292 221 L278 195
+                              C272 189 263 189 257 195 L243 224 L232 197
+                              C226 191 217 192 211 200 L200 218 Z"/>
+        <mask id="bsgMask">
+          <circle cx="200" cy="200" r="150" fill="#fff"/>
+          <g fill="#000">
+            <use href="#bsgHalf"/>
+            <use href="#bsgHalf" transform="translate(400,0) scale(-1,1)"/>
+          </g>
+        </mask>
+      </defs>
+      <circle class="bsg-beam" cx="200" cy="200" r="150" mask="url(#bsgMask)"/>
+    </svg>
+  </span>
+  <span class="bat-city">
+    <svg viewBox="0 0 1400 340" preserveAspectRatio="xMidYMax slice">
+      <g class="bc-far">
+        <path d="M0 340V210h70v-40h50v40h60V150h80v60h60v-90h70v90h70v-46h60v46h80V132h74v78h66v-56h60v56h80V168h70v42h70v-70h60v70h80v-34h70v34h74v130z"/>
+      </g>
+      <g class="bc-near">
+        <path d="M30 340V186h96v-52h64v52h84V150h74v36h58v-72h80v72h70v58h86V178h78v40h76v-58h72v58h84v-30h90v30h96v152z"/>
+      </g>
+      <g class="bc-lit">
+        <rect x="52" y="212" width="9" height="13"/><rect x="76" y="240" width="9" height="13"/>
+        <rect x="146" y="164" width="9" height="13"/><rect x="170" y="196" width="9" height="13"/>
+        <rect x="252" y="176" width="9" height="13"/><rect x="286" y="220" width="9" height="13"/>
+        <rect x="374" y="140" width="9" height="13"/><rect x="402" y="184" width="9" height="13"/>
+        <rect x="486" y="204" width="9" height="13"/><rect x="520" y="248" width="9" height="13"/>
+        <rect x="618" y="200" width="9" height="13"/><rect x="654" y="234" width="9" height="13"/>
+        <rect x="742" y="188" width="9" height="13"/><rect x="778" y="226" width="9" height="13"/>
+        <rect x="880" y="192" width="9" height="13"/><rect x="918" y="238" width="9" height="13"/>
+        <rect x="1012" y="212" width="9" height="13"/><rect x="1050" y="252" width="9" height="13"/>
+        <rect x="1160" y="200" width="9" height="13"/><rect x="1210" y="240" width="9" height="13"/>
+      </g>
+    </svg>
+  </span>
+  <span class="bat-rain"></span>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -79,7 +124,48 @@ permalink: /franchises/batman/
     <div class="fan-links">
       <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
     </div>
+    <div class="fan-art fan-art--bat reveal">
+      <div class="fan-art-fig">
+        <svg viewBox="0 0 400 170" role="img" aria-label="A batarang">
+          <defs>
+            <!-- right half only: the wing sweeps out to a point, then three
+                 downward scallops back to the centre. Mirrored below, so the
+                 two sides are identical by construction. -->
+            <path id="btrHalf" d="M200 24 L228 64 C252 44 300 30 350 34 L392 52
+                                  C360 62 342 76 334 94 L316 122 L298 88
+                                  C290 80 278 80 270 88 L252 126 L238 92
+                                  C230 84 218 86 210 96 L200 120 Z"/>
+            <path id="btrBevelHalf" d="M200 40 L222 70 C248 54 296 44 340 48
+                                       C316 56 300 68 292 84 L276 96
+                                       C268 90 258 92 250 100 L238 108
+                                       C232 100 222 100 214 106 L200 116 Z"/>
+          </defs>
+          <g class="btr">
+            <g class="btr-body">
+              <use href="#btrHalf"/>
+              <use href="#btrHalf" transform="translate(400,0) scale(-1,1)"/>
+            </g>
+            <g class="btr-bevel">
+              <use href="#btrBevelHalf"/>
+              <use href="#btrBevelHalf" transform="translate(400,0) scale(-1,1)"/>
+            </g>
+            <g class="btr-edge">
+              <path d="M200 24 L228 64 C252 44 300 30 350 34 L392 52"/>
+              <path d="M200 24 L172 64 C148 44 100 30 50 34 L8 52"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="fan-art-body">
+        <q>It’s not who I am underneath, but what I do that defines me.</q>
+        <span class="fan-art-by">Bruce Wayne · Batman Begins</span>
+        <p>The only major superhero with no powers at all. Everything he has, he bought or built or trained for, which is exactly why he is the one that stuck: the fantasy is not that you were born special, it is that you decided to be and then did the work.</p>
+        <p>Eighty-odd years, and the character survives every reinterpretation — camp, gothic, grounded, detective, brawler — because the core is stable and the tone is the variable.</p>
+      </div>
+    </div>
   </section>
+
+  <div id="fanPlay"></div>
 
   <section class="bat-belt reveal">
     <div class="bat-strap">
@@ -124,5 +210,7 @@ permalink: /franchises/batman/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

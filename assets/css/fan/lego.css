@@ -1,0 +1,202 @@
+/* lego.css -- loaded only by /lego. Split out of fanpages.css. */
+
+.lg-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(80% 60% at 50% 0%, #1c1410 0%, #120c0a 46%, #060404 100%);
+}
+
+.lg-sky::before {                      /* studs, in the primary colours */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 12px 12px, rgba(255,210,31,.10) 5px, transparent 6px),
+    radial-gradient(circle at 44px 44px, rgba(208,16,18,.09) 5px, transparent 6px),
+    radial-gradient(circle at 76px 12px, rgba(0,85,191,.09) 5px, transparent 6px),
+    radial-gradient(circle at 108px 44px, rgba(0,133,43,.08) 5px, transparent 6px);
+  background-size: 128px 64px;
+  mask-image: radial-gradient(ellipse 90% 70% at 50% 10%, #000 10%, transparent 82%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 10%, #000 10%, transparent 82%);
+}
+
+/* NAME COLLISIONS: `.lg-piece` and `.lg-studs` already belong to the red brick
+   further down this file. Reusing them made my `opacity: 0` land on the brick
+   (it vanished) and the brick's `position: relative` land on my fountain studs
+   (they never moved). Everything here is `.lg-bit` / `.lg-studfield` instead.
+
+   A baseplate seen from above, with bricks along the bottom. Capped at .36 by
+   the global -sky rule further up. */
+.lg-sky > * { position: absolute; inset: 0; }
+
+.lg-plate {
+  background-color: #12161f;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(255,255,255,.055) 34%, transparent 36%),
+    linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+  background-size: 46px 46px, 46px 46px, 46px 46px;
+}
+
+.lg-studfield {
+  background-image: radial-gradient(circle at 50% 50%, rgba(255,210,31,.10) 30%, transparent 32%);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(ellipse 70% 55% at 50% 12%, #000 10%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 55% at 50% 12%, #000 10%, transparent 78%);
+  animation: lg-shift 40s linear infinite;
+}
+
+.lg-bricks { inset: auto 0 0 0; height: 40%; }
+
+.lg-bricks svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.lgb-y rect { fill: #ffd21f; }
+
+.lgb-r rect { fill: #d01012; }
+
+.lgb-b rect { fill: #0055bf; }
+
+.lgb-g rect { fill: #00852b; }
+
+.lg-glow { background: radial-gradient(60% 40% at 50% 4%, rgba(255,210,31,.13), transparent 72%); }
+
+/* ── the stud fountain ── */
+.lg-stud {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1rem, 2.6vw, 2.2rem); grid-template-columns: 1fr; align-items: center;
+}
+
+@media (min-width: 880px) { .lg-stud { grid-template-columns: 1.05fr 0.95fr; } }
+
+.lg-stud-panel h4 { font-family: var(--sans); font-weight: 650; font-size: 1.15rem; margin-bottom: 0.6rem; }
+
+.lg-stud-panel > p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 60ch; }
+
+.lg-stud-pick { display: flex; gap: 0.7rem; flex-wrap: wrap; margin: 1.2rem 0 1rem; }
+
+/* Each button is a stud seen at a slight angle: a disc on a short cylinder. */
+.lg-studbtn {
+  position: relative; font: inherit; cursor: pointer; padding: 0.55rem 0.7rem 0.5rem;
+  display: grid; justify-items: center; gap: 0.4rem; min-width: 74px;
+  border-radius: 5px; border: 1px solid rgba(255,255,255,.1);
+  background: rgba(255,255,255,.035);
+  transition: border-color .15s ease, background .15s ease, transform .15s ease;
+}
+
+.lg-studbtn:hover { background: rgba(255,255,255,.07); transform: translateY(-2px); }
+
+.lg-studbtn:focus-visible { outline: 2px solid var(--c); outline-offset: 2px; }
+
+.lg-studbtn-top {
+  width: 34px; height: 26px;
+  background: linear-gradient(180deg, var(--c), var(--c2));
+  box-shadow: inset 0 -5px 0 -2px rgba(0,0,0,.28), 0 2px 6px rgba(0,0,0,.4);
+}
+
+.lg-studbtn-v {
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.08em; color: var(--ink-dim);
+}
+
+.lg-stud-read { display: flex; align-items: baseline; gap: 0.7rem; margin-bottom: 0.5rem; }
+
+.lg-stud-val {
+  font-family: var(--mono); font-size: clamp(2rem, 6vw, 3rem); font-weight: 600;
+  color: var(--ink); line-height: 1;
+}
+
+.lg-stud-name {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+.lg-stud-note { font-size: 0.92rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+
+.lg-stud-total {
+  display: flex; align-items: baseline; gap: 0.6rem; margin-top: 1rem;
+  padding-top: 0.9rem; border-top: 1px solid var(--line);
+}
+
+.lg-stud-total span {
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+.lg-stud-total b { font-family: var(--mono); font-size: 1.2rem; color: #ffd21f; }
+
+.lg-stud-mult { margin-top: 0.9rem; font-size: 0.86rem; line-height: 1.7; color: var(--mute); }
+
+.lg-stud-mult b { color: var(--ink-dim); }
+
+.lg-fountain {
+  position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 1 / 1;
+  background: radial-gradient(80% 60% at 50% 100%, #1b2130, #0a0d14 72%);
+  border: 1px solid rgba(255,255,255,.07);
+}
+
+.lg-fountain::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 42%;
+  background: radial-gradient(60% 100% at 50% 100%, color-mix(in srgb, var(--glow, #ffd21f) 22%, transparent), transparent 72%);
+}
+
+/* Pieces are recycled, so everything that varies per throw comes in as a custom
+   property and the keyframes stay generic. */
+.lg-bit {
+  position: absolute; bottom: 8%; width: 22px; height: 17px;
+  opacity: 0; pointer-events: none;
+  background: linear-gradient(180deg, var(--c, #b8bcc4), var(--c2, #8f949c));
+  box-shadow: inset 0 -4px 0 -2px rgba(0,0,0,.3);
+}
+
+.lg-bit.is-up { animation: lg-throw var(--dur, 1300ms) cubic-bezier(.25,.7,.5,1) forwards; }
+
+/* ═════════════ LEGO: the brick, in section ═════════════ */
+.lg-brick {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 820px) { .lg-brick { grid-template-columns: 0.9fr 1.1fr; } }
+
+.lg-piece { position: relative; width: min(320px, 82vw); margin: 0 auto; }
+
+.lg-studs { display: flex; gap: 8px; justify-content: center; margin-bottom: -6px; position: relative; z-index: 2; }
+
+.lg-studs i {
+  width: 44px; height: 18px; border-radius: 8px 8px 4px 4px;
+  background: linear-gradient(180deg, #ff5a4a, #c9241c);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.4), 0 3px 0 rgba(0,0,0,.25);
+}
+
+.lg-slab {
+  height: 76px; border-radius: 4px;
+  background: linear-gradient(180deg, #e8382c, #b81f18);
+  box-shadow: inset 0 3px 0 rgba(255,255,255,.28), inset 0 -8px 14px rgba(0,0,0,.3), 0 16px 30px -18px #000;
+}
+
+.lg-under {
+  display: flex; gap: 10px; justify-content: center; margin-top: 10px;
+  padding: 12px 10px; border-radius: 4px;
+  background: linear-gradient(180deg, #8f1a14, #6b120d);
+  box-shadow: inset 0 4px 10px rgba(0,0,0,.5);
+}
+
+.lg-under i {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 4px solid #d8352b; background: rgba(0,0,0,.35);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,.6);
+}
+
+.lg-dims { display: flex; justify-content: space-between; margin-top: 0.7rem; }
+
+.lg-dims span {
+  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+.lg-note h4 {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.03em; font-size: 1.2rem;
+  color: var(--a); margin-bottom: 0.6rem;
+}
+
+.lg-note p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+
+.lg-note p + p { margin-top: 0.7rem; }

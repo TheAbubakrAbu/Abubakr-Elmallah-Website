@@ -28,11 +28,37 @@ permalink: /franchises/the-office/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/the-office.css' %}" />
 </head>
 <body data-intro="none" data-fan="office">
 
-<!-- ceiling tiles, fluorescent -->
-<div class="off-sky" aria-hidden="true"></div>
+<!-- the branch after hours: ceiling panels, blinds, the floor in silhouette -->
+<div class="off-sky" aria-hidden="true">
+  <div class="off-panels"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="off-blinds"></div>
+  <div class="off-floor">
+    <svg viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+      <g class="ofl-desk">
+        <path d="M60 150h250v10H60zM70 160h10v52H70zM290 160h10v52h-10z"/>
+        <path d="M120 118h60v32h-60z"/><path d="M142 150h16v6h-16z"/>
+        <path d="M330 150h250v10H330zM340 160h10v52h-10zM560 160h10v52h-10z"/>
+        <path d="M390 118h60v32h-60z"/><path d="M412 150h16v6h-16z"/>
+        <path d="M640 150h250v10H640zM650 160h10v52h-10zM870 160h10v52h-10z"/>
+        <path d="M700 118h60v32h-60z"/><path d="M722 150h16v6h-16z"/>
+        <path d="M930 150h210v10H930zM940 160h10v52h-10zM1120 160h10v52h-10z"/>
+      </g>
+      <g class="ofl-chair">
+        <path d="M180 176h56v8h-56zM204 184h8v20h-8zM190 204h36v6h-36z"/>
+        <path d="M450 176h56v8h-56zM474 184h8v20h-8zM460 204h36v6h-36z"/>
+        <path d="M760 176h56v8h-56zM784 184h8v20h-8zM770 204h36v6h-36z"/>
+      </g>
+      <g class="ofl-stack">
+        <path d="M980 132h44v6h-44zM982 140h40v6h-40zM980 148h44v6h-44z"/>
+        <path d="M1052 138h40v6h-40zM1054 146h36v6h-36z"/>
+      </g>
+    </svg>
+  </div>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -81,19 +107,38 @@ permalink: /franchises/the-office/
     </div>
   </section>
 
-  <section class="off-kit reveal">
-    <div class="off-dundie">
-      <div class="off-trophy">
-        <div class="off-cup"></div>
-        <div class="off-stem"></div>
-        <div class="off-base"><span>Dundie</span></div>
-      </div>
-    </div>
-    <div class="off-talk">
-      <h4>The conceit</h4>
-      <p>A documentary crew has been filming a paper company in Scranton for nine years, and everybody in the building knows it. That is the whole trick: the looks to camera work because there is a camera.</p>
-      <p>It is also why the finale lands. The crew finally airs the thing, the branch watches itself, and the show gets to ask whether nine years of ordinary days were worth documenting. They were.</p>
-      <cite>Talking head · conference room · Dunder Mifflin, Scranton</cite>
+  <div id="fanPlay"></div>
+
+  <section class="fan-art fan-art--off reveal">
+    <figure class="fan-art-fig off-stage">
+      <svg viewBox="0 0 420 300" aria-hidden="true">
+        <rect class="ofs-wall" x="0" y="0" width="420" height="300"/>
+        <g class="ofs-light"><rect x="86" y="18" width="106" height="12" rx="2"/><rect x="228" y="18" width="106" height="12" rx="2"/></g>
+        <g class="ofs-blind"><path d="M300 54h96v92h-96z"/></g>
+        <g class="ofs-slat"><path d="M300 62h96v3h-96zM300 74h96v3h-96zM300 86h96v3h-96zM300 98h96v3h-96zM300 110h96v3h-96zM300 122h96v3h-96zM300 134h96v3h-96z"/></g>
+        <g class="ofs-board"><rect x="34" y="58" width="112" height="76" rx="3"/></g>
+        <g class="ofs-chalk"><path d="M48 76h84v3H48zM48 88h62v3H48zM48 100h74v3H48zM48 112h48v3H48z"/></g>
+        <g class="ofs-desk">
+          <path d="M28 196h364v12H28z"/><path d="M44 208h12v72H44zM364 208h12v72h-12z"/>
+        </g>
+        <g class="ofs-mon"><rect x="72" y="150" width="76" height="46" rx="3"/><rect x="252" y="150" width="76" height="46" rx="3"/></g>
+        <g class="ofs-screen"><rect x="78" y="156" width="64" height="34" rx="2"/><rect x="258" y="156" width="64" height="34" rx="2"/></g>
+        <g class="ofs-paper">
+          <path d="M170 178h60v6h-60zM172 186h56v6h-56zM170 194h60v4h-60z"/>
+        </g>
+        <g class="ofs-mug"><path d="M340 174h30v22h-30z"/><path d="M370 179h10a6 6 0 0 1 0 12h-10z"/></g>
+        <g class="ofs-trophy">
+          <path d="M196 148h28l-4 20h-20z"/><path d="M204 168h12v10h-12z"/><path d="M194 178h32v6h-32z"/>
+          <path d="M196 150h-8a7 7 0 0 0 8 10zM224 150h8a7 7 0 0 1-8 10z"/>
+        </g>
+      </svg>
+      <figcaption>The conference room, after everyone has gone home — drawn in SVG for this page</figcaption>
+    </figure>
+    <div class="fan-art-body">
+      <q>I’m not superstitious, but I am a little stitious.</q>
+      <p class="fan-art-by">Michael Scott, Regional Manager</p>
+      <p>A documentary crew has been filming a paper company in Scranton for nine years, and everybody in the building knows it. That is the whole trick: the looks to camera work because there is a camera. Nothing else on this list gets that much out of a single formal decision.</p>
+      <p>It is also why the finale lands. The crew finally airs the thing, the branch sits down and watches itself, and the show gets to ask out loud whether nine years of completely ordinary days were worth documenting. They were. No sitcom has bettered that exit.</p>
     </div>
   </section>
 
@@ -127,5 +172,7 @@ permalink: /franchises/the-office/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

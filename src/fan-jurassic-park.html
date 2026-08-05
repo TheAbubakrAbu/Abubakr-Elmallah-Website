@@ -28,6 +28,7 @@ permalink: /franchises/jurassic-park/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/jurassic-park.css' %}" />
 </head>
 <body data-intro="none" data-fan="jp">
 
@@ -97,6 +98,8 @@ permalink: /franchises/jurassic-park/
       <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
     </div>
   </section>
+
+  <div id="fanPlay"></div>
 
   <div class="fan-art fan-art--jp reveal">
     <div class="fan-art-fig">
@@ -196,5 +199,7 @@ permalink: /franchises/jurassic-park/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

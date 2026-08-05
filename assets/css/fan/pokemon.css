@@ -1,0 +1,192 @@
+/* pokemon.css -- loaded only by /pokemon. Split out of fanpages.css. */
+
+.pkm-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(80% 60% at 50% 0%, #101a34 0%, #0a1020 48%, #04060c 100%);
+}
+
+.pkm-sky > * { position: absolute; inset: 0; display: block; }
+
+/* a route at dusk: hills behind, tall grass in front */
+.pkm-hills { inset: auto 0 0 0; height: 40%; }
+
+.pkm-hills svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.pkm-grass { inset: auto 0 0 0; height: 16%; }
+
+.pkm-grass svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.pkg-blades {
+  fill: #12301c;
+  animation: pkm-sway 9s ease-in-out infinite alternate;
+  transform-box: view-box; transform-origin: 50% 100%;
+}
+
+/* sparks drifting up out of the grass */
+.pkm-sparks {
+  background-size: 300px 300px;
+  background-image:
+    radial-gradient(2px 2px at 40px 60px,   rgba(240,200,64,.55), transparent),
+    radial-gradient(1.6px 1.6px at 160px 30px, rgba(127,208,240,.5), transparent),
+    radial-gradient(2.2px 2.2px at 250px 130px, rgba(224,96,42,.5), transparent),
+    radial-gradient(1.6px 1.6px at 90px 200px, rgba(160,111,224,.45), transparent),
+    radial-gradient(2px 2px at 210px 250px, rgba(63,191,127,.5), transparent);
+  mask-image: linear-gradient(180deg, transparent 30%, #000 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 30%, #000 100%);
+  animation: pkm-rise 30s linear infinite;
+  opacity: .5;
+}
+
+@media (min-width: 820px) { .fan-art--pkm { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); } }
+
+.pkb-white { fill: #eef2f7; }
+
+.pkb-red   { fill: #e03c3c; }
+
+.pkb-band  { fill: #14181f; }
+
+.pkb-ring  { fill: #14181f; }
+
+.pkb-inner { fill: #eef2f7; }
+
+.pkb-btn   { fill: #d8dee6; stroke: #9aa4b0; stroke-width: 2; }
+
+.pkb-edge  { fill: none; stroke: #14181f; stroke-width: 5; }
+
+.pkb-shine { fill: #fff; opacity: .28; }
+
+.pkb {
+  transform-box: view-box; transform-origin: 210px 210px;
+  animation: pkm-wobble 5.5s ease-in-out infinite;
+}
+
+.pkb-burst {
+  fill: none; stroke: #f0e8a0; stroke-width: 6; stroke-linecap: round;
+  opacity: 0; transform-box: view-box; transform-origin: 210px 210px;
+  animation: pkm-open 5.5s ease-out infinite;
+}
+
+.pkm-sky::before {
+  content: ""; position: absolute; right: -8%; top: 8%;
+  width: clamp(240px, 34vw, 520px); aspect-ratio: 1; border-radius: 50%;
+  background:
+    linear-gradient(180deg, rgba(224,60,60,.16) 0 48%, rgba(20,24,34,.5) 48% 52%, rgba(235,240,250,.10) 52%);
+  box-shadow: inset 0 0 0 3px rgba(255,255,255,.06);
+  opacity: .8;
+}
+
+.pkm-sky::after {
+  content: ""; position: absolute; right: calc(-8% + clamp(240px, 34vw, 520px) / 2 - 34px); top: calc(8% + clamp(240px, 34vw, 520px) / 2 - 34px);
+  width: 68px; height: 68px; border-radius: 50%;
+  border: 3px solid rgba(255,255,255,.10); background: rgba(10,14,24,.6);
+}
+
+/* ═════════════ Pokémon: a Pokédex, open on the desk ═════════════ */
+.pkm-dex {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 860px) { .pkm-dex { grid-template-columns: 0.85fr 1.15fr; } }
+
+.dex {
+  position: relative; width: min(330px, 82vw); margin: 0 auto;
+  padding: 14px 14px 18px; border-radius: 10px 10px 14px 14px;
+  background: linear-gradient(180deg, #d8382e, #a5241d 70%, #7f1a14);
+  box-shadow: 0 26px 54px -30px #000, inset 0 2px 0 rgba(255,255,255,.25),
+              inset 0 -6px 12px rgba(0,0,0,.35);
+}
+
+.dex-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+
+.dex-lens {
+  position: relative; width: 52px; height: 52px; border-radius: 50%; flex: none;
+  background: radial-gradient(circle at 34% 28%, #bfe8ff, #3f8fd0 46%, #1d4f8a);
+  box-shadow: 0 0 0 4px #f0f2f4, 0 0 0 6px #8f1a14, inset 0 0 10px rgba(0,0,0,.35);
+}
+
+.dex-lens::after {
+  content: ""; position: absolute; left: 24%; top: 18%; width: 26%; height: 20%;
+  border-radius: 50%; background: rgba(255,255,255,.75); filter: blur(1px);
+}
+
+.dex-leds { display: flex; gap: 7px; }
+
+.dex-leds i {
+  width: 12px; height: 12px; border-radius: 50%;
+  box-shadow: inset 0 -2px 3px rgba(0,0,0,.35);
+  animation: dex-blink 3.4s ease-in-out infinite;
+}
+
+.dex-leds i:nth-child(1) { background: #e04a3a; }
+
+.dex-leds i:nth-child(2) { background: #f0c840; animation-delay: .5s; }
+
+.dex-leds i:nth-child(3) { background: #5fd07f; animation-delay: 1s; }
+
+.dex-screen {
+  position: relative; padding: 12px 12px 14px; border-radius: 6px;
+  background: linear-gradient(180deg, #16321f, #0d2116);
+  border: 6px solid #e8e8e8; box-shadow: inset 0 0 22px rgba(0,0,0,.55);
+  overflow: hidden;
+}
+
+.dex-screen::after {                     /* LCD scanlines */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px);
+}
+
+.dex-no {
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: #7fd08f;
+}
+
+.dex-name {
+  font-family: var(--serif); font-weight: 700; font-size: 1.24rem;
+  color: #dff8e4; margin: 0.15rem 0 0.35rem;
+}
+
+.dex-type { display: flex; gap: 5px; margin-bottom: 0.5rem; }
+
+.dex-type span {
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 0.14rem 0.42rem; border-radius: 100px;
+  background: var(--t); color: #0d2116; font-weight: 500;
+}
+
+.dex-text { font-size: 0.8rem; line-height: 1.6; color: rgba(200,240,210,.85); }
+
+.dex-controls { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; }
+
+.dex-pad { position: relative; width: 46px; height: 46px; }
+
+.dex-pad::before, .dex-pad::after {
+  content: ""; position: absolute; background: #1d1f22; border-radius: 3px;
+  box-shadow: inset 0 -2px 3px rgba(0,0,0,.5);
+}
+
+.dex-pad::before { left: 16px; top: 0; width: 14px; height: 46px; }
+
+.dex-pad::after  { top: 16px; left: 0; height: 14px; width: 46px; }
+
+.dex-btns { display: flex; gap: 8px; }
+
+.dex-btns i { width: 26px; height: 9px; border-radius: 3px; background: #2a2d31; box-shadow: inset 0 -2px 3px rgba(0,0,0,.5); }
+
+.dex-cap {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+.pkm-legend h4 {
+  text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700;
+  font-size: 1.2rem; color: var(--a); margin-bottom: 0.6rem;
+}
+
+.pkm-legend p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+
+.pkm-legend p + p { margin-top: 0.7rem; }
+
+@media (prefers-reduced-motion: reduce) { .dex-leds i { animation: none; } }

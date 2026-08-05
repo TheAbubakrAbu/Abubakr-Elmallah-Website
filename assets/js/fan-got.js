@@ -1,6 +1,8 @@
 /* fan-got.js: content for /franchises/game-of-thrones/. Rendered by fanpage.js.
    The great houses are drawn in the page itself. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: '2nd year of college, 2025\u201326', note: 'Second year of college, and then straight into Stranger Things immediately after \u2014 an odd back-to-back that I did not plan.' },
+  sections: [
 
   { id: 'seasons', kind: 'rank', title: 'The Eight Seasons', note: '2011 – 2019',
     items: [
@@ -173,3 +175,22 @@ window.FAN_PAGE = { sections: [
     ] },
 
 ] };
+
+/* The interactive block, rendered by fan-play.js. */
+window.FAN_PLAY = {
+  kind: "pick",
+  title: "Swear To A House",
+  intro: "Nine great houses, one chair, and a war that eats most of them. Pick one and hear its words \u2014 the mottoes are the best writing in the whole series, because each one tells you exactly how that family thinks it will survive.",
+  prompt: "Choose a house.",
+  said: "%. Your words.",
+  items: [
+    { n: "Stark", s: "Winterfell \u00b7 the North", c: "#b9c2cc", d: "M12 4c-2 3-5 4-5 4s1 6 5 12c4-6 5-12 5-12s-3-1-5-4z", note: "Winter is coming. Not a boast \u2014 a warning, and the only house motto that is about preparation rather than pride. They are also the only ones who turn out to be right about what is actually coming." },
+    { n: "Lannister", s: "Casterly Rock \u00b7 the West", c: "#c9a05f", d: "M6 18V9l3-3 3 3 3-3 3 3v9z M9 18v-4h6v4", note: "Hear me roar \u2014 though nobody ever says that one. Everyone says \"a Lannister always pays his debts\", which is not the motto and is a far better line, because it is a threat and a promise at once." },
+    { n: "Targaryen", s: "Dragonstone \u00b7 exile", c: "#c04a3a", d: "M12 4c3 2 5 5 5 8a5 5 0 0 1-10 0c0-3 2-6 5-8z M9 12l-4 3 4 1 M15 12l4 3-4 1", note: "Fire and blood. Three hundred years of rule on the back of dragons, ended by one mad king, and the whole series is about whether the daughter is going to turn out the same way." },
+    { n: "Baratheon", s: "Storm\u2019s End", c: "#e0a83a", d: "M12 3c3 3 5 6 5 9a5 5 0 0 1-10 0c0-3 2-6 5-9z", note: "Ours is the fury. The house that actually wins the rebellion and then discovers that being king is mostly paperwork and hunting accidents." },
+    { n: "Greyjoy", s: "Pyke \u00b7 the Iron Islands", c: "#4f7f7f", d: "M12 3v14 M8 7h8 M7 13c0 4 2 6 5 6s5-2 5-6", note: "We do not sow. Reaving as a national identity, which works until somebody with a bigger fleet takes an interest." },
+    { n: "Tyrell", s: "Highgarden \u00b7 the Reach", c: "#5fbf7f", d: "M12 21V10 M12 10c-4 0-6-3-6-6 4 0 6 2 6 6z M12 10c4 0 6-3 6-6-4 0-6 2-6 6z", note: "Growing strong. The richest house in Westeros and the one that plays the game best, largely through Olenna, who is the only person in the series who is never once outmanoeuvred." },
+    { n: "Martell", s: "Sunspear \u00b7 Dorne", c: "#e0762a", d: "M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16z M12 8v8 M8 12h8", note: "Unbowed, unbent, unbroken. The only kingdom Aegon never conquered \u2014 they simply refused, for two hundred years, until it was settled by marriage instead." },
+    { n: "Tully", s: "Riverrun \u00b7 the Riverlands", c: "#5f9fd0", d: "M4 9c4-3 6 3 8 0s4-3 8 0 M4 15c4-3 6 3 8 0s4-3 8 0", note: "Family, duty, honour \u2014 in that order, which the show quietly points out is the wrong order for anybody who wants to survive King\u2019s Landing." },
+  ],
+};

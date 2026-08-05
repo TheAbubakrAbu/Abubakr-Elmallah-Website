@@ -28,11 +28,38 @@ permalink: /franchises/five-nights-at-freddys/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/fnaf.css' %}" />
 </head>
 <body data-intro="none" data-fan="fnaf">
 
 <!-- camera static at 3 AM -->
-<div class="fnaf-sky" aria-hidden="true"></div>
+<div class="fnaf-sky" aria-hidden="true">
+  <div class="fnaf-room">
+    <svg viewBox="0 0 1400 500" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path class="fnr-floor" d="M0 380h1400v120H0z"/>
+      <g class="fnr-tile">
+        <path d="M0 380h100v40H0zM200 380h100v40H200zM400 380h100v40H400zM600 380h100v40H600zM800 380h100v40H800zM1000 380h100v40h-100zM1200 380h100v40h-100z"/>
+        <path d="M100 420h120v46H100zM340 420h120v46H340zM580 420h120v46H580zM820 420h120v46H820zM1060 420h120v46h-120z"/>
+      </g>
+      <path class="fnr-stage" d="M420 380V300h560v80z"/>
+      <path class="fnr-curtain" d="M400 90h200l-40 210h-160zM800 90h200v210H840z"/>
+      <g class="fnr-bot">
+        <ellipse cx="560" cy="238" rx="46" ry="42"/><circle cx="524" cy="200" r="17"/><circle cx="596" cy="200" r="17"/>
+        <rect x="530" y="278" width="60" height="26" rx="6"/>
+        <ellipse cx="700" cy="232" rx="42" ry="46"/><ellipse cx="678" cy="176" rx="12" ry="28"/><ellipse cx="722" cy="176" rx="12" ry="28"/>
+        <rect x="674" y="276" width="52" height="26" rx="6"/>
+        <ellipse cx="840" cy="238" rx="44" ry="42"/><path d="M840 186l-16 22h32z"/>
+        <rect x="812" y="278" width="56" height="26" rx="6"/>
+      </g>
+      <g class="fnr-eye">
+        <circle cx="546" cy="232" r="5"/><circle cx="574" cy="232" r="5"/>
+        <circle cx="686" cy="226" r="5"/><circle cx="714" cy="226" r="5"/>
+        <circle cx="826" cy="232" r="5"/><circle cx="854" cy="232" r="5"/>
+      </g>
+    </svg>
+  </div>
+  <div class="fnaf-hall"></div>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -81,27 +108,56 @@ permalink: /franchises/five-nights-at-freddys/
     </div>
   </section>
 
+  <section class="fan-art fan-art--fnaf reveal">
+    <figure class="fan-art-fig fnaf-stage">
+      <svg viewBox="0 0 320 340" aria-hidden="true">
+        <g class="fnf-ear"><circle cx="72" cy="104" r="34"/><circle cx="248" cy="104" r="34"/></g>
+        <g class="fnf-earin"><circle cx="72" cy="104" r="19"/><circle cx="248" cy="104" r="19"/></g>
+        <ellipse class="fnf-head" cx="160" cy="176" rx="98" ry="88"/>
+        <g class="fnf-hat"><ellipse cx="160" cy="86" rx="66" ry="15"/><path d="M124 86V36h72v50z"/></g>
+        <path class="fnf-hatband" d="M124 66h72v14h-72z"/>
+        <ellipse class="fnf-muzzle" cx="160" cy="216" rx="60" ry="42"/>
+        <g class="fnf-brow"><path d="M104 132h44v13h-44z"/><path d="M172 132h44v13h-44z"/></g>
+        <g class="fnf-eye"><circle cx="126" cy="164" r="21"/><circle cx="194" cy="164" r="21"/></g>
+        <g class="fnf-pupil"><circle cx="126" cy="164" r="9"/><circle cx="194" cy="164" r="9"/></g>
+        <ellipse class="fnf-nose" cx="160" cy="196" rx="17" ry="13"/>
+        <g class="fnf-tooth"><rect x="132" y="232" width="12" height="15" rx="2"/><rect x="152" y="232" width="12" height="15" rx="2"/><rect x="172" y="232" width="12" height="15" rx="2"/></g>
+        <g class="fnf-tie"><path d="M160 292l-34-18v36zM160 292l34-18v36z"/><circle cx="160" cy="292" r="11"/></g>
+      </svg>
+      <figcaption>Freddy, drawn in SVG for this page</figcaption>
+    </figure>
+    <div class="fan-art-body">
+      <q>Uh, hello? Hello, hello?</q>
+      <p class="fan-art-by">Phone Guy, night one</p>
+      <p>A horror game made of security cameras and a battery meter, built by one person in a few months, and it reset what a horror game needed to be. You cannot move, you cannot fight, and you cannot even look at two places at once. Every single thing you do costs power, and the power is the clock.</p>
+      <p>That constraint is the whole design. Checking a camera costs you. Closing a door costs you more. So the game is really a resource-management puzzle wearing a jump-scare costume — and the reason it works is that you always know exactly how you died, and it was always something you chose.</p>
+    </div>
+  </section>
+
   <section class="fnaf-office reveal">
     <div class="fnaf-mon">
-      <div class="fnaf-feed">
-        <span class="fnaf-lbl">CAM 2B · WEST HALL</span>
+      <div class="fnaf-feed" id="fnafFeed">
+        <div class="fnaf-scene" id="fnafScene"></div>
+        <span class="fnaf-lbl" id="fnafLbl">CAM 1A · SHOW STAGE</span>
         <span class="fnaf-rec"><i></i>REC</span>
+        <span class="fnaf-burst" id="fnafBurst" aria-hidden="true"></span>
       </div>
-      <div class="fnaf-cams"><span>CAM 1A</span><span>CAM 1B</span><span>CAM 1C</span><span>CAM 2A</span><span class="is-on">CAM 2B</span><span>CAM 3</span><span>CAM 4A</span><span>CAM 4B</span><span>CAM 5</span><span>CAM 6</span><span>CAM 7</span></div>
+      <div class="fnaf-cams" id="fnafCams" role="group" aria-label="Security cameras"></div>
+      <p class="fnaf-hint">Click a camera, or use the arrow keys. Each switch costs power — they move while you are not looking.</p>
     </div>
     <div class="fnaf-hud">
       <div class="fnaf-panel">
         <h5>Power left</h5>
-        <div class="fnaf-power"><b>32%</b><span>usage</span></div>
-        <div class="fnaf-usage"><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i></i></div>
+        <div class="fnaf-power"><b id="fnafPct">99%</b><span id="fnafUsageLbl">usage 1</span></div>
+        <div class="fnaf-usage" id="fnafUsage"><i class="is-on"></i><i></i><i></i><i></i></div>
       </div>
       <div class="fnaf-panel">
-        <h5>Night 4</h5>
-        <div class="fnaf-hour">3 AM<span>of 6</span></div>
+        <h5 id="fnafNight">Night 4</h5>
+        <div class="fnaf-hour"><span id="fnafHour">12 AM</span><span>of 6 AM</span></div>
       </div>
       <div class="fnaf-panel">
         <h5>The whole game</h5>
-        <p class="fnaf-note">Two doors, two lights, eleven cameras and one battery, and every one of those costs power. The horror is a spreadsheet you are losing.</p>
+        <p class="fnaf-note" id="fnafNote">Two doors, two lights, eleven cameras and one battery, and every one of those costs power. The horror is a spreadsheet you are losing.</p>
       </div>
     </div>
   </section>
@@ -136,5 +192,7 @@ permalink: /franchises/five-nights-at-freddys/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- page UI, after reveal.js on purpose: see the comment in fan-fnaf-ui.js -->
+<script src="{% include v.html f='/assets/js/fan-fnaf-ui.js' %}"></script>
 </body>
 </html>

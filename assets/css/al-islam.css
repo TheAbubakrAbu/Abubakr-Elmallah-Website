@@ -303,6 +303,23 @@ body[data-intro="alislam"] #field { opacity: 0.3; }
   color: var(--gold-2, #e8c56a); border: 1px solid color-mix(in srgb, #e8c56a 45%, transparent);
   background: rgba(245,198,60,0.08);
 }
+/* The five of firm resolve. Distinct from the Ṣaḥābah tag so the two never
+   read as the same category. */
+/* The English / biblical name, under the transliterated one. */
+.sch-en {
+  display: block; margin-bottom: 0.25rem;
+  font-family: var(--sans); font-size: 0.82rem; color: var(--ink-dim); opacity: .85;
+}
+/* Used only for the Prophet ﷺ, whose name is explained rather than translated. */
+.sch-meaning {
+  margin-top: 0.6rem; padding-left: 0.7rem;
+  border-left: 2px solid color-mix(in srgb, var(--green) 40%, transparent);
+  font-size: 0.86rem; line-height: 1.7; color: var(--ink-dim);
+}
+.sch-tag--azm {
+  color: #c9a8f0; border: 1px solid color-mix(in srgb, #c9a8f0 45%, transparent);
+  background: rgba(170,130,230,0.09);
+}
 
 /* dating note under the scholars */
 .isl-foot {

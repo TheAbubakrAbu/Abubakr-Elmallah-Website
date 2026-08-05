@@ -1,0 +1,159 @@
+/* invincible.css -- loaded only by /invincible. Split out of fanpages.css. */
+
+@media (min-width: 820px) { .fan-art--inv { grid-template-columns: minmax(0, .8fr) minmax(0, 1.25fr); } }
+
+.inv-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(80% 60% at 50% 0%, #141a2e 0%, #0b0e1a 46%, #04050a 100%);
+}
+
+.inv-sky::before {                     /* ben-day dots */
+  content: ""; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(240,208,64,.10) 1px, transparent 1.4px);
+  background-size: 12px 12px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 8%, #000 10%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 8%, #000 10%, transparent 78%);
+}
+
+.inv-sky::after {                      /* the splash */
+  content: ""; position: absolute; right: 6%; top: 18%;
+  width: clamp(160px, 22vw, 340px); aspect-ratio: 1; border-radius: 46% 54% 38% 62% / 52% 40% 60% 48%;
+  background: radial-gradient(circle at 40% 36%, rgba(200,30,30,.22), transparent 70%);
+  filter: blur(2px);
+}
+
+/* The city under a fight. Capped at .36 by the global -sky rule further up. */
+.inv-sky > * { position: absolute; inset: 0; }
+
+.inv-city { inset: auto 0 0 0; height: 34%; }
+
+.inv-city svg, .inv-trail svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.invc-far   { fill: #0a0e1c; }
+
+.invc-win   { fill: #f0d040; opacity: .16; }
+
+.invc-crack { fill: none; stroke: #c8202a; stroke-width: 3; opacity: .35; stroke-linecap: round; }
+
+.inv-cloud {
+  background:
+    radial-gradient(56% 40% at 30% 24%, rgba(200,32,42,.13), transparent 72%),
+    radial-gradient(48% 34% at 74% 40%, rgba(240,208,64,.07), transparent 70%);
+  animation: inv-roll 30s ease-in-out infinite alternate;
+}
+
+/* Somebody crossing the sky faster than the eye follows, with the contrail
+   drawing itself in behind. */
+.invt-line {
+  fill: none; stroke: #f0d040; stroke-width: 2.4; opacity: .3; stroke-linecap: round;
+  stroke-dasharray: 1500; stroke-dashoffset: 1500;
+  animation: inv-streak 15s ease-in-out infinite;
+}
+
+.invt-fig {
+  fill: #f0d040; opacity: .55;
+  offset-path: path("M-60 380C240 300 420 180 700 150s520 60 780-10");
+  offset-rotate: auto;
+  animation: inv-fly 15s ease-in-out infinite;
+}
+
+.inv-spatter {
+  background-image:
+    radial-gradient(3px 3px at 22% 34%, rgba(200,32,42,.30), transparent),
+    radial-gradient(2px 2px at 68% 22%, rgba(200,32,42,.24), transparent),
+    radial-gradient(4px 4px at 44% 68%, rgba(200,32,42,.20), transparent),
+    radial-gradient(2.4px 2.4px at 82% 58%, rgba(200,32,42,.26), transparent);
+  background-size: 420px 420px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .invt-line, .invt-fig, .inv-cloud { animation: none; }
+  .invt-line { stroke-dashoffset: 0; opacity: .3; }
+}
+
+/* ═════════════ Invincible: a comic cover ═════════════ */
+.inv-book {
+  position: relative; width: min(300px, 74vw); margin: 0 auto;
+  border: 3px solid #0c0e18; border-radius: 2px; overflow: hidden;
+    box-shadow: 0 28px 56px -30px #000;
+}
+
+.inv-book { background: linear-gradient(170deg, #22284a, #0e1226 65%, #080a16); }
+
+.inv-book::before {                      /* ben-day wash */
+  content: ""; position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(240,208,64,.12) 1px, transparent 1.4px);
+  background-size: 9px 9px;
+}
+
+.inv-bar {
+  position: relative; display: flex; align-items: center; justify-content: space-between;
+  gap: 0.5rem; padding: 0.5rem 0.6rem; background: #f0d040; color: #0c0e18;
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.14em; text-transform: uppercase;
+}
+
+.inv-title {
+  position: relative; padding: 1.1rem 0.8rem 0.4rem; text-align: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow", sans-serif;
+  font-size: clamp(1.8rem, 6vw, 2.6rem); letter-spacing: 0.02em; text-transform: uppercase;
+  color: #f0d040; -webkit-text-stroke: 2px #1a2a6a; paint-order: stroke fill;
+  line-height: 0.95;
+}
+
+/* The cover panel holds a drawn scene now rather than a line of caption text.
+   No fixed height: the artwork sets it, so the frame cannot end up as an empty
+   box waiting for content that never arrives. */
+.inv-splash {
+  position: relative; margin: 0.4rem 0.8rem;
+  border: 2px solid #0c0e18; border-radius: 2px; overflow: hidden;
+}
+
+.inv-splash svg { display: block; width: 100%; height: auto; }
+
+.invb-sky  { fill: #1a2145; }
+
+.invb-ray  { fill: #2b3560; opacity: .8; }
+
+.invb-town { fill: #0e1430; }
+
+/* Both figures get an ink outline so they read against the sky, the way a
+   comic separates a figure from its background. */
+.invb-dad, .invb-son { filter: drop-shadow(0 0 1.5px #0c0e18) drop-shadow(0 3px 6px rgba(0,0,0,.5)); }
+
+.invb-cape { fill: #b8202a; }
+
+.invb-suit { fill: #2f56b8; }
+
+.invb-suit2{ fill: #f0d040; }
+
+.invb-arm  { fill: #2f56b8; }
+
+.invb-arm2 { fill: #1f3fa0; }
+
+.invb-skin { fill: #e8b48a; }
+
+.invb-tash { fill: #1a1a1a; }
+
+.invb-mask { fill: #1f3fa0; }
+
+.invb-blood{ fill: #c8202a; }
+
+.inv-splat {                             /* one restrained splash of red */
+  position: absolute; right: -8%; bottom: -6%;
+  width: 46%; aspect-ratio: 1;
+  border-radius: 46% 54% 38% 62% / 52% 40% 60% 48%;
+  background: radial-gradient(circle at 42% 38%, rgba(190,26,26,.55), transparent 70%);
+  filter: blur(2px);
+}
+
+.inv-foot {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.45rem 0.6rem; background: rgba(8,10,22,.85);
+  font-family: var(--mono); font-size: 0.46rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(220,230,255,.6);
+}
+
+.inv-barcode { display: flex; gap: 1px; align-items: flex-end; height: 14px; }
+
+.inv-barcode i { width: 2px; background: rgba(220,230,255,.6); }

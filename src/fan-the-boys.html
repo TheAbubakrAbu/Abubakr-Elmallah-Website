@@ -28,11 +28,39 @@ permalink: /franchises/the-boys/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/the-boys.css' %}" />
 </head>
 <body data-intro="none" data-fan="boys">
 
-<!-- halftone print, Vought red -->
-<div class="boys-sky" aria-hidden="true"></div>
+<!-- Vought Tower over the city, halftone print, and a laser sweep -->
+<div class="boys-sky" aria-hidden="true">
+  <div class="boys-beams"><i></i><i></i></div>
+  <div class="boys-city">
+    <svg viewBox="0 0 1400 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <g class="bys-block">
+        <path d="M0 250h120v150H0zM150 210h90v190h-90zM270 280h110v120H270zM1040 240h100v160h-100zM1170 200h90v200h-90zM1290 270h110v130h-110z"/>
+      </g>
+      <g class="bys-win">
+        <path d="M18 268h14v18H18zM48 268h14v18H48zM78 268h14v18H78zM18 300h14v18H18zM78 300h14v18H78zM18 332h14v18H18zM48 332h14v18H48z"/>
+        <path d="M166 228h14v18h-14zM196 228h14v18h-14zM166 260h14v18h-14zM196 260h14v18h-14zM166 292h14v18h-14zM196 324h14v18h-14z"/>
+        <path d="M288 298h14v18h-14zM318 298h14v18h-14zM348 298h14v18h-14zM288 330h14v18h-14zM348 330h14v18h-14z"/>
+        <path d="M1058 258h14v18h-14zM1088 258h14v18h-14zM1058 290h14v18h-14zM1108 290h14v18h-14zM1058 322h14v18h-14z"/>
+        <path d="M1186 218h14v18h-14zM1216 218h14v18h-14zM1186 250h14v18h-14zM1216 282h14v18h-14zM1186 314h14v18h-14z"/>
+        <path d="M1308 288h14v18h-14zM1338 288h14v18h-14zM1308 320h14v18h-14zM1368 320h14v18h-14z"/>
+      </g>
+      <g class="bys-tower"><path d="M600 60h200v340H600z"/><path d="M636 20h128v40H636z"/></g>
+      <g class="bys-towerwin">
+        <path d="M620 150h20v26h-20zM656 150h20v26h-20zM724 150h20v26h-20zM760 150h20v26h-20z"/>
+        <path d="M620 196h20v26h-20zM760 196h20v26h-20zM620 242h20v26h-20zM656 242h20v26h-20zM724 242h20v26h-20z"/>
+        <path d="M620 288h20v26h-20zM760 288h20v26h-20zM656 334h20v26h-20zM724 334h20v26h-20z"/>
+      </g>
+      <path class="bys-v" d="M666 84l34 76 34-76h30l-52 116h-24l-52-116z"/>
+      <g class="bys-mast"><path d="M698 0h4v20h-4z"/></g>
+    </svg>
+  </div>
+  <div class="boys-scan"></div>
+  <div class="boys-dots"></div>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -81,6 +109,27 @@ permalink: /franchises/the-boys/
     </div>
   </section>
 
+  <div id="fanPlay"></div>
+
+  <section class="fan-art fan-art--boys reveal">
+    <figure class="fan-art-fig boys-stage">
+      <svg viewBox="0 0 360 300" aria-hidden="true">
+        <rect class="byh-bg" x="0" y="0" width="360" height="300"/>
+        <circle class="byh-ring" cx="180" cy="146" r="104"/>
+        <circle class="byh-ring2" cx="180" cy="146" r="92"/>
+        <path class="byh-v" d="M118 92h34l28 82 28-82h34l-46 130h-32z"/>
+        <text class="byh-word" x="180" y="264">VOUGHT INTERNATIONAL</text>
+      </svg>
+      <figcaption>The Vought V — the logo on the tower, the merchandise, and the news channel</figcaption>
+    </figure>
+    <div class="fan-art-body">
+      <q>The real heroes are the people watching at home.</q>
+      <p class="fan-art-by">Vought International, marketing</p>
+      <p>The premise is one swap: superheroes are not myth, they are inventory. A pharmaceutical company manufactures them, owns the film rights, runs the news channel that covers them, and keeps a crisis team on retainer for when one of them kills somebody. Nobody was born with anything — every hero on the shelf was made in a lab and sold a story about destiny afterwards.</p>
+      <p>That is a much scarier idea than a villain, and it is why the show works long after the shock wears off. The horror is never the powers. It is the PR department that exists to make the powers palatable, and the fact that it is very, very good at its job.</p>
+    </div>
+  </section>
+
   <section class="boys-kit reveal">
     <div class="boys-vial">
       <div class="boys-cap"></div>
@@ -126,5 +175,7 @@ permalink: /franchises/the-boys/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>
