@@ -1,5 +1,7 @@
 /* fan-office.js: content for /franchises/the-office/. Rendered by fanpage.js. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: '8th grade, 2019\u201320', note: 'Eighth grade, same year as Parks and Rec. Parks might be the funnier show, but The Office came first and is the more memorable one.' },
+  sections: [
 
   { id: 'staff', kind: 'cards', title: 'Dunder Mifflin, Scranton', note: 'branch staff',
     items: [
@@ -11,9 +13,23 @@ window.FAN_PAGE = { sections: [
       { title: 'Creed Bratton', sub: 'Quality Assurance', tag: 'Unknown', desc: 'Nobody knows what he does. Nobody has ever asked twice.', meta: 'Quabity assurance' },
     ] },
 
+  { id: 'favorites', kind: 'cards', title: 'My Three', note: 'Michael, Jim, Dwight',
+    lede: 'The ensemble is the best in television and I would not cut one of them, but the show is really a triangle. Michael needs to be loved, Dwight needs to be ranked, Jim needs somebody to look at. Every good episode is those three needs colliding.',
+    items: [
+      { title: 'Michael Scott', sub: 'Regional Manager, Scranton', tag: 'My favourite', accent: '#6f9fd0',
+        desc: 'The hardest character on television to write, because he has to be unbearable and worth rooting for in the same scene. Carell does it by playing him as somebody who is genuinely excellent at the actual job — he is the best salesman Dunder Mifflin has — and catastrophic at every minute around it. When he leaves in season seven the show never recovers, and that is the proof.',
+        meta: 'Seasons 1–7 · “That’s what she said”' },
+      { title: 'Jim Halpert', sub: 'Sales', tag: 'My favourite', accent: '#7fb0a0',
+        desc: 'Half of this show is one man raising an eyebrow at a lens. The look to camera only works because the documentary conceit earns it, and Krasinski plays it so lightly that you forget it is the most-copied piece of blocking of the last twenty years. His best material is not the romance — it is nine years of patient, escalating, completely unnecessary commitment to bothering Dwight.',
+        meta: 'The camera look' },
+      { title: 'Dwight Schrute', sub: 'Assistant to the Regional Manager', tag: 'My favourite', accent: '#c9a349',
+        desc: 'Beet farmer, volunteer sheriff’s deputy, owner of Schrute Farms, and — this is the part people forget — the most competent person in the building by a wide margin. He is the top salesman almost every year. The joke is never that Dwight is bad at his job; it is that being extremely good at it has taught him nothing about anybody else.',
+        meta: 'Assistant *to the* Regional Manager' },
+    ] },
+
   { id: 'seasons', kind: 'rank', title: 'Nine Seasons', note: '2005 – 2013',
     items: [
-      { title: 'Seasons 2–3', sub: '2005–07', desc: 'The peak. The Dundies, Booze Cruise, Casino Night, The Job: the run everything else is measured against.' },
+      { title: 'Seasons 2–3', sub: '2005–07', desc: 'The peak. The Dundies, Office Olympics, Casino Night, The Job: the run everything else is measured against.' },
       { title: 'Seasons 4–5', sub: '2007–09', desc: 'Dinner Party, Stress Relief, and the Michael Scott Paper Company gambit.' },
       { title: 'Seasons 6–7', sub: '2009–11', desc: 'Niagara, and then Goodbye Michael: the best exit any sitcom character has been given.' },
       { title: 'Seasons 8–9', sub: '2011–13', desc: 'The wobble after Michael leaves, and then a finale that lands better than it had any right to.' },
@@ -50,6 +66,23 @@ window.FAN_PAGE = { sections: [
       { title: 'Pavlov and the mints', accent: '#d08f6f', sub: 'S3E14', desc: 'A computer chime, a mint, and eventually a hand held out on reflex.' },
     ] },
 
+  { id: 'robert', kind: 'cards', title: 'Robert California', note: 'The Lizard King',
+    lede: 'Season seven ends, Michael is gone, and the show hands the building to James Spader — who walks in to interview for branch manager, does not get it, and then talks Jo Bennett out of the entire company on his way to the car park. He is CEO by the end of the episode. Nobody in the room can explain how.',
+    items: [
+      { title: 'The interview', sub: '“Search Committee”', tag: 'The entrance', accent: '#8f7fc0',
+        desc: 'He loses the job to Andy, drives to Tallahassee, and returns as chief executive. The show never explains it and is completely right not to. Whatever he did in that car, we are not cleared to hear it.',
+        meta: 'Season 7 finale' },
+      { title: 'The way he talks', sub: 'Every conversation is a test', tag: 'Why he works', accent: '#a08fd0',
+        desc: 'Spader plays him at half the volume of everybody else, which makes an entire office lean in. He asks a question, waits slightly too long, and lets the other person fill the silence with something they did not mean to say. Michael filled silence; Robert uses it.',
+        meta: 'The long pause' },
+      { title: 'The list', sub: '“The Incentive”', tag: 'Best episode', accent: '#8f7fc0',
+        desc: 'He writes two columns of names — winners and losers — and shows the branch, having worked out that the fastest way to get output from people is to let them see which one they are on. It is the single most quietly vicious thing anybody does in nine seasons.',
+        meta: 'Season 8' },
+      { title: 'Why he does not save it', sub: 'Not his fault', tag: 'The honest bit', accent: '#6f9fd0',
+        desc: 'Seasons eight and nine are the weak ones, and Robert is the best thing in them. He is a fascinating character dropped into a show built to run on a man who desperately needs the room to like him — and Robert does not care whether it does. Brilliant, and pointed the wrong way.',
+        meta: 'Seasons 7–8' },
+    ] },
+
   { id: 'branches', kind: 'cards', title: 'The Branches', note: 'Dunder Mifflin, north-east',
     items: [
       { title: 'Scranton', sub: 'The one we watch', tag: 'PA', desc: 'The branch corporate keeps trying to close and never can, because it keeps outperforming the ones that look better on paper.', meta: 'Michael, then Andy, then Dwight' },
@@ -79,3 +112,26 @@ window.FAN_PAGE = { sections: [
     ] },
 
 ] };
+
+/* The interactive block, rendered by fan-play.js. */
+window.FAN_PLAY = {
+  kind: "roll",
+  title: "The Dundies",
+  intro: "An awards ceremony Michael runs for his own staff in a chain restaurant, with categories he invents himself, most of which are insults he does not realise are insults. It is the most Michael thing the show ever does.",
+  prompt: "Chili\u2019s. A microphone. Nobody wants this.",
+  button: "Present an award",
+  again: "Next award",
+  wait: [
+        "Michael taps the mic.",
+        "A song, unfortunately.",
+        "And the Dundie goes to\u2026"
+      ],
+  items: [
+    { n: "Bushiest Beaver", s: "Phyllis", c: "#c9a349", w: 2, said: "Bushiest Beaver. Michael does not know why that is bad.", d: "M12 4l2.5 6H21l-5 4 2 7-6-4-6 4 2-7-5-4h6.5z", note: "Later reissued as \"Busiest Beaver\" after somebody explains it to him, which is somehow worse." },
+    { n: "Whitest Sneakers", s: "Pam", c: "#6f9fd0", w: 2, said: "Whitest Sneakers. Pam is genuinely pleased.", d: "M4 16h13l3-2v4H4z M4 16v-3l4-2 3 3h6", note: "A completely harmless award, delivered sincerely, and Pam keeps it. The Dundies episode is quietly one of the warmest in the run." },
+    { n: "Hottest in the Office", s: "Ryan", c: "#e0642a", w: 2, said: "Hottest in the Office. Ryan has to stand up.", d: "M12 3c3 5 5 7 5 10a5 5 0 0 1-10 0c0-2 1-3 2-5 1 3 3 2 3 0 0-2 0-3 0-5z", note: "Given to the temp, by his boss, at a work event. Every part of this is a HR case and the show knows it." },
+    { n: "Great Scott", s: "Michael, to himself", c: "#8f6a3a", w: 1, said: "Michael has given himself one again.", d: "M12 4a6 6 0 0 1 6 6c0 3-2 4-2 6H8c0-2-2-3-2-6a6 6 0 0 1 6-6z M9 19h6", note: "He hands himself an award at his own ceremony, and the room lets him, because everyone there has quietly decided to let Michael have this." },
+    { n: "Fine Work", s: "Stanley", c: "#5f8f6a", w: 2, said: "Fine Work. Stanley does not look up.", d: "M6 4h9l3 3v13H6z M9 10h6 M9 14h6", note: "The most Stanley possible outcome. He is doing the crossword and will continue doing the crossword." },
+    { n: "Extreme Repulsiveness", s: "Kevin", c: "#c04a3a", w: 1, said: "Extreme Repulsiveness. Michael reads it out loud before checking it.", d: "M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16z M9 10v.01 M15 10v.01 M8 16c2-2 6-2 8 0", note: "The category exists because Michael writes them all the night before with no supervision whatsoever." },
+  ],
+};

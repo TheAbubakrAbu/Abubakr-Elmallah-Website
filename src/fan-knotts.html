@@ -28,11 +28,33 @@ permalink: /franchises/knotts/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/knotts.css' %}" />
 </head>
 <body data-intro="none" data-fan="knotts">
 
 <!-- low sun and dust over the boardwalk -->
-<div class="kn-sky" aria-hidden="true"></div>
+<div class="kn-sky" aria-hidden="true">
+  <div class="kn-stars"></div>
+  <div class="kn-ridge">
+    <svg viewBox="0 0 1400 420" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path class="knr-far" d="M0 300l150-120 130 90 160-140 150 120 170-90 150 110 160-80 150 110 180-60v290H0z"/>
+      <path class="knr-mesa" d="M980 420V250h50v-22h150v22h50v170z"/>
+      <path class="knr-near" d="M0 360l180-70 160 46 190-58 170 52 200-40 190 56 210-46 100 30v100H0z"/>
+      <g>
+        <path class="knc-track" d="M120 300c60-96 130-96 190-30s120 78 180 6 128-72 188 12"/>
+        <g class="knc-leg"><path d="M150 268v104M206 246v126M262 250v122M318 268v104M374 290v82M430 300v72M486 286v86M542 262v110M598 254v118M654 276v96"/></g>
+      </g>
+      <g class="knr-pole">
+        <path d="M760 250v130M764 258h-8M770 262h-20M1096 262v118M1100 270h-8M1106 274h-20"/>
+        <path class="knc-wire" d="M760 262c112 26 224 26 336 4"/>
+      </g>
+      <g class="knr-tower">
+        <path d="M842 216h64v46h-64z"/><path d="M846 208h56v10h-56z"/>
+        <path d="M852 262v112M896 262v112M868 262v112M876 262v112"/>
+      </g>
+    </svg>
+  </div>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -83,6 +105,35 @@ permalink: /franchises/knotts/
     </div>
   </section>
 
+  <div id="fanPlay"></div>
+
+  <section class="fan-art fan-art--kn reveal">
+    <figure class="fan-art-fig kn-stage">
+      <svg viewBox="0 0 420 300" aria-hidden="true">
+        <path class="knm-rock" d="M0 300V150l60-58 54 40 60-72 66 58 58-46 62 54 60-30v154z"/>
+        <path class="knm-rock2" d="M0 300V214l72-38 66 30 70-44 68 38 74-30 70 26v104z"/>
+        <path class="knm-mouth" d="M150 300v-70a48 48 0 0 1 96 0v70z"/>
+        <path class="knm-frame" d="M142 300v-74a56 56 0 0 1 112 0v74h-14v-72a42 42 0 0 0-84 0v72z"/>
+        <path class="knm-beam" d="M134 224h128v14H134z"/>
+        <g class="knm-glow"><ellipse cx="198" cy="268" rx="40" ry="26"/></g>
+        <g class="knm-rail"><path d="M120 292h300M120 300h300"/><path d="M140 288v14M180 288v14M220 288v14M260 288v14M300 288v14M340 288v14M380 288v14"/></g>
+        <g class="knm-car">
+          <path d="M272 254h74v30h-74z"/><path d="M278 244h62v10h-62z"/>
+          <circle cx="288" cy="290" r="8"/><circle cx="330" cy="290" r="8"/>
+        </g>
+        <g class="knm-lamp"><circle cx="356" cy="262" r="7"/></g>
+        <g class="knm-ore"><circle cx="292" cy="250" r="6"/><circle cx="308" cy="248" r="5"/><circle cx="322" cy="251" r="6"/></g>
+      </svg>
+      <figcaption>The Calico Mine Ride, drawn for this page — built in the park’s own workshop, 1960</figcaption>
+    </figure>
+    <div class="fan-art-body">
+      <q>We just wanted to give people something to look at while they waited for a table.</q>
+      <p class="fan-art-by">The reason Ghost Town exists</p>
+      <p>The best origin story in theme parks. Walter Knott sold berries by the road; his wife Cordelia started serving fried chicken dinners in 1934; the queue got so long that in 1940 he built a ghost town out of real buildings, moved in from actual abandoned towns, purely to entertain people waiting to eat. That accident is now the oldest themed land in America, fifteen years older than Disneyland seven miles down the road.</p>
+      <p>And it never lost that. The Calico Mine Ride and the Log Ride were designed and built by the park’s own workshop rather than bought from a catalogue, and both are still running. It is a small park you can cross in ten minutes, which after a day of queueing anywhere else is exactly why it is the one I keep going back to.</p>
+    </div>
+  </section>
+
   <section class="kn-town reveal">
     <div class="kn-street">
       <div class="kn-shop" style="--w1:#7a5230;--w2:#4f3520;--top:polygon(0 100%, 0 34%, 50% 0, 100% 34%, 100% 100%)"><span class="kn-sign">General Store</span><span class="kn-win"></span><span class="kn-door"></span></div>
@@ -90,7 +141,7 @@ permalink: /franchises/knotts/
       <div class="kn-shop" style="--w1:#8a5f37;--w2:#5a3c22;--top:polygon(0 100%, 0 40%, 30% 0, 70% 0, 100% 40%, 100% 100%)"><span class="kn-sign">Bird Cage Theatre</span><span class="kn-win"></span><span class="kn-door"></span></div>
       <div class="kn-shop" style="--w1:#5f4023;--w2:#3b2716;--top:polygon(0 100%, 0 26%, 50% 0, 100% 26%, 100% 100%)"><span class="kn-sign">Blacksmith</span><span class="kn-win"></span><span class="kn-door"></span></div>
       <div class="kn-shop" style="--w1:#7f5730;--w2:#503420;--top:polygon(0 100%, 0 0, 100% 0, 100% 100%)"><span class="kn-sign">Boysenberry Pie</span><span class="kn-win"></span><span class="kn-door"></span></div>
-      <div class="kn-shop" style="--w1:#6f4a29;--w2:#452d19;--top:polygon(0 100%, 0 38%, 50% 0, 100% 38%, 100% 100%)"><span class="kn-sign">Calico Saloon</span><span class="kn-win"></span><span class="kn-door"></span></div>
+      <div class="kn-shop" style="--w1:#6f4a29;--w2:#452d19;--top:polygon(0 100%, 0 38%, 50% 0, 100% 38%, 100% 100%)"><span class="kn-sign">Calico Depot</span><span class="kn-win"></span><span class="kn-door"></span></div>
     </div>
     <div class="kn-walk"></div>
     <p class="kn-town-cap">Ghost Town, built 1940 out of real buildings, to entertain the chicken dinner queue</p>
@@ -140,5 +191,7 @@ permalink: /franchises/knotts/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

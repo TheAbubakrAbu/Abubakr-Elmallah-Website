@@ -1,0 +1,207 @@
+/* transcript.css — the high-school record on /high-school/. */
+
+.ts-exams { display: grid; gap: 1.4rem; margin: 1.6rem 0 2rem; }
+@media (min-width: 860px) { .ts-exams { grid-template-columns: 1fr 1fr; } }
+.ts-exambox {
+  padding: 1.3rem 1.4rem; border: 1px solid var(--line); border-radius: 8px;
+  background: linear-gradient(160deg, rgba(255,255,255,.03), transparent 70%);
+}
+.ts-examhead { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.ts-examhead h4 { font-family: var(--sans); font-weight: 650; font-size: 1.05rem; color: var(--ink); }
+.ts-examhead span {
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+.ts-list { list-style: none; display: grid; gap: 0.1rem; }
+/* Fixed columns so the scores form a clean right-hand rail regardless of how
+   long the exam name is. */
+.ts-list li {
+  display: grid; align-items: center; gap: 0.7rem;
+  grid-template-columns: minmax(0, 1fr) 2.6rem 3.2rem 1.6rem;
+  padding: 0.42rem 0.3rem; border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.ts-list li:last-child { border-bottom: 0; }
+.ts-n { font-size: 0.9rem; color: var(--ink-dim); min-width: 0; }
+.ts-n i { display: block; font-style: normal; font-family: var(--mono); font-size: 0.52rem; color: var(--mute); }
+.ts-y { font-family: var(--mono); font-size: 0.55rem; color: var(--mute); }
+.ts-bar {
+  position: relative; height: 4px; border-radius: 2px; background: rgba(255,255,255,.07);
+}
+.ts-bar::after {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: var(--p);
+  border-radius: 2px; background: linear-gradient(90deg, var(--accent, #5fbf8f), #8fd8b0);
+}
+.ts-s {
+  font-family: var(--mono); font-size: 1rem; font-weight: 500; text-align: left; color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.ts-s--letter { font-size: 0.85rem; color: var(--ink-dim); }
+/* Top marks get the accent; everything else stays quiet so they stand out. */
+.ts-list li.is-top .ts-s { color: #7fd8a8; }
+.ts-list li.is-top .ts-n { color: var(--ink); }
+.ts-awards { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+.ts-awards span {
+  display: inline-flex; align-items: baseline; gap: 0.4rem;
+  padding: 0.28rem 0.6rem; border-radius: 100px;
+  border: 1px solid rgba(216,198,138,.3); background: rgba(216,198,138,.09);
+  font-family: var(--mono); font-size: 0.55rem; color: #e6d5a2;
+}
+.ts-awards b { font-weight: 500; opacity: .65; }
+.ts-note { margin-top: 0.9rem; font-size: 0.82rem; line-height: 1.7; color: var(--mute); }
+
+/* ── the full transcript ── */
+.ts-full { margin-bottom: 2rem; }
+.ts-toggle {
+  font: inherit; cursor: pointer; width: 100%; text-align: left;
+  padding: 0.75rem 1rem; border-radius: 6px; color: var(--ink-dim);
+  background: rgba(255,255,255,.03); border: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: border-color .15s ease, color .15s ease;
+}
+.ts-toggle:hover { border-color: rgba(255,255,255,.28); color: var(--ink); }
+.ts-toggle:focus-visible { outline: 2px solid var(--accent, #5fbf8f); outline-offset: 2px; }
+.ts-terms { margin-top: 1.2rem; display: grid; gap: 1.6rem; }
+@media (min-width: 900px) { .ts-terms { grid-template-columns: 1fr 1fr; } }
+.ts-term { border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.1rem; }
+.ts-termhead { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+.ts-termhead h5 { font-family: var(--sans); font-weight: 650; font-size: 0.94rem; color: var(--ink); }
+.ts-yr, .ts-where, .ts-gpa { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.1em; color: var(--mute); }
+.ts-gpa { margin-left: auto; color: var(--accent, #7fd8a8); }
+.ts-where { color: #8fa8c0; }
+.ts-termnote { font-size: 0.76rem; line-height: 1.6; color: var(--mute); margin-bottom: 0.5rem; }
+.ts-rows { list-style: none; }
+.ts-rows li {
+  display: grid; align-items: baseline; gap: 0.55rem;
+  grid-template-columns: 2.6rem minmax(0, 1fr) 2.6rem 2.2rem;
+  padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,.03);
+}
+.ts-rows li:last-child { border-bottom: 0; }
+.ts-code { font-family: var(--mono); font-size: 0.5rem; color: var(--mute); opacity: .6; }
+.ts-course { font-size: 0.83rem; color: var(--ink-dim); min-width: 0; }
+.ts-course i { display: block; font-style: normal; font-family: var(--mono); font-size: 0.5rem; color: var(--mute); }
+.ts-tags { display: flex; gap: 0.2rem; }
+.ts-tags u {
+  text-decoration: none; font-family: var(--mono); font-size: 0.55rem; color: var(--mute); opacity: .7;
+}
+/* Left-aligned, not right. Marks are one or two characters (A, A+, A-, B+) and
+   right-aligning them lines up the '+' rather than the letter, so a bare A sits
+   further right than the A of an A+. Reading a transcript means scanning the
+   letters, so the letter is what has to align; the modifier hangs off it. */
+.ts-mark {
+  font-family: var(--mono); font-size: 0.8rem; text-align: left; color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+/* Dual-enrolment rows read differently: they are college credit, not high school. */
+.ts-rows li.is-college .ts-course { color: #9fc8e8; }
+
+/* ── roles timeline (high school + college) ── */
+.roles { list-style: none; display: grid; gap: 0.5rem; margin: 1.4rem 0 2.2rem; }
+.role {
+  position: relative; display: grid; gap: 0.3rem 1.2rem;
+  grid-template-columns: 1fr; padding: 1rem 1.1rem;
+  border: 1px solid var(--line); border-radius: 8px;
+  background: linear-gradient(150deg, rgba(255,255,255,.028), transparent 70%);
+  transition: border-color .16s ease, transform .16s ease;
+}
+@media (min-width: 760px) { .role { grid-template-columns: 8.5rem minmax(0, 1fr); } }
+.role:hover { border-color: rgba(255,255,255,.22); transform: translateY(-2px); }
+/* The current role gets the accent rail so the latest one reads first. */
+.role--now { border-left: 3px solid var(--accent, #5fbf8f); }
+.role-when { display: grid; gap: 0.1rem; align-content: start; }
+.role-when b {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; color: var(--accent, #7fd8a8);
+}
+.role-when span {
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mute);
+}
+.role-body h4 { font-family: var(--sans); font-weight: 650; font-size: 0.98rem; color: var(--ink); }
+.role-body p { margin-top: 0.35rem; font-size: 0.9rem; line-height: 1.7; color: var(--ink-dim); max-width: 68ch; }
+.role-tag {
+  display: inline-block; margin-top: 0.6rem;
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.2rem 0.5rem; border-radius: 100px; color: #e6d5a2;
+  background: rgba(216,198,138,.1); border: 1px solid rgba(216,198,138,.28);
+}
+@media (prefers-reduced-motion: reduce) { .role:hover { transform: none; } }
+
+/* ── high-school extracurriculars, awards and service ── */
+.hs-cols { display: grid; gap: 1.2rem; margin: 1.3rem 0 2.2rem; }
+@media (min-width: 820px) { .hs-cols { grid-template-columns: 1fr 1fr; } }
+.hs-col {
+  padding: 1.2rem 1.3rem; border: 1px solid var(--line); border-radius: 8px;
+  background: linear-gradient(155deg, rgba(255,255,255,.028), transparent 70%);
+}
+.hs-col h4 { font-family: var(--sans); font-weight: 650; font-size: 0.98rem; color: var(--ink); margin-bottom: 0.7rem; }
+.hs-list { list-style: none; display: grid; gap: 0.6rem; }
+.hs-list li { font-size: 0.88rem; line-height: 1.7; color: var(--ink-dim); }
+.hs-list b { color: var(--ink); font-weight: 600; }
+/* The by-year list gets a fixed grade gutter so the years line up.
+   NOTE: every child of a grid item is its own grid item, so the row content has
+   to sit inside ONE wrapper. Without it a stray <b> lands in the 2.6rem year
+   column and the text collapses to a one-word-per-line ribbon. */
+.hs-list--yr li { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); gap: 0.7rem; align-items: baseline; }
+.hs-list--yr li > span {
+  font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em;
+  color: var(--accent, #7fd8a8); text-transform: uppercase;
+}
+.hs-list--yr li > p { min-width: 0; font-size: 0.88rem; line-height: 1.7; color: var(--ink-dim); }
+.hs-p { font-size: 0.88rem; line-height: 1.7; color: var(--ink-dim); }
+
+.hs-awards { list-style: none; display: grid; gap: 0.5rem; margin: 1.3rem 0 2.2rem; }
+.hs-award {
+  display: grid; gap: 0.25rem 1.2rem; grid-template-columns: 1fr;
+  padding: 0.9rem 1.1rem; border: 1px solid var(--line); border-radius: 8px;
+  transition: border-color .16s ease, transform .16s ease;
+}
+@media (min-width: 760px) { .hs-award { grid-template-columns: 7rem minmax(0, 1fr); } }
+.hs-award:hover { border-color: rgba(255,255,255,.22); transform: translateY(-2px); }
+/* The two national wins carry the accent; the rest stay level with each other. */
+.hs-award--big {
+  border-color: rgba(216,198,138,.34);
+  background: linear-gradient(150deg, rgba(216,198,138,.07), transparent 70%);
+}
+.hs-when {
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute); align-self: start;
+}
+.hs-award--big .hs-when { color: #e6d5a2; }
+.hs-award h4 { font-family: var(--sans); font-weight: 650; font-size: 0.95rem; color: var(--ink); }
+.hs-award p { margin-top: 0.3rem; font-size: 0.86rem; line-height: 1.7; color: var(--ink-dim); max-width: 70ch; }
+@media (prefers-reduced-motion: reduce) { .hs-award:hover { transform: none; } }
+
+/* ── year groups (college) ── */
+.yr-block { margin: 2.2rem 0 0.9rem; }
+.yr-head {
+  display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap;
+  padding-bottom: 0.55rem; border-bottom: 1px solid var(--line);
+}
+.yr-head h4 {
+  font-family: var(--sans); font-weight: 650;
+  font-size: clamp(1.05rem, 2.4vw, 1.32rem); color: var(--ink);
+}
+.yr-span {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; color: var(--accent, #7fd8a8);
+}
+/* Pushed to the far end so the count reads as a tally rather than part of the title. */
+.yr-count {
+  margin-left: auto; font-family: var(--mono); font-size: 0.52rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
+}
+.yr-note { margin-top: 0.55rem; font-size: 0.88rem; line-height: 1.7; color: var(--ink-dim); max-width: 70ch; }
+.yr-block + .roles { margin-top: 0.9rem; }
+
+/* Bulleted detail inside a role. Kept out of .role-body p so a role can have
+   both a paragraph and points without the two fighting for spacing. */
+.role-points { list-style: none; margin: 0.55rem 0 0; display: grid; gap: 0.35rem; }
+.role-points li {
+  position: relative; padding-left: 0.95rem;
+  font-size: 0.88rem; line-height: 1.7; color: var(--ink-dim); max-width: 70ch;
+}
+.role-points li::before {
+  content: ""; position: absolute; left: 0; top: 0.62em;
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--accent, #7fd8a8); opacity: .6;
+}
+.role-points b { color: var(--ink); font-weight: 600; }
+.role-body p + .role-points, .role-points + p { margin-top: 0.55rem; }

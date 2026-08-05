@@ -1,5 +1,7 @@
 /* fan-rdr.js: content for /franchises/red-dead/. Rendered by fanpage.js. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: '1st year of college, 2024\u201325', note: 'First year of college.' },
+  sections: [
 
   { id: 'games', kind: 'rank', title: 'The Games', note: '2004 – 2018',
     items: [
@@ -51,10 +53,11 @@ window.FAN_PAGE = { sections: [
 
   { id: 'lines', kind: 'quotes', title: 'Lines', note: 'the ones that stuck',
     items: [
-      { title: 'We can’t change what’s done. We can only move on.', sub: 'Arthur Morgan' },
       { title: 'I have a plan.', sub: 'Dutch van der Linde · repeatedly' },
       { title: 'I gave you all I had.', sub: 'Arthur Morgan' },
-      { title: 'You’re a good woman, Miss Adler.', sub: 'Arthur Morgan' },
+      { title: 'We’re thieves in a world that don’t want us no more.', sub: 'Arthur Morgan' },
+      { title: 'Take a good look at the sunset, boy. It’s a beautiful one.', sub: 'Arthur Morgan · the last ride' },
+      { title: 'You’re a good man, Arthur Morgan.', sub: 'Sadie Adler' },
     ] },
 
 
@@ -69,3 +72,25 @@ window.FAN_PAGE = { sections: [
     ] },
 
 ] };
+
+/* The interactive block, rendered by fan-play.js. */
+window.FAN_PLAY = {
+  kind: "roll",
+  title: "Dead Eye",
+  intro: "Time slows, the world goes red, and you mark targets faster than anybody should be able to. It is the one overtly gamey mechanic in a series obsessed with being unhurried, and it is perfect.",
+  prompt: "Six in the cylinder. Thumb the hammer.",
+  button: "Enter Dead Eye",
+  again: "Again",
+  wait: [
+        "The world drags.",
+        "Everything goes red.",
+        "Marks land."
+      ],
+  items: [
+    { n: "Six marks, six hits", s: "Clean", c: "#c9402f", w: 4, said: "Six marks. Six hits. Nobody moved.", d: "M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16z M12 4v4 M12 16v4 M4 12h4 M16 12h4", note: "What Dead Eye is for, and the reason the shootouts never get old. Rockstar tuned it so you feel skilful while the game is quietly doing most of the aiming." },
+    { n: "You get shot anyway", s: "It happens", c: "#8f5f4f", w: 2, said: "You got two of them. The third had a shotgun.", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M8 8l8 8 M16 8l-8 8", note: "The game is generous but not infinitely so, and the second one especially is happy to let a bad plan kill you." },
+    { n: "Arthur coughs", s: "And the meter drops", c: "#6f7f92", w: 2, said: "Arthur coughs. The meter drops.", d: "M6 12h3l2-5 2 10 2-5h3", note: "The best storytelling decision in the game \u2014 a mechanic gets worse as the character gets sicker, so you feel the ending coming through your hands before the plot says it out loud." },
+    { n: "You spare him", s: "Honour up", c: "#c9a05f", w: 2, said: "You lower the gun. Honour up.", d: "M12 21s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.4-7 10-7 10z", note: "The honour system is crude but it works, because the epilogue changes depending on it and you find out too late that the game was watching the whole time." },
+    { n: "\u201cYou\u2019re a good man, Arthur Morgan.\u201d", s: "The line", c: "#e0a83a", w: 1, said: "\u201cYou\u2019re a good man, Arthur Morgan.\u201d", d: "M12 3l2.6 6.5L21 12l-6.4 2.5L12 21l-2.6-6.5L3 12l6.4-2.5z", note: "Said to a man who has spent the whole game being told otherwise, at the point where it can no longer do him any good. The best-written character Rockstar has ever put in a game." },
+  ],
+};

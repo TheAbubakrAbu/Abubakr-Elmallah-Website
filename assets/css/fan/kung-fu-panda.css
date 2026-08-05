@@ -1,0 +1,228 @@
+/* kung-fu-panda.css -- loaded only by /kung-fu-panda. Split out of fanpages.css. */
+
+.kfp-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background:
+    radial-gradient(90% 62% at 50% 4%, #0e3a30 0%, #0a2620 42%, #05130f 74%, #030807 100%);
+}
+
+/* Jade valley, gold dragon, bamboo, blossom. Capped at .36 by the global rule
+   further up, which is why these individual values look hot in the source. */
+.kfp-sky > * { position: absolute; inset: 0; }
+
+.kfp-sun {
+  background:
+    radial-gradient(30% 26% at 50% 12%, rgba(240,200,106,.34), transparent 70%),
+    radial-gradient(70% 44% at 50% 2%, rgba(224,168,58,.14), transparent 74%);
+}
+
+.kfp-peaks svg, .kfp-dragon svg, .kfp-bamboo svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.kfm-far  { fill: #10483c; }
+
+.kfm-mid  { fill: #0c3730; }
+
+.kfm-near { fill: #082722; }
+
+/* The dragon is two strokes over each other: a fat gold body and a thin darker
+   spine on top, which is what gives it a rolled edge instead of a flat noodle. */
+.kfd-body  { fill: none; stroke: #e0a83a; stroke-width: 15; stroke-linecap: round; opacity: .5; }
+
+.kfd-spine { fill: none; stroke: #f0d488; stroke-width: 4; stroke-linecap: round; opacity: .55;
+             stroke-dasharray: 6 13; }
+
+.kfd-head  { fill: #e0a83a; opacity: .6; }
+
+.kfd-whisk { fill: none; stroke: #f0d488; stroke-width: 2.4; stroke-linecap: round; opacity: .5; }
+
+.kfd-eye   { fill: #2a1a08; opacity: .8; }
+
+.kfp-dragon { animation: kfp-coil 30s ease-in-out infinite alternate; }
+
+.kfb-stalk { fill: none; stroke: #1c6b48; stroke-width: 3; }
+
+.kfb-leaf  { fill: #227c52; opacity: .8; }
+
+.kfp-bamboo { animation: kfp-sway 11s ease-in-out infinite alternate; transform-origin: 50% 100%; }
+
+/* Sakura. Each petal is a leaf-shaped span falling on its own timing and
+   turning as it goes, so no two share a path. */
+.kfp-petals i {
+  position: absolute; top: -6%; width: 11px; height: 11px;
+  background: linear-gradient(140deg, #f6b8ce, #e07f9f);
+  border-radius: 100% 0 100% 0;
+  opacity: 0;
+  animation: kfp-fall linear infinite;
+}
+
+.kfp-petals i:nth-child(1)  { left:  4%; animation-duration: 15s; animation-delay:  -1s; }
+
+.kfp-petals i:nth-child(2)  { left: 13%; animation-duration: 19s; animation-delay:  -4s; }
+
+.kfp-petals i:nth-child(3)  { left: 22%; animation-duration: 13s; animation-delay:  -8s; }
+
+.kfp-petals i:nth-child(4)  { left: 31%; animation-duration: 21s; animation-delay: -12s; }
+
+.kfp-petals i:nth-child(5)  { left: 40%; animation-duration: 16s; animation-delay:  -3s; }
+
+.kfp-petals i:nth-child(6)  { left: 49%; animation-duration: 18s; animation-delay: -15s; }
+
+.kfp-petals i:nth-child(7)  { left: 58%; animation-duration: 14s; animation-delay:  -6s; }
+
+.kfp-petals i:nth-child(8)  { left: 67%; animation-duration: 20s; animation-delay: -10s; }
+
+.kfp-petals i:nth-child(9)  { left: 76%; animation-duration: 17s; animation-delay:  -2s; }
+
+.kfp-petals i:nth-child(10) { left: 85%; animation-duration: 22s; animation-delay: -17s; }
+
+.kfp-petals i:nth-child(11) { left: 92%; animation-duration: 15s; animation-delay:  -9s; }
+
+.kfp-petals i:nth-child(12) { left: 96%; animation-duration: 19s; animation-delay: -13s; }
+
+.kfp-mist {
+  background: radial-gradient(80% 34% at 50% 96%, rgba(240,200,106,.12), transparent 72%);
+}
+
+/* ── the staff and the scroll ── */
+.fan-art--kfp .kfp-stage {
+  border-radius: 10px; overflow: hidden; max-width: 440px; margin-inline: auto;
+  background: linear-gradient(180deg, #0c2c24 0%, #061512 100%);
+}
+
+.fan-art--kfp .kfp-stage svg { display: block; width: 100%; height: auto; }
+
+.fan-art--kfp .kfp-stage figcaption {
+  margin: 0; padding: .9rem 1rem 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.7;
+}
+
+@media (min-width: 820px) { .fan-art--kfp { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); } }
+
+.kfs-bg      { fill: #071a16; }
+
+.kfs-halo    { fill: #e0a83a; opacity: .1; filter: blur(28px); }
+
+.kfs-bough   { fill: none; stroke: #4a3320; stroke-width: 7; stroke-linecap: round; }
+
+.kfs-blossom { fill: #f0a8c4; filter: drop-shadow(0 0 7px rgba(240,168,196,.7));
+               animation: kfs-bloom 9s ease-in-out infinite alternate; }
+
+/* Both get a shadow so the staff sits in front of the tree and the scroll
+   hangs in front of the staff, rather than everything lying flat. */
+.kfs-staff  { filter: drop-shadow(2px 4px 6px rgba(0,0,0,.5)); }
+
+.kfs-scroll { filter: drop-shadow(3px 6px 10px rgba(0,0,0,.55)); }
+
+.kfs-wood  { fill: none; stroke: #8a6434; stroke-width: 9; stroke-linecap: round; }
+
+.kfs-knot  { fill: none; stroke: #5f4423; stroke-width: 2.4; stroke-linecap: round; }
+
+.kfs-foot  { fill: #5f4423; }
+
+.kfs-cord  { fill: none; stroke: #c04a3a; stroke-width: 2.4; }
+
+.kfs-rod   { fill: #b8862c; }
+
+.kfs-cap   { fill: #e0c060; }
+
+.kfs-paper { fill: #f0e6cc; }
+
+/* The scroll is a mirror. The sheen sliding over it is the only hint. */
+.kfs-sheen {
+  fill: rgba(255,255,255,.22);
+  animation: kfs-shine 7s ease-in-out infinite;
+  transform-box: fill-box; transform-origin: 50% 50%;
+}
+
+.kfs-coil  { fill: none; stroke: #b8862c; stroke-width: 3; stroke-linecap: round; }
+
+.kfs-pearl { fill: #c04a3a; }
+
+/* ── opening it ── */
+.kfp-open {
+  display: block; margin: 1.2rem auto 0; font: inherit; cursor: pointer;
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.6rem 1.2rem; border-radius: 3px; color: #f0e0b0;
+  background: rgba(224,168,58,.13); border: 1px solid rgba(224,168,58,.42);
+  transition: background .15s ease, border-color .15s ease;
+}
+
+.kfp-open:hover { background: rgba(224,168,58,.24); border-color: rgba(224,168,58,.75); }
+
+.kfp-open:focus-visible { outline: 2px solid #e0c060; outline-offset: 2px; }
+
+/* Shut: the paper collapses between the rods and its contents go with it.
+   The rods stay put, so it reads as rolling rather than shrinking. */
+.kfp-rollers .kfp-paper {
+  transition: max-width .85s cubic-bezier(.6,.02,.2,1), opacity .5s ease;
+  max-width: 620px; overflow: hidden;
+}
+
+.kfp-rollers.is-shut .kfp-paper { max-width: 0; opacity: 0; }
+
+.kfp-rollers.is-shut .kfp-rod   { box-shadow: 0 0 22px -4px rgba(224,168,58,.5); }
+
+.kfp-rollers.is-open .kfp-paper { max-width: 620px; opacity: 1; }
+
+.kfp-rollers .kfp-paper > * { white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  .kfp-petals i, .kfp-dragon, .kfp-bamboo, .kfs-blossom, .kfs-sheen { animation: none; }
+  .kfp-petals i { opacity: .5; }
+  .kfp-rollers .kfp-paper { transition: none; }
+}
+
+/* ═════════════ Kung Fu Panda: the Dragon Scroll ═════════════ */
+.kfp-scroll { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; }
+
+.kfp-rollers { display: flex; align-items: stretch; justify-content: center; }
+
+.kfp-rod {
+  width: 22px; flex: none; border-radius: 6px;
+  background: linear-gradient(90deg, #5a3a1e, #8a5f37 40%, #4a2f18);
+  box-shadow: 0 10px 22px -12px #000;
+}
+
+.kfp-rod::before, .kfp-rod::after {
+  content: ""; display: block; height: 14px; margin: -7px -5px; border-radius: 50%;
+  background: linear-gradient(180deg, #d8a850, #8a5f20);
+}
+
+.kfp-paper {
+  flex: 1 1 auto; max-width: 620px; padding: clamp(1.4rem, 4vw, 2.6rem) clamp(1rem, 3vw, 2rem);
+  text-align: center;
+  background: linear-gradient(180deg, #f0d9a0, #d8b872 60%, #c2a05c);
+  box-shadow: inset 0 0 40px 10px rgba(120,80,20,.25);
+}
+
+.kfp-mirror {
+  position: relative; margin: 0 auto 1rem; width: min(420px, 100%); height: clamp(90px, 18vw, 140px);
+  border-radius: 4px; overflow: hidden;
+  background: linear-gradient(115deg, #f6e9c8 0%, #fffdf4 22%, #e2cf9a 42%, #fffdf4 60%, #e8d6a4 100%);
+  box-shadow: inset 0 0 0 2px rgba(120,80,20,.25), inset 0 0 30px rgba(120,80,20,.2);
+}
+
+.kfp-mirror::after {                     /* the sheen that makes it read as reflective */
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.65) 46%, transparent 60%);
+  animation: kfp-sheen 6s ease-in-out infinite;
+}
+
+.kfp-paper b {
+  display: block; font-family: "Bradley Hand", "Brush Script MT", Georgia, cursive;
+  font-size: clamp(1.1rem, 3vw, 1.6rem); color: #4a2f10;
+}
+
+.kfp-paper span {
+  display: block; margin-top: 0.5rem; font-family: var(--mono);
+  font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(74,47,16,.65);
+}
+
+.kfp-scroll-cap {
+  margin-top: 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+@media (prefers-reduced-motion: reduce) { .kfp-mirror::after { animation: none; } }

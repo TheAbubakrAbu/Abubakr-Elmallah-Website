@@ -114,6 +114,9 @@
       + '</span>'
       + '<span class="fr-body">'
       +   '<span class="fr-desc">' + esc(f.desc) + '</span>'
+      /* when I got into it -- the one line that makes this a personal list
+         rather than a catalogue. Optional, so a tile without it still works. */
+      +   (f.when ? '<span class="fr-when">' + esc(f.when) + '</span>' : '')
       +   '<span class="fr-meta">' + esc(f.meta) + '</span>'
       + '</span>'
       + '</' + tag + '>';
@@ -129,6 +132,12 @@
       + '</h3>'
       + '<div class="fr-grid">' + g.items.map(tile).join('') + '</div>'
       + '</section>';
+  /* These nodes carry .reveal, so they start invisible until reveal.js observes
+     them. It scans once on load; this file currently runs before it, but making
+     that a load-order dependency is how the atlas on /star-wars/ ended up blank.
+     Handing the markup back is idempotent and makes the order irrelevant. */
+  if (typeof window.AEreveal === 'function') window.AEreveal(root);
+
   }).join('');
 
   var totalEl = document.getElementById('fandomTotal');

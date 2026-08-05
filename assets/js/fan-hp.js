@@ -5,7 +5,9 @@
 
    Quote accents are house colours: scarlet Gryffindor, blue Ravenclaw, gold
    Hufflepuff, green Slytherin, and Dumbledore's gold for anyone unsorted. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: '5th grade, 2016\u201317', note: 'Read the whole set in fifth grade, before I could have told you what a compiler was. The first series I finished on my own, and still the bar.' },
+  sections: [
 
   { id: 'books', kind: 'rank', title: 'The Seven Books', note: '1997 – 2007',
     items: [
@@ -143,7 +145,7 @@ window.FAN_PAGE = { sections: [
     ] },
 
   { id: 'places', kind: 'tiles', compact: true, title: 'The Map of It', note: 'everywhere the books actually go',
-    lede: 'The wizarding world is hidden inside the ordinary one: a pub nobody can see, a wall that opens, a platform between two platforms, a phone box that goes down instead of along.',
+    lede: 'The wizarding world is hidden inside the ordinary one: a doorway nobody can see, a wall that opens, a platform between two platforms, a phone box that goes down instead of along.',
     items: [
       { title: 'Hogwarts', accent: '#d3a625', sub: 'Scottish Highlands', desc: 'Unplottable, Muggle-repelled, and to anyone who should not be there it looks like a ruin with a sign warning them off.' },
       { title: 'Diagon Alley', accent: '#c9a95f', sub: 'Behind the Leaky Cauldron', desc: 'Three up, two across, tap the brick. The whole economy of British magic on one crooked street.' },
@@ -156,7 +158,7 @@ window.FAN_PAGE = { sections: [
       { title: 'Borgin and Burkes', accent: '#5f5f6f', sub: 'Knockturn Alley', desc: 'Dark artefacts, a Vanishing Cabinet, and Tom Riddle’s first job.' },
       { title: 'Platform Nine and Three-Quarters', accent: '#c04a4a', sub: 'King’s Cross', desc: 'Straight at the barrier between nine and ten, and best at a run if you are nervous.' },
       { title: 'Hogsmeade', accent: '#9fd0f0', sub: 'The only all-wizarding village', desc: 'Signed permission slips, snow, and the whole school out at once.' },
-      { title: 'The Three Broomsticks', accent: '#e0a05f', sub: 'Madam Rosmerta’s', desc: 'Butterbeer, and the conversation where Harry finds out Sirius was his parents’ Secret-Keeper.' },
+      { title: 'The Three Broomsticks', accent: '#e0a05f', sub: 'Madam Rosmerta’s', desc: 'Warm, crowded, and where Harry sits under the Cloak and overhears that Sirius was his parents’ Secret-Keeper.' },
       { title: 'Honeydukes', accent: '#e0607a', sub: 'Sweetshop', desc: 'Chocolate frogs, Every Flavour Beans, and a trapdoor in the cellar leading straight into the castle.' },
       { title: 'The Shrieking Shack', accent: '#8f8f9f', sub: 'End of the Whomping Willow', desc: 'The most haunted building in Britain, and never haunted at all: just a boy turning into a wolf once a month.' },
       { title: 'The Forbidden Forest', accent: '#3f7f4f', sub: 'The castle grounds', desc: 'Centaurs, Aragog’s colony, thestrals, and the clearing Harry walks into at the end.' },
@@ -273,7 +275,7 @@ window.FAN_PAGE = { sections: [
     ] },
 
   { id: 'parks', kind: 'cards', title: 'Where It Exists', note: 'the Wizarding World, park by park',
-    lede: 'Universal has been building this since 2010 and it is the reason their attendance doubled. The trick is that they never break character: butterbeer is a real drink, the wands actually work on windows around the land, and the shopfronts are all trading.',
+    lede: 'Universal has been building this since 2010 and it is the reason their attendance doubled. The trick is that they never break character: the wands actually work on windows all round the land, the shopfronts are all trading, and nothing anywhere is labelled with a logo.',
     items: [
       { title: 'Hogsmeade · Islands of Adventure', sub: 'Orlando, Florida', tag: '2010', accent: '#d3a625',
         desc: 'The first one, and the one that changed theme parks. Hogwarts castle over the village, Forbidden Journey inside it on a robotic arm, and Hagrid’s Magical Creatures Motorbike Adventure, which is the best coaster Universal has ever built.',

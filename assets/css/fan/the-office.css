@@ -1,0 +1,103 @@
+/* the-office.css -- loaded only by /the-office. Split out of fanpages.css. */
+
+.off-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: linear-gradient(180deg, #14161b 0%, #0e1013 55%, #08090b 100%);
+}
+
+.off-sky::before {                     /* ceiling tiles */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.028) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.028) 0 1px, transparent 1px 110px);
+  mask-image: linear-gradient(#000 0 30%, transparent 70%);
+  -webkit-mask-image: linear-gradient(#000 0 30%, transparent 70%);
+}
+
+/* The branch after hours. Everything here is deliberately low-contrast: the
+   whole layer is capped at .36 up top, so these values are what is left of it. */
+.off-sky > * { position: absolute; inset: 0; }
+
+.off-panels i {
+  position: absolute; width: 15%; height: 42px; border-radius: 3px;
+  background: linear-gradient(180deg, rgba(198,214,238,.30), rgba(140,168,206,.10));
+  box-shadow: 0 14px 44px rgba(150,180,220,.10);
+}
+
+.off-panels i:nth-child(1) { left:  4%; top:  6%; }
+
+.off-panels i:nth-child(2) { left: 24%; top:  6%; }
+
+.off-panels i:nth-child(3) { left: 44%; top:  6%; }
+
+.off-panels i:nth-child(4) { left: 64%; top:  6%; }
+
+.off-panels i:nth-child(5) { left: 84%; top:  6%; }
+
+.off-panels i:nth-child(6) { left: 14%; top: 22%; }
+
+.off-panels i:nth-child(7) { left: 44%; top: 22%; }
+
+.off-panels i:nth-child(8) { left: 74%; top: 22%; }
+
+/* One tube on the way out. Only one -- a room full of flickering lights reads
+   as a haunted house, not an office. */
+.off-panels i:nth-child(7) { animation: off-flick 9s steps(1, end) infinite; }
+
+.off-blinds {
+  inset: 12% auto auto 0; height: 34%;
+  background: repeating-linear-gradient(180deg,
+    rgba(150,178,212,.10) 0 2px, transparent 2px 13px);
+  mask-image: linear-gradient(90deg, #000 0 12%, transparent 34%, transparent 66%, #000 88%);
+  -webkit-mask-image: linear-gradient(90deg, #000 0 12%, transparent 34%, transparent 66%, #000 88%);
+}
+
+.off-floor { inset: auto 0 0 0; height: 34%; }
+
+.off-floor svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.ofl-desk  { fill: #2a3140; }
+
+.ofl-chair { fill: #232935; }
+
+.ofl-stack { fill: #3a4152; }
+
+/* ── the conference room drawing ── */
+.fan-art--off .off-stage {
+  background: linear-gradient(180deg, #171b22 0%, #101319 100%);
+  border-radius: 10px; overflow: hidden; max-width: 520px; margin-inline: auto;
+}
+
+.fan-art--off .off-stage svg { display: block; width: 100%; height: auto; }
+
+.fan-art--off .off-stage figcaption {
+  margin: 0; padding: 0 1rem 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.7;
+}
+
+@media (min-width: 820px) { .fan-art--off { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); } }
+
+.ofs-wall   { fill: #1b202a; }
+
+.ofs-light  { fill: #d8e4f2; opacity: .9; }
+
+.ofs-blind  { fill: #10161f; }
+
+.ofs-slat   { fill: #3f4d63; }
+
+.ofs-board  { fill: #e8e4d6; }
+
+.ofs-chalk  { fill: #9aa4b4; opacity: .55; }
+
+.ofs-desk   { fill: #6f5a3d; }
+
+.ofs-mon    { fill: #23293a; }
+
+.ofs-screen { fill: #4d7fb0; opacity: .5; animation: off-screen 7s ease-in-out infinite alternate; }
+
+.ofs-paper  { fill: #d6d2c4; }
+
+.ofs-mug    { fill: #6f9fd0; }
+
+.ofs-trophy { fill: #c9a349; }

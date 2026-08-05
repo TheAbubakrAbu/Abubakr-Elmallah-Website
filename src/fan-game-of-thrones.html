@@ -28,6 +28,7 @@ permalink: /franchises/game-of-thrones/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/game-of-thrones.css' %}" />
 </head>
 <body data-intro="none" data-fan="got">
 
@@ -105,6 +106,8 @@ permalink: /franchises/game-of-thrones/
       <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
     </div>
   </section>
+
+  <div id="fanPlay"></div>
 
   <div class="fan-art fan-art--got reveal">
     <div class="fan-art-fig">
@@ -224,5 +227,7 @@ permalink: /franchises/game-of-thrones/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

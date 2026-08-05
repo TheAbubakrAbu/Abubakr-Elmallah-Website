@@ -1,0 +1,110 @@
+/* indiana-jones.css -- loaded only by /indiana-jones. Split out of fanpages.css. */
+
+/* Desert dusk: a route drawn across the map, ruins on the horizon, torchlight.
+   Capped at .36 by the global -sky rule further up. */
+.ij-sky > * { position: absolute; inset: 0; }
+
+.ij-dust {
+  background:
+    radial-gradient(60% 44% at 50% 12%, rgba(240,190,110,.16), transparent 74%),
+    radial-gradient(70% 40% at 50% 100%, rgba(180,120,50,.12), transparent 72%);
+  animation: ij-haze 28s ease-in-out infinite alternate;
+}
+
+.ij-route svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* The travelling dashes are the series' one piece of visual grammar: a red line
+   crossing a map. dashoffset animates the line rather than moving an element. */
+.ijr-path {
+  fill: none; stroke: #c04a2a; stroke-width: 3; stroke-linecap: round;
+  stroke-dasharray: 10 16; opacity: .5;
+  animation: ij-travel 14s linear infinite;
+}
+
+.ijr-pin { fill: #c04a2a; opacity: .55; }
+
+.ijr-plane {
+  fill: #d8b06a; opacity: .6;
+  offset-path: path("M120 400C300 180 560 140 720 250s340 190 560 40");
+  offset-rotate: auto;
+  animation: ij-fly 26s linear infinite;
+}
+
+.ij-ruins { inset: auto 0 0 0; height: 34%; }
+
+.ij-ruins svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.ijn-far  { fill: #2a1c0e; }
+
+.ijn-near { fill: #1a1108; }
+
+.ijn-step { fill: #221608; }
+
+.ij-torch i {
+  position: absolute; bottom: 14%; width: 10px; height: 10px; border-radius: 50%;
+  background: #f0b45a; box-shadow: 0 0 24px 8px rgba(240,180,90,.35);
+  animation: ij-flicker 3.4s ease-in-out infinite;
+}
+
+.ij-torch i:nth-child(1) { left: 27%; }
+
+.ij-torch i:nth-child(2) { left: 62%; animation-delay: -1.7s; }
+
+/* ── the whip and the hat ── */
+.fan-art--ij .ij-stage {
+  background: linear-gradient(180deg, #241708 0%, #120b04 100%);
+  border-radius: 10px; overflow: hidden; max-width: 480px; margin-inline: auto;
+}
+
+.fan-art--ij .ij-stage svg { display: block; width: 100%; height: auto; padding: .8rem; }
+
+.fan-art--ij .ij-stage figcaption {
+  margin: 0; padding: 0 1rem 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.7;
+}
+
+@media (min-width: 820px) { .fan-art--ij { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.1fr); } }
+
+/* The lash is three segments at decreasing widths -- SVG cannot taper a single
+   stroke, so the taper is faked by chaining strokes that get thinner. */
+.ijw-lash path { fill: none; stroke: #a8763a; stroke-linecap: round; }
+
+.ijw-1 { stroke-width: 7; }
+
+.ijw-2 { stroke-width: 4; }
+
+.ijw-3 { stroke-width: 2; }
+
+.ijw-coil ellipse { fill: none; stroke: #8f6330; stroke-width: 7; }
+
+.ijw-grip rect { fill: #6f4a22; }
+
+.ijw-band { fill: #4a3018; }
+
+/* Lifts the hat off the coil behind it so the two shapes stay legible. */
+.ijh-hat   { filter: drop-shadow(0 7px 10px rgba(0,0,0,.45)); }
+
+.ijh-crown { fill: #7a5628; }
+
+.ijh-brim  { fill: #8f6330; }
+
+.ijh-band  { fill: #4a3018; }
+
+.ijh-dent  { fill: none; stroke: #5f4220; stroke-width: 3; stroke-linecap: round; }
+
+.ij-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(90% 70% at 50% 0%, #1d1710 0%, #120e09 46%, #070605 100%);
+}
+
+.ij-sky::before {                      /* the travel line */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(24deg, rgba(216,176,106,.16) 0 14px, transparent 14px 34px);
+  mask-image: radial-gradient(ellipse 60% 30% at 30% 22%, #000 0%, transparent 70%),
+              radial-gradient(ellipse 50% 26% at 74% 62%, #000 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 30% at 30% 22%, #000 0%, transparent 70%),
+              radial-gradient(ellipse 50% 26% at 74% 62%, #000 0%, transparent 70%);
+  mask-composite: add; -webkit-mask-composite: source-over;
+}

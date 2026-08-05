@@ -1,0 +1,98 @@
+/* spider-man.css -- loaded only by /spider-man. Split out of fanpages.css. */
+
+.spdr-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(80% 60% at 50% 0%, #1a0a12 0%, #0d0709 48%, #050304 100%);
+}
+
+.spdr-sky > * { position: absolute; inset: 0; display: block; }
+
+/* New York, kept well back so the page reads over it */
+.spdr-city { inset: auto 0 0 0; height: 50%; opacity: .6; }
+
+.spdr-city svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.spc-far  { fill: #16101a; }
+
+.spc-near { fill: #0c080e; }
+
+.spc-lit  { fill: #6a4a2a; opacity: .5; }
+
+/* ══ the symbiote takeover ══
+   The Venom section carries data-symbiote; fan-spidey-ui.js puts .is-symbiote
+   on <body> while it is the thing on screen. Everything below is the page
+   losing its colour: red and blue drain out, the city dims, the swinging
+   figure leaves, and the tendrils crawl in. */
+.spdr-tendrils {
+  position: absolute; inset: 0; display: block;
+  opacity: 0; transition: opacity 1.1s ease;
+}
+
+.spdr-tendrils svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.spt { fill: #e8e8f0; opacity: .5; }
+
+body.is-symbiote .spdr-sky {
+  background:
+    radial-gradient(70% 55% at 50% 0%, #14141c 0%, #08080c 52%, #020203 100%);
+}
+
+body.is-symbiote .spdr-sky::before { opacity: .12; filter: grayscale(1) brightness(2.2); }
+
+body.is-symbiote .spdr-city   { opacity: .22; filter: grayscale(1); }
+
+body.is-symbiote .spdr-swing  { opacity: 0; }
+
+body.is-symbiote .spdr-tendrils { opacity: 1; animation: spd-creep 9s ease-in-out infinite alternate; }
+
+/* the whole page goes monochrome while you are in there */
+body.is-symbiote main { --a: #e8e8f0; }
+
+/* the swing: a pendulum on a web line that releases and re-anchors.
+   The whole rig swings about the anchor point at the top-left of the line. */
+.spdr-swing { opacity: .3; }
+
+.spdr-swing svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.sps-rig {
+  transform-box: view-box; transform-origin: 120px 0px;
+  animation: spd-swing 7s cubic-bezier(.42,0,.58,1) infinite;
+}
+
+.sps-line { fill: none; stroke: #cfd8e6; stroke-width: 2.4; opacity: .55; }
+
+.sps-body { fill: #10121a; stroke: #e02a3a; stroke-width: 3; stroke-linejoin: round; }
+
+.sps-arm  { fill: none; stroke: #e02a3a; stroke-width: 5; stroke-linecap: round; }
+
+.wsh-cuff    { fill: #1c1f28; stroke: #e02a3a; stroke-width: 3; stroke-linejoin: round; }
+
+.wsh-plate   { fill: #2a2f3a; }
+
+.wsh-vent    { fill: none; stroke: #4a5262; stroke-width: 3; stroke-linecap: round; }
+
+.wsh-dial    { fill: #14171e; stroke: #8f9aa6; stroke-width: 2.6; }
+
+.wsh-lens    { fill: #e02a3a; filter: drop-shadow(0 0 7px rgba(224,42,58,.8)); }
+
+.wsh-nozzle  { fill: #8f9aa6; stroke: #4a5262; stroke-width: 2; stroke-linejoin: round; }
+
+.wsh-trigger { fill: none; stroke: #8f9aa6; stroke-width: 5; stroke-linecap: round; }
+
+.wsh-cart rect { fill: #3f4654; stroke: #8f9aa6; stroke-width: 2; }
+
+.wsh-web {
+  fill: none; stroke: #dfe7f2; stroke-width: 2.6; stroke-linecap: round;
+  stroke-dasharray: 340; stroke-dashoffset: 340;
+  animation: spd-fire 4.4s ease-out infinite;
+}
+
+.spdr-sky::before {                    /* radial web: spokes and rings */
+  content: ""; position: absolute; right: -14%; top: -18%;
+  width: min(90vw, 900px); aspect-ratio: 1;
+  background:
+    repeating-conic-gradient(from 0deg at 50% 50%, rgba(224,42,58,.16) 0 .4deg, transparent .4deg 15deg),
+    repeating-radial-gradient(circle at 50% 50%, rgba(224,42,58,.14) 0 1px, transparent 1px 52px);
+  mask-image: radial-gradient(circle at 50% 50%, #000 12%, rgba(0,0,0,.55) 52%, transparent 78%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 12%, rgba(0,0,0,.55) 52%, transparent 78%);
+}

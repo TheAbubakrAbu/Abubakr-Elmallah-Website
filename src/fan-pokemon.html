@@ -28,11 +28,36 @@ permalink: /franchises/pokemon/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/pokemon.css' %}" />
 </head>
 <body data-intro="none" data-fan="pokemon">
 
 <!-- a poké ball, parked in the corner -->
-<div class="pkm-sky" aria-hidden="true"></div>
+<!-- a route at dusk: sky, distant hills, tall grass along the bottom, and the
+     ball already out. All CSS and one inline SVG. -->
+<div class="pkm-sky" aria-hidden="true">
+  <span class="pkm-hills">
+    <svg viewBox="0 0 1400 300" preserveAspectRatio="none">
+      <path class="pkh-far"  d="M0 300V190q120-70 250-40t250 20 240-60 260 40 200-30 200 50v130z"/>
+      <path class="pkh-near" d="M0 300V236q160-54 300-16t260 10 240-34 300 30 300-20v94z"/>
+    </svg>
+  </span>
+  <span class="pkm-grass">
+    <svg viewBox="0 0 1400 160" preserveAspectRatio="none">
+      <g class="pkg-blades">
+        <path d="M0 160V120q14-40 28 0v40zM40 160V112q16-46 32 0v48zM86 160V126q12-34 24 0v34zM126 160V104q18-52 36 0v56zM174 160V122q14-38 28 0v38z"/>
+        <path d="M220 160V118q14-42 28 0v42zM262 160V108q16-48 32 0v52zM308 160V128q12-32 24 0v32zM348 160V112q16-44 32 0v48z"/>
+        <path d="M400 160V122q14-40 28 0v38zM442 160V106q16-50 32 0v54zM488 160V130q12-30 24 0v30zM528 160V116q16-44 32 0v44z"/>
+        <path d="M580 160V118q14-42 28 0v42zM622 160V108q16-48 32 0v52zM668 160V128q12-32 24 0v32zM708 160V112q16-44 32 0v48z"/>
+        <path d="M760 160V122q14-40 28 0v38zM802 160V106q16-50 32 0v54zM848 160V130q12-30 24 0v30zM888 160V116q16-44 32 0v44z"/>
+        <path d="M940 160V118q14-42 28 0v42zM982 160V108q16-48 32 0v52zM1028 160V128q12-32 24 0v32zM1068 160V112q16-44 32 0v48z"/>
+        <path d="M1120 160V122q14-40 28 0v38zM1162 160V106q16-50 32 0v54zM1208 160V130q12-30 24 0v30zM1248 160V116q16-44 32 0v44z"/>
+        <path d="M1300 160V118q14-42 28 0v42zM1342 160V108q16-48 32 0v52zM1380 160V128q12-32 24 0v32z"/>
+      </g>
+    </svg>
+  </span>
+  <span class="pkm-sparks"></span>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -79,7 +104,34 @@ permalink: /franchises/pokemon/
     <div class="fan-links">
       <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
     </div>
+    <div class="fan-art fan-art--pkm reveal">
+      <div class="fan-art-fig">
+        <svg viewBox="0 0 420 420" role="img" aria-label="A Poké Ball">
+          <g class="pkb">
+            <circle class="pkb-white"  cx="210" cy="210" r="168"/>
+            <path  class="pkb-red"    d="M42 210a168 168 0 0 1 336 0z"/>
+            <rect  class="pkb-band"   x="42" y="194" width="336" height="32"/>
+            <circle class="pkb-ring"  cx="210" cy="210" r="58"/>
+            <circle class="pkb-inner" cx="210" cy="210" r="40"/>
+            <circle class="pkb-btn"   cx="210" cy="210" r="24"/>
+            <circle class="pkb-shine" cx="150" cy="140" r="30"/>
+            <circle class="pkb-edge"  cx="210" cy="210" r="168"/>
+          </g>
+          <g class="pkb-burst">
+            <path d="M210 210 96 60M210 210l150-118M210 210 78 292M210 210l160 88M210 210l-52 168M210 210l86 160"/>
+          </g>
+        </svg>
+      </div>
+      <div class="fan-art-body">
+        <q>I want to be the very best, like no one ever was.</q>
+        <span class="fan-art-by">Pokémon Theme · 1998</span>
+        <p>A device that turns a living creature into energy, stores it, and lets it back out on command — handed to ten-year-olds, who then leave home. Nobody in this world has ever thought that was strange, and neither did any of us.</p>
+        <p>Nine generations, a thousand-odd species, eighteen types, and a rock-paper-scissors chart that turns out to have real depth once you stop mashing the strongest attack. It taught a generation of children to build a team, cover their weaknesses, and think two turns ahead.</p>
+      </div>
+    </div>
   </section>
+
+  <div id="fanPlay"></div>
 
   <section class="pkm-dex reveal">
     <div>
@@ -148,5 +200,7 @@ permalink: /franchises/pokemon/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

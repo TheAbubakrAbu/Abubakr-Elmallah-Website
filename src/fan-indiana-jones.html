@@ -28,11 +28,30 @@ permalink: /franchises/indiana-jones/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/indiana-jones.css' %}" />
 </head>
 <body data-intro="none" data-fan="indiana">
 
 <!-- a dotted line, moving across the map -->
-<div class="ij-sky" aria-hidden="true"></div>
+<div class="ij-sky" aria-hidden="true">
+  <div class="ij-dust"></div>
+  <div class="ij-route">
+    <svg viewBox="0 0 1400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path class="ijr-path" d="M120 400C300 180 560 140 720 250s340 190 560 40"/>
+      <g class="ijr-pin"><circle cx="120" cy="400" r="7"/><circle cx="720" cy="250" r="7"/><circle cx="1280" cy="290" r="7"/></g>
+      <path class="ijr-plane" d="M0-11l4 11-4 11-4-11z"/>
+    </svg>
+  </div>
+  <div class="ij-ruins">
+    <svg viewBox="0 0 1400 260" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path class="ijn-far" d="M980 260l150-190 150 190z"/>
+      <path class="ijn-near" d="M60 260l120-150 120 150zM300 260V150h34v110zM352 260V132h34v128zM404 260V158h34v102zM456 260V140h34v120zM508 260V166h34v94z"/>
+      <path class="ijn-near" d="M290 130h210v18H290zM282 112h226v14H282z"/>
+      <g class="ijn-step"><path d="M700 260l70-70h120l70 70z"/></g>
+    </svg>
+  </div>
+  <div class="ij-torch"><i></i><i></i></div>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -81,19 +100,43 @@ permalink: /franchises/indiana-jones/
     </div>
   </section>
 
-  <section class="ij-diary reveal">
-    <div class="ij-book">
-      <div class="ij-page ij-page--l">
-        <div class="ij-label">Grail Diary · page 41</div>
-        <span class="ij-sketch"><svg viewBox="0 0 100 120"><path d="M30 12h40M34 12c0 16 4 22 16 26 12-4 16-10 16-26"/><path d="M50 38v34M36 74h28M32 80h36" stroke-linecap="round"/><circle cx="50" cy="26" r="4"/><path d="M18 100h64" stroke-dasharray="3 4"/></svg></span>
-        <p class="ij-hand">The cup of a carpenter. Not gold. Not jewelled. The one nobody would reach for.</p>
-      </div>
-      <div class="ij-page ij-page--r">
-        <div class="ij-label">Three trials</div>
-        <p class="ij-hand"><b>I.</b> The Breath of God. Only the penitent man will pass.<br><b>II.</b> The Word of God. Proceed in the footsteps of the Word.<br><b>III.</b> The Path of God. Only in the leap from the lion’s head will he prove his worth.</p>
-      </div>
+  <div id="fanPlay"></div>
+
+  <section class="fan-art fan-art--ij reveal">
+    <figure class="fan-art-fig ij-stage">
+      <svg viewBox="0 0 420 300" aria-hidden="true">
+        <!-- the whip: one tapering path, drawn thick at the grip and hairline
+             at the tip, so it reads as leather rather than a wire -->
+        <g class="ijw-lash">
+          <path class="ijw-1" d="M118 138c46-30 96-22 128 8s72 42 116 14"/>
+          <path class="ijw-2" d="M362 160c22-14 34-32 30-48"/>
+          <path class="ijw-3" d="M392 112c-3-11-12-17-22-16"/>
+        </g>
+        <g class="ijw-coil">
+          <ellipse cx="112" cy="176" rx="56" ry="21"/>
+          <ellipse cx="112" cy="168" rx="48" ry="18"/>
+          <ellipse cx="112" cy="160" rx="40" ry="15"/>
+        </g>
+        <g class="ijw-grip">
+          <rect x="52" y="120" width="76" height="22" rx="11" transform="rotate(-16 90 131)"/>
+          <path class="ijw-band" d="M64 128h10v18H64zM86 122h10v18H86zM108 116h10v18h-10z" transform="rotate(-16 90 131)"/>
+        </g>
+        <!-- the hat, because the two of them together are the whole silhouette -->
+        <g class="ijh-hat">
+          <path class="ijh-crown" d="M150 246c0-30 14-52 44-52s44 22 44 52z"/>
+          <path class="ijh-dent" d="M178 200c8 8 12 20 12 34h8c0-16 4-28 12-36"/>
+          <ellipse class="ijh-brim" cx="194" cy="248" rx="86" ry="16"/>
+          <path class="ijh-band" d="M152 240h84v12h-84z"/>
+        </g>
+      </svg>
+      <figcaption>The whip and the hat, drawn for this page — the whole silhouette in two objects</figcaption>
+    </figure>
+    <div class="fan-art-body">
+      <q>It’s not the years, honey. It’s the mileage.</q>
+      <p class="fan-art-by">Indiana Jones</p>
+      <p>Archaeology as an action sport, with the best-scored opening scene in cinema. What holds these films up forty years later is that almost none of it is faked — the boulder rolled, the truck chase happened, the tank went off the cliff, and the rope bridge in Sri Lanka was built so it could be cut.</p>
+      <p>And the whip is the reason the character works. Give a hero a gun and every problem has the same answer; give him ten feet of leather and every problem needs a different one. It swings him across a gap, takes a pistol out of somebody’s hand, and pulls his hat back off the floor — which he will always, always go back for.</p>
     </div>
-    <p class="ij-diary-cap">Henry Jones Senior spent a life on this notebook, and posted it to Venice to keep it safe</p>
   </section>
 
   <div id="fanBody"></div>
@@ -126,5 +169,7 @@ permalink: /franchises/indiana-jones/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

@@ -1,0 +1,154 @@
+/* breaking-bad.css -- loaded only by /breaking-bad. Split out of fanpages.css. */
+
+.bb-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    linear-gradient(180deg, #17231b 0%, #101711 40%, #0a0d0a 70%, #050605 100%);
+}
+
+.bb-sky::after {                       /* heat haze on the horizon */
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(70% 20% at 50% 42%, rgba(224,180,80,.10), transparent 70%);
+}
+
+/* The desert outside Albuquerque, with the RV parked where it all starts.
+   Capped at .36 by the global -sky rule further up. */
+.bb-sky > * { position: absolute; inset: 0; }
+
+.bb-sun { background: radial-gradient(52% 30% at 50% 40%, rgba(224,180,80,.16), transparent 72%); }
+
+.bb-grit {
+  background-image: radial-gradient(rgba(200,170,110,.10) 1px, transparent 1.3px);
+  background-size: 7px 7px;
+  mask-image: linear-gradient(transparent 30%, #000 100%);
+  -webkit-mask-image: linear-gradient(transparent 30%, #000 100%);
+}
+
+.bb-mesa { inset: auto 0 0 0; height: 44%; }
+
+.bb-mesa svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.bbm-far  { fill: #241a10; }
+
+.bbm-near { fill: #16100a; }
+
+.bbm-road { fill: #1c1a16; }
+
+.bbm-dash { fill: #6f6a50; opacity: .4; }
+
+.bbm-pole path { fill: none; stroke: #2e2418; stroke-width: 2.4; }
+
+.bbm-rv   { fill: #2a2a20; }
+
+.bbm-win  { fill: #4f6f5f; opacity: .5; }
+
+/* ── the hat ── */
+.fan-art--bb .bb-stage {
+  border-radius: 10px; overflow: hidden; max-width: 440px; margin-inline: auto;
+}
+
+.fan-art--bb .bb-stage svg { display: block; width: 100%; height: auto; }
+
+.fan-art--bb .bb-stage figcaption {
+  margin: 0; padding: .9rem 1rem 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.7;
+}
+
+@media (min-width: 820px) { .fan-art--bb { grid-template-columns: minmax(0, .95fr) minmax(0, 1.15fr); } }
+
+.bbh-bg    { fill: #101a13; }
+
+.bbh-sun   { fill: #17231b; }
+
+.bbh-disc  { fill: #c9a05f; opacity: .16; }
+
+.bbh-brim  { fill: #1a1a1a; }
+
+.bbh-crown { fill: #222; }
+
+.bbh-band  { fill: #141414; }
+
+.bbh-dent  { fill: none; stroke: #3a3a3a; stroke-width: 3; stroke-linecap: round; }
+
+.bbh-glass { fill: #2a3a32; opacity: .8; }
+
+/* The two element tiles from the title card, in the show's green. */
+.bbh-tile rect { fill: #1f3a28; stroke: #4fbf7f; stroke-width: 2; }
+
+.bbh-sym { fill: #dff0e4; font-family: var(--sans); font-weight: 700; font-size: 30px; text-anchor: middle; }
+
+.bbh-num { fill: #8fd0a8; font-family: var(--mono); font-size: 13px; }
+
+.bb-mark {                             /* Br / Ba element tiles in the hero */
+  display: inline-flex; flex-direction: column; align-items: flex-start;
+  vertical-align: -0.3em; padding: 0.3rem 0.5rem 0.2rem; margin-right: 0.08em;
+  border-radius: 4px; background: var(--a); color: #08120c; line-height: 1;
+}
+
+.bb-mark b { font-weight: 700; }
+
+.bb-mark em { font-style: normal; font-size: 0.34em; opacity: .75; margin-top: 2px; }
+
+/* ═════════════ Breaking Bad: the batch ═════════════ */
+.bb-lab {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.4rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 820px) { .bb-lab { grid-template-columns: 0.42fr 1.58fr; } }
+
+.bb-flask { position: relative; width: 150px; margin: 0 auto; }
+
+.bb-neck { width: 26px; height: 46px; margin: 0 auto; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); border-bottom: 0; }
+
+.bb-body {
+  position: relative; width: 150px; height: 120px; overflow: hidden;
+  clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%);
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+}
+
+.bb-liquid {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 58%;
+  background: linear-gradient(180deg, #7fe0ff, #2f9fd6 55%, #1a6fa8);
+  box-shadow: 0 0 34px 6px rgba(95,208,255,.4);
+}
+
+.bb-liquid::after {
+  content: ""; position: absolute; top: -4px; left: 0; right: 0; height: 8px;
+  border-radius: 50%; background: rgba(190,240,255,.75);
+}
+
+.bb-bub { position: absolute; inset: 0; }
+
+.bb-bub i {
+  position: absolute; bottom: 6%; width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(220,250,255,.6); animation: bb-rise 4.5s linear infinite;
+}
+
+.bb-bub i:nth-child(1) { left: 36%; animation-delay: 0s; }
+
+.bb-bub i:nth-child(2) { left: 52%; animation-delay: 1.4s; width: 4px; height: 4px; }
+
+.bb-bub i:nth-child(3) { left: 62%; animation-delay: 2.8s; width: 5px; height: 5px; }
+
+.bb-tag {
+  margin-top: 0.8rem; text-align: center;
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+.bb-read { display: flex; flex-direction: column; gap: 1rem; }
+
+.bb-purity { display: flex; align-items: baseline; gap: 0.6rem; }
+
+.bb-purity b { font-family: var(--mono); font-size: clamp(2rem, 6vw, 3.2rem); color: var(--a); line-height: 1; }
+
+.bb-purity span { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); }
+
+.bb-track { height: 8px; border-radius: 5px; background: rgba(255,255,255,.08); overflow: hidden; }
+
+.bb-track i { display: block; height: 100%; width: 96.2%; background: linear-gradient(90deg, #2f9fd6, #7fe0ff); box-shadow: 0 0 14px rgba(95,208,255,.5); }
+
+.bb-read p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 60ch; }

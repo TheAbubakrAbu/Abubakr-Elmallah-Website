@@ -1,11 +1,31 @@
 /* fan-invincible.js: content for /franchises/invincible/. Rendered by fanpage.js. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: 'Summer 2024, into freshman year', note: 'Watched season one the summer before college and thought it was fine. I only came back and finished it when season four landed and I heard the finale was being called one of the best episodes ever.' },
+  sections: [
 
-  { id: 'seasons', kind: 'rank', title: 'The Show', note: '2021 – now',
+  { id: 'seasons', kind: 'rank', title: 'The Show', note: '2021 \u2013 now \u00b7 four seasons',
     items: [
       { num: '01', title: 'Season One', sub: '2021', desc: 'Opens as a cheerful teen superhero cartoon and, at the end of episode one, stops being one.' },
       { num: '02', title: 'Season Two', sub: '2023–24', desc: 'The fallout: a family, a planet, and a son working out what he inherited.' },
       { num: '03', title: 'Season Three', sub: '2025', desc: 'The Viltrumite question stops being theoretical.' },
+      { num: '04', title: 'Season Four', sub: '2026', desc: 'The one that finally got me to finish it. I had heard the finale being talked about as one of the best episodes anybody had put out, went back to catch up, and it was worth the detour.' },
+    ] },
+
+  { id: 'mine', kind: 'cards', title: 'I Bounced Off It First', note: 'and came back three years later',
+    lede: 'Being straight about this one: I watched season one the summer before college, thought it was fine, and did not carry on. It sat unfinished until season four landed and I kept hearing people call the finale one of the best episodes of anything. So I went back, caught up properly, and I was wrong the first time.',
+    items: [
+      { title: 'Why it did not land at first', sub: 'Summer 2024', tag: 'Honest', accent: '#8f98a8',
+        desc: 'I think I took it as a shock-value show. The first episode has a famous ending and it is easy to read the whole thing as chasing that — gore as the point rather than the consequence. That is a misread, but it is an easy one to make from season one alone.',
+        meta: 'Watched S1, stopped' },
+      { title: 'What changed my mind', sub: 'Season four', tag: 'The return', accent: '#f0d040',
+        desc: 'Enough people describing one episode as a career best that I could not leave it. Catching up in one run rather than a season at a time also helped — the story is much better read as one long escalation than in yearly instalments.',
+        meta: 'Caught up in one go' },
+      { title: 'It is not about the violence', sub: 'What I missed', tag: 'The point', accent: '#e0483a',
+        desc: 'The fights are brutal, but the show is about what having a father like that does to somebody, and whether you are obliged to become the thing you came from. The damage is the argument, not the selling point.',
+        meta: 'Consequence, not spectacle' },
+      { title: 'Where I have got to', sub: 'Caught up', tag: 'Now', accent: '#4f8fe0',
+        desc: 'All four seasons, and I have not read the comic — which by all accounts goes considerably further and considerably darker. That is the next thing.',
+        meta: 'Comic still unread' },
     ] },
 
   { id: 'cast', kind: 'cards', title: 'The Cast', note: 'think, Mark',
@@ -16,6 +36,23 @@ window.FAN_PAGE = { sections: [
       { title: 'Atom Eve', sub: 'Samantha Eve Wilkins', tag: 'Hero', desc: 'Matter manipulation at the atomic level, on paper the most powerful person in the show.', meta: 'Teen Team' },
       { title: 'Cecil Stedman', sub: 'GDA', tag: 'Director', desc: 'Runs the Global Defense Agency on cold arithmetic, and is usually right in a way you hate.', meta: 'Global Defense Agency' },
       { title: 'Allen the Alien', sub: 'Coalition of Planets', tag: 'Ally', desc: 'Evaluation officer for planets, upgraded repeatedly, and the funniest character in the show.', meta: 'Level 4 → higher' },
+    ] },
+
+  { id: 'think', kind: 'cards', title: 'That Fight', note: 'the end of season one',
+    lede: 'You know the one. Two people who love each other, one of whom cannot be hurt, having an argument at several hundred miles an hour through a train, a city and most of a continent. It is the most-quoted scene the show has and it works because of what is being said rather than what is being done.',
+    items: [
+      { title: '“Think, Mark.”', sub: 'The line', tag: 'The scene', accent: '#e0483a',
+        desc: 'A father asking his son to be reasonable, mid-beating, about why he should help conquer his own planet. J.K. Simmons delivers it as exasperated parenting, which is far worse than delivering it as a threat.',
+        meta: 'J.K. Simmons' },
+      { title: 'The question underneath', sub: 'What is it actually about', tag: 'Why it lands', accent: '#f0d040',
+        desc: 'What will you have left in five hundred years? Everyone Mark loves is temporary on a Viltrumite timescale, and Nolan genuinely believes pointing that out is a kindness. The horror is that he is not wrong about the arithmetic.',
+        meta: 'The five hundred years' },
+      { title: 'And then he stops', sub: 'The turn', tag: 'The ending', accent: '#4f8fe0',
+        desc: 'He wins completely and then cannot finish it, and leaves rather than admit why. The whole rest of the series comes out of that hesitation.',
+        meta: 'He could not do it' },
+      { title: 'The opening did it first', sub: 'Episode one', tag: 'Bookend', accent: '#8f98a8',
+        desc: 'Season one opens with the Guardians of the Globe — the show\u2019s Justice League — being killed in a room by someone they trusted, before you have met most of them. The finale is that same move at full length, with somebody you do care about.',
+        meta: 'The Guardians' },
     ] },
 
   { id: 'viltrum', kind: 'cards', title: 'The Viltrum Empire', note: 'the thing the whole story is actually about',
@@ -57,3 +94,19 @@ window.FAN_PAGE = { sections: [
     ] },
 
 ] };
+
+/* The interactive block, rendered by fan-play.js. */
+window.FAN_PLAY = {
+  kind: "pick",
+  title: "The Viltrumite Question",
+  intro: "Every conversation in this show eventually becomes the same one: what do you owe the people who made you, and what will you have left when they are gone. Pick a position and see who holds it.",
+  prompt: "Somebody is about to make an argument.",
+  said: "%.",
+  items: [
+    { n: "\u201cThink, Mark.\u201d", s: "Nolan", c: "#e0483a", d: "M12 4a6 6 0 0 1 6 6c0 3-2 4-2 6H8c0-2-2-3-2-6a6 6 0 0 1 6-6z M9 19h6 M12 8v4", note: "A father asking his son to be reasonable, mid-beating, about helping conquer his own planet. Delivered as exasperated parenting rather than as a threat, which is far worse." },
+    { n: "\u201cWhat will you have left?\u201d", s: "The five hundred years", c: "#f0d040", d: "M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16z M12 8v4l3 2", note: "Everyone Mark loves is temporary on a Viltrumite timescale, and Nolan believes pointing that out is a kindness. The horror is that he is not wrong about the arithmetic." },
+    { n: "\u201cYou\u2019d have me.\u201d", s: "Mark\u2019s answer", c: "#4f8fe0", d: "M12 21s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.4-7 10-7 10z", note: "The line that ends it, and the reason Nolan stops. He wins completely and then cannot finish it, and the entire rest of the series comes out of that hesitation." },
+    { n: "The Guardians", s: "Episode one", c: "#8f98a8", d: "M12 3l8 3v6c0 5-3 8-8 9-5-1-8-4-8-9V6z M9 12l2 2 4-4", note: "The show\u2019s Justice League, killed in a room by somebody they trusted, before you have met most of them. The finale is that same move at full length with somebody you do care about." },
+    { n: "The empire", s: "What it is actually about", c: "#a86ff0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h18 M12 3c3 3 3 15 0 18 M12 3c-3 3-3 15 0 18", note: "Not a man who turned evil \u2014 a scout for a galactic empire that has been doing this to planets for centuries and considers it administration. The personal story is the small end of a very large one." },
+  ],
+};

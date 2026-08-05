@@ -1,0 +1,133 @@
+/* the-simpsons.css -- loaded only by /the-simpsons. Split out of fanpages.css. */
+
+.sim-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: linear-gradient(180deg, #12233f 0%, #101a2c 40%, #080a10 100%);
+}
+
+.sim-sky > * { position: absolute; inset: 0; display: block; }
+
+/* Springfield on the horizon: the plant, the town, and the Simpsons' house */
+.sim-town { inset: auto 0 0 0; height: 46%; opacity: .62; }
+
+.sim-town svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.simt-plant  { fill: #0b1424; stroke: #4a6a94; stroke-width: 2; stroke-linejoin: round; }
+
+.simt-roofs  { fill: #0a1220; stroke: #3f5a80; stroke-width: 1.8; stroke-linejoin: round; }
+
+.simt-house  { fill: #14203a; stroke: #7f9fd0; stroke-width: 2.2; stroke-linejoin: round; }
+
+.simt-door   { fill: #6f4a2a; stroke: #a0764a; }
+
+.simt-win    { fill: #f0c840; stroke: none; filter: drop-shadow(0 0 6px rgba(240,200,64,.6)); }
+
+.simt-glow circle {
+  fill: #7fe0a0; opacity: .5;
+  filter: blur(6px);
+  animation: sim-hum 6s ease-in-out infinite alternate;
+}
+
+/* the title-card clouds, drifting */
+.sim-clouds {
+  background-image:
+    radial-gradient(90px 40px at 14% 16%, rgba(255,255,255,.10), transparent 70%),
+    radial-gradient(120px 50px at 40% 10%, rgba(255,255,255,.08), transparent 70%),
+    radial-gradient(100px 44px at 70% 19%, rgba(255,255,255,.075), transparent 70%),
+    radial-gradient(130px 54px at 92% 12%, rgba(255,255,255,.065), transparent 70%);
+  animation: sim-drift 90s ease-in-out infinite alternate;
+}
+
+@media (min-width: 820px) { .fan-art--sim { grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr); } }
+
+.dnt-dough    { fill: #e8b06a; stroke: #b8823c; stroke-width: 4; }
+
+.dnt-holerim  { fill: none; stroke: #b8823c; stroke-width: 4; }
+
+/* fill-rule evenodd turns the two subpaths into a ring, so the frosting has a
+   hole in it rather than a pink disc sitting over the middle */
+.dnt-icing    { fill: #f58fbf; fill-rule: evenodd; stroke: #d96aa0; stroke-width: 3; stroke-linejoin: round; }
+
+.dnt-sprinkles rect:nth-child(6n+1) { fill: #f0e04a; }
+
+.dnt-sprinkles rect:nth-child(6n+2) { fill: #6fd0f0; }
+
+.dnt-sprinkles rect:nth-child(6n+3) { fill: #7fe07f; }
+
+.dnt-sprinkles rect:nth-child(6n+4) { fill: #ffffff; }
+
+.dnt-sprinkles rect:nth-child(6n+5) { fill: #f0904a; }
+
+.dnt-sprinkles rect:nth-child(6n+6) { fill: #b07fe0; }
+
+.dnt {
+  transform-box: view-box; transform-origin: 210px 212px;
+  animation: sim-spin 26s linear infinite;
+}
+
+.sim-sky::before {                     /* the clouds from the title card */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(70px 34px at 12% 14%, rgba(255,255,255,.07), transparent 70%),
+    radial-gradient(96px 42px at 34% 9%, rgba(255,255,255,.06), transparent 70%),
+    radial-gradient(80px 36px at 66% 17%, rgba(255,255,255,.055), transparent 70%),
+    radial-gradient(110px 46px at 88% 11%, rgba(255,255,255,.05), transparent 70%);
+}
+
+/* ═════════════ The Simpsons: Bart's chalkboard ═════════════ */
+.sim-board { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; }
+
+.sim-frame {
+  padding: clamp(0.6rem, 1.6vw, 1rem); border-radius: 4px;
+  background: linear-gradient(180deg, #7a5330, #5c3d22);
+  box-shadow: 0 26px 54px -32px #000;
+}
+
+.sim-chalk {
+  position: relative; overflow: hidden;
+  padding: clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 2.2rem);
+  border-radius: 2px; background: #274a35;
+  box-shadow: inset 0 0 60px 12px rgba(0,0,0,.45);
+}
+
+.sim-chalk::before {                     /* chalk dust left on the slate */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    repeating-linear-gradient(96deg, rgba(255,255,255,.035) 0 2px, transparent 2px 9px),
+    radial-gradient(ellipse 40% 30% at 22% 30%, rgba(255,255,255,.05), transparent 70%),
+    radial-gradient(ellipse 34% 26% at 78% 70%, rgba(255,255,255,.04), transparent 70%);
+}
+
+.sim-chalk p {
+  position: relative;
+  font-family: "Bradley Hand", "Chalkboard SE", "Comic Sans MS", cursive;
+  font-size: clamp(0.95rem, 2.4vw, 1.35rem); line-height: 2;
+  color: rgba(245, 248, 240, .88);
+  text-shadow: 0 0 6px rgba(255,255,255,.18);
+  white-space: nowrap; overflow: hidden; text-overflow: clip;
+}
+
+.sim-chalk p:nth-child(2) { opacity: .92; transform: translateX(2px) rotate(-.2deg); }
+
+.sim-chalk p:nth-child(3) { opacity: .86; transform: translateX(-1px) rotate(.25deg); }
+
+.sim-chalk p:nth-child(4) { opacity: .8;  transform: translateX(3px) rotate(-.3deg); }
+
+.sim-chalk p:last-child {                /* the line he never finishes */
+  opacity: .7; width: 62%;
+  animation: sim-write 7s steps(28, end) infinite;
+}
+
+.sim-tray {
+  height: 12px; margin-top: 0.4rem; border-radius: 0 0 4px 4px;
+  background: linear-gradient(180deg, #8a5f37, #6b4626);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.12);
+}
+
+.sim-board-cap {
+  margin-top: 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+@media (prefers-reduced-motion: reduce) { .sim-chalk p:last-child { animation: none; } }

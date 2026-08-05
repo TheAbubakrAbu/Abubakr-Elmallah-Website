@@ -1,0 +1,204 @@
+/* avatar-last-airbender.css -- loaded only by /avatar-last-airbender. Split out of fanpages.css. */
+
+.atla-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background:
+    radial-gradient(54% 42% at 10% 14%, rgba(232,196,106,.14), transparent 70%),
+    radial-gradient(54% 42% at 90% 22%, rgba(79,159,208,.13), transparent 70%),
+    radial-gradient(54% 42% at 14% 84%, rgba(79,154,79,.13), transparent 70%),
+    radial-gradient(54% 42% at 86% 80%, rgba(208,74,42,.14), transparent 70%),
+    radial-gradient(90% 70% at 50% 0%, #1c1408 0%, #100c07 50%, #060504 100%);
+}
+
+.atla-sky > * { position: absolute; inset: 0; display: block; }
+
+/* NB: .atla-cycle is already taken further down by the in-page cycle section,
+   so the backdrop wheel is .atla-wheelbg. */
+.atla-wheelbg {
+  inset: 50% auto auto 50%; translate: -50% -50%;
+  width: min(78vmin, 760px); aspect-ratio: 1; opacity: .16;
+}
+
+.atla-wheelbg svg { width: 100%; height: 100%; display: block; }
+
+/* only the wheel turns: the four nation glyphs stay the right way up */
+.atc-ring, .atc-yy {
+  transform-box: view-box; transform-origin: 200px 200px;
+  animation: atla-turn 240s linear infinite;
+}
+
+.atc-yy { animation-duration: 160s; }
+
+.atc-ring circle { fill: none; stroke: #e8c46a; stroke-width: 1.4; opacity: .5; }
+
+.atc-yy path { fill: #e8dcc0; opacity: .5; }
+
+.atc-yy circle { fill: #100c07; }
+
+.atc-glyph path { fill: none; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+
+.atc-air   { stroke: #e8c46a; }
+
+.atc-water { stroke: #4f9fd0; fill: #4f9fd0 !important; }
+
+.atc-earth { stroke: #4f9a4f; fill: #4f9a4f !important; }
+
+.atc-fire  { stroke: #d04a2a; fill: #d04a2a !important; }
+
+/* Tui and La, the moon and ocean spirits, circling in the water quarter */
+.atla-koi {
+  inset: 14% 6% auto auto; width: min(30vmin, 260px); aspect-ratio: 1;
+  opacity: .2;
+}
+
+.atla-koi svg { width: 100%; height: 100%; display: block; }
+
+.atk-orbit {
+  transform-box: view-box; transform-origin: 100px 100px;
+  animation: atla-koi 44s linear infinite;
+}
+
+.atk-white { fill: #dfeaf4; }
+
+.atk-black { fill: #12212c; stroke: #4f9fd0; stroke-width: 2; }
+
+.atk-eye   { fill: #12212c; }
+
+.atk-eye2  { fill: #dfeaf4; }
+
+/* floating stone in the earth quarter */
+.atla-rocks i {
+  position: absolute; left: var(--x); top: var(--y);
+  width: var(--s); height: calc(var(--s) * .78);
+  background: linear-gradient(160deg, #2a3a24, #16210f);
+  border: 1px solid rgba(127,191,95,.3);
+  border-radius: 42% 58% 46% 54% / 54% 44% 56% 46%;
+  opacity: .35;
+  animation: atla-float var(--t, 20s) ease-in-out infinite alternate;
+  animation-delay: var(--d, 0s);
+}
+
+/* Sozin's Comet: it only comes round once every hundred years */
+.atla-comet { overflow: hidden; }
+
+.atla-comet i {
+  position: absolute; left: -20%; top: 12%;
+  width: 46%; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255,180,90,.9), rgba(255,90,40,.95));
+  box-shadow: 0 0 18px 5px rgba(255,140,60,.45);
+  transform: rotate(18deg); opacity: 0;
+  animation: atla-sozin 38s ease-in infinite;
+}
+
+.atla-comet i::after {
+  content: ""; position: absolute; right: -6px; top: -4px;
+  width: 11px; height: 11px; border-radius: 50%;
+  background: #fff2d0;
+  box-shadow: 0 0 16px 6px rgba(255,170,80,.9), 0 0 40px 16px rgba(255,110,40,.5);
+}
+
+/* air: long currents sweeping across */
+.atla-air {
+  background-image:
+    repeating-linear-gradient(96deg, rgba(232,196,106,.05) 0 2px, transparent 2px 120px),
+    repeating-linear-gradient(84deg, rgba(240,224,168,.035) 0 2px, transparent 2px 180px);
+  mask-image: radial-gradient(ellipse 70% 50% at 20% 18%, #000 10%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 50% at 20% 18%, #000 10%, transparent 80%);
+  animation: atla-drift 34s linear infinite;
+}
+
+/* water: a slow swell in the opposite corner */
+.atla-water {
+  background:
+    radial-gradient(46% 22% at 84% 30%, rgba(79,159,208,.12), transparent 70%),
+    radial-gradient(38% 16% at 74% 42%, rgba(168,220,255,.09), transparent 72%);
+  filter: blur(8px);
+  animation: atla-swell 22s ease-in-out infinite alternate;
+}
+
+/* earth: strata and floating stone, bottom left */
+.atla-earth {
+  background-image:
+    repeating-linear-gradient(4deg, rgba(79,154,79,.055) 0 3px, transparent 3px 34px);
+  mask-image: radial-gradient(ellipse 60% 44% at 16% 84%, #000 10%, transparent 84%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 44% at 16% 84%, #000 10%, transparent 84%);
+}
+
+/* fire: embers rising on the right */
+.atla-embers {
+  background-size: 300px 300px;
+  background-image:
+    radial-gradient(2px 2px at 40px 60px,   rgba(240,140,60,.6), transparent),
+    radial-gradient(1.6px 1.6px at 150px 30px, rgba(224,74,42,.5), transparent),
+    radial-gradient(2.4px 2.4px at 250px 120px, rgba(255,170,80,.55), transparent),
+    radial-gradient(1.6px 1.6px at 90px 190px, rgba(240,160,80,.45), transparent),
+    radial-gradient(2px 2px at 210px 250px, rgba(224,96,20,.5), transparent);
+  mask-image: radial-gradient(ellipse 54% 62% at 88% 74%, #000 6%, transparent 82%);
+  -webkit-mask-image: radial-gradient(ellipse 54% 62% at 88% 74%, #000 6%, transparent 82%);
+  animation: atla-rise 24s linear infinite;
+}
+
+/* ═════════════ Avatar: the cycle wheel ═════════════ */
+.atla-cycle {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 860px) { .atla-cycle { grid-template-columns: 0.8fr 1.2fr; } }
+
+.atla-wheel { position: relative; width: min(340px, 78vw); aspect-ratio: 1; margin: 0 auto; }
+
+.atla-wheel > i {                          /* the turning ring of arrows */
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 1px dashed rgba(232,161,63,.35);
+  animation: atla-spin 46s linear infinite;
+}
+
+.atla-wheel > i::after {
+  content: ""; position: absolute; inset: 12%; border-radius: 50%;
+  border: 1px solid rgba(232,161,63,.18);
+}
+
+.atla-el {
+  position: absolute; width: 34%; aspect-ratio: 1; border-radius: 50%;
+  display: grid; place-items: center; text-align: center;
+  background: radial-gradient(circle at 36% 30%, color-mix(in srgb, var(--e) 40%, transparent), transparent 70%);
+  border: 1px solid color-mix(in srgb, var(--e) 55%, transparent);
+  box-shadow: 0 0 30px -8px var(--e);
+}
+
+.atla-el b { display: block; font-family: var(--serif); font-size: 0.98rem; color: var(--e); }
+
+.atla-el span {
+  display: block; font-family: var(--mono); font-size: 0.52rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); margin-top: 0.15rem;
+}
+
+.atla-el--fire  { top: 0; left: 33%; }
+
+.atla-el--air   { right: 0; top: 33%; }
+
+.atla-el--water { bottom: 0; left: 33%; }
+
+.atla-el--earth { left: 0; top: 33%; }
+
+.atla-core {
+  position: absolute; inset: 33%; border-radius: 50%;
+  display: grid; place-items: center; text-align: center;
+  background: radial-gradient(circle, rgba(168,224,255,.16), transparent 70%);
+  border: 1px solid rgba(168,224,255,.3);
+}
+
+.atla-core b { font-family: var(--serif); font-size: 0.86rem; color: #a8e0ff; }
+
+.atla-legend h4 {
+  font-family: Papyrus, "Bradley Hand", Georgia, fantasy;
+  font-size: 1.3rem; letter-spacing: 0.02em; color: var(--a); margin-bottom: 0.6rem;
+}
+
+.atla-legend p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+
+.atla-legend p + p { margin-top: 0.7rem; }
+
+@media (prefers-reduced-motion: reduce) { .atla-wheel > i { animation: none; } }

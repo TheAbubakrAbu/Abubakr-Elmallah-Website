@@ -1,6 +1,8 @@
 /* fan-knotts.js: content for /franchises/knotts/. Rendered by fanpage.js.
    Every ride and land links back to the park's own page. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: 'Elementary school', note: 'A classic, and I have loved the ghost-town feel of it since elementary school.' },
+  sections: [
 
   { id: 'story', kind: 'timeline', title: 'How A Berry Stand Became A Park', note: 'Buena Park, California',
     items: [
@@ -12,6 +14,31 @@ window.FAN_PAGE = { sections: [
       { when: '1968', title: 'A gate goes up', desc: 'After nearly fifty years of being free to walk into, the farm starts charging admission.' },
       { when: '1983', title: 'Camp Snoopy', desc: 'The Peanuts gang moves in, and Knott\u2019s becomes the park a lot of Southern California kids see first.' },
       { when: '1997 to now', title: 'Under new owners', desc: 'The Knott family sells to Cedar Fair, and the park keeps the ghost town, the boysenberry and the chicken dinner exactly where they were.' },
+    ] },
+
+  { id: 'visited', kind: 'stats', title: 'The Local One', note: 'been going since elementary school',
+    items: [
+      { title: 'Since elementary', sub: 'How long', desc: 'The one I have been going to longest, and the one closest to home.' },
+      { title: '1 park', sub: 'Plus Soak City', desc: 'No second gate, no resort sprawl, no monorail. You can cross the whole thing in ten minutes.' },
+      { title: '7 miles', sub: 'From Disneyland', desc: 'Buena Park to Anaheim. Knott\u2019s got there fifteen years earlier.' },
+      { title: 'Every October', sub: 'Scary Farm', desc: 'For anybody who grew up in Orange County this is simply what October is.' },
+    ] },
+
+  { id: 'lands', kind: 'cards', title: 'The Four Lands', note: 'walkable in an afternoon, which is the point',
+    lede: 'Knott\u2019s is small next to the parks down the road and that is its best feature. You can cross the whole thing in ten minutes, the queues move, and nothing about the day is a logistics exercise. It is the one big park in Southern California you can go to on a whim.',
+    items: [
+      { title: 'Ghost Town', sub: '1940 · the original', tag: 'Land', accent: '#c9924a',
+        desc: 'The oldest themed land in America and still the best part of the park. Real buildings, moved here and rebuilt, with a working blacksmith, a stagecoach, panning for gold and the Bird Cage Theatre. GhostRider runs along the edge of it and the Calico Mine Ride goes into the mountain at the back.',
+        meta: 'Calico Mine · Log Ride · GhostRider' },
+      { title: 'Fiesta Village', sub: '1969', tag: 'Land', accent: '#d8934a',
+        desc: 'The Spanish-California side of the park, and where Montezooma has fired people forwards and backwards through a loop since 1978. Rebuilt in 2024 and still the ride that defines the area.',
+        meta: 'Montezooma · Jaguar!' },
+      { title: 'The Boardwalk', sub: 'Seaside, inland', tag: 'Land', accent: '#5fa8d0',
+        desc: 'The thrill corner. Xcelerator launching a fifties hot rod to eighty-two miles an hour in a bit over two seconds, HangTime hanging you over a drop before it takes it, and the funnel cake.',
+        meta: 'Xcelerator · HangTime' },
+      { title: 'Camp Snoopy', sub: 'Since 1983', tag: 'Land', accent: '#f0c840',
+        desc: 'The first Peanuts land anywhere, and the licence that every Cedar Fair park ended up sharing. Built as a High Sierra camp around a creek, and genuinely charming rather than just a place to park children.',
+        meta: 'The oldest Peanuts licence in parks' },
     ] },
 
   { id: 'rides', kind: 'cards', title: 'The Rides', note: 'oldest first',
@@ -50,6 +77,23 @@ window.FAN_PAGE = { sections: [
       { title: 'Peanuts Celebration', accent: '#f0c840', sub: 'Late winter', desc: 'Camp Snoopy has had the Peanuts licence since 1983, longer than most park licences last.' },
     ] },
 
+  { id: 'haunt', kind: 'cards', title: 'Knott\u2019s Scary Farm', note: 'they invented this, in 1973',
+    lede: 'Every Halloween event at every theme park in the world is downstream of this one. In 1973 Knott\u2019s put some staff in costume, turned the lights off in Ghost Town and opened for three nights. It worked, and now it is a format the entire industry runs.',
+    items: [
+      { title: 'It started as an experiment', sub: '1973 · three nights', tag: 'Origin', accent: '#6f7f4f',
+        desc: 'October was a dead month, so they tried something. A few dozen employees in makeup, the ghost town lit badly on purpose, and a queue around the block. Nothing about it was planned as an industry standard.',
+        meta: 'Now every major park' },
+      { title: 'Ghost Town does the work', sub: 'The setting', tag: 'Why it works', accent: '#c9924a',
+        desc: 'The park has an enormous advantage: it already looks like this. Most parks have to dress a bright cheerful street into something frightening; Knott\u2019s just turns the lights down on a genuine ghost town and lets the fog in.',
+        meta: 'No set dressing required' },
+      { title: 'The scare zones', sub: 'The streets between mazes', tag: 'The format', accent: '#8f6fd0',
+        desc: 'The bit people underrate. Mazes are a queue and a corridor; the fog-filled streets between them, with monsters roaming free, are where the night actually lives. Knott\u2019s invented that too.',
+        meta: 'Fog to the knees' },
+      { title: 'Local institution', sub: 'Every October', tag: 'The honest bit', accent: '#d8934a',
+        desc: 'For anybody who grew up in Orange County this is simply what October is. It is not a park doing a Halloween promotion — it is the event the park is most famous for, and the one the calendar is built around.',
+        meta: 'Buena Park' },
+    ] },
+
   { id: 'firsts', kind: 'cards', title: 'The Firsts', note: 'claims the park makes, and mostly earns',
     items: [
       { title: 'The first themed land', sub: 'Ghost Town, 1940', tag: 'Claim', desc: 'Widely credited as the first permanently themed area at any American attraction, fifteen years before Disneyland opened seven miles away.', meta: 'Buena Park' },
@@ -77,3 +121,25 @@ window.FAN_PAGE = { sections: [
     ] },
 
 ] };
+
+/* The interactive block, rendered by fan-play.js. */
+window.FAN_PLAY = {
+  kind: "roll",
+  title: "A Night At Scary Farm",
+  intro: "They invented this in 1973 \u2014 a few staff in costume, the lights off in Ghost Town, three nights in a dead October. Every Halloween event at every park in the world is downstream of it. Walk into the fog and see what finds you.",
+  prompt: "Ghost Town after dark. The fog is knee-deep.",
+  button: "Go in",
+  again: "Go back in",
+  wait: [
+        "The lights go out along the street.",
+        "Fog, to the knees.",
+        "Something is walking behind you."
+      ],
+  items: [
+    { n: "A scare zone", s: "The streets between mazes", c: "#6f7f4f", w: 4, said: "The fog moves and there are six of them in it.", d: "M3 16c4-2 6 2 9 0s5-2 9 0 M7 11a2 2 0 1 1 0 .1 M15 10a2 2 0 1 1 0 .1", note: "The bit people underrate. Mazes are a queue and a corridor; the fog-filled streets between them, with monsters roaming free, are where the night actually lives. Knott\u2019s invented those too." },
+    { n: "Ghost Town does the work", s: "No set dressing needed", c: "#c9924a", w: 3, said: "You forget it is a set. It has been a ghost town since 1940.", d: "M4 20h16 M6 20V9l3-3 3 3 3-3 3 3v11 M10 20v-5h4v5", note: "The park\u2019s enormous advantage: it already looks like this. Everywhere else has to dress a bright cheerful street into something frightening \u2014 Knott\u2019s just turns the lights down." },
+    { n: "The Calico Mine Ride", s: "In the dark", c: "#d8934a", w: 2, said: "The mine ride, but they have put things in it.", d: "M4 20V13a8 8 0 0 1 16 0v7 M8 20v-6h8v6 M12 8V4", note: "Built by the park\u2019s own workshop in 1960 and still running. During the Haunt they put actors inside it, which is entirely unfair." },
+    { n: "Somebody with a chainsaw", s: "No blade, still effective", c: "#8f6fd0", w: 3, said: "Chainsaw. Behind you. It has no chain and it does not matter.", d: "M3 11h9l7-3v6l-7-2H3z M3 11v3h7 M6 11v3", note: "The oldest trick they have and it works every single year on every single person, including people who know it is coming." },
+    { n: "You are fine, actually", s: "Boysenberry funnel cake", c: "#b06fd8", w: 2, said: "You get out and buy a funnel cake. With boysenberry.", d: "M12 5a7 7 0 1 1 0 14 7 7 0 0 1 0-14z M9 12a3 3 0 1 1 6 0 3 3 0 0 1-6 0z", note: "The correct end to the night. Walter Knott went looking for an abandoned berry, nursed it back on his own land, and the whole park is downstream of one rescued plant." },
+  ],
+};

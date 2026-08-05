@@ -1,0 +1,239 @@
+/* fnaf.css -- loaded only by /fnaf. Split out of fanpages.css. */
+
+.fnaf-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(70% 50% at 50% 0%, #1a1410 0%, #0e0b09 46%, #050403 100%);
+}
+
+.fnaf-sky::before {                    /* CRT static and scanlines */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 3px),
+    radial-gradient(rgba(255,255,255,.05) .5px, transparent 1px);
+  background-size: 100% 3px, 3px 3px;
+  animation: fnaf-jitter 5s steps(1, end) infinite;
+}
+
+/* The show stage, seen from the dark. The CRT static and scanlines are already
+   on .fnaf-sky::before; this is what the static sits over. Capped at .36 by the
+   global -sky rule further up. */
+.fnaf-sky > * { position: absolute; inset: 0; }
+
+.fnaf-room svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.fnr-floor   { fill: #14100c; }
+
+.fnr-tile    { fill: #1e1813; }
+
+.fnr-stage   { fill: #1a1209; }
+
+.fnr-curtain { fill: #3a1418; }
+
+.fnr-bot     { fill: #241a10; }
+
+/* The eyes are the only bright thing down there, and they blink out of step so
+   it never looks like one animation driving all three. */
+.fnr-eye circle {
+  fill: #f0e0a0;
+  filter: drop-shadow(0 0 7px rgba(240,224,160,.85));
+  animation: fnaf-stare 7s steps(1, end) infinite;
+}
+
+.fnr-eye circle:nth-child(3), .fnr-eye circle:nth-child(4) { animation-delay: -2.3s; }
+
+.fnr-eye circle:nth-child(5), .fnr-eye circle:nth-child(6) { animation-delay: -4.6s; }
+
+/* Light spilling from the office doorway, on the power-flicker rhythm. */
+.fnaf-hall {
+  background: radial-gradient(38% 60% at 50% 92%, rgba(240,210,140,.14), transparent 72%);
+  animation: fnaf-spill 9s ease-in-out infinite;
+}
+
+/* ── Freddy ── */
+.fan-art--fnaf .fnaf-stage {
+  background: linear-gradient(180deg, #1c1510 0%, #0b0805 100%);
+  border-radius: 10px; overflow: hidden; max-width: 400px; margin-inline: auto;
+}
+
+.fan-art--fnaf .fnaf-stage svg { display: block; width: 100%; height: auto; padding: 1rem; }
+
+.fan-art--fnaf .fnaf-stage figcaption {
+  margin: 0; padding: 0 1rem 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.7;
+}
+
+@media (min-width: 820px) { .fan-art--fnaf { grid-template-columns: minmax(0, .9fr) minmax(0, 1.2fr); } }
+
+.fnf-head   { fill: #7a5230; }
+
+.fnf-ear    { fill: #6a4728; }
+
+.fnf-earin  { fill: #4a3018; }
+
+.fnf-muzzle { fill: #a87a4a; }
+
+.fnf-brow   { fill: #3a2610; }
+
+.fnf-nose   { fill: #2a1c0c; }
+
+.fnf-tooth  { fill: #e8e0cc; }
+
+.fnf-hat, .fnf-tie { fill: #17120c; }
+
+.fnf-hatband { fill: #2a1c0c; }
+
+.fnf-eye    { fill: #e8e2d0; }
+
+/* The pupils shrink to pinpricks now and then. Nothing else on the drawing
+   moves, which is what makes it register. */
+.fnf-pupil {
+  fill: #101010;
+  animation: fnf-look 8s steps(1, end) infinite;
+  transform-box: view-box; transform-origin: 160px 164px;
+}
+
+/* ═════════════ FNAF: the office monitor ═════════════ */
+.fnaf-office {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1rem, 2.4vw, 1.8rem); grid-template-columns: 1fr;
+}
+
+@media (min-width: 860px) { .fnaf-office { grid-template-columns: 1.3fr 0.7fr; align-items: start; } }
+
+.fnaf-mon {
+  position: relative; padding: 14px; border-radius: 8px;
+  background: linear-gradient(180deg, #2a2723, #17140f);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.08), 0 24px 48px -30px #000;
+}
+
+.fnaf-feed {
+  position: relative; aspect-ratio: 16 / 9; border-radius: 3px; overflow: hidden;
+  background: radial-gradient(120% 100% at 50% 40%, #1b1d1a, #0a0b09 70%);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.fnaf-feed::before {                     /* static */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 3px),
+    radial-gradient(rgba(255,255,255,.10) .6px, transparent 1px);
+  background-size: 100% 3px, 3px 3px;
+  animation: fnaf-snow 1.4s steps(3, end) infinite;
+}
+
+/* The feed is a real drawn room now (fan-fnaf-ui.js), so the old decorative
+   shape at the end of the hall is gone. The static still sits on top of it. */
+.fnaf-scene { position: absolute; inset: 0; }
+
+.fnaf-scene svg { width: 100%; height: 100%; display: block; }
+
+.fnaf-feed::before { z-index: 1; }
+
+.fs-wall    { fill: #191b18; }
+
+.fs-floor   { fill: #101210; }
+
+.fs-tile    { fill: #161815; }
+
+.fs-deep    { fill: #0a0c0a; }
+
+.fs-riser   { fill: #14170f; }
+
+.fs-curtain { fill: #33161a; }
+
+.fs-prop    { fill: #1c1f1a; }
+
+.fs-head    { fill: #2a2018; }
+
+.fs-dim     { fill: #23261f; }
+
+.fs-lamp    { fill: #d8d0a0; opacity: .35; }
+
+.fs-dead    { fill: #070807; }
+
+.fs-oos {
+  fill: #6f8f6f; opacity: .6; text-anchor: middle;
+  font-family: var(--mono); font-size: 15px; letter-spacing: 2px;
+}
+
+.fs-oos--sm { font-size: 10px; opacity: .4; }
+
+.fs-bot { fill: #55402a; }
+
+/* The eyes are the only lit thing in any room. */
+.fs-bot .fs-eyes { fill: #f0e8b0; filter: drop-shadow(0 0 5px rgba(240,232,176,.9)); }
+
+/* the switch flash */
+.fnaf-burst {
+  position: absolute; inset: 0; z-index: 3; opacity: 0; pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.5) 0 2px, transparent 2px 5px),
+    rgba(255,255,255,.16);
+}
+
+.fnaf-feed.is-dead .fnaf-scene { background: #050605; }
+
+/* camera buttons */
+.fnaf-cam {
+  font: inherit; cursor: pointer; appearance: none;
+  padding: 5px 8px; border-radius: 3px;
+  background: rgba(255,255,255,.05); color: rgba(210,225,210,.6);
+  border: 1px solid rgba(255,255,255,.09);
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.1em;
+  transition: background .12s ease, color .12s ease, border-color .12s ease;
+}
+
+.fnaf-cam:hover { background: rgba(200,240,200,.12); color: #dff0d8; }
+
+.fnaf-cam:focus-visible { outline: 2px solid #8fd0a0; outline-offset: 2px; }
+
+.fnaf-hint {
+  margin-top: 10px; font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.06em; color: var(--mute); line-height: 1.7;
+}
+
+.fnaf-power b.is-low { color: #e04a3a; }
+
+.fnaf-lbl {
+  position: absolute; left: 10px; top: 8px; z-index: 2;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em;
+  color: rgba(220,235,220,.75); text-shadow: 0 0 6px rgba(0,0,0,.9);
+}
+
+.fnaf-rec {
+  position: absolute; right: 10px; top: 8px; z-index: 2; display: flex; align-items: center; gap: 5px;
+  font-family: var(--mono); font-size: 0.58rem; color: #e04a3a;
+}
+
+.fnaf-rec i { width: 7px; height: 7px; border-radius: 50%; background: #e04a3a; animation: rec-blink 2.2s ease-in-out infinite; }
+
+.fnaf-cams { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+
+.fnaf-hud { display: flex; flex-direction: column; gap: 0.9rem; }
+
+.fnaf-panel {
+  padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: 4px;
+  background: rgba(14, 12, 10, .6);
+}
+
+.fnaf-panel h5 {
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--a); margin-bottom: 0.5rem;
+}
+
+.fnaf-power { display: flex; align-items: baseline; gap: 0.5rem; }
+
+.fnaf-power b { font-family: var(--mono); font-size: 1.5rem; color: #dff0d8; }
+
+.fnaf-power span { font-family: var(--mono); font-size: 0.58rem; color: var(--mute); }
+
+.fnaf-usage { display: flex; gap: 4px; margin-top: 0.5rem; }
+
+.fnaf-usage i { width: 16px; height: 12px; background: rgba(255,255,255,.12); }
+
+.fnaf-hour { font-family: var(--mono); font-size: 1.6rem; color: #dff0d8; }
+
+.fnaf-hour span { font-size: 0.7rem; color: var(--mute); margin-left: 0.3rem; }
+
+.fnaf-note { font-size: 0.82rem; line-height: 1.6; color: var(--ink-dim); }

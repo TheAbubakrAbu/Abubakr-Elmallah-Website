@@ -28,11 +28,34 @@ permalink: /franchises/ninjago/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/ninjago.css' %}" />
 </head>
 <body data-intro="none" data-fan="ninjago">
 
 <!-- gold, on a diagonal -->
-<div class="nj-sky" aria-hidden="true"></div>
+<!-- Ninjago at night: the peaks, the Monastery of Spinjitzu on the highest
+     one, lightning behind it, and gold sparks off the weapons. -->
+<div class="nj-sky" aria-hidden="true">
+  <span class="nj-bolt"></span>
+  <span class="nj-peaks">
+    <svg viewBox="0 0 1400 320" preserveAspectRatio="xMidYMax slice">
+      <path class="njp-far"  d="M0 320V186l150-96 130 108 120-72 150 122 130-96 160 116 140-88 150 106 130-70 140 92v18z"/>
+      <path class="njp-near" d="M0 320V240l170-84 150 110 140-64 170 96 150-78 160 92 140-56 170 84 150-52v32z"/>
+      <!-- the Monastery, on the peak -->
+      <g class="njp-monastery">
+        <path d="M624 156h112v54H624z"/>
+        <path d="M608 156l72-34 72 34z"/>
+        <path d="M598 156h164l-10 12H608z"/>
+        <path d="M636 210h88v26h-88z"/>
+        <path d="M626 210h108l-8 10H634z"/>
+        <rect class="njp-lit" x="652" y="172" width="16" height="18"/>
+        <rect class="njp-lit" x="692" y="172" width="16" height="18"/>
+        <path d="M680 122v-18"/>
+      </g>
+    </svg>
+  </span>
+  <span class="nj-motes"></span>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -78,6 +101,58 @@ permalink: /franchises/ninjago/
     <p class="fan-lede-hero">Somehow a LEGO toy line grew into a genuinely good sixteen-season saga. Six ninja, one element each, and a continuity most franchises would envy.</p>
     <div class="fan-links">
       <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
+    </div>
+    <div class="fan-art fan-art--nj reveal">
+      <div class="fan-art-fig">
+        <svg viewBox="0 0 300 460" role="img" aria-label="The Sword of Fire, Kai's golden weapon">
+          <g class="njs-flame">
+            <path d="M150 8c34 58 66 84 66 132 0 46-30 76-66 76s-66-30-66-76c0-48 32-74 66-132z"/>
+            <path d="M150 60c18 34 36 50 36 78 0 26-16 44-36 44s-36-18-36-44c0-28 18-44 36-78z"/>
+          </g>
+          <g class="njs-blade">
+            <path d="M136 150h28l10 26v146h-48V176z"/>
+            <path d="M150 176v146"/>
+          </g>
+          <g class="njs-hilt">
+            <path d="M96 322h108v20H96z"/>
+            <path d="M88 322q10-16 26-16h72q16 0 26 16z"/>
+            <rect x="140" y="342" width="20" height="74" rx="5"/>
+            <path d="M142 356h16M142 372h16M142 388h16"/>
+            <circle cx="150" cy="428" r="16"/>
+            <circle cx="150" cy="428" r="7"/>
+          </g>
+          <g class="njs-spark">
+            <circle cx="72" cy="112" r="4"/><circle cx="232" cy="86" r="5"/>
+            <circle cx="94" cy="52" r="3"/><circle cx="212" cy="160" r="4"/>
+            <circle cx="58" cy="188" r="3"/><circle cx="244" cy="206" r="3"/>
+          </g>
+        </svg>
+      </div>
+      <div class="fan-art-body">
+        <q>Ninja-GO!</q>
+        <span class="fan-art-by">Kai · Master of Fire</span>
+        <p>The Sword of Fire, forged by the First Spinjitzu Master out of the same power he used to build the world, and hidden in the Fire Temple with a dragon sitting on it. It melts through stone, and Kai — a blacksmith before he was ever a ninja — is the only one it was ever going to go to.</p>
+        <p>A LEGO toy line that had no business becoming a sixteen-season saga with real continuity, real stakes and characters who visibly grow up. It has been running since 2011 and it never got worse.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="fanPlay"></div>
+
+  <section class="nj-spin reveal">
+    <div class="nj-tornado">
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <div class="nj-core"><b>Spinjitzu</b></div>
+    </div>
+    <div class="nj-legend">
+      <h4>Spinjitzu</h4>
+      <p>Unlock your true potential, spin, and the element comes with you: fire red, lightning blue, earth black, ice white, water silver, and green for the one who can use all of them.</p>
+      <p>The show sold it as a toy gimmick first, a spinner you actually bought in a shop, then spent sixteen seasons building a mythology underneath it: the First Spinjitzu Master, the four golden weapons, the realms, and a prophecy the whole thing pays off.</p>
     </div>
   </section>
 
@@ -125,20 +200,67 @@ permalink: /franchises/ninjago/
       <div class="crest-tags"><span>Lloyd</span><span>Green</span><span>The prophecy</span></div>
     </article>
   </div>
-  <section class="nj-spin reveal">
-    <div class="nj-tornado">
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <div class="nj-core"><b>Spinjitzu</b></div>
-    </div>
-    <div class="nj-legend">
-      <h4>Spinjitzu</h4>
-      <p>Unlock your true potential, spin, and the element comes with you: fire red, lightning blue, earth black, ice white, water silver, and green for the one who can use all of them.</p>
-      <p>The show sold it as a toy gimmick first, a spinner you actually bought in a shop, then spent sixteen seasons building a mythology underneath it: the First Spinjitzu Master, the four golden weapons, the realms, and a prophecy the whole thing pays off.</p>
+
+
+  <!-- the four Golden Weapons, drawn. Forged by the First Spinjitzu Master. -->
+  <section class="fan-sec nj-golden" id="golden">
+    <h3 class="subsec subsec--fan reveal">The Four Golden Weapons<span class="subsec-yr">forged by the First Spinjitzu Master</span></h3>
+    <p class="fan-lede reveal">Made out of the same power he used to create Ninjago, split up because no one person should hold all four, and hidden across the map behind a dragon each. Season one is one long fetch quest for these, and it is a very good one.</p>
+    <div class="njg-grid">
+
+      <article class="njg reveal" style="--g:#e04a3a">
+        <svg viewBox="0 0 120 220" aria-hidden="true">
+          <g class="njg-aura"><path d="M60 6c22 40 44 56 44 88 0 32-20 52-44 52s-44-20-44-52c0-32 22-48 44-88z"/></g>
+          <g class="njg-metal">
+            <path d="M52 96h16l7 18v78H45v-78z"/>
+            <path d="M34 192h52v12H34z"/><path d="M28 192q8-12 18-12h28q10 0 18 12z"/>
+            <rect x="54" y="204" width="12" height="14" rx="3"/>
+          </g>
+        </svg>
+        <h4>Sword of Fire</h4><span class="njg-sub">Kai · the Fire Temple</span>
+        <p>Melts through stone. Guarded by a dragon, and taken by a blacksmith.</p>
+      </article>
+
+      <article class="njg reveal" style="--g:#4f9fd0">
+        <svg viewBox="0 0 120 220" aria-hidden="true">
+          <g class="njg-aura"><path d="M66 20 38 104h22l-10 74 46-92H72z"/></g>
+          <g class="njg-metal">
+            <rect x="22" y="96" width="18" height="86" rx="7"/>
+            <rect x="80" y="96" width="18" height="86" rx="7"/>
+            <path class="njg-chain" d="M31 96q0-34 29-34t29 34"/>
+            <circle cx="31" cy="190" r="6"/><circle cx="89" cy="190" r="6"/>
+          </g>
+        </svg>
+        <h4>Nunchucks of Lightning</h4><span class="njg-sub">Jay · the Floating Ruins</span>
+        <p>Calls a storm down on command. The loudest weapon for the loudest ninja.</p>
+      </article>
+
+      <article class="njg reveal" style="--g:#9fd8f0">
+        <svg viewBox="0 0 120 220" aria-hidden="true">
+          <g class="njg-aura"><circle cx="60" cy="108" r="52"/></g>
+          <g class="njg-metal">
+            <path d="M40 44 52 76 84 64 60 90l24 26-32-12-12 32-12-32-32 12 24-26-24-26 32 12z" transform="translate(18 22) scale(.78)"/>
+            <path d="M40 44 52 76 84 64 60 90l24 26-32-12-12 32-12-32-32 12 24-26-24-26 32 12z" transform="translate(10 96) scale(.62)"/>
+          </g>
+        </svg>
+        <h4>Shurikens of Ice</h4><span class="njg-sub">Zane · the Frozen Wasteland</span>
+        <p>Freeze whatever they touch. A matched pair, thrown together.</p>
+      </article>
+
+      <article class="njg reveal" style="--g:#8f8f9a">
+        <svg viewBox="0 0 120 220" aria-hidden="true">
+          <g class="njg-aura"><path d="M20 96q40-52 84-14-30-8-52 14t-32 0z"/></g>
+          <g class="njg-metal">
+            <path d="M18 92q46-56 92-12-34-10-58 12T18 92z"/>
+            <rect x="56" y="88" width="12" height="122" rx="5"/>
+            <path d="M58 118h8M58 146h8M58 174h8"/>
+            <circle cx="62" cy="214" r="8"/>
+          </g>
+        </svg>
+        <h4>Scythe of Quakes</h4><span class="njg-sub">Cole · the Caves of Despair</span>
+        <p>Splits the ground open. The heaviest of the four, for the strongest of them.</p>
+      </article>
+
     </div>
   </section>
 
@@ -173,5 +295,7 @@ permalink: /franchises/ninjago/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

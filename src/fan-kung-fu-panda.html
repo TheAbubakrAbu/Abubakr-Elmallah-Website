@@ -28,11 +28,54 @@ permalink: /franchises/kung-fu-panda/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/kung-fu-panda.css' %}" />
 </head>
 <body data-intro="none" data-fan="kfp">
 
 <!-- ink, and a rising sun -->
-<div class="kfp-sky" aria-hidden="true"></div>
+<div class="kfp-sky" aria-hidden="true">
+  <div class="kfp-sun"></div>
+  <div class="kfp-peaks">
+    <svg viewBox="0 0 1400 460" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path class="kfm-far"  d="M0 300l180-150 130 96 150-130 160 128 150-104 160 122 150-96 160 126 160-84v352H0z"/>
+      <path class="kfm-mid"  d="M0 360l150-96 140 72 170-88 140 80 160-64 170 92 150-70 160 80 160-52v246H0z"/>
+      <path class="kfm-near" d="M0 410l190-58 160 42 180-52 170 46 180-38 190 50 180-34 150 30v74H0z"/>
+    </svg>
+  </div>
+  <!-- a golden dragon coiling through the cloud, the way they sit on temple walls -->
+  <div class="kfp-dragon">
+    <svg viewBox="0 0 1400 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path class="kfd-body" d="M-40 250c140-120 260 40 400-40s220-150 380-110 240 190 400 120 240-140 300-120"/>
+      <path class="kfd-spine" d="M-40 250c140-120 260 40 400-40s220-150 380-110 240 190 400 120 240-140 300-120"/>
+      <g class="kfd-whisk"><path d="M1330 172q40-26 74-14M1330 182q42-4 70 16"/></g>
+      <g class="kfd-head">
+        <path d="M1290 156q34-18 60 2 18 14 6 34-14 22-44 14-30-8-22-50z"/>
+        <path d="M1286 150l-22-16 26 4-8-24 20 20z"/>
+      </g>
+      <circle class="kfd-eye" cx="1322" cy="172" r="4"/>
+    </svg>
+  </div>
+  <div class="kfp-bamboo">
+    <svg viewBox="0 0 1400 500" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <g class="kfb-stalk">
+        <path d="M70 500V90h26v410zM74 150h18M74 220h18M74 292h18M74 366h18"/>
+        <path d="M160 500V150h20v350zM163 200h14M163 262h14M163 330h14M163 400h14"/>
+        <path d="M1230 500V70h26v430zM1234 132h18M1234 206h18M1234 282h18M1234 358h18"/>
+        <path d="M1330 500V140h20v360zM1333 196h14M1333 262h14M1333 334h14"/>
+      </g>
+      <g class="kfb-leaf">
+        <path d="M96 150q46-24 74-6-34 20-74 6zM96 292q50-20 78 2-38 16-78-2z"/>
+        <path d="M1230 132q-46-24-74-6 34 20 74 6zM1230 282q-50-20-78 2 38 16 78-2z"/>
+        <path d="M180 200q42-20 68-2-32 18-68 2z"/>
+        <path d="M1330 196q-42-20-68-2 32 18 68 2z"/>
+      </g>
+    </svg>
+  </div>
+  <div class="kfp-petals">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+  <div class="kfp-mist"></div>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -81,17 +124,61 @@ permalink: /franchises/kung-fu-panda/
     </div>
   </section>
 
+  <section class="fan-art fan-art--kfp reveal">
+    <figure class="fan-art-fig kfp-stage">
+      <svg viewBox="0 0 420 340" aria-hidden="true">
+        <rect class="kfs-bg" x="0" y="0" width="420" height="340"/>
+        <g class="kfs-halo"><ellipse cx="210" cy="164" rx="150" ry="140"/></g>
+
+        <!-- the peach tree, blossom going up rather than down -->
+        <path class="kfs-bough" d="M52 340V214q0-40 34-56M52 250q-22-16-26-42M52 288q24-14 30-40"/>
+        <g class="kfs-blossom">
+          <circle cx="60" cy="150" r="7"/><circle cx="86" cy="132" r="6"/><circle cx="40" cy="176" r="5"/>
+          <circle cx="96" cy="166" r="5"/><circle cx="70" cy="190" r="4"/><circle cx="112" cy="146" r="4"/>
+        </g>
+
+        <!-- Oogway's staff: gnarled, with the curl at the head -->
+        <g class="kfs-staff">
+          <path class="kfs-wood" d="M214 330q-6-70 2-140t-4-96"/>
+          <path class="kfs-wood" d="M212 94q-16-26 2-40t34 6q10 20-8 30t-24-8q-4-12 8-14"/>
+          <path class="kfs-knot" d="M206 210q12-8 20 0M206 262q12-8 20 0M208 154q12-8 20 0"/>
+          <path class="kfs-foot" d="M204 330h22v8h-22z"/>
+        </g>
+
+        <!-- the Dragon Scroll, hanging from the staff -->
+        <g class="kfs-scroll">
+          <path class="kfs-cord" d="M232 118q28 6 34 26"/>
+          <rect class="kfs-rod" x="242" y="140" width="120" height="13" rx="6"/>
+          <rect class="kfs-rod" x="242" y="252" width="120" height="13" rx="6"/>
+          <path class="kfs-cap" d="M236 138h12v17h-12zM356 138h12v17h-12zM236 250h12v17h-12zM356 250h12v17h-12z"/>
+          <rect class="kfs-paper" x="252" y="153" width="100" height="99"/>
+          <path class="kfs-sheen" d="M252 153h100v99h-100z"/>
+          <path class="kfs-coil" d="M302 176q-22 0-22 18t22 18 22-16-16-16-12 14"/>
+          <circle class="kfs-pearl" cx="302" cy="203" r="5"/>
+        </g>
+      </svg>
+      <figcaption>Oogway’s staff and the Dragon Scroll, drawn for this page</figcaption>
+    </figure>
+    <div class="fan-art-body">
+      <q>There is no secret ingredient.</q>
+      <p class="fan-art-by">The Dragon Scroll, opened at last</p>
+      <p>A slapstick premise that turned out to have a real film underneath it. The scroll everyone spends the entire first film fighting over is blank — a mirror — and the answer is that there was never anything in it. Oogway hid nothing, because there was nothing to hide.</p>
+      <p>That should be a cheat and it is not, because the film has already shown you the same idea in the noodle shop: Mr Ping’s secret ingredient soup has no secret ingredient either. It tells you the ending in act one and you still do not see it coming.</p>
+    </div>
+  </section>
+
   <section class="kfp-scroll reveal">
-    <div class="kfp-rollers">
+    <div class="kfp-rollers" id="kfpRollers">
       <span class="kfp-rod"></span>
-      <div class="kfp-paper">
+      <div class="kfp-paper" id="kfpPaper">
         <div class="kfp-mirror"></div>
-        <b>There is no secret ingredient.</b>
-        <span>The Dragon Scroll · opened at last</span>
+        <b id="kfpLine">There is no secret ingredient.</b>
+        <span id="kfpSub">The Dragon Scroll · opened at last</span>
       </div>
       <span class="kfp-rod"></span>
     </div>
-    <p class="kfp-scroll-cap">Oogway hid nothing in it. That is the answer, and the film earns it</p>
+    <button class="kfp-open" type="button" id="kfpOpen" data-magnetic>Open the Dragon Scroll</button>
+    <p class="kfp-scroll-cap" id="kfpCap">Oogway hid nothing in it. That is the answer, and the film earns it</p>
   </section>
 
   <div id="fanBody"></div>
@@ -124,5 +211,7 @@ permalink: /franchises/kung-fu-panda/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- page UI, after reveal.js on purpose: see the comment in fan-kfp-ui.js -->
+<script src="{% include v.html f='/assets/js/fan-kfp-ui.js' %}"></script>
 </body>
 </html>

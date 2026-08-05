@@ -29,6 +29,7 @@ permalink: /franchises/star-wars/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/star-wars.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/star-wars.css' %}" />
 </head>
 <body data-intro="none" data-fan="sw">
 
@@ -138,6 +139,8 @@ permalink: /franchises/star-wars/
     </div>
   </section>
 
+  <div id="fanPlay"></div>
+
   <div id="fanBody"></div>
 
   <section class="planets fan-sec" id="planets">
@@ -187,5 +190,7 @@ permalink: /franchises/star-wars/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

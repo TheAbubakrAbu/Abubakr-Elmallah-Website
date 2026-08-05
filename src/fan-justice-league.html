@@ -28,11 +28,42 @@ permalink: /franchises/justice-league/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/justice-league.css' %}" />
 </head>
 <body data-intro="none" data-fan="jl">
 
 <!-- the Watchtower, and the curve of the earth below it -->
-<div class="jl-sky" aria-hidden="true"></div>
+<div class="jl-sky" aria-hidden="true">
+  <div class="jl-stars"></div>
+  <div class="jl-aurora"></div>
+  <div class="jl-signals">
+    <svg viewBox="0 0 1400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g class="jls-orbit"><ellipse cx="700" cy="250" rx="520" ry="170"/><ellipse cx="700" cy="250" rx="380" ry="240"/></g>
+      <circle class="jls-hub" cx="700" cy="250" r="26"/>
+      <circle class="jls-hubring" cx="700" cy="250" r="42"/>
+      <g class="jls-node">
+        <circle cx="180" cy="250" r="9" style="--m:#4f8fe0"/>
+        <circle cx="1220" cy="250" r="9" style="--m:#8f98a8"/>
+        <circle cx="700" cy="10" r="9" style="--m:#4fd07f"/>
+        <circle cx="700" cy="490" r="9" style="--m:#e04a3a"/>
+        <circle cx="330" cy="90" r="7" style="--m:#d8b45f"/>
+        <circle cx="1070" cy="410" r="7" style="--m:#4fc9c0"/>
+      </g>
+    </svg>
+  </div>
+  <div class="jl-bursts">
+    <svg viewBox="0 0 1400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path class="jlb-star" d="M250 130l16 42 42-16-26 36 42 16-45 5 12 43-30-33-30 33 12-43-45-5 42-16-26-36 42 16z"/>
+      <path class="jlb-star jlb-star--2" d="M1130 360l16 42 42-16-26 36 42 16-45 5 12 43-30-33-30 33 12-43-45-5 42-16-26-36 42 16z"/>
+    </svg>
+  </div>
+  <div class="jl-benday"></div>
+  <div class="jl-city">
+    <svg viewBox="0 0 1400 200" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path class="jlc-b" d="M0 90h90v110H0zM120 60h70v140h-70zM220 120h100v80H220zM350 40h60v160h-60zM440 100h110v100H440zM580 70h80v130h-80zM690 130h90v70h-90zM810 50h70v150h-70zM910 110h100v90H910zM1040 80h70v120h-70zM1140 130h90v70h-90zM1260 60h140v140h-140z"/>
+    </svg>
+  </div>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -75,10 +106,57 @@ permalink: /franchises/justice-league/
     <a class="back-link" href="/franchises/" data-magnetic>← Back to franchises</a>
     <p class="fan-kicker"><span>Franchise · Secondary · since 1960</span></p>
     <h1 class="fan-title">The Justice League</h1>
-    <p class="fan-lede-hero">Seven of the biggest names in comics at one table, and an animated series that made all of them work at once. The founders, what it takes seven of them to stop, and sixty-five years of the roster rotating.</p>
+    <p class="fan-lede-hero">Shorthand, on this site, for the DC guys — Batman, Superman, Green Lantern and the Flash mostly. I am not a comics reader and this page does not pretend to be one. It is here for four characters, the cartoons that introduced me to them, and the Snyder films.</p>
     <div class="fan-links">
       <a class="fan-link" href="/franchises/batman/" data-magnetic>Batman has his own page ↗</a>
       <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
+    </div>
+  </section>
+
+  <div id="fanPlay"></div>
+
+  <section class="fan-art fan-art--jl reveal">
+    <figure class="fan-art-fig jl-stage">
+      <svg viewBox="0 0 360 360" aria-hidden="true">
+        <!-- Batman: one half drawn, mirrored, so the wings cannot drift apart -->
+        <g class="jlh-cell" style="--m:#8f98a8">
+          <circle class="jlh-disc" cx="96" cy="96" r="72"/>
+          <circle class="jlh-edge" cx="96" cy="96" r="72"/>
+          <g class="jlh-mark" transform="translate(96 96)">
+            <g id="jlBat"><path d="M0-16c4-10 12-16 20-17-3 5-4 10-3 15 9-6 21-8 31-4-6 1-11 5-14 10 8-1 16 2 21 8-11-2-20 1-27 7-6 5-10 11-12 18-2-6-5-11-9-15-3-3-6-6-7-10z"/></g>
+            <use href="#jlBat" transform="scale(-1,1)"/>
+          </g>
+        </g>
+        <!-- Superman: the shield, with the letter set in type rather than drawn -->
+        <g class="jlh-cell" style="--m:#4f8fe0">
+          <circle class="jlh-disc" cx="264" cy="96" r="72"/>
+          <circle class="jlh-edge" cx="264" cy="96" r="72"/>
+          <path class="jlh-mark" d="M264 54l40 14-8 44-32 30-32-30-8-44z"/>
+          <text class="jlh-let" x="264" y="112">S</text>
+        </g>
+        <!-- Green Lantern: the lantern, which is just a ring and two bars -->
+        <g class="jlh-cell" style="--m:#4fd07f">
+          <circle class="jlh-disc" cx="96" cy="264" r="72"/>
+          <circle class="jlh-edge" cx="96" cy="264" r="72"/>
+          <g class="jlh-mark">
+            <path d="M56 236h80v14H56zM56 278h80v14H56z"/>
+            <path d="M96 232a32 32 0 0 1 32 32 32 32 0 0 1-32 32 32 32 0 0 1-32-32 32 32 0 0 1 32-32zm0 14a18 18 0 0 0-18 18 18 18 0 0 0 18 18 18 18 0 0 0 18-18 18 18 0 0 0-18-18z"/>
+          </g>
+        </g>
+        <!-- The Flash -->
+        <g class="jlh-cell" style="--m:#e04a3a">
+          <circle class="jlh-disc" cx="264" cy="264" r="72"/>
+          <circle class="jlh-edge" cx="264" cy="264" r="72"/>
+          <path class="jlh-mark jlh-flash" d="M282 218l-42 54h24l-14 44 42-58h-25z"/>
+        </g>
+      </svg>
+      <figcaption>The four I actually mean — emblems drawn for this page, not any publisher’s artwork</figcaption>
+    </figure>
+    <div class="fan-art-body">
+      <q>Superman’s problem is not that he can do anything. It is that he chooses not to.</q>
+      <p class="fan-art-by">Why the “boring” one is the hard one to write</p>
+      <p>I came to all of this through the cartoons rather than the comics, and I have never felt the need to correct that. The Bruce Timm run — Batman, then Superman, then Justice League and Unlimited — is where I met every one of these characters, and it is still the version I picture when somebody names one.</p>
+      <p>The films I like more than the consensus does. Batman v Superman is heavy and overlong and its plot does not survive much poking, but Affleck is a great Batman and the film is genuinely about something. The Snyder Cut is the good one, and four hours of it went down easier than the two-hour version did.</p>
     </div>
   </section>
 
@@ -131,5 +209,7 @@ permalink: /franchises/justice-league/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

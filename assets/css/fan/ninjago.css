@@ -1,0 +1,172 @@
+/* ninjago.css -- loaded only by /ninjago. Split out of fanpages.css. */
+
+.nj-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(80% 60% at 50% 0%, #1e1708 0%, #100c06 48%, #060504 100%);
+}
+
+.nj-sky::before {
+  content: ""; position: absolute; inset: -20%;
+  background-image: repeating-linear-gradient(28deg,
+    rgba(224,176,64,.06) 0 2px, transparent 2px 24px);
+}
+
+/* ═════════════ Ninjago: the Spinjitzu tornado ═════════════ */
+.nj-sky > * { position: absolute; inset: 0; display: block; }
+
+/* the peaks, with the Monastery of Spinjitzu on the highest one */
+.nj-peaks { inset: auto 0 0 0; height: 52%; opacity: .55; }
+
+.nj-peaks svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.njp-far  { fill: #131b2c; }
+
+.njp-near { fill: #0b1120; }
+
+.njp-monastery { fill: #17110e; stroke: #8a6329; stroke-width: 2.4; stroke-linejoin: round; }
+
+.njp-lit  { fill: #c99038; stroke: none; filter: drop-shadow(0 0 5px rgba(240,176,64,.4)); }
+
+/* lightning behind the mountains, rare and fast */
+.nj-bolt {
+  background: linear-gradient(180deg, rgba(150,200,255,.45), transparent 42%);
+  opacity: 0; animation: nj-strike 11s linear infinite;
+}
+
+/* gold coming off the weapons */
+.nj-motes {
+  background-size: 320px 320px;
+  background-image:
+    radial-gradient(2px 2px at 40px 60px,   rgba(240,176,64,.34), transparent),
+    radial-gradient(1.6px 1.6px at 170px 30px, rgba(224,74,58,.28), transparent),
+    radial-gradient(2.4px 2.4px at 260px 140px, rgba(159,216,240,.28), transparent),
+    radial-gradient(1.6px 1.6px at 90px 210px, rgba(79,159,208,.26), transparent),
+    radial-gradient(2px 2px at 220px 270px, rgba(240,176,64,.28), transparent);
+  animation: nj-drift 32s linear infinite; opacity: .22;
+}
+
+@media (min-width: 820px) { .fan-art--nj { grid-template-columns: minmax(0, .62fr) minmax(0, 1.38fr); } }
+
+.njs-blade { fill: #f0d070; stroke: #a8762a; stroke-width: 3; stroke-linejoin: round; }
+
+.njs-blade path:nth-child(2) { fill: none; stroke: #fff3c0; stroke-width: 2; opacity: .55; }
+
+.njs-hilt  { fill: #c9903f; stroke: #7a5620; stroke-width: 2.6; stroke-linejoin: round; }
+
+.njs-hilt path:nth-child(4) { fill: none; stroke: #7a5620; stroke-width: 2; }
+
+.njs-hilt circle:last-child { fill: #e04a3a; }
+
+.njs-flame {
+  fill: #e04a3a; opacity: .85;
+  filter: drop-shadow(0 0 14px rgba(224,74,58,.8)) drop-shadow(0 0 34px rgba(240,140,40,.5));
+  transform-box: fill-box; transform-origin: 50% 100%;
+  animation: nj-burn 2.2s ease-in-out infinite alternate;
+}
+
+.njs-flame path:nth-child(2) { fill: #f0b040; }
+
+.njs-spark circle { fill: #f0b040; animation: nj-flick 3.4s ease-in-out infinite alternate; }
+
+.njs-spark circle:nth-child(2n) { animation-delay: -1.2s; }
+
+.njs-spark circle:nth-child(3n) { animation-delay: -2.1s; }
+
+/* the four Golden Weapons */
+.njg-grid {
+  display: grid; gap: clamp(0.8rem, 2vw, 1.3rem);
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+}
+
+.njg {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 0.3rem; padding: 1.4rem 1.1rem 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--g) 32%, transparent); border-radius: 16px;
+  background:
+    radial-gradient(120% 70% at 50% 0%, color-mix(in srgb, var(--g) 14%, transparent), transparent 64%),
+    linear-gradient(168deg, rgba(240,176,64,.05), rgba(9,8,12,.7) 70%);
+  transition: transform .45s var(--ease), border-color .45s, box-shadow .45s;
+}
+
+.njg:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--g) 70%, transparent);
+  box-shadow: 0 26px 50px -28px #000, 0 0 46px -20px var(--g);
+}
+
+.njg svg { width: 92px; height: auto; margin-bottom: 0.5rem; }
+
+.njg-metal { fill: #f0d070; stroke: #a8762a; stroke-width: 3; stroke-linejoin: round; }
+
+.njg-metal path:not([transform]) + path { }
+
+.njg-chain { fill: none; stroke: #a8762a; stroke-width: 3; }
+
+.njg-aura {
+  fill: var(--g); opacity: .14;
+  filter: blur(6px);
+  animation: nj-pulse 4.6s ease-in-out infinite alternate;
+}
+
+.njg h4 { font-family: var(--serif); font-weight: 600; font-size: 1rem; color: var(--g); letter-spacing: -0.02em; }
+
+.njg-sub { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); }
+
+.njg p { margin-top: 0.45rem; font-size: 0.8rem; line-height: 1.55; color: var(--ink-dim); }
+
+.nj-spin {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 820px) { .nj-spin { grid-template-columns: 0.75fr 1.25fr; } }
+
+.nj-tornado {
+  position: relative; width: min(300px, 74vw); aspect-ratio: 1; margin: 0 auto;
+  display: grid; place-items: center;
+}
+
+.nj-tornado i {
+  position: absolute; border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: var(--e); border-right-color: color-mix(in srgb, var(--e) 45%, transparent);
+  box-shadow: 0 0 22px -6px var(--e);
+  animation: nj-whirl var(--sp, 6s) linear infinite;
+}
+
+.nj-tornado i:nth-child(1) { inset: 0;   --e: #e04a3a; --sp: 5.5s; }
+
+.nj-tornado i:nth-child(2) { inset: 8%;  --e: #4f9fd0; --sp: 4.6s; }
+
+.nj-tornado i:nth-child(3) { inset: 16%; --e: #8f8f9a; --sp: 3.9s; }
+
+.nj-tornado i:nth-child(4) { inset: 24%; --e: #dff2ff; --sp: 3.2s; }
+
+.nj-tornado i:nth-child(5) { inset: 32%; --e: #5fd07f; --sp: 2.6s; }
+
+.nj-tornado i:nth-child(6) { inset: 40%; --e: #c9cdd2; --sp: 2.1s; }
+
+.nj-core {
+  position: relative; z-index: 2; width: 44%; aspect-ratio: 1; border-radius: 50%;
+  display: grid; place-items: center; text-align: center;
+  background: radial-gradient(circle at 36% 30%, rgba(255,233,168,.35), rgba(224,176,64,.08) 70%);
+  border: 1px solid rgba(224,176,64,.45);
+  box-shadow: 0 0 40px -10px rgba(224,176,64,.8);
+}
+
+.nj-core b {
+  font-family: var(--serif); font-style: italic; font-weight: 700;
+  text-transform: uppercase; font-size: 0.98rem; letter-spacing: 0.04em; color: #ffe9a8;
+}
+
+.nj-legend h4 {
+  font-family: var(--serif); font-style: italic; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.05em; font-size: 1.2rem; color: var(--a); margin-bottom: 0.6rem;
+}
+
+.nj-legend p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+
+.nj-legend p + p { margin-top: 0.7rem; }
+
+@media (prefers-reduced-motion: reduce) { .nj-tornado i { animation: none; } }

@@ -28,11 +28,42 @@ permalink: /franchises/the-simpsons/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/the-simpsons.css' %}" />
 </head>
 <body data-intro="none" data-fan="simpsons">
 
 <!-- the clouds from the title card -->
-<div class="sim-sky" aria-hidden="true"></div>
+<!-- Springfield: the title-card sky, the cooling towers, the town rooftops,
+     and 742 Evergreen Terrace on the end. All CSS and one inline SVG. -->
+<div class="sim-sky" aria-hidden="true">
+  <span class="sim-town">
+    <svg viewBox="0 0 1400 300" preserveAspectRatio="xMidYMax slice">
+      <!-- the plant, with its two cooling towers -->
+      <g class="simt-plant">
+        <path d="M120 300V150q0-26 34-30l-10-46h68l-10 46q34 4 34 30v150z"/>
+        <path d="M250 300V162q0-24 30-28l-9-40h60l-9 40q30 4 30 28v138z"/>
+        <rect x="96" y="252" width="280" height="48"/>
+      </g>
+      <g class="simt-glow"><circle cx="178" cy="76" r="16"/><circle cx="301" cy="96" r="13"/></g>
+      <!-- the town -->
+      <g class="simt-roofs">
+        <path d="M430 300v-70h90v70zM540 300v-96h70v96zM630 300v-58h110v58zM760 300v-84h80v84z"/>
+        <path d="M860 300v-64h96v64zM976 300v-92h64v92zM1060 300v-52h90v52z"/>
+        <path d="M424 230l45-30 45 30zM534 204l35-26 35 26zM754 216l40-28 40 28zM970 208l32-24 32 24z"/>
+      </g>
+      <!-- 742 Evergreen Terrace -->
+      <g class="simt-house">
+        <path d="M1180 300v-96h150v96z"/>
+        <path d="M1168 204l87-56 87 56z"/>
+        <rect class="simt-door" x="1238" y="252" width="34" height="48"/>
+        <rect class="simt-win" x="1198" y="226" width="30" height="26"/>
+        <rect class="simt-win" x="1284" y="226" width="30" height="26"/>
+        <rect class="simt-win" x="1240" y="176" width="30" height="24"/>
+      </g>
+    </svg>
+  </span>
+  <span class="sim-clouds"></span>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -79,7 +110,50 @@ permalink: /franchises/the-simpsons/
     <div class="fan-links">
       <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
     </div>
+    <div class="fan-art fan-art--sim reveal">
+      <div class="fan-art-fig">
+        <svg viewBox="0 0 420 420" role="img" aria-label="A pink-frosted donut with sprinkles">
+          <!-- the iconic one: a big hole, and frosting that drips over both
+               the outer edge AND down into the hole. Drawn with an even-odd
+               ring so the hole is genuinely cut through, not painted over. -->
+          <defs>
+            <mask id="dntHole">
+              <rect x="0" y="0" width="420" height="420" fill="#fff"/>
+              <circle cx="210" cy="212" r="66" fill="#000"/>
+            </mask>
+          </defs>
+          <g class="dnt" mask="url(#dntHole)">
+            <circle class="dnt-dough" cx="210" cy="212" r="168"/>
+            <circle class="dnt-holerim" cx="210" cy="212" r="66"/>
+            <!-- frosting: outer drip edge, inner drip edge, one shape -->
+            <path class="dnt-icing" d="M210 50c-92 0-150 62-152 140-1 22 10 30 20 18 12-14 28-10 34 6 6 18 26 22 38 8 12-14 30-12 38 4 8 16 28 20 42 8 12-10 30-8 38 8 8 16 28 18 40 4 10-12 24-6 26 10 2 16 16 16 18-6C368 112 302 50 210 50z
+                                      M210 128c-46 0-84 38-84 84 0 8 4 12 10 8 8-6 16-2 20 6 4 10 14 12 20 4 6-8 16-6 20 4 4 8 14 10 20 4 6-6 16-4 20 6 4 8 14 8 20-2 4-6 12-2 14 6 2 8 10 6 10-6 0-64-44-114-90-114z"/>
+            <g class="dnt-sprinkles">
+              <rect x="128" y="100" width="26" height="9" rx="4.5" transform="rotate(-32 141 104)"/>
+              <rect x="196" y="80"  width="26" height="9" rx="4.5" transform="rotate(14 209 84)"/>
+              <rect x="262" y="102" width="26" height="9" rx="4.5" transform="rotate(-48 275 106)"/>
+              <rect x="106" y="170" width="26" height="9" rx="4.5" transform="rotate(28 119 174)"/>
+              <rect x="296" y="164" width="26" height="9" rx="4.5" transform="rotate(62 309 168)"/>
+              <rect x="158" y="134" width="26" height="9" rx="4.5" transform="rotate(-8 171 138)"/>
+              <rect x="240" y="140" width="26" height="9" rx="4.5" transform="rotate(40 253 144)"/>
+              <rect x="100" y="238" width="26" height="9" rx="4.5" transform="rotate(-18 113 242)"/>
+              <rect x="300" y="242" width="26" height="9" rx="4.5" transform="rotate(22 313 246)"/>
+              <rect x="150" y="268" width="26" height="9" rx="4.5" transform="rotate(-54 163 272)"/>
+              <rect x="252" y="276" width="26" height="9" rx="4.5" transform="rotate(48 265 280)"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <div class="fan-art-body">
+        <q>Mmm… donuts.</q>
+        <span class="fan-art-by">Homer Simpson · every episode</span>
+        <p>Thirty-five years and eight hundred episodes, and it is still the show every other animated comedy is measured against. The golden age — roughly seasons three to nine — wrote a genuinely enormous share of the jokes the internet still runs on, and did it while being sincerely about a family that loves each other.</p>
+        <p>Pink frosting, rainbow sprinkles, and a man who would trade his soul for one. He did, actually, in Treehouse of Horror IV, and Marge got it back because she had it in a locket.</p>
+      </div>
+    </div>
   </section>
+
+  <div id="fanPlay"></div>
 
   <section class="sim-board reveal">
     <div class="sim-frame">
@@ -125,5 +199,7 @@ permalink: /franchises/the-simpsons/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

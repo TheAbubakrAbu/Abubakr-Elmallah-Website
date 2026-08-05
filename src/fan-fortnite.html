@@ -28,11 +28,36 @@ permalink: /franchises/fortnite/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/fortnite.css' %}" />
 </head>
 <body data-intro="none" data-fan="fortnite">
 
 <!-- the storm closing in -->
-<div class="fn-sky" aria-hidden="true"></div>
+<div class="fn-sky" aria-hidden="true">
+  <div class="fn-storm"></div>
+  <div class="fn-bus">
+    <svg viewBox="0 0 240 200" aria-hidden="true">
+      <path class="fnb-rope" d="M78 96v-18M162 96v-18M120 92V60"/>
+      <path class="fnb-balloon" d="M120 4c34 0 58 24 58 52 0 20-24 34-58 34S62 76 62 56C62 28 86 4 120 4z"/>
+      <path class="fnb-panel" d="M120 4c12 0 20 24 20 52 0 20-8 34-20 34s-20-14-20-34c0-28 8-52 20-52z"/>
+      <rect class="fnb-body" x="46" y="96" width="148" height="52" rx="7"/>
+      <path class="fnb-stripe" d="M46 128h148v9H46z"/>
+      <g class="fnb-win"><rect x="58" y="104" width="22" height="18" rx="2"/><rect x="88" y="104" width="22" height="18" rx="2"/><rect x="118" y="104" width="22" height="18" rx="2"/><rect x="148" y="104" width="22" height="18" rx="2"/></g>
+      <g class="fnb-wheel"><circle cx="76" cy="152" r="11"/><circle cx="166" cy="152" r="11"/></g>
+    </svg>
+  </div>
+  <div class="fn-isle">
+    <svg viewBox="0 0 1400 240" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path class="fni-far" d="M0 130l120-46 110 32 140-56 130 44 150-38 140 50 130-40 150 44 130-30 100 34v120H0z"/>
+      <path class="fni-near" d="M0 178l150-34 130 30 160-44 140 40 150-30 160 42 140-32 160 38 110-24v76H0z"/>
+      <g class="fni-build">
+        <path d="M300 150h16v28h-16zM322 142h16v36h-16zM344 154h16v24h-16z"/>
+        <path d="M900 146h16v32h-16zM922 138h16v40h-16zM944 150h16v28h-16z"/>
+      </g>
+    </svg>
+  </div>
+  <div class="fn-grid"></div>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -75,9 +100,34 @@ permalink: /franchises/fortnite/
     <a class="back-link" href="/franchises/" data-magnetic>← Back to franchises</a>
     <p class="fan-kicker"><span>Franchise · Tertiary · since 2017</span></p>
     <h1 class="fan-title">Fortnite</h1>
-    <p class="fan-lede-hero">The building mechanic turned a shooter into a construction race, and then the live events turned a game into a venue. Six chapters, four verbs, and the day the map went into a black hole.</p>
+    <p class="fan-lede-hero">Chapter 1, seasons three to seven — that is the Fortnite I mean. Omega at tier one hundred, the meteor in Dusty Depot, the rifts, and Kevin rolling across the map. I stopped playing properly around season nine and now I only turn up for the big events, which are still unlike anything else in games.</p>
     <div class="fan-links">
       <a class="fan-link" href="/franchises/" data-magnetic>All franchises ↗</a>
+    </div>
+  </section>
+
+  <div id="fanPlay"></div>
+
+  <section class="fan-art fan-art--fn reveal">
+    <figure class="fan-art-fig fn-stage">
+      <svg viewBox="0 0 320 320" aria-hidden="true">
+        <circle class="fnh-ring" cx="160" cy="160" r="128"/>
+        <circle class="fnh-ring fnh-ring--2" cx="160" cy="160" r="96"/>
+        <g class="fnh-omega">
+          <path d="M160 54c42 0 74 32 74 74 0 26-13 46-32 60v18h-32v-34c20-8 32-24 32-44 0-24-19-42-42-42s-42 18-42 42c0 20 12 36 32 44v34H118v-18c-19-14-32-34-32-60 0-42 32-74 74-74z"/>
+        </g>
+        <g class="fnh-pip">
+          <rect x="150" y="212" width="20" height="10" rx="3"/>
+          <rect x="112" y="230" width="96" height="8" rx="4"/>
+        </g>
+      </svg>
+      <figcaption>The Omega mark, drawn for this page — season 4, tier 100</figcaption>
+    </figure>
+    <div class="fan-art-body">
+      <q>Brace for impact.</q>
+      <p class="fan-art-by">Season 4, May 2018</p>
+      <p>For about eighteen months Fortnite was the most interesting thing happening in games, and seasons three through seven are that whole stretch. One island, learned by heart. One idea per season, committed to completely — a meteor, then rifts, then a cube that moved on its own. And a map that visibly changed while you were living on it, which nothing else was doing at that scale.</p>
+      <p>Omega came out of the middle of it and is still the best skin the game has made. Not because of how it looked, though it looked like the final boss — because you built it a piece at a time, and a finished one in a lobby told everybody exactly how much of that season you had lived through.</p>
     </div>
   </section>
 
@@ -132,5 +182,7 @@ permalink: /franchises/fortnite/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
 </body>
 </html>

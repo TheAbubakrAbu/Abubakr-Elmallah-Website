@@ -1,0 +1,102 @@
+/* disney.css -- loaded only by /disney. Split out of fanpages.css. */
+
+.dz-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(90% 70% at 50% 100%, #16225c 0%, #0c1030 45%, #04060f 100%);
+}
+
+.dz-sky::before {                      /* fireworks bloom */
+  content: ""; position: absolute; left: 50%; top: 4%; translate: -50% 0;
+  width: clamp(300px, 46vw, 640px); aspect-ratio: 1; border-radius: 50%;
+  background:
+    repeating-conic-gradient(from 0deg, rgba(200,225,255,.16) 0 .5deg, transparent .5deg 9deg);
+  mask-image: radial-gradient(circle, transparent 18%, #000 30%, transparent 62%);
+  -webkit-mask-image: radial-gradient(circle, transparent 18%, #000 30%, transparent 62%);
+  animation: dz-bloom 9s ease-in-out infinite;
+}
+
+.dz-sky::after {                       /* stars */
+  content: ""; position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1.4px 1.4px at 20% 24%, rgba(255,255,255,.7), transparent),
+    radial-gradient(1.2px 1.2px at 68% 40%, rgba(200,225,255,.6), transparent),
+    radial-gradient(1.6px 1.6px at 44% 66%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1.2px 1.2px at 84% 16%, rgba(255,245,200,.6), transparent);
+  background-size: 240px 240px;
+}
+
+/* ── Disney: the castle, at night, with fireworks ── */
+.dz-stars {
+  background-size: 340px 340px;
+  background-image:
+    radial-gradient(1.4px 1.4px at 40px 60px, rgba(200,224,255,.6), transparent),
+    radial-gradient(1.2px 1.2px at 170px 30px, rgba(180,210,255,.5), transparent),
+    radial-gradient(1.6px 1.6px at 260px 140px, rgba(220,235,255,.55), transparent),
+    radial-gradient(1.2px 1.2px at 90px 220px, rgba(190,215,255,.45), transparent),
+    radial-gradient(1.4px 1.4px at 300px 280px, rgba(210,230,255,.5), transparent);
+  opacity: .5;
+}
+
+.dz-castle { inset: auto 0 0 0; height: 60%; opacity: .5; }
+
+.dz-castle svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.dzc-stone { fill: #131a38; stroke: #7fb4e0; stroke-width: 2.4; stroke-linejoin: round; }
+
+.dzc-lit   { fill: #f0d88a; filter: drop-shadow(0 0 6px rgba(240,216,138,.6)); }
+
+.dzc-spire { fill: none; stroke: #8fd8f0; stroke-width: 2.4; stroke-linecap: round; }
+
+.dz-fw i {
+  position: absolute; width: 6px; height: 6px; border-radius: 50%;
+  box-shadow:
+     0 -30px 0 -2px currentColor, 0 30px 0 -2px currentColor,
+    -30px 0 0 -2px currentColor, 30px 0 0 -2px currentColor,
+    -21px -21px 0 -2px currentColor, 21px -21px 0 -2px currentColor,
+    -21px 21px 0 -2px currentColor, 21px 21px 0 -2px currentColor;
+  animation: dz-burst 6s ease-out infinite;
+}
+
+.dz-fw i:nth-child(1) { left: 22%; top: 20%; color: #8fd8f0; animation-delay: -.4s; }
+
+.dz-fw i:nth-child(2) { left: 44%; top: 12%; color: #f0a8d8; animation-delay: -1.8s; }
+
+.dz-fw i:nth-child(3) { left: 66%; top: 22%; color: #f0d88a; animation-delay: -3.1s; }
+
+.dz-fw i:nth-child(4) { left: 82%; top: 14%; color: #a89aff; animation-delay: -4.4s; }
+
+.dz-fw i:nth-child(5) { left: 33%; top: 30%; color: #7ff0d0; animation-delay: -5.2s; }
+
+/* ═════════════ Disney: a castle, and fireworks over it ═════════════ */
+.fan-art--dz .dz-stage {
+  position: relative; overflow: hidden; border-radius: 10px;
+  padding: clamp(2rem, 6vw, 4rem) 1rem 0;
+  background: linear-gradient(180deg, #0d1636 0%, #131c44 46%, #1b2350 100%);
+}
+
+.dz-burst {
+  position: absolute; width: 190px; height: 190px; border-radius: 50%;
+  background:
+    repeating-conic-gradient(from 0deg, var(--f) 0 .8deg, transparent .8deg 11deg);
+  mask-image: radial-gradient(circle, transparent 12%, #000 26%, transparent 58%);
+  -webkit-mask-image: radial-gradient(circle, transparent 12%, #000 26%, transparent 58%);
+  opacity: 0; animation: dz-pop 7s ease-out infinite;
+}
+
+.dz-burst:nth-child(1) { left: 12%; top: 8%;  --f: rgba(255,190,220,.8); animation-delay: 0s; }
+
+.dz-burst:nth-child(2) { right: 14%; top: 4%; --f: rgba(190,225,255,.8); animation-delay: 2.2s; }
+
+.dz-burst:nth-child(3) { left: 44%; top: -4%; --f: rgba(255,235,180,.8); animation-delay: 4.4s; }
+
+.fan-art--dz .dz-stage svg { position: relative; display: block; width: 100%; margin: 0 auto; height: auto; }
+
+.fan-art--dz .dz-stage svg .stone { fill: #dfe6f5; }
+
+.fan-art--dz .dz-stage svg .roof  { fill: #6f8fd0; }
+
+.fan-art--dz .dz-stage svg .win   { fill: #f6d98a; }
+
+.fan-art--dz .dz-stage svg .dark  { fill: #b9c4dd; }
+
+@media (prefers-reduced-motion: reduce) { .dz-burst { animation: none; opacity: .35; } }

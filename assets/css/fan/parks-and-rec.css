@@ -1,0 +1,120 @@
+/* parks-and-rec.css -- loaded only by /parks-and-rec. Split out of fanpages.css. */
+
+.pk-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(80% 60% at 50% 0%, #0f2418 0%, #0a170f 46%, #040806 100%);
+}
+
+.pk-sky::before {                      /* tree line */
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 34vh;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 46px, rgba(95,191,127,.05) 46px 48px),
+    linear-gradient(0deg, rgba(95,191,127,.06), transparent 70%);
+}
+
+/* Pawnee at golden hour: hills, a treeline, park furniture in silhouette.
+   Capped at .36 by the global -sky rule further up. */
+.pk-sky > * { position: absolute; inset: 0; }
+
+.pk-sun {
+  background: radial-gradient(46% 34% at 50% 24%, rgba(240,200,110,.20), transparent 72%);
+}
+
+.pk-motes {
+  background-size: 280px 280px;
+  background-image:
+    radial-gradient(1.6px 1.6px at 40px 60px, rgba(240,225,170,.4), transparent),
+    radial-gradient(1.3px 1.3px at 180px 140px, rgba(200,240,190,.32), transparent),
+    radial-gradient(1.5px 1.5px at 100px 220px, rgba(240,225,170,.28), transparent);
+  animation: pk-float 30s linear infinite;
+}
+
+.pk-hills { inset: auto 0 0 0; height: 42%; }
+
+.pk-hills svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.pkh-tree { fill: #0a1a10; }
+
+.pkh-swing path, .pkh-bench path, .pkh-lamp path { fill: none; stroke: #123020; stroke-width: 3; }
+
+.pkh-lamp circle { fill: #f0d88a; opacity: .5; }
+
+/* ── the park sign ── */
+.fan-art--pk .pk-stage {
+  border-radius: 10px; overflow: hidden; max-width: 460px; margin-inline: auto;
+}
+
+.fan-art--pk .pk-stage svg { display: block; width: 100%; height: auto; }
+
+.fan-art--pk .pk-stage figcaption {
+  margin: 0; padding: .9rem 1rem 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.7;
+}
+
+@media (min-width: 820px) { .fan-art--pk { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); } }
+
+.pks-sky   { fill: #123322; }
+
+.pks-grass { fill: #1c4a2c; }
+
+.pks-pit   { fill: #3f3020; }
+
+.pks-post  { fill: #6f4f2a; }
+
+.pks-board { fill: #4a7f4a; }
+
+.pks-inner { fill: #2f6236; }
+
+.pks-bolt  { fill: #d8d0b0; opacity: .6; }
+
+.pks-grassblade { fill: #2a6038; }
+
+.pks-t1 { fill: #f0ead0; font-family: var(--sans); font-weight: 800; font-size: 26px; letter-spacing: 3px; text-anchor: middle; }
+
+.pks-t2 { fill: #cfe6c4; font-family: var(--sans); font-weight: 600; font-size: 13px; letter-spacing: 1.6px; text-anchor: middle; }
+
+.pks-sun circle { fill: #f0c86a; opacity: .55; }
+
+/* ═════════════ Parks and Rec: the department sign ═════════════ */
+.pk-sign { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; text-align: center; }
+
+.pk-board {
+  position: relative; display: inline-block; max-width: 100%;
+  padding: 1.4rem clamp(1.4rem, 5vw, 3.4rem);
+  border-radius: 6px; border: 6px solid #3a2716;
+  background: linear-gradient(180deg, #6b4a2a, #4a3220);
+  box-shadow: inset 0 3px 0 rgba(255,255,255,.10), inset 0 -8px 16px rgba(0,0,0,.45), 0 24px 44px -28px #000;
+}
+
+.pk-board::before, .pk-board::after {    /* the posts */
+  content: ""; position: absolute; bottom: -34px; width: 16px; height: 40px;
+  background: linear-gradient(180deg, #5a3d24, #3a2716);
+}
+
+.pk-board::before { left: 16%; }
+
+.pk-board::after  { right: 16%; }
+
+.pk-board b {
+  display: block; font-family: "Trebuchet MS", var(--sans); font-weight: 700;
+  font-size: clamp(1.1rem, 3.4vw, 1.9rem); letter-spacing: 0.02em; line-height: 1.25;
+  color: #eae2cd; text-shadow: 0 2px 0 rgba(0,0,0,.45);
+}
+
+.pk-board i {
+  display: block; margin-top: 0.5rem; font-style: normal;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #9fd0a8;
+}
+
+.pk-board u {
+  display: block; margin-top: 0.9rem; padding-top: 0.7rem; text-decoration: none;
+  border-top: 2px solid rgba(255,255,255,.14);
+  font-family: "Trebuchet MS", var(--sans); font-size: 0.82rem; color: rgba(234,226,205,.8);
+}
+
+.pk-sign-cap {
+  margin-top: 3rem; font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute);
+}

@@ -1,6 +1,8 @@
 /* fan-pokemon.js: content for /franchises/pokemon/. Rendered by fanpage.js.
    Type colours below are the ones the games have used since Gen VI. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: 'Elementary school; big surge 5th grade, 2016\u201317', note: 'Around since I was small, then two things blew it open: Pokémon GO the summer before fifth grade, and fifth grade itself when everybody had cards and we traded constantly. Pixelmon in Minecraft got an enormous amount of my time too.' },
+  sections: [
 
   { id: 'gens', kind: 'timeline', title: 'The Generations', note: 'nine regions, 1996 – now',
     items: [
@@ -37,9 +39,38 @@ window.FAN_PAGE = { sections: [
       { title: 'Fairy', accent: '#ee99ac', sub: 'Added in Gen VI to answer Dragon' },
     ] },
 
+  { id: 'favourites', kind: 'cards', title: 'Mine', note: 'the ones I would actually put on a team',
+    lede: 'Charizard first, and it has never been close. After that a very specific set: one sky dragon, three birds, and the two that made the first film work.',
+    items: [
+      { title: 'Charizard', sub: 'No. 006 · Fire, Flying', tag: 'No. 1', accent: '#e0602a',
+        desc: 'My favourite, permanently and without argument. Not even the best Fire starter on paper — it is four times weak to Rock, which is a genuinely terrible thing to be in Kanto — and none of that has ever mattered for a second.',
+        meta: 'Mega X · Mega Y · Gigantamax' },
+      { title: 'Charmander & Charmeleon', sub: 'No. 004 · No. 005 · Fire', tag: 'The line', accent: '#f0a03a',
+        desc: 'The hardest first pick in the original game and the one I took every time. Charmander’s tail flame is a health bar — if it goes out, so does he, which is a lot to put on a child. Then Charmeleon: the awkward middle stage everybody skips past, bad-tempered, hard to control, and visibly halfway to being something enormous.',
+        meta: 'Evolves at 16, then 36' },
+      { title: 'Rayquaza', sub: 'No. 384 · Dragon, Flying', tag: 'No. 2', accent: '#3fbf7f',
+        desc: 'Lives in the ozone layer and comes down only when Kyogre and Groudon start tearing the planet apart. It Mega Evolves without a stone, by knowing Dragon Ascent, which no other Pokémon can do. And the shiny is <b>black</b>, which is the single best recolour in the entire series.',
+        meta: 'Shiny: black · Delta Episode' },
+      { title: 'Articuno', sub: 'No. 144 · Ice, Flying', tag: 'Birds', accent: '#7fd0f0',
+        desc: 'My favourite of the three birds. The Seafoam Islands, a trail of snow behind it, and the calmest of the trio by a distance.',
+        meta: 'The Seafoam Islands' },
+      { title: 'Zapdos', sub: 'No. 145 · Electric, Flying', tag: 'Birds', accent: '#f0c840',
+        desc: 'Asleep in the Power Plant, and the one that actually feels dangerous to walk up to. I love all three of them, so this is here on merit rather than politeness.',
+        meta: 'The Power Plant' },
+      { title: 'Moltres', sub: 'No. 146 · Fire, Flying', tag: 'Birds', accent: '#e0602a',
+        desc: 'Waiting at the end of Victory Road, right before the Elite Four, which is the most dramatic placement of the three. Together the trio is still the best legendary set Game Freak has ever designed.',
+        meta: 'Victory Road' },
+      { title: 'Mewtwo', sub: 'No. 150 · Psychic', tag: 'No. 3', accent: '#a06fe0',
+        desc: 'Made in a lab from Mew’s DNA and immediately resentful about it. Cerulean Cave at level 70, after the Elite Four, which made it feel like the actual end of the game.',
+        meta: 'Cerulean Cave · Mega X, Y' },
+      { title: 'Mew', sub: 'No. 151 · Psychic', tag: 'No. 4', accent: '#f0a0c0',
+        desc: 'The ancestor of everything, able to learn every single TM, and for years the most rumoured-about thing in gaming. Half my primary school believed it was under a lorry.',
+        meta: 'Learns every TM' },
+    ] },
+
   { id: 'stuck', kind: 'cards', title: 'The Ones That Stuck', note: 'no accounting for taste',
     items: [
-      { title: 'Pikachu', sub: 'No. 025 · Electric', tag: 'Mascot', desc: 'Was not the mascot originally. Clefairy was the plan until the anime put this one on Ash\u2019s shoulder and refused to put it in a ball.', meta: 'Gen I' },
+      { title: 'Pikachu', sub: 'No. 025 · Electric', tag: 'Mascot', desc: 'Was not the mascot originally — Clefairy was the plan. Pikachu got the job and never gave it back, and is now one of the most recognisable characters on Earth.', meta: 'Gen I' },
       { title: 'Charizard', sub: 'No. 006 · Fire, Flying', tag: 'Starter', desc: 'Not part Dragon, which every child on a playground has argued about at least once.', meta: 'Gen I' },
       { title: 'Mewtwo', sub: 'No. 150 · Psychic', tag: 'Legendary', desc: 'Made in a lab from Mew\u2019s DNA, and the first Pok\u00e9mon the series let be genuinely angry about it.', meta: 'Cerulean Cave' },
       { title: 'Eevee', sub: 'No. 133 · Normal', tag: 'Branching', desc: 'Eight evolutions and counting, which turned one design into an entire mechanic.', meta: 'Gen I onward' },
@@ -61,7 +92,7 @@ window.FAN_PAGE = { sections: [
 
   { id: 'beyond', kind: 'tiles', title: 'Beyond The Games', note: 'the rest of the machine',
     items: [
-      { title: 'The anime', accent: '#f8d030', sub: '1997, still running', desc: 'Over twelve hundred episodes. Ash finally won a world championship in 2022 and then handed the show over.' },
+      { title: 'Pokémon GO', accent: '#f8d030', sub: '2016', desc: 'For one summer it had the entire world outside walking in circles round a park, which no game had managed before or since.' },
       { title: 'The trading card game', accent: '#6890f0', sub: 'Since 1996', desc: 'Over sixty billion cards printed, and a first edition Charizard that sells for the price of a car.' },
       { title: 'Pok\u00e9mon GO', accent: '#78c850', sub: '2016', desc: 'Put the entire concept outside for one strange summer, and is still one of the highest-grossing mobile games ever.' },
       { title: 'Detective Pikachu', accent: '#f0c840', sub: '2019', desc: 'The one live-action film that understood the assignment: make them look like animals, not toys.' },
@@ -89,10 +120,33 @@ window.FAN_PAGE = { sections: [
         meta: 'Pixelmon · aelmallah' },
     ] },
 
+  { id: 'balls', kind: 'tiles', title: 'Every Ball', note: 'and what each one is actually doing', compact: true,
+    lede: 'The catch formula weighs the target\u2019s remaining health, its status, its species rate and the ball. The ball is the only part you control, which is why there are so many of them and why almost all of them are conditional.',
+    items: [
+      { title: 'Poke Ball', accent: '#e0402a', sub: '\u00d71', desc: 'The baseline every other ball is measured against.' },
+      { title: 'Great Ball', accent: '#3f6fd0', sub: '\u00d71.5', desc: 'The mid-game default.' },
+      { title: 'Ultra Ball', accent: '#f0c840', sub: '\u00d72', desc: 'What you stock before a legendary.' },
+      { title: 'Master Ball', accent: '#a05fd0', sub: 'Never fails', desc: 'One per game, and nobody ever throws it.' },
+      { title: 'Quick Ball', accent: '#5fc0e0', sub: '\u00d75, turn one only', desc: 'Lead with it or do not bother.' },
+      { title: 'Dusk Ball', accent: '#4a7f5f', sub: '\u00d73 at night or in caves', desc: 'Excellent if you plan around the clock.' },
+      { title: 'Timer Ball', accent: '#c9cdd2', sub: 'Scales with turns', desc: 'For the long grinding fights.' },
+      { title: 'Net Ball', accent: '#4fb0a0', sub: '\u00d73.5 water and bug', desc: 'Huge, when the type lines up.' },
+      { title: 'Dive Ball', accent: '#3f8fd0', sub: '\u00d73.5 underwater', desc: 'Narrow window, superb inside it.' },
+      { title: 'Nest Ball', accent: '#5fbf5f', sub: 'Better on low levels', desc: 'Early routes only.' },
+      { title: 'Repeat Ball', accent: '#e0a83a', sub: '\u00d73.5 if already in the Pokedex', desc: 'Best exactly when you care least.' },
+      { title: 'Heal Ball', accent: '#f0a8c4', sub: '\u00d71, heals fully', desc: 'Saves the trip to the Centre.' },
+      { title: 'Luxury Ball', accent: '#c9a05f', sub: '\u00d71, double friendship', desc: 'Matters for Umbreon and Return.' },
+      { title: 'Premier Ball', accent: '#e8e2d0', sub: '\u00d71, free in bulk', desc: 'Purely cosmetic, and hoarded anyway.' },
+      { title: 'Level Ball', accent: '#8f9fd0', sub: 'Up to \u00d74 on level gap', desc: 'Kurt\u2019s Apricorn balls, from Johto.' },
+      { title: 'Beast Ball', accent: '#6fd0c0', sub: '\u00d75 / \u00d70.1', desc: 'The harshest trade any ball offers.' },
+      { title: 'Safari Ball', accent: '#8f7f4f', sub: 'Safari Zone only', desc: 'Bait and rocks instead of battling.' },
+      { title: 'Cherish Ball', accent: '#e0483a', sub: 'Event only', desc: 'Tells you where a Pokemon came from.' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'Pokemon.com', href: 'https://www.pokemon.com/us',
-        desc: 'The official site: games, cards, and the anime.' },
+        desc: 'The official site: the games, the cards, and every generation’s Pokédex.' },
       { title: 'Bulbapedia', href: 'https://bulbapedia.bulbagarden.net/',
         desc: 'The reference. Base stats, learnsets, type charts, everything.' },
       { title: 'Serebii', href: 'https://www.serebii.net/',
@@ -100,3 +154,43 @@ window.FAN_PAGE = { sections: [
     ] },
 
 ] };
+
+/* The interactive block, rendered by fan-play.js. */
+
+/* The interactive block, rendered by fan-play.js. */
+window.FAN_PLAY = {
+  kind: "roll",
+  title: "The Poke Balls",
+  intro: "Every ball in the series, and each one is a different maths problem \u2014 the catch rate is a multiplier applied to a formula that also weighs the target\u2019s remaining health and status. Pick one to read what it actually does, or throw at random and see what you get handed.",
+  prompt: "Pick a ball, or press 1\u20139.",
+  button: "Throw one at random",
+  again: "Throw another",
+  wait: [
+        "Wind up.",
+        "Throw.",
+        "One shake.",
+        "Two.",
+        "Three\u2026"
+      ],
+  beat: 300,
+  items: [
+    { n: "Poke Ball", s: "x1", c: "#e0402a", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 8, said: "A standard Poke Ball. It will probably do.", note: "The baseline, and the one every formula is measured against. Cheap, available from the first shop in every game, and still the correct answer for most of the early route." },
+    { n: "Great Ball", s: "x1.5", c: "#3f6fd0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 6, said: "A Great Ball. Fifty per cent better and four times the price.", note: "The first upgrade, and the one you spend most of the mid-game throwing. Blue with the red flare, and the shape people picture second after the original." },
+    { n: "Ultra Ball", s: "x2", c: "#f0c840", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 5, said: "An Ultra Ball. Twice as good as standard.", note: "Black and yellow, twice the base rate, and what you stock up on before every legendary attempt because you cannot bring yourself to spend the Master Ball." },
+    { n: "Master Ball", s: "Never fails", c: "#a05fd0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 1, said: "The Master Ball. It cannot fail. You will not use it.", note: "One per game, one hundred per cent catch rate, no exceptions. And almost nobody ever throws it, because the moment you do you no longer have a Master Ball \u2014 so it sits in the bag for the entire playthrough." },
+    { n: "Quick Ball", s: "x5 on turn one", c: "#5fc0e0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 4, said: "A Quick Ball, thrown immediately. Five times the rate.", note: "Enormous multiplier, but only on the very first turn of the encounter and worthless after. Changes how you open a fight entirely \u2014 lead with it or do not bother." },
+    { n: "Dusk Ball", s: "x3 in the dark", c: "#4a7f5f", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 4, said: "A Dusk Ball. It is dark enough for this to work.", note: "Triple rate at night or inside a cave. One of the best in the game if you are willing to plan around the clock, which is a very Pokemon thing to ask of you." },
+    { n: "Timer Ball", s: "Better the longer it takes", c: "#c9cdd2", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 4, said: "A Timer Ball. The longer this goes, the better it gets.", note: "Scales up each turn to a cap, which makes it the right answer for a long grinding legendary fight and the wrong one for anything you meet on a route." },
+    { n: "Net Ball", s: "x3.5 water and bug", c: "#4fb0a0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 3, said: "A Net Ball. Water or bug, and it is very good at both.", note: "One of the strongest conditional multipliers in the series if the target happens to be the right type." },
+    { n: "Dive Ball", s: "x3.5 underwater", c: "#3f8fd0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 3, said: "A Dive Ball, underwater.", note: "Only useful while surfing or diving, which is a narrow window, but inside that window it is excellent." },
+    { n: "Nest Ball", s: "Better on weak targets", c: "#5fbf5f", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 3, said: "A Nest Ball. Low level, high chance.", note: "Scales inversely with the target\u2019s level, so it is superb on early routes and completely useless later." },
+    { n: "Repeat Ball", s: "x3.5 if already caught", c: "#e0a83a", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 3, said: "A Repeat Ball. You have caught one of these before.", note: "The completionist\u2019s ball \u2014 it gets better on species already in your Pokedex, which is exactly when you are least likely to care." },
+    { n: "Heal Ball", s: "x1, heals on catch", c: "#f0a8c4", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 3, said: "A Heal Ball. No better odds, but it comes out healthy.", note: "No catch bonus at all. Restores HP, PP and status the moment it lands, which saves a trip to the Centre and is quietly very convenient." },
+    { n: "Luxury Ball", s: "x1, friendship", c: "#c9a05f", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 2, said: "A Luxury Ball. It will like you faster.", note: "Black and gold, no catch bonus, doubles friendship gain. Matters far more than it sounds if you want an Umbreon or a Return build." },
+    { n: "Premier Ball", s: "x1, free", c: "#e8e2d0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 3, said: "A Premier Ball. Free with ten Poke Balls.", note: "Purely cosmetic \u2014 plain white with a red rim \u2014 and handed out when you buy in bulk. People hoard them anyway because the release animation is white." },
+    { n: "Level Ball", s: "Apricorn", c: "#8f9fd0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 2, said: "A Level Ball. Yours is much higher level than theirs.", note: "One of Kurt\u2019s Apricorn balls from Johto. Scales with the level gap between your Pokemon and the target, and at 4x it is the strongest conditional in the game." },
+    { n: "Beast Ball", s: "Ultra Beasts only", c: "#6fd0c0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 1, said: "A Beast Ball. Unless that is an Ultra Beast, this is going badly.", note: "Five times the rate on Ultra Beasts and one tenth on everything else, which is the harshest trade-off any ball has ever offered." },
+    { n: "Safari Ball", s: "Safari Zone only", c: "#8f7f4f", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 2, said: "A Safari Ball. Bait or rock first?", note: "Only usable inside the Safari Zone, where you cannot battle at all and instead throw bait and rocks and hope. A completely different game hidden inside the main one." },
+    { n: "Cherish Ball", s: "Event only", c: "#e0483a", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 1, said: "A Cherish Ball. This one came from an event.", note: "Never obtainable in normal play. It only exists on distributed event Pokemon, which makes it the one ball whose presence tells you where a Pokemon came from." },
+  ],
+};

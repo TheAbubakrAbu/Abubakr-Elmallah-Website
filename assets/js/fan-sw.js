@@ -7,7 +7,9 @@
    first, because that is the order they matter to me rather than the order
    they were released: Prequels → Originals → Sequels → Spinoffs. Then the
    Clone Wars block (arcs, legions, Order 66), then kyber and the lines. */
-window.FAN_PAGE = { sections: [
+window.FAN_PAGE = {
+  when: { at: 'Around 2012, age six', note: 'As Cassian says: I have been in this fight since I was six years old. Lightsabers and the Force were the first things that ever made me want a whole universe to be real.' },
+  sections: [
 
   { id: 'count', kind: 'stats', title: 'The Short Version', note: 'before any of the arguing starts',
     items: [
@@ -178,13 +180,13 @@ window.FAN_PAGE = { sections: [
 
   // mount:'end' → renders into #fanBodyEnd, below the hand-written planet atlas
   { id: 'parks', kind: 'cards', title: 'Where It Exists', note: 'Batuu, and the places you can stand in it',
-    lede: 'Galaxy’s Edge is Black Spire Outpost on Batuu, set between The Last Jedi and The Rise of Skywalker so it belongs to no film in particular. It is the most expensive land Disney has ever built, and the detail is absurd: the bins are in-universe, the food is blue milk, and nothing anywhere says “Star Wars” on it.',
+    lede: 'Galaxy’s Edge is Black Spire Outpost on Batuu, set between The Last Jedi and The Rise of Skywalker so it belongs to no film in particular. It is the most expensive land Disney has ever built, and the detail is absurd: the bins are in-universe, the signage is all Aurebesh, and nothing anywhere says “Star Wars” on it.',
     items: [
       { title: 'Galaxy’s Edge · Disneyland', sub: 'Anaheim, California', tag: '2019', accent: '#ffe81f',
         desc: 'Opened 31 May 2019, and the closest one to me. Rise of the Resistance is the best theme-park attraction ever built: a full-size hangar, a Star Destroyer corridor, an AT-AT bay and a trackless ride system pretending to be a prison break.',
         meta: 'Rise of the Resistance · Smugglers Run' },
       { title: 'Galaxy’s Edge · Hollywood Studios', sub: 'Walt Disney World, Florida', tag: '2019', accent: '#ffe81f',
-        desc: 'Opened three months after Anaheim and slightly larger. Same two rides, same Oga’s Cantina, same Black Spire Outpost.',
+        desc: 'Opened three months after Anaheim and slightly larger. Same two rides, same Droid Depot and Savi’s Workshop, same Black Spire Outpost.',
         meta: 'The bigger of the two' },
       { title: 'Savi’s Workshop', sub: 'Both parks', tag: 'Build', accent: '#3f8fff',
         desc: 'You build a lightsaber. An actual one, from parts, in a room with a ceremony and no photographs, and you pick the kyber colour. It costs a fortune and everybody who does it says it was worth it.',
@@ -226,3 +228,20 @@ window.FAN_PAGE = { sections: [
     ] },
 
 ] };
+
+/* The interactive block, rendered by fan-play.js. */
+window.FAN_PLAY = {
+  kind: "pick",
+  title: "Build Your Lightsaber",
+  intro: "Kyber crystals are colourless until a Jedi meditates on one and it responds to them. The colour is not chosen \u2014 it is what the crystal decides you are. Pick one and see what it means.",
+  prompt: "Take a crystal and hold it.",
+  said: "The crystal settles. %.",
+  items: [
+    { n: "Blue", s: "Jedi Guardian", c: "#4fa8f0", d: "M12 2v14M12 16v6M9 16h6", note: "The most common blade, and the one carried by Jedi who lean on the lightsaber form of the Order \u2014 Anakin, Obi-Wan, Luke on Hoth. Straightforward, and the colour most people picture." },
+    { n: "Green", s: "Jedi Consular", c: "#4fd07f", d: "M12 2v14M12 16v6M9 16h6", note: "The scholars and negotiators. Luke builds a green one for the sail barge because the blue one went down the reactor shaft with his hand, and it is the better-looking blade." },
+    { n: "Purple", s: "Mace Windu", c: "#a86ff0", d: "M12 2v14M12 16v6M9 16h6", note: "Exists because Samuel L. Jackson asked George Lucas for it so he could find himself in the crowd scenes. It stayed, and the fandom built a whole philosophy on top of it afterwards." },
+    { n: "Yellow", s: "Jedi Sentinel", c: "#f0d040", d: "M12 2v14M12 16v6M9 16h6", note: "The Temple Guards, and Rey at the very end of the sequels \u2014 a blade built out of a staff, in the one colour nobody in the family had used." },
+    { n: "Red", s: "Sith", c: "#e0342a", d: "M12 2v14M12 16v6M9 16h6", note: "Not a crystal that chose you. A Sith takes a kyber crystal and forces it \u2014 bleeds it \u2014 until it turns red. Every red blade in the galaxy is a crystal that was made to scream." },
+    { n: "Darksaber", s: "Mandalore", c: "#8f98a8", d: "M12 3l3 4-3 11-3-11z M12 18v3", note: "One of a kind, black with a white edge, forged by the only Mandalorian ever admitted to the Jedi Order. Whoever holds it holds a claim to Mandalore, which is why it keeps changing hands." },
+  ],
+};

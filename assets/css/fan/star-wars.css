@@ -1,0 +1,47 @@
+/* star-wars.css -- loaded only by /star-wars. Split out of fanpages.css. */
+
+/* the blue line that comes before the logo, since 1977 */
+.sw-longago {
+  font-family: var(--sans); font-weight: 400; font-size: clamp(0.82rem, 2vw, 1.05rem);
+  color: #4bd5ee; letter-spacing: 0.02em; margin-bottom: 0.9rem;
+  text-shadow: 0 0 26px rgba(75,213,238,.45);
+}
+
+.sw-crawl {
+  perspective: 340px; margin: 1.6rem 0 0.4rem; overflow: hidden;
+}
+
+.sw-crawl p {
+  font-family: var(--sans); font-weight: 700; text-transform: uppercase;
+  color: #ffe81f; letter-spacing: 0.04em; line-height: 1.5;
+  font-size: clamp(0.86rem, 1.9vw, 1.05rem); text-align: justify;
+  max-width: 46ch;
+  transform: rotateX(34deg);
+  transform-origin: 50% 100%;
+  text-shadow: 0 0 26px rgba(255,232,31,.35);
+  mask-image: linear-gradient(to top, #000 40%, transparent);
+  -webkit-mask-image: linear-gradient(to top, #000 40%, transparent);
+}
+
+/* Any width cap belongs on .fan-art-fig, never on .fan-art itself:
+   .fan-art is the two-column grid, so capping it squeezes the prose too.
+   The saber is long and thin, so it just fills its column. */
+.sb-metal { fill: #b9c2cc; stroke: #6d7783; stroke-width: 1.4; }
+
+.sb-dark  { fill: #23272e; stroke: #6d7783; stroke-width: 1.4; }
+
+.sb-grip rect { fill: #8a939e; }
+
+.sb-lit   { fill: #e04a3a; filter: drop-shadow(0 0 5px rgba(224,74,58,.9)); }
+
+.saber-blade-art { transform-box: view-box; transform-origin: 256px 61px; }
+
+.sb-glow { fill: rgba(80,170,255,.30); filter: blur(7px); }
+
+.sb-body { fill: #3f9fff; filter: drop-shadow(0 0 10px rgba(80,170,255,.85)); }
+
+.sb-core { fill: #f2f9ff; }
+
+.fan-art--saber svg { overflow: visible; }
+
+.fan-art--saber .saber-blade-art { animation: sw-ignite 1.5s var(--ease) both, sw-hum 3.6s ease-in-out 1.5s infinite alternate; }

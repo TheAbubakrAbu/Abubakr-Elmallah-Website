@@ -1,0 +1,204 @@
+/* avatar.css -- loaded only by /avatar. Split out of fanpages.css. */
+
+.av-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(80% 60% at 50% 0%, #06222a 0%, #04141b 46%, #02080b 100%);
+}
+
+.av-sky::before {                      /* forest floor lighting up */
+  content: ""; position: absolute; inset: -20%;
+  background-image:
+    radial-gradient(2px 2px at 18% 30%, rgba(120,240,255,.5), transparent),
+    radial-gradient(1.6px 1.6px at 62% 52%, rgba(150,255,220,.45), transparent),
+    radial-gradient(2.4px 2.4px at 40% 78%, rgba(120,220,255,.4), transparent),
+    radial-gradient(1.4px 1.4px at 84% 22%, rgba(180,255,240,.5), transparent);
+  background-size: 300px 300px;
+  animation: av-rise 30s linear infinite;
+}
+
+/* Pandora at night: floating mountains, Home Tree, drifting spores, an ikran.
+   Capped at .36 by the global -sky rule further up. */
+.av-sky > * { position: absolute; inset: 0; }
+
+.av-hallelujah svg, .av-hometree svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.avh-rock  { fill: #0d2a30; }
+
+.avh-vine  { fill: none; stroke: #17454a; stroke-width: 2.2; stroke-linecap: round; }
+
+.avh-fall  { fill: none; stroke: #5fd0d8; stroke-width: 2.6; opacity: .28; stroke-linecap: round; }
+
+.av-hometree { inset: auto 0 0 0; height: 40%; }
+
+.avt-trunk { fill: #0c2228; }
+
+.avt-root  { fill: none; stroke: #0c2228; stroke-width: 9; stroke-linecap: round; }
+
+.avt-crown { fill: #10333a; }
+
+.av-spore {
+  background-image:
+    radial-gradient(2px 2px at 18% 30%, rgba(150,255,235,.5), transparent),
+    radial-gradient(1.6px 1.6px at 62% 52%, rgba(120,220,255,.45), transparent),
+    radial-gradient(2.4px 2.4px at 40% 78%, rgba(180,255,240,.4), transparent),
+    radial-gradient(1.4px 1.4px at 84% 22%, rgba(140,240,255,.5), transparent);
+  background-size: 260px 260px;
+  animation: av-drift 26s linear infinite;
+}
+
+/* One ikran crossing on a long loop. Scenery, not a focal point. */
+.av-ikran { inset: 16% auto auto -12%; width: clamp(70px, 8vw, 116px); height: auto;
+  animation: av-glide 46s linear infinite; }
+
+.av-ikran svg { width: 100%; height: auto; display: block; }
+
+.avi-wing { fill: #123a42; }
+
+.avi-body { fill: #17505a; }
+
+/* ── the Tree of Souls ── */
+.fan-art--av .av-stage {
+  border-radius: 10px; overflow: hidden; max-width: 420px; margin-inline: auto;
+}
+
+.fan-art--av .av-stage svg { display: block; width: 100%; height: auto; }
+
+.fan-art--av .av-stage figcaption {
+  margin: 0; padding: .9rem 1rem 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.7;
+}
+
+@media (min-width: 820px) { .fan-art--av { grid-template-columns: minmax(0, .9fr) minmax(0, 1.2fr); } }
+
+.avs-bg     { fill: #04161c; }
+
+.avs-halo   { fill: #4fd0c0; opacity: .12; filter: blur(26px); }
+
+.avs-trunk  { fill: #0e2c33; }
+
+.avs-limb   { fill: none; stroke: #0e2c33; stroke-width: 7; stroke-linecap: round; }
+
+.avs-ground { fill: #0a2026; }
+
+.avs-fall {
+  fill: none; stroke: #8ff0e0; stroke-width: 1.6; opacity: .5; stroke-linecap: round;
+  stroke-dasharray: 3 9;
+  animation: avs-flow 5s linear infinite;
+}
+
+.avs-seed {
+  fill: #b0ffe8;
+  filter: drop-shadow(0 0 7px rgba(176,255,232,.9));
+  animation: avs-bob 8s ease-in-out infinite alternate;
+}
+
+/* ── the forest floor you can walk on ── */
+.av-floor {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1rem, 2.6vw, 2rem); grid-template-columns: 1fr; align-items: center;
+}
+
+@media (min-width: 880px) { .av-floor { grid-template-columns: 0.9fr 1.1fr; } }
+
+.av-floor-panel h4 { font-family: var(--sans); font-weight: 650; font-size: 1.15rem; margin-bottom: 0.6rem; }
+
+.av-floor-panel p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 60ch; }
+
+.av-floor-hint {
+  margin-top: 0.8rem; font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.1em; color: var(--mute); text-transform: uppercase;
+}
+
+.av-floor-stage {
+  position: relative; overflow: hidden; border-radius: 10px;
+  aspect-ratio: 16 / 10; touch-action: none; cursor: crosshair;
+  background: radial-gradient(90% 80% at 50% 100%, #06232b, #020c10 72%);
+  border: 1px solid rgba(95,208,216,.14);
+}
+
+/* A soft pool of light tracking the pointer, under the plants. */
+.av-floor-stage::after {
+  content: ""; position: absolute; inset: 0; opacity: 0;
+  background: radial-gradient(180px 180px at var(--x, 50%) var(--y, 50%), rgba(110,230,240,.13), transparent 70%);
+  transition: opacity .3s ease;
+}
+
+.av-floor-stage.is-awake::after { opacity: 1; }
+
+.av-plant {
+  position: absolute; width: 26px; height: 26px; translate: -50% -50%;
+  scale: var(--s, 1); opacity: .3;
+  transition: opacity .55s ease, filter .55s ease;
+}
+
+.av-plant svg {
+  width: 100%; height: 100%;
+  fill: none; stroke: hsl(var(--h, 180) 70% 62%); stroke-width: 1.5;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .av-ikran, .avs-fall, .avs-seed, .av-spore { animation: none; }
+  .av-plant { transition: none; }
+}
+
+.av-tank {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 820px) { .av-tank { grid-template-columns: 0.44fr 1.56fr; } }
+
+.av-glass {
+  position: relative; width: min(200px, 62vw); height: 300px; margin: 0 auto;
+  border-radius: 100px 100px 16px 16px; overflow: hidden;
+  border: 2px solid rgba(140,220,255,.28);
+  background: linear-gradient(180deg, rgba(20,60,80,.65), rgba(8,26,38,.85));
+  box-shadow: inset -14px 0 26px -16px #000, 0 26px 50px -30px #000, 0 0 40px -14px rgba(95,214,224,.5);
+}
+
+.av-glass::before {                      /* fluid */
+  content: ""; position: absolute; inset: 6% 6% 4%;
+  border-radius: 90px 90px 12px 12px;
+  background: linear-gradient(180deg, rgba(95,214,224,.30), rgba(40,140,190,.22) 60%, rgba(20,80,120,.3));
+}
+
+.av-body {                               /* the avatar, floating */
+  position: absolute; left: 50%; top: 22%; translate: -50% 0;
+  width: 42%; height: 58%;
+  background: radial-gradient(60% 40% at 50% 12%, rgba(120,190,255,.55), transparent 70%),
+              linear-gradient(180deg, rgba(70,150,220,.5), rgba(30,90,150,.35));
+  border-radius: 50% 50% 46% 46%;
+  filter: blur(1px);
+  animation: av-float 9s ease-in-out infinite alternate;
+}
+
+.av-glass i {                            /* bubbles */
+  position: absolute; bottom: 8%; width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(190,245,255,.6); animation: av-bub 5.5s linear infinite;
+}
+
+.av-glass i:nth-child(1) { left: 28%; }
+
+.av-glass i:nth-child(2) { left: 62%; animation-delay: 1.8s; }
+
+.av-glass i:nth-child(3) { left: 46%; animation-delay: 3.4s; }
+
+.av-tank-cap {
+  margin-top: 0.8rem; text-align: center;
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+.av-note h4 {
+  font-family: Papyrus, "Bradley Hand", Georgia, fantasy;
+  font-size: 1.3rem; letter-spacing: 0.04em; color: var(--a); margin-bottom: 0.6rem;
+}
+
+.av-note p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+
+.av-note p + p { margin-top: 0.7rem; }
+
+@media (prefers-reduced-motion: reduce) { .av-body, .av-glass i { animation: none; } }

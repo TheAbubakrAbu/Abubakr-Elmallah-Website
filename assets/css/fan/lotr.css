@@ -1,0 +1,137 @@
+/* lotr.css -- loaded only by /lotr. Split out of fanpages.css. */
+
+.lotr-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(80% 60% at 50% 0%, #17130b 0%, #0e0b07 46%, #050403 100%);
+}
+
+.lotr-sky::before {                    /* the ring, burning faintly */
+  content: ""; position: absolute; right: 4%; top: 12%;
+  width: clamp(220px, 32vw, 460px); aspect-ratio: 1; border-radius: 50%;
+  border: clamp(10px, 1.6vw, 20px) solid rgba(217,180,95,.10);
+  box-shadow: 0 0 70px -18px rgba(217,180,95,.4), inset 0 0 50px -18px rgba(217,180,95,.5);
+  animation: lotr-glow 12s ease-in-out infinite alternate;
+}
+
+/* The beacons of Gondor. Each fire waits its turn via --i, so they catch one
+   after another along the range instead of all pulsing together -- the whole
+   point of the sequence is that it travels. Capped at .36 by the global rule. */
+.lotr-sky > * { position: absolute; inset: 0; }
+
+.lotr-stars {
+  background-size: 300px 300px;
+  background-image:
+    radial-gradient(1.3px 1.3px at 40px 50px, rgba(230,220,200,.5), transparent),
+    radial-gradient(1.1px 1.1px at 170px 30px, rgba(210,200,190,.4), transparent),
+    radial-gradient(1.5px 1.5px at 250px 140px, rgba(240,230,210,.45), transparent),
+    radial-gradient(1.2px 1.2px at 100px 220px, rgba(220,210,195,.35), transparent);
+  opacity: .5;
+  mask-image: linear-gradient(#000 0 50%, transparent 76%);
+  -webkit-mask-image: linear-gradient(#000 0 50%, transparent 76%);
+}
+
+.lotr-beacons { inset: auto 0 0 0; height: 52%; }
+
+.lotr-beacons svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.lb-far  { fill: #1a160e; }
+
+.lb-near { fill: #100d08; }
+
+.lb-fire path {
+  fill: #f0a83a;
+  filter: drop-shadow(0 0 12px rgba(240,168,58,.7));
+  transform-box: fill-box; transform-origin: 50% 100%;
+  animation: lotr-beacon 15s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 1.5s);
+  opacity: 0;
+}
+
+/* ── the Doors of Durin ── */
+.fan-art--lotr .lotr-doors {
+  border-radius: 10px; overflow: hidden; max-width: 400px; margin-inline: auto;
+  background: linear-gradient(180deg, #0d0c0a 0%, #060505 100%);
+}
+
+.fan-art--lotr .lotr-doors svg { display: block; width: 100%; height: auto; }
+
+.fan-art--lotr .lotr-doors figcaption {
+  margin: 0; padding: .9rem 1rem 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.7;
+}
+
+@media (min-width: 820px) { .fan-art--lotr { grid-template-columns: minmax(0, .9fr) minmax(0, 1.2fr); } }
+
+.ld-rock { fill: #0a0908; }
+
+.ld-arch { fill: #101010; }
+
+/* Everything on the door is one silver line, because in the book the whole
+   design is invisible until starlight catches the ithildin. */
+.ld-jamb, .ld-line, .ld-tree path, .ld-crown path, .ld-star, .ld-anvil path {
+  fill: none; stroke: #cfd6e0; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+
+.ld-jamb, .ld-crown path, .ld-star, .ld-anvil path { fill: #cfd6e0; stroke: none; }
+
+.ld-line, .ld-tree path { stroke-width: 2.2; }
+
+.fan-art--lotr .lotr-doors svg > *:not(.ld-rock):not(.ld-arch) {
+  filter: drop-shadow(0 0 6px rgba(190,215,245,.5));
+  animation: ld-shine 9s ease-in-out infinite;
+}
+
+.ld-script path { fill: none; stroke: #cfd6e0; stroke-width: 1.6; opacity: .8; stroke-linecap: round; }
+
+/* ═════════════ LOTR: the ring, and what is written on it ═════════════ */
+.lotr-ring {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 860px) { .lotr-ring { grid-template-columns: 0.8fr 1.2fr; } }
+
+.ring-stage { position: relative; width: min(330px, 80vw); aspect-ratio: 1; margin: 0 auto; }
+
+.ring-band {
+  position: absolute; inset: 12%; border-radius: 50%;
+  border: clamp(16px, 3.4vw, 30px) solid transparent;
+  background:
+    linear-gradient(#0b0906, #0b0906) padding-box,
+    conic-gradient(from 210deg, #7a5a1c, #f2dc9a 22%, #b8912f 44%, #6b4c14 62%, #e8cf85 82%, #7a5a1c) border-box;
+  box-shadow: 0 0 60px -12px rgba(217,180,95,.6), inset 0 0 40px -14px rgba(217,180,95,.5);
+}
+
+.ring-text { position: absolute; inset: 0; animation: lotr-turn 90s linear infinite; }
+
+.ring-text svg { width: 100%; height: 100%; overflow: visible; }
+
+.ring-text text {
+  font-family: "JetBrains Mono", monospace; font-size: 5.2px;
+  letter-spacing: 1.4px; text-transform: uppercase;
+  fill: #ffd98a;
+}
+
+.ring-glow {
+  position: absolute; inset: 24%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,190,90,.18), transparent 68%);
+  animation: lotr-breathe 8s ease-in-out infinite alternate;
+}
+
+.ring-note h4 {
+  font-family: Copperplate, Georgia, serif; text-transform: uppercase;
+  letter-spacing: 0.14em; font-size: 1.1rem; color: var(--a); margin-bottom: 0.6rem;
+}
+
+.ring-note p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 56ch; }
+
+.ring-note p + p, .ring-note blockquote + p { margin-top: 0.7rem; }
+
+.ring-note blockquote {
+  margin-top: 0.9rem; padding-left: 1rem; border-left: 2px solid color-mix(in srgb, var(--a) 55%, transparent);
+  font-family: Georgia, serif; font-style: italic; font-size: 1rem; line-height: 1.7; color: #f0e2bc;
+}
+
+@media (prefers-reduced-motion: reduce) { .ring-text, .ring-glow { animation: none; } }

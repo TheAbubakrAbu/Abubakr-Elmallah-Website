@@ -104,6 +104,29 @@ window.APP_CARDS = {
   },
 
   /* ---- Islam ---- */
+  'quran-tajweed-engine': {
+    icon: 'apps/quran-tajweed-engine.jpg', alt: 'Quran Tajweed Engine logo',
+    title: 'Quran Tajweed Engine', sub: 'Open source',
+    desc: 'A tajwīd rule engine for the Quran: it takes the Uthmani text and works out where each rule applies — the idghām, the ikhfāʾ, the qalqalah, the madd and its lengths — so an app can colour the letters correctly instead of shipping a hand-marked copy. This is the engine behind the colour-coded recitation in Al-Quran.',
+    tags: 'Tajwīd rules · Uthmani script · JSON output',
+    cat: { label: 'Islamic ↗', href: '/al-islam/', cls: 'app-cat--islamic' },
+    links: [
+      { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Quran-Tajweed-Engine' },
+    ],
+  },
+
+  'hadith-json-engine': {
+    /* No logo yet -- reuses the Al-Quran icon rather than pointing at a file
+       that does not exist. Swap this the moment there is one. */
+    icon: 'apps/al-quran.jpg', alt: 'Hadith JSON Engine',
+    title: 'Hadith JSON Engine', sub: 'In progress',
+    desc: 'The same idea applied to ḥadīth: turning the major collections into clean, structured JSON — book, chapter, number, Arabic, translation and grading — so anything built on top of them starts from consistent data rather than scraped HTML.',
+    tags: 'Structured ḥadīth · JSON',
+    cat: { label: 'Islamic ↗', href: '/al-islam/', cls: 'app-cat--islamic' },
+    dead: true,
+    deadNote: 'Not published yet',
+  },
+
   'al-adhan': {
     icon: 'apps/al-adhan.jpg', alt: 'Al-Adhan | Prayer Times app icon',
     title: 'Al-Adhan ·<br>Prayer Times', sub: 'December 31, 2023',

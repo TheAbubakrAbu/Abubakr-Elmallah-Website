@@ -1,0 +1,158 @@
+/* dune.css -- loaded only by /dune. Split out of fanpages.css. */
+
+.dn-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: linear-gradient(180deg, #2a1c0d 0%, #1a1209 34%, #0d0906 66%, #050403 100%);
+}
+
+/* Arrakis at dusk: four dune layers, a low sun, blowing sand, spice glint and
+   an ornithopter. Capped at .36 by the global -sky rule further up. */
+.dn-sky > * { position: absolute; inset: 0; }
+
+.dn-sun {
+  background:
+    radial-gradient(21% 15% at 74% 20%, rgba(255,216,150,.42), transparent 68%),
+    radial-gradient(80% 46% at 60% 16%, rgba(224,150,70,.16), transparent 74%);
+}
+
+.dn-dunes { inset: auto 0 0 0; height: 52%; }
+
+.dn-dunes svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.dnd-4 { fill: #3a2712; }
+
+.dnd-3 { fill: #2c1d0d; }
+
+.dnd-2 { fill: #1f1409; }
+
+.dnd-1 { fill: #140d06; }
+
+.dnd-ripple { fill: none; stroke: #4f371a; stroke-width: 2; opacity: .55; stroke-linecap: round; }
+
+/* Worm sign -- the ridge that tells a Fremen to stop moving. It travels. */
+.dnd-sign {
+  fill: none; stroke: #6a4a22; stroke-width: 4; opacity: .5; stroke-linecap: round;
+  animation: dn-sign 21s ease-in-out infinite;
+}
+
+/* Sand moving across the frame. Two sizes at different speeds so it has depth
+   rather than reading as one sheet sliding. */
+.dn-blow {
+  background-image:
+    linear-gradient(94deg, transparent 0 44%, rgba(240,200,140,.05) 46%, transparent 48%),
+    linear-gradient(92deg, transparent 0 22%, rgba(240,200,140,.04) 24%, transparent 26%);
+  background-size: 620px 100%, 360px 100%;
+  animation: dn-blow 24s linear infinite;
+}
+
+/* Spice: the blue glint in the sand, which is the one cold colour on Arrakis. */
+.dn-spice {
+  background-image:
+    radial-gradient(2px 2px at 24% 78%, rgba(120,190,240,.4), transparent),
+    radial-gradient(1.6px 1.6px at 62% 86%, rgba(150,210,255,.34), transparent),
+    radial-gradient(2.4px 2.4px at 44% 92%, rgba(120,190,240,.3), transparent),
+    radial-gradient(1.4px 1.4px at 80% 74%, rgba(160,215,255,.36), transparent);
+  background-size: 340px 340px;
+  animation: dn-glint 9s ease-in-out infinite alternate;
+}
+
+.dn-thopter {
+  inset: 15% auto auto -10%; width: clamp(64px, 7.5vw, 108px); height: auto;
+  animation: dn-cross 40s linear infinite;
+}
+
+.dn-thopter svg { width: 100%; height: auto; display: block; }
+
+.dnt-hull  { fill: #2a2114; }
+
+.dnt-glass { fill: #5f7f8a; opacity: .6; }
+
+.dnt-wing  { fill: #3a2f1c; transform-box: fill-box; transform-origin: 100% 100%;
+             animation: dn-flap .16s ease-in-out infinite alternate; }
+
+.dnt-wing--b { transform-origin: 100% 0%; }
+
+/* ── Shai-Hulud ── */
+.fan-art--dn .dn-stage {
+  border-radius: 10px; overflow: hidden; max-width: 460px; margin-inline: auto;
+  background: linear-gradient(180deg, #35230f 0%, #150d06 100%);
+}
+
+.fan-art--dn .dn-stage svg { display: block; width: 100%; height: auto; }
+
+.fan-art--dn .dn-stage figcaption {
+  margin: 0; padding: .9rem 1rem 1rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.7;
+}
+
+@media (min-width: 820px) { .fan-art--dn { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); } }
+
+.dnw-sky   { fill: #2a1a0b; }
+
+.dnw-sun   { fill: #e0a050; opacity: .28; }
+
+.dnw-body  { fill: none; stroke: #7a5730; stroke-width: 46; stroke-linecap: round; }
+
+.dnw-seg   { fill: none; stroke: #5f4223; stroke-width: 3; stroke-linecap: round; opacity: .85; }
+
+/* The mouth sits proud of the body so the maw does not merge into it. */
+.dnw-mouth { filter: drop-shadow(0 0 3px rgba(0,0,0,.7)); }
+
+.dnw-maw   { fill: #1a0f06; }
+
+.dnw-throat{ fill: #0a0603; }
+
+.dnw-tooth { fill: #e8dcc0; }
+
+.dnw-sand  { fill: #241708; }
+
+.dnw-spill { fill: none; stroke: #4f371a; stroke-width: 3; opacity: .7; stroke-linecap: round; }
+
+.dnw-figure{ fill: #0f0a04; }
+
+.dnw-worm  { filter: drop-shadow(-6px 8px 14px rgba(0,0,0,.55)); }
+
+@media (prefers-reduced-motion: reduce) {
+  .dnd-sign, .dn-blow, .dn-spice, .dn-thopter, .dnt-wing { animation: none; }
+}
+
+/* ═════════════ Dune: the stillsuit ═════════════ */
+.dn-suit {
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 820px) { .dn-suit { grid-template-columns: 0.55fr 1.45fr; } }
+
+.dn-figure { position: relative; width: min(260px, 70vw); margin: 0 auto; }
+
+.dn-figure svg { width: 100%; height: auto; color: #e0a050; }
+
+.dn-figure svg .body { fill: rgba(224,160,80,.10); stroke: currentColor; stroke-width: 1.4; }
+
+.dn-figure svg .lead { stroke: rgba(224,160,80,.55); stroke-width: .8; stroke-dasharray: 3 3; }
+
+.dn-figure svg text {
+  font-family: "JetBrains Mono", monospace; font-size: 5px;
+  letter-spacing: .6px; fill: rgba(240,210,170,.85); text-transform: uppercase;
+}
+
+.dn-water { display: flex; flex-direction: column; gap: 0.9rem; }
+
+.dn-water h4 {
+  text-transform: uppercase; letter-spacing: 0.24em; font-weight: 300;
+  font-size: 1.05rem; color: var(--a);
+}
+
+.dn-water p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 58ch; }
+
+.dn-stat {
+  display: flex; align-items: baseline; gap: 0.7rem;
+  padding-top: 0.7rem; border-top: 1px solid var(--line);
+}
+
+.dn-stat b { font-family: var(--mono); font-size: 1.6rem; color: var(--a); }
+
+.dn-stat span { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }

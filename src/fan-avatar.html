@@ -28,11 +28,45 @@ permalink: /franchises/avatar/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/avatar.css' %}" />
 </head>
 <body data-intro="none" data-fan="avatar">
 
 <!-- the forest floor, lighting up -->
-<div class="av-sky" aria-hidden="true"></div>
+<div class="av-sky" aria-hidden="true">
+  <div class="av-spore"></div>
+  <div class="av-hallelujah">
+    <svg viewBox="0 0 1400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <g class="avh-rock">
+        <path d="M120 150l90-34 92 30 40 44-52 60-34 46-40-30-58-24-44-48z"/>
+        <path d="M980 92l104-30 96 34 34 46-46 56-42 52-46-34-66-24-44-52z"/>
+        <path d="M600 250l64-22 70 22 26 32-36 40-26 34-30-22-46-18-32-36z"/>
+      </g>
+      <g class="avh-vine">
+        <path d="M186 246q-10 60 6 108M240 262q8 66-6 116M300 240q14 54 2 96"/>
+        <path d="M1046 232q-12 66 4 118M1104 246q10 60-4 106"/>
+        <path d="M646 326q-8 44 4 78M700 336q6 40-4 70"/>
+      </g>
+      <g class="avh-fall">
+        <path d="M262 268v92M1072 254v104M672 342v66"/>
+      </g>
+    </svg>
+  </div>
+  <div class="av-hometree">
+    <svg viewBox="0 0 1400 300" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path class="avt-trunk" d="M600 300l30-190h140l30 190z"/>
+      <path class="avt-root" d="M600 300q-40-40-90-52M830 300q40-40 90-52M660 300q-16-46-52-70M770 300q16-46 52-70"/>
+      <path class="avt-crown" d="M540 118q160-88 350 0-70-40-175-40T540 118z"/>
+      <path class="avt-crown" d="M566 84q140-72 300 0-60-34-150-34t-150 34z"/>
+    </svg>
+  </div>
+  <div class="av-ikran">
+    <svg viewBox="0 0 120 60" aria-hidden="true">
+      <path class="avi-wing" d="M60 30L8 6q26 22 34 30-8 8-34 30zM60 30l52-24q-26 22-34 30 8 8 34 30z"/>
+      <path class="avi-body" d="M52 26h16l6 6-6 6H52l-5-6z"/>
+    </svg>
+  </div>
+</div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
@@ -82,6 +116,42 @@ permalink: /franchises/avatar/
     </div>
   </section>
 
+  <section class="fan-art fan-art--av reveal">
+    <figure class="fan-art-fig av-stage">
+      <svg viewBox="0 0 400 320" aria-hidden="true">
+        <rect class="avs-bg" x="0" y="0" width="400" height="320"/>
+        <g class="avs-halo"><ellipse cx="200" cy="150" rx="150" ry="130"/></g>
+        <path class="avs-trunk" d="M186 320V150h28v170z"/>
+        <path class="avs-limb" d="M200 152q-46-6-70-40M200 152q46-6 70-40M200 176q-34-4-52-30M200 176q34-4 52-30"/>
+        <g class="avs-fall">
+          <path d="M96 116v104M124 106v122M152 100v136M180 96v146M208 96v146M236 100v136M264 106v122M292 116v104"/>
+        </g>
+        <g class="avs-seed">
+          <circle cx="112" cy="188" r="4"/><circle cx="150" cy="152" r="5"/><circle cx="196" cy="128" r="4"/>
+          <circle cx="244" cy="164" r="5"/><circle cx="286" cy="200" r="4"/><circle cx="170" cy="222" r="4"/>
+          <circle cx="228" cy="238" r="4"/>
+        </g>
+        <path class="avs-ground" d="M0 300h400v20H0z"/>
+      </svg>
+      <figcaption>The Tree of Souls, drawn for this page</figcaption>
+    </figure>
+    <div class="fan-art-body">
+      <q>Oel ngati kameie.</q>
+      <p class="fan-art-by">I see you — Na’vi</p>
+      <p>Not “I see you standing there”. It means <em>I see into you</em> — I see what you are. It is the whole film in three words, and the reason the ending works: the last thing that happens is somebody finally saying it to a man in a body he was not born in.</p>
+      <p>Pandora at forty-eight frames a second is still the closest cinema has come to a place rather than a set. Whatever you think of the story — and it is not a complicated one — nobody has matched the sensation of standing in that forest.</p>
+    </div>
+  </section>
+
+  <section class="av-floor reveal">
+    <div class="av-floor-panel">
+      <h4>The forest lights up where you step</h4>
+      <p>Almost everything on Pandora is bioluminescent, and it reacts to touch. It is the single best image in the film — Jake walking through the dark and the ground answering him, one footfall at a time. Move your cursor across the floor below, or drag a finger over it.</p>
+      <p class="av-floor-hint" id="avHint">Waiting for something to walk past.</p>
+    </div>
+    <div class="av-floor-stage" id="avFloor" role="img" aria-label="A bioluminescent forest floor that lights up as the pointer moves across it"></div>
+  </section>
+
   <section class="av-tank reveal">
     <div>
       <div class="av-glass">
@@ -127,5 +197,7 @@ permalink: /franchises/avatar/
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<!-- page UI, after reveal.js on purpose: see the comment in fan-avatar-ui.js -->
+<script src="{% include v.html f='/assets/js/fan-avatar-ui.js' %}"></script>
 </body>
 </html>
