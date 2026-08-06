@@ -4,7 +4,7 @@ window.FAN_PAGE = {
   sections: [
 
   { id: 'seasons', kind: 'rank', title: 'The Seasons', note: '2016 – 2025 · scroll and the world changes under you',
-    lede: 'Five seasons, and the backdrop of this page follows whichever one you are reading: 1983 in the woods, 1984 rotting in the fields, 1985 under mall neon, 1986 in Vecna’s violet, 1987 with the rifts open. Three is my favourite and by a distance the most fun — silly in places, and that is exactly the bit that made me love this show. One is the one that started all of it, and it is the best television of the five by a mile. Scroll outside the season run and the whole thing blends into one.',
+    lede: 'Five seasons, and the backdrop of this page follows whichever one you are reading: 1983 in the woods, 1984 rotting in the fields, 1985 under mall neon, 1986 in Vecna’s violet, 1987 with the rifts open. Three is my favourite and by a distance the most fun: silly in places, and that is exactly the bit that made me love this show. One is the one that started all of it, and it is the best television of the five by a mile. Scroll outside the season run and the whole thing blends into one.',
     items: [
       { num: '01', title: 'Stranger Things', sub: '2016 · the best television', accent: '#e8261d', desc: 'A boy vanishes on the way home from a D&D game, and a girl with a shaved head walks out of the woods.' },
       { num: '02', title: 'The Vanishing', sub: '2017', desc: 'Will comes back wrong, the Mind Flayer arrives, and Dustin adopts something he should not have.' },

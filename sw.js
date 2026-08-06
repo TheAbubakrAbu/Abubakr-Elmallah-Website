@@ -7,26 +7,26 @@ permalink: /sw.js
    it, so ten minutes after a visit the browser is re-fetching everything. This
    worker is the only lever available.
 
-   THE GOAL: add it to your home screen and it behaves like an app — the whole
+   THE GOAL: add it to your home screen and it behaves like an app. The whole
    site is on the device, and it opens with no internet at all.
 
    How that is done, in two stages, because they have different urgency:
 
-     1. install  — the shell only (CSS, JS, the icons, the home page). Small and
+     1. install  : the shell only (CSS, JS, the icons, the home page). Small and
                    fast, because if install fails the worker never activates.
-     2. activate — then a background pass quietly downloads EVERY page and EVERY
+     2. activate : then a background pass quietly downloads EVERY page and EVERY
                    image. That is the bit that makes it work offline. It runs
                    after the page is already interactive, so the visitor never
                    waits on it.
 
    Serving strategy, per request type:
 
-     HTML            network-first  — always fresh online, cached copy offline.
-     CSS / JS        cache-first    — safe because these carry ?v=<mtime>
+     HTML            network-first  : always fresh online, cached copy offline.
+     CSS / JS        cache-first    : safe because these carry ?v=<mtime>
                                       (see _includes/v.html), so a changed file
                                       is a different URL and misses naturally.
      Images / fonts  stale-while-revalidate
-                                    — instant from cache, refreshed quietly.
+                                    : instant from cache, refreshed quietly.
                                       Images have no ?v=, so this is what stops
                                       a replaced image being stale forever.
 

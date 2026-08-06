@@ -218,14 +218,14 @@ window.FAN_PAGE = {
 window.FAN_PLAY = {
   kind: "pick",
   title: "Jack\u2019s Compass",
-  intro: "It does not point north. It points to the thing you want most in the world \u2014 which makes it useless as a navigation instrument and the single best character device in the series, because it tells you what somebody actually wants rather than what they say.",
+  intro: "It does not point north. It points to the thing you want most in the world, which makes it useless as a navigation instrument and the single best character device in the series, because it tells you what somebody actually wants rather than what they say.",
   prompt: "Take the compass and think of something.",
   said: "The needle swings, and holds on %.",
   items: [
-    { n: "The Black Pearl", s: "What Jack wants", c: "#d8c9a0", d: "M12 3v12 M5 15h14l-2 5H7z M12 6l6 3-6 3", note: "Freedom, really \u2014 the ship is just the shape it takes. Everything Jack does across five films routes back to getting the Pearl and then losing her again." },
+    { n: "The Black Pearl", s: "What Jack wants", c: "#d8c9a0", d: "M12 3v12 M5 15h14l-2 5H7z M12 6l6 3-6 3", note: "Freedom, really; the ship is just the shape it takes. Everything Jack does across five films routes back to getting the Pearl and then losing her again." },
     { n: "Elizabeth", s: "What Will wants", c: "#c9a05f", d: "M12 21s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.4-7 10-7 10z", note: "The needle pointing at a person rather than a place is how the second film tells you Will has stopped being a blacksmith with a sword and started being someone with something to lose." },
     { n: "The Dead Man\u2019s Chest", s: "What Davy Jones fears", c: "#4f8f7f", d: "M5 9h14v10H5z M8 9V6a4 4 0 0 1 8 0v3 M12 13v3", note: "A heart in a box, buried on an island, and whoever holds it commands the Flying Dutchman. The best MacGuffin in the series because it is also the character." },
     { n: "Immortality", s: "What Barbossa wants", c: "#8f98a8", d: "M12 3a5 5 0 0 1 5 5v3H7V8a5 5 0 0 1 5-5z M7 11h10v8H7z M10 14v3 M14 14v3", note: "Which he gets, and it turns out to be a curse where you cannot taste food or feel anything. The first film is a horror story about getting exactly what you asked for." },
-    { n: "Nothing at all", s: "What the compass shows a liar", c: "#6f7f92", d: "M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16z M12 12v-4 M12 12l3 3", note: "If you do not know what you want, the needle spins and never settles. That is how the compass works as a plot device \u2014 and it is why it fails Jack at the exact moment he is lying to himself." },
+    { n: "Nothing at all", s: "What the compass shows a liar", c: "#6f7f92", d: "M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16z M12 12v-4 M12 12l3 3", note: "If you do not know what you want, the needle spins and never settles. That is how the compass works as a plot device, and it is why it fails Jack at the exact moment he is lying to himself." },
   ],
 };

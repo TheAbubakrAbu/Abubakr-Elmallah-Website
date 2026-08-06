@@ -38,11 +38,11 @@
       { k: 'purple', n: 'Purple stud', v: 10000, c: '#a05fd0', c2: '#7a3fa8', shape: 'stud',
         note: 'The big one. Ten thousand each, and the reason a single well-hidden room can finish your True Jedi bar outright.' },
       { k: 'minikit', n: 'Minikit', label: '10', unit: 'per level', c: '#9fe8f5', c2: '#4fb8d0', shape: 'kit',
-        note: 'Ten hidden in every single level, and collecting all ten builds a vehicle back at the hub. Translucent, faintly glowing, and always behind something you cannot reach on your first run — which is the entire reason Free Play exists.' },
+        note: 'Ten hidden in every single level, and collecting all ten builds a vehicle back at the hub. Translucent, faintly glowing, and always behind something you cannot reach on your first run, which is the entire reason Free Play exists.' },
       { k: 'redbrick', n: 'Red Brick', label: '×3,840', unit: 'stacked', c: '#e0342a', c2: '#a81c18', shape: 'brick',
-        note: 'The cheat bricks. One per level, usually hidden worse than the minikits, and each unlocks something you buy at the hub — invincibility, stud magnet, and the multipliers. Stack ×2, ×4, ×6, ×8 and ×10 together and everything is worth 3,840 times as much.' },
+        note: 'The cheat bricks. One per level, usually hidden worse than the minikits, and each unlocks something you buy at the hub: invincibility, stud magnet, and the multipliers. Stack ×2, ×4, ×6, ×8 and ×10 together and everything is worth 3,840 times as much.' },
       { k: 'goldbrick', n: 'Gold Brick', label: '100%', unit: 'the real goal', c: '#f0c840', c2: '#b8912a', shape: 'brick',
-        note: 'The completion currency. You get them for finishing levels, hitting True Jedi, collecting every minikit, and about nine other things — and the total is what the whole game is actually scored on.' }
+        note: 'The completion currency. You get them for finishing levels, hitting True Jedi, collecting every minikit, and about nine other things, and the total is what the whole game is actually scored on.' }
     ];
 
     var current = 0;

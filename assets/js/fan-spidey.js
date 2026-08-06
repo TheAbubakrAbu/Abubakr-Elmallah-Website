@@ -35,7 +35,7 @@ window.FAN_PAGE = {
       { title: 'Spider-Man: Homecoming', accent: '#e02a3a', sub: '2017 · Watts', desc: 'A John Hughes film with a Vulture in it, and the best villain reveal in the MCU, in a car.' },
       { title: 'Spider-Man: Far From Home', accent: '#e02a3a', sub: '2019 · Watts', desc: 'Grieving Tony on a school trip, and Mysterio’s illusion sequence.' },
       { title: 'Spider-Man: No Way Home', accent: '#e02a3a', sub: '2021 · Watts', desc: 'All three of them in one room, five villains from two other studios, and an ending that erases him from everyone he loves.' },
-      { title: 'Spider-Man: Brand New Day', accent: '#3fd07f', sub: '2026 · Cretton', desc: 'The next one. No Stark tech, no mentor, nobody who remembers him — which is what the character has needed since 2016.' },
+      { title: 'Spider-Man: Brand New Day', accent: '#3fd07f', sub: '2026 · Cretton', desc: 'The next one. No Stark tech, no mentor, nobody who remembers him, which is what the character has needed since 2016.' },
       { title: 'Into the Spider-Verse', accent: '#e0a020', sub: '2018 · animated', desc: 'One of the best animated films ever made, and it rewrote what mainstream animation is allowed to look like.' },
       { title: 'Across the Spider-Verse', accent: '#e0a020', sub: '2023 · animated', desc: 'Bigger, denser, and it ends on a cliffhanger that has been sitting there for years.' },
       { title: 'Beyond the Spider-Verse', accent: '#e0a020', sub: 'announced', desc: 'The third one, delayed repeatedly. Still coming, and still owed to us.' },
@@ -51,7 +51,7 @@ window.FAN_PAGE = {
         desc: 'Shorter, tighter, and about Harlem rather than Manhattan. The venom strike changes how the whole game feels to play.',
         meta: 'Venom strike · the Tinkerer' },
       { title: 'Marvel’s Spider-Man 2', sub: '2023 · PS5', tag: 'III', accent: '#4a2a6a',
-        desc: 'Both of them, swappable, across a map twice the size — and the symbiote arc, which is the best version of that story anyone has told. Kraven as a hunter who is genuinely frightening rather than a joke.',
+        desc: 'Both of them, swappable, across a map twice the size, plus the symbiote arc, which is the best version of that story anyone has told. Kraven as a hunter who is genuinely frightening rather than a joke.',
         meta: 'Venom · Kraven' },
     ] },
 

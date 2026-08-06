@@ -26,7 +26,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'sound', kind: 'cards', title: 'It Is All Sound', note: 'the part people underrate',
-    lede: 'Take the audio away and the first game is a slideshow of still images. Almost the entire horror budget is spent on things you hear and cannot see, which is also why it ran on anything — sound is cheap and imagination is free.',
+    lede: 'Take the audio away and the first game is a slideshow of still images. Almost the entire horror budget is spent on things you hear and cannot see, which is also why it ran on anything: sound is cheap and imagination is free.',
     items: [
       { title: 'You listen more than you look', sub: 'The core trick', tag: 'Design', accent: '#c98f4f',
         desc: 'Footsteps in the hall, the clatter when Foxy starts running, the groan of a door. The camera tells you where something was; the audio tells you where it is now. Players end up navigating an entire building by ear, through a monitor that only shows one room at a time.',

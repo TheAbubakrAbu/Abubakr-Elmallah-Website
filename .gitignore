@@ -5,5 +5,5 @@ vendor/
 .bundle/
 .DS_Store
 
-# Plaintext travels — sealed into assets/js/travels-sealed.js before publishing
+# Plaintext travels, from back when the page was gated
 travels.source.json

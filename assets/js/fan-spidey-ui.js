@@ -5,7 +5,7 @@
    its red-and-blue for black and bone white: the skyline dims out, the swinging
    figure leaves, and white tendrils crawl in from the edges.
 
-   Loads after reveal.js on purpose — a fault in here must never be able to stop
+   Loads after reveal.js on purpose -- a fault in here must never be able to stop
    the reveal pass and leave the page invisible. */
 (function symbiote() {
   try {

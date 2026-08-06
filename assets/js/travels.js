@@ -51,6 +51,15 @@
         + '</div>'
         + '</section>';
 
+      /* ── the map ──
+         An empty mount; travels-map.js fills it right after this runs. The
+         shell lives here so the section order reads top to bottom in one
+         place: summary, map, index, trips. */
+      html += '<section class="tv-map reveal">'
+        + '<h2>The map</h2>'
+        + '<div id="tvMapMount"></div>'
+        + '</section>';
+
       /* ── the short version ──
          Words, not just flags. A one-line-per-trip index you can read in ten
          seconds, grouped the same way as everything below it, with the flag as
@@ -129,8 +138,8 @@
       var rows = root.querySelectorAll('.tv-shortgrp a');
       var chosen = -1;
 
-      function select(i) {
-        chosen = (i === chosen) ? -1 : i;
+      function select(i, force) {
+        chosen = (i === chosen && !force) ? -1 : i;
         root.classList.toggle('is-picking', chosen !== -1);
         for (var c = 0; c < cards.length; c++) {
           var on = Number(cards[c].getAttribute('data-i')) === chosen;
@@ -161,6 +170,10 @@
           });
         })(rows[r2]);
       }
+
+      /* The map on this page drives the same selection, so it lives on window
+         rather than being duplicated there. */
+      window.AEtravelSelect = select;
     }
 
     show();

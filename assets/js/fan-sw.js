@@ -233,15 +233,15 @@ window.FAN_PAGE = {
 window.FAN_PLAY = {
   kind: "pick",
   title: "Build Your Lightsaber",
-  intro: "Kyber crystals are colourless until a Jedi meditates on one and it responds to them. The colour is not chosen \u2014 it is what the crystal decides you are. Pick one and see what it means.",
+  intro: "Kyber crystals are colourless until a Jedi meditates on one and it responds to them. The colour is not chosen; it is what the crystal decides you are. Pick one and see what it means.",
   prompt: "Take a crystal and hold it.",
   said: "The crystal settles. %.",
   items: [
-    { n: "Blue", s: "Jedi Guardian", c: "#4fa8f0", d: "M12 2v14M12 16v6M9 16h6", note: "The most common blade, and the one carried by Jedi who lean on the lightsaber form of the Order \u2014 Anakin, Obi-Wan, Luke on Hoth. Straightforward, and the colour most people picture." },
+    { n: "Blue", s: "Jedi Guardian", c: "#4fa8f0", d: "M12 2v14M12 16v6M9 16h6", note: "The most common blade, and the one carried by Jedi who lean on the lightsaber form of the Order: Anakin, Obi-Wan, Luke on Hoth. Straightforward, and the colour most people picture." },
     { n: "Green", s: "Jedi Consular", c: "#4fd07f", d: "M12 2v14M12 16v6M9 16h6", note: "The scholars and negotiators. Luke builds a green one for the sail barge because the blue one went down the reactor shaft with his hand, and it is the better-looking blade." },
     { n: "Purple", s: "Mace Windu", c: "#a86ff0", d: "M12 2v14M12 16v6M9 16h6", note: "Exists because Samuel L. Jackson asked George Lucas for it so he could find himself in the crowd scenes. It stayed, and the fandom built a whole philosophy on top of it afterwards." },
-    { n: "Yellow", s: "Jedi Sentinel", c: "#f0d040", d: "M12 2v14M12 16v6M9 16h6", note: "The Temple Guards, and Rey at the very end of the sequels \u2014 a blade built out of a staff, in the one colour nobody in the family had used." },
-    { n: "Red", s: "Sith", c: "#e0342a", d: "M12 2v14M12 16v6M9 16h6", note: "Not a crystal that chose you. A Sith takes a kyber crystal and forces it \u2014 bleeds it \u2014 until it turns red. Every red blade in the galaxy is a crystal that was made to scream." },
+    { n: "Yellow", s: "Jedi Sentinel", c: "#f0d040", d: "M12 2v14M12 16v6M9 16h6", note: "The Temple Guards, and Rey at the very end of the sequels: a blade built out of a staff, in the one colour nobody in the family had used." },
+    { n: "Red", s: "Sith", c: "#e0342a", d: "M12 2v14M12 16v6M9 16h6", note: "Not a crystal that chose you. A Sith takes a kyber crystal and forces it (bleeds it) until it turns red. Every red blade in the galaxy is a crystal that was made to scream." },
     { n: "Darksaber", s: "Mandalore", c: "#8f98a8", d: "M12 3l3 4-3 11-3-11z M12 18v3", note: "One of a kind, black with a white edge, forged by the only Mandalorian ever admitted to the Jedi Order. Whoever holds it holds a claim to Mandalore, which is why it keeps changing hands." },
   ],
 };

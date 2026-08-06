@@ -1,13 +1,13 @@
 /* fan-kfp.js: content for /franchises/kung-fu-panda/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
-  when: { at: 'Since I was a kid', note: 'Around for as long as I can remember, and Kung Fu Panda 2 is the best of them \u2014 not a close call.' },
+  when: { at: 'Since I was a kid', note: 'Around for as long as I can remember, and Kung Fu Panda 2 is the best of them, and it is not a close call.' },
   sections: [
 
   { id: 'films', kind: 'rank', title: 'The Films', note: '2008 \u2013 2024 \u00b7 my order, not release order',
     items: [
       { num: 'II', title: 'Kung Fu Panda 2', sub: '2011 \u00b7 the best one', desc: 'The heart of the whole thing, and it is not close. Shen, inner peace, and a backstory with a genocide in it that a family film somehow carries without flinching. The best-looking animation DreamWorks has ever produced and the only one of the four that made me feel something properly.' },
       { num: 'I', title: 'Kung Fu Panda', sub: '2008 \u00b7 goated', desc: 'Obviously goated. A slapstick premise with a real film underneath it, and an ending that hands you the answer by refusing to have one: there is no secret ingredient.' },
-      { num: 'III', title: 'Kung Fu Panda 3', sub: '2016 \u00b7 whatever, but', desc: 'Honestly a bit whatever as a story \u2014 the panda village never quite lands. But the Spirit Realm sequences are genuinely some of the most beautiful frames in the series, and the fire scenes are unbelievable.' },
+      { num: 'III', title: 'Kung Fu Panda 3', sub: '2016 \u00b7 whatever, but', desc: 'Honestly a bit whatever as a story; the panda village never quite lands. But the Spirit Realm sequences are genuinely some of the most beautiful frames in the series, and the fire scenes are unbelievable.' },
       { num: 'IV', title: 'Kung Fu Panda 4', sub: '2024 \u00b7 kinda sucks', desc: 'Kind of sucks, but it is fine. The Chameleon has a good idea behind her and the Furious Five are barely in it, which tells you most of what went wrong.' },
     ] },
 
@@ -15,7 +15,7 @@ window.FAN_PAGE = {
     lede: 'The first film is the perfect one and the second is the best one, and those are different things. Kung Fu Panda 2 takes a comedy about a fat panda and asks what happened to his parents, and then actually answers it. It is a film about a genocide, made for children, and it does not once condescend about that.',
     items: [
       { title: 'Lord Shen', sub: 'The peacock', tag: 'The villain', accent: '#c04a6a',
-        desc: 'The best villain in the series by a distance. A prince told a prophecy, who wiped out the pandas to prevent it and caused it doing so \u2014 and who is not scary because he is strong, but because he is brilliant, wounded and completely unable to admit he was wrong. Gary Oldman plays him like a man who has never once been allowed to lose an argument.',
+        desc: 'The best villain in the series by a distance. A prince told a prophecy, who wiped out the pandas to prevent it and caused it doing so, and who is not scary because he is strong, but because he is brilliant, wounded and completely unable to admit he was wrong. Gary Oldman plays him like a man who has never once been allowed to lose an argument.',
         meta: 'Gary Oldman' },
       { title: 'Inner peace', sub: 'The thing it is about', tag: 'The theme', accent: '#4fb08a',
         desc: 'Not a power-up. The film defines it as being able to look directly at the worst thing that ever happened to you without it deciding what you do next. Po wins by accepting his own story rather than by getting stronger, which is a genuinely difficult idea to land in a fight scene, and it lands.',
@@ -42,14 +42,14 @@ window.FAN_PAGE = {
 
   { id: 'villains', kind: 'tiles', title: 'The Villains', note: 'one per film',
     items: [
-      { title: 'Tai Lung', accent: '#c9a05f', sub: 'Snow leopard · KFP1', desc: 'Shifu’s first student, raised to be told he was the best, denied the scroll, and given twenty years in a prison built for him alone. He is not wrong that he was owed something — he is wrong about what.' },
-      { title: 'Lord Shen', accent: '#c04a6a', sub: 'Peacock · KFP2', desc: 'The best of them. Invented the cannon, wiped out the pandas to dodge a prophecy, and brought it about doing so. Brilliant, exiled, and incapable of admitting a mistake — which is what actually kills him.' },
+      { title: 'Tai Lung', accent: '#c9a05f', sub: 'Snow leopard · KFP1', desc: 'Shifu’s first student, raised to be told he was the best, denied the scroll, and given twenty years in a prison built for him alone. He is not wrong that he was owed something; he is wrong about what.' },
+      { title: 'Lord Shen', accent: '#c04a6a', sub: 'Peacock · KFP2', desc: 'The best of them. Invented the cannon, wiped out the pandas to dodge a prophecy, and brought it about doing so. Brilliant, exiled, and incapable of admitting a mistake, which is what actually kills him.' },
       { title: 'Kai', accent: '#4f9a9a', sub: 'Yak · KFP3', desc: 'Oogway’s old brother in arms, five hundred years in the Spirit Realm, back to collect the chi of every master alive. Enormous, jade-green, and the only villain who knew Oogway personally.' },
       { title: 'The Chameleon', accent: '#7fb04f', sub: 'Shapeshifter · KFP4', desc: 'Steals kung fu styles outright, which lets her pull every previous villain back out of the Spirit Realm as a weapon. A genuinely good idea in a film that does not do much with it.' },
     ] },
 
   { id: 'spirit', kind: 'cards', title: 'The Spirit Realm', note: 'gold, jade, and a peach tree',
-    lede: 'The most beautiful thing in any of these films. Oogway does not die so much as leave \u2014 he dissolves upward into peach blossom and the petals go up rather than down. The third film finally shows you where he went, and it is worth the eight-year wait even if the film around it is not.',
+    lede: 'The most beautiful thing in any of these films. Oogway does not die so much as leave: he dissolves upward into peach blossom and the petals go up rather than down. The third film finally shows you where he went, and it is worth the eight-year wait even if the film around it is not.',
     items: [
       { title: 'The Sacred Peach Tree', sub: 'Of Heavenly Wisdom', tag: 'The place', accent: '#e07f9f',
         desc: 'Where Oogway teaches Shifu that you cannot make a peach tree blossom by willing it, only by nurturing it. Pink against the jade valley, and the film keeps coming back to it in every quiet moment that matters.',
@@ -61,7 +61,7 @@ window.FAN_PAGE = {
         desc: 'Floating islands, gold mist, emerald water, and staircases going up into nothing. It is where Kai comes from and where Oogway is waiting, and it is the only part of the third film that anybody actually remembers.',
         meta: 'Kai\u2019s prison' },
       { title: 'Chi', sub: 'The last thing Po learns', tag: 'The idea', accent: '#c9a05f',
-        desc: 'The series ladder: skill in the first film, peace in the second, chi in the third. Each one is Po learning that the thing he was chasing was already available to him \u2014 which is the same lesson three times, and they somehow get away with it.',
+        desc: 'The series ladder: skill in the first film, peace in the second, chi in the third. Each one is Po learning that the thing he was chasing was already available to him, which is the same lesson three times, and they somehow get away with it.',
         meta: 'Skill, peace, chi' },
     ] },
 

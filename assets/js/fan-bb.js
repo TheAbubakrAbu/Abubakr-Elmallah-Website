@@ -1,6 +1,6 @@
 /* fan-bb.js: content for /franchises/breaking-bad/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
-  when: { at: '10th grade, 2021\u201322', note: 'I watched it in tenth grade, 2021\u201322, and funnily enough started the trend \u2014 half my classmates got through it right after I did.' },
+  when: { at: '10th grade, 2021\u201322', note: 'I watched it in tenth grade, 2021\u201322, and funnily enough started the trend: half my classmates got through it right after I did.' },
   sections: [
 
   { id: 'seasons', kind: 'rank', title: 'Five Seasons', note: '2008 – 2013 · sixty-two episodes',
@@ -34,19 +34,19 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'ozymandias', kind: 'cards', title: 'Ozymandias', note: 'season 5, episode 14',
-    lede: 'Widely held to be the best single episode of television ever made, and I am not going to argue with the consensus. Everything the show spent five seasons building arrives in one hour, and the remarkable part is that none of it is a twist — it is all just the bill coming due.',
+    lede: 'Widely held to be the best single episode of television ever made, and I am not going to argue with the consensus. Everything the show spent five seasons building arrives in one hour, and the remarkable part is that none of it is a twist: it is all just the bill coming due.',
     items: [
       { title: 'It opens where it started', sub: 'The same patch of desert', tag: 'Structure', accent: '#4fbf7f',
         desc: 'A flashback to the pilot, on the exact spot, with the same RV and two men who have no idea what is coming. Then it fades out person by person until the present is standing on the same sand. No dialogue needed to make the point.',
         meta: 'To the Rio Grande' },
       { title: 'Everything collapses at once', sub: 'One hour', tag: 'Payoff', accent: '#c9a05f',
-        desc: 'The money, the family, the lie, and the relationship the whole series actually runs on. The show does not save anything for later — it spends the entire account in a single episode and still has two left.',
+        desc: 'The money, the family, the lie, and the relationship the whole series actually runs on. The show does not save anything for later; it spends the entire account in a single episode and still has two left.',
         meta: 'No twist, just consequence' },
       { title: 'The phone call', sub: 'The last scene', tag: 'The best bit', accent: '#8f98a8',
         desc: 'Walt says the cruellest things he has ever said, and they are for the benefit of the people listening in rather than the person he is saying them to. It works as both at once, and Cranston plays both at once. Best-acted scene in the series.',
         meta: 'Two things at the same time' },
       { title: 'Why the title', sub: 'Shelley, 1818', tag: 'Context', accent: '#6f7f92',
-        desc: 'A sonnet about a ruined statue of a king whose inscription boasts of works that no longer exist. Look on my works, ye Mighty, and despair — with nothing around it but sand. That is the episode, and Cranston read the poem over the trailer.',
+        desc: 'A sonnet about a ruined statue of a king whose inscription boasts of works that no longer exist. Look on my works, ye Mighty, and despair, with nothing around it but sand. That is the episode, and Cranston read the poem over the trailer.',
         meta: '“Nothing beside remains”' },
     ] },
 
@@ -73,7 +73,7 @@ window.FAN_PAGE = {
         desc: '"I did it for me. I liked it. I was good at it." Five seasons of a man insisting it was all for his family, and the show makes him say the real reason out loud before it lets him go. Almost no antihero drama has the nerve to do that.',
         meta: 'No ambiguity' },
       { title: 'The desert is a character', sub: 'Albuquerque', tag: 'Craft', accent: '#b8935a',
-        desc: 'Shot on location in a place television had basically ignored, with a colour palette keyed to the landscape and a camera that keeps finding angles nothing else was using — from inside a barrel, under a car, at the bottom of a hole.',
+        desc: 'Shot on location in a place television had basically ignored, with a colour palette keyed to the landscape and a camera that keeps finding angles nothing else was using: from inside a barrel, under a car, at the bottom of a hole.',
         meta: 'New Mexico' },
     ] },
 
@@ -114,9 +114,9 @@ window.FAN_PLAY = {
   prompt: "Two letters, one box.",
   said: "%.",
   items: [
-    { n: "Br \u00b7 Bromine", s: "35", c: "#4fbf7f", d: "M6 4h5a3 3 0 0 1 0 6H6z M6 10h5l4 8 M6 4v14", note: "The Br of Breaking. A liquid at room temperature, one of only two elements that is, and it stains everything it touches \u2014 which is either a good metaphor or a coincidence the title designer got lucky with." },
+    { n: "Br \u00b7 Bromine", s: "35", c: "#4fbf7f", d: "M6 4h5a3 3 0 0 1 0 6H6z M6 10h5l4 8 M6 4v14", note: "The Br of Breaking. A liquid at room temperature, one of only two elements that is, and it stains everything it touches, which is either a good metaphor or a coincidence the title designer got lucky with." },
     { n: "Ba \u00b7 Barium", s: "56", c: "#4fbf7f", d: "M6 4h5a3 3 0 0 1 0 6H6z M6 10h6a3 3 0 0 1 0 8H6z M6 4v14", note: "The Ba of Bad. Swallowed as a contrast agent for imaging, which is how the show introduces Walt: a man being scanned, being told what is inside him." },
-    { n: "Chirality", s: "Season 2", c: "#c9a05f", d: "M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16z M8 12h8 M12 8v8", note: "Walt teaches it in the pilot \u2014 mirror-image molecules with identical formulas and opposite effects. Same man, mirrored. The show tells you its entire thesis in a classroom in act one." },
+    { n: "Chirality", s: "Season 2", c: "#c9a05f", d: "M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16z M8 12h8 M12 8v8", note: "Walt teaches it in the pilot: mirror-image molecules with identical formulas and opposite effects. Same man, mirrored. The show tells you its entire thesis in a classroom in act one." },
     { n: "Fulminate of mercury", s: "\u201cCrazy Handful of Nothin\u2019\u201d", c: "#e0483a", d: "M12 3v6 M8 9h8l2 9H6z M10 13h4", note: "The moment Heisenberg exists. He walks into Tuco\u2019s office, gets his money, and blows out a window with something he told them was product. First time you see him enjoy it." },
     { n: "Ricin", s: "The cigarette", c: "#8f6fd0", d: "M4 13h13l3-1v3l-3-1 M4 13v3h13v-3 M7 13v3", note: "Introduced in season two and not paid off until the finale, which is an absurdly long fuse to leave burning. Chekhov would have cut it." },
     { n: "99.1%", s: "The number", c: "#8f98a8", d: "M4 18h16 M7 18v-5 M12 18v-9 M17 18v-13", note: "The purity, and the character. Walt cannot let a competitor sit two points above him, and that single detail explains every decision he makes for five seasons." },

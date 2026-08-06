@@ -369,9 +369,9 @@
         +   '<div class="sch-titlerow"><h4>' + esc(p.name) + '</h4>'
         +     (p.azm ? '<span class="sch-tag sch-tag--azm">Ulul-\u02BFAzm</span>' : '') + '</div>'
         /* The English name where there is one. Hud and Salih have no biblical
-           counterpart at all, so they say so rather than being left blank. */
-        +   (p.en ? '<span class="sch-en">' + (p.en === '\u2014'
-                ? 'No biblical equivalent' : esc(p.en)) + '</span>' : '')
+           counterpart at all, so the data says so in words rather than leaving
+           the field blank. */
+        +   (p.en ? '<span class="sch-en">' + esc(p.en) + '</span>' : '')
         +   '<span class="sch-died">' + esc(p.sent) + '</span>'
         +   '<p class="sch-desc">' + esc(p.desc) + '</p>'
         +   (p.meaning ? '<p class="sch-meaning">' + esc(p.meaning) + '</p>' : '')
