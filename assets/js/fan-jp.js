@@ -133,9 +133,9 @@ window.FAN_PLAY = {
       ],
   items: [
     { n: "Tyrannosaurus rex", s: "Paddock 9", c: "#c9762a", w: 3, said: "The fence is down. It is out.", note: "The best-shot monster in cinema, and the trick is that she is almost never fully in frame. Practical effects for the close work, digital for the running, and the film cuts before you can study either." },
-    { n: "Velociraptor", s: "The raptor pen", c: "#5f8f4f", w: 4, said: "Clever girl.", note: "Wildly oversized compared to the real animal, which Crichton knew and did anyway. The kitchen scene works because it is a horror sequence, not an action one \u2014 they hunt in a pattern." },
+    { n: "Velociraptor", s: "The raptor pen", c: "#5f8f4f", w: 4, said: "Clever girl.", note: "Wildly oversized compared to the real animal, which Crichton knew and did anyway. The kitchen scene works because it is a horror sequence, not an action one: they hunt in a pattern." },
     { n: "Dilophosaurus", s: "Off the trail", c: "#7fbf5f", w: 2, said: "It looks almost friendly. It is not.", note: "The frill and the venom are both invented. It is on screen for ninety seconds and everybody remembers it, which is the most efficient monster in the film." },
-    { n: "Brachiosaurus", s: "The valley", c: "#9a8f6f", w: 3, said: "It stands up, and the score comes in.", note: "The first dinosaur the film shows you, and the reason the whole thing works \u2014 awe before terror. Spielberg spends the reveal on the actors\u2019 faces rather than the animal." },
+    { n: "Brachiosaurus", s: "The valley", c: "#9a8f6f", w: 3, said: "It stands up, and the score comes in.", note: "The first dinosaur the film shows you, and the reason the whole thing works: awe before terror. Spielberg spends the reveal on the actors\u2019 faces rather than the animal." },
     { n: "Indominus rex", s: "Paddock 11", c: "#8f98a8", w: 2, said: "It is not in the paddock. It was never in the paddock.", note: "Jurassic World\u2019s made-up hybrid, and a fairly pointed joke about a franchise being asked for something bigger every few years." },
     { n: "Spinosaurus", s: "Jurassic Park III", c: "#c04a3a", w: 1, said: "It came through the fence, not over it.", note: "Introduced by beating the T. rex in the opening act, which a large part of the audience has never forgiven the third film for." },
   ],

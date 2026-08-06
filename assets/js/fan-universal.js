@@ -1,7 +1,7 @@
 /* fan-universal.js: content for /franchises/universal-studios/. Rendered by fanpage.js.
    Every destination card links to its own official site. */
 window.FAN_PAGE = {
-  when: { at: 'First visit 2015; properly 7th\u20138th grade, 2018\u201320', note: 'We went for three days about a year before the Wizarding World opened \u2014 I did not know a thing about Harry Potter yet. Transformers and Jurassic were what got me, and I really fell for the place in seventh and eighth grade.' },
+  when: { at: 'First visit 2015; properly 7th\u20138th grade, 2018\u201320', note: 'We went for three days about a year before the Wizarding World opened; I did not know a thing about Harry Potter yet. Transformers and Jurassic were what got me, and I really fell for the place in seventh and eighth grade.' },
   sections: [
 
   { id: 'parks', kind: 'cards', title: 'The Parks', note: 'Universal Destinations & Experiences',
@@ -67,7 +67,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'hollywood', kind: 'cards', title: 'Universal Studios Hollywood', note: 'California \u00b7 been',
-    lede: 'The original, and the only one that is a real working studio. Films are shot on that backlot while people ride past it, which no other park on earth can offer — and the tram tour is still the thing that makes this place different rather than just smaller.',
+    lede: 'The original, and the only one that is a real working studio. Films are shot on that backlot while people ride past it, which no other park on earth can offer, and the tram tour is still the thing that makes this place different rather than just smaller.',
     items: [
       { title: 'The Studio Tour', sub: 'Since 1964', tag: '\u2713 Been', accent: '#f0a83a',
         desc: 'An hour on a tram through actual standing sets, the Bates Motel, the flash flood, the plane crash from War of the Worlds. It is the oldest thing here and still the best reason to come.',
@@ -87,13 +87,13 @@ window.FAN_PAGE = {
         desc: 'Diagon Alley, which is the single best-realised themed land anywhere including anything Disney has built. Gringotts, the dragon on the roof, and the alley being hidden behind a London facade so you have to find it.',
         meta: 'Diagon Alley' },
       { title: 'Islands of Adventure', sub: '1999', tag: '\u2713 Been', accent: '#f0c840',
-        desc: 'Hogsmeade, Jurassic Park, Marvel Super Hero Island, and VelociCoaster — one of the best roller coasters on earth and the strongest single argument for this resort over Hollywood.',
+        desc: 'Hogsmeade, Jurassic Park, Marvel Super Hero Island, and VelociCoaster, one of the best roller coasters on earth and the strongest single argument for this resort over Hollywood.',
         meta: 'VelociCoaster' },
       { title: 'Volcano Bay', sub: '2017', tag: '\u2713 Been', accent: '#5fb0d0',
         desc: 'A water park built around a 200-foot volcano, with a virtual queue system so you are not standing on hot concrete all day. Genuinely well thought through.',
         meta: 'Krakatau' },
       { title: 'Epic Universe', sub: '2025', tag: 'Not yet', accent: '#8f98a8',
-        desc: 'The one I have not done. First entirely new major US park in decades — Super Nintendo World, the Ministry of Magic, Isle of Berk and Dark Universe around a central portal hub. Top of the list.',
+        desc: 'The one I have not done. First entirely new major US park in decades: Super Nintendo World, the Ministry of Magic, Isle of Berk and Dark Universe around a central portal hub. Top of the list.',
         meta: 'Still to go' },
     ] },
 
@@ -103,7 +103,7 @@ window.FAN_PAGE = {
         desc: 'Where Super Nintendo World opened first, in 2021, years before America got it. Also the busiest Universal park in the world and it feels like it.',
         meta: 'Super Nintendo World first' },
       { title: 'Universal Studios Singapore', sub: 'Sentosa, 2010', tag: '\u2713 Been', accent: '#c9a05f',
-        desc: 'The smallest of them, on a resort island, and the only one with Battlestar Galactica: Human vs Cylon — duelling coasters launched side by side.',
+        desc: 'The smallest of them, on a resort island, and the only one with Battlestar Galactica: Human vs Cylon, duelling coasters launched side by side.',
         meta: 'On Sentosa Island' },
       { title: 'Universal Beijing', sub: '2021', tag: 'Not yet', accent: '#8f98a8',
         desc: 'The largest Universal park by area, with a Kung Fu Panda land that exists nowhere else. Not done it.',
@@ -111,7 +111,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'florida', kind: 'cards', title: 'Florida Is The Best One', note: 'and Epic Universe settled it',
-    lede: 'Hollywood is the real studio — an actual working backlot with a tram going through it, and that is genuinely special. But Orlando is the better resort by a distance, and Epic Universe ended the argument in 2025.',
+    lede: 'Hollywood is the real studio: an actual working backlot with a tram going through it, and that is genuinely special. But Orlando is the better resort by a distance, and Epic Universe ended the argument in 2025.',
     items: [
       { title: 'Three parks now', sub: 'Universal Orlando', tag: 'Scale', accent: '#f0a83a',
         desc: 'Universal Studios Florida, Islands of Adventure, and Epic Universe. Hollywood is one park built up the side of a hill, with the tram doing a lot of the work.',
@@ -147,13 +147,13 @@ window.FAN_PLAY = {
   prompt: "Eight parks. Six done.",
   said: "%.",
   items: [
-    { n: "Universal Studios Hollywood", s: "1964 \u00b7 been", c: "#f0a83a", d: "M4 15h16l-2 5H6z M6 15V9h12v6 M9 12h2 M13 12h2 M12 4v5", note: "The original and the only one that is a real working studio \u2014 films get shot on that backlot while people ride past it. Transformers and Jurassic are what got me first, years before I knew what the Wizarding World was." },
+    { n: "Universal Studios Hollywood", s: "1964 \u00b7 been", c: "#f0a83a", d: "M4 15h16l-2 5H6z M6 15V9h12v6 M9 12h2 M13 12h2 M12 4v5", note: "The original and the only one that is a real working studio: films get shot on that backlot while people ride past it. Transformers and Jurassic are what got me first, years before I knew what the Wizarding World was." },
     { n: "Universal Studios Florida", s: "1990 \u00b7 been", c: "#f0a83a", d: "M4 20h16 M6 20V8h12v12 M9 12h2 M13 12h2 M12 4l6 4H6z", note: "Diagon Alley, which is the best-realised themed land anywhere including anything Disney has built. Hidden behind a London facade so you have to find it, and there is a dragon on the roof." },
-    { n: "Islands of Adventure", s: "1999 \u00b7 been", c: "#f0c840", d: "M3 18c4-3 6 3 9 0s5-3 9 0 M8 12a4 4 0 1 1 8 0c0 3-4 6-4 6s-4-3-4-6z", note: "Hogsmeade, Jurassic Park, Marvel Super Hero Island, and VelociCoaster \u2014 one of the best coasters on earth and the strongest argument for Florida over Hollywood." },
+    { n: "Islands of Adventure", s: "1999 \u00b7 been", c: "#f0c840", d: "M3 18c4-3 6 3 9 0s5-3 9 0 M8 12a4 4 0 1 1 8 0c0 3-4 6-4 6s-4-3-4-6z", note: "Hogsmeade, Jurassic Park, Marvel Super Hero Island, and VelociCoaster, one of the best coasters on earth and the strongest argument for Florida over Hollywood." },
     { n: "Volcano Bay", s: "2017 \u00b7 been", c: "#5fb0d0", d: "M3 20h18 M12 5L6 20h12z M12 5v-2 M9 14c2 2 4 2 6 0", note: "A water park built around a two-hundred-foot volcano, with a virtual queue so you are not standing on hot concrete all day. Genuinely well thought through." },
     { n: "Universal Studios Japan", s: "Osaka, 2001 \u00b7 been", c: "#f0a83a", d: "M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16z M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8z", note: "Where Super Nintendo World opened first, in 2021, years before America got it. Also the busiest Universal park in the world, and it feels like it." },
-    { n: "Universal Studios Singapore", s: "Sentosa, 2010 \u00b7 been", c: "#c9a05f", d: "M3 12h18 M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M12 3c3 4 3 14 0 18 M12 3c-3 4-3 14 0 18", note: "The smallest of them, on a resort island, and the only one with Battlestar Galactica: Human vs Cylon \u2014 duelling coasters launched side by side." },
-    { n: "Epic Universe", s: "2025 \u00b7 not yet", c: "#8f98a8", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z M12 3v4 M12 17v4", note: "The one I have not done, and top of the list. First entirely new major US park in decades \u2014 Super Nintendo World, the Ministry of Magic, Isle of Berk and Dark Universe around a portal hub." },
+    { n: "Universal Studios Singapore", s: "Sentosa, 2010 \u00b7 been", c: "#c9a05f", d: "M3 12h18 M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M12 3c3 4 3 14 0 18 M12 3c-3 4-3 14 0 18", note: "The smallest of them, on a resort island, and the only one with Battlestar Galactica: Human vs Cylon, duelling coasters launched side by side." },
+    { n: "Epic Universe", s: "2025 \u00b7 not yet", c: "#8f98a8", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z M12 3v4 M12 17v4", note: "The one I have not done, and top of the list. First entirely new major US park in decades: Super Nintendo World, the Ministry of Magic, Isle of Berk and Dark Universe around a portal hub." },
     { n: "Universal Beijing", s: "2021 \u00b7 not yet", c: "#8f98a8", d: "M4 19h16 M6 19V11l6-4 6 4v8 M10 19v-4h4v4", note: "The largest Universal park by area, and it has a Kung Fu Panda land that exists nowhere else, which is genuinely annoying." },
   ],
 };

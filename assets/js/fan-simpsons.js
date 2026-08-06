@@ -1,6 +1,6 @@
 /* fan-simpsons.js: content for /franchises/the-simpsons/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
-  when: { at: '8th and 9th grade, 2019\u201321', note: 'Universal Studios Hollywood is what got me into it \u2014 Krusty Burger, the Cletus chicken sandwich and the ride, all before I had really watched the show. Then I fell for it properly across eighth and ninth grade.' },
+  when: { at: '8th and 9th grade, 2019\u201321', note: 'Universal Studios Hollywood is what got me into it: Krusty Burger, the Cletus chicken sandwich and the ride, all before I had really watched the show. Then I fell for it properly across eighth and ninth grade.' },
   sections: [
 
   { id: 'family', kind: 'cards', title: 'The Family', note: '742 Evergreen Terrace · just the five of them',
@@ -90,7 +90,7 @@ window.FAN_PAGE = {
 window.FAN_PLAY = {
   kind: "roll",
   title: "The Couch Gag",
-  intro: "Every episode ends its title sequence with the family arriving at the couch, and every single one is different. It exists for a boring reason \u2014 the sequence is elastic, so it gets stretched or trimmed to make the episode fit the slot \u2014 and it turned into the best running joke on television.",
+  intro: "Every episode ends its title sequence with the family arriving at the couch, and every single one is different. It exists for a boring reason (the sequence is elastic, so it gets stretched or trimmed to make the episode fit the slot), and it turned into the best running joke on television.",
   prompt: "The saxophone solo. Bart on the skateboard. Homer through the garage.",
   button: "Run the intro",
   again: "Run it again",
@@ -101,11 +101,11 @@ window.FAN_PLAY = {
         "They arrive."
       ],
   items: [
-    { n: "They all fit", s: "The plain one", c: "#ffd21f", w: 3, said: "They sit down. That is it.", d: "M4 15h16v5H4z M6 15V9h12v6 M8 20v2 M16 20v2", note: "The baseline, and the joke only works because it exists \u2014 you need the normal version for the other six hundred to land." },
+    { n: "They all fit", s: "The plain one", c: "#ffd21f", w: 3, said: "They sit down. That is it.", d: "M4 15h16v5H4z M6 15V9h12v6 M8 20v2 M16 20v2", note: "The baseline, and the joke only works because it exists: you need the normal version for the other six hundred to land." },
     { n: "The couch runs away", s: "Chase", c: "#5fbf7f", w: 2, said: "The couch bolts. They chase it out of the room.", d: "M4 15h11v5H4z M15 13l5 3-5 3 M6 20v2", note: "One of the oldest variants and still funny, because the family reaction is always exactly proportionate." },
     { n: "Guest animator", s: "Sylvain Chomet, Bill Plympton, Banksy", c: "#c96fd0", w: 2, said: "Somebody else drew this one, and it is not okay.", d: "M4 20l3-9 9-9 3 3-9 9z M13 5l3 3 M4 20h5", note: "The show hands the sequence to an outside artist and gets back something completely off-model. The Banksy one is a three-minute attack on the show\u2019s own outsourcing and they aired it anyway." },
     { n: "Everybody dies", s: "Somehow", c: "#c04a3a", w: 2, said: "Well. That escalated.", d: "M12 3a7 7 0 0 0-7 7v5h3v4h8v-4h3v-5a7 7 0 0 0-7-7z M9 10h2v3H9z m4 0h2v3h-2z", note: "A surprising number of couch gags end with the entire family destroyed in some way, and the next episode never mentions it." },
     { n: "The long one", s: "When the episode ran short", c: "#4f9fe0", w: 1, said: "This is going on much longer than a couch gag should.", d: "M4 12h16 M4 8h16 M4 16h16 M18 6l2 2-2 2", note: "The reason it exists at all. A short episode gets a ninety-second couch gag; a long one gets four seconds of them sitting down." },
-    { n: "Krusty Burger", s: "Universal Studios Hollywood", c: "#e0642a", w: 1, said: "You are not watching this one. You are at Springfield.", d: "M5 11h14 M4 11a8 8 0 0 1 16 0 M5 14h14l-1 5H6z", note: "Which is genuinely how I got into the show \u2014 I ate at Krusty Burger and had the Cletus chicken sandwich at Universal before I had properly watched an episode." },
+    { n: "Krusty Burger", s: "Universal Studios Hollywood", c: "#e0642a", w: 1, said: "You are not watching this one. You are at Springfield.", d: "M5 11h14 M4 11a8 8 0 0 1 16 0 M5 14h14l-1 5H6z", note: "Which is genuinely how I got into the show: I ate at Krusty Burger and had the Cletus chicken sandwich at Universal before I had properly watched an episode." },
   ],
 };

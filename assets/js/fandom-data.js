@@ -84,7 +84,7 @@ window.FANDOMS = [
     { name: 'The Justice League', wm: 'jl', glyph: 'league', c1: '#5f9fe0', c2: '#0d1730',
       when: 'Since I was a kid, on the cartoons',
       meta: 'Comics · 1960', href: '/franchises/justice-league/',
-      desc: 'Shorthand for the DC guys — Batman, Superman, Green Lantern, the Flash. The cartoons got me, not the comics.' },
+      desc: 'Shorthand for the DC guys: Batman, Superman, Green Lantern, the Flash. The cartoons got me, not the comics.' },
 
     { name: 'Batman', wm: 'batman', glyph: 'bat', c1: '#c9cdd2', c2: '#121417',
       when: '5th grade, 2016\u201317',

@@ -1,16 +1,16 @@
 /* fan-percy.js: content for /franchises/percy-jackson/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
-  when: { at: '6th grade, 2017\u201318', note: 'Straight after Harry Potter, and always in second place behind it \u2014 which is no insult, because second to Harry Potter in sixth grade is a very high position.' },
+  when: { at: '6th grade, 2017\u201318', note: 'Straight after Harry Potter, and always in second place behind it, which is no insult, because second to Harry Potter in sixth grade is a very high position.' },
   sections: [
 
   { id: 'second', kind: 'cards', title: 'Always Second To Harry Potter', note: 'and honestly, fine with that',
-    lede: 'I read Harry Potter in fifth grade and Percy Jackson in sixth, and the order matters. Percy was never going to beat the thing that got there first — but coming second to Harry Potter when you are eleven is a very high finish, and I loved these books.',
+    lede: 'I read Harry Potter in fifth grade and Percy Jackson in sixth, and the order matters. Percy was never going to beat the thing that got there first, but coming second to Harry Potter when you are eleven is a very high finish, and I loved these books.',
     items: [
       { title: 'I have forgotten most of it', sub: 'Being honest', tag: 'Honest', accent: '#5fa8e0',
-        desc: 'I could not walk you through the plot of book three. I remember how it felt more than what happened in it — the camp, the cabins, the quests, Percy being funny about all of it. That is what a book you read at eleven leaves you, and it is not nothing.',
+        desc: 'I could not walk you through the plot of book three. I remember how it felt more than what happened in it: the camp, the cabins, the quests, Percy being funny about all of it. That is what a book you read at eleven leaves you, and it is not nothing.',
         meta: 'Vibes intact, details gone' },
       { title: 'It did something Potter did not', sub: 'The voice', tag: 'Why it stuck', accent: '#4fd0c0',
-        desc: 'First person, present-tense-feeling, and genuinely funny in a way that sounded like an actual twelve-year-old rather than an adult writing one. The chapter titles alone — "I Accidentally Vaporize My Pre-Algebra Teacher" — do more character work than most first chapters.',
+        desc: 'First person, present-tense-feeling, and genuinely funny in a way that sounded like an actual twelve-year-old rather than an adult writing one. The chapter titles alone ("I Accidentally Vaporize My Pre-Algebra Teacher") do more character work than most first chapters.',
         meta: 'Those chapter titles' },
       { title: 'It was written for one kid', sub: 'Haley Riordan', tag: 'Origin', accent: '#e0a83a',
         desc: 'Riordan made it up as bedtime stories for his son, who has dyslexia and ADHD and had just been taught Greek myths at school. So he made the hero dyslexic and ADHD, and made both of those things the reason he is powerful rather than problems to overcome. That is the best decision in the entire series.',
@@ -63,7 +63,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'olympus', kind: 'cards', title: 'The Heroes of Olympus', note: 'the second series, 2010–14',
-    lede: 'Five more books picking up after the first five, and the ambitious swing is that the Greek gods have Roman versions of themselves — a whole second camp of demigods who have never heard of Camp Half-Blood and would fight it on sight. Two casts that have to merge, seven heroes instead of three, and a prophecy that needs all of them.',
+    lede: 'Five more books picking up after the first five, and the ambitious swing is that the Greek gods have Roman versions of themselves: a whole second camp of demigods who have never heard of Camp Half-Blood and would fight it on sight. Two casts that have to merge, seven heroes instead of three, and a prophecy that needs all of them.',
     items: [
       { title: 'The Lost Hero', sub: '2010 · book one', tag: 'The opening', accent: '#e0a83a',
         desc: 'Opens with Percy missing and a completely new character waking up with no memory on a bus. Refusing to give you the protagonist you came for, in book one of a sequel series, is a genuinely bold move.',
@@ -72,7 +72,7 @@ window.FAN_PAGE = {
         desc: 'The same gods with Roman aspects and completely different personalities, and a Roman camp near San Francisco run on legion discipline rather than summer-camp chaos. The two sides have been kept apart for centuries because they cannot stop killing each other.',
         meta: 'The two camps' },
       { title: 'Seven half-bloods', sub: 'The cast', tag: 'The change', accent: '#4fd0c0',
-        desc: 'Percy, Annabeth, Jason, Piper, Leo, Frank and Hazel, with the narration rotating between them. It makes the books bigger and busier than the originals — more going on, slightly less of the one voice that made the first series work.',
+        desc: 'Percy, Annabeth, Jason, Piper, Leo, Frank and Hazel, with the narration rotating between them. It makes the books bigger and busier than the originals: more going on, slightly less of the one voice that made the first series work.',
         meta: 'Rotating narrators' },
       { title: 'Where it goes', sub: 'The Blood of Olympus, 2014', tag: 'The run', accent: '#5fa8e0',
         desc: 'The Lost Hero, The Son of Neptune, The Mark of Athena, The House of Hades, The Blood of Olympus. The Mark of Athena is the one people remember, and it has an ending that genuinely made me put the book down.',

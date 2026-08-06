@@ -63,7 +63,7 @@ window.TRAVELS = {
       note: 'Overland through the Balkans and back to T\u00fcrkiye for the third time.' },
     { when: '2025 Sep', y: '2025', m: 'Sep', grade: '2nd yr', places: 'Maui, Hawaii',
       countries: 'United States', flags: '\u{1F1FA}\u{1F1F8}', c1: '#3fc0a0', c2: '#05201c', look: 'volcano',
-      note: 'With friends rather than family, which made it a completely different kind of trip. The only domestic one on here, and it does not feel domestic at all.' },
+      note: 'With friends rather than family, which made it a completely different kind of trip. Technically domestic, and it does not feel domestic at all.' },
     { when: '2025 Nov', y: '2025', m: 'Nov', grade: '2nd yr', places: 'Ecuador',
       countries: 'Ecuador', flags: '\u{1F1EA}\u{1F1E8}', c1: '#f0c840', c2: '#1c1604', look: 'andes',
       note: 'The equator, the Andes, and the first time I had been to South America.' },

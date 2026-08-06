@@ -7,11 +7,11 @@ window.FAN_PAGE = {
     lede: 'Batman has been rebooted more than any other character alive, and two of them are, for me, well clear of the rest.',
     items: [
       { num: 'I', title: 'The Dark Knight', sub: '2008 · Nolan', accent: '#e0a03a', meta: 'Bale · Ledger',
-        desc: 'Not really a superhero film — a crime picture with a cape in it, shot on IMAX, about what a city does when someone shows up who cannot be bargained with. Ledger’s Joker has no origin, no plan he will admit to, and no interest in money, and the film is genuinely better for refusing to explain him.' },
+        desc: 'Not really a superhero film: a crime picture with a cape in it, shot on IMAX, about what a city does when someone shows up who cannot be bargained with. Ledger’s Joker has no origin, no plan he will admit to, and no interest in money, and the film is genuinely better for refusing to explain him.' },
       { num: 'II', title: 'The Batman', sub: '2022 · Reeves', accent: '#c04a3a', meta: 'Pattinson · year two',
         desc: 'The one that finally remembered he is the World’s Greatest Detective. Three hours of rain, a serial killer leaving ciphers, and a Bruce Wayne who is visibly bad at this and getting worse. The best-looking Batman film by a distance, and the only one that feels like a case rather than a war.' },
       { num: 'III', title: 'Batman v Superman & the Snyder Cut', sub: '2016 · 2021 · Snyder', accent: '#8f9fb0', meta: 'Affleck · the Batfleck',
-        desc: 'And the Batman himself: Affleck is the best physical Batman anyone has cast. Older, scarred, brutal, and genuinely frightening — the warehouse fight is the first time a film made the fighting look the way it does in the comics. A Batman who has already been doing this for twenty years and lost people, which none of the others start from.' },
+        desc: 'And the Batman himself: Affleck is the best physical Batman anyone has cast. Older, scarred, brutal, and genuinely frightening; the warehouse fight is the first time a film made the fighting look the way it does in the comics. A Batman who has already been doing this for twenty years and lost people, which none of the others start from.' },
     ] },
 
   { id: 'rogues', kind: 'cards', title: 'The Rogues Gallery', note: 'the best in comics, and it is not close',
@@ -41,7 +41,7 @@ window.FAN_PAGE = {
     lede: 'The suit gets handed on roughly every decade, and each one is answering a different question about the character.',
     items: [
       { title: 'Ben Affleck', accent: '#c9a24a', sub: '2016 – 2023 · mine', desc: 'The best of them. Twenty years in, scarred, enormous, and past caring about restraint. The warehouse scene finally put comic-book fighting on screen properly.' },
-      { title: 'Christian Bale', accent: '#e0a03a', sub: '2005 – 2012', desc: 'The complete arc — becoming him, being him, and stopping. The best trilogy any comic character has had.' },
+      { title: 'Christian Bale', accent: '#e0a03a', sub: '2005 – 2012', desc: 'The complete arc: becoming him, being him, and stopping. The best trilogy any comic character has had.' },
       { title: 'Robert Pattinson', accent: '#c04a3a', sub: '2022 –', desc: 'Year two, still getting it wrong, and the only one who does actual detective work on screen.' },
       { title: 'Michael Keaton', accent: '#8f8f9f', sub: '1989 · 1992 · 2023', desc: 'Burton’s gothic one, and the casting everybody objected to before it became definitive.' },
       { title: 'Kevin Conroy', accent: '#7f9fd0', sub: '1992 – 2022', desc: 'The animated one, and for a very large number of people the only voice Batman has ever had.' },
@@ -105,15 +105,15 @@ window.FAN_PAGE = {
 window.FAN_PLAY = {
   kind: "pick",
   title: "The Utility Belt",
-  intro: "No powers, just preparation \u2014 and the belt is the whole thesis. Every pouch is a plan for something that has not happened yet, which is either admirable or a diagnosable condition depending on which writer has him.",
+  intro: "No powers, just preparation, and the belt is the whole thesis. Every pouch is a plan for something that has not happened yet, which is either admirable or a diagnosable condition depending on which writer has him.",
   prompt: "Reach for a pouch.",
   said: "%.",
   items: [
-    { n: "Batarang", s: "The signature", c: "#c9cdd2", d: "M2 12l10-5-2 5 2 5z M22 12l-10-5 2 5-2 5z", note: "Thrown, and it comes back \u2014 mostly. Every version has a slightly different silhouette and the animated series one is the correct one." },
+    { n: "Batarang", s: "The signature", c: "#c9cdd2", d: "M2 12l10-5-2 5 2 5z M22 12l-10-5 2 5-2 5z", note: "Thrown, and it comes back. Mostly. Every version has a slightly different silhouette and the animated series one is the correct one." },
     { n: "Grapnel gun", s: "How he leaves", c: "#8fa8c0", d: "M6 20l7-7 M13 13l5-5 M15 4h5v5 M18 8l-3-3", note: "The single most important piece of equipment he owns, because it is what makes the vertical city usable. Every good Batman game is really a grapnel game." },
     { n: "Smoke pellet", s: "How he leaves faster", c: "#6f7f92", d: "M6 15a4 4 0 0 1 1-7 5 5 0 0 1 9-1 4 4 0 0 1 2 8z M8 19h9", note: "The disappearing act. Works because Gordon has stopped bothering to look, which is a running gag the films all get right." },
     { n: "The cowl", s: "The point of it", c: "#4f5f72", d: "M4 6c0 8 3 13 8 15 5-2 8-7 8-15-3 2-5 1-8-2-3 3-5 4-8 2z", note: "Bruce Wayne is the mask. The cowl is who he actually is, and the good adaptations know which one is the performance." },
-    { n: "The Batmobile", s: "Not in the belt", c: "#e0483a", d: "M3 15h18l-2-4H5z M6 15v2 M18 15v2 M8 11l2-3h4l2 3", note: "Every era gets the car its Batman deserves \u2014 the Burton one is a jet, the Nolan one is a tank, and The Batman gives him a muscle car that sounds like an animal." },
+    { n: "The Batmobile", s: "Not in the belt", c: "#e0483a", d: "M3 15h18l-2-4H5z M6 15v2 M18 15v2 M8 11l2-3h4l2 3", note: "Every era gets the car its Batman deserves: the Burton one is a jet, the Nolan one is a tank, and The Batman gives him a muscle car that sounds like an animal." },
     { n: "Contingency plans", s: "For the Justice League", c: "#a86ff0", d: "M6 3h9l3 3v15H6z M9 9h6 M9 13h6 M9 17h4", note: "A file on how to take down every friend he has, which Ra\u2019s al Ghul steals and uses in Tower of Babel. The best Batman story is the one about him being wrong." },
   ],
 };

@@ -1,7 +1,7 @@
 /* fan-boys.js: content for /franchises/the-boys/. Rendered by fanpage.js.
    Kept deliberately restrained: the show is not, but a portfolio page can be. */
 window.FAN_PAGE = {
-  when: { at: 'Summer 2022, going into 11th grade', note: 'The summer between tenth and eleventh grade \u2014 2022 \u2014 and it was absolutely fire.' },
+  when: { at: 'Summer 2022, going into 11th grade', note: 'The summer between tenth and eleventh grade, 2022, and it was absolutely fire.' },
   sections: [
 
   { id: 'premise', kind: 'cards', title: 'The Premise', note: 'supes as a product line',
@@ -37,11 +37,11 @@ window.FAN_PAGE = {
       { num: '02', title: 'Season Two', sub: '2020', desc: 'Stormfront, and the show’s sharpest point about how a brand launders an ideology.' },
       { num: '03', title: 'Season Three', sub: '2022', desc: 'Soldier Boy, and the argument that the cure looks a lot like the disease.' },
       { num: '04', title: 'Season Four', sub: '2024', desc: 'The politics turn from subtext into text, and the walls come in.' },
-      { num: '05', title: 'Season Five', sub: '2026 · the finale', desc: 'The last one, and the only season I did not watch at home — I saw it in a cinema, in 4DX, with the seat moving. A satire about spectacle, watched as spectacle. Five seasons is the right length: it ends before the joke wears through, which is more than most of these get.' },
+      { num: '05', title: 'Season Five', sub: '2026 · the finale', desc: 'The last one, and the only season I did not watch at home: I saw it in a cinema, in 4DX, with the seat moving. A satire about spectacle, watched as spectacle. Five seasons is the right length: it ends before the joke wears through, which is more than most of these get.' },
     ] },
 
   { id: 'finale', kind: 'cards', title: 'The Finale', note: 'season five, 2026, in 4DX',
-    lede: 'The Boys ended in 2026 after five seasons, which was the plan for a long time rather than a cancellation. I watched the last one in a cinema in 4DX — the moving seat, the whole thing — which is a genuinely absurd way to watch a series that spent five years taking apart the business of selling spectacle to people. Absolutely worth it.',
+    lede: 'The Boys ended in 2026 after five seasons, which was the plan for a long time rather than a cancellation. I watched the last one in a cinema in 4DX (the moving seat, the whole thing), which is a genuinely absurd way to watch a series that spent five years taking apart the business of selling spectacle to people. Absolutely worth it.',
     items: [
       { title: 'It ended on purpose', sub: 'Five seasons', tag: 'The run', accent: '#e02a2a',
         desc: 'Announced as the final season well ahead of time, so it got to be written as an ending instead of stopping mid-sentence. Almost nothing on this page’s list of shows manages that.',
@@ -50,7 +50,7 @@ window.FAN_PAGE = {
         desc: 'A show about how spectacle is manufactured and sold, watched in the single most manufactured format available. I do not think the irony was lost on anyone in the room. It ruled.',
         meta: 'The seat moves' },
       { title: 'The right length', sub: 'No filler season', tag: 'Why it works', accent: '#6f9fd0',
-        desc: 'Five is enough to escalate and not so many that the satire goes blunt from repetition. The premise has a ceiling built into it — once the joke is fully explained there is nowhere left — and it stopped near it.',
+        desc: 'Five is enough to escalate and not so many that the satire goes blunt from repetition. The premise has a ceiling built into it (once the joke is fully explained there is nowhere left) and it stopped near it.',
         meta: 'Ends before it dulls' },
       { title: 'And Gen V with it', sub: 'Two seasons', tag: 'The universe', accent: '#8f6fd0',
         desc: 'The spinoff wrapped too, and stayed small enough to matter. The whole thing is now a closed set you can watch start to finish, which is rare for something this size.',
@@ -79,7 +79,7 @@ window.FAN_PAGE = {
 
   { id: 'spin', kind: 'cards', title: 'The Wider Universe', note: 'spinoffs',
     items: [
-      { title: 'Gen V', sub: '2023 – 2025 · 2 seasons', tag: 'Series', desc: 'Godolkin University: the supe school, which is really a story about what a system does to the students inside it. Two seasons and done, feeding back into the main show rather than sprawling — the rare spinoff that knew its own size.', meta: 'Finished' },
+      { title: 'Gen V', sub: '2023 – 2025 · 2 seasons', tag: 'Series', desc: 'Godolkin University: the supe school, which is really a story about what a system does to the students inside it. Two seasons and done, feeding back into the main show rather than sprawling: the rare spinoff that knew its own size.', meta: 'Finished' },
       { title: 'Diabolical', sub: '2022', tag: 'Animation', desc: 'Eight short animated episodes in eight different styles, and a couple of them are canon.', meta: 'Anthology' },
     ] },
 
@@ -104,7 +104,7 @@ window.FAN_PAGE = {
 window.FAN_PLAY = {
   kind: "pick",
   title: "The Seven, As A Product Line",
-  intro: "Vought does not have heroes, it has assets \u2014 and each one is a brand with a marketing plan, a merchandising line and a crisis file. Pick one and read the file rather than the poster.",
+  intro: "Vought does not have heroes, it has assets, and each one is a brand with a marketing plan, a merchandising line and a crisis file. Pick one and read the file rather than the poster.",
   prompt: "Open a personnel file.",
   said: "%.",
   items: [

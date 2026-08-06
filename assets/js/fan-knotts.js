@@ -90,7 +90,7 @@ window.FAN_PAGE = {
         desc: 'The bit people underrate. Mazes are a queue and a corridor; the fog-filled streets between them, with monsters roaming free, are where the night actually lives. Knott\u2019s invented that too.',
         meta: 'Fog to the knees' },
       { title: 'Local institution', sub: 'Every October', tag: 'The honest bit', accent: '#d8934a',
-        desc: 'For anybody who grew up in Orange County this is simply what October is. It is not a park doing a Halloween promotion — it is the event the park is most famous for, and the one the calendar is built around.',
+        desc: 'For anybody who grew up in Orange County this is simply what October is. It is not a park doing a Halloween promotion; it is the event the park is most famous for, and the one the calendar is built around.',
         meta: 'Buena Park' },
     ] },
 
@@ -126,7 +126,7 @@ window.FAN_PAGE = {
 window.FAN_PLAY = {
   kind: "roll",
   title: "A Night At Scary Farm",
-  intro: "They invented this in 1973 \u2014 a few staff in costume, the lights off in Ghost Town, three nights in a dead October. Every Halloween event at every park in the world is downstream of it. Walk into the fog and see what finds you.",
+  intro: "They invented this in 1973: a few staff in costume, the lights off in Ghost Town, three nights in a dead October. Every Halloween event at every park in the world is downstream of it. Walk into the fog and see what finds you.",
   prompt: "Ghost Town after dark. The fog is knee-deep.",
   button: "Go in",
   again: "Go back in",
@@ -137,7 +137,7 @@ window.FAN_PLAY = {
       ],
   items: [
     { n: "A scare zone", s: "The streets between mazes", c: "#6f7f4f", w: 4, said: "The fog moves and there are six of them in it.", d: "M3 16c4-2 6 2 9 0s5-2 9 0 M7 11a2 2 0 1 1 0 .1 M15 10a2 2 0 1 1 0 .1", note: "The bit people underrate. Mazes are a queue and a corridor; the fog-filled streets between them, with monsters roaming free, are where the night actually lives. Knott\u2019s invented those too." },
-    { n: "Ghost Town does the work", s: "No set dressing needed", c: "#c9924a", w: 3, said: "You forget it is a set. It has been a ghost town since 1940.", d: "M4 20h16 M6 20V9l3-3 3 3 3-3 3 3v11 M10 20v-5h4v5", note: "The park\u2019s enormous advantage: it already looks like this. Everywhere else has to dress a bright cheerful street into something frightening \u2014 Knott\u2019s just turns the lights down." },
+    { n: "Ghost Town does the work", s: "No set dressing needed", c: "#c9924a", w: 3, said: "You forget it is a set. It has been a ghost town since 1940.", d: "M4 20h16 M6 20V9l3-3 3 3 3-3 3 3v11 M10 20v-5h4v5", note: "The park\u2019s enormous advantage: it already looks like this. Everywhere else has to dress a bright cheerful street into something frightening; Knott\u2019s just turns the lights down." },
     { n: "The Calico Mine Ride", s: "In the dark", c: "#d8934a", w: 2, said: "The mine ride, but they have put things in it.", d: "M4 20V13a8 8 0 0 1 16 0v7 M8 20v-6h8v6 M12 8V4", note: "Built by the park\u2019s own workshop in 1960 and still running. During the Haunt they put actors inside it, which is entirely unfair." },
     { n: "Somebody with a chainsaw", s: "No blade, still effective", c: "#8f6fd0", w: 3, said: "Chainsaw. Behind you. It has no chain and it does not matter.", d: "M3 11h9l7-3v6l-7-2H3z M3 11v3h7 M6 11v3", note: "The oldest trick they have and it works every single year on every single person, including people who know it is coming." },
     { n: "You are fine, actually", s: "Boysenberry funnel cake", c: "#b06fd8", w: 2, said: "You get out and buy a funnel cake. With boysenberry.", d: "M12 5a7 7 0 1 1 0 14 7 7 0 0 1 0-14z M9 12a3 3 0 1 1 6 0 3 3 0 0 1-6 0z", note: "The correct end to the night. Walter Knott went looking for an abandoned berry, nursed it back on his own land, and the whole park is downstream of one rescued plant." },

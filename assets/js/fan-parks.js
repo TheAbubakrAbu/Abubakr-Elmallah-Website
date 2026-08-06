@@ -1,6 +1,6 @@
 /* fan-parks.js: content for /franchises/parks-and-recreation/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
-  when: { at: '8th grade, 2019\u201320', note: 'Same year as The Office. Honestly it might be the funnier of the two \u2014 The Office is just the one that got there first and stuck harder.' },
+  when: { at: '8th grade, 2019\u201320', note: 'Same year as The Office. Honestly it might be the funnier of the two; The Office is just the one that got there first and stuck harder.' },
   sections: [
 
   { id: 'dept', kind: 'cards', title: 'The Parks Department', note: 'Pawnee, Indiana · fourth floor',
@@ -17,7 +17,7 @@ window.FAN_PAGE = {
 
   { id: 'turn', kind: 'cards', title: 'The Turn',
     note: 'season one is bad and that is fine',
-    lede: 'This is the show people quit six episodes in, and I understand why. Season one is a six-episode misfire that plays Leslie as a Michael Scott clone — oblivious, embarrassing, the joke rather than the engine. Then it fixes itself completely, and the fix is one decision.',
+    lede: 'This is the show people quit six episodes in, and I understand why. Season one is a six-episode misfire that plays Leslie as a Michael Scott clone: oblivious, embarrassing, the joke rather than the engine. Then it fixes itself completely, and the fix is one decision.',
     items: [
       { title: 'What was wrong', sub: 'Season 1, 2009', tag: 'The problem', accent: '#8f7f6a',
         desc: 'Six episodes of laughing at a woman for caring about her job. The mockumentary format was borrowed whole from The Office and pointed at a character who could not carry that kind of contempt.',
@@ -29,7 +29,7 @@ window.FAN_PAGE = {
         desc: 'The Harvest Festival, the campaign, Ben and Leslie, Ron and Tammy. Three seasons where a network comedy is firing at absolutely full strength and nobody is coasting.',
         meta: 'The best stretch' },
       { title: 'Everyone is trying', sub: 'The reason it lasts', tag: 'Why it works', accent: '#4f8fbf',
-        desc: 'The rare comedy with no cruelty in it. Nobody is humiliated for the audience, everybody is competent at something, and it is still funny — which is much harder to write than meanness and is why it has aged better than almost anything from its era.',
+        desc: 'The rare comedy with no cruelty in it. Nobody is humiliated for the audience, everybody is competent at something, and it is still funny, which is much harder to write than meanness and is why it has aged better than almost anything from its era.',
         meta: 'No punching down' },
     ] },
 

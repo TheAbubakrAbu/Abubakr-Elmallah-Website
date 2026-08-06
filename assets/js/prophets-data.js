@@ -12,9 +12,9 @@
      one of the five Ulul-ʿAzm)
    Prophet fields:
      name  transliterated name
-     en    the English or biblical name, '—' where there is none, and a
-           trailing * where the identification is traditional rather than
-           certain (see the footnote on the page)
+     en    the English or biblical name, the words 'No biblical equivalent'
+           where there is none, and a trailing * where the identification is
+           traditional rather than certain (see the footnote on the page)
      meaning  used instead of `en` for the Prophet ﷺ, whose name is described
            rather than translated
      ar    Arabic name, set as the medallion
@@ -40,10 +40,10 @@ window.ISL_PROPHETS = [
 
   { id: 'arab', label: 'Sent to the Arabs', note: 'ʿĀd, Thamūd and Madyan',
     people: [
-      { name: 'Hūd', en: '—', ar: 'هود', sent: 'The people of ʿĀd',
+      { name: 'Hūd', en: 'No biblical equivalent', ar: 'هود', sent: 'The people of ʿĀd',
         desc: 'Sent to ʿĀd in the sand dunes of al-Aḥqāf, a people the Quran describes as built like no other. They refused him and the wind took them.',
         sura: 'Hūd · Al-Aḥqāf' },
-      { name: 'Ṣāliḥ', en: '—', ar: 'صالح', sent: 'The people of Thamūd',
+      { name: 'Ṣāliḥ', en: 'No biblical equivalent', ar: 'صالح', sent: 'The people of Thamūd',
         desc: 'Sent to Thamūd, who carved homes into the rock. They asked for a sign, were given the she-camel, and hamstrung it.',
         sura: 'Al-Aʿrāf · Ash-Shams' },
       { name: 'Shuʿayb', en: 'Jethro*', ar: 'شعيب', sent: 'The people of Madyan',
@@ -116,7 +116,7 @@ window.ISL_PROPHETS = [
   { id: 'ismail', label: 'The Line of Ismāʿīl', note: 'and the seal of them all', azm: true,
     people: [
       { name: 'Muḥammad ﷺ', ar: 'محمد', azm: true, sent: 'All of mankind',
-        meaning: 'The name is not translated, it is described: from the root ḥ-m-d, “praise”. Muḥammad means the one who is praised, and praised repeatedly — the intensive form, not simply “praised” once.',
+        meaning: 'The name is not translated, it is described: from the root ḥ-m-d, “praise”. Muḥammad means the one who is praised, and praised repeatedly: the intensive form, not simply “praised” once.',
         desc: 'Khātam an-Nabiyyīn, the seal of the prophets, descended from Ismāʿīl and sent not to one people but to everyone. The last of the five Ulul-ʿAzm, and the answer to the duʿāʾ Ibrāhīm made while building the Kaʿbah.',
         sura: 'Al-Aḥzāb 33:40' },
     ] },

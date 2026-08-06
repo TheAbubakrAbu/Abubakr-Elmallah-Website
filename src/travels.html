@@ -112,7 +112,7 @@ redirect_from:
     <a class="back-link" href="/franchises/" data-magnetic>&#8592; Back to franchises</a>
     <p class="fan-kicker"><span>Where I have been</span></p>
     <h1 class="fan-title">Travels</h1>
-    <p class="fan-lede-hero">Eighteen trips since 2021, grouped by the school year I was in at the time. Tucked away at the bottom of the franchises page rather than in the navigation &#8212; nobody came here for somebody else&#8217;s holiday photos.</p>
+    <p class="fan-lede-hero">Eighteen trips since 2021, grouped by the school year I was in at the time. Tucked away at the bottom of the franchises page rather than in the navigation. Nobody came here for somebody else&#8217;s holiday photos.</p>
   </section>
 
   <div id="tvRoot"></div>
@@ -131,7 +131,7 @@ redirect_from:
   <a href="/work/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/><path d="M3 12.5h18"/></svg><span>Work</span></a>
   <a href="/projects/"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Projects</span></a>
   <a href="/education/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1 2.5 2 5 2s5-1 5-2v-5"/></svg><span>Education</span></a>
-  <a href="/franchises/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Franchises</span></a>
+  <a href="/franchises/" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Franchises</span></a>
 </nav>
 
 <script src="{% include v.html f='/assets/js/utils.js' %}"></script>
@@ -146,6 +146,9 @@ redirect_from:
 <script src="{% include v.html f='/assets/js/travels-data.js' %}"></script>
 <!-- after reveal.js on purpose: see the comment in travels.js -->
 <script src="{% include v.html f='/assets/js/travels.js' %}"></script>
+<!-- the world map: data first, renderer after travels.js so #tvMapMount exists -->
+<script src="{% include v.html f='/assets/js/travels-map-data.js' %}"></script>
+<script src="{% include v.html f='/assets/js/travels-map.js' %}"></script>
 <script src="{% include v.html f='/assets/js/intro.js' %}"></script>
 </body>
 </html>

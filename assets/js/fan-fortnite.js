@@ -1,10 +1,10 @@
 /* fan-fortnite.js: content for /franchises/fortnite/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
-  when: { at: '2018\u201319, 6th\u20137th grade', note: 'Chapter 1, seasons three to seven \u2014 sixth and seventh grade. I stopped playing properly around season nine and now I only turn up for the big events.' },
+  when: { at: '2018\u201319, 6th\u20137th grade', note: 'Chapter 1, seasons three to seven: sixth and seventh grade. I stopped playing properly around season nine and now I only turn up for the big events.' },
   sections: [
 
   { id: 'og', kind: 'cards', title: 'OG Fortnite', note: 'Chapter 1, seasons 3 to 7',
-    lede: 'This is the Fortnite I actually mean. Chapter 1, seasons three through seven — and three, four and five above everything else. The map was one island everybody knew by heart, the seasons were built around one idea each, and the whole thing still felt like it was being made up as it went along. Everything after is a bigger, better-run, more profitable game. None of it is this.',
+    lede: 'This is the Fortnite I actually mean. Chapter 1, seasons three through seven, and three, four and five above everything else. The map was one island everybody knew by heart, the seasons were built around one idea each, and the whole thing still felt like it was being made up as it went along. Everything after is a bigger, better-run, more profitable game. None of it is this.',
     items: [
       { title: 'Season 3', sub: 'Feb – Apr 2018', tag: 'The one that clicked', accent: '#5fb0f0',
         desc: 'Space and astronauts, Dark Voyager, and the first Battle Pass that felt genuinely worth grinding. This is the season the game stopped being a curiosity and became the thing everyone was playing. The meteor got teased right at the end and nobody could talk about anything else for weeks.',
@@ -13,7 +13,7 @@ window.FAN_PAGE = {
         desc: 'Brace for Impact. The meteor finally hit, Dusty Depot became Dusty Divot, Hop Rocks let you bounce around the crater, and the whole season was superheroes and villains. Carbide at tier one, Omega at tier one hundred. It ended with the Rocket Launch, which cracked the sky open and taught everyone that the map was a story.',
         meta: 'Dusty Divot · Omega · the rocket' },
       { title: 'Season 5', sub: 'Jul – Sep 2018', tag: 'Top three', accent: '#f0b040',
-        desc: 'Worlds Collide. The rifts opened and started pulling pieces of other places onto the island — Paradise Palms in the desert, a Viking village on a mountain, the Durrr Burger head sat out in the sand. Golf carts, Drift and Ragnarok in the pass, and then the Cube showed up in August and just started moving.',
+        desc: 'Worlds Collide. The rifts opened and started pulling pieces of other places onto the island: Paradise Palms in the desert, a Viking village on a mountain, the Durrr Burger head sat out in the sand. Golf carts, Drift and Ragnarok in the pass, and then the Cube showed up in August and just started moving.',
         meta: 'Rifts · Paradise Palms · Drift' },
       { title: 'Season 6', sub: 'Sep – Dec 2018', tag: 'Still great', accent: '#8f6fd0',
         desc: 'Darkness Rises. Kevin the Cube rolled around the map leaving corrupted zones, then lifted Loot Lake into a floating island and carried it. Pets in your backpack, Fortnitemares, and the Butterfly event to close it out.',
@@ -22,12 +22,12 @@ window.FAN_PAGE = {
         desc: 'Winter. Snow over half the map, Polar Peak with something frozen inside it, planes, ziplines, and the Ice King at tier one hundred. Creative mode launched this season too, which quietly turned out to be one of the most important things the game ever shipped.',
         meta: 'Polar Peak · planes · Creative' },
       { title: 'And then season 9', sub: 'May 2019', tag: 'Where I drifted', accent: '#6f7f92',
-        desc: 'Neo Tilted, slipstreams, everything gone chrome and futuristic. Nothing wrong with it exactly — it just was not the game I had been playing, and this is roughly where I stopped showing up every day.',
+        desc: 'Neo Tilted, slipstreams, everything gone chrome and futuristic. Nothing wrong with it exactly; it just was not the game I had been playing, and this is roughly where I stopped showing up every day.',
         meta: 'The drift-off point' },
     ] },
 
   { id: 'omega', kind: 'cards', title: 'Omega', note: 'best skin ever made, not close',
-    lede: 'Season 4, tier one hundred. Every other skin on this list is a good outfit; Omega is the one I would still put on today. It looked like the final boss of the entire game, and — this is the part people forget — you did not just unlock it, you built it.',
+    lede: 'Season 4, tier one hundred. Every other skin on this list is a good outfit; Omega is the one I would still put on today. It looked like the final boss of the entire game, and (this is the part people forget) you did not just unlock it, you built it.',
     items: [
       { title: 'You assembled it', sub: 'Four armour pieces', tag: 'Why it hits', accent: '#c96ff0',
         desc: 'The base skin was only the start. Helmet, shoulders, gauntlets and boots each unlocked separately through challenges, so a fully built Omega in a lobby actually meant something. You could read how much work somebody had put in from across the map.',
@@ -100,13 +100,13 @@ window.FAN_PAGE = {
     lede: 'The tycoon maps are the reason Creative mattered, and Droid Tycoon is the one I actually loved. It is a completely different game living inside the same client: no circle, no last-one-standing, just a base that gets bigger while you watch.',
     items: [
       { title: 'The loop', sub: 'Buy, upgrade, repeat', tag: 'Why it works', accent: '#f0b040',
-        desc: 'Droids produce, production buys upgrades, upgrades produce faster. It is the oldest idea-loop in games and it is completely irresistible — the numbers going up do all the work and you look up an hour later still doing it.',
+        desc: 'Droids produce, production buys upgrades, upgrades produce faster. It is the oldest idea-loop in games and it is completely irresistible: the numbers going up do all the work and you look up an hour later still doing it.',
         meta: 'Idle-game logic, in Fortnite' },
       { title: 'No pressure', sub: 'Nobody is hunting you', tag: 'Why it works', accent: '#5fb0f0',
-        desc: 'Battle royale is a stress game — every match is twenty minutes of being potentially about to lose. A tycoon is the exact opposite, and having both available from the same lobby is genuinely great design.',
+        desc: 'Battle royale is a stress game: every match is twenty minutes of being potentially about to lose. A tycoon is the exact opposite, and having both available from the same lobby is genuinely great design.',
         meta: 'The opposite of a match' },
       { title: 'What Creative actually unlocked', sub: 'Season 7, 2018', tag: 'Context', accent: '#c96ff0',
-        desc: 'Creative shipped quietly in season seven and turned Fortnite from a game into a platform. Tycoons, box fights, prop hunt, escape maps — an entire second library that Epic did not have to build.',
+        desc: 'Creative shipped quietly in season seven and turned Fortnite from a game into a platform. Tycoons, box fights, prop hunt, escape maps: an entire second library that Epic did not have to build.',
         meta: 'The sleeper feature' },
       { title: 'Best with friends', sub: 'Co-op', tag: 'How to play it', accent: '#8f6fd0',
         desc: 'Tycoons are much better with somebody else in the lobby splitting the work, and that is most of why I put the hours in. Half the appeal was just having something low-stakes to do while talking.',
@@ -114,7 +114,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'now', kind: 'cards', title: 'How I Play Now', note: 'events only, basically',
-    lede: 'I stopped playing properly around season nine. I have not really come back, and I am fine with that — but I still turn up for the big ones, because nothing else in games does what a Fortnite live event does.',
+    lede: 'I stopped playing properly around season nine. I have not really come back, and I am fine with that, but I still turn up for the big ones, because nothing else in games does what a Fortnite live event does.',
     items: [
       { title: 'Just the events', sub: 'A few times a year', tag: 'Current', accent: '#5fb0f0',
         desc: 'I will download it for a live event and then not open it again for months. That is the whole relationship now. Twenty minutes of everyone on earth being in the same place at the same time is worth the install.',
@@ -143,7 +143,7 @@ window.FAN_PAGE = {
 window.FAN_PLAY = {
   kind: "roll",
   title: "Land At A Named Location",
-  intro: "Chapter 1, seasons three to seven. The whole map fitted in your head \u2014 you could name every location and everybody had an opinion about where to drop. Pull the chute and see where the bus put you.",
+  intro: "Chapter 1, seasons three to seven. The whole map fitted in your head: you could name every location and everybody had an opinion about where to drop. Pull the chute and see where the bus put you.",
   prompt: "Bus at 60 seconds. Where are you going?",
   button: "Jump",
   again: "Jump again",
@@ -153,11 +153,11 @@ window.FAN_PLAY = {
         "Chute out."
       ],
   items: [
-    { n: "Tilted Towers", s: "Season 2 onward", c: "#c96ff0", w: 4, said: "Tilted. Along with forty other people.", d: "M4 20h16 M6 20V8h5v12 M13 20V4h5v16 M8 11h1 M8 14h1 M15 8h1 M15 12h1", note: "The drop everybody made and nobody survived. Added in season two and it immediately became the entire skill economy of the game \u2014 if you could win a Tilted fight you were good." },
+    { n: "Tilted Towers", s: "Season 2 onward", c: "#c96ff0", w: 4, said: "Tilted. Along with forty other people.", d: "M4 20h16 M6 20V8h5v12 M13 20V4h5v16 M8 11h1 M8 14h1 M15 8h1 M15 12h1", note: "The drop everybody made and nobody survived. Added in season two and it immediately became the entire skill economy of the game: if you could win a Tilted fight you were good." },
     { n: "Dusty Divot", s: "Season 4", c: "#c96ff0", w: 3, said: "Dusty Divot. The crater is still warm.", d: "M3 15c4-6 14-6 18 0 M7 15c2-3 8-3 10 0 M12 4v4 M10 7l2 2 2-2", note: "Dusty Depot, until the meteor hit it in season four and left a crater full of Hop Rocks and a research facility. The map changing under you while you played was the whole appeal." },
     { n: "Loot Lake", s: "Season 6, in the air", c: "#5fb0f0", w: 3, said: "Loot Lake. Except it is not on the ground any more.", d: "M3 16c4-3 6 3 9 0s5-3 9 0 M8 8h8l2 4H6z M12 4v4", note: "Kevin the Cube rolled into the lake and lifted the whole island into the sky, and it stayed up there, drifting, for the rest of the season." },
-    { n: "Paradise Palms", s: "Season 5", c: "#f0b040", w: 2, said: "Paradise Palms. The rift dropped a desert on the map.", d: "M12 20V10 M12 10c-4-2-6 1-8-1 3-3 6-2 8 1 M12 10c4-2 6 1 8-1-3-3-6-2-8 1 M9 20h6", note: "The rifts opened in season five and started pulling other places onto the island \u2014 a desert, a Viking village, and the Durrr Burger head just sitting out in the sand." },
+    { n: "Paradise Palms", s: "Season 5", c: "#f0b040", w: 2, said: "Paradise Palms. The rift dropped a desert on the map.", d: "M12 20V10 M12 10c-4-2-6 1-8-1 3-3 6-2 8 1 M12 10c4-2 6 1 8-1-3-3-6-2-8 1 M9 20h6", note: "The rifts opened in season five and started pulling other places onto the island: a desert, a Viking village, and the Durrr Burger head just sitting out in the sand." },
     { n: "Polar Peak", s: "Season 7", c: "#7fd8f0", w: 2, said: "Polar Peak. There is something frozen in it.", d: "M3 20h18 M12 4L5 20h14z M12 9l-2 4h4z", note: "Half the map went under snow, planes arrived, and there was a castle with something visibly frozen inside that took two seasons to get out." },
-    { n: "Risky Reels", s: "December 2019", c: "#e0402a", w: 1, said: "Risky Reels. And J.J. Abrams is on the screen.", d: "M4 6h16v10H4z M4 18h16 M8 6v10 M16 6v10 M11 9l4 2-4 2z", note: "The Rise of Skywalker event \u2014 a clip premiered in-game, TIE fighters over the map, and lightsabers dropping into the loot pool as mythics. Two of my favourite things colliding." },
+    { n: "Risky Reels", s: "December 2019", c: "#e0402a", w: 1, said: "Risky Reels. And J.J. Abrams is on the screen.", d: "M4 6h16v10H4z M4 18h16 M8 6v10 M16 6v10 M11 9l4 2-4 2z", note: "The Rise of Skywalker event: a clip premiered in-game, TIE fighters over the map, and lightsabers dropping into the loot pool as mythics. Two of my favourite things colliding." },
   ],
 };

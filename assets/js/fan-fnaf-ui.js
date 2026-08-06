@@ -210,7 +210,7 @@
       scene.innerHTML = '';
       if (lbl) lbl.textContent = 'POWER OUT';
       if (pctEl) pctEl.textContent = '0%';
-      if (noteEl) noteEl.textContent = 'And that is the game. You did not lose a fight — you spent the battery, and the only thing left to do is sit in the dark and listen. Reload the page to start the night again.';
+      if (noteEl) noteEl.textContent = 'And that is the game. You did not lose a fight; you spent the battery, and the only thing left to do is sit in the dark and listen. Reload the page to start the night again.';
       var mon = document.getElementById('fnafFeed');
       if (mon) mon.classList.add('is-dead');
       setUsage(1);

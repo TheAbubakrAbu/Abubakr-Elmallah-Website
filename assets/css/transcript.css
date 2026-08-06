@@ -1,4 +1,4 @@
-/* transcript.css — the high-school record on /high-school/. */
+/* transcript.css -- the high-school record on /high-school/. */
 
 .ts-exams { display: grid; gap: 1.4rem; margin: 1.6rem 0 2rem; }
 @media (min-width: 860px) { .ts-exams { grid-template-columns: 1fr 1fr; } }

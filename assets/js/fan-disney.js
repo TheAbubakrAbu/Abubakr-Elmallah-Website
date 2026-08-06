@@ -83,7 +83,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'anaheim', kind: 'cards', title: 'Disneyland Resort', note: 'Anaheim, California \u00b7 both parks, been to all of it',
-    lede: 'The original, and the local one. Walt actually walked around this park, which is a thing no other resort can say, and you can feel it in how tightly everything is packed \u2014 there is no spare land here, so every corner had to earn its place.',
+    lede: 'The original, and the local one. Walt actually walked around this park, which is a thing no other resort can say, and you can feel it in how tightly everything is packed: there is no spare land here, so every corner had to earn its place.',
     items: [
       { title: 'Disneyland Park', sub: '1955', tag: '\u2713 Been', accent: '#8fd8f0',
         desc: 'The one Walt built, opened in a year and a day. Main Street, the castle, Pirates, the Haunted Mansion, the Matterhorn. Smaller than Magic Kingdom and better laid out than it, and the only park where the man himself picked the sightlines.',
@@ -106,12 +106,12 @@ window.FAN_PAGE = {
         desc: 'Galaxy\u2019s Edge and Rise of the Resistance, which is the most technically ambitious ride Disney has ever built. Also Tower of Terror and Rock \u2018n\u2019 Roller Coaster.',
         meta: 'Rise of the Resistance' },
       { title: 'Animal Kingdom', sub: '1998', tag: '\u2713 Been', accent: '#5fd0a0',
-        desc: 'Pandora, a real savannah with actual animals, and Flight of Passage \u2014 which I would put up as the best ride Disney has made. Neither the animals nor Pandora exist on the west coast.',
+        desc: 'Pandora, a real savannah with actual animals, and Flight of Passage, which I would put up as the best ride Disney has made. Neither the animals nor Pandora exist on the west coast.',
         meta: 'Flight of Passage' },
     ] },
 
   { id: 'tokyo', kind: 'cards', title: 'Tokyo Disney Resort', note: 'Chiba, Japan \u00b7 both parks, been to both',
-    lede: 'Not owned by Disney \u2014 it is licensed to the Oriental Land Company, which is exactly why it is the best-run resort in the world. They have money, space and no obligation to copy anybody, so they build things nowhere else has.',
+    lede: 'Not owned by Disney; it is licensed to the Oriental Land Company, which is exactly why it is the best-run resort in the world. They have money, space and no obligation to copy anybody, so they build things nowhere else has.',
     items: [
       { title: 'Tokyo Disneyland', sub: '1983', tag: '\u2713 Been', accent: '#8fd8f0',
         desc: 'The first Disney park outside America, and the one where the standard of upkeep genuinely embarrasses the US resorts. A covered World Bazaar instead of Main Street, because it rains.',
@@ -126,11 +126,11 @@ window.FAN_PAGE = {
       { title: 'Disneyland Paris', accent: '#a89aff', sub: '1992 · not yet', desc: 'The prettiest castle of the lot, by some distance, and Phantom Manor instead of the Haunted Mansion.' },
       { title: 'Walt Disney Studios Park', accent: '#8f98a8', sub: '2002 · not yet', desc: 'Paris\u2019 second gate, currently being rebuilt into Disney Adventure World.' },
       { title: 'Hong Kong Disneyland', accent: '#7fc0f0', sub: '2005 · not yet', desc: 'The smallest of them, with a castle that got a full rebuild in 2020.' },
-      { title: 'Shanghai Disneyland', accent: '#f0a8d8', sub: '2016 · not yet', desc: 'The newest and largest castle, and TRON Lightcycle Power Run \u2014 which Florida then copied.' },
+      { title: 'Shanghai Disneyland', accent: '#f0a8d8', sub: '2016 · not yet', desc: 'The newest and largest castle, and TRON Lightcycle Power Run, which Florida then copied.' },
     ] },
 
   { id: 'florida', kind: 'cards', title: 'Florida Is The Best One', note: 'and it is not close',
-    lede: 'Walt Disney World is the answer. Anaheim has the history and Walt actually walked around it, and I will always love it for that — but Florida is where the scale is. Roughly forty square miles, about the size of San Francisco, bought quietly through shell companies so nobody could work out what was going on and put the price up.',
+    lede: 'Walt Disney World is the answer. Anaheim has the history and Walt actually walked around it, and I will always love it for that, but Florida is where the scale is. Roughly forty square miles, about the size of San Francisco, bought quietly through shell companies so nobody could work out what was going on and put the price up.',
     items: [
       { title: 'Four parks, not two', sub: 'Walt Disney World', tag: 'Scale', accent: '#8fd8f0',
         desc: 'Magic Kingdom, EPCOT, Hollywood Studios and Animal Kingdom, plus two water parks and a whole district on top. Anaheim has two parks you can walk between in ten minutes.',
@@ -162,16 +162,16 @@ window.FAN_PAGE = {
 window.FAN_PLAY = {
   kind: "pick",
   title: "Pick A Park",
-  intro: "Eight of the twelve, across three resorts. Pick one and see whether I have actually been \u2014 and what it is for.",
+  intro: "Eight of the twelve, across three resorts. Pick one and see whether I have actually been, and what it is for.",
   prompt: "Twelve parks, six resorts, three of them done.",
   said: "%.",
   items: [
-    { n: "Disneyland", s: "Anaheim, 1955 \u00b7 been", c: "#8fd8f0", d: "M12 3l7 5v12H5V8z M9 20v-6h6v6 M12 3v-1 M8 11h1 M15 11h1", note: "The original, built in a year and a day, and the only park Walt actually walked around. Tighter than Magic Kingdom and better laid out for it \u2014 no spare land, so every corner had to earn its place." },
+    { n: "Disneyland", s: "Anaheim, 1955 \u00b7 been", c: "#8fd8f0", d: "M12 3l7 5v12H5V8z M9 20v-6h6v6 M12 3v-1 M8 11h1 M15 11h1", note: "The original, built in a year and a day, and the only park Walt actually walked around. Tighter than Magic Kingdom and better laid out for it: no spare land, so every corner had to earn its place." },
     { n: "California Adventure", s: "Anaheim, 2001 \u00b7 been", c: "#7fc0f0", d: "M3 18h18 M5 18l3-6 3 4 2-3 3 5 M9 8a2 2 0 1 1 0 .1", note: "Opened badly and got fixed. Cars Land is the best single land Disney has built anywhere, and Radiator Springs Racers is the best ride at the resort." },
     { n: "Magic Kingdom", s: "Florida, 1971 \u00b7 been", c: "#8fd8f0", d: "M12 3l8 6v11H4V9z M9 20v-7h6v7 M12 3v-1 M7 12h1 M16 12h1", note: "The bigger Disneyland, with the taller castle and the utilidors running underneath so cast members never walk through the wrong land." },
     { n: "EPCOT", s: "Florida, 1982 \u00b7 been", c: "#7fc0f0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M12 3v18 M3 12h18 M6 6l12 12 M18 6L6 18", note: "The strangest and most ambitious park anybody has built. Eleven countries round a lagoon, each staffed by people from that country. Walt wanted a working city; this is what got built instead." },
     { n: "Hollywood Studios", s: "Florida, 1989 \u00b7 been", c: "#a89aff", d: "M4 6h16v12H4z M8 6v12 M16 6v12 M11 10l4 2-4 2z", note: "Galaxy\u2019s Edge and Rise of the Resistance, which is the most technically ambitious ride Disney has ever built. Also Tower of Terror." },
-    { n: "Animal Kingdom", s: "Florida, 1998 \u00b7 been", c: "#5fd0a0", d: "M12 21V9 M12 9c-5 0-7-4-7-7 5 0 7 3 7 7z M12 9c5 0 7-4 7-7-5 0-7 3-7 7z M9 21h6", note: "Pandora, a real savannah, and Flight of Passage \u2014 which I would put up as the best ride Disney has made." },
+    { n: "Animal Kingdom", s: "Florida, 1998 \u00b7 been", c: "#5fd0a0", d: "M12 21V9 M12 9c-5 0-7-4-7-7 5 0 7 3 7 7z M12 9c5 0 7-4 7-7-5 0-7 3-7 7z M9 21h6", note: "Pandora, a real savannah, and Flight of Passage, which I would put up as the best ride Disney has made." },
     { n: "Tokyo Disneyland", s: "Chiba, 1983 \u00b7 been", c: "#8fd8f0", d: "M12 3l7 6v11H5V9z M8 20v-6h8v6 M4 9h16", note: "The first Disney park outside America, and the standard of upkeep genuinely embarrasses the US resorts. A covered World Bazaar instead of Main Street, because it rains." },
     { n: "Tokyo DisneySea", s: "Chiba, 2001 \u00b7 been", c: "#4fb8d0", d: "M12 4c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z M3 20c3-2 5 2 9 0s6-2 9 0", note: "Widely held to be the best theme park on earth and I am not going to argue. Seven nautical ports, a volcano you ride into, and Mediterranean Harbour at night is unmatched anywhere." },
     { n: "Paris, Hong Kong, Shanghai", s: "Not yet", c: "#8f98a8", d: "M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16z M12 8v5 M12 16v.01", note: "The four I have not done. Paris has the prettiest castle by a distance and Phantom Manor instead of the Haunted Mansion; Shanghai has the biggest castle and TRON, which Florida then copied." },

@@ -15,16 +15,16 @@ window.FAN_PAGE = {
     lede: 'Being straight about this one: I watched season one the summer before college, thought it was fine, and did not carry on. It sat unfinished until season four landed and I kept hearing people call the finale one of the best episodes of anything. So I went back, caught up properly, and I was wrong the first time.',
     items: [
       { title: 'Why it did not land at first', sub: 'Summer 2024', tag: 'Honest', accent: '#8f98a8',
-        desc: 'I think I took it as a shock-value show. The first episode has a famous ending and it is easy to read the whole thing as chasing that — gore as the point rather than the consequence. That is a misread, but it is an easy one to make from season one alone.',
+        desc: 'I think I took it as a shock-value show. The first episode has a famous ending and it is easy to read the whole thing as chasing that: gore as the point rather than the consequence. That is a misread, but it is an easy one to make from season one alone.',
         meta: 'Watched S1, stopped' },
       { title: 'What changed my mind', sub: 'Season four', tag: 'The return', accent: '#f0d040',
-        desc: 'Enough people describing one episode as a career best that I could not leave it. Catching up in one run rather than a season at a time also helped — the story is much better read as one long escalation than in yearly instalments.',
+        desc: 'Enough people describing one episode as a career best that I could not leave it. Catching up in one run rather than a season at a time also helped: the story is much better read as one long escalation than in yearly instalments.',
         meta: 'Caught up in one go' },
       { title: 'It is not about the violence', sub: 'What I missed', tag: 'The point', accent: '#e0483a',
         desc: 'The fights are brutal, but the show is about what having a father like that does to somebody, and whether you are obliged to become the thing you came from. The damage is the argument, not the selling point.',
         meta: 'Consequence, not spectacle' },
       { title: 'Where I have got to', sub: 'Caught up', tag: 'Now', accent: '#4f8fe0',
-        desc: 'All four seasons, and I have not read the comic — which by all accounts goes considerably further and considerably darker. That is the next thing.',
+        desc: 'All four seasons, and I have not read the comic, which by all accounts goes considerably further and considerably darker. That is the next thing.',
         meta: 'Comic still unread' },
     ] },
 
@@ -51,7 +51,7 @@ window.FAN_PAGE = {
         desc: 'He wins completely and then cannot finish it, and leaves rather than admit why. The whole rest of the series comes out of that hesitation.',
         meta: 'He could not do it' },
       { title: 'The opening did it first', sub: 'Episode one', tag: 'Bookend', accent: '#8f98a8',
-        desc: 'Season one opens with the Guardians of the Globe — the show\u2019s Justice League — being killed in a room by someone they trusted, before you have met most of them. The finale is that same move at full length, with somebody you do care about.',
+        desc: 'Season one opens with the Guardians of the Globe (the show\u2019s Justice League) being killed in a room by someone they trusted, before you have met most of them. The finale is that same move at full length, with somebody you do care about.',
         meta: 'The Guardians' },
     ] },
 
@@ -107,6 +107,6 @@ window.FAN_PLAY = {
     { n: "\u201cWhat will you have left?\u201d", s: "The five hundred years", c: "#f0d040", d: "M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16z M12 8v4l3 2", note: "Everyone Mark loves is temporary on a Viltrumite timescale, and Nolan believes pointing that out is a kindness. The horror is that he is not wrong about the arithmetic." },
     { n: "\u201cYou\u2019d have me.\u201d", s: "Mark\u2019s answer", c: "#4f8fe0", d: "M12 21s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.4-7 10-7 10z", note: "The line that ends it, and the reason Nolan stops. He wins completely and then cannot finish it, and the entire rest of the series comes out of that hesitation." },
     { n: "The Guardians", s: "Episode one", c: "#8f98a8", d: "M12 3l8 3v6c0 5-3 8-8 9-5-1-8-4-8-9V6z M9 12l2 2 4-4", note: "The show\u2019s Justice League, killed in a room by somebody they trusted, before you have met most of them. The finale is that same move at full length with somebody you do care about." },
-    { n: "The empire", s: "What it is actually about", c: "#a86ff0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h18 M12 3c3 3 3 15 0 18 M12 3c-3 3-3 15 0 18", note: "Not a man who turned evil \u2014 a scout for a galactic empire that has been doing this to planets for centuries and considers it administration. The personal story is the small end of a very large one." },
+    { n: "The empire", s: "What it is actually about", c: "#a86ff0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h18 M12 3c3 3 3 15 0 18 M12 3c-3 3-3 15 0 18", note: "Not a man who turned evil but a scout for a galactic empire that has been doing this to planets for centuries and considers it administration. The personal story is the small end of a very large one." },
   ],
 };

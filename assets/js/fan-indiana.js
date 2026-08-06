@@ -5,7 +5,7 @@ window.FAN_PAGE = {
 
   { id: 'films', kind: 'rank', title: 'The Films', note: '1981 – 2023',
     items: [
-      { num: 'I', title: 'Raiders of the Lost Ark', sub: '1981', desc: 'The best-constructed adventure film ever made. The opening ten minutes teach you the entire character without a word of exposition — the whip, the hat, the nerve and the greed, all before the title card.' },
+      { num: 'I', title: 'Raiders of the Lost Ark', sub: '1981', desc: 'The best-constructed adventure film ever made. The opening ten minutes teach you the entire character without a word of exposition: the whip, the hat, the nerve and the greed, all before the title card.' },
       { num: 'II', title: 'Temple of Doom', sub: '1984', desc: 'A prequel, much darker, and the reason the PG-13 rating exists at all.' },
       { num: 'III', title: 'The Last Crusade', sub: '1989', desc: 'Connery as his father, and a road movie about a man who was never going to be enough for his dad. The tank sequence and the motorcycle chase are the best action in the series.' },
       { num: 'IV', title: 'Kingdom of the Crystal Skull', sub: '2008', desc: 'The fridge. Everyone has an opinion and all of them are the same opinion.' },
@@ -16,16 +16,16 @@ window.FAN_PAGE = {
     lede: 'You can identify him from a shadow on a wall, which almost nothing else in film can claim. Four objects do all of that work, and the whip does most of it.',
     items: [
       { title: 'The whip', sub: 'A bullwhip, about ten feet', tag: 'The signature', accent: '#c98f4f',
-        desc: 'The single best weapon choice in adventure cinema, because it is not really a weapon — it is a tool that happens to be dangerous. It swings him across gaps, disarms people, grabs things out of reach and yanks his hat back. Every other action hero has a gun. He has a length of leather that solves problems in a different way each time, and the sound of it is as recognisable as the theme.',
+        desc: 'The single best weapon choice in adventure cinema, because it is not really a weapon; it is a tool that happens to be dangerous. It swings him across gaps, disarms people, grabs things out of reach and yanks his hat back. Every other action hero has a gun. He has a length of leather that solves problems in a different way each time, and the sound of it is as recognisable as the theme.',
         meta: 'Crack · swing · grab' },
       { title: 'The fedora', sub: 'Brown felt, wide brim', tag: 'The signature', accent: '#b8935a',
-        desc: 'The running gag that became the character: he will risk his life for the hat, every time, and the films know exactly how funny that is. It also does real work — the brim keeps his eyes shadowed so the face reads as a silhouette in almost any light.',
+        desc: 'The running gag that became the character: he will risk his life for the hat, every time, and the films know exactly how funny that is. It also does real work: the brim keeps his eyes shadowed so the face reads as a silhouette in almost any light.',
         meta: 'He always goes back for it' },
       { title: 'The jacket', sub: 'Brown leather', tag: 'The look', accent: '#9a7a4a',
-        desc: 'Worn, creased, and never once clean. The costume is doing something clever — it looks like it has been to all the places the character claims to have been.',
+        desc: 'Worn, creased, and never once clean. The costume is doing something clever: it looks like it has been to all the places the character claims to have been.',
         meta: 'Lived-in on purpose' },
       { title: 'The satchel and the revolver', sub: 'The rest of it', tag: 'The look', accent: '#8f7040',
-        desc: 'A canvas bag for whatever he is carrying out, and a sidearm he would rather not use — which sets up the best joke in the series, where a long, elaborate swordfight is ended in about two seconds.',
+        desc: 'A canvas bag for whatever he is carrying out, and a sidearm he would rather not use, which sets up the best joke in the series, where a long, elaborate swordfight is ended in about two seconds.',
         meta: 'The Cairo swordsman' },
     ] },
 
@@ -84,7 +84,7 @@ window.FAN_PAGE = {
 window.FAN_PLAY = {
   kind: "roll",
   title: "Crack The Whip",
-  intro: "Ten feet of leather, and the best weapon choice in adventure cinema \u2014 because it is not really a weapon. Every other hero has a gun, which means every problem has the same answer. This solves each one differently.",
+  intro: "Ten feet of leather, and the best weapon choice in adventure cinema, because it is not really a weapon. Every other hero has a gun, which means every problem has the same answer. This solves each one differently.",
   prompt: "Loose in your right hand. Roll the wrist, do not swing the arm.",
   button: "Crack it",
   again: "Again",

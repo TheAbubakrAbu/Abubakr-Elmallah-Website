@@ -141,7 +141,7 @@ window.TRANSCRIPT = {
       { name: 'Mathematics: Analysis & Approaches SL', score: 7, year: '2023' },
       { name: 'Computer Science SL', score: 6, year: '2023' },
       { name: 'Theory of Knowledge', score: 'B', year: '2024', letter: true },
-      { name: 'Extended Essay — History', score: 'D', year: '2024', letter: true },
+      { name: 'Extended Essay: History', score: 'D', year: '2024', letter: true },
     ],
   },
 };

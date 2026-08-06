@@ -50,7 +50,7 @@
   .tvs-pin circle { animation: none; }
 }
 
-/* travels.css — /travels/ only. Kept out of fanpages.css because this is not a
+/* travels.css -- /travels/ only. Kept out of fanpages.css because this is not a
    fan page and has no business inheriting from that file's themes. */
 
 body[data-fan="travels"] { --a: #7fb8e8; }
@@ -237,3 +237,147 @@ body[data-fan="travels"] { --a: #7fb8e8; }
   border-left-color: var(--c);
 }
 @media (prefers-reduced-motion: reduce) { .tv-trip { transition: none; } }
+
+/* ───────── the map ─────────
+   A dot-matrix world drawn by travels-map.js: land in grey-blue, the US in its
+   own warm tone, visited countries in the accent, pins in each trip's colour,
+   and flight arcs redrawing themselves from Southern California. */
+.tv-map { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 2.6rem; }
+.tv-map > h2 {
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--mute); margin-bottom: 1.2rem;
+}
+.tvm-frame {
+  position: relative;
+  border: 1px solid var(--line); border-radius: 10px; overflow-x: auto;
+  background:
+    radial-gradient(90% 90% at 50% 0%, rgba(127,184,232,.06), transparent 60%),
+    linear-gradient(170deg, #0a1119, #06090d 80%);
+}
+.tvm-frame svg { display: block; width: 100%; min-width: 720px; height: auto; }
+/* Below ~720px the map is wider than the screen and scrolls inside its own
+   frame, which is invisible unless you say so. */
+.tvm-swipe { display: none; }
+@media (max-width: 760px) {
+  .tvm-swipe {
+    display: block; margin-top: 0.5rem;
+    font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--mute);
+  }
+}
+
+/* named parallels: the equator earns its label, the rest sit back */
+.tvm-par line { stroke: #7fb8e8; stroke-width: 1; opacity: .1; }
+.tvm-par text {
+  font-family: var(--mono); font-size: 7.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; fill: #7fb8e8; opacity: .3;
+  /* knocked out of the dots behind it, or Alaska eats the Arctic Circle */
+  paint-order: stroke; stroke: #070c12; stroke-width: 2.5px; stroke-linejoin: round;
+}
+.tvm-par--eq line { opacity: .22; }
+.tvm-par--eq text { opacity: .5; }
+.tvm-par--trop line { stroke-dasharray: 3 6; }
+.tvm-par--pm line { stroke-dasharray: 2 7; opacity: .12; }
+
+/* dots: one path per class, zero-length segments with round caps */
+.tvm-land, .tvm-us, .tvm-vis { fill: none; stroke-linecap: round; }
+.tvm-land { stroke: #3d5468; stroke-width: 2.1; opacity: .5; }
+.tvm-us   { stroke: #c8a878; stroke-width: 2.3; opacity: .8; }
+.tvm-vis  { stroke: #8fc4ee; stroke-width: 2.6; opacity: .95;
+  filter: drop-shadow(0 0 3px rgba(127,184,232,.7)); }
+
+/* flight arcs: normalized with pathLength=1 so one dash rule fits them all */
+.tvm-arcs path {
+  fill: none; stroke: var(--pc); stroke-width: 1.1; stroke-linecap: round;
+  stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0;
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--pc) 70%, transparent));
+  animation: tvm-fly 15s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.79s);
+}
+@keyframes tvm-fly {
+  0%        { stroke-dashoffset: 1; opacity: 0; }
+  5%        { opacity: .8; }
+  32%       { stroke-dashoffset: 0; opacity: .8; }
+  50%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+/* pins. The hit circle is the pointer target: the visible dot is 3px across,
+   which is nowhere near a comfortable click, let alone a thumb. */
+.tvm-pins .tvm-pin { cursor: pointer; }
+.tvm-hit { fill: transparent; }
+.tvm-lay .tvm-hit { display: none; }
+.tvm-pin .tvm-dot, .tvm-home .tvm-dot {
+  fill: var(--pc, #dfe9f2);
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--pc, #dfe9f2) 85%, transparent));
+}
+.tvm-pin .tvm-halo, .tvm-home .tvm-halo {
+  fill: none; stroke: var(--pc, #dfe9f2); stroke-width: 1; opacity: .4;
+  animation: tvm-pulse 3.2s ease-in-out infinite alternate;
+}
+.tvm-pins .tvm-pin:nth-child(even) .tvm-halo { animation-delay: -1.6s; }
+@keyframes tvm-pulse { from { opacity: .12; } to { opacity: .55; } }
+.tvm-pin text, .tvm-home text {
+  font-family: var(--mono); font-size: 9.5px; fill: #d8e8f5;
+  paint-order: stroke; stroke: #06090d; stroke-width: 3px; stroke-linejoin: round;
+  opacity: 0; transition: opacity .15s ease; pointer-events: none;
+}
+.tvm-pin:hover text, .tvm-pin.is-hot text { opacity: 1; }
+.tvm-home text { opacity: .55; font-size: 8.5px; }
+.tvm-home .tvm-dot { --pc: #ffd9a0; }
+.tvm-home .tvm-halo { --pc: #ffd9a0; animation-duration: 2.2s; }
+
+/* layovers: barely there, on purpose */
+.tvm-pin--lay .tvm-dot { r: 1.8; opacity: .5; filter: none; }
+.tvm-pin--lay .tvm-halo { display: none; }
+.tvm-pin--lay text { font-size: 8px; }
+.tvm-pin--lay:hover text { opacity: .8; }
+
+/* what the four dot colours mean, before the country list */
+.tvm-key { display: flex; flex-wrap: wrap; gap: 0.5rem 1.1rem; margin-top: 0.9rem; }
+.tvm-k {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mute);
+}
+.tvm-k::before {
+  content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor;
+}
+.tvm-k--vis::before { background: #8fc4ee; box-shadow: 0 0 5px rgba(143,196,238,.8); }
+.tvm-k--us::before { background: #c8a878; box-shadow: 0 0 5px rgba(200,168,120,.7); }
+.tvm-k--lay::before { background: #9fb6c8; opacity: .5; width: 5px; height: 5px; }
+.tvm-k--land::before { background: #3d5468; }
+
+/* legend chips light up their pin; everything else steps back */
+.tvm-legend { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
+.tvm-legend button {
+  display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer;
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.3rem 0.55rem; border-radius: 999px; color: var(--ink-dim);
+  background: transparent; border: 1px solid var(--line);
+  transition: border-color .14s ease, color .14s ease, background .14s ease;
+}
+.tvm-legend button i {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--pc);
+  box-shadow: 0 0 5px color-mix(in srgb, var(--pc) 70%, transparent);
+}
+.tvm-legend button:hover, .tvm-legend button.is-hot {
+  border-color: var(--pc); color: var(--ink);
+  background: color-mix(in srgb, var(--pc) 10%, transparent);
+}
+.is-heating .tvm-pins .tvm-pin:not(.is-hot),
+.is-heating .tvm-lay .tvm-pin:not(.is-hot) { opacity: .18; }
+.is-heating .tvm-arcs path:not(.is-hot) { animation-play-state: paused; opacity: 0; }
+.is-heating .tvm-arcs path.is-hot {
+  animation: none; stroke-dashoffset: 0; opacity: .9; stroke-width: 1.5;
+}
+.tvm-pin, .tvm-arcs path { transition: opacity .2s ease; }
+
+.tvm-note {
+  margin-top: 0.9rem; max-width: 62ch;
+  font-size: 0.8rem; line-height: 1.65; color: var(--mute);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tvm-arcs path { animation: none; stroke-dashoffset: 0; opacity: .3; }
+  .tvm-pin .tvm-halo, .tvm-home .tvm-halo { animation: none; }
+}

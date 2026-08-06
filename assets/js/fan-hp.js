@@ -201,7 +201,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'quidditch', kind: 'cards', title: 'Quidditch', note: 'seven a side, four balls, no clock',
-    lede: 'Seven players, three hoops at each end, and a game that only ends when somebody catches something the size of a walnut. It is gloriously badly balanced \u2014 the Snitch is worth a hundred and fifty and everything else is worth ten \u2014 and every fan knows it and nobody wants it fixed. Ravenclaw play in blue, and Cho Chang is the reason half the Seekers in my year existed.',
+    lede: 'Seven players, three hoops at each end, and a game that only ends when somebody catches something the size of a walnut. It is gloriously badly balanced (the Snitch is worth a hundred and fifty and everything else is worth ten), and every fan knows it and nobody wants it fixed. Ravenclaw play in blue, and Cho Chang is the reason half the Seekers in my year existed.',
     items: [
       { title: 'Seeker', sub: 'One per side', tag: 'Position', accent: '#d3a625',
         desc: 'Chases the Golden Snitch and ends the match by catching it. Usually the smallest and fastest player on the pitch, which is how a first-year got the job.', meta: '150 points \u00b7 ends the game' },
