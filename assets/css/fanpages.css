@@ -212,6 +212,145 @@
 
 .fan-tiles--compact .fan-tiletext em { font-size: 0.71rem; line-height: 1.45; }
 
+/* ── the controls row: sort axes on the left, the tally pill on the right ── */
+.fan-sort {
+  display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin: 0 0 1rem;
+}
+
+.fan-sortset { display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+
+.fan-sort-k {
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); margin-right: 0.15rem;
+}
+
+.fan-sortbtn {
+  font: inherit; cursor: pointer; padding: 0.34rem 0.62rem 0.3rem;
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-dim);
+  border: 1px solid var(--line); border-radius: 999px;
+  background: rgba(255,255,255,0.02);
+  transition: color .25s, border-color .25s, background .25s;
+}
+
+.fan-sortdir i { font-style: normal; font-size: 0.8rem; line-height: 1; }
+
+/* the tally pill: how many of these I have actually finished */
+.fan-tally {
+  margin-left: auto; display: inline-flex; align-items: baseline; gap: 0.3rem;
+  padding: 0.3rem 0.7rem 0.26rem; border-radius: 999px;
+  border: 1px solid rgba(95,208,160,0.4); background: rgba(95,208,160,0.09);
+}
+
+.fan-tally b { font-family: var(--mono); font-size: 0.8rem; font-weight: 600; color: #7fe0b8; }
+
+.fan-tally em { font-style: normal; color: var(--mute); font-size: 0.7rem; }
+
+.fan-tally i {
+  font-style: normal; font-family: var(--mono); font-size: 0.54rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
+  margin-left: 0.15rem;
+}
+
+.fan-sortbtn:hover {
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--a, #f5c63c) 45%, transparent);
+}
+
+.fan-sortbtn.is-on {
+  color: var(--a, var(--gold));
+  border-color: color-mix(in srgb, var(--a, #f5c63c) 55%, transparent);
+  background: color-mix(in srgb, var(--a, #f5c63c) 10%, transparent);
+}
+
+.fan-sortbtn:focus-visible { outline: 2px solid var(--a, var(--gold)); outline-offset: 2px; }
+
+/* ── a tile's own screenshot, and its completion stamp ──
+   Green rather than the page accent on purpose: "I finished this" is the same
+   claim on every page, so it should not repaint itself per franchise. */
+/* The text column is a flex item sized from its content, and an <img> inside it
+   would otherwise let a wide screenshot push the tile past its grid column.
+   Keyed on the shot, not on .is-done: a tile can carry one without the other. */
+.fan-tile:has(.fan-tileshot) .fan-tiletext { min-width: 0; }
+
+.fan-tileshot {
+  display: block; max-width: 100%; margin-top: 0.5rem; border-radius: 6px; overflow: hidden;
+  border: 1px solid var(--line); line-height: 0;
+  transition: border-color .3s;
+}
+
+.fan-tileshot:hover { border-color: color-mix(in srgb, var(--a, #f5c63c) 55%, transparent); }
+
+/* No forced aspect-ratio and no cropping: these are Steam library headers, and
+   the play time and achievement count sit in the strip along the bottom, which
+   is the whole reason the shot is here. */
+.fan-tileshot img { display: block; width: 100%; height: auto; }
+
+/* `cols: N` on a tiles section. Below the breakpoints it still reflows on its
+   own; the fixed count only kicks in once each column can actually hold a
+   screenshot at a sensible size. */
+.fan-tiles[data-cols] { grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); }
+
+@media (min-width: 900px) {
+  .fan-tiles[data-cols] { grid-template-columns: repeat(var(--cols, 3), 1fr); }
+}
+
+.fan-done {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.3rem 0.68rem 0.26rem;
+  border: 1px solid rgba(95,208,160,0.42); border-radius: 999px;
+  background: rgba(95,208,160,0.09);
+}
+
+.fan-done span {
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em;
+  color: #7fe0b8; font-style: normal; line-height: 1.2;
+}
+
+.fan-done .fan-done-h { color: var(--ink-dim); letter-spacing: 0.04em; }
+
+/* play time without a completion claim: same chip, no green */
+.fan-done--part { border-color: var(--line); background: rgba(255,255,255,0.025); }
+
+.fan-done--part .fan-done-h { color: var(--ink-dim); }
+
+/* the chips row: what it took me, then what it was reckoned to take. The row
+   owns the top margin so the two chips cannot double it up between them. */
+.fan-chips {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem;
+  align-self: flex-start; margin-top: 0.55rem;
+}
+
+.fan-chips:empty { display: none; margin-top: 0; }
+
+.fan-proj {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.3rem 0.68rem 0.26rem;
+  border: 1px solid var(--line); border-radius: 999px;
+  background: rgba(255,255,255,0.025);
+}
+
+.fan-proj span {
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.04em;
+  font-style: normal; line-height: 1.2; color: var(--ink-dim);
+}
+
+.fan-proj .fan-proj-l {
+  font-size: 0.5rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
+}
+
+/* under the projection is the good direction, so it gets the green */
+.fan-proj .fan-proj-d.is-under { color: #7fe0b8; }
+
+.fan-proj .fan-proj-d.is-over { color: #e8a24c; }
+
+.fan-tally--time { border-color: var(--line); background: rgba(255,255,255,0.025); }
+
+.fan-tally--time b { color: var(--ink); }
+
+.fan-tile.is-done .fan-swatch { box-shadow: 0 0 12px -1px var(--a, #f5c63c), 0 0 0 3px rgba(95,208,160,0.18); }
+
 /* ── kind: quotes ── */
 .fan-quotes {
   display: grid; gap: 1rem;
