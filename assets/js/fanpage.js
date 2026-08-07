@@ -45,6 +45,118 @@
       + esc(it.link || 'Official site') + ' \u2197</a>';
   };
 
+  /* optional completion stamp. `done: true` is the green hundred-percent chip and
+     `hours` rides along inside it; `hours` on its own is a neutral chip that says
+     how long I put in WITHOUT claiming I finished it, which is the honest way to
+     show a title I have a play time for but never took all the way.
+
+     Deliberately built from <span>s rather than <b>/<i>, because inside a tile
+     those two tags already carry the title and sub styling. */
+  var done = function (it) {
+    if (!it.done && !it.hours) return '';
+    if (!it.done) {
+      return '<span class="fan-done fan-done--part">'
+        + '<span class="fan-done-h">' + esc(it.hours) + ' h played</span></span>';
+    }
+    return '<span class="fan-done"><span>' + esc(it.done === true ? '100%' : it.done) + '</span>'
+      + (it.hours ? '<span class="fan-done-h">' + esc(it.hours) + ' h</span>' : '')
+      + '</span>';
+  };
+
+  /* `proj`: how long a thing is reckoned to take, from an outside source. On an
+     item I have actually finished it also prints the gap between that estimate
+     and my own time, which is the entire point of carrying it. */
+  var proj = function (it) {
+    if (it.proj == null) return '';
+    var p = parseFloat(it.proj), h = parseFloat(it.hours);
+    var gap = (it.done && !isNaN(h) && !isNaN(p)) ? h - p : null;
+    return '<span class="fan-proj">'
+      + '<span class="fan-proj-v">~' + esc(it.proj) + ' h</span>'
+      + (gap === null
+          ? '<span class="fan-proj-l">projected</span>'
+          : '<span class="fan-proj-d ' + (gap <= 0 ? 'is-under' : 'is-over') + '">'
+            + (gap <= 0 ? '−' : '+') + Math.abs(gap).toFixed(1) + ' h</span>')
+      + '</span>';
+  };
+
+  /* optional single screenshot on an item. gallery.js picks the link up on its
+     own (it claims every in-page link that points at an image), so this opens in
+     the shared lightbox rather than a new tab. */
+  var shot = function (it) {
+    if (!it.shot) return '';
+    return '<a class="fan-tileshot" href="' + esc(it.shot) + '" target="_blank" rel="noopener">'
+      + '<img src="' + esc(it.shot) + '" alt="' + esc(it.shotAlt || it.title) + '" loading="lazy" />'
+      + '</a>';
+  };
+
+  /* A section may carry `sortable`, which puts an order control above its tiles.
+     Two independent axes: WHAT to sort on, and WHICH WAY.
+
+       sortable: { label, by: [ { key, label, asc, desc }, \u2026 ] }
+
+     Each `by` entry names an item field and the words for its two directions,
+     which differ per field (oldest/newest reads wrong for a duration). Those
+     words ride on the key button as data-asc / data-desc, so picking a new key
+     relabels the direction buttons with no shared state to keep in sync.
+
+     The single-key shorthand `sortable: { key, asc, desc }` still works. */
+  var sortBy = function (s) {
+    if (!s.sortable) return [];
+    return s.sortable.by || [{ key: s.sortable.key || 'year', label: s.sortable.label,
+      asc: s.sortable.asc, desc: s.sortable.desc }];
+  };
+
+  var sorter = function (s) {
+    var by = sortBy(s);
+    if (!by.length) return '';
+    var first = by[0];
+    return '<span class="fan-sortset" role="group" aria-label="Sort by">'
+      + '<span class="fan-sort-k">' + esc(s.sortable.label || 'Sort') + '</span>'
+      + by.map(function (b, i) {
+          return '<button class="fan-sortbtn' + (i ? '' : ' is-on') + '" type="button"'
+            + ' data-key="' + esc(b.key) + '"'
+            + ' data-asc="' + esc(b.asc || 'Ascending') + '"'
+            + ' data-desc="' + esc(b.desc || 'Descending') + '"'
+            + ' aria-pressed="' + (i ? 'false' : 'true') + '">' + esc(b.label || b.key) + '</button>';
+        }).join('')
+      + '</span>'
+      + '<span class="fan-sortset" role="group" aria-label="Sort direction">'
+      + ['asc', 'desc'].map(function (d, i) {
+          return '<button class="fan-sortbtn fan-sortdir' + (i ? '' : ' is-on') + '" type="button"'
+            + ' data-dir="' + d + '" aria-pressed="' + (i ? 'false' : 'true') + '">'
+            + '<i aria-hidden="true">' + (i ? '\u2193' : '\u2191') + '</i>'
+            + '<span>' + esc(first[d] || (i ? 'Descending' : 'Ascending')) + '</span></button>';
+        }).join('')
+      + '</span>';
+  };
+
+  /* `tally: true` (or a caption string) counts how many items are `done` out of
+     how many there are, as a pill on the controls row. Counted from the data at
+     render time rather than written down, so it cannot drift from the list. */
+  var tally = function (s) {
+    if (!s.tally || !s.items) return '';
+    var fin = s.items.filter(function (it) { return it.done; });
+    var pill = '<span class="fan-tally"><b>' + fin.length + '</b><em>/</em><b>' + s.items.length + '</b>'
+      + '<i>' + esc(s.tally === true ? 'completed' : s.tally) + '</i></span>';
+
+    /* Second pill: my total against the projected total, over the finished ones
+       only, since an unfinished title has no time of mine to weigh against. */
+    var mine = 0, est = 0, n = 0;
+    fin.forEach(function (it) {
+      var h = parseFloat(it.hours), p = parseFloat(it.proj);
+      if (!isNaN(h) && !isNaN(p)) { mine += h; est += p; n++; }
+    });
+    if (!n) return pill;
+    var gap = mine - est;
+    return pill + '<span class="fan-tally fan-tally--time"><b>' + mine.toFixed(1) + ' h</b>'
+      + '<i>' + (gap <= 0 ? '−' : '+') + Math.abs(gap).toFixed(0) + ' h vs ' + est.toFixed(0) + ' projected</i></span>';
+  };
+
+  var controls = function (s) {
+    var bar = sorter(s) + tally(s);
+    return bar ? '<div class="fan-sort reveal">' + bar + '</div>' : '';
+  };
+
   var KINDS = {
     cards: function (s) {
       return '<div class="fan-cards">' + s.items.map(function (it) {
@@ -83,14 +195,30 @@
       }).join('') + '</div>';
     },
 
-    // `compact: true` packs the tiles tighter, for the long sets (30 places)
+    /* `compact: true` packs the tiles tighter, for the long sets (30 places).
+       `cols: N` pins the row to exactly N once there is room for it, instead of
+       letting auto-fill decide; use it when the tiles carry something with a
+       fixed shape (a screenshot) that needs the width. */
     tiles: function (s) {
-      return '<div class="fan-tiles' + (s.compact ? ' fan-tiles--compact' : '') + '">' + s.items.map(function (it) {
-        return '<div class="fan-tile reveal"' + a(it) + '>'
+      var keys = sortBy(s).map(function (b) { return b.key; });
+      return '<div class="fan-tiles' + (s.compact ? ' fan-tiles--compact' : '') + '"'
+        + (s.cols ? ' data-cols style="--cols:' + esc(s.cols) + '"' : '')
+        + (keys.length ? ' data-sortable="1"' : '') + '>' + s.items.map(function (it, i) {
+        /* One data-sort-<key> per sortable field. A field the item does not have
+           is left off entirely, which is what sinks it to the bottom of that
+           sort rather than treating a missing value as zero. */
+        return '<div class="fan-tile reveal' + (it.done ? ' is-done' : '') + '"'
+          + (keys.length ? ' data-i="' + i + '"' : '')
+          + keys.map(function (k) {
+              return it[k] == null || it[k] === '' ? ''
+                : ' data-sort-' + k + '="' + esc(it[k]) + '"';
+            }).join('') + a(it) + '>'
           + '<span class="fan-swatch" aria-hidden="true"></span>'
           + '<span class="fan-tiletext"><b>' + esc(it.title) + '</b>'
           + (it.sub ? '<i>' + esc(it.sub) + '</i>' : '')
           + (it.desc ? '<em>' + esc(it.desc) + '</em>' : '')
+          + shot(it)
+          + '<span class="fan-chips">' + done(it) + proj(it) + '</span>'
           + out(it) + '</span>'
           + '</div>';
       }).join('') + '</div>';
@@ -207,6 +335,7 @@
       +   (s.note ? '<span class="subsec-yr">' + esc(s.note) + '</span>' : '')
       + '</h3>'
       + (s.lede ? '<p class="fan-lede reveal">' + esc(s.lede) + '</p>' : '')
+      + controls(s)
       + build(s)
       + '</section>';
   }
@@ -236,6 +365,82 @@
   if (tail) {
     tail.innerHTML = all.filter(function (s) { return s.mount === 'end'; }).map(markup).join('');
   }
+
+  /* A tile screenshot whose file is not in the repo yet should leave no trace,
+     rather than a broken-image glyph sitting in the middle of the tile. */
+  Array.prototype.forEach.call(document.querySelectorAll('.fan-tileshot img'), function (img) {
+    img.addEventListener('error', function () {
+      var link = img.closest('.fan-tileshot');
+      if (link) link.remove();
+    });
+  });
+
+  /* the sort control. Reordering is appendChild on nodes that are already in the
+     document, so a tile keeps whatever reveal.js has done to it and nothing
+     flashes. Ties fall back to the authored position, mirrored with the
+     direction, so a year with several titles in it reads the same way round as
+     the years above and below it.
+
+     Runs after BOTH mounts are written, so a sortable section can sit in either.
+     `data-sort` is compared as a number when both sides parse as one, and as a
+     string otherwise, so this works for years and for titles alike. */
+  function applySort(group, key, dir) {
+    var sign = dir === 'asc' ? 1 : -1;
+    Array.prototype.slice.call(group.children).sort(function (x, y) {
+      var vx = x.getAttribute('data-sort-' + key), vy = y.getAttribute('data-sort-' + key);
+      /* An item with no value for this field goes last BOTH ways round: it is
+         unknown, not smallest, so flipping the direction must not float it to
+         the top. Hence the check sits outside the sign. */
+      if ((vx == null) !== (vy == null)) return vx == null ? 1 : -1;
+      if (vx != null) {
+        var nx = parseFloat(vx), ny = parseFloat(vy);
+        var d = (isNaN(nx) || isNaN(ny)) ? String(vx).localeCompare(String(vy)) : nx - ny;
+        if (d) return sign * d;
+      }
+      return sign * (+y.getAttribute('data-i') - +x.getAttribute('data-i'));
+    }).forEach(function (t) { group.appendChild(t); });
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.fan-sort'), function (bar) {
+    var sec = bar.closest('.fan-sec');
+    var group = sec && sec.querySelector('[data-sortable]');
+    var keyBtns = bar.querySelectorAll('[data-key]');
+    var dirBtns = bar.querySelectorAll('[data-dir]');
+    if (!group || !keyBtns.length) return;          // a tally-only bar has nothing to wire
+
+    var key = keyBtns[0].getAttribute('data-key');
+    var dir = 'asc';
+
+    function press(list, active) {
+      Array.prototype.forEach.call(list, function (b) {
+        var on = b === active;
+        b.classList.toggle('is-on', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+
+    bar.addEventListener('click', function (e) {
+      var k = e.target.closest('[data-key]'), d = e.target.closest('[data-dir]');
+      if (k) {
+        key = k.getAttribute('data-key');
+        press(keyBtns, k);
+        // the two directions mean different things per field, so relabel them
+        Array.prototype.forEach.call(dirBtns, function (b) {
+          var label = b.querySelector('span');
+          if (label) label.textContent = k.getAttribute('data-' + b.getAttribute('data-dir'));
+        });
+      } else if (d) {
+        dir = d.getAttribute('data-dir');
+        press(dirBtns, d);
+      } else return;
+      applySort(group, key, dir);
+    });
+
+    /* The data files are authored newest-first (that is how TT Games list their
+       own catalogue), so the default ascending view has to be applied, not
+       assumed. */
+    applySort(group, key, dir);
+  });
 
   /* a saber stays lit after a click, so you can leave the whole rack burning */
   root.addEventListener('click', function (e) {

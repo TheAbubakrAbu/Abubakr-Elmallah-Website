@@ -71,6 +71,9 @@
 
 .lg-stud-pick { display: flex; gap: 0.7rem; flex-wrap: wrap; margin: 1.2rem 0 1rem; }
 
+/* forces the row break: four studs above, the three collectibles below */
+.lg-studbreak { flex: 0 0 100%; height: 0; margin: 0; }
+
 /* Each button is a stud seen at a slight angle: a disc on a short cylinder. */
 .lg-studbtn {
   position: relative; font: inherit; cursor: pointer; padding: 0.55rem 0.7rem 0.5rem;

@@ -48,7 +48,18 @@
     var current = 0;
     var total = 0;
 
+    /* The four studs go on the first line and the three collectibles on the
+       second, because they are different kinds of thing: studs are currency and
+       have a value, the others are the things you are actually hunting. The
+       break is a zero-height flex item forced to full width, which is the only
+       way to hard-wrap a flex row without splitting it into two containers. */
+    var broke = false;
+
     var buttons = STUDS.map(function (s, i) {
+      if (!s.v && !broke) {
+        broke = true;
+        pick.appendChild(document.createElement('span')).className = 'lg-studbreak';
+      }
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'lg-studbtn lg-studbtn--' + s.k;
