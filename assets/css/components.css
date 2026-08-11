@@ -359,6 +359,11 @@ a.app-badge:hover {
 }
 .proj-card:hover .proj-titlerow h3 { color: var(--green-2); }
 .proj-yr { font-family: var(--mono); font-size: 0.7rem; color: var(--mute); flex: none; }
+/* the school year it was built in, under the title */
+.proj-grade {
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em;
+  color: var(--green-2); margin-top: -0.25rem;
+}
 .proj-info .app-links { margin-top: auto; padding-top: 0.4rem; font-size: 0.72rem; justify-content: flex-end; }
 
 .hs-extra {
@@ -831,6 +836,12 @@ html.intro-lock { overflow: hidden; }
 /* ───────────── Embed pages (Résumé / LinkedIn / GitHub) ───────────── */
 .embed { padding: 6rem var(--gutter) 4rem; max-width: var(--maxw); }
 .embed-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.4rem 0 2rem; }
+/* download arrow points down, so nudge it down on hover instead of right */
+.cta--download:hover svg { transform: translateY(3px); }
+@media (max-width: 560px) {
+  .embed-actions { gap: 0.6rem; }
+  .embed-actions .cta { flex: 1 1 100%; justify-content: space-between; }
+}
 .embed-wrap {
   border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
   background: var(--bg-2);

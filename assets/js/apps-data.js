@@ -19,26 +19,31 @@
                only rendered on pages that opt in via data-cards-cat
      shots     award screenshots: [{ src, alt, caption, imgClass? }] (src under assets/img/) */
 
+/* NEVER hand-write a card in a page. If an app or project shows up on two
+   pages it is ONE entry here, rendered in both places via data-cards /
+   data-projects. (These used to be copy-pasted <article> blocks, and the
+   copies had already drifted apart.) */
+
 window.APP_CARDS = {
 
   /* ---- UCI Work ---- */
   'zotfinder': {
     icon: 'apps/zotfinder.jpg', alt: 'ZOTFinder app icon',
-    title: 'ZOTFinder', sub: '2024 · Interactive campus map',
-    desc: 'A free interactive campus map for UCI. Search buildings, find professor offices, view emergency info, and get directions with estimated travel times.',
+    title: 'ZOTFinder', sub: 'September 14, 2014 · Remastered by me May 29, 2025',
+    desc: 'A free interactive campus map for UCI. Search buildings, find professor offices, view emergency info, and get directions with estimated travel times. On the App Store since 2014; I rewrote it from the ground up in SwiftUI for the 2025 remaster, giving it a brand new modern look.',
     tags: 'iOS · Swift · SwiftUI',
     links: [{ label: 'App Store ↗', href: 'https://apps.apple.com/us/app/zotfinder/id915256719?platform=iphone' }],
   },
   'uci-now': {
     icon: 'apps/uci-now.jpg', alt: 'UCI Now app icon',
-    title: 'UCI Now', sub: '2024 · Student Center companion',
-    desc: 'Navigate the Student Center, book study rooms, find Ring Mall events, and view real-time campus activities with searchable maps and listings.',
+    title: 'UCI Now', sub: 'July 23, 2018 · Remastered by me August 31, 2025',
+    desc: 'Navigate the Student Center, book study rooms, find Ring Mall events, and view real-time campus activities with searchable maps and listings. On the App Store since 2018; I rewrote it from the ground up in SwiftUI for the 2025 remaster, giving it a brand new modern look.',
     tags: 'iOS · Swift · SwiftUI',
     links: [{ label: 'App Store ↗', href: 'https://apps.apple.com/us/app/uci-now/id1382415698?platform=iphone' }],
   },
   'uci-esports': {
     icon: 'apps/uci-esports.jpg', alt: 'UCI Esports app icon',
-    title: 'UCI Esports', sub: '2025 · Arena &amp; events',
+    title: 'UCI Esports', sub: 'March 2, 2026 · Arena &amp; events',
     desc: 'Check arena hours, reserve PCs, discover tournaments and events, watch live Twitch streams, and get reminders so you never miss a match.',
     tags: 'iOS · Swift · SwiftUI',
     links: [{ label: 'App Store ↗', href: 'https://apps.apple.com/us/app/uci-esports/id6751213697' }],
@@ -82,7 +87,7 @@ window.APP_CARDS = {
   },
   'sabacc-droid': {
     icon: 'bots/sabacc-droid.png', alt: 'Sabacc Droid icon',
-    title: 'Sabacc Droid', sub: '2024 · Play Sabacc on Discord',
+    title: 'Sabacc Droid', sub: 'November 14, 2024 · Play Sabacc on Discord',
     desc: 'A Discord bot that brings the Star Wars card game Sabacc to your server, with multiplayer rounds, rules variants, and a galaxy-flavored interface.',
     tags: 'Discord · Python',
     cat: { label: 'Star Wars ↗', href: '/star-wars/', cls: 'app-cat--starwars' },
@@ -93,7 +98,7 @@ window.APP_CARDS = {
   },
   'aurebesh-droid': {
     icon: 'bots/aurebesh-droid.png', alt: 'Aurebesh Droid icon',
-    title: 'Aurebesh Droid', sub: '2025 · Aurebesh Translator on Discord',
+    title: 'Aurebesh Droid', sub: 'June 18, 2025 · Aurebesh Translator on Discord',
     desc: 'Translate English to and from Aurebesh right inside Discord. Fast, server-friendly, and written in C++ for speed.',
     tags: 'Discord · C++',
     cat: { label: 'Star Wars ↗', href: '/star-wars/', cls: 'app-cat--starwars' },
@@ -106,9 +111,9 @@ window.APP_CARDS = {
   /* ---- Islam ---- */
   'quran-tajweed-engine': {
     icon: 'apps/quran-tajweed-engine.jpg', alt: 'Quran Tajweed Engine logo',
-    title: 'Quran Tajweed Engine', sub: 'Open source',
-    desc: 'A tajwīd rule engine for the Quran: it takes the Uthmani text and works out where each rule applies (the idghām, the ikhfāʾ, the qalqalah, the madd and its lengths) so an app can colour the letters correctly instead of shipping a hand-marked copy. This is the engine behind the colour-coded recitation in Al-Quran.',
-    tags: 'Tajwīd rules · Uthmani script · JSON output',
+    title: 'Quran Tajweed Engine', sub: 'June 25, 2026 · Open source',
+    desc: 'A tajweed rule engine for the Quran: it takes the Uthmani text and works out where each rule applies (the idghām, the ikhfāʾ, the qalqalah, the madd and its lengths) so an app can colour the letters correctly instead of shipping a hand-marked copy. This is the engine behind the colour-coded recitation in Al-Quran.',
+    tags: 'Tajweed rules · Uthmani script · JSON output',
     cat: { label: 'Islamic ↗', href: '/al-islam/', cls: 'app-cat--islamic' },
     links: [
       { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Quran-Tajweed-Engine' },
@@ -116,15 +121,14 @@ window.APP_CARDS = {
   },
 
   'hadith-json-engine': {
-    /* No logo yet -- reuses the Al-Quran icon rather than pointing at a file
-       that does not exist. Swap this the moment there is one. */
-    icon: 'apps/al-quran.jpg', alt: 'Hadith JSON Engine',
-    title: 'Hadith JSON Engine', sub: 'In progress',
+    icon: 'apps/hadith-json-engine.jpg', alt: 'Hadith JSON Engine logo',
+    title: 'Hadith JSON Engine', sub: 'August 10, 2026 · Open source',
     desc: 'The same idea applied to ḥadīth: turning the major collections into clean, structured JSON (book, chapter, number, Arabic, translation and grading) so anything built on top of them starts from consistent data rather than scraped HTML.',
     tags: 'Structured ḥadīth · JSON',
     cat: { label: 'Islamic ↗', href: '/al-islam/', cls: 'app-cat--islamic' },
-    dead: true,
-    deadNote: 'Not published yet',
+    links: [
+      { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Hadith-JSON-Engine' },
+    ],
   },
 
   'al-adhan': {
@@ -176,6 +180,20 @@ window.APP_CARDS = {
     ],
   },
 
+  /* ---- Web ---- */
+  'website': {
+    /* No bespoke logo: reuses the site's own PWA icon, which is the closest
+       thing it has to an app icon. */
+    icon: 'icons/icon-192.png', alt: 'abubakrelmallah.com icon',
+    title: 'This Website', sub: 'June 24, 2026 · abubakrelmallah.com',
+    desc: 'The site you are reading. Hand-written Jekyll and vanilla JavaScript with no framework: a custom cursor, a flow-field canvas, magnetic hover, scroll reveals, and a service worker so every page still opens offline. The Star Wars, J.A.R.V.I.S. and Marauder’s Map interfaces are the same content re-skinned.',
+    tags: 'Jekyll · Vanilla JS · Offline PWA',
+    links: [
+      { label: 'Visit ↗', href: 'https://abubakrelmallah.com' },
+      { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Abubakr-Elmallah-Website' },
+    ],
+  },
+
   /* ---- Deprecated ---- */
   'icoi': {
     icon: 'apps/icoi.jpg', alt: 'Islamic Center of Irvine (ICOI) app icon',
@@ -189,6 +207,81 @@ window.APP_CARDS = {
     stackLinks: true,
     links: [
       { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Islamic-Center-of-Irvine' },
+    ],
+  },
+
+};
+
+/* The high-school projects: a different card shape (.proj-card, a screenshot
+   instead of an app icon), so a separate table with its own fields.
+   Rendered with <div class="hs-grid" data-projects="id1,id2,…">.
+
+     img    required, screenshot path under assets/img/
+     alt    required, screenshot alt text
+     title  required   year required, the pill on the right of the title
+     grade  required, the school year it was built in, shown under the title
+     tags   required, footer tech line (use ' · ' separators)
+     links  footer links: [{ label, href }]; the first one is also where the
+            screenshot links to unless `href` overrides it */
+window.PROJ_CARDS = {
+
+  'hs-datapad': {
+    img: 'highschool/datapad.png', alt: 'Star Wars Datapad, a Code.org App Lab project',
+    title: 'Star Wars Datapad', year: '2021',
+    grade: '10th grade',
+    tags: 'Code.org · JavaScript',
+    links: [
+      { label: 'Code.org ↗', href: 'https://studio.code.org/projects/applab/3GTPl_9o0qf9zWutRclvLYYoJRopnjTmVTdm3cXHELc' },
+      { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Star-Wars-Datapad' },
+    ],
+  },
+  'hs-calculator': {
+    img: 'highschool/calculator.png', alt: 'Calculator, a Code.org App Lab project',
+    title: 'Calculator', year: '2021',
+    grade: '10th grade',
+    tags: 'Code.org · JavaScript',
+    links: [
+      { label: 'Code.org ↗', href: 'https://studio.code.org/projects/applab/3WR9OYo6Ec9k-4s11Py6MJgsYf2YXyuzsq3icY61NWg' },
+      { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Calculator' },
+    ],
+  },
+  'hs-periodic-table': {
+    img: 'highschool/periodic-table.png', alt: 'Periodic Table, a Code.org App Lab project',
+    title: 'Periodic Table', year: '2022',
+    grade: '10th grade',
+    tags: 'Code.org · JavaScript',
+    links: [
+      { label: 'Code.org ↗', href: 'https://studio.code.org/projects/applab/n4gY-ijCWHme3Gd-qkeYFzcloQkXAf257XCrDwGSxRg' },
+      { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Periodic-Table' },
+    ],
+  },
+  'hs-games': {
+    img: 'highschool/games.png', alt: 'Games: Hangman, Wordle and Two-Player Checkers',
+    title: 'Games', year: '2022',
+    grade: '10th grade',
+    tags: 'Code.org · Hangman, Wordle &amp; Checkers',
+    links: [
+      { label: 'Code.org ↗', href: 'https://studio.code.org/projects/applab/40V7TcnK87l1VxSAjbI-VFHSF06Hk2F6qvp6tzq_kRM' },
+      { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Games' },
+    ],
+  },
+  'hs-order66': {
+    img: 'highschool/order66.png', alt: 'Star Wars: Order 66, a Scratch game',
+    title: 'Star Wars: Order 66', year: '2021',
+    grade: '10th grade · my first ever',
+    tags: 'Scratch · Game',
+    links: [
+      { label: 'Play on Scratch ↗', href: 'https://scratch.mit.edu/projects/566525662/' },
+    ],
+  },
+  'hs-periodic-table-explorer': {
+    img: 'highschool/periodic-table-explorer.png', alt: 'Periodic Table Explorer, a Java console application',
+    title: 'Periodic Table Explorer', year: '2023',
+    grade: '11th grade',
+    tags: 'Java · Console',
+    links: [
+      { label: 'Codingrooms ↗', href: 'https://app.codingrooms.com/w/Yxexan1LM35u' },
+      { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Periodic-Table-Explorer' },
     ],
   },
 
