@@ -5,6 +5,9 @@
 
    Usage in a page: give a grid the IDs to render, in order:
      <div class="apps-grid" data-cards="zotfinder,uci-now,uci-esports,peterplate"></div>
+     <div class="hs-grid" data-projects="hs-datapad,hs-calculator"></div>
+   Never hand-write a card in a page: add it to apps-data.js and list its id
+   here, so the same app on five pages stays one thing to edit.
    Add the `data-cards-cat` attribute to also show each card's theme pill
    ("Star Wars ↗" / "Islamic ↗"): used on the projects catalog, omitted on the
    themed pages. This file must load AFTER apps-data.js and BEFORE
@@ -74,20 +77,47 @@
   }
   window.renderAppCard = renderAppCard;
 
+  // Render a single high-school project card by id (see PROJ_CARDS).
+  function renderProjCard(id) {
+    var d = (window.PROJ_CARDS || {})[id];
+    if (!d) { console.warn('[cards] unknown project id:', id); return ''; }
+    var ls = d.links || [];
+    var links = ls.map(function (l) {
+      return '<a href="' + l.href + '" target="_blank" rel="noopener">' + l.label + '</a>';
+    }).join('');
+    var media = d.href || (ls[0] && ls[0].href) || '';
+    return '<article class="proj-card reveal">'
+      + '<a class="proj-media" href="' + media + '" target="_blank" rel="noopener">'
+      + '<img src="' + IMG + d.img + '" alt="' + d.alt + '" loading="lazy" /></a>'
+      + '<div class="proj-info">'
+      + '<div class="proj-titlerow"><h3>' + d.title + '</h3><span class="proj-yr">' + d.year + '</span></div>'
+      + (d.grade ? '<span class="proj-grade">' + d.grade + '</span>' : '')
+      + '<span class="app-tags">' + d.tags + '</span>'
+      + '<div class="app-links">' + links + '</div>'
+      + '</div></article>';
+  }
+  window.renderProjCard = renderProjCard;
+
   // Fill every <… data-cards="id1,id2,…"> grid with its cards, in listed order.
-  function mount() {
-    var grids = document.querySelectorAll('[data-cards]');
+  // Same for <… data-projects="…"> using the PROJ_CARDS table.
+  function fill(attr, render) {
+    var grids = document.querySelectorAll('[' + attr + ']');
     for (var i = 0; i < grids.length; i++) {
       var grid = grids[i];
       var showCat = grid.hasAttribute('data-cards-cat');
-      var ids = grid.getAttribute('data-cards').split(',');
+      var ids = grid.getAttribute(attr).split(',');
       var html = '';
       for (var j = 0; j < ids.length; j++) {
         var id = ids[j].trim();
-        if (id) html += renderAppCard(id, { showCat: showCat });
+        if (id) html += render(id, { showCat: showCat });
       }
       grid.innerHTML = html;
     }
+  }
+
+  function mount() {
+    fill('data-cards', renderAppCard);
+    fill('data-projects', renderProjCard);
   }
   window.mountAppCards = mount;
   mount();
