@@ -1,0 +1,233 @@
+/* accents.css: /accents/ only.
+
+   The page is a recording booth rather than a map: the backdrop is a waveform
+   and a set of level meters, the accent is gold (this is a room, not a
+   franchise), and the one moving part on a card is the play button.
+
+   Loaded after fanpages.css, which supplies .fan-hero / .subsec / the shell. */
+
+body[data-fan="accents"] { --a: var(--gold); }
+
+/* ═════════════ the booth ═════════════ */
+.ac-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+}
+
+.ac-sky svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* a waveform drawn once and scrolled, so it reads as a continuous take */
+.acs-wave path {
+  fill: none; stroke: var(--gold); stroke-width: 1.1; opacity: .07;
+}
+
+.acs-wave path:nth-child(2) { stroke: var(--green-2); opacity: .05; }
+
+.acs-grid path { stroke: var(--ink); stroke-width: .5; opacity: .035; }
+
+/* the level meter down the right-hand edge: bars that breathe */
+.ac-meter {
+  position: absolute; right: clamp(0.6rem, 3vw, 2.4rem); top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 5px;
+}
+
+.ac-meter i {
+  display: block; width: 3px; height: 22px; border-radius: 2px;
+  background: linear-gradient(180deg, var(--gold), rgba(245,198,60,0.06));
+  opacity: .18; transform-origin: center;
+  animation: acPulse 2.6s var(--ease) infinite;
+}
+
+.ac-meter i:nth-child(2) { animation-delay: .28s; }
+.ac-meter i:nth-child(3) { animation-delay: .56s; }
+.ac-meter i:nth-child(4) { animation-delay: .84s; }
+.ac-meter i:nth-child(5) { animation-delay: 1.12s; }
+.ac-meter i:nth-child(6) { animation-delay: 1.4s; }
+.ac-meter i:nth-child(7) { animation-delay: 1.68s; }
+
+@keyframes acPulse {
+  0%, 100% { transform: scaleY(0.35); opacity: .12; }
+  50%      { transform: scaleY(1);    opacity: .4; }
+}
+
+.ac-glow {
+  position: absolute; left: 50%; top: 18%; width: 70vw; height: 70vw;
+  max-width: 900px; max-height: 900px; transform: translate(-50%, -30%);
+  background: radial-gradient(circle, rgba(245,198,60,0.08), transparent 62%);
+}
+
+@media (max-width: 720px) { .ac-meter { display: none; } }
+
+/* ═════════════ the counter ═════════════ */
+.ac-tally {
+  display: flex; flex-wrap: wrap; gap: 0.6rem;
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 2.6rem;
+}
+
+.ac-tally span {
+  display: inline-flex; align-items: baseline; gap: 0.45rem;
+  padding: 0.5rem 0.95rem 0.44rem; border-radius: 999px;
+  border: 1px solid var(--line); background: rgba(255,255,255,0.02);
+}
+
+.ac-tally b { font-family: var(--mono); font-size: 0.9rem; color: var(--gold); }
+
+.ac-tally i {
+  font-style: normal; font-family: var(--mono); font-size: 0.56rem;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute);
+}
+
+/* nothing recorded yet reads as a to-do rather than an achievement */
+.ac-tally--rec { border-color: rgba(255,255,255,0.09); }
+
+.ac-tally--rec b { color: var(--ink-dim); }
+
+/* ═════════════ groups ═════════════ */
+.ac-sec { padding: 0 var(--gutter); max-width: var(--maxw); margin-bottom: 3.4rem; }
+
+.ac-group { margin-bottom: 2.8rem; }
+
+.subsec--ac { color: var(--gold); }
+
+.ac-count {
+  font-family: var(--mono); font-size: 0.62rem; color: var(--mute);
+  border: 1px solid var(--line); border-radius: 999px; padding: 0.16rem 0.5rem;
+  margin-left: 0.7rem;
+}
+
+.ac-lede { max-width: 70ch; margin: -0.6rem 0 1.8rem; color: var(--ink-dim); font-size: 0.96rem; line-height: 1.75; }
+
+.ac-grid {
+  display: grid; gap: clamp(0.8rem, 2vw, 1.2rem);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+/* ═════════════ a card ═════════════ */
+.ac-card {
+  display: flex; flex-direction: column;
+  padding: 1.1rem 1.2rem 1.05rem; border: 1px solid var(--line); border-radius: 14px;
+  background: rgba(255,255,255,0.014);
+  transition: transform .35s var(--ease), border-color .35s, background .35s;
+}
+
+.ac-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(245,198,60,0.42);
+  background: rgba(245,198,60,0.05);
+}
+
+.ac-head { display: flex; align-items: flex-start; gap: 0.8rem; }
+
+/* the medallion carries a two-letter mark rather than a flag: nothing on this
+   site is a national emblem, and an accent is not a country anyway */
+.ac-medal {
+  flex: none; display: grid; place-items: center;
+  width: 42px; height: 42px; border-radius: 12px;
+  border: 1px solid rgba(245,198,60,0.3);
+  background: rgba(245,198,60,0.07);
+}
+
+.ac-medal b {
+  font-family: var(--mono); font-size: 0.74rem; font-weight: 600;
+  letter-spacing: 0.06em; color: var(--gold);
+}
+
+.ac-titles { flex: 1; min-width: 0; }
+
+.ac-titles h4 {
+  font-family: var(--serif); font-weight: 600; font-size: 1.02rem;
+  letter-spacing: -0.01em; line-height: 1.25;
+}
+
+.ac-from {
+  display: block; margin-top: 0.2rem;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+/* the order I learned it in, set big and faint: the page is a timeline */
+.ac-n {
+  flex: none; font-family: var(--mono); font-size: 1.2rem;
+  color: rgba(245,198,60,0.22); line-height: 1;
+}
+
+/* the phrase I use to get into it */
+.ac-line {
+  font-family: var(--serif); font-size: 1.02rem; font-style: italic;
+  line-height: 1.45; color: var(--ink); margin: 0.9rem 0 0.6rem;
+  padding-left: 0.8rem; border-left: 2px solid rgba(245,198,60,0.35);
+}
+
+.ac-desc { font-size: 0.85rem; line-height: 1.65; color: var(--ink-dim); }
+
+.ac-foot { margin-top: auto; padding-top: 0.95rem; }
+
+/* ═════════════ the player ═════════════ */
+.ac-play {
+  font: inherit; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  padding: 0.45rem 0.9rem 0.42rem; border-radius: 999px;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold);
+  border: 1px solid rgba(245,198,60,0.4); background: rgba(245,198,60,0.08);
+  transition: color .25s, border-color .25s, background .25s;
+}
+
+.ac-play:hover { background: rgba(245,198,60,0.16); border-color: rgba(245,198,60,0.65); }
+
+.ac-play:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* a triangle that becomes a square while it is running */
+.ac-play-i {
+  width: 0; height: 0; border-style: solid;
+  border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent currentColor;
+  transition: border-width .2s var(--ease);
+}
+
+.ac-play.is-playing .ac-play-i {
+  width: 8px; height: 8px; border-width: 0; border-radius: 1px;
+  background: currentColor;
+}
+
+/* five bars, flat until it plays */
+.ac-wave { display: inline-flex; align-items: center; gap: 2px; height: 12px; }
+
+.ac-wave i {
+  display: block; width: 2px; height: 3px; border-radius: 1px;
+  background: currentColor; opacity: .45;
+}
+
+.ac-play.is-playing .ac-wave i { animation: acBar .7s ease-in-out infinite; }
+
+.ac-play.is-playing .ac-wave i:nth-child(2) { animation-delay: .1s; }
+.ac-play.is-playing .ac-wave i:nth-child(3) { animation-delay: .2s; }
+.ac-play.is-playing .ac-wave i:nth-child(4) { animation-delay: .3s; }
+.ac-play.is-playing .ac-wave i:nth-child(5) { animation-delay: .4s; }
+
+@keyframes acBar {
+  0%, 100% { height: 3px; opacity: .45; }
+  50%      { height: 12px; opacity: 1; }
+}
+
+/* the honest state: no button, because there is no file behind it yet */
+.ac-soon {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.45rem 0.9rem 0.42rem; border-radius: 999px;
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+  border: 1px dashed rgba(255,255,255,0.12); background: rgba(255,255,255,0.015);
+}
+
+.ac-soon i {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--mute); opacity: .7;
+}
+
+/* the four impersonations get the wider card: they carry more prose */
+.ac-grid--imp { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); }
+
+@media (max-width: 520px) {
+  .ac-grid, .ac-grid--imp { grid-template-columns: 1fr; }
+  .ac-medal { width: 36px; height: 36px; border-radius: 10px; }
+}

@@ -1,0 +1,194 @@
+---
+permalink: /franchises/islam/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Islam: the five pillars, the six articles, the Qur'an in numbers, all ninety-nine names, the three holy mosques, the twenty-five prophets and the chain of scholarship." />
+<meta name="theme-color" content="#08080a" />
+
+<link rel="icon" type="image/png" href="/assets/img/me/abubakr-circle.png" />
+<link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Abubakr" />
+<meta property="og:image" content="/assets/img/me/abubakr-circle.png" />
+<meta property="og:type" content="website" />
+<title>Islam · Abubakr Elmallah</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Scheherazade+New:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
+<!-- the mosque elevations, the prophet and scholar cards, and the backdrop -->
+<link rel="stylesheet" href="{% include v.html f='/assets/css/al-islam.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/islam.css' %}" />
+</head>
+<body data-intro="none" data-fan="islam">
+
+<!-- geometric backdrop: lamplight, an eight-point lattice, a turning rosette -->
+<div class="isl-sky" aria-hidden="true">
+  <span class="isl-nur"></span>
+  <span class="isl-rose"></span>
+  <span class="isl-geo isl-geo--1"></span>
+  <span class="isl-geo isl-geo--2"></span>
+</div>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<canvas id="field" aria-hidden="true"></canvas>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+<aside class="rail">
+  <span class="rail-mark" aria-hidden="true">AE</span>
+  <span class="rail-line" aria-hidden="true"><i id="railFill"></i></span>
+  <span class="rail-meta" id="clock" aria-hidden="true">--:--:--</span>
+  <span class="rail-meta" aria-hidden="true">33.64°N · 117.84°W</span>
+</aside>
+
+<header class="topbar">
+  <a href="/" class="brand" data-magnetic>
+    <img class="brand-avatar" src="/assets/img/me/abubakr-circle.png" alt="Abubakr Elmallah" /><span class="brand-glyph"><b>Abubakr</b> Elmallah</span>
+  </a>
+  <div class="toggles"><button class="ql ql--sound is-on" id="soundToggle" type="button" aria-pressed="true" aria-label="Toggle interface sounds" data-magnetic><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><button class="ql ql--cursor" id="cursorToggle" type="button" data-cursor-toggle aria-pressed="true" aria-label="Toggle custom cursor" data-magnetic><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg></button></div>
+  <div class="quicklinks">
+    <a class="ql ql--resume" href="/resume/" data-magnetic>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M8 13h8M8 17h6"/></svg>
+      <span class="ql-label">Résumé</span>
+    </a>
+    <a class="ql ql--linkedin" href="https://www.linkedin.com/in/abubakr-elmallah" target="_blank" rel="noopener" data-magnetic>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C21.4 8.75 22 11 22 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21h-4z"/></svg>
+      <span class="ql-label">LinkedIn</span>
+    </a>
+    <a class="ql ql--github" href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener" data-magnetic>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+      <span class="ql-label">GitHub</span>
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <section class="fan-hero">
+    <a class="back-link" href="/franchises/" data-magnetic>&#8592; Back to franchises</a>
+    <p class="fan-kicker"><span>The Big Three &#183; one of three</span><span>Since 610 CE</span></p>
+    <p class="isl-bismillah" lang="ar" dir="rtl">&#1576;&#1616;&#1587;&#1618;&#1605;&#1616; &#1575;&#1604;&#1604;&#1617;&#1614;&#1607;&#1616; &#1575;&#1604;&#1585;&#1617;&#1614;&#1581;&#1618;&#1605;&#1614;&#1606;&#1616; &#1575;&#1604;&#1585;&#1617;&#1614;&#1581;&#1616;&#1610;&#1605;&#1616;</p>
+    <p class="isl-bismillah-en">In the name of Allah, the Most Compassionate, the Most Merciful</p>
+    <h1 class="fan-title">Islam</h1>
+    <p class="fan-lede-hero">The first of the Big Three, and the only page on this site about something I did not choose. Everything else here is taste. This is not.</p>
+    <p class="fan-lede-hero">What is on it: the five pillars and the six articles, the Qur&#702;&#257;n as a set of numbers, all ninety-nine names, the three mosques worth setting out to travel for, the twenty-five prophets named by name, and the chain of scholarship every bit of it travelled down. The prophets, the mosques and the scholars used to live on my apps page, which was the wrong home for them &#8212; that page is about three pieces of software, and this is not.</p>
+    <div class="fan-links">
+      <a class="fan-link" href="#pillars" data-magnetic>The pillars &#8599;</a>
+      <a class="fan-link" href="#names" data-magnetic>The ninety-nine names &#8599;</a>
+      <a class="fan-link" href="#mosques-sec" data-magnetic>The mosques &#8599;</a>
+      <a class="fan-link" href="#prophets-sec" data-magnetic>The prophets &#8599;</a>
+      <a class="fan-link" href="#scholars-sec" data-magnetic>The scholars &#8599;</a>
+      <a class="fan-link" href="/al-islam/" data-magnetic>The apps I built for it &#8599;</a>
+    </div>
+  </section>
+
+  <section class="isl-verse reveal" aria-label="Qur'an verse">
+    <div class="isl-verse-in">
+      <p class="isl-verse-ar" lang="ar" dir="rtl">&#1608;&#1614;&#1610;&#1614;&#1605;&#1618;&#1603;&#1615;&#1585;&#1615;&#1608;&#1606;&#1614; &#1608;&#1614;&#1610;&#1614;&#1605;&#1618;&#1603;&#1615;&#1585;&#1615; &#1575;&#1604;&#1604;&#1617;&#1614;&#1607;&#1615; &#1608;&#1614;&#1575;&#1604;&#1604;&#1617;&#1614;&#1607;&#1615; &#1582;&#1614;&#1610;&#1618;&#1585;&#1615; &#1575;&#1604;&#1618;&#1605;&#1614;&#1575;&#1603;&#1616;&#1585;&#1616;&#1610;&#1606;&#1614;</p>
+      <p class="isl-verse-en">&#8220;But they plan, and Allah plans. And Allah is the best of planners.&#8221;</p>
+      <p class="isl-verse-ref">Holy Qur&#702;&#257;n &#183; Al-Anf&#257;l 8:30</p>
+    </div>
+  </section>
+
+  <!-- the pillars, the articles, the numbers and the ninety-nine names -->
+  <div id="fanBody"></div>
+
+  <!-- ─────────── moved here from /al-islam/ ─────────── -->
+
+  <section class="mosques" id="mosques-sec">
+    <h3 class="subsec subsec--isl reveal">The Three Holy Mosques<span class="subsec-yr">&#1575;&#1604;&#1581;&#1585;&#1605;&#1575;&#1606; &#1608;&#1575;&#1604;&#1571;&#1602;&#1589;&#1609;</span></h3>
+    <p class="isl-lede reveal">The three mosques the Prophet &#65018; said are worth setting out to travel for: <b>Makkah</b>, <b>Madinah</b>, and <b>Jerusalem</b>. Every mosque here is drawn, not photographed: each one is an SVG elevation built from the same parts, in its own architectural language.</p>
+    <div class="holy-grid" id="holyMosques"></div>
+
+    <h3 class="subsec subsec--isl reveal">And the Ones After Them<span class="subsec-yr">&#1575;&#1604;&#1605;&#1587;&#1575;&#1580;&#1583;</span></h3>
+    <p class="isl-lede reveal">The mosques the rest of the architecture came out of, in the order they were built. Ottoman semi-domes, Mughal onion domes, Andalusi horseshoe arches, Maghribi square minarets: the same building solved a dozen different ways by a dozen different places.</p>
+    <div id="mosques"></div>
+  </section>
+
+  <section class="prophets" id="prophets-sec">
+    <h3 class="subsec subsec--isl reveal">Prophets in the Qur&#702;&#257;n<span class="subsec-yr">&#1575;&#1604;&#1571;&#1606;&#1576;&#1610;&#1575;&#1569;</span></h3>
+    <p class="isl-lede reveal">Twenty-five are named. Grouped the way the Qur&#702;&#257;n tends to introduce them: the first prophets, the ones sent to the Arab peoples, the house of Ibr&#257;h&#299;m, the Israelites who came through Is&#7717;&#257;q, and finally the one who came through Ism&#257;&#703;&#299;l. Filter by line.</p>
+
+    <div class="salaf-card reveal">
+      <p class="salaf-ar" lang="ar" dir="rtl">&#1608;&#1614;&#1605;&#1614;&#1575; &#1571;&#1614;&#1585;&#1618;&#1587;&#1614;&#1604;&#1618;&#1606;&#1614;&#1575; &#1605;&#1616;&#1606; &#1585;&#1614;&#1587;&#1615;&#1608;&#1604;&#1613; &#1573;&#1616;&#1604;&#1617;&#1614;&#1575; &#1576;&#1616;&#1604;&#1616;&#1587;&#1614;&#1575;&#1606;&#1616; &#1602;&#1614;&#1608;&#1618;&#1605;&#1616;&#1607;&#1616; &#1604;&#1616;&#1610;&#1615;&#1576;&#1614;&#1610;&#1617;&#1616;&#1606;&#1614; &#1604;&#1614;&#1607;&#1615;&#1605;</p>
+      <p class="salaf-en">&#8220;And We did not send any messenger except in the language of his people, so that he could make things clear to them.&#8221;</p>
+      <span class="salaf-src">Holy Qur&#702;&#257;n &#183; Ibr&#257;h&#299;m 14:4</span>
+      <p class="salaf-note">Every one of them was sent speaking the language of the people in front of him. Five are the <b>Ulul-&#703;Azm</b>, those of firm resolve (N&#363;&#7717;, Ibr&#257;h&#299;m, M&#363;s&#257;, &#703;&#298;s&#257; and Mu&#7717;ammad &#65018;), and they are tagged below.</p>
+    </div>
+
+    <div id="prophets"></div>
+  </section>
+
+  <section class="scholars" id="scholars-sec">
+    <h3 class="subsec subsec--isl reveal">Scholars<span class="subsec-yr">the athari chain</span></h3>
+    <p class="isl-lede reveal">The line the ummah&#8217;s knowledge actually travelled down: the rightly guided caliphs, the ten promised Jannah, the Muh&#257;jir&#363;n and the An&#7779;&#257;r, the two generations after them, then the four im&#257;ms, the &#7717;ad&#299;th masters, the writers of &#703;aq&#299;dah and tafs&#299;r, Ibn Taymiyyah&#8217;s circle in Damascus, and the revivalists after them. Filter by generation.</p>
+
+    <div class="salaf-card reveal">
+      <p class="salaf-ar" lang="ar" dir="rtl">&#1582;&#1614;&#1610;&#1618;&#1585;&#1615; &#1575;&#1604;&#1606;&#1617;&#1614;&#1575;&#1587;&#1616; &#1602;&#1614;&#1585;&#1618;&#1606;&#1616;&#1610;&#1548; &#1579;&#1615;&#1605;&#1617;&#1614; &#1575;&#1604;&#1617;&#1614;&#1584;&#1616;&#1610;&#1606;&#1614; &#1610;&#1614;&#1604;&#1615;&#1608;&#1606;&#1614;&#1607;&#1615;&#1605;&#1618;&#1548; &#1579;&#1615;&#1605;&#1617;&#1614; &#1575;&#1604;&#1617;&#1614;&#1584;&#1616;&#1610;&#1606;&#1614; &#1610;&#1614;&#1604;&#1615;&#1608;&#1606;&#1614;&#1607;&#1615;&#1605;&#1618;</p>
+      <p class="salaf-en">&#8220;The best of people are my generation, then those who come after them, then those who come after them.&#8221;</p>
+      <span class="salaf-src">&#7778;a&#7717;&#299;&#7717; al-Bukh&#257;r&#299; &#183; &#7778;a&#7717;&#299;&#7717; Muslim</span>
+      <p class="salaf-note">Those three generations are <b>as-Salaf a&#7779;-&#7778;&#257;li&#7717;</b>: the Companions, the T&#257;bi&#703;&#363;n who met them, and the Atb&#257;&#703; at-T&#257;bi&#703;&#299;n after them. Every group tagged <b>Salaf</b> below is one of the three; everyone listed after them is measured against what they understood.</p>
+    </div>
+
+    <div id="scholars"></div>
+  </section>
+
+  <!-- sections marked mount:'end' in fan-islam.js land here -->
+  <div id="fanBodyEnd"></div>
+
+</main>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" aria-label="Close">✕</button>
+  <span class="lightbox-title"></span>
+  <div class="lightbox-imgs"></div>
+</div>
+
+<footer class="footer">
+  <span>© 2026 Abubakr Elmallah</span>
+  <a class="footer-mid" href="/franchises/" data-magnetic>← Back to franchises</a>
+  <button class="totop" id="totop" data-magnetic>Back to top ↑</button>
+</footer>
+
+<nav class="tabbar" aria-label="Primary">
+  <a href="/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg><span>Home</span></a>
+  <a href="/work/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/><path d="M3 12.5h18"/></svg><span>Work</span></a>
+  <a href="/projects/"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Projects</span></a>
+  <a href="/education/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1 2.5 2 5 2s5-1 5-2v-5"/></svg><span>Education</span></a>
+  <a href="/franchises/" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Franchises</span></a>
+</nav>
+
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
+<!-- page content: data then the shared renderer, before reveal.js -->
+<script src="{% include v.html f='/assets/js/fan-islam.js' %}"></script>
+<script src="{% include v.html f='/assets/js/fanpage.js' %}"></script>
+<!-- the mosques, prophets and scholars: data then their own renderer -->
+<script src="{% include v.html f='/assets/js/mosques-data.js' %}"></script>
+<script src="{% include v.html f='/assets/js/scholars-data.js' %}"></script>
+<script src="{% include v.html f='/assets/js/prophets-data.js' %}"></script>
+<script src="{% include v.html f='/assets/js/islam.js' %}"></script>
+<script src="{% include v.html f='/assets/js/gallery.js' %}"></script>
+<script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
+<script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
+<script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
+<script src="{% include v.html f='/assets/js/clock.js' %}"></script>
+<script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
+<script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
+<script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+</body>
+</html>

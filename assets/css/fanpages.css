@@ -296,6 +296,82 @@
   .fan-tiles[data-cols] { grid-template-columns: repeat(var(--cols, 3), 1fr); }
 }
 
+/* ── my own rating, out of ten ──
+   The bar behind the figure IS the score, so a column of these can be read as
+   a ranking without comparing the numbers one at a time. Painted in the page
+   accent rather than a fixed colour, because unlike the green completion stamp
+   this is an opinion about that page's own subject. */
+.fan-rate {
+  display: inline-flex; align-items: baseline; gap: 0.14rem;
+  position: relative; overflow: hidden;
+  padding: 0.28rem 0.6rem 0.24rem; border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--a, #f5c63c) 42%, transparent);
+  background: rgba(255,255,255,0.02);
+}
+
+/* the fill sits under the type: inset, so the pill's own radius clips it */
+.fan-rate i {
+  position: absolute; inset: 0 auto 0 0; width: var(--pct, 0%);
+  background: color-mix(in srgb, var(--a, #f5c63c) 20%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--a, #f5c63c) 45%, transparent);
+}
+
+.fan-rate-v {
+  position: relative; font-family: var(--mono); font-size: 0.76rem;
+  font-weight: 600; color: var(--a, var(--gold));
+}
+
+.fan-rate-o {
+  position: relative; font-family: var(--mono); font-size: 0.52rem;
+  letter-spacing: 0.1em; color: var(--mute);
+}
+
+.fan-tally--rate { border-color: color-mix(in srgb, var(--a, #f5c63c) 42%, transparent); background: color-mix(in srgb, var(--a, #f5c63c) 8%, transparent); }
+
+.fan-tally--rate b { color: var(--a, var(--gold)); }
+
+/* ── the grid / list switch ──
+   Same tiles, same order, two densities. Grid is the banner and the numbers;
+   list opens each row out full width and brings the screenshots with it. */
+.fan-viewbtn svg { width: 11px; height: 11px; opacity: .8; }
+
+.fan-tiles--switch.is-grid .fan-tileshot { display: none; }
+
+/* Grid: the accent stops being a dot in the corner and becomes the banner
+   across the top of the tile, which is the only thing carrying the colour
+   once the screenshot is gone. */
+.fan-tiles--switch.is-grid .fan-tile {
+  flex-direction: column; gap: 0.5rem; padding-top: 0.85rem;
+}
+
+.fan-tiles--switch.is-grid .fan-swatch {
+  width: 100%; height: 4px; margin: 0; border-radius: 2px;
+}
+
+.fan-tiles--switch.is-grid .fan-tiletext { width: 100%; min-width: 0; }
+
+.fan-tiles--switch.is-list { grid-template-columns: 1fr; gap: 0.6rem; }
+
+@media (min-width: 900px) {
+  .fan-tiles--switch.is-list[data-cols] { grid-template-columns: 1fr; }
+}
+
+.fan-tiles--switch.is-list .fan-tile { padding: 0.9rem 1.1rem; gap: 1rem; align-items: stretch; }
+
+.fan-tiles--switch.is-list .fan-swatch { width: 4px; height: auto; align-self: stretch; margin: 0; border-radius: 2px; }
+
+.fan-tiles--switch.is-list .fan-tiletext { flex: 1; min-width: 0; gap: 0.3rem; }
+
+.fan-tiles--switch.is-list .fan-tiletext b { font-size: 1rem; }
+
+.fan-tiles--switch.is-list .fan-tiletext em { font-size: 0.82rem; max-width: 78ch; }
+
+/* The screenshot is the point of list view, so it gets real width here rather
+   than the column-wide thumbnail it is in grid. */
+.fan-tiles--switch.is-list .fan-tileshot { max-width: 460px; margin-top: 0.7rem; }
+
+.fan-tiles--switch.is-list .fan-chips { margin-top: 0.55rem; }
+
 .fan-done {
   display: inline-flex; align-items: center; gap: 0.5rem;
   padding: 0.3rem 0.68rem 0.26rem;

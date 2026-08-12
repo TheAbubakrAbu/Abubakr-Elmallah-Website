@@ -1,0 +1,203 @@
+/* fan/arab.css: /franchises/arab/ only.
+
+   The page is a page of writing, so the whole look is paper and ink: warm gold
+   on near-black, ruled lines behind the hero, and every Arabic glyph set in
+   Amiri at a size where the joins are actually visible. Nothing here is an
+   image — the letterforms are the artwork. */
+
+body[data-fan="arab"] { --a: #e8c56a; }
+
+/* ── the backdrop: ruled lines and a very large letter ── */
+.ar-sky { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+
+.ar-rule {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(to bottom, rgba(232,197,106,.045) 0 1px, transparent 1px 84px);
+  mask-image: radial-gradient(80% 60% at 50% 30%, #000, transparent 78%);
+  -webkit-mask-image: radial-gradient(80% 60% at 50% 30%, #000, transparent 78%);
+}
+
+/* one enormous ḍād, because Arabic is "the language of the ḍād" */
+.ar-mark {
+  position: absolute; right: -3vw; top: 6vh;
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: min(52vw, 620px); line-height: 1; color: var(--a);
+  opacity: .045; user-select: none;
+}
+
+.ar-glow {
+  position: absolute; left: 46%; top: 12%;
+  width: 68vw; height: 68vw; max-width: 860px; max-height: 860px;
+  transform: translate(-50%, -25%);
+  background: radial-gradient(circle, rgba(232,197,106,.09), transparent 62%);
+}
+
+/* ── hero ── */
+body[data-fan="arab"] .fan-title {
+  background: linear-gradient(180deg, #fbeecb, #e8c56a 56%, #a8801c);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+.ar-hero-ar {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: clamp(2rem, 7vw, 4.4rem); line-height: 1.7;
+  color: var(--a); opacity: .92; margin-bottom: 0.2rem;
+  text-shadow: 0 0 46px rgba(232,197,106,.25);
+  /* see the note in fan/islam.css: RTL would right-align it away from the title */
+  text-align: left;
+}
+
+/* ── section shell for the two hand-written blocks ── */
+.ar-sec { padding: 0 var(--gutter); max-width: var(--maxw); margin-bottom: 3.4rem; }
+
+.ar-lede { max-width: 70ch; margin: -0.6rem 0 1.8rem; color: var(--ink-dim); font-size: 0.96rem; line-height: 1.75; }
+
+.ar-lede b { color: var(--a); font-weight: 500; }
+
+body[data-fan="arab"] .subsec--fan .subsec-yr {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: 1.05rem; letter-spacing: 0; text-transform: none;
+}
+
+/* ═════════════ 1. the alphabet ═════════════ */
+.ar-alpha {
+  display: grid; gap: 0.7rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.ar-let {
+  padding: 0.85rem 0.95rem 0.9rem; border: 1px solid var(--line); border-radius: 12px;
+  background: rgba(255,255,255,0.012);
+  transition: transform .35s var(--ease), border-color .35s, background .35s;
+}
+
+.ar-let:hover {
+  transform: translateY(-3px);
+  border-color: rgba(232,197,106,.45); background: rgba(232,197,106,.05);
+}
+
+.ar-let-head { display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; }
+
+.ar-let-n { font-family: var(--mono); font-size: 0.58rem; color: var(--mute); }
+
+.ar-let-name { display: flex; align-items: baseline; gap: 0.4rem; }
+
+.ar-let-name b { font-family: var(--serif); font-weight: 600; font-size: 0.94rem; }
+
+.ar-let-name i { font-style: normal; font-family: var(--mono); font-size: 0.6rem; color: var(--a); }
+
+/* the six letters that refuse to join forward say so on the tile */
+.ar-let-tag {
+  margin-left: auto; font-family: var(--mono); font-size: 0.46rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
+  border: 1px dashed rgba(255,255,255,.14); border-radius: 999px;
+  padding: 0.12rem 0.44rem;
+}
+
+/* the four (or two) shapes, side by side, in the reading direction */
+.ar-forms {
+  display: flex; gap: 0.4rem; margin: 0.7rem 0 0.6rem;
+  direction: rtl;
+}
+
+.ar-form {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+  padding: 0.5rem 0.2rem 0.4rem; border-radius: 8px;
+  background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.045);
+}
+
+/* the glyph itself: big enough that the join on either side is legible, which
+   is the entire reason this block exists */
+.ar-glyph {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: 2rem; line-height: 1.35; color: var(--ink);
+  transition: color .3s;
+}
+
+.ar-let:hover .ar-glyph { color: var(--a); }
+
+.ar-form-k {
+  font-family: var(--mono); font-size: 0.44rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute); direction: ltr;
+}
+
+.ar-let-sound { font-size: 0.76rem; line-height: 1.55; color: var(--ink-dim); }
+
+.ar-let.is-solo { border-style: dashed; }
+
+/* ═════════════ 2. the root explorer ═════════════ */
+.ar-rootpick { margin-bottom: 1.8rem; }
+
+.chip--ar span { font-family: "Amiri", "Scheherazade New", serif; font-size: 1.15rem; }
+
+.chip--ar:hover { color: var(--ink); border-color: rgba(232,197,106,.55); }
+
+.chip--ar.is-active { background: var(--a); color: #1a1305; border-color: var(--a); }
+
+.chip--ar.is-active em { opacity: .75; }
+
+.ar-rootbox {
+  padding: clamp(1.2rem, 3vw, 2rem); border-radius: 16px;
+  border: 1px solid rgba(232,197,106,.2);
+  background:
+    radial-gradient(110% 90% at 20% 0%, rgba(232,197,106,.07), transparent 60%),
+    rgba(10, 9, 6, 0.5);
+}
+
+.ar-roothead { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
+
+.ar-rootbig {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: clamp(2.4rem, 7vw, 4rem); line-height: 1.2; color: var(--a);
+  text-shadow: 0 0 40px rgba(232,197,106,.3);
+}
+
+.ar-rootmeta { display: grid; gap: 0.15rem; }
+
+.ar-rootmeta b { font-family: var(--mono); font-size: 0.86rem; color: var(--ink); letter-spacing: 0.08em; }
+
+.ar-rootmeta i { font-style: normal; font-size: 0.82rem; color: var(--ink-dim); }
+
+.ar-rootnote { max-width: 62ch; margin: 0.9rem 0 1.4rem; font-size: 0.88rem; line-height: 1.7; color: var(--ink-dim); }
+
+.ar-words {
+  display: grid; gap: 0.6rem;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.ar-word {
+  display: grid; gap: 0.2rem; padding: 0.7rem 0.85rem;
+  border: 1px solid var(--line); border-radius: 10px;
+  background: rgba(255,255,255,0.015);
+  transition: border-color .3s, background .3s;
+}
+
+.ar-word:hover { border-color: rgba(232,197,106,.4); background: rgba(232,197,106,.05); }
+
+.ar-word-ar {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: 1.6rem; line-height: 1.5; color: var(--ink);
+}
+
+.ar-word-tr { font-family: var(--mono); font-size: 0.66rem; color: var(--a); }
+
+.ar-word-m { font-size: 0.76rem; line-height: 1.5; color: var(--ink-dim); }
+
+/* ── the numerals section: the digit is the title, so set it properly ── */
+body[data-fan="arab"] #numerals .fan-tiletext b {
+  font-family: "Amiri", "Scheherazade New", serif; font-size: 1.9rem; line-height: 1.2;
+}
+
+body[data-fan="arab"] #numerals .fan-tiles { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+
+/* ── loanwords and dialects both carry Arabic in `sub` ── */
+body[data-fan="arab"] #loanwords .fan-tiletext i,
+body[data-fan="arab"] #dialects .fan-tiletext i {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: 1.02rem; letter-spacing: 0; text-transform: none; opacity: 1;
+}
+
+@media (max-width: 520px) {
+  .ar-alpha { grid-template-columns: 1fr; }
+  .ar-glyph { font-size: 1.7rem; }
+}

@@ -79,6 +79,18 @@
       + '</span>';
   };
 
+  /* `rating`: mine, out of ten, on an item. The bar behind the figure is the
+     score itself, so a column of these reads as a ranking at a glance without
+     having to compare the numbers one by one. */
+  var rate = function (it) {
+    var r = parseFloat(it.rating);
+    if (it.rating == null || isNaN(r)) return '';
+    return '<span class="fan-rate" style="--pct:' + Math.max(0, Math.min(100, r * 10)).toFixed(0) + '%">'
+      + '<span class="fan-rate-v">' + r.toFixed(1) + '</span>'
+      + '<span class="fan-rate-o">/10</span>'
+      + '<i aria-hidden="true"></i></span>';
+  };
+
   /* optional single screenshot on an item. gallery.js picks the link up on its
      own (it claims every in-page link that points at an image), so this opens in
      the shared lightbox rather than a new tab. */
@@ -110,6 +122,11 @@
     var by = sortBy(s);
     if (!by.length) return '';
     var first = by[0];
+    /* Which way round the section OPENS. Ascending suits a year (the catalogue
+       should read forwards from 2005) and descending suits a score (nobody
+       wants a ratings list that opens on the worst one), so the first `by`
+       entry says which it wants and everything else defaults to ascending. */
+    var open = first.dir === 'desc' ? 'desc' : 'asc';
     return '<span class="fan-sortset" role="group" aria-label="Sort by">'
       + '<span class="fan-sort-k">' + esc(s.sortable.label || 'Sort') + '</span>'
       + by.map(function (b, i) {
@@ -120,12 +137,35 @@
             + ' aria-pressed="' + (i ? 'false' : 'true') + '">' + esc(b.label || b.key) + '</button>';
         }).join('')
       + '</span>'
-      + '<span class="fan-sortset" role="group" aria-label="Sort direction">'
+      + '<span class="fan-sortset" role="group" aria-label="Sort direction" data-open="' + open + '">'
       + ['asc', 'desc'].map(function (d, i) {
-          return '<button class="fan-sortbtn fan-sortdir' + (i ? '' : ' is-on') + '" type="button"'
-            + ' data-dir="' + d + '" aria-pressed="' + (i ? 'false' : 'true') + '">'
+          return '<button class="fan-sortbtn fan-sortdir' + (d === open ? ' is-on' : '') + '" type="button"'
+            + ' data-dir="' + d + '" aria-pressed="' + (d === open ? 'true' : 'false') + '">'
             + '<i aria-hidden="true">' + (i ? '\u2193' : '\u2191') + '</i>'
             + '<span>' + esc(first[d] || (i ? 'Descending' : 'Ascending')) + '</span></button>';
+        }).join('')
+      + '</span>';
+  };
+
+  /* A section may also carry `views: true`, which puts a grid/list switch beside
+     the sort control. The two views show DIFFERENT amounts of the same tiles
+     rather than different data: grid is the colour banner, the title and the
+     numbers, and list opens each row out full width with its screenshot next to
+     it. Grid is the default because thirty tiles at once is the point of it. */
+  var VIEWS = [
+    { k: 'grid', label: 'Grid', icon: '<rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><rect x="14" y="14" width="7" height="7" rx="1.4"/>' },
+    { k: 'list', label: 'List', icon: '<rect x="3" y="4.5" width="18" height="5" rx="1.4"/><rect x="3" y="14.5" width="18" height="5" rx="1.4"/>' },
+  ];
+
+  var viewer = function (s) {
+    if (!s.views) return '';
+    return '<span class="fan-sortset fan-viewset" role="group" aria-label="View">'
+      + '<span class="fan-sort-k">View</span>'
+      + VIEWS.map(function (v, i) {
+          return '<button class="fan-sortbtn fan-viewbtn' + (i ? '' : ' is-on') + '" type="button"'
+            + ' data-view="' + v.k + '" aria-pressed="' + (i ? 'false' : 'true') + '">'
+            + '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' + v.icon + '</svg>'
+            + '<span>' + v.label + '</span></button>';
         }).join('')
       + '</span>';
   };
@@ -146,14 +186,26 @@
       var h = parseFloat(it.hours), p = parseFloat(it.proj);
       if (!isNaN(h) && !isNaN(p)) { mine += h; est += p; n++; }
     });
-    if (!n) return pill;
+    /* Third pill: the average of my own ratings across the whole list, so the
+       column of scores has a middle to be read against. Over every rated item,
+       not just the finished ones — an unfinished game still gets a rating. */
+    var scores = s.items.map(function (it) { return parseFloat(it.rating); })
+      .filter(function (r) { return !isNaN(r); });
+    var avg = scores.length
+      ? '<span class="fan-tally fan-tally--rate"><b>'
+        + (scores.reduce(function (t, r) { return t + r; }, 0) / scores.length).toFixed(1) + '</b>'
+        + '<i>average of my ' + scores.length + ' ratings</i></span>'
+      : '';
+
+    if (!n) return pill + avg;
     var gap = mine - est;
     return pill + '<span class="fan-tally fan-tally--time"><b>' + mine.toFixed(1) + ' h</b>'
-      + '<i>' + (gap <= 0 ? '−' : '+') + Math.abs(gap).toFixed(0) + ' h vs ' + est.toFixed(0) + ' projected</i></span>';
+      + '<i>' + (gap <= 0 ? '−' : '+') + Math.abs(gap).toFixed(0) + ' h vs ' + est.toFixed(0) + ' projected</i></span>'
+      + avg;
   };
 
   var controls = function (s) {
-    var bar = sorter(s) + tally(s);
+    var bar = sorter(s) + viewer(s) + tally(s);
     return bar ? '<div class="fan-sort reveal">' + bar + '</div>' : '';
   };
 
@@ -201,7 +253,8 @@
        fixed shape (a screenshot) that needs the width. */
     tiles: function (s) {
       var keys = sortBy(s).map(function (b) { return b.key; });
-      return '<div class="fan-tiles' + (s.compact ? ' fan-tiles--compact' : '') + '"'
+      return '<div class="fan-tiles' + (s.compact ? ' fan-tiles--compact' : '')
+        + (s.views ? ' fan-tiles--switch is-grid' : '') + '"'
         + (s.cols ? ' data-cols style="--cols:' + esc(s.cols) + '"' : '')
         + (keys.length ? ' data-sortable="1"' : '') + '>' + s.items.map(function (it, i) {
         /* One data-sort-<key> per sortable field. A field the item does not have
@@ -218,7 +271,7 @@
           + (it.sub ? '<i>' + esc(it.sub) + '</i>' : '')
           + (it.desc ? '<em>' + esc(it.desc) + '</em>' : '')
           + shot(it)
-          + '<span class="fan-chips">' + done(it) + proj(it) + '</span>'
+          + '<span class="fan-chips">' + rate(it) + done(it) + proj(it) + '</span>'
           + out(it) + '</span>'
           + '</div>';
       }).join('') + '</div>';
@@ -409,7 +462,8 @@
     if (!group || !keyBtns.length) return;          // a tally-only bar has nothing to wire
 
     var key = keyBtns[0].getAttribute('data-key');
-    var dir = 'asc';
+    var dirSet = bar.querySelector('[data-open]');
+    var dir = (dirSet && dirSet.getAttribute('data-open')) || 'asc';
 
     function press(list, active) {
       Array.prototype.forEach.call(list, function (b) {
@@ -437,9 +491,32 @@
     });
 
     /* The data files are authored newest-first (that is how TT Games list their
-       own catalogue), so the default ascending view has to be applied, not
-       assumed. */
+       own catalogue), so the opening order has to be applied, not assumed. */
     applySort(group, key, dir);
+  });
+
+  /* the grid/list switch. Wired separately from the sort control so a section
+     can carry either one on its own, and so switching view never disturbs
+     whatever order the sort buttons have put the tiles in: it only swaps two
+     classes on the container and lets the CSS re-lay the same nodes out. */
+  Array.prototype.forEach.call(document.querySelectorAll('.fan-viewset'), function (set) {
+    var sec = set.closest('.fan-sec');
+    var group = sec && sec.querySelector('.fan-tiles--switch');
+    if (!group) return;
+    var btns = set.querySelectorAll('[data-view]');
+
+    set.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-view]');
+      if (!b) return;
+      var v = b.getAttribute('data-view');
+      Array.prototype.forEach.call(btns, function (o) {
+        var on = o === b;
+        o.classList.toggle('is-on', on);
+        o.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      group.classList.toggle('is-grid', v === 'grid');
+      group.classList.toggle('is-list', v === 'list');
+    });
   });
 
   /* a saber stays lit after a click, so you can leave the whole rack burning */

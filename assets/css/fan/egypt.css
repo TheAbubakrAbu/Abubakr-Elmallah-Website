@@ -1,0 +1,97 @@
+/* fan/egypt.css: /franchises/egypt/ only.
+
+   Sandstone and the river: warm ochre for the desert half, one blue for the
+   Nile, and a horizon behind everything with the Giza silhouette on it. As
+   everywhere else on this site the drawing is inline SVG, not a photograph. */
+
+body[data-fan="egypt"] { --a: #e8a13f; --nile: #4a86c4; }
+
+/* ── the backdrop ── */
+.eg-sky { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+
+/* the sun sits low and does not move: this is a horizon, not an animation */
+.eg-sun {
+  position: absolute; left: 50%; top: 26%;
+  width: 46vw; height: 46vw; max-width: 560px; max-height: 560px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(232,161,63,.16), rgba(232,161,63,.05) 42%, transparent 66%);
+}
+
+.eg-dunes { position: absolute; inset: auto 0 0 0; height: 62vh; }
+
+.eg-dunes svg { width: 100%; height: 100%; }
+
+.egd-far  { fill: rgba(232,161,63,.05); }
+.egd-mid  { fill: rgba(232,161,63,.07); }
+.egd-near { fill: rgba(20,14,6,.85); }
+
+/* the river, cutting the frame: the only cool colour on the page */
+.egd-nile { fill: rgba(74,134,196,.14); }
+
+.eg-stars {
+  position: absolute; inset: 0 0 40% 0;
+  background-image:
+    radial-gradient(1.4px 1.4px at 18% 24%, rgba(255,244,220,.5), transparent),
+    radial-gradient(1.2px 1.2px at 62% 12%, rgba(255,244,220,.4), transparent),
+    radial-gradient(1.6px 1.6px at 82% 34%, rgba(255,244,220,.45), transparent),
+    radial-gradient(1.1px 1.1px at 36% 44%, rgba(255,244,220,.32), transparent),
+    radial-gradient(1.3px 1.3px at 8% 56%, rgba(255,244,220,.3), transparent);
+  opacity: .7;
+}
+
+/* ── hero ── */
+body[data-fan="egypt"] .fan-title {
+  background: linear-gradient(180deg, #fbe6bd, #e8a13f 56%, #9c5f14);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+.eg-hero-ar {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: clamp(2rem, 7vw, 4rem); line-height: 1.6;
+  color: var(--a); opacity: .92; margin-bottom: 0.2rem;
+  text-shadow: 0 0 44px rgba(232,161,63,.28);
+  text-align: left;
+}
+
+/* the hero drawing: Giza in elevation, the same trick the other fan pages use */
+.eg-art { max-width: 900px; margin-top: 2rem; }
+
+.eg-art svg { width: 100%; height: auto; display: block; }
+
+.ega-sky   { fill: none; }
+.ega-sun   { fill: rgba(232,161,63,.9); }
+.ega-pyr   { fill: #d99a3f; }
+.ega-pyr-b { fill: #a86e26; }
+.ega-cap   { fill: #f6dfa8; }
+.ega-sphinx { fill: #f0c07a; }
+.ega-sand  { fill: #7a4f18; }
+.ega-water { fill: rgba(74,134,196,.42); }
+.ega-line  { fill: none; stroke: rgba(255,244,220,.28); stroke-width: 1; }
+
+.eg-art figcaption {
+  margin-top: 0.9rem; font-family: var(--mono); font-size: 0.58rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
+}
+
+/* ── the era rail, in sandstone ── */
+body[data-fan="egypt"] .fan-era {
+  background: linear-gradient(168deg, rgba(232,161,63,.07), rgba(8,8,10,.65) 70%);
+}
+
+body[data-fan="egypt"] .fan-era-when { color: var(--a); }
+
+/* ── the Arabic on the food and dialect tiles ── */
+body[data-fan="egypt"] .fan-card .fan-sub,
+body[data-fan="egypt"] .fan-tiletext i {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: 1.05rem; letter-spacing: 0; text-transform: none; opacity: 1;
+}
+
+body[data-fan="egypt"] #cairo .fan-tiletext i { font-family: var(--mono); font-size: 0.54rem; }
+
+/* the stats strip: the numbers are the point, so make them large */
+body[data-fan="egypt"] .fan-stat b { color: var(--a); }
+
+@media (max-width: 640px) {
+  .eg-dunes { height: 44vh; }
+}
