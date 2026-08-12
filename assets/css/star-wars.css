@@ -559,3 +559,302 @@ body[data-intro="starwars"] #field { opacity: 0.32; }
   .pl-globe { width: 70%; }
   .pl-desc { font-size: 0.8rem; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   The consoles at the foot of /star-wars/ (see starwars-live.js)
+
+   The planet atlas that used to live here already exists on
+   /franchises/star-wars/, which is the page about the films.
+   This page is about four things I built, so it now lets you
+   use them instead of describing them.
+   ═══════════════════════════════════════════════════════════ */
+
+.sw-live { padding-bottom: 4rem; }
+
+.sw-consoles {
+  display: grid; gap: clamp(1rem, 2.4vw, 1.6rem);
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: start;
+}
+
+@media (max-width: 900px) { .sw-consoles { grid-template-columns: 1fr; } }
+
+.sw-con {
+  padding: 1.3rem 1.4rem 1.5rem; border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--gold) 20%, var(--line));
+  background:
+    radial-gradient(120% 90% at 15% 0%, rgba(245,198,60,.07), transparent 58%),
+    rgba(6, 8, 14, 0.6);
+}
+
+.sw-con--wide { grid-column: 1 / -1; }
+
+.sw-con-h { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 1rem; }
+
+.sw-con-k {
+  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold);
+}
+
+.sw-con-h h4 { font-family: var(--serif); font-weight: 600; font-size: 1.14rem; letter-spacing: -0.01em; }
+
+.sw-con-h p { flex-basis: 100%; font-size: 0.8rem; line-height: 1.6; color: var(--ink-dim); }
+
+/* ── 1. Aurebesh ── */
+.sw-au-in {
+  font: inherit; width: 100%; padding: 0.75rem 0.9rem;
+  font-family: var(--mono); font-size: 0.86rem; color: var(--ink);
+  border: 1px solid var(--line); border-radius: 10px;
+  background: rgba(0,0,0,.35);
+}
+
+.sw-au-in:focus { outline: none; border-color: color-mix(in srgb, var(--gold) 55%, transparent); }
+
+.sw-au-out {
+  display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.35rem;
+  margin-top: 1rem; min-height: 84px; padding: 0.9rem;
+  border: 1px solid var(--line); border-radius: 10px;
+  background: rgba(0,0,0,.28);
+}
+
+.sw-au-ch {
+  display: grid; gap: 0.1rem; justify-items: center;
+  padding: 0.35rem 0.5rem 0.3rem; border-radius: 6px;
+  border: 1px solid rgba(245,198,60,.22); background: rgba(245,198,60,.06);
+}
+
+.sw-au-ch b { font-family: var(--mono); font-size: 0.68rem; color: var(--gold); font-weight: 500; }
+
+.sw-au-ch i { font-style: normal; font-family: var(--mono); font-size: 0.5rem; color: var(--mute); }
+
+/* a digraph is ONE Aurebesh character standing for two Latin ones, so it is
+   marked: that is the bit people get wrong when they transliterate by hand */
+.sw-au-ch.is-digraph { border-color: rgba(95,163,236,.42); background: rgba(95,163,236,.09); }
+
+.sw-au-ch.is-digraph b { color: #7fb8ec; }
+
+.sw-au-ch.is-digit { border-style: dashed; }
+
+.sw-au-space { width: 0.9rem; }
+
+.sw-au-empty { font-family: var(--mono); font-size: 0.7rem; color: var(--mute); }
+
+.sw-fine { margin-top: 0.9rem; font-size: 0.68rem; line-height: 1.6; color: var(--mute); }
+
+.sw-fine a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── the stardate readout ── */
+.sw-stardate { display: grid; gap: 0.2rem; margin-top: 1rem; }
+
+.sw-sd-v {
+  font-family: var(--mono); font-size: clamp(1.4rem, 4vw, 2rem);
+  color: var(--gold); letter-spacing: 0.06em; font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 26px rgba(245,198,60,.35);
+}
+
+.sw-sd-k {
+  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+/* ── 2. sabacc ── */
+.sb-table { display: grid; gap: 0.9rem; }
+
+.sb-side { display: grid; gap: 0.5rem; }
+
+.sb-who {
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+.sb-cards { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+.sb-card {
+  display: grid; gap: 0.1rem; justify-items: center; align-content: center;
+  width: 54px; height: 74px; border-radius: 7px;
+  border: 1px solid var(--line); background: rgba(255,255,255,.03);
+}
+
+.sb-card b { font-family: var(--mono); font-size: 0.94rem; font-weight: 600; }
+
+.sb-card i { font-style: normal; font-family: var(--mono); font-size: 0.42rem; letter-spacing: 0.1em; color: var(--mute); }
+
+.sb-card.is-pos { border-color: rgba(95,163,236,.4); }
+.sb-card.is-pos b { color: #7fb8ec; }
+
+.sb-card.is-neg { border-color: rgba(224,72,58,.4); }
+.sb-card.is-neg b { color: #e8887f; }
+
+/* the sylop is worth nothing, which in this game is the best a card can be */
+.sb-card.is-sylop { border-color: rgba(245,198,60,.55); background: rgba(245,198,60,.09); }
+.sb-card.is-sylop b { color: var(--gold); }
+
+.sb-card.is-back {
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,.05) 0 4px, transparent 4px 8px),
+              rgba(255,255,255,.02);
+}
+
+.sb-read { display: flex; align-items: center; gap: 0.6rem; }
+
+.sb-total {
+  font-family: var(--mono); font-size: 1.1rem; color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.sb-total.is-zero { color: var(--gold); text-shadow: 0 0 22px rgba(245,198,60,.45); }
+
+.sb-total.is-hidden { color: var(--mute); }
+
+.sb-array {
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold);
+  border: 1px solid rgba(245,198,60,.5); border-radius: 999px; padding: 0.15rem 0.5rem;
+}
+
+/* the chance cubes sit between the two hands, because that is where they land */
+.sb-cubes { display: flex; gap: 0.5rem; justify-content: center; }
+
+.sb-cube {
+  display: grid; place-items: center; width: 30px; height: 30px; border-radius: 6px;
+  font-family: var(--mono); font-size: 0.8rem; color: var(--ink);
+  border: 1px solid var(--line); background: rgba(255,255,255,.04);
+}
+
+.sb-msg { margin-top: 0.9rem; font-size: 0.82rem; line-height: 1.6; color: var(--ink-dim); }
+
+.sb-msg.is-on { color: var(--gold); }
+
+.sb-acts { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.9rem; }
+
+.sb-btn {
+  font: inherit; cursor: pointer; padding: 0.48rem 1rem 0.44rem; border-radius: 999px;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold);
+  border: 1px solid rgba(245,198,60,.42); background: rgba(245,198,60,.08);
+  transition: background .25s, opacity .25s;
+}
+
+.sb-btn:hover:not(:disabled) { background: rgba(245,198,60,.18); }
+
+.sb-btn:disabled { opacity: .35; cursor: default; }
+
+.sb-btn--new { color: var(--ink-dim); border-color: var(--line); background: rgba(255,255,255,.02); }
+
+.sb-fine { margin-top: 1rem; font-size: 0.66rem; line-height: 1.6; color: var(--mute); }
+
+/* ── 3. the kyber forge ── */
+.kb-stage {
+  display: grid; place-items: center; min-height: 150px; padding: 1rem 0 1.4rem;
+}
+
+.kb-saber { display: flex; align-items: center; }
+
+/* two blades, one on each side of the hilt: the second one only shows on a
+   saberstaff, so a standard hilt is the same markup with one blade collapsed */
+.kb-blade {
+  position: relative; height: 16px; width: 0; overflow: visible;
+  transition: width .5s var(--ease);
+}
+
+.kb-blade i {
+  position: absolute; top: 0; bottom: 0; border-radius: 8px;
+  background: var(--blade); box-shadow: 0 0 22px 3px var(--blade), 0 0 60px 10px var(--blade);
+}
+
+.kb-blade--a i { right: 0; left: 0; }
+.kb-blade--b i { right: 0; left: 0; }
+
+/* the white-hot core every lightsaber has down the middle of it */
+.kb-blade i::after {
+  content: ""; position: absolute; inset: 4px 6px; border-radius: 4px;
+  background: rgba(255,255,255,.92);
+}
+
+.kb-saber.is-lit .kb-blade--a { width: 190px; }
+
+.kb-saber--double.is-lit .kb-blade--b { width: 190px; }
+
+.kb-saber--shoto.is-lit .kb-blade--a { width: 110px; }
+
+/* the Darksaber is a flat black blade with a white edge, which is the only
+   honest way to draw it: the glow is the edge, not the body */
+.kb-saber.is-dark .kb-blade i {
+  background: #101014;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.9), 0 0 26px 4px rgba(200,210,255,.5);
+}
+
+.kb-saber.is-dark .kb-blade i::after { background: transparent; }
+
+.kb-hilt {
+  display: flex; align-items: center; gap: 2px; flex: none;
+}
+
+.kb-hilt b {
+  display: block; width: 12px; height: 22px; border-radius: 2px;
+  background: linear-gradient(180deg, #cfd4da, #6a7079 55%, #34383e);
+}
+
+.kb-hilt b:nth-child(2) { height: 26px; background: linear-gradient(180deg, #4a4f57, #1c1f24); width: 26px; }
+
+.kb-hilt b:nth-child(3) { height: 18px; }
+
+.kb-saber--curved .kb-hilt { transform: rotate(-11deg); }
+
+.kb-ctl { display: grid; gap: 0.45rem; margin-bottom: 0.9rem; }
+
+.kb-k {
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+.kb-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+.kb-chip {
+  font: inherit; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.32rem 0.62rem 0.28rem; border-radius: 999px;
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.1em;
+  color: var(--ink-dim); border: 1px solid var(--line); background: rgba(255,255,255,.02);
+  transition: color .25s, border-color .25s, background .25s;
+}
+
+.kb-chip i {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--c, var(--gold)); box-shadow: 0 0 8px var(--c, var(--gold));
+}
+
+.kb-chip:hover { color: var(--ink); border-color: var(--mute); }
+
+.kb-chip.is-on {
+  color: var(--ink); border-color: color-mix(in srgb, var(--gold) 55%, transparent);
+  background: rgba(245,198,60,.1);
+}
+
+.kb-read { margin: 0.4rem 0 1rem; }
+
+.kb-who {
+  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold);
+}
+
+.kb-note { margin-top: 0.35rem; font-size: 0.8rem; line-height: 1.6; color: var(--ink-dim); }
+
+.kb-note--hilt { color: var(--mute); font-size: 0.74rem; }
+
+.kb-ignite {
+  font: inherit; cursor: pointer; padding: 0.5rem 1.1rem 0.46rem; border-radius: 999px;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold);
+  border: 1px solid rgba(245,198,60,.45); background: rgba(245,198,60,.08);
+  transition: background .25s;
+}
+
+.kb-ignite:hover { background: rgba(245,198,60,.2); }
+
+@media (prefers-reduced-motion: reduce) { .kb-blade { transition: none; } }
+
+@media (max-width: 520px) {
+  .kb-saber.is-lit .kb-blade--a { width: 110px; }
+  .kb-saber--double.is-lit .kb-blade--b { width: 110px; }
+  .sb-card { width: 46px; height: 64px; }
+}

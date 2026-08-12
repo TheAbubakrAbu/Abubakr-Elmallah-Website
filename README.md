@@ -33,14 +33,15 @@ can open and read.
 | `/high-school/` | Trabuco Hills: apps, projects, flyers, wallpapers, transcript, awards, WWDC |
 | `/resume/` | Résumé, embedded with Drive and download links |
 | `/travels/` | Where I've been, with an interactive map |
+| `/accents/` | Nineteen accents and four impersonations, in the order I learned them |
 
 **Themed collections**
 
 | Page | What's on it |
 | --- | --- |
-| `/star-wars/` | Datapad, Aurebesh Translator, the droids, and a CSS-drawn atlas of every planet |
-| `/al-islam/` | Al-Islam, Al-Quran, Al-Adhan, and the open-source engines behind them |
-| `/franchises/` | Index of **33** fan pages — Star Wars, Harry Potter, LEGO, Pokémon, Minecraft, LOTR, Marvel, Avatar and more, each with its own stylesheet and behaviour |
+| `/star-wars/` | Datapad, Aurebesh Translator, the droids — plus the alphabet, a playable hand of sabacc and a kyber forge, all running in the page |
+| `/al-islam/` | Al-Islam, Al-Quran, Al-Adhan, the open-source engines — plus prayer times and a qiblah computed in the browser, and a tajwīd sheet |
+| `/franchises/` | Index of **36** pages: **the Big Three** (Islam, Arab, Egypt) first, then Star Wars, Harry Potter, LEGO, Pokémon, Minecraft, LOTR, Marvel, Avatar and the rest, each with its own stylesheet and behaviour |
 
 **Alternate interfaces** — the same content, re-skinned end to end:
 
@@ -96,15 +97,15 @@ manifest.webmanifest     # PWA manifest
 CNAME                    # abubakrelmallah.com
 run                      # ./run -> local Jekyll server with livereload
 
-src/                     # 47 pages, each with a permalink in its front matter
+src/                     # 51 pages, each with a permalink in its front matter
   work · projects · education · college · high-school · resume · travels
-  star-wars · al-islam · franchises · fan-*.html (33 fan pages)
+  accents · star-wars · al-islam · franchises · fan-*.html (36 fan pages)
   jarvis · holocron · elmallah · marauders-map
 
 assets/
-  css/                   # base · layout · components · transcript · travels
+  css/                   # base · layout · components · transcript · travels · accents
     fan/                 # one stylesheet per fan page
-  js/                    # 75 files
+  js/                    # 83 files
     apps-data.js         # SINGLE source of truth for every app/project card
     cards.js             # renders them into [data-cards] / [data-projects]
     cursor · magnetic · scramble · reveal · clock · flowfield · tilt
@@ -112,6 +113,8 @@ assets/
     transcript-data · planets-data · travels-data · fandom-data · …
   img/                   # me · apps · bots · awards · highschool · flyers
                          # wallpapers · franchises · icons
+  audio/accents/         # <id>.m4a per accent — none recorded yet; see the
+                         # header of assets/js/accents-data.js for the convention
 ```
 
 ### Adding an app to a page

@@ -14,6 +14,26 @@
 
 window.FANDOMS = [
 
+  /* The Big Three sit above everything else and are not fandoms at all: you do
+     not pick your faith, your language or where your family is from the way you
+     pick a film series. They are on this page because the rest of the page does
+     not make sense without them, and because they are the three things I would
+     still be if you deleted every other tile here. */
+  { id: 'big3', label: 'The Big Three', note: 'not fandoms — this is what I actually am', items: [
+    { name: 'Islam', wm: 'islam', glyph: 'rub', c1: '#3fd589', c2: '#0a2015',
+      when: 'Before I could speak',
+      meta: 'Dīn · 610 CE', href: '/franchises/islam/',
+      desc: 'The only thing on this page that is not a preference. Twenty-five prophets named in the Qurʾān, the three mosques worth setting out to travel for, and the chain of scholarship every bit of it came down.' },
+    { name: 'Arab', wm: 'arab', glyph: 'qalam', c1: '#e8c56a', c2: '#241c0a',
+      when: 'My first language at home',
+      meta: 'Lisān · 6th c.', href: '/franchises/arab/',
+      desc: 'Twenty-eight letters, each with four shapes depending on where it stands, written right to left and joined up by default. The language my family speaks, and the reason I read a page from the back.' },
+    { name: 'Egypt', wm: 'egypt', glyph: 'pyramid', c1: '#e8a13f', c2: '#26170a',
+      when: 'Where my family is from',
+      meta: 'Miṣr · 3100 BC', href: '/franchises/egypt/',
+      desc: 'Five thousand years of continuous record in one valley, along one river, and the country my parents left. Where I am from before I am from anywhere else.' },
+    ] },
+
   { id: 'core', label: 'The Core Three', note: 'the ones I know by heart', items: [
     { name: 'Star Wars', wm: 'starwars', glyph: 'burst', c1: '#ffe81f', c2: '#2a2408',
       when: 'Around 2012, age six',

@@ -917,6 +917,69 @@ html.intro-lock { overflow: hidden; }
 .facts dd { color: var(--ink-dim); }
 @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } .about-photo { max-width: 320px; } }
 
+/* ───────────── What this is ─────────────
+   The section that says out loud what the whole site is for. Deliberately the
+   first thing under the hero, and deliberately built from the same parts as
+   About rather than a new look: it is the same voice, just the thesis. */
+
+.legacy { padding-top: 2rem; padding-bottom: 5rem; }
+
+.legacy .about-lede { max-width: 24ch; }
+
+.legacy-grid {
+  display: grid; grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2rem, 5vw, 4rem); align-items: start; margin-top: 1rem;
+}
+
+.legacy-body p { color: var(--ink-dim); margin-bottom: 1.1rem; max-width: 58ch; line-height: 1.8; }
+
+.legacy-body p:last-child { margin-bottom: 0; }
+
+.legacy-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+
+/* Each card is one of the three apps this site was built to replace, plus the
+   one they were never going to hold. --lc per card is what tells them apart. */
+.legacy-card {
+  padding: 1.1rem 1.2rem 1.2rem; border: 1px solid var(--line); border-radius: 14px;
+  background: rgba(255,255,255,0.012);
+  transition: transform .35s var(--ease), border-color .35s, background .35s;
+}
+
+.legacy-card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--lc, var(--gold)) 45%, transparent);
+  background: color-mix(in srgb, var(--lc, var(--gold)) 6%, transparent);
+}
+
+.legacy-ico {
+  display: flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; margin-bottom: 0.75rem; border-radius: 9px;
+  color: var(--lc, var(--gold));
+  border: 1px solid color-mix(in srgb, var(--lc, var(--gold)) 35%, transparent);
+  background: color-mix(in srgb, var(--lc, var(--gold)) 10%, transparent);
+}
+
+.legacy-ico svg { width: 16px; height: 16px; }
+
+.legacy-card h4 {
+  font-family: var(--serif); font-weight: 600; font-size: 1rem;
+  letter-spacing: -0.01em; margin-bottom: 0.35rem;
+}
+
+.legacy-card p { color: var(--ink-dim); font-size: 0.84rem; line-height: 1.6; }
+
+.legacy-card--me { border-color: color-mix(in srgb, var(--green) 30%, var(--line)); }
+
+.legacy .hs-extra { margin-top: 2.4rem; }
+
+@media (max-width: 900px) {
+  .legacy-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 520px) {
+  .legacy-cards { grid-template-columns: 1fr; }
+}
+
 /* ───────────── Contact ───────────── */
 
 .contact { padding-top: 2rem; padding-bottom: 6rem; }

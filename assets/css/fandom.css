@@ -116,6 +116,45 @@ a.fr-card { cursor: pointer; }
 .fr-group--tertiary .fr-name { font-size: 1.14rem; }
 .fr-group--core .fr-name { font-size: 1.7rem; }
 
+/* ── the Big Three ──
+   These three are not franchises and must not look like one. No neon, no
+   studio pastiche: the lettering is quiet and the plate is what carries them,
+   which is why they get the tallest plate on the page. */
+.fr-group--big3 .fr-grid { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 900px) { .fr-group--big3 .fr-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .fr-group--big3 .fr-grid { grid-template-columns: 1fr; } }
+
+.fr-group--big3 .fr-plate { min-height: 240px; }
+.fr-group--big3 .fr-glyph { width: 50px; height: 50px; }
+.fr-group--big3 .fr-name { font-size: 2rem; }
+
+/* the eight-point lattice behind the plate: geometry, not imagery, and the
+   same figure the Rubʿ al-Ḥizb glyph above it is built from */
+.fr-group--big3 .fr-plate::after {
+  content: ""; position: absolute; inset: -20%; pointer-events: none; opacity: .16;
+  background:
+    repeating-linear-gradient(45deg,  color-mix(in srgb, var(--c1) 40%, transparent) 0 1px, transparent 1px 26px),
+    repeating-linear-gradient(-45deg, color-mix(in srgb, var(--c1) 40%, transparent) 0 1px, transparent 1px 26px);
+  mask-image: radial-gradient(70% 70% at 50% 45%, #000, transparent 72%);
+  -webkit-mask-image: radial-gradient(70% 70% at 50% 45%, #000, transparent 72%);
+}
+
+.wm--islam {
+  font-family: var(--serif); font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.22em; text-shadow: 0 0 30px rgba(63,213,137,.4);
+}
+.wm--arab {
+  font-family: Georgia, "Times New Roman", serif; font-weight: 400;
+  font-variant: small-caps; letter-spacing: 0.16em;
+  text-shadow: 0 2px 20px rgba(232,197,106,.35);
+}
+.wm--egypt {
+  font-family: Copperplate, "Copperplate Gothic Light", Georgia, serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  background: linear-gradient(180deg, #f6dfa8, #e8a13f 58%, #a86a1c);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
 /* stacks that exist on most machines, with honest fallbacks */
 .wm--starwars {
   font-family: var(--serif); font-weight: 700; text-transform: uppercase;
@@ -338,5 +377,24 @@ a.fr-card { cursor: pointer; }
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
 }
 .fr-travels-a { font-size: 0.8rem; color: #7fb8e8; }
+
+/* Two of these bars now stack at the foot of the page. Accents is gold rather
+   than blue so the pair reads as two different rooms, not one control repeated;
+   the colour is set on the wrapper so the icon, the arrow and the wash all
+   follow from a single declaration. */
+.fr-travels-btn + .fr-travels-btn { margin-top: 0.6rem; }
+
+.fr-travels-btn--ac {
+  background: linear-gradient(100deg, rgba(245,198,60,.07), transparent 70%);
+}
+
+.fr-travels-btn--ac:hover {
+  border-color: rgba(245,198,60,.5);
+  background: linear-gradient(100deg, rgba(245,198,60,.13), transparent 70%);
+}
+
+.fr-travels-btn--ac .fr-travels-i svg { stroke: var(--gold); }
+
+.fr-travels-btn--ac .fr-travels-a { color: var(--gold); }
 
 @media (prefers-reduced-motion: reduce) { .fr-travels-btn:hover { transform: none; } }

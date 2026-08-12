@@ -14,6 +14,21 @@
 
   /* hand-drawn emblems, 24×24, currentColor */
   var GLYPHS = {
+    /* ── the Big Three ── */
+    // Rubʿ al-Ḥizb: two overlaid squares, the eight-point star that marks a
+    // quarter-ḥizb in the muṣḥaf. Nothing figurative, which is the point.
+    rub:     '<rect x="5" y="5" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"/>'
+             + '<rect x="5" y="5" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" transform="rotate(45 12 12)"/>'
+             + '<circle cx="12" cy="12" r="2.1"/>',
+    // a qalam: the reed pen, cut at an angle, over the stroke it just made
+    qalam:   '<path d="M20.6 3.4 9.8 14.2l-1.4 3.6 3.6-1.4L22.8 5.6a1.6 1.6 0 0 0 0-2.2 1.6 1.6 0 0 0-2.2 0z"/>'
+             + '<path d="M2.4 20.4c3.4-2.2 6.4-2.2 9 0 2.6 2.2 6 1.4 9.6-2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>',
+    // two pyramids on the west bank, the sun behind them, the Nile below
+    pyramid: '<circle cx="17.4" cy="6.2" r="3"/>'
+             + '<path d="M9.4 5.4 17.8 17H1z"/>'
+             + '<path d="M17.6 9.8 23 17h-10.8z" opacity=".75"/>'
+             + '<path d="M1 20.4c3-1.6 5.4-1.6 8 0s5 1.6 8 0 3.4-1.2 6-.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>',
+
     burst:   '<path d="M12 1l1.9 6.4L20 5l-2.6 5.9L23 12l-5.6 1.1L20 19l-6.1-2.4L12 23l-1.9-6.4L4 19l2.6-5.9L1 12l5.6-1.1L4 5l6.1 2.4z"/>',
     bolt:    '<path d="M13.4 1.5 4.8 13.2h5.1L9 22.5l9-12.1h-5.2z"/>',
     circleA:  '<circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/>'

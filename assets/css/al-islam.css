@@ -334,3 +334,271 @@ body[data-intro="alislam"] #field { opacity: 0.3; }
   .sch-medal { height: 92px; }
   .sch-star { width: 92px; height: 92px; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   The live panel and the tajweed sheet on /al-islam/
+   (see alislam-live.js)
+
+   This page is about three apps, so it now ends by DOING what
+   they do rather than by listing scholars — those moved to
+   /franchises/islam/, which is the page about the religion.
+   ═══════════════════════════════════════════════════════════ */
+
+.islam-live { padding-bottom: 1rem; }
+
+.isl-live {
+  display: grid; gap: clamp(0.9rem, 2vw, 1.4rem);
+  grid-template-columns: 1.25fr 0.85fr 0.9fr;
+  align-items: start;
+}
+
+@media (max-width: 1040px) { .isl-live { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px)  { .isl-live { grid-template-columns: 1fr; } }
+
+.isl-panel {
+  display: flex; flex-direction: column;
+  padding: 1.3rem 1.4rem 1.4rem; border-radius: 16px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(120% 90% at 20% 0%, rgba(31,157,92,.07), transparent 60%),
+    rgba(255,255,255,0.012);
+  transition: border-color .35s;
+}
+
+.isl-panel:hover { border-color: color-mix(in srgb, var(--green) 38%, transparent); }
+
+.isl-panel-h { margin-bottom: 1rem; }
+
+.isl-panel-k {
+  display: block; font-family: var(--mono); font-size: 0.54rem;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--green-2);
+  margin-bottom: 0.4rem;
+}
+
+.isl-panel-h h4 { font-family: var(--serif); font-weight: 600; font-size: 1.16rem; letter-spacing: -0.01em; }
+
+.isl-place { margin-top: 0.3rem; font-size: 0.76rem; line-height: 1.5; color: var(--ink-dim); }
+
+.isl-place em { font-style: normal; font-family: var(--mono); font-size: 0.6rem; color: var(--mute); }
+
+/* ── the next prayer, which is the one thing worth reading at a glance ── */
+.isl-next {
+  display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap;
+  padding: 0.75rem 0.9rem; margin-bottom: 0.9rem; border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--green) 40%, transparent);
+  background: rgba(31,157,92,.1);
+}
+
+.isl-next-k {
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+.isl-next b { font-family: var(--serif); font-weight: 600; font-size: 1.1rem; color: var(--green-2); }
+
+.isl-next-ar { font-family: "Amiri", "Scheherazade New", serif; font-size: 1.05rem; color: var(--ink-dim); }
+
+.isl-next-in { margin-left: auto; font-family: var(--mono); font-size: 0.72rem; color: var(--ink); }
+
+/* ── the five times ── */
+.isl-times { list-style: none; display: grid; gap: 1px; background: var(--line); border-radius: 10px; overflow: hidden; }
+
+.isl-time {
+  display: grid; grid-template-columns: 1fr auto auto; align-items: center;
+  gap: 0.7rem; padding: 0.62rem 0.8rem; background: var(--bg);
+}
+
+.isl-time-n { font-size: 0.88rem; }
+
+.isl-time-ar { font-family: "Amiri", "Scheherazade New", serif; font-size: 0.95rem; color: var(--mute); }
+
+.isl-time-v { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-dim); font-variant-numeric: tabular-nums; }
+
+/* sunrise is a boundary, not a prayer, so it is set back */
+.isl-time.is-minor .isl-time-n,
+.isl-time.is-minor .isl-time-v { color: var(--mute); font-size: 0.76rem; }
+
+.isl-time.is-now { background: rgba(255,255,255,0.03); }
+
+.isl-time.is-now .isl-time-n { color: var(--ink); font-weight: 600; }
+
+.isl-time.is-next { background: rgba(31,157,92,.1); }
+
+.isl-time.is-next .isl-time-n { color: var(--green-2); font-weight: 600; }
+
+.isl-time.is-next .isl-time-v { color: var(--green-2); }
+
+/* ── the two pickers ── */
+.isl-controls { display: grid; gap: 0.7rem; margin-top: 1rem; }
+
+.isl-ctl-k {
+  display: block; font-family: var(--mono); font-size: 0.5rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute);
+  margin-bottom: 0.4rem;
+}
+
+.isl-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+
+.isl-chips .chip { font-size: 0.58rem; padding: 0.3rem 0.6rem; }
+
+.isl-geo {
+  font: inherit; cursor: pointer; margin-top: 1rem; align-self: flex-start;
+  padding: 0.5rem 1rem 0.46rem; border-radius: 999px;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--green-2);
+  border: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
+  background: rgba(31,157,92,.08);
+  transition: background .25s, border-color .25s, opacity .25s;
+}
+
+.isl-geo:hover { background: rgba(31,157,92,.18); }
+
+.isl-geo:disabled { opacity: .55; cursor: default; }
+
+.isl-fine {
+  margin-top: auto; padding-top: 1rem;
+  font-size: 0.68rem; line-height: 1.6; color: var(--mute);
+}
+
+/* ── the compass ── */
+.isl-compass { margin: 0 auto; max-width: 240px; width: 100%; }
+
+.isl-compass svg { width: 100%; height: auto; display: block; }
+
+.qb-face { fill: rgba(255,255,255,0.015); }
+
+.qb-ring { fill: none; stroke: var(--line); stroke-width: 1.4; }
+
+.qb-ring--in { stroke: rgba(255,255,255,0.05); }
+
+.qb-ticks path { stroke: var(--mute); stroke-width: 1.1; opacity: .55; }
+
+.qb-card { font-family: var(--mono); font-size: 9px; fill: var(--mute); letter-spacing: 0.1em; }
+
+/* the needle points at the Kaʿbah, not at north: the little square on the end
+   of it is the building itself */
+.qb-needle { transition: transform .8s var(--ease); transform-origin: 100px 100px; }
+
+.qb-arrow { fill: var(--green-2); }
+
+.qb-kaaba { fill: #0d0d10; stroke: var(--gold); stroke-width: 1.6; }
+
+.qb-hub { fill: var(--green); }
+
+.isl-qread { display: flex; gap: 1.4rem; margin-top: 1rem; justify-content: center; flex-wrap: wrap; }
+
+.isl-qread span { display: grid; gap: 0.15rem; text-align: center; }
+
+.isl-qread b { font-family: var(--mono); font-size: 1.05rem; color: var(--green-2); }
+
+.isl-qread i {
+  font-style: normal; font-family: var(--mono); font-size: 0.5rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
+}
+
+/* ── both calendars ── */
+.isl-hijri {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.7; color: var(--green-2);
+}
+
+.isl-hijri-en { font-family: var(--mono); font-size: 0.82rem; color: var(--ink); margin-top: 0.3rem; }
+
+.isl-greg { font-size: 0.8rem; color: var(--ink-dim); margin-top: 0.5rem; }
+
+/* ═══════════ the tajweed sheet ═══════════ */
+.islam-tajweed { padding-bottom: 4rem; }
+
+.tj-legend { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1.4rem; }
+
+.tj-chip {
+  font: inherit; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  padding: 0.38rem 0.75rem 0.34rem; border-radius: 999px;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em;
+  color: var(--ink-dim); border: 1px solid var(--line);
+  background: rgba(255,255,255,0.02);
+  transition: color .25s, border-color .25s, background .25s;
+}
+
+.tj-chip i { width: 8px; height: 8px; border-radius: 2px; background: currentColor; }
+
+.tj-chip span { font-family: "Amiri", "Scheherazade New", serif; font-size: 0.9rem; opacity: .7; }
+
+.tj-chip:hover { color: var(--ink); border-color: var(--mute); }
+
+.tj-chip.is-on { color: var(--ink); border-color: currentColor; background: rgba(255,255,255,0.05); }
+
+/* one colour per rule, used by the chip, the note and the text alike */
+.tj-chip--madd     { color: #a88fe0; }
+.tj-chip--qalqalah { color: #e8c56a; }
+.tj-chip--idgham   { color: #5fa3ec; }
+.tj-chip--ghunnah  { color: #3fd589; }
+.tj-chip--izhar    { color: #e0885f; }
+
+.tj-sheet {
+  padding: clamp(1.4rem, 4vw, 2.4rem); border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--green) 22%, transparent);
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(31,157,92,.07), transparent 62%),
+    rgba(8, 14, 11, 0.55);
+  text-align: center;
+}
+
+.tj-ayah {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: clamp(1.5rem, 4.5vw, 2.4rem); line-height: 2.3;
+  color: var(--ink);
+}
+
+.tj-num { color: var(--mute); font-size: 0.7em; margin-right: 0.3rem; }
+
+.tj { transition: color .3s, opacity .3s, background .3s; border-radius: 4px; }
+
+.tj--madd     { color: #a88fe0; }
+.tj--qalqalah { color: #e8c56a; }
+.tj--idgham   { color: #5fa3ec; }
+.tj--ghunnah  { color: #3fd589; }
+.tj--izhar    { color: #e0885f; }
+
+/* picking one rule dims every other colour back to plain text, so the eye can
+   find that rule in the line rather than reading five colours at once */
+.tj-sheet[data-only] .tj { color: var(--ink); }
+
+.tj-sheet[data-only="madd"] .tj--madd,
+.tj-sheet[data-only="qalqalah"] .tj--qalqalah,
+.tj-sheet[data-only="idgham"] .tj--idgham,
+.tj-sheet[data-only="ghunnah"] .tj--ghunnah,
+.tj-sheet[data-only="izhar"] .tj--izhar {
+  background: rgba(255,255,255,0.06);
+}
+
+.tj-sheet[data-only="madd"] .tj--madd         { color: #a88fe0; }
+.tj-sheet[data-only="qalqalah"] .tj--qalqalah { color: #e8c56a; }
+.tj-sheet[data-only="idgham"] .tj--idgham     { color: #5fa3ec; }
+.tj-sheet[data-only="ghunnah"] .tj--ghunnah   { color: #3fd589; }
+.tj-sheet[data-only="izhar"] .tj--izhar       { color: #e0885f; }
+
+.tj-notes {
+  display: grid; gap: 0.7rem; margin-top: 1.6rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.tj-note {
+  font-size: 0.8rem; line-height: 1.6; color: var(--ink-dim);
+  padding: 0.75rem 0.9rem; border-radius: 10px;
+  border: 1px solid var(--line); background: rgba(255,255,255,0.012);
+  transition: opacity .3s;
+}
+
+.tj-note b { display: block; margin-bottom: 0.25rem; font-family: var(--serif); font-weight: 600; }
+
+.tj-note--madd b     { color: #a88fe0; }
+.tj-note--qalqalah b { color: #e8c56a; }
+.tj-note--idgham b   { color: #5fa3ec; }
+.tj-note--ghunnah b  { color: #3fd589; }
+.tj-note--izhar b    { color: #e0885f; }
+
+.tj-note.is-dim { opacity: .32; }
+
+@media (prefers-reduced-motion: reduce) { .qb-needle { transition: none; } }

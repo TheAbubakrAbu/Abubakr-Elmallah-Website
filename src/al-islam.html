@@ -117,39 +117,26 @@ redirect_from:
     <p class="verse-ref">Holy Quran · Al-Anfal 8:30</p>
   </section>
 
-  <section class="mosques">
-    <h3 class="subsec subsec--isl reveal">The Three Holy Mosques<span class="subsec-yr">الحرمان والأقصى</span></h3>
-    <p class="isl-lede reveal">The three mosques the Prophet ﷺ said are worth setting out to travel for: <b>Makkah</b>, <b>Madinah</b>, and <b>Jerusalem</b>. Every mosque here is drawn, not photographed: each one is an SVG elevation built from the same parts, in its own architectural language.</p>
-    <div class="holy-grid" id="holyMosques"></div>
-
+  <!-- ─────────── what the apps actually do, doing it ───────────
+       The prophets, the three holy mosques and the chain of scholars used to
+       sit here. They belong to the religion rather than to three pieces of
+       software, so they moved to /franchises/islam/ and this took their place:
+       the same work the apps do, running in the page. See alislam-live.js. -->
+  <section class="work islam-live" id="live">
+    <h3 class="subsec subsec--isl reveal">Live<span class="subsec-yr">the apps, running in this page</span></h3>
+    <p class="isl-lede reveal">Rather than describe what Al-Adhan and Al-Islam do, here they are doing it. The prayer times below are <b>computed in your browser</b> from the sun’s position for the coordinates shown &#8212; there is no API behind this and nothing about your location leaves the page. The qiblah is the true great-circle bearing to the Ka&#703;bah from the same point, which is why it does not simply point east.</p>
+    <div id="islLive"></div>
   </section>
 
-  <section class="prophets">
-    <h3 class="subsec subsec--isl reveal">Prophets in the Quran<span class="subsec-yr">الأنبياء</span></h3>
-    <p class="isl-lede reveal">Twenty-five are named. Grouped the way the Quran tends to introduce them: the first prophets, the ones sent to the Arab peoples, the house of Ibr&#257;h&#299;m, the Israelites who came through Is&#7717;&#257;q, and finally the one who came through Ism&#257;&#703;&#299;l. Filter by line.</p>
+  <section class="work islam-tajweed" id="tajweed">
+    <h3 class="subsec subsec--isl reveal">Tajwīd<span class="subsec-yr">التجويد</span></h3>
+    <p class="isl-lede reveal">The rules that govern how the Qur&#702;&#257;n is pronounced, shown the way Al-Quran shows them: as colour on the letters themselves. My <b>Quran Tajweed Engine</b> derives this for all 6,236 verses from the rules rather than from a marked-up text; below is S&#363;rat al-Ikhl&#257;&#7779;, four verses of it, marked by hand so each colour can be explained. Pick a single rule to find just that one in the line.</p>
+    <div id="islTajweed"></div>
 
-    <div class="salaf-card reveal">
-      <p class="salaf-ar" lang="ar" dir="rtl">&#1608;&#1614;&#1605;&#1614;&#1575; &#1571;&#1614;&#1585;&#1618;&#1587;&#1614;&#1604;&#1618;&#1606;&#1614;&#1575; &#1605;&#1616;&#1606; &#1585;&#1614;&#1587;&#1615;&#1608;&#1604;&#1613; &#1573;&#1616;&#1604;&#1617;&#1614;&#1575; &#1576;&#1616;&#1604;&#1616;&#1587;&#1614;&#1575;&#1606;&#1616; &#1602;&#1614;&#1608;&#1618;&#1605;&#1616;&#1607;&#1616; &#1604;&#1616;&#1610;&#1615;&#1576;&#1614;&#1610;&#1617;&#1616;&#1606;&#1614; &#1604;&#1614;&#1607;&#1615;&#1605;</p>
-      <p class="salaf-en">&#8220;And We did not send any messenger except in the language of his people, so that he could make things clear to them.&#8221;</p>
-      <span class="salaf-src">Holy Quran &#183; Ibr&#257;h&#299;m 14:4</span>
-      <p class="salaf-note">Every one of them was sent speaking the language of the people in front of him. Five are the <b>Ulul-&#703;Azm</b>, those of firm resolve (N&#363;&#7717;, Ibr&#257;h&#299;m, M&#363;s&#257;, &#703;&#298;s&#257; and Mu&#7717;ammad &#65018;), and they are tagged below.</p>
+    <div class="hs-extra reveal">
+      <a href="/franchises/islam/" data-magnetic>↳ Islam itself: the prophets, the mosques and the scholars ↗</a>
+      <a href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener" data-magnetic>↳ The engines, on GitHub ↗</a>
     </div>
-
-    <div id="prophets"></div>
-  </section>
-
-  <section class="scholars">
-    <h3 class="subsec subsec--isl reveal">Scholars<span class="subsec-yr">the athari chain</span></h3>
-    <p class="isl-lede reveal">The line the ummah’s knowledge actually travelled down: the rightly guided caliphs, the ten promised Jannah, the Muhājirūn and the Anṣār, the two generations after them, then the four imāms, the ḥadīth masters, the writers of ʿaqīdah and tafsīr, Ibn Taymiyyah’s circle in Damascus, and the revivalists after them. Filter by generation.</p>
-
-    <div class="salaf-card reveal">
-      <p class="salaf-ar" lang="ar" dir="rtl">خَيْرُ النَّاسِ قَرْنِي، ثُمَّ الَّذِينَ يَلُونَهُمْ، ثُمَّ الَّذِينَ يَلُونَهُمْ</p>
-      <p class="salaf-en">“The best of people are my generation, then those who come after them, then those who come after them.”</p>
-      <span class="salaf-src">Ṣaḥīḥ al-Bukhārī · Ṣaḥīḥ Muslim</span>
-      <p class="salaf-note">Those three generations are <b>as-Salaf aṣ-Ṣāliḥ</b>: the Companions, the Tābiʿūn who met them, and the Atbāʿ at-Tābiʿīn after them. Every group tagged <b>Salaf</b> below is one of the three; everyone listed after them is measured against what they understood.</p>
-    </div>
-
-    <div id="scholars"></div>
   </section>
 
   <div class="lightbox" id="lightbox" aria-hidden="true">
@@ -178,10 +165,8 @@ redirect_from:
 <script src="{% include v.html f='/assets/js/apps-data.js' %}"></script>
 <script src="{% include v.html f='/assets/js/cards.js' %}"></script>
 <script src="{% include v.html f='/assets/js/utils.js' %}"></script>
-<!-- mosques + scholars: data then renderer, before magnetic.js / reveal.js -->
-<script src="{% include v.html f='/assets/js/mosques-data.js' %}"></script>
-<script src="{% include v.html f='/assets/js/scholars-data.js' %}"></script>
-<script src="{% include v.html f='/assets/js/prophets-data.js' %}"></script>
+<!-- the geometric backdrop still parallaxes; the mosque, prophet and scholar
+     data now loads on /franchises/islam/ instead, which is where they live -->
 <script src="{% include v.html f='/assets/js/islam.js' %}"></script>
 <script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
 <script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
@@ -194,5 +179,8 @@ redirect_from:
 <script src="{% include v.html f='/assets/js/intro.js' %}"></script>
 <script src="{% include v.html f='/assets/js/cardlink.js' %}"></script>
 <script src="{% include v.html f='/assets/js/gallery.js' %}"></script>
+<!-- prayer times, qiblah, both calendars and the tajwid sheet.
+     After reveal.js on purpose: see the comment in alislam-live.js -->
+<script src="{% include v.html f='/assets/js/alislam-live.js' %}"></script>
 </body>
 </html>

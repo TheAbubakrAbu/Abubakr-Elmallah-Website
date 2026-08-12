@@ -337,6 +337,15 @@
   var holyRoot = document.getElementById('holyMosques');
   if (holyRoot && M) holyRoot.innerHTML = M.holy.map(holyCard).join('');
 
+  /* The rest of ISL_MOSQUES.famous, on whichever page provides a #mosques
+     mount. Only /franchises/islam/ does; a page without one just renders the
+     three holy mosques above and stops, which is what /al-islam/ used to do
+     with the whole file. */
+  var msqRoot = document.getElementById('mosques');
+  if (msqRoot && M && M.famous) {
+    msqRoot.innerHTML = '<div class="msq-grid">' + M.famous.map(mosqueCard).join('') + '</div>';
+  }
+
 
   /* The medallion mark, shared by the prophets and the scholars below.
      Defined here because the prophets render first -- when this sat inside

@@ -112,17 +112,55 @@ redirect_from:
 
   <section class="work starwars">
     <div class="hs-extra reveal">
-      <a href="#planets" data-magnetic>The planet atlas ↓</a>
-      <a href="/franchises/star-wars/" data-magnetic>The fandom page: eras, the prequels, the Clone Wars, Order 66, kyber ↗</a>
+      <a href="#live" data-magnetic>Try the four of them ↓</a>
+      <a href="/franchises/star-wars/" data-magnetic>The fandom page: eras, the prequels, the Clone Wars, Order 66, kyber, and the planet atlas ↗</a>
     </div>
   </section>
 
-  <section class="planets" id="planets">
-    <h3 class="subsec reveal">The Atlas<span class="subsec-yr">every world, drawn in CSS</span></h3>
-    <p class="lede reveal" style="max-width:66ch;margin-bottom:2rem">Every world from the films, the shows and the games, sorted by era, the way Datapad sorts them. Each planet is drawn entirely in CSS: no images, just gradients, a rotating surface layer and its own atmosphere. Pick an era, and hover one to scan it.</p>
-    <div id="planetAtlas"></div>
-  </section>
+  <!-- ─────────── the apps, running in the page ───────────
+       The CSS planet atlas that used to sit here lives on
+       /franchises/star-wars/, which is the page about the films. This page is
+       about four things I built, so it now lets you use them. See
+       starwars-live.js. -->
+  <section class="work sw-live" id="live">
+    <h3 class="subsec reveal">Live<span class="subsec-yr">the four of them, running here</span></h3>
+    <p class="lede reveal" style="max-width:70ch;margin-bottom:2rem">Rather than screenshots: the alphabet from Aurebesh Translator, the game Sabacc Droid deals, the crystal and hilt from Datapad, and Datapad&#8217;s chronometer. All of it computed in this page.</p>
 
+    <div class="sw-consoles">
+
+      <section class="sw-con sw-con--wide reveal">
+        <div class="sw-con-h">
+          <span class="sw-con-k">Aurebesh Translator · Aurebesh Droid</span>
+          <h4>The alphabet</h4>
+          <p>Aurebesh has thirty-four characters: twenty-six letters and eight digraphs, each of which is <em>one</em> character standing for two of ours. Type anything and it is spelled out below, with the digraphs picked up before the single letters &#8212; which is the bit everyone transliterating by hand gets wrong.</p>
+        </div>
+        <input class="sw-au-in" id="swAuIn" type="text" autocomplete="off" spellcheck="false"
+               aria-label="Text to spell out in Aurebesh" placeholder="Type something…" />
+        <div class="sw-au-out" id="swAuOut" aria-live="polite"></div>
+        <p class="sw-fine">The letterforms themselves are the app&#8217;s job &#8212; <a href="https://apps.apple.com/us/developer/abubakr-elmallah/id1690310648" target="_blank" rel="noopener">Aurebesh Translator</a> renders the glyphs, and the Discord droid does it in a channel. This is the alphabet behind both.</p>
+        <div class="sw-stardate" id="swStardate"></div>
+      </section>
+
+      <section class="sw-con reveal">
+        <div class="sw-con-h">
+          <span class="sw-con-k">Sabacc Droid</span>
+          <h4>Corellian Spike</h4>
+          <p>Closest to <em>zero</em> wins, not the highest. Draw if you dare &#8212; and watch the cubes.</p>
+        </div>
+        <div id="swSabacc"></div>
+      </section>
+
+      <section class="sw-con reveal">
+        <div class="sw-con-h">
+          <span class="sw-con-k">Datapad</span>
+          <h4>The kyber forge</h4>
+          <p>Pick the crystal, pick the hilt, ignite it. Drawn, not photographed.</p>
+        </div>
+        <div id="swForge"></div>
+      </section>
+
+    </div>
+  </section>
 
 </main>
 
@@ -157,13 +195,16 @@ redirect_from:
 <script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
 <script src="{% include v.html f='/assets/js/clock.js' %}"></script>
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
-<script src="{% include v.html f='/assets/js/planets-data.js' %}"></script>
-<script src="{% include v.html f='/assets/js/planets.js' %}"></script>
+<!-- the planet atlas moved to /franchises/star-wars/, so planets-data.js and
+     planets.js are no longer loaded here -->
 <script src="{% include v.html f='/assets/js/gallery.js' %}"></script>
 <script src="{% include v.html f='/assets/js/tilt.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
 <script src="{% include v.html f='/assets/js/intro.js' %}"></script>
 <script src="{% include v.html f='/assets/js/cardlink.js' %}"></script>
+<!-- Aurebesh, sabacc, the kyber forge and the chronometer.
+     After reveal.js on purpose: see the comment in starwars-live.js -->
+<script src="{% include v.html f='/assets/js/starwars-live.js' %}"></script>
 </body>
 </html>
