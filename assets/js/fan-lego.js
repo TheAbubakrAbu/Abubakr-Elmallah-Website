@@ -11,88 +11,119 @@ window.FAN_PAGE = {
   /* `sortable` puts the order control above the tiles and `views` puts the
      grid/list switch next to it (see fanpage.js). The list below stays in TT
      Games' own order, newest first, because that is how they publish it; the
-     first sort key carries `dir: 'desc'`, so the page actually opens on my
-     highest-rated one and reads down from there.
+     sort control opens on release date, oldest first, so the page reads
+     forward from LEGO Star Wars in 2005.
 
      `done` / `hours` / `shot` are mine, and they travel together: a screenshot
      here means I took that one to a hundred percent, and `hours` is the Steam
      play time read off that same screenshot rather than an estimate. Shots live
      in /assets/img/franchises/lego/; a title with `done` but no file yet just
      renders without one (fanpage.js drops the link if the image 404s).
+     `shots` is any EXTRA images for a title, beyond the `shot` thumbnail:
+     clicking the tile opens the whole set together in the lightbox.
 
-     `rating` is mine too, out of ten, and it is a rating of the GAME rather
-     than of the licence: Pirates scores above The Skywalker Saga because the
-     older, smaller one is a better-made thing, not because I like pirates more
-     than Star Wars. Every title carries one, including the ones I have not
-     taken to a hundred percent, so the ratings sort covers the whole list.
+     `rating` is mine too, out of ten, and ONLY on the games I have actually
+     played — which on this page means the finished ones, since `done` and
+     `hours` are the only play records I keep. A score on a game I never
+     touched would be a review of its reputation, so the rest simply carry no
+     rating and sink to the bottom of that sort. It is a rating of the GAME
+     rather than of the licence: The Clone Wars outscores The Force Awakens
+     because the older, messier one is the better game, not because I prefer
+     one era of Star Wars to another.
 
      `proj` is NOT mine: it is the HowLongToBeat community Completionist average
      in hours, pulled per title so the whole column uses one methodology rather
      than a different forum thread each time. Every title has one, which is what
      makes the comparison work. Two of them rest on thin samples — LEGO Worlds
-     (11 submissions) and LEGO Dimensions (14) — against 80–690 for the rest. */
+     (11 submissions) and LEGO Dimensions (14) — against 80–690 for the rest.
+
+     `series` is the licence each game adapts, and it exists for the Group
+     control (`groupable`, see fanpage.js): switched on, the catalogue folds
+     into one section per series, still in whatever order the sort buttons have
+     picked. DC Super-Villains sits under Batman & DC on purpose — it is the
+     same continuity from the villains' side. The Ninjago Movie game rides
+     with The LEGO Movie, because the film it adapts belongs to that film
+     series. The games built on LEGO's own toy lines (Worlds, Dimensions,
+     LEGO City) get their own banner, LEGO Originals; an outside licence TT
+     only visited once (Pirates, Jurassic World, The Incredibles) goes under
+     Standalone rather than getting a one-game section to itself. */
   { id: 'catalogue', kind: 'tiles', title: 'The LEGO Games', note: 'from ttgames.com/games', compact: true, cols: 3,
     tally: 'at 100%',
     views: true,
+    groupable: { key: 'series', label: 'Group by series', on: 'On' },
     sortable: { label: 'Sort', by: [
-      { key: 'rating', label: 'My rating',    asc: 'Worst',    desc: 'Best', dir: 'desc' },
       { key: 'year',   label: 'Release date', asc: 'Oldest',   desc: 'Newest' },
+      { key: 'rating', label: 'My rating',    asc: 'Worst',    desc: 'Best' },
       { key: 'hours',  label: 'My time',      asc: 'Quickest', desc: 'Longest' },
       { key: 'proj',   label: 'Projected',    asc: 'Shortest', desc: 'Longest' },
     ] },
-    lede: 'TT Games’ own catalogue, running from LEGO Star Wars in 2005 forwards, sortable by what I rate it, by release date, by how long each one took me, or by how long it is reckoned to take. Switch between grid and list: grid is the banner and the numbers, list opens every screenshot out next to it. The handheld-only spin-offs and the console bundles are left out, because a bundle is not really its own game and the handheld ones were made by a different studio entirely; what is left is the main line, all of it on Steam bar LEGO Dimensions, which was toys-to-life with a physical portal and could never have been on PC. The green stamp is mine: every one with a screenshot under it is one I took to a hundred percent, and the Steam library page is the receipt for the hours next to it. The grey figure beside it is the HowLongToBeat community Completionist average for that game, so every title carries a projected run whether I have finished it or not, and the finished ones show the gap.',
+    lede: 'TT Games’ own catalogue, running from LEGO Star Wars in 2005 forwards, sortable by release date, by what I rate it, by how long each one took me, or by how long it is reckoned to take. Click any finished game to open its screenshots full size. Switch between grid and list: grid is the banner and the numbers, list opens every screenshot out next to it. Or group it by series, which folds the same list into its licences — the six Star Wars games together, the whole Batman and DC run including Super-Villains, LEGO’s own inventions under LEGO Originals, and the one-visit licences under Standalone — each section still in whatever order the sort has picked. Ratings are only on the games I have actually played; the rest stay unscored and sink to the bottom of that sort. The handheld-only spin-offs and the console bundles are left out, because a bundle is not really its own game and the handheld ones were made by a different studio entirely; what is left is the main line, all of it on Steam bar LEGO Dimensions, which was toys-to-life with a physical portal and could never have been on PC. The green stamp is mine: every one with a screenshot under it is one I took to a hundred percent, and the Steam library page is the receipt for the hours next to it. The grey figure beside it is the HowLongToBeat community Completionist average for that game, so every title carries a projected run whether I have finished it or not, and the finished ones show the gap.',
     items: [
-      { title: 'LEGO Batman: Legacy of the Dark Knight', accent: '#8f98a8', year: 2026, proj: '33.4', rating: 7.5, sub: '2026 · newest', desc: 'The most recent one, out this year. The only rating on this page I have not earned yet.' },
-      { title: 'LEGO Star Wars: The Skywalker Saga', accent: '#ffd21f', year: 2022, proj: '90.0', rating: 8.5, sub: '2022 · Steam', desc: 'All nine films, rebuilt from scratch. Nearly eighty hours, which is more than twice any other one of these.',
-        done: true, hours: '79.4', shot: '/assets/img/franchises/lego/skywalker-saga-steam.jpg',
-        shotAlt: 'Steam library page for LEGO Star Wars: The Skywalker Saga, 79.4 hours played and 45 of 45 achievements' },
-      { title: 'The LEGO Movie 2 Videogame', accent: '#4fc0e0', year: 2019, proj: '16.5', rating: 6.6, sub: '2019 · Steam', desc: 'Building as a mechanic rather than a cutscene.' },
-      { title: 'LEGO DC Super-Villains', accent: '#8f6fd0', year: 2018, proj: '41.8', rating: 8.3, sub: '2018 · Steam', desc: 'You play a custom villain. Easily the best idea they had in the late run.' },
-      { title: 'LEGO The Incredibles', accent: '#e0642a', year: 2018, proj: '20.2', rating: 6.5, sub: '2018 · Steam', desc: 'Both films, and crime waves in the open world.' },
-      { title: 'LEGO Marvel Super Heroes 2', accent: '#d01012', year: 2017, proj: '60.0', rating: 7.8, sub: '2017 · Steam', desc: 'Chronopolis, and Kang pulling eras together.' },
-      { title: 'LEGO Ninjago Movie Game', accent: '#e0b040', year: 2017, proj: '17.8', rating: 5.8, sub: '2017 · Steam', desc: 'Tied to the film rather than the series, which is the problem with it.' },
-      { title: 'LEGO Worlds', accent: '#00852b', year: 2017, proj: '36.7', rating: 6.0, sub: '2017 · Steam', desc: 'The sandbox one. Not a TT-formula game at all.' },
-      { title: 'LEGO Star Wars: The Force Awakens', accent: '#ffd21f', year: 2016, proj: '30.8', rating: 8.0, sub: '2016 · Steam', desc: 'Multi-build, and blaster battles with cover.',
-        done: true, hours: '24.6', shot: '/assets/img/franchises/lego/force-awakens-steam.jpg',
-        shotAlt: 'Steam library page for LEGO Star Wars: The Force Awakens, 24.6 hours played and 69 of 69 achievements' },
-      { title: 'LEGO Marvel’s Avengers', accent: '#d01012', year: 2016, proj: '36.4', rating: 6.8, sub: '2016 · Steam', desc: 'Uses the actual film audio, which the silent ones never needed.' },
-      { title: 'LEGO Dimensions', accent: '#8f6fd0', year: 2015, proj: '61.9', rating: 7.0, sub: '2015 · console only', desc: 'Toys-to-life with a physical portal you built and rebuilt. Never on Steam and never could have been: the hardware was the point.' },
-      { title: 'LEGO Jurassic World', accent: '#e0642a', year: 2015, proj: '29.7', rating: 7.6, sub: '2015 · Steam', desc: 'All four films at the time, and you can play as the dinosaurs.' },
-      { title: 'LEGO Batman 3: Beyond Gotham', accent: '#0055bf', year: 2015, proj: '35.9', rating: 7.4, sub: '2015 · Steam', desc: 'The Justice League in space, with the Lantern corps.' },
-      { title: 'LEGO The Hobbit', accent: '#9a7a4a', year: 2014, proj: '36.8', rating: 6.4, sub: '2014 · Steam', desc: 'Only ever covered two of the three films. It just stops.' },
-      { title: 'The LEGO Movie Videogame', accent: '#4fc0e0', year: 2014, proj: '17.6', rating: 7.2, sub: '2014 · Steam', desc: 'The film, and the instruction-following joke made playable.' },
-      { title: 'LEGO Marvel Super Heroes', accent: '#d01012', year: 2013, proj: '39.5', rating: 9.5, sub: '2013 · Steam', desc: 'The best open world they built. Manhattan, properly.',
-        done: true, hours: '34.1', shot: '/assets/img/franchises/lego/marvel-super-heroes-steam.jpg',
-        shotAlt: 'Steam library page for LEGO Marvel Super Heroes, 34.1 hours played and 45 of 45 achievements' },
-      { title: 'LEGO City Undercover', accent: '#00852b', year: 2013, proj: '48.8', rating: 8.6, sub: '2013 · Steam', desc: 'A LEGO game with actual voice acting, and a straight-faced police story.' },
-      { title: 'LEGO Lord of the Rings', accent: '#d9b45f', year: 2012, proj: '33.6', rating: 8.4, sub: '2012 · Steam', desc: 'Used the film audio for the first time, and Middle-earth as one open map.' },
-      { title: 'LEGO Batman 2: DC Super Heroes', accent: '#0055bf', year: 2012, proj: '24.1', rating: 8.2, sub: '2012 · Steam', desc: 'The first one with speech, and an open Gotham.' },
-      { title: 'LEGO Harry Potter: Years 5–7', accent: '#d9b45f', year: 2011, proj: '24.8', rating: 8.8, sub: '2011 · Steam', desc: 'Darker, and the spell system is better than the first. Steam sells the two as one Collection, so the counter in the shot is the running total for both: 39.4 hours, of which this half was 19.5.',
-        done: true, hours: '19.5', shot: '/assets/img/franchises/lego/harry-potter-years-5-7-steam.jpg',
-        shotAlt: 'Steam library page for LEGO Harry Potter Collection after finishing Years 5–7: 39.4 hours across both games and 84 of 84 achievements' },
-      { title: 'LEGO Pirates of the Caribbean', accent: '#d8c9a0', year: 2011, proj: '23.0', rating: 9.3, sub: '2011 · Steam', desc: 'All four films at the time. Wildly underrated, and the quickest hundred percent of the lot.',
-        done: true, hours: '15.7', shot: '/assets/img/franchises/lego/pirates-steam.jpg',
-        shotAlt: 'Steam library page for LEGO Pirates of the Caribbean, 15.7 hours played' },
-      { title: 'LEGO Star Wars III: The Clone Wars', accent: '#ffd21f', year: 2011, proj: '29.3', rating: 7.5, sub: '2011 · Steam', desc: 'Ground battles with commandable troops. Ambitious, and messy.',
-        done: true, hours: '24.1', shot: '/assets/img/franchises/lego/clone-wars-steam.jpg',
-        shotAlt: 'Steam library page for LEGO Star Wars III: The Clone Wars, 24.1 hours played' },
-      { title: 'LEGO Harry Potter: Years 1–4', accent: '#d9b45f', year: 2010, proj: '27.4', rating: 9.2, sub: '2010 · Steam', desc: 'Hogwarts as the hub, which is exactly right. The shot is the Collection paused after this half: 36 of the 84 achievements, all of them this game’s.',
-        done: true, hours: '19.9', shot: '/assets/img/franchises/lego/harry-potter-years-1-4-steam.jpg',
-        shotAlt: 'Steam library page for LEGO Harry Potter Collection after finishing Years 1–4: 19.9 hours played and 36 of 84 achievements' },
-      { title: 'LEGO Indiana Jones 2: The Adventure Continues', accent: '#c98f4f', year: 2009, proj: '20.5', rating: 7.6, sub: '2009 · Steam', desc: 'Includes a level builder, which almost nobody used.',
-        done: true, hours: '19.1', shot: '/assets/img/franchises/lego/indiana-jones-2-steam.jpg',
-        shotAlt: 'Steam library page for LEGO Indiana Jones 2: The Adventure Continues, 19.1 hours played' },
-      { title: 'LEGO Batman: The Videogame', accent: '#0055bf', year: 2008, proj: '29.3', rating: 9.0, sub: '2008 · Steam', desc: 'Hero and villain campaigns, and still silent. Old enough to predate Steam achievements entirely.',
-        done: true, hours: '23.2', shot: '/assets/img/franchises/lego/batman-steam.jpg',
-        shotAlt: 'Steam library page for LEGO Batman: The Videogame, 23.2 hours played' },
-      { title: 'LEGO Indiana Jones: The Original Adventures', accent: '#c98f4f', year: 2008, proj: '19.3', rating: 9.4, sub: '2008 · Steam', desc: 'The one I played to death before I had seen the films, and the fastest hundred percent of the lot.',
-        done: true, hours: '12', shot: '/assets/img/franchises/lego/indiana-jones-steam.jpg',
-        shotAlt: 'Steam library page for LEGO Indiana Jones: The Original Adventures, 12 hours played' },
-      { title: 'LEGO Star Wars: The Complete Saga', accent: '#ffd21f', year: 2007, proj: '40.2', rating: 9.6, sub: '2007 · Steam', desc: 'All six films in one. The definitive version of the old formula.',
-        done: true, hours: '35.2', shot: '/assets/img/franchises/lego/complete-saga-steam.jpg',
-        shotAlt: 'Steam library page for LEGO Star Wars: The Complete Saga, 35.2 hours played' },
-      { title: 'LEGO Star Wars II: The Original Trilogy', accent: '#ffd21f', year: 2006, proj: '29.6', rating: 9.0, sub: '2006', desc: 'Added character creation and vehicles.' },
-      { title: 'LEGO Star Wars: The Video Game', accent: '#ffd21f', year: 2005, proj: '17.6', rating: 8.8, sub: '2005', desc: 'Where all of it starts.' },
+      { title: 'LEGO Batman: Legacy of the Dark Knight', accent: '#8f98a8', year: 2026, series: 'Batman & DC', proj: '33.4', sub: '2026 · Steam', desc: 'The most recent one, out this year. Not played yet, so it gets no rating.' },
+      { title: 'LEGO Star Wars: The Skywalker Saga', accent: '#ffd21f', year: 2022, series: 'Star Wars', proj: '90.0', rating: 10, sub: '2022 · Steam', desc: 'All nine films, rebuilt from scratch. Nearly eighty hours, which is more than twice any other one of these.',
+        done: true, hours: '79.4', shot: '/assets/img/franchises/lego/skywalker-saga/banner.jpg',
+        shots: ['pause-screen', 'title-screen', 'characters', 'stud-fountain'],
+        shotAlt: 'Steam library banner for LEGO Star Wars: The Skywalker Saga, showing my play time' },
+      { title: 'The LEGO Movie 2 Videogame', accent: '#4fc0e0', year: 2019, series: 'The LEGO Movie', proj: '16.5', sub: '2019 · Steam', desc: 'Building as a mechanic rather than a cutscene.' },
+      { title: 'LEGO DC Super-Villains', accent: '#8f6fd0', year: 2018, series: 'Batman & DC', proj: '41.8', sub: '2018 · Steam', desc: 'You play a custom villain. Easily the best idea they had in the late run.' },
+      { title: 'LEGO The Incredibles', accent: '#e0642a', year: 2018, series: 'Standalone', proj: '20.2', sub: '2018 · Steam', desc: 'Both films, and crime waves in the open world.' },
+      { title: 'LEGO Marvel Super Heroes 2', accent: '#d01012', year: 2017, series: 'Marvel', proj: '60.0', sub: '2017 · Steam', desc: 'Chronopolis, and Kang pulling eras together.' },
+      { title: 'LEGO Ninjago Movie Game', accent: '#e0b040', year: 2017, series: 'The LEGO Movie', proj: '17.8', sub: '2017 · Steam', desc: 'Tied to the film rather than the series, which is the problem with it.' },
+      { title: 'LEGO Worlds', accent: '#00852b', year: 2017, series: 'LEGO Originals', proj: '36.7', sub: '2017 · Steam', desc: 'The sandbox one. Not a TT-formula game at all.' },
+      { title: 'LEGO Star Wars: The Force Awakens', accent: '#ffd21f', year: 2016, series: 'Star Wars', proj: '30.8', rating: 7, sub: '2016 · Steam', desc: 'Multi-build, and blaster battles with cover.',
+        done: true, hours: '24.6', shot: '/assets/img/franchises/lego/force-awakens/banner.jpg',
+        shots: ['pause-screen', 'title-screen', 'characters', 'galaxy-map'],
+        shotAlt: 'Steam library banner for LEGO Star Wars: The Force Awakens, showing my play time' },
+      { title: 'LEGO Marvel’s Avengers', accent: '#d01012', year: 2016, series: 'Marvel', proj: '36.4', sub: '2016 · Steam', desc: 'Uses the actual film audio, which the silent ones never needed.' },
+      { title: 'LEGO Dimensions', accent: '#8f6fd0', year: 2015, series: 'LEGO Originals', proj: '61.9', sub: '2015 · console only', desc: 'Toys-to-life with a physical portal you built and rebuilt. Never on Steam and never could have been: the hardware was the point.' },
+      { title: 'LEGO Jurassic World', accent: '#e0642a', year: 2015, series: 'Standalone', proj: '29.7', sub: '2015 · Steam', desc: 'All four films at the time, and you can play as the dinosaurs.' },
+      { title: 'LEGO Batman 3: Beyond Gotham', accent: '#0055bf', year: 2015, series: 'Batman & DC', proj: '35.9', sub: '2015 · Steam', desc: 'The Justice League in space, with the Lantern corps.' },
+      { title: 'LEGO The Hobbit', accent: '#9a7a4a', year: 2014, series: 'Middle-earth', proj: '36.8', sub: '2014 · Steam', desc: 'Only ever covered two of the three films. It just stops.' },
+      { title: 'The LEGO Movie Videogame', accent: '#4fc0e0', year: 2014, series: 'The LEGO Movie', proj: '17.6', sub: '2014 · Steam', desc: 'The film, and the instruction-following joke made playable.' },
+      { title: 'LEGO Marvel Super Heroes', accent: '#d01012', year: 2013, series: 'Marvel', proj: '39.5', rating: 9, sub: '2013 · Steam', desc: 'The best open world they built. Manhattan, properly.',
+        done: true, hours: '34.1', shot: '/assets/img/franchises/lego/marvel-super-heroes/banner.jpg',
+        shots: ['pause-screen', 'title-screen', 'characters'],
+        shotAlt: 'Steam library banner for LEGO Marvel Super Heroes, showing my play time' },
+      { title: 'LEGO City Undercover', accent: '#00852b', year: 2013, series: 'LEGO Originals', proj: '48.8', sub: '2013 · Steam', desc: 'A LEGO game with actual voice acting, and a straight-faced police story.' },
+      { title: 'LEGO Lord of the Rings', accent: '#d9b45f', year: 2012, series: 'Middle-earth', proj: '33.6', sub: '2012 · Steam', desc: 'Used the film audio for the first time, and Middle-earth as one open map.' },
+      { title: 'LEGO Batman 2: DC Super Heroes', accent: '#0055bf', year: 2012, series: 'Batman & DC', proj: '24.1', rating: 7, sub: '2012 · Steam', desc: 'The first one with speech, and an open Gotham.',
+        done: true, hours: '23.4', shot: '/assets/img/franchises/lego/batman-2/banner.jpg',
+        shots: ['pause-screen', 'title-screen', 'characters'],
+        shotAlt: 'Steam library banner for LEGO Batman 2: DC Super Heroes, showing my play time' },
+      { title: 'LEGO Harry Potter: Years 5–7', accent: '#d9b45f', year: 2011, series: 'Harry Potter', proj: '24.8', rating: 9, sub: '2011 · Steam', desc: 'Darker, and the spell system is better than the first. Steam sells the two as one Collection, so the counter in the shot is the running total for both: 39.4 hours, of which this half was 19.5.',
+        done: true, hours: '19.5', shot: '/assets/img/franchises/lego/harry-potter-years-5-7/banner.jpg',
+        shots: ['pause-screen', 'title-screen', 'characters', 'stud-fountain'],
+        shotAlt: 'Steam library banner for LEGO Harry Potter: Years 5–7, showing my play time' },
+      { title: 'LEGO Pirates of the Caribbean', accent: '#d8c9a0', year: 2011, series: 'Standalone', proj: '23.0', rating: 9, sub: '2011 · Steam', desc: 'All four films at the time. Wildly underrated, and the quickest hundred percent of the lot.',
+        done: true, hours: '15.7', shot: '/assets/img/franchises/lego/pirates/banner.jpg',
+        shots: ['pause-screen', 'title-screen', 'characters'],
+        shotAlt: 'Steam library banner for LEGO Pirates of the Caribbean, showing my play time' },
+      { title: 'LEGO Star Wars III: The Clone Wars', accent: '#ffd21f', year: 2011, series: 'Star Wars', proj: '29.3', rating: 9, sub: '2011 · Steam', desc: 'Ground battles with commandable troops. Ambitious, and messy.',
+        done: true, hours: '24.1', shot: '/assets/img/franchises/lego/clone-wars/banner.jpg',
+        shots: ['pause-screen', 'title-screen', 'characters'],
+        shotAlt: 'Steam library banner for LEGO Star Wars III: The Clone Wars, showing my play time' },
+      { title: 'LEGO Harry Potter: Years 1–4', accent: '#d9b45f', year: 2010, series: 'Harry Potter', proj: '27.4', rating: 8, sub: '2010 · Steam', desc: 'Hogwarts as the hub, which is exactly right. The shot is the Collection paused after this half: 36 of the 84 achievements, all of them this game’s.',
+        done: true, hours: '19.9', shot: '/assets/img/franchises/lego/harry-potter-years-1-4/banner.jpg',
+        shots: ['pause-screen', 'title-screen', 'characters'],
+        shotAlt: 'Steam library banner for LEGO Harry Potter: Years 1–4, showing my play time' },
+      { title: 'LEGO Indiana Jones 2: The Adventure Continues', accent: '#c98f4f', year: 2009, series: 'Indiana Jones', proj: '20.5', rating: 6, sub: '2009 · Steam', desc: 'Includes a level builder, which almost nobody used.',
+        done: true, hours: '19.1', shot: '/assets/img/franchises/lego/indiana-jones-2/banner.jpg',
+        shots: ['pause-screen', 'title-screen'],
+        shotAlt: 'Steam library banner for LEGO Indiana Jones 2: The Adventure Continues, showing my play time' },
+      { title: 'LEGO Batman: The Videogame', accent: '#0055bf', year: 2008, series: 'Batman & DC', proj: '29.3', rating: 8, sub: '2008 · Steam', desc: 'Hero and villain campaigns, and still silent. Old enough to predate Steam achievements entirely.',
+        done: true, hours: '23.2', shot: '/assets/img/franchises/lego/batman/banner.jpg',
+        shots: ['pause-screen', 'title-screen', 'characters'],
+        shotAlt: 'Steam library banner for LEGO Batman: The Videogame, showing my play time' },
+      { title: 'LEGO Indiana Jones: The Original Adventures', accent: '#c98f4f', year: 2008, series: 'Indiana Jones', proj: '19.3', rating: 7, sub: '2008 · Steam', desc: 'The one I played to death before I had seen the films, and the fastest hundred percent of the lot.',
+        done: true, hours: '12', shot: '/assets/img/franchises/lego/indiana-jones/banner.jpg',
+        shots: ['pause-screen', 'title-screen', 'characters', 'stud-fountain'],
+        shotAlt: 'Steam library banner for LEGO Indiana Jones: The Original Adventures, showing my play time' },
+      { title: 'LEGO Star Wars: The Complete Saga', accent: '#ffd21f', year: 2007, series: 'Star Wars', proj: '40.2', rating: 10, sub: '2007 · Steam', desc: 'All six films in one. The definitive version of the old formula.',
+        done: true, hours: '35.2', shot: '/assets/img/franchises/lego/complete-saga/banner.jpg',
+        shots: ['pause-screen', 'title-screen', 'characters', 'stud-fountain'],
+        shotAlt: 'Steam library banner for LEGO Star Wars: The Complete Saga, showing my play time' },
+      { title: 'LEGO Star Wars II: The Original Trilogy', accent: '#ffd21f', year: 2006, series: 'Star Wars', proj: '29.6', sub: '2006', desc: 'Added character creation and vehicles.' },
+      { title: 'LEGO Star Wars: The Video Game', accent: '#ffd21f', year: 2005, series: 'Star Wars', proj: '17.6', sub: '2005', desc: 'Where all of it starts.' },
     ] },
 
   { id: 'games', kind: 'cards', title: 'Why They Work', note: 'the formula, unchanged for twenty years',
@@ -184,3 +215,49 @@ window.FAN_PAGE = {
     ] },
 
 ] };
+
+/* The numbers strip at the top of #fanBody is COMPUTED from the catalogue
+   rather than written down, for the same reason the tally pill is: a second
+   copy of "eleven at a hundred percent" would drift the first time another
+   game gets finished. Spliced in ahead of the catalogue so it reads as the
+   summary of what follows. The accents are the stud ladder from the fountain
+   above — silver, gold, blue, purple, then the Red Brick. */
+(function () {
+  var secs = window.FAN_PAGE.sections;
+  var cat = secs.filter(function (s) { return s.id === 'catalogue'; })[0];
+  if (!cat) return;
+
+  var games = cat.items;
+  var fin = games.filter(function (g) { return g.done; });
+  var hours = 0, proj = 0;
+  fin.forEach(function (g) {
+    hours += parseFloat(g.hours) || 0;
+    proj += parseFloat(g.proj) || 0;
+  });
+  var series = [];
+  games.forEach(function (g) {
+    if (g.series && series.indexOf(g.series) < 0) series.push(g.series);
+  });
+  var years = games.map(function (g) { return g.year; });
+  /* only the played games carry a rating, so the unrated ones must not be in
+     this reduce: `undefined > x` is false, which would crown whichever
+     unrated title happens to come first in the list */
+  var top = games.filter(function (g) { return g.rating != null; })
+    .reduce(function (a, b) { return b.rating > a.rating ? b : a; });
+
+  secs.splice(secs.indexOf(cat), 0, { id: 'count', kind: 'stats',
+    title: 'In Numbers', note: 'counted from the catalogue, not written down',
+    items: [
+      { title: String(games.length), sub: 'Games in the main line', accent: '#b8bcc4',
+        desc: 'TT Games’ catalogue, ' + Math.min.apply(null, years) + ' to '
+          + Math.max.apply(null, years) + ', with the handheld spin-offs and the bundles left out.' },
+      { title: String(series.length), sub: 'Series, one formula', accent: '#f2cd37',
+        desc: 'Star Wars to Harry Potter to LEGO’s own inventions, all of them running on the same smash, collect, unlock loop.' },
+      { title: String(fin.length), sub: 'At a hundred percent', accent: '#3f7fd0',
+        desc: 'Every one of them with the Steam library page below as the receipt.' },
+      { title: hours.toFixed(1) + ' h', sub: 'In the finished ones', accent: '#a05fd0',
+        desc: 'Steam-counted, against the ' + Math.round(proj) + ' hours the HowLongToBeat averages projected for them.' },
+      { title: (top.rating % 1 ? top.rating.toFixed(1) : String(top.rating)) + '/10', sub: 'The top score', accent: '#e0342a',
+        desc: top.title + ', and everything else on the page is measured against it.' },
+    ] });
+})();

@@ -85,21 +85,12 @@
   var rate = function (it) {
     var r = parseFloat(it.rating);
     if (it.rating == null || isNaN(r)) return '';
+    // a whole-number score prints whole: "10/10" reads better than "10.0/10"
     return '<span class="fan-rate" style="--pct:' + Math.max(0, Math.min(100, r * 10)).toFixed(0) + '%">'
-      + '<span class="fan-rate-v">' + r.toFixed(1) + '</span>'
-      + '<span class="fan-rate-o">/10</span>'
-      + '<i aria-hidden="true"></i></span>';
+      + '<span class="fan-rate-v">' + (r % 1 ? r.toFixed(1) : r) + '</span>'
+      + '<span class="fan-rate-o">/10</span></span>';
   };
 
-  /* optional single screenshot on an item. gallery.js picks the link up on its
-     own (it claims every in-page link that points at an image), so this opens in
-     the shared lightbox rather than a new tab. */
-  var shot = function (it) {
-    if (!it.shot) return '';
-    return '<a class="fan-tileshot" href="' + esc(it.shot) + '" target="_blank" rel="noopener">'
-      + '<img src="' + esc(it.shot) + '" alt="' + esc(it.shotAlt || it.title) + '" loading="lazy" />'
-      + '</a>';
-  };
 
   /* A section may carry `sortable`, which puts an order control above its tiles.
      Two independent axes: WHAT to sort on, and WHICH WAY.
@@ -147,6 +138,23 @@
       + '</span>';
   };
 
+  /* A section may carry `groupable: { key, label, on }`, which puts an Off/On
+     switch beside the sort control. On, the tiles fold into labelled sections,
+     one per distinct value of `key` on the items ('Star Wars', 'Batman & DC',
+     'Standalone'). Grouping composes with the sort rather than replacing it:
+     tiles keep the active order inside their section, and the sections
+     themselves run in order of their best-placed tile, so sorting by rating
+     ranks the licences by their best game. */
+  var grouper = function (s) {
+    if (!s.groupable) return '';
+    return '<span class="fan-sortset fan-groupset" role="group" aria-label="Group">'
+      + '<span class="fan-sort-k">' + esc(s.groupable.label || 'Group') + '</span>'
+      + '<button class="fan-sortbtn is-on" type="button" data-gmode="off" aria-pressed="true">Off</button>'
+      + '<button class="fan-sortbtn" type="button" data-gmode="on" aria-pressed="false">'
+      + esc(s.groupable.on || 'On') + '</button>'
+      + '</span>';
+  };
+
   /* A section may also carry `views: true`, which puts a grid/list switch beside
      the sort control. The two views show DIFFERENT amounts of the same tiles
      rather than different data: grid is the colour banner, the title and the
@@ -159,13 +167,15 @@
 
   var viewer = function (s) {
     if (!s.views) return '';
+    // icon-only buttons: the two glyphs say grid/list better than the words did
     return '<span class="fan-sortset fan-viewset" role="group" aria-label="View">'
       + '<span class="fan-sort-k">View</span>'
       + VIEWS.map(function (v, i) {
           return '<button class="fan-sortbtn fan-viewbtn' + (i ? '' : ' is-on') + '" type="button"'
-            + ' data-view="' + v.k + '" aria-pressed="' + (i ? 'false' : 'true') + '">'
+            + ' data-view="' + v.k + '" aria-label="' + v.label + ' view"'
+            + ' aria-pressed="' + (i ? 'false' : 'true') + '">'
             + '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' + v.icon + '</svg>'
-            + '<span>' + v.label + '</span></button>';
+            + '</button>';
         }).join('')
       + '</span>';
   };
@@ -205,7 +215,7 @@
   };
 
   var controls = function (s) {
-    var bar = sorter(s) + viewer(s) + tally(s);
+    var bar = sorter(s) + grouper(s) + viewer(s) + tally(s);
     return bar ? '<div class="fan-sort reveal">' + bar + '</div>' : '';
   };
 
@@ -253,6 +263,7 @@
        fixed shape (a screenshot) that needs the width. */
     tiles: function (s) {
       var keys = sortBy(s).map(function (b) { return b.key; });
+      var gkey = s.groupable && s.groupable.key;
       return '<div class="fan-tiles' + (s.compact ? ' fan-tiles--compact' : '')
         + (s.views ? ' fan-tiles--switch is-grid' : '') + '"'
         + (s.cols ? ' data-cols style="--cols:' + esc(s.cols) + '"' : '')
@@ -260,8 +271,32 @@
         /* One data-sort-<key> per sortable field. A field the item does not have
            is left off entirely, which is what sinks it to the bottom of that
            sort rather than treating a missing value as zero. */
+        /* every image a title has, for gallery.js: `shot` is the thumbnail and
+           `shots` is any extras, and clicking the tile opens them all together.
+           Kept as one comma-joined attribute, same shape as .year-card.
+           A `shots` entry with no slash is shorthand: 'banner' resolves to
+           <shot's folder>/banner.jpg, so the data file names each game's
+           folder once instead of five times. */
+        var base = it.shot ? it.shot.replace(/[^/]*$/, '') : '';
+        var imgs = (it.shot ? [it.shot] : []).concat((it.shots || []).map(function (s) {
+          return s.indexOf('/') === -1 ? base + s + '.jpg' : s;
+        }));
+        /* the whole set renders as links (list view lays them out as a grid;
+           grid view hides them), and gallery.js opens any click on the tile
+           into the lightbox. Alts for the extras are derived from the file
+           name, which is why those names are words. */
+        var strip = !imgs.length ? '' : '<span class="fan-tileshots">'
+          + imgs.map(function (s, n) {
+              var name = s.replace(/^.*\//, '').replace(/\.[a-z]+$/i, '').replace(/-/g, ' ');
+              return '<a class="fan-tileshot" href="' + esc(s) + '" target="_blank" rel="noopener">'
+                + '<img src="' + esc(s) + '" alt="'
+                + esc(n === 0 ? (it.shotAlt || it.title) : it.title + ' — ' + name)
+                + '" loading="lazy" /></a>';
+            }).join('') + '</span>';
         return '<div class="fan-tile reveal' + (it.done ? ' is-done' : '') + '"'
           + (keys.length ? ' data-i="' + i + '"' : '')
+          + (gkey && it[gkey] ? ' data-group="' + esc(it[gkey]) + '"' : '')
+          + (imgs.length ? ' data-images="' + esc(imgs.join(',')) + '" data-label="' + esc(it.title) + '"' : '')
           + keys.map(function (k) {
               return it[k] == null || it[k] === '' ? ''
                 : ' data-sort-' + k + '="' + esc(it[k]) + '"';
@@ -270,9 +305,9 @@
           + '<span class="fan-tiletext"><b>' + esc(it.title) + '</b>'
           + (it.sub ? '<i>' + esc(it.sub) + '</i>' : '')
           + (it.desc ? '<em>' + esc(it.desc) + '</em>' : '')
-          + shot(it)
           + '<span class="fan-chips">' + rate(it) + done(it) + proj(it) + '</span>'
           + out(it) + '</span>'
+          + strip
           + '</div>';
       }).join('') + '</div>';
     },
@@ -437,9 +472,12 @@
      Runs after BOTH mounts are written, so a sortable section can sit in either.
      `data-sort` is compared as a number when both sides parse as one, and as a
      string otherwise, so this works for years and for titles alike. */
-  function applySort(group, key, dir) {
+  function applySort(group, key, dir, grouped) {
     var sign = dir === 'asc' ? 1 : -1;
-    Array.prototype.slice.call(group.children).sort(function (x, y) {
+    /* Group headers are rebuilt from scratch on every pass: they are cheap, and
+       removing them first means group.children below is only ever the tiles. */
+    Array.prototype.forEach.call(group.querySelectorAll('.fan-grouphead'), function (h) { h.remove(); });
+    var tiles = Array.prototype.slice.call(group.children).sort(function (x, y) {
       var vx = x.getAttribute('data-sort-' + key), vy = y.getAttribute('data-sort-' + key);
       /* An item with no value for this field goes last BOTH ways round: it is
          unknown, not smallest, so flipping the direction must not float it to
@@ -451,7 +489,43 @@
         if (d) return sign * d;
       }
       return sign * (+y.getAttribute('data-i') - +x.getAttribute('data-i'));
-    }).forEach(function (t) { group.appendChild(t); });
+    });
+    if (!grouped) {
+      tiles.forEach(function (t) { group.appendChild(t); });
+      return;
+    }
+    /* Bucket the sorted tiles by data-group, keeping sorted order inside each
+       bucket, and let the buckets run in order of first appearance: the section
+       whose best tile sorts highest comes first, so grouping composes with
+       whatever sort is active instead of imposing a hardcoded order. */
+    var buckets = {}, order = [];
+    tiles.forEach(function (t) {
+      var g = t.getAttribute('data-group') || 'Other';
+      if (!buckets[g]) { buckets[g] = []; order.push(g); }
+      buckets[g].push(t);
+    });
+    order.forEach(function (g) {
+      var h = document.createElement('h4');
+      h.className = 'fan-grouphead';
+      /* the header borrows its accent from its first tile, so the Star Wars
+         section reads yellow and Batman blue without a second colour table */
+      var accent = buckets[g][0].style.getPropertyValue('--a');
+      if (accent) h.style.setProperty('--a', accent);
+      var name = document.createElement('b'); name.textContent = g;
+      var count = document.createElement('i'); count.textContent = buckets[g].length;
+      h.appendChild(name); h.appendChild(count);
+      /* the series' average of MY ratings, over its rated tiles only; a
+         section with nothing played simply carries no average */
+      var rs = buckets[g].map(function (t) { return parseFloat(t.getAttribute('data-sort-rating')); })
+        .filter(function (n) { return !isNaN(n); });
+      if (rs.length) {
+        var avg = document.createElement('em');
+        avg.textContent = (rs.reduce(function (t, n) { return t + n; }, 0) / rs.length).toFixed(1) + ' avg';
+        h.appendChild(avg);
+      }
+      group.appendChild(h);
+      buckets[g].forEach(function (t) { group.appendChild(t); });
+    });
   }
 
   Array.prototype.forEach.call(document.querySelectorAll('.fan-sort'), function (bar) {
@@ -459,11 +533,13 @@
     var group = sec && sec.querySelector('[data-sortable]');
     var keyBtns = bar.querySelectorAll('[data-key]');
     var dirBtns = bar.querySelectorAll('[data-dir]');
+    var grpBtns = bar.querySelectorAll('[data-gmode]');
     if (!group || !keyBtns.length) return;          // a tally-only bar has nothing to wire
 
     var key = keyBtns[0].getAttribute('data-key');
     var dirSet = bar.querySelector('[data-open]');
     var dir = (dirSet && dirSet.getAttribute('data-open')) || 'asc';
+    var grouped = false;
 
     function press(list, active) {
       Array.prototype.forEach.call(list, function (b) {
@@ -475,6 +551,7 @@
 
     bar.addEventListener('click', function (e) {
       var k = e.target.closest('[data-key]'), d = e.target.closest('[data-dir]');
+      var g = e.target.closest('[data-gmode]');
       if (k) {
         key = k.getAttribute('data-key');
         press(keyBtns, k);
@@ -486,13 +563,16 @@
       } else if (d) {
         dir = d.getAttribute('data-dir');
         press(dirBtns, d);
+      } else if (g) {
+        grouped = g.getAttribute('data-gmode') === 'on';
+        press(grpBtns, g);
       } else return;
-      applySort(group, key, dir);
+      applySort(group, key, dir, grouped);
     });
 
     /* The data files are authored newest-first (that is how TT Games list their
        own catalogue), so the opening order has to be applied, not assumed. */
-    applySort(group, key, dir);
+    applySort(group, key, dir, grouped);
   });
 
   /* the grid/list switch. Wired separately from the sort control so a section

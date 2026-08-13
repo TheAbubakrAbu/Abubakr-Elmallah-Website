@@ -44,9 +44,22 @@
     links.forEach(a => a.addEventListener('click', e => { e.preventDefault(); open(label, images); }));
   });
 
+  /* franchise-catalogue tiles: a finished game carries every image it has in
+     data-images (fanpage.js writes it), and clicking anywhere on the tile
+     opens the whole set — in grid view the thumbnail is hidden, so the tile
+     itself is the only thing there is to click. */
+  document.querySelectorAll('.fan-tile[data-images]').forEach(tile => {
+    tile.addEventListener('click', e => {
+      if (e.target.closest('a:not(.fan-tileshot)')) return;   // outbound links keep working
+      e.preventDefault();
+      open(tile.dataset.label, (tile.dataset.images || '').split(',').filter(Boolean));
+    });
+  });
+
   // every other image link (flyers, wallpapers, WWDC photos, …) opens singly
   document.querySelectorAll('a[href]').forEach(a => {
     if (a.closest('.app-shots')) return;            // already handled as a group above
+    if (a.closest('.fan-tile[data-images]')) return; // the tile handler owns these
     const href = a.getAttribute('href');
     if (!isImg(href)) return;
     const cap = a.querySelector('.flyer-cap b');
