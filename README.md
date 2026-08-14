@@ -97,6 +97,9 @@ manifest.webmanifest     # PWA manifest
 CNAME                    # abubakrelmallah.com
 run                      # ./run -> local Jekyll server with livereload
 
+tools/photos.py          # the image pipeline: ingest (year galleries) + sweep
+_originals/              # gitignored camera-roll originals, one folder per year
+
 src/                     # 51 pages, each with a permalink in its front matter
   work · projects · education · college · high-school · resume · travels
   accents · star-wars · al-islam · franchises · fan-*.html (36 fan pages)
@@ -123,17 +126,26 @@ assets/
 
 ### Adding photos to a year gallery
 
-Drop the originals in a folder per school year and run the ingest step: it
-auto-orients from EXIF, resizes to a 1400px long edge, encodes progressive JPEG
-and then runs `jpegtran` over the result, names each file for its capture time
-and rewrites `assets/js/years-data.js`. Nothing about the grid is hand-written —
-`years.js` reads the widths and heights out of that file and justifies the rows
-before any image has loaded, so the layout never jumps.
+Drop them in `_originals/<year>/`, named for their capture time the way the
+rest of that folder is (see [`_originals/README.md`](_originals/README.md)),
+then:
 
-Every other image on the site goes through the same encoder. PNGs are kept as
-PNG only where transparency is actually used, or where the PNG genuinely comes
-out smaller than the JPEG would (which is the case for the flat poster-art
-flyers); everything else is JPEG.
+```bash
+python3 tools/photos.py ingest
+```
+
+It auto-orients from EXIF, resizes to a 1400px long edge, encodes progressive
+JPEG, runs `jpegtran` over the result, drops anything you deleted, and rewrites
+[`years-data.js`](assets/js/years-data.js). `_originals/` is gitignored and
+never modified. Nothing about the grid is hand-written — `years.js` reads the
+widths and heights out of that file and justifies the rows before any image has
+loaded, so the layout never jumps.
+
+`python3 tools/photos.py sweep` runs the same encoder over every other image
+under `assets/img/`. PNGs stay PNG only where transparency is actually used, or
+where the PNG genuinely comes out smaller than the JPEG would — which is the
+case for the flat poster-art flyers, so converting them would make the site
+bigger. Everything else is JPEG.
 
 ### Adding an app to a page
 

@@ -1,23 +1,24 @@
-/* years-data.js: every photo in the year galleries, generated from the files
-   themselves — the capture date comes out of each image's EXIF, and w/h are the
-   encoded dimensions so years.js can size the masonry without waiting on load.
+/* years-data.js: every photo in the year galleries. GENERATED — run
+   `python3 tools/photos.py ingest` rather than editing it by hand.
 
-   Order inside a year is chronological; photos with no EXIF date sit at the end
-   under `date: null`. Regenerate rather than hand-editing: the names are the
-   capture timestamps, so a new photo drops straight into place.
+   The capture date comes out of each file's name, which the ingest step takes
+   from its EXIF; w/h are the encoded dimensions, so years.js can justify the
+   rows before a single image has loaded and the layout never jumps.
 
-   `cover` is the photo the year's card shows when the gallery is collapsed —
-   the four high-school ones are the same frames the old year cards used.
+   Order inside a year is chronological; photos whose EXIF carried no date sit
+   at the end under `date: null`. `cover` is the photo the year's card shows
+   while the gallery is collapsed — the four high-school ones are the same
+   frames the old year cards used.
 
    Paths are relative to /assets/img/years/<group>/. */
 window.YEARS = {
   groups: [
-    { id: 'hs-freshman', label: 'Freshman', span: '2020–21', school: 'hs' , cover: '2021-07-20-0812.jpg' },
-    { id: 'hs-sophomore', label: 'Sophomore', span: '2021–22', school: 'hs' , cover: 'undated-4.jpg' },
-    { id: 'hs-junior', label: 'Junior', span: '2022–23', school: 'hs' , cover: '2022-10-21-1416.jpg' },
-    { id: 'hs-senior', label: 'Senior', span: '2023–24', school: 'hs' , cover: 'undated.jpg' },
-    { id: 'uci-first', label: 'First Year', span: '2024–25', school: 'uci' , cover: '2025-06-13-1633.jpg' },
-    { id: 'uci-second', label: 'Second Year', span: '2025–26', school: 'uci' , cover: '2025-10-27-2142.jpg' },
+    { id: 'hs-freshman', label: 'Freshman', span: '2020–21', school: 'hs', cover: '2021-07-20-0812.jpg' },
+    { id: 'hs-sophomore', label: 'Sophomore', span: '2021–22', school: 'hs', cover: 'undated-4.jpg' },
+    { id: 'hs-junior', label: 'Junior', span: '2022–23', school: 'hs', cover: '2022-10-21-1416.jpg' },
+    { id: 'hs-senior', label: 'Senior', span: '2023–24', school: 'hs', cover: 'undated.jpg' },
+    { id: 'uci-first', label: 'First Year', span: '2024–25', school: 'uci', cover: '2025-06-13-1633.jpg' },
+    { id: 'uci-second', label: 'Second Year', span: '2025–26', school: 'uci', cover: '2025-10-27-2142.jpg' },
   ],
   photos: {
     'hs-freshman': [
