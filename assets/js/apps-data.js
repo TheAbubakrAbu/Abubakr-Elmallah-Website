@@ -97,7 +97,7 @@ window.APP_CARDS = {
     ],
   },
   'aurebesh-droid': {
-    icon: 'bots/aurebesh-droid.png', alt: 'Aurebesh Droid icon',
+    icon: 'bots/aurebesh-droid.jpg', alt: 'Aurebesh Droid icon',
     title: 'Aurebesh Droid', sub: 'June 18, 2025 · Aurebesh Translator on Discord',
     desc: 'Translate English to and from Aurebesh right inside Discord. Fast, server-friendly, and written in C++ for speed.',
     tags: 'Discord · C++',

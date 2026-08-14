@@ -14,7 +14,7 @@
 
   /* hand-drawn emblems, 24×24, currentColor */
   var GLYPHS = {
-    /* ── the Big Three ── */
+    /* ── who I am ── */
     // Rubʿ al-Ḥizb: two overlaid squares, the eight-point star that marks a
     // quarter-ḥizb in the muṣḥaf. Nothing figurative, which is the point.
     rub:     '<rect x="5" y="5" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"/>'

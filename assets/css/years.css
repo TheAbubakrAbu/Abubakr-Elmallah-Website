@@ -1,0 +1,179 @@
+/* years.css — the year photo galleries on /high-school/ and /college/.
+
+   The rows are justified: years.js fills each row in date order and then sizes
+   it so the row lands exactly on the container width, which keeps every photo
+   at its own aspect ratio with no holes and no cropping. Keep GAP in years.js
+   in step with --yg-gap below. */
+
+.years { --yg-gap: 10px; }
+
+/* ── the cards ──
+   .years-grid / .year-card live in components.css and are unchanged; all that
+   is added here is the open state, so it is obvious which year is showing. */
+.year-card.is-open {
+  border-color: var(--green);
+  box-shadow: 0 0 0 1px var(--green), 0 18px 40px -20px rgba(0,0,0,.9);
+}
+.year-card.is-open .year-more { background: var(--green); border-color: var(--green); color: #05140c; }
+
+/* the arrow under an open card, pointing at the year it opened */
+.year-card.is-open::after {
+  content: ""; position: absolute; left: 50%; bottom: -1px;
+  width: 16px; height: 8px; transform: translateX(-50%);
+  background: var(--green);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+/* ── the expanded year ── */
+.yg-panel {
+  margin-top: 1.4rem;
+  opacity: 0; transform: translateY(-6px);
+  transition: opacity .32s var(--ease), transform .32s var(--ease);
+}
+
+.yg-panel.in { opacity: 1; transform: none; }
+.yg-panel[hidden] { display: none; }
+
+.yg-head {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 1rem;
+  padding-bottom: 0.7rem; margin-bottom: 1.1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.yg-head h4 {
+  font-family: var(--serif); font-weight: 700; font-size: 1.5rem;
+  letter-spacing: -0.02em; color: var(--ink);
+}
+
+.yg-head .yg-span {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em;
+  color: var(--gold);
+}
+
+.yg-head .yg-range {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+/* the count and the close button sit hard right */
+.yg-head .yg-n {
+  margin-left: auto;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+.yg-shut {
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--mute);
+  padding: 0.32rem 0.7rem; border-radius: 100px;
+  border: 1px solid var(--line); background: transparent; cursor: pointer;
+  transition: color .2s, border-color .2s, background .2s;
+}
+
+.yg-shut:hover { color: var(--ink); border-color: var(--green); background: rgba(31,157,92,.08); }
+
+/* ── the justified rows ──
+   years.js sets the width and height on every frame; all this has to do is put
+   them in a wrapping row and get out of the way. */
+.yg { display: flex; flex-wrap: wrap; gap: var(--yg-gap); }
+
+.yg-cell {
+  position: relative; display: block; overflow: hidden;
+  flex: 0 0 auto;
+  padding: 0; border: 1px solid var(--line); border-radius: 12px;
+  background: var(--bg-2); cursor: pointer;
+  transition: border-color .25s, transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+
+.yg-cell img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .5s var(--ease), filter .3s;
+  filter: saturate(.92);
+}
+
+.yg-cell:hover {
+  border-color: var(--green);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -22px rgba(0,0,0,.95);
+  z-index: 2;
+}
+
+.yg-cell:hover img { transform: scale(1.05); filter: saturate(1.05); }
+
+.yg-cell:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+/* the date, which is the only caption there is and the reason the order reads */
+.yg-when {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 1.6rem 0.7rem 0.55rem;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em;
+  color: #fff; text-align: left;
+  background: linear-gradient(to top, rgba(0,0,0,.78), transparent);
+  opacity: 0; transform: translateY(4px);
+  transition: opacity .25s, transform .25s;
+}
+
+.yg-cell:hover .yg-when,
+.yg-cell:focus-visible .yg-when { opacity: 1; transform: none; }
+
+@media (hover: none) { .yg-when { opacity: 1; transform: none; } }
+
+/* ── the deck ── */
+.yg-deck {
+  position: fixed; inset: 0; z-index: 300;
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(4,4,6,.94);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  opacity: 0; visibility: hidden;
+  transition: opacity .28s var(--ease), visibility .28s;
+}
+
+.yg-deck.open { opacity: 1; visibility: visible; }
+
+.yg-stage {
+  max-width: min(1100px, 100%); max-height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.yg-stage img {
+  max-width: 100%; max-height: calc(100vh - 8rem);
+  width: auto; height: auto; display: block;
+  border-radius: 14px; border: 1px solid var(--line);
+  box-shadow: 0 40px 90px -40px #000;
+}
+
+.yg-x, .yg-prev, .yg-next {
+  position: absolute; z-index: 2;
+  display: grid; place-items: center;
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--line); background: rgba(10,10,12,.75); color: var(--ink);
+  font-size: 1.2rem; line-height: 1; cursor: pointer;
+  transition: background .2s, border-color .2s, color .2s;
+}
+
+.yg-x:hover, .yg-prev:hover, .yg-next:hover {
+  background: var(--green); border-color: var(--green); color: #05140c;
+}
+
+.yg-x { top: 1.1rem; right: 1.1rem; }
+.yg-prev { left: 1.1rem; top: 50%; margin-top: -22px; font-size: 1.6rem; }
+.yg-next { right: 1.1rem; top: 50%; margin-top: -22px; font-size: 1.6rem; }
+
+/* year · date · position, along the bottom */
+.yg-bar {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  display: flex; align-items: baseline; justify-content: center; gap: 1.2rem;
+  flex-wrap: wrap; padding: 1.1rem 1.4rem 1.4rem;
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em;
+}
+
+.yg-bar .yg-year { color: var(--gold); text-transform: uppercase; }
+.yg-bar .yg-date { color: var(--ink); }
+.yg-bar .yg-count { color: var(--mute); }
+
+@media (max-width: 620px) {
+  .yg-stage img { max-height: calc(100vh - 10rem); }
+  .yg-prev, .yg-next { top: auto; bottom: 4.4rem; margin-top: 0; }
+  .yg-head h4 { font-size: 1.25rem; }
+}

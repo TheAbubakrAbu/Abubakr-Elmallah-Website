@@ -1,6 +1,6 @@
 /* fan-egypt.js: content for /franchises/egypt/. Rendered by fanpage.js.
 
-   The third of the Big Three. The point of the page is the one that gets lost
+   The third of the three identity pages. The point is the one that gets lost
    under the pyramids: Egypt did not stop. It is one continuous inhabited place
    with a five-thousand-year written record, and the part my family comes from
    is the last fourteen hundred years of it, not the first three thousand.

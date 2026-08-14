@@ -116,21 +116,21 @@ a.fr-card { cursor: pointer; }
 .fr-group--tertiary .fr-name { font-size: 1.14rem; }
 .fr-group--core .fr-name { font-size: 1.7rem; }
 
-/* ── the Big Three ──
+/* ── who I am ──
    These three are not franchises and must not look like one. No neon, no
    studio pastiche: the lettering is quiet and the plate is what carries them,
    which is why they get the tallest plate on the page. */
-.fr-group--big3 .fr-grid { grid-template-columns: repeat(3, 1fr); }
-@media (max-width: 900px) { .fr-group--big3 .fr-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 620px) { .fr-group--big3 .fr-grid { grid-template-columns: 1fr; } }
+.fr-group--identity .fr-grid { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 900px) { .fr-group--identity .fr-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .fr-group--identity .fr-grid { grid-template-columns: 1fr; } }
 
-.fr-group--big3 .fr-plate { min-height: 240px; }
-.fr-group--big3 .fr-glyph { width: 50px; height: 50px; }
-.fr-group--big3 .fr-name { font-size: 2rem; }
+.fr-group--identity .fr-plate { min-height: 240px; }
+.fr-group--identity .fr-glyph { width: 50px; height: 50px; }
+.fr-group--identity .fr-name { font-size: 2rem; }
 
 /* the eight-point lattice behind the plate: geometry, not imagery, and the
    same figure the Rubʿ al-Ḥizb glyph above it is built from */
-.fr-group--big3 .fr-plate::after {
+.fr-group--identity .fr-plate::after {
   content: ""; position: absolute; inset: -20%; pointer-events: none; opacity: .16;
   background:
     repeating-linear-gradient(45deg,  color-mix(in srgb, var(--c1) 40%, transparent) 0 1px, transparent 1px 26px),

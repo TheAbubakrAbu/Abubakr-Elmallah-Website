@@ -1,0 +1,133 @@
+/* resume.css — the text transcription that sits under the PDF embed on /resume/.
+
+   The PDF is the artefact; this is the same document as selectable, searchable,
+   screen-readable text. It deliberately keeps the résumé's own shape — title
+   left and date right, org left and place right — rather than being reflowed
+   into prose, because the shape is half of how a résumé is read. Nothing here
+   restyles the embed above it. */
+
+/* the page is three stacked blocks — actions, transcription, preview — so they
+   all share one column and one left edge; only the document inside is capped
+   narrower, for line length */
+.rt {
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* the header block keeps the hero's top padding but hands the spacing below
+   over to .rt; the preview block sits back under it */
+.embed--head { padding-bottom: 0; }
+.embed--preview { padding-top: 4.5rem; }
+/* same width as .rt-doc, so all three blocks are one column */
+.embed--preview .embed-wrap { max-width: 62rem; }
+
+.rt-head {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: 0.8rem; margin-bottom: 0.6rem;
+}
+
+.rt-head h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; }
+
+.rt-head .rt-stamp {
+  font-family: var(--mono); font-size: 0.62rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
+}
+
+.rt-note {
+  max-width: 68ch; margin-bottom: 2.4rem;
+  color: var(--ink-dim); font-size: 0.92rem; line-height: 1.75;
+}
+
+/* ── the document itself ── */
+.rt-doc {
+  max-width: 62rem;
+  border: 1px solid var(--line); border-radius: 18px;
+  background: rgba(255,255,255,.02);
+  padding: clamp(1.4rem, 3.4vw, 2.8rem);
+}
+
+.rt-name {
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(1.9rem, 4.6vw, 2.6rem); line-height: 1.1;
+  letter-spacing: -0.02em; text-align: center;
+}
+
+.rt-contact {
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 0.35rem 0.7rem; margin: 0.7rem 0 0;
+  font-size: 0.82rem; color: var(--ink-dim);
+}
+
+.rt-contact a { color: var(--blue-2); }
+.rt-contact a:hover { text-decoration: underline; }
+.rt-contact span[aria-hidden] { color: var(--mute); }
+
+.rt-sec { margin-top: 2.1rem; }
+
+.rt-sec > h3 {
+  font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink);
+  padding-bottom: 0.45rem; border-bottom: 1px solid var(--line);
+}
+
+.rt-entry { margin-top: 1.25rem; }
+
+.rt-line {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
+  gap: 0.2rem 1rem;
+}
+
+.rt-line h4 { font-size: 1rem; font-weight: 600; color: var(--ink); }
+
+/* three-part rows wrap on narrow containers; keep the right rail on the right
+   when it does, so a wrapped date never reads as part of the title */
+.rt-line > :last-child { margin-left: auto; }
+
+.rt-when, .rt-where {
+  font-size: 0.86rem; color: var(--ink-dim); white-space: nowrap;
+}
+
+.rt-when { font-style: italic; }
+
+/* the second line of an entry: org on the left, place on the right */
+.rt-line--sub { margin-top: 0.15rem; }
+.rt-line--sub .rt-org { font-style: italic; font-size: 0.9rem; color: var(--ink-dim); }
+.rt-line--sub .rt-org a { color: var(--blue-2); }
+.rt-line--sub .rt-org a:hover { text-decoration: underline; }
+.rt-line--sub .rt-where { font-style: italic; }
+
+/* project entries carry a middle blurb between the title and the right rail:
+   let it take the slack so the year stays pinned right on one line */
+.rt-mid {
+  flex: 1 1 auto; text-align: center;
+  font-style: italic; font-weight: 600; font-size: 0.88rem; color: var(--ink);
+}
+
+.rt-points { list-style: none; margin: 0.55rem 0 0; }
+
+.rt-points li {
+  position: relative; padding-left: 1.05rem; margin-bottom: 0.4rem;
+  color: var(--ink-dim); font-size: 0.9rem; line-height: 1.7;
+}
+
+.rt-points li::before {
+  content: "•"; position: absolute; left: 0.15rem; top: -0.05rem;
+  color: var(--mute);
+}
+
+.rt-points li:last-child { margin-bottom: 0; }
+
+.rt-points b, .rt-doc b { color: var(--ink); font-weight: 600; }
+.rt-points a { color: var(--blue-2); }
+.rt-points a:hover { text-decoration: underline; }
+
+/* the closing skills block: label, then a run of comma-separated values */
+.rt-skills { margin-top: 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+
+.rt-skills p { font-size: 0.9rem; line-height: 1.7; color: var(--ink-dim); }
+.rt-skills p b { color: var(--ink); }
+
+@media (max-width: 620px) {
+  .rt-line { flex-direction: column; }
+  .rt-when, .rt-where { white-space: normal; }
+}

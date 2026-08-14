@@ -764,6 +764,9 @@ html.intro-lock { overflow: hidden; }
   color: var(--mute); max-width: 64ch; margin: -0.6rem 0 2rem;
 }
 .acad-note i { font-style: italic; color: var(--ink-dim); }
+/* the note is mono and muted, so a link in it needs the underline to read as one */
+.acad-note a { color: var(--ink-dim); border-bottom: 1px solid color-mix(in srgb, var(--green) 45%, transparent); }
+.acad-note a:hover { color: var(--ink); border-bottom-color: var(--green); }
 
 .acad-courses { display: flex; flex-direction: column; gap: 1.1rem; }
 .course-group { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; }

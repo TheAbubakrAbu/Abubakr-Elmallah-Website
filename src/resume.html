@@ -29,6 +29,7 @@ redirect_from:
 <link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/resume.css' %}" />
 </head>
 <body data-intro="none">
 <div class="grain" aria-hidden="true"></div>
@@ -75,7 +76,11 @@ redirect_from:
 </header>
 
 <main>
-  <section class="embed">
+  <!-- Three blocks, in this order: the two ways to take the file away, the
+       résumé as real text, and the Drive preview last. The PDF is the artefact
+       but the transcription is the thing you can actually read on a phone, so
+       it goes first. -->
+  <section class="embed embed--head">
     <a class="back-link" href="/" data-magnetic>← Back home</a>
     <h1 class="page-title"><em>Résumé</em></h1>
     <div class="embed-actions">
@@ -84,13 +89,140 @@ redirect_from:
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a class="cta cta--download" href="https://drive.google.com/uc?export=download&amp;id=1o_S34-5F7B7Kb6jZfOuIz2TYWOfNs55s" rel="noopener" download="Abubakr-Elmallah-Resume.pdf" data-magnetic>
-        <span>Download PDF</span>
+        <span>Download Résumé</span>
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M8 11l4 4 4-4"/><path d="M5 19h14"/></svg>
       </a>
     </div>
-    <div class="embed-wrap">
+  </section>
+
+  <!-- The same document as text: word for word off the PDF below, so it is
+       selectable, searchable and readable by a screen reader. If the two ever
+       disagree, the PDF is the one that is right. -->
+  <section class="rt">
+    <div class="rt-head reveal">
+      <h2>The résumé, in full</h2>
+      <span class="rt-stamp">Transcribed · word for word</span>
+    </div>
+    <p class="rt-note reveal">
+      Word for word off the PDF, so it is selectable, searchable and readable by a screen reader &#8212; same order, same wording, same numbers. The Google Drive preview is at the bottom of the page.
+    </p>
+
+    <article class="rt-doc reveal">
+      <h3 class="rt-name">Abubakr Elmallah</h3>
+      <p class="rt-contact">
+        <span>(949) 208-4927</span><span aria-hidden="true">|</span>
+        <a href="mailto:ammelmallah@icloud.com">ammelmallah@icloud.com</a><span aria-hidden="true">|</span>
+        <a href="https://abubakrelmallah.com">abubakrelmallah.com</a><span aria-hidden="true">|</span>
+        <a href="https://linkedin.com/in/abubakr-elmallah" target="_blank" rel="noopener">linkedin.com/in/abubakr-elmallah</a><span aria-hidden="true">|</span>
+        <a href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener">github.com/TheAbubakrAbu</a>
+      </p>
+
+      <section class="rt-sec">
+        <h3>Education</h3>
+        <div class="rt-entry">
+          <div class="rt-line"><h4>University of California, Irvine</h4><span class="rt-where">Irvine, CA</span></div>
+          <div class="rt-line rt-line--sub"><span class="rt-org">Bachelor of Science &#8211; Computer Science (3.90 GPA)</span><span class="rt-when">Expected June 2028</span></div>
+          <ul class="rt-points">
+            <li><b>Awards:</b> Apple Swift Student Challenge Winner, Congressional App Challenge Winner</li>
+            <li><b>Relevant Coursework:</b> Data Structures &amp; Algorithms, Object-Oriented Programming, Discrete Mathematics</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="rt-sec">
+        <h3>Work Experience</h3>
+
+        <div class="rt-entry">
+          <div class="rt-line"><h4>iOS App Developer</h4><span class="rt-when">March 2025 &#8211; Present</span></div>
+          <div class="rt-line rt-line--sub"><span class="rt-org">UCI Student Center | <a href="https://studentcenter.uci.edu" target="_blank" rel="noopener">studentcenter.uci.edu</a></span><span class="rt-where">Irvine, CA</span></div>
+          <ul class="rt-points">
+            <li>Reach <b>100K+ installs</b> and <b>3.2M+ lifetime sessions</b> across three production App Store apps I own and ship (<b>UCI Now</b>, <b>ZOTFinder</b>, <b>UCI Esports</b>) for UC Irvine Student Center &amp; Event Services.</li>
+            <li>Cut load times <b>40%</b> by rebuilding UCI Now and ZOTFinder from <b>UIKit</b> into <b>SwiftUI</b> with async/await <b>structured concurrency</b> and a full redesign, extending both apps to <b>iPad</b>, <b>Mac</b>, and <b>Vision Pro</b>.</li>
+            <li>Raised <b>reliability</b>, cutting ZOTFinder crashes <b>85%</b> (10.4K to under 1.5K/month), by refactoring legacy code.</li>
+            <li>Own 20+ <b>CocoaPods</b> dependencies (<b>Google Maps</b>, <b>Firebase</b>, <b>Alamofire</b>, <b>SwiftyJSON</b>) in both UIKit apps.</li>
+            <li>Launched UCI Esports 1.0 as <b>sole iOS developer</b> by integrating <b>ggLeap REST APIs</b> for live PC reservations, <b>Google Calendar</b> event feeds, <b>UCINetID</b> authentication with guest mode, and backend profile sync.</li>
+          </ul>
+        </div>
+
+        <div class="rt-entry">
+          <div class="rt-line"><h4>Lead Software Developer</h4><span class="rt-when">September 2024 &#8211; Present</span></div>
+          <div class="rt-line rt-line--sub"><span class="rt-org">ICS Student Council (ICSSC) | <a href="https://studentcouncil.ics.uci.edu" target="_blank" rel="noopener">studentcouncil.ics.uci.edu</a></span><span class="rt-where">Irvine, CA</span></div>
+          <ul class="rt-points">
+            <li>Lead a <b>12-person engineering team</b> building <b>PeterPlate</b>, ICSSC&#8217;s open-source campus dining platform, <b>live in production</b> on web and iOS, serving UCI students menu, allergen, nutrition, ratings, and event data.</li>
+            <li>Built a type-safe frontend with <b>Next.js (React)</b>, <b>TypeScript</b>, <b>Zustand</b>, <b>Tailwind CSS</b>, and <b>shadcn/ui</b>.</li>
+            <li>Shipped a <b>scalable</b> serverless backend by pairing <b>tRPC</b> with <b>Drizzle ORM</b> on a 13-table <b>PostgreSQL</b> schema, deployed to <b>AWS Lambda</b> and <b>RDS</b> via <b>GitHub Actions</b> CI/CD with <b>Docker + Testcontainers</b> tests.</li>
+          </ul>
+        </div>
+
+        <div class="rt-entry">
+          <div class="rt-line"><h4>iOS App Development Teacher</h4><span class="rt-when">February 2024 &#8211; February 2026</span></div>
+          <div class="rt-line rt-line--sub"><span class="rt-org">STEM Heroes Academy | <a href="https://stemirvine.com" target="_blank" rel="noopener">stemirvine.com</a></span><span class="rt-where">Irvine, CA</span></div>
+          <ul class="rt-points">
+            <li>Launched the academy&#8217;s first <b>iOS App Development</b> course as its <b>youngest instructor</b>, teaching <b>Swift</b>, <b>Swift Playgrounds</b>, and <b>SwiftUI</b> to 30+ students (ages 8&#8211;14) who each shipped a working app over two years.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="rt-sec">
+        <h3>Programming Projects</h3>
+
+        <div class="rt-entry">
+          <div class="rt-line">
+            <h4>Aurebesh Translator App Suite <span class="rt-org">| iOS</span></h4>
+            <span class="rt-mid">Top 10 on App Store Entertainment Chart</span>
+            <span class="rt-when"><a href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener">GitHub</a> | 2023</span>
+          </div>
+          <ul class="rt-points">
+            <li>Built and published my first iOS app at 17 in <b>SwiftUI</b>, growing it into free (<b>Aurebesh Translator</b>) and premium (<b>Datapad</b>) apps earning <b>$1K+</b> from <b>25K+</b> installs and <b>60K+</b> sessions at <b>99.9% crash-free</b>.</li>
+            <li>Enabled instant offline translation by engineering a modular engine rendering <b>14 galactic scripts</b>.</li>
+            <li>Decoded photographed glyphs offline with on-device <b>computer vision</b>, template-matching 14 bundled fonts.</li>
+            <li>Shipped 6 <b>WidgetKit</b> widgets, <b>Metal</b> shader effects, <b>StoreKit</b> in-app purchases, and a watchOS companion app.</li>
+          </ul>
+        </div>
+
+        <div class="rt-entry">
+          <div class="rt-line">
+            <h4>Al-Islam App Suite <span class="rt-org">| iOS</span></h4>
+            <span class="rt-mid">Congressional &amp; Swift Student Challenge Winner</span>
+            <span class="rt-when"><a href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener">GitHub</a> | 2023</span>
+          </div>
+          <ul class="rt-points">
+            <li>Built <b>three full-featured SwiftUI apps</b> (<b>Al-Islam</b>, <b>Al-Quran</b>, <b>Al-Adhan</b>) for iPhone, iPad, Mac, and Apple Watch with <b>WidgetKit</b> widgets, serving <b>15K+ users</b> across <b>55K+ sessions</b> at <b>99.8% crash-free</b>.</li>
+            <li>Cut load times <b>50%</b> across all three apps through <b>JSON parsing</b>, <b>SwiftSoup</b> scraping, and offline caching.</li>
+          </ul>
+        </div>
+
+        <div class="rt-entry">
+          <div class="rt-line">
+            <h4>Star Wars Discord Bots <span class="rt-org">| Python, C++</span></h4>
+            <span class="rt-when">2024 &#8211; 2025</span>
+          </div>
+          <ul class="rt-points">
+            <li>Grew <b>Sabacc Droid</b> (Python, <b>discord.py</b>) and <b>Aurebesh Droid</b> (<b>C++20</b>, <b>D++</b>, <b>CMake</b>) to <b>500+ Discord servers</b> by engineering an event-driven, concurrent 8-player multiplayer engine spanning 4 Sabacc variants.</li>
+            <li>Sustained <b>99.9% uptime</b> by deploying to <b>Heroku</b>&#8217;s <b>Linux</b> dynos with automated <b>GitHub Actions</b> builds.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="rt-sec">
+        <h3>Languages &amp; Technologies</h3>
+        <div class="rt-skills">
+          <p><b>Languages:</b> Swift, Python, C++ (C++20), TypeScript, JavaScript, SQL, Bash</p>
+          <p><b>Frameworks &amp; Libraries:</b> SwiftUI, UIKit, WidgetKit, StoreKit, WatchConnectivity, Next.js, React, Zustand, Tailwind CSS, shadcn/ui, tRPC, Drizzle ORM, Alamofire, Firebase, Google Maps SDK, discord.py, D++</p>
+          <p><b>Tools:</b> Xcode, Git, GitHub Actions, Docker, AWS, Linux, PostgreSQL, Heroku, Vercel, Turborepo, CocoaPods, CMake</p>
+        </div>
+      </section>
+    </article>
+  </section>
+
+  <section class="embed embed--preview">
+    <div class="rt-head reveal">
+      <h2>The PDF itself</h2>
+      <span class="rt-stamp">Google Drive · preview</span>
+    </div>
+    <div class="embed-wrap reveal">
       <iframe class="embed-frame" src="https://drive.google.com/file/d/1o_S34-5F7B7Kb6jZfOuIz2TYWOfNs55s/preview" title="Résumé · Abubakr Elmallah" loading="lazy" allow="autoplay"></iframe>
-      <p class="embed-note"><b>Preview above.</b> If it doesn’t load, use “Open in Google Drive”.</p>
+      <p class="embed-note"><b>The original file.</b> If it doesn’t load, use “Open in Google Drive” at the top.</p>
     </div>
   </section>
 </main>
