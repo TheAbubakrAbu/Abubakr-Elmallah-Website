@@ -14,12 +14,12 @@
 
 window.FANDOMS = [
 
-  /* The Big Three sit above everything else and are not fandoms at all: you do
+  /* Who I am sits above everything else, and none of it is a fandom: you do
      not pick your faith, your language or where your family is from the way you
      pick a film series. They are on this page because the rest of the page does
-     not make sense without them, and because they are the three things I would
-     still be if you deleted every other tile here. */
-  { id: 'big3', label: 'The Big Three', note: 'not fandoms — this is what I actually am', items: [
+     not make sense without them, and because they are what I would still be if
+     you deleted every other tile here. */
+  { id: 'identity', label: 'Who I Am', note: 'not fandoms — this is what I actually am', items: [
     { name: 'Islam', wm: 'islam', glyph: 'rub', c1: '#3fd589', c2: '#0a2015',
       when: 'Before I could speak',
       meta: 'Dīn · 610 CE', href: '/franchises/islam/',

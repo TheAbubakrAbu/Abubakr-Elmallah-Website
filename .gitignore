@@ -7,3 +7,7 @@ vendor/
 
 # Plaintext travels, from back when the page was gated
 travels.source.json
+
+# the original camera-roll drop; the compressed set lives in assets/img/years/
+Pics/
+.img-renames.json

@@ -41,7 +41,7 @@ can open and read.
 | --- | --- |
 | `/star-wars/` | Datapad, Aurebesh Translator, the droids — plus the alphabet, a playable hand of sabacc and a kyber forge, all running in the page |
 | `/al-islam/` | Al-Islam, Al-Quran, Al-Adhan, the open-source engines — plus prayer times and a qiblah computed in the browser, and a tajwīd sheet |
-| `/franchises/` | Index of **36** pages: **the Big Three** (Islam, Arab, Egypt) first, then Star Wars, Harry Potter, LEGO, Pokémon, Minecraft, LOTR, Marvel, Avatar and the rest, each with its own stylesheet and behaviour |
+| `/franchises/` | Index of **36** pages: **who I am** (Islam, Arab, Egypt) first, then Star Wars, Harry Potter, LEGO, Pokémon, Minecraft, LOTR, Marvel, Avatar and the rest, each with its own stylesheet and behaviour |
 
 **Alternate interfaces** — the same content, re-skinned end to end:
 
@@ -111,11 +111,29 @@ assets/
     cursor · magnetic · scramble · reveal · clock · flowfield · tilt
     gallery · sound · intro · scroll · cardlink · utils
     transcript-data · planets-data · travels-data · fandom-data · …
+    years-data · years    # the 97-photo year galleries on /high-school/ and
+                          # /college/: justified rows, strictly chronological
   img/                   # me · apps · bots · awards · highschool · flyers
                          # wallpapers · franchises · icons
+    years/<year>/        # one folder per school year; every file is named for
+                         # its own EXIF capture time, so the folder sorts itself
   audio/accents/         # <id>.m4a per accent — none recorded yet; see the
                          # header of assets/js/accents-data.js for the convention
 ```
+
+### Adding photos to a year gallery
+
+Drop the originals in a folder per school year and run the ingest step: it
+auto-orients from EXIF, resizes to a 1400px long edge, encodes progressive JPEG
+and then runs `jpegtran` over the result, names each file for its capture time
+and rewrites `assets/js/years-data.js`. Nothing about the grid is hand-written —
+`years.js` reads the widths and heights out of that file and justifies the rows
+before any image has loaded, so the layout never jumps.
+
+Every other image on the site goes through the same encoder. PNGs are kept as
+PNG only where transparency is actually used, or where the PNG genuinely comes
+out smaller than the JPEG would (which is the case for the flat poster-art
+flyers); everything else is JPEG.
 
 ### Adding an app to a page
 

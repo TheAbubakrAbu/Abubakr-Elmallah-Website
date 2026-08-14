@@ -30,6 +30,7 @@ redirect_from:
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/transcript.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/years.css' %}" />
 </head>
 <body data-intro="none">
 <div class="grain" aria-hidden="true"></div>
@@ -100,29 +101,13 @@ redirect_from:
       </a>
     </div>
 
-    <h3 class="subsec reveal">Through the Years</h3>
-    <div class="years-grid">
-      <button class="year-card reveal" data-label="Freshman ’21" data-images="../assets/img/highschool/year-freshman.jpg">
-        <img src="../assets/img/highschool/year-freshman.jpg" alt="Abubakr Elmallah, freshman year" loading="lazy" style="object-position: center 45%;" />
-        <span class="year-cap">Freshman <i>’21</i></span>
-      </button>
-      <button class="year-card reveal" data-label="Sophomore ’22" data-images="../assets/img/highschool/year-sophomore-1.jpg,../assets/img/highschool/year-sophomore-2.jpg">
-        <img src="../assets/img/highschool/year-sophomore-1.jpg" alt="Abubakr Elmallah, sophomore year" loading="lazy" style="object-position: center 45%;" />
-        <span class="year-cap">Sophomore <i>’22</i></span>
-        <span class="year-more">+1</span>
-      </button>
-      <button class="year-card reveal" data-label="Junior ’23" data-images="../assets/img/highschool/year-junior.jpg,../assets/img/highschool/year-junior-2.jpg">
-        <img src="../assets/img/highschool/year-junior.jpg" alt="Abubakr Elmallah, junior year" loading="lazy" />
-        <span class="year-cap">Junior <i>’23</i></span>
-        <span class="year-more">+1</span>
-      </button>
-      <button class="year-card reveal" data-label="Senior ’24" data-images="../assets/img/highschool/year-senior-1.jpg,../assets/img/highschool/year-senior-other-1.jpg,../assets/img/highschool/year-senior-other-2.jpg,../assets/img/highschool/year-senior-2.jpg,../assets/img/highschool/year-senior-3.jpg,../assets/img/highschool/year-senior-4.jpg,../assets/img/highschool/year-senior-5.jpg">
-        <img src="../assets/img/highschool/year-senior-1.jpg" alt="Abubakr Elmallah, senior year" loading="lazy" />
-        <span class="year-cap">Senior <i>’24</i></span>
-        <span class="year-more">+6</span>
-      </button>
-    </div>
-    <!-- lightbox for expanded year photos -->
+    <h3 class="subsec reveal">Through the Years <span class="subsec-yr">61 photos · 2020 – 2024</span></h3>
+    <p class="hs-p reveal">One card per year. Click one and it opens underneath into every photo from that year, in the order they
+    happened — each is dated from the file itself, so the run is strictly oldest to newest. Click a photo to open it full-screen.</p>
+    <!-- built by years.js from years-data.js -->
+    <div class="years" data-years="hs"></div>
+
+    <!-- gallery.js still owns the flyers, wallpapers and app shots below -->
     <div class="lightbox" id="lightbox" aria-hidden="true">
       <button class="lightbox-close" aria-label="Close">✕</button>
       <span class="lightbox-title"></span>
@@ -153,7 +138,7 @@ redirect_from:
     <h3 class="subsec reveal">Custom Flyers</h3>
     <div class="flyer-grid">
       <a class="flyer reveal" href="../assets/img/flyers/minecraft.jpg" target="_blank" rel="noopener"><img src="../assets/img/flyers/minecraft.jpg" alt="Minecraft coding workshop flyer" loading="lazy" /><span class="flyer-cap"><b>Minecraft Workshop</b><i>2021</i></span></a>
-      <a class="flyer reveal" href="../assets/img/flyers/star-wars.png" target="_blank" rel="noopener"><img src="../assets/img/flyers/star-wars.png" alt="Star Wars coding workshop flyer" loading="lazy" /><span class="flyer-cap"><b>Star Wars Workshop</b><i>2022</i></span></a>
+      <a class="flyer reveal" href="../assets/img/flyers/star-wars.jpg" target="_blank" rel="noopener"><img src="../assets/img/flyers/star-wars.jpg" alt="Star Wars coding workshop flyer" loading="lazy" /><span class="flyer-cap"><b>Star Wars Workshop</b><i>2022</i></span></a>
       <a class="flyer reveal" href="../assets/img/flyers/code-combat.png" target="_blank" rel="noopener"><img src="../assets/img/flyers/code-combat.png" alt="Code Combat coding workshop flyer" loading="lazy" /><span class="flyer-cap"><b>Code Combat Workshop</b><i>2022</i></span></a>
       <a class="flyer reveal" href="../assets/img/flyers/cyberpatriot.png" target="_blank" rel="noopener"><img src="../assets/img/flyers/cyberpatriot.png" alt="CyberPatriot club flyer" loading="lazy" /><span class="flyer-cap"><b>CyberPatriot</b><i>2023</i></span></a>
       <a class="flyer reveal" href="../assets/img/flyers/girls-who-code.png" target="_blank" rel="noopener"><img src="../assets/img/flyers/girls-who-code.png" alt="Girls Who Code club flyer" loading="lazy" /><span class="flyer-cap"><b>Girls Who Code</b><i>2023</i></span></a>
@@ -342,6 +327,8 @@ redirect_from:
 <script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
 <script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
+<script src="{% include v.html f='/assets/js/years-data.js' %}"></script>
+<script src="{% include v.html f='/assets/js/years.js' %}"></script>
 <script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
 <script src="{% include v.html f='/assets/js/transcript-data.js' %}"></script>
 <!-- after reveal.js on purpose: see the comment in transcript.js -->

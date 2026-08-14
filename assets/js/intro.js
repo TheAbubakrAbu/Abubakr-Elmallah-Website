@@ -67,7 +67,7 @@
   } else if (type === 'projects') {
     // grouped one row per theme: UCI Work · Star Wars · Islam (4 tiles each)
     const icons = ['apps/zotfinder.jpg', 'apps/uci-now.jpg', 'apps/uci-esports.jpg', 'apps/peterplate.jpg',
-                   'apps/aurebesh-translator.jpg', 'apps/datapad.jpg', 'bots/aurebesh-droid.png', 'bots/sabacc-droid.png',
+                   'apps/aurebesh-translator.jpg', 'apps/datapad.jpg', 'bots/aurebesh-droid.jpg', 'bots/sabacc-droid.png',
                    'apps/al-adhan.jpg', 'apps/al-islam.jpg', 'apps/al-quran.jpg', 'apps/icoi.jpg'];
     ov.innerHTML =
       '<div class="intro-mosaic">' +
@@ -83,7 +83,7 @@
   } else if (type === 'franchises') {
     // Star Wars row of four, then the three Islamic apps centered beneath
     const rows = [
-      ['apps/aurebesh-translator.jpg', 'apps/datapad.jpg', 'bots/aurebesh-droid.png', 'bots/sabacc-droid.png'],
+      ['apps/aurebesh-translator.jpg', 'apps/datapad.jpg', 'bots/aurebesh-droid.jpg', 'bots/sabacc-droid.png'],
       ['apps/al-adhan.jpg', 'apps/al-islam.jpg', 'apps/al-quran.jpg'],
     ];
     let n = 0;
@@ -93,10 +93,12 @@
         '<img class="intro-tile" style="animation-delay:' + (n++ * 34) + 'ms" src="../assets/img/' + s + '" alt="" aria-hidden="true">').join('') + '</div>').join('') +
       '</div><span class="intro-proj-title">Franchises</span>';
   } else if (type === 'school' || type === 'education') {
-    const ph = ['year-freshman.jpg', 'year-sophomore-1.jpg', 'year-junior.jpg', 'year-senior-1.jpg'];
+    // one photo per year, oldest first, out of the year galleries
+    const ph = ['hs-freshman/2021-07-20-0812.jpg', 'hs-sophomore/2022-05-02-2049.jpg',
+                'hs-junior/2022-10-21-1416.jpg', 'hs-senior/2024-05-30-1806.jpg'];
     ov.innerHTML =
       '<div class="intro-fan">' +
-      ph.map((s, i) => '<img class="intro-photo" style="animation-delay:' + (i * 55) + 'ms" src="../assets/img/highschool/' + s + '" alt="" aria-hidden="true">').join('') +
+      ph.map((s, i) => '<img class="intro-photo" style="animation-delay:' + (i * 55) + 'ms" src="/assets/img/years/' + s + '" alt="" aria-hidden="true">').join('') +
       '</div><span class="intro-school-title">' + (type === 'education' ? 'Education' : 'High&nbsp;School') + '</span>';
   } else {
     ov.innerHTML = '<span class="intro-name">Abubakr Elmallah</span>';

@@ -1,7 +1,7 @@
 /* fan-islam.js: content for /franchises/islam/. Rendered by fanpage.js.
 
-   This is the first of the Big Three, and the only page under /franchises/ that
-   is not about something I chose. It is also where the prophets, the three holy
+   This is the first of the three identity pages, and the only page under
+   /franchises/ that is not about something I chose. It is also where the prophets, the three holy
    mosques and the chain of scholars now live: they used to sit on /al-islam/,
    which is a page about three apps I built and was the wrong home for them.
 

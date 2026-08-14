@@ -1,6 +1,6 @@
 /* fan-arab.js: content for /franchises/arab/. Rendered by fanpage.js.
 
-   The second of the Big Three. The two interactive blocks — the alphabet and
+   The second of the three identity pages. The two interactive blocks — the alphabet and
    the root explorer — are hand-written into the page and built by
    fan-arab-ui.js; everything here is the reading around them.
 

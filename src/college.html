@@ -28,6 +28,7 @@ permalink: /college/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/transcript.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/years.css' %}" />
 </head>
 <body data-intro="none">
 <div class="grain" aria-hidden="true"></div>
@@ -98,18 +99,13 @@ permalink: /college/
       </a>
     </div>
 
-    <!-- TODO(abubakr): "Through the Years" photo grid, same pattern as the High School page.
-         Drop photos in assets/img/college/ and uncomment. The lightbox below already exists.
-    <h3 class="subsec reveal">Through the Years</h3>
-    <div class="years-grid">
-      <button class="year-card reveal" data-label="Freshman ’25" data-images="../assets/img/college/year-freshman.jpg">
-        <img src="../assets/img/college/year-freshman.jpg" alt="Abubakr Elmallah, freshman year at UCI" loading="lazy" />
-        <span class="year-cap">Freshman <i>’25</i></span>
-      </button>
-    </div>
-    -->
+    <h3 class="subsec reveal">Through the Years <span class="subsec-yr">36 photos · 2024 – now</span></h3>
+    <p class="yr-note reveal">Same as the <a href="/high-school/" data-magnetic>high school page</a>: click a year to open it, dated off the
+    files themselves and laid out oldest to newest.</p>
+    <!-- built by years.js from years-data.js -->
+    <div class="years" data-years="uci"></div>
 
-    <!-- lightbox for expanded photos (shared with the year grid above) -->
+    <!-- gallery.js owns the app and award shots further down -->
     <div class="lightbox" id="lightbox" aria-hidden="true">
       <button class="lightbox-close" aria-label="Close">✕</button>
       <span class="lightbox-title"></span>
@@ -249,29 +245,31 @@ permalink: /college/
 
     <h3 class="subsec reveal">Academics <span class="subsec-yr">Class of 2028</span></h3>
     <div class="acad reveal">
-      <p class="acad-lede">Studying <b>Computer Science</b> at the <b>Donald Bren School of Information &amp; Computer Sciences</b> at UC Irvine.</p>
-      <!-- TODO(abubakr): fill in real numbers before uncommenting. Nothing here is guessed for you.
+      <p class="acad-lede">Reading for a <b>B.S. in Computer Science</b> at the <b>Donald Bren School of Information &amp; Computer Sciences</b> at UC Irvine, expected <b>June 2028</b>.</p>
       <div class="acad-stats">
-        <div class="acad-stat" data-magnetic><span class="acad-k">Cumulative GPA</span><span class="acad-v">···</span></div>
-        <div class="acad-stat" data-magnetic><span class="acad-k">Major GPA</span><span class="acad-v">···</span></div>
-        <div class="acad-stat" data-magnetic><span class="acad-k">Units Completed</span><span class="acad-v">···</span></div>
-        <div class="acad-stat" data-magnetic><span class="acad-k">Standing</span><span class="acad-v">···</span></div>
+        <div class="acad-stat" data-magnetic><span class="acad-k">Cumulative GPA</span><span class="acad-v">3.90</span></div>
+        <div class="acad-stat" data-magnetic><span class="acad-k">Degree</span><span class="acad-v">B.S. <span>&#183; Computer Science</span></span></div>
+        <div class="acad-stat" data-magnetic><span class="acad-k">Expected</span><span class="acad-v">June 2028</span></div>
+        <div class="acad-stat" data-magnetic><span class="acad-k">Standing</span><span class="acad-v">Third year</span></div>
       </div>
-      -->
-      <!-- TODO(abubakr): coursework chips, same markup as the High School page.
+      <p class="acad-note">Relevant coursework below, exactly as it reads on the <a href="/resume/" data-magnetic>r&#233;sum&#233;</a>. The two awards on that same line &#8212; the <i>Apple Swift Student Challenge</i> and the <i>Congressional App Challenge</i> &#8212; came out of apps I wrote before I got here, and both are on the <a href="/high-school/" data-magnetic>high school page</a> with the certificates.</p>
+
       <div class="acad-courses">
         <div class="course-group">
           <span class="course-label course-label--ap" data-magnetic="0.5">CS</span>
           <ul class="course-chips">
-            <li data-magnetic="0.5">ICS 31</li><li data-magnetic="0.5">ICS 32</li><li data-magnetic="0.5">ICS 33</li>
+            <li data-magnetic="0.5">Data Structures &amp; Algorithms</li>
+            <li data-magnetic="0.5">Object-Oriented Programming</li>
+          </ul>
+        </div>
+        <div class="course-group">
+          <span class="course-label course-label--ib" data-magnetic="0.5">Math</span>
+          <ul class="course-chips">
+            <li data-magnetic="0.5">Discrete Mathematics</li>
           </ul>
         </div>
       </div>
-      -->
     </div>
-
-    <!-- TODO(abubakr): clubs & activities at UCI (ICSSC, MSA, etc.): mirror the High School
-         "Activities & Awards" section, or embed a Google Doc the way that page does. -->
 
     <div class="hs-extra reveal">
       <a href="/high-school/" data-magnetic>↳ Where it started: High School ↗</a>
@@ -303,6 +301,8 @@ permalink: /college/
 <script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
 <script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
+<script src="{% include v.html f='/assets/js/years-data.js' %}"></script>
+<script src="{% include v.html f='/assets/js/years.js' %}"></script>
 <script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
 <script src="{% include v.html f='/assets/js/clock.js' %}"></script>
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
