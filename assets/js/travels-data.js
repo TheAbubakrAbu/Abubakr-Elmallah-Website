@@ -41,7 +41,7 @@ window.TRAVELS = {
       countries: 'Jordan', flags: '\u{1F1EF}\u{1F1F4}', c1: '#c98f4f', c2: '#1e1408', look: 'canyon',
       note: 'Petra, cut into the rock face, and a desert that does not look like any other desert.' },
     { when: '2023 Nov', y: '2023', m: 'Nov', grade: '12th', places: 'Mecca and Medina', tag: 'Umrah',
-      countries: 'Saudi Arabia', flags: '\u{1F1F8}\u{1F1E6}', c1: '#d8c68a', c2: '#0d0f14', look: 'haram',
+      countries: 'Saudi Arabia', flags: '\u{1F54B}\u{1F1F8}\u{1F1E6}', c1: '#d8c68a', c2: '#0d0f14', look: 'haram',
       note: 'The one that is not really a trip. Umrah, and the only entry on this page I would not trade.' },
     { when: '2023 Dec', y: '2023', m: 'Dec', grade: '12th', places: 'Malaysia, Singapore', via: 'Qatar',
       countries: 'Malaysia \u00b7 Singapore', flags: '\u{1F1F2}\u{1F1FE}\u{1F1F8}\u{1F1EC}', c1: '#3fbf7f', c2: '#062014', look: 'skyline',

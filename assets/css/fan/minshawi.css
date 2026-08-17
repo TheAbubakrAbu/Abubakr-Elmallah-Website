@@ -1,0 +1,69 @@
+/* fan/minshawi.css: /franchises/minshawi/ only.
+
+   The radio era: valve-amp warmth, sepia gold, and sound rippling out from
+   the centre. The hero drawing is the broadcast microphone, because the man
+   himself is not drawn on a site where nothing living is. */
+
+body[data-fan="minshawi"] { --a: #d9b88a; }
+
+/* ── the backdrop ── */
+.mn-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(90% 70% at 50% 0%, #241a10 0%, #170f08 48%, #080604 100%);
+}
+
+.mn-sky > * { position: absolute; inset: 0; }
+
+.mn-glow {
+  background: radial-gradient(44% 30% at 50% 12%, rgba(217,184,138,.16), transparent 70%);
+}
+
+/* concentric broadcast rings, radiating from high centre like a transmitter */
+.mn-waves {
+  background: repeating-radial-gradient(circle at 50% 8%,
+    transparent 0 56px, rgba(217,184,138,.07) 56px 57px);
+  mask-image: radial-gradient(80% 60% at 50% 20%, #000, transparent 78%);
+  -webkit-mask-image: radial-gradient(80% 60% at 50% 20%, #000, transparent 78%);
+}
+
+/* ── hero ── */
+body[data-fan="minshawi"] .fan-title {
+  background: linear-gradient(180deg, #f2e6cc, #d9b88a 58%, #96703a);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+.mn-hero-ar {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: clamp(1.5rem, 4.4vw, 2.6rem); line-height: 1.9;
+  color: #d9b88a; opacity: .92; margin-bottom: 0.4rem;
+  /* a display line above the title, so it aligns with the title, not the margin */
+  text-align: left;
+  text-shadow: 0 0 40px rgba(217,184,138,.3);
+}
+
+/* ── the microphone drawing ── */
+.mn-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem auto 0; }
+
+.mn-art svg { display: block; width: min(520px, 100%); margin-inline: auto; }
+
+.mna-mic path, .mna-mic rect { fill: #6a5638; }
+
+.mna-mic rect:first-of-type { fill: #7a6544; }
+
+.mna-grill { fill: none; stroke: #241a10; stroke-width: 6; opacity: .8; }
+
+.mna-ring { fill: #96703a; }
+
+.mna-wave path { stroke: #d9b88a; stroke-width: 3; stroke-linecap: round; opacity: .4; }
+
+.mn-art figcaption {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.8;
+}
+
+/* Arabic section notes read as Arabic, not as mono */
+body[data-fan="minshawi"] .subsec--fan .subsec-yr {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: 1.05rem; letter-spacing: 0; text-transform: none; opacity: .9;
+}

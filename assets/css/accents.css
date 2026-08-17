@@ -116,6 +116,21 @@ body[data-fan="accents"] { --a: var(--gold); }
   background: rgba(245,198,60,0.05);
 }
 
+/* Row alignment: each card is a subgrid of its row in .ac-grid — head, the
+   quoted line, the description, the player — so every card in a row puts each
+   of those on the same line, however long the line or the blurb runs. All four
+   parts are always rendered (see accents.js), so no empty slots are needed. */
+@supports (grid-template-rows: subgrid) {
+  .ac-grid { --rowgap: clamp(0.8rem, 2vw, 1.2rem); row-gap: 0; margin-bottom: calc(-1 * var(--rowgap)); }
+  .ac-grid > .ac-card {
+    display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 0;
+    align-content: start; margin-bottom: var(--rowgap);
+  }
+  /* the foot used margin-top:auto to sit at the card's bottom; in a shared row
+     that pushes it away from the row's own top line */
+  .ac-grid > .ac-card > .ac-foot { margin-top: 0; align-self: start; }
+}
+
 .ac-head { display: flex; align-items: flex-start; gap: 0.8rem; }
 
 /* the medallion carries a two-letter mark rather than a flag: nothing on this

@@ -32,7 +32,8 @@ import sys
 from PIL import Image, ImageOps
 
 MAX_EDGE = 1400          # long edge for photographs
-JPEG_Q = 80
+JPEG_Q = 75              # was 80; at 1400px the difference is invisible and
+                         # the year galleries dropped ~12% for it
 PNG_COLORS = 256
 
 SRC = '_originals'
@@ -42,12 +43,23 @@ DATA = 'assets/js/years-data.js'
 # editorial, so it lives here rather than being guessed from the folder name.
 # `cover` is the photo the year's card shows while the gallery is collapsed.
 YEARS = [
+    # elementary is one card rather than a year each: Legoland 2010, the summer
+    # before middle school, and the Autopia licences (its `id-` photo)
+    ('es-elementary', 'Elementary',  '2010–18', 'ms',  '2018-08-21-1528.jpg'),
+    ('ms-seventh',   '7th Grade',   '2018–19', 'ms',  '2019-03-24-1815.jpg'),
+    ('ms-eighth',    '8th Grade',   '2019–20', 'ms',  '2019-12-30-1200.jpg'),
+    # not a school year: every school ID card, gathered in one card that sits
+    # at the end of the middle-school row, to the right of 8th grade. The same
+    # card photos also live in their own years (as `id-…`, pinned first); the
+    # numeral after `id-` here fixes the order: group shot, then 9th → 12th.
+    # The college ID is not here — it lives in First Year, on /college/.
+    ('id-pics',      'ID Pics',     '2018–24', 'ms',  'id-0-2026-08-16-1528.jpg'),
     ('hs-freshman',  'Freshman',    '2020–21', 'hs',  '2021-07-20-0812.jpg'),
-    ('hs-sophomore', 'Sophomore',   '2021–22', 'hs',  'undated-4.jpg'),
+    ('hs-sophomore', 'Sophomore',   '2021–22', 'hs',  '2022-05-17-1200.jpg'),
     ('hs-junior',    'Junior',      '2022–23', 'hs',  '2022-10-21-1416.jpg'),
-    ('hs-senior',    'Senior',      '2023–24', 'hs',  'undated.jpg'),
-    ('uci-first',    'First Year',  '2024–25', 'uci', '2025-06-13-1633.jpg'),
-    ('uci-second',   'Second Year', '2025–26', 'uci', '2025-10-27-2142.jpg'),
+    ('hs-senior',    'Senior',      '2023–24', 'hs',  '2024-05-30-2200.jpg'),
+    ('uci-first',    'First Year',  '2024–25', 'uci', '2025-06-13-1549.jpg'),
+    ('uci-second',   'Second Year', '2025–26', 'uci', '2026-01-17-1622.jpg'),
 ]
 
 # icons are referenced by the PWA manifest and must stay PNG whatever the maths
@@ -96,10 +108,16 @@ def encode_png(src, dest):
 def date_from(stem):
     """'2024-05-30-1806' -> '2024-05-30 18:06'; 'undated-2' -> None.
 
+    An `id` prefix marks a school-ID photo: it pins the file to the FRONT of
+    its year (see the sort in ingest) while keeping its real capture date, so
+    the ID card leads the gallery whatever its date says. `id` alone is an ID
+    photo with no EXIF date; `id-3-<date>` carries an ordering digit for the
+    id-pics group.
+
     The trailing `-2` is the collision suffix two frames get when they share a
     capture minute, so it has to survive the parse — dropping it here is what
     silently turned one photo undated the first time round."""
-    m = re.match(r'^(\d{4}-\d{2}-\d{2})-(\d{2})(\d{2})(?:-\d+)?$', stem)
+    m = re.match(r'^(?:id(?:-\d)?-)?(\d{4}-\d{2}-\d{2})-(\d{2})(\d{2})(?:-\d+)?$', stem)
     return '%s %s:%s' % m.groups() if m else None
 
 
@@ -113,10 +131,12 @@ def ingest():
             continue
         os.makedirs(os.path.join(OUT, gid), exist_ok=True)
 
+        # id photos first (the year's ID card leads the gallery regardless of
+        # its date), then chronological, then undated at the end
         stems = sorted(
             (os.path.splitext(f)[0] for f in os.listdir(d)
              if not f.startswith('.') and f.lower().endswith(('.jpg', '.jpeg', '.png', '.heic'))),
-            key=lambda s: (s.startswith('undated'), s))
+            key=lambda s: (not s.startswith('id'), s.startswith('undated'), s))
 
         # anything in the output that is no longer in _originals is stale
         keep = {s + '.jpg' for s in stems}
@@ -151,10 +171,11 @@ def write_data(manifest):
    from its EXIF; w/h are the encoded dimensions, so years.js can justify the
    rows before a single image has loaded and the layout never jumps.
 
-   Order inside a year is chronological; photos whose EXIF carried no date sit
-   at the end under `date: null`. `cover` is the photo the year's card shows
-   while the gallery is collapsed — the four high-school ones are the same
-   frames the old year cards used.
+   Order inside a year is chronological, EXCEPT the school-ID photo (an `id-`
+   file), which is pinned to the front of its year whatever its date; photos
+   whose EXIF carried no date sit at the end under `date: null`. `cover` is
+   the photo the year's card shows while the gallery is collapsed — the four
+   high-school ones are the same frames the old year cards used.
 
    Paths are relative to /assets/img/years/<group>/. */
 window.YEARS = {

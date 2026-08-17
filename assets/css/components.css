@@ -291,6 +291,144 @@ a.app-badge:hover {
 @media (max-width: 1100px) { .apps-grid--4 { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px)  { .apps-grid--4 { grid-template-columns: 1fr; } }
 
+/* ───────────── Row alignment: every card part on the same line ─────────────
+   Cards used to be independent flex columns, so a two-line title pushed that
+   card's date, tags and "Read more" out of line with its neighbours. Now each
+   card is a SUBGRID of its grid's rows: one row per part, shared by every card
+   in that row of the grid. So all the titles sit on one line, all the dates on
+   the next, then the description, the screenshots, the "Read more" and the
+   footer — however long any single card's text runs.
+
+   This depends on cards.js emitting the same sequence of parts for every card
+   (missing pieces come through as an empty .app-slot); if a card ever renders
+   one part fewer, everything below it in that card climbs a row.
+
+   Row counts, in render order:
+     .app-card   head · cat · title · sub · desc · shots · read-more · foot = 8
+     .proj-card  media + .proj-info(title · grade · tags · read-more · links)
+   An open card drops out of this (it spans the full width and lays itself out
+   with flex), which is why every rule here excludes .is-open. */
+@supports (grid-template-rows: subgrid) {
+  /* THE GAP TRAP: a subgrid takes the parent grid's row gap between every one
+     of the rows it spans, so the grid's 2rem gap would be inserted between the
+     icon and the title, the title and the date, and so on. The row gap has to
+     live on the cards instead: zero between the rows, and each card carries the
+     gap as a bottom margin so the space between rows of cards is unchanged.
+     The container's negative margin cancels the last row's trailing copy. */
+  .apps-grid, .hs-grid { --rowgap: clamp(1.2rem, 2.5vw, 2rem); }
+  .apps-grid, .hs-grid { row-gap: 0; margin-bottom: calc(-1 * var(--rowgap)); }
+  .apps-grid > .app-card:not(.is-open) {
+    display: grid; grid-row: span 8; grid-template-rows: subgrid; row-gap: 0;
+    margin-bottom: var(--rowgap);
+  }
+  .hs-grid > .proj-card:not(.is-open) {
+    display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 0;
+    margin-bottom: var(--rowgap);
+  }
+  .hs-grid > .proj-card:not(.is-open) > .proj-info {
+    display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 0;
+  }
+  /* .proj-info was a flex column with a gap; grid rows need real margins */
+  .proj-card:not(.is-open) > .proj-info > * + * { margin-top: 0.55rem; }
+  .proj-card:not(.is-open) .app-links { margin-top: 0.7rem; align-self: end; }
+  /* the placeholders themselves take a row but no space */
+  .app-slot { display: block; height: 0; }
+}
+
+/* ───────────── Expanding cards (see expand.js) ─────────────
+   A card with a `long` write-up in apps-data.js opens in place: it takes over
+   the full width of its grid row and shows the full text plus big buttons.
+   Everything here is scoped to .is-expandable, so a card without a write-up
+   behaves exactly as it did before. */
+.app-card.is-openable, .proj-card.is-openable { cursor: none; }
+@media (hover: none) {
+  .app-card.is-openable, .proj-card.is-openable { cursor: pointer; }
+}
+
+/* the affordance line: "Read more ↓" */
+.app-expand {
+  align-self: flex-start; margin-top: 1rem;
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--green-2);
+  background: transparent; border: 0; padding: 0;
+  cursor: inherit; transition: color .25s, gap .25s;
+}
+.app-expand i { font-style: normal; transition: transform .3s var(--ease); }
+.app-card:hover .app-expand, .proj-card:hover .app-expand { color: var(--gold); gap: 0.7rem; }
+.app-card--dead .app-expand { color: var(--ink-dim); }
+
+/* the panel itself */
+.app-more { margin-top: 1.4rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
+.app-more-body { max-width: 78ch; }
+.app-card .app-more-body p, .proj-card .app-more-body p {
+  color: var(--ink-dim); font-size: 0.98rem; line-height: 1.75;
+  margin-top: 0; flex: none;
+}
+/* scoped the same way as the rule above, or .app-card p's own margin wins */
+.app-card .app-more-body p + p, .proj-card .app-more-body p + p { margin-top: 1.1rem; }
+.app-more-body b { color: var(--ink); font-weight: 600; }
+.app-more-body code {
+  font-family: var(--mono); font-size: 0.85em;
+  color: var(--blue-2); background: rgba(95,163,236,0.08);
+  padding: 0.1em 0.4em; border-radius: 5px;
+}
+.app-more-dead {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em;
+  color: #d3897e; margin-top: 1.2rem;
+}
+
+/* big buttons: the whole reason the small footer links get hidden when open */
+.app-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.6rem; }
+.app-action {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.04em;
+  padding: 0.85rem 1.4rem; border-radius: 100px;
+  border: 1px solid color-mix(in srgb, var(--green) 45%, transparent);
+  background: color-mix(in srgb, var(--green) 10%, transparent);
+  color: var(--ink); transition: background .25s, border-color .25s, transform .25s var(--ease);
+}
+.app-action i { font-style: normal; color: var(--green-2); transition: transform .25s var(--ease); }
+.app-action:hover {
+  background: color-mix(in srgb, var(--green) 22%, transparent);
+  border-color: var(--green-2); transform: translateY(-2px);
+}
+.app-action:hover i { transform: translate(2px, -2px); }
+
+/* open state: full row, sitting still (tilt.js writes an inline transform, so
+   these need !important to win) */
+.apps-grid > .app-card.is-open, .hs-grid > .proj-card.is-open { grid-column: 1 / -1; }
+.app-card.is-open, .proj-card.is-open {
+  transform: none !important;
+  border-color: color-mix(in srgb, var(--green) 55%, transparent);
+  background: rgba(31,157,92,0.045);
+}
+.app-card.is-open .card-glare, .proj-card.is-open .card-glare { opacity: 0 !important; }
+.app-card.is-open::after { opacity: 1; }
+.app-card--dead.is-open { border-color: color-mix(in srgb, #d3897e 45%, transparent); }
+.app-card--dead.is-open::after { opacity: 0; }
+/* the small footer links are redundant once the big buttons are showing */
+.app-card.is-open .app-foot .app-links a, .proj-card.is-open .app-links a { display: none; }
+/* the panel carries the "no longer available" note when open */
+.app-card.is-open .app-foot .app-dead { display: none; }
+
+/* an open app card puts the icon and the text side by side, since it now has
+   the width for it */
+@media (min-width: 761px) {
+  .app-card.is-open .app-icon { width: 96px; height: 96px; }
+  .app-card.is-open h3 { font-size: clamp(2rem, 3.4vw, 2.6rem); }
+  .app-card.is-open .app-shots { max-width: 460px; }
+}
+/* an open project card lays the screenshot beside the write-up */
+@media (min-width: 761px) {
+  .proj-card.is-open { flex-direction: row; align-items: stretch; }
+  .proj-card.is-open .proj-media { width: 38%; height: auto; border-bottom: 0; border-right: 1px solid var(--line); }
+  /* without a cap the tall phone mockups drive the whole card to ~1000px */
+  .proj-card.is-open .proj-media img { max-height: 420px; }
+  .proj-card.is-open .proj-info { flex: 1; padding: 1.8rem 2rem 2rem; }
+}
+.proj-card.is-open .proj-media img { transform: none !important; }
+
 /* filter chips */
 .filters { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; }
 .chip {
@@ -421,6 +559,18 @@ a.app-badge:hover {
   font-size: clamp(1.7rem, 3.5vw, 2.4rem); line-height: 1; margin-bottom: 1.1rem;
   color: var(--green-2);
 }
+/* issuer + date line under an award heading ("Issued by Apple · June 2024"),
+   the same detail LinkedIn shows for each honor */
+.honor-line {
+  font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.04em;
+  color: var(--gold); margin: -0.4rem 0 1.3rem;
+  display: flex; flex-wrap: wrap; gap: 0.25rem 0.7rem;
+}
+/* separators as ::before, so a wrapped line starts with the dot instead of
+   leaving one dangling at the end of the line above */
+.honor-line span + span::before { content: "· "; color: var(--mute); }
+.hs-award .honor-line { font-size: 0.7rem; margin: 0.35rem 0 0.5rem; }
+
 .wwdc-grid--ssc .wwdc-shot img { height: 380px; }
 .wwdc-grid {
   display: grid;

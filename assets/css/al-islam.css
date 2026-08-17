@@ -244,6 +244,28 @@ body[data-intro="alislam"] #field { opacity: 0.3; }
 }
 
 .sch-body { display: flex; flex-direction: column; gap: 0.4rem; flex: 1; }
+
+/* Row alignment: each card is a subgrid of its row in .sch-grid — medal, name,
+   English name, dates, blurb, meaning, source — so a row of cards puts each of
+   those on one line whatever the blurb lengths are. islam.js renders an empty
+   .sch-slot for a part a person hasn't got, which is what keeps them in step;
+   the prophets carry one part more than the scholars, and the spare row simply
+   collapses to nothing in the grids that don't use it. */
+@supports (grid-template-rows: subgrid) {
+  .sch-grid { --rowgap: clamp(1rem, 2vw, 1.5rem); row-gap: 0; margin-bottom: calc(-1 * var(--rowgap)); }
+  .sch-grid > .sch-card {
+    display: grid; grid-row: span 7; grid-template-rows: subgrid; row-gap: 0;
+    align-content: start; margin-bottom: var(--rowgap);
+  }
+  .sch-card > .sch-body {
+    grid-row: 2 / span 6; display: grid; grid-template-rows: subgrid; row-gap: 0;
+  }
+  .sch-body > * + * { margin-top: 0.4rem; }   /* was the flex column's gap */
+  /* .sch-meta used margin-top:auto to drop to the card's foot, which pulls it
+     off its shared row */
+  .sch-grid > .sch-card > .sch-body > .sch-meta { margin-top: 0.4rem; align-self: start; }
+  .sch-slot { display: block; height: 0; }
+}
 .sch-titlerow h4 {
   font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em;
   font-size: 1.04rem; line-height: 1.25; transition: color .3s;

@@ -6,6 +6,10 @@
    keep their own behavior. */
 (function cardLinks() {
   document.querySelectorAll('.app-card, .proj-card').forEach(card => {
+    /* cards with a long write-up expand in place instead of navigating
+       (see expand.js): a stretched overlay anchor would eat that click */
+    if (card.classList.contains('is-expandable')) return;
+
     // primary destination: the project media link, else the first footer link (App Store, etc.)
     const primary = card.querySelector('.proj-media, .app-links a');
     if (!primary || !primary.href) return;

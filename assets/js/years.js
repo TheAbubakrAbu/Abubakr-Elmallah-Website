@@ -117,9 +117,12 @@
 
     groups.forEach(function (g) {
       var rows = DATA.photos[g.id];
-      var dated = rows.filter(function (r) { return r[1]; });
-      var range = dated.length
-        ? fmtShort(dated[0][1]) + ' – ' + fmtShort(dated[dated.length - 1][1])
+      /* min–max rather than first–last: the ID photo is pinned to the front
+         of its year whatever its date says, so row order is no longer the
+         same thing as date order. The strings sort lexically as dates do. */
+      var dates = rows.map(function (r) { return r[1]; }).filter(Boolean).sort();
+      var range = dates.length
+        ? fmtShort(dates[0]) + ' – ' + fmtShort(dates[dates.length - 1])
         : 'undated';
       var yr = '’' + g.span.slice(-2);           // '2020–21' -> ’21
 

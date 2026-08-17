@@ -1,0 +1,74 @@
+/* fan/sunnah.css: /franchises/sunnah/ only.
+
+   The green of the Dome over Madinah: softer than the Islam page's green and
+   quieter than the Qurʾān page's gold. The backdrop arcade is repeating arch
+   shapes drawn in gradients — geometry standing in for a courtyard. */
+
+body[data-fan="sunnah"] { --a: #6fcfa4; }
+
+/* ── the backdrop ── */
+.sn-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(90% 70% at 50% 0%, #0c241b 0%, #081810 48%, #05090c 100%);
+}
+
+.sn-sky > * { position: absolute; inset: 0; }
+
+.sn-glow {
+  background: radial-gradient(44% 30% at 50% 10%, rgba(111,207,164,.16), transparent 70%);
+}
+
+/* an arcade along the bottom: arches as radial gradients on a repeat */
+.sn-arches {
+  top: auto; height: 30%;
+  background:
+    radial-gradient(38px 52px at 50% 0%, transparent 34px, rgba(111,207,164,.10) 35px, rgba(111,207,164,.10) 37px, transparent 38px);
+  background-size: 96px 100%;
+  background-position: 50% 100%;
+  mask-image: linear-gradient(transparent, #000 40%);
+  -webkit-mask-image: linear-gradient(transparent, #000 40%);
+}
+
+/* ── hero ── */
+body[data-fan="sunnah"] .fan-title {
+  background: linear-gradient(180deg, #dff5ea, #6fcfa4 58%, #2f8f64);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+.sn-hero-ar {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: clamp(1.5rem, 4.4vw, 2.6rem); line-height: 1.9;
+  color: #6fcfa4; opacity: .92; margin-bottom: 0.4rem;
+  /* a display line above the title, so it aligns with the title, not the margin */
+  text-align: left;
+  text-shadow: 0 0 40px rgba(111,207,164,.3);
+}
+
+/* ── the dome drawing ── */
+.sn-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem auto 0; }
+
+.sn-art svg { display: block; width: min(620px, 100%); margin-inline: auto; }
+
+.sna-dome path, .sna-dome circle { fill: #2f9d6c; }
+
+.sna-minaret path { fill: #d9cba8; opacity: .85; }
+
+.sna-hall > path { fill: #d9cba8; opacity: .7; }
+
+.sna-arch path { fill: #0a1d14; opacity: .85; }
+
+.sna-ground { fill: #d9cba8; opacity: .4; }
+
+.sn-art figcaption {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.8;
+}
+
+/* Arabic section notes and tile subs are Arabic, not mono */
+body[data-fan="sunnah"] .subsec--fan .subsec-yr,
+body[data-fan="sunnah"] #what .fan-card .fan-sub,
+body[data-fan="sunnah"] #grades .fan-tiletext i {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: 1.02rem; letter-spacing: 0; text-transform: none; opacity: .9;
+}

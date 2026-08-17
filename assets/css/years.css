@@ -5,7 +5,9 @@
    at its own aspect ratio with no holes and no cropping. Keep GAP in years.js
    in step with --yg-gap below. */
 
-.years { --yg-gap: 10px; }
+/* the intro line above the cards carries no bottom margin of its own, so the
+   breathing room between the copy and the first row of cards lives here */
+.years { --yg-gap: 10px; margin-top: 1.6rem; }
 
 /* ── the cards ──
    .years-grid / .year-card live in components.css and are unchanged; all that

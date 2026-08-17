@@ -38,6 +38,13 @@
   var esc = function (s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); };
   var a = function (it) { return it.accent ? ' style="--a:' + it.accent + '"' : ''; };
 
+  /* An empty stand-in for a part this item hasn't got. Cards and tiles share
+     the rows of their grid (subgrid, see fanpages.css) so that every tile in a
+     row puts its title, sub, description, chips and link on the same lines.
+     That only holds while every item renders the SAME sequence of parts, so a
+     missing sub or screenshot has to occupy its row rather than vanish. */
+  var SLOT = '<span class="fan-slot" aria-hidden="true"></span>';
+
   // optional outbound link on an item: official sites, park pages
   var out = function (it) {
     if (!it.href) return '';
@@ -223,12 +230,12 @@
     cards: function (s) {
       return '<div class="fan-cards">' + s.items.map(function (it) {
         return '<article class="fan-card reveal"' + a(it) + '>'
-          + (it.tag ? '<span class="fan-tag">' + esc(it.tag) + '</span>' : '')
+          + (it.tag ? '<span class="fan-tag">' + esc(it.tag) + '</span>' : SLOT)
           + '<h4>' + esc(it.title) + '</h4>'
-          + (it.sub ? '<span class="fan-sub">' + esc(it.sub) + '</span>' : '')
-          + (it.desc ? '<p>' + esc(it.desc) + '</p>' : '')
-          + out(it)
-          + (it.meta ? '<span class="fan-meta">' + esc(it.meta) + '</span>' : '')
+          + (it.sub ? '<span class="fan-sub">' + esc(it.sub) + '</span>' : SLOT)
+          + (it.desc ? '<p>' + esc(it.desc) + '</p>' : SLOT)
+          + (out(it) || SLOT)
+          + (it.meta ? '<span class="fan-meta">' + esc(it.meta) + '</span>' : SLOT)
           + '</article>';
       }).join('') + '</div>';
     },
@@ -285,7 +292,7 @@
            grid view hides them), and gallery.js opens any click on the tile
            into the lightbox. Alts for the extras are derived from the file
            name, which is why those names are words. */
-        var strip = !imgs.length ? '' : '<span class="fan-tileshots">'
+        var strip = !imgs.length ? SLOT : '<span class="fan-tileshots">'
           + imgs.map(function (s, n) {
               var name = s.replace(/^.*\//, '').replace(/\.[a-z]+$/i, '').replace(/-/g, ' ');
               return '<a class="fan-tileshot" href="' + esc(s) + '" target="_blank" rel="noopener">'
@@ -303,10 +310,10 @@
             }).join('') + a(it) + '>'
           + '<span class="fan-swatch" aria-hidden="true"></span>'
           + '<span class="fan-tiletext"><b>' + esc(it.title) + '</b>'
-          + (it.sub ? '<i>' + esc(it.sub) + '</i>' : '')
-          + (it.desc ? '<em>' + esc(it.desc) + '</em>' : '')
+          + (it.sub ? '<i>' + esc(it.sub) + '</i>' : SLOT)
+          + (it.desc ? '<em>' + esc(it.desc) + '</em>' : SLOT)
           + '<span class="fan-chips">' + rate(it) + done(it) + proj(it) + '</span>'
-          + out(it) + '</span>'
+          + (out(it) || SLOT) + '</span>'
           + strip
           + '</div>';
       }).join('') + '</div>';
@@ -326,8 +333,8 @@
       return '<div class="fan-stats">' + s.items.map(function (it) {
         return '<div class="fan-stat reveal"' + a(it) + '>'
           + '<b>' + esc(it.title) + '</b>'
-          + (it.sub ? '<i>' + esc(it.sub) + '</i>' : '')
-          + (it.desc ? '<em>' + esc(it.desc) + '</em>' : '')
+          + (it.sub ? '<i>' + esc(it.sub) + '</i>' : SLOT)
+          + (it.desc ? '<em>' + esc(it.desc) + '</em>' : SLOT)
           + '</div>';
       }).join('') + '</div>';
     },
@@ -375,8 +382,8 @@
           + '<span class="saber-blade" aria-hidden="true"><i></i></span>'
           + '<span class="saber-hilt" aria-hidden="true"><i></i><i></i><i></i></span>'
           + '<span class="saber-text"><b>' + esc(it.title) + '</b>'
-          +   (it.sub ? '<i>' + esc(it.sub) + '</i>' : '')
-          +   (it.desc ? '<em>' + esc(it.desc) + '</em>' : '')
+          +   (it.sub ? '<i>' + esc(it.sub) + '</i>' : SLOT)
+          +   (it.desc ? '<em>' + esc(it.desc) + '</em>' : SLOT)
           + '</span>'
           + '</button>';
       }).join('') + '</div>';
@@ -407,7 +414,7 @@
           .replace(/^https?:\/\//, '').replace(/^www\./, '').split(/[/?#]/)[0];
         return '<a class="fan-linkcard reveal" href="' + esc(it.href) + '" target="_blank" rel="noopener"' + a(it) + '>'
           + '<span class="fan-linkhead"><b>' + esc(it.title) + '</b><i aria-hidden="true">↗</i></span>'
-          + (it.desc ? '<p>' + esc(it.desc) + '</p>' : '')
+          + (it.desc ? '<p>' + esc(it.desc) + '</p>' : SLOT)
           + '<span class="fan-linkhost">' + esc(host) + '</span>'
           + '</a>';
       }).join('') + '</div>';

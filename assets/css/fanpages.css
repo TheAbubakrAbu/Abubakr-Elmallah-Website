@@ -71,6 +71,24 @@
   box-shadow: 0 22px 46px -30px #000, 0 0 34px -24px var(--a, #f5c63c);
 }
 
+/* Row alignment, same as the tiles further down: every card in a row shares
+   its rows, so the tag, title, sub, description, link and meta line up across
+   the row even when one card carries a part its neighbours don't (fanpage.js
+   fills those in as an empty .fan-slot). */
+@supports (grid-template-rows: subgrid) {
+  .fan-cards { --rowgap: clamp(0.9rem, 2vw, 1.4rem); row-gap: 0; margin-bottom: calc(-1 * var(--rowgap)); }
+  .fan-cards > .fan-card {
+    display: grid; grid-row: span 6; grid-template-rows: subgrid;
+    row-gap: 0; align-content: start; margin-bottom: var(--rowgap);
+  }
+  .fan-card > * + * { margin-top: 0.45rem; }   /* was the flex column's gap */
+  .fan-card > .fan-visit { justify-self: start; }
+  /* .fan-meta used margin-top:auto to drop to the card's foot. In a shared row
+     that bottom-aligns a one-line meta against a two-line one, so it starts at
+     the top of its row like every other part now. */
+  .fan-cards > .fan-card > .fan-meta { margin-top: 0.45rem; align-self: start; }
+}
+
 .fan-card h4 {
   font-family: var(--serif); font-weight: 600; font-size: 1.1rem;
   letter-spacing: -0.02em; line-height: 1.2; color: var(--ink);
@@ -198,6 +216,42 @@
 .fan-tiletext i { font-style: normal; font-family: var(--mono); font-size: 0.6rem; color: var(--a, var(--gold)); opacity: .85; }
 
 .fan-tiletext em { font-style: normal; font-size: 0.78rem; line-height: 1.5; color: var(--ink-dim); }
+
+/* Row alignment, same idea as the app cards (see components.css): each tile is
+   a SUBGRID of its row in .fan-tiles, so every tile in a row puts its title on
+   one line, its sub on the next, then the description, the chips and the visit
+   link — however much any one tile carries. The columns stay as they were:
+   swatch · text · screenshots.
+
+   fanpage.js emits an empty .fan-slot for a part an item does not have; drop
+   that and the parts below it climb a row and the alignment goes. */
+@supports (grid-template-rows: subgrid) {
+  /* the row gap moves onto the tiles: a subgrid otherwise inherits the grid's
+     gap between every row it spans, which would space a tile's own title, sub
+     and description apart by the full grid gap (see components.css) */
+  .fan-tiles { --rowgap: 0.7rem; row-gap: 0; margin-bottom: calc(-1 * var(--rowgap)); }
+  .fan-tiles--compact { --rowgap: 0.5rem; }
+  .fan-tiles > .fan-tile {
+    display: grid; align-content: start;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    column-gap: 0.8rem; row-gap: 0;
+    grid-row: span 5; grid-template-rows: subgrid;
+    margin-bottom: var(--rowgap);
+  }
+  .fan-tiles--compact > .fan-tile { column-gap: 0.55rem; }
+  .fan-tile > .fan-swatch { grid-column: 1; grid-row: 1; }
+  .fan-tile > .fan-tiletext {
+    grid-column: 2; grid-row: 1 / span 5;
+    display: grid; grid-template-rows: subgrid; row-gap: 0;
+  }
+  /* .fan-tiletext was a flex column with a gap; grid rows need real margins */
+  .fan-tile > .fan-tiletext > * + * { margin-top: 0.15rem; }
+  /* grid items stretch by default, which would drag the visit link's underline
+     across the whole tile; the text blocks still want the full width */
+  .fan-tile > .fan-tiletext > .fan-visit { justify-self: start; }
+  .fan-tile > .fan-tileshots, .fan-tile > .fan-slot { grid-column: 3; grid-row: 1 / span 5; }
+  .fan-slot { display: block; height: 0; }
+}
 
 /* compact: for the long sets, where thirty tiles at full size is a wall */
 .fan-tiles--compact { gap: 0.5rem; grid-template-columns: repeat(auto-fill, minmax(172px, 1fr)); }
@@ -504,6 +558,17 @@
   box-shadow: -12px 0 40px -20px var(--a, #f5c63c);
 }
 
+/* row alignment: the attribution lines up across a row of quotes however many
+   lines the quote itself runs to (same subgrid idea as the cards and tiles) */
+@supports (grid-template-rows: subgrid) {
+  .fan-quotes { --rowgap: 1rem; row-gap: 0; margin-bottom: calc(-1 * var(--rowgap)); }
+  .fan-quotes > .fan-quote {
+    display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 0;
+    align-content: start; margin-bottom: var(--rowgap);
+  }
+  .fan-quote > figcaption { margin-top: 0.75rem; }
+}
+
 .fan-quote blockquote {
   font-family: var(--serif); font-size: 1.06rem; line-height: 1.5;
   letter-spacing: -0.01em; color: var(--ink);
@@ -532,6 +597,16 @@
 .fan-stat:hover {
   transform: translateY(-4px);
   border-color: color-mix(in srgb, var(--a, #f5c63c) 45%, transparent);
+}
+
+/* row alignment: figure, label and note each on their own shared line */
+@supports (grid-template-rows: subgrid) {
+  .fan-stats { --rowgap: 0.7rem; row-gap: 0; margin-bottom: calc(-1 * var(--rowgap)); }
+  .fan-stats > .fan-stat {
+    display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0;
+    align-content: start; margin-bottom: var(--rowgap);
+  }
+  .fan-stat > * + * { margin-top: 0.32rem; }
 }
 
 .fan-stat b {
@@ -665,6 +740,22 @@
   transition: transform .35s var(--ease), border-color .35s, background .35s, box-shadow .35s;
 }
 
+/* Row alignment: name, owner and note each on a shared line across the rack,
+   so a saber with no owner line doesn't lift its note above its neighbours'.
+   The blade and hilt are absolutely positioned, so they aren't rows.
+   fanpage.js fills a missing part in with an empty .fan-slot. */
+@supports (grid-template-rows: subgrid) {
+  .fan-rack { --rowgap: 0.7rem; row-gap: 0; margin-bottom: calc(-1 * var(--rowgap)); }
+  .fan-rack > .fan-saber {
+    display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0;
+    align-content: start; margin-bottom: var(--rowgap);
+  }
+  .fan-saber > .saber-text {
+    grid-row: 1 / span 3; display: grid; grid-template-rows: subgrid; row-gap: 0;
+  }
+  .saber-text > * + * { margin-top: 0.18rem; }   /* was the flex column's gap */
+}
+
 .fan-saber:hover { transform: translateY(-3px); }
 
 .fan-saber:hover, .fan-saber.is-lit {
@@ -776,6 +867,16 @@
   border: 1px solid var(--line); border-radius: 14px;
   background: rgba(255,255,255,0.012);
   transition: transform .35s var(--ease), border-color .35s, background .35s, box-shadow .35s;
+}
+
+/* row alignment: title, blurb and host line up across a row of link cards */
+@supports (grid-template-rows: subgrid) {
+  .fan-linkgrid { --rowgap: 0.7rem; row-gap: 0; margin-bottom: calc(-1 * var(--rowgap)); }
+  .fan-linkgrid > .fan-linkcard {
+    display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0;
+    align-content: start; margin-bottom: var(--rowgap);
+  }
+  .fan-linkcard > * + * { margin-top: 0.38rem; }
 }
 
 .fan-linkcard:hover {
@@ -1133,6 +1234,22 @@ body[data-fan="hp"] .fan-what b { font-family: Georgia, "Times New Roman", serif
     radial-gradient(125% 78% at 50% 0%, color-mix(in srgb, var(--h1) 20%, transparent), transparent 64%),
     linear-gradient(165deg, color-mix(in srgb, var(--h1) 12%, transparent), rgba(9,7,9,.72) 72%);
   transition: transform .45s var(--ease), box-shadow .45s, border-color .45s, background .45s;
+}
+
+/* Row alignment: sigil, name, the person under it, the blurb and the tag row
+   each get a shared line across the row, so a longer blurb in one crest can't
+   drop that crest's tags below its neighbours'. Every crest carries the same
+   five parts (the "my house" badge is absolutely positioned, so it is not one
+   of them and doesn't shift the rest). */
+@supports (grid-template-rows: subgrid) {
+  .crest-grid {
+    --rowgap: clamp(0.9rem, 2vw, 1.4rem); row-gap: 0;
+    margin-bottom: calc(3.4rem - var(--rowgap));   /* keeps its own 3.4rem tail */
+  }
+  .crest-grid > .crest {
+    display: grid; grid-row: span 5; grid-template-rows: subgrid; row-gap: 0;
+    align-content: start; margin-bottom: var(--rowgap);
+  }
 }
 
 .crest:hover,

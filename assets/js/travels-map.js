@@ -18,26 +18,27 @@
        the list below it agree. Layovers render small and dim, with no arc. */
     var HOME = { name: 'Home · Southern California', lat: 33.64, lon: -117.84 };
     /* t is the index into TRAVELS.trips, so a pin can jump to its entry */
+    /* `e` is the legend chip's flag — the map itself stays drawn, not iconed */
     var PINS = [
-      { name: 'Puerto Vallarta', lat: 20.62, lon: -105.23, c: '#e0763a', t: 0 },
-      { name: 'Cancún · Cozumel', lat: 20.7, lon: -86.9, c: '#2fc0b0', t: 1 },
-      { name: 'Türkiye', lat: 41.01, lon: 28.98, c: '#e03a3a', t: 2 },
-      { name: 'Spain', lat: 37.18, lon: -3.6, c: '#e0a83a', t: 3 },
-      { name: 'Morocco', lat: 31.63, lon: -8.0, c: '#c9432f', t: 4 },
-      { name: 'Jordan', lat: 30.33, lon: 35.44, c: '#c98f4f', t: 5 },
-      { name: 'Mecca · Medina', lat: 21.42, lon: 39.83, c: '#d8c68a', t: 6 },
-      { name: 'Malaysia', lat: 3.14, lon: 101.69, c: '#3fbf7f', t: 7 },
-      { name: 'Singapore', lat: 1.35, lon: 103.82, c: '#3fbf7f', t: 7 },
-      { name: 'Portugal', lat: 38.72, lon: -9.14, c: '#4fa8d0', t: 8 },
-      { name: 'Italy', lat: 41.9, lon: 12.5, c: '#5fbf6a', t: 9 },
-      { name: 'Lebanon', lat: 33.89, lon: 35.5, c: '#5fbf6a', t: 9 },
-      { name: 'Tunisia', lat: 36.8, lon: 10.18, c: '#e04a5f', t: 10 },
-      { name: 'Malta', lat: 35.9, lon: 14.51, c: '#e8d8a0', t: 11 },
-      { name: 'The Balkans', lat: 43.86, lon: 18.41, c: '#7f9fd0', t: 12 },
-      { name: 'Maui', lat: 20.8, lon: -156.33, c: '#3fc0a0', t: 13 },
-      { name: 'Ecuador', lat: -0.18, lon: -78.47, c: '#f0c840', t: 14 },
-      { name: 'Ireland', lat: 53.35, lon: -6.26, c: '#4fbf6f', t: 16 },
-      { name: 'Japan', lat: 35.68, lon: 139.69, c: '#e8788f', t: 17 },
+      { name: 'Puerto Vallarta', e: '🇲🇽', lat: 20.62, lon: -105.23, c: '#e0763a', t: 0 },
+      { name: 'Cancún · Cozumel', e: '🇲🇽', lat: 20.7, lon: -86.9, c: '#2fc0b0', t: 1 },
+      { name: 'Türkiye', e: '🇹🇷', lat: 41.01, lon: 28.98, c: '#e03a3a', t: 2 },
+      { name: 'Spain', e: '🇪🇸', lat: 37.18, lon: -3.6, c: '#e0a83a', t: 3 },
+      { name: 'Morocco', e: '🇲🇦', lat: 31.63, lon: -8.0, c: '#c9432f', t: 4 },
+      { name: 'Jordan', e: '🇯🇴', lat: 30.33, lon: 35.44, c: '#c98f4f', t: 5 },
+      { name: 'Mecca · Medina', e: '🕋🇸🇦', lat: 21.42, lon: 39.83, c: '#d8c68a', t: 6 },
+      { name: 'Malaysia', e: '🇲🇾', lat: 3.14, lon: 101.69, c: '#3fbf7f', t: 7 },
+      { name: 'Singapore', e: '🇸🇬', lat: 1.35, lon: 103.82, c: '#3fbf7f', t: 7 },
+      { name: 'Portugal', e: '🇵🇹', lat: 38.72, lon: -9.14, c: '#4fa8d0', t: 8 },
+      { name: 'Italy', e: '🇮🇹', lat: 41.9, lon: 12.5, c: '#5fbf6a', t: 9 },
+      { name: 'Lebanon', e: '🇱🇧', lat: 33.89, lon: 35.5, c: '#5fbf6a', t: 9 },
+      { name: 'Tunisia', e: '🇹🇳', lat: 36.8, lon: 10.18, c: '#e04a5f', t: 10 },
+      { name: 'Malta', e: '🇲🇹', lat: 35.9, lon: 14.51, c: '#e8d8a0', t: 11 },
+      { name: 'The Balkans', e: '🇧🇦', lat: 43.86, lon: 18.41, c: '#7f9fd0', t: 12 },
+      { name: 'Maui', e: '🌺', lat: 20.8, lon: -156.33, c: '#3fc0a0', t: 13 },
+      { name: 'Ecuador', e: '🇪🇨', lat: -0.18, lon: -78.47, c: '#f0c840', t: 14 },
+      { name: 'Ireland', e: '🇮🇪', lat: 53.35, lon: -6.26, c: '#4fbf6f', t: 16 },
+      { name: 'Japan', e: '🇯🇵', lat: 35.68, lon: 139.69, c: '#e8788f', t: 17 },
     ];
     var LAYOVERS = [
       { name: 'France', lat: 48.85, lon: 2.35 },
@@ -151,7 +152,7 @@
     var legend = '<div class="tvm-legend" aria-label="Countries on the map">'
       + PINS.map(function (p) {
           return '<button type="button" data-k="' + p.name + '" data-t="' + p.t + '" style="--pc:' + p.c + '">'
-            + '<i></i>' + p.name + '</button>';
+            + '<i></i><span class="tvm-flag" aria-hidden="true">' + (p.e || '') + '</span>' + p.name + '</button>';
         }).join('')
       + '</div>';
 

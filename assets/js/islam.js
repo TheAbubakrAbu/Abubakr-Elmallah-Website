@@ -12,6 +12,12 @@
   var M = window.ISL_MOSQUES, S = window.ISL_SCHOLARS;
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); };
 
+  /* An empty stand-in for a part a card hasn't got. The prophet and scholar
+     cards share the rows of their grid (subgrid, see al-islam.css) so a row of
+     them lines up name with name and blurb with blurb; that only holds while
+     every card renders the same sequence of parts. */
+  var SCH_SLOT = '<span class="sch-slot" aria-hidden="true"></span>';
+
   /* ───────────── SVG parts ───────────── */
   var W = 260, GROUND = 138;                       // viewBox width, ground line
 
@@ -380,10 +386,12 @@
         /* The English name where there is one. Hud and Salih have no biblical
            counterpart at all, so the data says so in words rather than leaving
            the field blank. */
-        +   (p.en ? '<span class="sch-en">' + esc(p.en) + '</span>' : '')
+        /* the empty stand-ins keep every card's parts on the same rows as its
+           neighbours' (subgrid, see al-islam.css) */
+        +   (p.en ? '<span class="sch-en">' + esc(p.en) + '</span>' : SCH_SLOT)
         +   '<span class="sch-died">' + esc(p.sent) + '</span>'
         +   '<p class="sch-desc">' + esc(p.desc) + '</p>'
-        +   (p.meaning ? '<p class="sch-meaning">' + esc(p.meaning) + '</p>' : '')
+        +   (p.meaning ? '<p class="sch-meaning">' + esc(p.meaning) + '</p>' : SCH_SLOT)
         +   '<span class="sch-meta">' + esc(p.sura) + '</span>'
         + '</div>'
         + '</article>';
@@ -420,7 +428,7 @@
       +   '<div class="sch-titlerow"><h4>' + esc(p.name) + '</h4></div>'
       +   '<span class="sch-died">' + esc(p.died) + '</span>'
       +   '<p class="sch-desc">' + esc(p.desc) + '</p>'
-      +   (p.work ? '<span class="sch-work">' + esc(p.work) + '</span>' : '')
+      +   (p.work ? '<span class="sch-work">' + esc(p.work) + '</span>' : SCH_SLOT)
       +   '<span class="sch-meta">' + esc(p.meta) + '</span>'
       + '</div>'
       + '</article>';
