@@ -1,0 +1,167 @@
+---
+permalink: /franchises/clash-royale/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Clash Royale as a fandom: three-minute matches, the card economy, the Hog Rider — and Clash of Clans, the village it all marched out of." />
+<meta name="theme-color" content="#08080a" />
+
+<link rel="icon" type="image/png" href="/assets/img/me/abubakr-circle.png" />
+<link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Abubakr" />
+<meta property="og:image" content="/assets/img/me/abubakr-circle.png" />
+<meta property="og:type" content="website" />
+<title>Clash Royale · Abubakr Elmallah</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/clash-royale.css' %}" />
+</head>
+<body data-intro="none" data-fan="clash">
+
+<!-- the arena at dusk: two towers, a river, and the elixir sky -->
+<div class="cr-sky" aria-hidden="true">
+  <span class="cr-haze"></span>
+  <div class="cr-arena">
+    <svg viewBox="0 0 1400 420" preserveAspectRatio="xMidYMax slice">
+      <path class="cra-ground" d="M0 300h1400v120H0z"/>
+      <path class="cra-river" d="M0 336c240-14 460 14 700 0s460 14 700 0v26c-240 14-460-14-700 0s-460-14-700 0z"/>
+      <g class="cra-tower">
+        <path d="M180 300v-96h84v96z"/>
+        <path d="M168 204h108l-14-26h-80z"/>
+        <path d="M206 300v-38a16 16 0 0 1 32 0v38z" opacity=".5"/>
+      </g>
+      <g class="cra-tower">
+        <path d="M1136 300v-96h84v96z"/>
+        <path d="M1124 204h108l-14-26h-80z"/>
+        <path d="M1162 300v-38a16 16 0 0 1 32 0v38z" opacity=".5"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<canvas id="field" aria-hidden="true"></canvas>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+<aside class="rail">
+  <span class="rail-mark" aria-hidden="true">AE</span>
+  <span class="rail-line" aria-hidden="true"><i id="railFill"></i></span>
+  <span class="rail-meta" id="clock" aria-hidden="true">--:--:--</span>
+  <span class="rail-meta" aria-hidden="true">33.64°N · 117.84°W</span>
+</aside>
+
+<header class="topbar">
+  <a href="/" class="brand" data-magnetic>
+    <img class="brand-avatar" src="/assets/img/me/abubakr-circle.png" alt="Abubakr Elmallah" /><span class="brand-glyph"><b>Abubakr</b> Elmallah</span>
+  </a>
+  <div class="toggles"><button class="ql ql--sound is-on" id="soundToggle" type="button" aria-pressed="true" aria-label="Toggle interface sounds" data-magnetic><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><button class="ql ql--cursor" id="cursorToggle" type="button" data-cursor-toggle aria-pressed="true" aria-label="Toggle custom cursor" data-magnetic><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg></button></div>
+  <div class="quicklinks">
+    <a class="ql ql--resume" href="/resume/" data-magnetic>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M8 13h8M8 17h6"/></svg>
+      <span class="ql-label">Résumé</span>
+    </a>
+    <a class="ql ql--linkedin" href="https://www.linkedin.com/in/abubakr-elmallah" target="_blank" rel="noopener" data-magnetic>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C21.4 8.75 22 11 22 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21h-4z"/></svg>
+      <span class="ql-label">LinkedIn</span>
+    </a>
+    <a class="ql ql--github" href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener" data-magnetic>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+      <span class="ql-label">GitHub</span>
+    </a>
+  </div>
+</header>
+
+<main>
+
+  <section class="fan-hero">
+    <a class="back-link" href="/franchises/" data-magnetic>&#8592; Back to franchises</a>
+    <p class="fan-kicker"><span>Franchise &#183; Tertiary &#183; since 2016</span><span>and Clash of Clans, 2012</span></p>
+    <h1 class="fan-title">Clash Royale</h1>
+    <p class="fan-lede-hero">Three minutes, two lanes, three towers, and an elixir bar that refills whether you are ready or not. Clash Royale is chess where the clock never stops and the pieces walk on their own &#8212; the cleanest competitive design ever shipped to a phone.</p>
+    <p class="fan-lede-hero">And it did not come from nowhere: every barbarian, giant and goblin in the arena marched out of Clash of Clans first. The village game lives further down this page, because the two are one universe and one childhood.</p>
+    <div class="fan-links">
+      <a class="fan-link" href="#loop" data-magnetic>The loop &#8599;</a>
+      <a class="fan-link" href="#rarity" data-magnetic>The rarities &#8599;</a>
+      <a class="fan-link" href="#cast" data-magnetic>The cast &#8599;</a>
+      <a class="fan-link" href="#coc" data-magnetic>Clash of Clans &#8599;</a>
+    </div>
+
+    <!-- the King's Tower, drawn: crown on top, cannon in the middle -->
+    <figure class="cr-art reveal">
+      <svg viewBox="0 0 900 300" role="img" aria-label="The King's Tower with its crown, drawn in elevation, between the two princess towers">
+        <g class="crt-side">
+          <path d="M180 262v-88h96v88z"/>
+          <path d="M166 174h124l-16-30h-92z"/>
+          <path d="M216 262v-40a16 16 0 0 1 32 0v40z" opacity=".45"/>
+        </g>
+        <g class="crt-side">
+          <path d="M624 262v-88h96v88z"/>
+          <path d="M610 174h124l-16-30h-92z"/>
+          <path d="M660 262v-40a16 16 0 0 1 32 0v40z" opacity=".45"/>
+        </g>
+        <g class="crt-king">
+          <path d="M386 262V126h128v136z"/>
+          <path d="M370 126h160l-20-38H390z"/>
+          <path d="M420 88h-10V64h14v12h12V64h14v12h12V64h14v24h-10" opacity="0"/>
+          <circle cx="450" cy="188" r="20" class="crt-mouth"/>
+          <path d="M436 262v-34a14 14 0 0 1 28 0v34z" opacity=".45"/>
+        </g>
+        <g class="crt-crown">
+          <path d="M414 58 428 20l22 18 22-18 14 38z"/>
+          <path d="M410 58h80v12h-80z" opacity=".8"/>
+        </g>
+        <path class="crt-ground" d="M120 262h660v12H120z"/>
+      </svg>
+      <figcaption>The King&#8217;s Tower and both princesses &#183; take one, then defend your lead</figcaption>
+    </figure>
+  </section>
+
+  <div id="fanBody"></div>
+
+</main>
+
+<footer class="footer">
+  <span>© 2026 Abubakr Elmallah</span>
+  <a class="footer-mid" href="/franchises/" data-magnetic>← Back to franchises</a>
+  <button class="totop" id="totop" data-magnetic>Back to top ↑</button>
+</footer>
+
+<nav class="tabbar" aria-label="Primary">
+  <a href="/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg><span>Home</span></a>
+  <a href="/work/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/><path d="M3 12.5h18"/></svg><span>Work</span></a>
+  <a href="/projects/"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Projects</span></a>
+  <a href="/education/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1 2.5 2 5 2s5-1 5-2v-5"/></svg><span>Education</span></a>
+  <a href="/franchises/" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Franchises</span></a>
+</nav>
+
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
+<!-- page content: data then the shared renderer, before reveal.js -->
+<script src="{% include v.html f='/assets/js/fan-clash.js' %}"></script>
+<script src="{% include v.html f='/assets/js/fanpage.js' %}"></script>
+<script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
+<script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
+<script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
+<script src="{% include v.html f='/assets/js/clock.js' %}"></script>
+<script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
+<script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
+<script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

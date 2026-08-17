@@ -32,6 +32,18 @@ window.FANDOMS = [
       when: 'Where my family is from',
       meta: 'Miṣr · 3100 BC', href: '/franchises/egypt/',
       desc: 'Five thousand years of continuous record in one valley, along one river, and the country my parents left. Where I am from before I am from anywhere else.' },
+    { name: 'Minshāwī', wm: 'minshawi', glyph: 'mic', c1: '#d9b88a', c2: '#1f150a',
+      when: 'The house voice, since always',
+      meta: 'Qāriʾ · 1920', href: '/franchises/minshawi/',
+      desc: 'Muḥammad Ṣiddīq al-Minshāwī, 1920–1969: the Upper-Egyptian voice the Qurʾān plays in inside this house. Dead at forty-nine, which means every recording there will ever be of him already exists.' },
+    { name: 'Qurʾān', wm: 'quran', glyph: 'mushaf', c1: '#e0b84f', c2: '#0b2418',
+      when: 'Recited to me before I could read it',
+      meta: 'Kitāb · 610 CE', href: '/franchises/quran/',
+      desc: 'The speech of Allah: 114 sūrahs revealed over twenty-three years, memorised end to end by millions, and never revised since. A recitation before it is a book — which is what the tile before this one is about.' },
+    { name: 'Sunnah', wm: 'sunnah', glyph: 'dome', c1: '#6fcfa4', c2: '#0a221a',
+      when: 'The other half of the dīn',
+      meta: 'Ḥadīth · 7th c.', href: '/franchises/sunnah/',
+      desc: 'What the Prophet ﷺ said, did and approved of, carried by named chains of people and graded link by link. The Qurʾān says pray; this is where the how of it lives.' },
     ] },
 
   { id: 'core', label: 'The Core Three', note: 'the ones I know by heart', items: [
@@ -156,6 +168,21 @@ window.FANDOMS = [
       when: 'Since I was a kid',
       meta: 'Toy · 1958', href: '/franchises/lego/',
       desc: 'The clutch power patent is from 1958 and a brick from then still fits one moulded this morning.' },
+
+    { name: 'Clash Royale', wm: 'clash', glyph: 'kingtower', c1: '#6f9fe8', c2: '#101a30',
+      when: 'Elementary school, when it launched',
+      meta: 'Game · 2016', href: '/franchises/clash-royale/',
+      desc: 'Three-minute chess with an elixir bar: two lanes, three towers, eight cards. Clash of Clans lives inside its page, because that is the village the whole thing marched out of.' },
+
+    { name: 'How to Train Your Dragon', wm: 'httyd', glyph: 'helm', c1: '#7fd0e8', c2: '#0c1620',
+      when: 'Since the first film, as a kid',
+      meta: 'Film · 2010', href: '/franchises/how-to-train-your-dragon/',
+      desc: 'The best flight scenes in animation, John Powell’s best score, and a boy who fixes what he broke with engineering. The Test Drive sequence still does it.' },
+
+    { name: 'SpongeBob', wm: 'spongebob', glyph: 'pineapple', c1: '#f0e03f', c2: '#0a2a3a',
+      when: 'Since I was a kid',
+      meta: 'Animation · 1999', href: '/franchises/spongebob/',
+      desc: 'The golden-age seasons are some of the best-written comedy ever animated, and the internet has been speaking in its screenshots for twenty years.' },
 
     
       ] },

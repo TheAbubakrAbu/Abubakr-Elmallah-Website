@@ -1,0 +1,73 @@
+/* fan/quran.css: /franchises/quran/ only.
+
+   Gold on deep green, the palette of a tooled muṣḥaf cover. The backdrop is
+   the same eight-point lattice the identity tiles use — geometry, not imagery,
+   for the same reason the Islam page has none. */
+
+body[data-fan="quran"] { --a: #e0b84f; }
+
+/* ── the backdrop ── */
+.qr-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(90% 70% at 50% 0%, #0d2a1c 0%, #081a12 48%, #05090c 100%);
+}
+
+.qr-sky > * { position: absolute; inset: 0; }
+
+.qr-glow {
+  background: radial-gradient(46% 30% at 50% 12%, rgba(224,184,79,.14), transparent 70%);
+}
+
+.qr-lattice {
+  opacity: .12;
+  background:
+    repeating-linear-gradient(45deg,  rgba(224,184,79,.5) 0 1px, transparent 1px 34px),
+    repeating-linear-gradient(-45deg, rgba(224,184,79,.5) 0 1px, transparent 1px 34px);
+  mask-image: radial-gradient(75% 60% at 50% 30%, #000, transparent 76%);
+  -webkit-mask-image: radial-gradient(75% 60% at 50% 30%, #000, transparent 76%);
+}
+
+/* ── hero ── */
+body[data-fan="quran"] .fan-title {
+  background: linear-gradient(180deg, #f6e7b4, #e0b84f 58%, #a8801c);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* the Arabic line above the title, set properly rather than as a picture */
+.qr-hero-ar {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: clamp(1.5rem, 4.4vw, 2.6rem); line-height: 1.9;
+  color: #e0b84f; opacity: .92; margin-bottom: 0.4rem;
+  /* dir="rtl" would otherwise push it to the right edge of the hero; it is a
+     display line sitting above the title, so it lines up with the title */
+  text-align: left;
+  text-shadow: 0 0 40px rgba(224,184,79,.3);
+}
+
+/* ── the muṣḥaf drawing ── */
+.qr-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem auto 0; }
+
+.qr-art svg { display: block; width: min(560px, 100%); margin-inline: auto; }
+
+.qra-rahl path { fill: #6a4a22; }
+
+.qra-leaf { fill: #f2ead2; opacity: .94; }
+
+.qra-spine { stroke: #b8a878; stroke-width: 2.5; fill: none; }
+
+.qra-text path { fill: none; stroke: #a8801c; stroke-width: 3; stroke-linecap: round; opacity: .8; }
+
+.qra-rub rect { fill: none; stroke: #3fd589; stroke-width: 2; opacity: .8; }
+
+.qr-art figcaption {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+/* the Arabic section notes and tile subs read as Arabic, not as mono */
+body[data-fan="quran"] .subsec--fan .subsec-yr,
+body[data-fan="quran"] #tajwid .fan-tiletext i {
+  font-family: "Amiri", "Scheherazade New", serif;
+  font-size: 1.05rem; letter-spacing: 0; text-transform: none; opacity: .9;
+}

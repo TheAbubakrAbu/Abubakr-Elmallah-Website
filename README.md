@@ -30,7 +30,7 @@ can open and read.
 | `/projects/` | Full catalog: UCI apps, my own apps, Discord bots, web, high school |
 | `/education/` | Portal to the two school pages |
 | `/college/` | UC Irvine: roles by year, what I've built, academics |
-| `/high-school/` | Trabuco Hills: apps, projects, flyers, wallpapers, transcript, awards, WWDC |
+| `/high-school/` | Trabuco Hills: apps, projects, flyers, wallpapers, transcript, awards, WWDC — and middle school before it |
 | `/resume/` | Résumé, embedded with Drive and download links |
 | `/travels/` | Where I've been, with an interactive map |
 | `/accents/` | Nineteen accents and four impersonations, in the order I learned them |
@@ -81,6 +81,15 @@ can open and read.
 
   Edit an app in one place and it updates on every page listing it. The same
   pattern backs the transcript, the planet atlas, travels and the fan pages.
+- **Cards open in place.** Every entry carries a `long` write-up as well as its
+  one-line `desc`; clicking a card stretches it across its grid row and shows
+  the full story plus big App Store / GitHub buttons ([`expand.js`](assets/js/expand.js)).
+- **Cards line up row by row.** Every card is a CSS subgrid of its grid's rows,
+  so each row of cards puts its titles on one line, then its dates, then the
+  text, whatever any single card's content does. Cards and franchise tiles
+  render an empty slot for a part they haven't got, which is what keeps the
+  rows in step — see the comments in `cards.js` and `fanpage.js` before
+  changing what a card emits.
 - **Motion.** Custom cursor, magnetic links, scramble text, a flow-field canvas,
   scroll reveals, tilt, interface sounds and per-page launch animations — all
   hand-rolled, and all gated behind `prefers-reduced-motion`.
@@ -111,10 +120,11 @@ assets/
   js/                    # 83 files
     apps-data.js         # SINGLE source of truth for every app/project card
     cards.js             # renders them into [data-cards] / [data-projects]
+    expand.js            # click a card -> it expands in place with the full write-up
     cursor · magnetic · scramble · reveal · clock · flowfield · tilt
     gallery · sound · intro · scroll · cardlink · utils
     transcript-data · planets-data · travels-data · fandom-data · …
-    years-data · years    # the 97-photo year galleries on /high-school/ and
+    years-data · years    # the 284-photo year galleries on /high-school/ and
                           # /college/: justified rows, strictly chronological
   img/                   # me · apps · bots · awards · highschool · flyers
                          # wallpapers · franchises · icons
@@ -151,7 +161,8 @@ bigger. Everything else is JPEG.
 
 Don't write markup. Add the entry to `APP_CARDS` in
 [`apps-data.js`](assets/js/apps-data.js), then list its id in a grid's
-`data-cards` attribute on whichever pages should show it.
+`data-cards` attribute on whichever pages should show it. Give it a `long`
+array of paragraphs too — that is what the card shows when it is clicked open.
 
 ## Run locally
 

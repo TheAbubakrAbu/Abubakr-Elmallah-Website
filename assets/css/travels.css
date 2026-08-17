@@ -360,13 +360,19 @@ body[data-fan="travels"] { --a: #7fb8e8; }
   width: 7px; height: 7px; border-radius: 50%; background: var(--pc);
   box-shadow: 0 0 5px color-mix(in srgb, var(--pc) 70%, transparent);
 }
+/* the flag: the chip's mono type is 0.5rem, which renders an emoji as a
+   speck — give it its own size and keep it from stretching the row */
+.tvm-flag { font-size: 0.85rem; line-height: 1; }
 .tvm-legend button:hover, .tvm-legend button.is-hot {
   border-color: var(--pc); color: var(--ink);
   background: color-mix(in srgb, var(--pc) 10%, transparent);
 }
 .is-heating .tvm-pins .tvm-pin:not(.is-hot),
 .is-heating .tvm-lay .tvm-pin:not(.is-hot) { opacity: .18; }
-.is-heating .tvm-arcs path:not(.is-hot) { animation-play-state: paused; opacity: 0; }
+/* `animation: none`, not paused: a paused animation keeps applying whatever
+   opacity the flight was at mid-air, which is why the other routes used to
+   stay faintly on screen while one country was selected. */
+.is-heating .tvm-arcs path:not(.is-hot) { animation: none; opacity: 0; }
 .is-heating .tvm-arcs path.is-hot {
   animation: none; stroke-dashoffset: 0; opacity: .9; stroke-width: 1.5;
 }

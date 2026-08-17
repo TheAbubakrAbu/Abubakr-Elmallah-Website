@@ -28,6 +28,40 @@
              + '<path d="M9.4 5.4 17.8 17H1z"/>'
              + '<path d="M17.6 9.8 23 17h-10.8z" opacity=".75"/>'
              + '<path d="M1 20.4c3-1.6 5.4-1.6 8 0s5 1.6 8 0 3.4-1.2 6-.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>',
+    // a broadcast microphone on its stand: the radio era in one object
+    mic:     '<rect x="8.4" y="2" width="7.2" height="12" rx="3.6"/>'
+             + '<path d="M8.4 6.2h7.2M8.4 9h7.2M8.4 11.8h7.2" stroke="#000" stroke-width="1" opacity=".35"/>'
+             + '<path d="M5.4 10.6v.8a6.6 6.6 0 0 0 13.2 0v-.8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'
+             + '<path d="M11.2 18h1.6v3h-1.6z"/>'
+             + '<rect x="7.6" y="21" width="8.8" height="1.6" rx=".7"/>',
+    // an open muṣḥaf on its raḥl: two leaves, the spine, and the stand's legs
+    mushaf:  '<path d="M12 5.4C9.9 3.9 6.9 3.4 3.2 4v12.3c3.7-.6 6.7-.1 8.8 1.4 2.1-1.5 5.1-2 8.8-1.4V4c-3.7-.6-6.7-.1-8.8 1.4z"/>'
+             + '<path d="M12 5.4v12.3" fill="none" stroke="#000" stroke-width="1.2" opacity=".4"/>'
+             + '<path d="M5.4 7.5c1.7-.2 3.2 0 4.6.6M5.4 10.1c1.7-.2 3.2 0 4.6.6M14 8.1c1.4-.6 2.9-.8 4.6-.6M14 10.7c1.4-.6 2.9-.8 4.6-.6" fill="none" stroke="#000" stroke-width="1" opacity=".3" stroke-linecap="round"/>'
+             + '<path d="M4.4 21.6 12 17.9l7.6 3.7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>',
+    // the green dome and one minaret: al-Masjid an-Nabawī in elevation
+    dome:    '<path d="M11.2 1.4h1.6v3h-1.6z"/>'
+             + '<path d="M12 4.2c3.7 1.1 5.9 3.8 5.9 7.4H6.1c0-3.6 2.2-6.3 5.9-7.4z"/>'
+             + '<path d="M2.6 21V9.6h2.8V21z"/><path d="M2.2 9.6h3.6L4 6.4z"/>'
+             + '<path d="M6.6 13h10.8v8H6.6z" opacity=".85"/>'
+             + '<path d="M10.8 21v-3.8a1.2 1.2 0 0 1 2.4 0V21z" fill="#000" opacity=".4"/>'
+             + '<rect x="1" y="21" width="22" height="1.6" rx=".6"/>',
+    // the King's Tower with its crown parked on top
+    kingtower: '<path d="M8.4 6.4 9.5 2.8l2.5 2.1 2.5-2.1 1.1 3.6z"/>'
+             + '<path d="M5.2 8.2h3v3.4h-3zM10.5 8.2h3v3.4h-3zM15.8 8.2h3v3.4h-3z"/>'
+             + '<path d="M6 11.6h12V21H6z"/>'
+             + '<path d="M10.7 21v-3.6a1.3 1.3 0 0 1 2.6 0V21z" fill="#000" opacity=".4"/>'
+             + '<rect x="4.4" y="21" width="15.2" height="1.6" rx=".6"/>',
+    // a Berk viking helmet: the dome, two horns, and the nose guard
+    helm:    '<path d="M5.6 12.2a6.4 6.4 0 0 1 12.8 0v2.6H5.6z"/>'
+             + '<path d="M6 10.6C3.7 10 2.4 8.1 2.2 4.8c2.9 1 4.6 2.7 5.2 5z"/>'
+             + '<path d="M18 10.6c2.3-.6 3.6-2.5 3.8-5.8-2.9 1-4.6 2.7-5.2 5z"/>'
+             + '<rect x="4.6" y="14.8" width="14.8" height="2.2" rx="1"/>'
+             + '<path d="M11.1 17h1.8v4.4h-1.8z"/>',
+    // a pineapple, because there is one address everybody knows
+    pineapple: '<path d="M9 7.8C8.3 5.1 9.3 2.8 12 1c-.4 1.7 0 2.9 1.1 3.7 1.4-.8 2.8-.8 4.2 0-2.7.6-4.5 1.7-5.5 3.1z"/>'
+             + '<ellipse cx="12" cy="15" rx="6" ry="7.4"/>'
+             + '<path d="M7.2 11l9.6 8M16.8 11l-9.6 8M6.1 15h11.8" fill="none" stroke="#000" stroke-width="1" opacity=".3"/>',
 
     burst:   '<path d="M12 1l1.9 6.4L20 5l-2.6 5.9L23 12l-5.6 1.1L20 19l-6.1-2.4L12 23l-1.9-6.4L4 19l2.6-5.9L1 12l5.6-1.1L4 5l6.1 2.4z"/>',
     bolt:    '<path d="M13.4 1.5 4.8 13.2h5.1L9 22.5l9-12.1h-5.2z"/>',
@@ -131,7 +165,12 @@
       +   '<span class="fr-desc">' + esc(f.desc) + '</span>'
       /* when I got into it -- the one line that makes this a personal list
          rather than a catalogue. Optional, so a tile without it still works. */
-      +   (f.when ? '<span class="fr-when">' + esc(f.when) + '</span>' : '')
+      /* the empty stand-in matters: the tiles share the rows of their grid
+         (subgrid, see fandom.css) so every tile in a row puts its blurb, its
+         "when" line and its meta line on the same lines. A tile with no `when`
+         still has to occupy that row, or everything under it climbs one. */
+      +   (f.when ? '<span class="fr-when">' + esc(f.when) + '</span>'
+                  : '<span class="fr-slot" aria-hidden="true"></span>')
       +   '<span class="fr-meta">' + esc(f.meta) + '</span>'
       + '</span>'
       + '</' + tag + '>';

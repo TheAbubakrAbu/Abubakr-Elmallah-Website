@@ -1,0 +1,56 @@
+/* fan/clash-royale.css: /franchises/clash-royale/ only.
+
+   Arena blue with the gold of a crown and the purple of elixir. The backdrop
+   is the arena at dusk: two princess towers either side of the river. */
+
+body[data-fan="clash"] { --a: #6f9fe8; }
+
+/* ── the backdrop ── */
+.cr-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(85% 65% at 50% 0%, #14204a 0%, #0d1430 48%, #05070f 100%);
+}
+
+.cr-haze {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(50% 34% at 30% 10%, rgba(201,111,240,.12), transparent 70%),
+    radial-gradient(50% 34% at 72% 14%, rgba(240,176,64,.10), transparent 70%);
+}
+
+.cr-arena { position: absolute; inset: auto 0 0 0; height: 34%; opacity: .5; }
+
+.cr-arena svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.cra-ground { fill: #101a38; }
+
+.cra-river  { fill: #1c3a6a; }
+
+.cra-tower path { fill: #1a2a55; }
+
+/* ── hero ── */
+body[data-fan="clash"] .fan-title {
+  background: linear-gradient(180deg, #eaf2ff, #6f9fe8 55%, #f0d040);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ── the King's Tower drawing ── */
+.cr-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem auto 0; }
+
+.cr-art svg { display: block; width: min(620px, 100%); margin-inline: auto; }
+
+.crt-side path { fill: #24386a; }
+
+.crt-king path { fill: #33487f; }
+
+.crt-mouth { fill: #10182e; }
+
+.crt-crown path { fill: #f0d040; }
+
+.crt-ground { fill: #24386a; opacity: .5; }
+
+.cr-art figcaption {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}

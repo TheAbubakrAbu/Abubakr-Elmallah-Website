@@ -41,6 +41,31 @@
   content-visibility: auto; contain-intrinsic-size: auto 300px;
 }
 a.fr-card { cursor: pointer; }
+
+/* Row alignment: each tile is a subgrid of its row in .fr-grid — plate, blurb,
+   "when" line, meta — so every tile in a row puts each of those on the same
+   line however long its blurb runs. fandom.js emits an empty .fr-slot for a
+   tile with no `when`, which is what keeps the rows in step. */
+@supports (grid-template-rows: subgrid) {
+  /* the grid's own row gap would otherwise be inserted between the plate, the
+     blurb and the meta line of every tile (see components.css) */
+  .fr-grid { --rowgap: clamp(1rem, 2vw, 1.5rem); row-gap: 0; margin-bottom: calc(-1 * var(--rowgap)); }
+  .fr-grid > .fr-card {
+    margin-bottom: var(--rowgap);
+    display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 0;
+    /* content-visibility applies size containment while the tile is off-screen,
+       and a size-contained item cannot size the rows it shares */
+    content-visibility: visible;
+  }
+  .fr-card > .fr-body {
+    grid-row: 2 / span 3; display: grid; grid-template-rows: subgrid; row-gap: 0;
+  }
+  .fr-body > * + * { margin-top: 0.5rem; }   /* was the flex column's gap */
+  /* .fr-meta used margin-top:auto to sit at the tile's foot; in a shared row
+     that bottom-aligns a one-line meta against a two-line one */
+  .fr-grid > .fr-card > .fr-body > .fr-meta { margin-top: 0.5rem; align-self: start; }
+  .fr-slot { display: block; height: 0; }
+}
 .fr-card:hover,
 .fr-card:focus-visible {
   transform: translateY(-6px);
@@ -153,6 +178,25 @@ a.fr-card { cursor: pointer; }
   text-transform: uppercase; letter-spacing: 0.2em;
   background: linear-gradient(180deg, #f6dfa8, #e8a13f 58%, #a86a1c);
   -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+/* the radio era: warm serif with a valve-amp glow */
+.wm--minshawi {
+  font-family: Georgia, "Times New Roman", serif; font-weight: 400;
+  font-variant: small-caps; letter-spacing: 0.14em;
+  text-shadow: 0 0 26px rgba(217,184,138,.45);
+}
+/* gold on green, the way a muṣḥaf cover is tooled */
+.wm--quran {
+  font-family: Georgia, "Times New Roman", serif; font-weight: 600;
+  font-variant: small-caps; letter-spacing: 0.2em;
+  background: linear-gradient(180deg, #f4e2ac, #e0b84f 58%, #a8801c);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+/* quiet serif with the dome's green behind it */
+.wm--sunnah {
+  font-family: Georgia, "Times New Roman", serif; font-weight: 400;
+  font-variant: small-caps; letter-spacing: 0.18em;
+  text-shadow: 0 0 26px rgba(111,207,164,.4);
 }
 
 /* stacks that exist on most machines, with honest fallbacks */
@@ -296,6 +340,21 @@ a.fr-card { cursor: pointer; }
   font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans); font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.04em;
   text-shadow: 2px 2px 0 #d01012, 4px 4px 0 rgba(0,0,0,.5);
+}
+.wm--clash {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.03em;
+  text-shadow: 2px 2px 0 #1a2a5a, 4px 4px 0 rgba(0,0,0,.5);
+}
+.wm--httyd {
+  font-family: Copperplate, "Copperplate Gothic Light", Georgia, serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em; font-size: 1.02rem;
+  text-shadow: 0 0 22px rgba(127,208,232,.45);
+}
+.wm--spongebob {
+  font-family: "Chalkboard SE", "Comic Sans MS", "Trebuchet MS", cursive; font-weight: 700;
+  letter-spacing: 0.02em;
+  text-shadow: 2px 2px 0 #1a3a4a;
 }
 .wm--disney {
   font-family: "Snell Roundhand", "Brush Script MT", "Bradley Hand", cursive;
