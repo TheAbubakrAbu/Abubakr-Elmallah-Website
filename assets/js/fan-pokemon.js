@@ -1,4 +1,4 @@
-/* fan-pokemon.js: content for /franchises/pokemon/. Rendered by fanpage.js.
+/* fan-pokemon.js: content for /worlds/pokemon/. Rendered by fanpage.js.
    Type colours below are the ones the games have used since Gen VI. */
 window.FAN_PAGE = {
   when: { at: 'Elementary school; big surge 5th grade, 2016\u201317', note: 'Around since I was small, then two things blew it open: Pokémon GO the summer before fifth grade, and fifth grade itself when everybody had cards and we traded constantly. Pixelmon in Minecraft got an enormous amount of my time too.' },

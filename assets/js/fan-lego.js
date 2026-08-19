@@ -1,4 +1,4 @@
-/* fan-lego.js: content for /franchises/lego/. Rendered by fanpage.js.
+/* fan-lego.js: content for /worlds/lego/. Rendered by fanpage.js.
    Piece counts are the retail figures at launch.
 
    The games come FIRST on this page, because they are the actual reason LEGO
@@ -23,7 +23,7 @@ window.FAN_PAGE = {
      clicking the tile opens the whole set together in the lightbox.
 
      `rating` is mine too, out of ten, and ONLY on the games I have actually
-     played — which on this page means the finished ones, since `done` and
+     played, which on this page means the finished ones, since `done` and
      `hours` are the only play records I keep. A score on a game I never
      touched would be a review of its reputation, so the rest simply carry no
      rating and sink to the bottom of that sort. It is a rating of the GAME
@@ -34,13 +34,13 @@ window.FAN_PAGE = {
      `proj` is NOT mine: it is the HowLongToBeat community Completionist average
      in hours, pulled per title so the whole column uses one methodology rather
      than a different forum thread each time. Every title has one, which is what
-     makes the comparison work. Two of them rest on thin samples — LEGO Worlds
-     (11 submissions) and LEGO Dimensions (14) — against 80–690 for the rest.
+     makes the comparison work. Two of them rest on thin samples, LEGO Worlds
+     (11 submissions) and LEGO Dimensions (14), against 80–690 for the rest.
 
      `series` is the licence each game adapts, and it exists for the Group
      control (`groupable`, see fanpage.js): switched on, the catalogue folds
      into one section per series, still in whatever order the sort buttons have
-     picked. DC Super-Villains sits under Batman & DC on purpose — it is the
+     picked. DC Super-Villains sits under Batman & DC on purpose; it is the
      same continuity from the villains' side. The Ninjago Movie game rides
      with The LEGO Movie, because the film it adapts belongs to that film
      series. The games built on LEGO's own toy lines (Worlds, Dimensions,
@@ -57,7 +57,7 @@ window.FAN_PAGE = {
       { key: 'hours',  label: 'My time',      asc: 'Quickest', desc: 'Longest' },
       { key: 'proj',   label: 'Projected',    asc: 'Shortest', desc: 'Longest' },
     ] },
-    lede: 'TT Games’ own catalogue, running from LEGO Star Wars in 2005 forwards, sortable by release date, by what I rate it, by how long each one took me, or by how long it is reckoned to take. Click any finished game to open its screenshots full size. Switch between grid and list: grid is the banner and the numbers, list opens every screenshot out next to it. Or group it by series, which folds the same list into its licences — the six Star Wars games together, the whole Batman and DC run including Super-Villains, LEGO’s own inventions under LEGO Originals, and the one-visit licences under Standalone — each section still in whatever order the sort has picked. Ratings are only on the games I have actually played; the rest stay unscored and sink to the bottom of that sort. The handheld-only spin-offs and the console bundles are left out, because a bundle is not really its own game and the handheld ones were made by a different studio entirely; what is left is the main line, all of it on Steam bar LEGO Dimensions, which was toys-to-life with a physical portal and could never have been on PC. The green stamp is mine: every one with a screenshot under it is one I took to a hundred percent, and the Steam library page is the receipt for the hours next to it. The grey figure beside it is the HowLongToBeat community Completionist average for that game, so every title carries a projected run whether I have finished it or not, and the finished ones show the gap.',
+    lede: 'TT Games’ own catalogue, running from LEGO Star Wars in 2005 forwards, sortable by release date, by what I rate it, by how long each one took me, or by how long it is reckoned to take. Click any finished game to open its screenshots full size. Switch between grid and list: grid is the banner and the numbers, list opens every screenshot out next to it. Or group it by series, which folds the same list into its licences (the six Star Wars games together, the whole Batman and DC run including Super-Villains, LEGO’s own inventions under LEGO Originals, and the one-visit licences under Standalone), each section still in whatever order the sort has picked. Ratings are only on the games I have actually played; the rest stay unscored and sink to the bottom of that sort. The handheld-only spin-offs and the console bundles are left out, because a bundle is not really its own game and the handheld ones were made by a different studio entirely; what is left is the main line, all of it on Steam bar LEGO Dimensions, which was toys-to-life with a physical portal and could never have been on PC. The green stamp is mine: every one with a screenshot under it is one I took to a hundred percent, and the Steam library page is the receipt for the hours next to it. The grey figure beside it is the HowLongToBeat community Completionist average for that game, so every title carries a projected run whether I have finished it or not, and the finished ones show the gap.',
     items: [
       { title: 'LEGO Batman: Legacy of the Dark Knight', accent: '#8f98a8', year: 2026, series: 'Batman & DC', proj: '33.4', sub: '2026 · Steam', desc: 'The most recent one, out this year. Not played yet, so it gets no rating.' },
       { title: 'LEGO Star Wars: The Skywalker Saga', accent: '#ffd21f', year: 2022, series: 'Star Wars', proj: '90.0', rating: 10, sub: '2022 · Steam', desc: 'All nine films, rebuilt from scratch. Nearly eighty hours, which is more than twice any other one of these.',
@@ -221,7 +221,7 @@ window.FAN_PAGE = {
    copy of "eleven at a hundred percent" would drift the first time another
    game gets finished. Spliced in ahead of the catalogue so it reads as the
    summary of what follows. The accents are the stud ladder from the fountain
-   above — silver, gold, blue, purple, then the Red Brick. */
+   above: silver, gold, blue, purple, then the Red Brick. */
 (function () {
   var secs = window.FAN_PAGE.sections;
   var cat = secs.filter(function (s) { return s.id === 'catalogue'; })[0];

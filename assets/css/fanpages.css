@@ -220,7 +220,7 @@
 /* Row alignment, same idea as the app cards (see components.css): each tile is
    a SUBGRID of its row in .fan-tiles, so every tile in a row puts its title on
    one line, its sub on the next, then the description, the chips and the visit
-   link — however much any one tile carries. The columns stay as they were:
+   link, however much any one tile carries. The columns stay as they were:
    swatch · text · screenshots.
 
    fanpage.js emits an empty .fan-slot for a part an item does not have; drop
@@ -365,7 +365,7 @@
 .fan-tile:has(.fan-tileshot) .fan-tiletext { min-width: 0; }
 
 /* every screenshot a title has, in one container. The banner takes the full
-   width and the rest pair up under it, two to a row — flex rather than grid,
+   width and the rest pair up under it, two to a row; flex rather than grid,
    because an odd shot left on the last row must sit CENTERED under its pair,
    which grid placement cannot do. */
 .fan-tileshots {
@@ -469,7 +469,7 @@
 .fan-tiles--switch.is-list .fan-tiletext em { font-size: 0.82rem; max-width: 78ch; }
 
 /* The screenshots are the point of list view: the game's whole set sits in
-   its own grid to the right of the text — banner across the top, the rest
+   its own grid to the right of the text: banner across the top, the rest
    two-up beneath it. On narrow screens the set drops below the text instead
    of squeezing next to it. */
 .fan-tiles--switch.is-list .fan-tileshots { flex: none; width: min(44%, 480px); }

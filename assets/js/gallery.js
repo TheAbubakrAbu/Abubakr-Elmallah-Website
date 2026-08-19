@@ -46,7 +46,7 @@
 
   /* franchise-catalogue tiles: a finished game carries every image it has in
      data-images (fanpage.js writes it), and clicking anywhere on the tile
-     opens the whole set — in grid view the thumbnail is hidden, so the tile
+     opens the whole set; in grid view the thumbnail is hidden, so the tile
      itself is the only thing there is to click. */
   document.querySelectorAll('.fan-tile[data-images]').forEach(tile => {
     tile.addEventListener('click', e => {

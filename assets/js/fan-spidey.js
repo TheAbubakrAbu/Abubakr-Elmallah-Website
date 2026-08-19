@@ -1,4 +1,4 @@
-/* fan-spidey.js: content for /franchises/spider-man/. Rendered by fanpage.js. */
+/* fan-spidey.js: content for /worlds/spider-man/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: 'Since I was little; the Amazing era, 2012\u201314', note: 'One of the first characters I ever loved, and The Amazing Spider-Man films are the ones I grew up on.' },
   sections: [

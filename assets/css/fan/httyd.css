@@ -1,8 +1,8 @@
-/* fan/httyd.css: /franchises/how-to-train-your-dragon/ only.
+/* fan/httyd.css: /worlds/how-to-train-your-dragon/ only.
 
    Night flight palette: plasma blue over a northern sky, with the aurora the
-   third film lives under. The hero drawing is the two tail fins — one grown,
-   one built — because that is the entire franchise in two shapes. */
+   third film lives under. The hero drawing is the two tail fins, one grown,
+   one built, because that is the entire franchise in two shapes. */
 
 body[data-fan="httyd"] { --a: #7fd0e8; }
 

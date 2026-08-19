@@ -1,4 +1,4 @@
-/* fan-spidey-ui.js: the symbiote takeover on /franchises/spider-man/.
+/* fan-spidey-ui.js: the symbiote takeover on /worlds/spider-man/.
 
    The Venom section is tagged data-symbiote by fanpage.js. When it is the
    thing you are looking at, <body> gets .is-symbiote and the entire page drops

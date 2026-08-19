@@ -1,4 +1,4 @@
-/* fan-potc.js: content for /franchises/pirates/. Rendered by fanpage.js. */
+/* fan-potc.js: content for /worlds/pirates/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: 'Middle school, around 2017\u201320', note: 'Middle school, around the same time as Jurassic Park.' },
   sections: [

@@ -1,4 +1,4 @@
-/* fan-st-ui.js: the three interactive pieces of /franchises/stranger-things/.
+/* fan-st-ui.js: the three interactive pieces of /worlds/stranger-things/.
 
    1. Season scroll. Each season section carries data-season, and whichever is
       furthest down the page while still in view sets body[data-season]. The

@@ -1,4 +1,4 @@
-/* fan-kfp.js: content for /franchises/kung-fu-panda/. Rendered by fanpage.js. */
+/* fan-kfp.js: content for /worlds/kung-fu-panda/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: 'Since I was a kid', note: 'Around for as long as I can remember, and Kung Fu Panda 2 is the best of them, and it is not a close call.' },
   sections: [

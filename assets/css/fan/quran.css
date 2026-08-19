@@ -1,7 +1,7 @@
-/* fan/quran.css: /franchises/quran/ only.
+/* fan/quran.css: /worlds/quran/ only.
 
    Gold on deep green, the palette of a tooled muṣḥaf cover. The backdrop is
-   the same eight-point lattice the identity tiles use — geometry, not imagery,
+   the same eight-point lattice the identity tiles use: geometry, not imagery,
    for the same reason the Islam page has none. */
 
 body[data-fan="quran"] { --a: #e0b84f; }

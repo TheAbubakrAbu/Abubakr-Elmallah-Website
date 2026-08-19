@@ -1,4 +1,4 @@
-/* fan-clash.js: content for /franchises/clash-royale/. Rendered by fanpage.js.
+/* fan-clash.js: content for /worlds/clash-royale/. Rendered by fanpage.js.
 
    One page for one universe: Clash Royale is the headline and Clash of Clans
    is the section in the middle, because the arena game is built entirely out
@@ -12,13 +12,13 @@ window.FAN_PAGE = {
     lede: 'Every match is the same shape: an elixir bar that refills on its own, a hand of four cards, two lanes, and three towers a side. Take more towers than you lose before the clock runs out. That is the entire rulebook, and people have been arguing about it at the highest level for a decade.',
     items: [
       { title: 'Elixir', sub: 'One drop every 2.8 seconds', tag: 'The economy', accent: '#c96ff0',
-        desc: 'Everything costs elixir and elixir arrives at a fixed rate, so every play is a trade: spend six on a golem and you are broke while it walks. Counting the opponent’s spend is the actual skill — the game is an accounting exam wearing a fantasy costume.',
+        desc: 'Everything costs elixir and elixir arrives at a fixed rate, so every play is a trade: spend six on a golem and you are broke while it walks. Counting the opponent’s spend is the actual skill; the game is an accounting exam wearing a fantasy costume.',
         meta: 'Ten to hold, never waste' },
       { title: 'The towers', sub: 'Two princesses, one king', tag: 'The objective', accent: '#5f8fe8',
         desc: 'Take a princess tower and you are winning; wake the king by hitting him too early and he starts shooting back, which is the game’s best built-in punishment for greed.',
         meta: 'First tower wins most games' },
       { title: 'The counter-push', sub: 'Defence becomes offence', tag: 'The rhythm', accent: '#f0b040',
-        desc: 'Whatever survives your defence walks into their half with your next play behind it. The whole game breathes in this rhythm: absorb, survive, counter — spending less than your opponent and keeping the change.',
+        desc: 'Whatever survives your defence walks into their half with your next play behind it. The whole game breathes in this rhythm: absorb, survive, counter, spending less than your opponent and keeping the change.',
         meta: 'Positive elixir trades' },
       { title: 'Overtime', sub: 'Sudden death, double elixir', tag: 'The panic', accent: '#e0483a',
         desc: 'Tied after three minutes: first tower wins, elixir pours in at double rate, and every carefully learned instinct dissolves into two players throwing everything at one bridge.',
@@ -26,13 +26,13 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'rarity', kind: 'tiles', title: 'The Rarities', note: 'the colour tells you the cost to grow it',
-    lede: 'Like every collection game, the colours are a language you learn before you notice learning it. Rarity in Royale is about how hard a card is to level, not how strong it is — a common at high level beats a legendary at low one, which keeps the whole thing honest-ish.',
+    lede: 'Like every collection game, the colours are a language you learn before you notice learning it. Rarity in Royale is about how hard a card is to level, not how strong it is: a common at high level beats a legendary at low one, which keeps the whole thing honest-ish.',
     items: [
       { title: 'Common', accent: '#9aa0a8', sub: 'Grey', desc: 'Skeletons, archers, the knight. The backbone cards, and some of the best in the game.' },
       { title: 'Rare', accent: '#e8a13f', sub: 'Orange', desc: 'The hog rider, the musketeer, the fireball. Where most decks actually live.' },
       { title: 'Epic', accent: '#a05fd0', sub: 'Purple', desc: 'P.E.K.K.A, the prince, the witch. Big swings, big elixir bills.' },
       { title: 'Legendary', accent: '#f0d040', sub: 'Rainbow', desc: 'The log, the mega knight, the princess. The chest-opening animation everyone was really playing for.' },
-      { title: 'Champion', accent: '#e0483a', sub: '2021 onward', desc: 'Cards with an ability button — the game’s one real rules change in a decade.' },
+      { title: 'Champion', accent: '#e0483a', sub: '2021 onward', desc: 'Cards with an ability button: the game’s one real rules change in a decade.' },
     ] },
 
   { id: 'cast', kind: 'tiles', title: 'The Shared Cast', note: 'one universe, two games', compact: true,
@@ -56,7 +56,7 @@ window.FAN_PAGE = {
         desc: 'Your Town Hall level is your identity: TH7 was serious, TH9 was a lifestyle. Upgrading it reset your defences to "temporarily terrible" and told every raider in range that dinner was served.',
         meta: 'The whole progression' },
       { title: 'The raid', sub: 'Three minutes, three stars', tag: 'The attack', accent: '#e0483a',
-        desc: 'Scout a base, brew an army for ten minutes, spend it in three. Dropping troops around someone’s walls is the same muscle Royale later turned into a whole game — Royale is just the raid with the village removed.',
+        desc: 'Scout a base, brew an army for ten minutes, spend it in three. Dropping troops around someone’s walls is the same muscle Royale later turned into a whole game; Royale is just the raid with the village removed.',
         meta: 'Barch forever' },
       { title: 'Clan Wars', sub: '2014 onward', tag: 'The social game', accent: '#5f8fe8',
         desc: 'Forty villages a side, two attacks each, and a chat full of people you have never met coordinating like it is a group project worth grading. The clan castle donation economy taught more kids reciprocity than any classroom.',

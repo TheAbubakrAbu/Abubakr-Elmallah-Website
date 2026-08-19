@@ -1,5 +1,5 @@
 /* ============================================================
-   fandom.css: the franchise tiles on /franchises/
+   fandom.css: the franchise tiles on /worlds/
    Every tile is type + a drawn emblem. No studio logos, no
    posters, no photographs: each lettering style below is a nod
    built out of the fonts already on the machine.
@@ -42,8 +42,8 @@
 }
 a.fr-card { cursor: pointer; }
 
-/* Row alignment: each tile is a subgrid of its row in .fr-grid — plate, blurb,
-   "when" line, meta — so every tile in a row puts each of those on the same
+/* Row alignment: each tile is a subgrid of its row in .fr-grid (plate, blurb,
+   "when" line, meta) so every tile in a row puts each of those on the same
    line however long its blurb runs. fandom.js emits an empty .fr-slot for a
    tile with no `when`, which is what keeps the rows in step. */
 @supports (grid-template-rows: subgrid) {
@@ -406,7 +406,7 @@ a.fr-card { cursor: pointer; }
 }
 
 /* ── the View Travels button, foot of the page ──
-   THESE RULES MUST LIVE HERE. /franchises/ loads fandom.css and not
+   THESE RULES MUST LIVE HERE. /worlds/ loads fandom.css and not
    fanpages.css; when they were in the wrong file the button rendered raw --
    and an unstyled <svg> path defaults to fill:black, so the globe icon became
    a viewport-sized black disc with a seam down it. Hence the explicit

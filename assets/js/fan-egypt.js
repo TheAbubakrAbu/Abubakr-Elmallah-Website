@@ -1,14 +1,14 @@
-/* fan-egypt.js: content for /franchises/egypt/. Rendered by fanpage.js.
+/* fan-egypt.js: content for /worlds/egypt/. Rendered by fanpage.js.
 
    The third of the three identity pages. The point is the one that gets lost
    under the pyramids: Egypt did not stop. It is one continuous inhabited place
    with a five-thousand-year written record, and the part my family comes from
    is the last fourteen hundred years of it, not the first three thousand.
 
-   The era rail (kind: 'era') is the spine — drag it and you are scrolling
+   The era rail (kind: 'era') is the spine; drag it and you are scrolling
    through the whole thing at one scale. */
 window.FAN_PAGE = {
-  when: { at: 'Where my family is from', note: 'Miṣr. My parents left it and I did not, exactly — you do not stop being from somewhere. The food, the dialect and the jokes all came with them.' },
+  when: { at: 'Where my family is from', note: 'Miṣr. My parents left it and I did not, exactly; you do not stop being from somewhere. The food, the dialect and the jokes all came with them.' },
   sections: [
 
   { id: 'nile', kind: 'stats', title: 'One River', note: 'and everything else is desert',
@@ -23,7 +23,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'timeline', kind: 'era', title: 'Five Thousand Years', note: 'drag the rail',
-    lede: 'The thing everybody gets wrong about Egypt is the shape of its history. Cleopatra lived closer to the invention of the iPhone than to the building of the Great Pyramid — the pyramids were already two and a half thousand years old and a tourist attraction when she was born. And the pharaonic period, the part everyone knows, is only the first half of the story.',
+    lede: 'The thing everybody gets wrong about Egypt is the shape of its history. Cleopatra lived closer to the invention of the iPhone than to the building of the Great Pyramid: the pyramids were already two and a half thousand years old and a tourist attraction when she was born. And the pharaonic period, the part everyone knows, is only the first half of the story.',
     items: [
       { when: 'c. 3100 BC', title: 'Unification', accent: '#e8c56a',
         desc: 'Upper and Lower Egypt brought under one crown, and the double crown that follows is the reason the country is a country at all.', meta: 'Early Dynastic' },
@@ -32,11 +32,11 @@ window.FAN_PAGE = {
       { when: 'c. 2560 BC', title: 'Giza', accent: '#e8a13f',
         desc: 'The Great Pyramid: 2.3 million blocks, aligned to true north to within a twentieth of a degree, and the tallest structure made by anyone for the next 3,800 years.', meta: 'Fourth Dynasty' },
       { when: 'c. 1479 BC', title: 'Hatshepsut', accent: '#3fd589',
-        desc: 'Twenty-two years of the most prosperous reign of the era, ruled by a woman who took the full pharaonic titulary — and whose successor then tried to erase her from the monuments.', meta: 'New Kingdom' },
+        desc: 'Twenty-two years of the most prosperous reign of the era, ruled by a woman who took the full pharaonic titulary, and whose successor then tried to erase her from the monuments.', meta: 'New Kingdom' },
       { when: 'c. 1332 BC', title: 'Tutankhamun', accent: '#e8c56a',
         desc: 'A minor king who died at about nineteen and would be a footnote, except that his was the one tomb the robbers missed. Found intact in 1922.', meta: 'Eighteenth Dynasty' },
       { when: 'c. 1279 BC', title: 'Ramesses II', accent: '#e0642a',
-        desc: 'Sixty-six years on the throne, Abu Simbel, and the earliest surviving peace treaty between two states — with the Hittites, and both copies still exist.', meta: 'Nineteenth Dynasty' },
+        desc: 'Sixty-six years on the throne, Abu Simbel, and the earliest surviving peace treaty between two states, with the Hittites, and both copies still exist.', meta: 'Nineteenth Dynasty' },
       { when: '332 BC', title: 'Alexander, then the Ptolemies', accent: '#a05fd0',
         desc: 'Alexandria founded, and with it the Library and the Lighthouse. Three hundred years of Greek rule ending with Cleopatra VII.', meta: 'Ptolemaic' },
       { when: '30 BC', title: 'Rome', accent: '#8f98a8',
@@ -44,7 +44,7 @@ window.FAN_PAGE = {
       { when: '641', title: 'The Arab conquest', accent: '#3fd589',
         desc: 'ʿAmr ibn al-ʿĀṣ takes Egypt and founds Fusṭāṭ, which is the seed Cairo grows from. This is where my half of the history starts, and Arabic gradually replaces Coptic over the next few centuries.', meta: 'Rāshidūn' },
       { when: '969', title: 'Cairo founded', accent: '#e8c56a',
-        desc: 'The Fatimids build al-Qāhirah, "the victorious", next to Fusṭāṭ, and found al-Azhar the year after — which has been running ever since and is one of the oldest universities on earth.', meta: 'Fatimid' },
+        desc: 'The Fatimids build al-Qāhirah, "the victorious", next to Fusṭāṭ, and found al-Azhar the year after, which has been running ever since and is one of the oldest universities on earth.', meta: 'Fatimid' },
       { when: '1171', title: 'Ṣalāḥ ad-Dīn', accent: '#3fd589',
         desc: 'Saladin ends the Fatimid caliphate, builds the Citadel, and rules Egypt and Syria as one state from Cairo.', meta: 'Ayyubid' },
       { when: '1250', title: 'The Mamluks', accent: '#e8a13f',
@@ -64,7 +64,7 @@ window.FAN_PAGE = {
   { id: 'monuments', kind: 'cards', mount: 'end', title: 'The Monuments', note: 'the ones that are still standing',
     items: [
       { title: 'The Pyramids of Giza', sub: 'c. 2560 BC', tag: 'Old Kingdom', accent: '#e8a13f',
-        desc: 'The only one of the seven ancient wonders still standing, and the only one that was not really a wonder to the Egyptians — by the time of the New Kingdom they were simply very old buildings on the edge of the city.',
+        desc: 'The only one of the seven ancient wonders still standing, and the only one that was not really a wonder to the Egyptians: by the time of the New Kingdom they were simply very old buildings on the edge of the city.',
         meta: 'Khufu · Khafre · Menkaure' },
       { title: 'The Sphinx', sub: 'c. 2500 BC', tag: 'Old Kingdom', accent: '#e8c56a',
         desc: 'Seventy-three metres of one limestone outcrop, carved in place rather than assembled. Nobody wrote down who it is meant to be, which is why the argument is still going.',
@@ -90,7 +90,7 @@ window.FAN_PAGE = {
       { title: 'Khan el-Khalili', accent: '#e0642a', sub: 'Since 1382', desc: 'The market. Six hundred years in the same alleys, and still the place you are sent to buy anything specific.' },
       { title: 'The Citadel', accent: '#8f98a8', sub: 'Saladin, 1176', desc: 'The fortress on the Muqattam hills, with Muḥammad ʿAlī’s alabaster mosque on top of it, visible from most of the city.' },
       { title: 'Coptic Cairo', accent: '#5fa3ec', sub: 'Roman-era', desc: 'The Hanging Church, Abu Serga and the Ben Ezra synagogue, all inside a few hundred metres of Roman fort wall.' },
-      { title: 'The Egyptian Museum', accent: '#a05fd0', sub: '1902 · and the GEM', desc: 'The old one on Tahrir, and now the Grand Egyptian Museum out by the pyramids — the largest museum in the world devoted to one civilisation.' },
+      { title: 'The Egyptian Museum', accent: '#a05fd0', sub: '1902 · and the GEM', desc: 'The old one on Tahrir, and now the Grand Egyptian Museum out by the pyramids, the largest museum in the world devoted to one civilisation.' },
       { title: 'Al-Muʿizz Street', accent: '#3fd589', sub: 'Fatimid', desc: 'A kilometre of continuous Fatimid, Ayyubid and Mamluk monuments, one after another, on a single road.' },
     ] },
 

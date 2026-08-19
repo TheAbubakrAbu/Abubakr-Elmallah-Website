@@ -116,8 +116,8 @@ body[data-fan="accents"] { --a: var(--gold); }
   background: rgba(245,198,60,0.05);
 }
 
-/* Row alignment: each card is a subgrid of its row in .ac-grid — head, the
-   quoted line, the description, the player — so every card in a row puts each
+/* Row alignment: each card is a subgrid of its row in .ac-grid (head, the
+   quoted line, the description, the player) so every card in a row puts each
    of those on the same line, however long the line or the blurb runs. All four
    parts are always rendered (see accents.js), so no empty slots are needed. */
 @supports (grid-template-rows: subgrid) {

@@ -1,4 +1,4 @@
-/* fan-lego-ui.js: the stud fountain on /franchises/lego/.
+/* fan-lego-ui.js: the stud fountain on /worlds/lego/.
 
    LOAD ORDER MATTERS. Runs AFTER reveal.js, whole body in a try/catch. Sections
    start at opacity 0 and are revealed by reveal.js; a script that throws before

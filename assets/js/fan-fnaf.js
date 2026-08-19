@@ -1,4 +1,4 @@
-/* fan-fnaf.js: content for /franchises/five-nights-at-freddys/. Rendered by fanpage.js. */
+/* fan-fnaf.js: content for /worlds/five-nights-at-freddys/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: 'Middle school, around 2017\u201320', note: 'Picked it up in middle school, mostly through the theory videos before I ever played it properly.' },
   sections: [

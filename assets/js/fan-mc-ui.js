@@ -1,4 +1,4 @@
-/* fan-mc-ui.js: the hotbar on /franchises/minecraft/.
+/* fan-mc-ui.js: the hotbar on /worlds/minecraft/.
 
    Pick a tier and three things change together: the pickaxe and the sword in
    the hero drawing take that material's colours, and the matching ore in the

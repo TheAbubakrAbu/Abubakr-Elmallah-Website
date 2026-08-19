@@ -205,7 +205,7 @@
     });
     /* Third pill: the average of my own ratings across the whole list, so the
        column of scores has a middle to be read against. Over every rated item,
-       not just the finished ones — an unfinished game still gets a rating. */
+       not just the finished ones; an unfinished game still gets a rating. */
     var scores = s.items.map(function (it) { return parseFloat(it.rating); })
       .filter(function (r) { return !isNaN(r); });
     var avg = scores.length
@@ -297,7 +297,7 @@
               var name = s.replace(/^.*\//, '').replace(/\.[a-z]+$/i, '').replace(/-/g, ' ');
               return '<a class="fan-tileshot" href="' + esc(s) + '" target="_blank" rel="noopener">'
                 + '<img src="' + esc(s) + '" alt="'
-                + esc(n === 0 ? (it.shotAlt || it.title) : it.title + ' — ' + name)
+                + esc(n === 0 ? (it.shotAlt || it.title) : it.title + ': ' + name)
                 + '" loading="lazy" /></a>';
             }).join('') + '</span>';
         return '<div class="fan-tile reveal' + (it.done ? ' is-done' : '') + '"'

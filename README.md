@@ -111,7 +111,7 @@ _originals/              # gitignored camera-roll originals, one folder per year
 
 src/                     # 51 pages, each with a permalink in its front matter
   work · projects · education · college · high-school · resume · travels
-  accents · star-wars · al-islam · franchises · fan-*.html (36 fan pages)
+  accents · star-wars · al-islam · worlds · fan-*.html (36 fan pages)
   jarvis · holocron · elmallah · marauders-map
 
 assets/

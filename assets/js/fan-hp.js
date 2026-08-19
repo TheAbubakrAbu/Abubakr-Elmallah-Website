@@ -1,4 +1,4 @@
-/* fan-hp.js: content for /franchises/harry-potter/. Rendered by fanpage.js.
+/* fan-hp.js: content for /worlds/harry-potter/. Rendered by fanpage.js.
 
    The four house crests and the Sorting Hat are drawn in the page itself
    (fan-harry-potter.html + fan-hp-ui.js); everything below is data.

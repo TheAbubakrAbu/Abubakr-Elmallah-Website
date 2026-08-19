@@ -1,4 +1,4 @@
-/* fan-fnaf-ui.js: the camera panel on /franchises/five-nights-at-freddys/.
+/* fan-fnaf-ui.js: the camera panel on /worlds/five-nights-at-freddys/.
 
    LOAD ORDER MATTERS. This runs AFTER reveal.js, and the whole body is inside a
    try/catch. Every section on these pages starts at opacity 0 and is revealed by

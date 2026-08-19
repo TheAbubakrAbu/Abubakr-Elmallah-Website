@@ -1,4 +1,4 @@
-/* fan-parks.js: content for /franchises/parks-and-recreation/. Rendered by fanpage.js. */
+/* fan-parks.js: content for /worlds/parks-and-recreation/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: '8th grade, 2019\u201320', note: 'Same year as The Office. Honestly it might be the funnier of the two; The Office is just the one that got there first and stuck harder.' },
   sections: [

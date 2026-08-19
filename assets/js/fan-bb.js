@@ -1,4 +1,4 @@
-/* fan-bb.js: content for /franchises/breaking-bad/. Rendered by fanpage.js. */
+/* fan-bb.js: content for /worlds/breaking-bad/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: '10th grade, 2021\u201322', note: 'I watched it in tenth grade, 2021\u201322, and funnily enough started the trend: half my classmates got through it right after I did.' },
   sections: [

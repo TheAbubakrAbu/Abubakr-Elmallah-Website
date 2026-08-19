@@ -1,4 +1,4 @@
-/* fan-st.js: content for /franchises/stranger-things/. Rendered by fanpage.js. */
+/* fan-st.js: content for /worlds/stranger-things/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: '2nd year of college, 2025\u201326', note: 'Second year of college, right after Game of Thrones.' },
   sections: [

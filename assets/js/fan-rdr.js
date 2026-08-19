@@ -1,4 +1,4 @@
-/* fan-rdr.js: content for /franchises/red-dead/. Rendered by fanpage.js. */
+/* fan-rdr.js: content for /worlds/red-dead/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: '1st year of college, 2024\u201325', note: 'First year of college.' },
   sections: [

@@ -161,3 +161,89 @@
 .bust p { margin-top: 0.5rem; font-size: 0.8rem; line-height: 1.6; color: color-mix(in srgb, var(--ink) 74%, transparent); }
 
 .bust:hover p { color: var(--ink); }
+
+/* ── the Doomsday layer ──
+   Latveria green in the corner the portals do not reach, and the mask itself,
+   outlined and nearly subliminal. It breathes; it does not blink. */
+.mcu-doom {
+  position: absolute; inset: 0;
+  background: radial-gradient(42% 34% at 84% 76%, rgba(79,208,127,.11), transparent 70%);
+  animation: mcu-doom-breathe 11s ease-in-out infinite alternate;
+}
+.mcu-doommask {
+  position: absolute; right: 4vmin; bottom: 6vmin;
+  width: clamp(120px, 24vmin, 240px); height: auto;
+  fill: none; stroke: #4fd07f; stroke-width: 2; stroke-linecap: round;
+  opacity: .1;
+  animation: mcu-doom-breathe 11s ease-in-out infinite alternate;
+}
+.mcu-doommask circle { fill: #4fd07f; stroke: none; }
+@keyframes mcu-doom-breathe { from { opacity: .07; } to { opacity: .16; } }
+@media (prefers-reduced-motion: reduce) {
+  .mcu-doom, .mcu-doommask { animation: none; }
+}
+
+/* ── one stone per film ──
+   Six rows: an uncut gem, the title in this site's lettering tinted to its
+   stone, and the stone's name on the right. The colour is the whole point. */
+.av-saga { display: grid; gap: 0.7rem; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .av-saga { grid-template-columns: 1fr 1fr; } }
+.av-saga-row {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.85rem 1.1rem; border-radius: 10px;
+  border: 1px solid var(--line);
+  background: linear-gradient(120deg, color-mix(in srgb, var(--c) 8%, transparent), transparent 60%);
+  transition: border-color .3s, transform .3s var(--ease);
+}
+.av-saga-row:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--c) 55%, transparent);
+}
+.av-gem {
+  width: 34px; height: 34px; flex: none;
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--c) 75%, transparent));
+}
+.av-gem-body { fill: var(--c); }
+.av-gem-facets { fill: none; stroke: #fff; stroke-width: 1; opacity: .3; }
+.av-saga-name { display: flex; align-items: baseline; gap: 0.55rem; min-width: 0; }
+.av-saga-name b {
+  font-family: var(--serif); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; font-size: 1.06rem; line-height: 1.2;
+  background: linear-gradient(180deg, var(--c2), var(--c) 62%, color-mix(in srgb, var(--c) 55%, #000));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.av-saga-name i {
+  font-style: normal; font-family: var(--mono); font-size: 0.56rem;
+  letter-spacing: 0.1em; color: var(--mute);
+}
+.av-saga-stone {
+  margin-left: auto; flex: none;
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--c);
+  padding: 0.22rem 0.55rem; border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--c) 45%, transparent);
+}
+
+/* ── the Doomsday panels: the A as a window, and the doctor in the fog ── */
+.av-doomart {
+  display: grid; gap: 1.2rem; grid-template-columns: 1fr; align-items: start;
+}
+@media (min-width: 860px) { .av-doomart { grid-template-columns: 1fr 1fr; } }
+.avd-stage {
+  margin: 0; border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #0a100b 0%, #060a07 100%);
+}
+.avd-stage svg { display: block; width: 100%; height: auto; }
+.avd-stage figcaption {
+  padding: 0.7rem 1rem 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.34em;
+  text-transform: uppercase; color: #9fe8a8;
+  text-shadow: 0 0 14px rgba(79,208,127,.6);
+}
+.avd-body { grid-column: 1 / -1; max-width: 62ch; }
+.avd-body q {
+  display: block; font-family: var(--serif); font-size: 1.15rem; font-style: italic;
+  color: #9fe8a8; quotes: '\201C' '\201D'; margin-bottom: 0.6rem;
+}
+.avd-body p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); }

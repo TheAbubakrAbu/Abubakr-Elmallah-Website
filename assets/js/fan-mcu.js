@@ -1,4 +1,4 @@
-/* fan-mcu.js: content for /franchises/avengers/. Rendered by fanpage.js.
+/* fan-mcu.js: content for /worlds/avengers/. Rendered by fanpage.js.
 
    This is the Marvel Cinematic Universe, not the comics. Where a comic run
    gets a mention it is only because a film is standing on top of it.

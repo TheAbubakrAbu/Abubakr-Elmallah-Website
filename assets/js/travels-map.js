@@ -18,7 +18,7 @@
        the list below it agree. Layovers render small and dim, with no arc. */
     var HOME = { name: 'Home · Southern California', lat: 33.64, lon: -117.84 };
     /* t is the index into TRAVELS.trips, so a pin can jump to its entry */
-    /* `e` is the legend chip's flag — the map itself stays drawn, not iconed */
+    /* `e` is the legend chip's flag; the map itself stays drawn, not iconed */
     var PINS = [
       { name: 'Puerto Vallarta', e: '🇲🇽', lat: 20.62, lon: -105.23, c: '#e0763a', t: 0 },
       { name: 'Cancún · Cozumel', e: '🇲🇽', lat: 20.7, lon: -86.9, c: '#2fc0b0', t: 1 },

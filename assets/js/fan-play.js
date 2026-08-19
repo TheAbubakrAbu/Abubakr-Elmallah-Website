@@ -6,7 +6,7 @@
    done its one scan, the injected markup has to be handed back to it via
    window.AEreveal or it sits invisible forever.
 
-   THE LAYOUT IS A HOTBAR, modelled on the Minecraft one on /franchises/minecraft/.
+   THE LAYOUT IS A HOTBAR, modelled on the Minecraft one on /worlds/minecraft/.
    Every option is a numbered slot in a single row, always visible, and picking
    one lights it. That is a much better fit than the two-column thing this used
    to be: you can see the whole set at once, it survives any number of items, and

@@ -210,7 +210,7 @@ window.APP_CARDS = {
     long: [
       'Al-Islam is a free, beginner-friendly Muslim companion app designed for lifelong Muslims and converts alike. It offers essential features like prayer times, Quran access and qibla direction, plus unique tools such as Traveling Mode and Beginner Arabic Mode, all aimed at helping users deepen their faith and stay connected with Allah.',
       'Published on the App Store on <b>July 26, 2023</b>, when I was a junior in high school. It was written in the weeks right after my AP and IB exams, and it is the app the other Islamic ones grew out of.',
-      '🏆 <b>Winner of the Congressional App Challenge 2023 — Best Original Idea.</b> Issued by the United States Congress in December 2023, my senior year of high school: I was awarded a Certificate of Congressional Recognition by U.S. Representative Young Kim, with the Beginner Arabic Mode and Traveling Mode singled out for supporting new Muslims and learners of Arabic.',
+      '🏆 <b>Winner of the Congressional App Challenge 2023: Best Original Idea.</b> Issued by the United States Congress in December 2023, my senior year of high school: I was awarded a Certificate of Congressional Recognition by U.S. Representative Young Kim, with the Beginner Arabic Mode and Traveling Mode singled out for supporting new Muslims and learners of Arabic.',
     ],
     tags: 'iOS · iPadOS<br>watchOS · macOS',
     feature: true,
@@ -259,8 +259,8 @@ window.APP_CARDS = {
     desc: 'The site you are reading. Hand-written Jekyll and vanilla JavaScript with no framework: a custom cursor, a flow-field canvas, magnetic hover, scroll reveals, and a service worker so every page still opens offline. The Star Wars, J.A.R.V.I.S. and Marauder’s Map interfaces are the same content re-skinned.',
     long: [
       'The site you are reading: the apps I ship for UC Irvine, my own Apple ecosystem apps and Discord bots, the projects I built in high school, and a large set of fan pages for the things I like. It exists because all of that was scattered across Notes, Files and Photos, where every single piece of it mattered to me and not one piece was findable.',
-      'Hand-written HTML, CSS and vanilla JavaScript — no React, no Tailwind, no bundler, and no npm dependencies at all. Jekyll is used only for permalinks, redirects and cache-busting; every page is a real <code>.html</code> file you can open and read. A service worker caches it all, so the whole site still opens with no connection.',
-      'The interface is the point: a custom cursor, a flow-field canvas behind everything, magnetic hover, scroll reveals, and four alternate front ends over the same content — E.L.M.A.L.L.A.H., J.A.R.V.I.S., the Jedi H.O.L.O.C.R.O.N. archive, and the Marauder’s Map on parchment.',
+      'Hand-written HTML, CSS and vanilla JavaScript: no React, no Tailwind, no bundler, and no npm dependencies at all. Jekyll is used only for permalinks, redirects and cache-busting; every page is a real <code>.html</code> file you can open and read. A service worker caches it all, so the whole site still opens with no connection.',
+      'The interface is the point: a custom cursor, a flow-field canvas behind everything, magnetic hover, scroll reveals, and four alternate front ends over the same content: E.L.M.A.L.L.A.H., J.A.R.V.I.S., the Jedi H.O.L.O.C.R.O.N. archive, and the Marauder’s Map on parchment.',
       'Live since <b>June 24, 2026</b>, and open source on GitHub.',
     ],
     tags: 'Jekyll · Vanilla JS · Offline PWA',
@@ -376,7 +376,7 @@ window.PROJ_CARDS = {
     tags: 'Scratch · Game',
     long: [
       'A Star Wars game built in Scratch in 10th grade, and the very first thing I ever made: play through Order 66 by dragging blocks together, before I had written a line of real code.',
-      'It has no repository and no README — Scratch is the whole record of it, and it still runs in the browser on the project page.',
+      'It has no repository and no README; Scratch is the whole record of it, and it still runs in the browser on the project page.',
       'Everything else on this page came after it.',
     ],
     links: [

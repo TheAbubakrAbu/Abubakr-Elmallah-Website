@@ -1,4 +1,4 @@
-/* fan-kfp-ui.js: opening the Dragon Scroll, on /franchises/kung-fu-panda/.
+/* fan-kfp-ui.js: opening the Dragon Scroll, on /worlds/kung-fu-panda/.
 
    LOAD ORDER MATTERS. Runs AFTER reveal.js, whole body in a try/catch. Sections
    start at opacity 0 and are revealed by reveal.js; a script that throws before

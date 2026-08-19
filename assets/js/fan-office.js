@@ -1,4 +1,4 @@
-/* fan-office.js: content for /franchises/the-office/. Rendered by fanpage.js. */
+/* fan-office.js: content for /worlds/the-office/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: '8th grade, 2019\u201320', note: 'Eighth grade, same year as Parks and Rec. Parks might be the funnier show, but The Office came first and is the more memorable one.' },
   sections: [

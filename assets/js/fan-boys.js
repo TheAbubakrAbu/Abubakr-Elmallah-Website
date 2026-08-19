@@ -1,4 +1,4 @@
-/* fan-boys.js: content for /franchises/the-boys/. Rendered by fanpage.js.
+/* fan-boys.js: content for /worlds/the-boys/. Rendered by fanpage.js.
    Kept deliberately restrained: the show is not, but a portfolio page can be. */
 window.FAN_PAGE = {
   when: { at: 'Summer 2022, going into 11th grade', note: 'The summer between tenth and eleventh grade, 2022, and it was absolutely fire.' },

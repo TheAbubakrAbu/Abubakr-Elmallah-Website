@@ -1,4 +1,4 @@
-/* fan-jp.js: content for /franchises/jurassic-park/. Rendered by fanpage.js.
+/* fan-jp.js: content for /worlds/jurassic-park/. Rendered by fanpage.js.
    Sizes are the films' animals, not strictly the palaeontology. */
 window.FAN_PAGE = {
   when: { at: 'Middle school, around 2017\u201320', note: 'Middle school, around the same time as Pirates.' },

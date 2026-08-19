@@ -1,4 +1,4 @@
-/* fan-atla.js: content for /franchises/avatar-last-airbender/. Rendered by fanpage.js.
+/* fan-atla.js: content for /worlds/avatar-last-airbender/. Rendered by fanpage.js.
    The four bending arts are drawn in the page itself. */
 window.FAN_PAGE = {
   when: { at: 'Elementary school', note: 'Somewhere in elementary school, and it has held up better on every rewatch since.' },

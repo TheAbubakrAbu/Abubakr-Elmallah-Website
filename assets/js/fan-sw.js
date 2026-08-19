@@ -1,4 +1,4 @@
-/* fan-sw.js: content for /franchises/star-wars/ (the fandom page, no apps).
+/* fan-sw.js: content for /worlds/star-wars/ (the fandom page, no apps).
 
    Rendered by fanpage.js. Dates use the in-universe BBY/ABY scale, counted
    from the Battle of Yavin.

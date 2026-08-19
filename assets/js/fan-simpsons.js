@@ -1,4 +1,4 @@
-/* fan-simpsons.js: content for /franchises/the-simpsons/. Rendered by fanpage.js. */
+/* fan-simpsons.js: content for /worlds/the-simpsons/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: '8th and 9th grade, 2019\u201321', note: 'Universal Studios Hollywood is what got me into it: Krusty Burger, the Cletus chicken sandwich and the ride, all before I had really watched the show. Then I fell for it properly across eighth and ninth grade.' },
   sections: [
