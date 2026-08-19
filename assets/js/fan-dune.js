@@ -1,4 +1,4 @@
-/* fan-dune.js: content for /franchises/dune/. Rendered by fanpage.js. */
+/* fan-dune.js: content for /worlds/dune/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: '2021 and 2024, 10th and 12th grade', note: 'One of the greatest experiences I have ever had in a cinema. Tenth grade for the first and twelfth for the second. I fell asleep in both (sleep deprivation, not boredom) and still walked out knowing they were great. I rewatched both properly, do not worry.' },
   sections: [

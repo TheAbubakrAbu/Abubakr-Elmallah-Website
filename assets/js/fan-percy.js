@@ -1,4 +1,4 @@
-/* fan-percy.js: content for /franchises/percy-jackson/. Rendered by fanpage.js. */
+/* fan-percy.js: content for /worlds/percy-jackson/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: '6th grade, 2017\u201318', note: 'Straight after Harry Potter, and always in second place behind it, which is no insult, because second to Harry Potter in sixth grade is a very high position.' },
   sections: [

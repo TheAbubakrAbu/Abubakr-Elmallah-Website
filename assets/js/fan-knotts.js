@@ -1,4 +1,4 @@
-/* fan-knotts.js: content for /franchises/knotts/. Rendered by fanpage.js.
+/* fan-knotts.js: content for /worlds/knotts/. Rendered by fanpage.js.
    Every ride and land links back to the park's own page. */
 window.FAN_PAGE = {
   when: { at: 'Elementary school', note: 'A classic, and I have loved the ghost-town feel of it since elementary school.' },

@@ -1,4 +1,4 @@
-/* fan-minshawi.js: content for /franchises/minshawi/. Rendered by fanpage.js.
+/* fan-minshawi.js: content for /worlds/minshawi/. Rendered by fanpage.js.
 
    Sits in the identity row between Egypt and the Qurʾān, which is exactly
    where he belongs: an Upper-Egyptian man whose life's work was the Book.
@@ -18,7 +18,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'voice', kind: 'cards', title: 'The Voice', note: 'صوت من السماء',
-    lede: 'Egypt called him Ṣawt min as-Samāʾ — a voice from heaven — and Egypt, which produced more great reciters in the twentieth century than everywhere else combined, does not hand that name out. What sets him apart is not range or ornament. It is that the recitation sounds like it is happening to him: ask people who love this art to describe Minshāwī and the word they reach for is khushūʿ — humility before the text.',
+    lede: 'Egypt called him Ṣawt min as-Samāʾ, a voice from heaven, and Egypt, which produced more great reciters in the twentieth century than everywhere else combined, does not hand that name out. What sets him apart is not range or ornament. It is that the recitation sounds like it is happening to him: ask people who love this art to describe Minshāwī and the word they reach for is khushūʿ: humility before the text.',
     items: [
       { title: 'The ḥuzn', sub: 'The sorrow in it', tag: 'The signature', accent: '#d9b88a',
         desc: 'A settled, unperformed sadness that fits verses of mercy and verses of warning alike. Other reciters impress you; Minshāwī sounds like a man reading something that concerns him personally, and it is contagious.',
@@ -30,12 +30,12 @@ window.FAN_PAGE = {
         desc: 'The melodic modes are the grammar of Egyptian recitation, and his transitions are so unforced that people who know nothing of maqāmāt still feel the line land where it should. Musicians study him; he was not doing music.',
         meta: 'Studied, not imitated' },
       { title: 'The tajwīd', sub: 'Precision underneath', tag: 'The foundation', accent: '#5fa3ec',
-        desc: 'Under all of it, rule-perfect tajwīd — which is why teachers hand students his recordings as a model. The beauty never buys a single letter off its rights.',
+        desc: 'Under all of it, rule-perfect tajwīd, which is why teachers hand students his recordings as a model. The beauty never buys a single letter off its rights.',
         meta: 'A model muṣḥaf, spoken' },
     ] },
 
   { id: 'recordings', kind: 'cards', title: 'The Recordings', note: 'the catalogue, complete since 1969',
-    lede: 'Everything he will ever record already exists, and the core of it is four bodies of work. If you have used a Qurʾān app with audio — including mine — you have almost certainly heard the first one.',
+    lede: 'Everything he will ever record already exists, and the core of it is four bodies of work. If you have used a Qurʾān app with audio, including mine, you have almost certainly heard the first one.',
     items: [
       { title: 'The murattal muṣḥaf', sub: 'The complete Qurʾān, measured', tag: 'Start here', accent: '#3fd589',
         desc: 'All 114 sūrahs in the steady, unornamented style: clear enough to learn from, beautiful enough that nobody stops at learning. This is the recording playing in this house, and the one my memory of the Qurʾān runs on.',
@@ -54,12 +54,12 @@ window.FAN_PAGE = {
   { id: 'life', kind: 'timeline', title: 'The Life', note: '1920 – 1969',
     items: [
       { when: '1920', title: 'Born in Sohag, Upper Egypt', desc: 'January 1920, into a house of reciters: his father Ṣiddīq al-Minshāwī was one of the celebrated Qurrāʾ of his generation, and the boy grew up inside the trade.' },
-      { when: 'Childhood', title: 'Ḥifẓ, young', desc: 'He memorised the Qurʾān as a child and was reciting publicly alongside his father while still a boy — the Upper-Egyptian apprenticeship, learned by ear at the source.' },
+      { when: 'Childhood', title: 'Ḥifẓ, young', desc: 'He memorised the Qurʾān as a child and was reciting publicly alongside his father while still a boy: the Upper-Egyptian apprenticeship, learned by ear at the source.' },
       { when: '1950s', title: 'The radio era', desc: 'Egyptian State Radio put the great reciters on the air and made them national figures. Minshāwī, ʿAbd al-Bāsiṭ, al-Ḥuṣarī and Muṣṭafā Ismāʿīl became the golden age, broadcast into every kitchen in Egypt.' },
       { when: '1950s–60s', title: 'The recordings', desc: 'The complete murattal, the mujawwad sessions, the teaching muṣḥaf. The catalogue that would carry him past his own lifetime was laid down in under two decades.' },
       { when: '1966–69', title: 'The illness', desc: 'Diagnosed with the illness that would take him, he kept reciting through it for years and turned down the advice to stop. The late recordings are the sound of a man spending what he knew he had left.' },
       { when: '1969', title: 'Gone at forty-nine', desc: 'June 1969. Egypt buried him as a national loss; the radio kept playing him as if nothing had changed, and it has not really stopped since.' },
-      { when: 'Now', title: 'The default voice', desc: 'Half a century on, his recordings sit in every Qurʾān app and stream from every corner of the world — including the colour-coded recitation in Al-Quran, the app this house shipped. The voice outlived the man by design: he left it where everyone could reach it.' },
+      { when: 'Now', title: 'The default voice', desc: 'Half a century on, his recordings sit in every Qurʾān app and stream from every corner of the world, including the colour-coded recitation in Al-Quran, the app this house shipped. The voice outlived the man by design: he left it where everyone could reach it.' },
     ] },
 
   { id: 'school', kind: 'tiles', title: 'The Egyptian School', note: 'the company he keeps', compact: true,
@@ -78,7 +78,7 @@ window.FAN_PAGE = {
       { title: 'QuranicAudio', href: 'https://quranicaudio.com/',
         desc: 'Full-muṣḥaf recordings by reciter; his murattal and mujawwad both live here.' },
       { title: 'Quran.com', href: 'https://quran.com/',
-        desc: 'Read along with his recitation — pick Minshāwī in the audio settings.' },
+        desc: 'Read along with his recitation; pick Minshāwī in the audio settings.' },
       { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Mohamed_Siddiq_El-Minshawi',
         desc: 'The life: Sohag, the radio era, and the family of reciters around him.' },
       { title: 'Al-Quran, my app', href: 'https://apps.apple.com/us/developer/abubakr-elmallah/id1690310648',

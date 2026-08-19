@@ -1,4 +1,4 @@
-/* fan-fortnite.js: content for /franchises/fortnite/. Rendered by fanpage.js. */
+/* fan-fortnite.js: content for /worlds/fortnite/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: '2018\u201319, 6th\u20137th grade', note: 'Chapter 1, seasons three to seven: sixth and seventh grade. I stopped playing properly around season nine and now I only turn up for the big events.' },
   sections: [

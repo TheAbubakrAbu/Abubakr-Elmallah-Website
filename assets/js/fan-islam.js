@@ -1,7 +1,7 @@
-/* fan-islam.js: content for /franchises/islam/. Rendered by fanpage.js.
+/* fan-islam.js: content for /worlds/islam/. Rendered by fanpage.js.
 
    This is the first of the three identity pages, and the only page under
-   /franchises/ that is not about something I chose. It is also where the prophets, the three holy
+   /worlds/ that is not about something I chose. It is also where the prophets, the three holy
    mosques and the chain of scholars now live: they used to sit on /al-islam/,
    which is a page about three apps I built and was the wrong home for them.
 
@@ -59,7 +59,7 @@ window.FAN_PAGE = {
      mono (see fan/islam.css) because a name of Allah in a monospace fallback
      is not something I am willing to ship. */
   { id: 'names', kind: 'tiles', title: 'The Ninety-Nine Names', note: 'أسماء الله الحسنى', compact: true,
-    lede: 'Al-Asmāʾ al-Ḥusnā, the beautiful names, all of them, in the order of the narration of at-Tirmidhī. They are not synonyms: each one is a distinct attribute, and several of them are deliberately paired with their opposite — the one who gives life and the one who takes it, the one who honours and the one who humbles — because both are His.',
+    lede: 'Al-Asmāʾ al-Ḥusnā, the beautiful names, all of them, in the order of the narration of at-Tirmidhī. They are not synonyms: each one is a distinct attribute, and several of them are deliberately paired with their opposite (the one who gives life and the one who takes it, the one who honours and the one who humbles) because both are His.',
     items: [
       { title: 'Ar-Raḥmān', sub: 'الرحمن', desc: 'The Most Compassionate', accent: '#3fd589' },
       { title: 'Ar-Raḥīm', sub: 'الرحيم', desc: 'The Most Merciful', accent: '#3fd589' },

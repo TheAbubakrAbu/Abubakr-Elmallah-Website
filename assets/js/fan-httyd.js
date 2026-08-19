@@ -1,18 +1,18 @@
-/* fan-httyd.js: content for /franchises/how-to-train-your-dragon/. Rendered
+/* fan-httyd.js: content for /worlds/how-to-train-your-dragon/. Rendered
    by fanpage.js. The rare trilogy that starts great, stays great, and then
-   actually ends — on purpose, with the dragons leaving. */
+   actually ends, on purpose, with the dragons leaving. */
 window.FAN_PAGE = {
   when: { at: 'Since the first film, as a kid', note: 'The Test Drive sequence is the reason a generation of kids briefly considered aerospace engineering. I make no claims about being an exception.' },
   sections: [
 
   { id: 'films', kind: 'films', title: 'The Trilogy', note: 'DreamWorks · 2010–2019',
-    lede: 'Three films, one complete arc, no cash-grab fourth chapter — the whole thing planned as a beginning, a middle and a goodbye. Dean DeBlois signed on for the sequels on the condition that it would end, which is why it is one of the only animated trilogies with no bad film in it.',
+    lede: 'Three films, one complete arc, no cash-grab fourth chapter: the whole thing planned as a beginning, a middle and a goodbye. Dean DeBlois signed on for the sequels on the condition that it would end, which is why it is one of the only animated trilogies with no bad film in it.',
     items: [
       { title: 'How to Train Your Dragon', sub: '2010', accent: '#7fd0e8',
-        desc: 'The one where the fin gets built. A village that kills dragons, a boy who cannot, and the discovery that everything the vikings knew was wrong. The last act costs Hiccup a leg, and the film does not flinch about it — the boy and the dragon end the story with matching prosthetics.',
+        desc: 'The one where the fin gets built. A village that kills dragons, a boy who cannot, and the discovery that everything the vikings knew was wrong. The last act costs Hiccup a leg, and the film does not flinch about it; the boy and the dragon end the story with matching prosthetics.',
         meta: 'The best of the three' },
       { title: 'How to Train Your Dragon 2', sub: '2014', accent: '#5fa86f',
-        desc: 'Five years on: the flight suit, the hidden nest, Hiccup’s mother, and a middle chapter with actual consequences — Stoick does not make it out, and Toothless is the reason. Bigger in every direction and darker than a sequel to a kids’ film had any right to be.',
+        desc: 'Five years on: the flight suit, the hidden nest, Hiccup’s mother, and a middle chapter with actual consequences: Stoick does not make it out, and Toothless is the reason. Bigger in every direction and darker than a sequel to a kids’ film had any right to be.',
         meta: 'The ambitious one' },
       { title: 'The Hidden World', sub: '2019', accent: '#c9a0e8',
         desc: 'The goodbye. A Light Fury, a world under the sea’s edge, and the conclusion the first film quietly promised: if you love the dragons, you let them go where people cannot follow. The epilogue jump-cut to Hiccup’s kids meeting Toothless again is the franchise sticking its landing.',
@@ -23,12 +23,12 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'dragons', kind: 'tiles', title: 'The Dragons', note: 'the Book of Dragons, abridged', compact: true,
-    lede: 'The franchise’s quiet masterstroke: dragons designed like animals, not monsters — each species with its own silhouette, gait and personality, catalogued by the vikings into classes like a field guide.',
+    lede: 'The franchise’s quiet masterstroke: dragons designed like animals, not monsters, each species with its own silhouette, gait and personality, catalogued by the vikings into classes like a field guide.',
     items: [
-      { title: 'Night Fury', accent: '#3a3f4a', sub: 'Strike class', desc: 'The unholy offspring of lightning and death itself — who turns out to move like a cat and act like a dog. Speed: unknown. Size: unknown.' },
+      { title: 'Night Fury', accent: '#3a3f4a', sub: 'Strike class', desc: 'The unholy offspring of lightning and death itself, who turns out to move like a cat and act like a dog. Speed: unknown. Size: unknown.' },
       { title: 'Light Fury', accent: '#dfe8f0', sub: 'Strike class', desc: 'The Hidden World’s answer to Toothless: cloaking through heated scales, and no patience for saddles.' },
       { title: 'Deadly Nadder', accent: '#7fc9e8', sub: 'Tracker class', desc: 'Astrid’s Stormfly: bird-like, vain, and armed with a tail full of spines it fires like darts.' },
-      { title: 'Gronckle', accent: '#c9a06f', sub: 'Boulder class', desc: 'A flying boulder with wings too small for it — aerodynamically illegal, emotionally indestructible. Eats rocks, sneezes lava.' },
+      { title: 'Gronckle', accent: '#c9a06f', sub: 'Boulder class', desc: 'A flying boulder with wings too small for it: aerodynamically illegal, emotionally indestructible. Eats rocks, sneezes lava.' },
       { title: 'Monstrous Nightmare', accent: '#e0642a', sub: 'Stoker class', desc: 'Sets itself on fire on purpose. Snotlout’s Hookfang, and the reason the kill ring had a reputation.' },
       { title: 'Hideous Zippleback', accent: '#7fd07f', sub: 'Mystery class', desc: 'Two heads: one breathes gas, the other sparks it. A walking two-step chemistry demonstration.' },
       { title: 'Terrible Terror', accent: '#e8c56a', sub: 'Stoker class', desc: 'The size of a cat with the confidence of a Nightmare. The franchise’s best running gag.' },
@@ -36,7 +36,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'score', kind: 'cards', title: 'The Score', note: 'John Powell, doing the flying',
-    lede: 'The flight scenes work because the camera and the orchestra are the same instrument. Powell’s score — Scottish folk by way of a ninety-piece orchestra — got the first film an Oscar nomination and does more storytelling than most scripts.',
+    lede: 'The flight scenes work because the camera and the orchestra are the same instrument. Powell’s score (Scottish folk by way of a ninety-piece orchestra) got the first film an Oscar nomination and does more storytelling than most scripts.',
     items: [
       { title: 'Test Drive', sub: 'The one everyone knows', tag: 'Film 1', accent: '#7fd0e8',
         desc: 'The first real flight with the new fin: the theme assembling itself as the two of them work out the mechanics mid-air, and landing in full brass exactly when the dive comes out clean. The single best marriage of music and animation this century.',
@@ -58,7 +58,7 @@ window.FAN_PAGE = {
         desc: 'Hiccup wins nothing by strength in three films. He observes, sketches, prototypes and iterates: the fin, the saddle, the fire-sword, the flight suit. It is the rare action franchise whose set pieces are engineering demos.',
         meta: 'The notebook does the fighting' },
       { title: 'The matching injuries', sub: 'A tail, then a leg', tag: 'The honesty', accent: '#e0642a',
-        desc: 'Hiccup cripples Toothless in the first ten minutes and the film makes him spend the rest of the trilogy living with it — then takes his leg in the finale and treats it with the same matter-of-factness. Kids’ cinema almost never lets consequences stay.',
+        desc: 'Hiccup cripples Toothless in the first ten minutes and the film makes him spend the rest of the trilogy living with it, then takes his leg in the finale and treats it with the same matter-of-factness. Kids’ cinema almost never lets consequences stay.',
         meta: 'Both walk differently now' },
       { title: 'It ends', sub: 'On purpose', tag: 'The discipline', accent: '#5fa86f',
         desc: 'The Hidden World says the quiet thing: loving something wild can mean losing it, and the story closes rather than franchising itself forever. The final beach scene is a children’s film trusting children with grief.',

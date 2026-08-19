@@ -1,8 +1,8 @@
-/* fan/sunnah.css: /franchises/sunnah/ only.
+/* fan/sunnah.css: /worlds/sunnah/ only.
 
    The green of the Dome over Madinah: softer than the Islam page's green and
    quieter than the Qurʾān page's gold. The backdrop arcade is repeating arch
-   shapes drawn in gradients — geometry standing in for a courtyard. */
+   shapes drawn in gradients: geometry standing in for a courtyard. */
 
 body[data-fan="sunnah"] { --a: #6fcfa4; }
 

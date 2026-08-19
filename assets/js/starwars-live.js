@@ -1,17 +1,17 @@
 /* starwars-live.js: the working parts of /star-wars/.
 
    The page used to end with a CSS atlas of every planet in the galaxy. That
-   atlas already exists on /franchises/star-wars/, which is the page about the
+   atlas already exists on /worlds/star-wars/, which is the page about the
    films, so having it twice was the problem; this page is about four things I
    built, and it now ends by letting you use them instead.
 
-     1. Aurebesh    — type anything and get it spelled out in the alphabet,
-                      which is what Aurebesh Translator and Aurebesh Droid do.
-     2. Sabacc      — a playable hand of Corellian Spike against the house,
-                      which is what Sabacc Droid deals in Discord.
-     3. Kyber       — build a lightsaber: pick the crystal, pick the hilt,
-                      ignite it. Drawn in SVG, not photographed.
-     4. Stardate    — the Datapad chronometer, in Galactic Standard.
+     1. Aurebesh:   type anything and get it spelled out in the alphabet,
+                    which is what Aurebesh Translator and Aurebesh Droid do.
+     2. Sabacc:     a playable hand of Corellian Spike against the house,
+                    which is what Sabacc Droid deals in Discord.
+     3. Kyber:      build a lightsaber: pick the crystal, pick the hilt,
+                    ignite it. Drawn in SVG, not photographed.
+     4. Stardate:   the Datapad chronometer, in Galactic Standard.
 
    LOAD ORDER MATTERS. Runs AFTER reveal.js, whole body in a try/catch: this
    page's sections start at opacity 0 and are revealed by reveal.js, so a script
@@ -22,7 +22,7 @@
     /* ═══════════ 1. Aurebesh ═══════════
        The thirty-four characters of the alphabet: twenty-six letters and eight
        digraphs, each with the name it is actually called by. The NAMES are what
-       this block prints — the letterforms themselves are the app's job, and
+       this block prints; the letterforms themselves are the app's job, and
        drawing thirty-four angular glyphs by hand here would be a worse version
        of something I have already shipped twice. */
     var AUREBESH = {
@@ -34,7 +34,7 @@
     };
 
     /* The eight digraphs are single characters in Aurebesh, so they are matched
-       before the single letters — otherwise "sh" comes out Senth-Herf, which is
+       before the single letters; otherwise "sh" comes out Senth-Herf, which is
        two characters where the alphabet has one. */
     var DIGRAPHS = [
       ['ch', 'Cherek'], ['ae', 'Enth'], ['eo', 'Onith'], ['kh', 'Krenth'],
@@ -82,7 +82,7 @@
 
        Implemented faithfully as a single round: you are dealt two, you draw or
        you stand, the house plays to its own rule, and ties go to the smaller
-       hand. The chance cubes are rolled once a turn — doubles and everyone's
+       hand. The chance cubes are rolled once a turn: doubles and everyone's
        hand is discarded and redealt, which is the actual rule and the reason
        nobody in that galaxy trusts a sabacc pot. */
     function newDeck() {
@@ -141,13 +141,13 @@
       }
 
       /* The chance cubes. Doubles wipe the table, which can happen on the very
-         first roll of a hand — that is the game, not a bug in it. */
+         first roll of a hand; that is the game, not a bug in it. */
       function roll() {
         dice = [1 + Math.floor(Math.random() * 6), 1 + Math.floor(Math.random() * 6)];
         if (dice[0] === dice[1] && !over) {
           you = [deck.pop(), deck.pop()];
           house = [deck.pop(), deck.pop()];
-          msg = 'Doubles. The cubes wipe the table — both hands discarded and redealt.';
+          msg = 'Doubles. The cubes wipe the table: both hands discarded and redealt.';
         }
       }
 
@@ -160,8 +160,8 @@
         else if (isIdiotsArray(house) && !isIdiotsArray(you)) msg = 'The house has the Idiot’s Array. Pot gone.';
         else if (y < h) msg = 'You are nearer zero. The pot is yours.';
         else if (h < y) msg = 'The house is nearer zero. Bad luck.';
-        else if (you.length < house.length) msg = 'Level on total — the smaller hand takes it. Yours.';
-        else if (house.length < you.length) msg = 'Level on total — the house had fewer cards.';
+        else if (you.length < house.length) msg = 'Level on total: the smaller hand takes it. Yours.';
+        else if (house.length < you.length) msg = 'Level on total: the house had fewer cards.';
         else msg = 'A dead heat. The pot carries over.';
       }
 
@@ -288,8 +288,8 @@
 
     /* ═══════════ 4. Galactic Standard ═══════════
        The chronometer from Datapad. The Galactic Standard Calendar counts from
-       the Battle of Yavin — everything before it is BBY and everything after is
-       ABY — and the year is 368 days of 24 standard hours. The film came out in
+       the Battle of Yavin (everything before it is BBY and everything after is
+       ABY), and the year is 368 days of 24 standard hours. The film came out in
        1977, so that is the year this counts from. */
     var YAVIN = 1977;
     var stamp = document.getElementById('swStardate');

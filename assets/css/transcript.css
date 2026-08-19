@@ -61,7 +61,14 @@
 .ts-toggle:hover { border-color: rgba(255,255,255,.28); color: var(--ink); }
 .ts-toggle:focus-visible { outline: 2px solid var(--accent, #5fbf8f); outline-offset: 2px; }
 .ts-terms { margin-top: 1.2rem; display: grid; gap: 1.6rem; }
-@media (min-width: 900px) { .ts-terms { grid-template-columns: 1fr 1fr; } }
+/* display:grid would beat the UA sheet's [hidden] rule, so restate it:
+   folded away means gone until the toggle says otherwise */
+.ts-terms[hidden] { display: none; }
+@media (min-width: 900px) {
+  .ts-terms { grid-template-columns: 1fr 1fr; }
+  /* senior year starts its own row rather than pairing with 11th summer */
+  .ts-term--break { grid-column: 1; }
+}
 .ts-term { border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.1rem; }
 .ts-termhead { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
 .ts-termhead h5 { font-family: var(--sans); font-weight: 650; font-size: 0.94rem; color: var(--ink); }
@@ -93,6 +100,12 @@
 }
 /* Dual-enrolment rows read differently: they are college credit, not high school. */
 .ts-rows li.is-college .ts-course { color: #9fc8e8; }
+
+/* The college list on /college/: no marks column (no grades published) and a
+   wider code column, since "IN4MATX 43" is not "0432". GE chips ride in the
+   tags slot. */
+.ts-terms--uni .ts-rows li { grid-template-columns: 4rem minmax(0, 1fr) auto; }
+.ts-terms--uni .ts-tags u { white-space: nowrap; }
 
 /* ── roles timeline (high school + college) ── */
 .roles { list-style: none; display: grid; gap: 0.5rem; margin: 1.4rem 0 2.2rem; }
@@ -127,7 +140,11 @@
 
 /* ── high-school extracurriculars, awards and service ── */
 .hs-cols { display: grid; gap: 1.2rem; margin: 1.3rem 0 2.2rem; }
-@media (min-width: 820px) { .hs-cols { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 820px) {
+  .hs-cols { grid-template-columns: 1fr 1fr; }
+  /* community service: three groups, one row */
+  .hs-cols--3 { grid-template-columns: 1fr 1fr 1fr; }
+}
 .hs-col {
   padding: 1.2rem 1.3rem; border: 1px solid var(--line); border-radius: 8px;
   background: linear-gradient(155deg, rgba(255,255,255,.028), transparent 70%);

@@ -245,8 +245,8 @@ body[data-intro="alislam"] #field { opacity: 0.3; }
 
 .sch-body { display: flex; flex-direction: column; gap: 0.4rem; flex: 1; }
 
-/* Row alignment: each card is a subgrid of its row in .sch-grid — medal, name,
-   English name, dates, blurb, meaning, source — so a row of cards puts each of
+/* Row alignment: each card is a subgrid of its row in .sch-grid (medal, name,
+   English name, dates, blurb, meaning, source) so a row of cards puts each of
    those on one line whatever the blurb lengths are. islam.js renders an empty
    .sch-slot for a part a person hasn't got, which is what keeps them in step;
    the prophets carry one part more than the scholars, and the spare row simply
@@ -362,8 +362,8 @@ body[data-intro="alislam"] #field { opacity: 0.3; }
    (see alislam-live.js)
 
    This page is about three apps, so it now ends by DOING what
-   they do rather than by listing scholars — those moved to
-   /franchises/islam/, which is the page about the religion.
+   they do rather than by listing scholars; those moved to
+   /worlds/islam/, which is the page about the religion.
    ═══════════════════════════════════════════════════════════ */
 
 .islam-live { padding-bottom: 1rem; }

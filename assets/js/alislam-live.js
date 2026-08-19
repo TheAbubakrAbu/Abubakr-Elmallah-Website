@@ -2,15 +2,15 @@
 
    The page used to end with a list of scholars and a list of prophets. Those
    belong to the religion, not to three pieces of software, so they moved to
-   /franchises/islam/ and this took their place: the things the apps on this
+   /worlds/islam/ and this took their place: the things the apps on this
    page actually DO, running in the page itself rather than described.
 
-     1. Prayer times  — computed here, from the sun, for wherever you are.
-     2. Qibla         — the true bearing and the great-circle distance to the
-                        Kaʿbah from that same point.
-     3. The date      — today in both calendars, and the gap between them.
-     4. Tajweed       — a sūrah coloured by rule, which is what the Quran
-                        Tajweed Engine does to all 6,236 verses.
+     1. Prayer times: computed here, from the sun, for wherever you are.
+     2. Qibla:        the true bearing and the great-circle distance to the
+                      Kaʿbah from that same point.
+     3. The date:     today in both calendars, and the gap between them.
+     4. Tajweed:      a sūrah coloured by rule, which is what the Quran
+                      Tajweed Engine does to all 6,236 verses.
 
    LOAD ORDER MATTERS. Runs AFTER reveal.js, whole body in a try/catch: this
    page's sections start at opacity 0 and are revealed by reveal.js, so a script
@@ -148,7 +148,7 @@
 
     /* ═══════════ formatting ═══════════ */
     function hhmm(h) {
-      if (isNaN(h)) return '—';
+      if (isNaN(h)) return '…';
       h = fixHour(h + 0.5 / 60);                            // round to the minute
       var hr = Math.floor(h), mn = Math.floor((h - hr) * 60);
       var ap = hr < 12 ? 'AM' : 'PM';
@@ -191,7 +191,7 @@
     var root = document.getElementById('islLive');
     if (root) {
       /* Default: Irvine, where I am, with its own zone rather than the
-         visitor's — otherwise someone opening this in London gets Irvine's
+         visitor's; otherwise someone opening this in London gets Irvine's
          latitude on London's clock, which is worse than either. */
       var HOME = { lat: 33.6405, lng: -117.8443, label: 'Irvine, California', tz: 'America/Los_Angeles' };
       var place = HOME;
@@ -222,7 +222,7 @@
                 }).join('') + '</div></div>'
         +   '</div>'
         +   '<button class="isl-geo" id="islGeo" type="button">Use my location</button>'
-        +   '<p class="isl-fine">Computed in this page from the sun’s position — no network call, and nothing about your location leaves the browser. Accurate to about a minute; where a minute matters, use your local timetable.</p>'
+        +   '<p class="isl-fine">Computed in this page from the sun’s position: no network call, and nothing about your location leaves the browser. Accurate to about a minute; where a minute matters, use your local timetable.</p>'
         + '</section>'
 
         + '<section class="isl-panel isl-panel--qibla reveal">'
@@ -249,8 +249,8 @@
         +     '</svg>'
         +   '</div>'
         +   '<div class="isl-qread">'
-        +     '<span><b id="qbDeg">—</b><i>from true north</i></span>'
-        +     '<span><b id="qbDist">—</b><i>to Makkah</i></span>'
+        +     '<span><b id="qbDeg">…</b><i>from true north</i></span>'
+        +     '<span><b id="qbDist">…</b><i>to Makkah</i></span>'
         +   '</div>'
         + '</section>'
 
@@ -260,9 +260,9 @@
         +     '<h4>Today</h4>'
         +     '<p class="isl-place">The Hijri year is lunar, so it runs about eleven days short</p>'
         +   '</header>'
-        +   '<p class="isl-hijri" id="islHijri" lang="ar" dir="rtl">—</p>'
-        +   '<p class="isl-hijri-en" id="islHijriEn">—</p>'
-        +   '<p class="isl-greg" id="islGreg">—</p>'
+        +   '<p class="isl-hijri" id="islHijri" lang="ar" dir="rtl">…</p>'
+        +   '<p class="isl-hijri-en" id="islHijriEn">…</p>'
+        +   '<p class="isl-greg" id="islGreg">…</p>'
         +   '<p class="isl-fine">Umm al-Qurā reckoning, which is the calculated calendar Saudi Arabia keeps. A sighting-based calendar can differ by a day, and often does.</p>'
         + '</section>'
 
@@ -349,7 +349,7 @@
           document.getElementById('islHijri').textContent = hij;
           document.getElementById('islHijriEn').textContent = hijEn.replace(' AH', '') + ' AH';
         } catch (e) {
-          document.getElementById('islHijri').textContent = '—';
+          document.getElementById('islHijri').textContent = '…';
           document.getElementById('islHijriEn').textContent = 'This browser has no Hijri calendar';
         }
         document.getElementById('islGreg').textContent = new Intl.DateTimeFormat('en-US',
@@ -398,7 +398,7 @@
             render();
           }, function () {
             geoBtn.disabled = false;
-            geoBtn.textContent = 'Location unavailable — tap to retry';
+            geoBtn.textContent = 'Location unavailable. Tap to retry';
           }, { timeout: 10000, maximumAge: 600000 });
         });
       }
@@ -414,9 +414,9 @@
 
        Each segment is [text, ruleKey]. A null rule is plain text. */
     var RULES = [
-      { k: 'madd',     name: 'Madd',     ar: 'مد',    desc: 'A vowel held long — two counts for the natural one, four to six where a hamzah or a sukūn follows.' },
+      { k: 'madd',     name: 'Madd',     ar: 'مد',    desc: 'A vowel held long: two counts for the natural one, four to six where a hamzah or a sukūn follows.' },
       { k: 'qalqalah', name: 'Qalqalah', ar: 'قلقلة', desc: 'An echo on ق ط ب ج د when the letter carries no vowel. You bounce off it rather than stopping dead.' },
-      { k: 'idgham',   name: 'Idghām',   ar: 'إدغام', desc: 'One letter merged into the next so the first is not heard at all — including the lām of “al-” before a sun letter.' },
+      { k: 'idgham',   name: 'Idghām',   ar: 'إدغام', desc: 'One letter merged into the next so the first is not heard at all, including the lām of “al-” before a sun letter.' },
       { k: 'ghunnah',  name: 'Ghunnah',  ar: 'غنة',   desc: 'A nasal hum held about two counts, on a doubled nūn or mīm and on the merges that carry it.' },
       { k: 'izhar',    name: 'Iẓhār',    ar: 'إظهار', desc: 'The opposite: the nūn or tanwīn is pronounced clearly, with no hum, because a throat letter follows.' },
     ];

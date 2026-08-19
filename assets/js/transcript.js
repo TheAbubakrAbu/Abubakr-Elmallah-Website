@@ -66,59 +66,71 @@
       + '</div>'
       + '</div>';
 
-    /* ── the full transcript, folded away ── */
-    var rows = 0;
-    T.terms.forEach(function (t) { rows += t.rows.length; });
+    /* ── the transcripts, folded away: middle school in its own section
+       above, then the full high-school record ── */
+    function termsHtml(terms) {
+      return terms.map(function (t) {
+        return '<section class="ts-term' + (t.break ? ' ts-term--break' : '') + '">'
+          + '<div class="ts-termhead">'
+          +   '<h5>' + esc(t.term) + '</h5>'
+          +   '<span class="ts-yr">' + esc(t.years) + '</span>'
+          +   (t.where ? '<span class="ts-where">' + esc(t.where) + '</span>' : '')
+          +   (t.gpa ? '<span class="ts-gpa">GPA ' + esc(t.gpa) + '</span>' : '')
+          + '</div>'
+          + (t.note ? '<p class="ts-termnote">' + esc(t.note) + '</p>' : '')
+          + '<ul class="ts-rows">'
+          +   t.rows.map(function (r) {
+                return '<li' + (r.college ? ' class="is-college"' : '') + '>'
+                  + '<span class="ts-code">' + esc(r.code) + '</span>'
+                  + '<span class="ts-course">' + esc(r.name)
+                  +   (r.where ? '<i>' + esc(r.where) + '</i>' : '')
+                  +   (r.span ? '<i>' + esc(r.span) + '</i>' : '')
+                  + '</span>'
+                  + '<span class="ts-tags">'
+                  +   (r.tag.indexOf('+') > -1 ? '<u title="Honours, weighted">+</u>' : '')
+                  +   (r.tag.indexOf('p') > -1 ? '<u title="College prep">p</u>' : '')
+                  +   (r.tag.indexOf('*') > -1 ? '<u title="Non-academic">*</u>' : '')
+                  + '</span>'
+                  + '<span class="ts-mark">' + esc(r.mark) + '</span>'
+                  + '</li>';
+              }).join('')
+          + '</ul>'
+          + '</section>';
+      }).join('');
+    }
+
+    var ms = T.terms.filter(function (t) { return /^Grade [78] /.test(t.term); });
+    var hs = T.terms.filter(function (t) { return ms.indexOf(t) === -1; });
+    var msRows = 0, hsRows = 0;
+    ms.forEach(function (t) { msRows += t.rows.length; });
+    hs.forEach(function (t) { hsRows += t.rows.length; });
+
+    var msLabel = 'Middle school &#183; ' + msRows + ' rows, grades 7 to 8';
 
     html += '<div class="ts-full reveal">'
-      + '<button class="ts-toggle" type="button" id="tsToggle" aria-expanded="false" data-magnetic>'
-      +   'Show every course &#183; ' + rows + ' rows, grade 8 to 12'
-      + '</button>'
-      + '<div class="ts-terms" id="tsTerms" hidden>'
-      +   T.terms.map(function (t) {
-            return '<section class="ts-term">'
-              + '<div class="ts-termhead">'
-              +   '<h5>' + esc(t.term) + '</h5>'
-              +   '<span class="ts-yr">' + esc(t.years) + '</span>'
-              +   (t.where ? '<span class="ts-where">' + esc(t.where) + '</span>' : '')
-              +   (t.gpa ? '<span class="ts-gpa">GPA ' + esc(t.gpa) + '</span>' : '')
-              + '</div>'
-              + (t.note ? '<p class="ts-termnote">' + esc(t.note) + '</p>' : '')
-              + '<ul class="ts-rows">'
-              +   t.rows.map(function (r) {
-                    return '<li' + (r.college ? ' class="is-college"' : '') + '>'
-                      + '<span class="ts-code">' + esc(r.code) + '</span>'
-                      + '<span class="ts-course">' + esc(r.name)
-                      +   (r.where ? '<i>' + esc(r.where) + '</i>' : '')
-                      +   (r.span ? '<i>' + esc(r.span) + '</i>' : '')
-                      + '</span>'
-                      + '<span class="ts-tags">'
-                      +   (r.tag.indexOf('+') > -1 ? '<u title="Honours, weighted">+</u>' : '')
-                      +   (r.tag.indexOf('p') > -1 ? '<u title="College prep">p</u>' : '')
-                      +   (r.tag.indexOf('*') > -1 ? '<u title="Non-academic">*</u>' : '')
-                      + '</span>'
-                      + '<span class="ts-mark">' + esc(r.mark) + '</span>'
-                      + '</li>';
-                  }).join('')
-              + '</ul>'
-              + '</section>';
-          }).join('')
-      + '</div>'
+      + '<button class="ts-toggle" type="button" id="tsToggleMs" aria-expanded="false" data-magnetic>' + msLabel + '</button>'
+      + '<p class="ts-termnote">Middle school, off the RSM trimester grade reports. None of it counts toward high-school graduation except Algebra 1, taken early in 8th grade.</p>'
+      + '<div class="ts-terms" id="tsTermsMs" hidden>' + termsHtml(ms) + '</div>'
+      + '</div>';
+
+    /* the high-school record itself is never folded: it is the whole point
+       of the section */
+    html += '<div class="ts-full reveal">'
+      + '<p class="ts-termnote">Every course, grade 9 to 12 &#183; ' + hsRows + ' rows.</p>'
+      + '<div class="ts-terms">' + termsHtml(hs) + '</div>'
       + '</div>';
 
     root.innerHTML = html;
 
-    var btn = document.getElementById('tsToggle');
-    var terms = document.getElementById('tsTerms');
-    if (btn && terms) {
-      btn.addEventListener('click', function () {
-        var open = terms.hidden;
-        terms.hidden = !open;
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        btn.innerHTML = open
-          ? 'Hide the full transcript'
-          : 'Show every course &#183; ' + rows + ' rows, grade 8 to 12';
-        if (open && typeof window.AEreveal === 'function') window.AEreveal(terms);
+    var msBtn = document.getElementById('tsToggleMs');
+    var msTerms = document.getElementById('tsTermsMs');
+    if (msBtn && msTerms) {
+      msBtn.addEventListener('click', function () {
+        var open = msTerms.hidden;
+        msTerms.hidden = !open;
+        msBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        msBtn.innerHTML = open ? 'Hide middle school' : msLabel;
+        if (open && typeof window.AEreveal === 'function') window.AEreveal(msTerms);
       });
     }
 

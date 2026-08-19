@@ -1,4 +1,4 @@
-/* fan-disney.js: content for /franchises/disney/. Rendered by fanpage.js.
+/* fan-disney.js: content for /worlds/disney/. Rendered by fanpage.js.
    Every resort and studio card links to its own official site. */
 window.FAN_PAGE = {
   when: { at: 'Since I was a kid', note: 'Disneyland for as long as I can remember. It is the baseline every other park gets measured against.' },

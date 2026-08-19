@@ -1,4 +1,4 @@
-/* fan-invincible.js: content for /franchises/invincible/. Rendered by fanpage.js. */
+/* fan-invincible.js: content for /worlds/invincible/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: 'Summer 2024, into freshman year', note: 'Watched season one the summer before college and thought it was fine. I only came back and finished it when season four landed and I heard the finale was being called one of the best episodes ever.' },
   sections: [

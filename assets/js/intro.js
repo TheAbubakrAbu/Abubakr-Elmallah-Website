@@ -91,7 +91,7 @@
       '<div class="intro-mosaic intro-mosaic--rows">' +
       rows.map(row => '<div class="intro-row">' + row.map(s =>
         '<img class="intro-tile" style="animation-delay:' + (n++ * 34) + 'ms" src="../assets/img/' + s + '" alt="" aria-hidden="true">').join('') + '</div>').join('') +
-      '</div><span class="intro-proj-title">Franchises</span>';
+      '</div><span class="intro-proj-title">Worlds</span>';
   } else if (type === 'school' || type === 'education') {
     // one photo per year, oldest first, out of the year galleries
     const ph = ['hs-freshman/2021-07-20-0812.jpg', 'hs-sophomore/2022-05-02-2049.jpg',

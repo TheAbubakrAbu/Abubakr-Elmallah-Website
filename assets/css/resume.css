@@ -1,12 +1,12 @@
-/* resume.css — the text transcription that sits under the PDF embed on /resume/.
+/* resume.css: the text transcription that sits under the PDF embed on /resume/.
 
    The PDF is the artefact; this is the same document as selectable, searchable,
-   screen-readable text. It deliberately keeps the résumé's own shape — title
-   left and date right, org left and place right — rather than being reflowed
+   screen-readable text. It deliberately keeps the résumé's own shape (title
+   left and date right, org left and place right) rather than being reflowed
    into prose, because the shape is half of how a résumé is read. Nothing here
    restyles the embed above it. */
 
-/* the page is three stacked blocks — actions, transcription, preview — so they
+/* the page is three stacked blocks (actions, transcription, preview) so they
    all share one column and one left edge; only the document inside is capped
    narrower, for line length */
 .rt {

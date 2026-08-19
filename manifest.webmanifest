@@ -18,7 +18,7 @@ permalink: /manifest.webmanifest
   ],
   "shortcuts": [
     { "name": "Projects",   "url": "/projects/" },
-    { "name": "Franchises", "url": "/franchises/" },
+    { "name": "Worlds", "url": "/worlds/" },
     { "name": "Résumé",     "url": "/resume/" }
   ]
 }

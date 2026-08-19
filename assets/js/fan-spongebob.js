@@ -1,9 +1,9 @@
-/* fan-spongebob.js: content for /franchises/spongebob/. Rendered by fanpage.js.
+/* fan-spongebob.js: content for /worlds/spongebob/. Rendered by fanpage.js.
 
    The golden age is seasons one to three plus the first movie, and this page
    is honest about that the way the Fortnite page is honest about Chapter 1:
    the show that is still running is fine; the show this page is about ended
-   in 2004. The meme section is not a joke section — it is the most measurable
+   in 2004. The meme section is not a joke section; it is the most measurable
    cultural footprint any cartoon has ever had. */
 window.FAN_PAGE = {
   when: { at: 'Since I was a kid', note: 'First as a cartoon, then again as the language every group chat is conducted in. Few things survive both childhoods.' },
@@ -19,7 +19,7 @@ window.FAN_PAGE = {
         desc: 'Written as the ending: SpongeBob proves a kid can do the hero’s job, David Hasselhoff provides the transport, and the Goofy Goober rock ballad plays over the climax of what was meant to be the last episode ever made.',
         meta: 'Hillenburg’s intended end' },
       { title: 'Everything after', sub: '2005 → now', tag: 'The long tail', accent: '#8f9ab0',
-        desc: 'Still running, three spin-offs and two more films deep, and none of it is a crime — it is just a different, softer show wearing the same square pants. This page is about the first one.',
+        desc: 'Still running, three spin-offs and two more films deep, and none of it is a crime; it is just a different, softer show wearing the same square pants. This page is about the first one.',
         meta: 'Fine. Not this page.' },
       { title: 'Sweet Victory', sub: 'Band Geeks · 2001', tag: 'The high-water mark', accent: '#c96ff0',
         desc: 'A marching-band episode that ends in a full-throated stadium rock performance the internet later demanded, at scale, be performed at an actual Super Bowl. The petition got over a million signatures. For an eleven-minute cartoon from 2001.',
@@ -48,7 +48,7 @@ window.FAN_PAGE = {
         desc: 'SpongeBob and Patrick discover marketing, escalate from flattery to outright fraud in nine minutes, and are chased across the sea floor by a man screaming one word. CHOCOLATE.',
         meta: 'Fancy living, achieved' },
       { title: 'Pizza Delivery', sub: 'S1 · 1999', tag: 'The early classic', accent: '#f0e03f',
-        desc: 'The Krusty Krab pizza is the pizza for you and me. A delivery odyssey that established the show’s real formula: Squidward suffers, SpongeBob sings, and the ending is unexpectedly kind — to the customer’s door, not the customer.',
+        desc: 'The Krusty Krab pizza is the pizza for you and me. A delivery odyssey that established the show’s real formula: Squidward suffers, SpongeBob sings, and the ending is unexpectedly kind: to the customer’s door, not the customer.',
         meta: 'The pioneers rode boulders' },
       { title: 'Rock Bottom', sub: 'S1 · 2000', tag: 'The weird one', accent: '#6f7f92',
         desc: 'A wrong bus, a town where everyone speaks with a raspberry in the middle of the sentence, and a candy bar machine designed by Kafka. The show at its most quietly surreal, and a formative piece of horror for an entire generation.',
@@ -57,7 +57,7 @@ window.FAN_PAGE = {
         desc: 'An entire episode as a corporate training tape, parodying a genre no child watching had ever seen, perfectly. The patty is assembled with love. POOP: People Order Our Patties.',
         meta: 'Hat: crooked' },
       { title: 'Graveyard Shift', sub: 'S2 · 2002', tag: 'The campfire one', accent: '#a05fd0',
-        desc: 'The Hash-Slinging Slasher. The walls will ooze green slime — no wait, they always do that. A ghost story where every scare is a bus, a bug zapper, and Nosferatu, unexplained, forever.',
+        desc: 'The Hash-Slinging Slasher. The walls will ooze green slime. No wait, they always do that. A ghost story where every scare is a bus, a bug zapper, and Nosferatu, unexplained, forever.',
         meta: 'Nosferatu!' },
     ] },
 

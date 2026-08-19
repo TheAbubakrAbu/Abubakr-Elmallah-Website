@@ -1,4 +1,4 @@
-/* fan-hp-ui.js: the two interactive bits of /franchises/harry-potter/.
+/* fan-hp-ui.js: the two interactive bits of /worlds/harry-potter/.
 
    1. The Sorting Hat. Press it and it mutters its way through a few lines
       before shouting a house, then lights up that crest in the grid above and

@@ -1,4 +1,4 @@
-/* years.css — the year photo galleries on /high-school/ and /college/.
+/* years.css: the year photo galleries on /high-school/ and /college/.
 
    The rows are justified: years.js fills each row in date order and then sizes
    it so the row lands exactly on the container width, which keeps every photo
@@ -132,6 +132,8 @@
 }
 
 .yg-deck.open { opacity: 1; visibility: visible; }
+/* while closed (including the fade-out) it must not intercept taps */
+.yg-deck:not(.open) { pointer-events: none; }
 
 .yg-stage {
   max-width: min(1100px, 100%); max-height: 100%;
@@ -178,4 +180,16 @@
   .yg-stage img { max-height: calc(100vh - 10rem); }
   .yg-prev, .yg-next { top: auto; bottom: 4.4rem; margin-top: 0; }
   .yg-head h4 { font-size: 1.25rem; }
+}
+
+/* ── chapter headings inside one gallery (Pre-Middle School's years) ── */
+.yg-chap {
+  display: flex; align-items: baseline; gap: 0.7rem;
+  margin: 1.8rem 0 0.9rem;
+  font-family: var(--sans); font-weight: 650; font-size: 0.95rem; color: var(--ink);
+}
+.yg-panel .yg-chap:first-of-type { margin-top: 0.2rem; }
+.yg-chap span {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em;
+  color: var(--gold);
 }

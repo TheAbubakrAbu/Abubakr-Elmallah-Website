@@ -206,16 +206,40 @@ body[data-fan="travels"] { --a: #7fb8e8; }
 
 /* Photos, for when they get added. Nothing renders until a trip has a `shots`
    array, so this sits dormant rather than leaving an empty frame. */
-.tv-shots {
-  display: grid; gap: 0.6rem; margin-top: 1.2rem;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-}
-.tv-shots a { display: block; border-radius: 6px; overflow: hidden; border: 1px solid var(--line); }
-.tv-shots img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 3; display: block;
-  transition: transform .3s ease; }
-.tv-shots a:hover img { transform: scale(1.05); }
+/* ── trip photos ──
+   The bar holds its words on the left and one main photo on the right; the
+   photo unfolds the full grid underneath: the same justified rows as the year
+   galleries (.yg and .yg-cell arrive with years.css, along with the
+   full-screen yg-deck). */
+.tv-trip-row { position: relative; display: flex; align-items: center; gap: 1.4rem; justify-content: space-between; }
 
-@media (prefers-reduced-motion: reduce) { .tv-shots a:hover img { transform: none; } }
+.tv-photo {
+  flex: 0 0 auto; position: relative; padding: 0; cursor: pointer;
+  width: clamp(120px, 15vw, 180px); aspect-ratio: 1;
+  border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  background: var(--c2);
+  transition: border-color .18s ease, transform .18s ease;
+}
+.tv-photo:hover { border-color: color-mix(in srgb, var(--c1) 55%, transparent); transform: translateY(-2px); }
+.tv-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tv-photo-n {
+  position: absolute; right: 0.45rem; bottom: 0.45rem;
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.04em;
+  color: #fff; background: rgba(5, 6, 9, 0.72);
+  padding: 0.12rem 0.42rem; border-radius: 99px; border: 1px solid var(--line);
+}
+
+.tv-shots { --yg-gap: 10px; position: relative; margin-top: 1.2rem; }
+/* .yg's display:flex beats the UA sheet's [hidden] rule, so restate it:
+   folded means gone */
+.tv-shots[hidden] { display: none; }
+
+@media (max-width: 620px) {
+  .tv-trip-row { flex-direction: column; align-items: stretch; gap: 1rem; }
+  .tv-photo { width: 100%; aspect-ratio: 16 / 10; }
+}
+
+@media (prefers-reduced-motion: reduce) { .tv-photo:hover { transform: none; } }
 
 /* ── selection ──
    Cards are real controls: clickable, focusable, Enter/Space. Picking one dims
@@ -361,7 +385,7 @@ body[data-fan="travels"] { --a: #7fb8e8; }
   box-shadow: 0 0 5px color-mix(in srgb, var(--pc) 70%, transparent);
 }
 /* the flag: the chip's mono type is 0.5rem, which renders an emoji as a
-   speck — give it its own size and keep it from stretching the row */
+   speck; give it its own size and keep it from stretching the row */
 .tvm-flag { font-size: 0.85rem; line-height: 1; }
 .tvm-legend button:hover, .tvm-legend button.is-hot {
   border-color: var(--pc); color: var(--ink);

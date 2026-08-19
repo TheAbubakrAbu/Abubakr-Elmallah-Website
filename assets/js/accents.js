@@ -10,8 +10,8 @@
    "not recorded yet" chip. See the header of accents-data.js for the filename
    convention and the encode settings.
 
-   Only one clip is ever audible at a time — starting a second one stops the
-   first — because a page of voices all talking over each other is the obvious
+   Only one clip is ever audible at a time (starting a second one stops the
+   first), because a page of voices all talking over each other is the obvious
    failure mode here.
 
    Loads AFTER accents-data.js and BEFORE reveal.js. */
@@ -88,7 +88,7 @@
     + '</section>';
 
   /* These nodes carry .reveal and this file runs before reveal.js, but handing
-     the markup back is idempotent and makes the load order irrelevant — the
+     the markup back is idempotent and makes the load order irrelevant: the
      same guard every other renderer on this site uses. */
   if (typeof window.AEreveal === 'function') window.AEreveal(root);
 

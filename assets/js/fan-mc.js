@@ -1,4 +1,4 @@
-/* fan-mc.js: content for /franchises/minecraft/. Rendered by fanpage.js.
+/* fan-mc.js: content for /worlds/minecraft/. Rendered by fanpage.js.
    The hotbar HUD and the hero drawing live in the page itself.
 
    Y-levels and durability are for current Java Edition. Copper gear and the

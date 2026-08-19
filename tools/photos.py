@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""photos.py — the image pipeline for the site. Two commands:
+"""photos.py: the image pipeline for the site. Two commands:
 
     python3 tools/photos.py ingest
         _originals/<year>/*  ->  assets/img/years/<year>/*.jpg
@@ -18,8 +18,8 @@ that stay PNG go through pngquant (lossy) then oxipng (lossless).
 
 Needs: Pillow, and jpegtran / pngquant / oxipng on PATH.
 
-Originals are named for their own EXIF capture time by the folder convention —
-see _originals/README.md — so the date comes off the filename here and the run
+Originals are named for their own EXIF capture time by the folder convention
+(see _originals/README.md), so the date comes off the filename here and the run
 is idempotent: re-ingesting produces byte-identical names every time.
 """
 
@@ -31,9 +31,12 @@ import subprocess
 import sys
 from PIL import Image, ImageOps
 
-MAX_EDGE = 1400          # long edge for photographs
-JPEG_Q = 75              # was 80; at 1400px the difference is invisible and
-                         # the year galleries dropped ~12% for it
+MAX_EDGE = 1200          # long edge for photographs; was 1400, dropped when
+                         # storage got tight. The deck shows photos at most
+                         # ~1200px tall on any screen the site actually meets.
+JPEG_Q = 70              # was 80, then 75; each step bought ~15% and the
+                         # originals in _originals/ mean any of it can be
+                         # regenerated at higher quality later
 PNG_COLORS = 256
 
 SRC = '_originals'
@@ -43,16 +46,15 @@ DATA = 'assets/js/years-data.js'
 # editorial, so it lives here rather than being guessed from the folder name.
 # `cover` is the photo the year's card shows while the gallery is collapsed.
 YEARS = [
-    # elementary is one card rather than a year each: Legoland 2010, the summer
-    # before middle school, and the Autopia licences (its `id-` photo)
-    ('es-elementary', 'Elementary',  '2010–18', 'ms',  '2018-08-21-1528.jpg'),
-    ('ms-seventh',   '7th Grade',   '2018–19', 'ms',  '2019-03-24-1815.jpg'),
-    ('ms-eighth',    '8th Grade',   '2019–20', 'ms',  '2019-12-30-1200.jpg'),
+    # two era cards, each one gallery divided into year chapters (see
+    # CHAPTERS): everything before middle school, then 7th and 8th together
+    ('pre-ms',       'Pre-Middle School', '2006–18', 'ms', '2018-08-21-1659.jpg'),
+    ('ms-middle',    'Middle School', '2018–20', 'ms', '2019-12-30-1200.jpg'),
     # not a school year: every school ID card, gathered in one card that sits
     # at the end of the middle-school row, to the right of 8th grade. The same
     # card photos also live in their own years (as `id-…`, pinned first); the
     # numeral after `id-` here fixes the order: group shot, then 9th → 12th.
-    # The college ID is not here — it lives in First Year, on /college/.
+    # The college ID is not here; it lives in First Year, on /college/.
     ('id-pics',      'ID Pics',     '2018–24', 'ms',  'id-0-2026-08-16-1528.jpg'),
     ('hs-freshman',  'Freshman',    '2020–21', 'hs',  '2021-07-20-0812.jpg'),
     ('hs-sophomore', 'Sophomore',   '2021–22', 'hs',  '2022-05-17-1200.jpg'),
@@ -61,6 +63,27 @@ YEARS = [
     ('uci-first',    'First Year',  '2024–25', 'uci', '2025-06-13-1549.jpg'),
     ('uci-second',   'Second Year', '2025–26', 'uci', '2026-01-17-1622.jpg'),
 ]
+
+# chapters: named divisions INSIDE one gallery, keyed by group id. Each entry
+# is (label, span, first month 'YYYY-MM'); a chapter runs until the next one
+# begins, and a chapter that catches no photos is dropped. years.js renders
+# these as small headings between the justified rows.
+CHAPTERS = {
+    'pre-ms': [
+        ('Baby',       '2006',    '0000-00'),
+        ('Egypt',      '2007',    '2006-12'),
+        ('Preschool',  '2010',    '2008-01'),
+        ('3rd Grade',  '2014–15', '2014-09'),
+        ('4th Grade',  '2015–16', '2015-08'),
+        ('5th Grade',  '2016–17', '2016-09'),
+        ('6th Grade',  '2017–18', '2017-09'),
+        ('The Autopia Licences', 'shot in 2025', '2020-01'),
+    ],
+    'ms-middle': [
+        ('7th Grade', '2018–19', '0000-00'),
+        ('8th Grade', '2019–20', '2019-09'),
+    ],
+}
 
 # icons are referenced by the PWA manifest and must stay PNG whatever the maths
 KEEP_PNG = {'assets/img/icons', 'assets/img/me/abubakr-circle.png'}
@@ -115,7 +138,7 @@ def date_from(stem):
     id-pics group.
 
     The trailing `-2` is the collision suffix two frames get when they share a
-    capture minute, so it has to survive the parse — dropping it here is what
+    capture minute, so it has to survive the parse; dropping it here is what
     silently turned one photo undated the first time round."""
     m = re.match(r'^(?:id(?:-\d)?-)?(\d{4}-\d{2}-\d{2})-(\d{2})(\d{2})(?:-\d+)?$', stem)
     return '%s %s:%s' % m.groups() if m else None
@@ -126,7 +149,7 @@ def ingest():
     for gid, label, span, school, cover in YEARS:
         d = os.path.join(SRC, gid)
         if not os.path.isdir(d):
-            print('missing %s — skipped' % d)
+            print('missing %s, skipped' % d)
             manifest[gid] = []
             continue
         os.makedirs(os.path.join(OUT, gid), exist_ok=True)
@@ -164,7 +187,7 @@ def ingest():
 
 
 def write_data(manifest):
-    L = ["""/* years-data.js: every photo in the year galleries. GENERATED — run
+    L = ["""/* years-data.js: every photo in the year galleries. GENERATED: run
    `python3 tools/photos.py ingest` rather than editing it by hand.
 
    The capture date comes out of each file's name, which the ingest step takes
@@ -174,7 +197,7 @@ def write_data(manifest):
    Order inside a year is chronological, EXCEPT the school-ID photo (an `id-`
    file), which is pinned to the front of its year whatever its date; photos
    whose EXIF carried no date sit at the end under `date: null`. `cover` is
-   the photo the year's card shows while the gallery is collapsed — the four
+   the photo the year's card shows while the gallery is collapsed; the four
    high-school ones are the same frames the old year cards used.
 
    Paths are relative to /assets/img/years/<group>/. */
@@ -190,6 +213,23 @@ window.YEARS = {
         for r in manifest.get(gid, []):
             d = "'%s'" % r['date'] if r['date'] else 'null'
             L.append("      ['%s', %s, %d, %d]," % (r['file'], d, r['w'], r['h']))
+        L.append('    ],')
+    L.append('  },')
+    # chapter start indices, computed here so they can never drift from the
+    # photo order: [firstIndex, label, span] per chapter that caught a photo
+    L.append('  chapters: {')
+    for gid, chapters in CHAPTERS.items():
+        rows = manifest.get(gid, [])
+        out = []
+        for ci, (label, span, start) in enumerate(chapters):
+            end = chapters[ci + 1][2] if ci + 1 < len(chapters) else '9999'
+            idx = [i for i, r in enumerate(rows)
+                   if r['date'] and start <= r['date'][:7] < end]
+            if idx:
+                out.append((min(idx), label, span))
+        L.append("    '%s': [" % gid)
+        for i, label, span in sorted(out):
+            L.append("      [%d, '%s', '%s']," % (i, label, span))
         L.append('    ],')
     L.append('  },')
     L.append('};')

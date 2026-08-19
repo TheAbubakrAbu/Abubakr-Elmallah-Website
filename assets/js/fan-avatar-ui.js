@@ -1,4 +1,4 @@
-/* fan-avatar-ui.js: the bioluminescent forest floor on /franchises/avatar/.
+/* fan-avatar-ui.js: the bioluminescent forest floor on /worlds/avatar/.
 
    LOAD ORDER MATTERS. Runs AFTER reveal.js, whole body in a try/catch. Sections
    start at opacity 0 and are revealed by reveal.js; a page script that throws

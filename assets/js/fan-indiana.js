@@ -1,4 +1,4 @@
-/* fan-indiana.js: content for /franchises/indiana-jones/. Rendered by fanpage.js. */
+/* fan-indiana.js: content for /worlds/indiana-jones/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: 'As a kid, through the LEGO games', note: 'I played LEGO Indiana Jones 1 and 2 to death before I had seen the films, which is a very specific way to meet a franchise and I would recommend it.' },
   sections: [

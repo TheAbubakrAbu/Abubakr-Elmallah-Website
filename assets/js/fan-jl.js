@@ -1,4 +1,4 @@
-/* fan-jl.js: content for /franchises/justice-league/. Rendered by fanpage.js.
+/* fan-jl.js: content for /worlds/justice-league/. Rendered by fanpage.js.
    The founding roster is drawn as a ring in the page itself. */
 window.FAN_PAGE = {
   when: { at: 'Since I was a kid, on the cartoons', note: 'The animated shows were on when I was small. This one is here for four characters rather than any devotion to the comics.' },
@@ -17,7 +17,7 @@ window.FAN_PAGE = {
         desc: 'I liked Batman v Superman more than most people did, and I liked the Snyder Cut a lot. The 2017 theatrical Justice League I did not hate either, which I gather is a minority position.',
         meta: 'Lowkey enjoyed them' },
       { title: 'Sitting lower than the rest', sub: 'Fair placement', tag: 'Ranking', accent: '#6f7f92',
-        desc: 'Everything above this on the franchises page I know inside out. This one I like from a distance, and it earns its spot on four characters and a good cartoon rather than devotion.',
+        desc: 'Everything above this on the worlds page I know inside out. This one I like from a distance, and it earns its spot on four characters and a good cartoon rather than devotion.',
         meta: 'Secondary, honestly' },
     ] },
 

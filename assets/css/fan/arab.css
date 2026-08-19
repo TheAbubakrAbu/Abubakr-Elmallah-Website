@@ -1,9 +1,9 @@
-/* fan/arab.css: /franchises/arab/ only.
+/* fan/arab.css: /worlds/arab/ only.
 
    The page is a page of writing, so the whole look is paper and ink: warm gold
    on near-black, ruled lines behind the hero, and every Arabic glyph set in
    Amiri at a size where the joins are actually visible. Nothing here is an
-   image — the letterforms are the artwork. */
+   image; the letterforms are the artwork. */
 
 body[data-fan="arab"] { --a: #e8c56a; }
 

@@ -1,4 +1,4 @@
-/* fan-batman.js: content for /franchises/batman/. Rendered by fanpage.js. */
+/* fan-batman.js: content for /worlds/batman/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: '5th grade, 2016\u201317', note: 'The cartoons since I was a kid, then properly in fifth grade with Injustice wallpapers on my Samsung. It got much bigger again when The Batman came out in 2022, in tenth grade, and The Dark Knight is still one of the best films ever made.' },
   sections: [

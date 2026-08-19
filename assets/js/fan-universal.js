@@ -1,4 +1,4 @@
-/* fan-universal.js: content for /franchises/universal-studios/. Rendered by fanpage.js.
+/* fan-universal.js: content for /worlds/universal-studios/. Rendered by fanpage.js.
    Every destination card links to its own official site. */
 window.FAN_PAGE = {
   when: { at: 'First visit 2015; properly 7th\u20138th grade, 2018\u201320', note: 'We went for three days about a year before the Wizarding World opened; I did not know a thing about Harry Potter yet. Transformers and Jurassic were what got me, and I really fell for the place in seventh and eighth grade.' },

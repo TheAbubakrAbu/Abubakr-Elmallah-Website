@@ -1,4 +1,4 @@
-/* fan-ninjago.js: content for /franchises/ninjago/. Rendered by fanpage.js. */
+/* fan-ninjago.js: content for /worlds/ninjago/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: 'Around 2012\u201313, age six or seven', note: 'Right after Star Wars, and for the same reason: I wanted the whole world of it, not just the episodes.' },
   sections: [

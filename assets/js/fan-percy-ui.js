@@ -1,4 +1,4 @@
-/* fan-percy-ui.js: the claiming, on /franchises/percy-jackson/.
+/* fan-percy-ui.js: the claiming, on /worlds/percy-jackson/.
 
    LOAD ORDER MATTERS. This runs AFTER reveal.js, and the whole body sits inside
    a try/catch. Sections on these pages start at opacity 0 and are revealed by

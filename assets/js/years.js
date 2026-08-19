@@ -6,7 +6,7 @@
      1. one square cover card per school year, which is all the page shows
         until you touch it;
      2. click a card and that year expands underneath into every photo it has,
-        in date order, as justified rows — each row filled left to right and
+        in date order, as justified rows: each row filled left to right and
         then given the one height that makes it land exactly on the container
         width, so nothing is cropped and there are no holes. The maths runs off
         the w/h in the data, so it is done before a single byte has loaded and
@@ -28,7 +28,7 @@
   var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
                 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-  var GAP = 10;       // gap between frames, px — keep in step with years.css
+  var GAP = 10;       // gap between frames, px; keep in step with years.css
 
   function fmt(d) {                       // '2024-05-30 18:06' -> '30 May 2024'
     if (!d) return '';
@@ -124,9 +124,19 @@
       var range = dates.length
         ? fmtShort(dates[0]) + ' – ' + fmtShort(dates[dates.length - 1])
         : 'undated';
-      var yr = '’' + g.span.slice(-2);           // '2020–21' -> ’21
+      /* '2020–21' -> ’21 for a single school year; an era card spanning
+         several years shows both ends: '2006–18' -> ’06–’18 */
+      var yr = '’' + g.span.slice(-2);
+      var yp = g.span.split('–');
+      if (yp.length === 2) {
+        var y0 = parseInt(yp[0], 10);
+        var y1 = parseInt(yp[0].slice(0, 2) + yp[1].slice(-2), 10);
+        if (y1 - y0 > 1) yr = '’' + yp[0].slice(-2) + '–’' + yp[1].slice(-2);
+      }
 
-      cards += '<button class="year-card reveal" type="button" data-group="' + g.id + '"'
+      /* the ID Pics card shows the whole group shot at its own aspect ratio,
+         double-wide, instead of a square centre crop of it */
+      cards += '<button class="year-card reveal' + (g.id === 'id-pics' ? ' year-card--wide' : '') + '" type="button" data-group="' + g.id + '"'
         + ' aria-expanded="false" aria-controls="ygp-' + g.id + '">'
         + '<img src="/assets/img/years/' + g.id + '/' + g.cover + '"'
         +   ' alt="Abubakr Elmallah, ' + esc(g.label.toLowerCase()) + ' year" loading="lazy" />'
@@ -141,11 +151,26 @@
         +   '<span class="yg-range">' + esc(range) + '</span>'
         +   '<span class="yg-n">' + rows.length + ' photo' + (rows.length === 1 ? '' : 's') + '</span>'
         +   '<button class="yg-shut" type="button">Close &#10005;</button>'
-        + '</div>'
-        + '<div class="yg" data-group="' + g.id + '">';
+        + '</div>';
+
+      /* One gallery, optionally divided: a group in DATA.chapters gets a small
+         heading and its own justified grid per chapter. data-i stays global
+         across the whole group, so the full-screen deck runs straight through
+         all of it, and layout() justifies each grid on its own. */
+      var chapters = (DATA.chapters && DATA.chapters[g.id]) || null;
+      var breaks = {};
+      if (chapters) chapters.forEach(function (c) { breaks[c[0]] = c; });
 
       rows.forEach(function (r, i) {
         var file = r[0], date = r[1], w = r[2], h = r[3];
+        if (breaks[i]) {
+          panels += (i > 0 ? '</div>' : '')
+            + '<h5 class="yg-chap">' + esc(breaks[i][1])
+            + '<span>' + esc(breaks[i][2]) + '</span></h5>'
+            + '<div class="yg" data-group="' + g.id + '">';
+        } else if (i === 0) {
+          panels += '<div class="yg" data-group="' + g.id + '">';
+        }
         var alt = 'Abubakr Elmallah, ' + g.label.toLowerCase()
                 + (date ? ', ' + fmt(date) : '');
         panels += '<button class="yg-cell"'
@@ -165,7 +190,7 @@
     /* An accordion rather than a stack of every year at once: the point of
        going back to the cards is that the page stays short until you ask it
        not to be. Photos inside a closed panel are display:none, so the browser
-       never fetches them — opening one year pulls that year and nothing else. */
+       never fetches them: opening one year pulls that year and nothing else. */
     function shut(panel) {
       var card = mount.querySelector('.year-card[data-group="' + panel.dataset.group + '"]');
       panel.classList.remove('in');
@@ -219,7 +244,7 @@
      row left to right in date order, then solve for the one row height that
      makes the row come out exactly the width of the container. Every photo
      keeps its own aspect ratio, nothing is cropped, nothing is out of order and
-     there are no holes — the rows just breathe in and out a bit. */
+     there are no holes; the rows just breathe in and out a bit. */
   function layout() {
     document.querySelectorAll('.yg').forEach(function (grid) {
       var W = grid.clientWidth;

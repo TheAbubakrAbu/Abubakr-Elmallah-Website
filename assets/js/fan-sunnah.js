@@ -1,7 +1,7 @@
-/* fan-sunnah.js: content for /franchises/sunnah/. Rendered by fanpage.js.
+/* fan-sunnah.js: content for /worlds/sunnah/. Rendered by fanpage.js.
 
    Sits under Islam in the identity row, next to the Qurʾān page. The Qurʾān
-   page is about the Book as sound; this one is about the second source — what
+   page is about the Book as sound; this one is about the second source: what
    the Prophet ﷺ said, did and approved of, how it was carried and graded, and
    the habits it still delivers into an ordinary day. The Hadith JSON Engine
    exists because this page’s subject deserved clean data. */
@@ -13,7 +13,7 @@ window.FAN_PAGE = {
     lede: 'Three kinds of report, one standard of evidence. A ḥadīth is not a quotation floating loose; it is a text plus the named chain of people who carried it, and the chain is the part the scholars spent their lives on.',
     items: [
       { title: 'Qawl', sub: 'قول · What he said', tag: 'Sayings', accent: '#6fcfa4',
-        desc: 'The words themselves: rulings, warnings, duʿāʾs, and one-line sentences that have organised whole lives — actions are by intentions, the best of you are the best to their families, say good or stay silent.',
+        desc: 'The words themselves: rulings, warnings, duʿāʾs, and one-line sentences that have organised whole lives: actions are by intentions, the best of you are the best to their families, say good or stay silent.',
         meta: 'The largest category' },
       { title: 'Fiʿl', sub: 'فعل · What he did', tag: 'Actions', accent: '#e8c56a',
         desc: 'How he ﷺ prayed, fasted, ate, slept and dealt with people, observed and reported by the companions in detail. The prayer you see in any mosque tonight is a seventh-century motion, transmitted body to body.',
@@ -42,7 +42,7 @@ window.FAN_PAGE = {
         desc: 'The first collection to print its grades on the page: ṣaḥīḥ, ḥasan, gharīb, after each report, plus which scholars acted on it. The most transparent methodology of the six.',
         meta: '~3,956' },
       { title: 'Sunan an-Nasāʾī', sub: 'Aḥmad an-Nasāʾī · d. 915', tag: 'Precision', accent: '#e0b84f',
-        desc: 'The strictest of the four Sunan on narrators — closest in rigour to the two Ṣaḥīḥs, with a fineness for spotting subtle defects in chains that other collectors missed.',
+        desc: 'The strictest of the four Sunan on narrators: closest in rigour to the two Ṣaḥīḥs, with a fineness for spotting subtle defects in chains that other collectors missed.',
         meta: '~5,758' },
       { title: 'Sunan Ibn Mājah', sub: 'Ibn Mājah al-Qazwīnī · d. 887', tag: 'The sixth', accent: '#a05fd0',
         desc: 'The most debated seat in the canon: it carries reports the others left out, which is both its value and its weakness. Graded ḥadīth by ḥadīth, it completes the six.',
@@ -52,17 +52,17 @@ window.FAN_PAGE = {
   { id: 'isnad', kind: 'timeline', title: 'The Isnād', note: 'how a sentence survives 1,400 years',
     items: [
       { when: '610–632', title: 'The words are said', desc: 'The Prophet ﷺ teaches for twenty-three years in front of thousands of companions, many of whom memorise professionally the way their culture memorised poetry: exactly.' },
-      { when: '632–700', title: 'The companions carry it', desc: 'Abū Hurayrah, ʿĀʾishah, Ibn ʿUmar, Anas and hundreds more transmit what they saw and heard, each report tagged with who heard it from whom. The isnād — the chain — is born as a habit before it is a science.' },
+      { when: '632–700', title: 'The companions carry it', desc: 'Abū Hurayrah, ʿĀʾishah, Ibn ʿUmar, Anas and hundreds more transmit what they saw and heard, each report tagged with who heard it from whom. The isnād, the chain, is born as a habit before it is a science.' },
       { when: '717–720', title: 'The order to write', desc: 'Caliph ʿUmar ibn ʿAbd al-ʿAzīz orders the systematic writing-down of ḥadīth, worried the carriers were dying faster than the knowledge was settling.' },
       { when: 'c. 767', title: 'The Muwaṭṭaʾ', desc: 'Mālik ibn Anas compiles the first great organised collection in Madinah, the city where the Sunnah was still a living practice you could watch out the window.' },
       { when: '810–875', title: 'The sifting', desc: 'Al-Bukhārī and Muslim apply the hardest filter in the tradition: biography of every narrator, proof the links met, cross-checking of every text. Ḥadīth criticism becomes the most sophisticated information-audit of the medieval world.' },
-      { when: '9th–10th c.', title: 'The canon settles', desc: 'The six books take their place, alongside the narrator encyclopaedias — ʿilm ar-rijāl, the science of men — recording the memory, honesty and travels of tens of thousands of transmitters.' },
+      { when: '9th–10th c.', title: 'The canon settles', desc: 'The six books take their place, alongside the narrator encyclopaedias (ʿilm ar-rijāl, the science of men), recording the memory, honesty and travels of tens of thousands of transmitters.' },
       { when: '1233–1277', title: 'An-Nawawī', desc: 'The great organiser: his Forty Ḥadīth puts the essentials in one short list, and Riyāḍ aṣ-Ṣāliḥīn arranges the Sunnah by the life it is meant to produce. Still the two most-read ḥadīth books in the world.' },
-      { when: 'Now', title: 'The corpus goes digital', desc: 'Sunnah.com puts the collections online with gradings attached; my Hadith JSON Engine turns them into clean structured data — 50,884 ḥadīth, 21,455 gradings — because scraped HTML was quietly mangling a 1,400-year-old archive.' },
+      { when: 'Now', title: 'The corpus goes digital', desc: 'Sunnah.com puts the collections online with gradings attached; my Hadith JSON Engine turns them into clean structured data (50,884 ḥadīth, 21,455 gradings) because scraped HTML was quietly mangling a 1,400-year-old archive.' },
     ] },
 
   { id: 'grades', kind: 'tiles', title: 'The Grading', note: 'every report carries a verdict', compact: true,
-    lede: 'Ḥadīth are not all equal and were never claimed to be — the tradition itself built the ranking system, and honesty about weak reports is a feature of the science, not an embarrassment to it.',
+    lede: 'Ḥadīth are not all equal and were never claimed to be; the tradition itself built the ranking system, and honesty about weak reports is a feature of the science, not an embarrassment to it.',
     items: [
       { title: 'Mutawātir', accent: '#6fcfa4', sub: 'متواتر', desc: 'Mass-transmitted: so many independent chains that fabrication is impossible. The prayer itself travels this way.' },
       { title: 'Ṣaḥīḥ', accent: '#6fcfa4', sub: 'صحيح', desc: 'Authentic: unbroken chain of reliable, precise narrators, no hidden defect. The standard for creed and law.' },
@@ -76,9 +76,9 @@ window.FAN_PAGE = {
     lede: 'The reason this page sits in the identity row: the Sunnah is not an archive I admire, it is the operating system of an ordinary day, and most of it is small on purpose.',
     items: [
       { title: 'The miswāk', accent: '#e8c56a', sub: 'Teeth, before prayer', desc: 'A toothbrush tree twig, recommended fourteen centuries before dentistry agreed.' },
-      { title: 'Right side first', accent: '#6fcfa4', sub: 'Shoes, doors, dressing', desc: 'Begin with the right in honourable things. A habit so small it disappears — until you notice everyone doing it.' },
+      { title: 'Right side first', accent: '#6fcfa4', sub: 'Shoes, doors, dressing', desc: 'Begin with the right in honourable things. A habit so small it disappears, until you notice everyone doing it.' },
       { title: 'Bismillāh, then eat', accent: '#e0b84f', sub: 'And with the right hand', desc: 'Name Allah, eat from what is in front of you, and stop before you are full. Three sentences of table manners, kept for 1,400 years.' },
-      { title: 'The greeting', accent: '#5fa3ec', sub: 'As-salāmu ʿalaykum', desc: 'Peace be upon you — said first, said to strangers, and answered with more than you were given.' },
+      { title: 'The greeting', accent: '#5fa3ec', sub: 'As-salāmu ʿalaykum', desc: 'Peace be upon you: said first, said to strangers, and answered with more than you were given.' },
       { title: 'Sleep on the right', accent: '#a05fd0', sub: 'With the last two sūrahs', desc: 'Wudūʾ, the right side, the muʿawwidhatān over the palms. The day closes the way it opened: deliberately.' },
       { title: 'A smile is charity', accent: '#6fcfa4', sub: 'Ṣadaqah, priced at zero', desc: 'The Sunnah counts a smile at your brother as charity, which reprices every hallway you ever walk down.' },
     ] },

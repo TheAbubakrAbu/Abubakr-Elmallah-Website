@@ -344,7 +344,7 @@
   if (holyRoot && M) holyRoot.innerHTML = M.holy.map(holyCard).join('');
 
   /* The rest of ISL_MOSQUES.famous, on whichever page provides a #mosques
-     mount. Only /franchises/islam/ does; a page without one just renders the
+     mount. Only /worlds/islam/ does; a page without one just renders the
      three holy mosques above and stops, which is what /al-islam/ used to do
      with the whole file. */
   var msqRoot = document.getElementById('mosques');

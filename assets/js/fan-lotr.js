@@ -1,4 +1,4 @@
-/* fan-lotr.js: content for /franchises/lord-of-the-rings/. Rendered by fanpage.js. */
+/* fan-lotr.js: content for /worlds/lord-of-the-rings/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
   when: { at: '1st year of college, 2024\u201325', note: 'First year of college. I love the trilogy, the book is alright, and I genuinely dislike the Hobbit films.' },
   sections: [

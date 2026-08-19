@@ -1,4 +1,4 @@
-/* fan-arab-ui.js: the two interactive blocks on /franchises/arab/.
+/* fan-arab-ui.js: the two interactive blocks on /worlds/arab/.
 
    LOAD ORDER MATTERS. Runs AFTER reveal.js, whole body in a try/catch, for the
    same reason fan-lego-ui.js does: sections start at opacity 0 and are revealed
@@ -6,14 +6,14 @@
 
    1. THE ALPHABET. Twenty-eight letters, each shown in all the shapes it takes
       depending on where it stands in a word. The forms are NOT hard-coded from
-      the Arabic Presentation Forms block — that would be a list of two hundred
+      the Arabic Presentation Forms block; that would be a list of two hundred
       codepoints to get wrong. Instead each form is the plain letter wrapped in
       zero-width joiners (U+200D), which is exactly what a joiner is for: it
       tells the shaping engine "there is a letter attached on this side", and
       the font resolves the correct glyph itself. One codepoint per letter, and
       it stays right in any font.
 
-      Six letters — ا د ذ ر ز و — never join to the letter that FOLLOWS them.
+      Six letters (ا د ذ ر ز و) never join to the letter that FOLLOWS them.
       They therefore have no initial or medial shape at all, which is not a gap
       in the data: it is the rule that makes Arabic words break where they do.
 
@@ -108,14 +108,14 @@
           { w: 'مكتوب', tr: 'maktūb', m: 'written; a letter' },
         ] },
       { id: 'slm', root: 'س ل م', tr: 's–l–m', sense: 'wholeness, peace, submission',
-        note: 'The one worth knowing. Peace, the religion, and the person who follows it are not three related words — they are one word in three shapes.',
+        note: 'The one worth knowing. Peace, the religion, and the person who follows it are not three related words; they are one word in three shapes.',
         words: [
           { w: 'سلام', tr: 'salām', m: 'peace' },
           { w: 'إسلام', tr: 'islām', m: 'submitting to God' },
           { w: 'مسلم', tr: 'muslim', m: 'one who submits' },
           { w: 'سليم', tr: 'salīm', m: 'sound, intact, unharmed' },
           { w: 'تسليم', tr: 'taslīm', m: 'handing over safely' },
-          { w: 'سلم', tr: 'sullam', m: 'a ladder — what gets you up safely' },
+          { w: 'سلم', tr: 'sullam', m: 'a ladder: what gets you up safely' },
         ] },
       { id: 'ilm', root: 'ع ل م', tr: 'ʿ–l–m', sense: 'knowing',
         note: 'Science, scholar, teacher, education and a single fact are all the same three letters in different moulds.',
@@ -125,7 +125,7 @@
           { w: 'معلم', tr: 'muʿallim', m: 'a teacher' },
           { w: 'تعليم', tr: 'taʿlīm', m: 'education' },
           { w: 'معلومة', tr: 'maʿlūmah', m: 'a piece of information' },
-          { w: 'عالم', tr: 'ʿālam', m: 'the world — all that is known' },
+          { w: 'عالم', tr: 'ʿālam', m: 'the world: all that is known' },
         ] },
       { id: 'hmd', root: 'ح م د', tr: 'ḥ–m–d', sense: 'praise',
         note: 'Including two of the most common names on earth, both of which simply mean praised.',
