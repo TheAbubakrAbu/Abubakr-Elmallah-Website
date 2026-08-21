@@ -13,8 +13,18 @@
         the layout never jumps;
      3. click a photo and it opens full-screen, with arrows, swipe and keyboard.
 
-   Closed years are display:none, so their photos are never fetched: the page
-   costs six cover images until you ask for more.
+   Closed years are display:none, so their photos are never fetched, and a
+   year's grid is not even BUILT until the first time it is opened. That second
+   part matters more than it sounds: /high-school/ has 666 photos across its
+   years, and writing all of them out at load cost ~2,500 DOM nodes and a 112 ms
+   scripting block on a mid-range phone before the page could show anything.
+   Now the page costs six cover images and nothing else, and the work of laying
+   out a year happens when that year is asked for.
+
+   Stage 2 and 3 are behind the "show other pictures" switch at the bottom of
+   the page (pics.js). With it off -- which is the default -- the cards are all
+   there is: no counts on them, and clicking one does nothing. The photos are
+   personal and the covers are the part of them that is meant to be public.
 
    Mount it by putting <div class="years" data-years="hs"></div> (or "uci") on
    the page. The full-screen deck is this file's own overlay rather than the
@@ -43,6 +53,17 @@
 
   function esc(s) {
     return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+  }
+
+  /* Where a photo actually lives.
+
+     Normally a row's file is just a name inside its own group's folder. A file
+     containing a slash is a path relative to /assets/img/years/ instead, which
+     is how one photograph appears in two galleries without being stored twice:
+     the four school ID cards are encoded in their own year, and the ID Pics card
+     points at those same four files. See ALIASES in tools/photos.py. */
+  function url(gid, file) {
+    return '/assets/img/years/' + (file.indexOf('/') >= 0 ? file : gid + '/' + file);
   }
 
   /* ── the deck ── */
@@ -114,16 +135,11 @@
     var groups = DATA.groups.filter(function (g) { return g.school === school; })
                             .filter(function (g) { return (DATA.photos[g.id] || []).length; });
     var cards = '', panels = '';
+    var byId = {};
+    groups.forEach(function (g) { byId[g.id] = g; });
 
     groups.forEach(function (g) {
       var rows = DATA.photos[g.id];
-      /* min–max rather than first–last: the ID photo is pinned to the front
-         of its year whatever its date says, so row order is no longer the
-         same thing as date order. The strings sort lexically as dates do. */
-      var dates = rows.map(function (r) { return r[1]; }).filter(Boolean).sort();
-      var range = dates.length
-        ? fmtShort(dates[0]) + ' – ' + fmtShort(dates[dates.length - 1])
-        : 'undated';
       /* '2020–21' -> ’21 for a single school year; an era card spanning
          several years shows both ends: '2006–18' -> ’06–’18 */
       var yr = '’' + g.span.slice(-2);
@@ -138,14 +154,29 @@
          double-wide, instead of a square centre crop of it */
       cards += '<button class="year-card reveal' + (g.id === 'id-pics' ? ' year-card--wide' : '') + '" type="button" data-group="' + g.id + '"'
         + ' aria-expanded="false" aria-controls="ygp-' + g.id + '">'
-        + '<img src="/assets/img/years/' + g.id + '/' + g.cover + '"'
-        +   ' alt="Abubakr Elmallah, ' + esc(g.label.toLowerCase()) + ' year" loading="lazy" />'
+        + '<img src="' + url(g.id, g.cover) + '"'
+        +   ' alt="Abubakr Elmallah, ' + esc(g.label.toLowerCase()) + ' year"'
+        +   ' loading="lazy" decoding="async" fetchpriority="low" />'
         + '<span class="year-cap">' + esc(g.label) + ' <i>' + yr + '</i></span>'
         + '<span class="year-more">' + rows.length + '</span>'
         + '</button>';
 
-      panels += '<section class="yg-panel" id="ygp-' + g.id + '" data-group="' + g.id + '" hidden>'
-        + '<div class="yg-head">'
+      /* the shell only; body() below fills it in on first open */
+      panels += '<section class="yg-panel" id="ygp-' + g.id + '" data-group="' + g.id + '" hidden></section>';
+    });
+
+    /* Everything inside a year: the header row, then the justified grid(s).
+       Called once per year, the first time that year is opened. */
+    function body(g) {
+      var rows = DATA.photos[g.id];
+      /* min–max rather than first–last: the ID photo is pinned to the front
+         of its year whatever its date says, so row order is no longer the
+         same thing as date order. The strings sort lexically as dates do. */
+      var dates = rows.map(function (r) { return r[1]; }).filter(Boolean).sort();
+      var range = dates.length
+        ? fmtShort(dates[0]) + ' – ' + fmtShort(dates[dates.length - 1])
+        : 'undated';
+      var out = '<div class="yg-head">'
         +   '<h4>' + esc(g.label) + '</h4>'
         +   '<span class="yg-span">' + esc(g.span) + '</span>'
         +   '<span class="yg-range">' + esc(range) + '</span>'
@@ -164,28 +195,40 @@
       rows.forEach(function (r, i) {
         var file = r[0], date = r[1], w = r[2], h = r[3];
         if (breaks[i]) {
-          panels += (i > 0 ? '</div>' : '')
+          out += (i > 0 ? '</div>' : '')
             + '<h5 class="yg-chap">' + esc(breaks[i][1])
             + '<span>' + esc(breaks[i][2]) + '</span></h5>'
             + '<div class="yg" data-group="' + g.id + '">';
         } else if (i === 0) {
-          panels += '<div class="yg" data-group="' + g.id + '">';
+          out += '<div class="yg" data-group="' + g.id + '">';
         }
         var alt = 'Abubakr Elmallah, ' + g.label.toLowerCase()
                 + (date ? ', ' + fmt(date) : '');
-        panels += '<button class="yg-cell"'
+        out += '<button class="yg-cell"'
           + ' data-i="' + i + '" data-w="' + w + '" data-h="' + h + '" type="button">'
-          + '<img src="/assets/img/years/' + g.id + '/' + file + '" alt="' + esc(alt) + '"'
-          +   ' width="' + w + '" height="' + h + '" loading="lazy" decoding="async" />'
+          + '<img src="' + url(g.id, file) + '" alt="' + esc(alt) + '"'
+          +   ' width="' + w + '" height="' + h + '" loading="lazy" decoding="async" fetchpriority="low" />'
           + '<span class="yg-when">' + (date ? esc(fmt(date)) : '&#183;') + '</span>'
           + '</button>';
       });
 
-      panels += '</div></section>';
-    });
+      return out + '</div>';
+    }
+
+    function fill(panel) {
+      if (panel.dataset.built) return;
+      panel.dataset.built = '1';
+      panel.innerHTML = body(byId[panel.dataset.group]);
+    }
 
     mount.innerHTML = '<div class="years-grid">' + cards + '</div>'
                     + '<div class="yg-panels">' + panels + '</div>';
+
+    /* The covers are fetchpriority="low": the browser starts them with
+       everything else but serves them after the CSS, the scripts and the fonts,
+       so they fill in last without leaving the connection idle waiting for a
+       load event. The cards are already their final size (aspect-ratio in
+       components.css), so nothing moves when the photographs land in them. */
 
     /* An accordion rather than a stack of every year at once: the point of
        going back to the cards is that the page stays short until you ask it
@@ -198,13 +241,19 @@
       if (card) { card.classList.remove('is-open'); card.setAttribute('aria-expanded', 'false'); }
     }
 
+    /* the switch at the bottom of the page decides whether a card is a button
+       at all; with it off the click is simply dropped */
+    function picsOn() { return !!(window.AEpics && window.AEpics.on()); }
+
     mount.querySelectorAll('.year-card').forEach(function (card) {
       card.addEventListener('click', function () {
+        if (!picsOn()) return;
         var panel = mount.querySelector('.yg-panel[data-group="' + card.dataset.group + '"]');
         var wasOpen = !panel.hidden;
         mount.querySelectorAll('.yg-panel:not([hidden])').forEach(shut);
         if (wasOpen) return;                       // clicking the open year closes it
 
+        fill(panel);                               // first open: write the grid out now
         panel.hidden = false;
         card.classList.add('is-open');
         card.setAttribute('aria-expanded', 'true');
@@ -215,26 +264,48 @@
       });
     });
 
-    mount.querySelectorAll('.yg-shut').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var panel = b.closest('.yg-panel');
-        shut(panel);
-        var card = mount.querySelector('.year-card[data-group="' + panel.dataset.group + '"]');
-        if (card) card.scrollIntoView({ block: 'center', behavior: 'smooth' });
-      });
+    /* Delegated, not bound per element: the Close button and the photo cells
+       are written by body() the first time a year is opened, so there is
+       nothing to bind to when this runs. */
+    mount.addEventListener('click', function (e) {
+      var b = e.target.closest('.yg-shut');
+      if (!b) return;
+      var panel = b.closest('.yg-panel');
+      shut(panel);
+      var card = mount.querySelector('.year-card[data-group="' + panel.dataset.group + '"]');
+      if (card) card.scrollIntoView({ block: 'center', behavior: 'smooth' });
     });
 
-    // clicking any photo in an open year opens the deck at that photo
-    mount.querySelectorAll('.yg').forEach(function (grid) {
-      var g = DATA.groups.filter(function (x) { return x.id === grid.dataset.group; })[0];
-      var list = DATA.photos[grid.dataset.group].map(function (r) {
-        return { src: '/assets/img/years/' + grid.dataset.group + '/' + r[0], date: r[1],
-                 alt: 'Abubakr Elmallah, ' + g.label.toLowerCase() };
-      });
-      grid.addEventListener('click', function (e) {
-        var cell = e.target.closest('.yg-cell');
-        if (cell) open(list, g.label + ' ' + g.span, +cell.dataset.i);
-      });
+    /* Turning the switch back off has to put the page back the way it was, so
+       an open year folds up rather than being left showing behind a switch
+       that says the pictures are hidden. */
+    document.addEventListener('ae:pics', function (e) {
+      if (e.detail && e.detail.on) return;
+      mount.querySelectorAll('.yg-panel:not([hidden])').forEach(shut);
+      close();
+    });
+
+    /* clicking any photo in an open year opens the deck at that photo.
+       The deck's list is worked out the first time that year is used and kept,
+       so paging through 200 photos does not rebuild it on every arrow press. */
+    var lists = {};
+    function listFor(g) {
+      if (!lists[g.id]) {
+        lists[g.id] = DATA.photos[g.id].map(function (r) {
+          return { src: url(g.id, r[0]), date: r[1],
+                   alt: 'Abubakr Elmallah, ' + g.label.toLowerCase() };
+        });
+      }
+      return lists[g.id];
+    }
+
+    mount.addEventListener('click', function (e) {
+      var cell = e.target.closest('.yg-cell');
+      if (!cell) return;
+      var panel = cell.closest('.yg-panel');
+      if (!panel) return;
+      var g = byId[panel.dataset.group];
+      open(listFor(g), g.label + ' ' + g.span, +cell.dataset.i);
     });
   });
 

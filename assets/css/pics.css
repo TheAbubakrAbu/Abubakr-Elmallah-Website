@@ -1,0 +1,93 @@
+/* pics.css: the "show other pictures" switch, and everything it hides.
+
+   The default is OFF, and OFF is written as the plain rule with ON as the
+   override rather than the other way round. That is on purpose: the photo
+   counts live in the static HTML of the headings, so if hiding them depended on
+   pics.js having run they would be painted first and then yanked. This way the
+   page is never briefly wrong. */
+
+/* ── the counts ──
+   .pic-n wraps the count inside a heading ("466 photos · " out of
+   "466 photos · 2020 – 2024"); .year-more is the badge on a year card;
+   .tv-photo-n the badge on a trip cover; .yg-n the count in an open panel. */
+.pic-n,
+.year-card .year-more,
+.tv-photo .tv-photo-n,
+.yg-head .yg-n { display: none; }
+
+html[data-show-pics="on"] .pic-n { display: inline; }
+html[data-show-pics="on"] .year-card .year-more,
+html[data-show-pics="on"] .tv-photo .tv-photo-n,
+html[data-show-pics="on"] .yg-head .yg-n { display: block; }
+
+/* the count and the close button share a row; without the count the button
+   still has to sit hard right, so the margin moves onto whichever comes first */
+.yg-head .yg-shut { margin-left: auto; }
+html[data-show-pics="on"] .yg-head .yg-shut { margin-left: 0; }
+
+/* ── the covers, while the galleries are shut ──
+   The cards still hover and still look like themselves; they just do not claim
+   to be buttons, because years.js / travels.js return early on the click and a
+   pointer cursor promising something that never happens is worse than none. */
+html:not([data-show-pics="on"]) .year-card,
+html:not([data-show-pics="on"]) .tv-photo { cursor: default; }
+html:not([data-show-pics="on"]) .year-card:active,
+html:not([data-show-pics="on"]) .tv-photo:active { transform: none; }
+
+/* ── the switch ──
+   Sits between the last section and the footer, quiet enough that you only find
+   it if you have read to the bottom of the page and gone looking. */
+.picsw {
+  display: flex; justify-content: center;
+  margin: 3.5rem auto 0.5rem;
+  padding: 0 var(--gutter);
+}
+
+.picsw-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid transparent; border-radius: 100px;
+  background: transparent; cursor: pointer;
+  font-family: var(--mono); font-size: 0.62rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--mute);
+  opacity: 0.38;
+  transition: opacity .3s var(--ease), color .3s, border-color .3s, background .3s;
+}
+
+.picsw-btn:hover,
+.picsw-btn:focus-visible {
+  opacity: 1; color: var(--ink-dim);
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.picsw-btn:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+
+.picsw-track {
+  position: relative; display: block;
+  width: 30px; height: 16px; flex: 0 0 auto;
+  border: 1px solid var(--line); border-radius: 100px;
+  background: rgba(255, 255, 255, 0.04);
+  transition: background .25s, border-color .25s;
+}
+
+.picsw-knob {
+  position: absolute; top: 2px; left: 2px;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--mute);
+  transition: transform .25s var(--ease), background .25s;
+}
+
+/* on */
+.picsw-btn[aria-checked="true"] { opacity: 1; color: var(--green-2); }
+.picsw-btn[aria-checked="true"] .picsw-track {
+  background: rgba(31, 157, 92, 0.22); border-color: var(--green);
+}
+.picsw-btn[aria-checked="true"] .picsw-knob {
+  background: var(--green-2); transform: translateX(14px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .picsw-btn, .picsw-track, .picsw-knob { transition: none; }
+}

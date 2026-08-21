@@ -44,10 +44,18 @@
   ov.className = 'intro intro--' + skin;
 
   if (type === 'home') {
+    /* the circle mark is the site's logo: the favicon, the app icon on a home
+       screen and the og:image are all this same file, so the launch screen
+       opening with it is the app opening with its own icon. Preloaded in
+       index.html, so it is on screen with the name rather than after it. */
     ov.innerHTML =
       '<div class="intro-panel intro-panel--l"></div>' +
       '<div class="intro-panel intro-panel--r"></div>' +
-      '<div class="intro-center"><span class="intro-name">Abubakr Elmallah</span><span class="intro-line"></span></div>';
+      '<div class="intro-center">' +
+        '<img class="intro-logo" src="/assets/img/me/abubakr-circle.png" alt="" aria-hidden="true" width="512" height="512" />' +
+        '<span class="intro-name">Abubakr Elmallah</span>' +
+        '<span class="intro-line"></span>' +
+      '</div>';
   } else if (type === 'starwars') {
     ov.innerHTML = '<canvas class="intro-stars"></canvas><span class="intro-sw">Star&nbsp;Wars</span>';
   } else if (type === 'alislam') {
@@ -94,8 +102,8 @@
       '</div><span class="intro-proj-title">Worlds</span>';
   } else if (type === 'school' || type === 'education') {
     // one photo per year, oldest first, out of the year galleries
-    const ph = ['hs-freshman/2021-07-20-0812.jpg', 'hs-sophomore/2022-05-02-2049.jpg',
-                'hs-junior/2022-10-21-1416.jpg', 'hs-senior/2024-05-30-1806.jpg'];
+    const ph = ['hs-freshman/2021-07-20-0812.avif', 'hs-sophomore/2022-05-02-2049.avif',
+                'hs-junior/2022-10-21-1416.avif', 'hs-senior/2024-05-30-1806.avif'];
     ov.innerHTML =
       '<div class="intro-fan">' +
       ph.map((s, i) => '<img class="intro-photo" style="animation-delay:' + (i * 55) + 'ms" src="/assets/img/years/' + s + '" alt="" aria-hidden="true">').join('') +

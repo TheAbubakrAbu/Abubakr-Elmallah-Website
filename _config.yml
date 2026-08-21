@@ -3,3 +3,17 @@
 # so previously shared links (and search-indexed pages) don't 404.
 plugins:
   - jekyll-redirect-from
+
+# Repo housekeeping is not site content: without this list the deploy shipped
+# README.md, LICENSE, the run script and tools/photos.py verbatim. Jekyll 3
+# replaces its default exclude list the moment this key exists, so the
+# Gemfile/vendor entries are restated rather than lost.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules
+  - README.md
+  - LICENSE
+  - run
+  - tools

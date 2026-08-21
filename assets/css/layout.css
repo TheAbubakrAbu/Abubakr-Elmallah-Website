@@ -253,6 +253,38 @@ a.footer-mid:hover { color: var(--green-2); }
   box-shadow: 0 1px 0 rgba(255,255,255,0.16) inset, 0 4px 12px rgba(0,0,0,0.28);
 }
 
+/* ── the tap is registered, even when the page has not arrived yet ──
+   utils.js sets these the moment a link is clicked. Without them a navigation
+   on a weak connection paints nothing at all and the tab bar reads as dead. */
+.tabbar a.is-going {
+  color: var(--green-2);
+  background: linear-gradient(160deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
+  box-shadow: 0 1px 0 rgba(255,255,255,0.18) inset, 0 4px 12px rgba(0,0,0,0.3);
+}
+.tabbar a.is-going svg { animation: tab-going 1s var(--ease) infinite; }
+@keyframes tab-going { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+
+/* hairline progress along the very top of the screen */
+.navbar-progress {
+  position: fixed; top: 0; left: 0; z-index: 12500;
+  height: 2px; width: 0;
+  background: linear-gradient(90deg, var(--green), var(--blue) 60%, var(--gold));
+  box-shadow: 0 0 10px rgba(31, 157, 92, 0.7);
+  opacity: 0; pointer-events: none;
+}
+/* creeps to 90% and waits there: the last 10% is the new document arriving */
+.navbar-progress.run { opacity: 1; animation: nav-progress 10s cubic-bezier(.06,.76,.2,1) forwards; }
+@keyframes nav-progress {
+  0%   { width: 0; }
+  30%  { width: 55%; }
+  100% { width: 90%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabbar a.is-going svg { animation: none; }
+  .navbar-progress.run { animation: none; width: 90%; }
+}
+
 /* keep content & footer clear of the floating bar */
 body { padding-bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
 

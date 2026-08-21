@@ -22,7 +22,15 @@ permalink: /elmallah/
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<!-- Fonts are loaded WITHOUT blocking the first paint. As a plain
+     stylesheet this held the whole page blank until Google answered,
+     which on a weak connection is most of "it opens but it loads
+     slowly". media="print" makes the browser fetch it at low priority
+     and render immediately; onload promotes it to the real stylesheet.
+     Every family here already carries display=swap, so text is on
+     screen in the fallback face straight away and swaps when it lands. -->
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/elmallah.css' %}" />
 <noscript><style>
@@ -161,12 +169,12 @@ permalink: /elmallah/
         <div class="el-motes" id="elMotes" aria-hidden="true"></div>
         <div class="el-cube-stage" id="elStage">
           <div class="el-cube" id="elCube" aria-hidden="true">
-            <span class="f1"><img src="../assets/img/apps/datapad.jpg" alt="" /></span>
-            <span class="f2"><img src="../assets/img/apps/aurebesh-translator.jpg" alt="" /></span>
-            <span class="f3"><img src="../assets/img/bots/sabacc-droid.png" alt="" /></span>
-            <span class="f4"><img src="../assets/img/bots/aurebesh-droid.jpg" alt="" /></span>
-            <span class="f5"><img src="../assets/img/apps/datapad.jpg" alt="" /></span>
-            <span class="f6"><img src="../assets/img/apps/aurebesh-translator.jpg" alt="" /></span>
+            <span class="f1"><img loading="lazy" decoding="async" src="../assets/img/apps/datapad.jpg" alt="" /></span>
+            <span class="f2"><img loading="lazy" decoding="async" src="../assets/img/apps/aurebesh-translator.jpg" alt="" /></span>
+            <span class="f3"><img loading="lazy" decoding="async" src="../assets/img/bots/sabacc-droid.png" alt="" /></span>
+            <span class="f4"><img loading="lazy" decoding="async" src="../assets/img/bots/aurebesh-droid.jpg" alt="" /></span>
+            <span class="f5"><img loading="lazy" decoding="async" src="../assets/img/apps/datapad.jpg" alt="" /></span>
+            <span class="f6"><img loading="lazy" decoding="async" src="../assets/img/apps/aurebesh-translator.jpg" alt="" /></span>
           </div>
           <div class="el-heart" aria-hidden="true"></div>
           <div class="el-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -220,42 +228,42 @@ permalink: /elmallah/
         <div class="el-h el-h--y">Personal Fleet</div>
         <div class="el-craft">
           <a class="el-craft-row" href="/star-wars/" data-lock>
-            <img src="../assets/img/apps/aurebesh-translator.jpg" alt="" />
+            <img loading="lazy" decoding="async" src="../assets/img/apps/aurebesh-translator.jpg" alt="" />
             <span class="el-craft-b"><span class="el-craft-t">Aurebesh Translator</span><span class="el-craft-m">2024 · Free · 4 platforms</span></span>
             <span class="el-craft-s">ACTIVE</span>
           </a>
           <a class="el-craft-row" href="/star-wars/" data-lock>
-            <img src="../assets/img/apps/datapad.jpg" alt="" />
+            <img loading="lazy" decoding="async" src="../assets/img/apps/datapad.jpg" alt="" />
             <span class="el-craft-b"><span class="el-craft-t">Datapad · Aurebesh Translator</span><span class="el-craft-m">2023 · Top 10 · Entertainment</span></span>
             <span class="el-craft-s">ACTIVE</span>
           </a>
           <a class="el-craft-row" href="/star-wars/" data-lock>
-            <img src="../assets/img/bots/sabacc-droid.png" alt="" />
+            <img loading="lazy" decoding="async" src="../assets/img/bots/sabacc-droid.png" alt="" />
             <span class="el-craft-b"><span class="el-craft-t">Sabacc Droid</span><span class="el-craft-m">2024 · Discord · Python</span></span>
             <span class="el-craft-s">ACTIVE</span>
           </a>
           <a class="el-craft-row" href="/star-wars/" data-lock>
-            <img src="../assets/img/bots/aurebesh-droid.jpg" alt="" />
+            <img loading="lazy" decoding="async" src="../assets/img/bots/aurebesh-droid.jpg" alt="" />
             <span class="el-craft-b"><span class="el-craft-t">Aurebesh Droid</span><span class="el-craft-m">2025 · Discord · C++</span></span>
             <span class="el-craft-s">ACTIVE</span>
           </a>
           <a class="el-craft-row is-off" href="/projects/" data-lock>
-            <img src="../assets/img/apps/icoi.jpg" alt="" />
+            <img loading="lazy" decoding="async" src="../assets/img/apps/icoi.jpg" alt="" />
             <span class="el-craft-b"><span class="el-craft-t">Islamic Center of Irvine</span><span class="el-craft-m">2023 · Decommissioned May 2026</span></span>
             <span class="el-craft-s off">OFFLINE</span>
           </a>
           <a class="el-craft-row" href="/al-islam/" data-lock>
-            <img src="../assets/img/apps/al-adhan.jpg" alt="" />
+            <img loading="lazy" decoding="async" src="../assets/img/apps/al-adhan.jpg" alt="" />
             <span class="el-craft-b"><span class="el-craft-t">Al-Adhan</span><span class="el-craft-m">2023 · Prayer times · qibla</span></span>
             <span class="el-craft-s">ACTIVE</span>
           </a>
           <a class="el-craft-row" href="/al-islam/" data-lock>
-            <img src="../assets/img/apps/al-islam.jpg" alt="" />
+            <img loading="lazy" decoding="async" src="../assets/img/apps/al-islam.jpg" alt="" />
             <span class="el-craft-b"><span class="el-craft-t">Al-Islam</span><span class="el-craft-m">2023 · Congressional ’23</span></span>
             <span class="el-craft-s">ACTIVE</span>
           </a>
           <a class="el-craft-row" href="/al-islam/" data-lock>
-            <img src="../assets/img/apps/al-quran.jpg" alt="" />
+            <img loading="lazy" decoding="async" src="../assets/img/apps/al-quran.jpg" alt="" />
             <span class="el-craft-b"><span class="el-craft-t">Al-Quran</span><span class="el-craft-m">2023 · Swift Student ’24</span></span>
             <span class="el-craft-s">ACTIVE</span>
           </a>

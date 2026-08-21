@@ -22,8 +22,41 @@
     var YP = {};                       // 'group/file' -> [file, date, w, h]
     if (window.YEARS) {
       Object.keys(window.YEARS.photos).forEach(function (gk) {
-        window.YEARS.photos[gk].forEach(function (r) { YP[gk + '/' + r[0]] = r; });
+        window.YEARS.photos[gk].forEach(function (r) {
+          /* a file with a slash in it is already a path from /assets/img/years/
+             (one photograph shown in two galleries -- see url() in years.js), so
+             it is its own key rather than being nested under this group */
+          YP[r[0].indexOf('/') >= 0 ? r[0] : gk + '/' + r[0]] = r;
+        });
       });
+    }
+
+    /* ── a trip only points at photographs; it does not own them ──
+
+       Every shot here is a path into the year galleries, so a photo pulled out
+       of a year (or simply never ingested) leaves a dangling reference. Left
+       alone that renders as a broken frame, or a cover button that unfolds into
+       nothing, which is worse than the trip having no photos at all.
+
+       So each trip is filtered against what years-data.js actually contains
+       before anything is drawn: missing shots are dropped, a missing cover falls
+       back to the first surviving shot, and a trip with nothing left simply
+       renders without a photo button. Deleting a photo from _originals/ and
+       re-running ingest is therefore all that is needed -- this page keeps up on
+       its own and never has to be edited in step. */
+    function present(f) { return Object.prototype.hasOwnProperty.call(YP, f); }
+
+    var dropped = 0;
+    (data.trips || []).forEach(function (t) {
+      if (!t.shots) return;
+      var n = t.shots.length;
+      t.shots = t.shots.filter(present);
+      dropped += n - t.shots.length;
+      if (t.cover && !present(t.cover)) t.cover = t.shots[0];   // may be undefined: handled below
+      if (!t.shots.length) { t.shots = null; t.cover = null; }
+    });
+    if (dropped && window.console) {
+      console.info('travels: ' + dropped + ' photo(s) no longer in the galleries, dropped from the trips');
     }
 
     var MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
@@ -142,28 +175,22 @@
                       + ' aria-expanded="false" aria-controls="tvshots' + i + '"'
                       + ' aria-label="Photos from ' + esc(t.places) + '">'
                       + '<img src="' + IMG + esc(t.cover || t.shots[0]) + '"'
-                      +   ' alt="' + esc(t.places) + '" loading="lazy" />'
+                      +   ' alt="' + esc(t.places) + '"'
+                      +   ' loading="lazy" decoding="async" fetchpriority="low" />'
                       + '<span class="tv-photo-n">' + t.shots.length + '</span>'
                       + '</button>'
                     : '')
                 + '</div>'
                 /* the grid itself: the same justified rows as the year
                    galleries (.yg / .yg-cell come with years.css), every frame
-                   at its own aspect ratio, nothing cropped. It starts hidden;
-                   loading=lazy means a folded grid fetches nothing. */
+                   at its own aspect ratio, nothing cropped.
+
+                   Empty on purpose. shots() below writes the frames the first
+                   time a trip is unfolded: eighteen trips' worth up front was
+                   ~90 <img> tags the page had no use for, all of them built
+                   and laid out before anything could be shown. */
                 + (t.shots && t.shots.length
-                    ? '<div class="tv-shots yg" id="tvshots' + i + '" hidden>'
-                      + t.shots.map(function (f, s) {
-                          var r = YP[f], w = r ? r[2] : 3, h = r ? r[3] : 2;
-                          return '<button class="yg-cell" type="button"'
-                            + ' data-trip="' + i + '" data-s="' + s + '"'
-                            + ' data-w="' + w + '" data-h="' + h + '">'
-                            + '<img src="' + IMG + esc(f) + '" alt="' + esc(t.places) + '"'
-                            +   ' width="' + w + '" height="' + h + '" loading="lazy" decoding="async" />'
-                            + '<span class="yg-when">' + esc(shotDate(f)) + '</span>'
-                            + '</button>';
-                        }).join('')
-                      + '</div>'
+                    ? '<div class="tv-shots yg" id="tvshots' + i + '" data-trip="' + i + '" hidden></div>'
                     : '')
                 + '</section>';
             }).join('');
@@ -296,13 +323,38 @@
         });
       }
 
+      /* Same rule as the year galleries: the cover photo is always there, but
+         the grid behind it only unfolds when "show other pictures" (pics.js) is
+         on. Off is the default, and off means the tap does nothing. */
+      function picsOn() { return !!(window.AEpics && window.AEpics.on()); }
+
+      /* one trip's frames, written on first unfold */
+      function shots(grid) {
+        if (grid.dataset.built) return;
+        grid.dataset.built = '1';
+        var i = Number(grid.getAttribute('data-trip'));
+        var t = trips[i];
+        grid.innerHTML = t.shots.map(function (f, s) {
+          var r = YP[f], w = r ? r[2] : 3, h = r ? r[3] : 2;
+          return '<button class="yg-cell" type="button"'
+            + ' data-trip="' + i + '" data-s="' + s + '"'
+            + ' data-w="' + w + '" data-h="' + h + '">'
+            + '<img src="' + IMG + esc(f) + '" alt="' + esc(t.places) + '"'
+            +   ' width="' + w + '" height="' + h + '" loading="lazy" decoding="async" fetchpriority="low" />'
+            + '<span class="yg-when">' + esc(shotDate(f)) + '</span>'
+            + '</button>';
+        }).join('');
+      }
+
       var covers = root.querySelectorAll('.tv-photo');
       for (var p = 0; p < covers.length; p++) {
         (function (btn) {
           btn.addEventListener('click', function (e) {
             e.stopPropagation();
+            if (!picsOn()) return;
             var grid = document.getElementById(btn.getAttribute('aria-controls'));
             var opening = grid.hidden;
+            if (opening) shots(grid);            // first unfold: build it now
             grid.hidden = !opening;
             btn.setAttribute('aria-expanded', opening ? 'true' : 'false');
             /* the rows can only be solved against a measurable width, so the
@@ -311,6 +363,15 @@
           });
         })(covers[p]);
       }
+
+      /* Switching it back off folds everything up again, so the page is never
+         left showing photos underneath a switch that says it is not. */
+      document.addEventListener('ae:pics', function (e) {
+        if (e.detail && e.detail.on) return;
+        for (var gi = 0; gi < grids.length; gi++) grids[gi].hidden = true;
+        for (var ci = 0; ci < covers.length; ci++) covers[ci].setAttribute('aria-expanded', 'false');
+        deckClose();
+      });
 
       /* ── justified rows, same maths as years.js ──
          Fill each row left to right, then solve for the one height that lands

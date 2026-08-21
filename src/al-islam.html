@@ -24,7 +24,15 @@ redirect_from:
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Scheherazade+New:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<!-- Fonts are loaded WITHOUT blocking the first paint. As a plain
+     stylesheet this held the whole page blank until Google answered,
+     which on a weak connection is most of "it opens but it loads
+     slowly". media="print" makes the browser fetch it at low priority
+     and render immediately; onload promotes it to the real stylesheet.
+     Every family here already carries display=swap, so text is on
+     screen in the fallback face straight away and swaps when it lands. -->
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Scheherazade+New:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Scheherazade+New:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
