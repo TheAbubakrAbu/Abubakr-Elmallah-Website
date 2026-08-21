@@ -108,7 +108,10 @@ redirect_from:
 
     <!-- middle school first, so the whole run of year cards reads oldest to
          newest down the page, the same rule the photos inside them follow -->
-    <h3 class="subsec reveal">Before Trabuco <span class="subsec-yr"><span class="pic-n">154 photos · </span>2006 – 2020 · + the ID cards</span></h3>
+    <!-- "+ the ID cards" rides on .pic-n, like the counts: the ID card itself
+         is hidden until the switch is on, so the heading must not advertise
+         something that is not on the page. -->
+    <h3 class="subsec reveal">Before Trabuco <span class="subsec-yr"><span class="pic-n">154 photos · </span>2006 – 2020<span class="pic-n"> · + the ID cards</span></span></h3>
     <!-- the 'ms' groups in years-data.js; same renderer as the years below -->
     <div class="years" data-years="ms"></div>
 

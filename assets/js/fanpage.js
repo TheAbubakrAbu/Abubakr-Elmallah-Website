@@ -38,6 +38,12 @@
   var esc = function (s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); };
   var a = function (it) { return it.accent ? ' style="--a:' + it.accent + '"' : ''; };
 
+  /* Where a real photograph of mine lives. Every photo these pages show is one
+     of the year-gallery files, referenced by its <group>/<file> path -- the
+     galleries own the pixels and nothing is copied to a second location.
+     See photos-data.js. */
+  var PH = '/assets/img/years/';
+
   /* An empty stand-in for a part this item hasn't got. Cards and tiles share
      the rows of their grid (subgrid, see fanpages.css) so that every tile in a
      row puts its title, sub, description, chips and link on the same lines.
@@ -68,6 +74,32 @@
     return '<span class="fan-done"><span>' + esc(it.done === true ? '100%' : it.done) + '</span>'
       + (it.hours ? '<span class="fan-done-h">' + esc(it.hours) + ' h</span>' : '')
       + '</span>';
+  };
+
+  /* `finished`: the date I took a title to a hundred percent, as ISO
+     'YYYY-MM-DD' or 'YYYY-MM' when only the month is known.
+
+     Written as ISO rather than as display text so the sort control can order
+     on it as a plain string comparison, which for ISO dates is the same as
+     ordering by time. Printed short: "Oct 2024".
+
+     A title with no date simply carries no chip. That is the normal state
+     here, not a gap to be filled with a guess: Steam's library page records
+     when a game was LAST PLAYED, not when it was completed, and the
+     screenshots behind this page were taken in one sitting, so eleven of the
+     twelve read "Today". Only a date I can actually source goes in. */
+  var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+             'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  var fin = function (it) {
+    if (!it.finished) return '';
+    var p = String(it.finished).split('-');
+    var when = p.length >= 2 && +p[1] >= 1 && +p[1] <= 12
+      ? MON[+p[1] - 1] + ' ' + p[0]
+      : p[0];
+    return '<span class="fan-fin"><i aria-hidden="true">✓</i>'
+      + '<span class="fan-fin-l">Finished</span>'
+      + '<span class="fan-fin-v">' + esc(when) + '</span></span>';
   };
 
   /* `proj`: how long a thing is reckoned to take, from an outside source. On an
@@ -226,9 +258,41 @@
     return bar ? '<div class="fan-sort reveal">' + bar + '</div>' : '';
   };
 
+  /* ── "I went here" ──
+     A seventh row on a card, carrying the stamp for a place I have actually
+     been and, under it, my own photograph from there.
+
+     One row rather than two so the subgrid stays simple: a section that opts
+     in with `been: true` spans 7 instead of 6 (see .fan-cards--been in
+     fanpages.css) and EVERY card in it emits this part, empty or not, which is
+     what keeps the rows of a grid in step.
+
+     `photo` is a <group>/<file> path into the year galleries. `beenWhen` is
+     the year I went, printed small beside the stamp. */
+  var beenRow = function (it) {
+    if (!it.been && !it.photo) return SLOT;
+    var stamp = it.been
+      ? '<span class="fan-been"><i aria-hidden="true">✓</i>I went here'
+        + (it.beenWhen ? '<em>' + esc(it.beenWhen) + '</em>' : '') + '</span>'
+      : '';
+    var pic = it.photo
+      ? '<a class="fan-beenpic" href="' + PH + esc(it.photo) + '" target="_blank" rel="noopener">'
+        + '<img src="' + PH + esc(it.photo) + '"'
+        + ' alt="Abubakr Elmallah at ' + esc(it.photoAlt || it.title) + '"'
+        + ' loading="lazy" decoding="async" fetchpriority="low" />'
+        + (it.photoCap ? '<span>' + esc(it.photoCap) + '</span>' : '')
+        + '</a>'
+      : '';
+    return '<span class="fan-beenwrap">' + stamp + pic + '</span>';
+  };
+
   var KINDS = {
     cards: function (s) {
-      return '<div class="fan-cards">' + s.items.map(function (it) {
+      /* `been: true` on the SECTION turns the seventh row on for all of its
+         cards; without it nothing changes and the grid spans 6 as before. */
+      var wantsBeen = !!s.been;
+      return '<div class="fan-cards' + (wantsBeen ? ' fan-cards--been' : '') + '">'
+        + s.items.map(function (it) {
         return '<article class="fan-card reveal"' + a(it) + '>'
           + (it.tag ? '<span class="fan-tag">' + esc(it.tag) + '</span>' : SLOT)
           + '<h4>' + esc(it.title) + '</h4>'
@@ -236,6 +300,7 @@
           + (it.desc ? '<p>' + esc(it.desc) + '</p>' : SLOT)
           + (out(it) || SLOT)
           + (it.meta ? '<span class="fan-meta">' + esc(it.meta) + '</span>' : SLOT)
+          + (wantsBeen ? beenRow(it) : '')
           + '</article>';
       }).join('') + '</div>';
     },
@@ -312,7 +377,7 @@
           + '<span class="fan-tiletext"><b>' + esc(it.title) + '</b>'
           + (it.sub ? '<i>' + esc(it.sub) + '</i>' : SLOT)
           + (it.desc ? '<em>' + esc(it.desc) + '</em>' : SLOT)
-          + '<span class="fan-chips">' + rate(it) + done(it) + proj(it) + '</span>'
+          + '<span class="fan-chips">' + rate(it) + done(it) + fin(it) + proj(it) + '</span>'
           + (out(it) || SLOT) + '</span>'
           + strip
           + '</div>';
@@ -390,9 +455,14 @@
     },
 
     /* ── kind: gallery ── the only place on these pages that uses photographs.
-       Everything else is drawn; these are my own screenshots. */
+       Everything else is drawn; these are my own screenshots and photos.
+
+       `grid: true` packs them as a responsive grid instead of one full-width
+       column. A column is right for a wide app screenshot and wrong for a set
+       of holiday photographs, which want to be seen several at a time. */
     gallery: function (s) {
-      return '<div class="fan-shots">' + s.items.map(function (it) {
+      return '<div class="fan-shots' + (s.grid ? ' fan-shots--grid' : '')
+        + (s.two ? ' fan-shots--two' : '') + '">' + s.items.map(function (it) {
         return '<figure class="fan-shot reveal"' + a(it) + '>'
           + '<a href="' + esc(it.src) + '" target="_blank" rel="noopener">'
           +   '<img src="' + esc(it.src) + '" alt="' + esc(it.alt || it.title) + '" loading="lazy" decoding="async" />'
@@ -435,10 +505,54 @@
       + '</section>';
   }
 
+  /* ── my own photographs, pulled in rather than written down ──
+
+     Every fan page that has real photographs behind it gets a section of them
+     without its data file saying anything: photos-data.js keys them by the same
+     tag the page already carries on <body data-fan="...">, and this looks that
+     tag up. One list, one place to edit, and a page with no photographs simply
+     renders nothing extra.
+
+     It is spliced in BEFORE the Links block, because Links is the sign-off at
+     the foot of every one of these pages and photographs of mine reading after
+     it looked like an afterthought. */
+  function myPhotoSection(list) {
+    return {
+      kind: 'gallery',
+      grid: true,
+      id: 'irl',
+      title: 'I Have Actually Been',
+      note: list.length + (list.length === 1 ? ' photo of mine' : ' photos of mine'),
+      lede: 'Not press shots: my own camera roll, out of the year galleries.',
+      items: list.map(function (p) {
+        return {
+          src: PH + p.src,
+          title: p.title,
+          desc: p.desc,
+          meta: p.when,
+          alt: p.alt || ('Abubakr Elmallah, ' + p.title),
+          accent: p.accent,
+        };
+      }),
+    };
+  }
+
+  var tag = document.body.getAttribute('data-fan');
+  var mine = window.MYPHOTOS && window.MYPHOTOS.fandom && window.MYPHOTOS.fandom[tag];
+
   // sections marked mount:'end' go after whatever the page hand-writes between
   // the two mounts; with no #fanBodyEnd they simply stay in #fanBody, in order
   var tail = document.getElementById('fanBodyEnd');
-  var all = page.sections || [];
+  var all = (page.sections || []).slice();
+
+  if (mine && mine.length) {
+    var at = all.length;
+    for (var li = all.length - 1; li >= 0; li--) {
+      if (all[li].kind === 'links') at = li;              // sit above the sign-off
+    }
+    all.splice(at, 0, myPhotoSection(mine));
+  }
+
   var main = tail ? all.filter(function (s) { return s.mount !== 'end'; }) : all;
 
   /* `when` is page-level rather than a section: it belongs above everything,
@@ -460,6 +574,26 @@
   if (tail) {
     tail.innerHTML = all.filter(function (s) { return s.mount === 'end'; }).map(markup).join('');
   }
+
+  /* Tell the worker to keep the gallery frames THIS page uses.
+
+     They come out of /assets/img/years/, which the worker otherwise leaves
+     alone unless the "show other pictures" switch is on -- right for the year
+     galleries, wrong here, where they are published content like any other
+     image on the page. Handing over the exact list keeps the offline promise
+     without dragging the whole camera roll onto the device. See keep() in
+     sw.js. Fire and forget: if there is no worker yet, the next visit does it. */
+  (function keepMine() {
+    var reg = navigator.serviceWorker && navigator.serviceWorker.controller;
+    if (!reg) return;
+    var urls = [];
+    Array.prototype.forEach.call(
+      document.querySelectorAll('.fan-shot img, .fan-beenpic img'), function (img) {
+        var u = img.getAttribute('src');
+        if (u && u.indexOf('/assets/img/years/') === 0 && urls.indexOf(u) === -1) urls.push(u);
+      });
+    if (urls.length) reg.postMessage({ type: 'keep', urls: urls });
+  })();
 
   /* A tile screenshot whose file is not in the repo yet should leave no trace,
      rather than a broken-image glyph sitting in the middle of the tile. */

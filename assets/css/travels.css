@@ -173,6 +173,29 @@ body[data-fan="travels"] { --a: #7fb8e8; }
 }
 .tv-trip-c em { font-style: normal; color: var(--mute); opacity: .8; margin-left: 0.6rem; }
 .tv-trip-n { margin-top: 0.5rem; font-size: 0.92rem; line-height: 1.65; color: var(--ink-dim); }
+
+/* ── the places themselves ──
+   One chip per landmark that is actually in this trip's photographs. Wraps as
+   a set rather than a list, so a nine-place trip stays two or three lines. */
+.tv-spots {
+  display: flex; flex-wrap: wrap; gap: 0.36rem;
+  margin-top: 0.75rem; padding: 0; list-style: none;
+}
+.tv-spots li {
+  display: inline-flex; align-items: baseline; gap: 0.36rem;
+  padding: 0.26rem 0.55rem 0.28rem;
+  border: 1px solid color-mix(in srgb, var(--c1) 30%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c1) 9%, transparent);
+}
+.tv-spots b {
+  font-weight: 500; font-size: 0.72rem; letter-spacing: -0.01em;
+  color: color-mix(in srgb, var(--c1) 82%, #fff);
+}
+.tv-spots i {
+  font-style: normal; font-family: var(--mono); font-size: 0.52rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute);
+}
 .tv-trip-grade {
   position: absolute; right: var(--gutter); bottom: 0.8rem;
   font-family: var(--mono); font-size: 0.48rem; letter-spacing: 0.12em;

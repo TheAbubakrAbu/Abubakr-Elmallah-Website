@@ -87,6 +87,64 @@
      that bottom-aligns a one-line meta against a two-line one, so it starts at
      the top of its row like every other part now. */
   .fan-cards > .fan-card > .fan-meta { margin-top: 0.45rem; align-self: start; }
+  /* the "I went here" row is a seventh part, so a section that opts into it
+     spans one row more. Every card in such a section emits the part, empty or
+     not, which is what keeps a row of cards in step. */
+  .fan-cards--been > .fan-card { grid-row: span 7; }
+}
+
+/* ── "I have actually been" ──
+   The stamp, and my own photograph from the place, at the foot of a card. */
+.fan-beenwrap { display: flex; flex-direction: column; gap: 0.55rem; align-items: flex-start; }
+
+/* The pill wraps as a set of whole words, never mid-phrase: "I went here" and
+   the date each stay on one line and the date drops below when the card is too
+   narrow for both, which is what the twelve-across parks grid does. */
+.fan-been {
+  display: inline-flex; align-items: baseline; flex-wrap: wrap;
+  gap: 0.1rem 0.4rem;
+  padding: 0.28rem 0.6rem 0.3rem; max-width: 100%;
+  border: 1px solid color-mix(in srgb, var(--a, #f5c63c) 42%, transparent);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--a, #f5c63c) 11%, transparent);
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--a, var(--gold));
+  white-space: nowrap;
+}
+
+.fan-been i { font-style: normal; font-size: 0.72rem; line-height: 1; }
+
+.fan-been em {
+  font-style: normal; color: var(--mute);
+  white-space: normal;
+}
+
+.fan-beenpic {
+  position: relative; display: block; width: 100%;
+  border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+  transition: border-color .4s, box-shadow .4s, transform .4s var(--ease);
+}
+
+.fan-beenpic img {
+  width: 100%; height: auto; display: block;
+  aspect-ratio: 4 / 3; object-fit: cover;
+}
+
+.fan-beenpic span {
+  display: block; padding: 0.5rem 0.7rem 0.55rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+.fan-beenpic:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--a, #f5c63c) 48%, transparent);
+  box-shadow: 0 18px 38px -28px #000, 0 0 28px -22px var(--a, #f5c63c);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fan-beenpic, .fan-beenpic:hover { transition: none; transform: none; }
 }
 
 .fan-card h4 {
@@ -488,6 +546,28 @@
   background: rgba(95,208,160,0.09);
 }
 
+/* ── when I finished it ──
+   Reads as a quieter sibling of the green 100% stamp it sits next to: same
+   pill, no fill, so the completion stamp stays the loud one and the date is
+   the footnote to it. */
+.fan-fin {
+  display: inline-flex; align-items: baseline; gap: 0.36rem;
+  padding: 0.3rem 0.62rem 0.26rem;
+  border: 1px solid rgba(95,208,160,0.24); border-radius: 999px;
+}
+.fan-fin i {
+  font-style: normal; font-size: 0.6rem; line-height: 1;
+  color: rgba(95,208,160,0.75);
+}
+.fan-fin-l {
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute);
+}
+.fan-fin-v {
+  font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.05em; color: var(--ink-dim);
+}
+
 .fan-done span {
   font-family: var(--mono); font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em;
   color: #7fe0b8; font-style: normal; line-height: 1.2;
@@ -822,6 +902,11 @@
 }
 
 @media (min-width: 760px) { .fan-shots--two { grid-template-columns: 1fr 1fr; } }
+
+/* `grid: true`: my own photographs, several at a time. A full-width column is
+   right for a wide app screenshot and wrong for a camera roll. */
+.fan-shots--grid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.fan-shots--grid .fan-shot img { aspect-ratio: 4 / 3; object-fit: cover; }
 
 .fan-shot {
   border: 1px solid var(--line); border-radius: 14px; overflow: hidden;

@@ -152,7 +152,14 @@
 
       /* the ID Pics card shows the whole group shot at its own aspect ratio,
          double-wide, instead of a square centre crop of it */
-      cards += '<button class="year-card reveal' + (g.id === 'id-pics' ? ' year-card--wide' : '') + '" type="button" data-group="' + g.id + '"'
+      /* The ID cards are school photographs of me with my name and school on
+         them, so the whole card is behind the switch: `year-card--ids` is
+         display:none until "show other pictures" is on (pics.css). It is the
+         one year card that is not public, so it does not sit on the page as a
+         cover the way the others do. */
+      cards += '<button class="year-card reveal'
+        + (g.id === 'id-pics' ? ' year-card--wide year-card--ids' : '')
+        + '" type="button" data-group="' + g.id + '"'
         + ' aria-expanded="false" aria-controls="ygp-' + g.id + '">'
         + '<img src="' + url(g.id, g.cover) + '"'
         +   ' alt="Abubakr Elmallah, ' + esc(g.label.toLowerCase()) + ' year"'
@@ -204,7 +211,13 @@
         }
         var alt = 'Abubakr Elmallah, ' + g.label.toLowerCase()
                 + (date ? ', ' + fmt(date) : '');
-        out += '<button class="yg-cell"'
+        /* The school ID photographs, pinned to the front of their year, are
+           hidden with the same switch. Hidden in CSS rather than dropped here
+           on purpose: the cell stays in the DOM, so data-i still matches the
+           index in DATA.photos and the full-screen deck does not have to be
+           renumbered. layout() skips them by measuring only visible cells. */
+        var isID = file.replace(/^.*\//, '').indexOf('id') === 0;
+        out += '<button class="yg-cell' + (isID ? ' yg-cell--id' : '') + '"'
           + ' data-i="' + i + '" data-w="' + w + '" data-h="' + h + '" type="button">'
           + '<img src="' + url(g.id, file) + '" alt="' + esc(alt) + '"'
           +   ' width="' + w + '" height="' + h + '" loading="lazy" decoding="async" fetchpriority="low" />'
@@ -343,6 +356,11 @@
       }
 
       Array.prototype.forEach.call(grid.querySelectorAll('.yg-cell'), function (c) {
+        /* A cell the pics switch has hidden takes up no space, so it must not
+           be counted into a row either: leaving it in would solve the row for
+           a width one frame wider than the row actually is, and that row would
+           land short of the container. */
+        if (c.offsetParent === null) return;
         row.push(c);
         sum += +c.dataset.w / +c.dataset.h;
         if (sum * target + GAP * (row.length - 1) >= W) flush(false);
