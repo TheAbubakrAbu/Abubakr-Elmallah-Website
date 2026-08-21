@@ -167,6 +167,18 @@
                 +   '<p class="tv-trip-c">' + esc(t.countries)
                 +     (t.via ? '<em>via ' + esc(t.via) + '</em>' : '') + '</p>'
                 +   '<p class="tv-trip-n">' + esc(t.note) + '</p>'
+                /* The places themselves, read off the photographs rather than
+                   from memory: every entry in `spots` is somewhere that is
+                   actually in this trip's camera roll. A trip with no spots
+                   listed renders nothing here. */
+                +   (t.spots && t.spots.length
+                      ? '<ul class="tv-spots">'
+                        + t.spots.map(function (sp) {
+                            return '<li><b>' + esc(sp[0]) + '</b>'
+                              + (sp[1] ? '<i>' + esc(sp[1]) + '</i>' : '') + '</li>';
+                          }).join('')
+                        + '</ul>'
+                      : '')
                 + '</div>'
                 /* one main photo beside the words; touching it unfolds the
                    full grid below (and folds it back) */

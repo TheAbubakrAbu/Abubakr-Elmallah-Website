@@ -71,6 +71,14 @@ can open and read.
   network-first, CSS/JS cache-first (safe because of `?v=`), images
   stale-while-revalidate; navigations ride the browser's navigation preload, so
   a cold worker start adds nothing to a page load. Add it to your home screen and it opens with no internet.
+- **Photographs are pointed at, never copied.** The fan pages are drawn rather
+  than photographed, with one exception: a picture of me actually in the place.
+  [`photos-data.js`](assets/js/photos-data.js) keys those by the same tag the
+  page carries on `<body data-fan="...">`, so `fanpage.js` finds a page's
+  photographs without its own data file mentioning them, and every `src` is a
+  path into the year galleries rather than a second copy of the file. The Disney
+  and Universal pages use the same list for the "I went here" stamp under each
+  park. Delete a photo and re-ingest: the `<img>` drops itself, nothing breaks.
 - **Cards come from data, never markup.** Every app and project card lives once in
   [`apps-data.js`](assets/js/apps-data.js) and is rendered by
   [`cards.js`](assets/js/cards.js) into any page that asks for it:
@@ -120,6 +128,8 @@ assets/
     fan/                 # one stylesheet per fan page
   js/                    # 83 files
     apps-data.js         # SINGLE source of truth for every app/project card
+    photos-data.js       # my own photos, keyed by fandom and by park; every
+                         # path points into assets/img/years/, never a copy
     cards.js             # renders them into [data-cards] / [data-projects]
     expand.js            # click a card -> it expands in place with the full write-up
     cursor · magnetic · scramble · reveal · clock · flowfield · tilt

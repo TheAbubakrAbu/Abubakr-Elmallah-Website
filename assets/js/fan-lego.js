@@ -56,6 +56,11 @@ window.FAN_PAGE = {
       { key: 'rating', label: 'My rating',    asc: 'Worst',    desc: 'Best' },
       { key: 'hours',  label: 'My time',      asc: 'Quickest', desc: 'Longest' },
       { key: 'proj',   label: 'Projected',    asc: 'Shortest', desc: 'Longest' },
+      /* Ready to switch on, and deliberately not on yet: only one title
+         carries a `finished` date so far (see fanpage.js), so this would be a
+         sort control that leaves eleven of twelve unordered. Add this line
+         back once the dates are in:
+         { key: 'finished', label: 'When I finished it', asc: 'First', desc: 'Most recent' }, */
     ] },
     lede: 'TT Games’ own catalogue, running from LEGO Star Wars in 2005 forwards, sortable by release date, by what I rate it, by how long each one took me, or by how long it is reckoned to take. Click any finished game to open its screenshots full size. Switch between grid and list: grid is the banner and the numbers, list opens every screenshot out next to it. Or group it by series, which folds the same list into its licences (the six Star Wars games together, the whole Batman and DC run including Super-Villains, LEGO’s own inventions under LEGO Originals, and the one-visit licences under Standalone), each section still in whatever order the sort has picked. Ratings are only on the games I have actually played; the rest stay unscored and sink to the bottom of that sort. The handheld-only spin-offs and the console bundles are left out, because a bundle is not really its own game and the handheld ones were made by a different studio entirely; what is left is the main line, all of it on Steam bar LEGO Dimensions, which was toys-to-life with a physical portal and could never have been on PC. The green stamp is mine: every one with a screenshot under it is one I took to a hundred percent, and the Steam library page is the receipt for the hours next to it. The grey figure beside it is the HowLongToBeat community Completionist average for that game, so every title carries a projected run whether I have finished it or not, and the finished ones show the gap.',
     items: [
@@ -100,6 +105,11 @@ window.FAN_PAGE = {
         shotAlt: 'Steam library banner for LEGO Pirates of the Caribbean, showing my play time' },
       { title: 'LEGO Star Wars III: The Clone Wars', accent: '#ffd21f', year: 2011, series: 'Star Wars', proj: '29.3', rating: 9, sub: '2011 · Steam', desc: 'Ground battles with commandable troops. Ambitious, and messy.',
         done: true, hours: '24.1', shot: '/assets/img/franchises/lego/clone-wars/banner.jpg',
+        /* The only one of these with a date on it. Its library page reads
+           LAST PLAYED Oct 18, 2024, where every other banner here was captured
+           on the day it was last opened and so reads "Today". See `finished`
+           in fanpage.js. */
+        finished: '2024-10-18',
         shots: ['pause-screen', 'title-screen', 'characters'],
         shotAlt: 'Steam library banner for LEGO Star Wars III: The Clone Wars, showing my play time' },
       { title: 'LEGO Harry Potter: Years 1–4', accent: '#d9b45f', year: 2010, series: 'Harry Potter', proj: '27.4', rating: 8, sub: '2010 · Steam', desc: 'Hogwarts as the hub, which is exactly right. The shot is the Collection paused after this half: 36 of the 84 achievements, all of them this game’s.',

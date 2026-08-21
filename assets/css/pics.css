@@ -25,6 +25,30 @@ html[data-show-pics="on"] .yg-head .yg-n { display: block; }
 .yg-head .yg-shut { margin-left: auto; }
 html[data-show-pics="on"] .yg-head .yg-shut { margin-left: 0; }
 
+/* ── the school ID photographs ──
+   These carry my name, my photograph and the school on the same card, which is
+   more than the other covers give away, so they are the one part of the
+   galleries that is not public even as a cover.
+
+     .year-card--ids   the whole "ID Pics" card on /high-school/
+     .yg-cell--id      the ID photo pinned to the front of each year
+
+   Written OFF-first like everything else here, so they are never painted and
+   then pulled: the card is in the markup years.js writes, and if hiding it
+   waited on pics.js it would flash on screen first.
+
+   The cells stay in the DOM rather than being dropped, so the full-screen
+   deck's numbering still lines up with years-data.js; layout() skips anything
+   with no offsetParent, so a hidden one is not counted into a justified row. */
+.year-card--ids,
+.yg-cell--id { display: none; }
+
+/* both are `block` when shown: .year-card is a grid item of .years-grid and
+   .yg-cell is declared display:block in years.css, so this puts each back
+   exactly where it was rather than guessing at a new box type. */
+html[data-show-pics="on"] .year-card--ids,
+html[data-show-pics="on"] .yg-cell--id { display: block; }
+
 /* ── the covers, while the galleries are shut ──
    The cards still hover and still look like themselves; they just do not claim
    to be buttons, because years.js / travels.js return early on the click and a

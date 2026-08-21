@@ -450,11 +450,39 @@ self.addEventListener('fetch', e => {
   }
 });
 
+/* A page asking for specific gallery files to be kept.
+
+   The fan pages, the parks pages and /travels/ now show a handful of frames
+   out of /assets/img/years/ (see photos-data.js). Those live in the PHOTOS
+   tier, which is deliberately NOT fetched unless the "show other pictures"
+   switch is on -- so without this they would be the one part of the site that
+   did not work offline, on pages where they are ordinary published content
+   rather than personal photographs.
+
+   So a page hands over the exact list it uses and this keeps those, and only
+   those. Thirty-odd files rather than the sixteen hundred behind the switch.
+   Already-cached URLs cost nothing: warm() checks before it fetches. */
+async function keep(urls) {
+  const cache = await caches.open(ASSETS);
+  const queue = urls.filter(u => typeof u === 'string' && u.startsWith('/assets/img/years/'));
+  for (const u of queue) {
+    await gate();                                    // never race a navigation
+    try {
+      if (await cache.match(u)) continue;
+      const res = await fetch(u, { cache: 'no-cache' });
+      if (res && res.ok) await cache.put(u, res);
+    } catch (err) { /* one missing frame must not stop the rest */ }
+  }
+}
+
 /* Escape hatch: post {type:'flush'} and the worker empties every cache and
    unregisters itself. A bad service worker is otherwise painful to recover
    from, so this always needs to exist. */
 self.addEventListener('message', e => {
   if (!e.data) return;
+  if (e.data.type === 'keep' && Array.isArray(e.data.urls)) {
+    e.waitUntil(keep(e.data.urls));
+  }
   if (e.data.type === 'flush') {
     e.waitUntil(
       caches.keys()
