@@ -27,7 +27,7 @@
 
   function head(d) {
     return '<div class="app-head">'
-      + '<img class="app-icon" src="' + IMG + d.icon + '" alt="' + d.alt + '" loading="lazy" />'
+      + '<img class="app-icon" src="' + IMG + d.icon + '" alt="' + d.alt + '" loading="lazy" decoding="async" />'
       + badge(d.badge)
       + '</div>';
   }
@@ -50,7 +50,7 @@
     return '<div class="app-shots" aria-label="Award proof">' + d.shots.map(function (s) {
       var ic = s.imgClass ? ' class="' + s.imgClass + '"' : '';
       return '<figure><a href="' + IMG + s.src + '">'
-        + '<img' + ic + ' src="' + IMG + s.src + '" alt="' + s.alt + '" loading="lazy" /></a>'
+        + '<img' + ic + ' src="' + IMG + s.src + '" alt="' + s.alt + '" loading="lazy" decoding="async" /></a>'
         + '<figcaption>' + s.caption + '</figcaption></figure>';
     }).join('') + '</div>';
   }
@@ -125,7 +125,7 @@
     var cls = 'proj-card' + (d.long && d.long.length ? ' is-expandable' : '') + ' reveal';
     return '<article class="' + cls + '">'
       + '<a class="proj-media" href="' + media + '" target="_blank" rel="noopener">'
-      + '<img src="' + IMG + d.img + '" alt="' + d.alt + '" loading="lazy" /></a>'
+      + '<img src="' + IMG + d.img + '" alt="' + d.alt + '" loading="lazy" decoding="async" /></a>'
       + '<div class="proj-info">'
       + '<div class="proj-titlerow"><h3>' + d.title + '</h3><span class="proj-yr">' + d.year + '</span></div>'
       + (d.grade ? '<span class="proj-grade">' + d.grade + '</span>' : SLOT)

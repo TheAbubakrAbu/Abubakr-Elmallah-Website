@@ -2,7 +2,7 @@
 """photos.py: the image pipeline for the site. Two commands:
 
     python3 tools/photos.py ingest
-        _originals/<year>/*  ->  assets/img/years/<year>/*.jpg
+        _originals/<year>/*  ->  assets/img/years/<year>/*.avif
         and rewrites assets/js/years-data.js. Originals are never touched.
 
     python3 tools/photos.py sweep
@@ -12,11 +12,19 @@
         flyers) is 2-3x smaller as PNG, so converting it would make the site
         bigger, which is the opposite of the point.
 
-Both share one encoder: resize to a max long edge, strip metadata, encode
-progressive JPEG (lossy), then run jpegtran over the result (lossless). PNGs
-that stay PNG go through pngquant (lossy) then oxipng (lossless).
+ingest encodes AVIF (resize to a max long edge, strip metadata, encode at
+AVIF_Q). Measured on this library that is ~35% smaller per photo than the
+progressive JPEG q62 it replaced, and it looks better, not worse: AVIF holds
+denim weave and night-shot texture at sizes where JPEG has visibly blocked.
+Every browser since Safari 16.4 (March 2023) decodes it.
 
-Needs: Pillow, and jpegtran / pngquant / oxipng on PATH.
+sweep keeps the old JPEG/PNG encoders on purpose: that art is referenced by
+filename from HTML, CSS and apps-data.js all over the site, so its extensions
+must not churn. JPEGs there also get jpegtran (lossless) after the encode;
+PNGs that stay PNG go through pngquant (lossy) then oxipng (lossless).
+
+Needs: Pillow 11+ (bundles the AVIF encoder); jpegtran / pngquant / oxipng on
+PATH for sweep.
 
 Originals are named for their own EXIF capture time by the folder convention
 (see _originals/README.md), so the date comes off the filename here and the run
@@ -31,13 +39,26 @@ import subprocess
 import sys
 from PIL import Image, ImageOps
 
-MAX_EDGE = 1200          # long edge for photographs; was 1400, dropped when
-                         # storage got tight. The deck shows photos at most
-                         # ~1200px tall on any screen the site actually meets.
-JPEG_Q = 70              # was 80, then 75; each step bought ~15% and the
-                         # originals in _originals/ mean any of it can be
-                         # regenerated at higher quality later
+MAX_EDGE = 1000          # long edge for photographs; 1400 -> 1200 -> 1000.
+                         # The last step came with First Year: 350 more photos
+                         # would have taken assets/img from 79MB to 116MB, and
+                         # at 1000px it is 66MB instead -- smaller than before,
+                         # with half again as many photographs in it.
+AVIF_Q = 50              # for the year galleries. Chosen against the JPEG q62
+                         # it replaced by comparing 100% crops: q50 matches or
+                         # beats it everywhere at ~64% of the bytes; q45 buys
+                         # another 10 points but starts smoothing low-light
+                         # grain. The originals in _originals/ mean any of it
+                         # can be regenerated at higher quality later.
+EXT = '.avif'            # what ingest writes; years-data.js carries the names
+JPEG_Q = 62              # sweep only, now: was 80, then 75, then 70; each step
+                         # bought ~15-20%
 PNG_COLORS = 256
+
+# sweep: PNGs that stay PNG no matter what the size test says. The PWA icons
+# are pointed at by name from manifest.webmanifest and the <link> tags, and
+# iOS is picky about touch-icon formats, so they are not sweep's to demote.
+KEEP_PNG = ['assets/img/icons']
 
 SRC = '_originals'
 OUT = 'assets/img/years'
@@ -48,20 +69,20 @@ DATA = 'assets/js/years-data.js'
 YEARS = [
     # two era cards, each one gallery divided into year chapters (see
     # CHAPTERS): everything before middle school, then 7th and 8th together
-    ('pre-ms',       'Pre-Middle School', '2006–18', 'ms', '2018-08-21-1659.jpg'),
-    ('ms-middle',    'Middle School', '2018–20', 'ms', '2019-12-30-1200.jpg'),
+    ('pre-ms',       'Pre-Middle School', '2006–18', 'ms', '2018-08-21-1659.avif'),
+    ('ms-middle',    'Middle School', '2018–20', 'ms', '2019-12-30-1200.avif'),
     # not a school year: every school ID card, gathered in one card that sits
     # at the end of the middle-school row, to the right of 8th grade. The same
     # card photos also live in their own years (as `id-…`, pinned first); the
     # numeral after `id-` here fixes the order: group shot, then 9th → 12th.
     # The college ID is not here; it lives in First Year, on /college/.
-    ('id-pics',      'ID Pics',     '2018–24', 'ms',  'id-0-2026-08-16-1528.jpg'),
-    ('hs-freshman',  'Freshman',    '2020–21', 'hs',  '2021-07-20-0812.jpg'),
-    ('hs-sophomore', 'Sophomore',   '2021–22', 'hs',  '2022-05-17-1200.jpg'),
-    ('hs-junior',    'Junior',      '2022–23', 'hs',  '2022-10-21-1416.jpg'),
-    ('hs-senior',    'Senior',      '2023–24', 'hs',  '2024-05-30-2200.jpg'),
-    ('uci-first',    'First Year',  '2024–25', 'uci', '2025-06-13-1549.jpg'),
-    ('uci-second',   'Second Year', '2025–26', 'uci', '2026-01-17-1622.jpg'),
+    ('id-pics',      'ID Pics',     '2018–24', 'ms',  'id-0-2026-08-16-1528.avif'),
+    ('hs-freshman',  'Freshman',    '2020–21', 'hs',  '2021-07-20-0812.avif'),
+    ('hs-sophomore', 'Sophomore',   '2021–22', 'hs',  '2022-05-17-1200.avif'),
+    ('hs-junior',    'Junior',      '2022–23', 'hs',  '2022-10-21-1416.avif'),
+    ('hs-senior',    'Senior',      '2023–24', 'hs',  '2024-05-30-2200.avif'),
+    ('uci-first',    'First Year',  '2024–25', 'uci', '2025-06-13-1549.avif'),
+    ('uci-second',   'Second Year', '2025–26', 'uci', '2026-01-17-1622.avif'),
 ]
 
 # chapters: named divisions INSIDE one gallery, keyed by group id. Each entry
@@ -85,8 +106,134 @@ CHAPTERS = {
     ],
 }
 
-# icons are referenced by the PWA manifest and must stay PNG whatever the maths
-KEEP_PNG = {'assets/img/icons', 'assets/img/me/abubakr-circle.png'}
+# ── photographs that belong to two galleries ──
+# The four school ID cards each appear in their own year AND in the "ID Pics"
+# card. That is deliberate, but it used to mean two identical JPEGs on disk and
+# two identical downloads: 241 KB of the shipped site, and four extra files for
+# the service worker to carry, to show the same four photographs twice.
+#
+# So each is encoded exactly once, in the year it belongs to, and the ID Pics
+# entry points at that same file. A `file` containing a slash is a path relative
+# to /assets/img/years/ rather than a name inside the group's own folder --
+# years.js reads it that way (see url() there).
+#
+# Keyed by the group doing the borrowing: stem -> '<group>/<stem>' it borrows.
+ALIASES = {
+    'id-pics': {
+        'id-1-2020-08-11-1200': 'hs-freshman/id-2020-08-11-1200',
+        'id-2-2021-08-05-1048': 'hs-sophomore/id-2021-08-05-1048',
+        'id-3-2022-08-17-1727': 'hs-junior/id-2022-08-17-1727',
+        'id-4-2023-08-03-0830': 'hs-senior/id-2023-08-03-0830',
+    },
+}
+
+# ── a heading per month, for the years big enough to need one ──
+# pre-ms and ms-middle are divided by grade instead (see CHAPTERS above): those
+# two span a decade each, so a month heading would be meaningless there.
+BY_MONTH = ['hs-freshman', 'hs-sophomore', 'hs-junior', 'hs-senior',
+            'uci-first', 'uci-second']
+
+TRAVELS = 'assets/js/travels-data.js'
+
+# ── where one academic year stops and the next starts ──
+# For COLLEGE the seam is 1 September: a photograph from 3 Sep belongs to the
+# year beginning that month, one from 30 Aug to the year ending. The seams used
+# to be wherever the photographs happened to fall -- senior year ran to 22 Sep
+# 2024 and First Year picked up on the 24th -- which put the same fortnight in
+# two different years depending on which side of a gap it landed.
+#
+# High school is NOT on this rule and must not be put on it. Trabuco starts in
+# the middle of August, so its years genuinely begin in August: the first-day
+# photographs sit in 2020-08, 2021-08, 2023-08 and belong exactly where they
+# are. Only hs-senior gets a bound, and only an upper one, because September
+# 2024 is college whatever else is true.
+#
+# Checked, not enforced: moving a file is a decision, so ingest reports strays
+# and leaves them alone. ID cards are exempt -- issued in August, before their
+# year begins, and the `id-` prefix already pins them to the front of the year
+# they belong to whatever their date says.
+ACADEMIC = {
+    'hs-senior':  (None,      '2024-08'),   # nothing from Sept 2024 on: that is college
+    'uci-first':  ('2024-09', '2025-08'),
+    'uci-second': ('2025-09', '2026-08'),
+}
+
+
+MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+               'August', 'September', 'October', 'November', 'December']
+
+
+def trips_by_month():
+    """('uci-first', '2024-12') -> 'Tunisia', read from travels-data.js so the
+    two can never disagree about where a month was spent.
+
+    Keyed by GROUP as well as month, off the trip's own shot paths, rather than
+    by the trip's month alone. A trip lands in whichever year contains its
+    photographs, and the two do not always agree: Maui is September 2025, but it
+    falls after the First/Second Year boundary, so it belongs to Second Year's
+    September and not First Year's. Going by month alone labelled both.
+
+    A trip with no photographs annotates nothing, which is right -- there is no
+    month heading to hang it on.
+
+    `places` is kept as the raw source text, escapes and all, because it is
+    going straight back out into another JS file."""
+    try:
+        src = open(TRAVELS, encoding='utf-8').read()
+    except OSError:
+        return {}
+    out = {}
+    # the last trip in the array is followed by the array close, which may or
+    # may not carry a comma -- so do not require one, or the final trip is
+    # silently skipped and its month loses its heading
+    for blk in re.findall(r"\{ when:.*?(?=\n    \{ when:|\n  \])", src, re.S):
+        pl = re.search(r"places: '((?:[^'\\]|\\.)*)'", blk)
+        sh = re.search(r"shots: \[(.*?)\]", blk, re.S)
+        if not (pl and sh):
+            continue
+        for path in re.findall(r"'([^']+)'", sh.group(1)):
+            grp, _, name = path.partition('/')
+            d = re.search(r"(\d{4})-(\d{2})-\d{2}", name)
+            if not d:
+                continue
+            key = (grp, '%s-%s' % d.groups())
+            if key not in out:
+                out[key] = pl.group(1)
+            elif pl.group(1) not in out[key]:
+                out[key] += ' \\u00b7 ' + pl.group(1)
+    return out
+
+
+def month_chapters(gid, rows, trips):
+    """One chapter per month the year actually contains, in row order.
+
+    Walks the rows rather than searching per month, because the ID photo is
+    pinned to the front of its year whatever its date: a month is a new chapter
+    when it differs from the row before it, which stays correct however the rows
+    are ordered. Photos with no date at all collect under a final heading.
+
+    A month with a trip in it is headed by the trip and dated in the gold text
+    -- "Tunisia Travel / December 2024" -- rather than the other way round. It
+    reads better on a trip that runs over the turn of a month: Tunisia is one
+    holiday, and December and January headed only by their month names made it
+    look like two. An ordinary month is just its own name."""
+    out, seen = [], None
+    for i, r in enumerate(rows):
+        key = r['date'][:7] if r['date'] else None
+        if key == seen:
+            continue
+        seen = key
+        if key is None:
+            out.append((i, 'Undated', 'not yet placed'))
+            continue
+        y, mo = key.split('-')
+        when = '%s %s' % (MONTH_NAMES[int(mo) - 1], y)
+        trip = trips.get((gid, key), '')
+        if trip:
+            out.append((i, trip + ' Travel', when))
+        else:
+            out.append((i, when, ''))
+    return out
 
 
 def run(cmd):
@@ -111,6 +258,18 @@ def encode_jpeg(im, dest, quality=JPEG_Q, max_edge=MAX_EDGE):
         os.replace(tmp, dest)
     elif os.path.exists(tmp):
         os.remove(tmp)
+    return os.path.getsize(dest)
+
+
+def encode_avif(im, dest, quality=AVIF_Q, max_edge=MAX_EDGE):
+    """The year-gallery encoder. Pillow's save strips metadata on its own
+    (nothing is passed through), and there is no jpegtran equivalent worth
+    running: the AVIF bitstream is already entropy-coded as tightly as the
+    encoder can make it."""
+    im = im.convert('RGB')
+    if max_edge and max(im.size) > max_edge:
+        im.thumbnail((max_edge, max_edge), Image.LANCZOS)
+    im.save(dest, 'AVIF', quality=quality, speed=6)
     return os.path.getsize(dest)
 
 
@@ -146,6 +305,8 @@ def date_from(stem):
 
 def ingest():
     manifest = {}
+    dims = {}          # '<group>/<stem>' -> (w, h), filled as each file is encoded
+
     for gid, label, span, school, cover in YEARS:
         d = os.path.join(SRC, gid)
         if not os.path.isdir(d):
@@ -153,16 +314,20 @@ def ingest():
             manifest[gid] = []
             continue
         os.makedirs(os.path.join(OUT, gid), exist_ok=True)
+        alias = ALIASES.get(gid, {})
 
         # id photos first (the year's ID card leads the gallery regardless of
-        # its date), then chronological, then undated at the end
+        # its date), then chronological, then undated at the end. Borrowed
+        # photos have no original of their own, so their stems are added here.
         stems = sorted(
-            (os.path.splitext(f)[0] for f in os.listdir(d)
-             if not f.startswith('.') and f.lower().endswith(('.jpg', '.jpeg', '.png', '.heic'))),
+            set(os.path.splitext(f)[0] for f in os.listdir(d)
+                if not f.startswith('.') and f.lower().endswith(('.jpg', '.jpeg', '.png', '.heic')))
+            | set(alias),
             key=lambda s: (not s.startswith('id'), s.startswith('undated'), s))
 
-        # anything in the output that is no longer in _originals is stale
-        keep = {s + '.jpg' for s in stems}
+        # anything in the output that is no longer in _originals is stale --
+        # and a borrowed photo must NOT have a file here, that is the point
+        keep = {s + EXT for s in stems if s not in alias}
         for f in os.listdir(os.path.join(OUT, gid)):
             if f not in keep:
                 os.remove(os.path.join(OUT, gid, f))
@@ -170,20 +335,53 @@ def ingest():
 
         rows = []
         for stem in stems:
+            if stem in alias:
+                rows.append({'file': None, 'alias': alias[stem], 'date': date_from(stem)})
+                continue
             src = next(os.path.join(d, f) for f in os.listdir(d)
                        if os.path.splitext(f)[0] == stem)
-            dest = os.path.join(OUT, gid, stem + '.jpg')
+            dest = os.path.join(OUT, gid, stem + EXT)
             im = ImageOps.exif_transpose(Image.open(src))
-            size = encode_jpeg(im, dest)
+            size = encode_avif(im, dest)
             w, h = Image.open(dest).size
-            rows.append({'file': stem + '.jpg', 'date': date_from(stem), 'w': w, 'h': h})
-            print('  %-14s %-24s %5dx%-5d %6.1fKB' % (gid, stem + '.jpg', w, h, size / 1024))
+            dims['%s/%s' % (gid, stem)] = (w, h)
+            rows.append({'file': stem + EXT, 'date': date_from(stem), 'w': w, 'h': h})
+            print('  %-14s %-24s %5dx%-5d %6.1fKB' % (gid, stem + EXT, w, h, size / 1024))
 
-        assert cover in keep, 'cover %s missing from %s' % (cover, gid)
+        assert cover in keep or cover in {s + EXT for s in alias}, \
+            'cover %s missing from %s' % (cover, gid)
+
+        win = ACADEMIC.get(gid)
+        if win:
+            lo, hi = win
+            for r in rows:
+                if not r.get('date') or r['file'].startswith('id'):
+                    continue
+                m = r['date'][:7]
+                if (lo and m < lo) or (hi and m > hi):
+                    print('  ! %s/%s is %s, outside %s..%s'
+                          % (gid, r['file'], m, lo or 'any', hi or 'any'))
+
         manifest[gid] = rows
 
+    # second pass: a borrowed row takes the path and the dimensions of the file
+    # it borrows, which by now has certainly been encoded whatever the year order
+    borrowed = 0
+    for gid, rows in manifest.items():
+        for r in rows:
+            if r['file'] is not None:
+                continue
+            target = r.pop('alias')
+            assert target in dims, 'nothing to borrow at %s' % target
+            r['file'] = target + EXT
+            r['w'], r['h'] = dims[target]
+            borrowed += 1
+            print('  %-14s borrows %s' % (gid, target + EXT))
+
     write_data(manifest)
-    print('\ningested %d photos' % sum(len(v) for v in manifest.values()))
+    n = sum(len(v) for v in manifest.values())
+    print('\ningested %d photos (%d encoded, %d shown twice from one file)'
+          % (n, n - borrowed, borrowed))
 
 
 def write_data(manifest):
@@ -218,18 +416,25 @@ window.YEARS = {
     # chapter start indices, computed here so they can never drift from the
     # photo order: [firstIndex, label, span] per chapter that caught a photo
     L.append('  chapters: {')
-    for gid, chapters in CHAPTERS.items():
+    trips = trips_by_month()
+    for gid, label, span, school, cover in YEARS:
         rows = manifest.get(gid, [])
-        out = []
-        for ci, (label, span, start) in enumerate(chapters):
-            end = chapters[ci + 1][2] if ci + 1 < len(chapters) else '9999'
-            idx = [i for i, r in enumerate(rows)
-                   if r['date'] and start <= r['date'][:7] < end]
-            if idx:
-                out.append((min(idx), label, span))
+        if gid in CHAPTERS:
+            chapters, out = CHAPTERS[gid], []
+            for ci, (clabel, cspan, start) in enumerate(chapters):
+                end = chapters[ci + 1][2] if ci + 1 < len(chapters) else '9999'
+                idx = [i for i, r in enumerate(rows)
+                       if r['date'] and start <= r['date'][:7] < end]
+                if idx:
+                    out.append((min(idx), clabel, cspan))
+            out.sort()
+        elif gid in BY_MONTH:
+            out = month_chapters(gid, rows, trips)
+        else:
+            continue
         L.append("    '%s': [" % gid)
-        for i, label, span in sorted(out):
-            L.append("      [%d, '%s', '%s']," % (i, label, span))
+        for i, clabel, cspan in out:
+            L.append("      [%d, '%s', '%s']," % (i, clabel, cspan))
         L.append('    ],')
     L.append('  },')
     L.append('};')

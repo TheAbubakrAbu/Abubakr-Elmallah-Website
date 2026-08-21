@@ -65,11 +65,12 @@ can open and read.
   `jekyll-redirect-from` stubs so old `/src/*.html` links never 404, and the
   `_includes/v.html` cache-buster.
 - **Per-file cache busting.** `v.html` appends `?v=<that file's own mtime>`, so
-  changing one stylesheet doesn't force visitors to re-download 16 MB of images.
+  changing one stylesheet doesn't force visitors to re-download 80 MB of images.
 - **Installable and fully offline.** [`sw.js`](sw.js) caches the shell on install,
   then quietly pulls every page and image in the background on activate. HTML is
   network-first, CSS/JS cache-first (safe because of `?v=`), images
-  stale-while-revalidate. Add it to your home screen and it opens with no internet.
+  stale-while-revalidate; navigations ride the browser's navigation preload, so
+  a cold worker start adds nothing to a page load. Add it to your home screen and it opens with no internet.
 - **Cards come from data, never markup.** Every app and project card lives once in
   [`apps-data.js`](assets/js/apps-data.js) and is rendered by
   [`cards.js`](assets/js/cards.js) into any page that asks for it:
@@ -124,7 +125,7 @@ assets/
     cursor · magnetic · scramble · reveal · clock · flowfield · tilt
     gallery · sound · intro · scroll · cardlink · utils
     transcript-data · planets-data · travels-data · fandom-data · …
-    years-data · years    # the 284-photo year galleries on /high-school/ and
+    years-data · years    # the 1,614-photo year galleries on /high-school/ and
                           # /college/: justified rows, strictly chronological
   img/                   # me · apps · bots · awards · highschool · flyers
                          # wallpapers · franchises · icons
@@ -144,17 +145,20 @@ then:
 python3 tools/photos.py ingest
 ```
 
-It auto-orients from EXIF, resizes to a 1400px long edge, encodes progressive
-JPEG, runs `jpegtran` over the result, drops anything you deleted, and rewrites
-[`years-data.js`](assets/js/years-data.js). `_originals/` is gitignored and
-never modified. Nothing about the grid is hand-written — `years.js` reads the
+It auto-orients from EXIF, resizes to a 1000px long edge, encodes AVIF (about
+35% smaller per photo than the progressive JPEG it replaced, and it holds
+texture the JPEG had started to block away), drops anything you deleted, and
+rewrites [`years-data.js`](assets/js/years-data.js). `_originals/` is
+gitignored and never modified. Nothing about the grid is hand-written — `years.js` reads the
 widths and heights out of that file and justifies the rows before any image has
 loaded, so the layout never jumps.
 
-`python3 tools/photos.py sweep` runs the same encoder over every other image
-under `assets/img/`. PNGs stay PNG only where transparency is actually used, or
-where the PNG genuinely comes out smaller than the JPEG would — which is the
-case for the flat poster-art flyers, so converting them would make the site
+`python3 tools/photos.py sweep` recompresses every other image under
+`assets/img/` without changing its format, because that art is referenced by
+filename from HTML, CSS and `apps-data.js`. JPEGs are re-encoded progressive
+and run through `jpegtran`. PNGs stay PNG only where transparency is actually
+used, or where the PNG genuinely comes out smaller than the JPEG would: that is
+the case for the flat poster-art flyers, so converting them would make the site
 bigger. Everything else is JPEG.
 
 ### Adding an app to a page

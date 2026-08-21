@@ -712,6 +712,20 @@ html.intro-lock { overflow: hidden; }
 .intro-panel--l { left: 0; }
 .intro-panel--r { right: 0; }
 .intro-center { position: relative; z-index: 3; transition: opacity .3s ease; }
+/* the site's own circle mark, rising in just ahead of the name */
+.intro-logo {
+  display: block; margin: 0 auto 1.5rem;
+  width: clamp(76px, 13vw, 128px); height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14),
+              0 0 0 7px rgba(255, 255, 255, 0.04),
+              0 26px 60px -26px rgba(0, 0, 0, 0.95);
+  opacity: 0; transform: translateY(20px) scale(.84);
+}
+.intro--home.run .intro-logo { animation: intro-logo .5s var(--ease) forwards; }
+@keyframes intro-logo { to { opacity: 1; transform: none; } }
+/* the name follows the mark rather than landing with it */
+.intro--home.run .intro-name { animation-delay: .16s; }
 .intro-line { display: block; height: 2px; width: 0; margin: 1.5rem auto 0;
   background: linear-gradient(90deg, var(--green), var(--blue) 60%, var(--gold)); }
 .intro--home.run .intro-line { animation: intro-line .4s var(--ease) .2s forwards; }

@@ -298,7 +298,7 @@
               return '<a class="fan-tileshot" href="' + esc(s) + '" target="_blank" rel="noopener">'
                 + '<img src="' + esc(s) + '" alt="'
                 + esc(n === 0 ? (it.shotAlt || it.title) : it.title + ': ' + name)
-                + '" loading="lazy" /></a>';
+                + '" loading="lazy" decoding="async" /></a>';
             }).join('') + '</span>';
         return '<div class="fan-tile reveal' + (it.done ? ' is-done' : '') + '"'
           + (keys.length ? ' data-i="' + i + '"' : '')
@@ -395,7 +395,7 @@
       return '<div class="fan-shots">' + s.items.map(function (it) {
         return '<figure class="fan-shot reveal"' + a(it) + '>'
           + '<a href="' + esc(it.src) + '" target="_blank" rel="noopener">'
-          +   '<img src="' + esc(it.src) + '" alt="' + esc(it.alt || it.title) + '" loading="lazy" />'
+          +   '<img src="' + esc(it.src) + '" alt="' + esc(it.alt || it.title) + '" loading="lazy" decoding="async" />'
           + '</a>'
           + '<figcaption><b>' + esc(it.title) + '</b>'
           +   (it.desc ? '<span>' + esc(it.desc) + '</span>' : '')

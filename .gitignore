@@ -8,6 +8,6 @@ vendor/
 # Plaintext travels, from back when the page was gated
 travels.source.json
 
-# The camera-roll originals behind the year galleries: ~196 MB, and the site
+# The camera-roll originals behind the year galleries: ~2 GB, and the site
 # only ships what tools/photos.py makes out of them. See _originals/README.md.
 _originals/

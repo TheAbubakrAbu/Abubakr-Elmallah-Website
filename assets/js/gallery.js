@@ -15,9 +15,10 @@
   const isImg = href => /\.(jpe?g|png|webp|gif|avif)$/i.test(href || '');
 
   function open(label, images) {
+    label = label || '';
     const m = label.match(/^(.*?)(\s*[’']\d+)?$/);
     title.innerHTML = m ? (m[1] + (m[2] ? '<i>' + m[2] + '</i>' : '')) : label;
-    wrap.innerHTML = images.map(s => '<img src="' + s + '" alt="' + label + '" loading="lazy">').join('');
+    wrap.innerHTML = images.map(s => '<img src="' + s + '" alt="' + label + '" loading="lazy" decoding="async">').join('');
     lb.classList.add('open');
     lb.setAttribute('aria-hidden', 'false');
     document.documentElement.classList.add('intro-lock');
@@ -29,8 +30,15 @@
     document.documentElement.classList.remove('intro-lock');
   }
 
-  // "Through the Years" year cards, each opens its full set of photos
-  document.querySelectorAll('.year-card').forEach(card => {
+  /* "Through the Years" year cards from the OLD hand-written markup, where the
+     card carried its whole photo set in data-images.
+
+     Scoped to [data-images] on purpose. The year cards on /high-school/ and
+     /college/ are built by years.js now and carry data-group instead, and they
+     open years.js's own deck, not this lightbox. Binding to a bare .year-card
+     caught those too and threw on every click, because they have no
+     data-label to match against. */
+  document.querySelectorAll('.year-card[data-images]').forEach(card => {
     card.addEventListener('click', () => open(card.dataset.label, (card.dataset.images || '').split(',').filter(Boolean)));
   });
 
