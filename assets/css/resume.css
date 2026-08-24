@@ -10,7 +10,7 @@
    all share one column and one left edge; only the document inside is capped
    narrower, for line length */
 .rt {
-  max-width: var(--maxw); margin: 0 auto;
+  max-width: var(--maxw); margin: 0 0;
   padding: 0 var(--gutter);
 }
 

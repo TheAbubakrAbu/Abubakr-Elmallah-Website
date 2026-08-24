@@ -126,12 +126,14 @@ src/                     # 51 pages, each with a permalink in its front matter
 assets/
   css/                   # base · layout · components · transcript · travels · accents
     fan/                 # one stylesheet per fan page
-  js/                    # 83 files
+  js/                    # 100 files
     apps-data.js         # SINGLE source of truth for every app/project card
     photos-data.js       # my own photos, keyed by fandom and by park; every
                          # path points into assets/img/years/, never a copy
     cards.js             # renders them into [data-cards] / [data-projects]
     expand.js            # click a card -> it expands in place with the full write-up
+    lazy.js              # the gallery loader: frames are data-src, fetched a few at
+                         # a time nearest the viewport, and let go when far away
     cursor · magnetic · scramble · reveal · clock · flowfield · tilt
     gallery · sound · intro · scroll · cardlink · utils
     transcript-data · planets-data · travels-data · fandom-data · …
@@ -161,7 +163,11 @@ texture the JPEG had started to block away), drops anything you deleted, and
 rewrites [`years-data.js`](assets/js/years-data.js). `_originals/` is
 gitignored and never modified. Nothing about the grid is hand-written — `years.js` reads the
 widths and heights out of that file and justifies the rows before any image has
-loaded, so the layout never jumps.
+loaded, so the layout never jumps. The frames themselves are fetched by
+[`lazy.js`](assets/js/lazy.js): written with `data-src`, given a real `src` a
+few at a time as they come within a screen of the viewport, and let go again
+once scrolled far away, so the page is up before a single photo is asked for
+and a 700-photo year stays within what a phone can hold.
 
 `python3 tools/photos.py sweep` recompresses every other image under
 `assets/img/` without changing its format, because that art is referenced by
@@ -192,6 +198,12 @@ bundle install
 
 Jekyll is required — `permalink`, `redirect_from` and the `v.html` include mean
 opening the raw files from disk won't resolve links or stylesheet versions.
+
+`run` also passes `--livereload-ignore '/assets/*'`. Without it, every save
+sends the browser one reload message per site file (about 2,000 here, most of
+them gallery photos) and the LiveReload client answers each one with
+`location.reload()`, which is enough to take the browser down. The comment at
+the top of `run` has the numbers.
 
 ## Contact
 

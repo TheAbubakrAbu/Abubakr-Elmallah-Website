@@ -1,0 +1,85 @@
+/* fan/hunger-games.css: /worlds/hunger-games/ only.
+
+   Gold on smoke: the Capitol's colour over the treeline of an arena. The hero
+   drawing is the mockingjay pin, the flame and the nightlock berries, because
+   those are the three ways Katniss refuses to play and the series is about
+   nothing else. */
+
+body[data-fan="hunger"] { --a: #e0b040; }
+
+/* ── the backdrop ── */
+.hg-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(85% 65% at 50% 0%, #241d10 0%, #17130c 46%, #050506 100%);
+}
+
+.hg-sky > * { position: absolute; inset: 0; }
+
+.hg-smoke {
+  background:
+    radial-gradient(58% 28% at 28% 10%, rgba(224,176,64,.14), transparent 72%),
+    radial-gradient(52% 24% at 74% 6%, rgba(201,74,58,.11), transparent 72%);
+  animation: hg-roll 26s ease-in-out infinite alternate;
+}
+
+@keyframes hg-roll { to { transform: translateX(-4%) } }
+
+.hg-embers {
+  background-size: 320px 320px;
+  background-image:
+    radial-gradient(1.8px 1.8px at 60px 260px, rgba(240,170,80,.5), transparent),
+    radial-gradient(1.4px 1.4px at 200px 180px, rgba(224,120,60,.42), transparent),
+    radial-gradient(1.6px 1.6px at 130px 90px, rgba(240,200,120,.34), transparent);
+  animation: hg-rise 24s linear infinite;
+}
+
+@keyframes hg-rise { to { transform: translateY(-320px) } }
+
+@media (prefers-reduced-motion: reduce) {
+  .hg-smoke, .hg-embers { animation: none; }
+}
+
+.hg-forest { top: auto; height: 36%; opacity: .55; }
+
+.hg-forest svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.hgf-far path  { fill: #1a1c14; }
+
+.hgf-near path { fill: #0e1410; }
+
+.hgf-ground    { fill: #0b0d09; }
+
+/* ── hero ── */
+body[data-fan="hunger"] .fan-title {
+  background: linear-gradient(180deg, #f8ecc0, #e0b040 56%, #9c7418);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ── the pin, the fire, the berries ── */
+.hg-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem 0 0; }
+
+.hg-art svg { display: block; width: min(660px, 100%); margin-inline: auto; }
+
+.hga-ring {
+  fill: none; stroke: #e0b040; stroke-width: 7;
+}
+
+.hga-ring--in { stroke-width: 2.4; opacity: .5; }
+
+.hga-bird  { fill: #f0d68a; }
+
+.hga-arrow { fill: none; stroke: #c9a552; stroke-width: 5; stroke-linecap: round; }
+
+.hga-head, .hga-fletch { fill: #c9a552; }
+
+.hga-flame path { fill: #d8642a; opacity: .85; }
+
+.hga-berries circle { fill: #3a2a5a; }
+
+.hga-stem { fill: none; stroke: #4a5a34; stroke-width: 3.4; stroke-linecap: round; }
+
+.hg-art figcaption {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}

@@ -128,6 +128,30 @@
     league:  '<circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/>'
              + '<path d="M6.4 17.6 17.6 6.4" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>'
              + '<path d="M12 6.6l1.5 3.6 3.9.3-3 2.5.9 3.8L12 14.8 8.7 16.8l.9-3.8-3-2.5 3.9-.3z"/>',
+    // Luxo Jr.: a desk lamp leaning over, its light, and the ball
+    lamp:    '<rect x="4.4" y="20.4" width="9.2" height="1.8" rx=".9"/>'
+             + '<path d="M9 20.4 13.4 13.2M13.4 13.2 9.6 8.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>'
+             + '<circle cx="13.4" cy="13.2" r="1.2"/>'
+             + '<path d="M12.6 4.2 5.2 8.6l3.4 3.6 5.4-5z"/>'
+             + '<circle cx="8" cy="12.6" r="1.3" opacity=".7"/>'
+             + '<circle cx="19.2" cy="19.4" r="2.6" opacity=".8"/>',
+    // Red, in profile: the beak, and the two brows that are the whole joke
+    bird:    '<circle cx="11" cy="12.4" r="7.4"/>'
+             + '<path d="M18 10.6 23 12.4l-5 1.8z"/>'
+             + '<path d="M5.8 3.6c1.8-.6 3.2-.1 4.2 1.4-1.8.1-3.1.5-3.9 1.2z"/>'
+             + '<circle cx="9" cy="11.4" r="1.5" fill="#000" opacity=".5"/>'
+             + '<circle cx="13.6" cy="11.4" r="1.5" fill="#000" opacity=".5"/>'
+             + '<path d="M6.4 8 10.2 10M16.2 8 12.4 10" fill="none" stroke="#000" stroke-width="1.7" opacity=".5" stroke-linecap="round"/>',
+    // the mockingjay pin: a ring, a bird in flight, and the arrow through it
+    mockingjay: '<circle cx="12" cy="12" r="9.6" fill="none" stroke="currentColor" stroke-width="1.5"/>'
+             + '<path d="M4.9 19.1 19.1 4.9" fill="none" stroke="currentColor" stroke-width="1.1" opacity=".55"/>'
+             + '<path d="M19.1 4.9 15.5 5.6l2.9 2.9z" opacity=".55"/>'
+             + '<path d="M12 3.6 12.9 4.7 18.9 3 15.8 7.9 19.7 9.8 13.5 9.9 14.8 15.9 12 13.5 9.2 15.9 10.5 9.9 4.3 9.8 8.2 7.9 5.1 3 11.1 4.7Z"/>',
+    // a Continental coin: rim, inner rule, and the crest struck into it
+    coin:    '<circle cx="12" cy="12" r="9.6" fill="none" stroke="currentColor" stroke-width="1.7"/>'
+             + '<circle cx="12" cy="12" r="7.4" fill="none" stroke="currentColor" stroke-width=".9" opacity=".55"/>'
+             + '<path d="M12 6.2 17 8.2v3.6c0 2.9-2 5-5 6-3-1-5-3.1-5-6V8.2z"/>'
+             + '<path d="M12 8.8v6.4M9.4 11.4h5.2" fill="none" stroke="#000" stroke-width="1.1" opacity=".4" stroke-linecap="round"/>',
     saloon:  '<path d="M3 21V9.4l9-6.4 9 6.4V21z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>'
              + '<path d="M2 21h20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'
              + '<path d="M9.4 21v-6.2a2.6 2.6 0 0 1 5.2 0V21z"/>'
@@ -186,14 +210,79 @@
       + '</h3>'
       + '<div class="fr-grid">' + g.items.map(tile).join('') + '</div>'
       + '</section>';
+  }).join('');
+
   /* These nodes carry .reveal, so they start invisible until reveal.js observes
      them. It scans once on load; this file currently runs before it, but making
      that a load-order dependency is how the atlas on /star-wars/ ended up blank.
-     Handing the markup back is idempotent and makes the order irrelevant. */
+     Handing the markup back is idempotent and makes the order irrelevant.
+
+     This call used to sit INSIDE the map callback above, after its `return`,
+     which meant it never ran at all. */
   if (typeof window.AEreveal === 'function') window.AEreveal(root);
 
-  }).join('');
+  /* the count, wherever the page prints it: the lede and the button that opens
+     the whole block both carry it, and neither should be a number typed by hand */
+  var counts = document.querySelectorAll('.fr-total, #fandomTotal');
+  for (var ci = 0; ci < counts.length; ci++) counts[ci].textContent = total;
 
-  var totalEl = document.getElementById('fandomTotal');
-  if (totalEl) totalEl.textContent = total;
+  /* ── the switch ──
+     Everything this file renders is a world that ships nothing, so on /worlds/
+     it all sits behind one button: the two portals that DO ship apps are the
+     page, and this is what you open. No button on the page (or a page that
+     wants the tiles open) simply gets them, which is why the guard is a return
+     rather than a class. */
+  var btn = document.getElementById('frVaultBtn');
+  var vault = document.getElementById('frVault');
+  if (!btn || !vault) return;
+
+  var label = btn.querySelector('.fr-vaultbtn-l');
+  var arrow = btn.querySelector('.fr-vaultbtn-a');
+
+  /* Remembered, the same way the "show other pictures" switch is (pics.js) and
+     the cursor and sound toggles are: one localStorage key, wrapped in
+     try/catch because private mode throws on the getter, not just the setter.
+     Open it once and it stays open on the next visit, so somebody who came here
+     for the tiles is not made to ask twice. */
+  var KEY = 'ae-worlds-open';
+  function read() {
+    try { return localStorage.getItem(KEY) === 'on'; } catch (e) { return false; }
+  }
+  function write(v) {
+    try { localStorage.setItem(KEY, v ? 'on' : 'off'); } catch (e) { /* private mode */ }
+  }
+
+  /* `late` is whether this is a change rather than the initial state.
+
+     It only controls the reveal pass, and the distinction matters: the tiles
+     carry .reveal, and a tile laid out inside a `hidden` block has never
+     intersected the viewport, so reveal.js is still waiting on all of it. On a
+     CHANGE the observer needs a nudge on the next frame, once the block has a
+     box. On LOAD it needs nothing: this file runs before reveal.js, so the
+     block is already open by the time reveal.js does its first scan and the
+     tiles are picked up like anything else on the page. */
+  function apply(open, late) {
+    vault.hidden = !open;
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.classList.toggle('is-open', open);
+    if (label) label.textContent = open ? 'Hide the other worlds' : 'Show the other worlds';
+    if (arrow) arrow.textContent = open ? '\u2191' : '\u2193';
+    if (open && late && typeof window.AEreveal === 'function') {
+      requestAnimationFrame(function () { window.AEreveal(vault); });
+    }
+  }
+
+  apply(read(), false);
+
+  btn.addEventListener('click', function () {
+    var open = vault.hidden;
+    write(open);
+    apply(open, true);
+  });
+
+  /* Another tab flipped it: keep every open copy of this page in step rather
+     than letting them disagree about what the same one setting says. */
+  addEventListener('storage', function (e) {
+    if (e.key === KEY) apply(read(), true);
+  });
 })();

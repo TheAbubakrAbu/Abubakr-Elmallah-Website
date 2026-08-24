@@ -1028,7 +1028,7 @@
    One per fan page, above every section. Uses the page's own accent (--a) so it
    picks up each franchise's colour without 33 separate rules. */
 .fan-when {
-  max-width: var(--maxw); margin: 0 auto 2.6rem; padding: 1rem 1.2rem;
+  max-width: var(--maxw); margin: 0 0 2.6rem; padding: 1rem 1.2rem;
   display: grid; gap: 0.35rem;
   border-left: 3px solid var(--a, var(--ink-dim));
   background: linear-gradient(90deg, color-mix(in srgb, var(--a, #888) 8%, transparent), transparent 70%);
@@ -1059,7 +1059,7 @@
    Each page supplies its own accent per slot through --c, so one set of rules
    covers all twenty-four without a per-franchise stylesheet. */
 .fan-play {
-  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem;
 }
 
 .fp-head h3 {
@@ -1431,9 +1431,21 @@ body[data-fan="mcu"] { --a: #e0483a; }
    the left, the writing on the right. Every fan page gets one. Add a .fan-art
    block to the hero, drop the drawing in .fan-art-fig, put a quote and a
    paragraph in .fan-art-body, and style the drawing under .fan-art--<slug>. */
+/* THE GEOMETRY IS SET HERE, not inherited. This block is a direct child of
+   <main> on every page, but it is written as a <section> on half of them and a
+   <div> on the other half, and only the <section> ones were picking up
+   `padding: 0 var(--gutter); max-width: var(--maxw)` from layout.css. So the
+   <div> pages had a hero drawing with no gutter and no cap: it started a full
+   gutter left of the words above it and ran to the window edge, with the quote
+   column drifting further right the wider the monitor got.
+
+   It used to say `max-width: none`, which unset the cap on the <section> half
+   as well. Stating both here makes the tag irrelevant: on a <section> these are
+   the values it already had, on a <div> they are the ones it was missing. */
 .fan-art {
   display: grid; gap: clamp(1.2rem, 4vw, 2.8rem); align-items: center;
-  grid-template-columns: 1fr; margin: 2.4rem 0 0; max-width: none;
+  grid-template-columns: 1fr; margin: 2.4rem 0 0;
+  max-width: var(--maxw); padding: 0 var(--gutter);
 }
 
 @media (min-width: 820px) {
@@ -2308,7 +2320,7 @@ body[data-fan="universal"] .fan-title {
 
 /* ═════════════ Game of Thrones: Westeros, and the Wall ═════════════ */
 .got-map {
-  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem;
   display: grid; gap: clamp(1.2rem, 3vw, 2.4rem); align-items: center;
   grid-template-columns: 1fr;
 }

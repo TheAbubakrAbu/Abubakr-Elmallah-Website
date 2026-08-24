@@ -1,26 +1,24 @@
 ---
-permalink: /travels/
-redirect_from:
-  - /src/resume.html
+permalink: /worlds/pixar/
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Private." />
+<meta name="description" content="Pixar as a fandom: the Lucasfilm years, Luxo Jr., the ten features that matter, the shorts where the studio experiments, and why the grief goes in the first four minutes." />
 <meta name="theme-color" content="#08080a" />
 
-<link rel="icon" type="image/png" href="../assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png" />
+<link rel="icon" type="image/png" href="/assets/img/me/abubakr-circle.png" />
+<link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
 <link rel="manifest" href="/manifest.webmanifest" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Abubakr" />
-<meta property="og:image" content="../assets/img/me/abubakr-circle.png" />
+<meta property="og:image" content="/assets/img/me/abubakr-circle.png" />
 <meta property="og:type" content="website" />
-<title>Travels · Abubakr Elmallah</title>
+<title>Pixar &#183; Abubakr Elmallah</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -31,49 +29,28 @@ redirect_from:
      and render immediately; onload promotes it to the real stylesheet.
      Every family here already carries display=swap, so text is on
      screen in the fallback face straight away and swaps when it lands. -->
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" /></noscript>
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
-<!-- years.css is here for the yg-deck full-screen viewer the trip photos reuse -->
-<link rel="stylesheet" href="{% include v.html f='/assets/css/years.css' %}" />
-<link rel="stylesheet" href="{% include v.html f='/assets/css/travels.css' %}" />
-<link rel="stylesheet" href="{% include v.html f='/assets/css/pics.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/pixar.css' %}" />
 </head>
-<body data-intro="none" data-fan="travels">
-<!-- the backdrop: a graticule, great-circle arcs, and the places on it -->
-<div class="tv-sky" aria-hidden="true">
-  <div class="tv-grid"></div>
-  <div class="tv-globe">
-    <svg viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice">
-      <g class="tvs-lat">
-        <path d="M0 140h1400M0 245h1400M0 350h1400M0 455h1400M0 560h1400"/>
-      </g>
-      <g class="tvs-lon">
-        <path d="M175 0c-40 220-40 480 0 700M350 0c-26 220-26 480 0 700M525 0c-13 220-13 480 0 700
-                 M700 0v700M875 0c13 220 13 480 0 700M1050 0c26 220 26 480 0 700M1225 0c40 220 40 480 0 700"/>
-      </g>
-      <!-- great circles: the shape a long-haul route actually takes -->
-      <g class="tvs-arc">
-        <path style="--i:0" d="M210 430C420 250 700 250 900 330"/>
-        <path style="--i:1" d="M520 330C700 200 980 220 1180 300"/>
-        <path style="--i:2" d="M300 470C560 560 900 520 1120 420"/>
-        <path style="--i:3" d="M640 300C820 340 1000 470 1240 440"/>
-      </g>
-      <g class="tvs-pin">
-        <circle cx="210" cy="430" r="3"/><circle cx="520" cy="330" r="3"/>
-        <circle cx="640" cy="300" r="3"/><circle cx="900" cy="330" r="3"/>
-        <circle cx="1120" cy="420" r="3"/><circle cx="1180" cy="300" r="3"/>
-        <circle cx="1240" cy="440" r="3"/><circle cx="300" cy="470" r="3"/>
-      </g>
+<body data-intro="none" data-fan="pixar">
+
+<!-- Luxo Jr.'s pool of light on an otherwise dark desk, and the ball -->
+<div class="px-sky" aria-hidden="true">
+  <span class="px-pool"></span>
+  <span class="px-motes"></span>
+  <div class="px-desk">
+    <svg viewBox="0 0 1400 360" preserveAspectRatio="xMidYMax slice">
+      <path class="pxd-far" d="M0 300h1400v60H0z" opacity=".5"/>
+      <path class="pxd-near" d="M0 318c220-14 440 12 700 0s480 14 700 0v42H0z"/>
     </svg>
   </div>
-  <div class="tv-glow"></div>
 </div>
-
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
 <canvas id="field" aria-hidden="true"></canvas>
@@ -90,16 +67,8 @@ redirect_from:
 
 <header class="topbar">
   <a href="/" class="brand" data-magnetic>
-    <img class="brand-avatar" src="../assets/img/me/abubakr-circle.png" alt="Abubakr Elmallah" /><span class="brand-glyph"><b>Abubakr</b> Elmallah</span>
+    <img class="brand-avatar" src="/assets/img/me/abubakr-circle.png" alt="Abubakr Elmallah" /><span class="brand-glyph"><b>Abubakr</b> Elmallah</span>
   </a>
-  <!-- top nav controls hidden, using the bottom tab bar instead
-<nav class="nav">
-    <a href="/work/" data-magnetic>Work</a>
-    <a href="/projects/" data-magnetic>Projects</a>
-    <a href="/education/" data-magnetic>Education</a>
-    <a href="/worlds/" data-magnetic>Worlds</a>
-  </nav>
-  -->
   <div class="toggles"><button class="ql ql--sound is-on" id="soundToggle" type="button" aria-pressed="true" aria-label="Toggle interface sounds" data-magnetic><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><button class="ql ql--cursor" id="cursorToggle" type="button" data-cursor-toggle aria-pressed="true" aria-label="Toggle custom cursor" data-magnetic><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg></button></div>
   <div class="quicklinks">
     <a class="ql ql--resume" href="/resume/" data-magnetic>
@@ -121,26 +90,56 @@ redirect_from:
 
   <section class="fan-hero">
     <a class="back-link" href="/worlds/" data-magnetic>&#8592; Back to worlds</a>
-    <p class="fan-kicker"><span>Where I have been</span></p>
-    <h1 class="fan-title">Travels</h1>
-    <p class="fan-lede-hero">Eighteen trips since 2021, grouped by the school year I was in at the time. Tucked away at the bottom of the worlds page rather than in the navigation. Nobody came here for somebody else&#8217;s holiday photos.</p>
-  </section>
+    <p class="fan-kicker"><span>Studio &#183; Tertiary &#183; since 1986</span></p>
+    <h1 class="fan-title">Pixar</h1>
+    <p class="fan-lede-hero">A hardware company that could not sell its hardware, kept alive by adverts and short films, which then made the first fully computer-animated feature and spent thirty years proving a cartoon could be about grief.</p>
+    <p class="fan-lede-hero">The lamp in the logo is not a mascot. It is the star of a two-minute short from 1986 made to show off a renderer, and it has been squashing the I ever since.</p>
+    <div class="fan-links">
+      <a class="fan-link" href="#story" data-magnetic>How it got here &#8599;</a>
+      <a class="fan-link" href="#films" data-magnetic>The films &#8599;</a>
+      <a class="fan-link" href="#shorts" data-magnetic>The shorts &#8599;</a>
+      <a class="fan-link" href="#why" data-magnetic>Why it lands &#8599;</a>
+    </div>
 
-  <div id="tvRoot"></div>
+    <!-- Luxo Jr. and the ball, drawn: a desk lamp, a bounce, and the letter it
+         has been standing on since 1995. Type and geometry, no logo. -->
+    <figure class="px-art reveal">
+      <svg viewBox="0 0 900 300" role="img" aria-label="A desk lamp leaning over a ball, with its light pooling on the desk">
+        <g class="pxa-floor">
+          <path d="M60 250h780" />
+        </g>
+        <g class="pxa-beam">
+          <path d="M300 118 208 250h230z"/>
+        </g>
+        <g class="pxa-lamp">
+          <path class="pxa-base" d="M356 236h120v14H356z"/>
+          <path class="pxa-arm" d="M416 236 400 168M400 168l-96-46"/>
+          <circle class="pxa-joint" cx="400" cy="168" r="9"/>
+          <path class="pxa-shade" d="M318 86 252 128l52 54 62-70z"/>
+          <ellipse class="pxa-bulb" cx="286" cy="150" rx="16" ry="12" transform="rotate(-38 286 150)"/>
+        </g>
+        <g class="pxa-ball">
+          <circle cx="580" cy="212" r="38"/>
+          <path class="pxa-star" d="M580 188l7.4 15.4 17 2.2-12.6 11.8 3.2 16.8-15-8.2-15 8.2 3.2-16.8-12.6-11.8 17-2.2z"/>
+        </g>
+        <g class="pxa-bounce">
+          <path d="M470 236c26-56 62-56 88-4"/>
+          <path d="M700 236c-24-52-56-56-82-12"/>
+        </g>
+      </svg>
+      <figcaption>A lamp, a ball, and a renderer to show off &#183; 1986</figcaption>
+    </figure>
+  </section>
+  <div id="fanBody"></div>
 
 </main>
 
-<!-- the quiet switch that opens the galleries above; shared with
-     /college/ and /travels/ through one localStorage key -->
-<div class="picsw" data-pics-toggle></div>
-
 <footer class="footer">
   <span>© 2026 Abubakr Elmallah</span>
-  <a class="footer-mid" href="/" data-magnetic>← Back to home</a>
+  <a class="footer-mid" href="/worlds/" data-magnetic>← Back to worlds</a>
   <button class="totop" id="totop" data-magnetic>Back to top ↑</button>
 </footer>
 
-<!-- mobile bottom tab bar -->
 <nav class="tabbar" aria-label="Primary">
   <a href="/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg><span>Home</span></a>
   <a href="/work/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/><path d="M3 12.5h18"/></svg><span>Work</span></a>
@@ -150,26 +149,17 @@ redirect_from:
 </nav>
 
 <script src="{% include v.html f='/assets/js/utils.js' %}"></script>
+<!-- page content: data then the shared renderer, before reveal.js -->
+<script src="{% include v.html f='/assets/js/fan-pixar.js' %}"></script>
+<script src="{% include v.html f='/assets/js/photos-data.js' %}"></script>
+<script src="{% include v.html f='/assets/js/fanpage.js' %}"></script>
 <script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
 <script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
 <script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
 <script src="{% include v.html f='/assets/js/clock.js' %}"></script>
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
-<script src="{% include v.html f='/assets/js/tilt.js' %}"></script>
 <script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
 <script src="{% include v.html f='/assets/js/sound.js' %}"></script>
-<!-- the "show other pictures" switch: must run before the galleries that read it -->
-<script src="{% include v.html f='/assets/js/pics.js' %}"></script>
-<!-- the gallery loader: must run before travels.js, which writes data-src frames for it -->
-<script src="{% include v.html f='/assets/js/lazy.js' %}"></script>
-<script src="{% include v.html f='/assets/js/years-data.js' %}"></script>
-<script src="{% include v.html f='/assets/js/travels-data.js' %}"></script>
-<!-- after reveal.js on purpose: see the comment in travels.js -->
-<script src="{% include v.html f='/assets/js/travels.js' %}"></script>
-<!-- the world map: data first, renderer after travels.js so #tvMapMount exists -->
-<script src="{% include v.html f='/assets/js/travels-map-data.js' %}"></script>
-<script src="{% include v.html f='/assets/js/travels-map.js' %}"></script>
-<script src="{% include v.html f='/assets/js/intro.js' %}"></script>
 {% include analytics.html %}
 </body>
 </html>

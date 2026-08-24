@@ -211,7 +211,7 @@ body[data-season="5"] .st-prop--5 { opacity: 1; }
 
 /* Starcourt Mall, under the wall */
 .st-mall {
-  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem;
 }
 
 .st-mall svg { width: 100%; height: auto; display: block; }
@@ -312,7 +312,8 @@ body[data-season="5"] .st-hud { --sc: #f0a020; }
 .st-say input:focus { outline: 2px solid rgba(232,38,29,.7); outline-offset: 2px; }
 
 /* a flip control at each end of the page, counter-rotated so it stays readable */
-.st-flipbar { display: flex; justify-content: center; padding: 0 var(--gutter); margin: 0 0 2.4rem; }
+.st-flipbar { display: flex; justify-content: center; padding: 0 var(--gutter); margin: 0 0 2.4rem;
+  max-width: var(--maxw); }
 
 .st-flipbar--bottom { margin: 1rem 0 3rem; }
 
@@ -341,7 +342,7 @@ body.is-upside-down .st-flip { transform: rotate(180deg); }
 
 /* ═════════════ Stranger Things: the alphabet wall ═════════════ */
 .st-wall {
-  position: relative; padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  position: relative; padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem;
 }
 
 .st-paper {

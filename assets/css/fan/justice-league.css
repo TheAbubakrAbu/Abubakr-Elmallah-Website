@@ -127,7 +127,7 @@
 
 /* the roster ring: seven emblems around the table */
 .jl-ring {
-  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem;
   display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
   grid-template-columns: 1fr;
 }

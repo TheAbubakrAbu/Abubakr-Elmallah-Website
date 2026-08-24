@@ -174,7 +174,7 @@
 }
 
 /* ═════════════ Kung Fu Panda: the Dragon Scroll ═════════════ */
-.kfp-scroll { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; }
+.kfp-scroll { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem; }
 
 .kfp-rollers { display: flex; align-items: stretch; justify-content: center; }
 

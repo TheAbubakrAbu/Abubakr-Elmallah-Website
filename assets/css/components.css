@@ -339,11 +339,14 @@ a.app-badge:hover {
    A card with a `long` write-up in apps-data.js opens in place: it takes over
    the full width of its grid row and shows the full text plus big buttons.
    Everything here is scoped to .is-expandable, so a card without a write-up
-   behaves exactly as it did before. */
-.app-card.is-openable, .proj-card.is-openable { cursor: none; }
-@media (hover: none) {
-  .app-card.is-openable, .proj-card.is-openable { cursor: pointer; }
-}
+   behaves exactly as it did before.
+
+   The card ITSELF is a link like any other (cardlink.js stretches an anchor
+   over it); only the "Read more" button below opens the panel. Which means the
+   panel has to sit above that overlay, or reading the write-up would be one
+   stray click away from the App Store and none of its text could be selected.
+   z-index 2: over the overlay's 1, under the inner links' 3. */
+.app-more { position: relative; z-index: 2; }
 
 /* the affordance line: "Read more ↓" */
 .app-expand {
@@ -968,7 +971,7 @@ html.intro-lock { overflow: hidden; }
   transition: transform .4s var(--ease), border-color .4s, box-shadow .4s;
 }
 .year-card:hover { transform: translateY(-4px); border-color: var(--green); box-shadow: 0 18px 40px -20px rgba(0,0,0,.9); }
-.year-card img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; transition: transform .5s var(--ease); }
+.year-card img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; transition: transform .5s var(--ease), opacity .35s; }
 /* the ID Pics card: two columns wide at the same height as the square cards
    beside it. 2.06 ≈ two columns plus the gap, so the row stays level; the
    cover fills the card edge to edge. */
@@ -1036,14 +1039,20 @@ html.intro-lock { overflow: hidden; }
 .embed-note b { color: var(--ink-dim); font-weight: 400; }
 
 /* ───────────── Closing verse ───────────── */
+/* Centred on purpose, but centred INSIDE the page column: the block takes the
+   column's own geometry and the 880px cap moves in onto the Arabic line, which
+   is what the cap was ever for. Centring the block itself put it at the middle
+   of main's content box, which on a wide screen is neither the window centre
+   nor the column centre. */
 .verse {
-  max-width: 880px; margin: 2rem auto 0; padding: 5rem var(--gutter) 4rem;
+  max-width: var(--maxw); margin: 2rem 0 0; padding: 5rem var(--gutter) 4rem;
   text-align: center;
 }
 .verse-ar {
   font-family: "Scheherazade New", "Amiri", "Geeza Pro", "Noto Naskh Arabic", serif;
   font-size: clamp(1.9rem, 5vw, 3.3rem); line-height: 1.95;
   color: var(--green-2); margin-bottom: 2rem;
+  max-width: 880px; margin-inline: auto;
 }
 .verse-en {
   font-family: var(--serif); font-style: italic;

@@ -1,0 +1,84 @@
+/* fan/pixar.css: /worlds/pixar/ only.
+
+   A dark desk with one light on it, which is the whole studio's first image:
+   Luxo Jr., 1986, a short film made to show off a renderer. The hero drawing
+   is the lamp and the ball, because that is the logo before it was a logo. */
+
+body[data-fan="pixar"] { --a: #4fa8e0; }
+
+/* ── the backdrop ── */
+.px-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(80% 60% at 50% 0%, #0d1a2c 0%, #091220 48%, #04060a 100%);
+}
+
+.px-sky > * { position: absolute; inset: 0; }
+
+/* the lamp's pool of light, off-centre because the lamp is */
+.px-pool {
+  background:
+    radial-gradient(42% 30% at 34% 14%, rgba(240,200,110,.20), transparent 72%),
+    radial-gradient(52% 36% at 70% 8%, rgba(79,168,224,.13), transparent 72%);
+}
+
+.px-motes {
+  background-size: 300px 300px;
+  background-image:
+    radial-gradient(1.6px 1.6px at 50px 70px, rgba(240,220,170,.36), transparent),
+    radial-gradient(1.3px 1.3px at 190px 150px, rgba(160,210,240,.28), transparent),
+    radial-gradient(1.5px 1.5px at 110px 240px, rgba(240,220,170,.24), transparent);
+  animation: px-drift 32s linear infinite;
+}
+
+@keyframes px-drift { to { transform: translateY(-300px) } }
+
+@media (prefers-reduced-motion: reduce) { .px-motes { animation: none; } }
+
+.px-desk { top: auto; height: 30%; opacity: .6; }
+
+.px-desk svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.pxd-far  { fill: #101c2e; }
+
+.pxd-near { fill: #0a1420; }
+
+/* ── hero ── */
+body[data-fan="pixar"] .fan-title {
+  background: linear-gradient(180deg, #eaf4fc, #4fa8e0 58%, #2a6f9c);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ── the lamp and the ball ── */
+.px-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem 0 0; }
+
+.px-art svg { display: block; width: min(620px, 100%); margin-inline: auto; }
+
+.pxa-floor path { fill: none; stroke: #2a3444; stroke-width: 3; stroke-linecap: round; }
+
+/* the beam: the one warm thing on the page, and the reason the lamp reads */
+.pxa-beam path { fill: rgba(240,206,120,.16); }
+
+.pxa-base  { fill: #39424f; }
+
+.pxa-arm   { fill: none; stroke: #4a5462; stroke-width: 8; stroke-linecap: round; }
+
+.pxa-joint { fill: #6a7583; }
+
+.pxa-shade { fill: #6f7c8a; }
+
+.pxa-bulb  { fill: #f2d68a; }
+
+.pxa-ball circle { fill: #d8d2c4; }
+
+.pxa-star { fill: #c94a3a; }
+
+.pxa-bounce path {
+  fill: none; stroke: #4fa8e0; stroke-width: 2.2; stroke-linecap: round;
+  stroke-dasharray: 5 7; opacity: .55;
+}
+
+.px-art figcaption {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}

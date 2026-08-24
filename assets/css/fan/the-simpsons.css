@@ -75,7 +75,7 @@
 }
 
 /* ═════════════ The Simpsons: Bart's chalkboard ═════════════ */
-.sim-board { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; }
+.sim-board { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem; }
 
 .sim-frame {
   padding: clamp(0.6rem, 1.6vw, 1rem); border-radius: 4px;

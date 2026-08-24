@@ -400,6 +400,8 @@ redirect_from:
 <script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
 <!-- the "show other pictures" switch: must run before the galleries that read it -->
 <script src="{% include v.html f='/assets/js/pics.js' %}"></script>
+<!-- the gallery loader: must run before years.js, which writes data-src frames for it -->
+<script src="{% include v.html f='/assets/js/lazy.js' %}"></script>
 <script src="{% include v.html f='/assets/js/years-data.js' %}"></script>
 <script src="{% include v.html f='/assets/js/years.js' %}"></script>
 <script src="{% include v.html f='/assets/js/reveal.js' %}"></script>

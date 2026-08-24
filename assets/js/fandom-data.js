@@ -184,7 +184,26 @@ window.FANDOMS = [
       meta: 'Animation · 1999', href: '/worlds/spongebob/',
       desc: 'The golden-age seasons are some of the best-written comedy ever animated, and the internet has been speaking in its screenshots for twenty years.' },
 
-    
+    /* The four newest tiles. They have no `when` line yet on purpose: the rest
+       of this file says when I actually got into each thing, and inventing a
+       date for these would make the one honest column on the page unreliable.
+       Add `when:` to any of them and the tile picks it up. */
+    { name: 'Pixar', wm: 'pixar', glyph: 'lamp', c1: '#4fa8e0', c2: '#0a1524',
+      meta: 'Studio · 1986', href: '/worlds/pixar/',
+      desc: 'The studio that kept betting a cartoon could be about grief and kept being right. Toy Story was the first fully computer-animated feature; the shorts before it are where the software came from.' },
+
+    { name: 'Angry Birds', wm: 'angrybirds', glyph: 'bird', c1: '#e03a2a', c2: '#241009',
+      meta: 'Game · 2009', href: '/worlds/angry-birds/',
+      desc: 'A projectile-motion problem with a grudge. Rovio’s fifty-second game, one control, no tutorial, and a three-star rating that turned five minutes into a hundred hours.' },
+
+    { name: 'The Hunger Games', wm: 'hunger', glyph: 'mockingjay', c1: '#e0b040', c2: '#1a1408',
+      meta: 'Books · 2008', href: '/worlds/hunger-games/',
+      desc: 'A children’s series about a televised child-killing contest, which is a sentence it earns. Katniss wins the first book by refusing to finish it, and the rest is about who was watching.' },
+
+    { name: 'John Wick', wm: 'wick', glyph: 'coin', c1: '#d84a52', c2: '#170a0d',
+      meta: 'Film · 2014', href: '/worlds/john-wick/',
+      desc: 'Four films shot wide and held, by stuntmen who got to pick the camera. Underneath the fighting is a better invention: an assassins’ guild with a currency, an arbitration process and paperwork.' },
+
       ] },
 
   { id: 'parks', label: 'Theme Parks', note: 'the ones worth the drive', items: [

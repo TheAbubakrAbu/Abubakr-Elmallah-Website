@@ -59,7 +59,7 @@
 
 /* ── the claiming ── */
 .pj-claim {
-  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem;
   display: grid; gap: clamp(1.2rem, 3vw, 2.4rem); grid-template-columns: 1fr; align-items: center;
 }
 
@@ -182,7 +182,7 @@
 .pjh-drop   { fill: #6fc0f0; opacity: .6; animation: pj-bob 7s ease-in-out infinite alternate; }
 
 /* ═════════════ Percy Jackson: the camp necklace ═════════════ */
-.pj-beads { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; text-align: center; }
+.pj-beads { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem; text-align: center; }
 
 .pj-cord {
   position: relative; display: inline-flex; align-items: center; gap: 0;

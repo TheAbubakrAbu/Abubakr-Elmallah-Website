@@ -78,7 +78,7 @@
 }
 
 /* ═════════════ Universal: the Studio Tour tram ═════════════ */
-.uni-tram { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; }
+.uni-tram { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem; }
 
 .uni-road {
   position: relative; padding: clamp(1.4rem, 4vw, 2.6rem) 0 0;

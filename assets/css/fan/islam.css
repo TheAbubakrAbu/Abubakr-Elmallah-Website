@@ -78,7 +78,7 @@ body[data-fan="islam"] .isl-lede {
 
 /* the verse plate under the hero */
 .isl-verse {
-  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem;
 }
 
 .isl-verse-in {

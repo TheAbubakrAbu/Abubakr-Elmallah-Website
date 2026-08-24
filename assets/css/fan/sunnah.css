@@ -45,7 +45,7 @@ body[data-fan="sunnah"] .fan-title {
 }
 
 /* ── the dome drawing ── */
-.sn-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem auto 0; }
+.sn-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem 0 0; }
 
 .sn-art svg { display: block; width: min(620px, 100%); margin-inline: auto; }
 

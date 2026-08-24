@@ -55,10 +55,24 @@
 
 body[data-fan="travels"] { --a: #7fb8e8; }
 
+/* ── NOTHING ON THIS PAGE IS CENTRED ──
+   Every block below is `max-width: var(--maxw)` with a LEFT margin of zero,
+   not `margin: 0 auto`. The site is a left-aligned layout: layout.css sets
+   `main { padding-left: var(--gutter) }` and `section { padding: 0 var(--gutter);
+   max-width: var(--maxw) }` with no auto margin, and .fan-hero follows the same
+   rule. These sections used to say `auto`, which is invisible up to about
+   1320px and then wrong: past that the hero stays hard left while everything
+   under it drifts to the middle of the window, so the page has two left edges
+   and the wider the monitor the further apart they get. If you add a block
+   here, give it a zero side margin. */
+
 /* ───────── summary ───────── */
-.tv-summary { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 1.8rem; }
+.tv-summary { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 1.8rem; }
+/* --n is the number of tiles, set inline by travels.js: four normally, five
+   once there is a road trip on the page to count. Two up on a phone either
+   way, because five figures across a 360px screen is not a figure. */
 .tv-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem 1.4rem; }
-@media (min-width: 620px) { .tv-stats { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 620px) { .tv-stats { grid-template-columns: repeat(var(--n, 4), 1fr); } }
 .tv-stats div { display: grid; gap: 0.2rem; }
 .tv-stats b { font-family: var(--mono); font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1; color: var(--a); }
 .tv-stats span {
@@ -78,10 +92,92 @@ body[data-fan="travels"] { --a: #7fb8e8; }
 }
 .tv-lock:hover { color: var(--ink); border-color: var(--a); }
 
+/* ───────── what kind of places ─────────
+   The block under the summary, and the badges down the right of every trip
+   below it, are the same three families in the same three colours: continent,
+   who lives there, region. So a pill means the same thing wherever it appears
+   on the page, and you can read the tally and then spot it on a trip.
+
+     cont  the site's own blue -- geography, the neutral fact
+     cult  gold -- who lives there, which is the part I care about most
+     reg   green -- the specific region
+
+   The trip badges take their border from the trip's own --c1 instead, so a
+   column of pills still belongs to the card it is sitting on. */
+.tv-kindstats { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 2.4rem; }
+.tv-kindstats > h2 {
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--mute); margin-bottom: 0.7rem;
+}
+.tv-kindnote {
+  max-width: 68ch; margin-bottom: 1.3rem;
+  font-size: 0.86rem; line-height: 1.7; color: var(--ink-dim);
+}
+.tv-kindgrp + .tv-kindgrp { margin-top: 1.4rem; }
+.tv-kindgrp h3 { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.6rem; }
+.tv-kindgrp h3 span {
+  font-family: var(--sans); font-size: 0.82rem; font-weight: 600; color: var(--a);
+}
+.tv-kindgrp h3 i { flex: 1; height: 1px; background: var(--line); }
+.tv-kindgrp h3 em {
+  font-style: normal; font-family: var(--mono); font-size: 0.52rem;
+  letter-spacing: 0.12em; color: var(--mute); text-align: right;
+}
+.tv-kindgrp ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+/* one pill. In the tally it carries a count; on a trip it is the label alone,
+   which is why <b> is styled rather than assumed to be there. */
+.tv-kind {
+  display: inline-flex; align-items: baseline; gap: 0.4rem;
+  padding: 0.26rem 0.6rem 0.28rem; border-radius: 999px;
+  font-size: 0.74rem; letter-spacing: -0.01em;
+  border: 1px solid var(--line); background: rgba(255,255,255,.03); color: var(--ink-dim);
+}
+.tv-kind b {
+  font-family: var(--mono); font-weight: 500; font-size: 0.78rem; line-height: 1;
+}
+.tv-kindgrp .tv-kind--cont { border-color: rgba(127,184,232,.34); background: rgba(127,184,232,.09); }
+.tv-kindgrp .tv-kind--cont b { color: #9fcbf0; }
+.tv-kindgrp .tv-kind--cult { border-color: rgba(232,197,106,.34); background: rgba(232,197,106,.09); }
+.tv-kindgrp .tv-kind--cult b { color: #e8c56a; }
+.tv-kindgrp .tv-kind--reg  { border-color: rgba(95,200,150,.3); background: rgba(95,200,150,.08); }
+.tv-kindgrp .tv-kind--reg b { color: #6fd0a4; }
+
+/* ───────── the badges on a trip ─────────
+   A right-hand column between the words and the photo: the trip says where it
+   went, this says what sort of place that is. Capped in width so it stays a
+   column of two-or-three-per-line pills rather than eating the card, and it
+   drops under the text on a narrow screen along with the photo. */
+.tv-kinds {
+  position: relative; list-style: none; flex: 0 1 auto;
+  display: flex; flex-wrap: wrap; gap: 0.32rem;
+  justify-content: flex-end; align-content: center;
+  max-width: 15rem; margin-left: auto;
+}
+.tv-kinds .tv-kind {
+  padding: 0.2rem 0.5rem 0.22rem; font-size: 0.66rem;
+  border-color: color-mix(in srgb, var(--c1) 26%, transparent);
+  background: color-mix(in srgb, var(--c1) 7%, transparent);
+}
+.tv-kinds .tv-kind--cont {
+  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--c1) 78%, #fff);
+  border-color: color-mix(in srgb, var(--c1) 44%, transparent);
+}
+.tv-kinds .tv-kind--cult {
+  color: #e6d5a2; border-color: rgba(216,198,138,.36); background: rgba(216,198,138,.11);
+}
+.tv-kinds .tv-kind--reg { color: var(--mute); }
+
+@media (max-width: 900px) { .tv-kinds { max-width: 11rem; } }
+@media (max-width: 620px) {
+  .tv-kinds { max-width: none; justify-content: flex-start; margin-left: 0; }
+}
+
 /* ───────── the short version ─────────
    Words first, flag as a marker. Readable in ten seconds, and every row jumps
    to the full entry below. */
-.tv-short { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 2.4rem; }
+.tv-short { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 2.4rem; }
 .tv-short > h2 {
   font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--mute); margin-bottom: 1.2rem;
@@ -124,7 +220,7 @@ body[data-fan="travels"] { --a: #7fb8e8; }
 
 /* ───────── grade headers in the long list ───────── */
 .tv-grade {
-  padding: 0 var(--gutter); max-width: var(--maxw); margin: 2rem auto 0.8rem;
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 2rem 0 0.8rem;
 }
 .tv-gradehead {
   display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap;
@@ -144,7 +240,7 @@ body[data-fan="travels"] { --a: #7fb8e8; }
 .tv-trip {
   position: relative; overflow: hidden;
   padding: clamp(1.1rem, 2.4vw, 1.6rem) var(--gutter);
-  margin: 0 auto 0.6rem; max-width: var(--maxw);
+  margin: 0 0 0.6rem; max-width: var(--maxw);
   border: 1px solid var(--line); border-radius: 10px;
   background: linear-gradient(155deg, var(--c2), #06070a 78%);
 }
@@ -162,6 +258,22 @@ body[data-fan="travels"] { --a: #7fb8e8; }
   font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.14em; text-transform: uppercase;
   padding: 0.18rem 0.45rem; border-radius: 2px; color: #e6d5a2;
   background: rgba(216,198,138,.14); border: 1px solid rgba(216,198,138,.34);
+}
+/* ── road trips ──
+   A drive is a trip like any other and sits in the same school-year timeline,
+   so it needs one mark rather than a section of its own: the chip is the road
+   itself, in asphalt grey with a dashed centre line, so it never reads as a
+   second gold badge competing with Umrah. Set `road: true` on the trip. */
+.tv-trip-tag--rd {
+  display: inline-flex; align-items: center; gap: 0.32rem;
+  color: #cfd6dd; background: rgba(200,212,224,.10); border-color: rgba(200,212,224,.30);
+}
+.tv-trip-tag--rd svg {
+  width: 11px; height: 11px; flex: none; fill: none;
+  stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.tv-s-tag--rd {
+  color: #cfd6dd; background: rgba(200,212,224,.10); border-color: rgba(200,212,224,.28);
 }
 .tv-trip h3 {
   font-family: var(--sans); font-weight: 650; font-size: clamp(1.05rem, 2.4vw, 1.35rem);
@@ -223,6 +335,11 @@ body[data-fan="travels"] { --a: #7fb8e8; }
 [data-look="volcano"] .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 50%; background: var(--c1); opacity: .18; clip-path: polygon(0 100%, 40% 12%, 60% 12%, 100% 100%); }
 [data-look="andes"]  .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 46%; background: var(--c1); opacity: .16; clip-path: polygon(0 100%, 22% 22%, 44% 70%, 66% 8%, 88% 60%, 100% 40%, 100% 100%); }
 [data-look="cliffs"] .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 40%; background: linear-gradient(180deg, color-mix(in srgb, var(--c1) 30%, transparent), transparent); clip-path: polygon(0 30%, 30% 0, 62% 22%, 100% 6%, 100% 100%, 0 100%); }
+/* a road running away from you: the verge, the asphalt and a dashed centre
+   line, all built from the trip's own colour like every other look here */
+[data-look="road"]  .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 40%; background: linear-gradient(0deg, color-mix(in srgb, var(--c1) 22%, transparent), transparent); clip-path: polygon(34% 0, 66% 0, 100% 100%, 0 100%); }
+[data-look="road"]  .tv-trip-bg i:nth-child(2) { inset: auto 0 0 0; height: 40%; background: repeating-linear-gradient(0deg, color-mix(in srgb, var(--c1) 46%, transparent) 0 8px, transparent 8px 22px); clip-path: polygon(49.5% 0, 50.5% 0, 53.4% 100%, 46.6% 100%); }
+[data-look="road"]  .tv-trip-bg i:nth-child(3) { right: 8%; top: 16%; width: 84px; height: 84px; border-radius: 50%; background: var(--c1); opacity: .14; }
 [data-look="torii"]  .tv-trip-bg i:nth-child(1) { right: 9%; bottom: 12%; width: 150px; height: 10px; background: var(--c1); opacity: .3; }
 [data-look="torii"]  .tv-trip-bg i:nth-child(2) { right: 13%; bottom: 12%; width: 9px; height: 110px; background: var(--c1); opacity: .3; }
 [data-look="torii"]  .tv-trip-bg i:nth-child(3) { right: 30%; bottom: 12%; width: 9px; height: 110px; background: var(--c1); opacity: .3; }
@@ -244,7 +361,7 @@ body[data-fan="travels"] { --a: #7fb8e8; }
   transition: border-color .18s ease, transform .18s ease;
 }
 .tv-photo:hover { border-color: color-mix(in srgb, var(--c1) 55%, transparent); transform: translateY(-2px); }
-.tv-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tv-photo img { width: 100%; height: 100%; object-fit: cover; display: block; transition: opacity .35s; }
 .tv-photo-n {
   position: absolute; right: 0.45rem; bottom: 0.45rem;
   font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.04em;
@@ -289,7 +406,7 @@ body[data-fan="travels"] { --a: #7fb8e8; }
    A dot-matrix world drawn by travels-map.js: land in grey-blue, the US in its
    own warm tone, visited countries in the accent, pins in each trip's colour,
    and flight arcs redrawing themselves from Southern California. */
-.tv-map { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 2.6rem; }
+.tv-map { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 2.6rem; }
 .tv-map > h2 {
   font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--mute); margin-bottom: 1.2rem;

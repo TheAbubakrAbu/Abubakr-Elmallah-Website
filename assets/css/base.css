@@ -65,6 +65,11 @@ html.cursor-off .cursor, html.cursor-off .cursor-dot { display: none !important;
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 
+/* a photograph lazy.js has not fetched yet (data-src, no src): the frame keeps
+   its box and its background, and the picture fades in when it lands. The
+   fade itself lives in each component's own transition list. */
+img[data-src]:not(.is-loaded) { opacity: 0; }
+
 /* shared reveal-on-scroll */
 .reveal {
   opacity: 0; transform: translateY(28px);

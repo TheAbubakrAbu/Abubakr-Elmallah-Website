@@ -10,6 +10,15 @@
      via     layover country, shown faintly and not counted as a visit
      c1/c2   the two colours its section is drawn in
      look    which backdrop treatment the section gets
+     road    true if it was a drive rather than a flight. A road trip is a trip
+             and lives in the same school-year timeline as everything else; the
+             flag only earns it the asphalt "Road trip" chip, one figure in the
+             summary, and `look: 'road'` if you want the backdrop to match.
+             Everything else works unchanged: give it
+               countries: 'United States', flags: '\u{1F1FA}\u{1F1F8}'
+             and the region badges and the map follow on their own. Use
+             `regions: [...]` for what is true of the drive and not of the whole
+             country ('Pacific Coast', 'The Southwest', 'Sierra Nevada').
      note    why that one mattered
      cover   the one photo the trip's bar shows until it is touched
      shots   every photo from that trip, in date order; touching the cover
@@ -28,6 +37,53 @@
    `python3 tools/photos.py ingest`; this file catches up on its own. */
 window.TRAVELS = {
   pass: 'my future wife',
+
+  /* ── what kind of place each country is ──
+     One row per country that appears in a trip's `countries` field, keyed by
+     exactly that string. Three families, because they are three different
+     sorts of fact and the badges on a trip should not pretend otherwise:
+
+       cont  the continent, the only pure geography here. A country can be in
+             two: Türkiye genuinely is in both Europe and Asia, and both count.
+       cult  who lives there. `Arab` means Arabic-speaking, which is why
+             Morocco and Tunisia are in it; `Muslim` means Muslim-majority.
+       reg   the specific region, which is the part worth being precise about:
+             Maghreb rather than "Africa", Levant rather than "Middle East".
+
+     travels.js reads this for two things at once: the badges down the right of
+     every trip, and the counts in the "What kind of places" block. So a country
+     is described in exactly one place and both of them follow. A trip may also
+     carry its own `regions: [...]` for something true of that trip and not of
+     the whole country: the Caribbean side of Mexico, or Hawaii being Polynesia.
+
+     'The Balkans' is a trip, not a country, and is left out of `cult` on
+     purpose: the flag on it is Bosnia and the run also took in Bulgaria, so
+     any claim about the majority faith of "The Balkans" would be a claim about
+     two different countries at once. */
+  world: {
+    'Mexico':        { cont: ['North America'], cult: ['Latin America', 'Spanish-speaking'], reg: ['Mesoamerica'] },
+    'United States': { cont: ['North America'], cult: [], reg: [] },
+    'Ecuador':       { cont: ['South America'], cult: ['Latin America', 'Spanish-speaking'], reg: ['Andes', 'The Equator'] },
+
+    'Morocco':       { cont: ['Africa'], cult: ['Arab', 'Muslim'], reg: ['Maghreb', 'North Africa'] },
+    'Tunisia':       { cont: ['Africa'], cult: ['Arab', 'Muslim'], reg: ['Maghreb', 'North Africa', 'Mediterranean'] },
+
+    'Jordan':        { cont: ['Asia'], cult: ['Arab', 'Muslim'], reg: ['Middle East', 'Levant'] },
+    'Lebanon':       { cont: ['Asia'], cult: ['Arab', 'Muslim'], reg: ['Middle East', 'Levant', 'Mediterranean'] },
+    'Saudi Arabia':  { cont: ['Asia'], cult: ['Arab', 'Muslim'], reg: ['Middle East', 'Gulf', 'Arabian Peninsula'] },
+    'T\u00fcrkiye':      { cont: ['Europe', 'Asia'], cult: ['Muslim'], reg: ['Anatolia', 'Middle East', 'Mediterranean'] },
+    'Malaysia':      { cont: ['Asia'], cult: ['Muslim'], reg: ['Southeast Asia'] },
+    'Singapore':     { cont: ['Asia'], cult: [], reg: ['Southeast Asia'] },
+    'Japan':         { cont: ['Asia'], cult: [], reg: ['East Asia'] },
+
+    'Spain':         { cont: ['Europe'], cult: ['Spanish-speaking'], reg: ['Iberia', 'Southern Europe', 'Mediterranean'] },
+    'Portugal':      { cont: ['Europe'], cult: [], reg: ['Iberia', 'Southern Europe'] },
+    'Italy':         { cont: ['Europe'], cult: [], reg: ['Southern Europe', 'Mediterranean'] },
+    'Malta':         { cont: ['Europe'], cult: [], reg: ['Southern Europe', 'Mediterranean'] },
+    'Ireland':       { cont: ['Europe'], cult: [], reg: ['British Isles', 'Northern Europe'] },
+    'The Balkans':   { cont: ['Europe'], cult: [], reg: ['Balkans', 'Southeast Europe'] },
+  },
+
   grades: [
     { k: '9th', name: '9th grade', years: '2020\u201321' },
     { k: '10th', name: '10th grade', years: '2021\u201322' },
@@ -46,7 +102,8 @@ window.TRAVELS = {
               'hs-freshman/2021-08-13-1713.avif', 'hs-freshman/2021-08-13-1725.avif',
               'hs-freshman/2021-08-13-1725-2.avif', 'hs-freshman/2021-08-14-1756.avif'] },
     { when: '2021 Dec', y: '2021', m: 'Dec', grade: '10th', places: 'Cozumel and Canc\u00fan',
-      countries: 'Mexico', flags: '\u{1F1F2}\u{1F1FD}', c1: '#2fc0b0', c2: '#07201f', look: 'reef',
+      countries: 'Mexico', regions: ['Caribbean'],
+      flags: '\u{1F1F2}\u{1F1FD}', c1: '#2fc0b0', c2: '#07201f', look: 'reef',
       note: 'The Caribbean side, which is a completely different country from the Pacific side.',
       cover: 'hs-sophomore/2021-12-26-1319.avif',
       shots: ['hs-sophomore/2021-12-24-1411.avif', 'hs-sophomore/2021-12-26-1319.avif'] },
@@ -261,7 +318,8 @@ window.TRAVELS = {
               'uci-first/2025-07-12-1546.avif', 'uci-first/2025-07-17-1057.avif',
               'uci-first/2025-07-20-1632.avif'] },
     { when: '2025 Sep', y: '2025', m: 'Sep', grade: '2nd yr', places: 'Maui, Hawaii',
-      countries: 'United States', flags: '\u{1F1FA}\u{1F1F8}', c1: '#3fc0a0', c2: '#05201c', look: 'volcano',
+      countries: 'United States', regions: ['Pacific', 'Polynesia'],
+      flags: '\u{1F1FA}\u{1F1F8}', c1: '#3fc0a0', c2: '#05201c', look: 'volcano',
       note: 'With friends rather than family, which made it a completely different kind of trip. Technically domestic, and it does not feel domestic at all.',
       spots: [
         ['Haleakal\u0101 summit', 'Maui'],

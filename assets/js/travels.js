@@ -20,6 +20,16 @@
        can be justified before a single image arrives, exactly like years.js */
     var IMG = '/assets/img/years/';
     var YP = {};                       // 'group/file' -> [file, date, w, h]
+
+    /* the src attribute, or rather not: with lazy.js on the page a frame is
+       written with data-src and fetched when it is needed, a few at a time,
+       nearest the viewport first (same as years.js). Without it, the browser's
+       own lazy loading is the fallback. */
+    function pic(src) {
+      return window.AElazy
+        ? 'data-src="' + src + '"'
+        : 'src="' + src + '" loading="lazy" fetchpriority="low"';
+    }
     if (window.YEARS) {
       Object.keys(window.YEARS.photos).forEach(function (gk) {
         window.YEARS.photos[gk].forEach(function (r) {
@@ -76,6 +86,90 @@
       }
     }
 
+    /* ── what kind of place it was ──
+       The badges down the right of every trip and the counts in the block
+       under the summary are the SAME data read two ways: travels-data.js
+       describes each country exactly once (see `world` there) and both of
+       these follow from it. Add a country to a trip and it turns up in the
+       badges and in the tallies without either being touched. */
+    var WORLD = data.world || {};
+
+    /* Three families, in the order they read on a trip: the continent, then
+       who lives there, then the region. Not alphabetical, not by count --
+       general to specific, so the pills tell a story down the column. */
+    var FAMS = [
+      { k: 'cont', label: 'Continents',
+        note: 'T\u00fcrkiye is in two of them and counts in both' },
+      { k: 'cult', label: 'Who Lives There',
+        note: 'Arab = Arabic-speaking \u00b7 Muslim = Muslim-majority' },
+      { k: 'reg', label: 'Regions',
+        note: 'the specific answer rather than the continental one' },
+    ];
+
+    function countriesOf(t) {
+      return String(t.countries).split('\u00b7').map(function (c) { return c.trim(); })
+        .filter(Boolean);
+    }
+
+    /* Every label true of this trip, deduped, in family order. A trip may also
+       carry `regions` of its own for something true of the trip and not of the
+       whole country: the Caribbean side of Mexico, or Hawaii being Polynesia. */
+    function kindsOf(t) {
+      var out = [], seen = {};
+      function push(label, fam) {
+        if (!label || seen[label]) return;
+        seen[label] = 1;
+        out.push({ label: label, fam: fam });
+      }
+      FAMS.forEach(function (f) {
+        countriesOf(t).forEach(function (c) {
+          ((WORLD[c] || {})[f.k] || []).forEach(function (label) { push(label, f.k); });
+        });
+      });
+      (t.regions || []).forEach(function (label) { push(label, 'reg'); });
+      return out;
+    }
+
+    function kindBadges(t) {
+      var ks = kindsOf(t);
+      if (!ks.length) return '';
+      return '<ul class="tv-kinds" aria-label="What kind of place this was">'
+        + ks.map(function (k) {
+            return '<li class="tv-kind tv-kind--' + k.fam + '">' + esc(k.label) + '</li>';
+          }).join('')
+        + '</ul>';
+    }
+
+    /* The tallies count COUNTRIES, not trips: three trips to T\u00fcrkiye is one
+       Muslim country, not three. Sorted by count and then alphabetically, so
+       the block orders itself and no list of labels has to be kept by hand. */
+    function kindTally(trips) {
+      var tally = {};
+      FAMS.forEach(function (f) { tally[f.k] = {}; });
+      function add(fam, label, country) {
+        var row = tally[fam][label] || (tally[fam][label] = {});
+        row[country] = 1;
+      }
+      trips.forEach(function (t) {
+        countriesOf(t).forEach(function (c) {
+          FAMS.forEach(function (f) {
+            ((WORLD[c] || {})[f.k] || []).forEach(function (label) { add(f.k, label, c); });
+          });
+          (t.regions || []).forEach(function (label) { add('reg', label, c); });
+        });
+      });
+      return FAMS.map(function (f) {
+        return {
+          fam: f,
+          rows: Object.keys(tally[f.k]).map(function (label) {
+            return { label: label, n: Object.keys(tally[f.k][label]).length };
+          }).sort(function (a, b) {
+            return b.n - a.n || (a.label < b.label ? -1 : a.label > b.label ? 1 : 0);
+          }),
+        };
+      }).filter(function (g) { return g.rows.length; });
+    }
+
     /* ── the page ── */
     function show() {
       var trips = data.trips;
@@ -91,17 +185,53 @@
           .forEach(function (f) { flags[f] = 1; });
       });
 
+      /* Road trips sit in the same timeline as the flights (they are trips; the
+         only difference is how you got there), so they are counted in `Trips`
+         like everything else and get one figure of their own rather than a
+         separate list. No road trips on the page means no fifth tile, which is
+         why the stats are a list and the column count comes from its length. */
+      var driven = trips.filter(function (t) { return t.road; }).length;
+
+      var stats = [
+        [trips.length, 'Trips'],
+        [Object.keys(places).length, 'Countries'],
+        [Object.keys(years).length, 'Years'],
+        [Object.keys(stops).length, 'Layovers'],
+      ];
+      if (driven) stats.push([driven, 'Driven']);
+
       var html =
         '<section class="tv-summary reveal">'
-        + '<div class="tv-stats">'
-        +   '<div><b>' + trips.length + '</b><span>Trips</span></div>'
-        +   '<div><b>' + Object.keys(places).length + '</b><span>Countries</span></div>'
-        +   '<div><b>' + Object.keys(years).length + '</b><span>Years</span></div>'
-        +   '<div><b>' + Object.keys(stops).length + '</b><span>Layovers</span></div>'
+        + '<div class="tv-stats" style="--n:' + stats.length + '">'
+        +   stats.map(function (r) {
+              return '<div><b>' + r[0] + '</b><span>' + esc(r[1]) + '</span></div>';
+            }).join('')
         + '</div>'
         + '<div class="tv-flagwall" aria-label="Countries visited">'
         +   Object.keys(flags).map(function (f) { return '<span>' + f + '</span>'; }).join('')
         + '</div>'
+        + '</section>';
+
+      /* ── what kind of places ──
+         The summary above counts trips and countries; this counts what those
+         countries ARE. Every figure overlaps every other one on purpose:
+         Morocco is Arab and Muslim and African and Maghreb all at once, so it
+         is in four of these rows and that is the point of having them. */
+      html += '<section class="tv-kindstats reveal">'
+        + '<h2>What kind of places</h2>'
+        + '<p class="tv-kindnote">' + Object.keys(places).length
+        +   ' countries, counted by what they are rather than by where the plane landed.'
+        +   ' The rows overlap on purpose: a country is in every one that is true of it,'
+        +   ' and repeat visits do not count twice.</p>'
+        + kindTally(trips).map(function (g) {
+            return '<div class="tv-kindgrp">'
+              + '<h3><span>' + esc(g.fam.label) + '</span><i></i><em>' + esc(g.fam.note) + '</em></h3>'
+              + '<ul>' + g.rows.map(function (r) {
+                  return '<li class="tv-kind tv-kind--' + g.fam.k + '">'
+                    + '<b>' + r.n + '</b><span>' + esc(r.label) + '</span></li>';
+                }).join('') + '</ul>'
+              + '</div>';
+          }).join('')
         + '</section>';
 
       /* ── the map ──
@@ -130,6 +260,7 @@
                     + '<span class="tv-s-flag">' + t.flags + '</span>'
                     + '<span class="tv-s-when">' + esc(t.m) + '</span>'
                     + '<span class="tv-s-place">' + esc(t.places) + '</span>'
+                    + (t.road ? '<span class="tv-s-tag tv-s-tag--rd">Road trip</span>' : '')
                     + (t.tag ? '<span class="tv-s-tag">' + esc(t.tag) + '</span>' : '')
                     + (t.via ? '<span class="tv-s-via">via ' + esc(t.via) + '</span>' : '')
                     + '</a></li>';
@@ -161,6 +292,9 @@
                 +   '<div class="tv-trip-head">'
                 +     '<span class="tv-trip-flags">' + t.flags + '</span>'
                 +     '<span class="tv-trip-when">' + esc(t.m + ' ' + t.y) + '</span>'
+                +     (t.road ? '<span class="tv-trip-tag tv-trip-tag--rd">'
+                +       '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21 9.5 3h5L20 21"/><path d="M12 5v3M12 11v3M12 17v3"/></svg>'
+                +       'Road trip</span>' : '')
                 +     (t.tag ? '<span class="tv-trip-tag">' + esc(t.tag) + '</span>' : '')
                 +   '</div>'
                 +   '<h3>' + esc(t.places) + '</h3>'
@@ -180,15 +314,19 @@
                         + '</ul>'
                       : '')
                 + '</div>'
+                /* what kind of place it was, down the right of the words:
+                   continent, then who lives there, then the region. Derived,
+                   never typed per trip -- see travels-data.js's `world`. */
+                + kindBadges(t)
                 /* one main photo beside the words; touching it unfolds the
                    full grid below (and folds it back) */
                 + (t.shots && t.shots.length
                     ? '<button class="tv-photo" type="button"'
                       + ' aria-expanded="false" aria-controls="tvshots' + i + '"'
                       + ' aria-label="Photos from ' + esc(t.places) + '">'
-                      + '<img src="' + IMG + esc(t.cover || t.shots[0]) + '"'
+                      + '<img ' + pic(IMG + esc(t.cover || t.shots[0]))
                       +   ' alt="' + esc(t.places) + '"'
-                      +   ' loading="lazy" decoding="async" fetchpriority="low" />'
+                      +   ' decoding="async" />'
                       + '<span class="tv-photo-n">' + t.shots.length + '</span>'
                       + '</button>'
                     : '')
@@ -210,6 +348,7 @@
 
       root.innerHTML = html;
       reveal(root);
+      if (window.AElazy) window.AElazy.watch(root);   // the covers are data-src: hand them over
 
 
       /* ── selection ──
@@ -351,11 +490,12 @@
           return '<button class="yg-cell" type="button"'
             + ' data-trip="' + i + '" data-s="' + s + '"'
             + ' data-w="' + w + '" data-h="' + h + '">'
-            + '<img src="' + IMG + esc(f) + '" alt="' + esc(t.places) + '"'
-            +   ' width="' + w + '" height="' + h + '" loading="lazy" decoding="async" fetchpriority="low" />'
+            + '<img ' + pic(IMG + esc(f)) + ' alt="' + esc(t.places) + '"'
+            +   ' width="' + w + '" height="' + h + '" decoding="async" />'
             + '<span class="yg-when">' + esc(shotDate(f)) + '</span>'
             + '</button>';
         }).join('');
+        if (window.AElazy) window.AElazy.watch(grid);
       }
 
       var covers = root.querySelectorAll('.tv-photo');

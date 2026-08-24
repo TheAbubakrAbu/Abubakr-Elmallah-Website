@@ -1,0 +1,91 @@
+/* fan/angry-birds.css: /worlds/angry-birds/ only.
+
+   Daylight, which is unusual on these pages: every other fan page here is a
+   night sky and this game is not a night game. Red on a bright hill, with the
+   timber it is aimed at. The hero drawing is the shot itself: a slingshot, the
+   dotted arc of the last attempt, and a structure that has to fall. */
+
+body[data-fan="angrybirds"] { --a: #e0763a; }
+
+/* ── the backdrop ── */
+.ab-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(90% 70% at 50% 0%, #1e2c48 0%, #16203a 44%, #06080e 100%);
+}
+
+.ab-sky > * { position: absolute; inset: 0; }
+
+.ab-sun {
+  background:
+    radial-gradient(40% 28% at 78% 10%, rgba(240,208,64,.20), transparent 70%),
+    radial-gradient(60% 34% at 24% 8%, rgba(224,58,42,.12), transparent 72%);
+}
+
+.ab-clouds {
+  background-size: 420px 260px;
+  background-image:
+    radial-gradient(60px 22px at 90px 60px, rgba(255,255,255,.07), transparent 70%),
+    radial-gradient(46px 18px at 300px 120px, rgba(255,255,255,.05), transparent 70%);
+  animation: ab-blow 60s linear infinite;
+}
+
+@keyframes ab-blow { to { transform: translateX(-420px) } }
+
+@media (prefers-reduced-motion: reduce) { .ab-clouds { animation: none; } }
+
+.ab-hills { top: auto; height: 34%; opacity: .6; }
+
+.ab-hills svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.abh-far  { fill: #1c3a2a; }
+
+.abh-near { fill: #12281c; }
+
+.abh-timber rect { fill: #3a2a18; }
+
+/* ── hero ── */
+body[data-fan="angrybirds"] .fan-title {
+  background: linear-gradient(180deg, #ffe9b0, #e0763a 52%, #b32a1c);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ── the shot ── */
+.ab-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem 0 0; }
+
+.ab-art svg { display: block; width: min(680px, 100%); margin-inline: auto; }
+
+.aba-ground path { fill: #1c3a24; }
+
+.aba-post, .aba-fork { fill: none; stroke: #6b4a2a; stroke-width: 9; stroke-linecap: round; }
+
+.aba-band { fill: none; stroke: #8a5a3a; stroke-width: 5; stroke-linecap: round; }
+
+/* the trajectory of the previous attempt: the game's only tutorial */
+.aba-arc path {
+  fill: none; stroke: #e8e2d2; stroke-width: 3; stroke-linecap: round;
+  stroke-dasharray: 2 12; opacity: .6;
+}
+
+.aba-body { fill: #d83a2a; }
+
+.aba-beak { fill: #f0c040; }
+
+.aba-brow { fill: none; stroke: #4a0f08; stroke-width: 6; stroke-linecap: round; }
+
+.aba-eye  { fill: #f4f0e6; }
+
+.aba-wood  { fill: #7a5227; }
+
+.aba-glass { fill: rgba(140,200,220,.35); }
+
+.aba-stone { fill: #6a6a70; }
+
+.aba-pig      { fill: #5fbf5a; }
+
+.aba-pigsnout { fill: #4a9c46; }
+
+.ab-art figcaption {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}

@@ -75,17 +75,19 @@
 
   /* ── load the photographs last ──
 
-     The gallery images are written with fetchpriority="low" (see years.js and
-     travels.js), which is the whole of it. They begin with everything else, so
-     the connection is never sitting idle, but the browser serves them behind
-     the CSS, the scripts and the fonts -- so the page is complete and readable
-     first and the photographs fill into it as they arrive.
+     That is lazy.js's job: years.js and travels.js write every gallery frame
+     with data-src instead of src, and lazy.js hands each one its src when it
+     comes within a screen of the viewport, a few at a time, nearest first, and
+     takes it back once it is scrolled far away. So the page is complete and
+     readable before a single photograph has been asked for, the pictures fill
+     in as you reach them, and a 700-frame year never has more than a few
+     screens' worth of decoded bitmaps alive at once.
 
-     This used to hold their src back until the load event instead. That did put
-     them last, but strictly last: nothing was fetched until everything else had
-     finished, which wasted whatever capacity was going spare during the page
-     load and made the photographs later than they needed to be. Priority says
-     "after the rest", not "not until the rest is done". */
+     Two earlier answers, for the record. Holding every src back until the load
+     event put the photographs strictly last, which wasted the connection
+     during the page load. fetchpriority="low" fixed that but bounded nothing:
+     native loading="lazy" still fires everything within a couple of screens
+     at once, which on a phone was sixty requests and sixty decodes in one go. */
 
   var mounts = document.querySelectorAll('[data-pics-toggle]');
   if (!mounts.length) return;

@@ -35,7 +35,7 @@ body[data-fan="clash"] .fan-title {
 }
 
 /* ── the King's Tower drawing ── */
-.cr-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem auto 0; }
+.cr-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem 0 0; }
 
 .cr-art svg { display: block; width: min(620px, 100%); margin-inline: auto; }
 

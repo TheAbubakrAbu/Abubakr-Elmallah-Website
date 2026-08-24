@@ -290,6 +290,14 @@ body { padding-bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
 
 /* ───────────── Shell ───────────── */
 
+/* Page-scale blocks are LEFT-ALIGNED, like every other block on this site:
+   layout.css sets `main { padding-left: var(--gutter) }` and
+   `section { padding: 0 var(--gutter); max-width: var(--maxw) }` with no auto
+   margin. A page block that centres itself instead is invisible up to about
+   1320px and then wrong: past that the hero stays hard left while the block
+   drifts toward the middle of the window. Anything deliberately centred should
+   be centred INSIDE the column (max-width + padding on the block, auto margins
+   on the thing inside it), not by floating the block. */
 main { padding-left: var(--gutter); }
 section { padding: 0 var(--gutter); max-width: var(--maxw); }
 

@@ -6,6 +6,55 @@
    ============================================================ */
 
 .fandoms { padding-bottom: 4rem; }
+
+/* ───────────── the switch ─────────────
+   /worlds/ opens with the two portals that actually ship apps. Everything
+   else on the page -- who I am, and every franchise -- lives behind this one
+   button, so the page is short until you ask it not to be. Same bar geometry
+   as the Travels / Accents buttons at the foot of the page, deliberately: it
+   is the third control of the same kind, one row up. */
+.fr-vaultbtn {
+  display: flex; width: 100%; align-items: center; gap: 0.8rem;
+  margin: 0 0 1.6rem; padding: 0.95rem 1.1rem;
+  border: 1px solid var(--line); border-radius: 8px;
+  background: linear-gradient(100deg, rgba(232,197,106,.07), transparent 70%);
+  text-align: left; color: inherit; cursor: pointer;
+  transition: border-color .16s ease, transform .16s ease, background .16s ease;
+}
+.fr-vaultbtn:hover {
+  border-color: color-mix(in srgb, var(--gold) 50%, transparent); transform: translateY(-3px);
+  background: linear-gradient(100deg, rgba(232,197,106,.13), transparent 70%);
+}
+.fr-vaultbtn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.fr-vaultbtn-i { width: 22px; height: 22px; flex: none; }
+.fr-vaultbtn-i svg {
+  width: 100%; height: 100%; fill: none; stroke: var(--gold); stroke-width: 1.3;
+  stroke-linecap: round; stroke-linejoin: round;
+  transition: transform .5s var(--ease);
+}
+.fr-vaultbtn.is-open .fr-vaultbtn-i svg { transform: rotate(180deg); }
+.fr-vaultbtn-t { display: grid; gap: 0.05rem; min-width: 0; }
+.fr-vaultbtn-t b {
+  font-family: var(--mono); font-weight: 500; font-size: 0.68rem;
+  letter-spacing: 0.1em; color: var(--ink);
+}
+.fr-vaultbtn-t i {
+  font-style: normal; font-family: var(--mono); font-size: 0.48rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
+}
+.fr-vaultbtn-a { margin-left: auto; font-size: 0.8rem; color: var(--gold); }
+
+/* The block itself. `hidden` does the hiding, so there is nothing to animate
+   open -- the fade is reveal.js doing its usual job on the tiles inside, which
+   is why they were never observed until now (see the rAF in fandom.js). */
+.fr-vault[hidden] { display: none; }
+.fr-vault > .subsec:first-child { margin-top: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fr-vaultbtn:hover { transform: none; }
+  .fr-vaultbtn-i svg { transition: none; }
+}
+
 .fandoms .fr-lede {
   max-width: 70ch; margin: -0.4rem 0 2.4rem;
   color: var(--ink-dim); font-size: 0.98rem; line-height: 1.75;
@@ -18,17 +67,58 @@
   border: 1px solid var(--line); border-radius: 100px; padding: 0.15rem 0.6rem;
 }
 
+/* ───────────── the grid ─────────────
+   THE RANK IS THE LAYOUT. How far down the page a group sits decides how many
+   tiles share its row, and therefore how big each one is: three across for the
+   two groups that are not fandoms at all and the three I know by heart, then
+   two, three, four as you descend. A tile you rank higher is a tile you see
+   bigger, without a word of explanation on the page.
+
+   Fixed counts rather than auto-fill: auto-fill sizes by the container and gave
+   Primary three, Secondary four and Tertiary five, which read as one
+   undifferentiated wall. Each group sets --cols and the step-downs below are
+   the only place a breakpoint is written. */
 .fr-grid {
   display: grid; gap: clamp(1rem, 2vw, 1.5rem);
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(var(--cols, 3), 1fr);
 }
-.fr-group--core      .fr-grid { grid-template-columns: repeat(3, 1fr); }
-@media (max-width: 900px) { .fr-group--core .fr-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 620px) { .fr-group--core .fr-grid { grid-template-columns: 1fr; } }
-.fr-group--primary   .fr-grid,
-.fr-group--parks     .fr-grid { grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); }
-.fr-group--tertiary  .fr-grid { grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); }
+.fr-group--identity  .fr-grid { --cols: 3; }
+.fr-group--core      .fr-grid { --cols: 3; }
+.fr-group--primary   .fr-grid { --cols: 3; }
+.fr-group--secondary .fr-grid { --cols: 3; }
+.fr-group--tertiary  .fr-grid { --cols: 4; }
+.fr-group--parks     .fr-grid { --cols: 3; }
+
+/* Step-downs. Each group loses a column when its tiles would otherwise get too
+   narrow to hold a name, so the ranking still reads on a laptop and a phone:
+   the order is preserved even once the counts converge. */
+@media (max-width: 1180px) {
+  .fr-group--tertiary  .fr-grid { --cols: 3; }
+}
+@media (max-width: 900px) {
+  .fr-group--identity  .fr-grid,
+  .fr-group--core      .fr-grid,
+  .fr-group--primary   .fr-grid,
+  .fr-group--secondary .fr-grid,
+  .fr-group--parks     .fr-grid { --cols: 2; }
+  .fr-group--tertiary  .fr-grid { --cols: 3; }
+}
+@media (max-width: 620px) {
+  .fr-group--identity  .fr-grid,
+  .fr-group--core      .fr-grid,
+  .fr-group--primary   .fr-grid,
+  .fr-group--parks     .fr-grid { --cols: 1; }
+  .fr-group--secondary .fr-grid { --cols: 2; }
+  .fr-group--tertiary  .fr-grid { --cols: 2; }
+}
 .fr-group + .fr-group { margin-top: 0.6rem; }
+
+/* fandom.js renders each group as a <section>, and .fandoms is a <section>
+   too, so the global `section { padding: 0 var(--gutter); max-width: var(--maxw) }`
+   in layout.css landed on both: every group heading and every tile grid sat one
+   whole gutter further in than the lede and the bar above them. Unset it here
+   rather than in layout.css, because a top-level <section> still wants it. */
+.fandoms .fr-group { padding: 0; max-width: none; }
 
 /* ───────────── tile ─────────────
    a.fr-card: the whole plate + blurb is one click target, so anywhere on the
@@ -86,10 +176,15 @@ a.fr-card { cursor: pointer; }
   border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
+/* The plate grows with the tile, and heights are set per group for the same
+   reason the columns are: rank. Identity, Core, Primary, Secondary and Parks
+   all sit three across, so their plates are separated by height alone and step
+   down in that order; Tertiary is four across and shortest. */
 .fr-group--core .fr-plate { min-height: 210px; }
-.fr-group--primary .fr-plate,
+.fr-group--primary .fr-plate { min-height: 195px; }
+.fr-group--secondary .fr-plate { min-height: 175px; }
 .fr-group--parks .fr-plate { min-height: 170px; }
-.fr-group--tertiary .fr-plate { min-height: 130px; }
+.fr-group--tertiary .fr-plate { min-height: 150px; }
 .fr-plate::before {                       /* faint scan texture, keeps it from going flat */
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: repeating-linear-gradient(to bottom, rgba(255,255,255,.025) 0 1px, transparent 1px 4px);
@@ -145,10 +240,6 @@ a.fr-card { cursor: pointer; }
    These three are not franchises and must not look like one. No neon, no
    studio pastiche: the lettering is quiet and the plate is what carries them,
    which is why they get the tallest plate on the page. */
-.fr-group--identity .fr-grid { grid-template-columns: repeat(3, 1fr); }
-@media (max-width: 900px) { .fr-group--identity .fr-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 620px) { .fr-group--identity .fr-grid { grid-template-columns: 1fr; } }
-
 .fr-group--identity .fr-plate { min-height: 240px; }
 .fr-group--identity .fr-glyph { width: 50px; height: 50px; }
 .fr-group--identity .fr-name { font-size: 2rem; }
@@ -356,6 +447,43 @@ a.fr-card { cursor: pointer; }
   letter-spacing: 0.02em;
   text-shadow: 2px 2px 0 #1a3a4a;
 }
+/* geometric sans, because the wordmark is: Futura and its descendants. The
+   dot under it is the lamp's spotlight, and the only nod to the logo I will
+   make -- squashing a letter with a drawn lamp would be copying it. */
+.wm--pixar {
+  font-family: Futura, "Century Gothic", "Trebuchet MS", var(--sans); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  text-shadow: 0 0 26px rgba(79,168,224,.45);
+}
+.wm--pixar::after {
+  content: ""; display: block; width: 7px; height: 7px; border-radius: 50%;
+  margin: 0.5rem auto 0; background: var(--c1);
+  box-shadow: 0 0 14px var(--c1); opacity: .9;
+}
+/* chunky and rounded with a dark outline, the way a mobile game logo is */
+.wm--angrybirds {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.01em; font-size: 1.06rem;
+  -webkit-text-stroke: 1.4px #2a0c07; paint-order: stroke fill;
+  text-shadow: 2px 2px 0 rgba(0,0,0,.5);
+}
+/* thin, wide and struck in gold: the Capitol's taste, not the districts' */
+.wm--hunger {
+  font-family: Copperplate, "Copperplate Gothic Light", Georgia, serif; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.22em; font-size: 0.94rem;
+  background: linear-gradient(180deg, #f8ecc0, #e0b040 58%, #9c7418);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+/* steel with the red bleeding out of it rather than red type: the films are
+   colder than their poster, and drop-shadow paints on the clipped text */
+.wm--wick {
+  font-family: "Arial Narrow", Impact, Haettenschweiler, sans-serif; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em; font-size: 1.2rem;
+  background: linear-gradient(180deg, #f4f7fa, #b8bfc8 58%, #7d848d);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 14px rgba(216,74,82,.55));
+}
+
 .wm--disney {
   font-family: "Snell Roundhand", "Brush Script MT", "Bradley Hand", cursive;
   font-weight: 700; font-style: italic; font-size: 1.7rem; letter-spacing: 0.01em;
@@ -397,11 +525,16 @@ a.fr-card { cursor: pointer; }
 .bb-tile em { font-style: normal; font-size: 0.5rem; opacity: .75; margin-top: 1px; }
 
 @media (prefers-reduced-motion: reduce) { .wm--fnaf { animation: none; } }
+/* On a phone the counts are already down to one or two from the block above;
+   this only shrinks the plates and the lettering to match. It used to reset
+   grid-template-columns to auto-fill here, which would now overwrite --cols and
+   undo the whole ranking at the one width where the tiles are smallest. */
 @media (max-width: 560px) {
-  .fr-grid,
-  .fr-group--primary .fr-grid,
-  .fr-group--tertiary .fr-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
-  .fr-plate, .fr-group--core .fr-plate, .fr-group--primary .fr-plate { min-height: 120px; padding: 1.1rem 0.8rem; }
+  .fr-plate,
+  .fr-group--core .fr-plate,
+  .fr-group--primary .fr-plate,
+  .fr-group--secondary .fr-plate,
+  .fr-group--tertiary .fr-plate { min-height: 120px; padding: 1.1rem 0.8rem; }
   .fr-name, .fr-group--core .fr-name, .fr-group--primary .fr-name { font-size: 1.02rem; }
 }
 
@@ -411,9 +544,23 @@ a.fr-card { cursor: pointer; }
    and an unstyled <svg> path defaults to fill:black, so the globe icon became
    a viewport-sized black disc with a seam down it. Hence the explicit
    fill/stroke below rather than relying on inheritance. */
-.fr-travels { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; }
-/* A full-width bar: the last stop on the page, so it reads as a destination
-   rather than a footnote. The arrow keeps to the far edge on its own. */
+/* One row, two doors: Travels and Accents are the two pages on this site that
+   are about me rather than about somebody else's world, so they read as a pair
+   rather than as one control repeated down the page. They drop to a stack only
+   when the row would squeeze the labels.
+
+   NO GUTTER AND NO max-width HERE. This now lives inside .fandoms, at the foot
+   of the block the "Show the other worlds" bar opens, and .fandoms is already
+   a <section> carrying both. Setting them again indented the row a whole gutter
+   further in than the bar directly above it, which is exactly the misalignment
+   you notice and cannot name. Full width of its parent is what lines it up. */
+.fr-travels {
+  margin: 2.6rem 0 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; align-items: stretch;
+}
+@media (max-width: 720px) { .fr-travels { grid-template-columns: 1fr; } }
+/* Each half of the row is a bar, so it reads as a destination rather than a
+   footnote. The arrow keeps to the far edge of its own half. */
 .fr-travels-btn {
   display: flex; width: 100%; align-items: center; gap: 0.8rem;
   padding: 0.9rem 1.1rem;
@@ -429,7 +576,7 @@ a.fr-card { cursor: pointer; }
 .fr-travels-i { width: 22px; height: 22px; flex: none; }
 .fr-travels-i svg { width: 100%; height: 100%; fill: none; stroke: #7fb8e8; stroke-width: 1.3;
   stroke-linecap: round; stroke-linejoin: round; }
-.fr-travels-t { display: grid; gap: 0.05rem; }
+.fr-travels-t { display: grid; gap: 0.05rem; min-width: 0; }
 .fr-travels-t b { font-family: var(--mono); font-weight: 500; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--ink); }
 .fr-travels-t i {
   font-style: normal; font-family: var(--mono); font-size: 0.48rem;
@@ -437,12 +584,9 @@ a.fr-card { cursor: pointer; }
 }
 .fr-travels-a { font-size: 0.8rem; color: #7fb8e8; }
 
-/* Two of these bars now stack at the foot of the page. Accents is gold rather
-   than blue so the pair reads as two different rooms, not one control repeated;
-   the colour is set on the wrapper so the icon, the arrow and the wash all
-   follow from a single declaration. */
-.fr-travels-btn + .fr-travels-btn { margin-top: 0.6rem; }
-
+/* Accents is gold rather than blue so the two halves of the row read as two
+   different rooms, not one control repeated; the colour is set on the wrapper
+   so the icon, the arrow and the wash all follow from a single declaration. */
 .fr-travels-btn--ac {
   background: linear-gradient(100deg, rgba(245,198,60,.07), transparent 70%);
 }

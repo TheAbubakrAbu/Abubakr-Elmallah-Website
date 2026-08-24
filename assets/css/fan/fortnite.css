@@ -95,7 +95,7 @@
 
 /* ═════════════ Fortnite: the build HUD ═════════════ */
 .fn-hud {
-  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem;
   display: grid; gap: clamp(1rem, 2.4vw, 1.8rem); grid-template-columns: 1fr;
 }
 

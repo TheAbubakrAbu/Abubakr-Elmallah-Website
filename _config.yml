@@ -17,3 +17,19 @@ exclude:
   - LICENSE
   - run
   - tools
+  # _originals is 3.4 GB across ~1700 camera-roll files and never ships: Jekyll
+  # already skips it for OUTPUT because of the leading underscore, so this line
+  # changes nothing about the built site. It is here for the WATCHER.
+  #
+  # `jekyll serve` builds its ignore list from this key plus the destination
+  # (see listen_ignore_paths in jekyll-watch), and nothing else -- the
+  # underscore rule does not apply there. So without this line `listen` sat on
+  # all 1700 originals. This tree lives in iCloud Drive, which touches files on
+  # its own to sync them, and every one of those touches fired a watcher event
+  # and a full site rebuild. That is why ./run fell over so easily.
+  - _originals
+  # Finder rewrites these constantly and iCloud syncs each rewrite, so every
+  # one was both a watcher event (a rebuild for a file the site has no use for)
+  # and the only thing making two consecutive builds differ. They were also
+  # being copied into _site and shipped.
+  - .DS_Store

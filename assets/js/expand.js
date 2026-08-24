@@ -1,19 +1,23 @@
-/* expand.js: click a card, it expands in place.
+/* expand.js: "Read more" opens the write-up in place. Nothing else does.
 
    Every card whose entry in apps-data.js has a `long` array is rendered with a
-   hidden .app-more panel (cards.js writes it). Clicking anywhere on such a card
-   opens that panel and stretches the card across the whole row of its grid, so
-   the full write-up gets the width to be readable and the App Store / GitHub
-   links become big buttons instead of 0.72rem footer text.
+   hidden .app-more panel and a "Read more" button (cards.js writes both).
+   Pressing that button opens the panel and stretches the card across the whole
+   row of its grid, so the full write-up gets the width to be readable and the
+   App Store / GitHub links become big buttons instead of 0.72rem footer text.
 
-   Rules:
-     - real links inside the card (App Store, GitHub, the theme pill, the award
-       shots) keep their own behavior and never toggle the card
-     - the high-school screenshot (.proj-media) is an <a>, but it expands too:
-       the card's own link lives in the panel as a button
+   THE SPLIT: this used to listen on the whole card, which meant a click
+   anywhere expanded it and the card's real destination was only reachable
+   through the small footer link. So the two jobs are now split by target:
+
+     - the "Read more" / "Show less" button expands and collapses
+     - everywhere else on the card is the App Store (or GitHub, or the project
+       link): cardlink.js stretches a real <a> over the card, so a left-click
+       navigates and a right-click gets the native "Copy link address"
+     - the .app-more panel sits above that overlay (components.css), so the
+       write-up can be read, selected and clicked through without the card
+       navigating out from under it
      - one card open at a time per grid, Escape closes
-     - cardlink.js skips these cards, so there is no stretched overlay anchor
-       fighting the click (see the guard there)
 
    Must load AFTER cards.js. */
 (function expand() {
@@ -57,27 +61,21 @@
   }
 
   cards.forEach(function (card) {
-    card.classList.add('is-openable');
+    var btn = card.querySelector('.app-expand');
+    if (!btn) return;
 
-    card.addEventListener('click', function (e) {
-      if (e.target.closest('.app-shots')) return;        // gallery.js owns the proof shots
-      if (e.target.closest('.app-more')) {
-        // inside the panel only the buttons do anything; text is just text
-        if (e.target.closest('a')) return;
-        return;
-      }
-      var link = e.target.closest('a');
-      // a real link (App Store, GitHub, theme pill) keeps its own behavior;
-      // the project screenshot is the one <a> that expands instead
-      if (link && !link.classList.contains('proj-media')) return;
-      if (link) e.preventDefault();
+    /* The button is a real <button>, so Enter and Space already fire a click:
+       keyboard users get this for free and a keydown handler here would only
+       toggle twice and cancel itself out.
+
+       stopPropagation matters even though the stretched overlay is a sibling
+       rather than an ancestor: the card sits inside grids and pages that watch
+       for clicks of their own, and this one is not for them. */
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       if (card.classList.contains('is-open')) close(card); else open(card);
     });
-
-    /* The visible affordance is a real <button>, so it is focusable and
-       Enter/Space already fire a click that bubbles up to the handler above:
-       keyboard users get the same thing the pointer does, and handling the
-       keydown here as well would toggle twice and cancel itself out. */
   });
 
   addEventListener('keydown', function (e) {

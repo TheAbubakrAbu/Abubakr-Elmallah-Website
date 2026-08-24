@@ -75,7 +75,7 @@
 
 /* ═════════════ Batman: the utility belt ═════════════ */
 .bat-belt {
-  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem;
 }
 
 .bat-strap {

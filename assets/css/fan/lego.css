@@ -59,7 +59,7 @@
 
 /* ── the stud fountain ── */
 .lg-stud {
-  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem;
   display: grid; gap: clamp(1rem, 2.6vw, 2.2rem); grid-template-columns: 1fr; align-items: center;
 }
 
@@ -151,7 +151,7 @@
 
 /* ═════════════ LEGO: the brick, in section ═════════════ */
 .lg-brick {
-  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem;
   display: grid; gap: clamp(1.2rem, 3vw, 2.6rem); align-items: center;
   grid-template-columns: 1fr;
 }

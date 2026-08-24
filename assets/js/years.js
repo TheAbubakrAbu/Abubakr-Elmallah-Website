@@ -21,6 +21,11 @@
    Now the page costs six cover images and nothing else, and the work of laying
    out a year happens when that year is asked for.
 
+   Inside an open year, which frames are fetched, and when, is lazy.js's
+   decision: every <img> here is written with data-src and handed to it, so
+   the frames arrive a few at a time nearest the viewport, and are let go
+   again once scrolled far away. See the header of lazy.js.
+
    Stage 2 and 3 are behind the "show other pictures" switch at the bottom of
    the page (pics.js). With it off -- which is the default -- the cards are all
    there is: no counts on them, and clicking one does nothing. The photos are
@@ -64,6 +69,16 @@
      points at those same four files. See ALIASES in tools/photos.py. */
   function url(gid, file) {
     return '/assets/img/years/' + (file.indexOf('/') >= 0 ? file : gid + '/' + file);
+  }
+
+  /* The src attribute, or rather not: with lazy.js on the page a frame is
+     written with data-src and fetched when it is needed, a few at a time,
+     nearest the viewport first. Without it, the browser's own lazy loading is
+     the fallback. */
+  function pic(src) {
+    return window.AElazy
+      ? 'data-src="' + src + '"'
+      : 'src="' + src + '" loading="lazy" fetchpriority="low"';
   }
 
   /* ── the deck ── */
@@ -161,9 +176,9 @@
         + (g.id === 'id-pics' ? ' year-card--wide year-card--ids' : '')
         + '" type="button" data-group="' + g.id + '"'
         + ' aria-expanded="false" aria-controls="ygp-' + g.id + '">'
-        + '<img src="' + url(g.id, g.cover) + '"'
+        + '<img ' + pic(url(g.id, g.cover))
         +   ' alt="Abubakr Elmallah, ' + esc(g.label.toLowerCase()) + ' year"'
-        +   ' loading="lazy" decoding="async" fetchpriority="low" />'
+        +   ' decoding="async" />'
         + '<span class="year-cap">' + esc(g.label) + ' <i>' + yr + '</i></span>'
         + '<span class="year-more">' + rows.length + '</span>'
         + '</button>';
@@ -219,8 +234,8 @@
         var isID = file.replace(/^.*\//, '').indexOf('id') === 0;
         out += '<button class="yg-cell' + (isID ? ' yg-cell--id' : '') + '"'
           + ' data-i="' + i + '" data-w="' + w + '" data-h="' + h + '" type="button">'
-          + '<img src="' + url(g.id, file) + '" alt="' + esc(alt) + '"'
-          +   ' width="' + w + '" height="' + h + '" loading="lazy" decoding="async" fetchpriority="low" />'
+          + '<img ' + pic(url(g.id, file)) + ' alt="' + esc(alt) + '"'
+          +   ' width="' + w + '" height="' + h + '" decoding="async" />'
           + '<span class="yg-when">' + (date ? esc(fmt(date)) : '&#183;') + '</span>'
           + '</button>';
       });
@@ -232,16 +247,18 @@
       if (panel.dataset.built) return;
       panel.dataset.built = '1';
       panel.innerHTML = body(byId[panel.dataset.group]);
+      if (window.AElazy) window.AElazy.watch(panel);   // the frames are data-src: hand them over
     }
 
     mount.innerHTML = '<div class="years-grid">' + cards + '</div>'
                     + '<div class="yg-panels">' + panels + '</div>';
+    if (window.AElazy) window.AElazy.watch(mount);
 
-    /* The covers are fetchpriority="low": the browser starts them with
-       everything else but serves them after the CSS, the scripts and the fonts,
-       so they fill in last without leaving the connection idle waiting for a
-       load event. The cards are already their final size (aspect-ratio in
-       components.css), so nothing moves when the photographs land in them. */
+    /* The covers, like every frame in the panels, are written with data-src
+       and fetched by lazy.js: after the page has painted, a few at a time,
+       nearest the viewport first, and let go again once scrolled far away.
+       The cards are already their final size (aspect-ratio in components.css),
+       so nothing moves when the photographs land in them. */
 
     /* An accordion rather than a stack of every year at once: the point of
        going back to the cards is that the page stays short until you ask it

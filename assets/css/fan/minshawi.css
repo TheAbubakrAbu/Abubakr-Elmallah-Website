@@ -42,7 +42,7 @@ body[data-fan="minshawi"] .fan-title {
 }
 
 /* ── the microphone drawing ── */
-.mn-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem auto 0; }
+.mn-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem 0 0; }
 
 .mn-art svg { display: block; width: min(520px, 100%); margin-inline: auto; }
 

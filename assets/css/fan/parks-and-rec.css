@@ -77,7 +77,7 @@
 .pks-sun circle { fill: #f0c86a; opacity: .55; }
 
 /* ═════════════ Parks and Rec: the department sign ═════════════ */
-.pk-sign { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem; text-align: center; }
+.pk-sign { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem; text-align: center; }
 
 .pk-board {
   position: relative; display: inline-block; max-width: 100%;

@@ -51,7 +51,7 @@ body[data-fan="httyd"] .fan-title {
 }
 
 /* ── the tail-fin drawing ── */
-.ht-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem auto 0; }
+.ht-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem 0 0; }
 
 .ht-art svg { display: block; width: min(600px, 100%); margin-inline: auto; }
 

@@ -1,0 +1,86 @@
+/* fan/john-wick.css: /worlds/john-wick/ only.
+
+   Wet street, neon, and a colonnade, which is the series' one recurring
+   image: the Continental at night. Steel type with red bleeding out of it
+   rather than red type, because the films are colder than their poster.
+   The hero drawing is a coin and a marker: the two objects that run the
+   whole world, and neither is ever explained on screen. */
+
+body[data-fan="wick"] { --a: #d84a52; }
+
+/* ── the backdrop ── */
+.jw-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(85% 65% at 50% 0%, #141020 0%, #0d0b14 46%, #050406 100%);
+}
+
+.jw-sky > * { position: absolute; inset: 0; }
+
+.jw-neon {
+  background:
+    radial-gradient(46% 26% at 22% 12%, rgba(216,74,82,.16), transparent 72%),
+    radial-gradient(46% 26% at 78% 8%, rgba(96,132,216,.14), transparent 72%);
+  animation: jw-buzz 9s ease-in-out infinite alternate;
+}
+
+@keyframes jw-buzz { to { opacity: .78 } }
+
+.jw-rain {
+  background-image: repeating-linear-gradient(102deg,
+    rgba(190,205,230,.07) 0 1px, transparent 1px 22px);
+  animation: jw-fall 1.6s linear infinite;
+}
+
+@keyframes jw-fall { to { transform: translate(-22px, 108px) } }
+
+@media (prefers-reduced-motion: reduce) {
+  .jw-neon, .jw-rain { animation: none; }
+}
+
+.jw-street { top: auto; height: 32%; opacity: .55; }
+
+.jw-street svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.jws-road { fill: #0a0a10; }
+
+.jws-cols rect { fill: #1a1a26; }
+
+.jws-wet path {
+  fill: none; stroke: rgba(216,74,82,.34); stroke-width: 2; stroke-linecap: round;
+}
+
+/* ── hero ── */
+body[data-fan="wick"] .fan-title {
+  background: linear-gradient(180deg, #f4f7fa, #b8bfc8 56%, #7d848d);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 0 22px rgba(216,74,82,.42));
+}
+
+/* ── the coin and the marker ── */
+.jw-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem 0 0; }
+
+.jw-art svg { display: block; width: min(660px, 100%); margin-inline: auto; }
+
+.jwa-rim { fill: none; stroke: #d8b96a; stroke-width: 7; }
+
+.jwa-rim--in { stroke-width: 2.2; opacity: .5; }
+
+.jwa-crest { fill: #c9a552; }
+
+.jwa-mark { fill: none; stroke: #3a2c10; stroke-width: 5; stroke-linecap: round; opacity: .7; }
+
+.jwa-ticks path { fill: none; stroke: #d8b96a; stroke-width: 4; stroke-linecap: round; opacity: .6; }
+
+.jwa-mrim  { fill: none; stroke: #8f9ab0; stroke-width: 6; }
+
+.jwa-mface { fill: #2a2f3a; }
+
+.jwa-blood { fill: #b0242c; }
+
+.jwa-chain { fill: none; stroke: #8f9ab0; stroke-width: 4; stroke-linecap: round; opacity: .7; }
+
+.jw-art figcaption {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}

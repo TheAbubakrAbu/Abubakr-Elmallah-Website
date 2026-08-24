@@ -2,6 +2,45 @@
 # Run the site locally:  ./run   (from this project folder in the terminal)
 # Starts the Jekyll dev server, then opens http://127.0.0.1:4000/ (generic localhost).
 # Press Ctrl+C to stop the server.
+#
+# WHY THE PORT CHECKS AND THE IGNORE FLAG BELOW
+#
+# Three things used to make this fall over, and none of them said so clearly.
+#
+#   1. The file watcher. `jekyll serve` builds its ignore list from `exclude`
+#      in _config.yml plus the destination -- the leading-underscore rule that
+#      keeps _originals out of the BUILD does not apply to the WATCHER. So it
+#      sat on all ~1700 camera-roll originals (3.4 GB). This tree is in iCloud
+#      Drive, which touches files on its own to sync them, and every touch was
+#      a rebuild of the whole site. Fixed in _config.yml, not here.
+#
+#   2. --livereload. It runs an EventMachine reactor on port 35729 in a side
+#      thread. If anything already holds that port -- almost always a previous
+#      ./run whose Ruby did not exit when the terminal closed -- the thread
+#      dies with a twenty-line "no acceptor" backtrace, which looks exactly
+#      like the site crashing. That is what the checks below are for: say what
+#      is wrong in one line, and keep serving without live reload rather than
+#      dying, because a dev server with no auto-refresh still beats no dev
+#      server.
+#
+#   3. The reload storm. LiveReload works by telling the browser which files
+#      a build changed, one WebSocket message per file, and without
+#      --incremental Jekyll counts EVERY file as changed on EVERY build.
+#      Measured here: saving one CSS file sent 1,999 messages to each open
+#      tab inside 10 ms, 1,609 of them the gallery photographs. The client
+#      script answers every message that is not a stylesheet with
+#      location.reload(), and every stylesheet message that does not match a
+#      <link> on the page by re-fetching all of them. So one save was some
+#      1,900 reloads and 300 stylesheet fetches fired at every open tab at
+#      once, and the browser went down with them. --livereload-ignore keeps
+#      the static assets out of the message. Nothing is lost by that: every
+#      page carries ?v=<mtime> for its CSS and JS (see _includes/v.html), so a
+#      changed stylesheet changes every page, and the pages still reload.
+#      What is left is ~110 page messages, which the browser folds into one
+#      reload.
+#
+# Nothing here kills anything. If a stale server is in the way it tells you
+# which process it is and leaves the decision to you.
 
 cd "$(dirname "$0")" || exit 1
 
@@ -10,9 +49,48 @@ if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
   export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 fi
 
-# Open the browser a few seconds after the server has had time to boot
-( sleep 3; open "http://127.0.0.1:4000/" ) &
+# `./run --port 4001` has to actually work, so honour a --port in the arguments
+# instead of passing our own as well and relying on "last flag wins".
+PORT=4000
+for i in "$@"; do
+  if [ "$prev" = "--port" ]; then PORT="$i"; fi
+  prev="$i"
+done
+case " $* " in *" --port "*) OWN_PORT="" ;; *) OWN_PORT="--port $PORT" ;; esac
 
-echo "Starting local site at http://127.0.0.1:4000/  (Ctrl+C to stop)"
-# --livereload auto-refreshes the browser whenever you save a file
-exec bundle exec jekyll serve --host 127.0.0.1 --port 4000 --livereload
+LIVERELOAD_PORT=35729
+
+holder() { lsof -nP -iTCP:"$1" -sTCP:LISTEN -t 2>/dev/null | head -1; }
+
+# ── the site port: nothing we can do about this one, so say it plainly ──
+pid=$(holder "$PORT")
+if [ -n "$pid" ]; then
+  echo "Port $PORT is already taken by PID $pid:"
+  echo "    $(ps -o command= -p "$pid" 2>/dev/null | cut -c1-100)"
+  echo
+  echo "That is usually a ./run from earlier that never exited. Either:"
+  echo "    kill $pid          # stop it, then run ./run again"
+  echo "    ./run --port 4001  # or just use another port"
+  exit 1
+fi
+
+# ── the live-reload port: recoverable, so recover ──
+# An array, because the ignore glob has to reach Jekyll as one quoted word
+# (the shell must never expand it) and --livereload-ignore is only accepted
+# alongside --livereload, so the two go or stay together. The glob matches
+# Jekyll's relative_path for static files, which starts with a slash.
+LIVERELOAD=(--livereload --livereload-ignore '/assets/*')
+pid=$(holder "$LIVERELOAD_PORT")
+if [ -n "$pid" ]; then
+  echo "Live reload port $LIVERELOAD_PORT is held by PID $pid, so starting without it."
+  echo "The site will still serve and rebuild; the browser just will not refresh itself."
+  echo "To get it back:  kill $pid"
+  echo
+  LIVERELOAD=()
+fi
+
+# Open the browser a few seconds after the server has had time to boot
+( sleep 3; open "http://127.0.0.1:$PORT/" ) &
+
+echo "Starting local site at http://127.0.0.1:$PORT/  (Ctrl+C to stop)"
+exec bundle exec jekyll serve --host 127.0.0.1 $OWN_PORT "${LIVERELOAD[@]}" "$@"
