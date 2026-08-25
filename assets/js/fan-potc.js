@@ -199,7 +199,8 @@ window.FAN_PAGE = {
       { title: 'LEGO Pirates of the Caribbean', src: '/assets/img/franchises/lego-pirates-100.jpg',
         alt: 'LEGO Pirates of the Caribbean paused at 100 percent completion',
         desc: 'A hundred percent, eleven and a half billion studs, and every collectable in the game: 200 gold bricks, 20 red hats, 20 minikit-ships, 85 characters and 160 of everything else.',
-        meta: '11,536,474,040 studs' },
+        meta: '11,536,474,040 studs',
+        done: true, finished: '2023-09-28' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

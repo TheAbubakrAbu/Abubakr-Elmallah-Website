@@ -91,6 +91,11 @@
      spans one row more. Every card in such a section emits the part, empty or
      not, which is what keeps a row of cards in step. */
   .fan-cards--been > .fan-card { grid-row: span 7; }
+  /* the completion chips (finished stamp, hours, rating) are a row of their
+     own in the same way: `chips: true` on the section, one more row, and one
+     more again when the section carries both */
+  .fan-cards--chips > .fan-card { grid-row: span 7; }
+  .fan-cards--chips.fan-cards--been > .fan-card { grid-row: span 8; }
 }
 
 /* ── "I have actually been" ──
@@ -309,6 +314,30 @@
   .fan-tile > .fan-tiletext > .fan-visit { justify-self: start; }
   .fan-tile > .fan-tileshots, .fan-tile > .fan-slot { grid-column: 3; grid-row: 1 / span 5; }
   .fan-slot { display: block; height: 0; }
+
+  /* The switchable sets (the LEGO catalogue) carry a strip of screenshots,
+     and an auto third column sized from a 1200px banner took the whole tile:
+     the text column collapsed to nothing and the title sat under the banner,
+     at every viewport width. The grid-view rule further down meant to stack
+     the tile as a column, but it sets flex-direction on what is a grid here,
+     so it did nothing. So the strip gets a track that does not size from the
+     image: in grid view a row of its own under the text (the tile spans one
+     more row, and the text keeps its five shared rows so titles, subs and
+     descriptions still line up across the row); in list view a fixed share
+     of the width, and on a phone a row of its own again. */
+  .fan-tiles--switch.is-grid > .fan-tile { grid-template-columns: minmax(0, 1fr); grid-row: span 7; }
+  .fan-tiles--switch.is-grid > .fan-tile > .fan-swatch { grid-column: 1; grid-row: 1; }
+  .fan-tiles--switch.is-grid > .fan-tile > .fan-tiletext { grid-column: 1; grid-row: 2 / span 5; }
+  .fan-tiles--switch.is-grid > .fan-tile > .fan-tileshots,
+  .fan-tiles--switch.is-grid > .fan-tile > .fan-slot { grid-column: 1; grid-row: 7; }
+
+  .fan-tiles--switch.is-list > .fan-tile { grid-template-columns: auto minmax(0, 1fr) min(44%, 480px); }
+  .fan-tiles--switch.is-list > .fan-tile > .fan-tileshots { width: 100%; }
+  @media (max-width: 760px) {
+    .fan-tiles--switch.is-list > .fan-tile { grid-template-columns: auto minmax(0, 1fr); grid-row: span 6; }
+    .fan-tiles--switch.is-list > .fan-tile > .fan-tileshots,
+    .fan-tiles--switch.is-list > .fan-tile > .fan-slot { grid-column: 1 / -1; grid-row: 6; }
+  }
 }
 
 /* compact: for the long sets, where thirty tiles at full size is a wall */
@@ -933,9 +962,12 @@
   letter-spacing: -0.02em; color: var(--a, var(--gold));
 }
 
-.fan-shot figcaption span { font-size: 0.83rem; line-height: 1.6; color: var(--ink-dim); }
+/* direct children only: a caption can also carry the completion chips
+   (.fan-chips, see fanpage.js), whose own spans and tick must keep their own
+   type rather than the caption's */
+.fan-shot figcaption > span { font-size: 0.83rem; line-height: 1.6; color: var(--ink-dim); }
 
-.fan-shot figcaption i {
+.fan-shot figcaption > i {
   font-style: normal; font-family: var(--mono); font-size: 0.58rem;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute);
 }

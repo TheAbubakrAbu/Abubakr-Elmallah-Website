@@ -2,27 +2,49 @@
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-/* Pointer beacon: publishes an eased cursor position as --mx / --my on <html>
-   so CSS can light the HUD grid under the cursor (see layout.css). Eased with a
-   lerp so the glow trails the pointer instead of snapping to it. */
-(function pointerBeacon() {
-  if (!fine) return;
-  const root = document.documentElement;
+/* Pointer light: the HUD grid lights up under the cursor (.hud-light in
+   layout.css). The lit patch is a small element of its own, moved with a
+   transform, and the <i> inside it is a viewport-sized copy of the lattice
+   moved the opposite way, so its lines stay on the page's grid while the patch
+   travels. Eased with a lerp so the glow trails the pointer instead of
+   snapping to it. Two transforms a frame and nothing else: no style is
+   recalculated and nothing is repainted.
+
+   It used to be two custom properties, --mx / --my, written onto <html> every
+   frame and read by a full-screen html::before. Custom properties inherit, so
+   each write changed the computed style of every element on the page: with a
+   year gallery open that was an 8-9 ms style recalculation on every frame of
+   mouse movement, with a full-screen gradient repaint behind it, and the main
+   thread was busy for the whole frame. That was most of the stutter on a Mac. */
+(function pointerLight() {
+  if (!fine || reduceMotion) return;
+  const reach = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hud-reach'));
+  if (!reach) return;                       // a page without the HUD backdrop
+
+  const light = document.createElement('div');
+  light.className = 'hud-light';
+  light.setAttribute('aria-hidden', 'true');
+  light.innerHTML = '<i></i>';
+  document.body.appendChild(light);
+  const lattice = light.firstChild;
+
   let tx = innerWidth / 2, ty = innerHeight / 2, x = tx, y = ty, raf = 0, idle = true;
 
   addEventListener('pointermove', e => {
     tx = e.clientX; ty = e.clientY;
-    if (idle) { idle = false; root.classList.add('has-beacon'); }
+    if (idle) { idle = false; light.classList.add('is-on'); }
     if (!raf) raf = requestAnimationFrame(loop);
   }, { passive: true });
 
-  addEventListener('pointerleave', () => { root.classList.remove('has-beacon'); idle = true; });
+  addEventListener('pointerleave', () => { light.classList.remove('is-on'); idle = true; });
 
   function loop() {
     x += (tx - x) * 0.14;
     y += (ty - y) * 0.14;
-    root.style.setProperty('--mx', x.toFixed(1) + 'px');
-    root.style.setProperty('--my', y.toFixed(1) + 'px');
+    /* the patch is centred on the pointer; the lattice inside is pushed back
+       by the same amount so it stays at the viewport origin */
+    light.style.transform = 'translate3d(' + (x - reach).toFixed(1) + 'px,' + (y - reach).toFixed(1) + 'px,0)';
+    lattice.style.transform = 'translate3d(' + (reach - x).toFixed(1) + 'px,' + (reach - y).toFixed(1) + 'px,0)';
     raf = (Math.abs(tx - x) > 0.4 || Math.abs(ty - y) > 0.4) ? requestAnimationFrame(loop) : 0;
   }
 })();

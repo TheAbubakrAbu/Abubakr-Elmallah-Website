@@ -479,6 +479,24 @@
          on. Off is the default, and off means the tap does nothing. */
       function picsOn() { return !!(window.AEpics && window.AEpics.on()); }
 
+      /* When a trip folds up, what was below it moves up into the space and
+         reads as the page having scrolled down by a gallery. Same answer as
+         years.js: if the cover is off screen, put it back on screen in the
+         same frame, with no animation; if it is on screen, move nothing. */
+      function backTo(cover) {
+        var r = cover.getBoundingClientRect();
+        var bar = document.querySelector('.topbar');
+        var tab = document.querySelector('.tabbar');
+        var top = bar ? bar.getBoundingClientRect().bottom : 0;
+        var bottom = tab && getComputedStyle(tab).display !== 'none'
+          ? tab.getBoundingClientRect().top : innerHeight;
+        if (r.top >= top && r.bottom <= bottom) return;
+        var html = document.documentElement, was = html.style.scrollBehavior;
+        html.style.scrollBehavior = 'auto';
+        cover.scrollIntoView({ block: 'center' });
+        html.style.scrollBehavior = was;
+      }
+
       /* one trip's frames, written on first unfold */
       function shots(grid) {
         if (grid.dataset.built) return;
@@ -512,6 +530,7 @@
             /* the rows can only be solved against a measurable width, so the
                maths runs after the unfold, not at render time */
             if (opening) layout();
+            else backTo(btn);
           });
         })(covers[p]);
       }

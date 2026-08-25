@@ -41,18 +41,23 @@ window.FAN_PAGE = {
       { title: 'Beyond the Spider-Verse', accent: '#e0a020', sub: 'announced', desc: 'The third one, delayed repeatedly. Still coming, and still owed to us.' },
     ] },
 
-  { id: 'games', kind: 'cards', title: 'The Insomniac Games', note: '2018 – 2023 · the best superhero games made',
+  /* `chips: true` gives every card the completion row; `done` is the hundred
+     percent stamp and `finished` the date I got there (see fanpage.js). */
+  { id: 'games', kind: 'cards', chips: true, title: 'The Insomniac Games', note: '2018 – 2023 · the best superhero games made',
     lede: 'Three games that finally solved the two things every Spider-Man game had failed at: the swinging feels like momentum rather than an animation, and the Peter half is as good as the Spider-Man half.',
     items: [
       { title: 'Marvel’s Spider-Man', sub: '2018 · PS4', tag: 'I', accent: '#e02a3a',
         desc: 'Eight years into the job, so the origin is a photo on a wall and the game gets on with it. Otto Octavius is a colleague and a friend for most of it, which makes the turn genuinely hurt.',
-        meta: 'Mr Negative · Doc Ock' },
+        meta: 'Mr Negative · Doc Ock',
+        done: true, finished: '2024-09-25' },
       { title: 'Miles Morales', sub: '2020 · PS5', tag: 'II', accent: '#e0a020',
         desc: 'Shorter, tighter, and about Harlem rather than Manhattan. The venom strike changes how the whole game feels to play.',
-        meta: 'Venom strike · the Tinkerer' },
+        meta: 'Venom strike · the Tinkerer',
+        done: true, finished: '2026-03-02' },
       { title: 'Marvel’s Spider-Man 2', sub: '2023 · PS5', tag: 'III', accent: '#4a2a6a',
         desc: 'Both of them, swappable, across a map twice the size, plus the symbiote arc, which is the best version of that story anyone has told. Kraven as a hunter who is genuinely frightening rather than a joke.',
-        meta: 'Venom · Kraven' },
+        meta: 'Venom · Kraven',
+        done: true, finished: '2026-07-25' },
     ] },
 
   { id: 'spiders', kind: 'cards', title: 'The Spiders', note: 'anyone can wear the mask',

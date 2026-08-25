@@ -64,12 +64,32 @@
     };
   }
 
+  /* The glow around each head, drawn once into a sprite and stamped from
+     there. It used to be ctx.shadowBlur on every head on every frame, and a
+     canvas shadow is a fresh blur pass per fill: twenty-odd of them a frame,
+     and WebKit runs that blur in software. The sprite is the same soft disc,
+     rendered once per display scale. */
+  const GLOW = 24;                       // sprite radius, css px: covers the old 8-20px blur
+  const glow = document.createElement('canvas');
+  function paintGlow() {
+    glow.width = glow.height = GLOW * 2 * dpr;
+    const g = glow.getContext('2d');
+    const c = GLOW * dpr;
+    const grd = g.createRadialGradient(c, c, 0, c, c, c);
+    grd.addColorStop(0, rgba(theme.head, 0.85));
+    grd.addColorStop(0.3, rgba(theme.head, 0.35));
+    grd.addColorStop(1, rgba(theme.head, 0));
+    g.fillStyle = grd;
+    g.fillRect(0, 0, glow.width, glow.height);
+  }
+
   function size() {
     dpr = Math.min(devicePixelRatio || 1, 2);
     w = innerWidth; h = innerHeight;
     canvas.width = w * dpr; canvas.height = h * dpr;
     canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    paintGlow();
     cols = Math.ceil(w / STEP); rows = Math.ceil(h / STEP);
     const count = Math.max(9, Math.min(26, Math.round(w * h / 78000)));
     packets = Array.from({ length: count }, () => spawn(false));
@@ -128,13 +148,14 @@
         ctx.stroke();
       }
 
+      const gr = 10 + near * 14;                     // glow reach, as the old blur's
+      ctx.globalAlpha = 0.6 + near * 0.4;
+      ctx.drawImage(glow, px - gr, py - gr, gr * 2, gr * 2);
+      ctx.globalAlpha = 1;
       ctx.fillStyle = rgba(theme.head, 0.5 + near * 0.5);
-      ctx.shadowBlur = 8 + near * 12;
-      ctx.shadowColor = rgba(theme.head, 0.85);
       ctx.beginPath();
       ctx.arc(px, py, 1.5 + near * 1.4, 0, Math.PI * 2);
       ctx.fill();
-      ctx.shadowBlur = 0;
     }
 
     for (let i = sparks.length - 1; i >= 0; i--) {     // intersection sparks decay

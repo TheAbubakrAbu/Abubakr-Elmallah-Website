@@ -271,6 +271,33 @@
       if (card) { card.classList.remove('is-open'); card.setAttribute('aria-expanded', 'false'); }
     }
 
+    /* Where the page stands after a year folds up.
+
+       Everything below the panel (the year blocks, the transcript, on a
+       phone the rest of the page) moves up into the space it leaves, and
+       from where the visitor is standing that reads as the page having
+       scrolled DOWN by a whole gallery: one moment the top of the year, the
+       next some paragraph from thousands of pixels further on. This used to
+       follow that with a smooth scrollIntoView back to the card, which
+       animated up from the wrong place and made it two movements instead
+       of none. So: if the card is off screen, it is put back on screen in
+       the same frame as the collapse, with no animation; and if it is on
+       screen already, nothing moves at all. */
+    function backTo(card) {
+      if (!card) return;
+      var r = card.getBoundingClientRect();
+      var bar = document.querySelector('.topbar');
+      var tab = document.querySelector('.tabbar');
+      var top = bar ? bar.getBoundingClientRect().bottom : 0;
+      var bottom = tab && getComputedStyle(tab).display !== 'none'
+        ? tab.getBoundingClientRect().top : innerHeight;
+      if (r.top >= top && r.bottom <= bottom) return;
+      var html = document.documentElement, was = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';          // base.css asks for smooth; not for this
+      card.scrollIntoView({ block: 'center' });
+      html.style.scrollBehavior = was;
+    }
+
     /* the switch at the bottom of the page decides whether a card is a button
        at all; with it off the click is simply dropped */
     function picsOn() { return !!(window.AEpics && window.AEpics.on()); }
@@ -302,8 +329,7 @@
       if (!b) return;
       var panel = b.closest('.yg-panel');
       shut(panel);
-      var card = mount.querySelector('.year-card[data-group="' + panel.dataset.group + '"]');
-      if (card) card.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      backTo(mount.querySelector('.year-card[data-group="' + panel.dataset.group + '"]'));
     });
 
     /* Turning the switch back off has to put the page back the way it was, so

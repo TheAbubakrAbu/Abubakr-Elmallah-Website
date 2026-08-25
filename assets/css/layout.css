@@ -4,13 +4,22 @@
 
 /* ───────────── Overlays: grain, vignette, canvas ───────────── */
 
+/* The grain is a fixed layer the compositor redraws on every frame the page
+   moves, so its size and its blending are what it costs. 120% rather than
+   200%: the jitter below moves it by at most 3% of its own size, so a 10%
+   overflow on each side already hides its edges, and the layer is a third of
+   the memory (a 200% layer on a phone was 12 megapixels of texture). And no
+   mix-blend-mode: at 5% opacity over a near-black site, screen and normal
+   blending are indistinguishable, but screen made the compositor copy the
+   whole backdrop into a texture on every frame just to blend this over it. */
 .grain {
-  position: fixed; inset: -50%;
-  width: 200%; height: 200%;
+  position: fixed; inset: -10%;
+  width: 120%; height: 120%;
   pointer-events: none; z-index: 9000;
-  opacity: 0.05; mix-blend-mode: screen;
+  opacity: 0.05;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation: grain 0.6s steps(2) infinite;
+  will-change: transform;
 }
 @keyframes grain {
   0%{transform:translate(0,0)} 25%{transform:translate(-3%,2%)}
@@ -34,7 +43,9 @@
    above the flowfield and below all content, so nothing else is affected.
 
    TO TUNE: change the values below. They're the only knobs.
-   TO REMOVE: delete this whole block. Nothing else references it. */
+   TO REMOVE: delete this whole block. The only other reference is
+   pointerLight() in utils.js, which reads --hud-reach to size the cursor
+   light and quietly does nothing once that is gone. */
 :root {
   --hud-grid:  rgba(95, 163, 236, 0.085);   /* grid lines, UCI blue */
   --hud-cell:  52px;                        /* grid spacing */
@@ -55,33 +66,53 @@ body::before {
   mask-image: radial-gradient(ellipse 120% 95% at 50% 15%, #000 25%, transparent 95%);
   -webkit-mask-image: radial-gradient(ellipse 120% 95% at 50% 15%, #000 25%, transparent 95%);
 }
+/* The sweep travels on transform, not top: animating top is a layout and a
+   repaint on every frame for nineteen seconds, forever, on every page; a
+   transform is moved by the compositor and the main thread never hears of it. */
 body::after {
-  content: ""; position: fixed; left: 0; right: 0; height: 150px;
+  content: ""; position: fixed; left: 0; right: 0; top: 0; height: 150px;
   z-index: 1; pointer-events: none;
   background: linear-gradient(to bottom, transparent, var(--hud-sweep), transparent);
   animation: hud-sweep 19s linear infinite;
+  will-change: transform;
 }
-@keyframes hud-sweep { from { top: -150px; } to { top: 100%; } }
+@keyframes hud-sweep { from { transform: translateY(-150px); } to { transform: translateY(100vh); } }
 @media (prefers-reduced-motion: reduce) { body::after { display: none; } }
 
 /* Cursor light: the same lattice, drawn bright, but only visible inside a soft
-   circle that follows the pointer. --mx / --my are published by utils.js, eased,
-   so the grid ignites under the cursor and dims again behind it. */
-html::before {
-  content: ""; position: fixed; inset: 0; z-index: 2; pointer-events: none;
+   circle that follows the pointer, so the grid ignites under the cursor and
+   dims again behind it.
+
+   utils.js creates .hud-light (a square of 2 x --hud-reach) and moves it with
+   a transform; the <i> inside is a viewport-sized copy of the lattice moved
+   the opposite way, so its lines stay on the page grid while the patch
+   travels. Transforms only: nothing here is repainted while the mouse moves.
+   It used to be html::before, full screen, with the halo and the mask
+   positioned by --mx / --my custom properties, and that cost a whole-page
+   style recalculation plus a full-screen repaint on every frame of mouse
+   movement (the note in utils.js has the numbers). */
+.hud-light {
+  position: fixed; left: 0; top: 0; z-index: 2; pointer-events: none;
+  width: calc(var(--hud-reach) * 2); height: calc(var(--hud-reach) * 2);
+  overflow: hidden;
   opacity: 0; transition: opacity .45s ease;
+  background: radial-gradient(circle 800px at 50% 50%, var(--hud-halo), transparent 60%);
+  mask-image: radial-gradient(circle var(--hud-reach) at 50% 50%,
+              #000 0%, rgba(0,0,0,0.55) 42%, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle var(--hud-reach) at 50% 50%,
+              #000 0%, rgba(0,0,0,0.55) 42%, transparent 72%);
+  will-change: transform;
+}
+.hud-light.is-on { opacity: 1; }
+.hud-light i {
+  position: absolute; left: 0; top: 0; width: 100vw; height: 100vh;
   background-image:
     linear-gradient(var(--hud-lit) 1px, transparent 1px),
-    linear-gradient(90deg, var(--hud-lit) 1px, transparent 1px),
-    radial-gradient(circle at var(--mx, 50%) var(--my, 50%), var(--hud-halo), transparent 60%);
-  background-size: var(--hud-cell) var(--hud-cell), var(--hud-cell) var(--hud-cell), 100% 100%;
-  mask-image: radial-gradient(circle var(--hud-reach) at var(--mx, 50%) var(--my, 50%),
-              #000 0%, rgba(0,0,0,0.55) 42%, transparent 72%);
-  -webkit-mask-image: radial-gradient(circle var(--hud-reach) at var(--mx, 50%) var(--my, 50%),
-              #000 0%, rgba(0,0,0,0.55) 42%, transparent 72%);
+    linear-gradient(90deg, var(--hud-lit) 1px, transparent 1px);
+  background-size: var(--hud-cell) var(--hud-cell);
+  will-change: transform;
 }
-html.has-beacon::before { opacity: 1; }
-@media (prefers-reduced-motion: reduce), (hover: none) { html::before { display: none; } }
+@media (prefers-reduced-motion: reduce), (hover: none) { .hud-light { display: none; } }
 
 main, .footer, .rail { position: relative; z-index: 10; }
 

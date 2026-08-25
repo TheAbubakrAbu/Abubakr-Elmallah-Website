@@ -309,6 +309,17 @@ window.FAN_PAGE = {
         meta: 'Wizarding World · 5' },
     ] },
 
+  /* one tile per finished game, with the date I got it to a hundred percent
+     (`finished`, see fanpage.js); the LEGO pair also sit in the catalogue on
+     the LEGO page with their hours */
+  { id: 'finished', kind: 'tiles', compact: true, title: 'When I Finished Them', note: 'to a hundred percent',
+    items: [
+      { title: 'Hogwarts Legacy', accent: '#8f5fd0', sub: '2023', done: true, finished: '2024-11-07' },
+      { title: 'LEGO Harry Potter: Years 1–4', accent: '#d9b45f', sub: '2010 · Steam', done: true, finished: '2025-09-02' },
+      { title: 'LEGO Harry Potter: Years 5–7', accent: '#d9b45f', sub: '2011 · Steam', done: true, finished: '2025-09-20' },
+      { title: 'Harry Potter: Quidditch Champions', accent: '#3f9f5f', sub: '2024', done: true, finished: '2025-09-26' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'Wizarding World', href: 'https://www.wizardingworld.com/',

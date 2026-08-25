@@ -83,11 +83,16 @@
      on it as a plain string comparison, which for ISO dates is the same as
      ordering by time. Printed short: "Oct 2024".
 
-     A title with no date simply carries no chip. That is the normal state
-     here, not a gap to be filled with a guess: Steam's library page records
-     when a game was LAST PLAYED, not when it was completed, and the
-     screenshots behind this page were taken in one sitting, so eleven of the
-     twelve read "Today". Only a date I can actually source goes in. */
+     A title with no date simply carries no chip, and that is not a gap to be
+     filled with a guess: Steam's library page records when a game was LAST
+     PLAYED, not when it was completed, and the screenshots behind the LEGO
+     page were taken in one sitting, so they all read "Today". The dates are
+     from my own record of when each one was finished.
+
+     Rendered wherever a game can live: on a tile, on a card in a section
+     that opts in with `chips: true` (the row is part of the card subgrid, so
+     it is all or nothing per section, like `been`), and in a screenshot's
+     caption. */
   var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -289,15 +294,23 @@
   var KINDS = {
     cards: function (s) {
       /* `been: true` on the SECTION turns the seventh row on for all of its
-         cards; without it nothing changes and the grid spans 6 as before. */
-      var wantsBeen = !!s.been;
-      return '<div class="fan-cards' + (wantsBeen ? ' fan-cards--been' : '') + '">'
+         cards; without it nothing changes and the grid spans 6 as before.
+         `chips: true` does the same for the completion row (the hundred
+         percent stamp, the finish date, hours, rating), between the text and
+         the link. Both are per section, never per card, because every card
+         in a row has to emit the same parts for the subgrid to keep them in
+         step (see .fan-cards--chips in fanpages.css). */
+      var wantsBeen = !!s.been, wantsChips = !!s.chips;
+      return '<div class="fan-cards' + (wantsBeen ? ' fan-cards--been' : '')
+        + (wantsChips ? ' fan-cards--chips' : '') + '">'
         + s.items.map(function (it) {
+        var ch = wantsChips ? rate(it) + done(it) + fin(it) + proj(it) : '';
         return '<article class="fan-card reveal"' + a(it) + '>'
           + (it.tag ? '<span class="fan-tag">' + esc(it.tag) + '</span>' : SLOT)
           + '<h4>' + esc(it.title) + '</h4>'
           + (it.sub ? '<span class="fan-sub">' + esc(it.sub) + '</span>' : SLOT)
           + (it.desc ? '<p>' + esc(it.desc) + '</p>' : SLOT)
+          + (wantsChips ? (ch ? '<span class="fan-chips">' + ch + '</span>' : SLOT) : '')
           + (out(it) || SLOT)
           + (it.meta ? '<span class="fan-meta">' + esc(it.meta) + '</span>' : SLOT)
           + (wantsBeen ? beenRow(it) : '')
@@ -463,12 +476,17 @@
     gallery: function (s) {
       return '<div class="fan-shots' + (s.grid ? ' fan-shots--grid' : '')
         + (s.two ? ' fan-shots--two' : '') + '">' + s.items.map(function (it) {
+        /* a screenshot of one finished game can carry the same completion
+           chips as a tile (`done`, `finished`, `hours`); the caption's own
+           styles are scoped to its direct children so the chips keep theirs */
+        var ch = rate(it) + done(it) + fin(it) + proj(it);
         return '<figure class="fan-shot reveal"' + a(it) + '>'
           + '<a href="' + esc(it.src) + '" target="_blank" rel="noopener">'
           +   '<img src="' + esc(it.src) + '" alt="' + esc(it.alt || it.title) + '" loading="lazy" decoding="async" />'
           + '</a>'
           + '<figcaption><b>' + esc(it.title) + '</b>'
           +   (it.desc ? '<span>' + esc(it.desc) + '</span>' : '')
+          +   (ch ? '<span class="fan-chips">' + ch + '</span>' : '')
           +   (it.meta ? '<i>' + esc(it.meta) + '</i>' : '')
           + '</figcaption>'
           + '</figure>';
@@ -611,8 +629,12 @@
      the years above and below it.
 
      Runs after BOTH mounts are written, so a sortable section can sit in either.
-     `data-sort` is compared as a number when both sides parse as one, and as a
-     string otherwise, so this works for years and for titles alike. */
+     `data-sort` is compared as a number when both sides are wholly numeric,
+     and as a string otherwise, so this works for years, hours and titles
+     alike. Wholly, not "starts with one": parseFloat read the ISO date
+     '2022-05-06' as 2022, which sorted every title finished in the same year
+     as a tie and left May after July. Number() refuses it, and the string
+     comparison ISO dates are written for takes over. */
   function applySort(group, key, dir, grouped) {
     var sign = dir === 'asc' ? 1 : -1;
     /* Group headers are rebuilt from scratch on every pass: they are cheap, and
@@ -625,7 +647,7 @@
          the top. Hence the check sits outside the sign. */
       if ((vx == null) !== (vy == null)) return vx == null ? 1 : -1;
       if (vx != null) {
-        var nx = parseFloat(vx), ny = parseFloat(vy);
+        var nx = Number(vx), ny = Number(vy);
         var d = (isNaN(nx) || isNaN(ny)) ? String(vx).localeCompare(String(vy)) : nx - ny;
         if (d) return sign * d;
       }
