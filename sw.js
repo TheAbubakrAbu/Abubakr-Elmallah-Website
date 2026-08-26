@@ -73,13 +73,15 @@ permalink: /sw.js
 
    THE PHOTOS ARE NOT PART OF THE DEAL UNLESS YOU ASK FOR THEM.
 
-   /assets/img/years/ is the year galleries and the trip photos: about 1,600
-   files and the large majority of the site's weight (~70 MB of AVIF). All of it used
-   to come down here in the background on every first visit, whether or not the
-   visitor had ever asked to see a photograph -- and "show other pictures"
-   (pics.js) is off by default, so for most people that was tens of megabytes
-   downloaded to satisfy nothing at all, competing with the pages they actually
-   wanted.
+   /assets/img/years/ and /assets/img/years-large/ are the year galleries and
+   the trip photos: about 1,600 photographs in two sizes, the 1000px frame the
+   grids show and the 2000px copy the full-screen deck swaps in, and nearly
+   all of the site's weight (~410 MB of AVIF). All of it used to come down
+   here in the background on every first visit, whether or not the visitor
+   had ever asked to see a photograph -- and "show other pictures" (pics.js)
+   is off by default, so for most people that was tens of megabytes
+   downloaded to satisfy nothing at all, competing with the pages they
+   actually wanted.
 
    So the fill runs in tiers. ALL_PAGES and ALL_ASSETS -- every page, the CSS,
    the JS, the icons, the app and franchise art -- are always fetched: that is
@@ -147,7 +149,7 @@ once cached, the real URL is served instead, so they are left out. {%- endcommen
    /assets/js/years.js?v=1755..., so the warmed copy could never be hit: 60-odd
    files fetched, stored, and never read once. */
 const ALL_ASSETS = [
-{%- for f in site.static_files %}{% if f.path contains '/assets/' %}{% unless f.path contains '/assets/img/years/' %}
+{%- for f in site.static_files %}{% if f.path contains '/assets/' %}{% unless f.path contains '/assets/img/years/' or f.path contains '/assets/img/years-large/' %}
   '{% if f.path contains '/assets/css/' or f.path contains '/assets/js/' %}{% include v.html f=f.path %}{% else %}{{ f.path }}{% endif %}',
 {%- endunless %}{% endif %}{% endfor %}
 ];
@@ -156,7 +158,7 @@ const ALL_ASSETS = [
    half nobody sees unless "show other pictures" is on. Fetched only when a page
    says so -- see doFill(). */
 const PHOTOS = [
-{%- for f in site.static_files %}{% if f.path contains '/assets/img/years/' %}
+{%- for f in site.static_files %}{% if f.path contains '/assets/img/years/' or f.path contains '/assets/img/years-large/' %}
   '{{ f.path }}',
 {%- endif %}{% endfor %}
 ];
@@ -491,7 +493,7 @@ self.addEventListener('fetch', e => {
    Already-cached URLs cost nothing: warm() checks before it fetches. */
 async function keep(urls) {
   const cache = await caches.open(ASSETS);
-  const queue = urls.filter(u => typeof u === 'string' && u.startsWith('/assets/img/years/'));
+  const queue = urls.filter(u => typeof u === 'string' && /^\/assets\/img\/years(-large)?\//.test(u));
   for (const u of queue) {
     await gate();                                    // never race a navigation
     try {

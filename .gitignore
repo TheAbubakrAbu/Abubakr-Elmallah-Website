@@ -8,8 +8,10 @@ vendor/
 # Plaintext travels, from back when the page was gated
 travels.source.json
 
-# The camera-roll originals behind the year galleries: ~2 GB, and the site
-# only ships what tools/photos.py makes out of them. See _originals/README.md.
+# The camera-roll originals behind the year galleries: ~3 GB, and the site
+# only ships what tools/photos.py makes out of them. Also holds places.json,
+# the geocode cache with the coordinates and the hide list, which must stay
+# out of git for the reason its section in _originals/README.md gives.
 _originals/
 
 # Photographs pulled from the galleries (duplicates, near-duplicates) are

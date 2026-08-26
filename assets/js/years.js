@@ -71,6 +71,14 @@
     return '/assets/img/years/' + (file.indexOf('/') >= 0 ? file : gid + '/' + file);
   }
 
+  /* The deck's copy: the same name under /assets/img/years-large/, a 2000px
+     encode of the same photo (LARGE_OUT in tools/photos.py). The grid's
+     1000px frame is what fills the stage first, because it is already in the
+     cache; this one is fetched behind it and put in its place. */
+  function large(gid, file) {
+    return '/assets/img/years-large/' + (file.indexOf('/') >= 0 ? file : gid + '/' + file);
+  }
+
   /* The src attribute, or rather not: with lazy.js on the page a frame is
      written with data-src and fetched when it is needed, a few at a time,
      nearest the viewport first. Without it, the browser's own lazy loading is
@@ -90,23 +98,66 @@
     + '<button class="yg-prev" aria-label="Previous photo">&#8249;</button>'
     + '<button class="yg-next" aria-label="Next photo">&#8250;</button>'
     + '<figure class="yg-stage"><img alt="" /></figure>'
-    + '<div class="yg-bar"><span class="yg-year"></span><span class="yg-date"></span><span class="yg-count"></span></div>';
+    + '<div class="yg-bar"><span class="yg-year"></span><span class="yg-date"></span>'
+    +   '<span class="yg-place"></span><span class="yg-count"></span></div>';
   document.body.appendChild(deck);
 
   var stageImg = deck.querySelector('img');
   var elYear = deck.querySelector('.yg-year');
   var elDate = deck.querySelector('.yg-date');
+  var elPlace = deck.querySelector('.yg-place');
   var elCount = deck.querySelector('.yg-count');
 
   var set = [], at = 0, label = '';
+  var pending = null;                 // the photo whose large copy the stage is waiting on
 
+  /* Both copies of a photo are shown at the same size, worked out from the
+     photo's own proportions and the room the stage has, rather than from
+     whichever file is loaded at the moment: otherwise the picture would jump
+     when the large copy lands. Never above the large copy's own pixels (twice
+     the grid frame), and never above 1:1 for a photo too small to have been
+     given a large copy at all. The 1100 is .yg-stage's max-width in years.css. */
+  function fit(p) {
+    var cs = getComputedStyle(deck);
+    var maxW = Math.min(1100, deck.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight));
+    var maxH = parseFloat(getComputedStyle(stageImg).maxHeight);
+    if (!(maxH > 0)) maxH = innerHeight - 128;
+    var cap = Math.max(p.w, p.h) < 1000 ? 1 : 2;
+    var s = Math.min(maxW / p.w, maxH / p.h, cap);
+    stageImg.style.width = Math.round(p.w * s) + 'px';
+    stageImg.style.height = Math.round(p.h * s) + 'px';
+  }
+
+  /* Fetch the large copy behind the frame on the stage and put it in its
+     place when it lands, unless the deck has moved on. The two neighbours
+     are fetched next, so an arrow press finds its large copy already here. */
+  function swapIn(p) {
+    pending = p;
+    var big = new Image();
+    big.onload = function () { if (pending === p) stageImg.src = p.full; };
+    big.src = p.full;
+    if (set.length > 1) {
+      new Image().src = set[(at + 1) % set.length].full;
+      new Image().src = set[(at - 1 + set.length) % set.length].full;
+    }
+  }
+
+  /* The place is the town the photo was taken in, when the data carries one:
+     ingest reads it off the original's GPS and names it, and leaves it out
+     for the photos whose place is not meant to be shown. So an empty place
+     is the normal case for a good part of the set, and the span simply goes
+     away rather than reading "unknown". */
   function show(i) {
     at = (i + set.length) % set.length;
     var p = set[at];
+    fit(p);
     stageImg.src = p.src;
     stageImg.alt = p.alt;
+    swapIn(p);
     elYear.textContent = label;
     elDate.textContent = p.date ? fmt(p.date) : 'Date unrecorded';
+    elPlace.textContent = p.place || '';
+    elPlace.hidden = !p.place;
     elCount.textContent = (at + 1) + ' / ' + set.length;
   }
   function open(list, name, i) {
@@ -120,8 +171,11 @@
     deck.classList.remove('open');
     deck.setAttribute('aria-hidden', 'true');
     document.documentElement.classList.remove('intro-lock');
+    pending = null;
     stageImg.removeAttribute('src');
+    stageImg.style.width = stageImg.style.height = '';
   }
+  addEventListener('resize', function () { if (deck.classList.contains('open')) fit(set[at]); });
 
   deck.querySelector('.yg-x').addEventListener('click', close);
   deck.querySelector('.yg-prev').addEventListener('click', function () { show(at - 1); });
@@ -348,7 +402,8 @@
     function listFor(g) {
       if (!lists[g.id]) {
         lists[g.id] = DATA.photos[g.id].map(function (r) {
-          return { src: url(g.id, r[0]), date: r[1],
+          return { src: url(g.id, r[0]), full: large(g.id, r[0]), w: r[2], h: r[3],
+                   date: r[1], place: r[4] || '',
                    alt: 'Abubakr Elmallah, ' + g.label.toLowerCase() };
         });
       }

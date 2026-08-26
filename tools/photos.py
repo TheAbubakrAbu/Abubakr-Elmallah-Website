@@ -1,9 +1,21 @@
 #!/usr/bin/env python3
-"""photos.py: the image pipeline for the site. Two commands:
+"""photos.py: the image pipeline for the site. Three commands:
 
-    python3 tools/photos.py ingest
-        _originals/<year>/*  ->  assets/img/years/<year>/*.avif
+    python3 tools/photos.py ingest [--force]
+        _originals/<year>/*  ->  assets/img/years/<year>/*.avif        (grid, 1000px)
+                             ->  assets/img/years-large/<year>/*.avif  (deck, 2000px)
         and rewrites assets/js/years-data.js. Originals are never touched.
+        A photo whose AVIF is already newer than its original is not encoded
+        again, only re-read for its size, so a run that adds three photos or
+        only changes the data takes seconds and leaves the other 1,600 files
+        byte-for-byte alone (git sees no change). --force encodes everything,
+        which is what a new MAX_EDGE or AVIF_Q needs.
+
+    python3 tools/photos.py places
+        looks up where each original was taken, once per spot, and keeps the
+        answers in _originals/places.json. ingest reads that file to put a
+        place name under each photo in the full-screen deck; see PLACES below
+        for what does and does not leave this folder.
 
     python3 tools/photos.py sweep
         recompresses every other image under assets/img/ in place, and demotes
@@ -32,24 +44,44 @@ is idempotent: re-ingesting produces byte-identical names every time.
 """
 
 import json
+import math
 import os
 import re
 import shutil
 import subprocess
 import sys
+import time
+import urllib.parse
+import urllib.request
 from PIL import Image, ImageOps
 
-MAX_EDGE = 1000          # long edge for photographs; 1400 -> 1200 -> 1000.
+MAX_EDGE = 1000          # long edge for the GRID frame; 1400 -> 1200 -> 1000.
                          # The last step came with First Year: 350 more photos
                          # would have taken assets/img from 79MB to 116MB, and
                          # at 1000px it is 66MB instead -- smaller than before,
                          # with half again as many photographs in it.
-AVIF_Q = 50              # for the year galleries. Chosen against the JPEG q62
-                         # it replaced by comparing 100% crops: q50 matches or
+AVIF_Q = 50              # for the grid frame. Chosen against the JPEG q62 it
+                         # replaced by comparing 100% crops: q50 matches or
                          # beats it everywhere at ~64% of the bytes; q45 buys
                          # another 10 points but starts smoothing low-light
-                         # grain. The originals in _originals/ mean any of it
-                         # can be regenerated at higher quality later.
+                         # grain.
+
+# ── the second encode, for the full-screen deck ──
+# The grid never shows a frame wider than about 330 CSS px, so the 1000px file
+# is more than it needs, and its bandwidth and memory while scrolling (lazy.js
+# budgets on a 1000px frame) stay exactly as they were. The deck is another
+# matter: it shows a photo up to 1100 CSS px wide or a screen tall, which on a
+# Retina or phone screen is 2,200 to 3,300 device pixels, and a 1000px file
+# stretched to that looked as soft as it sounds. So every photo is encoded
+# twice, same name under LARGE_OUT, and years.js and travels.js swap this copy
+# in only when a photo is opened. Measured on the whole set: 2000px q65 is
+# 216KB a photo, 340MB for the 1,609, on top of the 68MB grid set; past about
+# 2400px nothing more is visible in the deck without zooming. Every re-encode
+# adds a full copy of the set to git history, so change these rarely; the
+# originals in _originals/ mean any size can be regenerated: ingest --force.
+LARGE_OUT = 'assets/img/years-large'
+LARGE_EDGE = 2000
+LARGE_Q = 65
 EXT = '.avif'            # what ingest writes; years-data.js carries the names
 JPEG_Q = 62              # sweep only, now: was 80, then 75, then 70; each step
                          # bought ~15-20%
@@ -63,6 +95,29 @@ KEEP_PNG = ['assets/img/icons']
 SRC = '_originals'
 OUT = 'assets/img/years'
 DATA = 'assets/js/years-data.js'
+IMG_EXT = ('.jpg', '.jpeg', '.png', '.heic')
+
+# ── where each photo was taken ──
+# The originals carry the camera's GPS fix. The encoded AVIF carries nothing
+# (Pillow writes no metadata), so what the site knows about a place is only
+# what ingest puts in years-data.js: a town-level name, "Irvine, California",
+# under the date in the full-screen deck. Never a coordinate.
+#
+# The names come from OpenStreetMap's Nominatim, one lookup per distinct spot,
+# and are cached in PLACES so a re-ingest asks for nothing. That file sits in
+# _originals/ on purpose: it is gitignored with the rest of the folder, and it
+# holds the coordinates and the `hide` list, which names the places that are
+# never to be shown. The list is where home is, so it is not in this file and
+# not in the repository: the code only knows that a photo whose address
+# mentions anything on the list gets no place at all. With no list, ingest
+# writes no places, rather than risk the wrong default.
+PLACES = os.path.join(SRC, 'places.json')
+GEO_ROUND = 3            # decimals kept before the lookup: 0.001 deg is about
+                         # 100 m, so frames shot in one spot share one lookup
+                         # and 1,300 located photos need a few hundred
+NOMINATIM = 'https://nominatim.openstreetmap.org/reverse'
+GEO_UA = 'abubakrelmallah.com photo ingest (tools/photos.py)'
+GEO_PAUSE = 1.1          # Nominatim's usage policy: at most one request a second
 
 # editorial, so it lives here rather than being guessed from the folder name.
 # `cover` is the photo the year's card shows while the gallery is collapsed.
@@ -303,9 +358,190 @@ def date_from(stem):
     return '%s %s:%s' % m.groups() if m else None
 
 
-def ingest():
+def current(out, src):
+    """True if `out` exists and is no older than the original it came from."""
+    return os.path.exists(out) and os.path.getmtime(out) >= os.path.getmtime(src)
+
+
+def gps_of(path):
+    """(lat, lon) from the file's EXIF, rounded to GEO_ROUND decimals, or None
+    for a photo with no fix. A rounded pair is all that is ever kept."""
+    try:
+        g = Image.open(path).getexif().get_ifd(0x8825)
+    except Exception:
+        return None
+    if not g or g.get(2) is None or g.get(4) is None:
+        return None
+
+    def deg(v):
+        d, m, sec = (float(x) for x in v)
+        return d + m / 60 + sec / 3600
+    try:
+        lat, lon = deg(g[2]), deg(g[4])
+    except (TypeError, ValueError, ZeroDivisionError):
+        return None
+    if not (math.isfinite(lat) and math.isfinite(lon)):
+        return None
+    if str(g.get(1, 'N')).upper().startswith('S'):
+        lat = -lat
+    if str(g.get(3, 'E')).upper().startswith('W'):
+        lon = -lon
+    if not (-90 <= lat <= 90 and -180 <= lon <= 180) or (lat == 0 and lon == 0):
+        return None                      # a zeroed block is a camera with no fix
+    return round(lat, GEO_ROUND), round(lon, GEO_ROUND)
+
+
+def geo_key(ll):
+    return '%.*f,%.*f' % (GEO_ROUND, ll[0], GEO_ROUND, ll[1])
+
+
+def load_places():
+    try:
+        return json.load(open(PLACES, encoding='utf-8'))
+    except OSError:
+        return {'hide': [], 'at': {}}
+
+
+def save_places(cache):
+    with open(PLACES, 'w', encoding='utf-8') as fh:
+        json.dump(cache, fh, indent=1, ensure_ascii=False, sort_keys=True)
+        fh.write('\n')
+
+
+def originals():
+    """Every original in every year folder: (gid, stem, path)."""
+    for gid, label, span, school, cover in YEARS:
+        d = os.path.join(SRC, gid)
+        if not os.path.isdir(d):
+            continue
+        for f in sorted(os.listdir(d)):
+            if not f.startswith('.') and f.lower().endswith(IMG_EXT):
+                yield gid, os.path.splitext(f)[0], os.path.join(d, f)
+
+
+def places():
+    """Fill PLACES with an address for every distinct spot the originals were
+    shot at. Only the spots not already in the file are looked up, so this is
+    cheap to re-run after adding photos; the first run over the whole library
+    takes about ten minutes at one request a second."""
+    cache = load_places()
+    at = cache.setdefault('at', {})
+    cache.setdefault('hide', [])
+    want, n = {}, 0
+    for gid, stem, path in originals():
+        ll = gps_of(path)
+        if ll:
+            n += 1
+            want.setdefault(geo_key(ll), ll)
+    todo = [k for k in want if k not in at]
+    print('%d photos carry a location, %d distinct spots, %d not yet looked up'
+          % (n, len(want), len(todo)))
+    for i, k in enumerate(todo):
+        lat, lon = want[k]
+        q = urllib.parse.urlencode({'format': 'jsonv2', 'lat': lat, 'lon': lon,
+                                    'zoom': 14, 'addressdetails': 1,
+                                    'accept-language': 'en'})
+        req = urllib.request.Request(NOMINATIM + '?' + q, headers={'User-Agent': GEO_UA})
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                res = json.load(r)
+        except Exception as e:
+            print('  ! %s: %s' % (k, e))
+            time.sleep(GEO_PAUSE * 4)
+            continue
+        if 'error' in res:               # open sea, mostly: no address to give
+            at[k] = {'name': None, 'address': {}}
+        else:
+            at[k] = {'name': res.get('display_name'), 'address': res.get('address', {})}
+        print('  %4d/%d  %s  %s' % (i + 1, len(todo), k, place_label(at[k], []) or '?'))
+        if (i + 1) % 20 == 0:
+            save_places(cache)
+        time.sleep(GEO_PAUSE)
+    save_places(cache)
+    print('wrote %s (%d spots)' % (PLACES, len(at)))
+
+
+# The address levels a place name is taken from, most local first. A named
+# quarter comes before a bare county (Universal City rather than Los Angeles
+# County), and the county, district and province levels are there for the
+# countryside and for the villages whose OSM name has no English form: a
+# Tunisian oasis that Nominatim can only name in Arabic falls through to its
+# governorate, "Tozeur, Tunisia", which is what an English page can print.
+GEO_LEVELS = ('city', 'town', 'village', 'municipality', 'hamlet',
+              'suburb', 'quarter', 'county', 'state_district', 'province', 'state')
+
+
+def readable(name):
+    """A name this page can print: Latin letters, accents allowed, no numbers
+    ("Ward 2", "Improvement District No. 9") and no councils ("Kenmare
+    Municipal District", "Armagh City, Banbridge and Craigavon District
+    Council"): those are admin units, not places."""
+    return not re.search(r'[^\u0000-\u024f\u1e00-\u1eff\u2010-\u2019\s]|\d'
+                         r'|\b(Council|Municipal District)\b', name)
+
+
+def tidy(name):
+    """Admin units named as such read badly under a photo: 'Governorate of
+    Jidda' is Jidda, 'Jerash Sub-District' is Jerash, 'Cantón San Cristóbal'
+    is San Cristóbal, 'City of Westminster' is Westminster."""
+    return re.sub(r'^(Governorate of|Cantón|Parroquia|City of|Greater) '
+                  r'|( Governorate| Sub-District)$', '', name)
+
+
+def metro(a, name):
+    """The city, where Nominatim names a district as if it were the town.
+    Tokyo's wards come back as `city` with no prefecture at all (every other
+    Japanese city has one); a Turkish `town` is a district of a province that
+    is named after its city, so Beyoğlu is Istanbul and Serik is Antalya."""
+    cc = a.get('country_code')
+    if cc == 'jp' and not a.get('province') and 'Tokyo' in (name or ''):
+        return 'Tokyo'
+    if cc == 'tr' and a.get('province') and readable(a['province']):
+        return a['province']
+    return None
+
+
+# where the second half of the label is the state or nation rather than the
+# country: 'Irvine, California', 'Banbridge, Northern Ireland'
+REGION_IS_STATE = ('us', 'gb')
+
+
+def place_label(entry, hide):
+    """'Irvine, California' / 'Seville, Spain' from a cached address, or None
+    when the address mentions anything on the hide list or says nothing
+    useful. Town then state for the US, town then country elsewhere. The
+    hide check reads EVERY field of the address, down to the neighbourhood,
+    so a photo from inside a hidden town is caught whichever level
+    Nominatim happened to name it at."""
+    a = entry.get('address') or {}
+    name = entry.get('name') or ''
+    haystack = ' | '.join(str(v) for v in a.values()) + ' | ' + name
+    for h in hide:
+        if h.lower() in haystack.lower():
+            return None
+    loc = metro(a, name) or next((tidy(a[k]) for k in GEO_LEVELS
+                                  if a.get(k) and readable(a[k])), None)
+    region = a.get('state') if a.get('country_code') in REGION_IS_STATE else a.get('country')
+    if region and not readable(region):
+        region = a.get('country')
+    if not loc:
+        return region or None
+    if region and region != loc:
+        return '%s, %s' % (loc, region)
+    return loc
+
+
+def ingest(force=False):
     manifest = {}
     dims = {}          # '<group>/<stem>' -> (w, h), filled as each file is encoded
+    placed = {}        # '<group>/<stem>' -> place label or None, same keys
+    kept = 0           # files left alone because their AVIF was already current
+    unlooked = []      # located photos whose spot is not in PLACES yet
+
+    cache = load_places()
+    hide, at = cache.get('hide') or [], cache.get('at') or {}
+    if not hide:
+        print('! %s has no hide list, so no places will be written. See PLACES.' % PLACES)
 
     for gid, label, span, school, cover in YEARS:
         d = os.path.join(SRC, gid)
@@ -314,6 +550,7 @@ def ingest():
             manifest[gid] = []
             continue
         os.makedirs(os.path.join(OUT, gid), exist_ok=True)
+        os.makedirs(os.path.join(LARGE_OUT, gid), exist_ok=True)
         alias = ALIASES.get(gid, {})
 
         # id photos first (the year's ID card leads the gallery regardless of
@@ -321,17 +558,18 @@ def ingest():
         # photos have no original of their own, so their stems are added here.
         stems = sorted(
             set(os.path.splitext(f)[0] for f in os.listdir(d)
-                if not f.startswith('.') and f.lower().endswith(('.jpg', '.jpeg', '.png', '.heic')))
+                if not f.startswith('.') and f.lower().endswith(IMG_EXT))
             | set(alias),
             key=lambda s: (not s.startswith('id'), s.startswith('undated'), s))
 
         # anything in the output that is no longer in _originals is stale --
         # and a borrowed photo must NOT have a file here, that is the point
         keep = {s + EXT for s in stems if s not in alias}
-        for f in os.listdir(os.path.join(OUT, gid)):
-            if f not in keep:
-                os.remove(os.path.join(OUT, gid, f))
-                print('  removed stale %s/%s' % (gid, f))
+        for folder in (OUT, LARGE_OUT):
+            for f in os.listdir(os.path.join(folder, gid)):
+                if f not in keep:
+                    os.remove(os.path.join(folder, gid, f))
+                    print('  removed stale %s/%s/%s' % (folder, gid, f))
 
         rows = []
         for stem in stems:
@@ -341,12 +579,39 @@ def ingest():
             src = next(os.path.join(d, f) for f in os.listdir(d)
                        if os.path.splitext(f)[0] == stem)
             dest = os.path.join(OUT, gid, stem + EXT)
-            im = ImageOps.exif_transpose(Image.open(src))
-            size = encode_avif(im, dest)
+            big = os.path.join(LARGE_OUT, gid, stem + EXT)
+            im, done = None, []
+            for path, q, edge in ((dest, AVIF_Q, MAX_EDGE), (big, LARGE_Q, LARGE_EDGE)):
+                if not force and current(path, src):
+                    continue
+                if im is None:
+                    im = ImageOps.exif_transpose(Image.open(src))
+                done.append(encode_avif(im, path, q, edge))
+            fresh = im is None
+            if fresh:
+                kept += 1
             w, h = Image.open(dest).size
+
+            # where it was taken: the original's GPS fix, through the cache
+            # of names, through the hide list. Nothing else is kept.
+            place = None
+            if hide:
+                ll = gps_of(src)
+                if ll:
+                    entry = at.get(geo_key(ll))
+                    if entry is None:
+                        unlooked.append('%s/%s' % (gid, stem))
+                    else:
+                        place = place_label(entry, hide)
+
             dims['%s/%s' % (gid, stem)] = (w, h)
-            rows.append({'file': stem + EXT, 'date': date_from(stem), 'w': w, 'h': h})
-            print('  %-14s %-24s %5dx%-5d %6.1fKB' % (gid, stem + EXT, w, h, size / 1024))
+            placed['%s/%s' % (gid, stem)] = place
+            rows.append({'file': stem + EXT, 'date': date_from(stem), 'w': w, 'h': h,
+                         'place': place})
+            if not fresh:
+                print('  %-14s %-24s %5dx%-5d %s  %s'
+                      % (gid, stem + EXT, w, h,
+                         ' + '.join('%6.1fKB' % (n / 1024) for n in done), place or ''))
 
         assert cover in keep or cover in {s + EXT for s in alias}, \
             'cover %s missing from %s' % (cover, gid)
@@ -375,13 +640,19 @@ def ingest():
             assert target in dims, 'nothing to borrow at %s' % target
             r['file'] = target + EXT
             r['w'], r['h'] = dims[target]
+            r['place'] = placed.get(target)
             borrowed += 1
             print('  %-14s borrows %s' % (gid, target + EXT))
 
     write_data(manifest)
     n = sum(len(v) for v in manifest.values())
-    print('\ningested %d photos (%d encoded, %d shown twice from one file)'
-          % (n, n - borrowed, borrowed))
+    print('\ningested %d photos (%d encoded now, %d already current, %d shown twice from one file)'
+          % (n, n - borrowed - kept, kept, borrowed))
+    shown = sum(1 for rows in manifest.values() for r in rows if r.get('place'))
+    print('%d carry a place name' % shown)
+    if unlooked:
+        print('! %d located photos have no name yet; run `python3 tools/photos.py places`'
+              % len(unlooked))
 
 
 def write_data(manifest):
@@ -398,7 +669,14 @@ def write_data(manifest):
    the photo the year's card shows while the gallery is collapsed; the four
    high-school ones are the same frames the old year cards used.
 
-   Paths are relative to /assets/img/years/<group>/. */
+   A row's fifth entry, where there is one, is the town the photo was taken
+   in, read off the original's GPS and named through OpenStreetMap at ingest.
+   Only the name is here, never a coordinate, and only for the photos whose
+   place is meant to be shown: see PLACES in tools/photos.py.
+
+   Paths are relative to /assets/img/years/<group>/, the 1000px grid frames.
+   The full-screen deck loads the same path under /assets/img/years-large/,
+   a 2000px encode of the same photo (LARGE_OUT in tools/photos.py). */
 window.YEARS = {
   groups: ["""]
     for gid, label, span, school, cover in YEARS:
@@ -410,7 +688,8 @@ window.YEARS = {
         L.append("    '%s': [" % gid)
         for r in manifest.get(gid, []):
             d = "'%s'" % r['date'] if r['date'] else 'null'
-            L.append("      ['%s', %s, %d, %d]," % (r['file'], d, r['w'], r['h']))
+            where = ", '%s'" % js_str(r['place']) if r.get('place') else ''
+            L.append("      ['%s', %s, %d, %d%s]," % (r['file'], d, r['w'], r['h'], where))
         L.append('    ],')
     L.append('  },')
     # chapter start indices, computed here so they can never drift from the
@@ -438,15 +717,21 @@ window.YEARS = {
         L.append('    ],')
     L.append('  },')
     L.append('};')
-    with open(DATA, 'w') as fh:
+    with open(DATA, 'w', encoding='utf-8') as fh:
         fh.write('\n'.join(L) + '\n')
     print('wrote %s' % DATA)
+
+
+def js_str(s):
+    """A place name inside a single-quoted JS literal: "Xi'an" must not end
+    the string early."""
+    return s.replace('\\', '\\\\').replace("'", "\\'")
 
 
 def sweep():
     renames, before, after = {}, 0, 0
     for root, dirs, files in os.walk('assets/img'):
-        if root.startswith(OUT):
+        if root.startswith((OUT, LARGE_OUT)):
             continue                                  # ingest owns those
         for f in sorted(files):
             if f.startswith('.') or f.endswith('.json'):
@@ -483,7 +768,13 @@ def sweep():
 
 
 if __name__ == '__main__':
-    cmds = {'ingest': ingest, 'sweep': sweep}
-    if len(sys.argv) != 2 or sys.argv[1] not in cmds:
+    cmds = {'ingest': ingest, 'places': places, 'sweep': sweep}
+    args = sys.argv[1:]
+    force = '--force' in args
+    args = [a for a in args if a != '--force']
+    if len(args) != 1 or args[0] not in cmds or (force and args[0] != 'ingest'):
         sys.exit(__doc__)
-    cmds[sys.argv[1]]()
+    if force:
+        ingest(force=True)
+    else:
+        cmds[args[0]]()

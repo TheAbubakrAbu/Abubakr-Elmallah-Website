@@ -141,6 +141,10 @@
   display: flex; align-items: center; justify-content: center;
 }
 
+/* years.js sets width and height inline from the photo's own proportions, so
+   the 1000px grid frame and the 2000px copy that replaces it take exactly the
+   same room; the bounds below are what it fits inside. Keep the 1100px of
+   .yg-stage in step with fit() in years.js and travels.js. */
 .yg-stage img {
   max-width: 100%; max-height: calc(100vh - 8rem);
   width: auto; height: auto; display: block;
@@ -165,7 +169,9 @@
 .yg-prev { left: 1.1rem; top: 50%; margin-top: -22px; font-size: 1.6rem; }
 .yg-next { right: 1.1rem; top: 50%; margin-top: -22px; font-size: 1.6rem; }
 
-/* year · date · position, along the bottom */
+/* year · date · place · position, along the bottom. The place is the town
+   the photo was taken in, and is only there for the photos that carry one
+   (years-data.js, fifth entry), so it must take no room when it is empty. */
 .yg-bar {
   position: absolute; left: 0; right: 0; bottom: 0;
   display: flex; align-items: baseline; justify-content: center; gap: 1.2rem;
@@ -175,6 +181,8 @@
 
 .yg-bar .yg-year { color: var(--gold); text-transform: uppercase; }
 .yg-bar .yg-date { color: var(--ink); }
+.yg-bar .yg-place { color: var(--ink); opacity: .72; }
+.yg-bar .yg-place[hidden] { display: none; }
 .yg-bar .yg-count { color: var(--mute); }
 
 @media (max-width: 620px) {

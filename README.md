@@ -65,7 +65,7 @@ can open and read.
   `jekyll-redirect-from` stubs so old `/src/*.html` links never 404, and the
   `_includes/v.html` cache-buster.
 - **Per-file cache busting.** `v.html` appends `?v=<that file's own mtime>`, so
-  changing one stylesheet doesn't force visitors to re-download 80 MB of images.
+  changing one stylesheet doesn't force visitors to re-download 410 MB of images.
 - **Installable and fully offline.** [`sw.js`](sw.js) caches the shell on install,
   then quietly pulls every page and image in the background on activate. HTML is
   network-first, CSS/JS cache-first (safe because of `?v=`), images
@@ -137,12 +137,14 @@ assets/
     cursor · magnetic · scramble · reveal · clock · flowfield · tilt
     gallery · sound · intro · scroll · cardlink · utils
     transcript-data · planets-data · travels-data · fandom-data · …
-    years-data · years    # the 1,614-photo year galleries on /high-school/ and
+    years-data · years    # the 1,613-photo year galleries on /high-school/ and
                           # /college/: justified rows, strictly chronological
   img/                   # me · apps · bots · awards · highschool · flyers
                          # wallpapers · franchises · icons
     years/<year>/        # one folder per school year; every file is named for
                          # its own EXIF capture time, so the folder sorts itself
+    years-large/<year>/  # the same names at 2000px: what the full-screen
+                         # viewer swaps in once a photo is opened
   audio/accents/         # <id>.m4a per accent — none recorded yet; see the
                          # header of assets/js/accents-data.js for the convention
 ```
@@ -157,11 +159,27 @@ then:
 python3 tools/photos.py ingest
 ```
 
-It auto-orients from EXIF, resizes to a 1000px long edge, encodes AVIF (about
-35% smaller per photo than the progressive JPEG it replaced, and it holds
-texture the JPEG had started to block away), drops anything you deleted, and
-rewrites [`years-data.js`](assets/js/years-data.js). `_originals/` is
-gitignored and never modified. Nothing about the grid is hand-written — `years.js` reads the
+It auto-orients from EXIF, encodes each photo twice as AVIF (a 1000px q50
+frame for the grid, about 43 KB, and a 2000px q65 copy under
+`assets/img/years-large/` that only the full-screen viewer loads, about 215 KB;
+the grid never shows a frame wider than 330 CSS px, the viewer shows one up to
+1100, which on a Retina screen is 2,200 device pixels), drops anything you
+deleted, and rewrites [`years-data.js`](assets/js/years-data.js). `_originals/` is
+gitignored and never modified. A photo whose AVIF is already newer than its
+original is not encoded again, so a run that adds three photos takes seconds
+and leaves the other files byte-for-byte alone; `ingest --force` re-encodes
+everything.
+
+Where a photo was taken shows under its date in the full-screen viewer.
+`python3 tools/photos.py places` reads each original's GPS fix and names the
+spot through OpenStreetMap, one lookup per distinct spot, cached in the
+gitignored `_originals/places.json`; ingest then writes the town,
+"Irvine, California", as a fifth entry on the photo's row. Only the name ships,
+never a coordinate, and nothing ships for a photo whose address mentions a
+place on that file's `hide` list, which is where home is and is why the list
+lives outside the repository (see `_originals/README.md`).
+
+Nothing about the grid is hand-written — `years.js` reads the
 widths and heights out of that file and justifies the rows before any image has
 loaded, so the layout never jumps. The frames themselves are fetched by
 [`lazy.js`](assets/js/lazy.js): written with `data-src`, given a real `src` a

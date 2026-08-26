@@ -19,7 +19,8 @@
        years-data.js is loaded for the w/h and date of each shot, so the grids
        can be justified before a single image arrives, exactly like years.js */
     var IMG = '/assets/img/years/';
-    var YP = {};                       // 'group/file' -> [file, date, w, h]
+    var LARGE = '/assets/img/years-large/';   // the deck's 2000px copy of the same path
+    var YP = {};                       // 'group/file' -> [file, date, w, h, place?]
 
     /* the src attribute, or rather not: with lazy.js on the page a frame is
        written with data-src and fetched when it is needed, a few at a time,
@@ -419,18 +420,56 @@
         + '<button class="yg-prev" aria-label="Previous photo">&#8249;</button>'
         + '<button class="yg-next" aria-label="Next photo">&#8250;</button>'
         + '<figure class="yg-stage"><img alt="" /></figure>'
-        + '<div class="yg-bar"><span class="yg-year"></span><span class="yg-date"></span><span class="yg-count"></span></div>';
+        + '<div class="yg-bar"><span class="yg-year"></span><span class="yg-date"></span>'
+        +   '<span class="yg-place"></span><span class="yg-count"></span></div>';
       document.body.appendChild(deck);
 
       var stageImg = deck.querySelector('img');
+      var elPlace = deck.querySelector('.yg-place');
       var set = [], at = 0, deckTrip = null;
+      var pending = null;              // the path whose large copy the stage is waiting on
 
+      /* Same two-step as years.js: the grid's 1000px frame goes on the stage
+         at once (it is in the cache), the 2000px copy is fetched behind it and
+         put in its place when it lands, and both are shown at one size worked
+         out from the photo's proportions so nothing jumps. See fit() and
+         swapIn() in years.js for the reasoning; the 1100 is .yg-stage's
+         max-width in years.css. */
+      function fit(r) {
+        if (!r) { stageImg.style.width = stageImg.style.height = ''; return; }
+        var cs = getComputedStyle(deck);
+        var maxW = Math.min(1100, deck.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight));
+        var maxH = parseFloat(getComputedStyle(stageImg).maxHeight);
+        if (!(maxH > 0)) maxH = innerHeight - 128;
+        var cap = Math.max(r[2], r[3]) < 1000 ? 1 : 2;
+        var s = Math.min(maxW / r[2], maxH / r[3], cap);
+        stageImg.style.width = Math.round(r[2] * s) + 'px';
+        stageImg.style.height = Math.round(r[3] * s) + 'px';
+      }
+      function swapIn(f) {
+        pending = f;
+        var big = new Image();
+        big.onload = function () { if (pending === f) stageImg.src = LARGE + f; };
+        big.src = LARGE + f;
+        if (set.length > 1) {
+          new Image().src = LARGE + set[(at + 1) % set.length];
+          new Image().src = LARGE + set[(at - 1 + set.length) % set.length];
+        }
+      }
+
+      /* the town, from the year-gallery row (its fifth entry, where ingest
+         found one): a Spain trip's frames say Seville, Granada, Toledo */
       function deckShow(i) {
         at = (i + set.length) % set.length;
+        var r = YP[set[at]], place = (r && r[4]) || '';
+        fit(r);
         stageImg.src = IMG + set[at];
         stageImg.alt = deckTrip.places;
+        swapIn(set[at]);
         deck.querySelector('.yg-year').textContent = deckTrip.places;
         deck.querySelector('.yg-date').textContent = shotDate(set[at]);
+        elPlace.textContent = place;
+        elPlace.hidden = !place;
         deck.querySelector('.yg-count').textContent = (at + 1) + ' / ' + set.length;
       }
       function deckOpen(t, i) {
@@ -444,8 +483,11 @@
         deck.classList.remove('open');
         deck.setAttribute('aria-hidden', 'true');
         document.documentElement.classList.remove('intro-lock');
+        pending = null;
         stageImg.removeAttribute('src');
+        stageImg.style.width = stageImg.style.height = '';
       }
+      addEventListener('resize', function () { if (deck.classList.contains('open')) fit(YP[set[at]]); });
       deck.querySelector('.yg-x').addEventListener('click', deckClose);
       deck.querySelector('.yg-prev').addEventListener('click', function () { deckShow(at - 1); });
       deck.querySelector('.yg-next').addEventListener('click', function () { deckShow(at + 1); });
