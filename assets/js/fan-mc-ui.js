@@ -8,6 +8,7 @@
 
    Loads after fanpage.js. */
 (function mcHotbar() {
+  try {
   var bar = document.querySelector('.mc-bar');
   if (!bar) return;
 
@@ -65,4 +66,5 @@
 
   // start on whatever the markup marked selected
   select(bar.querySelector('.mc-slot.is-sel') || slots[0]);
+  } catch (err) { /* never take the page down with it */ }
 })();

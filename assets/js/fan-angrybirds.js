@@ -89,6 +89,15 @@ window.FAN_PAGE = {
         meta: 'A dollar, once' },
     ] },
 
+  /* the music: the theme; nothing Angry Birds is on my playlist yet */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · the theme',
+    lede: 'Nothing Angry Birds is on my playlist yet, so this is the one: the title music, which Rovio has never managed to replace in fifteen years of trying.',
+    items: [
+      { title: 'Angry Birds Theme', accent: '#e03a2a', sub: 'Ari Pulkkinen · 2009 · 1:09',
+        desc: 'Ari Pulkkinen. A tuba, a rattle of drums and a melody that fits in a ringtone, which for a 2009 phone game was the entire brief.',
+        href: 'https://www.youtube.com/watch?v=Y10PRnL7C_U', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'the flock, elsewhere',
     items: [
       { title: 'Angry Birds', href: 'https://www.angrybirds.com/',

@@ -123,6 +123,30 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: the two Fellowship tracks on my playlist, linked to Howard
+     Shore's own uploads. The Shire is on the playlist three times over (the
+     Complete Recordings cut, a lo-fi cover and a thirteen-minute ambience),
+     which fold into the one tile. */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'five tracks · two from my playlist, three that should be',
+    lede: 'Two tracks from the first film that are on my playlist, and three that are not yet and should be: the Fellowship theme, Moria, and the song at the very end. Howard Shore throughout, with Annie Lennox for the last one, named as the albums name them and linked to their own uploads.',
+    items: [
+      { title: 'Concerning Hobbits', accent: '#d9b45f', sub: 'The Fellowship of the Ring · 2001 · 2:56',
+        desc: 'The tin whistle over Hobbiton. The Complete Recordings call it The Shire, which is how it sits on my playlist, three times: the album cut, a lo-fi cover, and thirteen minutes of it that are mostly birdsong.',
+        href: 'https://www.youtube.com/watch?v=CL_3mlOPnGI', link: 'Listen' },
+      { title: 'The Ring Goes South', accent: '#f0c840', sub: 'The Fellowship of the Ring · 2001 · 2:03',
+        desc: 'The Fellowship theme in full, as the nine of them cross the ridge out of Rivendell. The main theme of the trilogy, if it has one, and the one I have not put on the playlist yet.',
+        href: 'https://www.youtube.com/watch?v=jpJIdwB0R6g', link: 'Listen' },
+      { title: 'Khazad-dûm', accent: '#6f7f92', sub: 'The Fellowship of the Ring · Complete Recordings · 8:01',
+        desc: 'Moria, the drums in the deep, the Balrog and the bridge, with the choir for Gandalf’s fall at the end of it. The 2001 album cuts it to The Bridge of Khazad Dum; this is Shore’s full cue. Not on the playlist yet, and it should be.',
+        href: 'https://www.youtube.com/watch?v=f44xDz2tW_I', link: 'Listen' },
+      { title: 'The Breaking of the Fellowship', accent: '#d9b45f', sub: 'The Fellowship of the Ring · 2001 · 7:21',
+        desc: 'Boromir’s death and Frodo at the river, with Edward Ross singing In Dreams over the end of it.',
+        href: 'https://www.youtube.com/watch?v=fowHzOH9rqk', link: 'Listen' },
+      { title: 'Into the West', accent: '#c9a05f', sub: 'Annie Lennox · The Return of the King · 2003 · 5:48',
+        desc: 'Annie Lennox, over the credits of the last film, and the Oscar for Best Song. Written for Frodo at the Grey Havens, and the trilogy’s goodbye. Not on the playlist yet, and it should be.',
+        href: 'https://www.youtube.com/watch?v=HvF31-2bVNE', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'Tolkien Gateway', href: 'https://tolkiengateway.net/',

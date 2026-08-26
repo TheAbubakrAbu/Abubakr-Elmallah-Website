@@ -453,13 +453,13 @@
             + '</h3>'
             + '<div class="sch-grid">' + g.people.map(scholarCard).join('') + '</div>'
             + '</section>';
-  /* These nodes carry .reveal, so they start invisible until reveal.js observes
-     them. It scans once on load; this file currently runs before it, but making
-     that a load-order dependency is how the atlas on /star-wars/ ended up blank.
-     Handing the markup back is idempotent and makes the order irrelevant. */
-  if (typeof window.AEreveal === 'function') window.AEreveal(schRoot);
-
         }).join('');
+    /* These nodes carry .reveal, so they start invisible until reveal.js observes
+       them. It scans once on load; this file currently runs before it, but making
+       that a load-order dependency is how the atlas on /star-wars/ ended up blank.
+       Handing the markup back is idempotent and makes the order irrelevant.
+       (This used to sit after a `return` inside the map callback, so it never ran.) */
+    if (typeof window.AEreveal === 'function') window.AEreveal(schRoot);
 
     var groups = schRoot.querySelectorAll('.sch-group');
     schRoot.addEventListener('click', function (e) {

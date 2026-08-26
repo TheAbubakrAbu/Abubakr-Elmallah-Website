@@ -21,12 +21,18 @@ window.FAN_PAGE = {
      renders without one (fanpage.js drops the link if the image 404s).
      `shots` is any EXTRA images for a title, beyond the `shot` thumbnail:
      clicking the tile opens the whole set together in the lightbox. Every
-     finished game carries the same set: `title-screen` (the game's own title
+     finished game carries the same set: `start-screen` (the game's own title
      screen, as it opens), `pause-screen` (paused, at 100%), `load-game` (the
      save slot at 100.0%, which on most of them also shows the date it was
      last saved, so it is the receipt for `finished`), `characters`, and for
      a few `stud-fountain` or `galaxy-map`. The raw captures behind them live
      in _originals/franchises/lego/<game>/, gitignored like the photographs.
+
+     Why "start-screen" and not "title-screen": that name was used for years
+     by the load-game picture, and images carry no ?v=, so every cache on the
+     way (the service worker's stale-while-revalidate, the browser, GitHub
+     Pages' ten minutes) kept handing out the old picture under the old name.
+     A picture that changes gets a new name; a name is never reused.
 
      `rating` is mine too, out of ten, and ONLY on the games I have actually
      played, which on this page means the finished ones, since `done` and
@@ -80,7 +86,7 @@ window.FAN_PAGE = {
       { title: 'LEGO Star Wars: The Skywalker Saga', accent: '#ffd21f', year: 2022, series: 'Star Wars', proj: '90.0', rating: 10, sub: '2022 · Steam', desc: 'All nine films, rebuilt from scratch. Nearly eighty hours, which is more than twice any other one of these.',
         done: true, hours: '79.4', shot: '/assets/img/franchises/lego/skywalker-saga/banner.jpg',
         finished: '2022-05-06',
-        shots: ['title-screen', 'pause-screen', 'load-game', 'characters', 'stud-fountain'],
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters', 'stud-fountain'],
         shotAlt: 'Steam library banner for LEGO Star Wars: The Skywalker Saga, showing my play time' },
       { title: 'The LEGO Movie 2 Videogame', accent: '#4fc0e0', year: 2019, series: 'The LEGO Movie', proj: '16.5', sub: '2019 · Steam', desc: 'Building as a mechanic rather than a cutscene.' },
       { title: 'LEGO DC Super-Villains', accent: '#8f6fd0', year: 2018, series: 'Batman & DC', proj: '41.8', sub: '2018 · Steam', desc: 'You play a custom villain. Easily the best idea they had in the late run.' },
@@ -91,7 +97,7 @@ window.FAN_PAGE = {
       { title: 'LEGO Star Wars: The Force Awakens', accent: '#ffd21f', year: 2016, series: 'Star Wars', proj: '30.8', rating: 7, sub: '2016 · Steam', desc: 'Multi-build, and blaster battles with cover.',
         done: true, hours: '24.6', shot: '/assets/img/franchises/lego/force-awakens/banner.jpg',
         finished: '2022-07-17',
-        shots: ['title-screen', 'pause-screen', 'load-game', 'characters', 'galaxy-map'],
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters', 'galaxy-map'],
         shotAlt: 'Steam library banner for LEGO Star Wars: The Force Awakens, showing my play time' },
       { title: 'LEGO Marvel’s Avengers', accent: '#d01012', year: 2016, series: 'Marvel', proj: '36.4', sub: '2016 · Steam', desc: 'Uses the actual film audio, which the silent ones never needed.' },
       { title: 'LEGO Dimensions', accent: '#8f6fd0', year: 2015, series: 'LEGO Originals', proj: '61.9', sub: '2015 · console only', desc: 'Toys-to-life with a physical portal you built and rebuilt. Never on Steam and never could have been: the hardware was the point.' },
@@ -102,7 +108,7 @@ window.FAN_PAGE = {
       { title: 'LEGO Marvel Super Heroes', accent: '#d01012', year: 2013, series: 'Marvel', proj: '39.5', rating: 9, sub: '2013 · Steam', desc: 'The best open world they built. Manhattan, properly.',
         done: true, hours: '34.1', shot: '/assets/img/franchises/lego/marvel-super-heroes/banner.jpg',
         finished: '2026-08-02',
-        shots: ['title-screen', 'pause-screen', 'load-game', 'characters'],
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters'],
         shotAlt: 'Steam library banner for LEGO Marvel Super Heroes, showing my play time' },
       { title: 'LEGO City Undercover', accent: '#00852b', year: 2013, series: 'LEGO Originals', proj: '48.8', sub: '2013 · Steam', desc: 'A LEGO game with actual voice acting, and a straight-faced police story.' },
       { title: 'LEGO Lord of the Rings', accent: '#d9b45f', year: 2012, series: 'Middle-earth', proj: '33.6', sub: '2012 · Steam', desc: 'Used the film audio for the first time, and Middle-earth as one open map.' },
@@ -110,17 +116,17 @@ window.FAN_PAGE = {
         done: true, hours: '23.4', shot: '/assets/img/franchises/lego/batman-2/banner.jpg',
         /* from its own load-game screen: slot 1, 8/13/2026, 100.0% */
         finished: '2026-08-13',
-        shots: ['title-screen', 'pause-screen', 'load-game', 'characters'],
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters'],
         shotAlt: 'Steam library banner for LEGO Batman 2: DC Super Heroes, showing my play time' },
       { title: 'LEGO Harry Potter: Years 5–7', accent: '#d9b45f', year: 2011, series: 'Harry Potter', proj: '24.8', rating: 9, sub: '2011 · Steam', desc: 'Darker, and the spell system is better than the first. Steam sells the two as one Collection, so the counter in the shot is the running total for both: 39.4 hours, of which this half was 19.5.',
         done: true, hours: '19.5', shot: '/assets/img/franchises/lego/harry-potter-years-5-7/banner.jpg',
         finished: '2025-09-20',
-        shots: ['title-screen', 'pause-screen', 'load-game', 'characters', 'stud-fountain'],
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters', 'stud-fountain'],
         shotAlt: 'Steam library banner for LEGO Harry Potter: Years 5–7, showing my play time' },
       { title: 'LEGO Pirates of the Caribbean', accent: '#d8c9a0', year: 2011, series: 'Standalone', proj: '23.0', rating: 9, sub: '2011 · Steam', desc: 'All four films at the time. Wildly underrated, and the quickest hundred percent of the lot.',
         done: true, hours: '15.7', shot: '/assets/img/franchises/lego/pirates/banner.jpg',
         finished: '2023-09-28',
-        shots: ['title-screen', 'pause-screen', 'load-game', 'characters'],
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters'],
         shotAlt: 'Steam library banner for LEGO Pirates of the Caribbean, showing my play time' },
       { title: 'LEGO Star Wars III: The Clone Wars', accent: '#ffd21f', year: 2011, series: 'Star Wars', proj: '29.3', rating: 9, sub: '2011 · Steam', desc: 'Ground battles with commandable troops. Ambitious, and messy.',
         done: true, hours: '24.1', shot: '/assets/img/franchises/lego/clone-wars/banner.jpg',
@@ -129,31 +135,31 @@ window.FAN_PAGE = {
            is whenever the game was last opened, and this was finished two
            years earlier. The date is from my own record, like the rest. */
         finished: '2022-07-13',
-        shots: ['title-screen', 'pause-screen', 'load-game', 'characters'],
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters'],
         shotAlt: 'Steam library banner for LEGO Star Wars III: The Clone Wars, showing my play time' },
       { title: 'LEGO Harry Potter: Years 1–4', accent: '#d9b45f', year: 2010, series: 'Harry Potter', proj: '27.4', rating: 8, sub: '2010 · Steam', desc: 'Hogwarts as the hub, which is exactly right. The shot is the Collection paused after this half: 36 of the 84 achievements, all of them this game’s.',
         done: true, hours: '19.9', shot: '/assets/img/franchises/lego/harry-potter-years-1-4/banner.jpg',
         finished: '2025-09-02',
-        shots: ['title-screen', 'pause-screen', 'load-game', 'characters'],
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters'],
         shotAlt: 'Steam library banner for LEGO Harry Potter: Years 1–4, showing my play time' },
       { title: 'LEGO Indiana Jones 2: The Adventure Continues', accent: '#c98f4f', year: 2009, series: 'Indiana Jones', proj: '20.5', rating: 6, sub: '2009 · Steam', desc: 'Includes a level builder, which almost nobody used.',
         done: true, hours: '19.1', shot: '/assets/img/franchises/lego/indiana-jones-2/banner.jpg',
         finished: '2026-08-07',
-        shots: ['title-screen', 'pause-screen', 'load-game'],
+        shots: ['start-screen', 'pause-screen', 'load-game'],
         shotAlt: 'Steam library banner for LEGO Indiana Jones 2: The Adventure Continues, showing my play time' },
       { title: 'LEGO Batman: The Videogame', accent: '#0055bf', year: 2008, series: 'Batman & DC', proj: '29.3', rating: 8, sub: '2008 · Steam', desc: 'Hero and villain campaigns, and still silent. Old enough to predate Steam achievements entirely.',
         done: true, hours: '23.2', shot: '/assets/img/franchises/lego/batman/banner.jpg',
-        shots: ['title-screen', 'pause-screen', 'load-game', 'characters'],
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters'],
         shotAlt: 'Steam library banner for LEGO Batman: The Videogame, showing my play time' },
       { title: 'LEGO Indiana Jones: The Original Adventures', accent: '#c98f4f', year: 2008, series: 'Indiana Jones', proj: '19.3', rating: 7, sub: '2008 · Steam', desc: 'The one I played to death before I had seen the films, and the fastest hundred percent of the lot.',
         done: true, hours: '12', shot: '/assets/img/franchises/lego/indiana-jones/banner.jpg',
         finished: '2023-09-16',
-        shots: ['title-screen', 'pause-screen', 'load-game', 'characters', 'stud-fountain'],
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters', 'stud-fountain'],
         shotAlt: 'Steam library banner for LEGO Indiana Jones: The Original Adventures, showing my play time' },
       { title: 'LEGO Star Wars: The Complete Saga', accent: '#ffd21f', year: 2007, series: 'Star Wars', proj: '40.2', rating: 10, sub: '2007 · Steam', desc: 'All six films in one. The definitive version of the old formula.',
         done: true, hours: '35.2', shot: '/assets/img/franchises/lego/complete-saga/banner.jpg',
         finished: '2022-07-10',
-        shots: ['title-screen', 'pause-screen', 'load-game', 'characters', 'stud-fountain'],
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters', 'stud-fountain'],
         shotAlt: 'Steam library banner for LEGO Star Wars: The Complete Saga, showing my play time' },
       { title: 'LEGO Star Wars II: The Original Trilogy', accent: '#ffd21f', year: 2006, series: 'Star Wars', proj: '29.6', sub: '2006', desc: 'Added character creation and vehicles.' },
       { title: 'LEGO Star Wars: The Video Game', accent: '#ffd21f', year: 2005, series: 'Star Wars', proj: '17.6', sub: '2005', desc: 'Where all of it starts.' },
@@ -195,6 +201,16 @@ window.FAN_PAGE = {
 
   /* everything from here down is the bricks rather than the games, so it mounts
      at #fanBodyEnd, underneath the hand-written brick cutaway in the page */
+  /* the music: the song, since nothing LEGO is on my playlist yet. `music`
+     rather than `themes`, because this page's Themes are the product lines. */
+  { id: 'music', kind: 'tiles', compact: true, title: 'The Song', note: 'one track · the one everybody knows',
+    lede: 'Nothing LEGO is on my playlist yet, so this is the obvious one, linked to the album’s own upload.',
+    items: [
+      { title: 'Everything Is Awesome!!!', accent: '#ffd21f', sub: 'Tegan and Sara feat. The Lonely Island · The LEGO Movie · 2014 · 2:44',
+        desc: 'Written to be irritating on purpose, nominated for an Oscar anyway, and the only song about conformity that a whole cinema of children has ever sung along to.',
+        href: 'https://www.youtube.com/watch?v=FSBr7jB8TxA', link: 'Listen' },
+    ] },
+
   { id: 'system', kind: 'tiles', mount: 'end', title: 'The System', note: 'why any brick fits any other brick',
     lede: 'Every element made since 1958 still clutches with every element made this morning. That is the whole company.',
     items: [

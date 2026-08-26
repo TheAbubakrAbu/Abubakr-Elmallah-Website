@@ -190,3 +190,7 @@
 .pkm-legend p + p { margin-top: 0.7rem; }
 
 @media (prefers-reduced-motion: reduce) { .dex-leds i { animation: none; } }
+
+/* the hills behind the header (moved out of fanpages.css, where parks overrode them with green) */
+.pkh-far  { fill: #101a30; }
+.pkh-near { fill: #0a1120; }

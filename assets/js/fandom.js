@@ -10,7 +10,7 @@
   var data = window.FANDOMS;
   if (!root || !data) return;
 
-  var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
 
   /* hand-drawn emblems, 24×24, currentColor */
   var GLYPHS = {
@@ -82,6 +82,10 @@
     spiral:  '<path d="M12 2a10 10 0 1 0 10 10 8 8 0 0 0-8-8 6 6 0 0 0-6 6 4 4 0 0 0 4 4 2.6 2.6 0 0 0 2.6-2.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
     badge:   '<path d="M12 1.5 14.6 7l6 .9-4.3 4.3 1 6.1L12 15.4 6.7 18.3l1-6.1L3.4 7.9 9.4 7z"/><circle cx="12" cy="10.5" r="2.2" fill="none" stroke="#000" stroke-width="1" opacity=".35"/>',
     spinner: '<path d="M12 1.6 20 12l-8 10.4L4 12z"/><path d="M12 6.4 16.6 12 12 17.6 7.4 12z" fill="#000" opacity=".3"/>',
+    // the top from Inception: stem, body, and the point it is balanced on
+    top:     '<path d="M11.2 1.6h1.6v3.2h-1.6z"/>'
+             + '<path d="M12 4.6c4.2 0 7 1.7 7 4.1 0 1.8-1.6 3.2-4.2 3.8L12 22.4l-2.8-9.9C6.6 11.9 5 10.5 5 8.7c0-2.4 2.8-4.1 7-4.1z"/>'
+             + '<path d="M7.2 8.7c0-1.3 2.1-2.3 4.8-2.3s4.8 1 4.8 2.3" fill="none" stroke="#000" stroke-width="1" opacity=".3"/>',
     donut:   '<path d="M12 2.6A9.4 9.4 0 1 0 21.4 12 9.4 9.4 0 0 0 12 2.6zm0 5.8A3.6 3.6 0 1 1 8.4 12 3.6 3.6 0 0 1 12 8.4z"/><rect x="6" y="5.6" width="3" height="1.3" rx=".6" transform="rotate(24 7.5 6.2)" opacity=".55"/><rect x="15" y="7" width="3" height="1.3" rx=".6" transform="rotate(-38 16.5 7.6)" opacity=".55"/><rect x="14.6" y="16" width="3" height="1.3" rx=".6" transform="rotate(30 16 16.6)" opacity=".55"/><rect x="5.6" y="14" width="3" height="1.3" rx=".6" transform="rotate(-24 7 14.6)" opacity=".55"/>',
     mug:     '<path d="M4 5h12v11a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3z"/><path d="M16 8h2.4a2.6 2.6 0 0 1 0 5.2H16" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M6.5 7.4h7v1.4h-7z" fill="#000" opacity=".35"/>',
     splat:   '<path d="M12 1.5 14.6 7l6 .9-4.3 4.3 1 6.1L12 15.4 6.7 18.3l1-6.1L3.4 7.9 9.4 7z"/><circle cx="19" cy="19" r="2.2" opacity=".75"/><circle cx="4.6" cy="20" r="1.3" opacity=".55"/>',

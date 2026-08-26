@@ -72,7 +72,8 @@
 
     /* One timer for the whole panel rather than a timeout per plant -- with
        fifty-odd of them, per-plant timers pile up fast under a moving pointer. */
-    setInterval(function () {
+    var sweep = 0, drift = 0, onScreen = true;
+    function sweepTick() {
       var now = Date.now();
       for (var i = 0; i < plants.length; i++) {
         if (plants[i].until && now > plants[i].until) {
@@ -80,7 +81,7 @@
           if (plants[i].el) plants[i].el.classList.remove('is-lit');
         }
       }
-    }, 120);
+    }
 
     function at(clientX, clientY) {
       var r = floor.getBoundingClientRect();
@@ -102,8 +103,15 @@
       }
     }
 
-    floor.addEventListener('pointermove', function (e) { at(e.clientX, e.clientY); });
-    floor.addEventListener('pointerdown', function (e) { at(e.clientX, e.clientY); });
+    /* Pointer events arrive at up to 240 Hz on a trackpad; each at() reads
+       layout then writes it, so run at most one per frame. */
+    var px0 = 0, py0 = 0, raf = 0;
+    function queue(e) {
+      px0 = e.clientX; py0 = e.clientY;
+      if (!raf) raf = requestAnimationFrame(function () { raf = 0; at(px0, py0); });
+    }
+    floor.addEventListener('pointermove', queue, { passive: true });
+    floor.addEventListener('pointerdown', queue, { passive: true });
     floor.addEventListener('pointerleave', function () {
       floor.classList.remove('is-awake');
       if (hint) hint.textContent = 'Gone quiet again.';
@@ -111,11 +119,24 @@
 
     /* Ambient drift, so the panel is alive before anybody touches it. */
     var seed = 0;
-    setInterval(function () {
+    function driftTick() {
       if (floor.classList.contains('is-awake')) return;
       seed++;
       wake(Math.floor(rnd(seed, 7) * plants.length), 1700);
       wake(Math.floor(rnd(seed, 9) * plants.length), 1700);
-    }, 900);
+    }
+
+    /* Both timers only run while the floor is on screen and the tab visible. */
+    function run() {
+      var want = onScreen && !document.hidden;
+      if (want && !sweep) { sweep = setInterval(sweepTick, 120); drift = setInterval(driftTick, 900); }
+      else if (!want && sweep) { clearInterval(sweep); clearInterval(drift); sweep = drift = 0; }
+    }
+    if ('IntersectionObserver' in window) {
+      onScreen = false;
+      new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; run(); }).observe(floor);
+    }
+    document.addEventListener('visibilitychange', run);
+    run();
   } catch (err) { /* never take the page down with it */ }
 })();

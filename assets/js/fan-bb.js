@@ -94,6 +94,19 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: the two title themes on my playlist, named as the albums name
+     them and linked to the artists' own uploads */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'two tracks · from my playlist',
+    lede: 'Two title themes, one per show, both in the album versions that run the whole thing out instead of cutting off after fifteen seconds. Linked to the artists’ own uploads.',
+    items: [
+      { title: 'Breaking Bad Main Title Theme (Extended)', accent: '#4fbf7f', sub: 'Breaking Bad · 2008 · 1:16',
+        desc: 'Dave Porter. The slide guitar and the twenty seconds the show actually used, stretched to a minute and a quarter for the album.',
+        href: 'https://www.youtube.com/watch?v=ilfYnhXD-bE', link: 'Listen' },
+      { title: 'Better Call Saul Main Title Theme (Extended)', accent: '#e0b040', sub: 'Better Call Saul · 2015 · 3:19',
+        desc: 'Little Barrie. The surf-rock riff the show cut off after fifteen seconds every week, on purpose, run to its full length.',
+        href: 'https://www.youtube.com/watch?v=x7fe-SWRHPA', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'Sony Pictures', href: 'https://www.sonypictures.com/tv/breakingbad',

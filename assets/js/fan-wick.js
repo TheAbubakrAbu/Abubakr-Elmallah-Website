@@ -86,6 +86,19 @@ window.FAN_PAGE = {
       { title: 'Si vis pacem, para bellum.', sub: 'If you want peace, prepare for war · Chapter 3', accent: '#a83a4a' },
     ] },
 
+  /* the music: the club track and the theme; nothing John Wick is on my
+     playlist yet. Both linked to the artists' own channels. */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'two tracks · the club, and the theme',
+    lede: 'Nothing John Wick is on my playlist yet, so these are the two: the track under the Red Circle fight, which the whole series’ sound is built on, and the theme itself.',
+    items: [
+      { title: 'Shots Fired', accent: '#d84a52', sub: 'Le Castle Vania · John Wick · 2014 · 3:12',
+        desc: 'Le Castle Vania. The Red Circle club fight in the first film, and the reason every gunfight in the series since sounds like a rave.',
+        href: 'https://www.youtube.com/watch?v=JpwTx4G2EAM', link: 'Listen' },
+      { title: 'Story of Wick', accent: '#c9ced6', sub: 'Tyler Bates & Joel J. Richard · John Wick · 2014 · 3:05',
+        desc: 'Tyler Bates and Joel J. Richard. The main theme: a guitar played like a threat.',
+        href: 'https://www.youtube.com/watch?v=hYNPXMobaTY', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'the Continental, elsewhere',
     items: [
       { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/John_Wick',

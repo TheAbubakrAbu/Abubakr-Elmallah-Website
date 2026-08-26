@@ -32,7 +32,6 @@ body[data-intro="alislam"] #field { opacity: 0.3; }
     radial-gradient(42% 30% at 50% -4%, rgba(245, 198, 60, 0.11), transparent 72%),
     radial-gradient(38% 34% at 14% 32%, rgba(31, 157, 92, 0.12), transparent 74%),
     radial-gradient(46% 32% at 86% 66%, rgba(63, 213, 137, 0.08), transparent 74%);
-  filter: blur(4px);
   animation: isl-breathe 30s ease-in-out infinite alternate;
 }
 @keyframes isl-breathe { from { opacity: .72; } to { opacity: 1; } }
@@ -117,9 +116,7 @@ body[data-intro="alislam"] #field { opacity: 0.3; }
   border: 1px solid var(--line); border-radius: 20px;
   background:
     radial-gradient(120% 80% at 50% 0%, rgba(255,255,255,0.035), transparent 60%),
-    rgba(6, 12, 10, 0.6);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+    rgba(6, 12, 10, 0.82);
   transition: transform .45s var(--ease), border-color .45s, box-shadow .45s;
   content-visibility: auto;
   contain-intrinsic-size: auto 360px;
@@ -212,9 +209,7 @@ body[data-intro="alislam"] #field { opacity: 0.3; }
   border: 1px solid var(--line); border-radius: 18px;
   background:
     radial-gradient(120% 90% at 50% -10%, rgba(255,255,255,0.03), transparent 60%),
-    rgba(6, 12, 10, 0.55);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+    rgba(6, 12, 10, 0.8);
   transition: transform .45s var(--ease), border-color .45s, box-shadow .45s;
   content-visibility: auto;
   contain-intrinsic-size: auto 320px;

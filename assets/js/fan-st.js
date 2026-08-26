@@ -196,6 +196,46 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: the eight Stranger Things tracks on my playlist, grouped by
+     season. `series` is the season (the Group control folds the list into
+     them), `year` the season's year, `secs` the length; written earliest-first,
+     hence `authored`. Linked to Kyle Dixon and Michael Stein's own uploads
+     wherever there is one; two only exist on YouTube as London Music Works'
+     re-recordings, which is also how the playlist has them, and they say so. */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'eight tracks · five seasons',
+    lede: 'Kyle Dixon and Michael Stein’s synths, and then, for the very last scene, an orchestra. Eight tracks named as the albums name them, grouped by season; sort them by year or by length, or switch the grouping off.',
+    groupable: { key: 'series', label: 'Group', on: 'By season', open: 'on' },
+    sortable: { label: 'Sort', authored: 'asc', by: [
+      { key: 'year', label: 'Released', asc: 'Oldest',   desc: 'Newest' },
+      { key: 'secs', label: 'Length',   asc: 'Shortest', desc: 'Longest' },
+    ] },
+    items: [
+      { title: 'Stranger Things', series: 'Season 1', accent: '#e8261d', year: 2016, secs: 68, sub: 'Stranger Things, Vol. 1 · 2016 · 1:08',
+        desc: 'Kyle Dixon and Michael Stein. The title theme: an arpeggio on an analogue synth, the red letters, and the reason every trailer for three years had a synth in it.',
+        href: 'https://www.youtube.com/watch?v=2obv0DHuhu4', link: 'Listen' },
+      { title: 'Kids', series: 'Season 1', accent: '#e8261d', year: 2016, secs: 158, sub: 'Stranger Things, Vol. 1 · 2016 · 2:38',
+        desc: 'Kyle Dixon and Michael Stein. The theme for the four of them on bikes, the one that comes back whenever the show remembers what it is about.',
+        href: 'https://www.youtube.com/watch?v=Ha2OcL_0gtM', link: 'Listen' },
+      { title: 'Eulogy', series: 'Season 2', accent: '#e0643a', year: 2017, secs: 224, sub: 'Stranger Things 2 · 2017 · 3:44',
+        desc: 'Kyle Dixon and Michael Stein. The second season’s grief theme. The copy is London Music Works’ re-recording, which is the one on the playlist too.',
+        href: 'https://www.youtube.com/watch?v=ux96x1a7idg', link: 'Cover' },
+      { title: 'The First Lie', series: 'Season 2', accent: '#e0643a', year: 2017, secs: 75, sub: 'Stranger Things 2 · 2017 · 1:15',
+        desc: 'Kyle Dixon and Michael Stein. From the second season. London Music Works again.',
+        href: 'https://www.youtube.com/watch?v=eFGCZ8ANpO4', link: 'Cover' },
+      { title: 'Starcourt', series: 'Season 3', accent: '#e05a9a', year: 2019, secs: 185, sub: 'Stranger Things 3 · 2019 · 3:05',
+        desc: 'Kyle Dixon and Michael Stein. The mall, in neon, and the closest the score comes to an actual pop song.',
+        href: 'https://www.youtube.com/watch?v=uWYxoNwkszM', link: 'Listen' },
+      { title: 'The First I Love You', series: 'Season 3', accent: '#e05a9a', year: 2019, secs: 147, sub: 'Stranger Things 3 · 2019 · 2:27',
+        desc: 'Kyle Dixon and Michael Stein. Hopper’s letter, read over the last scene of the third season. The cue people mean when they say the show made them cry.',
+        href: 'https://www.youtube.com/watch?v=vU0n9fHm2XU', link: 'Listen' },
+      { title: 'Teens', series: 'Season 4', accent: '#8f4fd0', year: 2022, secs: 127, sub: 'Stranger Things 4 · 2022 · 2:07',
+        desc: 'Kyle Dixon and Michael Stein. Kids, three seasons on and slower, for the same four of them older. The playlist has the London Music Works version; this is theirs.',
+        href: 'https://www.youtube.com/watch?v=Se-3uSaPsaY', link: 'Listen' },
+      { title: 'I Believe', series: 'Season 5', accent: '#c9cdd2', year: 2025, secs: 166, sub: 'Stranger Things 5 · 2025 · 2:46',
+        desc: 'Dan Romer. The orchestral piece over the last scene of the whole show, on New Year’s Eve 2025. Not Dixon and Stein: the finale went to an orchestra.',
+        href: 'https://www.youtube.com/watch?v=ekesyTGKZus', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'On Netflix', href: 'https://www.netflix.com/title/80057281',

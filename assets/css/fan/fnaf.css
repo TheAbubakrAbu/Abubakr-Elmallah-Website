@@ -237,3 +237,10 @@
 .fnaf-hour span { font-size: 0.7rem; color: var(--mute); margin-left: 0.3rem; }
 
 .fnaf-note { font-size: 0.82rem; line-height: 1.6; color: var(--ink-dim); }
+
+/* the title flicker in fanpages.css used these keyframes, which only fandom.css had */
+@keyframes fr-flicker {
+  0%, 78%, 100% { opacity: 1; }
+  79% { opacity: .35; } 80% { opacity: 1; }
+  86% { opacity: .5; }  87% { opacity: 1; }
+}

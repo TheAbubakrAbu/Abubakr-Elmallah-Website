@@ -3,12 +3,25 @@
 
   Usage:  <link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
 
-  Emits the path with ?v=<that file's own modified time>. The point is that the
-  version only changes when THAT file changes, so a deploy that touches one CSS
-  file does not force every visitor to re-download all 16 MB of images.
+  Emits the path with ?v=<a short hash of that file's content>, read from
+  _data/versions.yml (written by tools/stamp.py, kept current by ./run and the
+  pre-commit hook). The version only changes when THAT file changes, so a
+  deploy that touches one CSS file does not force every visitor to re-download
+  everything.
 
-  The old `?v={{ site.time }}` did the opposite: site.time is the build time, so
-  every rebuild invalidated every asset on the site.
+  Why a hash and not the modified time: GitHub Pages builds from a fresh
+  checkout, so on the deploy target every file's mtime is the checkout time
+  and the mtime version invalidated every asset on every deploy (the very
+  thing it was meant to avoid). It looked fine locally, where mtimes are real.
+
+  In development the mtime is used instead, so an edit made while `jekyll
+  serve` is running is a new URL immediately without re-running the stamp.
+  Falls back to the mtime if a file is missing from versions.yml.
 {%- endcomment -%}
+{%- assign _v = nil -%}
+{%- if jekyll.environment == 'production' -%}{%- assign _v = site.data.versions[include.f] -%}{%- endif -%}
+{%- if _v -%}{{ include.f }}?v={{ _v }}
+{%- else -%}
 {%- assign _f = site.static_files | where: "path", include.f | first -%}
 {%- if _f -%}{{ include.f }}?v={{ _f.modified_time | date: '%s' }}{%- else -%}{{ include.f }}{%- endif -%}
+{%- endif -%}

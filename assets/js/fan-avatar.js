@@ -52,6 +52,19 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: Horner's theme and the song from the sequel; nothing from
+     Avatar is on my playlist yet */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'two tracks · the theme, and the song',
+    lede: 'Nothing from Avatar is on my playlist yet, so these are the two: James Horner’s theme opening out over the first flight, and the song Zoe Saldaña sings over the credits of the second film.',
+    items: [
+      { title: 'Jake\'s First Flight', accent: '#8fd0e0', sub: 'James Horner · Avatar · 2009 · 4:50',
+        desc: 'James Horner. Jake on a banshee for the first time, and the theme opening out over the Hallelujah Mountains.',
+        href: 'https://www.youtube.com/watch?v=XQfkeiVrJ5Y', link: 'Listen' },
+      { title: 'The Songcord', accent: '#5fd6e0', sub: 'Zoe Saldaña · The Way of Water · 2022 · 3:25',
+        desc: 'Zoe Saldaña, as Neytiri, singing the song of her family’s cord over the credits of the second film. Simon Franglen wrote it after Horner died.',
+        href: 'https://www.youtube.com/watch?v=0lDvyER0E6Y', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'Avatar.com', href: 'https://www.avatar.com/',

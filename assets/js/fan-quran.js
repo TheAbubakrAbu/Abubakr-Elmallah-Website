@@ -84,6 +84,34 @@ window.FAN_PAGE = {
         meta: 'Sūrahs 113 · 114' },
     ] },
 
+  /* the sūrahs I put on most, in Minshāwī's voice, each linked in both of his
+     styles: mujawwad first (the long, live, ornamented readings, where he is
+     most himself) and murattal second. `links` puts the two on one row. */
+  { id: 'surahs', kind: 'cards', title: 'The Ones I Put On', note: 'five sūrahs · in Minshāwī’s voice',
+    lede: 'The five I reach for most, and always in Minshāwī’s voice: the mujawwad if there is a choice, because the long live readings are where he is most himself, and the murattal for the car. Both linked for each.',
+    items: [
+      { title: 'Al-Kahf', sub: 'الكهف · The Cave', tag: 'Sūrah 18', accent: '#e8c56a',
+        desc: 'The Friday sūrah, and the one above all. Four stories, one trial each: the sleepers and faith, the two gardens and wealth, Mūsā and al-Khiḍr and knowledge, Dhū al-Qarnayn and power. In his mujawwad it is an afternoon, and I have never wanted it shorter.',
+        links: [{ href: 'https://www.youtube.com/watch?v=SnDbEv9rsPg', label: 'Mujawwad' }, { href: 'https://www.youtube.com/watch?v=AQ9SksFEf4k', label: 'Murattal' }],
+        meta: 'Makkan · 110 āyāt' },
+      { title: 'Ibrāhīm', sub: 'إبراهيم · Abraham', tag: 'Sūrah 14', accent: '#3fd589',
+        desc: 'The parable of the good word as a good tree, its root firm and its branches in the sky, and Ibrāhīm’s prayer over the valley that became Makkah: for the city, for his children, for the prayer to be kept up. The sūrah I hear the ḥuzn in most.',
+        links: [{ href: 'https://www.youtube.com/watch?v=LgwdOnh6S84', label: 'Mujawwad' }, { href: 'https://www.youtube.com/watch?v=JfFJSsc602g', label: 'Murattal' }],
+        meta: 'Makkan · 52 āyāt' },
+      { title: 'An-Najm', sub: 'النجم · The Star', tag: 'Sūrah 53', accent: '#5fa3ec',
+        desc: 'By the star when it sets: the ascent, the lote tree at the boundary, and the sajdah at the very end. When the Prophet ﷺ first recited it aloud in Makkah, everyone present went down with him, believers and idolaters alike. Minshāwī’s reading of the last āyāt is the reason.',
+        links: [{ href: 'https://www.youtube.com/watch?v=HBCLbc7YFB4', label: 'Mujawwad' }, { href: 'https://www.youtube.com/watch?v=0HSDDUQLYtM', label: 'Murattal' }],
+        meta: 'Makkan · 62 āyāt' },
+      { title: 'Adh-Dhāriyāt', sub: 'الذاريات · The Scattering Winds', tag: 'Sūrah 51', accent: '#a05fd0',
+        desc: 'By the winds that scatter: the oaths, Ibrāhīm’s guests and the roasted calf, and the āyah the whole Book can be folded into, that jinn and mankind were created only to worship Him.',
+        links: [{ href: 'https://www.youtube.com/watch?v=J-Msz0qn3WQ', label: 'Mujawwad' }, { href: 'https://www.youtube.com/watch?v=gob-JlE-Rec', label: 'Murattal' }],
+        meta: 'Makkan · 60 āyāt' },
+      { title: 'Al-Mursalāt', sub: 'المرسلات · Those Sent Forth', tag: 'Sūrah 77', accent: '#e0642a',
+        desc: 'By those sent forth in gusts: fifty short āyāt and one refrain, woe that Day to the deniers, returning ten times like a bell. Built for a voice like his, and he knew it.',
+        links: [{ href: 'https://www.youtube.com/watch?v=LCJHfZ94uEU', label: 'Mujawwad' }, { href: 'https://www.youtube.com/watch?v=c3NAZJmmE0Y', label: 'Murattal' }],
+        meta: 'Makkan · 50 āyāt' },
+    ] },
+
   { id: 'quotes', kind: 'quotes', title: 'Two Āyāt', note: 'on the Book itself',
     items: [
       { title: 'Indeed, it is We who sent down the Reminder, and indeed, We will be its guardian.', sub: 'Holy Qurʾān · al-Ḥijr 15:9', accent: '#3fd589' },

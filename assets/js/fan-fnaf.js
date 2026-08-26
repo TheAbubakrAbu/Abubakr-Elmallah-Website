@@ -75,6 +75,36 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the two I took to a hundred percent, with the Steam banners as the
+     receipt (`shot`, and the key art as an extra `shots` entry for the first
+     one, both opening in the lightbox). `finished` is the date I actually
+     finished each, not the "last played" date on the banner, which is a later
+     replay; see the note on `finished` in fanpage.js. `views` gives the
+     grid/list switch the LEGO catalogue has, and the layout that goes with
+     it. */
+  { id: 'finished', kind: 'tiles', compact: true, cols: 2, views: true, tally: 'at 100%', title: 'Both, at a Hundred Percent', note: 'my own Steam banners · 100%',
+    lede: 'The first two, every achievement, with the Steam library banners as proof. The dates are when I actually finished them; the banners show the last time I went back.',
+    items: [
+      { title: 'Five Nights at Freddy’s', accent: '#c98f4f', sub: '2014 · Steam', done: true, hours: '4.4', finished: '2023-11-09',
+        desc: 'Five nights, the sixth, and then the custom night with everything turned up, which is the actual hundred percent. Four and a half hours, most of them spent staring at a door.',
+        shot: '/assets/img/franchises/fnaf/fnaf-1/banner.jpg', shots: ['art'],
+        shotAlt: 'Steam library banner for Five Nights at Freddy’s, showing 100% and my play time' },
+      { title: 'Five Nights at Freddy’s 2', accent: '#5f9ab0', sub: 'Nov 2014 · Steam', done: true, hours: '6.2', finished: '2024-07-05',
+        desc: 'No doors, a mask, a music box, and six hours to the last achievement. Harder than the first by a distance, and Toy Bonnie is in the vent on the banner for a reason.',
+        shot: '/assets/img/franchises/fnaf/fnaf-2/banner.jpg',
+        shotAlt: 'Steam library banner for Five Nights at Freddy’s 2, showing 100% and my play time' },
+    ] },
+
+  /* the music: the song, since the game itself has almost none; nothing FNAF
+     is on my playlist yet */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · the song',
+    lede: 'The first game has almost no music at all, which is the point of it, so the franchise’s theme is a fan song: the one that ended up in the film’s credits. Nothing FNAF is on my playlist yet, so this is the one.',
+    items: [
+      { title: 'Five Nights at Freddy\'s', accent: '#c98f4f', sub: 'The Living Tombstone · 2014 · 2:58',
+        desc: 'The Living Tombstone. Not from the game, which is all fans and doors: the fan song from the first year, which became the franchise’s anthem and then the closing song of the 2023 film.',
+        href: 'https://www.youtube.com/watch?v=l18A5BOTlzE', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'Scott Games', href: 'https://scottgames.com/',

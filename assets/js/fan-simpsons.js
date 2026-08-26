@@ -74,6 +74,16 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: the one track, linked to the show's own upload (the playlist
+     also has a fan clip of the opening, which is not available any more) */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · from my playlist',
+    lede: 'One track, and the only one there could be. Linked to the show’s own upload of it.',
+    items: [
+      { title: '"The Simpsons" Main Title Theme', accent: '#ffd21f', sub: 'Testify · 1989 · 1:24',
+        desc: 'Danny Elfman. Written in two days in 1989 and still opening every episode. From Testify, the 2007 album, which is where the full-length version lives.',
+        href: 'https://www.youtube.com/watch?v=Fttst9dG6Ko', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'On FOX', href: 'https://www.fox.com/the-simpsons/',

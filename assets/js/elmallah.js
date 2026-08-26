@@ -273,13 +273,20 @@
       tx = e.clientX; ty = e.clientY;
       document.body.classList.add('has-pointer');
       var px = e.clientX / innerWidth - 0.5, py = e.clientY / innerHeight - 0.5;
-      $$('[data-par]').forEach(function (el) {
-        var d = parseFloat(el.dataset.par);
-        el.style.transform = 'translate3d(' + (-px * d) + 'px,' + (-py * d) + 'px,0)';
-      });
-    });
+      parX = px; parY = py; parDirty = true;   // applied in the frame loop below
+    }, { passive: true });
+
+    /* the parallax layers, queried once; they used to be re-queried on every pointer event */
+    var pars = $$('[data-par]').map(function (el) { return { el: el, d: parseFloat(el.dataset.par) || 0 }; });
+    var parX = 0, parY = 0, parDirty = false;
 
     (function loop() {
+      if (parDirty) {
+        parDirty = false;
+        for (var i = 0; i < pars.length; i++) {
+          pars[i].el.style.transform = 'translate3d(' + (-parX * pars[i].d) + 'px,' + (-parY * pars[i].d) + 'px,0)';
+        }
+      }
       cx += (tx - cx) * 0.2; cy += (ty - cy) * 0.2;
       if (cur) cur.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)';
       requestAnimationFrame(loop);

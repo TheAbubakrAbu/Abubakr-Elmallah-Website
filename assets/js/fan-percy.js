@@ -91,6 +91,15 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: the series' main title; nothing Percy Jackson is on my playlist yet */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · the main title',
+    lede: 'Nothing Percy Jackson is on my playlist yet, so this is the one: the Disney+ series’ title music, which is the first time the books got a theme that sounds like the books.',
+    items: [
+      { title: 'Percy Jackson and the Olympians', accent: '#5fa8e0', sub: 'Bear McCreary · Percy Jackson and the Olympians · 2023 · 5:12',
+        desc: 'Bear McCreary. Greek instruments and a choir under a theme that is allowed to be heroic, which the 2010 films never quite managed.',
+        href: 'https://www.youtube.com/watch?v=9GqjbGknmYw', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'Rick Riordan', href: 'https://rickriordan.com/',

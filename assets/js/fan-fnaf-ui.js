@@ -231,8 +231,8 @@
     }, 21000);
 
     BOTS.forEach(function (bot) {
-      setInterval(function () {
-        if (dead) return;
+      var walk = setInterval(function () {
+        if (dead) { clearInterval(walk); return; }
         bot.step = (bot.step + 1) % bot.route.length;
         bot.at = bot.route[bot.step];
         /* If one walks into the room you are watching, redraw so it appears

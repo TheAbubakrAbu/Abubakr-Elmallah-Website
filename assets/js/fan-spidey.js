@@ -143,6 +143,57 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: the Spider-Man tracks on my playlist, across all four
+     continuities, named as the albums name them. `series` is the continuity
+     (the Group control folds the list into them), `year` is the film's
+     year, `secs` its length. Written earliest-first, hence `authored`. Linked
+     to the album's own upload wherever there is one; the fan cut says so. */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'twelve tracks · four continuities',
+    lede: 'Every Spider-Man on my playlist, from Elfman’s opening titles to the Spider-Verse, named as the albums name them and linked to the albums’ own uploads. Grouped by continuity; sort them by year or by length, or switch the grouping off.',
+    groupable: { key: 'series', label: 'Group', on: 'By continuity', open: 'on' },
+    sortable: { label: 'Sort', authored: 'asc', by: [
+      { key: 'year', label: 'Released', asc: 'Oldest',   desc: 'Newest' },
+      { key: 'secs', label: 'Length',   asc: 'Shortest', desc: 'Longest' },
+    ] },
+    items: [
+      { title: 'Main Title', series: 'Raimi', accent: '#e02a3a', year: 2002, secs: 214, sub: 'Spider-Man · 2002 · 3:34',
+        desc: 'Danny Elfman. The opening titles, all webs and strings, and the theme the Raimi trilogy runs on.',
+        href: 'https://www.youtube.com/watch?v=Xke6p-LJSlY', link: 'Listen' },
+      { title: 'Main Title', series: 'Raimi', accent: '#e02a3a', year: 2007, secs: 193, sub: 'Spider-Man 3 · 2007 · 3:13',
+        desc: 'Christopher Young. Elfman’s theme handed to someone else, with the choir and the black suit already in it from the first bar.',
+        href: 'https://www.youtube.com/watch?v=5qf_tOkSpQ4', link: 'Listen' },
+      { title: 'Main Title - Young Peter', series: 'The Amazing Spider-Man', accent: '#3f7fe0', year: 2012, secs: 295, sub: 'The Amazing Spider-Man · 2012 · 4:55',
+        desc: 'James Horner. Peter as a boy, his parents leaving in the night, and a theme that starts sad and stays that way.',
+        href: 'https://www.youtube.com/watch?v=fn15NuU-T4M', link: 'Listen' },
+      { title: 'The Amazing Spider-Man 2 (Main Theme)', series: 'The Amazing Spider-Man', accent: '#3f7fe0', year: 2014, secs: 138, sub: 'The Amazing Spider-Man 2 · 2014 · 2:18',
+        desc: 'Hans Zimmer and The Magnificent Six. A fan cut of the theme; on the album it is spread across I’m Spider-Man and You’re That Spider Guy.',
+        href: 'https://www.youtube.com/watch?v=x6UZfZx3ChY', link: 'Fan edit' },
+      { title: 'Theme (from "Spider Man") [Original Television Series]', series: 'The MCU', accent: '#e0483a', year: 2017, secs: 40, sub: 'Spider-Man: Homecoming · 2017 · 0:40',
+        desc: 'Michael Giacchino. The 1967 cartoon theme, re-recorded for the Marvel logo at the top of Homecoming. Forty seconds, and the best joke in the film.',
+        href: 'https://www.youtube.com/watch?v=PeX8TkHN6mE', link: 'Listen' },
+      { title: 'Spider-Man: Homecoming Suite', series: 'The MCU', accent: '#e0483a', year: 2017, secs: 373, sub: 'Spider-Man: Homecoming · 2017 · 6:13',
+        desc: 'Michael Giacchino. Six minutes of the whole score in one piece, at the end of the album.',
+        href: 'https://www.youtube.com/watch?v=I42Y1bl5uXs', link: 'Listen' },
+      { title: 'Only One Spider-Man', series: 'The Spider-Verse', accent: '#d05ae0', year: 2018, secs: 134, sub: 'Into the Spider-Verse · 2018 · 2:14',
+        desc: 'Daniel Pemberton. Alright, let’s do this one last time: the opening recap of the only Spider-Man there is, right before there are seven.',
+        href: 'https://www.youtube.com/watch?v=beNzXJi6q64', link: 'Listen' },
+      { title: 'Spider-Man Loves You', series: 'The Spider-Verse', accent: '#d05ae0', year: 2018, secs: 112, sub: 'Into the Spider-Verse · 2018 · 1:52',
+        desc: 'Daniel Pemberton. The city mourning Peter Parker, and Miles buying a costume that does not fit yet.',
+        href: 'https://www.youtube.com/watch?v=86QODzEDtoE', link: 'Listen' },
+      { title: 'Sunflower', series: 'The Spider-Verse', accent: '#d05ae0', year: 2018, secs: 162, sub: 'Into the Spider-Verse · 2018 · 2:42',
+        desc: 'Post Malone and Swae Lee. Miles, headphones on, singing along badly to the words he half knows. The song of the film, and of that whole winter.',
+        href: 'https://www.youtube.com/watch?v=ApXoWvfEYVU', link: 'Listen' },
+      { title: 'Far From Home Suite Home', series: 'The MCU', accent: '#e0483a', year: 2019, secs: 508, sub: 'Spider-Man: Far From Home · 2019 · 8:28',
+        desc: 'Michael Giacchino. The suite, first on the album this time, with the pun in the title that only he would leave in.',
+        href: 'https://www.youtube.com/watch?v=eoSDzpU5XVE', link: 'Listen' },
+      { title: 'Across the Titles', series: 'The Spider-Verse', accent: '#d05ae0', year: 2023, secs: 34, sub: 'Across the Spider-Verse · 2023 · 0:34',
+        desc: 'Daniel Pemberton. Thirty-four seconds of title card, and enough to say the second one is going to be bigger.',
+        href: 'https://www.youtube.com/watch?v=iGqIkjl6aJU', link: 'Listen' },
+      { title: 'Annihilate', series: 'The Spider-Verse', accent: '#d05ae0', year: 2023, secs: 232, sub: 'Across the Spider-Verse · 2023 · 3:52',
+        desc: 'Metro Boomin, Swae Lee, Lil Wayne and Offset. The one from the second film that stuck the way Sunflower did from the first.',
+        href: 'https://www.youtube.com/watch?v=dsnuu20RSFU', link: 'Listen' },
+    ] },
+
   { id: 'played', kind: 'gallery', title: 'All Three, Platinum', note: 'my own screenshots · 100%',
     lede: 'Insomniac made the best superhero games ever built, and I have finished all three of them completely.',
     items: [

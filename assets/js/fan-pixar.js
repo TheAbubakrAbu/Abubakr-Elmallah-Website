@@ -121,6 +121,35 @@ window.FAN_PAGE = {
       { title: 'You are a toy!', sub: 'Woody · Toy Story', accent: '#e04a3a' },
     ] },
 
+  /* the music: the Pixar tracks on my playlist, one per film, named as the
+     albums name them and linked to the album's own upload wherever there is
+     one; the Inside Out theme has no album upload, so its copy is a fan's */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'seven tracks · seven films',
+    lede: 'Seven films, one track each, six from my playlist and one that should be, named as the albums name them and linked to the albums’ own uploads wherever there is one. Giacchino gets three of them, which is about right.',
+    items: [
+      { title: 'You\'ve Got a Friend in Me', accent: '#4fa8e0', sub: 'Toy Story · 1995 · 2:05',
+        desc: 'Randy Newman. The song, from the first one, before it became the studio’s anthem.',
+        href: 'https://www.youtube.com/watch?v=tL0uGc5gNiA', link: 'Listen' },
+      { title: 'Monsters, Inc.', accent: '#5fbf7f', sub: 'Monsters, Inc. · 2001 · 2:07',
+        desc: 'Randy Newman. The opening titles as a jazz number: walking bass and a big band, for a factory that runs on screams.',
+        href: 'https://www.youtube.com/watch?v=ayMPmc0_2r8', link: 'Listen' },
+      { title: 'The Incredits', accent: '#e03a2a', sub: 'The Incredibles · 2004 · 7:22',
+        desc: 'Michael Giacchino. Big-band spy brass for the end credits, seven minutes of it, which is where the theme everybody calls the Incredibles theme actually lives.',
+        href: 'https://www.youtube.com/watch?v=voLQroAnoLI', link: 'Listen' },
+      { title: 'Define Dancing', accent: '#8fd0e0', sub: 'WALL-E · 2008 · 2:32',
+        desc: 'Thomas Newman. The two robots dancing through space with a fire extinguisher, and the only love scene Pixar has scored for machines. Not on the playlist yet, and it should be.',
+        href: 'https://www.youtube.com/watch?v=wvEwsc0Qmnw', link: 'Listen' },
+      { title: 'Married Life', accent: '#e8603a', sub: 'Up · 2009 · 4:11',
+        desc: 'Michael Giacchino. The four-minute montage: a marriage, a house, a nursery repainted, and a funeral, with one waltz doing all of it.',
+        href: 'https://www.youtube.com/watch?v=2rn-vMbFglI', link: 'Listen' },
+      { title: 'It\'s Finn McMissile!', accent: '#c02020', sub: 'Cars 2 · 2011 · 5:55',
+        desc: 'Michael Giacchino. A Bond score for a car: the oil-rig opening, and the best thing in the studio’s weakest film.',
+        href: 'https://www.youtube.com/watch?v=QXpqUGRjt8U', link: 'Listen' },
+      { title: 'Bundle of Joy', accent: '#f0d040', sub: 'Inside Out · 2015 · 4:17',
+        desc: 'Michael Giacchino. Riley being born, and Joy switching on. The album has no upload of it, so the copy here is a fan’s.',
+        href: 'https://www.youtube.com/watch?v=r1of5y40gcI', link: 'Fan upload' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'the studio, on the record',
     items: [
       { title: 'Pixar', href: 'https://www.pixar.com/',

@@ -17,7 +17,7 @@
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Abubakr" />
-<meta property="og:image" content="assets/img/me/abubakr-circle.png" />
+<meta property="og:image" content="https://abubakrelmallah.com/assets/img/me/abubakr-circle.png" />
 <meta property="og:title" content="Abubakr Elmallah · iOS Developer" />
 <meta property="og:type" content="website" />
 <title>Abubakr Elmallah · iOS Developer</title>
@@ -60,7 +60,7 @@
 
 <!-- ─────────────── STICKY HEADER ─────────────── -->
 <header class="topbar">
-  <a href="index.html" class="brand" data-magnetic>
+  <a href="/" class="brand" data-magnetic>
     <img class="brand-avatar" src="assets/img/me/abubakr-circle.png" alt="Abubakr Elmallah" /><span class="brand-glyph"><b>Abubakr</b> Elmallah</span>
   </a>
 
@@ -103,7 +103,7 @@
         <span class="line line--italic" data-scramble>Elmallah</span>
       </h1>
 
-      <p class="role">
+      <p class="hero-role">
         <span>iOS App Developer</span><i>/</i><span>CS @ UCI</span>
       </p>
 
@@ -147,7 +147,7 @@
     </div>
 
     <figure class="portrait" data-magnetic>
-      <span class="pic-frame"><img src="assets/img/me/portrait-2.jpg" alt="Abubakr Elmallah outside Jack Langson Library at UC Irvine" loading="eager" /></span>
+      <span class="pic-frame"><img src="assets/img/me/portrait-2.jpg" alt="Abubakr Elmallah outside Jack Langson Library at UC Irvine" loading="eager" fetchpriority="high" decoding="async" /></span>
       <figcaption><span>Abubakr Elmallah</span><span>UCI ’28</span></figcaption>
     </figure>
 
@@ -427,19 +427,19 @@
 
 <!-- shared image lightbox (same one the High School photos open in) -->
 <div class="lightbox" id="lightbox" aria-hidden="true">
-  <button class="lightbox-close" aria-label="Close">✕</button>
+  <button class="lightbox-close" type="button" aria-label="Close">✕</button>
   <span class="lightbox-title"></span>
   <div class="lightbox-imgs"></div>
 </div>
 
 <footer class="footer">
   <span>© 2026 Abubakr Elmallah</span>
-  <button class="totop" id="totop" data-magnetic>Back to top ↑</button>
+  <button class="totop" id="totop" type="button" data-magnetic>Back to top ↑</button>
 </footer>
 
 <!-- mobile bottom tab bar -->
 <nav class="tabbar" aria-label="Primary">
-  <a href="index.html" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg><span>Home</span></a>
+  <a href="/" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg><span>Home</span></a>
   <a href="/work/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/><path d="M3 12.5h18"/></svg><span>Work</span></a>
   <a href="/projects/"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Projects</span></a>
   <a href="/education/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1 2.5 2 5 2s5-1 5-2v-5"/></svg><span>Education</span></a>

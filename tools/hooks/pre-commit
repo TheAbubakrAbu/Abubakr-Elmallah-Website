@@ -1,0 +1,7 @@
+#!/bin/sh
+# Keeps _data/versions.yml (the CSS/JS cache-busting hashes) in step with the
+# files being committed. Installed by ./run via `git config core.hooksPath`.
+cd "$(git rev-parse --show-toplevel)" || exit 0
+python3 tools/stamp.py --quiet
+git add _data/versions.yml 2>/dev/null
+exit 0

@@ -7,7 +7,13 @@
       hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
     });
     const tick = () => { el.textContent = fmt.format(new Date()) + ' PT'; };
-    tick(); setInterval(tick, 1000);
+    let t = 0;
+    const run = () => {
+      clearInterval(t); t = 0;
+      if (!document.hidden) { tick(); t = setInterval(tick, 1000); }   // no ticking in a background tab
+    };
+    document.addEventListener('visibilitychange', run);
+    run();
   }
 
   document.getElementById('totop')?.addEventListener('click', () => {

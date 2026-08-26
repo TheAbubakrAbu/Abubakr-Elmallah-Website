@@ -85,6 +85,56 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: the Overture, then every opening from the pilot to season
+     seven. `season` is the sort key (0 is the pilot), `year` the air year,
+     `secs` the length of the first link. The openings link to The Fold's own
+     channel; the Overture to the composers' album upload. */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'seven tracks · the Overture and six openings',
+    lede: 'The Overture first, because it is the best piece of music in the show and my favourite by a distance: Jay Vincent and Michael Kramer’s main title, the melody most of the openings borrow for their last few seconds. Then the openings, which are one song, The Weekend Whip, remixed once a season from the pilot to Hands of Time. Seasons one and two share the classic; of the rest, Tournament of Elements is my favourite and Possession is second. Every link is the band’s own upload, or the composers’ album for the Overture. Sort by season, by when they came out, or by length.',
+    sortable: { label: 'Sort', authored: 'asc', by: [
+      { key: 'season', label: 'Season',   asc: 'First',    desc: 'Latest' },
+      { key: 'year',   label: 'Released', asc: 'Oldest',   desc: 'Newest' },
+      { key: 'secs',   label: 'Length',   asc: 'Shortest', desc: 'Longest' },
+    ] },
+    items: [
+      { title: 'Ninjago Overture', accent: '#ffd76a', season: 0, year: 2011, secs: 99, sub: 'Pilot · 2011 · 1:39',
+        desc: 'Jay Vincent and Michael Kramer, from the first minute of the first pilot episode. Ninety-nine seconds of the show’s real sound, the tune every remix of the opening ends on, and my favourite piece of music in all of Ninjago. Peak.',
+        href: 'https://www.youtube.com/watch?v=dlnfFk7Rl2A', link: 'Listen' },
+      { title: 'The Weekend Whip', accent: '#e07040', season: 1, year: 2011, secs: 210, sub: 'Pilot, seasons 1–2 · 2011 · 3:30',
+        desc: 'The Fold, written by Erin Chapman and Zack Jones. Jump up, kick back, whip around and spin: the classic, the same one for the pilot, Rise of the Snakes and Legacy of the Green Ninja.',
+        links: [
+          { href: 'https://www.youtube.com/watch?v=UVhm9XO_Vw0', label: 'Listen' },
+          { href: 'https://www.youtube.com/watch?v=TMw9UNXVDG0', label: 'Music video' },
+        ] },
+      { title: 'The Weekend Whip (Remix)', accent: '#5cc8ff', season: 3, year: 2014, secs: 258, sub: 'Rebooted · season 3 · 2014 · 4:18',
+        desc: 'Michael AM’s remix for Rebooted, the first time the show changed its opening: the same song with the Nindroid-era electronics on top. On the band’s channel, though The Fold did not make this one themselves.',
+        links: [
+          { href: 'https://www.youtube.com/watch?v=Eqf4Hz94fF0', label: 'Listen' },
+          { href: 'https://www.youtube.com/watch?v=kg9WonGMXHo', label: 'Kai chase video' },
+        ] },
+      { title: 'The Weekend Whip (Anacondrai Remix)', accent: '#c070ff', season: 4, year: 2015, secs: 161, sub: 'Tournament of Elements · season 4 · 2015 · 2:41',
+        desc: 'The Tournament of Elements opening: faster, heavier, and cut down to the length of an arena bout. My favourite of the openings, and the season I would point anyone to first.',
+        href: 'https://www.youtube.com/watch?v=2gLNldzuNjw', link: 'Music video' },
+      { title: 'The Ghost Whip', accent: '#6ff0b0', season: 5, year: 2015, secs: 226, sub: 'Possession · season 5 · 2015 · 3:46',
+        desc: 'The Fold and Kruegersound, for Possession: The Weekend Whip gone eerie for Morro’s season, the one with Zane’s ghost story and the Cursed Realm. My second favourite of the openings.',
+        links: [
+          { href: 'https://www.youtube.com/watch?v=UZsjNmF_ZII', label: 'Listen' },
+          { href: 'https://www.youtube.com/watch?v=bRFRHc6ETO8', label: 'Morro Strikes video' },
+        ] },
+      { title: 'The Pirate Whip', accent: '#ffb050', season: 6, year: 2016, secs: 171, sub: 'Skybound · season 6 · 2016 · 2:51',
+        desc: 'For Skybound, Nadakhan and the sky pirates: the third of three singles the band put out for that season, and the opening for every episode of it.',
+        links: [
+          { href: 'https://www.youtube.com/watch?v=SgL5JFsMyNc', label: 'Listen' },
+          { href: 'https://www.youtube.com/watch?v=wFlruN2NLok', label: 'Music video' },
+        ] },
+      { title: 'The Temporal Whip', accent: '#ff6050', season: 7, year: 2017, secs: 151, sub: 'Hands of Time · season 7 · 2017 · 2:31',
+        desc: 'For Hands of Time, Krux, Acronix and the Vermillion: the band’s own punk-rock take on the song, and the last remix of it for over two years.',
+        links: [
+          { href: 'https://www.youtube.com/watch?v=tNI01U1sGiE', label: 'Listen' },
+          { href: 'https://www.youtube.com/watch?v=e8nQcIeaWJM', label: 'Lyric video' },
+        ] },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'LEGO NINJAGO', href: 'https://www.lego.com/en-us/themes/ninjago',

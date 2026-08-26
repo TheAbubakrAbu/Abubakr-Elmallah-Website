@@ -76,7 +76,6 @@ window.FAN_PAGE = {
       { title: 'Treat Yo Self', accent: '#d06f9a', sub: 'One day a year', desc: 'Tom and Donna, fine leather goods, and a phrase that escaped into the language entirely.' },
       { title: 'Galentine\u2019s Day', accent: '#e0a050', sub: 'February 13th', desc: 'Invented for one episode in 2010 and now an actual thing people put in their calendars.' },
       { title: 'The Cones of Dunshire', accent: '#6f9fd0', sub: 'Ben\u2019s game', desc: 'An unplayable board game designed by an unemployed accountant, later produced for real.' },
-      { title: 'Treat Yo Self', accent: '#7fd07f', sub: 'Tom and Donna', desc: 'One day a year, and it escaped the show entirely into everybody’s vocabulary.' },
       { title: 'Duke Silver', accent: '#c9a05f', sub: 'Ron\u2019s other life', desc: 'A smooth jazz saxophonist playing to a room of admiring women in the next town over.' },
       { title: 'Li\u2019l Sebastian', accent: '#a8b8c9', sub: 'Five thousand candles', desc: 'A miniature horse the town loves beyond all reason, and a memorial song that is genuinely a banger.' },
     ] },
@@ -100,6 +99,17 @@ window.FAN_PAGE = {
       { title: 'I am a goddess. A glorious female warrior.', sub: 'Leslie Knope' },
     ] },
 
+
+  /* the music: the theme, which the playlist has as a cover (Geek Music) and
+     a fan clip that is not available any more; one tile, linked to the cover,
+     and the tile says so */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · from my playlist',
+    lede: 'One theme, and the most cheerful thirty seconds on television. The copy linked is a cover, and the tile says so.',
+    items: [
+      { title: 'Parks and Recreation (Main Theme)', accent: '#5fbf7f', sub: 'Parks and Recreation · 2009 · 1:39',
+        desc: 'Gaby Moreno and Vincent Jones. Whistling, a marching snare, and Pawnee. This copy is a cover stretched to a minute and a half.',
+        href: 'https://www.youtube.com/watch?v=qQ8eN4z-wRQ', link: 'Cover' },
+    ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [

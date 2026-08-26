@@ -6,6 +6,7 @@
 
 .hero {
   min-height: calc(100vh - 60px);
+  min-height: calc(100svh - 60px);   /* iOS: the small viewport, so the toolbar does not push the fold */
   display: grid;
   grid-template-columns: 1.5fr 0.85fr;
   align-items: center; gap: clamp(2rem, 5vw, 5rem);
@@ -30,15 +31,15 @@
 .display .line { display: block; width: fit-content; will-change: transform; }
 .display .line--italic { font-weight: 400; color: var(--ink-dim); }
 
-.role {
+.hero-role {
   display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
   margin-top: clamp(1.2rem, 3vw, 2rem);
   font-family: var(--mono); font-size: clamp(0.85rem, 1.6vw, 1.05rem);
   letter-spacing: 0.04em; color: var(--ink);
 }
-.role span:first-child { color: var(--green-2); }
-.role span:last-child  { color: var(--blue-2); }
-.role i { color: var(--gold); font-style: normal; opacity: 0.85; }
+.hero-role span:first-child { color: var(--green-2); }
+.hero-role span:last-child  { color: var(--blue-2); }
+.hero-role i { color: var(--gold); font-style: normal; opacity: 0.85; }
 
 .hero-foot {
   display: flex; flex-wrap: wrap; align-items: flex-end;
@@ -900,7 +901,15 @@ html.intro-lock { overflow: hidden; }
 .edu-meta p { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-dim); margin-top: 0.45rem; letter-spacing: 0.04em; }
 .cta--big { margin-left: auto; padding: 1.1rem 1.8rem; font-size: 0.85rem; }
 .cta--big:hover { background: var(--green); color: #05140c; border-color: var(--green); }
-@media (max-width: 680px) { .cta--big { margin-left: 0; width: 100%; justify-content: center; } }
+@media (max-width: 680px) {
+  .cta--big { margin-left: 0; width: 100%; justify-content: center; }
+  /* .cta is nowrap, which is right for a short pill and wrong for a full-width
+     one on a phone: the high-school Google Doc label ran out of its pill on
+     both sides. Here the label wraps inside it instead. */
+  .cta--big { white-space: normal; text-align: center; line-height: 1.45; }
+  .cta--big span { min-width: 0; }
+  .cta--big svg { flex: none; }
+}
 
 /* ───────────── Academics (High School) ───────────── */
 .acad { padding-top: 0.6rem; padding-bottom: 1rem; }
@@ -990,16 +999,16 @@ html.intro-lock { overflow: hidden; }
   position: absolute; top: 0.6rem; right: 0.6rem;
   font-family: var(--mono); font-size: 0.64rem; padding: 0.3rem 0.55rem; border-radius: 100px;
   background: rgba(8,8,10,.7); border: 1px solid rgba(255,255,255,.28); color: #fff;
-  backdrop-filter: blur(4px); transition: background .25s, color .25s, border-color .25s;
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); transition: background .25s, color .25s, border-color .25s;
 }
 .year-card:hover .year-more { background: var(--green); border-color: var(--green); color: #05140c; }
 @media (hover: none) { .year-card { cursor: pointer; } }
 
 .lightbox {
   position: fixed; inset: 0; z-index: 11000;
-  background: rgba(5,6,8,.93); backdrop-filter: blur(10px);
+  background: rgba(5,6,8,.95);   /* was also blur(10px); invisible at this opacity and costly */
   display: flex; flex-direction: column; align-items: center;
-  padding: 4.5rem 1.5rem 3rem; overflow-y: auto;
+  padding: 4.5rem 1.5rem 3rem; overflow-y: auto; overscroll-behavior: contain;
   opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility .35s;
 }
 .lightbox.open { opacity: 1; visibility: visible; }

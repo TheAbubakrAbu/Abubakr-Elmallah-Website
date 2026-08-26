@@ -119,9 +119,10 @@ const NAV_TIMEOUT = 900;
    Long enough to cover the navigation plus the images it pulls in behind it. */
 const FILL_HOLD = 6000;
 
-/* The shell: needed before anything can render. Kept deliberately short. */
+/* The shell: needed before anything can render. Kept deliberately short.
+   The home page itself is not in here: it lives in PAGES with every other
+   page (see install), so the fresh copy each visit writes is the one read. */
 const SHELL = [
-  '/',
   '/manifest.webmanifest',
   '{% include v.html f='/assets/css/base.css' %}',
   '{% include v.html f='/assets/css/layout.css' %}',
@@ -134,18 +135,20 @@ const SHELL = [
 /* Everything else, written out by Jekyll at build time so the list can never
    drift from what the site actually contains. */
 const ALL_PAGES = [
-{%- for p in site.pages %}{% if p.url contains '.html' or p.url == '/' or p.url contains '/' %}{% unless p.url contains '.js' or p.url contains '.webmanifest' or p.url contains '.json' %}
+{%- comment -%} Redirect stubs (jekyll-redirect-from) are never navigated to
+once cached, the real URL is served instead, so they are left out. {%- endcomment -%}
+{%- for p in site.pages %}{% unless p.redirect_to or p.url contains '.js' or p.url contains '.webmanifest' or p.url contains '.json' or p.url contains '/src/' or p.url contains '/franchises/' %}
   '{{ p.url }}',
-{%- endunless %}{% endif %}{% endfor %}
+{%- endunless %}{% endfor %}
 ];
 
-/* CSS and JS get the same ?v=<mtime> the pages request them with. Without it
+/* CSS and JS get the same ?v= the pages request them with (see v.html). Without it
    this pass downloaded /assets/js/years.js while every page asked for
    /assets/js/years.js?v=1755..., so the warmed copy could never be hit: 60-odd
    files fetched, stored, and never read once. */
 const ALL_ASSETS = [
 {%- for f in site.static_files %}{% if f.path contains '/assets/' %}{% unless f.path contains '/assets/img/years/' %}
-  '{{ f.path }}{% if f.path contains '/assets/css/' or f.path contains '/assets/js/' %}?v={{ f.modified_time | date: '%s' }}{% endif %}',
+  '{% if f.path contains '/assets/css/' or f.path contains '/assets/js/' %}{% include v.html f=f.path %}{% else %}{{ f.path }}{% endif %}',
 {%- endunless %}{% endif %}{% endfor %}
 ];
 
@@ -177,15 +180,21 @@ function fingerprint(s) {
   for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
   return (h >>> 0).toString(36);
 }
-const BUILD = fingerprint([SHELL.join(), ALL_PAGES.join(), ALL_ASSETS.join(), PHOTOS.join()].join('|'));
+const BUILD = fingerprint(['/', SHELL.join(), ALL_PAGES.join(), ALL_ASSETS.join(), PHOTOS.join()].join('|'));
 
 const wait = ms => new Promise(r => setTimeout(r, ms));
 
 self.addEventListener('install', e => {
+  /* The home page goes into PAGES, not ASSETS. caches.match() searches caches
+     in creation order, and ASSETS is created first, so a copy of '/' in it
+     would shadow every fresher copy networkFirst() later stores in PAGES: the
+     home page would be frozen at install time. 'reload' skips the HTTP cache
+     (GitHub Pages sends max-age=600) so the stored copy is current. */
   e.waitUntil(
-    caches.open(ASSETS)
-      .then(c => Promise.allSettled(SHELL.map(u => c.add(u))))
-      .then(() => self.skipWaiting())
+    Promise.allSettled([
+      caches.open(ASSETS).then(c => Promise.allSettled(SHELL.map(u => c.add(u)))),
+      caches.open(PAGES).then(c => c.add(new Request('/', { cache: 'reload' }))),
+    ]).then(() => self.skipWaiting())
   );
 });
 
@@ -233,8 +242,18 @@ async function prune() {
   await Promise.all(keys.map(req => {
     const url = new URL(req.url);
     if (url.origin !== self.location.origin) return null;      // fonts: not ours to judge
-    if (!url.pathname.startsWith('/assets/')) return null;      // '/', DONE_KEY, the manifest
+    if (!url.pathname.startsWith('/assets/')) return null;      // DONE_KEY, the manifest
     return keep.has(url.href) ? null : cache.delete(req);
+  }));
+
+  // and pages this build no longer has (renamed or deleted), which used to stay forever
+  const pages = await caches.open(PAGES);
+  const known = new Set(['/', ...ALL_PAGES]);
+  const pkeys = await pages.keys();
+  await Promise.all(pkeys.map(req => {
+    const url = new URL(req.url);
+    if (url.origin !== self.location.origin) return null;
+    return known.has(url.pathname) ? null : pages.delete(req);
   }));
 }
 
@@ -371,19 +390,20 @@ const isMedia     = url => /\/assets\/img\//.test(url.pathname) ||
    back to fetching. Either way the result is stored, so the race below still
    freshens the cache even when the cached copy wins it. */
 async function networkFirst(req, preload) {
-  const cached = await caches.match(req);
+  const pages = await caches.open(PAGES);
+  const cached = await pages.match(req);
 
   const net = Promise.resolve(preload).then(p => p || fetch(req)).then(res => {
     if (res && res.ok) {
       const copy = res.clone();
-      caches.open(PAGES).then(c => c.put(req, copy)).catch(() => {});
+      pages.put(req, copy).catch(() => {});
     }
     return res;
   }).catch(() => null);
 
   if (!cached) {
     // never seen this page: the network is the only option, so wait it out
-    return (await net) || (await caches.match('/')) || offlineResponse();
+    return (await net) || (await pages.match('/')) || offlineResponse();
   }
 
   const first = await Promise.race([net, wait(NAV_TIMEOUT).then(() => null)]);
@@ -391,13 +411,14 @@ async function networkFirst(req, preload) {
 }
 
 async function cacheFirst(req) {
-  const hit = await caches.match(req);
+  const cache = await caches.open(ASSETS);
+  const hit = await cache.match(req);
   if (hit) return hit;
   try {
     const res = await fetch(req);
-    if (res && (res.ok || res.type === 'opaque')) {
+    if (res && res.ok) {
       const copy = res.clone();
-      caches.open(ASSETS).then(c => c.put(req, copy)).catch(() => {});
+      cache.put(req, copy).catch(() => {});
     }
     return res;
   } catch (err) {
@@ -408,9 +429,15 @@ async function cacheFirst(req) {
 async function staleWhileRevalidate(req) {
   const cache = await caches.open(ASSETS);
   const hit = await cache.match(req);
-  const net = fetch(req)
+  /* The Google Fonts stylesheet is requested no-cors by the <link>, which makes
+     the response opaque: its status is invisible (an error page would be
+     cached as if it were the CSS) and Chrome pads every opaque entry to
+     several MB of quota. Google sends CORS headers, so ask with CORS instead
+     and only ever store a response whose status we can actually see. */
+  const src = new URL(req.url).origin === self.location.origin ? req : new Request(req.url, { mode: 'cors' });
+  const net = fetch(src)
     .then(res => {
-      if (res && (res.ok || res.type === 'opaque')) {
+      if (res && res.ok) {
         const copy = res.clone();
         cache.put(req, copy).catch(() => {});
       }
@@ -437,7 +464,7 @@ self.addEventListener('fetch', e => {
        free by the time the fetch below is made. */
     yieldFill(FILL_HOLD);
     e.respondWith(networkFirst(req, e.preloadResponse));
-  } else if (isCodeAsset(url)) {
+  } else if (isCodeAsset(url) || url.pathname === '/manifest.webmanifest') {
     /* Almost always a cache hit, and the page cannot render without it. Push
        the fill back but do not cancel: a miss here is one small file. */
     holdFill(3000);

@@ -6,7 +6,8 @@
    The order is deliberate. The four screen sections run together, prequels
    first, because that is the order they matter to me rather than the order
    they were released: Prequels → Originals → Sequels → Spinoffs. Then the
-   Clone Wars block (arcs, legions, Order 66), then kyber and the lines. */
+   Clone Wars block (arcs, legions, Order 66), then kyber, the lines, and the
+   music (my playlist, by trilogy and show). */
 window.FAN_PAGE = {
   when: { at: 'Around 2012, age six', note: 'As Cassian says: I have been in this fight since I was six years old. Lightsabers and the Force were the first things that ever made me want a whole universe to be real.' },
   sections: [
@@ -177,6 +178,204 @@ window.FAN_PAGE = {
       { title: 'This is the way.', sub: 'The Mandalorian · beskar', accent: '#9aa8b4' },
     ] },
 
+  /* ── the music ──
+     My own playlist: forty-seven tracks, named as the albums name them rather
+     than as the uploads do, and grouped by trilogy and by show. `series` is
+     the group, `when` is the in-universe year of the film or episode the
+     track scores (BBY negative, ABY positive, as the eras rail counts), `year`
+     is when it came out, `secs` is how long it runs, and the link is the
+     album's own upload on YouTube (the composer's Topic channel, or
+     DisneyMusicVEVO) wherever one exists. Written earliest-first, hence
+     `authored: 'asc'` on the sort.
+
+     Four have no album upload and say so on the tile. The march on the Jedi
+     Temple was never released at all, so it has no official name and the copy
+     is Pianistec's arrangement; the Force theme has no track of its own, so
+     the link is Jorah the Andal's suite of it; the 1997 Special Edition cut of
+     the Dune Sea cue only exists on YouTube as a fan upload titled Tatooine
+     Theme; and March of the First Order has no official upload, so its link
+     is a mirror of the album audio. */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'forty-nine tracks · by trilogy and show',
+    lede: 'My own playlist, plus two that should be on it: every Star Wars theme I keep coming back to, with the names the albums give them rather than the ones YouTube does, and a link to hear each one. Grouped by trilogy and by show, in the order the galaxy’s own calendar puts them; sort it by when they came out or by how long they run, or switch the grouping off and read it as one list. John Williams unless it says otherwise. The links are the albums’ own uploads wherever there is one; the four that are not say so.',
+    groupable: { key: 'series', label: 'Group', on: 'By trilogy and show', open: 'on' },
+    sortable: { label: 'Sort', authored: 'asc', by: [
+      { key: 'when', label: 'Timeline', asc: 'Earliest', desc: 'Latest' },
+      { key: 'year', label: 'Released', asc: 'Oldest',   desc: 'Newest' },
+      { key: 'secs', label: 'Length',   asc: 'Shortest', desc: 'Longest' },
+    ] },
+    items: [
+      // The Prequels
+      { title: 'Duel of the Fates', series: 'The Prequels', accent: '#f0c840', when: -32, year: 1999, secs: 255, sub: 'The Phantom Menace · 1999 · 4:15',
+        desc: 'Maul against Qui-Gon and Obi-Wan, with a choir singing Sanskrit taken from a Welsh poem. Still the best needle-drop in the saga.',
+        href: 'https://www.youtube.com/watch?v=D_2bluVPsb0', link: 'Listen' },
+      { title: 'Anakin\'s Theme', series: 'The Prequels', accent: '#f0c840', when: -32, year: 1999, secs: 188, sub: 'The Phantom Menace · 1999 · 3:08',
+        desc: 'Gentle, and with the first bars of the Imperial March hidden inside it, which is the whole point.',
+        href: 'https://www.youtube.com/watch?v=WUC7MgkOgKA', link: 'Listen' },
+      { title: 'The Arrival at Tatooine and the Flag Parade', series: 'The Prequels', accent: '#f0c840', when: -32, year: 1999, secs: 244, sub: 'The Phantom Menace · 1999 · 4:04',
+        desc: 'The Boonta Eve podrace, the flags going up. The parade is the back half of the track and the part that lives on loop.',
+        href: 'https://www.youtube.com/watch?v=inyJGAXkbEg', link: 'Listen' },
+      { title: 'Across the Stars', series: 'The Prequels', accent: '#e08a3a', when: -22, year: 2002, secs: 334, sub: 'Attack of the Clones · 2002 · 5:34',
+        desc: 'Anakin and Padmé’s love theme, written to sound doomed from its first phrase.',
+        href: 'https://www.youtube.com/watch?v=7wMiMDBHnJ0', link: 'Listen' },
+      { title: 'Grievous Speaks to Lord Sidious', series: 'The Prequels', accent: '#ff4b2b', when: -19, year: 2005, secs: 169, sub: 'Revenge of the Sith · 2005 · 2:49',
+        desc: 'Grievous on Utapau, taking orders from a hologram. The quiet, creeping one.',
+        href: 'https://www.youtube.com/watch?v=k_OTAM5Yu3M', link: 'Listen' },
+      { title: 'Anakin\'s Betrayal', series: 'The Prequels', accent: '#ff4b2b', when: -19, year: 2005, secs: 246, sub: 'Revenge of the Sith · 2005 · 4:06',
+        desc: 'Order 66. The choir over Aayla, Ki-Adi-Mundi and Plo Koon, shot by their own men.',
+        href: 'https://www.youtube.com/watch?v=m2p-im7cxa4', link: 'Listen' },
+      { title: 'Jedi Temple March', series: 'The Prequels', accent: '#ff4b2b', when: -19, year: 2005, secs: 205, sub: 'Revenge of the Sith · unreleased · 3:25',
+        desc: 'Anakin and the 501st going up the Temple steps. It never made the album, so it has no official name; the copy I have is Pianistec’s arrangement.',
+        href: 'https://www.youtube.com/watch?v=4Ee-1M57_hk', link: 'Epic version' },
+      { title: 'Anakin\'s Dark Deeds', series: 'The Prequels', accent: '#ff4b2b', when: -19, year: 2005, secs: 245, sub: 'Revenge of the Sith · 2005 · 4:05',
+        desc: 'Mustafar and the Separatist council, with a choir chanting rather than mourning.',
+        href: 'https://www.youtube.com/watch?v=FVWr249AUq4', link: 'Listen' },
+      { title: 'Battle of the Heroes', series: 'The Prequels', accent: '#ff4b2b', when: -19, year: 2005, secs: 223, sub: 'Revenge of the Sith · 2005 · 3:43',
+        desc: 'Obi-Wan against Anakin on the lava. A Duel of the Fates for a fight that nobody wins.',
+        href: 'https://www.youtube.com/watch?v=FHuD5y-PZM0', link: 'Listen' },
+      { title: 'The Birth of the Twins and Padmé\'s Destiny', series: 'The Prequels', accent: '#ff4b2b', when: -19, year: 2005, secs: 220, sub: 'Revenge of the Sith · 2005 · 3:40',
+        desc: 'Luke and Leia born on Polis Massa while Vader is bolted together on Coruscant, cut against each other.',
+        href: 'https://www.youtube.com/watch?v=Oppez7oQ30w', link: 'Listen' },
+
+      // The Clone Wars
+      { title: 'Star Wars Main Title & A Galaxy Divided', series: 'The Clone Wars', accent: '#3f7fe0', when: -22, year: 2008, secs: 74, sub: 'The Clone Wars · 2008 · 1:14',
+        desc: 'Kevin Kiner. The fanfare, then the drums and the newsreel theme that opened every episode for twelve years.',
+        href: 'https://www.youtube.com/watch?v=iKZgzM8Ghns', link: 'Listen' },
+      { title: 'Ahsoka Leaves', series: 'The Clone Wars', accent: '#3f7fe0', when: -20, year: 2013, secs: 143, sub: 'The Clone Wars · 2013 · 2:23',
+        desc: 'Kevin Kiner. The Wrong Jedi: Ahsoka walking down the Temple steps and not turning round.',
+        href: 'https://www.youtube.com/watch?v=QE3AMWnfVXM', link: 'Listen' },
+      { title: 'Burying the Dead', series: 'The Clone Wars', accent: '#3f7fe0', when: -19, year: 2020, secs: 137, sub: 'The Clone Wars · 2020 · 2:17',
+        desc: 'Kevin Kiner. Victory and Death: Ahsoka and Rex burying the 501st, helmets on their blasters, in the last minutes of the show.',
+        href: 'https://www.youtube.com/watch?v=MJrEkTEkE4Q', link: 'Listen' },
+
+      // Obi-Wan Kenobi
+      { title: 'Obi-Wan', series: 'Obi-Wan Kenobi', accent: '#3f8fff', when: -9, year: 2022, secs: 246, sub: 'Obi-Wan Kenobi · 2022 · 4:06',
+        desc: 'Williams came back at ninety to write one theme for the series and let Natalie Holt score the rest around it.',
+        href: 'https://www.youtube.com/watch?v=HLn8e3aU7eI', link: 'Listen' },
+
+      // Rebels
+      { title: 'Rebels Theme', series: 'Rebels', accent: '#f0a63c', when: -5, year: 2014, secs: 56, sub: 'Rebels · 2014 · 0:56',
+        desc: 'Kevin Kiner. Fifty-six seconds of main title, with more Williams in it than anything since the films.',
+        href: 'https://www.youtube.com/watch?v=_kzU06rrIws', link: 'Listen' },
+      { title: 'Thrawn\'s Deductions', series: 'Rebels', accent: '#f0a63c', when: -2, year: 2017, secs: 146, sub: 'Rebels · 2017 · 2:26',
+        desc: 'Kevin and Sean Kiner. Thrawn working a culture out from its art, which is how he wins.',
+        href: 'https://www.youtube.com/watch?v=m53YlifziPg', link: 'Listen' },
+      { title: 'Kanan and the Fire', series: 'Rebels', accent: '#f0a63c', when: -1, year: 2018, secs: 86, sub: 'Rebels · 2018 · 1:26',
+        desc: 'Kevin Kiner. Jedi Night: Kanan holding back the fuel-pod blast with the Force so the others get out, and the last thing he does.',
+        href: 'https://www.youtube.com/watch?v=PeiuEb7iGTk', link: 'Listen' },
+
+      // Andor
+      { title: 'Past/Present Suite', series: 'Andor', accent: '#e0642a', when: -5, year: 2022, secs: 225, sub: 'Andor · 2022 · 3:45',
+        desc: 'Nicholas Britell. The Kenari flashbacks cut against Ferrix in the present, as one suite.',
+        href: 'https://www.youtube.com/watch?v=DbQAyWJxOQE', link: 'Listen' },
+      { title: 'Pilgrim', series: 'Andor', accent: '#e0642a', when: -5, year: 2022, secs: 89, sub: 'Andor · 2022 · 1:29',
+        desc: 'Nicholas Britell at his sparest: a handful of notes and a lot of air.',
+        href: 'https://www.youtube.com/watch?v=lyKYUivIUlE', link: 'Listen' },
+      { title: 'The Cassian Way', series: 'Andor', accent: '#e0642a', when: -5, year: 2022, secs: 102, sub: 'Andor · 2022 · 1:42',
+        desc: 'Nicholas Britell. Cassian’s own motif, from before the show has decided whether he is a hero.',
+        href: 'https://www.youtube.com/watch?v=VhirPhzfnTk', link: 'Listen' },
+      { title: 'Climb!', series: 'Andor', accent: '#e0642a', when: -5, year: 2022, secs: 150, sub: 'Andor · 2022 · 2:30',
+        desc: 'Nicholas Britell. The Eye: the freighter going straight up through the meteors with Nemik shouting the word, and the best heist in Star Wars pulled off.',
+        href: 'https://www.youtube.com/watch?v=0jj78zUCwQk', link: 'Listen' },
+      { title: 'The Morning After', series: 'Andor', accent: '#e0642a', when: -5, year: 2022, secs: 76, sub: 'Andor · 2022 · 1:16',
+        desc: 'Nicholas Britell. The morning after the heist, the money and the dead counted. Quiet, which is the loudest he gets.',
+        href: 'https://www.youtube.com/watch?v=bp02vkQmHSc', link: 'Listen' },
+      { title: 'Brasso', series: 'Andor', accent: '#e0642a', when: -4, year: 2025, secs: 178, sub: 'Andor · 2025 · 2:58',
+        desc: 'Brandon Roberts. Mina-Rau, and Brasso’s theme played for the last time.',
+        href: 'https://www.youtube.com/watch?v=HK1u_X_rsx4', link: 'Listen' },
+      { title: 'The Bix Is Back', series: 'Andor', accent: '#e0642a', when: -3, year: 2025, secs: 102, sub: 'Andor · 2025 · 1:42',
+        desc: 'Nicholas Britell. Bix, still carrying Ferrix and Dr Gorst, getting back up.',
+        href: 'https://www.youtube.com/watch?v=g3lJ1CI6drw', link: 'Listen' },
+      { title: 'Bix\'s Message', series: 'Andor', accent: '#e0642a', when: -2, year: 2025, secs: 181, sub: 'Andor · 2025 · 3:01',
+        desc: 'Brandon Roberts. The recording she leaves him on Coruscant, so that he can go and be what the Rebellion needs.',
+        href: 'https://www.youtube.com/watch?v=iQUmCrxr1fk', link: 'Listen' },
+
+      // Rogue One
+      { title: 'The Imperial Suite', series: 'Rogue One', accent: '#8f98a8', when: 0, year: 2016, secs: 150, sub: 'Rogue One · 2016 · 2:30',
+        desc: 'Michael Giacchino. Krennic and the Empire, and the closest anyone but Williams has come to the Imperial March.',
+        href: 'https://www.youtube.com/watch?v=-C2wCcuKmLI', link: 'Listen' },
+
+      // The Originals
+      { title: 'Main Title', series: 'The Originals', accent: '#3f8fff', when: 0, year: 1977, secs: 325, sub: 'A New Hope · 1977 · 5:25',
+        desc: 'The fanfare, the crawl and the blockade runner, exactly as the 1977 album cut it.',
+        href: 'https://www.youtube.com/watch?v=e9lapdvLSGw', link: 'Listen' },
+      { title: 'Imperial Attack', series: 'The Originals', accent: '#3f8fff', when: 0, year: 1977, secs: 379, sub: 'A New Hope · 1977 · 6:19',
+        desc: 'Vader boarding the Tantive IV. The Empire’s first six minutes on screen.',
+        href: 'https://www.youtube.com/watch?v=msqfRw197tk', link: 'Listen' },
+      { title: 'The Dune Sea of Tatooine / Jawa Sandcrawler', series: 'The Originals', accent: '#3f8fff', when: 0, year: 1977, secs: 301, sub: 'A New Hope · 1997 Special Edition · 5:01',
+        desc: 'Threepio alone in the desert, then the Jawas: Stravinsky in the sand, and the cue every kid who played the LEGO Complete Saga knows. Uploaded everywhere as Tatooine Theme, which is not its name.',
+        href: 'https://www.youtube.com/watch?v=7FO9sxl821Q', link: 'Fan upload' },
+      { title: 'The Princess Appears', series: 'The Originals', accent: '#3f8fff', when: 0, year: 1977, secs: 248, sub: 'A New Hope · 1977 · 4:08',
+        desc: 'Leia’s hologram in Luke’s garage, then the twin suns: Binary Sunset, the Force theme’s first full statement.',
+        href: 'https://www.youtube.com/watch?v=r6Qbbyc1eLc', link: 'Listen' },
+      { title: 'The Force Theme', series: 'The Originals', accent: '#3f8fff', when: 0, year: 1977, secs: 275, sub: 'Binary Sunset · 1977 · 4:35',
+        desc: 'It has no track of its own on any album, so this is Jorah the Andal’s suite of it: Inner City, The Princess Appears, Funeral Pyre for a Jedi, The Jedi Steps.',
+        href: 'https://www.youtube.com/watch?v=eb2zuegwcwk', link: 'Fan suite' },
+      { title: 'Cantina Band', series: 'The Originals', accent: '#3f8fff', when: 0, year: 1977, secs: 165, sub: 'A New Hope · 1977 · 2:45',
+        desc: 'Figrin D’an and the Modal Nodes: Williams’ idea of aliens who had heard one Benny Goodman record and were doing their best.',
+        href: 'https://www.youtube.com/watch?v=EsvfptdFXf4', link: 'Listen' },
+      { title: 'The Last Battle', series: 'The Originals', accent: '#3f8fff', when: 0, year: 1977, secs: 730, sub: 'A New Hope · 1977 · 12:10',
+        desc: 'The whole Battle of Yavin in one take, twelve minutes from the briefing to Luke switching the targeting computer off.',
+        href: 'https://www.youtube.com/watch?v=1W8DIwfQDa4', link: 'Listen' },
+      { title: 'The Throne Room and End Title', series: 'The Originals', accent: '#3f8fff', when: 0, year: 1977, secs: 335, sub: 'A New Hope · 1977 · 5:35',
+        desc: 'Medals on Yavin 4, then the credits. The only ending in the saga that is pure victory.',
+        href: 'https://www.youtube.com/watch?v=trYeKG17hYc', link: 'Listen' },
+      { title: 'The Imperial March (Darth Vader\'s Theme)', series: 'The Originals', accent: '#9fc4e8', when: 3, year: 1980, secs: 180, sub: 'The Empire Strikes Back · 1980 · 3:00',
+        desc: 'Vader’s theme, and the most recognisable bars of film music there are. It is not in A New Hope at all, which still surprises people.',
+        href: 'https://www.youtube.com/watch?v=u7HF4JG1pOg', link: 'Listen' },
+      { title: 'The Asteroid Field', series: 'The Originals', accent: '#9fc4e8', when: 3, year: 1980, secs: 256, sub: 'The Empire Strikes Back · 1980 · 4:16',
+        desc: 'The Falcon through the rocks with the TIEs behind it, and Williams at his most Stravinsky: the fastest thing on any of the albums. Not on the playlist yet, and it should be.',
+        href: 'https://www.youtube.com/watch?v=XNDEljd1cQI', link: 'Listen' },
+      { title: 'Yoda\'s Theme', series: 'The Originals', accent: '#9fc4e8', when: 3, year: 1980, secs: 208, sub: 'The Empire Strikes Back · 1980 · 3:28',
+        desc: 'Dagobah. Written for a puppet, and it makes him the wisest thing in the room before he has said a word.',
+        href: 'https://www.youtube.com/watch?v=9C8J-jhMtRA', link: 'Listen' },
+      { title: 'Lando\'s Palace', series: 'The Originals', accent: '#9fc4e8', when: 3, year: 1980, secs: 234, sub: 'The Empire Strikes Back · 1980 · 3:54',
+        desc: 'Cloud City, all sunshine and welcome, right up until the dining room.',
+        href: 'https://www.youtube.com/watch?v=nIcSjmRWbCY', link: 'Listen' },
+      { title: 'The Return of the Jedi', series: 'The Originals', accent: '#3fd07f', when: 4, year: 1983, secs: 304, sub: 'Return of the Jedi · 1983 · 5:04',
+        desc: 'The sail barge fight over the Sarlacc pit, Luke’s rescue as five minutes of action music: the cue that names the film.',
+        href: 'https://www.youtube.com/watch?v=MtB6kOMh5_k', link: 'Listen' },
+
+      // The Mandalorian
+      { title: 'The Mandalorian', series: 'The Mandalorian', accent: '#9aa8b4', when: 9, year: 2019, secs: 199, sub: 'The Mandalorian · 2019 · 3:19',
+        desc: 'Ludwig Göransson. A bass recorder, a beat and a theme that sounds like nothing else on this list.',
+        href: 'https://www.youtube.com/watch?v=2YDKxcdIXBs', link: 'Listen' },
+      { title: 'Mando Rescue', series: 'The Mandalorian', accent: '#9aa8b4', when: 9, year: 2019, secs: 135, sub: 'Chapter 3 · 2019 · 2:15',
+        desc: 'Ludwig Göransson. The Sin: the covert coming out of hiding to get him and the child off Nevarro. This is the way.',
+        href: 'https://www.youtube.com/watch?v=jnVaD71JeQo', link: 'Listen' },
+
+      // The Book of Boba Fett
+      { title: 'The Book of Boba Fett', series: 'The Book of Boba Fett', accent: '#5fbf6a', when: 9, year: 2022, secs: 176, sub: 'The Book of Boba Fett · 2022 · 2:56',
+        desc: 'Ludwig Göransson. Boba’s theme, chanted, which is the only way to score a man who climbed out of a Sarlacc.',
+        href: 'https://www.youtube.com/watch?v=3a0tH0fkvW8', link: 'Listen' },
+
+      // The Mandalorian and Grogu
+      { title: 'Shakari', series: 'The Mandalorian and Grogu', accent: '#9aa8b4', when: 9, year: 2026, secs: 89, sub: 'The Mandalorian and Grogu · 2026 · 1:29',
+        desc: 'Ludwig Göransson. The neon planet where Rotta is held, the Mando theme rebuilt in synths. Imperial_vector’s four-minute suite of it is the one I have on.',
+        href: 'https://www.youtube.com/watch?v=DZHshyzeoK0', link: 'Listen' },
+
+      // Ahsoka
+      { title: 'Ahsoka - End Credits', series: 'Ahsoka', accent: '#e8eef4', when: 9, year: 2023, secs: 225, sub: 'Ahsoka · 2023 · 3:45',
+        desc: 'Kevin Kiner. Her theme, grown up with her: the Clone Wars motif with a choir under it, over the credits of the live-action series. Not on the playlist yet, and it should be.',
+        href: 'https://www.youtube.com/watch?v=uF5IPOEFndw', link: 'Listen' },
+
+      // The Sequels
+      { title: 'Rey\'s Theme', series: 'The Sequels', accent: '#4fa8ff', when: 34, year: 2015, secs: 192, sub: 'The Force Awakens · 2015 · 3:12',
+        desc: 'Williams in his eighties, and the best new theme the saga had had in a generation.',
+        href: 'https://www.youtube.com/watch?v=65As1V0vQDM', link: 'Listen' },
+      { title: 'March of the Resistance', series: 'The Sequels', accent: '#4fa8ff', when: 34, year: 2015, secs: 156, sub: 'The Force Awakens · 2015 · 2:36',
+        desc: 'The X-wings coming in low over the lake at Takodana. All brass, all confidence.',
+        href: 'https://www.youtube.com/watch?v=ueqKtype7Kk', link: 'Listen' },
+      { title: 'Kylo Ren Arrives at the Battle', series: 'The Sequels', accent: '#4fa8ff', when: 34, year: 2015, secs: 120, sub: 'The Force Awakens · 2015 · 2:00',
+        desc: 'Kylo Ren’s theme at full volume, landing on Takodana. Wookieeman’s five-minute suite stitches it to Torn Apart, The Abduction and the Jakku attack, and that is the one I keep on.',
+        href: 'https://www.youtube.com/watch?v=NRRPCjr1Ito', link: 'Listen' },
+      { title: 'March of the First Order', series: 'The Sequels', accent: '#4fa8ff', when: 34, year: 2015, secs: 116, sub: 'The Force Awakens · 2015 · 1:56',
+        desc: 'Hux’s rally on Starkiller Base: a march in the Imperial style with the swing taken out of it. No official upload of it exists, so this is a mirror of the album audio.',
+        href: 'https://www.youtube.com/watch?v=85oW_RSFr24', link: 'Mirror' },
+      { title: 'The Jedi Steps and Finale', series: 'The Sequels', accent: '#4fa8ff', when: 34, year: 2015, secs: 532, sub: 'The Force Awakens · 2015 · 8:52',
+        desc: 'Rey climbing to Luke on Ahch-To, then the credits, with every theme in the film taking a bow.',
+        href: 'https://www.youtube.com/watch?v=cUBUlKgsNK8', link: 'Listen' },
+    ] },
+
 
   // mount:'end' → renders into #fanBodyEnd, below the hand-written planet atlas
   { id: 'parks', kind: 'cards', title: 'Where It Exists', note: 'Batuu, and the places you can stand in it',
@@ -225,7 +424,8 @@ window.FAN_PAGE = {
       { title: 'LEGO Star Wars III: The Clone Wars', accent: '#ffd21f', sub: '2011 · Steam', done: true, finished: '2022-07-13' },
       { title: 'LEGO Star Wars: The Force Awakens', accent: '#ffd21f', sub: '2016 · Steam', done: true, finished: '2022-07-17' },
       { title: 'Jedi: Survivor', accent: '#4fa8ff', sub: '2023', done: true, finished: '2023-07-16' },
-      { title: 'Jedi: Fallen Order', accent: '#4fa8ff', sub: '2019', done: true, finished: '2024-03-22' },
+      { title: 'Jedi: Fallen Order', accent: '#4fa8ff', sub: '2019', done: true, finished: '2024-03-22',
+        desc: 'Finished three times: first on Dec 12 2019, the week it came out; again on Apr 30 2022; and then once more, straight after Survivor, on Mar 22 2024, which is the run that took it to a hundred percent.' },
       { title: 'Droid Repair Bay', accent: '#9fc4e8', sub: '2017 · VR', done: true, finished: '2024-09-27' },
       { title: 'Star Wars Outlaws', accent: '#e0a020', sub: '2024', done: true, finished: '2024-12-03' },
       { title: 'Battlefront II', accent: '#9fc4e8', sub: '2017', done: true, finished: '2025-03-11' },

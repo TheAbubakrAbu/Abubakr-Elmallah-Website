@@ -35,7 +35,8 @@
   var page = window.FAN_PAGE;
   if (!root || !page) return;
 
-  var esc = function (s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); };
+  // used inside attributes too (alt, data-label, href), so quotes must go as well
+  var esc = function (s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
   var a = function (it) { return it.accent ? ' style="--a:' + it.accent + '"' : ''; };
 
   /* Where a real photograph of mine lives. Every photo these pages show is one
@@ -51,11 +52,20 @@
      missing sub or screenshot has to occupy its row rather than vanish. */
   var SLOT = '<span class="fan-slot" aria-hidden="true"></span>';
 
-  // optional outbound link on an item: official sites, park pages
+  /* optional outbound link on an item: official sites, park pages, a track.
+     `href` + `link` is the one-link form. `links: [{ href, label }, ...]` puts
+     several on the same row (a s\u016brah in two styles of recitation), wrapped so
+     the subgrid still sees one part. */
+  var visit = function (href, label) {
+    return '<a class="fan-visit" href="' + esc(href) + '" target="_blank" rel="noopener">'
+      + esc(label || 'Official site') + ' \u2197</a>';
+  };
   var out = function (it) {
+    if (it.links && it.links.length) {
+      return '<span class="fan-visits">' + it.links.map(function (l) { return visit(l.href, l.label); }).join('') + '</span>';
+    }
     if (!it.href) return '';
-    return '<a class="fan-visit" href="' + it.href + '" target="_blank" rel="noopener">'
-      + esc(it.link || 'Official site') + ' \u2197</a>';
+    return visit(it.href, it.link);
   };
 
   /* optional completion stamp. `done: true` is the green hundred-percent chip and
@@ -81,7 +91,8 @@
 
      Written as ISO rather than as display text so the sort control can order
      on it as a plain string comparison, which for ISO dates is the same as
-     ordering by time. Printed short: "Oct 2024".
+     ordering by time. Printed with the day when it is known: "Oct 5 2024",
+     or "Oct 2024" from a month-only date.
 
      A title with no date simply carries no chip, and that is not a gap to be
      filled with a guess: Steam's library page records when a game was LAST
@@ -100,7 +111,7 @@
     if (!it.finished) return '';
     var p = String(it.finished).split('-');
     var when = p.length >= 2 && +p[1] >= 1 && +p[1] <= 12
-      ? MON[+p[1] - 1] + ' ' + p[0]
+      ? MON[+p[1] - 1] + (p.length >= 3 && +p[2] >= 1 ? ' ' + (+p[2]) : '') + ' ' + p[0]
       : p[0];
     return '<span class="fan-fin"><i aria-hidden="true">✓</i>'
       + '<span class="fan-fin-l">Finished</span>'
@@ -146,7 +157,13 @@
      words ride on the key button as data-asc / data-desc, so picking a new key
      relabels the direction buttons with no shared state to keep in sync.
 
-     The single-key shorthand `sortable: { key, asc, desc }` still works. */
+     The single-key shorthand `sortable: { key, asc, desc }` still works.
+
+     `authored: 'asc'` says the data file is written earliest-first. Ties fall
+     back to the authored position, mirrored with the direction, and that
+     mirroring assumes the newest-first order TT Games list their catalogue
+     in; a list written the other way round (the Star Wars themes, in
+     timeline order) would otherwise have its ties read backwards. */
   var sortBy = function (s) {
     if (!s.sortable) return [];
     return s.sortable.by || [{ key: s.sortable.key || 'year', label: s.sortable.label,
@@ -182,20 +199,26 @@
       + '</span>';
   };
 
-  /* A section may carry `groupable: { key, label, on }`, which puts an Off/On
-     switch beside the sort control. On, the tiles fold into labelled sections,
-     one per distinct value of `key` on the items ('Star Wars', 'Batman & DC',
-     'Standalone'). Grouping composes with the sort rather than replacing it:
-     tiles keep the active order inside their section, and the sections
-     themselves run in order of their best-placed tile, so sorting by rating
-     ranks the licences by their best game. */
+  /* A section may carry `groupable: { key, label, on, open }`, which puts an
+     Off/On switch beside the sort control. On, the tiles fold into labelled
+     sections, one per distinct value of `key` on the items ('Star Wars',
+     'Batman & DC', 'Standalone'). Grouping composes with the sort rather than
+     replacing it: tiles keep the active order inside their section, and the
+     sections themselves run in order of their best-placed tile, so sorting by
+     rating ranks the licences by their best game.
+
+     `open: 'on'` opens the section already grouped, the way `dir` opens a
+     sort descending: right for a list whose sections are the point of it
+     (the themes by trilogy and show) and wrong for a catalogue. */
   var grouper = function (s) {
     if (!s.groupable) return '';
-    return '<span class="fan-sortset fan-groupset" role="group" aria-label="Group">'
-      + '<span class="fan-sort-k">' + esc(s.groupable.label || 'Group') + '</span>'
-      + '<button class="fan-sortbtn is-on" type="button" data-gmode="off" aria-pressed="true">Off</button>'
-      + '<button class="fan-sortbtn" type="button" data-gmode="on" aria-pressed="false">'
-      + esc(s.groupable.on || 'On') + '</button>'
+    var open = s.groupable.open === 'on' ? 'on' : 'off';
+    return '<span class="fan-sortset fan-groupset" role="group" aria-label="Group" data-open="' + open + '">'
+      + ['off', 'on'].map(function (m) {
+          return '<button class="fan-sortbtn' + (m === open ? ' is-on' : '') + '" type="button"'
+            + ' data-gmode="' + m + '" aria-pressed="' + (m === open ? 'true' : 'false') + '">'
+            + esc(m === 'on' ? (s.groupable.on || 'On') : 'Off') + '</button>';
+        }).join('')
       + '</span>';
   };
 
@@ -321,7 +344,7 @@
     rank: function (s) {
       return '<ol class="fan-rank">' + s.items.map(function (it, i) {
         return '<li class="fan-rankrow reveal"' + a(it) + '>'
-          + '<span class="fan-num">' + (it.num || (i + 1 < 10 ? '0' + (i + 1) : i + 1)) + '</span>'
+          + '<span class="fan-num">' + esc(it.num || (i + 1 < 10 ? '0' + (i + 1) : i + 1)) + '</span>'
           + '<span class="fan-rankbody">'
           +   '<span class="fan-rankhead"><b>' + esc(it.title) + '</b>'
           +     (it.sub ? '<i>' + esc(it.sub) + '</i>' : '') + '</span>'
@@ -352,7 +375,9 @@
       return '<div class="fan-tiles' + (s.compact ? ' fan-tiles--compact' : '')
         + (s.views ? ' fan-tiles--switch is-grid' : '') + '"'
         + (s.cols ? ' data-cols style="--cols:' + esc(s.cols) + '"' : '')
-        + (keys.length ? ' data-sortable="1"' : '') + '>' + s.items.map(function (it, i) {
+        + (keys.length ? ' data-sortable="1"' : '')
+        + (keys.length && s.sortable.authored === 'asc' ? ' data-authored="asc"' : '')
+        + '>' + s.items.map(function (it, i) {
         /* One data-sort-<key> per sortable field. A field the item does not have
            is left off entirely, which is what sinks it to the bottom of that
            sort rather than treating a missing value as zero. */
@@ -510,6 +535,7 @@
   };
 
   function markup(s) {
+    if (!Array.isArray(s.items)) s.items = [];   // a section with no items renders empty, not a blank page
     var build = KINDS[s.kind] || KINDS.cards;
     return '<section class="fan-sec" id="' + esc(s.id || '') + '"'
       + (s.season ? ' data-season="' + s.season + '"' : '')
@@ -576,7 +602,7 @@
   /* `when` is page-level rather than a section: it belongs above everything,
      and every page has exactly one. Rendered only if the data file sets it. */
   var when = page.when
-    ? '<aside class="fan-when reveal">'
+    ? '<aside class="fan-intro-when reveal">'
       + '<span class="fan-when-k">When I got into it</span>'
       + '<b>' + esc(page.when.at) + '</b>'
       + (page.when.note ? '<span class="fan-when-n">' + esc(page.when.note) + '</span>' : '')
@@ -637,6 +663,10 @@
      comparison ISO dates are written for takes over. */
   function applySort(group, key, dir, grouped) {
     var sign = dir === 'asc' ? 1 : -1;
+    /* the tie-break below reads the authored order backwards, which is right
+       for a list written newest-first and wrong for one written the other way
+       (`authored: 'asc'` on the section, see sortBy) */
+    var tie = group.getAttribute('data-authored') === 'asc' ? -1 : 1;
     /* Group headers are rebuilt from scratch on every pass: they are cheap, and
        removing them first means group.children below is only ever the tiles. */
     Array.prototype.forEach.call(group.querySelectorAll('.fan-grouphead'), function (h) { h.remove(); });
@@ -651,7 +681,7 @@
         var d = (isNaN(nx) || isNaN(ny)) ? String(vx).localeCompare(String(vy)) : nx - ny;
         if (d) return sign * d;
       }
-      return sign * (+y.getAttribute('data-i') - +x.getAttribute('data-i'));
+      return sign * tie * (+y.getAttribute('data-i') - +x.getAttribute('data-i'));
     });
     if (!grouped) {
       tiles.forEach(function (t) { group.appendChild(t); });
@@ -691,6 +721,25 @@
     });
   }
 
+  /* ── the controls remember themselves ──
+     Sort key, direction, grouping and grid/list are kept in localStorage, one
+     entry per page and section, so the catalogue opens the way it was left
+     rather than snapping back to release order on every visit. Same shape as
+     the pics switch, the cursor and the sound toggle, and wrapped the same
+     way for private mode, where storage throws. A saved value is only ever
+     applied through the button that carries it, so a key that no longer
+     exists is simply ignored and the labels follow as they would on a click. */
+  var STORE = 'ae-fan:' + location.pathname + '#';
+  function recall(sec) {
+    try { return JSON.parse(localStorage.getItem(STORE + (sec.id || '')) || '{}') || {}; }
+    catch (e) { return {}; }
+  }
+  function remember(sec, patch) {
+    var cur = recall(sec);
+    Object.keys(patch).forEach(function (k) { cur[k] = patch[k]; });
+    try { localStorage.setItem(STORE + (sec.id || ''), JSON.stringify(cur)); } catch (e) { /* private mode */ }
+  }
+
   Array.prototype.forEach.call(document.querySelectorAll('.fan-sort'), function (bar) {
     var sec = bar.closest('.fan-sec');
     var group = sec && sec.querySelector('[data-sortable]');
@@ -700,9 +749,11 @@
     if (!group || !keyBtns.length) return;          // a tally-only bar has nothing to wire
 
     var key = keyBtns[0].getAttribute('data-key');
-    var dirSet = bar.querySelector('[data-open]');
+    /* the direction set and the group set each say which way they open */
+    var dirSet = bar.querySelector('[aria-label="Sort direction"]');
+    var grpSet = bar.querySelector('.fan-groupset');
     var dir = (dirSet && dirSet.getAttribute('data-open')) || 'asc';
-    var grouped = false;
+    var grouped = !!grpSet && grpSet.getAttribute('data-open') === 'on';
 
     function press(list, active) {
       Array.prototype.forEach.call(list, function (b) {
@@ -712,9 +763,11 @@
       });
     }
 
-    bar.addEventListener('click', function (e) {
-      var k = e.target.closest('[data-key]'), d = e.target.closest('[data-dir]');
-      var g = e.target.closest('[data-gmode]');
+    /* one button, pressed: by a click or by the saved state on load. Returns
+       false for anything that is not one of the three kinds of button. */
+    function pick(el) {
+      var k = el.closest('[data-key]'), d = el.closest('[data-dir]');
+      var g = el.closest('[data-gmode]');
       if (k) {
         key = k.getAttribute('data-key');
         press(keyBtns, k);
@@ -729,9 +782,28 @@
       } else if (g) {
         grouped = g.getAttribute('data-gmode') === 'on';
         press(grpBtns, g);
-      } else return;
+      } else return false;
+      return true;
+    }
+
+    bar.addEventListener('click', function (e) {
+      if (!pick(e.target)) return;
       applySort(group, key, dir, grouped);
+      remember(sec, { key: key, dir: dir, grouped: grouped });
     });
+
+    /* where this section was left last time, pressed the way a click would be */
+    var saved = recall(sec);
+    // matched by comparison, not by selector: a corrupt stored value must not throw and abort the wiring
+    var byAttr = function (name, val) {
+      return Array.prototype.find.call(bar.querySelectorAll('[' + name + ']'), function (b) { return b.getAttribute(name) === String(val); }) || null;
+    };
+    var savedKey = saved.key && byAttr('data-key', saved.key);
+    var savedDir = saved.dir && byAttr('data-dir', saved.dir);
+    var savedGrp = typeof saved.grouped === 'boolean' && byAttr('data-gmode', saved.grouped ? 'on' : 'off');
+    if (savedKey) pick(savedKey);
+    if (savedDir) pick(savedDir);
+    if (savedGrp) pick(savedGrp);
 
     /* The data files are authored newest-first (that is how TT Games list their
        own catalogue), so the opening order has to be applied, not assumed. */
@@ -748,9 +820,7 @@
     if (!group) return;
     var btns = set.querySelectorAll('[data-view]');
 
-    set.addEventListener('click', function (e) {
-      var b = e.target.closest('[data-view]');
-      if (!b) return;
+    function show(b) {
       var v = b.getAttribute('data-view');
       Array.prototype.forEach.call(btns, function (o) {
         var on = o === b;
@@ -759,7 +829,19 @@
       });
       group.classList.toggle('is-grid', v === 'grid');
       group.classList.toggle('is-list', v === 'list');
+      return v;
+    }
+
+    set.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-view]');
+      if (!b) return;
+      remember(sec, { view: show(b) });
     });
+
+    /* the view it was left in, if the button for it exists */
+    var savedView = recall(sec).view;
+    var savedBtn = savedView && set.querySelector('[data-view="' + savedView + '"]');
+    if (savedBtn) show(savedBtn);
   });
 
   /* a saber stays lit after a click, so you can leave the whole rack burning */

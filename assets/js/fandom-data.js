@@ -184,7 +184,7 @@ window.FANDOMS = [
       meta: 'Animation · 1999', href: '/worlds/spongebob/',
       desc: 'The golden-age seasons are some of the best-written comedy ever animated, and the internet has been speaking in its screenshots for twenty years.' },
 
-    /* The four newest tiles. They have no `when` line yet on purpose: the rest
+    /* The five newest tiles. They have no `when` line yet on purpose: the rest
        of this file says when I actually got into each thing, and inventing a
        date for these would make the one honest column on the page unreliable.
        Add `when:` to any of them and the tile picks it up. */
@@ -203,6 +203,10 @@ window.FANDOMS = [
     { name: 'John Wick', wm: 'wick', glyph: 'coin', c1: '#d84a52', c2: '#170a0d',
       meta: 'Film · 2014', href: '/worlds/john-wick/',
       desc: 'Four films shot wide and held, by stuntmen who got to pick the camera. Underneath the fighting is a better invention: an assassins’ guild with a currency, an arbitration process and paperwork.' },
+
+    { name: 'Christopher Nolan', wm: 'nolan', glyph: 'top', c1: '#d0d8e0', c2: '#0e1217',
+      meta: 'Director · 1998', href: '/worlds/christopher-nolan/',
+      desc: 'Thirteen films about time, told out of order and shot on film stock the size of a postcard: Inception, Interstellar, Oppenheimer, and now The Odyssey. Zimmer and Göransson did the rest.' },
 
       ] },
 

@@ -11,6 +11,7 @@
 
    Loads AFTER fanpage.js (the spell tiles do not exist until it has run). */
 (function hpSorting() {
+  try {
   var btn = document.getElementById('hatGo');
   var say = document.getElementById('hatSay');
   var hat = document.getElementById('hat');
@@ -101,10 +102,12 @@
   }
 
   btn.addEventListener('click', sort);
+  } catch (err) { /* never take the page down with it */ }
 })();
 
 /* ── castable spells ── */
 (function hpSpells() {
+  try {
   var rack = document.getElementById('spells');
   if (!rack) return;
 
@@ -152,4 +155,5 @@
       document.body.classList.remove('is-lumos');
     }
   });
+  } catch (err) { /* never take the page down with it */ }
 })();

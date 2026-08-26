@@ -129,7 +129,6 @@ body:not([data-season]) .st-era--0 { opacity: 1; }
     radial-gradient(38% 3% at 26% 34%, rgba(240,160,32,.30), transparent 70%),
     radial-gradient(30% 2.4% at 72% 58%, rgba(224,96,20,.26), transparent 70%),
     radial-gradient(24% 2% at 48% 78%, rgba(240,180,60,.22), transparent 70%);
-  filter: blur(3px);
   animation: st-rift 8s ease-in-out infinite alternate;
 }
 
@@ -248,11 +247,11 @@ body[data-season="5"] .st-prop--5 { opacity: 1; }
 
 /* the season readout, fixed and outside main so the flip never turns it over */
 .st-hud {
-  position: fixed; left: clamp(0.8rem, 2vw, 1.6rem); bottom: clamp(4.4rem, 8vh, 2.2rem);
+  position: fixed; left: clamp(0.8rem, 2vw, 1.6rem); bottom: 4.4rem;
   z-index: 60; display: flex; align-items: center; gap: 0.7rem;
   padding: 0.5rem 0.9rem 0.5rem 0.6rem; border-radius: 10px;
   border: 1px solid color-mix(in srgb, var(--sc, #e8261d) 40%, transparent);
-  background: rgba(10,6,8,.72); backdrop-filter: blur(6px);
+  background: rgba(10,6,8,.9);   /* opaque enough to drop the backdrop-filter, which repainted on every scroll */
   opacity: 0; transform: translateY(8px); pointer-events: none;
   transition: opacity .5s, transform .5s var(--ease), border-color .8s;
 }
@@ -422,7 +421,10 @@ body.is-upside-down .st-flip { transform: rotate(180deg); }
 body.is-upside-down main,
 body.is-upside-down .st-wall { transform: rotate(180deg); }
 
-body.is-upside-down { filter: hue-rotate(-18deg) saturate(.55) contrast(1.1) brightness(.82); }
+/* on main and the sky, never on body: a filter on body makes it the containing
+   block for every position:fixed layer (tab bar, grain, HUD), which then scroll away */
+body.is-upside-down main,
+body.is-upside-down .st-sky { filter: hue-rotate(-18deg) saturate(.55) contrast(1.1) brightness(.82); }
 
 body.is-upside-down .st-sky::before { animation-duration: 9s; opacity: 1; }
 

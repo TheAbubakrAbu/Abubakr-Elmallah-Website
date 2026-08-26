@@ -49,6 +49,12 @@ window.FAN_PAGE = {
       { title: 'The three holy cities', sub: 'Where the voice travelled', tag: 'The reach', accent: '#5fa3ec',
         desc: 'He recited in Makkah, in Madinah and at al-Aqṣā, and Egyptian State Radio carried him into every house in the country and far past its borders. A village voice from Sohag, heard across a civilisation.',
         meta: 'Sohag → everywhere' },
+      /* the five I actually put on live on the Qurʾān page, each linked in
+         both his styles, so they are written down once */
+      { title: 'The five I put on', sub: 'Al-Kahf · Ibrāhīm · an-Najm · adh-Dhāriyāt · al-Mursalāt', tag: 'Mine', accent: '#e0b84f',
+        desc: 'The sūrahs I reach for most, and always in his voice: mujawwad if there is a choice, murattal for the car. Each one is linked in both styles on the Qurʾān page.',
+        href: '/worlds/quran/#surahs', link: 'The five, linked',
+        meta: 'Mujawwad first' },
     ] },
 
   { id: 'life', kind: 'timeline', title: 'The Life', note: '1920 – 1969',

@@ -127,6 +127,30 @@ window.FAN_PAGE = {
         meta: 'Chapter 1 island' },
     ] },
 
+  /* the music: the Chapter 1 lobby theme; nothing Fortnite is on my playlist yet */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'six tracks · the lobby and the emotes',
+    lede: 'The music of Chapter 1: the lobby tracks that played before every match, and the emote songs everyone in the school knew the moves to. Between them, the sound of seasons three to eight for anyone who was there.',
+    items: [
+      { title: 'OG Lobby Music', accent: '#6fb0ff', sub: 'Fortnite · Chapter 1 · 2017 · 1:56',
+        desc: 'The lobby, before every match, for the two years that counted. It came back with Fortnite OG and everyone who heard it was fourteen again.',
+        href: 'https://www.youtube.com/watch?v=2pCEreE6E0s', link: 'Fan upload' },
+      { title: 'Coral Chorus', accent: '#4fd0c0', sub: 'Lobby music · Chapter 1 Season 8 · 2:30',
+        desc: 'The Season 8 battle pass lobby track: pirates, volcanoes and steel drums. The one lobby theme that could stand next to the original.',
+        href: 'https://www.youtube.com/watch?v=FW3JleDWvpc', link: 'Fan upload' },
+      { title: 'Star Power', accent: '#f0d040', sub: 'Lobby music · Chapter 1 Season 8 · 2:20',
+        desc: 'The lobby version of the Star Power emote track, and the other half of the Season 8 battle pass.',
+        href: 'https://www.youtube.com/watch?v=pIIlILLzEKI', link: 'Fan upload' },
+      { title: 'Squeaky Clean (Floss)', accent: '#8fe08f', sub: 'Lobby music · Chapter 1 Season 6 · 3:09',
+        desc: 'The Floss, stretched into a full lobby track for Season 6. The dance got banned from more school hallways than any other.',
+        href: 'https://www.youtube.com/watch?v=_Bv-ofwDB84', link: 'Fan upload' },
+      { title: 'Take the L', accent: '#c060e0', sub: 'Emote · Chapter 1 Season 3 · 2:07',
+        desc: 'The Season 3 battle pass emote, and the rudest thing you could do to someone after a build fight. Everyone did it anyway.',
+        href: 'https://www.youtube.com/watch?v=89coO602JNQ', link: 'Fan upload' },
+      { title: 'Orange Justice', accent: '#f08030', sub: 'Emote · Chapter 1 Season 4 · 2:32',
+        desc: 'The dance the Orange Shirt Kid submitted to the Boogiedown contest and lost, until the internet made Epic put it in anyway.',
+        href: 'https://www.youtube.com/watch?v=IPG_z8PUYHs', link: 'Fan upload' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'Fortnite.com', href: 'https://www.fortnite.com/',

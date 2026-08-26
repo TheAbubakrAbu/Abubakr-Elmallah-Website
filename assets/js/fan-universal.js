@@ -152,6 +152,15 @@ window.FAN_PAGE = {
         meta: '70 mph · four inversions' },
     ] },
 
+  /* the music: the fanfare, which is the closest thing a studio has to a theme */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · the fanfare',
+    lede: 'A studio does not have a theme, but it has a logo, and this one has had music under it since 1997: the globe turning, and thirty seconds of brass before every film.',
+    items: [
+      { title: 'Universal Pictures Fanfare', accent: '#f0a83a', sub: 'Jerry Goldsmith · 1997 · 0:27',
+        desc: 'Jerry Goldsmith, for the 1997 logo: the spinning globe and the fanfare every Universal film has opened with since. Brian Tyler re-recorded it, bigger, for the centenary in 2012.',
+        href: 'https://www.youtube.com/watch?v=GyqThsI6ghY', link: 'Live' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'Universal Studios Hollywood', href: 'https://www.universalstudioshollywood.com/',

@@ -61,6 +61,25 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: the three Red Dead 2 songs on my playlist, named as the albums
+     name them and linked to the artists' own uploads */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'four tracks · the theme, and three songs',
+    lede: 'The first game’s title theme, and then three songs rather than score, because that is how the second one does its biggest moments. Named as the albums name them and linked to the artists’ own uploads wherever there is one.',
+    items: [
+      { title: 'Born Unto Trouble', accent: '#d0a060', sub: 'Bill Elm & Woody Jackson · Red Dead Redemption · 2010 · 3:13',
+        desc: 'Bill Elm and Woody Jackson. The first game’s title theme: a Morricone whistle, a harmonica, and the sound of 1911 running out. No upload of the album’s own, so this copy is a fan’s.',
+        href: 'https://www.youtube.com/watch?v=ehhkPbjdIKc', link: 'Fan upload' },
+      { title: 'Unshaken', accent: '#c9402f', sub: 'Red Dead Redemption 2 · 2018 · 3:54',
+        desc: 'D’Angelo. May I stand unshaken, amid a crashing world: the ride home the game lets a whole song play under.',
+        href: 'https://www.youtube.com/watch?v=L0AykH20X3Q', link: 'Listen' },
+      { title: 'That\'s The Way It Is', accent: '#c9402f', sub: 'Red Dead Redemption 2 · 2018 · 4:09',
+        desc: 'Daniel Lanois. The song after Arthur’s story ends, which is why nobody who has played it can hear it neutrally.',
+        href: 'https://www.youtube.com/watch?v=HjYLY3BGDY4', link: 'Listen' },
+      { title: 'The Housebuilding Song', accent: '#d8b06a', sub: 'The Housebuilding EP · 2018 · 3:12',
+        desc: 'David Ferguson. Building Beecher’s Hope in the epilogue, plank by plank, with Charles and Uncle. The happiest the game ever is.',
+        href: 'https://www.youtube.com/watch?v=TMQeYF_xOxE', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'Rockstar Games', href: 'https://www.rockstargames.com/reddeadredemption2',

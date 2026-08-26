@@ -168,6 +168,19 @@ window.FAN_PAGE = {
         meta: 'The one to go to' },
     ] },
 
+  /* the music: the one Disney Animation track on my playlist, linked to Alan
+     Menken's own upload */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'two tracks · the signature, and the one from my playlist',
+    lede: 'The seven notes over the castle at the start of every film, and the one piece of Disney Animation score I keep on. Both linked to the albums’ own uploads.',
+    items: [
+      { title: 'When You Wish Upon a Star', accent: '#8fd8f0', sub: 'Cliff Edwards · Pinocchio · 1940 · 3:14',
+        desc: 'Cliff Edwards as Jiminy Cricket. The Pinocchio song that became the studio’s signature, and the castle logo every film opens on.',
+        href: 'https://www.youtube.com/watch?v=Z0aKxrcEH30', link: 'Listen' },
+      { title: 'Kingdom Dance', accent: '#e8c56a', sub: 'Tangled · 2010 · 2:21',
+        desc: 'Alan Menken. The square in the kingdom, a fiddle, and Rapunzel pulling the whole town into the dance. The cue Tangled is remembered by.',
+        href: 'https://www.youtube.com/watch?v=0X0sLw63KLU', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'Disney.com', href: 'https://www.disney.com/',

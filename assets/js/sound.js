@@ -2,7 +2,9 @@
    Off by default; toggled from the rail and remembered in localStorage. */
 (function sound() {
   const toggle = document.getElementById('soundToggle');
-  let on = localStorage.getItem('ui-sound') !== 'off';   // ON by default
+  // localStorage throws under Safari's "block all cookies"; treat that as the default
+  let on = true;
+  try { on = localStorage.getItem('ui-sound') !== 'off'; } catch (_) {}   // ON by default
   let ac = null;
 
   function paint() {
@@ -25,7 +27,10 @@
   function tick(freq, dur, vol) {
     if (!on) return;
     const a = ctx();
-    if (!a) return;
+    /* Until a real gesture has resumed the context, currentTime sits at 0 and
+       every hover would queue an oscillator at t=0 that all fire together on
+       the first click. Just skip the tick until the context is running. */
+    if (!a || a.state !== 'running') return;
     const t = a.currentTime;
     const o = a.createOscillator();
     const g = a.createGain();
@@ -42,7 +47,7 @@
   if (toggle) {
     toggle.addEventListener('click', () => {
       on = !on;
-      localStorage.setItem('ui-sound', on ? 'on' : 'off');
+      try { localStorage.setItem('ui-sound', on ? 'on' : 'off'); } catch (_) {}
       paint();
       ctx();
       if (on) { tick(523.25, 0.07, 0.05); setTimeout(() => tick(783.99, 0.08, 0.045), 70); } // little confirm chime

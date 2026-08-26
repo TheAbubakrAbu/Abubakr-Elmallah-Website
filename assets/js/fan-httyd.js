@@ -74,6 +74,21 @@ window.FAN_PAGE = {
       { title: 'There were dragons when I was a boy.', sub: 'Hiccup · The Hidden World, first and last line', accent: '#c9a0e8' },
     ] },
 
+  /* the music: the two tracks on my playlist, both from the first film, named
+     as the album names them (the playlist has them as a Samuel Kim
+     arrangement and a fan upload titled "Flying theme") and linked to John
+     Powell's own uploads */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'two tracks · from my playlist',
+    lede: 'The two I have on, both from the first film, named as the album names them: the playlist has them as an arrangement and a fan upload, and these are John Powell’s own.',
+    items: [
+      { title: 'This Is Berk', accent: '#7fd0e8', sub: 'How to Train Your Dragon · 2010 · 4:11',
+        desc: 'John Powell. The opening narration and the dragon raid: the main theme, which is what every upload called the How to Train Your Dragon theme actually is. Samuel Kim’s arrangement is the one on my playlist.',
+        href: 'https://www.youtube.com/watch?v=hNFM2f4BvAo', link: 'Listen' },
+      { title: 'Test Drive', accent: '#7fd0e8', sub: 'How to Train Your Dragon · 2010 · 2:35',
+        desc: 'John Powell. The first proper flight with the tail fin, and the theme assembling itself mid-air. Uploaded everywhere as the flying theme, which is fair.',
+        href: 'https://www.youtube.com/watch?v=IpPIK4T068s', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'the Book of Dragons, online',
     items: [
       { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/How_to_Train_Your_Dragon',

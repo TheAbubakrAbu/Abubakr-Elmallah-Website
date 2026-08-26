@@ -84,6 +84,10 @@
   }
 
   function size() {
+    /* iOS Safari fires resize every time its toolbar collapses or expands
+       during a scroll. That is not a new viewport, and respawning the whole
+       field for it made the animation visibly restart mid-scroll. */
+    if (innerWidth === w && Math.abs(innerHeight - h) < 120 && packets.length) return;
     dpr = Math.min(devicePixelRatio || 1, 2);
     w = innerWidth; h = innerHeight;
     canvas.width = w * dpr; canvas.height = h * dpr;
@@ -98,11 +102,13 @@
 
   addEventListener('resize', size);
   addEventListener('pointermove', e => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
-  addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
+  document.documentElement.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
   size();
 
   let last = 0;
   function frame(ts) {
+    /* fully covered by the intro cover or the lightbox: skip the drawing, keep the clock */
+    if (document.documentElement.classList.contains('intro-lock')) { last = ts; requestAnimationFrame(frame); return; }
     const dt = last ? Math.min((ts - last) / 1000, 0.05) : 0;
     last = ts;
     ctx.clearRect(0, 0, w, h);

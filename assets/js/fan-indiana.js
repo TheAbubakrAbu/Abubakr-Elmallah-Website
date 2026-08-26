@@ -68,6 +68,16 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: the one Indiana Jones track on my playlist (twice, in two
+     recordings), linked to the album's own upload */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · from my playlist',
+    lede: 'One track, and it is the only one that matters. I have it twice: the 2008 recording from the Crystal Skull album, linked here, and the Boston Pops one.',
+    items: [
+      { title: 'Raiders March', accent: '#d8b06a', sub: 'Kingdom of the Crystal Skull · 2008 · 5:06',
+        desc: 'John Williams. The march itself with Marion’s theme in the middle of it, because Spielberg could not choose between them, and shorthand for adventure ever since.',
+        href: 'https://www.youtube.com/watch?v=bC77czRbjd0', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'IndianaJones.com', href: 'https://www.indianajones.com/',

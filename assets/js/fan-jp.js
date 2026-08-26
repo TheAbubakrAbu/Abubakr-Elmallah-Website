@@ -105,6 +105,26 @@ window.FAN_PAGE = {
       { title: 'We spared no expense.', sub: 'John Hammond · repeatedly' },
     ] },
 
+  /* the music: the tracks from my playlist, named as the album names them,
+     each linked to the album's own upload on YouTube (John Williams' Topic
+     channel) */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'four tracks · from my playlist',
+    lede: 'The Jurassic Park I actually have on. Named as the albums name them, and each one linked to the album’s own upload.',
+    items: [
+      { title: 'Theme From Jurassic Park', accent: '#e0642a', sub: 'Jurassic Park · 1993 · 3:28',
+        desc: 'John Williams. Written as a hymn rather than as a monster theme, which is the whole trick of the film.',
+        href: 'https://www.youtube.com/watch?v=lDlU08RU7Tk', link: 'Listen' },
+      { title: 'Journey To The Island', accent: '#e0642a', sub: 'Jurassic Park · 1993 · 8:53',
+        desc: 'The helicopter through the waterfall valley: the fanfare that says the island exists before a single animal is on screen.',
+        href: 'https://www.youtube.com/watch?v=TMNcMAqWG-I', link: 'Listen' },
+      { title: 'Welcome To Jurassic Park', accent: '#e0642a', sub: 'Jurassic Park · 1993 · 7:55',
+        desc: 'The brachiosaurus, and Grant sitting down in the grass. The theme at full size for the first time.',
+        href: 'https://www.youtube.com/watch?v=BXsWn9DhF5g', link: 'Listen' },
+      { title: 'The Lost World', accent: '#b8935a', sub: 'The Lost World: Jurassic Park · 1997 · 3:34',
+        desc: 'The sequel gets a theme of its own, all drums and jungle, and Williams holds the first one back until the end.',
+        href: 'https://www.youtube.com/watch?v=Yr4OmiKsNe4', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'Jurassic World', href: 'https://www.jurassicworld.com/',

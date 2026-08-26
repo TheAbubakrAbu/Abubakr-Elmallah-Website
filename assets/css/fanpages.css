@@ -82,7 +82,7 @@
     row-gap: 0; align-content: start; margin-bottom: var(--rowgap);
   }
   .fan-card > * + * { margin-top: 0.45rem; }   /* was the flex column's gap */
-  .fan-card > .fan-visit { justify-self: start; }
+  .fan-card > .fan-visit, .fan-card > .fan-visits { justify-self: start; }
   /* .fan-meta used margin-top:auto to drop to the card's foot. In a shared row
      that bottom-aligns a one-line meta against a two-line one, so it starts at
      the top of its row like every other part now. */
@@ -188,6 +188,11 @@
 
 .fan-visit:hover { color: var(--ink); border-bottom-color: var(--ink); }
 
+/* several links on one row (`links` on an item, see fanpage.js) */
+.fan-visits { display: flex; flex-wrap: wrap; gap: 0.15rem 0.9rem; align-self: flex-start; }
+
+.fan-visits > .fan-visit { margin-top: 0.15rem; }
+
 /* ── kind: rank ── */
 .fan-rank { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
 
@@ -260,10 +265,13 @@
   transition: transform .35s var(--ease), border-color .35s, background .35s;
 }
 
+/* hover only where it can end: on touch the last tapped tile stayed lifted */
+@media (hover: hover) {
 .fan-tile:hover {
   transform: translateY(-3px);
   border-color: color-mix(in srgb, var(--a, #f5c63c) 50%, transparent);
   background: color-mix(in srgb, var(--a, #f5c63c) 6%, transparent);
+}
 }
 
 .fan-swatch {
@@ -311,7 +319,7 @@
   .fan-tile > .fan-tiletext > * + * { margin-top: 0.15rem; }
   /* grid items stretch by default, which would drag the visit link's underline
      across the whole tile; the text blocks still want the full width */
-  .fan-tile > .fan-tiletext > .fan-visit { justify-self: start; }
+  .fan-tile > .fan-tiletext > .fan-visit, .fan-tile > .fan-tiletext > .fan-visits { justify-self: start; }
   .fan-tile > .fan-tileshots, .fan-tile > .fan-slot { grid-column: 3; grid-row: 1 / span 5; }
   .fan-slot { display: block; height: 0; }
 
@@ -736,7 +744,7 @@
   position: relative; overflow-x: auto; overflow-y: hidden;
   margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter);
   scroll-snap-type: x proximity; scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;   /* the end of the rail must not become a back swipe */
 }
 
 .fan-rail::-webkit-scrollbar { display: none; }
@@ -865,9 +873,17 @@
   .saber-text > * + * { margin-top: 0.18rem; }   /* was the flex column's gap */
 }
 
-.fan-saber:hover { transform: translateY(-3px); }
+/* hover only where it can end: on touch a tapped saber kept its :hover state and could not be un-lit */
+@media (hover: hover) {
+  .fan-saber:hover { transform: translateY(-3px); }
+  .fan-saber:hover .saber-blade { width: calc(100% - 1.9rem - 29px); }
+  .fan-saber:hover {
+    border-color: color-mix(in srgb, var(--a, #f5c63c) 50%, transparent);
+    background: color-mix(in srgb, var(--a, #f5c63c) 6%, transparent);
+  }
+}
 
-.fan-saber:hover, .fan-saber.is-lit {
+.fan-saber.is-lit {
   border-color: color-mix(in srgb, var(--a, #f5c63c) 50%, transparent);
   background: color-mix(in srgb, var(--a, #f5c63c) 6%, transparent);
 }
@@ -912,7 +928,6 @@
 
 .saber--dark .saber-blade i { background: transparent; }
 
-.fan-saber:hover .saber-blade,
 .fan-saber:focus-visible .saber-blade,
 .fan-saber.is-lit .saber-blade { width: calc(100% - 1.9rem - 29px); }
 
@@ -1059,7 +1074,7 @@
 /* ── "When I got into it" ──
    One per fan page, above every section. Uses the page's own accent (--a) so it
    picks up each franchise's colour without 33 separate rules. */
-.fan-when {
+.fan-intro-when {
   max-width: var(--maxw); margin: 0 0 2.6rem; padding: 1rem 1.2rem;
   display: grid; gap: 0.35rem;
   border-left: 3px solid var(--a, var(--ink-dim));
@@ -1067,14 +1082,14 @@
   border-radius: 0 5px 5px 0;
 }
 
-@media (min-width: 720px) { .fan-when { margin-left: var(--gutter); margin-right: var(--gutter); } }
+@media (min-width: 720px) { .fan-intro-when { margin-left: var(--gutter); margin-right: var(--gutter); } }
 
 .fan-when-k {
   font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--mute);
 }
 
-.fan-when b {
+.fan-intro-when b {
   font-family: var(--sans); font-size: 1.02rem; font-weight: 650;
   color: var(--a, var(--ink)); line-height: 1.4;
 }
@@ -1216,8 +1231,7 @@ body[data-fan="sw"] .fan-rail-track::before {
 }
 
 body[data-fan="sw"] .fan-era {
-  background: linear-gradient(168deg, rgba(255,232,31,.05), rgba(6,7,10,.5) 70%);
-  backdrop-filter: blur(2px);
+  background: linear-gradient(168deg, rgba(255,232,31,.05), rgba(6,7,10,.6) 70%);
 }
 
 body[data-fan="sw"] .fan-era-when { text-transform: uppercase; letter-spacing: 0.14em; }
@@ -2014,10 +2028,6 @@ body[data-fan="spidey"] .fan-title {
 /* ───────── Pokémon, a poké ball in the corner ───────── */
 body[data-fan="pokemon"] { --a: #ffd43f; }
 
-.pkh-far  { fill: #101a30; }
-
-.pkh-near { fill: #0a1120; }
-
 @keyframes pkm-sway { from { transform: skewX(-1.4deg); } to { transform: skewX(1.4deg); } }
 
 @keyframes pkm-rise { from { background-position: 0 0; } to { background-position: 40px -300px; } }
@@ -2105,10 +2115,6 @@ body[data-fan="indiana"] .fan-title { font-family: Georgia, serif; font-variant:
 body[data-fan="parks"] { --a: #5fbf7f; }
 
 @keyframes pk-float { to { background-position: -280px -180px; } }
-
-.pkh-far  { fill: #14301f; }
-
-.pkh-near { fill: #0c2016; }
 
 body[data-fan="parks"] .fan-title { font-family: "Trebuchet MS", var(--sans); font-weight: 700; letter-spacing: -0.01em; }
 

@@ -105,9 +105,12 @@
       el.style.setProperty('--dur', dur.toFixed(0) + 'ms');
       el.style.left = (46 + Math.random() * 8) + '%';
 
-      /* Restart the animation on a recycled node: clear it, force layout, re-add. */
+      /* Restart the animation on a recycled node. Cancelling the running
+         animation and re-adding the class restarts it without the forced
+         layout that `void el.offsetWidth` cost five times a second. */
       el.classList.remove('is-up');
-      void el.offsetWidth;
+      if (el.getAnimations) el.getAnimations().forEach(function (an) { an.cancel(); });
+      else void el.offsetWidth;
       el.classList.add('is-up');
 
       /* Only studs have a stud value, so only studs move the counter. */
@@ -132,8 +135,21 @@
       for (var b = 0; b < 6; b++) setTimeout(fire, b * 70);
     }
 
-    var SPAWN_MS = 190;
-    setInterval(fire, SPAWN_MS);
+    /* The fountain only runs while it is on screen and the tab is visible:
+       it sits below a long catalogue, and there is no point firing studs
+       nobody can see. */
+    var SPAWN_MS = 190, timer = 0, onScreen = true;
+    function run() {
+      var want = onScreen && !document.hidden;
+      if (want && !timer) timer = setInterval(fire, SPAWN_MS);
+      else if (!want && timer) { clearInterval(timer); timer = 0; }
+    }
+    if ('IntersectionObserver' in window) {
+      onScreen = false;
+      new IntersectionObserver(function (es) { onScreen = es[0].isIntersecting; run(); }).observe(fountain);
+    }
+    document.addEventListener('visibilitychange', run);
+    run();
 
     select(0);
   } catch (err) { /* never take the page down with it */ }

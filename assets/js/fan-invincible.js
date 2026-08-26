@@ -83,6 +83,15 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: the main theme; nothing Invincible is on my playlist yet */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · the main theme',
+    lede: 'Nothing Invincible is on my playlist yet, so this is the one: the title music, linked to the composer’s own upload.',
+    items: [
+      { title: 'Invincible', accent: '#f0d040', sub: 'John Paesano · Invincible · 2021 · 4:56',
+        desc: 'John Paesano. The title card and the theme under it, which the show cuts off a beat early every time, because it is that kind of show.',
+        href: 'https://www.youtube.com/watch?v=1J6_NCoh8tY', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'Skybound', href: 'https://www.skybound.com/invincible',

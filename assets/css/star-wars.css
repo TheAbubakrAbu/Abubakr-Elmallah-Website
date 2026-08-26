@@ -33,7 +33,6 @@ body[data-intro="starwars"] #field { opacity: 0.32; }
     radial-gradient(38% 30% at 76% 18%, rgba(245, 198, 60, 0.10), transparent 70%),
     radial-gradient(46% 34% at 18% 34%, rgba(47, 127, 214, 0.11), transparent 72%),
     radial-gradient(60% 40% at 50% 96%, rgba(160, 60, 220, 0.07), transparent 74%);
-  filter: blur(6px);
   animation: sw-breathe 34s ease-in-out infinite alternate;
 }
 @keyframes sw-breathe { from { opacity: 0.75; } to { opacity: 1; } }
@@ -112,7 +111,6 @@ body[data-intro="starwars"] #field { opacity: 0.32; }
     radial-gradient(2px 2px at 512px 372px, rgba(255,255,255,.85), transparent),
     radial-gradient(2px 2px at 64px 452px,  rgba(255,255,255,.8),  transparent),
     radial-gradient(2px 2px at 330px 500px, rgba(255,210,150,.8),  transparent);
-  filter: drop-shadow(0 0 3px rgba(255,255,255,.5));
 }
 @keyframes sw-twinkle { from { opacity: 0.55; } to { opacity: 1; } }
 
@@ -198,9 +196,7 @@ body[data-intro="starwars"] #field { opacity: 0.32; }
   border: 1px solid var(--line); border-radius: 18px;
   background:
     radial-gradient(120% 90% at 50% -10%, rgba(255,255,255,0.035), transparent 60%),
-    rgba(8, 8, 12, 0.55);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+    rgba(8, 8, 12, 0.8);   /* opaque enough to drop the per-card backdrop-filter over the moving sky */
   transition: transform .45s var(--ease), border-color .45s, box-shadow .45s;
   content-visibility: auto;
   contain-intrinsic-size: auto 300px;
@@ -608,7 +604,7 @@ body[data-intro="starwars"] #field { opacity: 0.32; }
   background: rgba(0,0,0,.35);
 }
 
-.sw-au-in:focus { outline: none; border-color: color-mix(in srgb, var(--gold) 55%, transparent); }
+.sw-au-in:focus { border-color: color-mix(in srgb, var(--gold) 55%, transparent); }
 
 .sw-au-out {
   display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.35rem;

@@ -86,6 +86,21 @@ window.FAN_PAGE = {
       { title: 'The Legion of Doom', accent: '#c9402f', sub: 'Hall of Doom', desc: 'The mirror image: thirteen villains in a swamp headquarters shaped like a helmet.' },
     ] },
 
+  /* the music: the one DC track on my playlist that is not Batman's (those
+     are on the Batman page), named as the 1978 album names it and linked to
+     John Williams' own upload; the playlist has the Royal Philharmonic's
+     recording of it */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'two tracks · Superman, and the cartoon',
+    lede: 'Two here; the Batman ones are on his own page. The Superman march is on my playlist in the Royal Philharmonic’s recording, and this is Williams’ own; the cartoon theme is not on it yet.',
+    items: [
+      { title: 'Prelude and Main Title March', accent: '#5f9fe0', sub: 'Superman · 1978 · 5:30',
+        desc: 'John Williams. The Superman march, and the only theme that has been handed down to every version of him since.',
+        href: 'https://www.youtube.com/watch?v=QmHhIDUrdVA', link: 'Listen' },
+      { title: 'Justice League Unlimited Theme', accent: '#4f8fe0', sub: 'Michael McCuistion · 2004 · 1:03',
+        desc: 'Michael McCuistion. The guitar and the drums under the roll call, and the reason a whole generation knows every hero on the roster. How I actually met these people.',
+        href: 'https://www.youtube.com/watch?v=pesEIkgz5Ko', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'DC.com', href: 'https://www.dc.com/',

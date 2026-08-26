@@ -94,6 +94,26 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: the three tracks on my playlist, named as the albums name them
+     (two of them sit on the playlist as Samuel Kim arrangements) and linked to
+     Hans Zimmer's own uploads */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'four tracks · the theme, and my playlist',
+    lede: 'The main theme, which is not on my playlist yet, and the three that are, named as the albums name them and linked to the albums’ own uploads. Two of them are on the playlist as Samuel Kim arrangements too, which is how most people meet this score now.',
+    items: [
+      { title: 'Hero', accent: '#f0c840', sub: 'Kung Fu Panda · 2008 · 4:42',
+        desc: 'Hans Zimmer and John Powell. The opening: Po’s dream of being the Dragon Warrior, and the theme the whole trilogy keeps coming back to.',
+        href: 'https://www.youtube.com/watch?v=86EPZphKBhg', link: 'Listen' },
+      { title: 'Oogway Ascends', accent: '#e0703a', sub: 'Kung Fu Panda · 2008 · 2:04',
+        desc: 'Hans Zimmer and John Powell. Oogway going up in peach blossom. Two minutes, and the cue the whole series is measured against.',
+        href: 'https://www.youtube.com/watch?v=tAVnGvRwXew', link: 'Listen' },
+      { title: 'Sacred Pool Of Tears', accent: '#e0703a', sub: 'Kung Fu Panda · 2008 · 9:51',
+        desc: 'Hans Zimmer and John Powell. Ten minutes for Shifu finally working out how to teach Po, up at the pool where Oogway invented kung fu.',
+        href: 'https://www.youtube.com/watch?v=Vd6MA5KGXIA', link: 'Listen' },
+      { title: 'The Arrival of Kai', accent: '#5fbf7f', sub: 'Kung Fu Panda 3 · 2016 · 2:03',
+        desc: 'Hans Zimmer. Kai coming back out of the Spirit Realm, and the chant everyone calls Kai’s theme. Samuel Kim’s arrangement is the one I have on.',
+        href: 'https://www.youtube.com/watch?v=K6oSdxF_1lk', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'DreamWorks', href: 'https://www.dreamworks.com/movies/kung-fu-panda',

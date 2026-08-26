@@ -202,6 +202,29 @@ window.FAN_PAGE = {
       { title: 'That’s my secret, Captain. I’m always angry.', sub: 'Bruce Banner · The Avengers', accent: '#4fbf5f' },
     ] },
 
+  /* the music: the MCU tracks on my playlist, named as the albums name them
+     and linked to the album's own upload (MarvelMusicVEVO, the composers'
+     Topic channels) wherever there is one; the one that is a fan cut says so */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'five tracks · from my playlist',
+    lede: 'The MCU I actually have on, named as the albums name them and linked to the albums’ own uploads. The Spider-Man ones live on the Spider-Man page.',
+    items: [
+      { title: 'Marvel Studios Fanfare', accent: '#e0483a', sub: 'Marvel Studios · 2016 · 1:41',
+        desc: 'Michael Giacchino. The logo music, written in 2016 for the flip-book opening, and the thirty seconds every one of these films starts with.',
+        href: 'https://www.youtube.com/watch?v=aNdkQg6ZKm4', link: 'Listen' },
+      { title: 'The Avengers', accent: '#e0483a', sub: 'The Avengers · 2012 · 2:04',
+        desc: 'Alan Silvestri. The theme, in the circling shot on the streets of New York, and the one every later film borrows back whenever it needs the team to feel like a team.',
+        href: 'https://www.youtube.com/watch?v=XNCQZ0wxphY', link: 'Listen' },
+      { title: 'Guardians of the Galaxy (Main Theme)', accent: '#a06fd0', sub: 'Guardians of the Galaxy · 2014 · 5:11',
+        desc: 'Tyler Bates. The Guardians’ own theme, which no single album track carries whole, so this is a fan cut of every statement of it.',
+        href: 'https://www.youtube.com/watch?v=GBp1Y-LoObs', link: 'Fan edit' },
+      { title: 'Porch', accent: '#8f6fd0', sub: 'Avengers: Infinity War · 2018 · 0:59',
+        desc: 'Alan Silvestri. The last minute of the film: Thanos on the porch of his hut, watching the sun rise on a grateful universe.',
+        href: 'https://www.youtube.com/watch?v=rBkMsmUbLLs', link: 'Listen' },
+      { title: 'Portals', accent: '#e0483a', sub: 'Avengers: Endgame · 2019 · 3:18',
+        desc: 'Alan Silvestri. On your left. Every portal opening at once, and the cue the whole eleven years were building to.',
+        href: 'https://www.youtube.com/watch?v=gTyE3geyRmk', link: 'Listen' },
+    ] },
+
   { id: 'parks', kind: 'cards', title: 'Where It Exists', note: 'Avengers Campus, and the Universal problem',
     lede: 'There is a reason there is no Marvel land at Walt Disney World: Universal signed the eastern-US theme-park rights to Marvel in 1994, years before Disney bought the company, and they have never sold them back. So Spider-Man is at Universal Orlando and Avengers Campus is everywhere else.',
     items: [

@@ -274,6 +274,47 @@ window.FAN_PAGE = {
       { title: 'Always.', sub: 'Severus Snape · and it had to go back in', accent: '#4cc47f' },
     ] },
 
+  /* the music: the tracks from my playlist, all of them from the first film's
+     album, in the order the film plays them; each linked to the album's own
+     upload (John Williams' Topic channel) */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'eleven tracks · nine from my playlist',
+    lede: 'Nine from the first film, which is the album I keep going back to, in the order the film plays them, and then one each from the second and third that are not on the playlist yet and should be. Named as the albums name them, and each one linked to the album’s own upload.',
+    items: [
+      { title: 'Hedwig\'s Theme', accent: '#d9b45f', sub: 'The Sorcerer’s Stone · 2001 · 5:10',
+        desc: 'John Williams. The celesta. The theme for the whole series, written for an owl.',
+        href: 'https://www.youtube.com/watch?v=wtHra9tFISY', link: 'Listen' },
+      { title: 'The Arrival of Baby Harry', accent: '#d9b45f', sub: 'The Sorcerer’s Stone · 2001 · 4:26',
+        desc: 'Privet Drive at night: Dumbledore putting out the streetlights, and a baby left on a doorstep.',
+        href: 'https://www.youtube.com/watch?v=GBX70bqJpXo', link: 'Listen' },
+      { title: 'Visit to the Zoo and Letters from Hogwarts', accent: '#d9b45f', sub: 'The Sorcerer’s Stone · 2001 · 3:23',
+        desc: 'The snake that talks back, and then the owls, all of them, down the chimney.',
+        href: 'https://www.youtube.com/watch?v=hC0BFjkB85Q', link: 'Listen' },
+      { title: 'Diagon Alley and the Gringotts Vault', accent: '#d9b45f', sub: 'The Sorcerer’s Stone · 2001 · 4:07',
+        desc: 'The wall opening behind the Leaky Cauldron, and a cart ride under London.',
+        href: 'https://www.youtube.com/watch?v=u0WTsW1iXos', link: 'Listen' },
+      { title: 'Platform Nine-and-Three-Quarters and the Journey to Hogwarts', accent: '#d9b45f', sub: 'The Sorcerer’s Stone · 2001 · 3:15',
+        desc: 'Through the wall at King’s Cross, and Ron and the trolley of sweets.',
+        href: 'https://www.youtube.com/watch?v=Y6yzp-Fk9TM', link: 'Listen' },
+      { title: 'Entry into the Great Hall and the Banquet', accent: '#d9b45f', sub: 'The Sorcerer’s Stone · 2001 · 3:43',
+        desc: 'Floating candles, the Sorting Hat, and food appearing on the tables.',
+        href: 'https://www.youtube.com/watch?v=nMOeX7FssQU', link: 'Listen' },
+      { title: 'The Quidditch Match', accent: '#d9b45f', sub: 'The Sorcerer’s Stone · 2001 · 8:29',
+        desc: 'Eight and a half minutes for the first match, with Harry very nearly swallowing the Snitch.',
+        href: 'https://www.youtube.com/watch?v=85iFOmfcUd0', link: 'Listen' },
+      { title: 'Harry\'s Wondrous World', accent: '#d9b45f', sub: 'The Sorcerer’s Stone · 2001 · 5:22',
+        desc: 'The end-credits suite: every theme in the film in five minutes, and the one the concerts always end on.',
+        href: 'https://www.youtube.com/watch?v=ezzX_mB-_iw', link: 'Listen' },
+      { title: 'Leaving Hogwarts', accent: '#d9b45f', sub: 'The Sorcerer’s Stone · 2001 · 2:14',
+        desc: 'The last scene, Hagrid’s photo album, and the Hogwarts Express pulling out. Two minutes that end the film properly.',
+        href: 'https://www.youtube.com/watch?v=PmQ1XTWg74M', link: 'Listen' },
+      { title: 'Fawkes the Phoenix', accent: '#c9a05f', sub: 'The Chamber of Secrets · 2002 · 3:46',
+        desc: 'The second film’s new theme: Fawkes bursting into flame in Dumbledore’s office, and the strings climbing with him.',
+        href: 'https://www.youtube.com/watch?v=1pnxGaY0FN4', link: 'Listen' },
+      { title: 'Buckbeak\'s Flight', accent: '#8f9fd0', sub: 'The Prisoner of Azkaban · 2004 · 2:09',
+        desc: 'Harry on the hippogriff over the lake, and Williams’ last score for the series going out at full sail.',
+        href: 'https://www.youtube.com/watch?v=J5i4hP6TPvQ', link: 'Listen' },
+    ] },
+
   { id: 'parks', kind: 'cards', title: 'Where It Exists', note: 'the Wizarding World, park by park',
     lede: 'Universal has been building this since 2010 and it is the reason their attendance doubled. The trick is that they never break character: the wands actually work on windows all round the land, the shopfronts are all trading, and nothing anywhere is labelled with a logo.',
     items: [
@@ -310,14 +351,24 @@ window.FAN_PAGE = {
     ] },
 
   /* one tile per finished game, with the date I got it to a hundred percent
-     (`finished`, see fanpage.js); the LEGO pair also sit in the catalogue on
-     the LEGO page with their hours */
-  { id: 'finished', kind: 'tiles', compact: true, title: 'When I Finished Them', note: 'to a hundred percent',
+     (`finished`, see fanpage.js) and, where I have one, the library banner
+     as the receipt (`shot`, opening in the lightbox, same as the FNAF page;
+     the raw captures live in _originals/franchises/harry-potter/). The LEGO
+     pair also sit in the catalogue on the LEGO page with their hours. */
+  { id: 'finished', kind: 'tiles', compact: true, cols: 2, views: true, tally: 'at 100%', title: 'When I Finished Them', note: 'to a hundred percent',
     items: [
-      { title: 'Hogwarts Legacy', accent: '#8f5fd0', sub: '2023', done: true, finished: '2024-11-07' },
+      { title: 'Hogwarts Legacy', accent: '#8f5fd0', sub: '2023', done: true, hours: '61.1', finished: '2024-11-07',
+        desc: 'Level 40, every challenge card at a hundred percent, every chest, Merlin trial and balloon on the map. Story finished Oct 24 2024, the rest of the map two weeks later.',
+        shot: '/assets/img/franchises/harry-potter/hogwarts-legacy/banner.jpg',
+        shots: ['challenges', 'menu', 'story-complete', 'highlands-map', 'hogwarts-map', 'all-houses', 'acceptance-letter'],
+        shotAlt: 'Library banner for Hogwarts Legacy, showing 100% and my play time' },
       { title: 'LEGO Harry Potter: Years 1–4', accent: '#d9b45f', sub: '2010 · Steam', done: true, finished: '2025-09-02' },
       { title: 'LEGO Harry Potter: Years 5–7', accent: '#d9b45f', sub: '2011 · Steam', done: true, finished: '2025-09-20' },
-      { title: 'Harry Potter: Quidditch Champions', accent: '#3f9f5f', sub: '2024', done: true, finished: '2025-09-26' },
+      { title: 'Harry Potter: Quidditch Champions', accent: '#3f9f5f', sub: '2024', done: true, hours: '14', finished: '2025-09-26',
+        desc: 'Ravenclaw Chaser, every skill point spent, and the last achievement was winning a hundredth game 100 to 0.',
+        shot: '/assets/img/franchises/harry-potter/quidditch-champions/banner.jpg',
+        shots: ['last-achievement', 'victory', 'skill-points'],
+        shotAlt: 'Library banner for Harry Potter: Quidditch Champions, showing 100% and my play time' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

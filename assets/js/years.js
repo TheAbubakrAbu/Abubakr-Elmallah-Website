@@ -398,12 +398,18 @@
         row = []; sum = 0;
       }
 
-      Array.prototype.forEach.call(grid.querySelectorAll('.yg-cell'), function (c) {
-        /* A cell the pics switch has hidden takes up no space, so it must not
-           be counted into a row either: leaving it in would solve the row for
-           a width one frame wider than the row actually is, and that row would
-           land short of the container. */
-        if (c.offsetParent === null) return;
+      /* A cell the pics switch has hidden takes up no space, so it must not
+         be counted into a row either: leaving it in would solve the row for
+         a width one frame wider than the row actually is, and that row would
+         land short of the container.
+
+         Read every offsetParent up front, before any width is written: reading
+         one after the previous row's writes forces a full re-layout per row
+         (150 of them on a big year, on every resize). */
+      var cells = Array.prototype.filter.call(grid.querySelectorAll('.yg-cell'), function (c) {
+        return c.offsetParent !== null;
+      });
+      cells.forEach(function (c) {
         row.push(c);
         sum += +c.dataset.w / +c.dataset.h;
         if (sum * target + GAP * (row.length - 1) >= W) flush(false);

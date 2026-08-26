@@ -103,6 +103,17 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: the theme, which the playlist has as a cover (The Office Band)
+     and a fan clip, plus a mashup; one tile, linked to the cover, and the
+     tile says so */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · from my playlist',
+    lede: 'One theme, three times over on the playlist: a cover, a thirty-second clip, and Darryl’s Dunder Mifflin Song mashed into it. The cover is the one linked, and the tile says so.',
+    items: [
+      { title: 'The Office Theme', accent: '#e8e6e0', sub: 'The Office · 2005 · 2:26',
+        desc: 'Jay Ferguson. Thirty seconds of piano over a Scranton morning. This copy is a cover stretched to two and a half minutes; the mashup with Darryl’s Dunder Mifflin Song is the other one I have on.',
+        href: 'https://www.youtube.com/watch?v=0T-if-Vj2Xs', link: 'Cover' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'Dunder Mifflin Wiki', href: 'https://theoffice.fandom.com/wiki/Main_Page',

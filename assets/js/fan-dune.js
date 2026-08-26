@@ -82,6 +82,19 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: the main themes, since nothing from Dune is on my playlist
+     yet; linked to the albums' own uploads (WaterTower) */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'two tracks · the main themes',
+    lede: 'Nothing from Dune is on my playlist yet, so these are the two themes to start on, linked to the albums’ own uploads. Zimmer turned down The Dark Knight’s sequel work to do the first one, which tells you how much he wanted it.',
+    items: [
+      { title: 'Paul\'s Dream', accent: '#e0a050', sub: 'Dune · 2021 · 7:04',
+        desc: 'Hans Zimmer. The first thing you hear of Arrakis: a voice, a throat, a drum, and Chani in it before we have met her. The whole score decided in four minutes.',
+        href: 'https://www.youtube.com/watch?v=BdtiYwSP9ko', link: 'Listen' },
+      { title: 'A Time of Quiet Between the Storms', accent: '#c0a0d0', sub: 'Dune: Part Two · 2024 · 4:22',
+        desc: 'Hans Zimmer. Paul and Chani’s theme, and the one quiet piece in a very loud film.',
+        href: 'https://www.youtube.com/watch?v=igtwOdqboT0', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'Dune Wiki', href: 'https://dune.fandom.com/wiki/Dune_Wiki',

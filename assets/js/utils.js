@@ -2,6 +2,15 @@
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+/* Smooth scrolling (html.smooth in base.css) goes on only after the page has
+   loaded and the browser has restored the scroll position for a back/forward
+   visit. Otherwise that restoration itself is animated: a jump becomes a slide. */
+addEventListener('load', () => {
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    document.documentElement.classList.add('smooth');
+  }));
+});
+
 /* Pointer light: the HUD grid lights up under the cursor (.hud-light in
    layout.css). The lit patch is a small element of its own, moved with a
    transform, and the <i> inside it is a viewport-sized copy of the lattice
@@ -36,7 +45,8 @@ const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     if (!raf) raf = requestAnimationFrame(loop);
   }, { passive: true });
 
-  addEventListener('pointerleave', () => { light.classList.remove('is-on'); idle = true; });
+  // pointerleave is not delivered to window in Chromium; the root element gets it
+  document.documentElement.addEventListener('pointerleave', () => { light.classList.remove('is-on'); idle = true; });
 
   function loop() {
     x += (tx - x) * 0.14;
@@ -140,17 +150,21 @@ const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     timer = setTimeout(stop, 12000);   // gave up: do not leave the bar stuck on
   }
 
+  /* Bubble phase, then a deferred check: a handler on the link itself (the
+     lightbox on screenshot links, for one) may call preventDefault(), and that
+     has to have happened before we decide this click is a real navigation. */
   addEventListener('click', e => {
-    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     const a = e.target.closest('a[href]');
     if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
     const href = a.getAttribute('href');
     if (!href || href.charAt(0) === '#') return;                      // in-page anchor, not a navigation
-    const url = new URL(href, location.href);
+    let url;
+    try { url = new URL(href, location.href); } catch (_) { return; }
     if (url.origin !== location.origin) return;                       // off-site: not ours to show
     if (url.pathname === location.pathname && url.hash) return;       // same page, just a jump
-    start(a.closest('.tabbar a') || a);
-  }, true);
+    setTimeout(() => { if (!e.defaultPrevented) start(a.closest('.tabbar a') || a); }, 0);
+  });
 
   // leaving, or coming back out of the bfcache: either way the bar is done
   addEventListener('pagehide', stop);

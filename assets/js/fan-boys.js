@@ -90,6 +90,15 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: the show's theme; nothing from The Boys is on my playlist yet */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · the theme',
+    lede: 'Nothing from The Boys is on my playlist yet, so this is the one: the theme, linked to the composer’s own upload.',
+    items: [
+      { title: 'Main Title', accent: '#e02a2a', sub: 'Christopher Lennertz · The Boys · 2019 · 1:10',
+        desc: 'Christopher Lennertz. The main title, all seventy seconds of it, which the show itself barely ever plays in full: guitars, and a sneer.',
+        href: 'https://www.youtube.com/watch?v=GRyxwcPm_BI', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'The Boys Wiki', href: 'https://the-boys.fandom.com/wiki/The_Boys_Wiki',

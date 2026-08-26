@@ -31,7 +31,11 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+/* Smooth scrolling is switched on by utils.js once the page has loaded.
+   Set on <html> from the start, it also animates the browser's own scroll
+   restoration on back/forward, so returning to a page slid down to where
+   you were instead of just being there. */
+html.smooth { scroll-behavior: smooth; }
 
 body {
   background: var(--bg);
@@ -77,9 +81,12 @@ img[data-src]:not(.is-loaded) { opacity: 0; }
 }
 .reveal.in { opacity: 1; transform: none; }
 
+/* one keyboard focus ring for everything, in the site's green rather than the browser blue */
+:focus-visible { outline: 2px solid var(--green-2); outline-offset: 3px; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
-  html { scroll-behavior: auto; }
+  html.smooth { scroll-behavior: auto; }
   body { cursor: auto; }
 }

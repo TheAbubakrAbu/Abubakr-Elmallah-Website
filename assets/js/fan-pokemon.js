@@ -94,7 +94,6 @@ window.FAN_PAGE = {
     items: [
       { title: 'Pokémon GO', accent: '#f8d030', sub: '2016', desc: 'For one summer it had the entire world outside walking in circles round a park, which no game had managed before or since.' },
       { title: 'The trading card game', accent: '#6890f0', sub: 'Since 1996', desc: 'Over sixty billion cards printed, and a first edition Charizard that sells for the price of a car.' },
-      { title: 'Pok\u00e9mon GO', accent: '#78c850', sub: '2016', desc: 'Put the entire concept outside for one strange summer, and is still one of the highest-grossing mobile games ever.' },
       { title: 'Detective Pikachu', accent: '#f0c840', sub: '2019', desc: 'The one live-action film that understood the assignment: make them look like animals, not toys.' },
       { title: 'The competitive scene', accent: '#c03028', sub: 'VGC', desc: 'Double battles, team preview, and a world championship with a real prize pool.' },
       { title: 'Highest-grossing media franchise', accent: '#a040a0', sub: 'Anywhere', desc: 'Ahead of Star Wars, Marvel and Mickey Mouse. A hundred billion dollars and counting, from a game about catching bugs.' },
@@ -141,6 +140,19 @@ window.FAN_PAGE = {
       { title: 'Beast Ball', accent: '#6fd0c0', sub: '\u00d75 / \u00d70.1', desc: 'The harshest trade any ball offers.' },
       { title: 'Safari Ball', accent: '#8f7f4f', sub: 'Safari Zone only', desc: 'Bait and rocks instead of battling.' },
       { title: 'Cherish Ball', accent: '#e0483a', sub: 'Event only', desc: 'Tells you where a Pokemon came from.' },
+    ] },
+
+  /* the music: the two main themes, the anime's and the games'; nothing from
+     Pokémon is on my playlist yet */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'two tracks · the main themes',
+    lede: 'Nothing from Pokémon is on my playlist yet, so these are the two that count: the song every kid in 1998 could sing, and the Game Boy title screen under it.',
+    items: [
+      { title: 'Pokémon Theme', accent: '#f0c840', sub: 'Jason Paige · 1998 · 3:19',
+        desc: 'Jason Paige. Gotta catch ’em all: the anime opening, and the reason a whole generation can sing a song about a training regimen.',
+        href: 'https://www.youtube.com/watch?v=2zMIddjFAIA', link: 'Listen' },
+      { title: 'Title Screen', accent: '#e0602a', sub: 'Pokémon Red & Green · Junichi Masuda · 1996 · 1:39',
+        desc: 'Junichi Masuda, on a Game Boy sound chip. The title screen with the two starters fighting, and the four bars everything since has been arranged from.',
+        href: 'https://www.youtube.com/watch?v=njoPUWILwpo', link: 'Fan upload' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

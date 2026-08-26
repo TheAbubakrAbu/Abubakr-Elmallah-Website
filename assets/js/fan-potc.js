@@ -173,6 +173,63 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* the music: the thirteen Pirates tracks on my playlist, named as the albums
+     name them (Badelt for the first film, Zimmer after), grouped by film.
+     `series` is the film, `year` its year, `secs` the length; written
+     earliest-first, hence `authored`. Every link is the composer's own Topic
+     upload. */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'fourteen tracks · four films',
+    lede: 'The reason every task feels like a heist. Fourteen tracks, seven of them from the first film and one that is not on the playlist yet, named as the albums name them and linked to the composers’ own uploads. Grouped by film; sort them by year or by length, or switch the grouping off.',
+    groupable: { key: 'series', label: 'Group', on: 'By film', open: 'on' },
+    sortable: { label: 'Sort', authored: 'asc', by: [
+      { key: 'year', label: 'Released', asc: 'Oldest',   desc: 'Newest' },
+      { key: 'secs', label: 'Length',   asc: 'Shortest', desc: 'Longest' },
+    ] },
+    items: [
+      { title: 'Fog Bound', series: 'The Curse of the Black Pearl', accent: '#d8c9a0', year: 2003, secs: 137, sub: 'The Curse of the Black Pearl · 2003 · 2:17',
+        desc: 'Klaus Badelt. The opening: fog, a girl singing the pirate song at the bow, and the first statement of the theme.',
+        href: 'https://www.youtube.com/watch?v=MfpOCF1L-Ig', link: 'Listen' },
+      { title: 'The Medallion Calls', series: 'The Curse of the Black Pearl', accent: '#d8c9a0', year: 2003, secs: 113, sub: 'The Curse of the Black Pearl · 2003 · 1:53',
+        desc: 'Jack arriving in Port Royal on a sinking boat and stepping onto the dock at the exact moment it goes under. The theme, and the entrance.',
+        href: 'https://www.youtube.com/watch?v=uqE8deCknKY', link: 'Listen' },
+      { title: 'The Black Pearl', series: 'The Curse of the Black Pearl', accent: '#d8c9a0', year: 2003, secs: 137, sub: 'The Curse of the Black Pearl · 2003 · 2:17',
+        desc: 'The ship coming out of the fog to sack Port Royal.',
+        href: 'https://www.youtube.com/watch?v=fDOc-Xbklak', link: 'Listen' },
+      { title: 'Barbossa Is Hungry', series: 'The Curse of the Black Pearl', accent: '#d8c9a0', year: 2003, secs: 247, sub: 'The Curse of the Black Pearl · 2003 · 4:07',
+        desc: 'Dinner in the captain’s cabin, and Barbossa explaining the curse to a woman who has just watched him eat.',
+        href: 'https://www.youtube.com/watch?v=ykczGq6oaXA', link: 'Listen' },
+      { title: 'Moonlight Serenade', series: 'The Curse of the Black Pearl', accent: '#d8c9a0', year: 2003, secs: 129, sub: 'The Curse of the Black Pearl · 2003 · 2:09',
+        desc: 'The crew crossing the moonlight on deck: skeletons in the beam, men out of it.',
+        href: 'https://www.youtube.com/watch?v=YzppVuCM2ZY', link: 'Listen' },
+      { title: 'Skull And Crossbones', series: 'The Curse of the Black Pearl', accent: '#d8c9a0', year: 2003, secs: 204, sub: 'The Curse of the Black Pearl · 2003 · 3:24',
+        desc: 'The Pearl against the Interceptor. The action theme, with the pirate motif underneath it.',
+        href: 'https://www.youtube.com/watch?v=MJVA_oAgmUs', link: 'Listen' },
+      { title: 'He\'s a Pirate', series: 'The Curse of the Black Pearl', accent: '#d8c9a0', year: 2003, secs: 91, sub: 'The Curse of the Black Pearl · 2003 · 1:31',
+        desc: 'The end-credits theme, and the ninety seconds every other pirate thing since has been trying to sound like.',
+        href: 'https://www.youtube.com/watch?v=BuYf0taXoNw', link: 'Listen' },
+      { title: 'Jack Sparrow', series: 'Dead Man’s Chest', accent: '#5fa8a0', year: 2006, secs: 366, sub: 'Dead Man’s Chest · 2006 · 6:06',
+        desc: 'Hans Zimmer. The theme for Jack himself, drunk and heroic by turns, arriving in a coffin at the start of the second one.',
+        href: 'https://www.youtube.com/watch?v=JZeNYaTmVP4', link: 'Listen' },
+      { title: 'Davy Jones', series: 'Dead Man’s Chest', accent: '#5fa8a0', year: 2006, secs: 196, sub: 'Dead Man’s Chest · 2006 · 3:16',
+        desc: 'Hans Zimmer. The music box and the organ. The saddest theme in the series belongs to the villain.',
+        href: 'https://www.youtube.com/watch?v=Tjp8cj8Vzyo', link: 'Listen' },
+      { title: 'Hoist the Colours', series: 'At World’s End', accent: '#4f6f9f', year: 2007, secs: 92, sub: 'At World’s End · 2007 · 1:32',
+        desc: 'Hans Zimmer. The opening: a boy on the gallows starting the song, and the whole line of the condemned taking it up. Not on the playlist yet, and it should be.',
+        href: 'https://www.youtube.com/watch?v=ecRcT6TPuCs', link: 'Listen' },
+      { title: 'At Wit\'s End', series: 'At World’s End', accent: '#4f6f9f', year: 2007, secs: 486, sub: 'At World’s End · 2007 · 8:06',
+        desc: 'Hans Zimmer. Eight minutes for the edge of the world, the waterfall, and the Locker on the far side of it.',
+        href: 'https://www.youtube.com/watch?v=BbSLZeCdvK8', link: 'Listen' },
+      { title: 'Up Is Down', series: 'At World’s End', accent: '#4f6f9f', year: 2007, secs: 163, sub: 'At World’s End · 2007 · 2:43',
+        desc: 'Hans Zimmer. The crew running side to side to capsize the Pearl at sunset, so that it comes up the right way in the right world.',
+        href: 'https://www.youtube.com/watch?v=dfgJYRdNwDE', link: 'Listen' },
+      { title: 'Drink Up Me Hearties Yo Ho', series: 'At World’s End', accent: '#4f6f9f', year: 2007, secs: 272, sub: 'At World’s End · 2007 · 4:32',
+        desc: 'Hans Zimmer. The end of the third film, and the fullest statement of every theme the trilogy has.',
+        href: 'https://www.youtube.com/watch?v=RUNRoXbaflM', link: 'Listen' },
+      { title: 'End Credits', series: 'On Stranger Tides', accent: '#c9403a', year: 2011, secs: 118, sub: 'On Stranger Tides · 2011 · 1:58',
+        desc: 'Hans Zimmer. The fourth film’s credits: the theme with Rodrigo y Gabriela’s guitars on it.',
+        href: 'https://www.youtube.com/watch?v=_5MQabnB5No', link: 'Listen' },
+    ] },
+
   { id: 'parks', kind: 'cards', title: 'Where It Exists', note: 'the ride came first',
     lede: 'This is the only franchise on this site that started as a theme-park attraction. Pirates of the Caribbean opened at Disneyland in March 1967, three months after Walt Disney died, and it was the last attraction he personally worked on. The films came thirty-six years later.',
     items: [

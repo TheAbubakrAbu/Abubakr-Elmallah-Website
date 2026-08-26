@@ -118,3 +118,7 @@
   margin-top: 3rem; font-family: var(--mono); font-size: 0.6rem;
   letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute);
 }
+
+/* the hills behind the header */
+.pkh-far  { fill: #14301f; }
+.pkh-near { fill: #0c2016; }

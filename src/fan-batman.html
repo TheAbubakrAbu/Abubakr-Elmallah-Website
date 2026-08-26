@@ -18,7 +18,7 @@ redirect_from:
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Abubakr" />
-<meta property="og:image" content="/assets/img/me/abubakr-circle.png" />
+<meta property="og:image" content="https://abubakrelmallah.com/assets/img/me/abubakr-circle.png" />
 <meta property="og:type" content="website" />
 <title>Batman · Abubakr Elmallah</title>
 
@@ -194,10 +194,18 @@ redirect_from:
 
 </main>
 
+<!-- the shared image lightbox: every link to an image on this page opens here
+     rather than in a new tab (see gallery.js). -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" type="button" aria-label="Close">✕</button>
+  <span class="lightbox-title"></span>
+  <div class="lightbox-imgs"></div>
+</div>
+
 <footer class="footer">
   <span>© 2026 Abubakr Elmallah</span>
   <a class="footer-mid" href="/worlds/" data-magnetic>← Back to worlds</a>
-  <button class="totop" id="totop" data-magnetic>Back to top ↑</button>
+  <button class="totop" id="totop" type="button" data-magnetic>Back to top ↑</button>
 </footer>
 
 <nav class="tabbar" aria-label="Primary">
@@ -214,6 +222,8 @@ redirect_from:
 
 <script src="{% include v.html f='/assets/js/photos-data.js' %}"></script>
 <script src="{% include v.html f='/assets/js/fanpage.js' %}"></script>
+<!-- after fanpage.js: the gallery images do not exist until it has run -->
+<script src="{% include v.html f='/assets/js/gallery.js' %}"></script>
 <script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
 <script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
 <script src="{% include v.html f='/assets/js/reveal.js' %}"></script>

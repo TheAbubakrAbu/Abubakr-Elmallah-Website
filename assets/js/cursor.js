@@ -6,7 +6,8 @@
 
   // preference persists across pages; default ON. 'off' hides the custom cursor
   // and restores the native one (see html.cursor-off rules in base.css)
-  let enabled = localStorage.getItem(KEY) !== 'off';
+  let enabled = true;
+  try { enabled = localStorage.getItem(KEY) !== 'off'; } catch (_) {}   // storage can throw under strict privacy settings
   const applyPref = () => root.classList.toggle('cursor-off', !enabled);
   applyPref();
 
@@ -22,7 +23,7 @@
   syncButtons();
   buttons.forEach(btn => btn.addEventListener('click', () => {
     enabled = !enabled;
-    localStorage.setItem(KEY, enabled ? 'on' : 'off');
+    try { localStorage.setItem(KEY, enabled ? 'on' : 'off'); } catch (_) {}
     applyPref();
     syncButtons();
     if (enabled) start();
@@ -46,10 +47,11 @@
   addEventListener('mousedown', () => ring.classList.add('is-down'));
   addEventListener('mouseup',   () => ring.classList.remove('is-down'));
 
-  document.querySelectorAll('a, button, [data-magnetic]').forEach(el => {
-    el.addEventListener('mouseenter', () => ring.classList.add('is-hover'));
-    el.addEventListener('mouseleave', () => ring.classList.remove('is-hover'));
-  });
+  /* Delegated, so targets that scripts add after this runs (year cards, trip
+     cards, transcript toggles) grow the ring too. */
+  document.addEventListener('pointerover', e => {
+    ring.classList.toggle('is-hover', !!(e.target.closest && e.target.closest('a, button, [data-magnetic]')));
+  }, { passive: true });
 
   function start() {
     if (running) return;

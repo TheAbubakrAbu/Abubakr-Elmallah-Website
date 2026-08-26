@@ -91,6 +91,18 @@ window.FAN_PAGE = {
       { title: 'Real or not real?', sub: 'Peeta Mellark · Mockingjay', accent: '#8f9ab0' },
     ] },
 
+  /* the music: the anthem and the song; nothing Hunger Games is on my playlist yet */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'two tracks · the anthem and the song',
+    lede: 'Nothing from the Hunger Games is on my playlist yet, so these are the two: Panem’s anthem, and the song from the third film that turned into a real chart hit, linked to the albums’ own uploads.',
+    items: [
+      { title: 'Horn of Plenty', accent: '#e0b040', sub: 'James Newton Howard · The Hunger Games · 2012 · 2:00',
+        desc: 'James Newton Howard. The Panem anthem, played at every reaping and every victory, and written to sound like a country with something to hide.',
+        href: 'https://www.youtube.com/watch?v=ox4HKVg9sKw', link: 'Listen' },
+      { title: 'The Hanging Tree', accent: '#e0763a', sub: 'Jennifer Lawrence · Mockingjay, Part 1 · 2014 · 3:36',
+        desc: 'Jennifer Lawrence, and then District 12 singing it back at the dam. A folk song written for the book, and a hit single nobody planned.',
+        href: 'https://www.youtube.com/watch?v=F3hTW9e20d8', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'Panem, elsewhere',
     items: [
       { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/The_Hunger_Games',

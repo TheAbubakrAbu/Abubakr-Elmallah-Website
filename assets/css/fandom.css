@@ -22,7 +22,7 @@
   transition: border-color .16s ease, transform .16s ease, background .16s ease;
 }
 .fr-vaultbtn:hover {
-  border-color: color-mix(in srgb, var(--gold) 50%, transparent); transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--gold) 50%, transparent);
   background: linear-gradient(100deg, rgba(232,197,106,.13), transparent 70%);
 }
 .fr-vaultbtn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
@@ -482,6 +482,13 @@ a.fr-card { cursor: pointer; }
   background: linear-gradient(180deg, #f4f7fa, #b8bfc8 58%, #7d848d);
   -webkit-background-clip: text; background-clip: text; color: transparent;
   filter: drop-shadow(0 0 14px rgba(216,74,82,.55));
+}
+/* thin, spaced and upper-case, the way his titles are set on the posters */
+.wm--nolan {
+  font-family: var(--sans); font-weight: 300; text-transform: uppercase;
+  letter-spacing: 0.3em; font-size: 0.98rem; text-indent: 0.3em;
+  background: linear-gradient(180deg, #f4f7fa, #b8c4d0 58%, #7d8794);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
 .wm--disney {

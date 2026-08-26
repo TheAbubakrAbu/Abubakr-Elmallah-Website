@@ -73,6 +73,15 @@ window.FAN_PAGE = {
       { when: 'Now', title: 'Both still enormous', desc: 'Two of the highest-grossing games ever made, still updating, still installed on a childhood’s worth of devices.' },
     ] },
 
+  /* the music: the menu theme; nothing Clash Royale is on my playlist yet */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · the menu',
+    lede: 'Nothing Clash Royale is on my playlist yet, so this is the one: the brass that plays over the menu before every three-minute match.',
+    items: [
+      { title: 'Main Menu Theme', accent: '#6f9fe8', sub: 'Supercell · Clash Royale · 2016 · 5:20',
+        desc: 'The menu theme: the fanfare between matches, which is where most of the time in this game is actually spent.',
+        href: 'https://www.youtube.com/watch?v=bmi3LmloCIk', link: 'Fan upload' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where the numbers live',
     items: [
       { title: 'Clash Royale', href: 'https://supercell.com/en/games/clashroyale/',
