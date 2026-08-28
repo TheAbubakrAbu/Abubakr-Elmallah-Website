@@ -1959,7 +1959,7 @@ window.YEARS = {
       [4, 'October 2023', ''],
       [20, 'Mecca and Medina Travel', 'November 2023'],
       [54, 'Malaysia, Singapore Travel', 'December 2023'],
-      [60, 'January 2024', ''],
+      [60, 'Malaysia, Singapore Travel', 'January 2024'],
       [72, 'February 2024', ''],
       [78, 'March 2024', ''],
       [82, 'Portugal Travel', 'April 2024'],

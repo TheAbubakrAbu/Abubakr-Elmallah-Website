@@ -891,6 +891,75 @@
     saber.setAttribute('aria-pressed', lit ? 'true' : 'false');
   });
 
+  /* ── the real places ──
+     fan-been.js keyed by this page's own data-fan, drawn at the foot of the
+     page. Like /travels/, it only POINTS at the year galleries, so every path
+     is checked against years-data.js first: a photo pulled out of a year drops
+     out of here rather than leaving a broken frame, and a page left with none
+     renders nothing at all instead of an empty heading.
+
+     Deliberately last on the page. Everything above it is what I think about a
+     thing; this is the one part that is evidence. */
+  (function been() {
+    var BEEN = window.FAN_BEEN;
+    var key = document.body.getAttribute('data-fan');
+    var set = key && BEEN && BEEN.pages && BEEN.pages[key];
+    if (!set || !set.use || !set.use.length) return;
+
+    /* `use` is a list of KEYS into BEEN.shots, because a photograph that
+       belongs to two franchises is written once and referenced twice; see the
+       header of fan-been.js for why. A key with no row behind it is dropped
+       the same way a missing file is, rather than drawing an empty frame. */
+    var rows = set.use.map(function (k) { return BEEN.shots[k]; }).filter(Boolean);
+    if (!rows.length) return;
+    set = { title: set.title, note: set.note, shots: rows };
+
+    var YP = {};
+    if (window.YEARS && window.YEARS.photos) {
+      Object.keys(window.YEARS.photos).forEach(function (g) {
+        window.YEARS.photos[g].forEach(function (r) {
+          YP[String(r[0]).indexOf('/') >= 0 ? r[0] : g + '/' + r[0]] = r;
+        });
+      });
+    }
+    var live = set.shots.filter(function (sh) {
+      return Object.prototype.hasOwnProperty.call(YP, sh[0]);
+    });
+    if (!live.length) return;
+
+    var html = '<section class="fan-sec fan-been reveal">'
+      + '<h2 class="fan-h2"><span>' + esc(set.title || 'Places I have been') + '</span></h2>'
+      + (set.note ? '<p class="fan-lede">' + esc(set.note) + '</p>' : '')
+      + '<div class="been-grid">'
+      + live.map(function (sh) {
+          var r = YP[sh[0]];
+          return '<figure class="been" style="--ar:' + (r[2] / r[3] || 1) + '">'
+            + '<a href="/assets/img/years-large/' + esc(sh[0]) + '" target="_blank" rel="noopener">'
+            /* plain src + native lazy: fan pages do not load lazy.js, which
+               is what /travels/ uses, so there is no AElazy to hand this to */
+            + '<img src="/assets/img/years/' + esc(sh[0]) + '"'
+            +   ' width="' + r[2] + '" height="' + r[3] + '"'
+            +   ' alt="' + esc(sh[1]) + '" loading="lazy" decoding="async" /></a>'
+            + '<figcaption><b>' + esc(sh[1]) + '</b>'
+            + (sh[2] ? '<i>' + esc(sh[2]) + '</i>' : '') + '</figcaption>'
+            + '</figure>';
+        }).join('')
+      + '</div>'
+      /* Shown only with the switch off (see pics.css). Says what is being
+         withheld and where to turn it on, rather than leaving the list
+         looking like all there ever was. */
+      + '<p class="fan-lede been-hint">' + live.length
+      +   (live.length === 1 ? ' photograph of these is' : ' photographs of these are')
+      +   ' in here. Personal photos are off by default;'
+      +   ' the switch is at the foot of <a href="/worlds/">Worlds</a>.</p>'
+      + '</section>';
+
+    var host = document.getElementById('fanBeen')
+      || root.appendChild(document.createElement('div'));
+    host.innerHTML = html;
+    if (typeof window.AEreveal === 'function') window.AEreveal(host);
+  })();
+
   /* ── the player ──
      One player for the whole page, built when a button is pressed and DESTROYED
      when it stops. Not hidden, destroyed: a paused YouTube iframe is still a

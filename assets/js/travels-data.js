@@ -25,6 +25,21 @@
              the seven countries behind that word are actually spelled out.
              It is shown only in the long section, never in "At a glance",
              and it feeds no tally: the counts still follow `countries`.
+     onscreen
+             the screen worlds this trip walked into: the filming locations,
+             the parks and the stores, grouped by franchise. `lede` is one line
+             of what is in the set; each entry in `sets` is { tag, icon, rows,
+             quote, by }, and a row is [what, where] or [what, where, which
+             film or episode].
+
+             This is the one part of a trip NOT read off the photographs, and
+             it is the part most able to be wrong, so it is held to the same
+             standard by hand: everything below was checked against the frames
+             and the GPS under them before it was written, and where a claim
+             could not be checked it was left out rather than guessed. Nara
+             Park is in the Japan set because there are photographs of the deer
+             at 34.6838, 135.8403; Skellig Michael is NOT in the Ireland set,
+             because nothing in that roll shows it.
      citiesOmit
              place names to keep OUT of the city list travels.js reads off the
              shots' own GPS. For a frame that belongs to a trip without being
@@ -283,11 +298,23 @@ window.TRAVELS = {
       spots: [
         ['The Alhambra', 'Granada'],
         ['Real Alc\u00e1zar', 'Seville'],
-        ['Plaza de Espa\u00f1a', 'Seville'],
         ['Toledo and its Alc\u00e1zar', 'Toledo'],
-        ['City of Arts and Sciences', 'Valencia'],
-        ['Montserrat', 'Catalonia'],
       ],
+      onscreen: {
+        lede: 'The other half of the Spanish Star Wars map, four years before the rest of it.',
+        sets: [
+          { icon: '\u{1F30C}', tag: 'Andor',
+            rows: [
+              ['Mon Mothma\u2019s estate, Chandrila', 'Montserrat, Catalonia', 'Episodes 1 and 2'],
+              ['The Galactic Senate, Coruscant', 'City of Arts and Sciences, Valencia', 'Episodes 4, 6, 7, 9 and 10'],
+            ],
+            quote: 'I have friends everywhere.', by: 'Luthen Rael' },
+          { icon: '\u{1F3DB}', tag: 'Naboo',
+            rows: [
+              ['Outside the Theed Palace', 'Plaza de Espa\u00f1a, Seville', 'Attack of the Clones'],
+            ],
+          },
+        ] },
       cover: 'hs-junior/2022-11-23-1634.avif',
       shots: ['hs-junior/2022-11-20-0918.avif', 'hs-junior/2022-11-22-0910.avif',
               'hs-junior/2022-11-22-1045-2.avif', 'hs-junior/2022-11-22-1048.avif',
@@ -361,7 +388,9 @@ window.TRAVELS = {
       ],
       cover: 'hs-senior/2023-12-30-1508.avif',
       shots: ['hs-senior/2023-12-26-1115.avif', 'hs-senior/2023-12-30-1017.avif',
-              'hs-senior/2023-12-30-1508.avif'] },
+              'hs-senior/2023-12-30-1508.avif', 'hs-senior/2024-01-02-0950.avif',
+              'hs-senior/2024-01-05-1115.avif', 'hs-senior/2024-01-05-1320.avif',
+              'hs-senior/2024-01-05-1900.avif', 'hs-senior/2024-01-07-1616.avif'] },
     { when: '2024 Apr', y: '2024', m: 'Apr', grade: '12th', places: 'Portugal',
       countries: 'Portugal', flags: '\u{1F1F5}\u{1F1F9}', c1: '#4fa8d0', c2: '#07161f', look: 'tiles',
       note: 'Lisbon, the tiles, and the hills that make every street a decision.',
@@ -394,14 +423,24 @@ window.TRAVELS = {
         ['Ancient Carthage', 'Carthage'],
         ['Sidi Bou Said', 'Tunis'],
         ['Al-Zaytuna Mosque', 'Tunis'],
-        ['The Mos Espa set', 'Ong Jemel'],
-        ['Hotel Sidi Driss', 'Matmata'],
-        ['Ben Kenobi’s hut', 'Djerba'],
         ['Chott el Djerid', 'Tozeur'],
         ['Chebika oasis', 'Tozeur'],
         ['Ribat of Sousse', 'Sousse'],
         ['The Roman theatre', 'Dougga'],
       ],
+      onscreen: {
+        lede: 'Tatooine is named after Tataouine in the south of this country, and it is a real place you can stand in. These are the sets.',
+        sets: [
+          { icon: '\u{1F30C}', tag: 'Tatooine',
+            rows: [
+              ['Mos Espa', 'Ong Jemel, near Nefta', 'The Phantom Menace and Attack of the Clones'],
+              ['The Lars homestead, inside', 'Hotel Sidi Driss, Matmata', 'A New Hope and Attack of the Clones'],
+              ['Obi-Wan Kenobi\u2019s hut', 'Near Ajim, Djerba', 'A New Hope'],
+              ['Mos Eisley', 'Ajim, Djerba', 'A New Hope'],
+              ['Tataouine', 'Southern Tunisia', 'The town the planet is named after'],
+            ],
+            quote: 'If there\u2019s a bright center to the universe, you\u2019re on the planet that it\u2019s farthest from.', by: 'Luke Skywalker' },
+        ] },
       cover: 'uci-first/2024-12-30-1217.avif',
       shots: ['uci-first/2024-12-25-1000.avif', 'uci-first/2024-12-25-1138.avif',
               'uci-first/2024-12-25-1139.avif', 'uci-first/2024-12-25-1154.avif',
@@ -590,13 +629,25 @@ window.TRAVELS = {
       countries: 'Portugal \u00b7 Spain', flags: '\u{1F1F5}\u{1F1F9}\u{1F1EA}\u{1F1F8}', c1: '#e0904a', c2: '#1f1207', look: 'arches',
       note: 'Back to both, three years after the first time, and better for knowing what to look for.',
       spots: [
-        ['Plaza de Espa\u00f1a', 'Seville'],
         ['Puente Nuevo and El Tajo', 'Ronda'],
-        ['City of Arts and Sciences', 'Valencia'],
-        ['X\u00e0tiva Castle', 'X\u00e0tiva'],
         ['The Algarve coast', 'Portugal'],
         ['Big Ben and Parliament', 'London'],
       ],
+      onscreen: {
+        lede: 'Andor, and the one square that has been Naboo since 2002.',
+        sets: [
+          { icon: '\u{1F30C}', tag: 'Andor',
+            rows: [
+              ['The Galactic Senate, Coruscant', 'City of Arts and Sciences, Valencia', 'Episodes 4, 6, 7, 9 and 10'],
+              ['Luthen\u2019s flashback', 'X\u00e0tiva', 'Episode 10'],
+            ],
+            quote: 'Rebellions are built on hope.', by: 'Cassian Andor' },
+          { icon: '\u{1F3DB}', tag: 'Naboo',
+            rows: [
+              ['Outside the Theed Palace', 'Plaza de Espa\u00f1a, Seville', 'Attack of the Clones, 38:40'],
+            ],
+            quote: 'I think the Republic needs you.', by: 'Anakin Skywalker, inside Theed Palace' },
+        ] },
       cover: 'uci-second/2025-12-25-1343.avif',
       shots: ['uci-second/2025-12-21-1938.avif', 'uci-second/2025-12-21-1945.avif',
               'uci-second/2025-12-23-1443.avif', 'uci-second/2025-12-23-1659.avif',
@@ -640,10 +691,33 @@ window.TRAVELS = {
       countries: 'Ireland', flags: '\u{1F1EE}\u{1F1EA}', c1: '#4fbf6f', c2: '#061a0e', look: 'cliffs',
       note: 'Green in a way photographs genuinely do not convey.',
       spots: [
-        ['Cliffs of Moher', 'County Clare'],
-        ['Game of Thrones Studio Tour', 'Banbridge'],
-        ['The Long Room, Trinity College', 'Dublin'],
+        ['Killarney and its jaunting cars', 'County Kerry'],
       ],
+      onscreen: {
+        lede: 'Star Wars, Harry Potter and Game of Thrones, and a library that quietly lent its shelves to both.',
+        sets: [
+          { icon: '\u{1F30C}', tag: 'Star Wars',
+            rows: [
+              ['Ahch-To, where Luke Skywalker dies', 'Fearann, County Kerry', 'The Last Jedi'],
+        ['Ahch-To, Luke Skywalker\u2019s island', 'Skellig Michael, County Kerry', 'The Force Awakens'],
+            ],
+            quote: 'I will not be the last Jedi.' },
+          { icon: '\u26a1', tag: 'Harry Potter',
+            rows: [
+              ['The Horcrux cave', 'Cliffs of Moher, County Clare', 'The Half-Blood Prince'],
+            ],
+            quote: 'Do you think the Horcrux is in there, sir?' },
+          { icon: '\u{1F43A}', tag: 'Game of Thrones',
+            rows: [
+              ['Game of Thrones Studio Tour', 'Banbridge, Northern Ireland'],
+            ],
+            quote: 'The North remembers.' },
+          { icon: '\u{1F4DA}', tag: 'The Long Room',
+            rows: [
+              ['The Long Room, Old Library, Trinity College', 'Dublin', 'The unofficial likeness behind the Jedi Archives on Coruscant, and behind more than one Hogwarts library'],
+            ],
+          },
+        ] },
       cover: 'uci-second/2026-04-07-1050.avif',
       shots: ['uci-second/2026-04-06-0753.avif', 'uci-second/2026-04-07-1045.avif',
               'uci-second/2026-04-07-1050.avif', 'uci-second/2026-04-07-1051.avif',
@@ -677,21 +751,59 @@ window.TRAVELS = {
       countries: 'Japan', flags: '\u{1F1EF}\u{1F1F5}', c1: '#e8788f', c2: '#1c0d12', look: 'torii',
       note: 'The most recent one, and the one I had wanted to do the longest. Both Tokyo Disney parks, Disneyland and DisneySea, plus Universal Studios Japan, all in one trip.',
       spots: [
-        ['Tokyo DisneySea', 'Chiba'],
-        ['Tokyo Disneyland', 'Chiba'],
-        ['Universal Studios Japan', 'Osaka'],
-        ['Studio Tour Tokyo, Harry Potter', 'Tokyo'],
         ['Kinkaku-ji', 'Kyoto'],
         ['Arashiyama bamboo grove', 'Kyoto'],
         ['Nara Park', 'Nara'],
-        ['Art Aquarium', 'Tokyo'],
-        ['Star Wars pop-up store', ''],
-        ['Harry Potter store, Harajuku', 'Tokyo'],
-        ['Marvel store', ''],
-        ['Stranger Things store, Expocity', 'Osaka'],
-        ['Minecraft store, Expocity', 'Osaka'],
-        ['Pok\u00e9mon Centers', ''],
+        ['Art Aquarium', 'Ginza'],
+        ['Tokyo Skytree Town', 'Sumida'],
+        ['Shibuya Crossing', 'Shibuya'],
+        ['A capybara caf\u00e9', 'Shinjuku'],
       ],
+      onscreen: {
+        lede: 'Star Wars, Harry Potter, Disney, Marvel, Pok\u00e9mon, Nintendo, Stranger Things, Minecraft and Universal Studios, all of it real and all of it walked into.',
+        sets: [
+          { icon: '\u{1F30C}', tag: 'Star Wars',
+            rows: [
+              ['Star Wars Pop-Up Store by Shibuya Tsutaya', 'Shibuya, Tokyo'],
+              ['The Mandalorian and Grogu displays', 'Shibuya, Tokyo'],
+        ['A wall of the Japanese release posters', 'Tokyo Skytree Town'],
+            ],
+            quote: 'This is the Way.' },
+          { icon: '\u26a1', tag: 'Harry Potter',
+            rows: [
+              ['Warner Bros. Studio Tour Tokyo, The Making of Harry Potter', 'Nerima, Tokyo', 'The Great Hall, Diagon Alley, Platform 9\u00be, the Forbidden Forest, Privet Drive, the Knight Bus and the Ford Anglia'],
+              ['The Wizarding World of Harry Potter', 'Universal Studios Japan, Osaka'],
+        ['Harry Potter Mahoudokoro', 'Harajuku, Tokyo'],
+            ],
+            quote: 'Happiness can be found even in the darkest of times, if one only remembers to turn on the light.' },
+          { icon: '\u{1F3F0}', tag: 'Disney',
+            rows: [
+              ['Tokyo Disneyland', 'Urayasu, Chiba'],
+              ['Tokyo DisneySea', 'Urayasu, Chiba'],
+            ],
+          },
+          { icon: '\u{1F3AE}', tag: 'Nintendo and Pok\u00e9mon',
+            rows: [
+              ['Nintendo TOKYO', 'Shibuya PARCO, Tokyo'],
+              ['Nintendo OSAKA', 'Umeda, Osaka'],
+              ['Super Nintendo World', 'Universal Studios Japan, Osaka'],
+              ['Pok\u00e9mon Centers', 'Nihonbashi and Skytree Town Tokyo, Kyoto, Osaka'],
+              ['Pok\u00e9mon Caf\u00e9', 'Shinsaibashi, Osaka'],
+            ],
+            quote: 'Gotta catch \u2019em all.' },
+          { icon: '\u2728', tag: 'Marvel, Stranger Things and Minecraft',
+            rows: [
+              ['Marvel store', 'Umeda, Osaka'],
+              ['Stranger Things store, Starcourt Mall and Hawkins', 'Expocity, Suita, Osaka'],
+              ['Minecraft store', 'Expocity, Suita, Osaka'],
+            ],
+            quote: 'Friends don\u2019t lie.' },
+          { icon: '\u{1F996}', tag: 'Universal Studios Japan',
+            rows: [
+              ['Jurassic Park', 'Universal Studios Japan, Osaka'],
+            ],
+            quote: 'Life finds a way.' },
+        ] },
       cover: 'uci-second/2026-07-19-1301.avif',
       shots: ['uci-second/2026-07-13-1741.avif', 'uci-second/2026-07-13-1931.avif',
               'uci-second/2026-07-13-2100.avif', 'uci-second/2026-07-14-0941.avif',

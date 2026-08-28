@@ -36,6 +36,7 @@ permalink: /worlds/pixar/
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/pics.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/pixar.css' %}" />
 </head>
 <body data-intro="none" data-fan="pixar">
@@ -152,6 +153,11 @@ permalink: /worlds/pixar/
 <!-- page content: data then the shared renderer, before reveal.js -->
 <script src="{% include v.html f='/assets/js/fan-pixar.js' %}"></script>
 <script src="{% include v.html f='/assets/js/photos-data.js' %}"></script>
+<!-- the year galleries, so fan-been.js can point at photographs it does not own -->
+<script src="{% include v.html f='/assets/js/years-data.js' %}"></script>
+<script src="{% include v.html f='/assets/js/fan-been.js' %}"></script>
+<!-- obeys the one photo switch, which lives on /worlds/ -->
+<script src="{% include v.html f='/assets/js/pics.js' %}"></script>
 <script src="{% include v.html f='/assets/js/fanpage.js' %}"></script>
 <script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
 <script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>

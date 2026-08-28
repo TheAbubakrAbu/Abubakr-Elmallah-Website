@@ -209,6 +209,15 @@ redirect_from:
 
 </main>
 
+<!-- THE one switch for personal photographs, for the whole site. It used to sit
+     at the foot of /high-school/, /college/ and /travels/, which is three
+     places to find the same localStorage key. Worlds is where the franchises
+     are and where the photographs of them are, so it is the honest place to
+     ask. Everything it governs still LISTS itself with the switch off: the
+     trips, the places, the franchises and what I have been to are all there,
+     and only the photographs wait to be asked for. -->
+<div class="picsw" data-pics-toggle></div>
+
 <footer class="footer">
   <span>© 2026 Abubakr Elmallah</span>
   <a class="footer-mid" href="/" data-magnetic>← Back to home</a>
@@ -225,6 +234,7 @@ redirect_from:
 </nav>
 
 <script src="{% include v.html f='/assets/js/utils.js' %}"></script>
+<script src="{% include v.html f='/assets/js/pics.js' %}"></script>
 <!-- franchise tiles: data then renderer, before magnetic.js / reveal.js -->
 <script src="{% include v.html f='/assets/js/fandom-data.js' %}"></script>
 <script src="{% include v.html f='/assets/js/fandom.js' %}"></script>

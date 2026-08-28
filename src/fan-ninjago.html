@@ -38,6 +38,7 @@ redirect_from:
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/pics.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/ninjago.css' %}" />
 </head>
 <body data-intro="none" data-fan="ninjago">
@@ -305,6 +306,11 @@ redirect_from:
 <script src="{% include v.html f='/assets/js/fan-ninjago.js' %}"></script>
 
 <script src="{% include v.html f='/assets/js/photos-data.js' %}"></script>
+<!-- the year galleries, so fan-been.js can point at photographs it does not own -->
+<script src="{% include v.html f='/assets/js/years-data.js' %}"></script>
+<script src="{% include v.html f='/assets/js/fan-been.js' %}"></script>
+<!-- obeys the one photo switch, which lives on /worlds/ -->
+<script src="{% include v.html f='/assets/js/pics.js' %}"></script>
 <script src="{% include v.html f='/assets/js/fanpage.js' %}"></script>
 <!-- after fanpage.js: the gallery images do not exist until it has run -->
 <script src="{% include v.html f='/assets/js/gallery.js' %}"></script>

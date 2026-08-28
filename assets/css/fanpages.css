@@ -2726,3 +2726,69 @@ body[data-fan="knotts"] .fan-title {
 }
 
 @keyframes ung-turn { from { transform: scaleX(1); } 50% { transform: scaleX(.08); } to { transform: scaleX(1); } }
+
+
+/* ── the real places ──
+   Photographs of a franchise's actual locations, drawn from the year galleries
+   by fan-been.js. A justified-ish grid rather than a strip: these are evidence
+   and they should be big enough to read, not a row of thumbnails. */
+/* Display is stated rather than inherited. This section is injected into a
+   page whose own stylesheet may already have an opinion about what a <section>
+   in it looks like, and on at least one of the ten it computed to inline-flex,
+   which shrank the grid to its content and stacked nine photographs in a
+   single 375px column. Saying it here costs one line and cannot be lost. */
+.fan-been {
+  display: block; width: 100%;
+  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+}
+.fan-been > .fan-h2, .fan-been > .fan-lede { display: block; }
+.fan-been .been-grid {
+  display: grid; width: 100%; gap: 0.9rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  margin-top: 1.1rem;
+}
+.been { margin: 0; display: flex; flex-direction: column; }
+.been a {
+  display: block; overflow: hidden; border-radius: 10px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  transition: border-color .2s ease, transform .2s ease;
+}
+.been a:hover { border-color: var(--a, var(--gold)); transform: translateY(-3px); }
+.been img {
+  display: block; width: 100%; height: 210px; object-fit: cover;
+  background: rgba(255,255,255,.03);
+}
+/* ── with the photo switch off ──
+   The LIST survives and only the pictures wait to be asked for: every place
+   is still named, still located, still counted. That is the whole point of
+   the switch, so this is CSS rather than JS and the images are never even
+   requested, let alone shown and then hidden.
+
+   The grid collapses to a column of names, because a grid sized for
+   photographs is mostly gaps once the photographs are gone. */
+html:not([data-show-pics="on"]) .been a { display: none; }
+html:not([data-show-pics="on"]) .fan-been .been-grid {
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 0.45rem 1.4rem;
+}
+html:not([data-show-pics="on"]) .been figcaption { margin-top: 0; }
+html:not([data-show-pics="on"]) .been figcaption b::before {
+  content: '\00b7'; color: var(--a, var(--gold)); margin-right: 0.4rem; opacity: .8;
+}
+html:not([data-show-pics="on"]) .fan-been .been-hint { display: block; }
+.been-hint { display: none; margin-top: 0.9rem; }
+
+.been figcaption { display: grid; gap: 0.1rem; margin-top: 0.45rem; }
+.been figcaption b {
+  font-weight: 500; font-size: 0.8rem; letter-spacing: -0.01em; color: var(--ink);
+}
+.been figcaption i {
+  font-style: normal; font-family: var(--mono); font-size: 0.48rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
+}
+@media (max-width: 560px) {
+  .fan-been .been-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .been img { height: 150px; }
+}
+@media (prefers-reduced-motion: reduce) { .been a { transition: none; } }

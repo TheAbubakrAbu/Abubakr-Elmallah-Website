@@ -323,6 +323,62 @@ body[data-fan="travels"] { --a: #7fb8e8; }
   content: '\00b7'; color: var(--mute); opacity: .6; margin-left: 0.5rem;
 }
 
+/* ── the screen worlds ──
+   Set apart from the rest of a trip by a rule and a label rather than a box,
+   because it is a second register on the same entry: everything above it is
+   where I was, this is what that place is in a film. Deliberately quiet, since
+   a trip like Japan carries seven of these sets and twenty-one rows. */
+.tv-screen {
+  margin-top: 1.1rem; padding-top: 0.9rem;
+  border-top: 1px solid color-mix(in srgb, var(--c1) 22%, transparent);
+}
+.tv-screen h4 {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.55rem;
+  margin: 0 0 0.75rem; font-weight: 400;
+}
+.tv-screen-k {
+  font-family: var(--mono); font-size: 0.46rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: color-mix(in srgb, var(--c1) 80%, #fff);
+}
+.tv-screen h4 i {
+  font-style: normal; font-size: 0.78rem; line-height: 1.5;
+  color: var(--ink-dim); max-width: 52ch;
+}
+
+.tv-set + .tv-set { margin-top: 0.85rem; }
+.tv-set h5 {
+  display: flex; align-items: center; gap: 0.4rem; margin: 0 0 0.35rem;
+  font-family: var(--mono); font-weight: 500; font-size: 0.52rem;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--c1) 72%, #fff);
+}
+.tv-set h5 b { font-size: 0.8rem; line-height: 1; }
+.tv-set ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.3rem; }
+.tv-set li {
+  display: grid; gap: 0.05rem;
+  padding-left: 0.7rem; border-left: 1px solid color-mix(in srgb, var(--c1) 26%, transparent);
+}
+.tv-set li b { font-weight: 500; font-size: 0.84rem; color: var(--ink); }
+.tv-set li span {
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute);
+}
+.tv-set li i {
+  font-style: normal; font-size: 0.72rem; line-height: 1.5; color: var(--ink-dim);
+  opacity: .82; max-width: 54ch;
+}
+.tv-set blockquote {
+  margin: 0.5rem 0 0; padding-left: 0.7rem;
+  border-left: 2px solid color-mix(in srgb, var(--c1) 45%, transparent);
+  font-size: 0.82rem; line-height: 1.55; font-style: italic;
+  color: color-mix(in srgb, var(--c1) 30%, var(--ink));
+}
+.tv-set blockquote cite {
+  display: block; margin-top: 0.2rem; font-style: normal;
+  font-family: var(--mono); font-size: 0.46rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mute);
+}
+
 /* ── the countries behind a region ──
    Quieter than .tv-spots on purpose: this is the countries line spelled out,
    not a second set of highlights, so it reads as a wrapping run of small
