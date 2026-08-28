@@ -566,45 +566,228 @@ a.fr-card { cursor: pointer; }
   display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; align-items: stretch;
 }
 @media (max-width: 720px) { .fr-travels { grid-template-columns: 1fr; } }
-/* Each half of the row is a bar, so it reads as a destination rather than a
-   footnote. The arrow keeps to the far edge of its own half. */
+/* ── the two doors ──
+   These are not footnotes under the grid, they are the other two worlds on
+   this page: one I walked into and one I can do the voice of. So they are
+   built as doors. Everything below is driven by --d, the door's own colour,
+   set once per button, which is what keeps the blue one and the gold one from
+   being two copies of the same rules.
+
+   Tall on purpose. They used to be 0.9rem of padding around one line of mono
+   and read as a form control; the height is what makes them a destination. */
 .fr-travels-btn {
-  display: flex; width: 100%; align-items: center; gap: 0.8rem;
-  padding: 0.9rem 1.1rem;
-  border: 1px solid var(--line); border-radius: 8px; text-decoration: none;
-  background: linear-gradient(100deg, rgba(120,170,220,.07), transparent 70%);
-  transition: border-color .16s ease, transform .16s ease, background .16s ease;
+  --d: #7fb8e8;
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; width: 100%; align-items: center; gap: 1.15rem;
+  min-height: 132px; padding: 1.5rem 1.5rem 1.5rem 1.35rem;
+  border: 1px solid var(--line); border-radius: 14px; text-decoration: none;
+  background:
+    radial-gradient(120% 150% at 0% 0%, color-mix(in srgb, var(--d) 13%, transparent), transparent 62%),
+    linear-gradient(160deg, rgba(255,255,255,.028), transparent 55%),
+    rgba(8,9,13,.5);
+  transition: border-color .22s ease, transform .22s ease, box-shadow .22s ease;
 }
-.fr-travels-a { margin-left: auto; }
-.fr-travels-btn:hover {
-  border-color: rgba(140,190,240,.5); transform: translateY(-3px);
-  background: linear-gradient(100deg, rgba(120,170,220,.13), transparent 70%);
+/* the light that comes under the door: a bar along the bottom edge that grows
+   from a hairline to the full width on hover */
+.fr-travels-btn::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: linear-gradient(90deg, var(--d), transparent 78%);
+  opacity: .45; transform: scaleX(.35); transform-origin: 0 50%;
+  transition: transform .3s var(--ease, ease), opacity .3s ease;
 }
-.fr-travels-i { width: 22px; height: 22px; flex: none; }
-.fr-travels-i svg { width: 100%; height: 100%; fill: none; stroke: #7fb8e8; stroke-width: 1.3;
-  stroke-linecap: round; stroke-linejoin: round; }
-.fr-travels-t { display: grid; gap: 0.05rem; min-width: 0; }
-.fr-travels-t b { font-family: var(--mono); font-weight: 500; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--ink); }
+.fr-travels-btn:hover, .fr-travels-btn:focus-visible {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--d) 55%, transparent);
+  box-shadow: 0 14px 34px -18px color-mix(in srgb, var(--d) 70%, transparent);
+}
+.fr-travels-btn:hover::after, .fr-travels-btn:focus-visible::after {
+  transform: scaleX(1); opacity: .9;
+}
+.fr-travels-btn:focus-visible { outline: 2px solid var(--d); outline-offset: 3px; }
+
+/* The icon sits in a lit plate rather than floating loose, which is most of
+   what makes the taller button feel deliberate instead of padded. */
+.fr-travels-i {
+  flex: none; display: grid; place-items: center;
+  width: 54px; height: 54px; border-radius: 13px;
+  border: 1px solid color-mix(in srgb, var(--d) 32%, transparent);
+  background:
+    radial-gradient(90% 90% at 50% 12%, color-mix(in srgb, var(--d) 22%, transparent), transparent 70%),
+    rgba(255,255,255,.022);
+  transition: transform .22s ease, border-color .22s ease;
+}
+.fr-travels-btn:hover .fr-travels-i {
+  transform: scale(1.06);
+  border-color: color-mix(in srgb, var(--d) 60%, transparent);
+}
+.fr-travels-i svg {
+  width: 27px; height: 27px; fill: none; stroke: var(--d); stroke-width: 1.35;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+.fr-travels-t { display: grid; gap: 0.4rem; min-width: 0; }
+.fr-travels-t b {
+  font-family: var(--sans); font-weight: 600;
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.24rem); letter-spacing: -0.01em;
+  line-height: 1.15; color: var(--ink);
+}
 .fr-travels-t i {
-  font-style: normal; font-family: var(--mono); font-size: 0.48rem;
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
+  font-style: normal; font-family: var(--mono); font-size: 0.5rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
+  line-height: 1.5;
 }
-.fr-travels-a { font-size: 0.8rem; color: #7fb8e8; }
-
-/* Accents is gold rather than blue so the two halves of the row read as two
-   different rooms, not one control repeated; the colour is set on the wrapper
-   so the icon, the arrow and the wash all follow from a single declaration. */
-.fr-travels-btn--ac {
-  background: linear-gradient(100deg, rgba(245,198,60,.07), transparent 70%);
+.fr-travels-a {
+  margin-left: auto; flex: none;
+  display: grid; place-items: center; width: 32px; height: 32px;
+  border-radius: 50%; font-size: 0.85rem; color: var(--d);
+  border: 1px solid color-mix(in srgb, var(--d) 26%, transparent);
+  transition: transform .22s ease, background .22s ease, border-color .22s ease;
+}
+.fr-travels-btn:hover .fr-travels-a {
+  transform: translateX(4px);
+  background: color-mix(in srgb, var(--d) 16%, transparent);
+  border-color: color-mix(in srgb, var(--d) 55%, transparent);
 }
 
-.fr-travels-btn--ac:hover {
-  border-color: rgba(245,198,60,.5);
-  background: linear-gradient(100deg, rgba(245,198,60,.13), transparent 70%);
-}
+/* Accents is gold rather than blue so the two doors read as two different
+   rooms and not one control repeated. One custom property does all of it. */
+.fr-travels-btn--ac { --d: var(--gold, #f5c63c); }
 
-.fr-travels-btn--ac .fr-travels-i svg { stroke: var(--gold); }
+@media (max-width: 720px) {
+  .fr-travels-btn { min-height: 108px; padding: 1.2rem 1.2rem 1.2rem 1.1rem; gap: 0.95rem; }
+  .fr-travels-i { width: 46px; height: 46px; border-radius: 11px; }
+  .fr-travels-i svg { width: 23px; height: 23px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fr-travels-btn, .fr-travels-btn::after, .fr-travels-i, .fr-travels-a { transition: none; }
+  .fr-travels-btn:hover { transform: none; }
+}
 
 .fr-travels-btn--ac .fr-travels-a { color: var(--gold); }
 
 @media (prefers-reduced-motion: reduce) { .fr-travels-btn:hover { transform: none; } }
+
+/* ══ the rift: the page's backdrop ═════════════════════════════════════════
+   A FIXED LAYER OVER THE VIEWPORT, sitting beside #field rather than inside
+   any section. It began life inside the hero and was cut off along the bottom
+   of it, and the fix for that (a fade) only moved the edge rather than
+   removing it. Anything with a box around it can have that box crop it. This
+   has no box: it is pinned to the screen and .rift-core is deliberately larger
+   than the screen in BOTH directions, so every ring runs off all four sides
+   and there is no edge of it to find at any window size or scroll position.
+
+   Built from six rings, two slow fields of colour and one dust layer, all of
+   them <span>s with no content. No images (nothing to download), no canvas
+   (nothing to run), no JS. Only transform and opacity animate, which the
+   compositor handles without ever touching layout, so a fixed full-screen
+   backdrop costs a page that is otherwise idle almost nothing.
+
+   The palette is the site's own accents rather than a new one, so this reads
+   as the same site in a bigger mood: gold from Star Wars, green from the Islam
+   family, blue from the rest of the pages. */
+.rift {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
+  /* Tuned for a hero-sized panel to begin with, which is far too strong once
+     it is behind every card on the page: everything below it turned green. */
+  opacity: .72;
+  /* the only fade left is at the foot of the screen, and it is there to keep
+     the tab bar legible, not to shape the rift */
+  -webkit-mask-image: linear-gradient(#000 72%, rgba(0,0,0,.55) 100%);
+          mask-image: linear-gradient(#000 72%, rgba(0,0,0,.55) 100%);
+}
+/* Square, centred, and bigger than the viewport diagonal at any aspect ratio,
+   which is what guarantees the rings always leave the screen rather than
+   ending inside it. */
+.rift-core {
+  position: absolute; left: 50%; top: 42%;
+  width: max(165vw, 165vh); aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+}
+
+/* two fields of colour, turning against each other. Conic rather than radial
+   so the colour changes as it rotates instead of just breathing. Blurred hard
+   enough that where the viewport clips them there is nothing to see. */
+.rift-glow, .rift-glow::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+}
+.rift-glow {
+  background: conic-gradient(from 0deg,
+    rgba(245,198,60,.15), rgba(63,191,127,.12) 28%, rgba(127,184,232,.14) 55%,
+    rgba(224,120,143,.10) 78%, rgba(245,198,60,.15));
+  filter: blur(64px);
+  animation: rift-spin 78s linear infinite;
+}
+.rift-glow::after {
+  background: conic-gradient(from 210deg,
+    transparent, rgba(127,184,232,.13) 30%, transparent 62%, rgba(245,198,60,.10) 88%, transparent);
+  filter: blur(44px);
+  animation: rift-spin 52s linear infinite reverse;
+}
+
+/* the rings. One rule, six sizes: --n counts outward and everything else is
+   derived from it, so adding a seventh is one <span> and one line. */
+.rift-ring {
+  position: absolute; left: 50%; top: 50%; border-radius: 50%;
+  width: calc(16% + var(--n) * 14%); aspect-ratio: 1 / 1;
+  margin: calc((16% + var(--n) * 14%) / -2) 0 0 calc((16% + var(--n) * 14%) / -2);
+  border: 1px solid rgba(190,214,236,calc(.24 - var(--n) * .028));
+  animation: rift-drift calc(26s + var(--n) * 9s) ease-in-out infinite alternate;
+  animation-delay: calc(var(--n) * -3.5s);
+}
+.rift-ring:nth-child(2) { --n: 0; }
+.rift-ring:nth-child(3) { --n: 1; }
+.rift-ring:nth-child(4) { --n: 2; }
+.rift-ring:nth-child(5) { --n: 3; }
+.rift-ring:nth-child(6) { --n: 4; }
+.rift-ring:nth-child(7) { --n: 5; }
+/* two dashed and two coloured, so the set does not read as a target */
+.rift-ring:nth-child(3), .rift-ring:nth-child(6) {
+  border-style: dashed; border-color: rgba(190,214,236,.11);
+}
+.rift-ring:nth-child(4) { border-color: rgba(245,198,60,.18); }
+.rift-ring:nth-child(5) { border-color: rgba(63,191,127,.13); }
+
+/* dust: two repeating gradients crossed at an angle, which gives a grid of
+   points without a single image or DOM node per point */
+.rift-dust {
+  position: absolute; inset: 0; border-radius: 50%;
+  background:
+    repeating-radial-gradient(circle at 30% 34%, rgba(223,233,242,.26) 0 1px, transparent 1px 62px),
+    repeating-radial-gradient(circle at 71% 66%, rgba(223,233,242,.17) 0 1px, transparent 1px 47px);
+  opacity: .45;
+  animation: rift-spin 150s linear infinite;
+}
+
+@keyframes rift-spin  { to { transform: rotate(360deg); } }
+@keyframes rift-drift {
+  from { transform: rotate(-7deg) scale(.965); opacity: .55; }
+  to   { transform: rotate(7deg)  scale(1.035); opacity: 1; }
+}
+
+/* Content sits above it. The rift is z-index 0 and fixed, so anything that is
+   not positioned would otherwise paint underneath it. */
+body > header, body > main, body > footer, body > nav, body > .tabbar {
+  position: relative; z-index: 1;
+}
+
+/* ── the invitation ──
+   Not in the hero any more: it belongs to the button under it, which is the
+   thing that actually opens the worlds. Centred and given room, because it is
+   the one sentence on the page that says what the page is.
+
+   NOT .fr-enter, which is already the "Enter" label in the corner of every
+   franchise tile a few hundred lines up: absolutely positioned, mono, upper
+   case. Reusing that name put this sentence in the bottom-right of the section
+   in small caps and quietly restyled 46 tiles at the same time. */
+.fr-invite {
+  max-width: 52ch; margin: 0 auto 1.5rem; text-align: center;
+  font-size: clamp(1.02rem, 1rem + 0.55vw, 1.4rem);
+  line-height: 1.5; color: var(--ink); text-wrap: balance;
+}
+
+/* Everything here is decoration and none of it is worth making somebody ill.
+   The rings and the colour stay, exactly as composed; only the motion stops. */
+@media (prefers-reduced-motion: reduce) {
+  .rift-glow, .rift-glow::after, .rift-ring, .rift-dust { animation: none; }
+}

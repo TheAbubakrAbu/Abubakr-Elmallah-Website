@@ -188,8 +188,139 @@
 
 .fan-visit:hover { color: var(--ink); border-bottom-color: var(--ink); }
 
-/* several links on one row (`links` on an item, see fanpage.js) */
-.fan-visits { display: flex; flex-wrap: wrap; gap: 0.15rem 0.9rem; align-self: flex-start; }
+/* ── hear it without leaving ──
+   A Play button next to any link that points at YouTube. It sits in the same
+   row as the link and borrows the item's own accent, so a page with fifty of
+   them still reads as one thing rather than fifty buttons. */
+.fan-hear {
+  align-self: flex-start; margin-top: 0.15rem; margin-right: 0.7rem;
+  display: inline-flex; align-items: center; gap: 0.32rem;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--a, var(--gold));
+  background: color-mix(in srgb, var(--a, #f5c63c) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--a, #f5c63c) 34%, transparent);
+  border-radius: 999px; padding: 0.2rem 0.55rem 0.22rem 0.45rem;
+  cursor: pointer; transition: background .2s, color .2s, border-color .2s;
+}
+.fan-hear svg { width: 0.72em; height: 0.72em; fill: currentColor; flex: none; }
+.fan-hear:hover {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--a, #f5c63c) 20%, transparent);
+  border-color: color-mix(in srgb, var(--a, #f5c63c) 60%, transparent);
+}
+.fan-hear:focus-visible { outline: 2px solid var(--a, var(--gold)); outline-offset: 2px; }
+.fan-hear.is-playing {
+  color: #06090d; background: var(--a, var(--gold));
+  border-color: var(--a, var(--gold));
+}
+/* the square becomes a stop glyph without a second icon in the markup */
+.fan-hear.is-playing svg { clip-path: inset(18%); border-radius: 1px; }
+
+/* The player itself: inserted after the item it belongs to and deleted when
+   it stops, so it is never sitting in the page doing nothing. Capped in width
+   because these are album uploads, which are a still image and a waveform,
+   not something anybody needs full-bleed. */
+.fan-stage {
+  position: relative; grid-column: 1 / -1;
+  width: min(100%, 460px); margin: 0.7rem 0 0.2rem;
+  border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  background: #05080c;
+}
+.fan-stage-vid { position: relative; }
+.fan-stage iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
+/* the YT API replaces the placeholder <div> with its own iframe, so both the
+   div (before) and the iframe (after) have to hold the same box or the panel
+   collapses to nothing for a beat and then jumps */
+.fan-stage-vid > div { width: 100%; aspect-ratio: 16 / 9; }
+.fan-stage.is-waiting .fan-stage-vid::after {
+  content: ''; position: absolute; left: 50%; top: 50%; width: 22px; height: 22px;
+  margin: -11px 0 0 -11px; border-radius: 50%;
+  border: 2px solid rgba(223,233,242,.2); border-top-color: rgba(223,233,242,.75);
+  animation: fan-spin .7s linear infinite;
+}
+@keyframes fan-spin { to { transform: rotate(360deg); } }
+
+/* ── the transport ──
+   Added only once the player is live, so nothing here is ever a dead control.
+   One row: back ten, pause, forward ten, the bar, the clock. */
+.fan-tr {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 0.6rem 0.55rem;
+  border-top: 1px solid var(--line);
+  background: rgba(6,9,13,.55);
+}
+.fan-tr-b {
+  position: relative; flex: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; padding: 0;
+  color: #dfe9f2; background: transparent;
+  border: 1px solid rgba(223,233,242,.2); border-radius: 6px;
+  cursor: pointer; transition: background .16s, border-color .16s, color .16s;
+}
+.fan-tr-b:hover { background: rgba(223,233,242,.12); border-color: rgba(223,233,242,.5); }
+.fan-tr-b:focus-visible { outline: 2px solid var(--a, var(--gold)); outline-offset: 2px; }
+.fan-tr-b svg { width: 13px; height: 13px; fill: currentColor; }
+/* the 10 sits inside the curl of the arrow, the way every player draws it */
+.fan-tr-b u {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-family: var(--mono); font-size: 0.4rem; font-style: normal;
+  text-decoration: none; letter-spacing: 0; padding-top: 1px;
+}
+/* one glyph for both states: the pause bars become a triangle when stopped */
+.fan-tr-pp.is-paused svg { clip-path: polygon(20% 0, 100% 50%, 20% 100%); }
+
+.fan-scrub {
+  position: relative; flex: 1 1 auto; height: 20px; min-width: 60px;
+  cursor: pointer; touch-action: none;
+}
+.fan-scrub:focus-visible { outline: 2px solid var(--a, var(--gold)); outline-offset: 3px; border-radius: 3px; }
+.fan-scrub-track, .fan-scrub-fill {
+  position: absolute; top: 50%; left: 0; height: 3px; margin-top: -1.5px;
+  border-radius: 2px; pointer-events: none;
+}
+.fan-scrub-track { right: 0; background: rgba(223,233,242,.18); }
+.fan-scrub-fill { width: 0; background: var(--a, var(--gold)); }
+.fan-scrub-knob {
+  position: absolute; top: 50%; left: 0; width: 9px; height: 9px;
+  margin: -4.5px 0 0 -4.5px; border-radius: 50%;
+  background: var(--a, var(--gold)); pointer-events: none;
+  transition: transform .13s ease;
+}
+.fan-scrub:hover .fan-scrub-knob,
+.fan-scrub.is-scrubbing .fan-scrub-knob { transform: scale(1.5); }
+
+.fan-tr-t {
+  flex: none; font-family: var(--mono); font-size: 0.5rem;
+  letter-spacing: 0.04em; color: var(--mute); font-variant-numeric: tabular-nums;
+}
+.fan-tr-t b { color: #dfe9f2; font-weight: 500; }
+.fan-tr-t i { font-style: normal; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fan-stage.is-waiting .fan-stage-vid::after,
+  .fan-scrub-knob { animation: none; transition: none; }
+}
+.fan-stage-x {
+  position: absolute; top: 0.4rem; right: 0.4rem;
+  font-family: var(--mono); font-size: 0.48rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #dfe9f2;
+  background: rgba(6,9,13,.72); border: 1px solid rgba(223,233,242,.28);
+  border-radius: 5px; padding: 0.2rem 0.4rem; cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+.fan-stage-x:hover { background: rgba(6,9,13,.92); border-color: rgba(223,233,242,.6); }
+@media (prefers-reduced-motion: no-preference) {
+  .fan-stage { animation: fan-stage-in .18s ease-out; }
+}
+@keyframes fan-stage-in { from { opacity: 0; transform: translateY(-4px); } }
+
+/* One row per item's links, always present even for a single one, so the
+   subgrid sees one part whether or not there is a Play button in it. */
+.fan-visits {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 0.15rem 0.9rem; align-self: flex-start;
+}
+.fan-visits .fan-hear { margin-right: 0; }
 
 .fan-visits > .fan-visit { margin-top: 0.15rem; }
 

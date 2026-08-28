@@ -284,6 +284,58 @@ body[data-fan="travels"] { --a: #7fb8e8; }
   letter-spacing: 0.06em; color: var(--ink-dim);
 }
 .tv-trip-c em { font-style: normal; color: var(--mute); opacity: .8; margin-left: 0.6rem; }
+
+/* ── the country's own outline ──
+   Drawn small and quiet next to the countries line: it is there to answer
+   "what does that one look like", not to be a second illustration competing
+   with the photograph beside it. A trip through two countries gets two. */
+.tv-shapes {
+  display: flex; align-items: flex-end; gap: 0.55rem;
+  margin-top: 0.55rem;
+}
+.tv-shape { display: block; width: 46px; height: 46px; }
+.tv-shape svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.tv-shape svg path {
+  fill: color-mix(in srgb, var(--c1) 26%, transparent);
+  stroke: color-mix(in srgb, var(--c1) 75%, #fff);
+  stroke-width: 1.6; stroke-linejoin: round; vector-effect: non-scaling-stroke;
+}
+@media (max-width: 560px) { .tv-shape { width: 38px; height: 38px; } }
+
+/* ── the cities, from the photographs' own GPS ──
+   A wrapping run of small names, quieter than .tv-spots below it: those are
+   chosen landmarks, these are simply everywhere the camera was switched on. */
+.tv-cities {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.16rem 0.5rem;
+  margin-top: 0.6rem;
+}
+.tv-cities b {
+  font-family: var(--mono); font-weight: 500; font-size: 0.46rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
+  margin-right: 0.15rem;
+}
+.tv-cities span { font-size: 0.72rem; color: var(--ink-dim); }
+/* The separator trails its own name rather than leading the next one. With
+   ::before on the following span, a list that wrapped put a stray dot at the
+   start of every new line; this way the dot stays at the end of the line it
+   belongs to, which is where a reader expects it. */
+.tv-cities span:not(:last-child)::after {
+  content: '\00b7'; color: var(--mute); opacity: .6; margin-left: 0.5rem;
+}
+
+/* ── the countries behind a region ──
+   Quieter than .tv-spots on purpose: this is the countries line spelled out,
+   not a second set of highlights, so it reads as a wrapping run of small
+   names rather than as chips competing with the landmarks below. */
+.tv-within {
+  display: flex; flex-wrap: wrap; gap: 0.2rem 0.7rem;
+  margin-top: 0.4rem; padding: 0; list-style: none;
+}
+.tv-within li {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.72rem; letter-spacing: -0.01em; color: var(--ink-dim);
+}
+.tv-within li span { font-size: 0.82rem; line-height: 1; }
 .tv-trip-n { margin-top: 0.5rem; font-size: 0.92rem; line-height: 1.65; color: var(--ink-dim); }
 
 /* ── the places themselves ──
@@ -411,23 +463,50 @@ body[data-fan="travels"] { --a: #7fb8e8; }
   font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--mute); margin-bottom: 1.2rem;
 }
+/* The frame is the viewport; .tvm-pan inside it is the thing that grows.
+   Zooming sets that one width in px and everything the map is made of scales
+   with it, which is why there is no counter-scaling anywhere in this file. */
 .tvm-frame {
   position: relative;
-  border: 1px solid var(--line); border-radius: 10px; overflow-x: auto;
+  border: 1px solid var(--line); border-radius: 10px; overflow: auto;
   background:
     radial-gradient(90% 90% at 50% 0%, rgba(127,184,232,.06), transparent 60%),
     linear-gradient(170deg, #0a1119, #06090d 80%);
+  overscroll-behavior: contain;          /* do not chain the page scroll */
+  touch-action: pan-x pan-y pinch-zoom;
+  cursor: grab;
 }
-.tvm-frame svg { display: block; width: 100%; min-width: 720px; height: auto; }
-/* Below ~720px the map is wider than the screen and scrolls inside its own
-   frame, which is invisible unless you say so. */
-.tvm-swipe { display: none; }
-@media (max-width: 760px) {
-  .tvm-swipe {
-    display: block; margin-top: 0.5rem;
-    font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--mute);
-  }
+.tvm-frame.is-dragging { cursor: grabbing; }
+.tvm-frame.is-dragging * { pointer-events: none; }
+.tvm-pan { width: 100%; min-width: 720px; }
+.tvm-pan svg { display: block; width: 100%; height: auto; }
+/* At 1x the map fits and nothing scrolls; zoomed in, the frame is a fixed
+   window you move around inside rather than a section that grows down the
+   page and pushes everything after it away. */
+.tvm-frame.is-zoomed { max-height: min(78vh, 620px); }
+
+.tvm-zoom {
+  display: flex; align-items: center; gap: 0.4rem;
+  margin-top: 0.55rem;
+}
+.tvm-zoom button {
+  font: inherit; font-family: var(--mono); font-size: 0.6rem; line-height: 1;
+  color: var(--ink-dim); background: rgba(255,255,255,.04);
+  border: 1px solid var(--line); border-radius: 6px;
+  padding: 0.4rem 0.55rem; cursor: pointer;
+  transition: background .13s ease, color .13s ease, border-color .13s ease;
+}
+.tvm-zoom button:hover { background: rgba(255,255,255,.09); color: var(--ink); border-color: var(--mute); }
+.tvm-zoom button:focus-visible { outline: 2px solid var(--c1, #7fb8e8); outline-offset: 2px; }
+.tvm-reset { letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.5rem !important; }
+.tvm-lvl {
+  min-width: 2.6rem; text-align: center;
+  font-family: var(--mono); font-size: 0.55rem; color: var(--mute);
+}
+.tvm-swipe {
+  margin-top: 0.5rem;
+  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mute);
 }
 
 /* named parallels: the equator earns its label, the rest sit back */
@@ -486,14 +565,55 @@ body[data-fan="travels"] { --a: #7fb8e8; }
   opacity: 0; transition: opacity .15s ease; pointer-events: none;
 }
 .tvm-pin:hover text, .tvm-pin.is-hot text { opacity: 1; }
-.tvm-home text { opacity: .55; font-size: 8.5px; }
+/* At 1x every label at once is a pile of overlapping type, which is why they
+   were hover-only. Zoomed in there is room for them, and reading the names is
+   the whole reason for zooming, so past 2x they all come on. */
+.tvm-frame.is-labelled .tvm-pin text { opacity: .92; }
+.tvm-frame.is-labelled .tvm-pin--lay text { opacity: .6; }
+
+/* ── what does NOT grow when you zoom ──
+   Zooming scales the whole SVG, so a label at 4x is drawn four times the size
+   and sits exactly as far from its neighbour, in proportion, as it did at 1x.
+   That is a bigger picture of the same collision, not a better one, and the
+   point of zooming here is to pull San Felipe, Ensenada and La Bufadora apart
+   far enough to read all three.
+
+   So the type and the pins are divided by --z, which travels-map.js keeps in
+   step with the zoom. In SVG a font-size is in user units, and user units are
+   what the scaling changes, so dividing by the same number holds them at a
+   constant size on screen while the geography spreads out underneath.
+
+   The land dots deliberately do NOT get this treatment. They are a 1.5-degree
+   grid and there is no more detail in them to reveal, so letting them grow
+   keeps the continents reading as solid shapes, like a halftone enlarged,
+   rather than scattering them into unreadable specks. */
+.tvm-frame { --z: 1; }
+.tvm-pin text, .tvm-home text, .tvm-par text {
+  font-size: calc(var(--fs, 9.5px) / var(--z));
+  stroke-width: calc(var(--sw, 3px) / var(--z));
+}
+.tvm-par text { --fs: 7.5px; --sw: 2.5px; }
+.tvm-home text { --fs: 8.5px; }
+.tvm-pin--lay text { --fs: 8px; }
+.tvm-pin .tvm-dot, .tvm-home .tvm-dot { r: calc(var(--r, 3px) / var(--z)); }
+.tvm-home .tvm-dot { --r: 3.4px; }
+.tvm-pin--lay .tvm-dot { --r: 1.8px; }
+.tvm-pin .tvm-halo, .tvm-home .tvm-halo {
+  r: calc(var(--hr, 7.5px) / var(--z));
+  stroke-width: calc(1px / var(--z));
+}
+.tvm-home .tvm-halo { --hr: 12px; }
+.tvm-hit { r: calc(11px / var(--z)); }
+.tvm-arcs path { stroke-width: calc(1.1px / var(--z)); }
+.tvm-par line { stroke-width: calc(1px / var(--z)); }
+.tvm-home text { opacity: .55; }   /* size comes from --fs above, so it scales back */
 .tvm-home .tvm-dot { --pc: #ffd9a0; }
 .tvm-home .tvm-halo { --pc: #ffd9a0; animation-duration: 2.2s; }
 
 /* layovers: barely there, on purpose */
-.tvm-pin--lay .tvm-dot { r: 1.8; opacity: .5; filter: none; }
+.tvm-pin--lay .tvm-dot { opacity: .5; filter: none; }
 .tvm-pin--lay .tvm-halo { display: none; }
-.tvm-pin--lay text { font-size: 8px; }
+/* --fs above sets the size; only the weighting of a layover belongs here */
 .tvm-pin--lay:hover text { opacity: .8; }
 
 /* what the four dot colours mean, before the country list */
