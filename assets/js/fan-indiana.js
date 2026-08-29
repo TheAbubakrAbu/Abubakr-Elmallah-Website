@@ -11,6 +11,41 @@ window.FAN_PAGE = {
       { num: 'IV', title: 'Kingdom of the Crystal Skull', sub: '2008', desc: 'The fridge. Everyone has an opinion and all of them are the same opinion.' },
       { num: 'V', title: 'Dial of Destiny', sub: '2023', desc: 'An eighty-year-old Indy and a de-aged prologue, ending the thing on the right note.' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, and those are taken from what this
+     page already says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five films, one series, and a lot of games',
+    lede: 'Five films across forty-two years, one television series that nobody watched and everybody should, and a run of games that is where I actually met him.',
+    items: [
+      { title: 'The Films', sub: '1981 – 2023', unit: 'film',
+        desc: 'Spielberg directed four; James Mangold took the last one.',
+        rows: [
+          { n: 'Raiders of the Lost Ark', y: '1981' },
+          { n: 'Indiana Jones and the Temple of Doom', y: '1984' },
+          { n: 'Indiana Jones and the Last Crusade', y: '1989' },
+          { n: 'Indiana Jones and the Kingdom of the Crystal Skull', y: '2008' },
+          { n: 'Indiana Jones and the Dial of Destiny', y: '2023' },
+        ] },
+      { title: 'On Television', sub: '1992 – 1996', unit: 'series',
+        desc: 'A history lesson wearing an adventure series: young Indy meets most of the twentieth century.',
+        rows: [
+          { n: 'The Young Indiana Jones Chronicles', y: '1992' },
+        ] },
+      { title: 'The Games', sub: '1989 – 2024', unit: 'game',
+        desc: 'The LEGO pair are marked because they are how I met the whole thing: I had both at a hundred percent before I had seen a single film.',
+        rows: [
+          { n: 'Indiana Jones and the Last Crusade: The Graphic Adventure', y: '1989' },
+          { n: 'Indiana Jones and the Fate of Atlantis', y: '1992' },
+          { n: 'Indiana Jones and the Infernal Machine', y: '1999' },
+          { n: 'Indiana Jones and the Emperor’s Tomb', y: '2003' },
+          { n: 'LEGO Indiana Jones: The Original Adventures', y: '2008', big: true },
+          { n: 'LEGO Indiana Jones 2: The Adventure Continues', y: '2009', big: true },
+          { n: 'Indiana Jones and the Staff of Kings', y: '2009' },
+          { n: 'Indiana Jones and the Great Circle', y: '2024' },
+        ] },
+    ] },
+
 
   { id: 'gear', kind: 'cards', title: 'The Kit', note: 'the most recognisable silhouette in cinema',
     lede: 'You can identify him from a shadow on a wall, which almost nothing else in film can claim. Four objects do all of that work, and the whip does most of it.',

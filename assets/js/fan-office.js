@@ -34,6 +34,40 @@ window.FAN_PAGE = {
       { title: 'Seasons 6–7', sub: '2009–11', desc: 'Niagara, and then Goodbye Michael: the best exit any sitcom character has been given.' },
       { title: 'Seasons 8–9', sub: '2011–13', desc: 'The wobble after Michael leaves, and then a finale that lands better than it had any right to.' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'nine seasons, and where it came from',
+    lede: 'Nine seasons and two hundred and one episodes, adapted from a fourteen-episode British series that is a completely different show. The groupings above are of these.',
+    items: [
+      { title: 'The Seasons', sub: 'NBC · 2005 – 2013', unit: 'season',
+        desc: 'Six episodes in season one, then twenty-odd a year until Michael leaves in season seven.',
+        rows: [
+          { n: 'Season One', y: '2005' },
+          { n: 'Season Two', y: '2005', big: true },
+          { n: 'Season Three', y: '2006', big: true },
+          { n: 'Season Four', y: '2007' },
+          { n: 'Season Five', y: '2008' },
+          { n: 'Season Six', y: '2009' },
+          { n: 'Season Seven', y: '2010' },
+          { n: 'Season Eight', y: '2011' },
+          { n: 'Season Nine', y: '2012' },
+        ] },
+      { title: 'The Original', sub: 'BBC Two · 2001 – 2003', unit: 'series',
+        desc: 'Gervais and Merchant, twelve episodes and a Christmas special, and much bleaker.',
+        rows: [
+          { n: 'The Office (UK)', y: '2001' },
+          { n: 'The Christmas Specials', y: '2003' },
+        ] },
+      { title: 'Around It', sub: '2020 – now', unit: 'thing',
+        desc: 'The superfan cuts put the deleted scenes back into the episodes, and there is now a spin-off in the same universe.',
+        rows: [
+          { n: 'The superfan episodes', y: '2020' },
+          { n: 'The Paper', y: '2025' },
+        ] },
+    ] },
+
 
   { id: 'dundies', kind: 'tiles', title: 'The Dundies', note: 'awards nobody asked for',
     lede: 'Held annually at Chili\u2019s, hosted by Michael, and the source of the best cold open in the show.',

@@ -95,6 +95,79 @@ window.FAN_PAGE = {
         meta: 'The Starway' },
     ] },
 
+  /* ── the local park, taken apart ──
+     The Disney page does this for Anaheim; this is the same treatment for the
+     other one down the freeway. `kind: 'lands'` is the only section kind that
+     lists attractions one by one, and Hollywood needs it more than most
+     because its geography is genuinely odd: the park is cut in half by a
+     hillside, and which lot a land is on tells you more about it than the year
+     it opened does. See fanpage.js. */
+  { id: 'ush-lands', kind: 'lands', title: 'Universal Studios Hollywood, Land by Land',
+    note: 'eight areas · two lots · every ride in each',
+    lede: 'This park is built up the side of a hill, which no theme park would ever choose. The Upper Lot has the gate, the tram and everything themed; the Lower Lot has the three big rides and is reached by the Starway, a stack of escalators that drops about a hundred feet and takes a few minutes each way. Diamonds are the headliners.',
+    items: [
+      { title: 'The Studio Tour', sub: 'Upper Lot · 1964', accent: '#f0a83a',
+        desc: 'Older than the theme park built around it, and still the reason to come. An hour on a tram through standing sets that films are genuinely shot on, with set pieces triggered along the way.',
+        rides: [
+          { n: 'King Kong 360 3-D', y: '2010', big: true },
+          { n: 'Fast & Furious: Supercharged', y: '2015', big: true },
+          { n: 'The backlot streets', y: '1964' },
+          { n: 'The Bates Motel and the Psycho house', y: '1964' },
+          { n: 'Jaws', y: '1976' },
+          { n: 'Earthquake: The Big One', y: '1989' },
+          { n: 'The War of the Worlds crash site', y: '2005' },
+        ] },
+      { title: 'The Wizarding World of Harry Potter', sub: 'Upper Lot · 2016', accent: '#c9a05f',
+        desc: 'Hogsmeade and the castle, which is the thing you see from the freeway. Hollywood got it six years after Orlando and built it into the far corner of the Upper Lot, so you turn a bend and it is simply there.',
+        rides: [
+          { n: 'Harry Potter and the Forbidden Journey', y: '2016', big: true },
+          { n: 'Flight of the Hippogriff', y: '2016' },
+          { n: 'Ollivanders', y: '2016' },
+          { n: 'The Nighttime Lights at Hogwarts Castle', y: '2016' },
+        ] },
+      { title: 'Super Nintendo World', sub: 'Upper Lot · 2023', accent: '#e04a3a',
+        desc: 'Osaka built it first in 2021 and Hollywood got the second one. The Power-Up Band on your wrist turns the land itself into a game with a score, which nobody else has attempted.',
+        rides: [
+          { n: 'Mario Kart: Bowser’s Challenge', y: '2023', big: true },
+          { n: 'Power-Up Band Key Challenges', y: '2023' },
+          { n: 'Toadstool Cafe', y: '2023' },
+        ] },
+      { title: 'Springfield, U.S.A.', sub: 'Upper Lot · 2015', accent: '#f0c840',
+        desc: 'The ride came first in 2008 and the town was built around it seven years later. Moe’s and Krusty Burger actually serve you, which is most of the joke.',
+        rides: [
+          { n: 'The Simpsons Ride', y: '2008', big: true },
+          { n: 'Kang & Kodos’ Twirl ’n’ Hurl', y: '2015' },
+          { n: 'Moe’s Tavern', y: '2015' },
+          { n: 'Krusty Burger', y: '2015' },
+        ] },
+      { title: 'The shows', sub: 'Upper Lot', accent: '#5fb0d0',
+        desc: 'Not a land, but the Upper Lot has always run on live shows in a way the Florida parks do not, and one of them has been going for thirty years.',
+        rides: [
+          { n: 'WaterWorld: A Live Sea War Spectacular', y: '1995', big: true },
+          { n: 'DreamWorks Theatre', y: '2018' },
+          { n: 'Universal’s Animal Actors', y: '1988' },
+        ] },
+      { title: 'Jurassic World', sub: 'Lower Lot · 1996', accent: '#7fb04f',
+        desc: 'Opened as Jurassic Park: The Ride in 1996 with the biggest drop of any water ride at the time, and rebuilt in 2019 into the Jurassic World version. Same eighty-four-foot fall at the end.',
+        rides: [
+          { n: 'Jurassic World: The Ride', y: '2019', big: true },
+          { n: 'Raptor Encounter', y: '2015' },
+          { n: 'DinoPlay', y: '2019' },
+          { n: 'Jurassic Park: The Ride', gone: 'gone, 1996–2018' },
+        ] },
+      { title: 'Transformers', sub: 'Lower Lot · 2012', accent: '#6f9fd0',
+        desc: 'One ride and no land to speak of, and it is the thing that got me the first time I came. A motion base on a track through 3D screens, and it still holds up.',
+        rides: [
+          { n: 'Transformers: The Ride-3D', y: '2012', big: true },
+        ] },
+      { title: 'Revenge of the Mummy', sub: 'Lower Lot · 2004', accent: '#a86f3a',
+        desc: 'An indoor coaster that starts as a dark ride, launches backwards, and pretends to end twice. It took the building E.T. used to fly out of.',
+        rides: [
+          { n: 'Revenge of the Mummy: The Ride', y: '2004', big: true },
+          { n: 'E.T. Adventure', gone: 'gone, 1991–2003' },
+        ] },
+    ] },
+
   { id: 'orlando', kind: 'cards', title: 'Universal Orlando', note: 'Florida \u00b7 been to everything except Epic Universe', been: true,
     lede: 'The best Universal resort, and the argument for Florida in one place. Two theme parks joined by a real Hogwarts Express, a water park built inside a volcano, and now a third gate I have not done yet.',
     items: [

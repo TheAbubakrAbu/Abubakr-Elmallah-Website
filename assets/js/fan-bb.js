@@ -11,6 +11,39 @@ window.FAN_PAGE = {
       { num: '04', title: 'Season Four', sub: '2011', desc: 'A whole season of two men in a room deciding which one leaves it. Face Off ends it.' },
       { num: '05', title: 'Season Five', sub: '2012–13', desc: 'Ozymandias, and then Felina. Almost nothing else in television has landed like that.' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'two shows, one film, one universe',
+    lede: 'Sixty-two episodes of Breaking Bad, sixty-three of Better Call Saul, and one film to close out Jesse. The prequel is longer than the show it is a prequel to, which nobody expected and which turned out fine.',
+    items: [
+      { title: 'Breaking Bad', sub: 'AMC · 2008 – 2013', unit: 'season',
+        desc: 'Five seasons, sixty-two episodes, and an ending that arrived on purpose.',
+        rows: [
+          { n: 'Season One', y: '2008' },
+          { n: 'Season Two', y: '2009' },
+          { n: 'Season Three', y: '2010' },
+          { n: 'Season Four', y: '2011' },
+          { n: 'Season Five', y: '2012', big: true },
+        ] },
+      { title: 'Better Call Saul', sub: 'AMC · 2015 – 2022', unit: 'season',
+        desc: 'Six seasons of a man becoming the worst version of himself, slower and quieter than the show it feeds.',
+        rows: [
+          { n: 'Season One', y: '2015' },
+          { n: 'Season Two', y: '2016' },
+          { n: 'Season Three', y: '2017' },
+          { n: 'Season Four', y: '2018' },
+          { n: 'Season Five', y: '2020' },
+          { n: 'Season Six', y: '2022' },
+        ] },
+      { title: 'The Film', sub: 'Netflix · 2019', unit: 'film',
+        desc: 'Two hours of Jesse getting out, made because Gilligan wanted to give him an ending on screen.',
+        rows: [
+          { n: 'El Camino: A Breaking Bad Movie', y: '2019' },
+        ] },
+    ] },
+
 
   { id: 'cast', kind: 'cards', title: 'The Cast', note: 'chemistry is the study of change',
     items: [
@@ -58,23 +91,6 @@ window.FAN_PAGE = {
       { title: 'The time-lapses', accent: '#c04a3a', sub: 'New Mexico', desc: 'Long lens desert skies between scenes, and the reason a show about a chemistry teacher feels enormous.' },
       { title: 'Ozymandias', accent: '#a06fe0', sub: 'Directed by Rian Johnson', desc: 'Opens with a flashback to the first cook in the same spot, then takes everything apart in one hour.' },
       { title: 'The foreshadowing', accent: '#5fd0d0', sub: 'Season two', desc: 'The pink bear turns up in four cold opens across a season before you learn what it is. Nothing on the show is accidental.' },
-    ] },
-
-  { id: 'why', kind: 'cards', title: 'Why It Holds Up', note: 'the honest answer',
-    lede: 'Plenty of shows have a great premise. This one has the rarest thing in television: it knew how long it was and it ended on purpose, with every gun it introduced fired and every promise kept.',
-    items: [
-      { title: 'Sixty-two episodes', sub: 'No filler', tag: 'Discipline', accent: '#4fbf7f',
-        desc: 'Roughly half the length of a normal network run for the era, and it shows in every episode. There is no wheel-spinning season, no subplot that exists to fill a slot. Compare that with almost any prestige drama that got renewed past its idea.',
-        meta: '2008 – 2013' },
-      { title: 'The transformation is gradual', sub: 'Mr Chips to Scarface', tag: 'The pitch', accent: '#c9a05f',
-        desc: 'Gilligan\u2019s one-line pitch, and the show earns it by never letting Walt jump. Every step is small, defensible in the moment, and only visibly monstrous when you look back at where he was ten episodes ago. That is the whole trick.',
-        meta: 'One step at a time' },
-      { title: 'It admits the truth at the end', sub: 'Felina', tag: 'The finale', accent: '#8f98a8',
-        desc: '"I did it for me. I liked it. I was good at it." Five seasons of a man insisting it was all for his family, and the show makes him say the real reason out loud before it lets him go. Almost no antihero drama has the nerve to do that.',
-        meta: 'No ambiguity' },
-      { title: 'The desert is a character', sub: 'Albuquerque', tag: 'Craft', accent: '#b8935a',
-        desc: 'Shot on location in a place television had basically ignored, with a colour palette keyed to the landscape and a camera that keeps finding angles nothing else was using: from inside a barrel, under a car, at the bottom of a hole.',
-        meta: 'New Mexico' },
     ] },
 
   { id: 'after', kind: 'cards', title: 'The Rest Of It', note: 'the universe Gilligan kept building',

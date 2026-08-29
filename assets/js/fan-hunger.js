@@ -47,6 +47,34 @@ window.FAN_PAGE = {
       { num: '23', title: 'The Ballad of Songbirds and Snakes', sub: '2023', accent: '#4f7f5f',
         desc: 'A prequel nobody asked for that turned out fine: Tom Blyth playing Snow as someone who keeps choosing, and Rachel Zegler singing most of the second half.' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five books, six films',
+    lede: 'Collins has written five books in thirty years and every one of them has been filmed, which is a completeness rate almost nothing else on this site can match. There are no games and no series: it is the one franchise here that stayed a franchise of books.',
+    items: [
+      { title: 'The Books', sub: 'Suzanne Collins · 2008 – 2025', unit: 'book',
+        desc: 'Three in the main trilogy, then two prequels written fifteen years apart.',
+        rows: [
+          { n: 'The Hunger Games', y: '2008' },
+          { n: 'Catching Fire', y: '2009', big: true },
+          { n: 'Mockingjay', y: '2010' },
+          { n: 'The Ballad of Songbirds and Snakes', y: '2020' },
+          { n: 'Sunrise on the Reaping', y: '2025' },
+        ] },
+      { title: 'The Films', sub: 'Lionsgate · 2012 – 2026', unit: 'film',
+        desc: 'Every book filmed, with Mockingjay split in two because that is what studios did in 2014.',
+        rows: [
+          { n: 'The Hunger Games', y: '2012' },
+          { n: 'Catching Fire', y: '2013', big: true },
+          { n: 'Mockingjay, Part 1', y: '2014' },
+          { n: 'Mockingjay, Part 2', y: '2015' },
+          { n: 'The Ballad of Songbirds and Snakes', y: '2023' },
+          { n: 'Sunrise on the Reaping', y: '2026' },
+        ] },
+    ] },
+
 
   { id: 'panem', kind: 'tiles', title: 'Panem', note: 'the country, and how it is run', compact: true,
     lede: 'Twelve districts, each assigned one industry, feeding one city that produces nothing. The thirteenth was bombed flat as a demonstration, or so the Capitol says. The whole arrangement is a resource-extraction empire with a light-entertainment department bolted on the front.',
@@ -59,28 +87,6 @@ window.FAN_PAGE = {
       { title: 'The reaping', accent: '#c94a3a', sub: 'The lottery', desc: 'Every child from twelve to eighteen, every year. Tesserae let the poor add entries in exchange for grain, so the poorest children are drawn most: the lottery is means-tested downward.' },
       { title: 'The Games', accent: '#e0b040', sub: 'The broadcast', desc: 'Twenty-four tributes, one victor, sponsors buying gifts mid-fight and a Gamemaker steering the weather. Compulsory viewing in the districts, which is the entire point of it.' },
       { title: 'The mockingjay', accent: '#e0a050', sub: 'The accident', desc: 'Jabberjays were a Capitol surveillance bird that failed and was abandoned; they bred with mockingbirds anyway. The symbol of the rebellion is the Capitol’s own weapon surviving on its own terms.' },
-    ] },
-
-  { id: 'why', kind: 'cards', title: 'Why It Lands', note: 'the machinery under the arena',
-    items: [
-      { title: 'It is about the audience', sub: 'Not about the fighting', tag: 'The thesis', accent: '#e0b040',
-        desc: 'Katniss survives on sponsors, and sponsors come from being liked. So the arena is a performance and she is bad at it, and the romance she is accused of faking is faked, and the reader is put in the position of the Capitol audience deciding whether to buy it. Collins wrote it after channel-hopping between a reality show and war coverage.',
-        meta: 'You are watching too' },
-      { title: 'The heroine does not want it', sub: 'Refusal as a character', tag: 'The lead', accent: '#c9a06f',
-        desc: 'Katniss does not want to lead a revolution, does not want either boy particularly, and spends three books being handed a role by adults with plans. She is useful because she is watchable, and she knows it, and the series never pretends that is the same as agency.',
-        meta: 'A symbol is a thing done to you' },
-      { title: 'Both sides do it', sub: 'Coin and Snow', tag: 'The turn', accent: '#8f9ab0',
-        desc: 'Mockingjay’s real argument is that the rebellion’s leadership will use a child soldier and a televised death exactly as readily. The last thing Katniss does with a weapon is not aimed at the villain the films had been building, and the series is much better for it.',
-        meta: 'The arrow goes left' },
-      { title: 'The trauma does not resolve', sub: 'Nightlock, nightlock', tag: 'The ending', accent: '#5f6670',
-        desc: 'The epilogue is a woman with two children she was afraid to have, married to a man with hijacked memories, and both of them still counting. No triumph, no parade. For a series aimed at teenagers, refusing the victory lap is the bravest choice in it.',
-        meta: 'Twenty years later, still counting' },
-      { title: 'Present tense, first person', sub: 'No hindsight', tag: 'The craft', accent: '#e0763a',
-        desc: 'You get exactly what Katniss knows when she knows it, which is why the Quarter Quell twist works and why Mockingjay feels disorienting: she is concussed, sedated and lied to for large parts of it, and the prose does not step outside to explain.',
-        meta: 'The narrator is unreliable on purpose' },
-      { title: 'The songs carry it', sub: 'The Hanging Tree', tag: 'The detail', accent: '#4f7f5f',
-        desc: 'A folk song from her father, sung to a camera crew, that becomes a marching chant and then gunfire. It is the one moment in the films where propaganda is shown working on the audience rather than being described.',
-        meta: 'Four verses, one revolt' },
     ] },
 
   { id: 'quotes', kind: 'quotes', title: 'Lines', note: 'the four that carry it',

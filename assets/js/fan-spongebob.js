@@ -25,6 +25,47 @@ window.FAN_PAGE = {
         desc: 'A marching-band episode that ends in a full-throated stadium rock performance the internet later demanded, at scale, be performed at an actual Super Bowl. The petition got over a million signatures. For an eleven-minute cartoon from 2001.',
         meta: 'The best episode, and it knows it' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'fifteen seasons, four films',
+    lede: 'Running since 1999 with over three hundred episodes. The consensus, which this page shares, is that the first three seasons and the 2004 film are one thing and everything after is another.',
+    items: [
+      { title: 'The Series', sub: 'Nickelodeon · 1999 – now', unit: 'era',
+        desc: 'Stephen Hillenburg left after the first film and came back for season nine, which is exactly the shape of the quality curve.',
+        rows: [
+          { n: 'Seasons 1 – 3, the golden age', y: '1999', big: true },
+          { n: 'Seasons 4 – 8, without Hillenburg', y: '2005' },
+          { n: 'Seasons 9 – 12, the return', y: '2012' },
+          { n: 'Seasons 13 – 15', y: '2021' },
+        ] },
+      { title: 'The Films', sub: '2004 – 2025', unit: 'film',
+        desc: 'The first one was written as the series finale, which is why it works.',
+        rows: [
+          { n: 'The SpongeBob SquarePants Movie', y: '2004', big: true },
+          { n: 'Sponge Out of Water', y: '2015' },
+          { n: 'Sponge on the Run', y: '2020' },
+          { n: 'The Search for SquarePants', y: '2025' },
+        ] },
+      { title: 'The Spin-offs', sub: 'Paramount+ · 2021 – now', unit: 'series',
+        desc: 'A prequel at summer camp and a talk show hosted by Patrick.',
+        rows: [
+          { n: 'Kamp Koral', y: '2021' },
+          { n: 'The Patrick Star Show', y: '2021' },
+        ] },
+      { title: 'The Games', sub: '2001 – now', unit: 'game',
+        desc: 'Battle for Bikini Bottom is a genuinely good 2003 platformer, which is why it got a remake seventeen years later.',
+        rows: [
+          { n: 'SuperSponge', y: '2001' },
+          { n: 'Battle for Bikini Bottom', y: '2003', big: true },
+          { n: 'The Movie', y: '2004' },
+          { n: 'Truth or Square', y: '2009' },
+          { n: 'Battle for Bikini Bottom – Rehydrated', y: '2020' },
+          { n: 'The Cosmic Shake', y: '2023' },
+        ] },
+    ] },
+
 
   { id: 'chars', kind: 'tiles', title: 'Bikini Bottom', note: 'seven engines of comedy', compact: true,
     lede: 'The golden-age cast is a machine where every pairing produces a different kind of episode: SpongeBob with Patrick is chaos, with Squidward it is torment, with Mr. Krabs it is labour law.',

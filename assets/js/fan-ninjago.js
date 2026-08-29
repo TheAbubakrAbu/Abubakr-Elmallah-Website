@@ -24,6 +24,56 @@ window.FAN_PAGE = {
         meta: 'The Green Ninja prophecy' },
       { title: 'Lord Garmadon', sub: 'Four arms', tag: 'Villain', desc: 'The best villain in the show, mostly because he keeps almost stopping being one.', meta: 'Underworld · Departed Realm' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'fifteen seasons, then a sequel series',
+    lede: 'A toy line that turned into fifteen seasons of television with continuous continuity, which is more than most prestige dramas manage. Named by season here, because the arcs above are groupings of these.',
+    items: [
+      { title: 'Masters of Spinjitzu', sub: '2011 – 2022 · seasons 1 to 15', unit: 'season',
+        desc: 'The original run, from the four-part pilot to Crystalized.',
+        rows: [
+          { n: 'Pilot episodes', y: '2011' },
+          { n: 'Rise of the Snakes', y: '2012' },
+          { n: 'Legacy of the Green Ninja', y: '2013', big: true },
+          { n: 'Rebooted', y: '2014' },
+          { n: 'Tournament of Elements', y: '2015' },
+          { n: 'Possession', y: '2015' },
+          { n: 'Skybound', y: '2016' },
+          { n: 'The Hands of Time', y: '2017' },
+          { n: 'Sons of Garmadon', y: '2018' },
+          { n: 'Hunted', y: '2018' },
+          { n: 'March of the Oni', y: '2019' },
+          { n: 'Secrets of the Forbidden Spinjitzu', y: '2019' },
+          { n: 'Prime Empire', y: '2020' },
+          { n: 'Master of the Mountain', y: '2020' },
+          { n: 'Seabound', y: '2021' },
+          { n: 'Crystalized', y: '2022' },
+        ] },
+      { title: 'Dragons Rising', sub: '2023 – 2025', unit: 'season',
+        desc: 'The soft reboot after Crystalized, with a merged world and two new ninja.',
+        rows: [
+          { n: 'Season One', y: '2023' },
+          { n: 'Season Two', y: '2024' },
+          { n: 'Season Three', y: '2025' },
+        ] },
+      { title: 'The Films and Specials', sub: '2016 – 2017', unit: 'film',
+        desc: 'One cinema film in its own continuity, and one Day of the Departed special in the main one.',
+        rows: [
+          { n: 'Day of the Departed', y: '2016' },
+          { n: 'The LEGO Ninjago Movie', y: '2017' },
+        ] },
+      { title: 'The Games', sub: '2011 – 2017', unit: 'game',
+        desc: 'Four of them, and the movie tie-in is the only one anybody finished.',
+        rows: [
+          { n: 'LEGO Battles: Ninjago', y: '2011' },
+          { n: 'LEGO Ninjago: Nindroids', y: '2014' },
+          { n: 'LEGO Ninjago: Shadow of Ronin', y: '2015' },
+          { n: 'The LEGO Ninjago Movie Video Game', y: '2017' },
+        ] },
+    ] },
+
 
   { id: 'arcs', kind: 'timeline', title: 'The Arcs', note: '2011 – now · sixteen seasons and counting',
     items: [

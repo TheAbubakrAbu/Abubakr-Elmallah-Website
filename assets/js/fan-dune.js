@@ -12,6 +12,61 @@ window.FAN_PAGE = {
       { title: 'The Spacing Guild', sub: 'Navigators', tag: 'Monopoly', desc: 'Folds space using prescience that only spice provides. Nothing moves between stars without them.', meta: 'Heighliners' },
       { title: 'The Emperor', sub: 'House Corrino', tag: 'Throne', desc: 'Shaddam IV, the Sardaukar, and a throne that rests entirely on the other four not co-operating.', meta: 'Salusa Secundus' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'six novels, the sequels, the films',
+    lede: 'Frank Herbert wrote six and died mid-story; his son and Kevin J. Anderson have written well over a dozen more. On screen it took fifty years and three attempts to get one that works.',
+    items: [
+      { title: 'The Herbert Novels', sub: '1965 – 1985', unit: 'novel',
+        desc: 'The six he wrote himself. The first one is the reason anybody is here; the later ones get stranger and better than their reputation.',
+        rows: [
+          { n: 'Dune', y: '1965', big: true },
+          { n: 'Dune Messiah', y: '1969' },
+          { n: 'Children of Dune', y: '1976' },
+          { n: 'God Emperor of Dune', y: '1981' },
+          { n: 'Heretics of Dune', y: '1984' },
+          { n: 'Chapterhouse: Dune', y: '1985' },
+        ] },
+      { title: 'The Later Novels', sub: 'Brian Herbert & Kevin J. Anderson · 1999 – now', unit: 'novel',
+        desc: 'Prequels, sequels and interquels built from Frank Herbert’s notes. Listed by series rather than one by one.',
+        rows: [
+          { n: 'Prelude to Dune', y: '1999' },
+          { n: 'Legends of Dune', y: '2002' },
+          { n: 'Hunters of Dune', y: '2006' },
+          { n: 'Sandworms of Dune', y: '2007' },
+          { n: 'Great Schools of Dune', y: '2012' },
+          { n: 'The Caladan Trilogy', y: '2020' },
+        ] },
+      { title: 'The Films', sub: '1984 – now', unit: 'film',
+        desc: 'One never made, one misunderstood, and two that finally got it.',
+        rows: [
+          { n: 'Jodorowsky’s Dune', gone: 'unmade, 1975' },
+          { n: 'Dune', y: '1984' },
+          { n: 'Dune: Part One', y: '2021', big: true },
+          { n: 'Dune: Part Two', y: '2024', big: true },
+          { n: 'Dune: Part Three', y: '2026' },
+        ] },
+      { title: 'On Television', sub: '2000 – now', unit: 'series',
+        desc: 'Two Sci-Fi Channel miniseries that covered more of the books than anything since, and one prequel series.',
+        rows: [
+          { n: 'Frank Herbert’s Dune', y: '2000' },
+          { n: 'Frank Herbert’s Children of Dune', y: '2003' },
+          { n: 'Dune: Prophecy', y: '2024' },
+        ] },
+      { title: 'The Games', sub: '1992 – 2025', unit: 'game',
+        desc: 'Dune II invented the real-time strategy game as everyone now understands it, which is a strange thing for a book adaptation to have done.',
+        rows: [
+          { n: 'Dune', y: '1992' },
+          { n: 'Dune II', y: '1992' },
+          { n: 'Dune 2000', y: '1998' },
+          { n: 'Emperor: Battle for Dune', y: '2001' },
+          { n: 'Dune: Spice Wars', y: '2023' },
+          { n: 'Dune: Awakening', y: '2025' },
+        ] },
+    ] },
+
 
   { id: 'arrakis', kind: 'tiles', title: 'Arrakis', note: 'the spice must flow',
     items: [

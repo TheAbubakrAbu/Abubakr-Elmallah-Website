@@ -510,6 +510,31 @@ a.fr-card { cursor: pointer; }
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 
+/* Geometry Dash: the game's own lettering is a heavy geometric sans, all caps,
+   set tight. The skew is the cube mid-jump, which is the only pose it has. */
+.wm--geodash {
+  font-family: "Avenir Next", "Futura", "Century Gothic", var(--sans);
+  font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em;
+  transform: skewX(-7deg);
+  text-shadow: 0 0 20px color-mix(in srgb, var(--c1) 55%, transparent);
+}
+
+/* Rio: the film's title card is a rounded sans with a lot of air in it, which
+   is what the letter-spacing is doing rather than decoration for its own sake. */
+.wm--rio {
+  font-family: "Avenir Next", "Trebuchet MS", var(--sans);
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em;
+  text-shadow: 0 0 22px color-mix(in srgb, var(--c1) 50%, transparent);
+}
+
+/* San Diego Zoo: a plain institutional serif, small caps, no glow. It is a
+   hundred-year-old zoo and not a franchise, and the tile should say so. */
+.wm--zoo {
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-weight: 700; font-variant: small-caps; letter-spacing: 0.06em;
+  text-shadow: 0 2px 12px rgba(0,0,0,.7);
+}
+
 .wm--knotts {
   font-family: "American Typewriter", Georgia, serif; font-weight: 700;
   font-variant: small-caps; letter-spacing: 0.07em;

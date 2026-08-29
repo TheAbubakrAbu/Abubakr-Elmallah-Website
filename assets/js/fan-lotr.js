@@ -13,6 +13,57 @@ window.FAN_PAGE = {
       { title: 'Boromir', sub: 'Of Gondor', tag: 'Man', desc: 'Falls to the Ring, and then dies buying two hobbits time. The best arc in the first film.', meta: 'Minas Tirith' },
       { title: 'Merry & Pippin', sub: 'Took and Brandybuck', tag: 'Hobbit', desc: 'Comic relief who end up raising the Ents and killing the Witch-king’s ride.', meta: 'The Shire' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the books, the films, the games',
+    lede: 'Tolkien published three of these in his lifetime; his son Christopher spent forty years publishing the rest out of the notes. On screen it is six Jackson films, one animated one, and a series.',
+    items: [
+      { title: 'The Books', sub: '1937 – 2018', unit: 'book',
+        desc: 'The Lord of the Rings is one novel published in three volumes, which is why it is listed that way here.',
+        rows: [
+          { n: 'The Hobbit', y: '1937' },
+          { n: 'The Fellowship of the Ring', y: '1954' },
+          { n: 'The Two Towers', y: '1954' },
+          { n: 'The Return of the King', y: '1955' },
+          { n: 'The Silmarillion', y: '1977' },
+          { n: 'Unfinished Tales', y: '1980' },
+          { n: 'The Children of Húrin', y: '2007' },
+          { n: 'Beren and Lúthien', y: '2017' },
+          { n: 'The Fall of Gondolin', y: '2018' },
+        ] },
+      { title: 'The Films', sub: 'Peter Jackson and after · 2001 – now', unit: 'film',
+        desc: 'Three that are among the best films ever made, three that are not, and an animated one in between.',
+        rows: [
+          { n: 'The Fellowship of the Ring', y: '2001', big: true },
+          { n: 'The Two Towers', y: '2002', big: true },
+          { n: 'The Return of the King', y: '2003', big: true },
+          { n: 'The Hobbit: An Unexpected Journey', y: '2012' },
+          { n: 'The Hobbit: The Desolation of Smaug', y: '2013' },
+          { n: 'The Hobbit: The Battle of the Five Armies', y: '2014' },
+          { n: 'The War of the Rohirrim', y: '2024' },
+          { n: 'The Hunt for Gollum', y: '2027' },
+        ] },
+      { title: 'On Television', sub: 'Amazon · 2022 – now', unit: 'series',
+        desc: 'Set in the Second Age, working from the appendices rather than the novels.',
+        rows: [
+          { n: 'The Rings of Power', y: '2022' },
+        ] },
+      { title: 'The Games', sub: '2002 – 2017', unit: 'game',
+        desc: 'The two Battle for Middle-earth strategy games and the two Mordor ones are the good ones.',
+        rows: [
+          { n: 'The Two Towers', y: '2002' },
+          { n: 'The Return of the King', y: '2003' },
+          { n: 'The Battle for Middle-earth', y: '2004' },
+          { n: 'The Battle for Middle-earth II', y: '2006' },
+          { n: 'LEGO The Lord of the Rings', y: '2012' },
+          { n: 'LEGO The Hobbit', y: '2014' },
+          { n: 'Shadow of Mordor', y: '2014' },
+          { n: 'Shadow of War', y: '2017' },
+        ] },
+    ] },
+
 
   { id: 'tolkien', kind: 'cards', title: 'He Built The Languages First', note: 'the thing that makes it different',
     lede: 'Almost every fantasy world since has been built the same way round: invent a place, then name things in it. Tolkien did the opposite. He was a professional philologist at Oxford, a man whose actual job was the history of words, and he invented Elvish because he enjoyed inventing languages. Middle-earth exists because the languages needed somewhere to have come from.',

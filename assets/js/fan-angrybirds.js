@@ -11,30 +11,47 @@
    goes directly above `sections`. Same reason the tile in fandom-data.js has
    no `when`. */
 window.FAN_PAGE = {
-  sections: [
-
-  { id: 'design', kind: 'cards', title: 'Why It Worked', note: 'the design, not the birds',
-    lede: 'Angry Birds is one control. You drag back, you let go, and the rest is ballistics and collapsing timber. Everything that made it enormous is downstream of that: it is legible in one glance, it takes four seconds to attempt, and every failure is obviously your own fault.',
+  sections: [  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the games, the films, the shows',
+    lede: 'Rovio shipped these faster than anyone could keep up with, and then took most of them back off the store. The struck-through ones cannot be bought any more, which is the subject of a section further down.',
     items: [
-      { title: 'One input, no tutorial', sub: 'Drag, release, watch', tag: 'The control', accent: '#e03a2a',
-        desc: 'No buttons, no menus mid-level, no read-the-instructions screen. The slingshot draws a dotted arc of where the last shot went, so the game teaches you the parabola by showing you your own mistake and letting you adjust it by a thumb-width.',
-        meta: 'The whole interface is one gesture' },
-      { title: 'The physics is the content', sub: 'Box2D doing the writing', tag: 'The engine', accent: '#e0a050',
-        desc: 'Nothing in a level is scripted. Wood, glass and stone have different mass and different failure behaviour, and a good shot is one that lets the structure fall on the pigs for you. The satisfying part is never the bird, it is the collapse.',
-        meta: 'Score comes from the wreckage' },
-      { title: 'Three stars', sub: 'Finishing is not the goal', tag: 'The hook', accent: '#f0d040',
-        desc: 'Clearing a level is easy; clearing it with birds left over and the right debris is not. The star rating converts a five-minute game into a hundred-hour one without adding a single mechanic, which is the single best design decision in it.',
-        meta: 'The reason anyone replayed it' },
-      { title: 'A five-second loss', sub: 'Retry before you are annoyed', tag: 'The loop', accent: '#5fbf6a',
-        desc: 'Fail and you are shooting again almost immediately. No load, no run to lose, no punishment beyond the shot itself. It is the same reason Flappy Bird and Threes worked: the cost of another go has to be lower than the cost of putting the phone down.',
-        meta: 'Friction is the enemy' },
-      { title: 'Each bird is one verb', sub: 'And it is on the bird', tag: 'The roster', accent: '#7fb8e8',
-        desc: 'Blue splits into three, yellow accelerates, black explodes, white drops an egg, green turns around. You can read the ability off the shape and colour before you have used it once, and the level tells you which you are getting and in what order.',
-        meta: 'The order is the puzzle' },
-      { title: 'It stopped being a game', sub: 'And that is what killed it', tag: 'The honest bit', accent: '#8f9ab0',
-        desc: 'Plush toys, a cartoon, two films, a theme-park area, an activity park chain, cereal. Rovio hired for a media company and the games got worse: the later ones are match-three and free-to-play timers with the same birds bolted on.',
-        meta: 'The 2009 one is still the good one' },
+      { title: 'The Games', sub: 'Rovio · 2009 – now', unit: 'game',
+        desc: 'The 2009 original was delisted in 2019 and now exists only as a paid re-release.',
+        rows: [
+          { n: 'Angry Birds', gone: 'delisted, 2019' },
+          { n: 'Angry Birds Seasons', gone: 'delisted, 2019' },
+          { n: 'Angry Birds Rio', gone: 'delisted, 2019' },
+          { n: 'Angry Birds Space', y: '2012' },
+          { n: 'Angry Birds Star Wars', gone: 'delisted, 2019' },
+          { n: 'Angry Birds Star Wars II', gone: 'delisted, 2019' },
+          { n: 'Angry Birds Go!', gone: 'delisted, 2019' },
+          { n: 'Angry Birds Epic', gone: 'delisted, 2019' },
+          { n: 'Angry Birds Transformers', y: '2014' },
+          { n: 'Angry Birds 2', y: '2015', big: true },
+          { n: 'Angry Birds Dream Blast', y: '2019' },
+          { n: 'Rovio Classics: Angry Birds', y: '2022' },
+        ] },
+      { title: 'The Films', sub: '2016 – now', unit: 'film',
+        desc: 'Two so far, and a third announced. Better than a physics puzzle game had any right to produce.',
+        rows: [
+          { n: 'The Angry Birds Movie', y: '2016' },
+          { n: 'The Angry Birds Movie 2', y: '2019' },
+          { n: 'The Angry Birds Movie 3', y: '2027' },
+        ] },
+      { title: 'On Television', sub: '2013 – now', unit: 'series',
+        desc: 'Short-form animation, mostly wordless, made to feed the apps.',
+        rows: [
+          { n: 'Angry Birds Toons', y: '2013' },
+          { n: 'Angry Birds Stella', y: '2014' },
+          { n: 'Angry Birds Blues', y: '2017' },
+          { n: 'Summer Madness', y: '2022' },
+          { n: 'Mystery Island', y: '2025' },
+        ] },
     ] },
+
 
   { id: 'flock', kind: 'tiles', title: 'The Flock', note: 'one ability each', compact: true,
     lede: 'The original roster, in the order the game hands them to you. The design rule is that the ability has to be guessable from the silhouette, which is why nothing here needs a label in-game.',
@@ -68,14 +85,6 @@ window.FAN_PAGE = {
       { num: '07', title: 'The films', sub: '2016 and 2019',
         accent: '#f0d040',
         desc: 'The Angry Birds Movie and its sequel, which gave the birds a plot they never needed. The second one is the better film, largely because it stops taking the war seriously.' },
-    ] },
-
-  { id: 'facts', kind: 'stats', title: 'By the Numbers', note: 'the ones worth knowing',
-    items: [
-      { title: '52', sub: 'Rovio’s game number', desc: 'Fifty-one games before it, none of which you can name.', accent: '#e03a2a' },
-      { title: '2009', sub: 'December, on iOS', desc: 'A paid app, at 99 cents, before free-to-play took the category.', accent: '#f0d040' },
-      { title: '3', sub: 'Stars per level', desc: 'The rating that turned a short game into a long one.', accent: '#5fbf6a' },
-      { title: '2023', sub: 'Sega bought Rovio', desc: 'For around 706 million euros, fourteen years after the first game.', accent: '#7fb8e8' },
     ] },
 
   { id: 'gone', kind: 'cards', title: 'You Cannot Buy It Any More', note: 'a note on the original',

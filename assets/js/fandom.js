@@ -160,6 +160,26 @@
              + '<path d="M2 21h20" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'
              + '<path d="M9.4 21v-6.2a2.6 2.6 0 0 1 5.2 0V21z"/>'
              + '<path d="M5.8 10.4h3.2v3H5.8zM15 10.4h3.2v3H15z" opacity=".65"/>',
+
+    /* ── three later additions ── */
+    // Geometry Dash: the cube, tilted the way it is mid-jump, with the spike
+    // it is usually about to land on. The whole game in two shapes.
+    cube:    '<rect x="6.4" y="6.4" width="11.2" height="11.2" rx="1.6"'
+             + ' transform="rotate(20 12 12)"/>'
+             + '<path d="M2 22h6l-3-5.2z" opacity=".85"/>'
+             + '<path d="M16 22h6l-3-5.2z" opacity=".85"/>',
+    // Rio: a macaw in profile. Not the Angry Birds circle, which is a
+    // different bird and already spoken for.
+    macaw:   '<path d="M15.6 4.2c3 0 5.2 2.3 5.2 5.2 0 4.6-3.9 8.2-8.6 8.2H8.2'
+             + 'c-2.9 0-5-2-5-4.6 0-3.1 2.5-5.2 5.8-5.2h1.4c.7-2.2 2.6-3.6 5.2-3.6z"/>'
+             + '<circle cx="16.4" cy="8.4" r="1.05" fill="#0b0b0f"/>'
+             + '<path d="M9.4 17.6 7 22h2.6l1.8-4.4z" opacity=".8"/>',
+    // San Diego Zoo: a paw. The zoo's own mark is a panda and that glyph is
+    // already Kung Fu Panda's, so this is the animal-agnostic version.
+    paw:     '<circle cx="7.2" cy="8.4" r="2.15"/><circle cx="12" cy="6.6" r="2.15"/>'
+             + '<circle cx="16.8" cy="8.4" r="2.15"/><circle cx="19.4" cy="13" r="1.9"/>'
+             + '<path d="M12 11.4c3.1 0 5.6 2.4 5.6 5 0 2-1.6 3.2-3.6 3.2h-4'
+             + 'c-2 0-3.6-1.2-3.6-3.2 0-2.6 2.5-5 5.6-5z"/>'
   };
 
   function glyph(key) {

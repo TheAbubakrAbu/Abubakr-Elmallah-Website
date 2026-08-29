@@ -29,6 +29,40 @@ window.FAN_PAGE = {
         desc: 'Two hours and forty-nine minutes, and it earns them: the Osaka Continental, the top-down stairwell fight in Berlin shot like a video game, the Arc de Triomphe traffic sequence, dragon’s breath rounds, and a duel at sunrise on the steps of Sacré-Cœur. The series’ best-looking film and its actual ending.',
         meta: 'The one they were building to' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, and those are taken from what this
+     page already says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five films, one series, the games',
+    lede: 'A franchise that stayed small on purpose: five films in eleven years, one television spin-off, and a couple of games. Nothing here is a cinematic universe, which is most of why it works.',
+    items: [
+      { title: 'The Films', sub: '2014 – 2025', unit: 'film',
+        desc: 'Chad Stahelski directed four of the five, and every one of them was cut by people who came up doing stunts.',
+        rows: [
+          { n: 'John Wick', y: '2014', big: true },
+          { n: 'John Wick: Chapter 2', y: '2017' },
+          { n: 'John Wick: Chapter 3 – Parabellum', y: '2019' },
+          { n: 'John Wick: Chapter 4', y: '2023', big: true },
+          { n: 'Ballerina', y: '2025' },
+        ] },
+      { title: 'On Television', sub: '2023', unit: 'series',
+        desc: 'One prequel mini-series, on Peacock, set in the 1970s Continental.',
+        rows: [
+          { n: 'The Continental: From the World of John Wick', y: '2023' },
+        ] },
+      { title: 'The Games', sub: '2017 – 2019', unit: 'game',
+        desc: 'Two, both odd: one in VR, one a turn-based strategy game about a man who never stops moving.',
+        rows: [
+          { n: 'John Wick Chronicles', y: '2017' },
+          { n: 'John Wick Hex', y: '2019' },
+        ] },
+      { title: 'In Print', sub: '2017 – 2018', unit: 'series',
+        desc: 'Dynamite’s comic, written by Greg Pak, on how Wick got the coins and the rules.',
+        rows: [
+          { n: 'John Wick', y: '2017' },
+        ] },
+    ] },
+
 
   { id: 'method', kind: 'cards', title: 'Why It Looks Like That', note: 'the stunt-team thesis',
     lede: 'Chad Stahelski and David Leitch were stunt performers and Keanu Reeves’ doubles on The Matrix before they ran 87Eleven and started directing. Everything distinctive about these films is a stunt team getting to choose the camera for once.',

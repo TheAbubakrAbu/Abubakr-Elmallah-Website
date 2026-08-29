@@ -42,6 +42,37 @@ window.FAN_PAGE = {
         desc: 'There have been hundreds of skins since, most of them technically better made, plenty of them tied to franchises I love more than Fortnite. None of them are Omega. Progression skins were the best idea the Battle Pass ever had and the game mostly stopped doing them.',
         meta: 'Still the ceiling' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'one launcher, seven games',
+    lede: 'Fortnite stopped being a game and became a platform: Battle Royale is the one everybody means, but there are now six other games behind the same front door, and the original paid mode is still there underneath all of it.',
+    items: [
+      { title: 'The Modes', sub: 'Epic · 2017 – now', unit: 'mode',
+        desc: 'Save the World shipped first and paid; Battle Royale was built in about two months after PUBG and swallowed the company.',
+        rows: [
+          { n: 'Save the World', y: '2017' },
+          { n: 'Battle Royale', y: '2017', big: true },
+          { n: 'Creative', y: '2018' },
+          { n: 'LEGO Fortnite', y: '2023' },
+          { n: 'Rocket Racing', y: '2023' },
+          { n: 'Fortnite Festival', y: '2023' },
+          { n: 'Ballistic', y: '2025' },
+        ] },
+      { title: 'The Chapters', sub: '2017 – now', unit: 'chapter',
+        desc: 'Each one ends by destroying the map on a live server with everybody watching. The seasons inside them are taken apart below.',
+        rows: [
+          { n: 'Chapter 1', y: '2017', big: true },
+          { n: 'Chapter 2', y: '2019' },
+          { n: 'Chapter 3', y: '2021' },
+          { n: 'Chapter 4', y: '2022' },
+          { n: 'Fortnite OG', y: '2023' },
+          { n: 'Chapter 5', y: '2023' },
+          { n: 'Chapter 6', y: '2024' },
+        ] },
+    ] },
+
 
   { id: 'chapters', kind: 'timeline', title: 'The Chapters', note: '2017 – now',
     items: [

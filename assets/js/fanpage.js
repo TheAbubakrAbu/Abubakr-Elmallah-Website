@@ -6,6 +6,8 @@
    five section kinds read completely differently from page to page.
 
      kind: 'cards'     grid of title / sub / desc / meta cards
+     kind: 'lands'     a park land by land, each land listing its rides
+     kind: 'works'     the same shelf: every film, book, show and game
      kind: 'rank'      numbered list: films in order, books, phases
      kind: 'timeline'  when → what, stacked down a rule
      kind: 'tiles'     compact colour-chips (legions, spells, ores, stones)
@@ -352,6 +354,42 @@
     return '<span class="fan-beenwrap">' + stamp + pic + '</span>';
   };
 
+  /* the shelf: a grid of cards where each card carries a LIST, which is the
+     part none of the other kinds has room for. `lands` fills it with the rides
+     in a park, `works` with the films, books, shows and games in a franchise;
+     the shape is identical, so it is written once.
+
+     `key` is the property each item keeps its list under, `unit` the word the
+     count under a card is set in unless the item overrides it. The dotted
+     leader between a row's name and its year is drawn by the CSS, not written
+     here, so a long title simply eats into it. */
+  var shelf = function (s, key, unit) {
+    var kind = key === 'rides' ? '' : ' is-works';
+    return '<div class="fan-lands' + kind + '">' + s.items.map(function (it) {
+      var rows = it[key] || it.rides || it.rows || [];
+      var u = it.unit || unit;
+      return '<article class="fan-land reveal"' + a(it) + '>'
+        + '<span class="fan-land-bar" aria-hidden="true"></span>'
+        + '<span class="fan-land-head">'
+        +   '<h4>' + esc(it.title) + '</h4>'
+        +   (it.sub ? '<span class="fan-land-sub">' + esc(it.sub) + '</span>' : '')
+        + '</span>'
+        + (it.desc ? '<p class="fan-land-desc">' + esc(it.desc) + '</p>' : '')
+        + (rows.length
+            ? '<ol class="fan-rides">' + rows.map(function (r) {
+                return '<li class="fan-ride' + (r.big ? ' is-big' : '')
+                  + (r.gone ? ' is-gone' : '') + '">'
+                  + '<b>' + esc(r.n) + '</b>'
+                  + '<i>' + esc(r.gone || r.y || '') + '</i>'
+                  + '</li>';
+              }).join('') + '</ol>'
+            : '')
+        + (rows.length ? '<span class="fan-land-count">' + rows.length + ' '
+            + esc(u) + (rows.length === 1 || /s$/.test(u) ? '' : 's') + '</span>' : '')
+        + '</article>';
+    }).join('') + '</div>';
+  };
+
   var KINDS = {
     cards: function (s) {
       /* `been: true` on the SECTION turns the seventh row on for all of its
@@ -378,6 +416,27 @@
           + '</article>';
       }).join('') + '</div>';
     },
+
+    /* ── kind: works ── the same shelf, holding a franchise instead of a park.
+       Each item is a MEDIUM (the films, the books, the shows, the games) and
+       its rows are the works themselves, so a page can list everything the
+       thing has ever been without turning into forty cards.
+
+       A row is { n: title, y: year } and takes the same two flags:
+         big: true   one of mine, set heavier with a marker beside it
+         gone: '...' printed in place of the year and struck through: a
+                     cancelled game, a series that ended, a book never
+                     finished.
+       `unit` names what the group counts ('films', 'books'), since a shelf
+       that says "12 attractions" under the novels would be nonsense. */
+    works: function (s) { return shelf(s, 'rows', 'work'); },
+
+    /* ── kind: lands ── one theme park, taken apart. Each item is a LAND:
+       its name, the year it opened, a line on what it is for, and then every
+       ride inside it. Same shelf as `works`; a ride carries `gone` when it is
+       no longer standing, because a park is partly a record of what it used
+       to have, and because I have photographs of a couple of those. */
+    lands: function (s) { return shelf(s, 'rides', 'attraction'); },
 
     rank: function (s) {
       return '<ol class="fan-rank">' + s.items.map(function (it, i) {
@@ -1168,6 +1227,35 @@
         wire(stage);
       }
 
+      /* ── why playVideo() is called by hand ──
+         `autoplay: 1` below is a playerVar and the browser does not reliably
+         honour it. The API builds its own iframe a beat or two after the click
+         that asked for it, and by then the gesture no longer reaches the new
+         document; what you get instead is the embed sitting on its poster
+         frame with YouTube's play button in the middle, which is the exact
+         thing the button was pressed to skip past. Asking the player itself is
+         what actually starts it.
+
+         Asked more than once, because the first call can land while the player
+         is still cueing and is simply dropped. States -1 (unstarted) and 5
+         (cued) both mean loaded and not playing, so those are the two worth
+         another push; anything else is either playing, buffering, paused by
+         hand or ended, and none of those should be overridden. Four pushes at
+         400ms and then it stops, so a visitor who deliberately pauses within
+         the first second is not fought by the page. */
+      var nudges = 0;
+      function start() {
+        if (mine !== stage || !player || !player.playVideo) return;
+        try { player.playVideo(); } catch (e) {}
+        if (++nudges > 4) return;
+        setTimeout(function () {
+          if (mine !== stage || !player || !player.getPlayerState) return;
+          var st;
+          try { st = player.getPlayerState(); } catch (e) { return; }
+          if (st === -1 || st === 5) start();
+        }, 400);
+      }
+
       var probe = null, waited = 0;
       try {
         player = new window.YT.Player(slot, {
@@ -1175,7 +1263,9 @@
           host: 'https://www.youtube-nocookie.com',
           playerVars: { autoplay: 1, rel: 0, modestbranding: 1, playsinline: 1 },
           events: {
-            onReady: arm,
+            /* start() before arm(): playback is the point, and it must not wait
+               on a duration the transport needs but the audio does not. */
+            onReady: function () { start(); arm(); },
             onStateChange: arm,
             onError: function () { if (mine === stage) fall(); },
           },
@@ -1185,6 +1275,10 @@
       probe = setInterval(function () {
         if (mine !== stage) { clearInterval(probe); probe = null; return; }
         waited += 250;
+        /* onReady is not guaranteed (see arm), so the poll asks for playback
+           too, once the player has methods to ask with. `nudges` keeps this
+           from turning into a request every quarter second. */
+        if (!nudges) start();
         arm();
         if (!armed && waited >= 4000) {
           clearInterval(probe); probe = null;

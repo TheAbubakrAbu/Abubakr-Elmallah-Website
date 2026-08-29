@@ -28,6 +28,46 @@ window.FAN_PAGE = {
         desc: 'The second of a long line of Snowballs, and the show has kept ruthless track of every one of them.',
         meta: 'And III, IV, and V' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'thirty-six seasons and counting',
+    lede: 'The longest-running scripted primetime series in American television, at over seven hundred and eighty episodes. Listed by era, because listing thirty-six seasons one at a time would be a worse way to understand it.',
+    items: [
+      { title: 'The Series', sub: 'Fox · 1989 – now', unit: 'era',
+        desc: 'The consensus is that seasons three to eight are untouchable, which is where every episode on this page comes from.',
+        rows: [
+          { n: 'Seasons 1 – 2, finding it', y: '1989' },
+          { n: 'Seasons 3 – 8, the golden age', y: '1991', big: true },
+          { n: 'Seasons 9 – 12, the drift', y: '1997' },
+          { n: 'Seasons 13 – 20, the long middle', y: '2001' },
+          { n: 'Seasons 21 – 30, HD', y: '2009' },
+          { n: 'Seasons 31 – 36, streaming', y: '2019' },
+        ] },
+      { title: 'Before the Series', sub: 'The Tracey Ullman Show · 1987 – 1989', unit: 'short',
+        desc: 'Forty-eight one-minute shorts, animated crudely on purpose, before anyone gave it a slot of its own.',
+        rows: [
+          { n: 'The Tracey Ullman shorts', y: '1987' },
+        ] },
+      { title: 'The Films', sub: '2007 – now', unit: 'film',
+        desc: 'One, eighteen years into the run, plus the Disney+ shorts and a sequel now announced.',
+        rows: [
+          { n: 'The Simpsons Movie', y: '2007' },
+          { n: 'The Disney+ shorts', y: '2020' },
+          { n: 'The Simpsons Movie 2', y: '2027' },
+        ] },
+      { title: 'The Games', sub: '1991 – now', unit: 'game',
+        desc: 'Hit & Run is the one people still ask to be remade, and they are right to.',
+        rows: [
+          { n: 'The Simpsons Arcade Game', y: '1991' },
+          { n: 'Road Rage', y: '2001' },
+          { n: 'Hit & Run', y: '2003', big: true },
+          { n: 'The Simpsons Game', y: '2007' },
+          { n: 'Tapped Out', y: '2012' },
+        ] },
+    ] },
+
 
   { id: 'episodes', kind: 'rank', title: 'The Golden Age', note: 'seasons 3 – 9, roughly',
     items: [

@@ -27,6 +27,46 @@ window.FAN_PAGE = {
         desc: '\u201cBut that does not make you who you are. It is the rest of your story, who you choose to be.\u201d Said to Po in the middle of the climax, and it is the entire series in one sentence.',
         meta: 'The whole thesis' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'four films, three series, the shorts',
+    lede: 'Four films, three television series, four half-hour shorts and a run of tie-in games. The second film is the one this page argues for.',
+    items: [
+      { title: 'The Films', sub: 'DreamWorks · 2008 – 2024', unit: 'film',
+        desc: 'A trilogy that finished its arc, and then a fourth one seven years later.',
+        rows: [
+          { n: 'Kung Fu Panda', y: '2008' },
+          { n: 'Kung Fu Panda 2', y: '2011', big: true },
+          { n: 'Kung Fu Panda 3', y: '2016' },
+          { n: 'Kung Fu Panda 4', y: '2024' },
+        ] },
+      { title: 'The Shorts', sub: '2008 – 2016', unit: 'short',
+        desc: 'Half-hour specials, each one filling in a piece of somebody’s backstory.',
+        rows: [
+          { n: 'Secrets of the Furious Five', y: '2008' },
+          { n: 'Kung Fu Panda Holiday', y: '2010' },
+          { n: 'Secrets of the Masters', y: '2011' },
+          { n: 'Secrets of the Scroll', y: '2016' },
+        ] },
+      { title: 'On Television', sub: '2011 – 2023', unit: 'series',
+        desc: 'Legends of Awesomeness ran for eighty episodes and is much better than a tie-in series has any need to be.',
+        rows: [
+          { n: 'Legends of Awesomeness', y: '2011' },
+          { n: 'The Paws of Destiny', y: '2018' },
+          { n: 'The Dragon Knight', y: '2022' },
+        ] },
+      { title: 'The Games', sub: '2008 – 2015', unit: 'game',
+        desc: 'Film tie-ins, plus one fighting game that put the whole cast in a ring.',
+        rows: [
+          { n: 'Kung Fu Panda', y: '2008' },
+          { n: 'Legendary Warriors', y: '2008' },
+          { n: 'Kung Fu Panda 2', y: '2011' },
+          { n: 'Showdown of Legendary Legends', y: '2015' },
+        ] },
+    ] },
+
 
   { id: 'five', kind: 'cards', title: 'The Furious Five', note: 'and the Dragon Warrior',
     items: [

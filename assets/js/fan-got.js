@@ -44,6 +44,47 @@ window.FAN_PAGE = {
         desc: 'Heir to the Iron Throne, Hand of the King, and the man who steps into the Trial of Seven on the side of a penniless hedge knight because Dunk is in the right. He wins, and then dies days later of a blow his own brother struck by accident. The best man in the entire canon and almost nobody knows his name.',
         meta: 'The Trial of Seven · Ashford' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five books, two unwritten, three shows',
+    lede: 'Five novels published, one promised since 2011, and one after that. The show overtook the books in 2016 and has been making it up ever since, which is the whole story of this franchise in one sentence.',
+    items: [
+      { title: 'A Song of Ice and Fire', sub: 'George R. R. Martin · 1996 – ', unit: 'novel',
+        desc: 'Seven planned. Five exist. The struck-through two are the ones everyone is still waiting on.',
+        rows: [
+          { n: 'A Game of Thrones', y: '1996' },
+          { n: 'A Clash of Kings', y: '1998' },
+          { n: 'A Storm of Swords', y: '2000', big: true },
+          { n: 'A Feast for Crows', y: '2005' },
+          { n: 'A Dance with Dragons', y: '2011' },
+          { n: 'The Winds of Winter', gone: 'unpublished' },
+          { n: 'A Dream of Spring', gone: 'unwritten' },
+        ] },
+      { title: 'The Rest of the Page', sub: '1998 – 2018', unit: 'book',
+        desc: 'The histories and the novellas, which is where House of the Dragon and the Dunk and Egg series come from.',
+        rows: [
+          { n: 'A Knight of the Seven Kingdoms', y: '1998' },
+          { n: 'The World of Ice & Fire', y: '2014' },
+          { n: 'Fire & Blood', y: '2018' },
+        ] },
+      { title: 'The Shows', sub: 'HBO · 2011 – now', unit: 'series',
+        desc: 'Eight seasons, then a prequel that had actual source material to work from, then the Dunk and Egg one.',
+        rows: [
+          { n: 'Game of Thrones', y: '2011' },
+          { n: 'House of the Dragon', y: '2022' },
+          { n: 'A Knight of the Seven Kingdoms', y: '2026' },
+        ] },
+      { title: 'The Games', sub: '2012 – 2018', unit: 'game',
+        desc: 'Telltale’s is the only one anybody remembers, and it is a decent piece of writing.',
+        rows: [
+          { n: 'Game of Thrones: A Telltale Games Series', y: '2014' },
+          { n: 'Game of Thrones (RPG)', y: '2012' },
+          { n: 'Reigns: Game of Thrones', y: '2018' },
+        ] },
+    ] },
+
 
   { id: 'battles', kind: 'cards', title: 'The Big Ones', note: 'battles and betrayals',
     items: [

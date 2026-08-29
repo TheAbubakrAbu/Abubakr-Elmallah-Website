@@ -30,6 +30,45 @@ window.FAN_PAGE = {
         desc: 'The realist, and the only one in the party who says the obvious thing out loud. Season four splits him off onto the basketball team and it is the best thing the show ever did with him.',
         meta: 'The wrist-rocket' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five seasons, and the rest of it',
+    lede: 'Five seasons across ten years, a stage play that is proper canon, a shelf of novels, and a couple of games. The seasons themselves are taken apart one by one below this.',
+    items: [
+      { title: 'The Seasons', sub: 'Netflix · 2016 – 2026', unit: 'season',
+        desc: 'The Duffers wrote it to five from the start and stopped there. Three is my favourite and one is the best television of the five, which is the argument made above.',
+        rows: [
+          { n: 'Season One', y: '2016', big: true },
+          { n: 'Season Two', y: '2017' },
+          { n: 'Season Three', y: '2019', big: true },
+          { n: 'Season Four', y: '2022' },
+          { n: 'Season Five', y: '2025' },
+        ] },
+      { title: 'On Stage and Off', sub: '2023 – now', unit: 'work',
+        desc: 'The First Shadow is canon: it is the Henry Creel story, staged, and it won an Olivier for it.',
+        rows: [
+          { n: 'The First Shadow', y: '2023' },
+          { n: 'Tales from ’85', y: '2026' },
+        ] },
+      { title: 'The Books', sub: '2018 – now', unit: 'book',
+        desc: 'Prequel novels and a comic line filling in Hopper, Eleven and the Russians.',
+        rows: [
+          { n: 'Suspicious Minds', y: '2019' },
+          { n: 'Darkness on the Edge of Town', y: '2019' },
+          { n: 'Rebel Robin', y: '2021' },
+          { n: 'Flight of Icarus', y: '2023' },
+        ] },
+      { title: 'The Games', sub: '2017 – 2023', unit: 'game',
+        desc: 'Two tie-ins, one asymmetric horror mode inside Dead by Daylight.',
+        rows: [
+          { n: 'Stranger Things: The Game', y: '2017' },
+          { n: 'Stranger Things 3: The Game', y: '2019' },
+          { n: 'Dead by Daylight: Stranger Things', y: '2019' },
+        ] },
+    ] },
+
 
   { id: 's1', season: 1, kind: 'cards', title: 'Season One', note: '1983 · the Demogorgon',
     lede: 'A boy misses a turn on the way home from a campaign and the whole town starts pulling at a thread.',

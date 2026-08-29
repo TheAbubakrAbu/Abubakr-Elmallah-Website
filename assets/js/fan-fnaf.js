@@ -12,6 +12,54 @@ window.FAN_PAGE = {
       { title: 'The Music Box', accent: '#a06fd0', sub: 'FNAF 2', desc: 'Wind it or the Puppet comes out, and no door will help you.' },
       { title: '6 AM', accent: '#7fd07f', sub: 'The win condition', desc: 'Six in-game hours, about eight real minutes, and a paycheque of $4.' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the games, the books, the films',
+    lede: 'One person made the first six of these in three years, alone, and the release schedule is part of why the theory community got as big as it did: there was never time to finish arguing before the next one landed.',
+    items: [
+      { title: 'The Games', sub: 'Scott Cawthon and after · 2014 – now', unit: 'game',
+        desc: 'The two marked are the ones I have at a hundred percent, listed again below with the proof.',
+        rows: [
+          { n: 'Five Nights at Freddy’s', y: '2014', big: true },
+          { n: 'Five Nights at Freddy’s 2', y: '2014', big: true },
+          { n: 'Five Nights at Freddy’s 3', y: '2015' },
+          { n: 'Five Nights at Freddy’s 4', y: '2015' },
+          { n: 'Sister Location', y: '2016' },
+          { n: 'Pizzeria Simulator', y: '2017' },
+          { n: 'Ultimate Custom Night', y: '2018' },
+          { n: 'Help Wanted', y: '2019' },
+          { n: 'Security Breach', y: '2021' },
+          { n: 'Help Wanted 2', y: '2023' },
+          { n: 'Into the Pit', y: '2024' },
+          { n: 'Secret of the Mimic', y: '2025' },
+        ] },
+      { title: 'The Side Games', sub: '2016 – 2019', unit: 'game',
+        desc: 'The ones that are canon-adjacent, including an RPG made as an apology for a trailer.',
+        rows: [
+          { n: 'FNaF World', y: '2016' },
+          { n: 'Freddy in Space 2', y: '2019' },
+          { n: 'Special Delivery', y: '2019' },
+        ] },
+      { title: 'The Books', sub: '2015 – now', unit: 'series',
+        desc: 'A separate continuity that answers questions the games refuse to, and where most of the actual lore is written down.',
+        rows: [
+          { n: 'The Silver Eyes', y: '2015' },
+          { n: 'The Twisted Ones', y: '2017' },
+          { n: 'The Fourth Closet', y: '2018' },
+          { n: 'The Freddy Files', y: '2017' },
+          { n: 'Fazbear Frights', y: '2019' },
+          { n: 'Tales from the Pizzaplex', y: '2022' },
+        ] },
+      { title: 'The Films', sub: 'Blumhouse · 2023 – now', unit: 'film',
+        desc: 'Ten years in development, and then the biggest horror opening of its year.',
+        rows: [
+          { n: 'Five Nights at Freddy’s', y: '2023' },
+          { n: 'Five Nights at Freddy’s 2', y: '2025' },
+        ] },
+    ] },
+
 
   { id: 'cast', kind: 'cards', title: 'The Animatronics', note: 'who is coming and from where',
     items: [

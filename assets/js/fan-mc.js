@@ -19,6 +19,36 @@ window.FAN_PAGE = {
       { title: 'Diamond', accent: '#4fd0d6', sub: '1,561 uses', desc: 'Mines obsidian, which is the only reason you can reach the Nether. The tier most people stop at.' },
       { title: 'Netherite', accent: '#8a6a5f', sub: '2,031 uses', desc: 'Ancient debris, smelted to scrap, alloyed with gold, applied to diamond gear at a smithing table. It floats in lava, which is the actual point.' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'one game, and everything built around it',
+    lede: 'The whole franchise is one game from 2011 that never stopped updating, plus a shelf of spin-offs of varying necessity and, eventually, a film.',
+    items: [
+      { title: 'The Games', sub: 'Mojang · 2011 – now', unit: 'game',
+        desc: 'Java and Bedrock are the same game twice. Earth was shut down in 2021 and is struck through for it.',
+        rows: [
+          { n: 'Minecraft: Java Edition', y: '2011', big: true },
+          { n: 'Minecraft: Bedrock Edition', y: '2011' },
+          { n: 'Minecraft: Education Edition', y: '2016' },
+          { n: 'Minecraft Earth', gone: 'shut down, 2021' },
+          { n: 'Minecraft Dungeons', y: '2020' },
+          { n: 'Minecraft Legends', y: '2023' },
+        ] },
+      { title: 'The Story Games', sub: 'Telltale · 2015 – 2018', unit: 'season',
+        desc: 'A narrative adventure set in the world, taken off sale when Telltale collapsed and later restored.',
+        rows: [
+          { n: 'Minecraft: Story Mode', y: '2015' },
+          { n: 'Minecraft: Story Mode – Season Two', y: '2017' },
+        ] },
+      { title: 'On Screen', sub: '2025', unit: 'film',
+        desc: 'Fifteen years in development at four studios, and then the biggest opening weekend of its year.',
+        rows: [
+          { n: 'A Minecraft Movie', y: '2025' },
+        ] },
+    ] },
+
 
   { id: 'ores', kind: 'tiles', compact: true, title: 'Where To Dig', note: 'Y-levels, post Caves & Cliffs',
     lede: 'The 1.18 world generation moved everything. Bedrock is at Y −64 now, deepslate starts at Y 0, and the old “dig to eleven” rule has been wrong since 2021.',

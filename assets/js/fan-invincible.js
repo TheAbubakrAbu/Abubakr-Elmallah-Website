@@ -10,6 +10,38 @@ window.FAN_PAGE = {
       { num: '03', title: 'Season Three', sub: '2025', desc: 'The Viltrumite question stops being theoretical.' },
       { num: '04', title: 'Season Four', sub: '2026', desc: 'The one that finally got me to finish it. I had heard the finale being talked about as one of the best episodes anybody had put out, went back to catch up, and it was worth the detour.' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, and those are taken from what this
+     page already says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the comic first, then the show',
+    lede: 'A hundred and forty-four issues that ran to a planned ending, then an animated adaptation that has been following them closely, and a couple of games at the edges.',
+    items: [
+      { title: 'The Show', sub: '2021 – now', unit: 'season',
+        desc: 'Amazon, animated, adapting the comic in order. Season four is the one that got me back.',
+        rows: [
+          { n: 'Season One', y: '2021' },
+          { n: 'Season Two', y: '2023' },
+          { n: 'Season Three', y: '2025' },
+          { n: 'Season Four', y: '2026', big: true },
+          { n: 'Invincible: Atom Eve', y: '2023' },
+        ] },
+      { title: 'The Comic', sub: 'Image · 2003 – 2018', unit: 'title',
+        desc: 'Robert Kirkman with Cory Walker and then Ryan Ottley, finished on purpose at 144 issues.',
+        rows: [
+          { n: 'Invincible #1 – 144', y: '2003' },
+          { n: 'Invincible Presents: Atom Eve', y: '2007' },
+          { n: 'Guarding the Globe', y: '2010' },
+          { n: 'Invincible Universe', y: '2013' },
+        ] },
+      { title: 'The Games', sub: '2023 – now', unit: 'game',
+        desc: 'One mobile squad game, and a fighting game announced off the back of the show.',
+        rows: [
+          { n: 'Invincible: Guarding the Globe', y: '2023' },
+          { n: 'Invincible VS', y: 'announced' },
+        ] },
+    ] },
+
 
   { id: 'mine', kind: 'cards', title: 'I Bounced Off It First', note: 'and came back three years later',
     lede: 'Being straight about this one: I watched season one the summer before college, thought it was fine, and did not carry on. It sat unfinished until season four landed and I kept hearing people call the finale one of the best episodes of anything. So I went back, caught up properly, and I was wrong the first time.',

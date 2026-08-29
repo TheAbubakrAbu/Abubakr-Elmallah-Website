@@ -83,6 +83,16 @@ window.FAN_PAGE = {
       { title: 'Cillian Murphy', sub: 'Scarecrow → Oppenheimer', tag: 'The regular', desc: 'Five supporting parts over eighteen years, and then the lead, and the Oscar for it.', meta: 'Six films' },
     ] },
 
+  { id: 'lines', kind: 'quotes', title: 'Lines', note: 'the ones that stuck',
+    items: [
+      { title: 'You mustn’t be afraid to dream a little bigger, darling.', sub: 'Eames · Inception' },
+      { title: 'Some men just want to watch the world burn.', sub: 'Alfred · The Dark Knight' },
+      { title: 'Are you watching closely?', sub: 'The Prestige' },
+      { title: 'Do not go gentle into that good night.', sub: 'Brand, quoting Dylan Thomas · Interstellar' },
+      { title: 'Don’t try to understand it. Feel it.', sub: 'Laura · Tenet' },
+      { title: 'Now I am become Death, the destroyer of worlds.', sub: 'Oppenheimer, quoting the Gita' },
+    ] },
+
   /* the music: the tracks from my playlist, named as the albums name them
      and linked to the album's own upload (WaterTower, Back Lot Music, the
      composers' Topic channels) wherever there is one. The Dark Knight theme
@@ -115,16 +125,6 @@ window.FAN_PAGE = {
       { title: 'Sirens', accent: '#5fa8a0', sub: 'The Odyssey · 2026 · 2:39',
         desc: 'Ludwig Göransson. Gongs, lyres and an aulos instead of an orchestra, for the one trial Odysseus has himself tied to the mast to survive.',
         href: 'https://www.youtube.com/watch?v=p-Qu614bYgY', link: 'Listen' },
-    ] },
-
-  { id: 'lines', kind: 'quotes', title: 'Lines', note: 'the ones that stuck',
-    items: [
-      { title: 'You mustn’t be afraid to dream a little bigger, darling.', sub: 'Eames · Inception' },
-      { title: 'Some men just want to watch the world burn.', sub: 'Alfred · The Dark Knight' },
-      { title: 'Are you watching closely?', sub: 'The Prestige' },
-      { title: 'Do not go gentle into that good night.', sub: 'Brand, quoting Dylan Thomas · Interstellar' },
-      { title: 'Don’t try to understand it. Feel it.', sub: 'Laura · Tenet' },
-      { title: 'Now I am become Death, the destroyer of worlds.', sub: 'Oppenheimer, quoting the Gita' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

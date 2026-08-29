@@ -10,6 +10,37 @@ window.FAN_PAGE = {
       { num: 'II', title: 'The Way of Water', sub: '2022', desc: 'Thirteen years later, and the underwater capture work is still unmatched by anything since.' },
       { num: 'III', title: 'Fire and Ash', sub: '2025', desc: 'The Ash People, and Pandora’s fire clans.' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five films, planned as five',
+    lede: 'Cameron announced five films and has been shooting them more or less back to back since 2017. Everything else here exists to support them, including a theme park land that opened five years before the second one.',
+    items: [
+      { title: 'The Films', sub: '2009 – 2031', unit: 'film',
+        desc: 'Two of them are among the four highest-grossing films ever made, which is a strange fact about a franchise nobody claims to think about.',
+        rows: [
+          { n: 'Avatar', y: '2009', big: true },
+          { n: 'Avatar: The Way of Water', y: '2022' },
+          { n: 'Avatar: Fire and Ash', y: '2025' },
+          { n: 'Avatar 4', y: '2029' },
+          { n: 'Avatar 5', y: '2031' },
+        ] },
+      { title: 'The Games', sub: '2009 – now', unit: 'game',
+        desc: 'Frontiers of Pandora is the first one made by people who were allowed to take it seriously.',
+        rows: [
+          { n: 'James Cameron’s Avatar: The Game', y: '2009' },
+          { n: 'Avatar: Frontiers of Pandora', y: '2023' },
+          { n: 'Avatar: Reckoning', y: '2024' },
+        ] },
+      { title: 'Where It Exists', sub: 'Walt Disney World · 2017', unit: 'thing',
+        desc: 'A whole land at Animal Kingdom, built while the sequels were still being written.',
+        rows: [
+          { n: 'Pandora – The World of Avatar', y: '2017' },
+          { n: 'Flight of Passage', y: '2017', big: true },
+        ] },
+    ] },
+
 
   { id: 'pandora', kind: 'tiles', title: 'Pandora', note: 'a moon of Polyphemus',
     lede: 'The world-building is the film. Everything glows, everything is networked, and the atmosphere kills you in four minutes.',

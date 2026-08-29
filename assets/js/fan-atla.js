@@ -10,6 +10,50 @@ window.FAN_PAGE = {
       { num: 'II', title: 'Book Two: Earth', sub: '2006', desc: 'Toph, the Earth Kingdom, the library, and the best redemption arc in animation quietly starting in the background.' },
       { num: 'III', title: 'Book Three: Fire', sub: '2007–08', desc: 'The invasion, the comet, and an ending that solves an impossible moral problem instead of dodging it.' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'two series, the comics, the games',
+    lede: 'Sixty-one episodes of the original, fifty-two of Korra, and then a comic line that is genuine canon and picks up the morning after the finale. The 2010 film is on the list because pretending otherwise would be dishonest.',
+    items: [
+      { title: 'The Series', sub: '2005 – now', unit: 'series',
+        desc: 'Three books of the original, four of Korra, then the Netflix live-action version and the animated sequel series after it.',
+        rows: [
+          { n: 'Avatar: The Last Airbender', y: '2005', big: true },
+          { n: 'The Legend of Korra', y: '2012' },
+          { n: 'Avatar: The Last Airbender (live action)', y: '2024' },
+          { n: 'Avatar: Seven Havens', y: 'announced' },
+        ] },
+      { title: 'The Films', sub: '2010 – now', unit: 'film',
+        desc: 'One so far, and the less said the better. An animated feature about the next Avatar is in production.',
+        rows: [
+          { n: 'The Last Airbender', y: '2010' },
+          { n: 'Aang: The Last Airbender', y: 'announced' },
+        ] },
+      { title: 'The Comics', sub: 'Dark Horse · 2012 – now', unit: 'volume',
+        desc: 'Written with Bryan Konietzko and Michael DiMartino, and canon: The Promise starts days after Sozin’s Comet.',
+        rows: [
+          { n: 'The Promise', y: '2012' },
+          { n: 'The Search', y: '2013' },
+          { n: 'The Rift', y: '2014' },
+          { n: 'Smoke and Shadow', y: '2015' },
+          { n: 'North and South', y: '2016' },
+          { n: 'Imbalance', y: '2018' },
+          { n: 'Korra: Turf Wars', y: '2017' },
+          { n: 'Korra: Ruins of the Empire', y: '2019' },
+        ] },
+      { title: 'The Games', sub: '2006 – 2023', unit: 'game',
+        desc: 'Mostly tie-ins made while the show was airing, plus one recent attempt to do it properly.',
+        rows: [
+          { n: 'Avatar: The Last Airbender', y: '2006' },
+          { n: 'The Burning Earth', y: '2007' },
+          { n: 'Into the Inferno', y: '2008' },
+          { n: 'The Legend of Korra', y: '2014' },
+          { n: 'Quest for Balance', y: '2023' },
+        ] },
+    ] },
+
 
   { id: 'gaang', kind: 'cards', title: 'The Gaang', note: 'a hundred years late, and eight of them',
     lede: 'A twelve-year-old who has been in an iceberg for a century, the girl who finds him, her brother, a blind earthbending champion, a runaway prince and a warrior from Kyoshi Island. Every one of them gets a real arc, in sixty-one episodes, on a children’s network.',

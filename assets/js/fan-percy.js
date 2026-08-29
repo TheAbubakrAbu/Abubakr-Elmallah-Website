@@ -28,6 +28,58 @@ window.FAN_PAGE = {
       { num: 'IV', title: 'The Battle of the Labyrinth', sub: '2008', desc: 'Daedalus’ maze under America, rebuilding itself as it goes.' },
       { num: 'V', title: 'The Last Olympian', sub: '2009', desc: 'Manhattan asleep, Kronos rising, and a prophecy that turns on the wrong hero entirely.' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'four series, two films, one show',
+    lede: 'Riordan has written five books in the main sequence and about twenty more around it. The films are best treated as a rumour; the Disney+ series is the one that adapts the books properly.',
+    items: [
+      { title: 'Percy Jackson & the Olympians', sub: '2005 – 2009', unit: 'book',
+        desc: 'The five that started it, and still the tightest thing he has written.',
+        rows: [
+          { n: 'The Lightning Thief', y: '2005' },
+          { n: 'The Sea of Monsters', y: '2006' },
+          { n: 'The Titan’s Curse', y: '2007' },
+          { n: 'The Battle of the Labyrinth', y: '2008' },
+          { n: 'The Last Olympian', y: '2009', big: true },
+        ] },
+      { title: 'The Heroes of Olympus', sub: '2010 – 2014', unit: 'book',
+        desc: 'Seven demigods, Greek and Roman camps, and a cast large enough that Percy has to share the narration.',
+        rows: [
+          { n: 'The Lost Hero', y: '2010' },
+          { n: 'The Son of Neptune', y: '2011' },
+          { n: 'The Mark of Athena', y: '2012' },
+          { n: 'The House of Hades', y: '2013' },
+          { n: 'The Blood of Olympus', y: '2014' },
+        ] },
+      { title: 'The Trials of Apollo', sub: '2016 – 2020', unit: 'book',
+        desc: 'A god demoted to a sixteen-year-old, narrating his own humiliation in the first person.',
+        rows: [
+          { n: 'The Hidden Oracle', y: '2016' },
+          { n: 'The Dark Prophecy', y: '2017' },
+          { n: 'The Burning Maze', y: '2018' },
+          { n: 'The Tyrant’s Tomb', y: '2019' },
+          { n: 'The Tower of Nero', y: '2020' },
+        ] },
+      { title: 'The Rest of the Shelf', sub: '2010 – now', unit: 'book',
+        desc: 'The Egyptian and Norse series, and the recent return to Percy narrating.',
+        rows: [
+          { n: 'The Kane Chronicles', y: '2010' },
+          { n: 'Magnus Chase and the Gods of Asgard', y: '2015' },
+          { n: 'The Sun and the Star', y: '2023' },
+          { n: 'The Chalice of the Gods', y: '2023' },
+          { n: 'Wrath of the Triple Goddess', y: '2024' },
+        ] },
+      { title: 'On Screen', sub: '2010 – now', unit: 'work',
+        desc: 'Two films Riordan has publicly disowned, and one series he is showrunning himself.',
+        rows: [
+          { n: 'The Lightning Thief', y: '2010' },
+          { n: 'Sea of Monsters', y: '2013' },
+          { n: 'Percy Jackson and the Olympians', y: '2023' },
+        ] },
+    ] },
+
 
   { id: 'camp', kind: 'tiles', title: 'Camp Half-Blood', note: 'Long Island Sound',
     lede: 'Cabins by parent, capture the flag on Fridays, and a strawberry farm as the cover story.',

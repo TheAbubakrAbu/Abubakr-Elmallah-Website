@@ -11,6 +11,40 @@ window.FAN_PAGE = {
       { title: 'The Boys', sub: 'The other side', tag: 'Humans', desc: 'A handful of people with no powers and a lot of grievances, working out how to hold the untouchable to account.', meta: 'No powers · no budget' },
       { title: 'Compound V', sub: 'The secret', tag: 'Chemistry', desc: 'Nobody was born with anything. Every hero on the shelf was made in a lab and sold a story about destiny.', meta: 'The whole conspiracy' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the show, the spin-offs, the comic',
+    lede: 'Five seasons planned from the start, two animated and live-action spin-offs around it, and the Garth Ennis comic underneath, which is meaner than the show and much less interested in being liked.',
+    items: [
+      { title: 'The Show', sub: 'Amazon · 2019 – 2026', unit: 'season',
+        desc: 'Eric Kripke ran it to a planned five-season ending rather than until it stopped selling.',
+        rows: [
+          { n: 'Season One', y: '2019' },
+          { n: 'Season Two', y: '2020' },
+          { n: 'Season Three', y: '2022' },
+          { n: 'Season Four', y: '2024' },
+          { n: 'Season Five', y: '2026' },
+        ] },
+      { title: 'The Spin-offs', sub: '2022 – now', unit: 'series',
+        desc: 'One animated anthology, one college series, and a prequel about how Vought got started.',
+        rows: [
+          { n: 'The Boys Presents: Diabolical', y: '2022' },
+          { n: 'Gen V', y: '2023' },
+          { n: 'Vought Rising', y: 'announced' },
+        ] },
+      { title: 'The Comic', sub: 'Dynamite · 2006 – 2012', unit: 'title',
+        desc: 'Garth Ennis and Darick Robertson, seventy-two issues and a handful of side books.',
+        rows: [
+          { n: 'The Boys #1 – 72', y: '2006' },
+          { n: 'Herogasm', y: '2009' },
+          { n: 'Highland Laddie', y: '2010' },
+          { n: 'Butcher, Baker, Candlestickmaker', y: '2011' },
+          { n: 'Dear Becky', y: '2020' },
+        ] },
+    ] },
+
 
   { id: 'seven', kind: 'cards', title: 'The Seven', note: 'the flagship team, as a product line',
     items: [

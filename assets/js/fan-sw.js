@@ -11,16 +11,6 @@
 window.FAN_PAGE = {
   when: { at: 'Around 2012, age six', note: 'As Cassian says: I have been in this fight since I was six years old. Lightsabers and the Force were the first things that ever made me want a whole universe to be real.' },
   sections: [
-
-  { id: 'count', kind: 'stats', title: 'The Short Version', note: 'before any of the arguing starts',
-    items: [
-      { title: '1977', sub: 'Where it starts', desc: 'A New Hope, and every space film since owes it something.' },
-      { title: 'III', sub: 'The one for me', desc: 'Revenge of the Sith. I have never had to be talked into the prequels.' },
-      { title: '133', sub: 'Clone Wars episodes', desc: 'Seven seasons that made the prequel era the best stretch of Star Wars there is.' },
-      { title: '4', sub: 'Builds shipped', desc: 'Two Apple apps and two Discord droids, all of them Aurebesh or Sabacc.' },
-      { title: '60+', sub: 'Worlds in the atlas', desc: 'Every planet at the bottom of this page is drawn in CSS. No images.' },
-    ] },
-
   { id: 'eras', kind: 'era', title: 'The Eras', note: 'BBY / ABY, before and after the Battle of Yavin',
     lede: 'Everything canon is filed into one of these. The whole Skywalker story is about fifty years wide; the galaxy around it runs for twenty-five thousand. Drag the rail sideways to travel down it.',
     items: [
@@ -98,6 +88,70 @@ window.FAN_PAGE = {
       { title: 'Jedi: Fallen Order & Survivor', sub: '2019 · 2023', tag: 'Games', desc: 'Cal Kestis, BD-1, and the best Star Wars combat ever shipped in a game.', meta: 'Koboh · Tanalorr' },
       { title: 'Battlefront II', sub: '2005 · 2017', tag: 'Games', desc: 'Galactic Conquest on the original, and the 501st Journal narration that half of us can still quote.', meta: 'The 501st' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the films, the series, the games',
+    lede: 'Twelve films, a television side that is now longer than the film side, and a games shelf that goes back to 1982. The marked games are the ones I have finished, listed again at the bottom of this page with the dates.',
+    items: [
+      { title: 'The Films', sub: '1977 – now', unit: 'film',
+        desc: 'Nine numbered, two standalone, one animated, and the next one shooting.',
+        rows: [
+          { n: 'A New Hope', y: '1977' },
+          { n: 'The Empire Strikes Back', y: '1980' },
+          { n: 'Return of the Jedi', y: '1983' },
+          { n: 'The Phantom Menace', y: '1999' },
+          { n: 'Attack of the Clones', y: '2002' },
+          { n: 'Revenge of the Sith', y: '2005', big: true },
+          { n: 'The Clone Wars', y: '2008' },
+          { n: 'The Force Awakens', y: '2015' },
+          { n: 'Rogue One', y: '2016' },
+          { n: 'The Last Jedi', y: '2017' },
+          { n: 'Solo', y: '2018' },
+          { n: 'The Rise of Skywalker', y: '2019' },
+          { n: 'The Mandalorian and Grogu', y: '2026' },
+        ] },
+      { title: 'The Series', sub: '2008 – now', unit: 'series',
+        desc: 'The Clone Wars is the best stretch of Star Wars there is, and Andor is the best-made.',
+        rows: [
+          { n: 'The Clone Wars', y: '2008', big: true },
+          { n: 'Rebels', y: '2014' },
+          { n: 'Resistance', y: '2018' },
+          { n: 'The Mandalorian', y: '2019' },
+          { n: 'The Bad Batch', y: '2021' },
+          { n: 'Visions', y: '2021' },
+          { n: 'The Book of Boba Fett', y: '2021' },
+          { n: 'Obi-Wan Kenobi', y: '2022' },
+          { n: 'Andor', y: '2022', big: true },
+          { n: 'Tales of the Jedi', y: '2022' },
+          { n: 'Ahsoka', y: '2023' },
+          { n: 'The Acolyte', y: '2024' },
+          { n: 'Skeleton Crew', y: '2024' },
+        ] },
+      { title: 'The Games', sub: '1993 – now', unit: 'game',
+        desc: 'The marked ones are mine, at a hundred percent, with the finish dates further down.',
+        rows: [
+          { n: 'X-Wing', y: '1993' },
+          { n: 'Dark Forces', y: '1995' },
+          { n: 'Rogue Squadron', y: '1998' },
+          { n: 'Knights of the Old Republic', y: '2003' },
+          { n: 'Battlefront II', y: '2005' },
+          { n: 'The Force Unleashed', y: '2008' },
+          { n: 'LEGO Star Wars: The Complete Saga', y: '2007', big: true },
+          { n: 'LEGO Star Wars III: The Clone Wars', y: '2011', big: true },
+          { n: 'The Old Republic', y: '2011' },
+          { n: 'LEGO Star Wars: The Force Awakens', y: '2016', big: true },
+          { n: 'Battlefront II', y: '2017', big: true },
+          { n: 'Jedi: Fallen Order', y: '2019', big: true },
+          { n: 'Squadrons', y: '2020' },
+          { n: 'Droid Repair Bay', y: '2019', big: true },
+          { n: 'LEGO Star Wars: The Skywalker Saga', y: '2022', big: true },
+          { n: 'Jedi: Survivor', y: '2023', big: true },
+          { n: 'Outlaws', y: '2024', big: true },
+        ] },
+    ] },
+
 
   { id: 'clonewars', kind: 'rank', title: 'The Clone Wars', note: '2008 – 2020 · one arc per season, S1 to S7',
     lede: 'Seven seasons of a war we already knew the ending of, which is exactly why it works: every clone on screen is walking toward Order 66 and none of them know it. One arc from each season, in order, so you can watch the show grow up.',
@@ -176,6 +230,61 @@ window.FAN_PAGE = {
       { title: 'I have friends everywhere.', sub: 'Cassian Andor · Andor · the Rebellion', accent: '#e0642a' },
       { title: 'One way out.', sub: 'Cassian Andor · Narkina 5 · the Rebellion', accent: '#e0642a' },
       { title: 'This is the way.', sub: 'The Mandalorian · beskar', accent: '#9aa8b4' },
+    ] },
+
+
+  // mount:'end' → renders into #fanBodyEnd, below the hand-written planet atlas
+  { id: 'parks', kind: 'cards', title: 'Where It Exists', note: 'Batuu, and the places you can stand in it',
+    lede: 'Galaxy’s Edge is Black Spire Outpost on Batuu, set between The Last Jedi and The Rise of Skywalker so it belongs to no film in particular. It is the most expensive land Disney has ever built, and the detail is absurd: the bins are in-universe, the signage is all Aurebesh, and nothing anywhere says “Star Wars” on it.',
+    items: [
+      { title: 'Galaxy’s Edge · Disneyland', sub: 'Anaheim, California', tag: '2019', accent: '#ffe81f',
+        desc: 'Opened 31 May 2019, and the closest one to me. Rise of the Resistance is the best theme-park attraction ever built: a full-size hangar, a Star Destroyer corridor, an AT-AT bay and a trackless ride system pretending to be a prison break.',
+        meta: 'Rise of the Resistance · Smugglers Run' },
+      { title: 'Galaxy’s Edge · Hollywood Studios', sub: 'Walt Disney World, Florida', tag: '2019', accent: '#ffe81f',
+        desc: 'Opened three months after Anaheim and slightly larger. Same two rides, same Droid Depot and Savi’s Workshop, same Black Spire Outpost.',
+        meta: 'The bigger of the two' },
+      { title: 'Savi’s Workshop', sub: 'Both parks', tag: 'Build', accent: '#3f8fff',
+        desc: 'You build a lightsaber. An actual one, from parts, in a room with a ceremony and no photographs, and you pick the kyber colour. It costs a fortune and everybody who does it says it was worth it.',
+        meta: 'Handbuilt Lightsabers' },
+      { title: 'Droid Depot', sub: 'Both parks', tag: 'Build', accent: '#e08a3a',
+        desc: 'Build an astromech off a conveyor of parts. It moves, it beeps, and it reacts to things elsewhere in the land.',
+        meta: 'R-series or BB-series' },
+      { title: 'Star Tours', sub: 'Four parks worldwide', tag: '1987', accent: '#9fc4e8',
+        desc: 'The original, and it long predates Galaxy’s Edge. The 2011 rebuild randomises the destinations, so no two flights are the same. Anaheim, Florida, Tokyo and Paris.',
+        meta: 'The Adventures Continue' },
+      { title: 'Galactic Starcruiser', sub: 'Walt Disney World', tag: 'Closed', accent: '#8f8f9f',
+        desc: 'The Halcyon: a two-night, fully in-character hotel where the windows were screens and the plot happened around you. It opened in March 2022, cost about six thousand dollars for a family, and closed eighteen months later. Extraordinary, and doomed.',
+        meta: '2022 – 2023' },
+    ] },
+
+  { id: 'played', kind: 'gallery', title: 'Every One of Them, Finished', note: 'my own screenshots · 100%',
+    lede: 'The other way I have spent time in this galaxy. Thirty-six Star Wars games in the library and a wall of hundred-percents, including four LEGO games taken all the way to the last gold brick.',
+    items: [
+      { title: 'The Star Wars shelf', src: '/assets/img/franchises/star-wars-games.jpg',
+        alt: 'A row of Star Wars game covers, each marked 100% Complete',
+        desc: 'LEGO The Force Awakens, LEGO The Skywalker Saga, Droid Repair Bay, Jedi: Fallen Order, Jedi: Survivor and Outlaws, all at a hundred percent.',
+        meta: '36 in the collection' },
+      { title: 'The LEGO Star Wars run', src: '/assets/img/franchises/star-wars-lego-100.jpg',
+        alt: 'Completion screens from four LEGO Star Wars games, all at 100 percent',
+        desc: 'The Complete Saga at 26 hours 40. The Clone Wars at 22 hours 05. The Force Awakens with every planet on the galaxy map at 100. The Skywalker Saga with all 1,200 Kyber bricks, 380 characters and 135 ships.',
+        meta: 'Four games · 100.0% each' },
+    ] },
+
+  /* one tile per finished game, in the order I finished them, with the date
+     (`finished`, see fanpage.js); the LEGO four also sit in the catalogue on
+     the LEGO page with their hours */
+  { id: 'finished', kind: 'tiles', compact: true, title: 'When I Finished Them', note: 'to a hundred percent',
+    items: [
+      { title: 'LEGO Star Wars: The Skywalker Saga', accent: '#ffd21f', sub: '2022 · Steam', done: true, finished: '2022-05-06' },
+      { title: 'LEGO Star Wars: The Complete Saga', accent: '#ffd21f', sub: '2007 · Steam', done: true, finished: '2022-07-10' },
+      { title: 'LEGO Star Wars III: The Clone Wars', accent: '#ffd21f', sub: '2011 · Steam', done: true, finished: '2022-07-13' },
+      { title: 'LEGO Star Wars: The Force Awakens', accent: '#ffd21f', sub: '2016 · Steam', done: true, finished: '2022-07-17' },
+      { title: 'Jedi: Survivor', accent: '#4fa8ff', sub: '2023', done: true, finished: '2023-07-16' },
+      { title: 'Jedi: Fallen Order', accent: '#4fa8ff', sub: '2019', done: true, finished: '2024-03-22',
+        desc: 'Finished three times: first on Dec 12 2019, the week it came out; again on Apr 30 2022; and then once more, straight after Survivor, on Mar 22 2024, which is the run that took it to a hundred percent.' },
+      { title: 'Droid Repair Bay', accent: '#9fc4e8', sub: '2017 · VR', done: true, finished: '2024-09-27' },
+      { title: 'Star Wars Outlaws', accent: '#e0a020', sub: '2024', done: true, finished: '2024-12-03' },
+      { title: 'Battlefront II', accent: '#9fc4e8', sub: '2017', done: true, finished: '2025-03-11' },
     ] },
 
   /* ── the music ──
@@ -374,61 +483,6 @@ window.FAN_PAGE = {
       { title: 'The Jedi Steps and Finale', series: 'The Sequels', accent: '#4fa8ff', when: 34, year: 2015, secs: 532, sub: 'The Force Awakens · 2015 · 8:52',
         desc: 'Rey climbing to Luke on Ahch-To, then the credits, with every theme in the film taking a bow.',
         href: 'https://www.youtube.com/watch?v=cUBUlKgsNK8', link: 'Listen' },
-    ] },
-
-
-  // mount:'end' → renders into #fanBodyEnd, below the hand-written planet atlas
-  { id: 'parks', kind: 'cards', title: 'Where It Exists', note: 'Batuu, and the places you can stand in it',
-    lede: 'Galaxy’s Edge is Black Spire Outpost on Batuu, set between The Last Jedi and The Rise of Skywalker so it belongs to no film in particular. It is the most expensive land Disney has ever built, and the detail is absurd: the bins are in-universe, the signage is all Aurebesh, and nothing anywhere says “Star Wars” on it.',
-    items: [
-      { title: 'Galaxy’s Edge · Disneyland', sub: 'Anaheim, California', tag: '2019', accent: '#ffe81f',
-        desc: 'Opened 31 May 2019, and the closest one to me. Rise of the Resistance is the best theme-park attraction ever built: a full-size hangar, a Star Destroyer corridor, an AT-AT bay and a trackless ride system pretending to be a prison break.',
-        meta: 'Rise of the Resistance · Smugglers Run' },
-      { title: 'Galaxy’s Edge · Hollywood Studios', sub: 'Walt Disney World, Florida', tag: '2019', accent: '#ffe81f',
-        desc: 'Opened three months after Anaheim and slightly larger. Same two rides, same Droid Depot and Savi’s Workshop, same Black Spire Outpost.',
-        meta: 'The bigger of the two' },
-      { title: 'Savi’s Workshop', sub: 'Both parks', tag: 'Build', accent: '#3f8fff',
-        desc: 'You build a lightsaber. An actual one, from parts, in a room with a ceremony and no photographs, and you pick the kyber colour. It costs a fortune and everybody who does it says it was worth it.',
-        meta: 'Handbuilt Lightsabers' },
-      { title: 'Droid Depot', sub: 'Both parks', tag: 'Build', accent: '#e08a3a',
-        desc: 'Build an astromech off a conveyor of parts. It moves, it beeps, and it reacts to things elsewhere in the land.',
-        meta: 'R-series or BB-series' },
-      { title: 'Star Tours', sub: 'Four parks worldwide', tag: '1987', accent: '#9fc4e8',
-        desc: 'The original, and it long predates Galaxy’s Edge. The 2011 rebuild randomises the destinations, so no two flights are the same. Anaheim, Florida, Tokyo and Paris.',
-        meta: 'The Adventures Continue' },
-      { title: 'Galactic Starcruiser', sub: 'Walt Disney World', tag: 'Closed', accent: '#8f8f9f',
-        desc: 'The Halcyon: a two-night, fully in-character hotel where the windows were screens and the plot happened around you. It opened in March 2022, cost about six thousand dollars for a family, and closed eighteen months later. Extraordinary, and doomed.',
-        meta: '2022 – 2023' },
-    ] },
-
-  { id: 'played', kind: 'gallery', title: 'Every One of Them, Finished', note: 'my own screenshots · 100%',
-    lede: 'The other way I have spent time in this galaxy. Thirty-six Star Wars games in the library and a wall of hundred-percents, including four LEGO games taken all the way to the last gold brick.',
-    items: [
-      { title: 'The Star Wars shelf', src: '/assets/img/franchises/star-wars-games.jpg',
-        alt: 'A row of Star Wars game covers, each marked 100% Complete',
-        desc: 'LEGO The Force Awakens, LEGO The Skywalker Saga, Droid Repair Bay, Jedi: Fallen Order, Jedi: Survivor and Outlaws, all at a hundred percent.',
-        meta: '36 in the collection' },
-      { title: 'The LEGO Star Wars run', src: '/assets/img/franchises/star-wars-lego-100.jpg',
-        alt: 'Completion screens from four LEGO Star Wars games, all at 100 percent',
-        desc: 'The Complete Saga at 26 hours 40. The Clone Wars at 22 hours 05. The Force Awakens with every planet on the galaxy map at 100. The Skywalker Saga with all 1,200 Kyber bricks, 380 characters and 135 ships.',
-        meta: 'Four games · 100.0% each' },
-    ] },
-
-  /* one tile per finished game, in the order I finished them, with the date
-     (`finished`, see fanpage.js); the LEGO four also sit in the catalogue on
-     the LEGO page with their hours */
-  { id: 'finished', kind: 'tiles', compact: true, title: 'When I Finished Them', note: 'to a hundred percent',
-    items: [
-      { title: 'LEGO Star Wars: The Skywalker Saga', accent: '#ffd21f', sub: '2022 · Steam', done: true, finished: '2022-05-06' },
-      { title: 'LEGO Star Wars: The Complete Saga', accent: '#ffd21f', sub: '2007 · Steam', done: true, finished: '2022-07-10' },
-      { title: 'LEGO Star Wars III: The Clone Wars', accent: '#ffd21f', sub: '2011 · Steam', done: true, finished: '2022-07-13' },
-      { title: 'LEGO Star Wars: The Force Awakens', accent: '#ffd21f', sub: '2016 · Steam', done: true, finished: '2022-07-17' },
-      { title: 'Jedi: Survivor', accent: '#4fa8ff', sub: '2023', done: true, finished: '2023-07-16' },
-      { title: 'Jedi: Fallen Order', accent: '#4fa8ff', sub: '2019', done: true, finished: '2024-03-22',
-        desc: 'Finished three times: first on Dec 12 2019, the week it came out; again on Apr 30 2022; and then once more, straight after Survivor, on Mar 22 2024, which is the run that took it to a hundred percent.' },
-      { title: 'Droid Repair Bay', accent: '#9fc4e8', sub: '2017 · VR', done: true, finished: '2024-09-27' },
-      { title: 'Star Wars Outlaws', accent: '#e0a020', sub: '2024', done: true, finished: '2024-12-03' },
-      { title: 'Battlefront II', accent: '#9fc4e8', sub: '2017', done: true, finished: '2025-03-11' },
     ] },
 
   { id: 'links', kind: 'links', mount: 'end', title: 'Links', note: 'where I actually read about it',

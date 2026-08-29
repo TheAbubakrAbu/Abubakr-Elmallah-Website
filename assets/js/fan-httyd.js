@@ -21,6 +21,63 @@ window.FAN_PAGE = {
         desc: 'Shot-for-shot faithful, Gerard Butler back as Stoick, and proof of how sturdy the original design was. Fine. The 2010 film remains the one.',
         meta: 'The victory lap' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, and those are taken from what this
+     page already says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'twelve books, four films, five series',
+    lede: 'The books and the films are barely the same story: Cressida Cowell wrote twelve of them, DreamWorks kept the names and the dragons and built something else. Both are worth it, and the television side is much larger than anyone expects.',
+    items: [
+      { title: 'The Films', sub: 'DreamWorks · 2010 – 2025', unit: 'film',
+        desc: 'A trilogy planned as a beginning, a middle and a goodbye, plus the live-action remake of the first one.',
+        rows: [
+          { n: 'How to Train Your Dragon', y: '2010', big: true },
+          { n: 'How to Train Your Dragon 2', y: '2014', big: true },
+          { n: 'How to Train Your Dragon: The Hidden World', y: '2019', big: true },
+          { n: 'How to Train Your Dragon', y: '2025' },
+        ] },
+      { title: 'The Books', sub: 'Cressida Cowell · 2003 – 2015', unit: 'book',
+        desc: 'Twelve, narrated by an old Hiccup remembering, and much stranger and funnier than the films.',
+        rows: [
+          { n: 'How to Train Your Dragon', y: '2003' },
+          { n: 'How to Be a Pirate', y: '2004' },
+          { n: 'How to Speak Dragonese', y: '2005' },
+          { n: 'How to Cheat a Dragon’s Curse', y: '2006' },
+          { n: 'How to Twist a Dragon’s Tale', y: '2007' },
+          { n: 'A Hero’s Guide to Deadly Dragons', y: '2007' },
+          { n: 'How to Ride a Dragon’s Storm', y: '2008' },
+          { n: 'How to Break a Dragon’s Heart', y: '2009' },
+          { n: 'How to Steal a Dragon’s Sword', y: '2011' },
+          { n: 'How to Seize a Dragon’s Jewel', y: '2012' },
+          { n: 'How to Betray a Dragon’s Hero', y: '2013' },
+          { n: 'How to Fight a Dragon’s Fury', y: '2015' },
+        ] },
+      { title: 'On Television', sub: '2012 – 2023', unit: 'series',
+        desc: 'Race to the Edge is the one that matters: it fills the five years between the first two films and it is genuinely good.',
+        rows: [
+          { n: 'Dragons: Riders of Berk', y: '2012' },
+          { n: 'Dragons: Defenders of Berk', y: '2013' },
+          { n: 'Dragons: Race to the Edge', y: '2015' },
+          { n: 'Dragons: Rescue Riders', y: '2019' },
+          { n: 'Dragons: The Nine Realms', y: '2021' },
+        ] },
+      { title: 'The Shorts', sub: '2010 – 2014', unit: 'short',
+        desc: 'Four half-hour specials, all of them canon and one of them a Christmas film.',
+        rows: [
+          { n: 'Legend of the Boneknapper Dragon', y: '2010' },
+          { n: 'Book of Dragons', y: '2011' },
+          { n: 'Gift of the Night Fury', y: '2011' },
+          { n: 'Dawn of the Dragon Racers', y: '2014' },
+        ] },
+      { title: 'The Games', sub: '2013 – 2022', unit: 'game',
+        desc: 'Mostly tie-ins; School of Dragons ran for a decade and is the one people actually played.',
+        rows: [
+          { n: 'School of Dragons', y: '2013' },
+          { n: 'Dragons: Dawn of New Riders', y: '2019' },
+          { n: 'Dragons: Legends of the Nine Realms', y: '2022' },
+        ] },
+    ] },
+
 
   { id: 'dragons', kind: 'tiles', title: 'The Dragons', note: 'the Book of Dragons, abridged', compact: true,
     lede: 'The franchise’s quiet masterstroke: dragons designed like animals, not monsters, each species with its own silhouette, gait and personality, catalogued by the vikings into classes like a field guide.',
@@ -50,22 +107,6 @@ window.FAN_PAGE = {
       { title: 'Where No One Goes', sub: 'The sequel’s answer', tag: 'Film 2', accent: '#e8c56a',
         desc: 'Powell with Jónsi of Sigur Rós, over the flight-suit sequence. The moment the sequel announces it intends to be bigger, and briefly is.',
         meta: 'HTTYD 2 · opening' },
-    ] },
-
-  { id: 'why', kind: 'cards', title: 'Why It Lands', note: 'the machinery under the fur and scales',
-    items: [
-      { title: 'The hero is an engineer', sub: 'Noticing, then building', tag: 'The thesis', accent: '#7fd0e8',
-        desc: 'Hiccup wins nothing by strength in three films. He observes, sketches, prototypes and iterates: the fin, the saddle, the fire-sword, the flight suit. It is the rare action franchise whose set pieces are engineering demos.',
-        meta: 'The notebook does the fighting' },
-      { title: 'The matching injuries', sub: 'A tail, then a leg', tag: 'The honesty', accent: '#e0642a',
-        desc: 'Hiccup cripples Toothless in the first ten minutes and the film makes him spend the rest of the trilogy living with it, then takes his leg in the finale and treats it with the same matter-of-factness. Kids’ cinema almost never lets consequences stay.',
-        meta: 'Both walk differently now' },
-      { title: 'It ends', sub: 'On purpose', tag: 'The discipline', accent: '#5fa86f',
-        desc: 'The Hidden World says the quiet thing: loving something wild can mean losing it, and the story closes rather than franchising itself forever. The final beach scene is a children’s film trusting children with grief.',
-        meta: 'A trilogy, complete' },
-      { title: 'Berk feels lived-in', sub: 'Nine generations of stubborn', tag: 'The world', accent: '#e8c56a',
-        desc: 'A village that rebuilds every house the dragons burn, on an island with three hundred days of hail, out of pure spite. The narration jokes hold up because the world under them is drawn seriously.',
-        meta: 'It snows nine months a year' },
     ] },
 
   { id: 'quotes', kind: 'quotes', title: 'Lines', note: 'the two that carry it',

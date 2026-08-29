@@ -165,23 +165,6 @@ window.FAN_PAGE = {
       { title: 'LEGO Star Wars: The Video Game', accent: '#ffd21f', year: 2005, series: 'Star Wars', proj: '17.6', sub: '2005', desc: 'Where all of it starts.' },
     ] },
 
-  { id: 'games', kind: 'cards', title: 'Why They Work', note: 'the formula, unchanged for twenty years',
-    lede: 'I grew up on these. LEGO Star Wars first, then Indiana Jones, Batman, the superheroes, Pirates of the Caribbean, and it is not an exaggeration to say the TT Games catalogue is how I met half the other franchises on this website. I played LEGO Indiana Jones years before I saw an Indiana Jones film.',
-    items: [
-      { title: 'They start with Star Wars', sub: '2005', tag: 'The origin', accent: '#ffd21f',
-        desc: 'LEGO Star Wars: The Video Game had no dialogue, a two-player drop-in mode, and a hub you could run around breaking things in. It was meant to be a licensed tie-in and instead invented a genre that ran for twenty years.',
-        meta: 'Traveller’s Tales' },
-      { title: 'Nobody speaks', sub: 'The first six years', tag: 'The humour', accent: '#d01012',
-        desc: 'The early games are silent: grunts, mime and slapstick, retelling films you already knew through pure physical comedy. It is genuinely closer to silent-era film than to a normal game cutscene, and it is funnier than the voiced ones that came later.',
-        meta: 'Mime, not dialogue' },
-      { title: 'Free Play', sub: 'The whole loop', tag: 'The design', accent: '#0055bf',
-        desc: 'Finish a level, then come back with every character unlocked and reach the things you could not before. It turned a linear film adaptation into a collect-a-thon you could pick at for months, and it is why these games have such absurd completion times.',
-        meta: 'Gold bricks · red bricks' },
-      { title: 'Two players, one couch', sub: 'Drop-in co-op', tag: 'The design', accent: '#00852b',
-        desc: 'Every single one is two-player, at any moment, with no setup. That is the real reason so many people my age have these memories at all: they are the games you played with a sibling or a friend who came round.',
-        meta: 'Drop in, drop out' },
-    ] },
-
   { id: 'played', kind: 'gallery', title: 'A Hundred Percent', note: 'thirty years of them, and a lot of gold bricks',
     lede: 'LEGO games turned thirty in 2025, and a genuinely unreasonable share of my childhood is inside them. The formula never changed and it never needed to: smash everything, collect the studs, unlock the character, come back with the right ability.',
     items: [
@@ -198,18 +181,33 @@ window.FAN_PAGE = {
         desc: 'A hundred percent and eleven and a half billion studs. The four-film adaptation, and the best of the non-Star-Wars LEGO games.',
         meta: '100.0%' },
     ] },
-
-  /* everything from here down is the bricks rather than the games, so it mounts
-     at #fanBodyEnd, underneath the hand-written brick cutaway in the page */
-  /* the music: the song, since nothing LEGO is on my playlist yet. `music`
-     rather than `themes`, because this page's Themes are the product lines. */
-  { id: 'music', kind: 'tiles', compact: true, title: 'The Song', note: 'one track · the one everybody knows',
-    lede: 'Nothing LEGO is on my playlist yet, so this is the obvious one, linked to the album’s own upload.',
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'On Screen', note: 'the films and the series',
+    lede: 'The games are the catalogue above, all twenty-nine of them. This is the other half: five cinema films and the television line, which by now has run longer than most of the things it parodies.',
     items: [
-      { title: 'Everything Is Awesome!!!', accent: '#ffd21f', sub: 'Tegan and Sara feat. The Lonely Island · The LEGO Movie · 2014 · 2:44',
-        desc: 'Written to be irritating on purpose, nominated for an Oscar anyway, and the only song about conformity that a whole cinema of children has ever sung along to.',
-        href: 'https://www.youtube.com/watch?v=FSBr7jB8TxA', link: 'Listen' },
+      { title: 'The Films', sub: '2014 – 2024', unit: 'film',
+        desc: 'The first one is a genuinely good film about creativity that also happens to be a two-hour toy advert, and it knows it.',
+        rows: [
+          { n: 'The LEGO Movie', y: '2014', big: true },
+          { n: 'The LEGO Batman Movie', y: '2017' },
+          { n: 'The LEGO Ninjago Movie', y: '2017' },
+          { n: 'The LEGO Movie 2: The Second Part', y: '2019' },
+          { n: 'Piece by Piece', y: '2024' },
+        ] },
+      { title: 'On Television', sub: '2011 – now', unit: 'series',
+        desc: 'Ninjago alone has run for fifteen seasons and has its own page on this site.',
+        rows: [
+          { n: 'Ninjago', y: '2011', big: true },
+          { n: 'LEGO Star Wars: The Freemaker Adventures', y: '2016' },
+          { n: 'LEGO Star Wars: the holiday specials', y: '2020' },
+          { n: 'Monkie Kid', y: '2020' },
+          { n: 'Dreamzzz', y: '2023' },
+        ] },
     ] },
+
 
   { id: 'system', kind: 'tiles', mount: 'end', title: 'The System', note: 'why any brick fits any other brick',
     lede: 'Every element made since 1958 still clutches with every element made this morning. That is the whole company.',
@@ -250,6 +248,18 @@ window.FAN_PAGE = {
         href: 'https://www.lego.com/', link: 'lego.com' },
     ] },
 
+  /* everything from here down is the bricks rather than the games, so it mounts
+     at #fanBodyEnd, underneath the hand-written brick cutaway in the page */
+  /* the music: the song, since nothing LEGO is on my playlist yet. `music`
+     rather than `themes`, because this page's Themes are the product lines. */
+  { id: 'music', kind: 'tiles', compact: true, title: 'The Song', note: 'one track · the one everybody knows',
+    lede: 'Nothing LEGO is on my playlist yet, so this is the obvious one, linked to the album’s own upload.',
+    items: [
+      { title: 'Everything Is Awesome!!!', accent: '#ffd21f', sub: 'Tegan and Sara feat. The Lonely Island · The LEGO Movie · 2014 · 2:44',
+        desc: 'Written to be irritating on purpose, nominated for an Oscar anyway, and the only song about conformity that a whole cinema of children has ever sung along to.',
+        href: 'https://www.youtube.com/watch?v=FSBr7jB8TxA', link: 'Listen' },
+    ] },
+
 
   { id: 'links', kind: 'links', mount: 'end', title: 'Links', note: 'where I actually read about it',
     items: [
@@ -264,49 +274,3 @@ window.FAN_PAGE = {
     ] },
 
 ] };
-
-/* The numbers strip at the top of #fanBody is COMPUTED from the catalogue
-   rather than written down, for the same reason the tally pill is: a second
-   copy of "eleven at a hundred percent" would drift the first time another
-   game gets finished. Spliced in ahead of the catalogue so it reads as the
-   summary of what follows. The accents are the stud ladder from the fountain
-   above: silver, gold, blue, purple, then the Red Brick. */
-(function () {
-  var secs = window.FAN_PAGE.sections;
-  var cat = secs.filter(function (s) { return s.id === 'catalogue'; })[0];
-  if (!cat) return;
-
-  var games = cat.items;
-  var fin = games.filter(function (g) { return g.done; });
-  var hours = 0, proj = 0;
-  fin.forEach(function (g) {
-    hours += parseFloat(g.hours) || 0;
-    proj += parseFloat(g.proj) || 0;
-  });
-  var series = [];
-  games.forEach(function (g) {
-    if (g.series && series.indexOf(g.series) < 0) series.push(g.series);
-  });
-  var years = games.map(function (g) { return g.year; });
-  /* only the played games carry a rating, so the unrated ones must not be in
-     this reduce: `undefined > x` is false, which would crown whichever
-     unrated title happens to come first in the list */
-  var top = games.filter(function (g) { return g.rating != null; })
-    .reduce(function (a, b) { return b.rating > a.rating ? b : a; });
-
-  secs.splice(secs.indexOf(cat), 0, { id: 'count', kind: 'stats',
-    title: 'In Numbers', note: 'counted from the catalogue, not written down',
-    items: [
-      { title: String(games.length), sub: 'Games in the main line', accent: '#b8bcc4',
-        desc: 'TT Games’ catalogue, ' + Math.min.apply(null, years) + ' to '
-          + Math.max.apply(null, years) + ', with the handheld spin-offs and the bundles left out.' },
-      { title: String(series.length), sub: 'Series, one formula', accent: '#f2cd37',
-        desc: 'Star Wars to Harry Potter to LEGO’s own inventions, all of them running on the same smash, collect, unlock loop.' },
-      { title: String(fin.length), sub: 'At a hundred percent', accent: '#3f7fd0',
-        desc: 'Every one of them with the Steam library page below as the receipt.' },
-      { title: hours.toFixed(1) + ' h', sub: 'In the finished ones', accent: '#a05fd0',
-        desc: 'Steam-counted, against the ' + Math.round(proj) + ' hours the HowLongToBeat averages projected for them.' },
-      { title: (top.rating % 1 ? top.rating.toFixed(1) : String(top.rating)) + '/10', sub: 'The top score', accent: '#e0342a',
-        desc: top.title + ', and everything else on the page is measured against it.' },
-    ] });
-})();

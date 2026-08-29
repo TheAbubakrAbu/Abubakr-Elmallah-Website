@@ -40,6 +40,49 @@ window.FAN_PAGE = {
       { title: 'Across the Spider-Verse', accent: '#e0a020', sub: '2023 · animated', desc: 'Bigger, denser, and it ends on a cliffhanger that has been sitting there for years.' },
       { title: 'Beyond the Spider-Verse', accent: '#e0a020', sub: 'announced', desc: 'The third one, delayed repeatedly. Still coming, and still owed to us.' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything Else In It', note: 'the games, the series, the runs',
+    lede: 'Every film is already listed above, one by one. This is the rest of it: the games, which are as much a part of this character as the films are, the animated series, and the comic runs everything is adapted out of.',
+    items: [
+      { title: 'The Games', sub: '2000 – now', unit: 'game',
+        desc: 'The three marked are Insomniac’s, and all three are at a hundred percent further down this page.',
+        rows: [
+          { n: 'Spider-Man', y: '2000' },
+          { n: 'Spider-Man 2', y: '2004' },
+          { n: 'Ultimate Spider-Man', y: '2005' },
+          { n: 'Shattered Dimensions', y: '2010' },
+          { n: 'The Amazing Spider-Man', y: '2012' },
+          { n: 'Marvel’s Spider-Man', y: '2018', big: true },
+          { n: 'Marvel’s Spider-Man: Miles Morales', y: '2020', big: true },
+          { n: 'Marvel’s Spider-Man 2', y: '2023', big: true },
+          { n: 'Marvel’s Spider-Man: The Great Web', gone: 'cancelled, 2024' },
+        ] },
+      { title: 'On Television', sub: '1967 – now', unit: 'series',
+        desc: 'The 1994 series is how a whole generation met the rogues gallery; Spectacular is the one people defend hardest.',
+        rows: [
+          { n: 'Spider-Man', y: '1967' },
+          { n: 'Spider-Man: The Animated Series', y: '1994' },
+          { n: 'Spider-Man Unlimited', y: '1999' },
+          { n: 'The Spectacular Spider-Man', y: '2008' },
+          { n: 'Ultimate Spider-Man', y: '2012' },
+          { n: 'Spider-Man', y: '2017' },
+          { n: 'Your Friendly Neighborhood Spider-Man', y: '2025' },
+        ] },
+      { title: 'The Comics', sub: 'the runs the rest is built from', unit: 'run',
+        desc: 'Six stories that supply most of the plots of the films and games above.',
+        rows: [
+          { n: 'Amazing Fantasy #15', y: '1962' },
+          { n: 'The Night Gwen Stacy Died', y: '1973' },
+          { n: 'Kraven’s Last Hunt', y: '1987' },
+          { n: 'Ultimate Spider-Man', y: '2000' },
+          { n: 'Spider-Man: Blue', y: '2002' },
+          { n: 'Superior Spider-Man', y: '2013' },
+        ] },
+    ] },
+
 
   /* `chips: true` gives every card the completion row; `done` is the hundred
      percent stamp and `finished` the date I got there (see fanpage.js). */
@@ -142,6 +185,15 @@ window.FAN_PAGE = {
       { title: 'Sometimes you gotta take a leap of faith first.', sub: 'Peter B. Parker' },
     ] },
 
+  { id: 'played', kind: 'gallery', title: 'All Three, Platinum', note: 'my own screenshots · 100%',
+    lede: 'Insomniac made the best superhero games ever built, and I have finished all three of them completely.',
+    items: [
+      { title: 'The Insomniac trilogy', src: '/assets/img/franchises/spider-man-games.jpg',
+        alt: 'Spider-Man 2, Miles Morales and Spider-Man Remastered, each marked 100% Complete',
+        desc: 'Spider-Man Remastered, Miles Morales and Spider-Man 2. Every side mission, every backpack, every suit. The web-swinging in these is the closest a game has come to making a superpower feel like a skill.',
+        meta: 'Three games · 100.0% each' },
+    ] },
+
 
   /* the music: the Spider-Man tracks on my playlist, across all four
      continuities, named as the albums name them. `series` is the continuity
@@ -192,15 +244,6 @@ window.FAN_PAGE = {
       { title: 'Annihilate', series: 'The Spider-Verse', accent: '#d05ae0', year: 2023, secs: 232, sub: 'Across the Spider-Verse · 2023 · 3:52',
         desc: 'Metro Boomin, Swae Lee, Lil Wayne and Offset. The one from the second film that stuck the way Sunflower did from the first.',
         href: 'https://www.youtube.com/watch?v=dsnuu20RSFU', link: 'Listen' },
-    ] },
-
-  { id: 'played', kind: 'gallery', title: 'All Three, Platinum', note: 'my own screenshots · 100%',
-    lede: 'Insomniac made the best superhero games ever built, and I have finished all three of them completely.',
-    items: [
-      { title: 'The Insomniac trilogy', src: '/assets/img/franchises/spider-man-games.jpg',
-        alt: 'Spider-Man 2, Miles Morales and Spider-Man Remastered, each marked 100% Complete',
-        desc: 'Spider-Man Remastered, Miles Morales and Spider-Man 2. Every side mission, every backpack, every suit. The web-swinging in these is the closest a game has come to making a superpower feel like a skill.',
-        meta: 'Three games · 100.0% each' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

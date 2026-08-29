@@ -13,6 +13,68 @@ window.FAN_PAGE = {
       { num: 'III', title: 'Batman v Superman & the Snyder Cut', sub: '2016 · 2021 · Snyder', accent: '#8f9fb0', meta: 'Affleck · the Batfleck',
         desc: 'And the Batman himself: Affleck is the best physical Batman anyone has cast. Older, scarred, brutal, and genuinely frightening; the warehouse fight is the first time a film made the fighting look the way it does in the comics. A Batman who has already been doing this for twenty years and lost people, which none of the others start from.' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'eighty-five years of him',
+    lede: 'No character on this site has been adapted more. Every live-action film, every animated series that matters, the Arkham games, and the six comics that most of the rest is built out of.',
+    items: [
+      { title: 'The Films', sub: 'live action · 1966 – 2022', unit: 'film',
+        desc: 'Six directors, seven Batmen, and one four-hour cut that arrived three years late.',
+        rows: [
+          { n: 'Batman', y: '1966' },
+          { n: 'Batman', y: '1989' },
+          { n: 'Batman Returns', y: '1992' },
+          { n: 'Batman Forever', y: '1995' },
+          { n: 'Batman & Robin', y: '1997' },
+          { n: 'Batman Begins', y: '2005' },
+          { n: 'The Dark Knight', y: '2008', big: true },
+          { n: 'The Dark Knight Rises', y: '2012' },
+          { n: 'Batman v Superman: Dawn of Justice', y: '2016', big: true },
+          { n: 'Justice League', y: '2017' },
+          { n: 'Zack Snyder’s Justice League', y: '2021', big: true },
+          { n: 'The Batman', y: '2022', big: true },
+        ] },
+      { title: 'On Television', sub: '1966 – now', unit: 'series',
+        desc: 'The 1992 animated series is still the version everything else is measured against.',
+        rows: [
+          { n: 'Batman', y: '1966' },
+          { n: 'Batman: The Animated Series', y: '1992', big: true },
+          { n: 'The New Batman Adventures', y: '1997' },
+          { n: 'Batman Beyond', y: '1999' },
+          { n: 'The Batman', y: '2004' },
+          { n: 'Batman: The Brave and the Bold', y: '2008' },
+          { n: 'Beware the Batman', y: '2013' },
+          { n: 'Harley Quinn', y: '2019' },
+          { n: 'The Penguin', y: '2024' },
+          { n: 'Batman: Caped Crusader', y: '2024' },
+        ] },
+      { title: 'The Games', sub: '2008 – 2024', unit: 'game',
+        desc: 'Rocksteady’s two are the ones that proved a licensed game could be the best version of the thing.',
+        rows: [
+          { n: 'LEGO Batman: The Videogame', y: '2008' },
+          { n: 'Batman: Arkham Asylum', y: '2009', big: true },
+          { n: 'Batman: Arkham City', y: '2011', big: true },
+          { n: 'LEGO Batman 2: DC Super Heroes', y: '2012' },
+          { n: 'Batman: Arkham Origins', y: '2013' },
+          { n: 'LEGO Batman 3: Beyond Gotham', y: '2014' },
+          { n: 'Batman: Arkham Knight', y: '2015' },
+          { n: 'Gotham Knights', y: '2022' },
+          { n: 'Batman: Arkham Shadow', y: '2024' },
+        ] },
+      { title: 'The Comics', sub: 'the ones everything is built from', unit: 'book',
+        desc: 'Six stories that between them supply most of the plot of most of the films above.',
+        rows: [
+          { n: 'The Dark Knight Returns', y: '1986' },
+          { n: 'Year One', y: '1987', big: true },
+          { n: 'The Killing Joke', y: '1988', big: true },
+          { n: 'The Long Halloween', y: '1996' },
+          { n: 'Hush', y: '2002' },
+          { n: 'The Court of Owls', y: '2011' },
+        ] },
+    ] },
+
 
   { id: 'rogues', kind: 'cards', title: 'The Rogues Gallery', note: 'the best in comics, and it is not close',
     items: [

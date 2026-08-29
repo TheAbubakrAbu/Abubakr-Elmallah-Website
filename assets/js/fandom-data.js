@@ -204,6 +204,14 @@ window.FANDOMS = [
       meta: 'Film · 2014', href: '/worlds/john-wick/',
       desc: 'Four films shot wide and held, by stuntmen who got to pick the camera. Underneath the fighting is a better invention: an assassins’ guild with a currency, an arbitration process and paperwork.' },
 
+    { name: 'Geometry Dash', wm: 'geodash', glyph: 'cube', c1: '#39d6f0', c2: '#0a1a24',
+      meta: 'Game \u00b7 2013',
+      desc: 'One button, no health bar and no checkpoints inside a level: touch anything and the attempt is over from the first frame. Twenty-two official levels, and a level editor that has produced millions more, some of which take a year to finish once.' },
+
+    { name: 'Rio', wm: 'rio', glyph: 'macaw', c1: '#3fc6a8', c2: '#0a2019',
+      meta: 'Film \u00b7 2011',
+      desc: 'A Spix\u2019s macaw from Minnesota flown to Rio de Janeiro to save his species, made by the studio that did Ice Age. The bird it is about was declared extinct in the wild three years after the sequel.' },
+
     { name: 'Christopher Nolan', wm: 'nolan', glyph: 'top', c1: '#d0d8e0', c2: '#0e1217',
       meta: 'Director · 1998', href: '/worlds/christopher-nolan/',
       desc: 'Thirteen films about time, told out of order and shot on film stock the size of a postcard: Inception, Interstellar, Oppenheimer, and now The Odyssey. Zimmer and Göransson did the rest.' },
@@ -220,6 +228,11 @@ window.FANDOMS = [
       when: 'First visit 2015; properly 7th\u20138th grade, 2018\u201320',
       meta: 'Studio · 1912', href: '/worlds/universal-studios/',
       desc: 'Transformers and Jurassic got me first, years before I knew what the Wizarding World was. The best themed lands going.' },
+
+    { name: 'San Diego Zoo', wm: 'zoo', glyph: 'paw', c1: '#7fc86a', c2: '#0f1d0c',
+      when: 'Since I was small',
+      meta: 'Zoo \u00b7 1916',
+      desc: 'A hundred acres in Balboa Park that started with the animals left behind by a 1915 exposition, and the place that worked out how to keep a panda alive outside China. The Safari Park up the road is the same institution with the fences moved out.' },
 
     { name: 'Knott\u2019s Berry Farm', wm: 'knotts', glyph: 'saloon', c1: '#b06fd8', c2: '#1e0f26',
       when: 'Elementary school',

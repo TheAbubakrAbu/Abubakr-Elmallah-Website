@@ -24,6 +24,54 @@ window.FAN_PAGE = {
       { num: 'III', title: 'Jurassic World', sub: '2015 · Trevorrow', accent: '#3fbf9f', meta: 'The park, open',
         desc: 'The one that finally shows you the park working, full of bored tourists who think dinosaurs are boring now, which is a genuinely sharp idea. Then the Indominus gets out, and the last ten minutes hand the film to the T. rex and Blue and it absolutely earns it.' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'two novels, seven films, the games',
+    lede: 'Two Crichton novels, seven films across thirty-two years, two animated series and a long run of games. The three marked are the three at the top of this page.',
+    items: [
+      { title: 'The Films', sub: '1993 – 2025', unit: 'film',
+        desc: 'Spielberg directed two of them, and the whole series is still measured against the first.',
+        rows: [
+          { n: 'Jurassic Park', y: '1993', big: true },
+          { n: 'The Lost World: Jurassic Park', y: '1997', big: true },
+          { n: 'Jurassic Park III', y: '2001' },
+          { n: 'Jurassic World', y: '2015', big: true },
+          { n: 'Fallen Kingdom', y: '2018' },
+          { n: 'Dominion', y: '2022' },
+          { n: 'Jurassic World Rebirth', y: '2025' },
+        ] },
+      { title: 'The Books', sub: 'Michael Crichton · 1990 – 1995', unit: 'novel',
+        desc: 'Colder and more technical than the films, and much more interested in chaos theory than in the dinosaurs.',
+        rows: [
+          { n: 'Jurassic Park', y: '1990' },
+          { n: 'The Lost World', y: '1995' },
+        ] },
+      { title: 'On Television', sub: 'Netflix · 2020 – now', unit: 'series',
+        desc: 'Animated, canon, and set on the same island during the events of Jurassic World.',
+        rows: [
+          { n: 'Camp Cretaceous', y: '2020' },
+          { n: 'Chaos Theory', y: '2024' },
+        ] },
+      { title: 'The Shorts', sub: '2019', unit: 'short',
+        desc: 'Eight minutes between Fallen Kingdom and Dominion, and better than either.',
+        rows: [
+          { n: 'Battle at Big Rock', y: '2019' },
+        ] },
+      { title: 'The Games', sub: '1993 – now', unit: 'game',
+        desc: 'The park-builders are the ones that understood the assignment: the films are about a park, so make the park.',
+        rows: [
+          { n: 'Jurassic Park', y: '1993' },
+          { n: 'Trespasser', y: '1998' },
+          { n: 'Operation Genesis', y: '2003' },
+          { n: 'Jurassic Park: The Game', y: '2011' },
+          { n: 'LEGO Jurassic World', y: '2015' },
+          { n: 'Jurassic World Evolution', y: '2018' },
+          { n: 'Jurassic World Evolution 2', y: '2021' },
+        ] },
+    ] },
+
 
   { id: 'animals', kind: 'cards', title: 'The Animals', note: 'period · diet · size on screen',
     lede: 'The park’s genomes were patched with modern DNA to fill the gaps, which is the entire plot of every film in one sentence.',

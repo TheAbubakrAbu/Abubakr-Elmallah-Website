@@ -324,6 +324,137 @@
 
 .fan-visits > .fan-visit { margin-top: 0.15rem; }
 
+/* ── kind: lands ── a theme park taken apart, one card per land.
+
+   The card is a small table of contents: the land at the top, then every ride
+   in it with a dotted leader running out to its year. The leader is drawn
+   here rather than written into the markup (a flexing pseudo-element between
+   the name and the year), so a long ride name simply eats into it and nothing
+   has to be padded by hand.
+
+   Subgrid again, for the same reason the cards use it: the lands in a row put
+   their heading, their line of description and their attraction count on the
+   same lines even though one land has three rides and its neighbour has
+   fourteen. The ride list itself is the one part allowed to run long, so it
+   sits in the row that stretches. */
+.fan-lands {
+  display: grid; gap: clamp(0.9rem, 2vw, 1.3rem);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 288px), 1fr));
+}
+
+/* the same shelf holding a franchise rather than a park. Wider columns,
+   because “How to Train Your Dragon: The Hidden World” is not “Dumbo”: a work
+   title is roughly twice the length of a ride name and at 288px it wraps to
+   three lines and eats the leader entirely. */
+.fan-lands.is-works {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+}
+.fan-lands.is-works .fan-ride { font-size: 0.8rem; }
+
+.fan-land {
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; gap: 0.6rem;
+  padding: 1.15rem 1.15rem 0.95rem;
+  border: 1px solid var(--line); border-radius: 16px;
+  background: rgba(255,255,255,0.016);
+  transition: transform .4s var(--ease), border-color .4s, box-shadow .4s;
+}
+
+.fan-land:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--a, #f5c63c) 45%, transparent);
+  box-shadow: 0 22px 46px -30px #000, 0 0 34px -26px var(--a, #f5c63c);
+}
+
+/* the land's colour, along the top edge. Absolute so it stays out of the
+   subgrid's row count. */
+.fan-land-bar {
+  position: absolute; inset: 0 0 auto; height: 3px;
+  background: linear-gradient(90deg,
+    var(--a, #f5c63c), color-mix(in srgb, var(--a, #f5c63c) 12%, transparent));
+  opacity: .75; transition: opacity .4s;
+}
+
+.fan-land:hover .fan-land-bar { opacity: 1; }
+
+@supports (grid-template-rows: subgrid) {
+  .fan-lands { --rowgap: clamp(0.9rem, 2vw, 1.3rem); row-gap: 0; margin-bottom: calc(-1 * var(--rowgap)); }
+  .fan-lands > .fan-land {
+    display: grid; grid-row: span 4; grid-template-rows: subgrid;
+    row-gap: 0; align-content: start; margin-bottom: var(--rowgap);
+  }
+  .fan-land > * + * { margin-top: 0.6rem; }
+  .fan-land > .fan-land-bar { margin-top: 0; }
+}
+
+/* No wrapping here: a long land name wraps inside its own h4 and the year
+   stays on the first line at the right, rather than the year being pushed
+   onto a line of its own under a two-line title. */
+.fan-land-head { display: flex; align-items: baseline; gap: 0.8rem; }
+
+.fan-land-head h4 {
+  flex: 1 1 auto; min-width: 0;
+  font-family: var(--serif); font-weight: 600; font-size: 1.06rem;
+  letter-spacing: -0.02em; line-height: 1.2; color: var(--ink);
+  transition: color .3s;
+}
+
+.fan-land:hover .fan-land-head h4 { color: var(--a, var(--gold)); }
+
+.fan-land-sub {
+  flex: 0 0 auto;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--a, var(--gold)); opacity: .85;
+  white-space: nowrap;
+}
+
+.fan-land-desc { font-size: 0.8rem; line-height: 1.55; color: var(--ink-dim); }
+
+.fan-rides { list-style: none; display: flex; flex-direction: column; gap: 0.28rem; }
+
+.fan-ride { display: flex; align-items: baseline; font-size: 0.78rem; }
+
+/* min-width so the name can shrink and wrap. A flex item defaults to
+   min-width: auto, and in a narrow column a ride called “The Nighttime
+   Lights at Hogwarts Castle” then refuses to give any width back to the
+   leader. */
+.fan-ride b { flex: 0 1 auto; min-width: 0; font-weight: 400; color: var(--ink-dim); }
+
+/* the leader. A dotted rule that takes whatever width the name leaves it,
+   lifted off the baseline so it reads as a rule and not an underline. */
+.fan-ride::after {
+  content: ''; order: 1; flex: 1 1 0.6rem; min-width: 0.6rem;
+  margin: 0 0.4rem; transform: translateY(-0.28em);
+  border-bottom: 1px dotted color-mix(in srgb, var(--ink) 34%, transparent);
+}
+
+.fan-ride i {
+  order: 2; font-style: normal; font-family: var(--mono);
+  font-size: 0.62rem; letter-spacing: 0.04em; color: var(--mute); white-space: nowrap;
+}
+
+/* a headliner: the one or two in a land that are the reason to walk into it */
+.fan-ride.is-big b { font-weight: 600; color: var(--ink); }
+
+.fan-ride.is-big b::before {
+  content: '\25c6'; margin-right: 0.4rem;
+  font-size: 0.5em; vertical-align: 0.28em;
+  color: var(--a, var(--gold));
+}
+
+.fan-ride.is-big i { color: var(--a, var(--gold)); opacity: .85; }
+
+/* gone: kept because the park is partly a record of what it used to have */
+.fan-ride.is-gone b { color: var(--mute); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--ink) 30%, transparent); }
+
+.fan-ride.is-gone i { font-style: italic; opacity: .8; }
+
+.fan-land-count {
+  padding-top: 0.6rem; border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mute);
+}
+
 /* ── kind: rank ── */
 .fan-rank { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
 
@@ -2737,8 +2868,14 @@ body[data-fan="knotts"] .fan-title {
    in it looks like, and on at least one of the ten it computed to inline-flex,
    which shrank the grid to its content and stacked nine photographs in a
    single 375px column. Saying it here costs one line and cannot be lost. */
+/* white-space for the same reason. `.fan-been` is also the name of the "I went
+   here" stamp on a card three thousand lines up, which sets nowrap so the tick
+   and the words never split; that rule reaches this section too, and a note
+   longer than the viewport then ran straight off the right edge instead of
+   wrapping. Two things should not share a class name, and until they stop,
+   this states what it wants. */
 .fan-been {
-  display: block; width: 100%;
+  display: block; width: 100%; white-space: normal;
   padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
 }
 .fan-been > .fan-h2, .fan-been > .fan-lede { display: block; }

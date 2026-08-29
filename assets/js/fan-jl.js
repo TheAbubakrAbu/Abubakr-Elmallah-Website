@@ -3,24 +3,6 @@
 window.FAN_PAGE = {
   when: { at: 'Since I was a kid, on the cartoons', note: 'The animated shows were on when I was small. This one is here for four characters rather than any devotion to the comics.' },
   sections: [
-
-  { id: 'why', kind: 'cards', title: 'Why This Is Here', note: 'being honest about it',
-    lede: 'I am not a Justice League obsessive and I am not going to pretend otherwise. I have not read the comics, not really, not properly. This is on the list because of a handful of characters I have liked since I was a kid, and because of the cartoons that introduced me to them. Treat “Justice League” here as shorthand for the DC guys rather than a claim about the books.',
-    items: [
-      { title: 'The characters, not the canon', sub: 'What I actually mean', tag: 'Honest', accent: '#5f9fe0',
-        desc: 'Batman, Superman, Green Lantern and the Flash, mostly. I like those four. I could not tell you which Crisis rewrote what, and I am not going to bluff my way through sixty-five years of continuity to sound like I could.',
-        meta: 'Four names, not a reading list' },
-      { title: 'The cartoons came first', sub: 'Saturday mornings', tag: 'How I got in', accent: '#d8b45f',
-        desc: 'The animated shows are how I met all of these people, and they are still the versions in my head. That is true for a lot of people my age: the Timm-era cartoons did more to define these characters than most of the comics did.',
-        meta: 'Watched as a kid' },
-      { title: 'And the films', sub: 'Snyder’s, mostly', tag: 'How I got in', accent: '#8f98a8',
-        desc: 'I liked Batman v Superman more than most people did, and I liked the Snyder Cut a lot. The 2017 theatrical Justice League I did not hate either, which I gather is a minority position.',
-        meta: 'Lowkey enjoyed them' },
-      { title: 'Sitting lower than the rest', sub: 'Fair placement', tag: 'Ranking', accent: '#6f7f92',
-        desc: 'Everything above this on the worlds page I know inside out. This one I like from a distance, and it earns its spot on four characters and a good cartoon rather than devotion.',
-        meta: 'Secondary, honestly' },
-    ] },
-
   { id: 'guys', kind: 'cards', title: 'The Ones I Actually Like', note: 'Batman, Superman, Green Lantern, the Flash',
     lede: 'If I say DC, this is who I mean. Two of them I would put on any list; the other two I like for the ideas behind them more than for any particular story.',
     items: [
@@ -37,6 +19,63 @@ window.FAN_PAGE = {
         desc: 'Fastest man alive, and in most versions the one holding the team together socially. The fun of him is that the writers have to keep inventing reasons he cannot just solve everything in half a second.',
         meta: 'Central City' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, and those are taken from what this
+     page already says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the films, the cartoons, the animated ones',
+    lede: 'The whole live-action run in order, the animated series that are still the best version of most of these characters, and a shelf of direct-to-video animated films that quietly outclass the cinema ones.',
+    items: [
+      { title: 'The Films', sub: 'DC Extended Universe · 2013 – 2023', unit: 'film',
+        desc: 'Ten years, one shared universe, and the four-hour cut that arrived three years after the theatrical one.',
+        rows: [
+          { n: 'Man of Steel', y: '2013' },
+          { n: 'Batman v Superman: Dawn of Justice', y: '2016' },
+          { n: 'Suicide Squad', y: '2016' },
+          { n: 'Wonder Woman', y: '2017' },
+          { n: 'Justice League', y: '2017' },
+          { n: 'Aquaman', y: '2018' },
+          { n: 'Shazam!', y: '2019' },
+          { n: 'Birds of Prey', y: '2020' },
+          { n: 'Wonder Woman 1984', y: '2020' },
+          { n: 'Zack Snyder’s Justice League', y: '2021', big: true },
+          { n: 'The Suicide Squad', y: '2021' },
+          { n: 'Black Adam', y: '2022' },
+          { n: 'Shazam! Fury of the Gods', y: '2023' },
+          { n: 'The Flash', y: '2023' },
+          { n: 'Blue Beetle', y: '2023' },
+          { n: 'Aquaman and the Lost Kingdom', y: '2023' },
+        ] },
+      { title: 'The New One', sub: 'DC Universe · 2025 – ', unit: 'film',
+        desc: 'James Gunn starting again from scratch.',
+        rows: [
+          { n: 'Superman', y: '2025' },
+          { n: 'Supergirl', y: '2026' },
+        ] },
+      { title: 'The Cartoons', sub: 'the DC Animated Universe · 1992 – 2006', unit: 'series',
+        desc: 'Bruce Timm and Paul Dini, one continuity across fourteen years. Still the definitive version.',
+        rows: [
+          { n: 'Batman: The Animated Series', y: '1992' },
+          { n: 'Superman: The Animated Series', y: '1996' },
+          { n: 'Batman Beyond', y: '1999' },
+          { n: 'Static Shock', y: '2000' },
+          { n: 'Justice League', y: '2001', big: true },
+          { n: 'Teen Titans', y: '2003' },
+          { n: 'Justice League Unlimited', y: '2004', big: true },
+          { n: 'Young Justice', y: '2010' },
+        ] },
+      { title: 'The Animated Films', sub: 'DC Universe Animated · a selection', unit: 'film',
+        desc: 'The direct-to-video line, which has adapted more of the comics properly than the cinema ever has.',
+        rows: [
+          { n: 'Justice League: The New Frontier', y: '2008' },
+          { n: 'Justice League: Crisis on Two Earths', y: '2010' },
+          { n: 'Batman: The Dark Knight Returns', y: '2012' },
+          { n: 'Justice League: The Flashpoint Paradox', y: '2013' },
+          { n: 'Justice League: War', y: '2014' },
+          { n: 'Justice League Dark', y: '2017' },
+        ] },
+    ] },
+
 
   { id: 'seven', kind: 'cards', title: 'The Founders', note: 'the rest of the table, for completeness',
     lede: 'The line-up shifts with every era. This is the one the 2001 animated series settled on, and the one most people picture.',

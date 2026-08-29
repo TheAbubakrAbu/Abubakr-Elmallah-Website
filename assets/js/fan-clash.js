@@ -24,6 +24,33 @@ window.FAN_PAGE = {
         desc: 'Tied after three minutes: first tower wins, elixir pours in at double rate, and every carefully learned instinct dissolves into two players throwing everything at one bridge.',
         meta: 'Where ladder ranks are lost' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the whole Supercell shelf',
+    lede: 'One company, one shared cast, and a habit of shutting things down: Supercell tests games in a few countries and kills them publicly if they do not hold. Three of these are struck through for exactly that.',
+    items: [
+      { title: 'The Games', sub: 'Supercell · 2012 – now', unit: 'game',
+        desc: 'Clash of Clans is the hometown and Royale is the tournament, which is the argument this page makes above.',
+        rows: [
+          { n: 'Hay Day', y: '2012' },
+          { n: 'Clash of Clans', y: '2012', big: true },
+          { n: 'Boom Beach', y: '2014' },
+          { n: 'Clash Royale', y: '2016', big: true },
+          { n: 'Brawl Stars', y: '2018' },
+          { n: 'Clash Quest', gone: 'shut down, 2022' },
+          { n: 'Clash Mini', gone: 'shut down, 2024' },
+          { n: 'Clash Heroes', gone: 'cancelled, 2024' },
+          { n: 'Squad Busters', y: '2024' },
+        ] },
+      { title: 'On Screen', sub: '2016 – 2017', unit: 'series',
+        desc: 'A short animated series about the units, made in-house and better than an advert needed to be.',
+        rows: [
+          { n: 'Clash-A-Rama', y: '2016' },
+        ] },
+    ] },
+
 
   { id: 'rarity', kind: 'tiles', title: 'The Rarities', note: 'the colour tells you the cost to grow it',
     lede: 'Like every collection game, the colours are a language you learn before you notice learning it. Rarity in Royale is about how hard a card is to level, not how strong it is: a common at high level beats a legendary at low one, which keeps the whole thing honest-ish.',

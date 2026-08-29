@@ -28,6 +28,38 @@ window.FAN_PAGE = {
         desc: 'Edward Teach, the pirate every other pirate is frightened of, with a sword that commands ships and a fear of a prophecy about a one-legged man. On Stranger Tides is the weakest film and he is far too good for it.',
         meta: 'Queen Anne’s Revenge' },
     ] },
+  /* the complete index. Every other section on this page is a choice; this one
+     is the whole list, so nothing is missing just because it is not worth a
+     card. ◆ marks the ones that are mine, taken from what this page already
+     says elsewhere rather than picked fresh here. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five films, the games, the ride',
+    lede: 'Five films built out of a theme park ride, a handful of games, and one online world that was shut down and is struck through for it. A sixth film has been announced more times than it has been written.',
+    items: [
+      { title: 'The Films', sub: 'Disney · 2003 – 2017', unit: 'film',
+        desc: 'Gore Verbinski directed the first three, which is most of the answer to why they are the good ones.',
+        rows: [
+          { n: 'The Curse of the Black Pearl', y: '2003' },
+          { n: 'Dead Man’s Chest', y: '2006' },
+          { n: 'At World’s End', y: '2007' },
+          { n: 'On Stranger Tides', y: '2011' },
+          { n: 'Dead Men Tell No Tales', y: '2017' },
+        ] },
+      { title: 'The Games', sub: '2003 – 2021', unit: 'game',
+        desc: 'LEGO Pirates is the one I took to a hundred percent, and the shot is further down this page.',
+        rows: [
+          { n: 'The Curse of the Black Pearl', y: '2003' },
+          { n: 'At World’s End', y: '2007' },
+          { n: 'Pirates of the Caribbean Online', gone: 'shut down, 2013' },
+          { n: 'LEGO Pirates of the Caribbean', y: '2011', big: true },
+          { n: 'Sea of Thieves: A Pirate’s Life', y: '2021' },
+        ] },
+      { title: 'Where It Started', sub: 'Disneyland · 1967', unit: 'thing',
+        desc: 'The ride came first by thirty-six years, and it is the last attraction Walt Disney worked on himself.',
+        rows: [
+          { n: 'Pirates of the Caribbean, the ride', y: '1967', big: true },
+        ] },
+    ] },
+
 
   { id: 'ships', kind: 'cards', title: 'The Ships', note: 'every vessel that matters',
     lede: 'The ships are the characters here. Half the plot of the trilogy is who currently owns which hull, and the other half is what is nailed to the mast.',
@@ -172,6 +204,36 @@ window.FAN_PAGE = {
       { title: 'Do you fear death?', sub: 'Davy Jones' },
     ] },
 
+  { id: 'parks', kind: 'cards', title: 'Where It Exists', note: 'the ride came first',
+    lede: 'This is the only franchise on this site that started as a theme-park attraction. Pirates of the Caribbean opened at Disneyland in March 1967, three months after Walt Disney died, and it was the last attraction he personally worked on. The films came thirty-six years later.',
+    items: [
+      { title: 'Disneyland', sub: 'Anaheim, California', tag: '1967', accent: '#d8b06a',
+        desc: 'The original, and the longest of them all: two drops, a full bayou, the burning town and the auction. The last ride Walt oversaw himself. Jack Sparrow was added in 2006, which purists still grumble about.',
+        meta: 'The original · 15 minutes' },
+      { title: 'Magic Kingdom', sub: 'Walt Disney World, Florida', tag: '1973', accent: '#c9a95f',
+        desc: 'Shorter than Anaheim, with one drop instead of two, and it opens with the skeleton at the helm in the storm.',
+        meta: 'Adventureland' },
+      { title: 'Tokyo Disneyland', sub: 'Japan', tag: '1983', accent: '#e0607a',
+        desc: 'A close copy of the Florida layout, and immaculately maintained even by Tokyo Disney’s standards.',
+        meta: 'Adventureland' },
+      { title: 'Disneyland Paris', sub: 'France', tag: '1992', accent: '#8fa8c0',
+        desc: 'The layout runs backwards compared with the others: you go up the lift hill in the middle rather than dropping at the start.',
+        meta: 'Adventureland' },
+      { title: 'Battle for the Sunken Treasure', sub: 'Shanghai Disneyland', tag: '2016', accent: '#4f8f7f',
+        desc: 'Treasure Cove, and technically the most advanced dark ride ever built: trackless boats, wraparound projection, and a Davy Jones sequence where the whole room becomes the seabed. Widely held to be the best ride in any Disney park.',
+        meta: 'The best of them' },
+    ] },
+
+  { id: 'played', kind: 'gallery', title: 'LEGO Pirates, Finished', note: 'my own screenshot · 100%',
+    lede: 'The LEGO adaptation covers the first four films, and it is the only game that has ever let you play as Jack Sparrow properly.',
+    items: [
+      { title: 'LEGO Pirates of the Caribbean', src: '/assets/img/franchises/lego-pirates-100.jpg',
+        alt: 'LEGO Pirates of the Caribbean paused at 100 percent completion',
+        desc: 'A hundred percent, eleven and a half billion studs, and every collectable in the game: 200 gold bricks, 20 red hats, 20 minikit-ships, 85 characters and 160 of everything else.',
+        meta: '11,536,474,040 studs',
+        done: true, finished: '2023-09-28' },
+    ] },
+
 
   /* the music: the thirteen Pirates tracks on my playlist, named as the albums
      name them (Badelt for the first film, Zimmer after), grouped by film.
@@ -228,36 +290,6 @@ window.FAN_PAGE = {
       { title: 'End Credits', series: 'On Stranger Tides', accent: '#c9403a', year: 2011, secs: 118, sub: 'On Stranger Tides · 2011 · 1:58',
         desc: 'Hans Zimmer. The fourth film’s credits: the theme with Rodrigo y Gabriela’s guitars on it.',
         href: 'https://www.youtube.com/watch?v=_5MQabnB5No', link: 'Listen' },
-    ] },
-
-  { id: 'parks', kind: 'cards', title: 'Where It Exists', note: 'the ride came first',
-    lede: 'This is the only franchise on this site that started as a theme-park attraction. Pirates of the Caribbean opened at Disneyland in March 1967, three months after Walt Disney died, and it was the last attraction he personally worked on. The films came thirty-six years later.',
-    items: [
-      { title: 'Disneyland', sub: 'Anaheim, California', tag: '1967', accent: '#d8b06a',
-        desc: 'The original, and the longest of them all: two drops, a full bayou, the burning town and the auction. The last ride Walt oversaw himself. Jack Sparrow was added in 2006, which purists still grumble about.',
-        meta: 'The original · 15 minutes' },
-      { title: 'Magic Kingdom', sub: 'Walt Disney World, Florida', tag: '1973', accent: '#c9a95f',
-        desc: 'Shorter than Anaheim, with one drop instead of two, and it opens with the skeleton at the helm in the storm.',
-        meta: 'Adventureland' },
-      { title: 'Tokyo Disneyland', sub: 'Japan', tag: '1983', accent: '#e0607a',
-        desc: 'A close copy of the Florida layout, and immaculately maintained even by Tokyo Disney’s standards.',
-        meta: 'Adventureland' },
-      { title: 'Disneyland Paris', sub: 'France', tag: '1992', accent: '#8fa8c0',
-        desc: 'The layout runs backwards compared with the others: you go up the lift hill in the middle rather than dropping at the start.',
-        meta: 'Adventureland' },
-      { title: 'Battle for the Sunken Treasure', sub: 'Shanghai Disneyland', tag: '2016', accent: '#4f8f7f',
-        desc: 'Treasure Cove, and technically the most advanced dark ride ever built: trackless boats, wraparound projection, and a Davy Jones sequence where the whole room becomes the seabed. Widely held to be the best ride in any Disney park.',
-        meta: 'The best of them' },
-    ] },
-
-  { id: 'played', kind: 'gallery', title: 'LEGO Pirates, Finished', note: 'my own screenshot · 100%',
-    lede: 'The LEGO adaptation covers the first four films, and it is the only game that has ever let you play as Jack Sparrow properly.',
-    items: [
-      { title: 'LEGO Pirates of the Caribbean', src: '/assets/img/franchises/lego-pirates-100.jpg',
-        alt: 'LEGO Pirates of the Caribbean paused at 100 percent completion',
-        desc: 'A hundred percent, eleven and a half billion studs, and every collectable in the game: 200 gold bricks, 20 red hats, 20 minikit-ships, 85 characters and 160 of everything else.',
-        meta: '11,536,474,040 studs',
-        done: true, finished: '2023-09-28' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
