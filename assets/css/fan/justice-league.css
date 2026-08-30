@@ -68,7 +68,7 @@
 
 .jlc-b { fill: #0d1424; }
 
-/* ── the four emblems ── */
+/* ── the six emblems, two columns by three rows ── */
 .fan-art--jl .jl-stage {
   background: linear-gradient(180deg, #0d1526 0%, #070b14 100%);
   border-radius: 10px; overflow: hidden; max-width: 440px; margin-inline: auto;
@@ -102,6 +102,10 @@
 .jlh-cell:nth-child(3) { animation-delay: -4s; }
 
 .jlh-cell:nth-child(4) { animation-delay: -6s; }
+
+.jlh-cell:nth-child(5) { animation-delay: -3s; }
+
+.jlh-cell:nth-child(6) { animation-delay: -5s; }
 
 .jl-sky {
   position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;

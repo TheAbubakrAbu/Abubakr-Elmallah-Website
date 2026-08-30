@@ -1,0 +1,73 @@
+/* fan/looney-tunes.css: /worlds/looney-tunes/ only.
+
+   The bullseye, blown up until it is the room rather than the title card.
+   Three rings turning at different speeds, which is the one liberty taken:
+   on screen they close in rather than rotate, and closing in behind a page
+   of text would be unreadable. */
+
+body[data-fan="looney"] { --a: #f0c040; }
+
+/* ── the backdrop ── */
+.lt-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(80% 70% at 50% 42%, #16255c 0%, #101a3a 46%, #06090f 100%);
+}
+
+.lt-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(30% 22% at 50% 44%, rgba(240,192,64,.16), transparent 72%);
+}
+
+.lt-ring {
+  position: absolute; left: 50%; top: 46%; border-radius: 50%;
+  border: 2px dashed rgba(240,192,64,.16);
+  will-change: transform; animation: lt-turn 200s linear infinite;
+}
+
+.lt-ring--1 { width: 46vmax; height: 46vmax; margin: -23vmax 0 0 -23vmax; }
+
+.lt-ring--2 {
+  width: 74vmax; height: 74vmax; margin: -37vmax 0 0 -37vmax;
+  border-color: rgba(240,192,64,.12); animation-duration: 300s; animation-direction: reverse;
+}
+
+.lt-ring--3 {
+  width: 106vmax; height: 106vmax; margin: -53vmax 0 0 -53vmax;
+  border-style: dotted; border-color: rgba(240,192,64,.09); animation-duration: 420s;
+}
+
+@keyframes lt-turn { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) { .lt-ring { animation: none; } }
+
+/* ── hero ── */
+body[data-fan="looney"] .fan-title {
+  font-family: "Marker Felt", "Bradley Hand", "Comic Sans MS", cursive;
+  font-weight: 700; letter-spacing: 0.01em;
+  text-shadow: 3px 3px 0 #16255c;
+}
+
+/* ── the title card ── */
+.lt-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem 0 0; }
+
+.lt-art svg { display: block; width: min(360px, 100%); margin-inline: auto; }
+
+.lta-r1 { fill: #16255c; }
+
+.lta-r2 { fill: #1f3478; }
+
+.lta-r3 { fill: #16255c; }
+
+.lta-c  { fill: #f0c040; }
+
+.lta-t {
+  fill: #16255c; text-anchor: middle;
+  font-family: "Marker Felt", "Bradley Hand", "Comic Sans MS", cursive;
+  font-size: 23px; font-weight: 700;
+}
+
+.lt-art figcaption {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}

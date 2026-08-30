@@ -5,7 +5,7 @@
    copper golem arrived in the 2025 drops, so those are described in words
    rather than quoted at with numbers I would only be half sure of. */
 window.FAN_PAGE = {
-  when: { at: 'Since I was a kid', note: 'Around for most of my childhood. Redstone was my first logic gate and command blocks were my first scripting language.' },
+  when: { at: 'Since I was a kid', note: 'Around for most of my childhood. Redstone was my first logic gate and command blocks were my first scripting language. The summer of 2026 added a Realm: four of us, a beach on the fourth of July, the dragon on the nineteenth of August.' },
   sections: [
 
   { id: 'tiers', kind: 'tiles', title: 'Tool Tiers', note: 'durability · what it can mine',
@@ -216,14 +216,77 @@ window.FAN_PAGE = {
       { when: '2025 · the drops', title: 'Copper, properly', desc: 'Mojang moved to smaller drops spread through the year. Copper finally became a real tier with tools and armour, the copper golem turned up four years after losing its mob vote, and the happy ghast turned the most frightening mob in the game into a flying platform.' },
     ] },
 
-  { id: 'played', kind: 'gallery', title: 'Pixelmon', note: 'my own screenshot · a server, years ago',
-    lede: 'The other thing Minecraft servers were for: a mod that put the entire Pokémon system inside the game, running on a public server, with an economy and a jail and a rule against releasing anything at spawn.',
+  /* ── the Realm ──
+     Twenty-one frames out of forty-three captures, the near-duplicates parked
+     in _removed; every caption is in fan-shots.js, once, like the photographs
+     in fan-been.js. The twelve tooltip receipts below are the same session's
+     gear. */
+  { id: 'realm', set: 'realm' },
+
+  /* the named gear, each tile opening its own tooltip. The receipts were taken
+     one after another on 23 Aug 2026 at 11:47 PM and the enchantments are read
+     off them; all of it is diamond, which the toughness numbers give away. The
+     names are this site's other pages, more or less: two of Thor's hammers, a
+     sword from the Wall, a bow named for a battle station, a helmet from
+     Mandalore, two caliphates on the chest and the legs, a broom and a villain
+     on the boots, and a jetpack that belongs to Fett. */
+  { id: 'gear', kind: 'tiles', compact: true, cols: 3, views: true, title: 'The Named Gear', note: 'twelve receipts · every one of them Mending',
+    lede: 'Everything we finished the Realm in, named on an anvil and photographed with its tooltip open. Click a tile for the receipt.',
     items: [
-      { title: 'A level 100 Mewtwo at spawn', src: '/assets/img/franchises/minecraft-pixelmon.jpg',
-        alt: 'A Pixelmon server spawn in Minecraft with a level 100 Mewtwo sent out',
-        desc: 'My party down the left: Mewtwo and Flareon at level 100, Emboar, Raichu, Staraptor, and a Seadra I clearly never got round to. The sign in the middle of the screen is telling me off for sending Mewtwo out at spawn.',
-        meta: 'Pixelmon · aelmallah' },
+      { title: 'Ice Longclaw', sub: 'diamond sword', accent: '#9fd8ff',
+        desc: 'Sharpness V, Sweeping Edge III, Fire Aspect II, Knockback II, Looting III, Unbreaking III, Mending. Seven attack damage. Jon Snow’s sword, on ice.',
+        shot: '/assets/img/franchises/minecraft/realms/gear-ice-longclaw.jpg', shotAlt: 'The tooltip of a diamond sword, named Ice Longclaw' },
+      { title: 'Mjolnir', sub: 'diamond pickaxe', accent: '#c0c8d0',
+        desc: 'Efficiency V, Fortune III, Unbreaking III, Mending. Five attack damage and twenty-six mining efficiency. The hammer, on the tool that hits the most things.',
+        shot: '/assets/img/franchises/minecraft/realms/gear-mjolnir.jpg', shotAlt: 'The tooltip of a diamond pickaxe, named Mjolnir' },
+      { title: 'Stormbreaker', sub: 'diamond axe', accent: '#7fa0c0',
+        desc: 'Efficiency V, Fortune III, Unbreaking III, Mending. Nine attack damage at an attack speed of one. The other hammer, doing the other job.',
+        shot: '/assets/img/franchises/minecraft/realms/gear-stormbreaker.jpg', shotAlt: 'The tooltip of a diamond axe, named Stormbreaker' },
+      { title: 'Death Star', sub: 'bow', accent: '#d0d0d0',
+        desc: 'Power V, Flame, Unbreaking III, Mending. No Infinity, because Mending, so it eats arrows. Named for what it does to whatever it points at.',
+        shot: '/assets/img/franchises/minecraft/realms/gear-death-star.jpg', shotAlt: 'The tooltip of a bow, named Death Star' },
+      { title: 'Burrow', sub: 'diamond shovel', accent: '#a9763f',
+        desc: 'Fortune III, Unbreaking III, Mending. Five and a half attack damage, which is more than the hoe and less than the sword.',
+        shot: '/assets/img/franchises/minecraft/realms/gear-burrow.jpg', shotAlt: 'The tooltip of a diamond shovel, named Burrow' },
+      { title: 'Harvest', sub: 'diamond hoe', accent: '#7fbf4f',
+        desc: 'Fortune III, Unbreaking III, Mending. One attack damage at an attack speed of four: the fastest thing in the set and the one that hurts least.',
+        shot: '/assets/img/franchises/minecraft/realms/gear-harvest.jpg', shotAlt: 'The tooltip of a diamond hoe, named Harvest' },
+      { title: 'Mandalore', sub: 'diamond helmet', accent: '#4fd0d6',
+        desc: 'Protection IV, Respiration III, Aqua Affinity, Unbreaking III, Mending. Three armour, two toughness, three more oxygen. This is the way.',
+        shot: '/assets/img/franchises/minecraft/realms/gear-mandalore.jpg', shotAlt: 'The tooltip of a diamond helmet, named Mandalore' },
+      { title: 'Abbasid Vanguard', sub: 'diamond chestplate', accent: '#2f8f5f',
+        desc: 'Protection IV, Unbreaking III, Mending. Eight armour, two toughness. Baghdad’s caliphate, on the chest.',
+        shot: '/assets/img/franchises/minecraft/realms/gear-abbasid-vanguard.jpg', shotAlt: 'The tooltip of a diamond chestplate, named Abbasid Vanguard' },
+      { title: 'Rashidun Sentinel', sub: 'diamond leggings', accent: '#3f9f7f',
+        desc: 'Protection IV, Unbreaking III, Mending. Six armour, two toughness. The first four caliphs, on the legs.',
+        shot: '/assets/img/franchises/minecraft/realms/gear-rashidun-sentinel.jpg', shotAlt: 'The tooltip of a diamond leggings, named Rashidun Sentinel' },
+      { title: 'Nimbus Vecna', sub: 'diamond boots', accent: '#8f5fd0',
+        desc: 'Protection IV, Feather Falling IV, Depth Strider III, Unbreaking III, Mending. A Nimbus for the falls and a Vecna for the rest of it.',
+        shot: '/assets/img/franchises/minecraft/realms/gear-nimbus-vecna.jpg', shotAlt: 'The tooltip of a diamond boots, named Nimbus Vecna' },
+      { title: 'Fett’s Jetpack', sub: 'elytra', accent: '#5f8f3f',
+        desc: 'Unbreaking III and Mending, which is all an elytra can take. Out of the end ship, and the reason we went.',
+        shot: '/assets/img/franchises/minecraft/realms/gear-fetts-jetpack.jpg', shotAlt: 'The tooltip of a elytra, named Fett’s Jetpack' },
+      { title: 'Dragon Egg', sub: 'the trophy', accent: '#e05fb0',
+        desc: 'One per world, no enchantments, no use. Picked up on the twenty-third of August, four days after the dragon, for the goal called The Next Generation.',
+        shot: '/assets/img/franchises/minecraft/realms/gear-dragon-egg.jpg', shotAlt: 'The tooltip of the dragon egg, named Dragon Egg' },
     ] },
+
+  /* ── the servers I have screenshots from ──
+     Imagine Fun is Disneyland at real scale and lives on the Disney page in
+     full, its Star Wars half on the Star Wars page; Potterverse is on the
+     Harry Potter page in full. Both are picked from fan-shots.js here rather
+     than described a second time. */
+  { id: 'imaginefun', set: 'imagine-fun', title: 'Imagine Fun', note: 'Disneyland in Minecraft · mc.imaginefun.net',
+    lede: 'Disneyland, rebuilt block for block at real scale, with the rides running and an economy of coins and pins on top. I have been on it since 2023 at least, past a thousand rides and a hundred thousand Kingdom Coins, under two names. The full set is on the Disney page and the Star Wars half is on the Star Wars page; these are the dozen that say what it is.',
+    pick: ['if-castle', 'if-entrance-tunnel', 'if-fanatic', 'if-coins', 'if-wondrous-journeys', 'if-scrooge', 'if-spawn', 'if-razor-crest', 'if-hyperspace-ten', 'if-may-the-fourth-2024', 'if-trivia-seventy-five', 'if-vs-anakin'] },
+
+  { id: 'potterverse', set: 'potterverse', note: 'Hogwarts in Minecraft · 2022',
+    lede: 'A Hogwarts server, February of sophomore year: sorted into Ravenclaw in the Great Hall, a prefect badge the same weekend, and the Express on its viaduct. Four frames here; all nine are on the Harry Potter page.',
+    pick: ['pv-sorting', 'pv-express', 'pv-prefect-badge', 'pv-owlery'] },
+
+  { id: 'swmc', set: 'star-wars-mc' },
+
+  { id: 'played', set: 'pixelmon' },
 
   /* the music: the C418 tracks on my playlist and Pigstep, grouped by album.
      `series` is the album, `year` its year, `secs` the length; written

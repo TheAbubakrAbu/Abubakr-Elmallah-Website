@@ -34,6 +34,7 @@ can open and read.
 | `/resume/` | Résumé, embedded with Drive and download links |
 | `/travels/` | Where I've been, with an interactive map |
 | `/accents/` | Nineteen accents and four impersonations, in the order I learned them |
+| `/gaming/` | Four Steam Replays, every completion shelf, the seventeen worlds here with games in them, and **every game screenshot on the site**, in a section per franchise (the list is built by Jekyll from `assets/img/franchises/`, so a new picture needs no edit) |
 
 **Themed collections**
 
@@ -120,11 +121,12 @@ _originals/              # gitignored camera-roll originals, one folder per year
 
 src/                     # 51 pages, each with a permalink in its front matter
   work · projects · education · college · high-school · resume · travels
-  accents · star-wars · al-islam · worlds · fan-*.html (36 fan pages)
+  accents · gaming · star-wars · al-islam · worlds · fan-*.html (36 fan pages)
   jarvis · holocron · elmallah · marauders-map
 
 assets/
-  css/                   # base · layout · components · transcript · travels · accents
+  css/                   # base · layout · components · transcript · travels ·
+                         # accents · gaming
     fan/                 # one stylesheet per fan page
   js/                    # 100 files
     apps-data.js         # SINGLE source of truth for every app/project card

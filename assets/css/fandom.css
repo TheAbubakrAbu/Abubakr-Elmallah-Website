@@ -541,6 +541,72 @@ a.fr-card { cursor: pointer; }
   text-shadow: 0 2px 12px rgba(0,0,0,.75);
 }
 
+/* ── seven later additions ── */
+
+/* DreamWorks sets its own name in a plain humanist sans and lets the moon do
+   the work, so this stays quiet and takes its glow off the night blue. */
+.wm--dreamworks {
+  font-family: var(--sans); font-weight: 600; letter-spacing: 0.1em;
+  font-size: 1.08rem;
+  text-shadow: 0 0 24px color-mix(in srgb, var(--c1) 55%, transparent);
+}
+
+/* Nintendo's mark is a rounded low-contrast sans sitting inside a racetrack,
+   and the racetrack is the half worth borrowing: the pill here is drawn, not
+   traced, and the letters inside it are ordinary. */
+.wm--nintendo {
+  font-family: "Avenir Next", "Trebuchet MS", var(--sans);
+  font-weight: 600; letter-spacing: 0.1em; font-size: 0.98rem;
+  display: inline-block; padding: 0.3rem 0.9rem;
+  border: 2px solid currentColor; border-radius: 999px;
+}
+
+/* Zelda: a heavy serif cut in gold. The games set the title in a display face
+   with hard, sharp serifs, and Copperplate is the nearest thing on a Mac. */
+.wm--zelda {
+  font-family: Copperplate, "Copperplate Gothic Light", Georgia, serif;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.11em;
+  font-size: 0.94rem;
+  background: linear-gradient(180deg, #fbf0c4, #e8c247 58%, #a07c14);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* Splatoon is inked rather than typeset: heavy, tight, and pulled off the
+   baseline. The skew is the closest a web font gets to a brush. */
+.wm--splatoon {
+  font-family: "Arial Black", Impact, Haettenschweiler, var(--sans);
+  font-weight: 900; text-transform: uppercase; letter-spacing: 0.01em;
+  font-size: 1.06rem; transform: skewX(-6deg);
+  text-shadow: 2px 2px 0 #4b21c8, 0 0 22px color-mix(in srgb, var(--c1) 50%, transparent);
+}
+
+/* Looney Tunes is hand-drawn and bounces, so this is the one place on the page
+   a casual face is right. SpongeBob already has Chalkboard, hence Marker Felt,
+   and the hard blue offset is the title card behind the rings. */
+.wm--looney {
+  font-family: "Marker Felt", "Bradley Hand", "Comic Sans MS", cursive;
+  font-weight: 700; letter-spacing: 0.02em; font-size: 1.2rem;
+  text-shadow: 2px 2px 0 #16255c;
+}
+
+/* LEGOLAND is the LEGO mark with a park under it. Same rounded bold as
+   .wm--lego on purpose, and the offset is green rather than red so the two
+   tiles are still telling apart at a glance. */
+.wm--legoland {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.02em; font-size: 1.12rem;
+  text-shadow: 2px 2px 0 #1d6b2a, 4px 4px 0 rgba(0,0,0,.5);
+}
+
+/* Six Flags sets itself in a bold sans leaning forward, which is the only
+   thing a chain of roller coasters could reasonably do. */
+.wm--sixflags {
+  font-family: "Arial Narrow", Impact, Haettenschweiler, sans-serif;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  font-size: 1.24rem; transform: skewX(-8deg);
+  text-shadow: 0 2px 14px rgba(0,0,0,.7);
+}
+
 /* Breaking Bad writes its own two elements */
 .wm--breakingbad {
   font-family: var(--sans); font-weight: 500; text-transform: lowercase;
@@ -576,27 +642,28 @@ a.fr-card { cursor: pointer; }
    and an unstyled <svg> path defaults to fill:black, so the globe icon became
    a viewport-sized black disc with a seam down it. Hence the explicit
    fill/stroke below rather than relying on inheritance. */
-/* One row, two doors: Travels and Accents are the two pages on this site that
-   are about me rather than about somebody else's world, so they read as a pair
-   rather than as one control repeated down the page. They drop to a stack only
-   when the row would squeeze the labels.
+/* THREE DOORS, ONE PER ROW, EACH THE FULL WIDTH. Travels, Accents and Gaming
+   are the three pages on this site that are about me rather than about
+   somebody else's world. They spent a while two-up, which halved them and made
+   the pair read as a row of controls; full width is what makes each one a
+   destination, and it is the only shape a third door can join without the row
+   turning into an odd two-plus-one.
 
-   NO GUTTER AND NO max-width HERE. This now lives inside .fandoms, at the foot
-   of the block the "Show the other worlds" bar opens, and .fandoms is already
-   a <section> carrying both. Setting them again indented the row a whole gutter
+   NO GUTTER AND NO max-width HERE. This lives inside .fandoms, at the foot of
+   the block the "Show the other worlds" bar opens, and .fandoms is already a
+   <section> carrying both. Setting them again indented the stack a whole gutter
    further in than the bar directly above it, which is exactly the misalignment
    you notice and cannot name. Full width of its parent is what lines it up. */
 .fr-travels {
   margin: 2.6rem 0 0;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; align-items: stretch;
+  display: grid; grid-template-columns: 1fr; gap: 0.7rem; align-items: stretch;
 }
-@media (max-width: 720px) { .fr-travels { grid-template-columns: 1fr; } }
-/* ── the two doors ──
-   These are not footnotes under the grid, they are the other two worlds on
-   this page: one I walked into and one I can do the voice of. So they are
-   built as doors. Everything below is driven by --d, the door's own colour,
-   set once per button, which is what keeps the blue one and the gold one from
-   being two copies of the same rules.
+/* ── the three doors ──
+   These are not footnotes under the grid, they are the other three worlds on
+   this page: one I walked into, one I can do the voice of, and one I played.
+   So they are built as doors. Everything below is driven by --d, the door's
+   own colour, set once per button, which is what keeps the blue one, the gold
+   one and the green one from being three copies of the same rules.
 
    Tall on purpose. They used to be 0.9rem of padding around one line of mono
    and read as a form control; the height is what makes them a destination. */
@@ -674,9 +741,11 @@ a.fr-card { cursor: pointer; }
   border-color: color-mix(in srgb, var(--d) 55%, transparent);
 }
 
-/* Accents is gold rather than blue so the two doors read as two different
-   rooms and not one control repeated. One custom property does all of it. */
+/* Accents is gold and Gaming is green, against the blue of Travels, so the
+   three doors read as three different rooms and not one control repeated down
+   the page. One custom property does all of it. */
 .fr-travels-btn--ac { --d: var(--gold, #f5c63c); }
+.fr-travels-btn--gm { --d: var(--green-2, #3fd589); }
 
 @media (max-width: 720px) {
   .fr-travels-btn { min-height: 108px; padding: 1.2rem 1.2rem 1.2rem 1.1rem; gap: 0.95rem; }
@@ -703,9 +772,28 @@ a.fr-card { cursor: pointer; }
 
    Built from six rings, two slow fields of colour and one dust layer, all of
    them <span>s with no content. No images (nothing to download), no canvas
-   (nothing to run), no JS. Only transform and opacity animate, which the
-   compositor handles without ever touching layout, so a fixed full-screen
-   backdrop costs a page that is otherwise idle almost nothing.
+   (nothing to run), no JS.
+
+   CHEAP ON PURPOSE, and this is the second version of it. The first rotated
+   two conic gradients the full size of the core under filter: blur(64px) and
+   blur(44px), set opacity on the whole group, and masked the group on top of
+   that. Every one of those is a full-layer offscreen render, and the core is
+   165vmax square: on a retina window 1728px wide that is a 5,700px bitmap
+   being blurred twice a frame, plus two more full-screen surfaces for the
+   group opacity and the mask. The browser could not keep up, and what that
+   looks like from the chair is the tiles below the fold arriving late or not
+   at all, one row painted and the next blank until the cursor touched it. So:
+
+     no filters: the colour fields are radial gradients, which are soft by
+       construction and rasterise once;
+     no group opacity and no mask: the old .72 is baked into every colour,
+       and the fade at the foot is one ::after gradient in the page colour;
+     only transform animates, which the compositor does without a repaint.
+
+   The dust was also wrong on its own terms: repeating-radial-gradient at 1px
+   draws rings, not dust, and two sets of rings from two centres make a moiré
+   lattice that crawls as it turns. It is a dot grid now, which is what the
+   comment on it always claimed it was.
 
    The palette is the site's own accents rather than a new one, so this reads
    as the same site in a bigger mood: gold from Star Wars, green from the Islam
@@ -713,13 +801,13 @@ a.fr-card { cursor: pointer; }
 .rift {
   position: fixed; inset: 0; z-index: 0;
   pointer-events: none; overflow: hidden;
-  /* Tuned for a hero-sized panel to begin with, which is far too strong once
-     it is behind every card on the page: everything below it turned green. */
-  opacity: .72;
-  /* the only fade left is at the foot of the screen, and it is there to keep
-     the tab bar legible, not to shape the rift */
-  -webkit-mask-image: linear-gradient(#000 72%, rgba(0,0,0,.55) 100%);
-          mask-image: linear-gradient(#000 72%, rgba(0,0,0,.55) 100%);
+}
+/* the only fade left is at the foot of the screen, and it is there to keep
+   the tab bar legible, not to shape the rift: a gradient in the page colour,
+   not a mask, because a mask is an offscreen pass over everything under it */
+.rift::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(transparent 72%, rgba(8,8,10,.45));
 }
 /* Square, centred, and bigger than the viewport diagonal at any aspect ratio,
    which is what guarantees the rings always leave the screen rather than
@@ -730,23 +818,24 @@ a.fr-card { cursor: pointer; }
   transform: translate(-50%, -50%);
 }
 
-/* two fields of colour, turning against each other. Conic rather than radial
-   so the colour changes as it rotates instead of just breathing. Blurred hard
-   enough that where the viewport clips them there is nothing to see. */
+/* two fields of colour, turning against each other. Each is a few off-centre
+   radial blobs, so as the layer turns the colour orbits across the screen;
+   no blur, because a radial gradient is already soft out to its edge. */
 .rift-glow, .rift-glow::after {
   content: ''; position: absolute; inset: 0; border-radius: 50%;
 }
 .rift-glow {
-  background: conic-gradient(from 0deg,
-    rgba(245,198,60,.15), rgba(63,191,127,.12) 28%, rgba(127,184,232,.14) 55%,
-    rgba(224,120,143,.10) 78%, rgba(245,198,60,.15));
-  filter: blur(64px);
+  background:
+    radial-gradient(circle at 32% 36%, rgba(245,198,60,.11), transparent 42%),
+    radial-gradient(circle at 68% 62%, rgba(63,191,127,.09), transparent 44%),
+    radial-gradient(circle at 62% 26%, rgba(127,184,232,.10), transparent 40%),
+    radial-gradient(circle at 36% 70%, rgba(224,120,143,.07), transparent 40%);
   animation: rift-spin 78s linear infinite;
 }
 .rift-glow::after {
-  background: conic-gradient(from 210deg,
-    transparent, rgba(127,184,232,.13) 30%, transparent 62%, rgba(245,198,60,.10) 88%, transparent);
-  filter: blur(44px);
+  background:
+    radial-gradient(circle at 26% 58%, rgba(127,184,232,.09), transparent 38%),
+    radial-gradient(circle at 74% 40%, rgba(245,198,60,.07), transparent 36%);
   animation: rift-spin 52s linear infinite reverse;
 }
 
@@ -756,7 +845,7 @@ a.fr-card { cursor: pointer; }
   position: absolute; left: 50%; top: 50%; border-radius: 50%;
   width: calc(16% + var(--n) * 14%); aspect-ratio: 1 / 1;
   margin: calc((16% + var(--n) * 14%) / -2) 0 0 calc((16% + var(--n) * 14%) / -2);
-  border: 1px solid rgba(190,214,236,calc(.24 - var(--n) * .028));
+  border: 1px solid rgba(190,214,236,calc(.173 - var(--n) * .02));
   animation: rift-drift calc(26s + var(--n) * 9s) ease-in-out infinite alternate;
   animation-delay: calc(var(--n) * -3.5s);
 }
@@ -768,19 +857,20 @@ a.fr-card { cursor: pointer; }
 .rift-ring:nth-child(7) { --n: 5; }
 /* two dashed and two coloured, so the set does not read as a target */
 .rift-ring:nth-child(3), .rift-ring:nth-child(6) {
-  border-style: dashed; border-color: rgba(190,214,236,.11);
+  border-style: dashed; border-color: rgba(190,214,236,.08);
 }
-.rift-ring:nth-child(4) { border-color: rgba(245,198,60,.18); }
-.rift-ring:nth-child(5) { border-color: rgba(63,191,127,.13); }
+.rift-ring:nth-child(4) { border-color: rgba(245,198,60,.13); }
+.rift-ring:nth-child(5) { border-color: rgba(63,191,127,.094); }
 
-/* dust: two repeating gradients crossed at an angle, which gives a grid of
-   points without a single image or DOM node per point */
+/* dust: two dot grids at different pitches, offset from each other, which
+   gives a field of points without a single image or DOM node per point */
 .rift-dust {
   position: absolute; inset: 0; border-radius: 50%;
-  background:
-    repeating-radial-gradient(circle at 30% 34%, rgba(223,233,242,.26) 0 1px, transparent 1px 62px),
-    repeating-radial-gradient(circle at 71% 66%, rgba(223,233,242,.17) 0 1px, transparent 1px 47px);
-  opacity: .45;
+  background-image:
+    radial-gradient(circle, rgba(223,233,242,.16) 0 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(223,233,242,.10) 0 1px, transparent 1.5px);
+  background-size: 62px 62px, 47px 47px;
+  background-position: 0 0, 23px 31px;
   animation: rift-spin 150s linear infinite;
 }
 

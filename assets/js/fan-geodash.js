@@ -1,0 +1,152 @@
+/* fan-geodash.js: content for /worlds/geometry-dash/. Rendered by fanpage.js.
+   One button, no checkpoints, and an editor that outgrew the game around it. */
+/* The `when:` line and the ranking are Abubakr's own, not mine. He got as
+   far as Theory of Everything. Hexagon Force was the favourite as a kid even
+   though 40% was as far as he ever got in it, because it has the best theme
+   track in the game; Cycles second; then Theory of Everything, then Jumper;
+   Can't Let Go, Stereo Madness and Back on Track all level; and xStep for its
+   ending. The ◆ marks in the index follow that list exactly. */
+window.FAN_PAGE = {
+  when: { at: 'As a kid, as far as Theory of Everything',
+          note: 'Hexagon Force was the favourite and beat me at 40%. Cycles second. Then Theory of Everything, then Jumper.' },
+  sections: [
+
+  { id: 'levels', kind: 'rank', title: 'The Levels, Ranked', note: 'my order, not the game’s',
+    lede: 'I got as far as Theory of Everything, which is the twelfth of the twenty-two classic levels, and the order below is mine. It is mostly an order of songs, because in this game the song is the level. The complete list is further down.',
+    items: [
+      { num: '01', title: 'Hexagon Force', sub: 'Insane · 2014 · Waterflame',
+        desc: 'The favourite, as a kid and still, and 40% is the furthest I ever got in it. That is the honest measure of this game: the level that beat me hardest is the one I love most, because the track is the best theme in the game and the first forty per cent of it is enough to know that.' },
+      { num: '02', title: 'Cycles', sub: 'Harder · 2013 · DJVI',
+        desc: 'Second. The first level with the ball, and the gravity flips land on the drops, which is when it clicked that every level in this game is a rhythm chart with spikes drawn on it.' },
+      { num: '03', title: 'Theory of Everything', sub: 'Insane · 2014 · dj-Nate',
+        desc: 'The furthest I got. The first level with the UFO, and the first one where the changes of form stop being a breather and start being the test.' },
+      { num: '04', title: 'Jumper', sub: 'Harder · 2013 · Waterflame',
+        desc: 'The first Harder in the list, and the first level where I stopped reading it and started remembering it.' },
+      { num: '05', title: 'Can’t Let Go · Stereo Madness · Back on Track', sub: 'Hard · Easy · Easy · 2013',
+        desc: 'A three-way tie, and all three are fire. Stereo Madness is the thirty seconds everyone has heard a thousand times; Back on Track is the one you finish the same day you start; Can’t Let Go is the first of the early levels that actually says no.' },
+      { num: '06', title: 'xStep', sub: 'Insane · 2013 · DJVI',
+        desc: 'Here for the ending. The last stretch of the song is the best thirty seconds in the first year of the game, and the level knows it.' },
+    ] },
+
+  { id: 'why', kind: 'cards', title: 'Why It Works', note: 'one button, and nothing else',
+    lede: 'There is one input. Everything the game has, it has because the designer refused to add a second one.',
+    items: [
+      { title: 'No checkpoints', sub: 'Back to the first frame', tag: 'The rule', accent: '#39d6f0',
+        desc: 'Touch anything and the attempt is over from the beginning. Practice mode exists and does not count. It means the only unit of progress is the whole level, and the only way to learn the end is to have already learned the start perfectly.',
+        meta: 'The attempt counter is the story' },
+      { title: 'The jump is fixed', sub: 'One height, one length', tag: 'The physics', accent: '#4ae0a8',
+        desc: 'Same arc every time, no variable height, no air control. So the level is not a test of reaction, it is a test of memory, and every death teaches you exactly one frame of it.',
+        meta: 'You are memorising, not reacting' },
+      { title: 'The music is the level', sub: 'Not a backing track', tag: 'The sync', accent: '#e04a9a',
+        desc: 'Obstacles land on the beat, so once you know the song you know when to press. Players who beat hard levels routinely say they are playing by ear rather than by eye, and turning the sound off makes a level measurably harder.',
+        meta: 'Turn it off and it gets harder' },
+      { title: 'The editor outgrew the game', sub: 'Twenty-two, then millions', tag: 'The community', accent: '#f0c040',
+        desc: 'RobTop shipped a level editor with almost the same tools he used, and the community has built millions of levels since, including a whole difficulty tier above anything official. The game is now mostly other people’s work.',
+        meta: 'The same tools he used' },
+      { title: 'One person', sub: 'Robert Topala, in Sweden', tag: 'The author', accent: '#b06fd8',
+        desc: 'Written by one developer, and updates arrive years apart with no schedule and no explanation. Version 2.2 took six years and the wait became its own long-running joke.',
+        meta: '2.2 took six years' },
+      { title: 'Verification', sub: 'Somebody has to prove it', tag: 'The culture', accent: '#e0704a',
+        desc: 'A level does not count as beaten until somebody completes it in one attempt on video, and at the top of the list that can take a player a year of daily attempts. A single verification is genuinely news in this community.',
+        meta: 'One completion can take a year' },
+    ] },
+
+  { id: 'hard', kind: 'tiles', title: 'How Hard It Gets', note: 'the difficulty faces', compact: true,
+    lede: 'The game grades itself with a set of faces, and then the community added a whole tier the game does not have a face for.',
+    items: [
+      { title: 'Auto', accent: '#8fd8f0', sub: 'It plays itself',
+        desc: 'You can put the phone down. Exists mostly so the star economy has a bottom.' },
+      { title: 'Easy', accent: '#3fd589', sub: 'Stereo Madness',
+        desc: 'One mechanic at a time, and the spacing is generous enough that a first attempt is plausible.' },
+      { title: 'Normal', accent: '#7fd0e8', sub: 'Dry Out, Base After Base',
+        desc: 'Two mechanics interleaved. Still readable at first sight.' },
+      { title: 'Hard', accent: '#f0c040', sub: 'Jumper, Time Machine',
+        desc: 'The point where you stop reading and start remembering.' },
+      { title: 'Harder', accent: '#e0a050', sub: 'Cycles, Blast Processing',
+        desc: 'Sections you will run fifty times before they stop being new.' },
+      { title: 'Insane', accent: '#e0704a', sub: 'Clutterfunk, Fingerdash',
+        desc: 'Frame-accurate in places, and the timing windows are now smaller than your reaction time.' },
+      { title: 'Demon', accent: '#e04a3a', sub: 'Clubstep, Deadlocked',
+        desc: 'The top official tier, split five ways by the community: Easy, Medium, Hard, Insane and Extreme.' },
+      { title: 'Extreme Demon', accent: '#b06fd8', sub: 'The list',
+        desc: 'A community-maintained ranking of the hardest levels ever verified. The top of it changes about once a year and each change is a piece of news.' },
+    ] },
+
+  /* the complete index. ◆ marks the ones that are mine, in the order given
+     at the top of this file. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'twenty-two levels, four games',
+    lede: 'The complete official list, which is short, and the spin-offs, which are shorter.',
+    items: [
+      { title: 'The Main Levels', sub: '2013 – 2023', unit: 'level',
+        desc: 'In order, with the difficulty the game itself assigns.',
+        rows: [
+          { n: 'Stereo Madness · Easy', y: '2013' , big: true },
+          { n: 'Back on Track · Easy', y: '2013' , big: true },
+          { n: 'Polargeist · Normal', y: '2013' },
+          { n: 'Dry Out · Normal', y: '2013' },
+          { n: 'Base After Base · Hard', y: '2013' },
+          { n: "Can't Let Go · Hard", y: '2013' , big: true },
+          { n: 'Jumper · Harder', y: '2013' , big: true },
+          { n: 'Time Machine · Harder', y: '2013' },
+          { n: 'Cycles · Harder', y: '2013' , big: true },
+          { n: 'xStep · Insane', y: '2013' },
+          { n: 'Clutterfunk · Insane', y: '2013' },
+          { n: 'Theory of Everything · Insane', y: '2014' , big: true },
+          { n: 'Electroman Adventures · Insane', y: '2013' },
+          { n: 'Clubstep · Demon', y: '2013' },
+          { n: 'Electrodynamix · Insane', y: '2014' },
+          { n: 'Hexagon Force · Insane', y: '2014' , big: true },
+          { n: 'Blast Processing · Harder', y: '2014' },
+          { n: 'Theory of Everything 2 · Demon', y: '2014' },
+          { n: 'Geometrical Dominator · Harder', y: '2015' },
+          { n: 'Deadlocked · Demon', y: '2015' },
+          { n: 'Fingerdash · Insane', y: '2017' },
+          { n: 'Dash · Harder', y: '2023' },
+        ] },
+      { title: 'The Other Games', sub: '2015 – 2018', unit: 'game',
+        desc: 'Three free spin-offs, each one a stripped-down slice of the main game.',
+        rows: [
+          { n: 'Geometry Dash Lite', y: '2013' },
+          { n: 'Geometry Dash Meltdown', y: '2015' },
+          { n: 'Geometry Dash World', y: '2016' },
+          { n: 'Geometry Dash SubZero', y: '2017' },
+        ] },
+      { title: 'The Updates', sub: 'the ones that changed it', unit: 'update',
+        desc: 'Numbered versions, and the gap between the last two is the famous one.',
+        rows: [
+          { n: '1.0 · the release', y: '2013' },
+          { n: '1.9 · the editor grows up', y: '2014' },
+          { n: '2.0 · user coins and the ship', y: '2015' },
+          { n: '2.1 · the spider', y: '2017' },
+          { n: '2.2 · the swing, six years later', y: '2023' },
+        ] },
+    ] },
+
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'four tracks',
+    lede: 'The soundtrack is licensed from Newgrounds musicians, which is why several of these were already well known before the game used them. Hexagon Force is the best theme track in the game, and it is why that level is the favourite.',
+    items: [
+      { title: 'Hexagon Force', accent: '#39d6f0', sub: 'Waterflame · 2014',
+        desc: 'The best track in the game, on the level I never got past 40% of. The first forty per cent is enough.',
+        href: 'https://www.youtube.com/watch?v=afwK743PL2Y', link: 'Listen' },
+      { title: 'Cycles', accent: '#4ae0a8', sub: 'DJVI · 2013',
+        desc: 'Second. The drops are where the gravity flips, and the song tells you before the level does.',
+        href: 'https://www.youtube.com/watch?v=KDdvGZn6Gfs', link: 'Listen' },
+      { title: 'Theory of Everything', accent: '#e04a9a', sub: 'dj-Nate · 2014',
+        desc: 'As far as I got, and the track I hear when somebody says the name of the game.',
+        href: 'https://www.youtube.com/watch?v=ZarOZEPW1ok', link: 'Listen' },
+      { title: 'Stereo Madness', accent: '#f0c040', sub: 'ForeverBound · 2013 · 1:34',
+        desc: 'The first level, and the first thirty seconds most people have heard several hundred times.',
+        href: 'https://www.youtube.com/watch?v=JhKyKEDxo8Q', link: 'Listen' },
+    ] },
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'elsewhere',
+    items: [
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Geometry_Dash',
+        desc: 'The releases, the six-year gap, and the editor.' },
+      { title: 'The Demon List', href: 'https://pointercrate.com/demonlist/',
+        desc: 'The community ranking of the hardest levels ever verified, with the video for each one.' },
+      { title: 'RobTop Games', href: 'https://www.robtopgames.com/',
+        desc: 'One developer, and the whole thing.' },
+    ] },
+
+] };

@@ -179,7 +179,56 @@
     paw:     '<circle cx="7.2" cy="8.4" r="2.15"/><circle cx="12" cy="6.6" r="2.15"/>'
              + '<circle cx="16.8" cy="8.4" r="2.15"/><circle cx="19.4" cy="13" r="1.9"/>'
              + '<path d="M12 11.4c3.1 0 5.6 2.4 5.6 5 0 2-1.6 3.2-3.6 3.2h-4'
-             + 'c-2 0-3.6-1.2-3.6-3.2 0-2.6 2.5-5 5.6-5z"/>'
+             + 'c-2 0-3.6-1.2-3.6-3.2 0-2.6 2.5-5 5.6-5z"/>',
+
+    /* ── seven later additions ── */
+    // DreamWorks: the crescent and the boy fishing off it, which is the only
+    // logo on this page that is already a drawing rather than a wordmark.
+    moon:    '<path d="M3.2 8.3A9.6 9.6 0 1 0 20.8 8.3 9.6 9.6 0 0 1 3.2 8.3z"/>'
+             + '<circle cx="9.2" cy="8.5" r="1.9"/>'
+             + '<path d="M8.1 10.4h2.2v3.4H8.1z"/>'
+             + '<path d="M10.4 10.8 17.8 5.6" fill="none" stroke="currentColor"'
+             + ' stroke-width="1.2" stroke-linecap="round"/>'
+             + '<path d="M17.8 5.6v5.2" fill="none" stroke="currentColor"'
+             + ' stroke-width=".8" opacity=".65"/>'
+             + '<circle cx="17.8" cy="11.5" r="1" opacity=".65"/>',
+    // Nintendo: the Famicom pad. A cross and two round buttons is the shape
+    // they invented in 1983 and every controller since has kept.
+    dpad:    '<path d="M6.2 5.2h4.4v3.6h3.6v4.4h-3.6v3.6H6.2v-3.6H2.6V8.8h3.6z"/>'
+             + '<circle cx="17.6" cy="9.6" r="2.4"/>'
+             + '<circle cx="20.4" cy="14.8" r="2.4" opacity=".72"/>',
+    // Zelda: the Triforce. Three triangles and the fourth one you do not draw.
+    triforce: '<path d="M12 2.4 17.4 12H6.6z"/>'
+             + '<path d="M6.4 12.9 11.8 22.4H1z"/>'
+             + '<path d="M17.6 12.9 23 22.4H12.2z"/>',
+    // Splatoon: a blot of ink with two drops thrown off it. The squid would be
+    // the obvious pick and the game is not about the squid, it is about the
+    // floor being your colour.
+    ink:     '<path d="M12 2.6c2.6 0 3.9 1.9 5.4 3.2 1.6 1.4 3.8 2 3.8 4.6 0 2.4-1.9'
+             + ' 3.6-2.8 5.3-1 1.9-.9 4.4-3.2 5.1-2.2.7-3.7-1-5.7-1.3-2.1-.3-4.4.9-5.8-.8'
+             + '-1.4-1.7-.2-3.8-.5-5.9-.3-2.2-1.9-3.9-.9-5.9C3.2 6.1 5.7 6.3 7.4 5.3'
+             + ' 9 4.4 9.7 2.6 12 2.6z"/>'
+             + '<circle cx="20.6" cy="20.4" r="2" opacity=".75"/>'
+             + '<circle cx="4.6" cy="21" r="1.15" opacity=".55"/>',
+    // Looney Tunes: the bullseye the cartoons open and close inside.
+    target:  '<circle cx="12" cy="12" r="10.4" fill="none" stroke="currentColor" stroke-width="2.5"/>'
+             + '<circle cx="12" cy="12" r="6.2" fill="none" stroke="currentColor" stroke-width="2.5" opacity=".68"/>'
+             + '<circle cx="12" cy="12" r="2.3"/>',
+    // LEGOLAND: a minifigure head. `brick` is already LEGO's on this page, and
+    // the park is the one place the brick is a person rather than a part.
+    minifig: '<rect x="9.6" y="1.6" width="4.8" height="2.8" rx="1.1"/>'
+             + '<rect x="6.4" y="4.4" width="11.2" height="15" rx="3.2"/>'
+             + '<circle cx="9.7" cy="10.2" r="1.35" fill="#000" opacity=".55"/>'
+             + '<circle cx="14.3" cy="10.2" r="1.35" fill="#000" opacity=".55"/>'
+             + '<path d="M8.5 13.2c.9 2.1 2.1 3.2 3.5 3.2s2.6-1.1 3.5-3.2" fill="none"'
+             + ' stroke="#000" stroke-width="1.3" opacity=".55" stroke-linecap="round"/>',
+    // Six Flags: six is the whole name, so the glyph is flags. Three of them,
+    // set back in depth, because six at 24 pixels is a smear.
+    flags:   '<path d="M3.6 2.4h1.7V22H3.6z"/><path d="M5.3 3.4 13 6.2l-7.7 2.8z"/>'
+             + '<path d="M11 6.2h1.5v15.8H11z" opacity=".8"/>'
+             + '<path d="M12.5 7 19.2 9.4l-6.7 2.4z" opacity=".8"/>'
+             + '<path d="M17.6 10.2h1.3V22h-1.3z" opacity=".58"/>'
+             + '<path d="M18.9 11 23.8 12.8l-4.9 1.8z" opacity=".58"/>'
   };
 
   function glyph(key) {

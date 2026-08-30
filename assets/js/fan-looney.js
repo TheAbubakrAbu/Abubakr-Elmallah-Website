@@ -1,0 +1,161 @@
+/* fan-looney.js: content for /worlds/looney-tunes/. Rendered by fanpage.js.
+   Seven minutes, no moral, and one man doing nearly every voice in the
+   building. Warner's answer to Disney, and funnier than it. */
+/* NO `when:` BLOCK YET, on purpose. That field is when Abubakr actually got
+   into the thing, and the rest of this site's fan pages mean it literally. A
+   plausible-sounding date here would make the one honest line on the page
+   unreliable, so it is left for him to fill in:
+
+     when: { at: '...', note: '...' },
+
+   goes directly above `sections`. */
+window.FAN_PAGE = {
+  sections: [
+
+  { id: 'cast', kind: 'tiles', title: 'The Cast', note: 'and the one man who was all of them',
+    lede: 'Mel Blanc voiced nearly every character on this list, often several of them arguing in the same scene, and for years he was the only voice actor in Hollywood with a screen credit. He got it by asking.',
+    items: [
+      { title: 'Bugs Bunny', accent: '#f0c040', sub: 'A Wild Hare · 1940',
+        desc: 'Wins by staying calm. The rule the directors kept was that he never starts it: somebody has to come after him first, or the audience turns on him.' },
+      { title: 'Daffy Duck', accent: '#5fa3ec', sub: 'Porky’s Duck Hunt · 1937',
+        desc: 'Started as pure chaos under Clampett and was slowly rewritten by Chuck Jones into greed and envy, which is where the character actually got funny.' },
+      { title: 'Porky Pig', accent: '#e0907f', sub: 'I Haven’t Got a Hat · 1935',
+        desc: 'The studio’s first real star and the one who closes nearly every short. Blanc based the stammer on an actual stammer and was not universally forgiven for it.' },
+      { title: 'Wile E. Coyote', accent: '#c9a06f', sub: 'Fast and Furry-ous · 1949',
+        desc: 'Never speaks, never wins, and is never harmed by anything except gravity and his own order from Acme. A single joke, told about fifty times, and it never stops working.' },
+      { title: 'Road Runner', accent: '#3fd589', sub: 'Fast and Furry-ous · 1949',
+        desc: 'Two syllables and a dust cloud. Chuck Jones made it a rule that he never leaves the road, so every trap fails on the coyote’s own terms rather than by cheating.' },
+      { title: 'Elmer Fudd', accent: '#e04a3a', sub: 'Elmer’s Candid Camera · 1940',
+        desc: 'A hunter who has never once got the rabbit. The voice is Arthur Q. Bryan, which makes him one of the few not done by Blanc.' },
+      { title: 'Yosemite Sam', accent: '#e0703a', sub: 'Hare Trigger · 1945',
+        desc: 'Friz Freleng built him specifically because Elmer was too soft to be a real threat. The joke is that he is the loudest person in every room and the shortest.' },
+      { title: 'Marvin the Martian', accent: '#b06fd8', sub: 'Haredevil Hare · 1948',
+        desc: 'Quiet, polite and trying to blow up the Earth because it obstructs his view of Venus. The calmest villain in the catalogue and much the funniest.' },
+      { title: 'Tweety and Sylvester', accent: '#f0e03f', sub: 'Tweetie Pie · 1947',
+        desc: 'Won the studio its first Academy Award. Blanc did both of them, and the lisp on Sylvester is the same instrument as the lisp on Daffy pitched down.' },
+      { title: 'Foghorn Leghorn', accent: '#e0c07f', sub: 'Walky Talky Hawky · 1946',
+        desc: 'A rooster doing an impression of a radio character nobody now remembers, which somehow outlived the thing it was parodying by seventy years.' },
+      { title: 'Speedy Gonzales', accent: '#e8a13f', sub: 'Cat-Tails for Two · 1953',
+        desc: 'Fastest mouse in all Mexico. Pulled from broadcast in the 1990s for being a stereotype and put back after Mexican viewers objected to the removal.' },
+      { title: 'Pepé Le Pew', accent: '#c9ced6', sub: 'Odor-able Kitty · 1945',
+        desc: 'The one the modern studio has quietly retired, and the reasons for that are not hard to see. Included because pretending he was not there would be dishonest.' },
+    ] },
+
+  { id: 'directors', kind: 'cards', title: 'The Three Directors', note: 'same studio, three comedies',
+    lede: 'Termite Terrace was a hut on the Warner lot that the animators were put in because nobody wanted them in the main building. Three of the people in it were doing completely different things.',
+    items: [
+      { title: 'Chuck Jones', sub: 'Rules, kept exactly', tag: 'The formalist', accent: '#f0c040',
+        desc: 'Wrote himself a list of laws for the Road Runner and never broke one of them: no dialogue, no outside force, all products from Acme, gravity is the real enemy. Also made What’s Opera, Doc?, Duck Amuck and One Froggy Evening, which is three of the best cartoons ever drawn by anybody.',
+        meta: 'What’s Opera, Doc? · Duck Amuck' },
+      { title: 'Tex Avery', sub: 'No rules at all', tag: 'The anarchist', accent: '#e04a3a',
+        desc: 'Invented the take, the fourth-wall break, and most of the grammar of the loud American cartoon. He also directed A Wild Hare in 1940, which is the first short where Bugs is recognisably Bugs. Left for MGM in 1941 and got even stranger.',
+        meta: 'A Wild Hare · and then MGM' },
+      { title: 'Bob Clampett', sub: 'Drawn at speed', tag: 'The wild one', accent: '#b06fd8',
+        desc: 'The most elastic animation in the catalogue: characters stretch past any anatomy and snap back inside a frame. Porky in Wackyland is a surrealist film with a pig in it, and The Great Piggy Bank Robbery is Daffy at maximum voltage.',
+        meta: 'Porky in Wackyland · 1938' },
+      { title: 'Friz Freleng', sub: 'Cut to the music', tag: 'The timer', accent: '#e0703a',
+        desc: 'The longest-serving of them and the one who thought in bars. His shorts are edited to the score rather than scored to the edit, which is why Rhapsody Rabbit and Three Little Bops feel like nothing else in the set.',
+        meta: 'And he built Yosemite Sam' },
+      { title: 'Mel Blanc', sub: 'Nearly all of them', tag: 'The voice', accent: '#5fa3ec',
+        desc: 'Bugs, Daffy, Porky, Sylvester, Tweety, Yosemite Sam, Foghorn, Marvin, Speedy, Pepé, Barnyard Dawg, and the Road Runner’s two syllables. He asked for a screen credit instead of a raise, got it, and it made him the first famous voice actor.',
+        meta: 'He asked for the credit instead of the money' },
+      { title: 'Carl Stalling', sub: 'Fifty cues a short', tag: 'The score', accent: '#3fd589',
+        desc: 'Conducted a full orchestra once a week for twenty-two years, quoting whatever fitted, often for one bar. Warner owned an enormous music catalogue and he used all of it, which is why these cartoons sound like a radio being tuned very fast.',
+        meta: 'Twenty-two years, one a week' },
+    ] },
+
+  { id: 'rules', kind: 'tiles', title: 'The Nine Rules', note: 'Chuck Jones, for the Road Runner', compact: true,
+    lede: 'Jones wrote these down for himself and then held to them for thirty shorts. It is the clearest thing ever written about why constraint is funnier than freedom.',
+    items: [
+      { title: 'Only beep beep', accent: '#3fd589', sub: 'Rule one',
+        desc: 'The Road Runner cannot harm the coyote except by going beep beep.' },
+      { title: 'Nothing outside', accent: '#f0c040', sub: 'Rule two',
+        desc: 'No outside force can harm the coyote. Only his own ineptitude, or the failure of an Acme product.' },
+      { title: 'He could stop', accent: '#e04a3a', sub: 'Rule three',
+        desc: 'The coyote could give up at any time. He is not starving, he is a fanatic. Nobody is making him do this.' },
+      { title: 'No dialogue', accent: '#5fa3ec', sub: 'Rule four',
+        desc: 'No speech from either of them, ever, except beep beep and the occasional sign held up to the audience.' },
+      { title: 'Stay on the road', accent: '#b06fd8', sub: 'Rule five',
+        desc: 'The Road Runner must stay on the road. He never gets out of it, which means every trap is fair.' },
+      { title: 'The desert only', accent: '#e0a050', sub: 'Rule six',
+        desc: 'All action confined to the natural environment of the two, the American southwest.' },
+      { title: 'Everything from Acme', accent: '#e0703a', sub: 'Rule seven',
+        desc: 'All materials, tools, weapons and mechanical conveniences must come from the Acme Corporation.' },
+      { title: 'Gravity wins', accent: '#c9ced6', sub: 'Rule eight',
+        desc: 'Wherever possible, make gravity the coyote’s greatest enemy.' },
+      { title: 'Humiliated, not hurt', accent: '#f0e03f', sub: 'Rule nine',
+        desc: 'The coyote is always more humiliated than harmed by his failures, which is the rule that makes the whole thing bearable.' },
+    ] },
+
+  /* the complete index. ◆ marks the ones that are mine; nothing is marked yet,
+     see the note at the top of this file. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the shorts, the series, the features',
+    lede: 'A thousand shorts is not a list anybody can put on a page, so this is the shorts worth starting with, and then the complete television and film side.',
+    items: [
+      { title: 'The Shorts To Start With', sub: '1938 – 1957', unit: 'short',
+        desc: 'Ten of about a thousand. Four of these are in the National Film Registry.',
+        rows: [
+          { n: 'Porky in Wackyland · Clampett', y: '1938' },
+          { n: 'A Wild Hare · Avery', y: '1940' },
+          { n: 'The Great Piggy Bank Robbery · Clampett', y: '1946' },
+          { n: 'Rabbit of Seville · Jones', y: '1950' },
+          { n: 'Rabbit Seasoning · Jones', y: '1952' },
+          { n: 'Feed the Kitty · Jones', y: '1952' },
+          { n: 'Duck Amuck · Jones', y: '1953' },
+          { n: 'Duck Dodgers in the 24½th Century · Jones', y: '1953' },
+          { n: 'One Froggy Evening · Jones', y: '1955' },
+          { n: "What's Opera, Doc? · Jones", y: '1957' },
+        ] },
+      { title: 'The Two Series Names', sub: '1930 – 1969', unit: 'series',
+        desc: 'They ran side by side for forty years. The only real difference was that one had to feature a Warner-owned song, and by the end nobody could tell them apart.',
+        rows: [
+          { n: 'Looney Tunes', y: '1930' },
+          { n: 'Merrie Melodies', y: '1931' },
+        ] },
+      { title: 'On Television', sub: '1960 onward', unit: 'series',
+        desc: 'Mostly repackaged shorts for thirty years, then a run of genuinely new shows from 1990.',
+        rows: [
+          { n: 'The Bugs Bunny Show', y: '1960' },
+          { n: 'Tiny Toon Adventures', y: '1990' },
+          { n: 'Baby Looney Tunes', y: '2002' },
+          { n: 'Duck Dodgers', y: '2003' },
+          { n: 'The Looney Tunes Show', y: '2011' },
+          { n: 'Wabbit / New Looney Tunes', y: '2015' },
+          { n: 'Looney Tunes Cartoons', y: '2020' },
+          { n: 'Tiny Toons Looniversity', y: '2023' },
+        ] },
+      { title: 'The Features', sub: '1996 – 2025', unit: 'film',
+        desc: 'The last one is the first fully animated Looney Tunes film ever released to cinemas, which took ninety-five years.',
+        rows: [
+          { n: 'Space Jam', y: '1996' },
+          { n: 'Looney Tunes: Back in Action', y: '2003' },
+          { n: 'Space Jam: A New Legacy', y: '2021' },
+          { n: 'The Day the Earth Blew Up', y: '2025' },
+        ] },
+    ] },
+
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'three tracks',
+    lede: 'Carl Stalling conducted a full orchestra every week for twenty-two years. Nothing here is on a playlist yet.',
+    items: [
+      { title: 'The Merry-Go-Round Broke Down', accent: '#f0c040', sub: 'Cliff Friend & Dave Franklin · 1937 · the Eddy Duchin record, 3:17',
+        desc: 'The theme. A 1937 novelty song bought for a title card, and now one of the most recognised thirty seconds of music in the world.',
+        href: 'https://www.youtube.com/watch?v=oBgAHK36sx4', link: 'Listen' },
+      { title: 'Merrily We Roll Along', accent: '#5fa3ec', sub: 'Eddie Cantor & others · 1935 · 0:49, with the fanfare',
+        desc: 'The other one, for Merrie Melodies. Two title themes for what was effectively one series.',
+        href: 'https://www.youtube.com/watch?v=ROoTcInT_98', link: 'Listen' },
+      { title: 'Powerhouse', accent: '#3fd589', sub: 'Raymond Scott · 1937 · 2:54',
+        desc: 'Not written for cartoons at all. Stalling put it under every assembly line and every conveyor belt in the catalogue, and now nobody can hear it without seeing one.',
+        href: 'https://www.youtube.com/watch?v=HnzLconK4Tw', link: 'Listen' },
+    ] },
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'elsewhere',
+    items: [
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Looney_Tunes',
+        desc: 'Ninety-five years, two series names, and the directors who made the difference.' },
+      { title: 'Chuck Jones', href: 'https://en.wikipedia.org/wiki/Chuck_Jones',
+        desc: 'Including the nine rules, which he wrote down and then actually kept.' },
+      { title: 'Mel Blanc', href: 'https://en.wikipedia.org/wiki/Mel_Blanc',
+        desc: 'The man of a thousand voices, and the one who asked for a credit instead of a raise.' },
+    ] },
+
+] };

@@ -1,0 +1,71 @@
+/* fan/splatoon.css: /worlds/splatoon/ only.
+
+   Two colours and a floor. The game hands out a pair of opposed inks every
+   match and the page takes the pair it uses most, green against purple. Both
+   blots drift on transform only; the floor underneath them does not move,
+   because in this game the ground is the scoreboard. */
+
+body[data-fan="splatoon"] { --a: #c6f03a; }
+
+/* ── the backdrop ── */
+.sp-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(96% 74% at 50% 4%, #22103a 0%, #170a26 46%, #070510 100%);
+}
+
+.sp-sky > * { position: absolute; inset: 0; }
+
+.sp-glow { background: radial-gradient(44% 28% at 50% 8%, rgba(198,240,58,.16), transparent 72%); }
+
+.sp-ink {
+  border-radius: 46% 54% 38% 62% / 58% 42% 60% 40%;
+  filter: blur(28px); will-change: transform;
+}
+
+.sp-ink--a {
+  inset: 14% auto auto 8%; width: 40vmax; height: 32vmax;
+  background: rgba(198,240,58,.16);
+  animation: sp-drift-a 34s ease-in-out infinite alternate;
+}
+
+.sp-ink--b {
+  inset: auto 6% 12% auto; width: 36vmax; height: 30vmax;
+  background: rgba(150,60,220,.20);
+  animation: sp-drift-b 40s ease-in-out infinite alternate;
+}
+
+@keyframes sp-drift-a { to { transform: translate(9vmax, 5vmax) rotate(24deg); } }
+@keyframes sp-drift-b { to { transform: translate(-8vmax, -6vmax) rotate(-20deg); } }
+
+.sp-floor { top: auto; height: 34%; background: linear-gradient(180deg, transparent, rgba(7,5,16,.9)); }
+
+@media (prefers-reduced-motion: reduce) { .sp-ink { animation: none; } }
+
+/* ── hero ── */
+body[data-fan="splatoon"] .fan-title {
+  font-family: "Arial Black", Impact, Haettenschweiler, var(--sans);
+  font-weight: 900; text-transform: uppercase; letter-spacing: 0.01em;
+  transform: skewX(-6deg);
+  text-shadow: 3px 3px 0 #4b21c8, 0 0 30px rgba(198,240,58,.35);
+}
+
+/* ── the turf ── */
+.sp-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem 0 0; }
+
+.sp-art svg { display: block; width: min(460px, 100%); margin-inline: auto; }
+
+.spa-floor { fill: #16112a; stroke: rgba(198,240,58,.16); stroke-width: 2; }
+
+.spa-paint { fill: #c6f03a; opacity: .9; }
+
+.spa-squid { fill: #8f4ce0; }
+
+.spa-eye   { fill: #0d0818; }
+
+.spa-drop  { fill: #c6f03a; opacity: .75; }
+
+.sp-art figcaption {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}

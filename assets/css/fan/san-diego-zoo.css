@@ -1,0 +1,73 @@
+/* fan/san-diego-zoo.css: /worlds/san-diego-zoo/ only.
+
+   Balboa Park is a wood before it is a zoo, so the backdrop is canopy and
+   the light coming through it in pieces rather than any animal. The dapple
+   layer drifts; the trees do not. */
+
+body[data-fan="zoo"] { --a: #7fc86a; }
+
+/* ── the backdrop ── */
+.zo-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: linear-gradient(180deg, #14240e 0%, #101c0c 40%, #0a1408 70%, #040703 100%);
+}
+
+.zo-sky > span { position: absolute; inset: 0; }
+
+.zo-glow { background: radial-gradient(44% 28% at 50% 8%, rgba(127,200,106,.16), transparent 72%); }
+
+/* light through leaves: soft blobs, drifting, at a size that reads as
+   dapple rather than as bokeh */
+.zo-dapple {
+  background-image:
+    radial-gradient(22px 16px at 24% 30%, rgba(200,240,170,.13), transparent 70%),
+    radial-gradient(18px 13px at 62% 22%, rgba(210,240,180,.11), transparent 70%),
+    radial-gradient(26px 18px at 78% 48%, rgba(190,230,160,.10), transparent 70%),
+    radial-gradient(16px 12px at 40% 58%, rgba(210,240,180,.09), transparent 70%);
+  background-size: 420px 420px;
+  will-change: transform; animation: zo-sway 30s ease-in-out infinite alternate;
+}
+
+@keyframes zo-sway { to { transform: translate(14px, 8px); } }
+
+.zo-canopy { position: absolute; inset: auto 0 0 0; height: 52%; }
+
+.zo-canopy svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.zoc-far  { fill: #12200c; }
+
+.zoc-near { fill: #0a1407; }
+
+.zoc-trees path { fill: #0d1a09; }
+
+@media (prefers-reduced-motion: reduce) { .zo-dapple { animation: none; } }
+
+/* ── hero ── */
+body[data-fan="zoo"] .fan-title {
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-weight: 700; font-variant: small-caps; letter-spacing: 0.04em;
+  text-shadow: 0 2px 18px rgba(127,200,106,.35);
+}
+
+/* ── the Skyfari ── */
+.zo-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem 0 0; }
+
+.zo-art svg { display: block; width: min(440px, 100%); margin-inline: auto; }
+
+.zoa-cable { fill: none; stroke: #6f8a60; stroke-width: 3; }
+
+.zoa-hang  { fill: none; stroke: #6f8a60; stroke-width: 5; }
+
+.zoa-body { fill: #e0603a; }
+
+.zoa-win { fill: #16240f; }
+
+.zoa-hill { fill: #12200c; }
+
+.zoa-tree path { fill: #0d1a09; }
+
+.zo-art figcaption {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}

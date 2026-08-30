@@ -1,0 +1,162 @@
+/* fan-dreamworks.js: content for /worlds/dreamworks/. Rendered by fanpage.js.
+   The studio founded to be the one Disney would not let them run, and for
+   about a decade the only one seriously taking animation off Disney. */
+/* NO `when:` BLOCK YET, on purpose. That field is when Abubakr actually got
+   into the thing, and the rest of this site's fan pages mean it literally. A
+   plausible-sounding date here would make the one honest line on the page
+   unreliable, so it is left for him to fill in:
+
+     when: { at: '...', note: '...' },
+
+   goes directly above `sections`. */
+window.FAN_PAGE = {
+  sections: [
+
+  { id: 'films', kind: 'rank', title: 'The Best Of Them', note: 'six, and two are elsewhere on this site',
+    lede: 'Fifty features in thirty years and the quality range is enormous, which is the honest thing to say about this studio. These are the ones that hold up, minus the two that are big enough here to have their own pages.',
+    items: [
+      { num: '01', title: 'Shrek', sub: '2001',
+        desc: 'Won the first Academy Award ever given for an animated feature, against Monsters, Inc. It is a fairytale parody with a genuine film underneath it, and it is also a fairly open piece of score-settling with Disney, made by a man who had just been forced out of Disney.' },
+      { num: '02', title: 'The Prince of Egypt', sub: '1998',
+        desc: 'Hand-drawn, enormously serious, and about Mūsā, peace be upon him. They consulted several hundred religious scholars before drawing a frame and it shows in the restraint. The parting of the sea still looks better than most things done since with far more computer behind them.' },
+      { num: '03', title: 'Puss in Boots: The Last Wish', sub: '2022',
+        desc: 'A Shrek spin-off sequel eleven years late that has no business being this good. Stepped frame rate borrowed from Spider-Verse, a villain who is Death, and the best-looking thing the studio has ever released.' },
+      { num: '04', title: 'Megamind', sub: '2010',
+        desc: 'Buried by coming out the same year as two much larger films from the same studio. A supervillain wins in the first ten minutes and then has to work out what he is for, which is a sharper idea than the film was ever marketed on.' },
+      { num: '05', title: 'The Wild Robot', sub: '2024',
+        desc: 'A painted look the studio had been circling for years, finally committed to completely. Quiet, and about a machine learning to be a parent by doing it badly.' },
+      { num: '06', title: 'Madagascar', sub: '2005',
+        desc: 'Broad, fast and completely unserious, which is the house at its most characteristic. It also produced the penguins, who then took over the franchise and got their own film.' },
+    ] },
+
+  { id: 'house', kind: 'cards', title: 'The House Style', note: 'and how it is not Pixar',
+    lede: 'The two studios are always compared and the comparison is usually unfair in one direction. They are aiming at different things and only one of them was ever trying to make you cry in the first act.',
+    items: [
+      { title: 'Faster, louder, sillier', sub: 'The default setting', tag: 'The tone', accent: '#8fb8e0',
+        desc: 'Pixar opens quiet. DreamWorks opens with a joke and a needle-drop. It is a pop sensibility rather than a literary one, and when it works it produces films that are funnier than anything Pixar has made.',
+        meta: 'And then occasionally serious' },
+      { title: 'A grudge, at the start', sub: 'Katzenberg and Disney', tag: 'The founding', accent: '#e0704a',
+        desc: 'Jeffrey Katzenberg ran Disney animation through the renaissance, was passed over for the presidency, left, sued, and started this. The first decade of output is legible as an argument with his old employer, and Shrek is the argument stated out loud.',
+        meta: '1994, by Spielberg, Katzenberg and Geffen' },
+      { title: 'The needle drop', sub: 'Licensed pop over score', tag: 'The music', accent: '#f0c040',
+        desc: 'All Star, I Like to Move It, Holding Out for a Hero. The habit is mocked and it worked: those songs are load-bearing for how these films are remembered, more than any score the studio ever commissioned.',
+        meta: 'It is why you remember them' },
+      { title: 'Sequels, immediately', sub: 'Franchise as the plan', tag: 'The business', accent: '#5fa3ec',
+        desc: 'Shrek four times, Madagascar three, Kung Fu Panda four, How to Train Your Dragon three, Croods, Trolls, Boss Baby, Bad Guys. The strike rate on the sequels is genuinely better than it should be, and the second Kung Fu Panda and second Dragon are both better than their first films.',
+        meta: 'And several are better than the originals' },
+      { title: 'The one they take seriously', sub: 'Prince of Egypt, and after', tag: 'The other mode', accent: '#b06fd8',
+        desc: 'Every few years the studio makes something with no jokes in it at all and it is usually excellent. Prince of Egypt, Rise of the Guardians, the Dragon films, The Wild Robot. Nobody markets these as the same studio and they are.',
+        meta: 'No jokes, and it works' },
+      { title: 'Bought, in 2016', sub: 'By Comcast', tag: 'Where it went', accent: '#c9ced6',
+        desc: 'NBCUniversal acquired it for about $3.8 billion, which is why the Isle of Berk is now a land in a Universal park and How to Train Your Dragon is on a page next door to Universal Studios on this site.',
+        meta: 'And that is why it is in the parks' },
+    ] },
+
+  { id: 'own', kind: 'tiles', title: 'The Two With Their Own Pages', note: 'high enough here to sit separately',
+    lede: 'Two DreamWorks films are far enough up this site to have tiles of their own on /worlds/. They belong in this studio’s list and they get their own page, so both are true.',
+    items: [
+      { title: 'Kung Fu Panda', accent: '#e0703a', sub: 'Film · 2008',
+        desc: 'A slapstick premise that turned out to have a real film underneath it, and then three more of them.',
+        href: '/worlds/kung-fu-panda/', link: 'The page' },
+      { title: 'How to Train Your Dragon', accent: '#7fd0e8', sub: 'Film · 2010',
+        desc: 'The best flight scenes in animation and John Powell’s best score. A boy fixes what he broke, with engineering.',
+        href: '/worlds/how-to-train-your-dragon/', link: 'The page' },
+    ] },
+
+  /* the complete index. ◆ marks the ones that are mine; nothing is marked yet,
+     see the note at the top of this file. */
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the features, in four eras',
+    lede: 'Around fifty features since 1998, split by what the studio was actually doing at the time. The two with their own pages are in here too, because leaving them out would make this list a lie.',
+    items: [
+      { title: 'Hand-Drawn And Early CG', sub: '1998 – 2004', unit: 'film',
+        desc: 'The traditional department ran alongside the computer one for six years and then closed.',
+        rows: [
+          { n: 'Antz', y: '1998' },
+          { n: 'The Prince of Egypt', y: '1998' },
+          { n: 'The Road to El Dorado', y: '2000' },
+          { n: 'Chicken Run', y: '2000' },
+          { n: 'Shrek', y: '2001' },
+          { n: 'Spirit: Stallion of the Cimarron', y: '2002' },
+          { n: 'Sinbad: Legend of the Seven Seas', y: '2003' },
+          { n: 'Shrek 2', y: '2004' },
+          { n: 'Shark Tale', y: '2004' },
+        ] },
+      { title: 'The Franchise Decade', sub: '2005 – 2012', unit: 'film',
+        desc: 'Where nearly everything the studio still runs on was started.',
+        rows: [
+          { n: 'Madagascar', y: '2005' },
+          { n: 'Wallace & Gromit: The Curse of the Were-Rabbit', y: '2005' },
+          { n: 'Over the Hedge', y: '2006' },
+          { n: 'Flushed Away', y: '2006' },
+          { n: 'Shrek the Third', y: '2007' },
+          { n: 'Bee Movie', y: '2007' },
+          { n: 'Kung Fu Panda', y: '2008' },
+          { n: 'Madagascar: Escape 2 Africa', y: '2008' },
+          { n: 'Monsters vs. Aliens', y: '2009' },
+          { n: 'How to Train Your Dragon', y: '2010' },
+          { n: 'Shrek Forever After', y: '2010' },
+          { n: 'Megamind', y: '2010' },
+          { n: 'Kung Fu Panda 2', y: '2011' },
+          { n: 'Puss in Boots', y: '2011' },
+          { n: 'Madagascar 3', y: '2012' },
+          { n: 'Rise of the Guardians', y: '2012' },
+        ] },
+      { title: 'The Lean Years', sub: '2013 – 2019', unit: 'film',
+        desc: 'A run of write-downs and layoffs, the Comcast sale in the middle of it, and two of the best things the studio has made.',
+        rows: [
+          { n: 'The Croods', y: '2013' },
+          { n: 'Turbo', y: '2013' },
+          { n: 'Mr. Peabody & Sherman', y: '2014' },
+          { n: 'How to Train Your Dragon 2', y: '2014' },
+          { n: 'Penguins of Madagascar', y: '2014' },
+          { n: 'Home', y: '2015' },
+          { n: 'Kung Fu Panda 3', y: '2016' },
+          { n: 'Trolls', y: '2016' },
+          { n: 'The Boss Baby', y: '2017' },
+          { n: 'Captain Underpants', y: '2017' },
+          { n: 'How to Train Your Dragon: The Hidden World', y: '2019' },
+          { n: 'Abominable', y: '2019' },
+        ] },
+      { title: 'Under Universal', sub: '2020 onward', unit: 'film',
+        desc: 'A visible change of look: painted, stepped frame rates, and much less afraid of not being photoreal.',
+        rows: [
+          { n: 'Trolls World Tour', y: '2020' },
+          { n: 'The Croods: A New Age', y: '2020' },
+          { n: 'Spirit Untamed', y: '2021' },
+          { n: 'The Boss Baby: Family Business', y: '2021' },
+          { n: 'The Bad Guys', y: '2022' },
+          { n: 'Puss in Boots: The Last Wish', y: '2022' },
+          { n: 'Ruby Gillman, Teenage Kraken', y: '2023' },
+          { n: 'Trolls Band Together', y: '2023' },
+          { n: 'Kung Fu Panda 4', y: '2024' },
+          { n: 'The Wild Robot', y: '2024' },
+          { n: 'Dog Man', y: '2025' },
+          { n: 'The Bad Guys 2', y: '2025' },
+        ] },
+    ] },
+
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'three tracks',
+    lede: 'Two needle drops and a score, which is a fair summary of the studio. Nothing here is on a playlist yet.',
+    items: [
+      { title: 'All Star', accent: '#f0c040', sub: 'Smash Mouth · Shrek · 2001 · 3:20',
+        desc: 'A 1999 single that this film welded permanently to itself in the first ninety seconds.',
+        href: 'https://www.youtube.com/watch?v=L_jWHffIx5E', link: 'Listen' },
+      { title: 'When You Believe', accent: '#b06fd8', sub: 'Stephen Schwartz · The Prince of Egypt · 1998 · 4:37',
+        desc: 'Won the Academy Award for Best Original Song. In the film the choir behind it is singing in Hebrew, untranslated; this is the Whitney Houston and Mariah Carey single from the same year.',
+        href: 'https://www.youtube.com/watch?v=LKaXY4IdZ40', link: 'Listen' },
+      { title: 'Test Drive', accent: '#7fd0e8', sub: 'John Powell · How to Train Your Dragon · 2010 · 2:38',
+        desc: 'The best two and a half minutes of score the studio has ever paid for, and it has its own page on this site.',
+        href: 'https://www.youtube.com/watch?v=IpPIK4T068s', link: 'Listen' },
+    ] },
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'elsewhere',
+    items: [
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/DreamWorks_Animation',
+        desc: 'The founding, the split from the live-action side, and the Comcast sale.' },
+      { title: 'Every film, listed', href: 'https://en.wikipedia.org/wiki/List_of_DreamWorks_Animation_productions',
+        desc: 'The full filmography with budgets and takings, which is where the lean years are most visible.' },
+      { title: 'DreamWorks', href: 'https://www.dreamworks.com/',
+        desc: 'The studio’s own site.' },
+    ] },
+
+] };

@@ -597,6 +597,7 @@
        of holiday photographs, which want to be seen several at a time. */
     gallery: function (s) {
       return '<div class="fan-shots' + (s.grid ? ' fan-shots--grid' : '')
+        + (s.wide ? ' fan-shots--wide' : '')
         + (s.two ? ' fan-shots--two' : '') + '">' + s.items.map(function (it) {
         /* a screenshot of one finished game can carry the same completion
            chips as a tile (`done`, `finished`, `hours`); the caption's own
@@ -678,13 +679,44 @@
     };
   }
 
+  /* ── my own screenshots, defined once ──
+
+     fan-shots.js is to screenshots what fan-been.js is to photographs: every
+     frame is described exactly once, inside a named set, and a section here
+     only says which. `set: 'realm'` takes the whole set, heading and lede
+     included; `pick: ['spawn', 'razor-crest']` takes some of its frames under
+     the page's own heading; a section's own fields win over the set's, and
+     any inline `items` come first. So the Minecraft page and the Star Wars
+     page can both show the Imagine Fun spawn and cannot describe it two ways.
+     A page without fan-shots.js loaded leaves such sections empty rather than
+     broken. */
+  var SHOTS = window.FAN_SHOTS;
+  function resolveShots(s) {
+    if (!s.set && !s.pick) return s;
+    var set = (SHOTS && s.set && SHOTS.sets && SHOTS.sets[s.set]) || {};
+    var out = {}, k;
+    for (k in set) if (k !== 'items') out[k] = set[k];
+    for (k in s) if (k !== 'set' && k !== 'pick') out[k] = s[k];
+    if (!out.kind) out.kind = 'gallery';
+    var keys = s.pick || set.items || [];
+    out.items = (s.items || []).concat(keys.map(function (key) {
+      var p = SHOTS && SHOTS.shots && SHOTS.shots[key];
+      if (!p) return null;
+      var it = {}, j;
+      for (j in p) it[j] = p[j];
+      it.src = (SHOTS.base || '') + p.src;
+      return it;
+    }).filter(Boolean));
+    return out;
+  }
+
   var tag = document.body.getAttribute('data-fan');
   var mine = window.MYPHOTOS && window.MYPHOTOS.fandom && window.MYPHOTOS.fandom[tag];
 
   // sections marked mount:'end' go after whatever the page hand-writes between
   // the two mounts; with no #fanBodyEnd they simply stay in #fanBody, in order
   var tail = document.getElementById('fanBodyEnd');
-  var all = (page.sections || []).slice();
+  var all = (page.sections || []).map(resolveShots);
 
   if (mine && mine.length) {
     var at = all.length;

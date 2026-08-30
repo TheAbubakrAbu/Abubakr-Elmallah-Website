@@ -187,12 +187,8 @@ window.FAN_PAGE = {
 
   { id: 'played', kind: 'gallery', title: 'All Three, Platinum', note: 'my own screenshots · 100%',
     lede: 'Insomniac made the best superhero games ever built, and I have finished all three of them completely.',
-    items: [
-      { title: 'The Insomniac trilogy', src: '/assets/img/franchises/spider-man-games.jpg',
-        alt: 'Spider-Man 2, Miles Morales and Spider-Man Remastered, each marked 100% Complete',
-        desc: 'Spider-Man Remastered, Miles Morales and Spider-Man 2. Every side mission, every backpack, every suit. The web-swinging in these is the closest a game has come to making a superpower feel like a skill.',
-        meta: 'Three games · 100.0% each' },
-    ] },
+    /* captioned once, in fan-shots.js: the same shelf is on /gaming/ */
+    pick: ['spidey-shelf'] },
 
 
   /* the music: the Spider-Man tracks on my playlist, across all four

@@ -116,7 +116,7 @@ window.FANDOMS = [
     { name: 'The Justice League', wm: 'jl', glyph: 'league', c1: '#5f9fe0', c2: '#0d1730',
       when: 'Since I was a kid, on the cartoons',
       meta: 'Comics · 1960', href: '/worlds/justice-league/',
-      desc: 'Shorthand for the DC guys: Batman, Superman, Green Lantern, the Flash. The cartoons got me, not the comics.' },
+      desc: 'Shorthand for the DC guys: Batman, Superman, Green Lantern, Cyborg, the Flash, Aquaman. The cartoons got me, not the comics.' },
 
     { name: 'Batman', wm: 'batman', glyph: 'bat', c1: '#c9cdd2', c2: '#121417',
       when: '5th grade, 2016\u201317',
@@ -205,16 +205,44 @@ window.FANDOMS = [
       desc: 'Four films shot wide and held, by stuntmen who got to pick the camera. Underneath the fighting is a better invention: an assassins’ guild with a currency, an arbitration process and paperwork.' },
 
     { name: 'Geometry Dash', wm: 'geodash', glyph: 'cube', c1: '#39d6f0', c2: '#0a1a24',
-      meta: 'Game \u00b7 2013',
+      when: 'As a kid, as far as Theory of Everything',
+      meta: 'Game \u00b7 2013', href: '/worlds/geometry-dash/',
       desc: 'One button, no health bar and no checkpoints inside a level: touch anything and the attempt is over from the first frame. Twenty-two official levels, and a level editor that has produced millions more, some of which take a year to finish once.' },
 
     { name: 'Rio', wm: 'rio', glyph: 'macaw', c1: '#3fc6a8', c2: '#0a2019',
-      meta: 'Film \u00b7 2011',
+      when: 'As a kid, both films',
+      meta: 'Film \u00b7 2011', href: '/worlds/rio/',
       desc: 'A Spix\u2019s macaw from Minnesota flown to Rio de Janeiro to save his species, made by the studio that did Ice Age. The bird it is about was declared extinct in the wild three years after the sequel.' },
 
     { name: 'Christopher Nolan', wm: 'nolan', glyph: 'top', c1: '#d0d8e0', c2: '#0e1217',
       meta: 'Director · 1998', href: '/worlds/christopher-nolan/',
       desc: 'Thirteen films about time, told out of order and shot on film stock the size of a postcard: Inception, Interstellar, Oppenheimer, and now The Odyssey. Zimmer and Göransson did the rest.' },
+
+    /* Seven more, added in one go, and no `when` on any of the five here for
+       the same reason as the batch above: I would be inventing the dates. The
+       two theme parks that came with them are down in the parks group. */
+    { name: 'DreamWorks', wm: 'dreamworks', glyph: 'moon', c1: '#8fb8e0', c2: '#0c1626',
+      meta: 'Studio \u00b7 1994', href: '/worlds/dreamworks/',
+      desc: 'Spielberg, Katzenberg and Geffen started it in 1994 to be the studio Disney would not let them run, and it is the only one that ever seriously took animation off Disney. Shrek, Madagascar, and two more that are far enough up this page to have tiles of their own.' },
+
+    { name: 'Nintendo', wm: 'nintendo', glyph: 'dpad', c1: '#e0403a', c2: '#220e0c',
+      when: 'Since I was a kid; the Switch on launch, 2017',
+      meta: 'Company \u00b7 1889', href: '/worlds/nintendo/',
+      desc: 'A playing-card company from 1889 that spent eighty years trying taxis, instant rice and a love hotel before it found the thing it was for. Still the only one of the three that builds the hardware around one idea and dares the software to catch up.' },
+
+    { name: 'The Legend of Zelda', wm: 'zelda', glyph: 'triforce', c1: '#e8c247', c2: '#0e2016',
+      when: 'Since I was a kid; Breath of the Wild, 2017',
+      meta: 'Game \u00b7 1986', href: '/worlds/zelda/',
+      desc: 'Miyamoto put the caves he explored as a boy outside Kyoto into a cartridge with a battery soldered into it, so for the first time a console remembered where you had been. Breath of the Wild threw the map away and let you climb everything instead.' },
+
+    { name: 'Splatoon', wm: 'splatoon', glyph: 'ink', c1: '#c6f03a', c2: '#1c0a2e',
+      when: 'Splatoon 2, summer 2017',
+      meta: 'Game \u00b7 2015', href: '/worlds/splatoon/',
+      desc: 'A shooter you win by covering the floor rather than by killing anybody, which is the trick that let Nintendo make one at all. Four on four, three minutes, and the score at the end is how much of the ground is your colour.' },
+
+    { name: 'Looney Tunes', wm: 'looney', glyph: 'target', c1: '#f0c040', c2: '#111c3a',
+      meta: 'Animation \u00b7 1930', href: '/worlds/looney-tunes/',
+      desc: 'Warner\u2019s answer to Disney and funnier than it: seven minutes, no moral, and a rabbit who wins by staying calm. Chuck Jones and Tex Avery drawing, and Mel Blanc doing nearly every voice in the building.' },
 
       ] },
 
@@ -229,15 +257,25 @@ window.FANDOMS = [
       meta: 'Studio · 1912', href: '/worlds/universal-studios/',
       desc: 'Transformers and Jurassic got me first, years before I knew what the Wizarding World was. The best themed lands going.' },
 
+    { name: 'LEGOLAND', wm: 'legoland', glyph: 'minifig', c1: '#f5d222', c2: '#12260f',
+      when: 'Since I was small; most of it in 2016',
+      meta: 'Park \u00b7 1968', href: '/worlds/legoland/',
+      desc: 'Built next to the factory at Billund in 1968 because too many people kept turning up to watch the bricks being moulded. Miniland is the whole point: whole cities at 1:20 in tens of millions of pieces, and the California one is an hour down the coast in Carlsbad.' },
+
     { name: 'San Diego Zoo', wm: 'zoo', glyph: 'paw', c1: '#7fc86a', c2: '#0f1d0c',
-      when: 'Since I was small',
-      meta: 'Zoo \u00b7 1916',
+      when: 'Since I was small; the Safari Park most of all',
+      meta: 'Zoo \u00b7 1916', href: '/worlds/san-diego-zoo/',
       desc: 'A hundred acres in Balboa Park that started with the animals left behind by a 1915 exposition, and the place that worked out how to keep a panda alive outside China. The Safari Park up the road is the same institution with the fences moved out.' },
 
     { name: 'Knott\u2019s Berry Farm', wm: 'knotts', glyph: 'saloon', c1: '#b06fd8', c2: '#1e0f26',
       when: 'Elementary school',
       meta: 'Park \u00b7 1920', href: '/worlds/knotts/',
       desc: 'A berry stand that grew a ghost town around the queue for its chicken dinners, fifteen years before Disneyland opened.' },
+
+    { name: 'Six Flags', wm: 'sixflags', glyph: 'flags', c1: '#e03a3a', c2: '#0d1630',
+      when: 'Magic Mountain, every ride in it',
+      meta: 'Park \u00b7 1961', href: '/worlds/six-flags/',
+      desc: 'Named for the six flags that have flown over Texas, which is a peculiar name for a chain that now runs parks in half the country. Magic Mountain has more roller coasters than any park on earth, and that is the entire pitch.' },
 
   ] },
 

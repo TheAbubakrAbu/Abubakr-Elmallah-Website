@@ -226,13 +226,9 @@ window.FAN_PAGE = {
 
   { id: 'played', kind: 'gallery', title: 'LEGO Pirates, Finished', note: 'my own screenshot · 100%',
     lede: 'The LEGO adaptation covers the first four films, and it is the only game that has ever let you play as Jack Sparrow properly.',
-    items: [
-      { title: 'LEGO Pirates of the Caribbean', src: '/assets/img/franchises/lego-pirates-100.jpg',
-        alt: 'LEGO Pirates of the Caribbean paused at 100 percent completion',
-        desc: 'A hundred percent, eleven and a half billion studs, and every collectable in the game: 200 gold bricks, 20 red hats, 20 minikit-ships, 85 characters and 160 of everything else.',
-        meta: '11,536,474,040 studs',
-        done: true, finished: '2023-09-28' },
-    ] },
+    /* the frame is captioned once, in fan-shots.js, and shown here and on the
+       LEGO page from the same row */
+    pick: ['lego-pirates-hundred'] },
 
 
   /* the music: the thirteen Pirates tracks on my playlist, named as the albums

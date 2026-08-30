@@ -1,0 +1,74 @@
+/* fan/geometry-dash.css: /worlds/geometry-dash/ only.
+
+   Everything in this game is moving right at a constant speed and the only
+   input is up, so the backdrop moves right and nothing else happens. Cyan on
+   near-black, which is the palette of the first level and the one the game is
+   remembered in. */
+
+body[data-fan="geodash"] { --a: #39d6f0; }
+
+/* ── the backdrop ── */
+.gd-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: linear-gradient(180deg, #0a1c26 0%, #08151d 46%, #050a0e 100%);
+}
+
+.gd-sky > * { position: absolute; inset: 0; }
+
+.gd-glow { background: radial-gradient(48% 32% at 50% 10%, rgba(57,214,240,.18), transparent 72%); }
+
+/* the grid scrolls sideways rather than up: the player never moves vertically
+   except by jumping, and the world only ever comes from the right */
+.gd-grid {
+  inset: 0 -60px;
+  background-image:
+    linear-gradient(rgba(57,214,240,.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57,214,240,.09) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: linear-gradient(transparent, #000 24%, #000 70%, transparent);
+  -webkit-mask-image: linear-gradient(transparent, #000 24%, #000 70%, transparent);
+  will-change: transform; animation: gd-run 2.4s linear infinite;
+}
+
+@keyframes gd-run { to { transform: translateX(-60px); } }
+
+.gd-floor {
+  top: auto; height: 26%;
+  background: linear-gradient(180deg, transparent, rgba(5,10,14,.94));
+  border-top: 1px solid rgba(57,214,240,.14);
+}
+
+@media (prefers-reduced-motion: reduce) { .gd-grid { animation: none; } }
+
+/* ── hero ── */
+body[data-fan="geodash"] .fan-title {
+  font-family: "Avenir Next", "Futura", "Century Gothic", var(--sans);
+  font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em;
+  transform: skewX(-7deg);
+  text-shadow: 0 0 28px rgba(57,214,240,.45);
+}
+
+/* ── the cube ── */
+.gd-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem 0 0; }
+
+.gd-art svg { display: block; width: min(460px, 100%); margin-inline: auto; }
+
+/* the jump arc is drawn because in this game it is fixed: one height, one
+   length, every time, and learning it is the entire skill */
+.gda-arc {
+  fill: none; stroke: rgba(57,214,240,.35); stroke-width: 2; stroke-dasharray: 6 8;
+}
+
+.gda-cube rect { fill: #39d6f0; filter: drop-shadow(0 0 16px rgba(57,214,240,.5)); }
+
+.gda-eye { fill: #06131a; }
+
+.gda-spikes path { fill: #e04a6a; filter: drop-shadow(0 0 10px rgba(224,74,106,.4)); }
+
+.gda-ground { fill: #123340; }
+
+.gd-art figcaption {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}

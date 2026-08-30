@@ -283,6 +283,12 @@ window.FAN_PAGE = {
         ] },
     ] },
 
+  /* ── the resort in Minecraft ──
+     Imagine Fun, mc.imaginefun.net, both parks at real scale. The frames are
+     captioned once in fan-shots.js; the Minecraft page picks from the same
+     rows, and the Star Wars half is on the Star Wars page. */
+  { id: 'imaginefun', set: 'imagine-fun' },
+
   { id: 'wdw', kind: 'cards', title: 'Walt Disney World', note: 'Florida \u00b7 all four parks, been to every one', been: true,
     lede: 'Forty square miles, roughly the size of San Francisco, bought quietly through shell companies so nobody could work out what was happening and raise the price. Four parks, and I have done all four.',
     items: [

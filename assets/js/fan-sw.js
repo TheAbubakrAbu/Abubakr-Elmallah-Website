@@ -259,16 +259,9 @@ window.FAN_PAGE = {
 
   { id: 'played', kind: 'gallery', title: 'Every One of Them, Finished', note: 'my own screenshots · 100%',
     lede: 'The other way I have spent time in this galaxy. Thirty-six Star Wars games in the library and a wall of hundred-percents, including four LEGO games taken all the way to the last gold brick.',
-    items: [
-      { title: 'The Star Wars shelf', src: '/assets/img/franchises/star-wars-games.jpg',
-        alt: 'A row of Star Wars game covers, each marked 100% Complete',
-        desc: 'LEGO The Force Awakens, LEGO The Skywalker Saga, Droid Repair Bay, Jedi: Fallen Order, Jedi: Survivor and Outlaws, all at a hundred percent.',
-        meta: '36 in the collection' },
-      { title: 'The LEGO Star Wars run', src: '/assets/img/franchises/star-wars-lego-100.jpg',
-        alt: 'Completion screens from four LEGO Star Wars games, all at 100 percent',
-        desc: 'The Complete Saga at 26 hours 40. The Clone Wars at 22 hours 05. The Force Awakens with every planet on the galaxy map at 100. The Skywalker Saga with all 1,200 Kyber bricks, 380 characters and 135 ships.',
-        meta: 'Four games · 100.0% each' },
-    ] },
+    /* both frames are captioned once, in fan-shots.js: the shelf is on
+       /gaming/ as well, and the LEGO run on the LEGO page */
+    pick: ['sw-shelf', 'lego-star-wars-hundred'] },
 
   /* one tile per finished game, in the order I finished them, with the date
      (`finished`, see fanpage.js); the LEGO four also sit in the catalogue on
@@ -286,6 +279,15 @@ window.FAN_PAGE = {
       { title: 'Star Wars Outlaws', accent: '#e0a020', sub: '2024', done: true, finished: '2024-12-03' },
       { title: 'Battlefront II', accent: '#9fc4e8', sub: '2017', done: true, finished: '2025-03-11' },
     ] },
+
+  /* ── the two Minecraft servers ──
+     Imagine Fun's Star Wars half in three rooms, then the Star Wars MC server.
+     Every frame is captioned once, in fan-shots.js; the Minecraft page picks a
+     few of the same rows. */
+  { id: 'galaxys-edge', set: 'galaxys-edge' },
+  { id: 'may-the-fourth', set: 'may-the-fourth' },
+  { id: 'trivia', set: 'star-wars-trivia' },
+  { id: 'swmc', set: 'star-wars-mc' },
 
   /* ── the music ──
      My own playlist: forty-seven tracks, named as the albums name them rather

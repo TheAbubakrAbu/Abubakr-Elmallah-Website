@@ -366,12 +366,8 @@ window.FAN_PAGE = {
 
   { id: 'played', kind: 'gallery', title: 'The Wizarding World Shelf', note: 'my own screenshots · 100%',
     lede: 'Five games under the Wizarding World heading, and the three that have achievements are all finished.',
-    items: [
-      { title: 'Five games, three platinums', src: '/assets/img/franchises/harry-potter-games.jpg',
-        alt: 'Wizarding World game covers, three marked 100% Complete',
-        desc: 'Quidditch Champions, Hogwarts Legacy and the LEGO Harry Potter Collection at a hundred percent. The two standalone LEGO years have no achievements to earn, which is the only reason they are not marked too.',
-        meta: 'Wizarding World · 5' },
-    ] },
+    /* captioned once, in fan-shots.js: the same shelf is on /gaming/ */
+    pick: ['ww-shelf'] },
 
   /* one tile per finished game, with the date I got it to a hundred percent
      (`finished`, see fanpage.js) and, where I have one, the library banner
@@ -393,6 +389,11 @@ window.FAN_PAGE = {
         shots: ['last-achievement', 'victory', 'skill-points'],
         shotAlt: 'Library banner for Harry Potter: Quidditch Champions, showing 100% and my play time' },
     ] },
+
+  /* ── Hogwarts in Minecraft ──
+     Potterverse, February 2022, captioned once in fan-shots.js; the Minecraft
+     page picks four of the same rows. */
+  { id: 'potterverse', set: 'potterverse' },
 
   /* the music: the tracks from my playlist, all of them from the first film's
      album, in the order the film plays them; each linked to the album's own

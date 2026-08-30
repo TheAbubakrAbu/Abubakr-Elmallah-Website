@@ -787,7 +787,7 @@ window.TRAVELS = {
               ['Nintendo TOKYO', 'Shibuya PARCO, Tokyo'],
               ['Nintendo OSAKA', 'Umeda, Osaka'],
               ['Super Nintendo World', 'Universal Studios Japan, Osaka'],
-              ['Pok\u00e9mon Centers', 'Nihonbashi and Skytree Town Tokyo, Kyoto, Osaka'],
+              ['Pok\u00e9mon Centers', 'Tokyo DX, Shibuya and Skytree Town in Tokyo, then Kyoto, Osaka and Osaka DX', 'Every one in the three cities but two: Mega Tokyo was shut that summer, and Tokyo-Bay is an hour out in Funabashi'],
               ['Pok\u00e9mon Caf\u00e9', 'Shinsaibashi, Osaka'],
             ],
             quote: 'Gotta catch \u2019em all.' },

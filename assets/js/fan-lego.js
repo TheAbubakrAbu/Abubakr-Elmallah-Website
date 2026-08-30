@@ -75,7 +75,7 @@ window.FAN_PAGE = {
       { key: 'rating', label: 'My rating',    asc: 'Worst',    desc: 'Best' },
       { key: 'hours',  label: 'My time',      asc: 'Quickest', desc: 'Longest' },
       { key: 'proj',   label: 'Projected',    asc: 'Shortest', desc: 'Longest' },
-      /* Eleven of the twelve finished titles carry a `finished` date; LEGO
+      /* Twelve of the thirteen finished titles carry a `finished` date; LEGO
          Batman: The Videogame does not, and sinks to the bottom of this sort
          the way an unrated game sinks in the rating sort. */
       { key: 'finished', label: 'When I finished it', asc: 'First', desc: 'Most recent' },
@@ -111,7 +111,13 @@ window.FAN_PAGE = {
         shots: ['start-screen', 'pause-screen', 'load-game', 'characters'],
         shotAlt: 'Steam library banner for LEGO Marvel Super Heroes, showing my play time' },
       { title: 'LEGO City Undercover', accent: '#00852b', year: 2013, series: 'LEGO Originals', proj: '48.8', sub: '2013 · Steam', desc: 'A LEGO game with actual voice acting, and a straight-faced police story.' },
-      { title: 'LEGO Lord of the Rings', accent: '#d9b45f', year: 2012, series: 'Middle-earth', proj: '33.6', sub: '2012 · Steam', desc: 'Used the film audio for the first time, and Middle-earth as one open map.' },
+      { title: 'LEGO Lord of the Rings', accent: '#d9b45f', year: 2012, series: 'Middle-earth', proj: '33.6', rating: 8, sub: '2012 · Steam', desc: 'Unique among these in a lot of ways: the film audio for the first time, and Middle-earth as one open map you walk from the Shire to Mordor. The story levels are the bad part, repetitive to a fault. A solid eight for how unlike the rest it is, story levels and all.',
+        done: true, hours: '25.6', shot: '/assets/img/franchises/lego/lord-of-the-rings/banner.jpg',
+        /* from its own load-game screen: slot 1, 8/30/2026, 100.0%; the Steam
+           banner reads 48/48 achievements and 25.6 hours the same day */
+        finished: '2026-08-30',
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters'],
+        shotAlt: 'Steam library banner for LEGO The Lord of the Rings, showing my play time' },
       { title: 'LEGO Batman 2: DC Super Heroes', accent: '#0055bf', year: 2012, series: 'Batman & DC', proj: '24.1', rating: 7, sub: '2012 · Steam', desc: 'The first one with speech, and an open Gotham.',
         done: true, hours: '23.4', shot: '/assets/img/franchises/lego/batman-2/banner.jpg',
         /* from its own load-game screen: slot 1, 8/13/2026, 100.0% */
@@ -168,19 +174,14 @@ window.FAN_PAGE = {
   { id: 'played', kind: 'gallery', title: 'A Hundred Percent', note: 'thirty years of them, and a lot of gold bricks',
     lede: 'LEGO games turned thirty in 2025, and a genuinely unreasonable share of my childhood is inside them. The formula never changed and it never needed to: smash everything, collect the studs, unlock the character, come back with the right ability.',
     items: [
-      { title: 'Thirty years of LEGO games', src: '/assets/img/franchises/lego-games-30-years.jpg',
+      { title: 'Thirty years of LEGO games', src: '/assets/img/franchises/lego/thirty-years.jpg',
         alt: 'The LEGO Games 30th anniversary page',
         desc: 'LEGO’s own anniversary page for the games. Three decades from LEGO Island to the Skywalker Saga, and the studs never stopped being satisfying to hoover up.',
         meta: '#LEGOGames30' },
-      { title: 'LEGO Star Wars, all of it', src: '/assets/img/franchises/star-wars-lego-100.jpg',
-        alt: 'Completion screens from five LEGO Star Wars games, all at 100 percent',
-        desc: 'The Complete Saga, The Clone Wars, The Force Awakens and The Skywalker Saga, every one of them taken to a hundred percent. The Skywalker Saga alone is 1,200 Kyber bricks and 380 characters.',
-        meta: 'Five games · 100.0% each' },
-      { title: 'LEGO Pirates of the Caribbean', src: '/assets/img/franchises/lego-pirates-100.jpg',
-        alt: 'LEGO Pirates of the Caribbean paused at 100 percent completion',
-        desc: 'A hundred percent and eleven and a half billion studs. The four-film adaptation, and the best of the non-Star-Wars LEGO games.',
-        meta: '100.0%' },
-    ] },
+    ],
+    /* the Star Wars run and the Pirates pause screen are captioned once, in
+       fan-shots.js, and shown here and on their own pages from the same rows */
+    pick: ['lego-star-wars-hundred', 'lego-pirates-hundred'] },
   /* the complete index. Every other section on this page is a choice; this one
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already

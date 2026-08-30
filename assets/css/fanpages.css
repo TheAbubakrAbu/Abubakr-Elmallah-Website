@@ -1214,6 +1214,10 @@
 .fan-shots--grid { grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
 .fan-shots--grid .fan-shot img { aspect-ratio: 4 / 3; object-fit: cover; }
 
+/* `wide: true`: game screenshots, which are 16:9 to begin with and lose their
+   HUD corners under the 4:3 crop the photographs get */
+.fan-shots--wide .fan-shot img { aspect-ratio: 16 / 9; }
+
 .fan-shot {
   border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
   background: rgba(255,255,255,0.014);

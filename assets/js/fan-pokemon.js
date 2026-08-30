@@ -173,13 +173,25 @@ window.FAN_PAGE = {
     ] },
 
 
-  { id: 'played', kind: 'gallery', title: 'Pixelmon', note: 'my own screenshot · Pokémon inside Minecraft',
-    lede: 'The way a lot of us actually played the most Pokémon: a Minecraft mod that rebuilt the whole capture-and-battle system block by block, on a public server with its own economy.',
+  /* Pixelmon is captioned once, in fan-shots.js, and shown here and on the
+     Minecraft page from the same row; only the lede is this page's */
+  { id: 'played', set: 'pixelmon', note: 'my own screenshot · Pok\u00e9mon inside Minecraft',
+    lede: 'The way a lot of us actually played the most Pok\u00e9mon: a Minecraft mod that rebuilt the whole capture-and-battle system block by block, on a public server with its own economy.' },
+
+  /* the Pok\u00e9mon Centers, July 2026: every one in the three cities but two.
+     Mega Tokyo in Ikebukuro was shut that summer (closed from 27 March 2026,
+     reopening in September) and Tokyo-Bay is out in Funabashi, Chiba, the
+     best part of an hour from Shibuya. Four of them are photographed in the
+     I Have Actually Been block further down, out of photos-data.js. */
+  { id: 'centers', kind: 'tiles', compact: true, title: 'The Pok\u00e9mon Centers', note: 'July 2026 \u00b7 six of them',
+    lede: 'Japan has a Pok\u00e9mon Center every few stops, and in July 2026 I went to every one in the three cities I was in, apart from two: Mega Tokyo in Ikebukuro, which was shut that summer, and Tokyo-Bay, which is out in Funabashi, the best part of an hour from Shibuya and not really in the city at all.',
     items: [
-      { title: 'A level 100 Mewtwo at spawn', src: '/assets/img/franchises/minecraft-pixelmon.jpg',
-        alt: 'A Pixelmon server spawn in Minecraft with a level 100 Mewtwo sent out',
-        desc: 'Mewtwo and Flareon at level 100, with Emboar, Raichu, Staraptor and a badly neglected Seadra behind them. The server is telling me off for sending Mewtwo out at spawn, which is fair.',
-        meta: 'Pixelmon · aelmallah' },
+      { title: 'Tokyo DX', accent: '#e0402a', sub: 'Nihonbashi', desc: 'The flagship, with the Pok\u00e9mon Caf\u00e9 beside it. Snorlax, Pikachu and Mew over the door.' },
+      { title: 'Shibuya', accent: '#8f5fd0', sub: 'Shibuya PARCO', desc: 'Mewtwo in its tube at the entrance, minutes after Nintendo TOKYO on the same floor.' },
+      { title: 'Skytree Town', accent: '#3f9f5f', sub: 'Sumida', desc: 'Rayquaza coiled under the sign, in the mall at the foot of the tower.' },
+      { title: 'Kyoto', accent: '#f0c840', sub: 'Kyoto', desc: 'The one in Kyoto, between the temples and the bamboo.' },
+      { title: 'Osaka', accent: '#3f6fd0', sub: 'Umeda', desc: 'The one by the station.' },
+      { title: 'Osaka DX', accent: '#e08a3a', sub: 'Shinsaibashi', desc: 'Articuno, Zapdos and Moltres over the door, the card tables inside, and the other Pok\u00e9mon Caf\u00e9 beside it.' },
     ] },
 
   { id: 'balls', kind: 'tiles', title: 'Every Ball', note: 'and what each one is actually doing', compact: true,

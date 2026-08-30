@@ -1,0 +1,136 @@
+/* gaming.css: /gaming/ only.
+
+   Sits beside travels.css and accents.css rather than in css/fan/, because
+   this is one of the three pages that are mine rather than a franchise, even
+   though it borrows fanpages.css to render its sections.
+
+   An arcade horizon: a grid running back to a vanishing point with a green
+   glow sitting on the line, and scanlines over the whole thing. All of it is
+   CSS gradients, so there is nothing to download and nothing to run. Green
+   because that is the colour of a hundred-percent stamp everywhere else on
+   this site (see .fan-done in fanpages.css), and this page is mostly about
+   those. */
+
+body[data-fan="gaming"] { --a: #3fd589; }
+
+/* ── the backdrop ── */
+.gm-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: linear-gradient(180deg, #07131a 0%, #081a1c 42%, #061211 70%, #06090a 100%);
+}
+
+.gm-sky > span { position: absolute; inset: 0; }
+
+.gm-glow {
+  background:
+    radial-gradient(46% 30% at 50% 62%, rgba(63,213,137,.16), transparent 72%),
+    radial-gradient(70% 40% at 50% 8%, rgba(47,127,214,.08), transparent 76%);
+}
+
+/* the floor: two sets of lines, one across and one along, tilted into the
+   distance. `perspective` on the wrapper and one rotateX on the plane is what
+   makes the spacing bunch up towards the horizon on its own, without every
+   line being drawn at its own position. */
+/* OVERFLOW HIDDEN IS LOAD-BEARING, and so is mask-repeat. The plane below is
+   larger than this box in every direction; without the clip its far half
+   covered the whole viewport in a flat grid, and a mask-image repeats by
+   default, so the fade at the horizon tiled up the screen and revealed it. */
+/* `.gm-sky .gm-grid` rather than `.gm-grid`: the `inset: 0` on the rule above
+   is one class plus one element, which outranks a lone class, so a bare
+   `.gm-grid { top: auto }` lost and the floor sat across the whole screen
+   anchored to the top of it. */
+.gm-sky .gm-grid {
+  top: auto; bottom: 0; height: 56%; overflow: hidden;
+  perspective: 600px; perspective-origin: 50% 0%;
+  mask-image: linear-gradient(transparent, #000 22%, #000 68%, transparent);
+  -webkit-mask-image: linear-gradient(transparent, #000 22%, #000 68%, transparent);
+  mask-repeat: no-repeat; -webkit-mask-repeat: no-repeat;
+}
+
+.gm-grid::before {
+  content: ''; position: absolute; inset: 0 -50% -150%;
+  transform: rotateX(80deg); transform-origin: 50% 0%;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(63,213,137,.30) 0 1px, transparent 1px 78px),
+    repeating-linear-gradient(0deg, rgba(63,213,137,.22) 0 1px, transparent 1px 78px);
+}
+
+/* scanlines, kept far enough back that they read as texture and not as a
+   broken screen */
+.gm-scan {
+  background: repeating-linear-gradient(0deg, rgba(255,255,255,.028) 0 1px, transparent 1px 3px);
+  opacity: .5;
+}
+
+/* ── hero ── */
+/* This is the only page with two paragraphs of hero lede, and the shared rule
+   in fanpages.css gives .fan-lede-hero no margin at all, so they ran into each
+   other as one block. Scoped here rather than fixed there: /accents/ has two
+   as well and has read that way since it shipped. */
+body[data-fan="gaming"] .fan-lede-hero + .fan-lede-hero { margin-top: 0.9rem; }
+
+body[data-fan="gaming"] .fan-title {
+  background: linear-gradient(180deg, #d8fff0, #3fd589 62%, #167f4e);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ── the achievement bars ──
+   Four rows: the year, the bar, the count. --w on the <li> is that year
+   against the biggest of the four, so the shape of the set is the point
+   rather than any one bar. The fill grows once on load; with reduced motion
+   it is simply already there. */
+.gm-art {
+  padding: 0; margin: 2.6rem 0 0; max-width: 560px;
+  border: 1px solid var(--line); border-radius: 16px;
+  background: rgba(255,255,255,.014);
+  overflow: hidden;
+}
+
+.gm-bars { list-style: none; margin: 0; padding: 1.2rem 1.3rem 1rem; display: grid; gap: 0.75rem; }
+
+.gm-bars li {
+  display: grid; grid-template-columns: 3.4rem 1fr 2.6rem; align-items: center; gap: 0.75rem;
+}
+
+.gm-bars b {
+  font-family: var(--mono); font-weight: 500; font-size: 0.62rem;
+  letter-spacing: 0.14em; color: var(--mute);
+}
+
+.gm-bars span {
+  display: block; height: 10px; border-radius: 100px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid var(--line); overflow: hidden;
+}
+
+.gm-bars i {
+  display: block; height: 100%; width: var(--w);
+  border-radius: 100px;
+  background: linear-gradient(90deg, rgba(63,213,137,.45), #3fd589);
+  box-shadow: 0 0 16px -4px rgba(63,213,137,.7);
+  transform-origin: 0 50%; animation: gm-fill 1.1s var(--ease, ease) both;
+}
+
+.gm-bars li:nth-child(2) i { animation-delay: .08s; }
+.gm-bars li:nth-child(3) i { animation-delay: .16s; }
+.gm-bars li:nth-child(4) i { animation-delay: .24s; }
+
+@keyframes gm-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+.gm-bars em {
+  font-style: normal; font-family: var(--mono); font-size: 0.78rem;
+  color: var(--ink); text-align: right;
+}
+
+.gm-art figcaption {
+  padding: 0.7rem 1.3rem 0.85rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+@media (prefers-reduced-motion: reduce) { .gm-bars i { animation: none; } }
+
+@media (max-width: 560px) {
+  .gm-bars li { grid-template-columns: 3rem 1fr 2.4rem; gap: 0.55rem; }
+}
