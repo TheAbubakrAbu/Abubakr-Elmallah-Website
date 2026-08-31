@@ -131,15 +131,15 @@ window.FAN_PAGE = {
      grid/list switch the LEGO catalogue has, and the layout that goes with
      it. */
   { id: 'finished', kind: 'tiles', compact: true, cols: 2, views: true, tally: 'at 100%', title: 'Both, at a Hundred Percent', note: 'my own Steam banners · 100%',
-    lede: 'The first two, every achievement, with the Steam library banners as proof. The dates are when I actually finished them; the banners show the last time I went back.',
+    lede: 'The first two, every achievement, with the Steam library banners as proof and the screens the games print for themselves beside them. The dates are when I actually finished them; the banners show the last time I went back.',
     items: [
       { title: 'Five Nights at Freddy’s', accent: '#c98f4f', sub: '2014 · Steam', done: true, hours: '4.4', finished: '2023-11-09',
-        desc: 'Five nights, the sixth, and then the custom night with everything turned up, which is the actual hundred percent. Four and a half hours, most of them spent staring at a door.',
-        shot: '/assets/img/franchises/fnaf/fnaf-1/banner.jpg', shots: ['art'],
+        desc: 'Five nights, the sixth, and then the custom night with everything turned up, which is the actual hundred percent. Four and a half hours, most of them spent staring at a door. The menu with all three stars on it and the termination notice from the seventh night were both captured on 9 November 2023, minutes apart, which is the evening it was finished.',
+        shot: '/assets/img/franchises/fnaf/fnaf-1/banner.jpg', shots: ['art', 'three-stars', 'seventh-night'],
         shotAlt: 'Steam library banner for Five Nights at Freddy’s, showing 100% and my play time' },
       { title: 'Five Nights at Freddy’s 2', accent: '#5f9ab0', sub: 'Nov 2014 · Steam', done: true, hours: '6.2', finished: '2024-07-05',
-        desc: 'No doors, a mask, a music box, and six hours to the last achievement. Harder than the first by a distance, and Toy Bonnie is in the vent on the banner for a reason.',
-        shot: '/assets/img/franchises/fnaf/fnaf-2/banner.jpg',
+        desc: 'No doors, a mask, a music box, and six hours to the last achievement. Harder than the first by a distance, and Toy Bonnie is in the vent on the banner for a reason. It pays you in paycheques: a hundred dollars and fifty cents for the fifth night, dated 11-12-1987, and twenty dollars and ten cents of overtime for the sixth, the morning the restaurant closes.',
+        shot: '/assets/img/franchises/fnaf/fnaf-2/banner.jpg', shots: ['night-five', 'night-six'],
         shotAlt: 'Steam library banner for Five Nights at Freddy’s 2, showing 100% and my play time' },
     ] },
 

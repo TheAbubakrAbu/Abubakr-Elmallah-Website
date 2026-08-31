@@ -519,14 +519,6 @@ a.fr-card { cursor: pointer; }
   text-shadow: 0 0 20px color-mix(in srgb, var(--c1) 55%, transparent);
 }
 
-/* Rio: the film's title card is a rounded sans with a lot of air in it, which
-   is what the letter-spacing is doing rather than decoration for its own sake. */
-.wm--rio {
-  font-family: "Avenir Next", "Trebuchet MS", var(--sans);
-  font-weight: 700; text-transform: uppercase; letter-spacing: 0.16em;
-  text-shadow: 0 0 22px color-mix(in srgb, var(--c1) 50%, transparent);
-}
-
 /* San Diego Zoo: a plain institutional serif, small caps, no glow. It is a
    hundred-year-old zoo and not a franchise, and the tile should say so. */
 .wm--zoo {
@@ -559,25 +551,6 @@ a.fr-card { cursor: pointer; }
   font-weight: 600; letter-spacing: 0.1em; font-size: 0.98rem;
   display: inline-block; padding: 0.3rem 0.9rem;
   border: 2px solid currentColor; border-radius: 999px;
-}
-
-/* Zelda: a heavy serif cut in gold. The games set the title in a display face
-   with hard, sharp serifs, and Copperplate is the nearest thing on a Mac. */
-.wm--zelda {
-  font-family: Copperplate, "Copperplate Gothic Light", Georgia, serif;
-  font-weight: 700; text-transform: uppercase; letter-spacing: 0.11em;
-  font-size: 0.94rem;
-  background: linear-gradient(180deg, #fbf0c4, #e8c247 58%, #a07c14);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-
-/* Splatoon is inked rather than typeset: heavy, tight, and pulled off the
-   baseline. The skew is the closest a web font gets to a brush. */
-.wm--splatoon {
-  font-family: "Arial Black", Impact, Haettenschweiler, var(--sans);
-  font-weight: 900; text-transform: uppercase; letter-spacing: 0.01em;
-  font-size: 1.06rem; transform: skewX(-6deg);
-  text-shadow: 2px 2px 0 #4b21c8, 0 0 22px color-mix(in srgb, var(--c1) 50%, transparent);
 }
 
 /* Looney Tunes is hand-drawn and bounces, so this is the one place on the page
@@ -895,10 +868,31 @@ body > header, body > main, body > footer, body > nav, body > .tabbar {
    franchise tile a few hundred lines up: absolutely positioned, mono, upper
    case. Reusing that name put this sentence in the bottom-right of the section
    in small caps and quietly restyled 46 tiles at the same time. */
+/* Set in Cormorant Garamond italic, which is on this page and nowhere else on
+   the site: everything around it is Inter, Space Grotesk and JetBrains Mono,
+   so the one sentence about imagination is the one sentence not set in a
+   working typeface. Large and on a short measure, because at 52ch in Inter it
+   read as a paragraph of body copy that had wandered into the middle of the
+   page rather than as the door it is. */
 .fr-invite {
-  max-width: 52ch; margin: 0 auto 1.5rem; text-align: center;
-  font-size: clamp(1.02rem, 1rem + 0.55vw, 1.4rem);
-  line-height: 1.5; color: var(--ink); text-wrap: balance;
+  max-width: 40ch; margin: 0 auto 2.6rem; text-align: center;
+  font-family: "Cormorant Garamond", "Amiri", var(--serif);
+  font-style: italic; font-weight: 400;
+  font-size: clamp(1.4rem, 1.05rem + 1.15vw, 2.15rem);
+  line-height: 1.26; letter-spacing: 0.004em;
+  color: var(--ink); text-wrap: balance;
+}
+
+/* The invitation had 112px of dead air above it and 24px below, so it floated
+   nearer the portals it is not about than the button it opens. `.work` carries
+   7rem of bottom padding everywhere on the site; only here does something
+   follow it that belongs to it. */
+.work:has(+ .fandoms) { padding-bottom: 2.5rem; }
+
+.fandoms { padding-top: 0.5rem; }
+
+@media (max-width: 560px) {
+  .fr-invite { max-width: 30ch; margin-bottom: 2rem; }
 }
 
 /* Everything here is decoration and none of it is worth making somebody ill.

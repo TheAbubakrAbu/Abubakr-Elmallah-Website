@@ -34,7 +34,7 @@ can open and read.
 | `/resume/` | Résumé, embedded with Drive and download links |
 | `/travels/` | Where I've been, with an interactive map |
 | `/accents/` | Nineteen accents and four impersonations, in the order I learned them |
-| `/gaming/` | Four Steam Replays, every completion shelf, the seventeen worlds here with games in them, and **every game screenshot on the site**, in a section per franchise (the list is built by Jekyll from `assets/img/franchises/`, so a new picture needs no edit) |
+| `/gaming/` | Four Steam Replays, every completion shelf, the fifteen worlds here with games in them, and **every game screenshot on the site**, in a section per franchise (the list is built by Jekyll from `assets/img/franchises/`, so a new picture needs no edit) |
 
 **Themed collections**
 

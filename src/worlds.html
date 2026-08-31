@@ -31,13 +31,17 @@ redirect_from:
      and render immediately; onload promotes it to the real stylesheet.
      Every family here already carries display=swap, so text is on
      screen in the fallback face straight away and swaps when it lands. -->
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fandom.css' %}" />
+<!-- the site-wide photographs switch is mounted at the foot of THIS page, so
+     its styles have to be here too; without them it rendered as a bare white
+     label in the bottom corner -->
+<link rel="stylesheet" href="{% include v.html f='/assets/css/pics.css' %}" />
 </head>
 <body data-intro="none">
 <div class="grain" aria-hidden="true"></div>
@@ -168,14 +172,14 @@ redirect_from:
       </span>
       <span class="fr-vaultbtn-t">
         <b class="fr-vaultbtn-l">Show the other worlds</b>
-        <i><span class="fr-total">57</span> tiles &#183; who I am, and every franchise I love &#183; no apps</i>
+        <i><span class="fr-total">54</span> tiles &#183; who I am, and every franchise I love &#183; no apps</i>
       </span>
       <span class="fr-vaultbtn-a" aria-hidden="true">&#8595;</span>
     </button>
 
     <div class="fr-vault" id="frVault" hidden>
       <h3 class="subsec subsec--fr reveal">Franchises I Love<span class="subsec-yr">no apps, just taste</span></h3>
-      <p class="fr-lede reveal"><b><span class="fr-total">57</span></b> tiles, ranked the way I actually rank them. <b>Who I am comes first, and none of it is a fandom</b>: my faith, my language and where my family is from are not things I chose off a shelf, and everything under them makes more sense once they are on the page. Then the three I know by heart, the ones I have lived in, regular rotation, the rest, and the theme parks at the end. Every one of them has its own page now, click a tile. Apart from Islam and Star Wars at the top, none of these ship an app; every tile is set in type and drawn by hand, with no studio logos, no posters and no photographs.</p>
+      <p class="fr-lede reveal"><b><span class="fr-total">54</span></b> tiles, ranked the way I actually rank them. <b>Who I am comes first, and none of it is a fandom</b>: my faith, my language and where my family is from are not things I chose off a shelf, and everything under them makes more sense once they are on the page. Then the three I know by heart, the ones I have lived in, regular rotation, the rest, and the theme parks at the end. Every one of them has its own page now, click a tile. Apart from Islam and Star Wars at the top, none of these ship an app; every tile is set in type and drawn by hand, with no studio logos, no posters and no photographs.</p>
       <div id="fandoms"></div>
 
       <!-- The three pages that are mine rather than anybody else's: where I

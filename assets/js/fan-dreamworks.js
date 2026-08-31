@@ -1,15 +1,8 @@
 /* fan-dreamworks.js: content for /worlds/dreamworks/. Rendered by fanpage.js.
    The studio founded to be the one Disney would not let them run, and for
    about a decade the only one seriously taking animation off Disney. */
-/* NO `when:` BLOCK YET, on purpose. That field is when Abubakr actually got
-   into the thing, and the rest of this site's fan pages mean it literally. A
-   plausible-sounding date here would make the one honest line on the page
-   unreliable, so it is left for him to fill in:
-
-     when: { at: '...', note: '...' },
-
-   goes directly above `sections`. */
 window.FAN_PAGE = {
+  when: { at: 'As a kid' },
   sections: [
 
   { id: 'films', kind: 'rank', title: 'The Best Of Them', note: 'six, and two are elsewhere on this site',

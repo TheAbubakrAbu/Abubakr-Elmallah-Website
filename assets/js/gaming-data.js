@@ -13,6 +13,11 @@
    four Steam Replays, the completion shelves, where I actually play, and one
    card per world with games in it, pointing at the page that holds the list.
 
+   ONE LIST BREAKS THAT RULE, and only because it does not copy anything. The
+   TT Games catalogue is rendered here from `window.LEGO_GAMES`, which is the
+   SAME object /worlds/lego/ renders, out of lego-games.js. One list, in one
+   file, on two pages, so there is nothing that can drift.
+
    The bottom half is the opposite: EVERY PICTURE, in a section per franchise.
    It is not written down here either. src/gaming.html has Jekyll list what is
    actually in assets/img/franchises/ at build time into window.GAME_PICS, and
@@ -24,8 +29,13 @@
    instead. A whole new franchise folder gets its own section the same way.
 
    Nothing is shown twice: a frame used by the Replay set or the completion
-   wall above is skipped when its franchise's sheet is built, which is why
-   Spider-Man ends up with no sheet of its own (its one frame is on the wall).
+   wall above is skipped when its franchise's sheet is built, so the three
+   Spider-Man shelves on the wall do not appear again in the Spider-Man sheet
+   underneath, which holds that franchise's other frames.
+
+   EVERY PICTURE ALSO CARRIES THE DATE IT WAS TAKEN. It comes from the one
+   table in fan-shots.js, which fanpage.js reads for every screenshot it
+   renders; nothing about dates is written down here.
 
    EVERY FIGURE IS READ OFF A CARD. Steam publishes a Replay each December and
    takes it down again, so the four here are my own captures, all taken in one
@@ -77,6 +87,15 @@ window.FAN_PAGE = (function gaming() {
        from the same row */
     { id: 'hundred', set: 'hundred-percent' },
 
+    /* The one LIST on this page, and the exception to the rule at the top of
+       this file: it is not a copy. `window.LEGO_GAMES` is the same object
+       /worlds/lego/ renders, out of lego-games.js, so the two pages cannot
+       drift. It sits here because it is the completion wall above it written
+       out game by game, and because its thirteen finished titles carry 69 of
+       the site's screenshots, which is why there is no LEGO sheet lower down.
+       A page that fails to load lego-games.js simply skips it. */
+    window.LEGO_GAMES,
+
     { id: 'where', kind: 'cards', title: 'Where I Actually Play', note: 'five places, one account',
       lede: 'The Replays only see Steam, and a good share of what I play has never been on it. This is the whole surface, in the order Steam ranks the ones it can see.',
       items: [
@@ -96,14 +115,14 @@ window.FAN_PAGE = (function gaming() {
     /* One card per world on this site that has games in it, each pointing at
        the page that holds the actual list. The line on each card is about the
        GAMES, since the worlds themselves are described on /worlds/. */
-    { id: 'worlds', kind: 'cards', title: 'The Game Worlds', note: 'seventeen pages · the lists live there',
+    { id: 'worlds', kind: 'cards', title: 'The Game Worlds', note: 'fifteen pages · the lists live there',
       lede: 'Every world on this site I have played rather than only watched or read. The catalogues, the completion screens and the write-ups are all on those pages; this is the index to them, and every picture is underneath.',
       items: [
         { tag: 'Since I was a kid', title: 'Minecraft', sub: 'Java · Realms · four servers', accent: '#7fbf4f',
           desc: 'A Realm with three friends from July to August 2026, the dragon on the nineteenth, and twelve named tools with Mending on every one. Four public servers before it.',
           href: '/worlds/minecraft/', link: 'The page', meta: 'Never on Steam' },
-        { tag: 'Steam · 36 in one collection', title: 'Star Wars', sub: 'six at a hundred percent', accent: '#ffe81f',
-          desc: 'Fallen Order, Survivor, Outlaws, Droid Repair Bay and two LEGO ones sit at the top of the collection at 100%, and Battlefront II took 23% of my 2025 over 83 sessions.',
+        { tag: 'Steam · 36 in one collection', title: 'Star Wars', sub: 'nine at a hundred percent', accent: '#ffe81f',
+          desc: 'Four LEGO ones, both Jedi games, Outlaws, Droid Repair Bay and Battlefront II, every one of them with its own banner, save slot and achievement screen on that page. Six of the nine are the row the collection view shows when it is sorted by achievements.',
           href: '/worlds/star-wars/', link: 'The page', meta: 'Sorted by achievements' },
         { tag: 'TT Games · the whole catalogue', title: 'LEGO', sub: 'thirteen finished', accent: '#ffd21f',
           desc: 'Every LEGO game since 2005 with a sort control on it: by release date, by my rating, by my time, or by how long each one is reckoned to take. Thirteen at a hundred percent, and the Skywalker Saga alone is 79 hours of that.',
@@ -112,7 +131,7 @@ window.FAN_PAGE = (function gaming() {
           desc: 'Hogwarts Legacy, Quidditch Champions and the LEGO Harry Potter Collection, all three at a hundred percent. The two standalone LEGO years have no achievements to earn, which is the only reason they are not marked too.',
           href: '/worlds/harry-potter/', link: 'The page', meta: 'Plus Potterverse in Minecraft' },
         { tag: 'Insomniac · 3', title: 'Spider-Man', sub: 'all three, completely', accent: '#e02a3a',
-          desc: 'Remastered, Miles Morales and Spider-Man 2: every side mission, every backpack, every suit. Remastered alone was 9% of my 2024 over 22 sessions.',
+          desc: 'Remastered, Miles Morales and Spider-Man 2: every side mission, every backpack, every suit. 78, then 50, then 43 achievements, and Remastered alone was 9% of my 2024 over 22 sessions.',
           href: '/worlds/spider-man/', link: 'The page', meta: '100.0% each' },
         { tag: 'Steam · 2 at 100%', title: 'Five Nights at Freddy’s', sub: 'the first two', accent: '#c98f4f',
           desc: 'Both finished with every achievement, including the custom night with everything turned up: 4.4 hours on the first and 6.2 on the second, most of them spent staring at a door.',
@@ -126,15 +145,11 @@ window.FAN_PAGE = (function gaming() {
         { tag: 'Chapter 1 · 2018-19', title: 'Fortnite', sub: 'seasons three to seven', accent: '#6fb0ff',
           desc: 'Omega at tier one hundred and the live events as they happened, plus Droid Tycoon: the Creative map I actually sank time into, which is an idle game living inside the same client.',
           href: '/worlds/fortnite/', link: 'The page', meta: 'Nothing since has come close' },
-        { tag: 'Switch · March 2017', title: 'The Legend of Zelda', sub: 'Breath of the Wild', accent: '#e8c247',
-          desc: 'The game that came home with the console. The page ranks the entries that actually changed the series and takes apart why the open world works.',
-          href: '/worlds/zelda/', link: 'The page', meta: 'Since I was a kid' },
-        { tag: 'Switch · summer 2017', title: 'Splatoon', sub: 'the three of them', accent: '#c6f03a',
-          desc: 'Splatoon 2 first, in the summer of 2017: the shooter where the score is ground covered rather than people hit, which is why it plays like nothing else on the console.',
-          href: '/worlds/splatoon/', link: 'The page', meta: 'Turf war' },
-        { tag: 'Hardware', title: 'Nintendo', sub: 'the Switch, launch week', accent: '#e0403a',
-          desc: 'The machines rather than any one series: what each console was built for, why the formula keeps working, and the people who made them.',
-          href: '/worlds/nintendo/', link: 'The page', meta: 'March 2017' },
+        /* one card for the three of them: Zelda and Splatoon were folded into
+           the Nintendo page on 2026-08-31 and no longer have pages to point at */
+        { tag: 'Switch · March 2017', title: 'Nintendo', sub: 'Mario, Zelda, Splatoon', accent: '#e0403a',
+          desc: 'The machines and the three series that were always on them. Breath of the Wild came home with the console in launch week and Splatoon 2 arrived that summer; the page has all three, plus what each machine was built for and the people who made them.',
+          href: '/worlds/nintendo/', link: 'The page', meta: 'One page, three series' },
         { tag: 'Phone · since launch', title: 'Clash Royale', sub: 'elementary school', accent: '#6f9fe8',
           desc: 'Eight cards, a three-minute match and a game built out of pieces of Clash of Clans, which is the smartest asset reuse in mobile gaming.',
           href: '/worlds/clash-royale/', link: 'The page', meta: '2016' },
@@ -151,6 +166,12 @@ window.FAN_PAGE = (function gaming() {
           desc: 'The LEGO adaptation covers the first four films and is the only game that has ever let you play as Jack Sparrow properly. Finished in September 2023.',
           href: '/worlds/pirates/', link: 'The page', meta: 'Every collectable' },
       ] },
+
+    /* Not a game, not on Steam, and the only picture on this site that is a
+       piece of code. It sits here rather than in a franchise sheet because it
+       belongs to no franchise; captioned once in fan-shots.js like everything
+       else. */
+    { id: 'oi-order', set: 'oi-order' },
   ];
 
   /* the sign-off, pushed on last, after however many sheets there turn out
@@ -178,15 +199,19 @@ window.FAN_PAGE = (function gaming() {
     { dir: 'minecraft', title: 'Minecraft', accent: '#7fbf4f',
       lede: 'Every Minecraft frame the site has, and not one of them has ever been through Steam: a Realm with three friends, a Disneyland server, and a Pokémon mod on a public server years before either.' },
     { dir: 'star-wars', title: 'Star Wars', accent: '#ffe81f',
-      lede: 'Star Wars here is mostly two Minecraft servers: Imagine Fun, which has Galaxy’s Edge built at real scale, and a Star Wars one with a saber in every colour.' },
+      lede: 'Two kinds of thing under one flag. The five non-LEGO Star Wars games I have taken to a hundred percent, each with its own banner, save slot and achievement screen; and the two Minecraft servers, Imagine Fun, which has Galaxy’s Edge built at real scale, and a Star Wars one with a saber in every colour. The folders below are in their own alphabetical order, so the two are mixed together.' },
+    /* LEGO builds NO sheet any more and that is not a mistake: all 69 of its
+       frames hang off the catalogue further up this page, so `sheet()` finds
+       nothing left and skips it. The entry stays because a LEGO frame that is
+       ever added outside a finished game's set would land here. */
     { dir: 'lego', title: 'LEGO', accent: '#ffd21f',
-      lede: 'Every LEGO game I finished leaves the same set of frames: the title screen as it opens, the pause screen at a hundred percent, the save slot with the game’s own timestamp on it, and the characters grid. The hours, the ratings and the dates are on the LEGO page.' },
+      lede: 'One frame, and it is not a game: LEGO’s own anniversary page for the games, three decades of them from LEGO Island to the Skywalker Saga. Every other LEGO screenshot the site has is hanging off a finished game in the catalogue further up.' },
     { dir: 'harry-potter', title: 'Wizarding World', accent: '#d9b45f',
       lede: 'Three different things under one heading: Hogwarts Legacy, Quidditch Champions, and a Hogwarts server in Minecraft from February of sophomore year.' },
     { dir: 'spider-man', title: 'Spider-Man', accent: '#e02a3a',
-      lede: 'The Insomniac trilogy.' },
+      lede: 'The Insomniac trilogy, all three finished completely, and the screens each of them prints when you get there.' },
     { dir: 'fnaf', title: 'Five Nights at Freddy’s', accent: '#c98f4f',
-      lede: 'Both of the first two at a hundred percent, with the Steam library banners as the receipt.' },
+      lede: 'Both of the first two at a hundred percent: the Steam library banners, and the screens the games themselves print for finishing them.' },
 
     /* THE REST OF THESE HAVE NO PICTURES YET, and a franchise with no folder
        renders nothing at all, so they sit here dormant: the day a Red Dead or
@@ -201,12 +226,15 @@ window.FAN_PAGE = (function gaming() {
       lede: 'Chapter 1, and the Creative maps that came after it.' },
     { dir: 'batman', title: 'Batman', accent: '#c9cdd2',
       lede: 'The Arkham games, which are the oldest Steam captures I have.' },
-    { dir: 'nintendo', title: 'Nintendo', accent: '#e0403a',
-      lede: 'The machines, and whatever was on the screen.' },
-    { dir: 'zelda', title: 'The Legend of Zelda', accent: '#e8c247',
-      lede: 'Hyrule.' },
-    { dir: 'splatoon', title: 'Splatoon', accent: '#c6f03a',
-      lede: 'Turf war: the score is ground covered, not people hit.' },
+    /* ZELDA, MARIO AND SPLATOON DO NOT GET SECTIONS OF THEIR OWN. They are one
+       shelf: the same company, the same console, the same afternoons. `dirs`
+       is every folder this one section collects, so a capture dropped into
+       `nintendo/`, `mario/`, `zelda/` or `splatoon/` lands here either way and
+       is still named for itself inside. Each of them has its own page, and
+       that is where the writing about them is. */
+    { dir: 'nintendo', dirs: ['nintendo', 'mario', 'zelda', 'splatoon'],
+      title: 'Nintendo', accent: '#e0403a',
+      lede: 'The machines and the three that were always on them: Mario, Zelda and Splatoon.' },
     { dir: 'clash-royale', title: 'Clash Royale', accent: '#6f9fe8',
       lede: 'Eight cards and three minutes.' },
     { dir: 'geometry-dash', title: 'Geometry Dash', accent: '#39d6f0',
@@ -233,9 +261,24 @@ window.FAN_PAGE = (function gaming() {
     'harry-potter/potterverse': 'Potterverse',
     'harry-potter/hogwarts-legacy': 'Hogwarts Legacy',
     'harry-potter/quidditch-champions': 'Quidditch Champions',
+    'spider-man/spider-man-1': 'Marvel’s Spider-Man Remastered',
+    'spider-man/miles-morales': 'Miles Morales',
+    'spider-man/spider-man-2': 'Marvel’s Spider-Man 2',
+    'star-wars/fallen-order': 'Jedi: Fallen Order',
+    'star-wars/survivor': 'Jedi: Survivor',
+    'star-wars/outlaws': 'Star Wars Outlaws',
+    'star-wars/battlefront-2': 'Battlefront II',
+    'star-wars/droid-repair-bay': 'Droid Repair Bay',
     'fnaf/fnaf-1': 'Five Nights at Freddy’s',
     'fnaf/fnaf-2': 'Five Nights at Freddy’s 2',
     'gaming/steam': 'Steam Replay',
+    /* three of the four folders the Nintendo section collects, named where they
+       sit rather than one level down, since each of these is a franchise
+       pretending to be a folder. `nintendo/` itself needs no entry: it is the
+       section's own name. */
+    'mario': 'Super Mario',
+    'zelda': 'The Legend of Zelda',
+    'splatoon': 'Splatoon',
     'lego/batman': 'LEGO Batman',
     'lego/batman-2': 'LEGO Batman 2',
     'lego/clone-wars': 'LEGO Star Wars III',
@@ -265,30 +308,59 @@ window.FAN_PAGE = (function gaming() {
     'shelf': 'The shelf',
     'thirty-years': 'Thirty years of LEGO games',
     'lego-hundred-percent': 'Four completion screens',
+    /* the games outside the LEGO run print their own completion screens, and
+       these are the ones that recur across several of them */
+    'achievements': 'Every achievement',
+    'all-achievements': 'The last achievement',
+    'play-time': 'Play time',
+    'tactical-guide': 'Tactical guide',
+    'main-story': 'Main story finished',
+    'all-stories': 'Every story, including the DLC',
+    'skills': 'Skills',
+    'suits': 'Suits',
+    'campaign-complete': 'Campaign complete',
+    'milestones': 'The achievement feed',
+    'three-stars': 'Three stars',
+    'seventh-night': 'The seventh night',
+    'night-five': 'Night five',
+    'night-six': 'Night six',
+    'oi-order': 'The Oi Order',
   };
-
-  var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   function pretty(s) {
     s = String(s || '').replace(/-/g, ' ');
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
+  /* A frame slug is a caption and reads as a sentence, so pretty() leaves it in
+     sentence case. A folder slug is a NAME, so it gets every word capitalised
+     bar the joining ones: `breath-of-the-wild` is Breath of the Wild, not
+     Breath of the wild. Anything this still gets wrong belongs in PLACES. */
+  var SMALL = { of: 1, the: 1, and: 1, a: 1, an: 1, to: 1, in: 1, at: 1, on: 1, for: 1, from: 1, vs: 1 };
+  function title(s) {
+    return String(s || '').split('-').map(function (w, i) {
+      return (i && SMALL[w]) ? w : w.charAt(0).toUpperCase() + w.slice(1);
+    }).join(' ');
+  }
+
+  // every top-level folder a franchise collects; almost always just its own
+  function dirsOf(f) { return f.dirs || [f.dir]; }
+  function topOf(p) { return p.split('/')[0]; }
+
   function dirOf(p) { var i = p.lastIndexOf('/'); return i < 0 ? '' : p.slice(0, i); }
   function fileOf(p) { return p.slice(p.lastIndexOf('/') + 1).replace(/\.[a-z]+$/i, ''); }
   function leafOf(d) { return d.slice(d.lastIndexOf('/') + 1); }
 
   /* A capture named the way the photographs are, `YYYY-MM-DD-HHMM-slug`, says
-     both what it is and when it was taken, so both get printed. Anything else
-     is only its name. */
+     what it is in the last part of its name; the timestamp in front of it is
+     read by fan-shots.js's when(), which prints the date under every frame on
+     this page, so it is not repeated here. Anything else is only its name. */
   function frameOf(stem) {
     // `gear-<item>`: the in-game tooltip for a named tool, which is its receipt
     if (stem.indexOf('gear-') === 0) return { t: pretty(stem.slice(5)), m: 'Named gear' };
     var m = /^(\d{4})-(\d{2})-(\d{2})-(\d{2})(\d{2})-(.+)$/.exec(stem);
     if (!m) return FRAMES[stem] || pretty(stem);
-    var h = +m[4];
-    return pretty(m[6]) + ' · ' + (+m[3]) + ' ' + MON[+m[2] - 1] + ' ' + m[1]
-      + ' · ' + ((h % 12) || 12) + ':' + m[5] + ' ' + (h >= 12 ? 'PM' : 'AM');
+    return pretty(m[6]);
   }
 
   /* Two indexes: every captioned row by the file it points at, and every file
@@ -298,23 +370,62 @@ window.FAN_PAGE = (function gaming() {
     var shots = SHOTS.shots || {}, sets = SHOTS.sets || {}, k;
     for (k in shots) ROW[shots[k].src] = shots[k];
     SECTIONS.forEach(function (s) {
+      if (!s) return;
       var keys = s.pick || (s.set && sets[s.set] && sets[s.set].items) || [];
       keys.forEach(function (key) { if (shots[key]) USED[shots[key].src] = 1; });
+      /* A tiles section can carry screenshots too: the LEGO catalogue holds
+         every LEGO frame the site has, on its thirteen finished games. Those
+         are shown, so they are used, and the sheets below must not print them
+         a second time. Same shorthand fanpage.js resolves: a `shots` entry
+         with no slash sits beside the banner. */
+      (s.items || []).forEach(function (it) {
+        if (!it || !it.shot) return;
+        var dir = it.shot.replace(/[^/]*$/, '');
+        [it.shot].concat(it.shots || []).forEach(function (f) {
+          var full = f.indexOf('/') === -1 ? dir + f + '.jpg' : f;
+          USED[full.indexOf(BASE) === 0 ? full.slice(BASE.length) : full] = 1;
+        });
+      });
     });
   })();
 
   function sheet(f) {
+    // where each of this franchise's folders comes in the order it declared
+    var rank = {};
+    dirsOf(f).forEach(function (d, i) { rank[d] = i; });
+
     var mine = PICS.filter(function (p) {
-      return p.indexOf(f.dir + '/') === 0 && !USED[p];
+      return rank[topOf(p)] != null && !USED[p];
     });
     if (!mine.length) return null;
 
-    /* Loose files first, then folder by folder, then by name. A loose file's
-       folder IS the franchise, which sorts before any subfolder of it, so one
-       comparison does both. */
+    /* IN THE ORDER THEY WERE TAKEN, which is the only order that means
+       anything here. Declared folder order first, then folder by folder with
+       the oldest folder first, then frame by frame inside it.
+
+       Alphabetical came out badly and read as random: Imagine Fun sat between
+       two Jedi games because `imagine-fun` falls between `fallen-order` and
+       `outlaws`, and the three Spider-Man games ran Miles Morales, Remastered,
+       Spider-Man 2, which is neither release order nor the order I played
+       them. Every frame carries a capture date now (fan-shots.js `dates`), so
+       a folder can be dated by its oldest frame and a sheet can read forwards.
+       A date the file can only bound, `<2023-10-14`, sorts as that day: it is
+       the latest the picture can be, and it is all the evidence there is.
+       Ties, and anything undated, fall back to the name. */
+    var at = function (f) { return String((SHOTS.dates && SHOTS.dates[f]) || '9999').replace('<', ''); };
+    var folderAt = {};
+    mine.forEach(function (f) {
+      var d = dirOf(f);
+      if (folderAt[d] == null || at(f) < folderAt[d]) folderAt[d] = at(f);
+    });
     mine.sort(function (a, b) {
+      if (rank[topOf(a)] !== rank[topOf(b)]) return rank[topOf(a)] - rank[topOf(b)];
       var da = dirOf(a), db = dirOf(b);
-      if (da !== db) return da < db ? -1 : 1;
+      if (da !== db) {
+        if (folderAt[da] !== folderAt[db]) return folderAt[da] < folderAt[db] ? -1 : 1;
+        return da < db ? -1 : 1;
+      }
+      if (at(a) !== at(b)) return at(a) < at(b) ? -1 : 1;
       return a < b ? -1 : 1;
     });
 
@@ -324,7 +435,7 @@ window.FAN_PAGE = (function gaming() {
       if (count[d] == null) { count[d] = 0; order.push(d); }
       count[d]++;
     });
-    var name = function (d) { return d === f.dir ? f.title : (PLACES[d] || pretty(leafOf(d))); };
+    var name = function (d) { return PLACES[d] || (d === f.dir ? f.title : title(leafOf(d))); };
 
     var items = mine.map(function (p) {
       var row = ROW[p], it = {}, j;
@@ -358,11 +469,11 @@ window.FAN_PAGE = (function gaming() {
 
   // a franchise folder nobody has written a heading for still gets a section
   var known = {};
-  FRANCHISES.forEach(function (f) { known[f.dir] = 1; });
-  PICS.map(function (p) { return p.split('/')[0]; }).sort().forEach(function (d) {
+  FRANCHISES.forEach(function (f) { dirsOf(f).forEach(function (d) { known[d] = 1; }); });
+  PICS.map(topOf).sort().forEach(function (d) {
     if (known[d]) return;
     known[d] = 1;
-    FRANCHISES.push({ dir: d, title: pretty(d), accent: '#3fd589',
+    FRANCHISES.push({ dir: d, title: title(d), accent: '#3fd589',
       lede: 'Every frame filed under ' + d + '.' });
   });
 

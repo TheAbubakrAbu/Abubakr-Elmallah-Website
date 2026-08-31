@@ -19,6 +19,15 @@
      kind: 'links'     outbound cards: where to actually read about the thing
      kind: 'gallery'   screenshots, with a caption under each
 
+   A section may also carry `tone: '#rrggbb'`, which sets --a for everything
+   inside it. Nintendo uses that too: the Zelda block reads gold and the
+   Splatoon block green on a page whose own colour is red.
+
+   A section may also carry `art: { cls, svg, cap }`, an inline drawing under
+   its lede. Nintendo uses it: Zelda and Splatoon were folded into that page
+   and each of them came with a drawing in its hero, so the drawings now head
+   the sections they belong to.
+
    A section may also carry `season: N`, which tags it so a page can react to
    it on scroll (Stranger Things repaints its backdrop season by season).
 
@@ -157,6 +166,23 @@
       + '<span class="fan-fin-l">Finished</span>'
       + '<span class="fan-fin-v">' + esc(when) + '</span></span>';
   };
+
+  /* ── when a screenshot was taken ──
+     Every frame the site serves has a row in fan-shots.js's `dates` table,
+     which is the only place a capture date is written down, and when() there
+     is the only place one is formatted. This looks it up by the path under
+     the shots base, so a frame reached through `pick`/`set` and one written
+     inline with a full `src` both find the same row.
+
+     It is the date the PICTURE was taken. A date printed inside the picture,
+     an achievement's own unlock date say, is a different fact and belongs in
+     that frame's `meta`, where both can be shown at once. */
+  function shotWhen(it) {
+    var base = (SHOTS && SHOTS.base) || '';
+    var src = String(it.src || '');
+    if (!SHOTS || !SHOTS.when) return '';
+    return SHOTS.when(src.indexOf(base) === 0 ? src.slice(base.length) : src);
+  }
 
   /* `proj`: how long a thing is reckoned to take, from an outside source. On an
      item I have actually finished it also prints the gap between that estimate
@@ -495,9 +521,15 @@
         var strip = !imgs.length ? SLOT : '<span class="fan-tileshots">'
           + imgs.map(function (s, n) {
               var name = s.replace(/^.*\//, '').replace(/\.[a-z]+$/i, '').replace(/-/g, ' ');
-              return '<a class="fan-tileshot" href="' + esc(s) + '" target="_blank" rel="noopener">'
+              /* the lightbox labels the whole set at once, so the only place a
+                 date fits on a thumbnail is its tooltip; the same frame carries
+                 it in writing under its caption on /gaming/ */
+              var w = shotWhen({ src: s });
+              return '<a class="fan-tileshot" href="' + esc(s) + '" target="_blank" rel="noopener"'
+                + (w ? ' title="' + esc(it.title + ' · ' + name + ' · ' + w) + '"' : '') + '>'
                 + '<img src="' + esc(s) + '" alt="'
-                + esc(n === 0 ? (it.shotAlt || it.title) : it.title + ': ' + name)
+                + esc((n === 0 ? (it.shotAlt || it.title) : it.title + ': ' + name)
+                      + (w ? ', taken ' + w : ''))
                 + '" loading="lazy" decoding="async" /></a>';
             }).join('') + '</span>';
         return '<div class="fan-tile reveal' + (it.done ? ' is-done' : '') + '"'
@@ -596,6 +628,13 @@
        column. A column is right for a wide app screenshot and wrong for a set
        of holiday photographs, which want to be seen several at a time. */
     gallery: function (s) {
+      /* the last line of every caption, and the only one that is not written
+         by hand: `Shot` is a label rather than a sentence, so the date reads
+         as the frame's own metadata and not as part of the description */
+      var when = function (it) {
+        var w = shotWhen(it);
+        return w ? '<time class="fan-shot-when"><i>Shot</i><span>' + esc(w) + '</span></time>' : '';
+      };
       return '<div class="fan-shots' + (s.grid ? ' fan-shots--grid' : '')
         + (s.wide ? ' fan-shots--wide' : '')
         + (s.two ? ' fan-shots--two' : '') + '">' + s.items.map(function (it) {
@@ -611,6 +650,7 @@
           +   (it.desc ? '<span>' + esc(it.desc) + '</span>' : '')
           +   (ch ? '<span class="fan-chips">' + ch + '</span>' : '')
           +   (it.meta ? '<i>' + esc(it.meta) + '</i>' : '')
+          +   when(it)
           + '</figcaption>'
           + '</figure>';
       }).join('') + '</div>';
@@ -632,16 +672,29 @@
     },
   };
 
+  /* The one place a data file writes markup rather than text. The SVG is
+     authored in the data file beside the section it belongs to, which is why
+     it goes in as it stands; nothing here comes from anywhere but this repo. */
+  function art(s) {
+    if (!s.art) return '';
+    return '<figure class="fan-draw' + (s.art.cls ? ' ' + esc(s.art.cls) : '') + ' reveal">'
+      + s.art.svg
+      + (s.art.cap ? '<figcaption>' + esc(s.art.cap) + '</figcaption>' : '')
+      + '</figure>';
+  }
+
   function markup(s) {
     if (!Array.isArray(s.items)) s.items = [];   // a section with no items renders empty, not a blank page
     var build = KINDS[s.kind] || KINDS.cards;
     return '<section class="fan-sec" id="' + esc(s.id || '') + '"'
+      + (s.tone ? ' style="--a:' + esc(s.tone) + '"' : '')
       + (s.season ? ' data-season="' + s.season + '"' : '')
       + (s.symbiote ? ' data-symbiote="1"' : '') + '>'
       + '<h3 class="subsec subsec--fan reveal">' + esc(s.title)
       +   (s.note ? '<span class="subsec-yr">' + esc(s.note) + '</span>' : '')
       + '</h3>'
       + (s.lede ? '<p class="fan-lede reveal">' + esc(s.lede) + '</p>' : '')
+      + art(s)
       + controls(s)
       + build(s)
       + '</section>';

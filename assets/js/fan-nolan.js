@@ -1,16 +1,8 @@
 /* fan-nolan.js: content for /worlds/christopher-nolan/. Rendered by fanpage.js.
    Thirteen films about time, told out of order and shot on film stock the
    size of a postcard, and the two composers who kept up with him. */
-/* NO `when:` BLOCK YET, on purpose. That field is when Abubakr actually got
-   into the thing, and the rest of this site's fan pages mean it literally. A
-   plausible-sounding date here would make the one honest line on the page
-   unreliable, so it is left for him to fill in:
-
-     when: { at: '...', note: '...' },
-
-   goes directly above `sections`. Same reason the tile in fandom-data.js has
-   no `when`. */
 window.FAN_PAGE = {
+  when: { at: '10th grade' },
   sections: [
 
   { id: 'films', kind: 'rank', title: 'The Thirteen', note: '1998 – 2026 · in order',

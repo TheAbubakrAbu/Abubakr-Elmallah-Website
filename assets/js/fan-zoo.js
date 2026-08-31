@@ -124,6 +124,41 @@ window.FAN_PAGE = {
         meta: 'Not a bigger zoo, a different tool' },
     ] },
 
+  /* ── Rio ──
+     This was its own tile and its own page until 2026-08-31, and it is here
+     instead because this is where he actually met it: the zoo ran the film as
+     a thing you could walk into, with the toys, and that is the memory. It
+     earns the space twice over, because the bird the cartoon was about went
+     extinct in the wild five years after the first film and was put back by
+     exactly the kind of programme the section above this one is about.
+
+     The first card is his, in his words: the tie-in is a childhood memory
+     rather than something with a press release behind it, so it does not
+     pretend to carry a date or a name it cannot prove. Everything after it is
+     checkable and was written for the page this replaces. */
+  { id: 'rio', kind: 'cards', title: 'Rio, At The Zoo', note: 'the tie-in, and the bird it was about',
+    lede: 'The zoo ran Rio as something you could walk into: the film, the toys, the birds it was about, all in one place. It was one of the coolest things here as a kid, and it turned out to be about the most serious conservation story in the building.',
+    items: [
+      { title: 'The collaboration', sub: 'The films, as an attraction', tag: 'The memory', accent: '#3fc6a8',
+        desc: 'Rio came to the zoo as a tie-in, with the toys and the film attached to the real macaws, which is a fair trade: the animals get the audience the cartoon brought them. This card is memory rather than record, so it carries no date.',
+        meta: 'His own, and undated on purpose' },
+      { title: 'The two films', sub: '2011 and 2014', tag: 'The films', accent: '#4a9ae8',
+        desc: 'Blue Sky Studios made both and Carlos Saldanha directed both. He is from Rio, which is why the city in them has weather and traffic in it rather than a beach on a postcard: Corcovado kept small on its hill, the favelas as stacked colour up the slopes, the wave pattern in the Copacabana pavement that almost nobody animates.',
+        meta: 'Real in Rio was nominated for an Oscar' },
+      { title: 'The Spix’s macaw', sub: 'Cyanopsitta spixii', tag: 'The species', accent: '#5fa3ec',
+        desc: 'A small blue macaw from one strip of dry caatinga along the Rio São Francisco in Bahia, and nowhere else. Named for Johann Baptist von Spix, who collected one in 1819 and shot it. The premise of a children’s cartoon, the last male of his species flown in to breed, was a live emergency at the time it was written.',
+        meta: 'One valley in Bahia' },
+      { title: 'Extinct in the wild', sub: '2019', tag: 'The finding', accent: '#e04a3a',
+        desc: 'BirdLife International formally declared it extinct in the wild in 2019, five years after the sequel. The last known wild bird had gone in 2000. Everything alive was in captivity, most of it in private collections in Europe and Qatar.',
+        meta: 'Five years after Rio 2' },
+      { title: 'Put back, in 2022', sub: 'Curaçá, Bahia', tag: 'The return', accent: '#3fd589',
+        desc: 'Captive-bred birds from a German breeding programme were released into the caatinga at Curaçá in June 2022, and some have bred in the wild since. It is the same argument as the condor two sections up, run by somebody else and won.',
+        meta: 'And they have bred since' },
+      { title: 'Blue Sky is gone', sub: 'Closed April 2021', tag: 'The studio', accent: '#c9ced6',
+        desc: 'The studio that made both films, and Ice Age, was shut by Disney in April 2021 after the Fox acquisition. There will not be a third one, which is part of why this is a section here rather than a page of its own.',
+        meta: 'Shut after the Fox deal' },
+    ] },
+
   /* the complete index. On a zoo page this is the whole institution rather
      than a filmography: both sites, the habitats, and the programmes. */
   { id: 'works', kind: 'works', title: 'Everything In It', note: 'two sites, and the record',

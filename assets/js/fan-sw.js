@@ -258,26 +258,67 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'played', kind: 'gallery', title: 'Every One of Them, Finished', note: 'my own screenshots · 100%',
-    lede: 'The other way I have spent time in this galaxy. Thirty-six Star Wars games in the library and a wall of hundred-percents, including four LEGO games taken all the way to the last gold brick.',
+    lede: 'The other way I have spent time in this galaxy. Thirty-six Star Wars games in the library and a wall of hundred-percents, including four LEGO games taken all the way to the last gold brick. Every one of the nine is underneath with its own receipts: the library banner, the save slot, the achievement screen.',
     /* both frames are captioned once, in fan-shots.js: the shelf is on
        /gaming/ as well, and the LEGO run on the LEGO page */
     pick: ['sw-shelf', 'lego-star-wars-hundred'] },
 
   /* one tile per finished game, in the order I finished them, with the date
-     (`finished`, see fanpage.js); the LEGO four also sit in the catalogue on
-     the LEGO page with their hours */
-  { id: 'finished', kind: 'tiles', compact: true, title: 'When I Finished Them', note: 'to a hundred percent',
+     (`finished`, see fanpage.js), the play time off its own library banner,
+     and the screenshots that prove it: `shot` is the banner and `shots` the
+     rest of that game's set, opening together in the lightbox, the same shape
+     the LEGO catalogue and the Wizarding World page use. A `shots` name with
+     no slash resolves beside the banner, so each game names its folder once.
+     Raw captures in _originals/franchises/, and every frame is on /gaming/
+     with the date it was taken. The LEGO four also sit in the catalogue on
+     the LEGO page, where their hours are set against a projected time. */
+  { id: 'finished', kind: 'tiles', compact: true, cols: 2, views: true, tally: 'at 100%',
+    title: 'When I Finished Them', note: 'to a hundred percent',
     items: [
-      { title: 'LEGO Star Wars: The Skywalker Saga', accent: '#ffd21f', sub: '2022 · Steam', done: true, finished: '2022-05-06' },
-      { title: 'LEGO Star Wars: The Complete Saga', accent: '#ffd21f', sub: '2007 · Steam', done: true, finished: '2022-07-10' },
-      { title: 'LEGO Star Wars III: The Clone Wars', accent: '#ffd21f', sub: '2011 · Steam', done: true, finished: '2022-07-13' },
-      { title: 'LEGO Star Wars: The Force Awakens', accent: '#ffd21f', sub: '2016 · Steam', done: true, finished: '2022-07-17' },
-      { title: 'Jedi: Survivor', accent: '#4fa8ff', sub: '2023', done: true, finished: '2023-07-16' },
-      { title: 'Jedi: Fallen Order', accent: '#4fa8ff', sub: '2019', done: true, finished: '2024-03-22',
-        desc: 'Finished three times: first on Dec 12 2019, the week it came out; again on Apr 30 2022; and then once more, straight after Survivor, on Mar 22 2024, which is the run that took it to a hundred percent.' },
-      { title: 'Droid Repair Bay', accent: '#9fc4e8', sub: '2017 · VR', done: true, finished: '2024-09-27' },
-      { title: 'Star Wars Outlaws', accent: '#e0a020', sub: '2024', done: true, finished: '2024-12-03' },
-      { title: 'Battlefront II', accent: '#9fc4e8', sub: '2017', done: true, finished: '2025-03-11' },
+      { title: 'LEGO Star Wars: The Skywalker Saga', accent: '#ffd21f', sub: '2022 · Steam', done: true, hours: '79.4', finished: '2022-05-06',
+        desc: 'All nine films rebuilt from scratch, and nearly eighty hours: more than twice any other LEGO game I have finished.',
+        shot: '/assets/img/franchises/lego/skywalker-saga/banner.jpg',
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters', 'stud-fountain'],
+        shotAlt: 'Steam library banner for LEGO Star Wars: The Skywalker Saga, showing my play time' },
+      { title: 'LEGO Star Wars: The Complete Saga', accent: '#ffd21f', sub: '2007 · Steam', done: true, hours: '35.2', finished: '2022-07-10',
+        desc: 'All six films in one, and the definitive version of the old formula.',
+        shot: '/assets/img/franchises/lego/complete-saga/banner.jpg',
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters', 'stud-fountain'],
+        shotAlt: 'Steam library banner for LEGO Star Wars: The Complete Saga, showing my play time' },
+      { title: 'LEGO Star Wars III: The Clone Wars', accent: '#ffd21f', sub: '2011 · Steam', done: true, hours: '24.1', finished: '2022-07-13',
+        desc: 'Ground battles with commandable troops. Ambitious, and messy, and the better game for it.',
+        shot: '/assets/img/franchises/lego/clone-wars/banner.jpg',
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters'],
+        shotAlt: 'Steam library banner for LEGO Star Wars III: The Clone Wars, showing my play time' },
+      { title: 'LEGO Star Wars: The Force Awakens', accent: '#ffd21f', sub: '2016 · Steam', done: true, hours: '24.6', finished: '2022-07-17',
+        desc: 'Multi-build, and blaster battles with cover.',
+        shot: '/assets/img/franchises/lego/force-awakens/banner.jpg',
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters', 'galaxy-map'],
+        shotAlt: 'Steam library banner for LEGO Star Wars: The Force Awakens, showing my play time' },
+      { title: 'Jedi: Survivor', accent: '#4fa8ff', sub: '2023', done: true, hours: '50.8', finished: '2023-07-16',
+        desc: 'The save slot is the receipt: Koboh, Pyloon’s Saloon, journey complete at 100% on 7/16/23 after 41.7 hours, with a New Journey+ slot started the same evening. Every faction at a hundred percent in the tactical guide, Koboh and Coruscant fully explored on the galaxy map, and 53 of 53 achievements. 144 sessions of it took 38% of my 2023, more than any other game in four years of Replays.',
+        shot: '/assets/img/franchises/star-wars/survivor/banner.jpg',
+        shots: ['start-screen', 'load-game', 'achievements', 'galaxy-map', 'tactical-guide'],
+        shotAlt: 'Steam library banner for STAR WARS Jedi: Survivor, showing 50.8 hours and 53 of 53 achievements' },
+      { title: 'Jedi: Fallen Order', accent: '#4fa8ff', sub: '2019', done: true, hours: '17.7', finished: '2024-03-22',
+        desc: 'Finished three times: first on Dec 12 2019, the week it came out; again on Apr 30 2022, which is the save that reads 100% and Journey Complete; and once more straight after Survivor, on Mar 22 2024, the run that took the last of the 39 achievements. The 17.7 hours is only what Steam saw: the EA app has 214 hours and 21 minutes on the same game.',
+        shot: '/assets/img/franchises/star-wars/fallen-order/banner.jpg',
+        shots: ['start-screen', 'load-game', 'achievements', 'tactical-guide', 'play-time'],
+        shotAlt: 'Steam library banner for STAR WARS Jedi: Fallen Order, showing 39 of 39 achievements' },
+      { title: 'Droid Repair Bay', accent: '#9fc4e8', sub: '2017 · VR', done: true, hours: '3.8', finished: '2024-09-27',
+        desc: 'A free VR short where you are the mechanic: 3.8 hours, and the only game on this list that needs a headset.',
+        shot: '/assets/img/franchises/star-wars/droid-repair-bay/banner.jpg',
+        shotAlt: 'Steam library banner for Star Wars: Droid Repair Bay, marked 100% and VR required' },
+      { title: 'Star Wars Outlaws', accent: '#e0a020', sub: '2024', done: true, hours: '53.4', finished: '2024-12-03',
+        desc: 'Finished at 53 of 53, which is what the Steam page here reads, and then the list itself grew: the banner says 59 of 59, six more earned once the DLC added them, the last being Stranger Tides for escaping the Khepi tomb.',
+        shot: '/assets/img/franchises/star-wars/outlaws/banner.jpg',
+        shots: ['achievements', 'all-achievements'],
+        shotAlt: 'Steam library banner for Star Wars Outlaws, showing 53.4 hours and 59 of 59 achievements' },
+      { title: 'Battlefront II', accent: '#9fc4e8', sub: '2017', done: true, hours: '27.3', finished: '2025-03-11',
+        desc: 'Iden Versio’s campaign finished at 11:37 PM on Mar 10 2025 and the last achievements the next day, which the in-game feed dates itself: March 10, then March 11. 43 of 43, and 83 sessions of it took 23% of my 2025.',
+        shot: '/assets/img/franchises/star-wars/battlefront-2/banner.jpg',
+        shots: ['campaign-complete', 'achievements', 'milestones'],
+        shotAlt: 'Steam library banner for STAR WARS Battlefront II: Celebration Edition, showing 27.3 hours and 43 of 43 achievements' },
     ] },
 
   /* ── the two Minecraft servers ──

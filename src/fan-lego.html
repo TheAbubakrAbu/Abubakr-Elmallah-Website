@@ -175,6 +175,8 @@ redirect_from:
 
 <script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
+<!-- the catalogue itself, shared with /gaming/; must load before the page data -->
+<script src="{% include v.html f='/assets/js/lego-games.js' %}"></script>
 <script src="{% include v.html f='/assets/js/fan-lego.js' %}"></script>
 <script src="{% include v.html f='/assets/js/fan-shots.js' %}"></script>
 

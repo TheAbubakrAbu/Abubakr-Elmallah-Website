@@ -51,6 +51,25 @@
 
 .fan-lede { max-width: 70ch; margin: -0.6rem 0 1.8rem; color: var(--ink-dim); font-size: 0.96rem; line-height: 1.75; }
 
+/* ── a section's own drawing ──
+   `art:` in a data file, rendered under the lede. The frame is here and the
+   paint is in the page's own stylesheet, the same split as the hero drawings.
+   Nintendo is the page that needed it: two folded-in pages arrived with a
+   drawing each.
+
+   NOT .fan-art, which is the hero pattern three thousand lines down: a drawing
+   in one column and the writing in the other. This one is a drawing on its
+   own, centred, under a lede. */
+.fan-draw { margin: 0 0 2rem; }
+
+.fan-draw svg { display: block; width: min(380px, 100%); margin-inline: auto; }
+
+.fan-draw figcaption {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+
 /* ── kind: cards ── */
 .fan-cards {
   display: grid; gap: clamp(0.9rem, 2vw, 1.4rem);
@@ -1251,6 +1270,31 @@
 .fan-shot figcaption > i {
   font-style: normal; font-family: var(--mono); font-size: 0.58rem;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute);
+}
+
+/* ── when the frame was taken ──
+   The last line of every screenshot caption on this site, written by
+   fanpage.js from the one table in fan-shots.js rather than by hand. Keyed
+   like the finish date on a tile: a small mono label and then the value, so
+   it reads as the frame's own metadata rather than as more caption. Some of
+   these say "before a date", which is what the file can actually prove.
+
+   `> i` above is scoped to direct children on purpose, so the label inside
+   this <time> keeps its own size rather than picking up the caption's. */
+.fan-shot-when {
+  display: flex; align-items: baseline; gap: 0.45rem;
+  margin-top: 0.1rem;
+}
+
+.fan-shot-when i {
+  font-style: normal; font-family: var(--mono); font-size: 0.52rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
+  opacity: 0.75;
+}
+
+.fan-shot-when span {
+  font-family: var(--mono); font-size: 0.62rem; font-weight: 500;
+  letter-spacing: 0.04em; color: var(--ink-dim);
 }
 
 /* ── kind: links ── the "elsewhere" block that closes every fan page */

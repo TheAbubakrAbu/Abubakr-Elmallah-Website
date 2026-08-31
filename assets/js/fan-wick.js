@@ -1,16 +1,8 @@
 /* fan-wick.js: content for /worlds/john-wick/. Rendered by fanpage.js.
    Four films built out of a dog, a car, and a decision to hold the shot.
    Directed by stuntmen, which is the only fact you need to explain any of it. */
-/* NO `when:` BLOCK YET, on purpose. That field is when Abubakr actually got
-   into the thing, and the rest of this site's fan pages mean it literally. A
-   plausible-sounding date here would make the one honest line on the page
-   unreliable, so it is left for him to fill in:
-
-     when: { at: '...', note: '...' },
-
-   goes directly above `sections`. Same reason the tile in fandom-data.js has
-   no `when`. */
 window.FAN_PAGE = {
+  when: { at: '9th or 10th grade' },
   sections: [
 
   { id: 'films', kind: 'films', title: 'The Four', note: 'Chad Stahelski · 2014 onward',

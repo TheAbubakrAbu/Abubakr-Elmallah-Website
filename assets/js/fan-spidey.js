@@ -185,10 +185,13 @@ window.FAN_PAGE = {
       { title: 'Sometimes you gotta take a leap of faith first.', sub: 'Peter B. Parker' },
     ] },
 
-  { id: 'played', kind: 'gallery', title: 'All Three, Platinum', note: 'my own screenshots · 100%',
-    lede: 'Insomniac made the best superhero games ever built, and I have finished all three of them completely.',
-    /* captioned once, in fan-shots.js: the same shelf is on /gaming/ */
-    pick: ['spidey-shelf'] },
+  /* the shelf and every completion screen behind it, captioned once in
+     fan-shots.js under `spider-man-hundred`, because the same frames are on
+     /gaming/ and cannot be described twice. The section's own heading wins
+     over the set's; the dates under them are the capture times, from the one
+     table in that file. */
+  { id: 'played', set: 'spider-man-hundred', title: 'All Three, Platinum', note: 'my own screenshots · 100%',
+    lede: 'Insomniac made the best superhero games ever built, and I have finished all three of them completely: 78 of 78, then 50 of 50, then 43 of 43. Every receipt is here.' },
 
 
   /* the music: the Spider-Man tracks on my playlist, across all four

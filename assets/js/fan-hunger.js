@@ -1,16 +1,8 @@
 /* fan-hunger.js: content for /worlds/hunger-games/. Rendered by fanpage.js.
    A children's series about a televised child-killing contest, which is a
    sentence the trilogy spends three books earning. */
-/* NO `when:` BLOCK YET, on purpose. That field is when Abubakr actually got
-   into the thing, and the rest of this site's fan pages mean it literally. A
-   plausible-sounding date here would make the one honest line on the page
-   unreliable, so it is left for him to fill in:
-
-     when: { at: '...', note: '...' },
-
-   goes directly above `sections`. Same reason the tile in fandom-data.js has
-   no `when`. */
 window.FAN_PAGE = {
+  when: { at: 'Somewhere in middle school' },
   sections: [
 
   { id: 'books', kind: 'films', title: 'The Books', note: 'Suzanne Collins · 2008 onward',

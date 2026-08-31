@@ -2,16 +2,8 @@
    The studio that kept betting a cartoon could be about grief and kept
    being right. Founded as a hardware company, which is the part nobody
    remembers and the reason the software was ever any good. */
-/* NO `when:` BLOCK YET, on purpose. That field is when Abubakr actually got
-   into the thing, and the rest of this site's fan pages mean it literally. A
-   plausible-sounding date here would make the one honest line on the page
-   unreliable, so it is left for him to fill in:
-
-     when: { at: '...', note: '...' },
-
-   goes directly above `sections`. Same reason the tile in fandom-data.js has
-   no `when`. */
 window.FAN_PAGE = {
+  when: { at: 'Since elementary school', note: 'Grew up with it, the way everyone else did.' },
   sections: [
 
   { id: 'story', kind: 'timeline', title: 'How It Got Here', note: 'a hardware company that failed upward',

@@ -24,26 +24,26 @@ window.FANDOMS = [
       when: 'Before I could speak',
       meta: 'Dīn · 610 CE', href: '/worlds/islam/',
       desc: 'The only thing on this page that is not a preference. Twenty-five prophets named in the Qurʾān, the three mosques worth setting out to travel for, and the chain of scholarship every bit of it came down.' },
-    { name: 'Arab', wm: 'arab', glyph: 'qalam', c1: '#e8c56a', c2: '#241c0a',
-      when: 'My first language at home',
-      meta: 'Lisān · 6th c.', href: '/worlds/arab/',
-      desc: 'Twenty-eight letters, each with four shapes depending on where it stands, written right to left and joined up by default. The language my family speaks, and the reason I read a page from the back.' },
-    { name: 'Egypt', wm: 'egypt', glyph: 'pyramid', c1: '#e8a13f', c2: '#26170a',
-      when: 'Where my family is from',
-      meta: 'Miṣr · 3100 BC', href: '/worlds/egypt/',
-      desc: 'Five thousand years of continuous record in one valley, along one river, and the country my parents left. Where I am from before I am from anywhere else.' },
-    { name: 'Minshāwī', wm: 'minshawi', glyph: 'mic', c1: '#d9b88a', c2: '#1f150a',
-      when: 'The house voice, since always',
-      meta: 'Qāriʾ · 1920', href: '/worlds/minshawi/',
-      desc: 'Muḥammad Ṣiddīq al-Minshāwī, 1920–1969: the Upper-Egyptian voice the Qurʾān plays in inside this house. Dead at forty-nine, which means every recording there will ever be of him already exists.' },
     { name: 'Qurʾān', wm: 'quran', glyph: 'mushaf', c1: '#e0b84f', c2: '#0b2418',
       when: 'Recited to me before I could read it',
       meta: 'Kitāb · 610 CE', href: '/worlds/quran/',
-      desc: 'The speech of Allah: 114 sūrahs revealed over twenty-three years, memorised end to end by millions, and never revised since. A recitation before it is a book, which is what the tile before this one is about.' },
+      desc: 'The speech of Allah: 114 sūrahs revealed over twenty-three years, memorised end to end by millions, and never revised since. A recitation before it is a book, which is what the Minshāwī tile further down is about.' },
     { name: 'Sunnah', wm: 'sunnah', glyph: 'dome', c1: '#6fcfa4', c2: '#0a221a',
       when: 'The other half of the dīn',
       meta: 'Ḥadīth · 7th c.', href: '/worlds/sunnah/',
       desc: 'What the Prophet ﷺ said, did and approved of, carried by named chains of people and graded link by link. The Qurʾān says pray; this is where the how of it lives.' },
+    { name: 'Arab', wm: 'arab', glyph: 'qalam', c1: '#e8c56a', c2: '#241c0a',
+      when: 'My first language at home',
+      meta: 'Lisān · 6th c.', href: '/worlds/arab/',
+      desc: 'Twenty-eight letters, each with four shapes depending on where it stands, written right to left and joined up by default. The language my family speaks, and the reason I read a page from the back.' },
+    { name: 'Minshāwī', wm: 'minshawi', glyph: 'mic', c1: '#d9b88a', c2: '#1f150a',
+      when: 'The house voice, since always',
+      meta: 'Qāriʾ · 1920', href: '/worlds/minshawi/',
+      desc: 'Muḥammad Ṣiddīq al-Minshāwī, 1920–1969: the Upper-Egyptian voice the Qurʾān plays in inside this house. Dead at forty-nine, which means every recording there will ever be of him already exists.' },
+    { name: 'Egypt', wm: 'egypt', glyph: 'pyramid', c1: '#e8a13f', c2: '#26170a',
+      when: 'Where my family is from',
+      meta: 'Miṣr · 3100 BC', href: '/worlds/egypt/',
+      desc: 'Five thousand years of continuous record in one valley, along one river, and the country my parents left. Where I am from before I am from anywhere else.' },
     ] },
 
   { id: 'core', label: 'The Core Three', note: 'the ones I know by heart', items: [
@@ -184,63 +184,50 @@ window.FANDOMS = [
       meta: 'Animation · 1999', href: '/worlds/spongebob/',
       desc: 'The golden-age seasons are some of the best-written comedy ever animated, and the internet has been speaking in its screenshots for twenty years.' },
 
-    /* The five newest tiles. They have no `when` line yet on purpose: the rest
-       of this file says when I actually got into each thing, and inventing a
-       date for these would make the one honest column on the page unreliable.
-       Add `when:` to any of them and the tile picks it up. */
+    /* The nine that were added after the first pass, now in the order he ranks
+       them rather than the order they arrived. They went in without a `when`
+       line, because the rest of this file says when I actually got into each
+       thing and a made-up date would make the one honest column on the page
+       unreliable; he has since given all nine, so every tile here has one. */
     { name: 'Pixar', wm: 'pixar', glyph: 'lamp', c1: '#4fa8e0', c2: '#0a1524',
+      when: 'Since elementary school',
       meta: 'Studio · 1986', href: '/worlds/pixar/',
       desc: 'The studio that kept betting a cartoon could be about grief and kept being right. Toy Story was the first fully computer-animated feature; the shorts before it are where the software came from.' },
-
     { name: 'Angry Birds', wm: 'angrybirds', glyph: 'bird', c1: '#e03a2a', c2: '#241009',
+      when: 'Since elementary school',
       meta: 'Game · 2009', href: '/worlds/angry-birds/',
       desc: 'A projectile-motion problem with a grudge. Rovio’s fifty-second game, one control, no tutorial, and a three-star rating that turned five minutes into a hundred hours.' },
-
     { name: 'The Hunger Games', wm: 'hunger', glyph: 'mockingjay', c1: '#e0b040', c2: '#1a1408',
+      when: 'Somewhere in middle school',
       meta: 'Books · 2008', href: '/worlds/hunger-games/',
       desc: 'A children’s series about a televised child-killing contest, which is a sentence it earns. Katniss wins the first book by refusing to finish it, and the rest is about who was watching.' },
-
     { name: 'John Wick', wm: 'wick', glyph: 'coin', c1: '#d84a52', c2: '#170a0d',
+      when: '9th or 10th grade',
       meta: 'Film · 2014', href: '/worlds/john-wick/',
       desc: 'Four films shot wide and held, by stuntmen who got to pick the camera. Underneath the fighting is a better invention: an assassins’ guild with a currency, an arbitration process and paperwork.' },
-
+    { name: 'Christopher Nolan', wm: 'nolan', glyph: 'top', c1: '#d0d8e0', c2: '#0e1217',
+      when: '10th grade',
+      meta: 'Director · 1998', href: '/worlds/christopher-nolan/',
+      desc: 'Thirteen films about time, told out of order and shot on film stock the size of a postcard: Inception, Interstellar, Oppenheimer, and now The Odyssey. Zimmer and Göransson did the rest.' },
+    /* The Zelda and Splatoon tiles came out on 2026-08-31, when both of their
+       pages were folded into this one; Mario, which never had a tile or a page
+       of its own, is in there now as well. */
+    { name: 'Nintendo', wm: 'nintendo', glyph: 'dpad', c1: '#e0403a', c2: '#220e0c',
+      when: 'Since I was a kid; the Switch on launch, 2017',
+      meta: 'Company \u00b7 1889', href: '/worlds/nintendo/',
+      desc: 'A playing-card company from 1889 that spent eighty years trying taxis, instant rice and a love hotel before it found the thing it was for. Mario, Zelda and Splatoon are all in there, and it is still the only one of the three console makers that builds the hardware around one idea and dares the software to catch up.' },
     { name: 'Geometry Dash', wm: 'geodash', glyph: 'cube', c1: '#39d6f0', c2: '#0a1a24',
       when: 'As a kid, as far as Theory of Everything',
       meta: 'Game \u00b7 2013', href: '/worlds/geometry-dash/',
       desc: 'One button, no health bar and no checkpoints inside a level: touch anything and the attempt is over from the first frame. Twenty-two official levels, and a level editor that has produced millions more, some of which take a year to finish once.' },
-
-    { name: 'Rio', wm: 'rio', glyph: 'macaw', c1: '#3fc6a8', c2: '#0a2019',
-      when: 'As a kid, both films',
-      meta: 'Film \u00b7 2011', href: '/worlds/rio/',
-      desc: 'A Spix\u2019s macaw from Minnesota flown to Rio de Janeiro to save his species, made by the studio that did Ice Age. The bird it is about was declared extinct in the wild three years after the sequel.' },
-
-    { name: 'Christopher Nolan', wm: 'nolan', glyph: 'top', c1: '#d0d8e0', c2: '#0e1217',
-      meta: 'Director · 1998', href: '/worlds/christopher-nolan/',
-      desc: 'Thirteen films about time, told out of order and shot on film stock the size of a postcard: Inception, Interstellar, Oppenheimer, and now The Odyssey. Zimmer and Göransson did the rest.' },
-
-    /* Seven more, added in one go, and no `when` on any of the five here for
-       the same reason as the batch above: I would be inventing the dates. The
-       two theme parks that came with them are down in the parks group. */
+    /* The two studios he grew up on, and the last two tiles on this list. The
+       theme parks that came in with them are down in the parks group. */
     { name: 'DreamWorks', wm: 'dreamworks', glyph: 'moon', c1: '#8fb8e0', c2: '#0c1626',
+      when: 'As a kid',
       meta: 'Studio \u00b7 1994', href: '/worlds/dreamworks/',
       desc: 'Spielberg, Katzenberg and Geffen started it in 1994 to be the studio Disney would not let them run, and it is the only one that ever seriously took animation off Disney. Shrek, Madagascar, and two more that are far enough up this page to have tiles of their own.' },
-
-    { name: 'Nintendo', wm: 'nintendo', glyph: 'dpad', c1: '#e0403a', c2: '#220e0c',
-      when: 'Since I was a kid; the Switch on launch, 2017',
-      meta: 'Company \u00b7 1889', href: '/worlds/nintendo/',
-      desc: 'A playing-card company from 1889 that spent eighty years trying taxis, instant rice and a love hotel before it found the thing it was for. Still the only one of the three that builds the hardware around one idea and dares the software to catch up.' },
-
-    { name: 'The Legend of Zelda', wm: 'zelda', glyph: 'triforce', c1: '#e8c247', c2: '#0e2016',
-      when: 'Since I was a kid; Breath of the Wild, 2017',
-      meta: 'Game \u00b7 1986', href: '/worlds/zelda/',
-      desc: 'Miyamoto put the caves he explored as a boy outside Kyoto into a cartridge with a battery soldered into it, so for the first time a console remembered where you had been. Breath of the Wild threw the map away and let you climb everything instead.' },
-
-    { name: 'Splatoon', wm: 'splatoon', glyph: 'ink', c1: '#c6f03a', c2: '#1c0a2e',
-      when: 'Splatoon 2, summer 2017',
-      meta: 'Game \u00b7 2015', href: '/worlds/splatoon/',
-      desc: 'A shooter you win by covering the floor rather than by killing anybody, which is the trick that let Nintendo make one at all. Four on four, three minutes, and the score at the end is how much of the ground is your colour.' },
-
     { name: 'Looney Tunes', wm: 'looney', glyph: 'target', c1: '#f0c040', c2: '#111c3a',
+      when: 'As a kid',
       meta: 'Animation \u00b7 1930', href: '/worlds/looney-tunes/',
       desc: 'Warner\u2019s answer to Disney and funnier than it: seven minutes, no moral, and a rabbit who wins by staying calm. Chuck Jones and Tex Avery drawing, and Mel Blanc doing nearly every voice in the building.' },
 

@@ -1,16 +1,8 @@
 /* fan-angrybirds.js: content for /worlds/angry-birds/. Rendered by fanpage.js.
    A projectile-motion problem with a grudge. Rovio's fifty-second game, and
    for a couple of years the most recognisable thing on a phone. */
-/* NO `when:` BLOCK YET, on purpose. That field is when Abubakr actually got
-   into the thing, and the rest of this site's fan pages mean it literally. A
-   plausible-sounding date here would make the one honest line on the page
-   unreliable, so it is left for him to fill in:
-
-     when: { at: '...', note: '...' },
-
-   goes directly above `sections`. Same reason the tile in fandom-data.js has
-   no `when`. */
 window.FAN_PAGE = {
+  when: { at: 'Since elementary school' },
   sections: [  /* the complete index. Every other section on this page is a choice; this one
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already

@@ -1,15 +1,8 @@
 /* fan-looney.js: content for /worlds/looney-tunes/. Rendered by fanpage.js.
    Seven minutes, no moral, and one man doing nearly every voice in the
    building. Warner's answer to Disney, and funnier than it. */
-/* NO `when:` BLOCK YET, on purpose. That field is when Abubakr actually got
-   into the thing, and the rest of this site's fan pages mean it literally. A
-   plausible-sounding date here would make the one honest line on the page
-   unreliable, so it is left for him to fill in:
-
-     when: { at: '...', note: '...' },
-
-   goes directly above `sections`. */
 window.FAN_PAGE = {
+  when: { at: 'As a kid' },
   sections: [
 
   { id: 'cast', kind: 'tiles', title: 'The Cast', note: 'and the one man who was all of them',

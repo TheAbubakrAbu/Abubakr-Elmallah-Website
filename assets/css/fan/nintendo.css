@@ -63,3 +63,33 @@ body[data-fan="nintendo"] .fan-title {
   font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--mute);
 }
+
+/* ── the two drawings that came in with the folded-in pages ──
+   The Triforce was the hero of /worlds/zelda/ and the turf was the hero of
+   /worlds/splatoon/. Both of those pages are sections of this one now, so
+   their drawings sit under the section ledes instead. The frame is .fan-draw
+   in fanpages.css; all that is left here is the paint. */
+.zla-p { fill: #e8c247; filter: drop-shadow(0 0 14px rgba(232,194,71,.5)); }
+
+/* the three breathe very slightly out of step, which is the only motion the
+   shape can take without becoming a logo animation */
+.zla-tri path { animation: zl-lift 5.4s ease-in-out infinite alternate; }
+.zla-tri path:nth-child(2) { animation-delay: -1.8s; }
+.zla-tri path:nth-child(3) { animation-delay: -3.6s; }
+
+@keyframes zl-lift { from { opacity: .82; } to { opacity: 1; } }
+
+.spa-floor { fill: #16112a; stroke: rgba(198,240,58,.16); stroke-width: 2; }
+
+.spa-paint { fill: #c6f03a; opacity: .9; }
+
+.spa-squid { fill: #8f4ce0; }
+
+.spa-eye   { fill: #0d0818; }
+
+.spa-drop  { fill: #c6f03a; opacity: .75; }
+
+/* the turf is a wider drawing than the Triforce and wants the room */
+.sp-art svg { width: min(460px, 100%); }
+
+@media (prefers-reduced-motion: reduce) { .zla-tri path { animation: none; } }

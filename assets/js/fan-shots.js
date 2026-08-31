@@ -11,10 +11,15 @@
    has its capture in _originals/franchises/ under the same path (gitignored,
    encoded by tools/shots.py), and every one of those is also in the Video
    Game Screenshots library on iCloud under the name it was captured with; the
-   README in _originals maps one to the other. Names, dates, scores and
-   tooltips below are read off the frames themselves, not remembered. A frame
-   with no date on it, whose file arrived carrying only a copy date, is
-   captioned "before" that date rather than guessed at.
+   README in _originals maps one to the other. Names, scores and tooltips
+   below are read off the frames themselves, not remembered.
+
+   DATES ARE NOT WRITTEN IN THESE ROWS. `dates` at the foot of this file has
+   one entry per picture the site serves, whatever page shows it, and when()
+   is the only place one is formatted; fanpage.js prints it under every
+   screenshot. A `meta` here says what is printed INSIDE the frame, an
+   achievement's own unlock date included, which is a different fact from
+   when the screenshot was taken and is often a different date.
 
    My names, in order: aelmallah on the Pixelmon server, TheAbubakrAbu on
    Imagine Fun through June 2024, MasterThingW from 2025 on and on the Realm.
@@ -27,67 +32,67 @@ window.FAN_SHOTS = {
     /* ── the Realm, July to August 2026 ── */
     'realm-day-one': { src: 'minecraft/realms/2026-07-04-2009-day-one.jpg', title: 'Day one, on the beach',
       desc: 'The fourth of July, a chest on the sand, a map in a frame on the ground, and a diamond axe already in hand. The first capture in the world.',
-      meta: '4 Jul 2026 · 8:09 PM', alt: 'A Minecraft beach at the start of a Realm, a chest and a framed map on the sand and a diamond axe in hand' },
+      alt: 'A Minecraft beach at the start of a Realm, a chest and a framed map on the sand and a diamond axe in hand' },
     'realm-savanna': { src: 'minecraft/realms/2026-07-28-0111-savanna.jpg', title: 'Savanna, four weeks in',
       desc: 'The sun low over the acacias at one in the morning, and a toast in the corner saying a new recipe had unlocked.',
-      meta: '28 Jul 2026 · 1:11 AM', alt: 'A Minecraft savanna at sunset with shaders on' },
+      alt: 'A Minecraft savanna at sunset with shaders on' },
     'realm-portal-room': { src: 'minecraft/realms/2026-08-19-1818-portal-room.jpg', title: 'The portal room',
       desc: 'All twelve eyes in, GentleSigma and Quatic on the far side, and the last minute of the Overworld before the four of us dropped through.',
-      meta: '19 Aug 2026 · 6:18 PM', alt: 'A Minecraft stronghold portal room with all twelve eyes of ender placed and two other players beside it' },
+      alt: 'A Minecraft stronghold portal room with all twelve eyes of ender placed and two other players beside it' },
     'realm-the-end': { src: 'minecraft/realms/2026-08-19-1819-the-end.jpg', title: 'The End?',
       desc: 'The advancement with the question mark, three times in the chat inside the same minute: GentleSigma, Quatic, ItsDauntless. The bow in hand is called Death Star.',
-      meta: '19 Aug 2026 · 6:19 PM', alt: 'Arriving in the End in Minecraft, the boss bar up and three advancement lines in the chat' },
+      alt: 'Arriving in the End in Minecraft, the boss bar up and three advancement lines in the chat' },
     'realm-crystals': { src: 'minecraft/realms/2026-08-19-1822-crystals.jpg', title: 'The crystals',
       desc: 'Obsidian pillars with the end crystals still lit on top, which is the part of the fight nobody enjoys. Ice Longclaw in hand.',
-      meta: '6:22 PM', alt: 'The obsidian pillars of the End with end crystals on top' },
+      alt: 'The obsidian pillars of the End with end crystals on top' },
     'realm-the-dragon': { src: 'minecraft/realms/2026-08-19-1824-the-dragon.jpg', title: 'The dragon',
       desc: 'Perched on a pillar, the boss bar across the top of the screen, Death Star drawn.',
-      meta: '6:24 PM', alt: 'The Ender Dragon perched on an obsidian pillar' },
+      alt: 'The Ender Dragon perched on an obsidian pillar' },
     'realm-hitboxes': { src: 'minecraft/realms/2026-08-19-1824-hitboxes.jpg', title: 'Hitboxes on',
       desc: 'F3 and B: the dragon as the game sees it, a cage of green boxes coming straight at the camera, and the rest of us small on the island below.',
-      meta: '6:24 PM', alt: 'The Ender Dragon flying at the camera with its hitboxes drawn as green boxes' },
+      alt: 'The Ender Dragon flying at the camera with its hitboxes drawn as green boxes' },
     'realm-under-the-dragon': { src: 'minecraft/realms/2026-08-19-1826-under-the-dragon.jpg', title: 'Under the dragon',
       desc: 'Third person: ItsDauntless and me in diamond on the end stone, the dragon crossing overhead, endermen wandering through the fight.',
-      meta: '6:26 PM', alt: 'Two players in diamond armour on the End island with the dragon overhead' },
+      alt: 'Two players in diamond armour on the End island with the dragon overhead' },
     'realm-quatic': { src: 'minecraft/realms/2026-08-19-1828-quatic.jpg', title: 'Teleported Quatic',
       desc: 'The chat line reads Teleported Quatic to MasterThingW, which is me. Everybody back on the island for the last of it.',
-      meta: '6:28 PM', alt: 'A player named Quatic arriving on the End island beside the camera' },
+      alt: 'A player named Quatic arriving on the End island beside the camera' },
     'realm-free-the-end': { src: 'minecraft/realms/2026-08-19-1830-free-the-end.jpg', title: 'Free the End',
       desc: 'The dragon dying in beams of light, the advancement toast in the corner, and GentleSigma in the chat: “If I breath it dies.” Forty-six days after the beach.',
-      meta: '19 Aug 2026 · 6:30 PM', alt: 'The Ender Dragon dying in beams of light, with the Free the End advancement toast in the corner' },
+      alt: 'The Ender Dragon dying in beams of light, with the Free the End advancement toast in the corner' },
     'realm-exit-portal': { src: 'minecraft/realms/2026-08-19-1831-exit-portal.jpg', title: 'The exit portal',
       desc: 'Lit, with the bedrock fountain in the middle of it and everyone gathered round.',
-      meta: '6:31 PM', alt: 'The lit exit portal of the End with players standing around it' },
+      alt: 'The lit exit portal of the End with players standing around it' },
     'realm-gentlesigma': { src: 'minecraft/realms/2026-08-19-1831-gentlesigma.jpg', title: 'GentleSigma',
       desc: 'Teleported over to the fountain a minute after the kill, sword out.',
-      meta: '6:31 PM', alt: 'A player named GentleSigma beside the End fountain' },
+      alt: 'A player named GentleSigma beside the End fountain' },
     'realm-outer-end': { src: 'minecraft/realms/2026-08-19-1833-outer-end.jpg', title: 'The outer islands',
       desc: 'Out into the dark: end stone to the horizon, chorus plants, and endermen who had not noticed yet.',
-      meta: '6:33 PM', alt: 'The outer End islands at night with endermen in the distance' },
+      alt: 'The outer End islands at night with endermen in the distance' },
     'realm-end-city': { src: 'minecraft/realms/2026-08-19-1834-end-city.jpg', title: 'The City at the End of the Game',
       desc: 'Purpur towers, the advancement of that name for ItsDauntless and me, and Remote Getaway for GentleSigma in the same second of chat.',
-      meta: '6:34 PM', alt: 'An end city of purpur blocks with the City at the End of the Game advancement toast' },
+      alt: 'An end city of purpur blocks with the City at the End of the Game advancement toast' },
     'realm-end-ship': { src: 'minecraft/realms/2026-08-19-1903-end-ship.jpg', title: 'Inside the ship',
       desc: 'The end ship’s hold: a chest, and the elytra in its frame on the wall, which is what all of this was for.',
-      meta: '7:03 PM', alt: 'Inside an end ship, an elytra in an item frame on a purpur wall' },
+      alt: 'Inside an end ship, an elytra in an item frame on a purpur wall' },
     'realm-next-generation': { src: 'minecraft/realms/2026-08-23-2315-next-generation.jpg', title: 'The Next Generation',
       desc: 'Four days later, back in the End for the egg. The goal toast in the corner is the one for holding it.',
-      meta: '23 Aug 2026 · 11:15 PM', alt: 'A tunnel in the End with the Next Generation goal toast in the corner' },
+      alt: 'A tunnel in the End with the Next Generation goal toast in the corner' },
     'realm-advancements': { src: 'minecraft/realms/2026-08-23-2344-advancements.jpg', title: 'The advancements screen',
       desc: 'The Minecraft tab, most of the way filled in, opened underground on the last night of captures.',
-      meta: '11:44 PM', alt: 'The Minecraft advancements screen, most of the tab completed' },
+      alt: 'The Minecraft advancements screen, most of the tab completed' },
     'realm-sunset': { src: 'minecraft/realms/2026-08-23-2349-sunset.jpg', title: 'Sunset over the ocean',
       desc: 'Ice Longclaw raised at the sun going down over a lukewarm ocean, shaders on.',
-      meta: '11:49 PM', alt: 'A sword raised at a Minecraft sunset over the ocean' },
+      alt: 'A sword raised at a Minecraft sunset over the ocean' },
     'realm-in-the-water': { src: 'minecraft/realms/2026-08-23-2349-in-the-water.jpg', title: 'In the water',
       desc: 'Third person, waist deep, name tag and all: diamond armour and a purple sword against a gold sky.',
-      meta: '11:49 PM', alt: 'A player in diamond armour standing in the sea at sunset' },
+      alt: 'A player in diamond armour standing in the sea at sunset' },
     'realm-underwater': { src: 'minecraft/realms/2026-08-23-2350-underwater.jpg', title: 'Underwater',
       desc: 'Light through the surface, seagrass, a shoal of fish. Respiration III on the helmet makes this somewhere you can stay.',
-      meta: '11:50 PM', alt: 'Underwater in Minecraft with light rays, seagrass and fish' },
+      alt: 'Underwater in Minecraft with light rays, seagrass and fish' },
     'realm-nether-portal': { src: 'minecraft/realms/2026-08-23-2350-nether-portal.jpg', title: 'The portal on the beach',
       desc: 'A nether portal built at the water’s edge, the last frame of the set, and the beach looks a lot like the first one.',
-      meta: '11:50 PM', alt: 'A nether portal on a Minecraft beach' },
+      alt: 'A nether portal on a Minecraft beach' },
 
     /* ── Imagine Fun, the Disneyland half ── */
     'if-castle': { src: 'minecraft/imagine-fun/disney100-castle.jpg', title: 'The castle, Disney100',
@@ -104,16 +109,16 @@ window.FAN_SHOTS = {
       meta: 'Balance 100,051', alt: 'The Imagine Fun bank window showing a balance of 100,051 Kingdom Coins' },
     'if-halfway': { src: 'minecraft/imagine-fun/2025-05-27-2250-halfway.jpg', title: 'Halfway',
       desc: 'Two achievements in one frame, Top Ten Trolley Times and 50% Complete, with the ride log scrolling past in the chat.',
-      meta: '27 May 2025 · 10:50 PM', alt: 'Two achievement toasts on Imagine Fun, Top Ten Trolley Times and 50 percent complete' },
+      alt: 'Two achievement toasts on Imagine Fun, Top Ten Trolley Times and 50 percent complete' },
     'if-ride-log': { src: 'minecraft/imagine-fun/2025-07-22-0203-ride-log.jpg', title: 'Two in the morning',
       desc: 'The ride count the server prints after a ride, forty-eight XP on the MagicPass, and the chat welcoming somebody who had started playing that day.',
-      meta: '22 Jul 2025 · 2:02 AM', alt: 'The Imagine Fun ride count breakdown in the chat, holding a lightsaber hilt' },
+      alt: 'The Imagine Fun ride count breakdown in the chat, holding a lightsaber hilt' },
     'if-seventieth-pin': { src: 'minecraft/imagine-fun/2025-07-22-0204-seventieth-pin.jpg', title: 'The seventieth-anniversary pin',
       desc: 'Galaxy’s Edge, Disneyland 70th Anniversary series, Deluxe rarity, brand new, original owner MasterThingW. Pins are the collectable the whole economy runs on.',
-      meta: 'Pin · Deluxe · 2025', alt: 'The tooltip of a Galaxy’s Edge Disneyland 70th Anniversary pin on Imagine Fun' },
+      meta: 'Pin · Deluxe', alt: 'The tooltip of a Galaxy’s Edge Disneyland 70th Anniversary pin on Imagine Fun' },
     'if-esplanade': { src: 'minecraft/imagine-fun/2026-02-14-1324-esplanade.jpg', title: 'The Esplanade, Valentine’s Day',
       desc: 'Between the two parks at night with a purple saber out, 119 guests online, and a Sith Reaper helmet in the hotbar.',
-      meta: '14 Feb 2026', alt: 'The Esplanade between the Disneyland parks rebuilt in Minecraft, at night, with a purple lightsaber' },
+      alt: 'The Esplanade between the Disneyland parks rebuilt in Minecraft, at night, with a purple lightsaber' },
     'if-food-locker': { src: 'minecraft/imagine-fun/food-locker.jpg', title: 'The food locker',
       desc: 'Locker #2, and every slot is something to eat. Main Street a few blocks away, 96 guests online.',
       meta: 'Locker #2', alt: 'A locker window full of food items on Imagine Fun' },
@@ -172,10 +177,10 @@ window.FAN_SHOTS = {
       meta: 'Savi’s Workshop', alt: 'Four lightsabers on the wall of Savi’s Workshop built in Minecraft' },
     'if-legacy-saber-shop': { src: 'star-wars/imagine-fun/legacy-saber-shop.jpg', title: 'The Legacy Saber Shop',
       desc: 'Four hilts on the shelf, 94.65K coins to spend on them, Dok-Ondar’s the nearest warp. Sixty-two guests online at a quarter to one in the morning.',
-      meta: '12 May 2024 · 12:47 AM', alt: 'The Legacy Saber Shop window on Imagine Fun with four hilts for sale' },
+      alt: 'The Legacy Saber Shop window on Imagine Fun with four hilts for sale' },
     'if-dok-ondars': { src: 'star-wars/imagine-fun/dok-ondars-shop.jpg', title: 'Dok-Ondar’s',
       desc: 'The other shop: helmets rather than hilts. A Mandalorian’s, a stormtrooper’s, and the rest of the case.',
-      meta: '12 May 2024', alt: 'Dok-Ondar’s shop window on Imagine Fun, selling helmets' },
+      alt: 'Dok-Ondar’s shop window on Imagine Fun, selling helmets' },
     'if-saber-locker': { src: 'star-wars/imagine-fun/saber-locker.jpg', title: 'The saber locker',
       desc: 'Locker #3, every slot a hilt, and a purple one out in hand on Main Street.',
       meta: 'Locker #3', alt: 'A locker window full of lightsaber hilts on Imagine Fun' },
@@ -184,25 +189,25 @@ window.FAN_SHOTS = {
       meta: 'Render', alt: 'A Mandalorian skin holding an ignited gold lightsaber up against the sky' },
     'if-may-the-fourth-2024': { src: 'star-wars/imagine-fun/may-the-fourth-2024.jpg', title: 'May the 4th, 2024',
       desc: 'The event poster: my Mandalorian and the other one, in hyperspace.',
-      meta: 'Poster · 2024', alt: 'The Imagine Fun May the 4th 2024 poster with two Mandalorians in hyperspace' },
+      meta: 'Poster', alt: 'The Imagine Fun May the 4th 2024 poster with two Mandalorians in hyperspace' },
     'if-milk-stand': { src: 'star-wars/imagine-fun/milk-stand.jpg', title: 'The Milk Stand',
       desc: 'Blue milk 7.98, green milk 7.58, the May the 4th sign on the counter and the cups lined up. An earlier year’s event.',
-      meta: 'May the 4th · before 2024', alt: 'The Milk Stand of Galaxy’s Edge built in Minecraft, with prices on the board' },
+      meta: 'May the 4th', alt: 'The Milk Stand of Galaxy’s Edge built in Minecraft, with prices on the board' },
     'if-ogas': { src: 'star-wars/imagine-fun/ogas-cantina.jpg', title: 'Oga’s Cantina',
       desc: 'The doorway with the sign over it and the event banner on the wall, empty in the small hours.',
-      meta: 'May the 4th · before 2024', alt: 'The entrance of Oga’s Cantina built in Minecraft' },
+      meta: 'May the 4th', alt: 'The entrance of Oga’s Cantina built in Minecraft' },
     'if-tie-echelon': { src: 'star-wars/imagine-fun/tie-echelon.jpg', title: 'The TIE Echelon',
       desc: 'Parked on the First Order side of the outpost with stormtroopers under it and the event sign on the wall.',
-      meta: 'May the 4th · before 2024', alt: 'The TIE Echelon built in Minecraft with stormtrooper characters beneath it' },
+      meta: 'May the 4th', alt: 'The TIE Echelon built in Minecraft with stormtrooper characters beneath it' },
     'if-magic-shot-tie': { src: 'star-wars/imagine-fun/magic-shot-tie-echelon.jpg', title: 'The May the 4th Magic Shot',
       desc: 'Sitting in the TIE Echelon’s cockpit with stars out of the windscreen and a TIE fighter passing, Club 33 tag over my head. The server’s photographers set these up.',
-      meta: '12 May 2024', alt: 'A Magic Shot inside the TIE Echelon cockpit on Imagine Fun' },
+      alt: 'A Magic Shot inside the TIE Echelon cockpit on Imagine Fun' },
     'if-boba-fett': { src: 'star-wars/imagine-fun/boba-fett.jpg', title: 'Boba Fett',
       desc: 'A year on, a new name over my head, MasterThingW, and a Boba Fett character standing beside me indoors in the outpost.',
-      meta: '2 May 2025', alt: 'A Boba Fett character beside the player inside a building on Imagine Fun' },
+      alt: 'A Boba Fett character beside the player inside a building on Imagine Fun' },
     'if-first-order-fight': { src: 'star-wars/imagine-fun/first-order-fight.jpg', title: 'The First Order Fight',
       desc: 'The Esplanade with the Mickey fountain in front and the corner counting intel chips: 141, next rank Specialist. The 2025 event was a war.',
-      meta: '27 May 2025', alt: 'The Esplanade fountain on Imagine Fun with the First Order Fight scoreboard in the corner' },
+      alt: 'The Esplanade fountain on Imagine Fun with the First Order Fight scoreboard in the corner' },
     'if-vs-anakin': { src: 'star-wars/imagine-fun/vs-anakin.jpg', title: 'Abu Vizsla vs Anakin',
       desc: 'A Magic Shot on Mustafar: blades crossed in front of the lava, imaginefun.net in the corner.',
       meta: 'Magic Shot', alt: 'A Magic Shot of two Minecraft characters duelling with lightsabers in front of lava' },
@@ -214,22 +219,22 @@ window.FAN_SHOTS = {
       meta: 'Black Spire Outpost', alt: 'Luke, Leia and Han characters walking in front of the Millennium Falcon on Imagine Fun' },
     'if-dj-r3x': { src: 'star-wars/imagine-fun/dj-r3x.jpg', title: 'DJ R-3X',
       desc: 'Oga’s from the inside, the droid at the decks behind me, in the May the 4th frame.',
-      meta: 'Magic Shot · 2024', alt: 'A Magic Shot inside Oga’s Cantina with DJ R-3X behind the player' },
+      meta: 'Magic Shot', alt: 'A Magic Shot inside Oga’s Cantina with DJ R-3X behind the player' },
     'if-throne': { src: 'star-wars/imagine-fun/the-throne.jpg', title: 'The throne',
       desc: 'Snoke’s chair with a Praetorian Guard either side and the Death Star in the corner, and me sitting in it.',
-      meta: 'Magic Shot · 2024', alt: 'A Magic Shot of the player on a throne between two red Praetorian Guards' },
+      meta: 'Magic Shot', alt: 'A Magic Shot of the player on a throne between two red Praetorian Guards' },
     'if-hyperspace-poster': { src: 'star-wars/imagine-fun/hyperspace-mountain-poster.jpg', title: 'Hyperspace Mountain',
       desc: 'The poster the server made of me in the front row of the ride vehicle, X-wings and TIEs overhead.',
-      meta: 'Poster · 2024', alt: 'An Imagine Fun Hyperspace Mountain poster with the player in the front row of the ride' },
+      meta: 'Poster', alt: 'An Imagine Fun Hyperspace Mountain poster with the player in the front row of the ride' },
     'if-magic-shot-falcon': { src: 'star-wars/imagine-fun/magic-shot-falcon.jpg', title: 'The Falcon, May the 4th',
       desc: 'Standing in front of the ship with a Rebel starbird and crossed sabers over it and hyperspace streaks round the edge.',
-      meta: 'Magic Shot · 2024', alt: 'A May the 4th Magic Shot in front of the Millennium Falcon on Imagine Fun' },
+      meta: 'Magic Shot', alt: 'A May the 4th Magic Shot in front of the Millennium Falcon on Imagine Fun' },
     'if-trivia-first': { src: 'star-wars/imagine-fun/trivia-2024-05-31-first.jpg', title: 'Star Wars Trivia, first',
       desc: 'End of round: 1st TheAbubakrAbu 34, 2nd zanderman24 34, 3rd HorseGirl41 27, five hundred Kingdom Coins, and an Ewok in the chat saying yub nub.',
-      meta: '31 May 2024 · 8:07 PM', alt: 'The Star Wars Trivia results in the chat on Imagine Fun, TheAbubakrAbu first' },
+      alt: 'The Star Wars Trivia results in the chat on Imagine Fun, TheAbubakrAbu first' },
     'if-trivia-stage': { src: 'star-wars/imagine-fun/trivia-2024-06-15-stage.jpg', title: 'Up on the stage',
       desc: 'A cast member on a red-brick stage with me beside them, and the chat congratulating somebody: up those stairs to the right.',
-      meta: '15 Jun 2024', alt: 'The player and a cast member on a stage on Imagine Fun' },
+      alt: 'The player and a cast member on a stage on Imagine Fun' },
     'if-trivia-seventy-five': { src: 'star-wars/imagine-fun/trivia-seventy-five.jpg', title: 'Seventy-five points',
       desc: 'The leaderboard with my name at the top by eight: 75 to Hoobins’ 67. Hollywood Land the nearest warp, 103 guests online.',
       meta: 'Star Wars Trivia · 1st', alt: 'The Star Wars Trivia leaderboard on Imagine Fun with TheAbubakrAbu first on 75 points' },
@@ -278,7 +283,7 @@ window.FAN_SHOTS = {
       meta: '20 Feb 2022', alt: 'The player in the library with a prefect badge on the floor beside them' },
     'pv-owlery': { src: 'harry-potter/potterverse/2024-08-24-0116-owlery.jpg', title: 'The Owlery, two years on',
       desc: 'A return at one in the morning: the Owlery, a quest to get through the Potions room, Lumos on the wand, and another student called Rowan.',
-      meta: '24 Aug 2024 · 1:16 AM', alt: 'The Owlery on the Potterverse server with another player named Rowan' },
+      alt: 'The Owlery on the Potterverse server with another player named Rowan' },
 
     /* ── Pixelmon ── */
     'pixelmon-mewtwo': { src: 'minecraft/pixelmon/mewtwo.jpg', title: 'A level 100 Mewtwo at spawn',
@@ -308,6 +313,54 @@ window.FAN_SHOTS = {
     'spidey-shelf': { src: 'spider-man/shelf.jpg', title: 'The Insomniac trilogy',
       desc: 'Spider-Man Remastered, Miles Morales and Spider-Man 2. Every side mission, every backpack, every suit. The web-swinging in these is the closest a game has come to making a superpower feel like a skill.',
       meta: 'Three games · 100.0% each', alt: 'Spider-Man 2, Miles Morales and Spider-Man Remastered, each marked 100% Complete' },
+
+    /* ── the Insomniac trilogy, all three at a hundred percent ──
+       One shelf frame each is on the wall further up /gaming/; these are the
+       screens the games print for themselves. Every figure below is read off
+       the frame it is under. */
+    'spidey-1-banner': { src: 'spider-man/spider-man-1/banner.jpg', title: 'Spider-Man Remastered, 78 of 78',
+      desc: 'The library banner as the receipt: 39.4 hours, every one of the seventy-eight achievements, and the collection\u2019s hundred percent tag in the corner.',
+      meta: '39.4 hours \u00b7 78/78', alt: 'Steam library banner for Marvel\u2019s Spider-Man Remastered, showing 39.4 hours and 78 of 78 achievements' },
+    'spidey-1-profiles': { src: 'spider-man/spider-man-1/load-game.jpg', title: 'Two profiles, back to back',
+      desc: 'Profile 1 at 100% on Spectacular, level 50, dated 9/24/2024; Profile 2 a New Game+ run on Ultimate started the next day and already 61% through the story. The panel underneath is the game offering New Game+ for the first time.',
+      meta: 'Spectacular \u00b7 then Ultimate', alt: 'The Spider-Man profile select screen: one save at 100% and a New Game+ save at 61%' },
+    'spidey-1-main-story': { src: 'spider-man/spider-man-1/main-story.jpg', title: 'Main story finished',
+      desc: 'The alert the game throws when the story is done: the time of day unlocks in the research stations, and Ultimate difficulty and New Game+ open up.',
+      meta: 'SUCCESS!!!', alt: 'A Marvel\u2019s Spider-Man alert reading Congratulations, you have finished the main story' },
+    'spidey-1-all-stories': { src: 'spider-man/spider-man-1/all-stories.jpg', title: 'Every story, DLC included',
+      desc: 'The Additional Content tab with all four at a hundred percent: the main story, then The Heist, Turf Wars and Silver Lining, which are the three chapters of The City That Never Sleeps.',
+      meta: 'Main story + three DLC', alt: 'The Spider-Man additional content menu with the main story and three DLC chapters all at 100%' },
+    'spidey-1-skills': { src: 'spider-man/spider-man-1/skills.jpg', title: 'All three trees',
+      desc: 'Innovator, Defender and Webslinger at a hundred percent each, at level 50 with 35 resources left over.',
+      meta: 'Level 50 \u00b7 100% \u00d7 3', alt: 'The Spider-Man skills screen with all three trees at 100%' },
+    'spidey-1-suits': { src: 'spider-man/spider-man-1/suits.jpg', title: 'The Advanced Suit',
+      desc: 'The suit the game puts on the cover, and the one worth ending on. The tab reads 100% complete: every suit, every mod, every suit power.',
+      meta: 'Suits \u00b7 100% complete', alt: 'The Spider-Man suit menu showing the Advanced Suit and 100% complete' },
+
+    'spidey-mm-banner': { src: 'spider-man/miles-morales/banner.jpg', title: 'Miles Morales, 50 of 50',
+      desc: 'Seventeen and a bit hours, which is the shortest of the three and the tightest.',
+      meta: '17.3 hours \u00b7 50/50', alt: 'Steam library banner for Marvel\u2019s Spider-Man: Miles Morales, showing 17.3 hours and 50 of 50 achievements' },
+    'spidey-mm-last': { src: 'spider-man/miles-morales/all-achievements.jpg', title: 'The last one',
+      desc: 'Plus Plus, for finishing the game on New Game+, and the toast that comes with it: all achievements unlocked, 50/50.',
+      meta: 'Plus Plus', alt: 'A Steam toast reading you have unlocked all achievements, 50 of 50' },
+    'spidey-mm-achievements': { src: 'spider-man/miles-morales/achievements.jpg', title: 'Be Yourself',
+      desc: 'The achievement list with the timestamp on it: Be Yourself, collect all achievements, unlocked 2 March 2026 at 1:32 AM, in the same minute as Plus Plus above it.',
+      meta: 'Unlocked 2 Mar 2026 \u00b7 1:32 AM', alt: 'The Steam achievement list for Miles Morales, every achievement unlocked' },
+
+    'spidey-2-banner': { src: 'spider-man/spider-man-2/banner.jpg', title: 'Spider-Man 2, 43 of 43',
+      desc: 'Forty and a bit hours across both of them, Peter and Miles, and the symbiote arc in the middle.',
+      meta: '40.4 hours \u00b7 43/43', alt: 'Steam library banner for Marvel\u2019s Spider-Man 2, showing 40.4 hours and 43 of 43 achievements' },
+    'spidey-2-last': { src: 'spider-man/spider-man-2/all-achievements.jpg', title: 'Once More, With Feeling',
+      desc: 'The last achievement of the three games: finish the main story in New Game+. 43 of 43, a hundred percent.',
+      meta: 'The last of all three', alt: 'A Steam toast reading you have unlocked all achievements, 43 of 43' },
+    'spidey-2-skills': { src: 'spider-man/spider-man-2/skills.jpg', title: 'Level 60',
+      desc: 'The abilities screen near the end: level 60, three skill points spare, and the gadget upgrades being bought out.',
+      meta: 'Level 60', alt: 'The Spider-Man 2 abilities screen at level 60' },
+
+    /* ── not a game at all ── */
+    'oi-order': { src: 'gaming/oi-order.jpg', title: 'The Oi Order',
+      desc: 'Eleven lines of Python on a Windows laptop, in IDLE, run five times in a row and landing on a different one of the five names each time. It picks a member of the Oi High Council at random and announces who the smartest person in the Oi Order is; when it lands on Oi_MasterThingW it prints THE SHELL HAS SPOKEN, and when it lands on anybody else it prints THE SHELL HAS MADE A MISTAKE and names me instead. Python 3.8.5, saved as The Oi Order.py.',
+      meta: 'random.choice \u00b7 five names', alt: 'A Python script open in IDLE beside a shell that has run it six times' },
 
     /* ── the four Steam Replays ──
        Steam publishes one of these per year in December and it expires with
@@ -386,6 +439,12 @@ window.FAN_SHOTS = {
       lede: 'The other thing Minecraft servers were for: a mod that put the entire Pokémon system inside the game, running on a public server, with an economy and a jail and a rule against releasing anything at spawn.',
       items: ['pixelmon-mewtwo'] },
 
+    'spider-man-hundred': { title: 'All Three, Platinum', note: 'Insomniac \u00b7 2024, 2026, 2026', grid: true, wide: true,
+      lede: 'The shelf, and then what each of the three prints when you get to the end of it: the library banner with the play time on it, the save slots, the skill trees emptied out, and the toast for the last achievement. Remastered in September 2024, Miles Morales in March 2026, Spider-Man 2 four months later.',
+      items: ['spidey-shelf', 'spidey-1-banner', 'spidey-1-profiles', 'spidey-1-main-story', 'spidey-1-all-stories',
+              'spidey-1-skills', 'spidey-1-suits', 'spidey-mm-banner', 'spidey-mm-last', 'spidey-mm-achievements',
+              'spidey-2-banner', 'spidey-2-last', 'spidey-2-skills'] },
+
     /* ── /gaming/ ──
        Two sets that belong to no single franchise, which is the whole reason
        that page exists. `steam-replay` runs a year per row: the card first,
@@ -395,8 +454,358 @@ window.FAN_SHOTS = {
       items: ['steam-2022', 'steam-2022-vs', 'steam-2023', 'steam-2023-vs', 'steam-2024', 'steam-2024-vs',
               'steam-2025', 'steam-2025-vs', 'steam-2022-vr'] },
 
+    'oi-order': { title: 'The Oi Order', note: 'Python \u00b7 IDLE \u00b7 a Windows laptop', wide: true,
+      lede: 'Not a game, and the only picture on this site that is a piece of code. The Oi Order was five of us and I gave it a High Council and a script to settle the only question that mattered. It is here because it belongs to exactly the same afternoons as everything else on this page.',
+      items: ['oi-order'] },
+
+    /* The three shelves and the one four-up completion screen. LEGO Pirates
+       used to be a fifth frame here and came out on 2026-08-31: a single
+       paused game sitting beside three whole collections was the odd one out,
+       and it is still on /gaming/ a section further down, inside the LEGO
+       catalogue where the other twelve finished games are. */
     'hundred-percent': { title: 'The Hundred Percents', note: 'every receipt I have', two: true,
-      lede: 'Steam sorts a collection by percentage of achievements complete, which turns the library into a scoreboard. These are the three collection views I keep, plus the two completion screens the games print for themselves. Each one is also on the page of the world it belongs to.',
-      items: ['sw-shelf', 'ww-shelf', 'spidey-shelf', 'lego-star-wars-hundred', 'lego-pirates-hundred'] },
+      lede: 'Steam sorts a collection by percentage of achievements complete, which turns the library into a scoreboard. These are the three collection views I keep, plus the completion screens for the four LEGO Star Wars games in one frame. Each one is also on the page of the world it belongs to.',
+      items: ['sw-shelf', 'ww-shelf', 'spidey-shelf', 'lego-star-wars-hundred'] },
   },
+
+  /* ── when every frame was taken ─────────────────────────────────────────
+     One row per picture the site serves, keyed by the same path as `src`
+     above, and complete: assets/img/franchises/ and this table have exactly
+     the same 230 entries, so no screenshot on this site is undated. Read by
+     fanpage.js (the caption under every screenshot) and by gaming-data.js
+     (the same, for the frames that have no row above), through when() below.
+
+     THIS IS WHEN THE PICTURE WAS TAKEN, not when the thing in it happened.
+     They are often different and both are worth printing: the Disneyland
+     Fanatic achievement unlocked on 4 May 2024 and the frame of it is dated
+     later, so its `meta` says the first and this says the second.
+
+     WHERE EACH DATE COMES FROM. Every one of these files is in the Video Game
+     Screenshots library on iCloud, which is the canonical copy and has its
+     own README about exactly this; the value here is derived from it and from
+     nothing else, in this order:
+
+       1. a capture timestamp in the file's own name (Steam's
+          `20240918004116_1`, Minecraft's `2026-08-19_18.18.54`, Xnip's
+          `Xnip2025-12-27_21-52-03`, the Windows Snipping Tool's): 961 files
+          in the library carry one, and it is exact;
+       2. the same timestamp recovered from an older copy's name, recorded in
+          the library's `crtime-plan-backups-20260830.txt`;
+       3. the file's own creation date, where the file has never been through
+          anything that resets one.
+
+     A LEADING `<` MEANS "BEFORE", AND IT IS NOT A HEDGE. Two bulk copies and
+     two batch re-encodes (2023-10-14, 2023-12-22, 2025-08-09 and 2025-09-28)
+     overwrote the creation dates of about 900 files in the library years
+     before any of this, and a copy date is an upper bound: the picture is
+     older than that, by an unknown amount, and the library has no second
+     source for it. Ninety of the frames here are in that state and say so
+     rather than printing a date that is really the day a folder was moved.
+     One test does most of that work: a batch re-encode leaves a
+     "Compressed by jpeg-recompress" comment in the file, so a 2025-09-28 file
+     without the marker was captured that evening rather than rewritten.
+
+     A DAY WITH NO TIME is a file whose name and whose clock disagree by more
+     than a minute, which is the same instant read in two timezones: the nine
+     Steam Replay captures were named at 21:52 and are stamped 12:52, so they
+     keep the day, 27 December 2025, and drop the hour. */
+  dates: {
+    'fnaf/fnaf-1/art.jpg':                                         '<2023-11-06',
+    'fnaf/fnaf-1/banner.jpg':                                      '2026-08-25 14:55',
+    'fnaf/fnaf-1/seventh-night.jpg':                               '2023-11-09 18:37',
+    'fnaf/fnaf-1/three-stars.jpg':                                 '2023-11-09 18:37',
+
+    'fnaf/fnaf-2/banner.jpg':                                      '2026-08-25 14:55',
+    'fnaf/fnaf-2/night-five.jpg':                                  '<2025-09-28',
+    'fnaf/fnaf-2/night-six.jpg':                                   '<2025-09-28',
+
+    'gaming/oi-order.jpg':                                         '<2023-10-14',
+
+    'gaming/steam/2022-vr.jpg':                                    '2025-12-27',
+    'gaming/steam/2022-vs-steam.jpg':                              '2025-12-27',
+    'gaming/steam/2022.jpg':                                       '2025-12-27',
+    'gaming/steam/2023-vs-steam.jpg':                              '2025-12-27',
+    'gaming/steam/2023.jpg':                                       '2025-12-27',
+    'gaming/steam/2024-vs-steam.jpg':                              '2025-12-27',
+    'gaming/steam/2024.jpg':                                       '2025-12-27',
+    'gaming/steam/2025-vs-steam.jpg':                              '2025-12-27',
+    'gaming/steam/2025.jpg':                                       '2025-12-27',
+
+    'harry-potter/hogwarts-legacy/acceptance-letter.jpg':          '2024-11-05 23:51',
+    'harry-potter/hogwarts-legacy/all-houses.jpg':                 '2024-11-07 01:34',
+    'harry-potter/hogwarts-legacy/banner.jpg':                     '<2025-09-28',
+    'harry-potter/hogwarts-legacy/challenges.jpg':                 '2024-11-05 02:07',
+    'harry-potter/hogwarts-legacy/highlands-map.jpg':              '2024-11-05 01:17',
+    'harry-potter/hogwarts-legacy/hogwarts-map.jpg':               '2024-11-05 23:50',
+    'harry-potter/hogwarts-legacy/menu.jpg':                       '2024-11-05 02:10',
+    'harry-potter/hogwarts-legacy/story-complete.jpg':             '2024-10-24 15:04',
+
+    'harry-potter/potterverse/2024-08-24-0116-owlery.jpg':         '2024-08-24 01:16',
+    'harry-potter/potterverse/hogwarts-express.jpg':               '<2023-10-14',
+    'harry-potter/potterverse/house-banners.jpg':                  '<2023-10-14',
+    'harry-potter/potterverse/library.jpg':                        '<2023-10-14',
+    'harry-potter/potterverse/ollivanders.jpg':                    '<2023-10-14',
+    'harry-potter/potterverse/prefect-badge.jpg':                  '<2023-10-14',
+    'harry-potter/potterverse/prefect.jpg':                        '<2023-10-14',
+    'harry-potter/potterverse/ravenclaw.jpg':                      '<2023-10-14',
+    'harry-potter/potterverse/sorting.jpg':                        '<2023-10-14',
+
+    'harry-potter/quidditch-champions/banner.jpg':                 '<2025-09-28',
+    'harry-potter/quidditch-champions/last-achievement.jpg':       '<2025-09-28',
+    'harry-potter/quidditch-champions/skill-points.jpg':           '2025-09-26 23:34',
+    'harry-potter/quidditch-champions/victory.jpg':                '2025-09-26 23:33',
+
+    'harry-potter/shelf.jpg':                                      '<2025-09-28',
+
+    'lego/batman-2/banner.jpg':                                    '2026-08-13 02:04',
+    'lego/batman-2/characters.jpg':                                '2026-08-13 02:03',
+    'lego/batman-2/load-game.jpg':                                 '2026-08-13 02:01',
+    'lego/batman-2/pause-screen.jpg':                              '2026-08-13 01:58',
+    'lego/batman-2/start-screen.jpg':                              '2026-08-12 00:52',
+
+    'lego/batman/banner.jpg':                                      '2026-08-07 01:02',
+    'lego/batman/characters.jpg':                                  '2026-04-20 02:33',
+    'lego/batman/load-game.jpg':                                   '2026-04-20 02:37',
+    'lego/batman/pause-screen.jpg':                                '2026-04-20 02:35',
+    'lego/batman/start-screen.jpg':                                '2026-03-07 14:11',
+
+    'lego/clone-wars/banner.jpg':                                  '2026-08-07 01:11',
+    'lego/clone-wars/characters.jpg':                              '<2023-10-14',
+    'lego/clone-wars/load-game.jpg':                               '<2023-10-14',
+    'lego/clone-wars/pause-screen.jpg':                            '<2023-10-14',
+    'lego/clone-wars/start-screen.jpg':                            '2026-08-25 03:28',
+
+    'lego/complete-saga/banner.jpg':                               '2026-08-07 01:09',
+    'lego/complete-saga/characters.jpg':                           '<2023-10-14',
+    'lego/complete-saga/load-game.jpg':                            '<2023-10-14',
+    'lego/complete-saga/pause-screen.jpg':                         '2026-08-11 13:45',
+    'lego/complete-saga/start-screen.jpg':                         '2026-08-11 13:47',
+    'lego/complete-saga/stud-fountain.jpg':                        '<2023-10-14',
+
+    'lego/force-awakens/banner.jpg':                               '<2023-10-14',
+    'lego/force-awakens/characters.jpg':                           '<2023-10-14',
+    'lego/force-awakens/galaxy-map.jpg':                           '<2023-10-14',
+    'lego/force-awakens/load-game.jpg':                            '<2023-10-14',
+    'lego/force-awakens/pause-screen.jpg':                         '<2023-10-14',
+    'lego/force-awakens/start-screen.jpg':                         '<2023-10-14',
+
+    'lego/harry-potter-years-1-4/banner.jpg':                      '<2025-09-28',
+    'lego/harry-potter-years-1-4/characters.jpg':                  '2025-09-02 21:41',
+    'lego/harry-potter-years-1-4/load-game.jpg':                   '2025-09-02 22:05',
+    'lego/harry-potter-years-1-4/pause-screen.jpg':                '2025-09-02 22:05',
+    'lego/harry-potter-years-1-4/start-screen.jpg':                '2023-09-29 16:13',
+
+    'lego/harry-potter-years-5-7/banner.jpg':                      '<2025-09-28',
+    'lego/harry-potter-years-5-7/characters.jpg':                  '2026-08-11 13:17',
+    'lego/harry-potter-years-5-7/load-game.jpg':                   '2025-09-20 00:36',
+    'lego/harry-potter-years-5-7/pause-screen.jpg':                '2025-09-20 00:35',
+    'lego/harry-potter-years-5-7/start-screen.jpg':                '2025-09-03 17:02',
+    'lego/harry-potter-years-5-7/stud-fountain.jpg':               '2025-09-20 00:36',
+
+    'lego/indiana-jones-2/banner.jpg':                             '2026-08-07 00:25',
+    'lego/indiana-jones-2/load-game.jpg':                          '2026-08-07 00:16',
+    'lego/indiana-jones-2/pause-screen.jpg':                       '2026-08-07 00:23',
+    'lego/indiana-jones-2/start-screen.jpg':                       '2026-08-03 01:58',
+
+    'lego/indiana-jones/banner.jpg':                               '2023-09-16 14:01',
+    'lego/indiana-jones/characters.jpg':                           '2026-08-11 13:12',
+    'lego/indiana-jones/load-game.jpg':                            '2023-09-16 14:01',
+    'lego/indiana-jones/pause-screen.jpg':                         '2026-08-11 13:12',
+    'lego/indiana-jones/start-screen.jpg':                         '2023-06-10 22:19',
+    'lego/indiana-jones/stud-fountain.jpg':                        '2023-09-16 13:57',
+
+    'lego/lord-of-the-rings/banner.jpg':                           '2026-08-30 00:14',
+    'lego/lord-of-the-rings/characters.jpg':                       '2026-08-30 00:12',
+    'lego/lord-of-the-rings/load-game.jpg':                        '2026-08-30 00:05',
+    'lego/lord-of-the-rings/pause-screen.jpg':                     '2026-08-29 23:56',
+    'lego/lord-of-the-rings/start-screen.jpg':                     '2026-08-13 18:32',
+
+    'lego/marvel-super-heroes/banner.jpg':                         '2026-08-02 17:46',
+    'lego/marvel-super-heroes/characters.jpg':                     '2026-08-02 17:02',
+    'lego/marvel-super-heroes/load-game.jpg':                      '2026-08-02 17:36',
+    'lego/marvel-super-heroes/pause-screen.jpg':                   '2026-08-02 17:35',
+    'lego/marvel-super-heroes/start-screen.jpg':                   '2026-08-25 03:28',
+
+    'lego/pirates/banner.jpg':                                     '2023-09-28 16:01',
+    'lego/pirates/characters.jpg':                                 '2023-09-28 15:51',
+    'lego/pirates/load-game.jpg':                                  '2023-09-28 16:01',
+    'lego/pirates/pause-screen.jpg':                               '2023-09-28 16:01',
+    'lego/pirates/start-screen.jpg':                               '2026-08-13 02:30',
+
+    'lego/skywalker-saga/banner.jpg':                              '<2023-10-14',
+    'lego/skywalker-saga/characters.jpg':                          '<2023-10-14',
+    'lego/skywalker-saga/load-game.jpg':                           '<2023-10-14',
+    'lego/skywalker-saga/pause-screen.jpg':                        '<2023-10-14',
+    'lego/skywalker-saga/start-screen.jpg':                        '2022-04-09 15:29',
+    'lego/skywalker-saga/stud-fountain.jpg':                       '<2023-10-14',
+
+    'lego/thirty-years.jpg':                                       '2026-04-28 02:19',
+
+    'minecraft/imagine-fun/2025-05-27-2250-halfway.jpg':           '2025-05-27 22:50',
+    'minecraft/imagine-fun/2025-07-22-0203-ride-log.jpg':          '2025-07-22 02:03',
+    'minecraft/imagine-fun/2025-07-22-0204-seventieth-pin.jpg':    '2025-07-22 02:04',
+    'minecraft/imagine-fun/2026-02-14-1324-esplanade.jpg':         '2026-02-14 13:24',
+    'minecraft/imagine-fun/disney100-castle.jpg':                  '<2023-10-14',
+    'minecraft/imagine-fun/disneyland-fanatic.jpg':                '<2025-09-28',
+    'minecraft/imagine-fun/entrance-tunnel.jpg':                   '<2023-12-22',
+    'minecraft/imagine-fun/food-locker.jpg':                       '2023-08-20 16:19',
+    'minecraft/imagine-fun/hundred-thousand-coins.jpg':            '<2023-10-14',
+    'minecraft/imagine-fun/scrooge-mcduck.jpg':                    '<2023-10-14',
+    'minecraft/imagine-fun/wondrous-journeys.jpg':                 '<2023-10-14',
+
+    'minecraft/pixelmon/mewtwo.jpg':                               '<2023-10-14',
+
+    'minecraft/realms/2026-07-04-2009-day-one.jpg':                '2026-07-04 20:09',
+    'minecraft/realms/2026-07-28-0111-savanna.jpg':                '2026-07-28 01:11',
+    'minecraft/realms/2026-08-19-1818-portal-room.jpg':            '2026-08-19 18:18',
+    'minecraft/realms/2026-08-19-1819-the-end.jpg':                '2026-08-19 18:19',
+    'minecraft/realms/2026-08-19-1822-crystals.jpg':               '2026-08-19 18:22',
+    'minecraft/realms/2026-08-19-1824-hitboxes.jpg':               '2026-08-19 18:24',
+    'minecraft/realms/2026-08-19-1824-the-dragon.jpg':             '2026-08-19 18:24',
+    'minecraft/realms/2026-08-19-1826-under-the-dragon.jpg':       '2026-08-19 18:26',
+    'minecraft/realms/2026-08-19-1828-quatic.jpg':                 '2026-08-19 18:28',
+    'minecraft/realms/2026-08-19-1830-free-the-end.jpg':           '2026-08-19 18:30',
+    'minecraft/realms/2026-08-19-1831-exit-portal.jpg':            '2026-08-19 18:31',
+    'minecraft/realms/2026-08-19-1831-gentlesigma.jpg':            '2026-08-19 18:31',
+    'minecraft/realms/2026-08-19-1833-outer-end.jpg':              '2026-08-19 18:33',
+    'minecraft/realms/2026-08-19-1834-end-city.jpg':               '2026-08-19 18:34',
+    'minecraft/realms/2026-08-19-1903-end-ship.jpg':               '2026-08-19 19:03',
+    'minecraft/realms/2026-08-23-2315-next-generation.jpg':        '2026-08-23 23:15',
+    'minecraft/realms/2026-08-23-2344-advancements.jpg':           '2026-08-23 23:44',
+    'minecraft/realms/2026-08-23-2349-in-the-water.jpg':           '2026-08-23 23:49',
+    'minecraft/realms/2026-08-23-2349-sunset.jpg':                 '2026-08-23 23:49',
+    'minecraft/realms/2026-08-23-2350-nether-portal.jpg':          '2026-08-23 23:50',
+    'minecraft/realms/2026-08-23-2350-underwater.jpg':             '2026-08-23 23:50',
+    'minecraft/realms/gear-abbasid-vanguard.jpg':                  '2026-08-23 23:47',
+    'minecraft/realms/gear-burrow.jpg':                            '2026-08-23 23:47',
+    'minecraft/realms/gear-death-star.jpg':                        '2026-08-23 23:47',
+    'minecraft/realms/gear-dragon-egg.jpg':                        '2026-08-23 23:49',
+    'minecraft/realms/gear-fetts-jetpack.jpg':                     '2026-08-23 23:49',
+    'minecraft/realms/gear-harvest.jpg':                           '2026-08-23 23:47',
+    'minecraft/realms/gear-ice-longclaw.jpg':                      '2026-08-23 23:47',
+    'minecraft/realms/gear-mandalore.jpg':                         '2026-08-23 23:47',
+    'minecraft/realms/gear-mjolnir.jpg':                           '2026-08-23 23:47',
+    'minecraft/realms/gear-nimbus-vecna.jpg':                      '2026-08-23 23:48',
+    'minecraft/realms/gear-rashidun-sentinel.jpg':                 '2026-08-23 23:47',
+    'minecraft/realms/gear-stormbreaker.jpg':                      '2026-08-23 23:47',
+
+    'spider-man/miles-morales/achievements.jpg':                   '2026-03-02 01:38',
+    'spider-man/miles-morales/all-achievements.jpg':               '2026-03-02 01:37',
+    'spider-man/miles-morales/banner.jpg':                         '2026-03-02 01:37',
+
+    'spider-man/shelf.jpg':                                        '2026-08-02 18:07',
+
+    'spider-man/spider-man-1/all-stories.jpg':                     '2024-09-24 14:16',
+    'spider-man/spider-man-1/banner.jpg':                          '<2025-09-28',
+    'spider-man/spider-man-1/load-game.jpg':                       '2024-09-25 16:24',
+    'spider-man/spider-man-1/main-story.jpg':                      '2024-09-21 17:30',
+    'spider-man/spider-man-1/skills.jpg':                          '2024-09-22 13:50',
+    'spider-man/spider-man-1/suits.jpg':                           '2024-09-24 14:16',
+
+    'spider-man/spider-man-2/all-achievements.jpg':                '2026-07-25 17:56',
+    'spider-man/spider-man-2/banner.jpg':                          '2026-07-25 17:56',
+    'spider-man/spider-man-2/skills.jpg':                          '2026-07-09 19:37',
+
+    'star-wars/battlefront-2/achievements.jpg':                    '2025-09-28 23:06',
+    'star-wars/battlefront-2/banner.jpg':                          '<2025-09-28',
+    'star-wars/battlefront-2/campaign-complete.jpg':               '2025-03-10 23:37',
+    'star-wars/battlefront-2/milestones.jpg':                      '2025-09-28 23:06',
+
+    'star-wars/droid-repair-bay/banner.jpg':                       '<2025-09-28',
+
+    'star-wars/fallen-order/achievements.jpg':                     '<2024-03-22',
+    'star-wars/fallen-order/banner.jpg':                           '<2024-03-22',
+    'star-wars/fallen-order/load-game.jpg':                        '<2023-10-14',
+    'star-wars/fallen-order/play-time.jpg':                        '2026-08-25 16:43',
+    'star-wars/fallen-order/start-screen.jpg':                     '2024-03-17 11:03',
+    'star-wars/fallen-order/tactical-guide.jpg':                   '2024-03-22 17:44',
+
+    'star-wars/imagine-fun/a-galaxy-far-far-away.jpg':             '2025-05-18 15:20',
+    'star-wars/imagine-fun/boba-fett.jpg':                         '2025-05-02 00:15',
+    'star-wars/imagine-fun/dagobah.jpg':                           '<2023-12-22',
+    'star-wars/imagine-fun/dj-r3x.jpg':                            '<2023-12-22',
+    'star-wars/imagine-fun/dok-ondars-shop.jpg':                   '2024-05-12 00:47',
+    'star-wars/imagine-fun/falcon-cockpit.jpg':                    '<2023-12-22',
+    'star-wars/imagine-fun/first-order-fight.jpg':                 '2025-05-27 13:04',
+    'star-wars/imagine-fun/first-order-invasion.jpg':              '<2025-09-28',
+    'star-wars/imagine-fun/gold-kenobi-saber-ignited.jpg':         '<2023-12-22',
+    'star-wars/imagine-fun/gold-kenobi-saber.jpg':                 '<2023-12-22',
+    'star-wars/imagine-fun/hoth.jpg':                              '<2023-12-22',
+    'star-wars/imagine-fun/hyperspace-mountain-poster.jpg':        '<2023-12-22',
+    'star-wars/imagine-fun/hyperspace-mountain-ten-times.jpg':     '<2025-09-28',
+    'star-wars/imagine-fun/laat-gunship.jpg':                      '<2023-12-22',
+    'star-wars/imagine-fun/landspeeder.jpg':                       '<2023-12-22',
+    'star-wars/imagine-fun/legacy-saber-shop.jpg':                 '2024-05-12 00:47',
+    'star-wars/imagine-fun/luke-leia-and-han.jpg':                 '<2023-12-22',
+    'star-wars/imagine-fun/magic-shot-falcon.jpg':                 '<2023-12-22',
+    'star-wars/imagine-fun/magic-shot-tie-echelon.jpg':            '2024-05-12 00:50',
+    'star-wars/imagine-fun/may-the-fourth-2024.jpg':               '2024-05-12 00:44',
+    'star-wars/imagine-fun/milk-stand.jpg':                        '<2023-12-22',
+    'star-wars/imagine-fun/millennium-falcon.jpg':                 '<2023-12-22',
+    'star-wars/imagine-fun/ogas-cantina.jpg':                      '<2023-12-22',
+    'star-wars/imagine-fun/razor-crest.jpg':                       '<2023-12-22',
+    'star-wars/imagine-fun/rise-of-the-resistance-escape-pod.jpg': '<2023-12-22',
+    'star-wars/imagine-fun/saber-locker.jpg':                      '2023-08-20 16:19',
+    'star-wars/imagine-fun/savis-workshop.jpg':                    '<2023-12-22',
+    'star-wars/imagine-fun/spawn.jpg':                             '<2023-12-22',
+    'star-wars/imagine-fun/starspeeder-1000.jpg':                  '<2023-12-22',
+    'star-wars/imagine-fun/the-throne.jpg':                        '<2023-12-22',
+    'star-wars/imagine-fun/tie-echelon.jpg':                       '<2023-12-22',
+    'star-wars/imagine-fun/trivia-2024-05-31-first.jpg':           '2024-05-31 20:07',
+    'star-wars/imagine-fun/trivia-2024-06-15-stage.jpg':           '2024-06-15 13:56',
+    'star-wars/imagine-fun/trivia-quiz-stage.jpg':                 '<2023-12-22',
+    'star-wars/imagine-fun/trivia-seventy-five.jpg':               '<2023-12-22',
+    'star-wars/imagine-fun/trivia-top-three.jpg':                  '<2023-12-22',
+    'star-wars/imagine-fun/vs-anakin.jpg':                         '<2023-12-22',
+    'star-wars/imagine-fun/vs-obi-wan.jpg':                        '<2023-12-22',
+
+    'star-wars/lego-hundred-percent.jpg':                          '<2025-09-28',
+    'star-wars/shelf.jpg':                                         '<2025-09-28',
+
+    'star-wars/outlaws/achievements.jpg':                          '<2025-09-28',
+    'star-wars/outlaws/all-achievements.jpg':                      '<2025-09-28',
+    'star-wars/outlaws/banner.jpg':                                '<2025-09-28',
+
+    'star-wars/star-wars-mc/legacy-sabers.jpg':                    '<2023-10-14',
+    'star-wars/star-wars-mc/parkour.jpg':                          '<2023-10-14',
+    'star-wars/star-wars-mc/saber-inventory.jpg':                  '<2023-10-14',
+
+    'star-wars/survivor/achievements.jpg':                         '<2023-10-14',
+    'star-wars/survivor/banner.jpg':                               '<2023-10-14',
+    'star-wars/survivor/galaxy-map.jpg':                           '<2023-10-14',
+    'star-wars/survivor/load-game.jpg':                            '<2023-10-14',
+    'star-wars/survivor/start-screen.jpg':                         '<2023-10-14',
+    'star-wars/survivor/tactical-guide.jpg':                       '<2023-10-14',
+  },
+
+  /* '2026-08-19 18:18' -> '19 Aug 2026 · 6:18 PM', '2026-08' -> 'August 2026',
+     '<2023-10-14' -> 'before 14 Oct 2023'. The table holds machine-readable
+     values and this is the only place they are turned into words, so every
+     date on every page is formatted the same way. */
+  when: function (src) {
+    var v = (this.dates && this.dates[src]) || '';
+    /* A frame dropped in since this table was last written still gets a date
+       if its NAME carries one, `YYYY-MM-DD-HHMM-slug`, the way the photographs
+       are named. That is what keeps "add a picture" from meaning "edit a data
+       file": the table is for the frames whose names cannot say it. */
+    if (!v) {
+      var n = /(\d{4})-(\d{2})-(\d{2})-(\d{2})(\d{2})-[^/]*$/.exec(String(src));
+      if (n) v = n[1] + '-' + n[2] + '-' + n[3] + ' ' + n[4] + ':' + n[5];
+    }
+    var before = v.charAt(0) === '<';
+    if (before) v = v.slice(1);
+    var m = /^(\d{4})-(\d{2})(?:-(\d{2}))?(?: (\d{2}):(\d{2}))?$/.exec(v);
+    if (!m) return v;
+    var SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var LONG = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+                'August', 'September', 'October', 'November', 'December'];
+    var out = m[3] ? (+m[3]) + ' ' + SHORT[+m[2] - 1] + ' ' + m[1]
+                   : LONG[+m[2] - 1] + ' ' + m[1];
+    if (m[4]) {
+      var h = +m[4];
+      out += ' · ' + ((h % 12) || 12) + ':' + m[5] + ' ' + (h >= 12 ? 'PM' : 'AM');
+    }
+    return before ? 'before ' + out : out;
+  },
+
 };
