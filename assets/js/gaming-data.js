@@ -91,7 +91,7 @@ window.FAN_PAGE = (function gaming() {
        this file: it is not a copy. `window.LEGO_GAMES` is the same object
        /worlds/lego/ renders, out of lego-games.js, so the two pages cannot
        drift. It sits here because it is the completion wall above it written
-       out game by game, and because its thirteen finished titles carry 69 of
+       out game by game, and because its fourteen finished titles carry 74 of
        the site's screenshots, which is why there is no LEGO sheet lower down.
        A page that fails to load lego-games.js simply skips it. */
     window.LEGO_GAMES,
@@ -124,8 +124,8 @@ window.FAN_PAGE = (function gaming() {
         { tag: 'Steam · 36 in one collection', title: 'Star Wars', sub: 'nine at a hundred percent', accent: '#ffe81f',
           desc: 'Four LEGO ones, both Jedi games, Outlaws, Droid Repair Bay and Battlefront II, every one of them with its own banner, save slot and achievement screen on that page. Six of the nine are the row the collection view shows when it is sorted by achievements.',
           href: '/worlds/star-wars/', link: 'The page', meta: 'Sorted by achievements' },
-        { tag: 'TT Games · the whole catalogue', title: 'LEGO', sub: 'thirteen finished', accent: '#ffd21f',
-          desc: 'Every LEGO game since 2005 with a sort control on it: by release date, by my rating, by my time, or by how long each one is reckoned to take. Thirteen at a hundred percent, and the Skywalker Saga alone is 79 hours of that.',
+        { tag: 'TT Games · the whole catalogue', title: 'LEGO', sub: 'fourteen finished', accent: '#ffd21f',
+          desc: 'Every LEGO game since 2005 with a sort control on it: by release date, by my rating, by my time, or by how long each one is reckoned to take. Fourteen at a hundred percent, and the Skywalker Saga alone is 79 hours of that.',
           href: '/worlds/lego/', link: 'The page', meta: 'Grid or list' },
         { tag: 'Wizarding World · 5', title: 'Harry Potter', sub: 'three platinums', accent: '#d9b45f',
           desc: 'Hogwarts Legacy, Quidditch Champions and the LEGO Harry Potter Collection, all three at a hundred percent. The two standalone LEGO years have no achievements to earn, which is the only reason they are not marked too.',
@@ -200,7 +200,7 @@ window.FAN_PAGE = (function gaming() {
       lede: 'Every Minecraft frame the site has, and not one of them has ever been through Steam: a Realm with three friends, a Disneyland server, and a Pokémon mod on a public server years before either.' },
     { dir: 'star-wars', title: 'Star Wars', accent: '#ffe81f',
       lede: 'Two kinds of thing under one flag. The five non-LEGO Star Wars games I have taken to a hundred percent, each with its own banner, save slot and achievement screen; and the two Minecraft servers, Imagine Fun, which has Galaxy’s Edge built at real scale, and a Star Wars one with a saber in every colour. The folders below are in their own alphabetical order, so the two are mixed together.' },
-    /* LEGO builds NO sheet any more and that is not a mistake: all 69 of its
+    /* LEGO builds NO sheet any more and that is not a mistake: all 74 of its
        frames hang off the catalogue further up this page, so `sheet()` finds
        nothing left and skips it. The entry stays because a LEGO frame that is
        ever added outside a finished game's set would land here. */
@@ -374,7 +374,7 @@ window.FAN_PAGE = (function gaming() {
       var keys = s.pick || (s.set && sets[s.set] && sets[s.set].items) || [];
       keys.forEach(function (key) { if (shots[key]) USED[shots[key].src] = 1; });
       /* A tiles section can carry screenshots too: the LEGO catalogue holds
-         every LEGO frame the site has, on its thirteen finished games. Those
+         every LEGO frame the site has, on its fourteen finished games. Those
          are shown, so they are used, and the sheets below must not print them
          a second time. Same shorthand fanpage.js resolves: a `shots` entry
          with no slash sits beside the banner. */

@@ -65,13 +65,13 @@ window.FAN_PAGE = {
       { title: 'Kimiko', sub: 'The Female', tag: 'Crew', desc: 'Almost entirely silent, and the most expressive performance in the show.', meta: 'Superhuman · mute' },
     ] },
 
-  { id: 'seasons', kind: 'rank', title: 'The Seasons', note: '2019 – 2026 · finished',
+  { id: 'seasons', kind: 'rank', title: 'The Seasons', note: 'released 2019 – 2026 · set contemporary throughout · finished',
     items: [
-      { num: '01', title: 'Season One', sub: '2019', desc: 'Establishes the joke and then stops treating it as one, a satire that keeps finding the sad thing under the gag.' },
-      { num: '02', title: 'Season Two', sub: '2020', desc: 'Stormfront, and the show’s sharpest point about how a brand launders an ideology.' },
-      { num: '03', title: 'Season Three', sub: '2022', desc: 'Soldier Boy, and the argument that the cure looks a lot like the disease.' },
-      { num: '04', title: 'Season Four', sub: '2024', desc: 'The politics turn from subtext into text, and the walls come in.' },
-      { num: '05', title: 'Season Five', sub: '2026 · the finale', desc: 'The last one, and the only season I did not watch at home: I saw it in a cinema, in 4DX, with the seat moving. A satire about spectacle, watched as spectacle. Five seasons is the right length: it ends before the joke wears through, which is more than most of these get.' },
+      { num: '01', title: 'Season One', sub: '2019', meta: 'Released July 2019 · set over a few weeks, present day', desc: 'Establishes the joke and then stops treating it as one, a satire that keeps finding the sad thing under the gag.' },
+      { num: '02', title: 'Season Two', sub: '2020', meta: 'Released September – October 2020 · set weeks after season one', desc: 'Stormfront, and the show’s sharpest point about how a brand launders an ideology.' },
+      { num: '03', title: 'Season Three', sub: '2022', meta: 'Released June – July 2022 · set about a year later', desc: 'Soldier Boy, and the argument that the cure looks a lot like the disease.' },
+      { num: '04', title: 'Season Four', sub: '2024', meta: 'Released June – July 2024 · set months later, through an election', desc: 'The politics turn from subtext into text, and the walls come in.' },
+      { num: '05', title: 'Season Five', sub: '2026 · the finale', meta: 'Released 2026 · picks up straight off season four', desc: 'The last one, and the only season I did not watch at home: I saw it in a cinema, in 4DX, with the seat moving. A satire about spectacle, watched as spectacle. Five seasons is the right length: it ends before the joke wears through, which is more than most of these get.' },
     ] },
 
   { id: 'finale', kind: 'cards', title: 'The Finale', note: 'season five, 2026, in 4DX',

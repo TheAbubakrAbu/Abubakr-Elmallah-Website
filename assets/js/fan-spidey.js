@@ -168,14 +168,14 @@ window.FAN_PAGE = {
       { title: 'Spider-Verse', sub: '2014', tag: 'Multiverse', desc: 'Every spider from every reality in one book, and the source of the two best animated films of the decade.', meta: 'Slott and Coipel' },
     ] },
 
-  { id: 'best', kind: 'rank', title: 'The Best Of It', note: 'films and games',
+  { id: 'best', kind: 'rank', title: 'The Best Of It', note: 'films and games · when it came out, and when it is set',
     items: [
-      { title: 'Into the Spider-Verse', sub: '2018', desc: 'Rewrote what animation is allowed to look like, and it has not been beaten since.' },
-      { title: 'Across the Spider-Verse', sub: '2023', desc: 'Six art styles at once, and the boldest cliffhanger a family film has attempted.' },
-      { title: 'Spider-Man 2', sub: '2004', desc: 'The train fight. Raimi understood that the mask coming off is the point.' },
-      { title: 'Marvel’s Spider-Man', sub: '2018 · PS4', desc: 'The first game where the web-swinging feels the way it looks in your head.' },
-      { title: 'No Way Home', sub: '2021', desc: 'Three Peters in one room, and it earns every bit of the sentiment.' },
-      { title: 'Spider-Man', sub: '2002', desc: 'The upside-down kiss, the wrestling ring, and the line that defines the whole character.' },
+      { title: 'Into the Spider-Verse', sub: '2018', meta: 'Released December 2018 · Earth-1610, over about a week', desc: 'Rewrote what animation is allowed to look like, and it has not been beaten since.' },
+      { title: 'Across the Spider-Verse', sub: '2023', meta: 'Released June 2023 · sixteen months after the first film ends', desc: 'Six art styles at once, and the boldest cliffhanger a family film has attempted.' },
+      { title: 'Spider-Man 2', sub: '2004', meta: 'Released June 2004 · two years on, Peter in college', desc: 'The train fight. Raimi understood that the mask coming off is the point.' },
+      { title: 'Marvel’s Spider-Man', sub: '2018 · PS4', meta: 'Released September 2018 · Peter is twenty-three and eight years into the job', desc: 'The first game where the web-swinging feels the way it looks in your head.' },
+      { title: 'No Way Home', sub: '2021', meta: 'Released December 2021 · set 2024 on Marvel’s own timeline', desc: 'Three Peters in one room, and it earns every bit of the sentiment.' },
+      { title: 'Spider-Man', sub: '2002', meta: 'Released May 2002 · Peter’s last year of high school and the year after', desc: 'The upside-down kiss, the wrestling ring, and the line that defines the whole character.' },
     ] },
 
   { id: 'lines', kind: 'quotes', title: 'Lines', note: 'the ones that stuck',

@@ -5,10 +5,10 @@ window.FAN_PAGE = {
 
   { id: 'films', kind: 'rank', title: 'The Films', note: '2008 \u2013 2024 \u00b7 my order, not release order',
     items: [
-      { num: 'II', title: 'Kung Fu Panda 2', sub: '2011 \u00b7 the best one', desc: 'The heart of the whole thing, and it is not close. Shen, inner peace, and a backstory with a genocide in it that a family film somehow carries without flinching. The best-looking animation DreamWorks has ever produced and the only one of the four that made me feel something properly.' },
-      { num: 'I', title: 'Kung Fu Panda', sub: '2008 \u00b7 goated', desc: 'Obviously goated. A slapstick premise with a real film underneath it, and an ending that hands you the answer by refusing to have one: there is no secret ingredient.' },
-      { num: 'III', title: 'Kung Fu Panda 3', sub: '2016 \u00b7 whatever, but', desc: 'Honestly a bit whatever as a story; the panda village never quite lands. But the Spirit Realm sequences are genuinely some of the most beautiful frames in the series, and the fire scenes are unbelievable.' },
-      { num: 'IV', title: 'Kung Fu Panda 4', sub: '2024 \u00b7 kinda sucks', desc: 'Kind of sucks, but it is fine. The Chameleon has a good idea behind her and the Furious Five are barely in it, which tells you most of what went wrong.' },
+      { num: 'II', title: 'Kung Fu Panda 2', sub: '2011 \u00b7 the best one', meta: 'Released May 2011 \u00b7 set not long after the first, in Gongmen City', desc: 'The heart of the whole thing, and it is not close. Shen, inner peace, and a backstory with a genocide in it that a family film somehow carries without flinching. The best-looking animation DreamWorks has ever produced and the only one of the four that made me feel something properly.' },
+      { num: 'I', title: 'Kung Fu Panda', sub: '2008 \u00b7 goated', meta: 'Released June 2008 \u00b7 the Valley of Peace, a mythic ancient China', desc: 'Obviously goated. A slapstick premise with a real film underneath it, and an ending that hands you the answer by refusing to have one: there is no secret ingredient.' },
+      { num: 'III', title: 'Kung Fu Panda 3', sub: '2016 \u00b7 whatever, but', meta: 'Released January 2016 \u00b7 set soon after the second, in the panda village', desc: 'Honestly a bit whatever as a story; the panda village never quite lands. But the Spirit Realm sequences are genuinely some of the most beautiful frames in the series, and the fire scenes are unbelievable.' },
+      { num: 'IV', title: 'Kung Fu Panda 4', sub: '2024 \u00b7 kinda sucks', meta: 'Released March 2024 \u00b7 set some years later, with Po due to hand the title on', desc: 'Kind of sucks, but it is fine. The Chameleon has a good idea behind her and the Furious Five are barely in it, which tells you most of what went wrong.' },
     ] },
 
   { id: 'two', kind: 'cards', title: 'Two Is The Best One', note: 'the heart of the whole series',

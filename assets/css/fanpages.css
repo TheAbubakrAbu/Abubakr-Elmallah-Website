@@ -505,6 +505,11 @@
 
 .fan-rankdesc { font-size: 0.85rem; line-height: 1.6; color: var(--ink-dim); }
 
+/* the in-universe date, under the description. .fan-meta drops to the foot of
+   a card with margin-top:auto, which in this flex column would push it away
+   from the text it belongs to, so both spacing rules are reset here. */
+.fan-rankmeta { margin-top: 0.15rem; padding-top: 0; }
+
 /* ── kind: timeline ── */
 .fan-time { position: relative; padding-left: 1.4rem; }
 
@@ -532,6 +537,10 @@
 .fan-what b { font-family: var(--serif); font-weight: 600; font-size: 1rem; }
 
 .fan-what em { font-style: normal; font-size: 0.85rem; line-height: 1.6; color: var(--ink-dim); }
+
+/* the in-universe date, under the description. Same reset as .fan-rankmeta:
+   .fan-meta is written to sink to the foot of a card, which is wrong here. */
+.fan-tickmeta { margin-top: 0.15rem; padding-top: 0; }
 
 /* ── kind: tiles ── */
 .fan-tiles {

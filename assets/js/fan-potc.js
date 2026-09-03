@@ -3,13 +3,13 @@ window.FAN_PAGE = {
   when: { at: 'Middle school, around 2017\u201320', note: 'Middle school, around the same time as Jurassic Park.' },
   sections: [
 
-  { id: 'films', kind: 'rank', title: 'The Five Films', note: '2003 – 2017',
+  { id: 'films', kind: 'rank', title: 'The Five Films', note: 'released 2003 – 2017 · set across about thirty Caribbean years',
     items: [
-      { num: 'I', title: 'The Curse of the Black Pearl', sub: '2003', desc: 'A theme-park ride turned into a film that nobody expected to work, and a performance nobody expected at all.' },
-      { num: 'II', title: 'Dead Man’s Chest', sub: '2006', desc: 'Davy Jones, the Kraken, and a three-way sword fight on a runaway water wheel.' },
-      { num: 'III', title: 'At World’s End', sub: '2007', desc: 'The Brethren Court, the maelstrom, and the most ambitious ending the series ever attempted.' },
-      { num: 'IV', title: 'On Stranger Tides', sub: '2011', desc: 'Blackbeard, mermaids and the Fountain of Youth. The one where the trilogy’s cast thins out.' },
-      { num: 'V', title: 'Dead Men Tell No Tales', sub: '2017', desc: 'Salazar, the Trident of Poseidon, and a bank robbery that drags the whole building.' },
+      { num: 'I', title: 'The Curse of the Black Pearl', sub: '2003', meta: 'Released July 2003 · Port Royal, the 1720s', desc: 'A theme-park ride turned into a film that nobody expected to work, and a performance nobody expected at all.' },
+      { num: 'II', title: 'Dead Man’s Chest', sub: '2006', meta: 'Released July 2006 · set months after the first', desc: 'Davy Jones, the Kraken, and a three-way sword fight on a runaway water wheel.' },
+      { num: 'III', title: 'At World’s End', sub: '2007', meta: 'Released May 2007 · picks up straight off Dead Man’s Chest', desc: 'The Brethren Court, the maelstrom, and the most ambitious ending the series ever attempted.' },
+      { num: 'IV', title: 'On Stranger Tides', sub: '2011', meta: 'Released May 2011 · set years later, in the 1750s', desc: 'Blackbeard, mermaids and the Fountain of Youth. The one where the trilogy’s cast thins out.' },
+      { num: 'V', title: 'Dead Men Tell No Tales', sub: '2017', meta: 'Released May 2017 · about twenty years after At World’s End, with Henry Turner grown', desc: 'Salazar, the Trident of Poseidon, and a bank robbery that drags the whole building.' },
     ] },
 
   { id: 'favourites', kind: 'cards', title: 'My Four', note: 'the ones the films belong to',

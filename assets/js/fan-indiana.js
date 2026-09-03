@@ -3,13 +3,14 @@ window.FAN_PAGE = {
   when: { at: 'As a kid, through the LEGO games', note: 'I played LEGO Indiana Jones 1 and 2 to death before I had seen the films, which is a very specific way to meet a franchise and I would recommend it.' },
   sections: [
 
-  { id: 'films', kind: 'rank', title: 'The Films', note: '1981 – 2023',
+  { id: 'films', kind: 'rank', title: 'The Films', note: 'released 1981 – 2023 · set 1935 – 1969',
+    lede: 'The films did not come out in the order they happen: Temple of Doom is a prequel, and the last one jumps twenty years past the fourth so that Ford could play the age he actually was.',
     items: [
-      { num: 'I', title: 'Raiders of the Lost Ark', sub: '1981', desc: 'The best-constructed adventure film ever made. The opening ten minutes teach you the entire character without a word of exposition: the whip, the hat, the nerve and the greed, all before the title card.' },
-      { num: 'II', title: 'Temple of Doom', sub: '1984', desc: 'A prequel, much darker, and the reason the PG-13 rating exists at all.' },
-      { num: 'III', title: 'The Last Crusade', sub: '1989', desc: 'Connery as his father, and a road movie about a man who was never going to be enough for his dad. The tank sequence and the motorcycle chase are the best action in the series.' },
-      { num: 'IV', title: 'Kingdom of the Crystal Skull', sub: '2008', desc: 'The fridge. Everyone has an opinion and all of them are the same opinion.' },
-      { num: 'V', title: 'Dial of Destiny', sub: '2023', desc: 'An eighty-year-old Indy and a de-aged prologue, ending the thing on the right note.' },
+      { num: 'I', title: 'Raiders of the Lost Ark', sub: '1981', meta: 'Released June 1981 · set 1936 · Peru, Nepal, Cairo', desc: 'The best-constructed adventure film ever made. The opening ten minutes teach you the entire character without a word of exposition: the whip, the hat, the nerve and the greed, all before the title card.' },
+      { num: 'II', title: 'Temple of Doom', sub: '1984', meta: 'Released May 1984 · set 1935, a year before Raiders · Shanghai, India', desc: 'A prequel, much darker, and the reason the PG-13 rating exists at all.' },
+      { num: 'III', title: 'The Last Crusade', sub: '1989', meta: 'Released May 1989 · set 1938, with a prologue in 1912 · Venice, Berlin, Hatay', desc: 'Connery as his father, and a road movie about a man who was never going to be enough for his dad. The tank sequence and the motorcycle chase are the best action in the series.' },
+      { num: 'IV', title: 'Kingdom of the Crystal Skull', sub: '2008', meta: 'Released May 2008 · set 1957 · Nevada, Peru', desc: 'The fridge. Everyone has an opinion and all of them are the same opinion.' },
+      { num: 'V', title: 'Dial of Destiny', sub: '2023', meta: 'Released June 2023 · set 1969, with a prologue in 1944 · New York, Tangier, Sicily', desc: 'An eighty-year-old Indy and a de-aged prologue, ending the thing on the right note.' },
     ] },
   /* the complete index. Every other section on this page is a choice; this one
      is the whole list, so nothing is missing just because it is not worth a

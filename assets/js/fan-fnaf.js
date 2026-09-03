@@ -111,15 +111,16 @@ window.FAN_PAGE = {
       { title: 'Made by one person', sub: 'Scott Cawthon', tag: 'Origin', desc: 'A developer whose previous game was criticised for characters that looked like stiff animatronics, who took the note and built a horror franchise out of it.', meta: 'Five months' },
     ] },
 
-  { id: 'games', kind: 'rank', title: 'The Games', note: '2014 – now',
+  { id: 'games', kind: 'rank', title: 'The Games', note: 'released 2014 – now · set 1983 – 2023, in no order at all',
+    lede: 'The release order and the story order have almost nothing to do with each other: the second game is a prequel six years before the first, the fourth goes back four years further, and the third jumps thirty years forward. Working that out is most of what the fandom does.',
     items: [
-      { title: 'Five Nights at Freddy’s', sub: '2014', desc: 'Made in months by one person, and it reset what a horror game needed to be.' },
-      { title: 'FNAF 2', sub: 'Nov 2014', desc: 'No doors. A flashlight, a mask and a music box, ten months after the first.' },
-      { title: 'FNAF 3', sub: '2015', desc: 'One animatronic, and the first game where the lore is the horror.' },
-      { title: 'FNAF 4', sub: '2015', desc: 'A bedroom, a torch and audio cues. The scariest of them by a distance.' },
-      { title: 'Sister Location', sub: '2016', desc: 'Voice acting, minigames, and the story finally taking the wheel.' },
-      { title: 'Pizzeria Simulator', sub: '2017', desc: 'Disguised as a management sim, and then it is not.' },
-      { title: 'Help Wanted & Security Breach', sub: '2019 · 2021', desc: 'VR, then a full 3D open mall. The series in a body it did not have before.' },
+      { title: 'Five Nights at Freddy’s', sub: '2014', meta: 'Released August 2014 · set November 1993', desc: 'Made in months by one person, and it reset what a horror game needed to be.' },
+      { title: 'FNAF 2', sub: 'Nov 2014', meta: 'Released November 2014 · set 1987, six years before the first game', desc: 'No doors. A flashlight, a mask and a music box, ten months after the first.' },
+      { title: 'FNAF 3', sub: '2015', meta: 'Released March 2015 · set 2023, thirty years after the first game', desc: 'One animatronic, and the first game where the lore is the horror.' },
+      { title: 'FNAF 4', sub: '2015', meta: 'Released July 2015 · set 1983, the earliest point in the story', desc: 'A bedroom, a torch and audio cues. The scariest of them by a distance.' },
+      { title: 'Sister Location', sub: '2016', meta: 'Released October 2016 · set years after the 1980s locations closed', desc: 'Voice acting, minigames, and the story finally taking the wheel.' },
+      { title: 'Pizzeria Simulator', sub: '2017', meta: 'Released December 2017 · set after FNAF 3, and it closes the original run', desc: 'Disguised as a management sim, and then it is not.' },
+      { title: 'Help Wanted & Security Breach', sub: '2019 · 2021', meta: 'Released May 2019 · December 2021 · set in the present day, decades on', desc: 'VR, then a full 3D open mall. The series in a body it did not have before.' },
     ] },
 
 

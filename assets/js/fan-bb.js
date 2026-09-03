@@ -3,13 +3,14 @@ window.FAN_PAGE = {
   when: { at: '10th grade, 2021\u201322', note: 'I watched it in tenth grade, 2021\u201322, and funnily enough started the trend: half my classmates got through it right after I did.' },
   sections: [
 
-  { id: 'seasons', kind: 'rank', title: 'Five Seasons', note: '2008 – 2013 · sixty-two episodes',
+  { id: 'seasons', kind: 'rank', title: 'Five Seasons', note: 'aired 2008 – 2013 · set over about two years · sixty-two episodes',
+    lede: 'Five years of television covering two years of one man’s life. It opens on Walt’s fiftieth birthday and closes on his fifty-second, which is why the show can keep escalating without ever feeling like time has healed anything.',
     items: [
-      { num: '01', title: 'Season One', sub: '2008', desc: 'Seven episodes cut short by a writers’ strike, and not one of them wasted.' },
-      { num: '02', title: 'Season Two', sub: '2009', desc: 'The pink teddy bear in the pool, seeded from the first minute of the first episode.' },
-      { num: '03', title: 'Season Three', sub: '2010', desc: 'Gus, the cousins, and Half Measures: the best final ten minutes of the run so far.' },
-      { num: '04', title: 'Season Four', sub: '2011', desc: 'A whole season of two men in a room deciding which one leaves it. Face Off ends it.' },
-      { num: '05', title: 'Season Five', sub: '2012–13', desc: 'Ozymandias, and then Felina. Almost nothing else in television has landed like that.' },
+      { num: '01', title: 'Season One', sub: '2008', meta: 'Aired January – March 2008 · about three weeks, from Walt’s fiftieth birthday', desc: 'Seven episodes cut short by a writers’ strike, and not one of them wasted.' },
+      { num: '02', title: 'Season Two', sub: '2009', meta: 'Aired March – May 2009 · picks up the next morning and runs about five weeks', desc: 'The pink teddy bear in the pool, seeded from the first minute of the first episode.' },
+      { num: '03', title: 'Season Three', sub: '2010', meta: 'Aired March – June 2010 · a few months on, about six weeks of story', desc: 'Gus, the cousins, and Half Measures: the best final ten minutes of the run so far.' },
+      { num: '04', title: 'Season Four', sub: '2011', meta: 'Aired July – October 2011 · roughly three months', desc: 'A whole season of two men in a room deciding which one leaves it. Face Off ends it.' },
+      { num: '05', title: 'Season Five', sub: '2012–13', meta: 'Aired July 2012 – September 2013 · ends on Walt’s fifty-second birthday, two years after the pilot', desc: 'Ozymandias, and then Felina. Almost nothing else in television has landed like that.' },
     ] },
   /* the complete index. Every other section on this page is a choice; this one
      is the whole list, so nothing is missing just because it is not worth a

@@ -626,6 +626,12 @@ window.FAN_SHOTS = {
     'lego/marvel-super-heroes/pause-screen.jpg':                   '2026-08-02 17:35',
     'lego/marvel-super-heroes/start-screen.jpg':                   '2026-08-25 03:28',
 
+    'lego/movie/banner.jpg':                                       '2026-09-03 03:38',
+    'lego/movie/characters.jpg':                                   '2026-09-03 03:35',
+    'lego/movie/load-game.jpg':                                    '2026-09-03 03:34',
+    'lego/movie/pause-screen.jpg':                                 '2026-09-03 03:10',
+    'lego/movie/start-screen.jpg':                                 '2026-08-30 12:15',
+
     'lego/pirates/banner.jpg':                                     '2023-09-28 16:01',
     'lego/pirates/characters.jpg':                                 '2023-09-28 15:51',
     'lego/pirates/load-game.jpg':                                  '2023-09-28 16:01',

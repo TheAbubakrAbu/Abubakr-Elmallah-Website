@@ -9,19 +9,19 @@ window.FAN_PAGE = {
   when: { at: 'Since I was a kid', note: 'First as a cartoon, then again as the language every group chat is conducted in. Few things survive both childhoods.' },
   sections: [
 
-  { id: 'golden', kind: 'cards', title: 'The Golden Age', note: '1999–2004, and then a movie',
+  { id: 'golden', kind: 'cards', title: 'The Golden Age', note: 'aired 1999 – 2004, and then a movie · Bikini Bottom itself never dates anything',
     lede: 'Stephen Hillenburg was a marine-biology teacher before he was an animator, and it shows: Bikini Bottom runs on real tide-pool logic, drawn in a style nobody has matched. The first three seasons were written to be over-rehearsed, storyboard-driven and joke-dense, and when the first movie shipped in 2004 Hillenburg considered the story finished.',
     items: [
-      { title: 'Seasons 1–3', sub: '1999–2004', tag: 'The canon', accent: '#f0e03f',
+      { title: 'Seasons 1–3', sub: 'May 1999 – October 2004', tag: 'The canon', accent: '#f0e03f',
         desc: 'Sixty episodes of essentially perfect cartooning: every side character a fully-formed comic engine, every episode eleven minutes with no fat on it. The gap between this era and everything after is the most agreed-upon opinion on the internet.',
         meta: 'The whole church' },
-      { title: 'The SpongeBob SquarePants Movie', sub: '2004', tag: 'The finale that wasn’t', accent: '#e8a13f',
+      { title: 'The SpongeBob SquarePants Movie', sub: 'November 2004', tag: 'The finale that wasn’t', accent: '#e8a13f',
         desc: 'Written as the ending: SpongeBob proves a kid can do the hero’s job, David Hasselhoff provides the transport, and the Goofy Goober rock ballad plays over the climax of what was meant to be the last episode ever made.',
         meta: 'Hillenburg’s intended end' },
-      { title: 'Everything after', sub: '2005 → now', tag: 'The long tail', accent: '#8f9ab0',
+      { title: 'Everything after', sub: 'May 2005 → now', tag: 'The long tail', accent: '#8f9ab0',
         desc: 'Still running, three spin-offs and two more films deep, and none of it is a crime; it is just a different, softer show wearing the same square pants. This page is about the first one.',
         meta: 'Fine. Not this page.' },
-      { title: 'Sweet Victory', sub: 'Band Geeks · 2001', tag: 'The high-water mark', accent: '#c96ff0',
+      { title: 'Sweet Victory', sub: 'Band Geeks · September 2001', tag: 'The high-water mark', accent: '#c96ff0',
         desc: 'A marching-band episode that ends in a full-throated stadium rock performance the internet later demanded, at scale, be performed at an actual Super Bowl. The petition got over a million signatures. For an eleven-minute cartoon from 2001.',
         meta: 'The best episode, and it knows it' },
     ] },
@@ -79,8 +79,8 @@ window.FAN_PAGE = {
       { title: 'Gary', accent: '#7fc9e8', sub: 'The voice of reason', desc: 'Says "meow". Is consistently the most sensible character in the scene. This is deliberate.' },
     ] },
 
-  { id: 'eps', kind: 'cards', title: 'The Episodes', note: 'the syllabus',
-    lede: 'Eleven minutes each, and every one of these has at least three lines the internet still uses daily.',
+  { id: 'eps', kind: 'cards', title: 'The Episodes', note: 'the syllabus · season and air year, because nothing here has an in-universe one',
+    lede: 'Eleven minutes each, and every one of these has at least three lines the internet still uses daily. There is no in-universe calendar to give: Bikini Bottom runs on a floating timeline where nobody ages and no episode is dated, so the year it aired is the only year there is.',
     items: [
       { title: 'Band Geeks', sub: 'S2 · 2001', tag: 'The best one', accent: '#c96ff0',
         desc: 'Squidward lies about having a band, assembles the town, and against every law of comedy the episode lets him win. Is mayonnaise an instrument? No. Horseradish is not an instrument either.',

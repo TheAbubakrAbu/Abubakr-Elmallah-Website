@@ -69,16 +69,17 @@ window.FAN_PAGE = {
     ] },
 
 
-  { id: 'episodes', kind: 'rank', title: 'The Golden Age', note: 'seasons 3 – 9, roughly',
+  { id: 'episodes', kind: 'rank', title: 'The Golden Age', note: 'seasons 3 – 9, roughly · with the night each one aired',
+    lede: 'The only franchise on this site with no in-universe clock at all: the family has not aged a day since 1989, so the air date is the only date there is.',
     items: [
-      { title: 'Marge vs. the Monorail', sub: 'S4E12', desc: 'Conan O’Brien wrote a musical number into a cartoon and it became the most quoted episode ever made.' },
-      { title: 'Last Exit to Springfield', sub: 'S4E17', desc: 'A dental plan, a union strike, and the episode most critics call the best of the run.' },
-      { title: 'Homer at the Bat', sub: 'S3E17', desc: 'Nine real baseball players, and eight of them removed by increasingly stupid accidents.' },
-      { title: 'Cape Feare', sub: 'S5E2', desc: 'The rakes. Just the rakes.' },
-      { title: 'Lisa’s Substitute', sub: 'S2E19', desc: 'The one that proved the show could break your heart on purpose.' },
-      { title: 'You Only Move Twice', sub: 'S8E2', desc: 'Hank Scorpio: the best boss in television, running a Bond-villain operation as a wellness startup.' },
-      { title: 'The City of New York vs. Homer Simpson', sub: 'S9E1', desc: 'A car parked between the towers, and a crab juice.' },
-      { title: 'Treehouse of Horror V', sub: 'S6E6', desc: 'The Shinning, Time and Punishment, and Nightmare Cafeteria in twenty-two minutes.' },
+      { title: 'Marge vs. the Monorail', sub: 'S4E12', meta: 'Aired January 1993', desc: 'Conan O’Brien wrote a musical number into a cartoon and it became the most quoted episode ever made.' },
+      { title: 'Last Exit to Springfield', sub: 'S4E17', meta: 'Aired March 1993', desc: 'A dental plan, a union strike, and the episode most critics call the best of the run.' },
+      { title: 'Homer at the Bat', sub: 'S3E17', meta: 'Aired February 1992', desc: 'Nine real baseball players, and eight of them removed by increasingly stupid accidents.' },
+      { title: 'Cape Feare', sub: 'S5E2', meta: 'Aired October 1993', desc: 'The rakes. Just the rakes.' },
+      { title: 'Lisa’s Substitute', sub: 'S2E19', meta: 'Aired April 1991', desc: 'The one that proved the show could break your heart on purpose.' },
+      { title: 'You Only Move Twice', sub: 'S8E2', meta: 'Aired November 1996', desc: 'Hank Scorpio: the best boss in television, running a Bond-villain operation as a wellness startup.' },
+      { title: 'The City of New York vs. Homer Simpson', sub: 'S9E1', meta: 'Aired September 1997', desc: 'A car parked between the towers, and a crab juice.' },
+      { title: 'Treehouse of Horror V', sub: 'S6E6', meta: 'Aired October 1994', desc: 'The Shinning, Time and Punishment, and Nightmare Cafeteria in twenty-two minutes.' },
     ] },
 
   { id: 'town', kind: 'cards', title: 'Springfield', note: 'state deliberately never given',

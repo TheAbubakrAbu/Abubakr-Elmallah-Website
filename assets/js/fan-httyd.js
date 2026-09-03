@@ -5,21 +5,21 @@ window.FAN_PAGE = {
   when: { at: 'Since the first film, as a kid', note: 'The Test Drive sequence is the reason a generation of kids briefly considered aerospace engineering. I make no claims about being an exception.' },
   sections: [
 
-  { id: 'films', kind: 'films', title: 'The Trilogy', note: 'DreamWorks · 2010–2019',
+  { id: 'films', kind: 'films', title: 'The Trilogy', note: 'DreamWorks · released 2010 – 2019 · set over about six years on Berk',
     lede: 'Three films, one complete arc, no cash-grab fourth chapter: the whole thing planned as a beginning, a middle and a goodbye. Dean DeBlois signed on for the sequels on the condition that it would end, which is why it is one of the only animated trilogies with no bad film in it.',
     items: [
-      { title: 'How to Train Your Dragon', sub: '2010', accent: '#7fd0e8',
+      { title: 'How to Train Your Dragon', sub: 'March 2010', accent: '#7fd0e8',
         desc: 'The one where the fin gets built. A village that kills dragons, a boy who cannot, and the discovery that everything the vikings knew was wrong. The last act costs Hiccup a leg, and the film does not flinch about it; the boy and the dragon end the story with matching prosthetics.',
-        meta: 'The best of the three' },
-      { title: 'How to Train Your Dragon 2', sub: '2014', accent: '#5fa86f',
+        meta: 'Berk, a mythic Viking age · the best of the three' },
+      { title: 'How to Train Your Dragon 2', sub: 'June 2014', accent: '#5fa86f',
         desc: 'Five years on: the flight suit, the hidden nest, Hiccup’s mother, and a middle chapter with actual consequences: Stoick does not make it out, and Toothless is the reason. Bigger in every direction and darker than a sequel to a kids’ film had any right to be.',
-        meta: 'The ambitious one' },
-      { title: 'The Hidden World', sub: '2019', accent: '#c9a0e8',
+        meta: 'Set five years on · the ambitious one' },
+      { title: 'The Hidden World', sub: 'February 2019', accent: '#c9a0e8',
         desc: 'The goodbye. A Light Fury, a world under the sea’s edge, and the conclusion the first film quietly promised: if you love the dragons, you let them go where people cannot follow. The epilogue jump-cut to Hiccup’s kids meeting Toothless again is the franchise sticking its landing.',
-        meta: 'The ending, kept' },
-      { title: 'The live-action remake', sub: '2025', accent: '#8f9ab0',
+        meta: 'Set a year after the second, then an epilogue about ten years on · the ending, kept' },
+      { title: 'The live-action remake', sub: 'June 2025', accent: '#8f9ab0',
         desc: 'Shot-for-shot faithful, Gerard Butler back as Stoick, and proof of how sturdy the original design was. Fine. The 2010 film remains the one.',
-        meta: 'The victory lap' },
+        meta: 'The same story, the same years · the victory lap' },
     ] },
   /* the complete index. Every other section on this page is a choice; this one
      is the whole list, so nothing is missing just because it is not worth a

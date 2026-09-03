@@ -27,12 +27,13 @@ window.FAN_PAGE = {
         meta: 'Assistant *to the* Regional Manager' },
     ] },
 
-  { id: 'seasons', kind: 'rank', title: 'Nine Seasons', note: '2005 – 2013',
+  { id: 'seasons', kind: 'rank', title: 'Nine Seasons', note: 'aired 2005 – 2013 · the documentary films 2005 – 2011 and airs in 2012',
+    lede: 'The one show on this site where the in-universe clock is the point: a camera crew really is in the building for those years, the finished documentary airs in 2012, and the finale is set a year after that, with the characters reacting to having been on television.',
     items: [
-      { title: 'Seasons 2–3', sub: '2005–07', desc: 'The peak. The Dundies, Office Olympics, Casino Night, The Job: the run everything else is measured against.' },
-      { title: 'Seasons 4–5', sub: '2007–09', desc: 'Dinner Party, Stress Relief, and the Michael Scott Paper Company gambit.' },
-      { title: 'Seasons 6–7', sub: '2009–11', desc: 'Niagara, and then Goodbye Michael: the best exit any sitcom character has been given.' },
-      { title: 'Seasons 8–9', sub: '2011–13', desc: 'The wobble after Michael leaves, and then a finale that lands better than it had any right to.' },
+      { title: 'Seasons 2–3', sub: '2005–07', meta: 'Aired September 2005 – May 2007 · filmed 2005 to 2007', desc: 'The peak. The Dundies, Office Olympics, Casino Night, The Job: the run everything else is measured against.' },
+      { title: 'Seasons 4–5', sub: '2007–09', meta: 'Aired September 2007 – May 2009 · filmed 2007 to 2009', desc: 'Dinner Party, Stress Relief, and the Michael Scott Paper Company gambit.' },
+      { title: 'Seasons 6–7', sub: '2009–11', meta: 'Aired September 2009 – May 2011 · Michael leaves in spring 2011', desc: 'Niagara, and then Goodbye Michael: the best exit any sitcom character has been given.' },
+      { title: 'Seasons 8–9', sub: '2011–13', meta: 'Aired September 2011 – May 2013 · the documentary airs in 2012, the finale is a year after that', desc: 'The wobble after Michael leaves, and then a finale that lands better than it had any right to.' },
     ] },
   /* the complete index. Every other section on this page is a choice; this one
      is the whole list, so nothing is missing just because it is not worth a
@@ -80,14 +81,14 @@ window.FAN_PAGE = {
       { title: 'Extreme Repulsiveness', accent: '#c04a3a', sub: 'Toby', desc: 'The HR representative. Michael\u2019s feelings about HR are not subtle.' },
     ] },
 
-  { id: 'cold', kind: 'rank', title: 'The Cold Opens', note: 'the two minutes before the titles',
+  { id: 'cold', kind: 'rank', title: 'The Cold Opens', note: 'the two minutes before the titles · with the night each one aired',
     items: [
-      { title: 'Fire Drill', sub: 'S5E14', desc: 'Dwight stages a fire to test evacuation readiness. Total collapse of civil order in ninety seconds, and a cat comes through the ceiling.' },
-      { title: 'Asian Jim', sub: 'S9E3', desc: 'Jim gets a stranger to sit at his desk and insist he is Jim. Dwight cannot disprove it.' },
-      { title: 'Stayin\u2019 Alive CPR', sub: 'S5E14', desc: 'A first-aid class that gets away from everybody, ending with a face cut off a dummy.' },
-      { title: 'Parkour', sub: 'S6E1', desc: 'Michael, Dwight and Andy shouting the word parkour while jumping onto boxes.' },
-      { title: 'Jim as Dwight', sub: 'S3E21', desc: 'Identity theft is not a joke, Jim. The glasses, the shirt, and the bought-in performance.' },
-      { title: 'The Stapler in Jell-O', sub: 'S1E1', desc: 'The first prank in the first episode, and the one the whole Jim and Dwight dynamic is built on.' },
+      { title: 'Fire Drill', sub: 'S5E14', meta: 'Aired February 2009 · Stress Relief', desc: 'Dwight stages a fire to test evacuation readiness. Total collapse of civil order in ninety seconds, and a cat comes through the ceiling.' },
+      { title: 'Asian Jim', sub: 'S9E3', meta: 'Aired October 2012 · Andy’s Ancestry', desc: 'Jim gets a stranger to sit at his desk and insist he is Jim. Dwight cannot disprove it.' },
+      { title: 'Stayin\u2019 Alive CPR', sub: 'S5E14', meta: 'Aired February 2009 · Stress Relief, same night', desc: 'A first-aid class that gets away from everybody, ending with a face cut off a dummy.' },
+      { title: 'Parkour', sub: 'S6E1', meta: 'Aired September 2009 · Gossip', desc: 'Michael, Dwight and Andy shouting the word parkour while jumping onto boxes.' },
+      { title: 'Jim as Dwight', sub: 'S3E21', meta: 'Aired May 2007 · Product Recall', desc: 'Identity theft is not a joke, Jim. The glasses, the shirt, and the bought-in performance.' },
+      { title: 'The Stapler in Jell-O', sub: 'S1E1', meta: 'Aired March 2005 · the pilot', desc: 'The first prank in the first episode, and the one the whole Jim and Dwight dynamic is built on.' },
     ] },
 
   { id: 'pranks', kind: 'tiles', title: 'The Pranks', note: 'Jim to Dwight, nine years running',

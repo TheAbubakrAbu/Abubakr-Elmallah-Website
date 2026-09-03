@@ -20,13 +20,14 @@ window.FAN_PAGE = {
         meta: 'Homework, disguised' },
     ] },
 
-  { id: 'books', kind: 'rank', title: 'The Olympians', note: '2005 – 2009',
+  { id: 'books', kind: 'rank', title: 'The Olympians', note: 'published 2005 – 2009 · set 2005 – 2009, ages twelve to sixteen',
+    lede: 'One book a year, and one year of Percy’s life a book: the series starts on a school trip when he is twelve and ends on the morning of his sixteenth birthday, which the prophecy has been counting down to the whole time.',
     items: [
-      { num: 'I', title: 'The Lightning Thief', sub: '2005', desc: 'A twelve-year-old with dyslexia and ADHD turns out to be a demigod, and both turn out to be features.' },
-      { num: 'II', title: 'The Sea of Monsters', sub: '2006', desc: 'The Golden Fleece, the Bermuda Triangle, and a cyclops brother.' },
-      { num: 'III', title: 'The Titan’s Curse', sub: '2007', desc: 'The Hunters of Artemis, and holding up the sky.' },
-      { num: 'IV', title: 'The Battle of the Labyrinth', sub: '2008', desc: 'Daedalus’ maze under America, rebuilding itself as it goes.' },
-      { num: 'V', title: 'The Last Olympian', sub: '2009', desc: 'Manhattan asleep, Kronos rising, and a prophecy that turns on the wrong hero entirely.' },
+      { num: 'I', title: 'The Lightning Thief', sub: 'June 2005', meta: 'Set spring and summer 2005 · Percy is twelve', desc: 'A twelve-year-old with dyslexia and ADHD turns out to be a demigod, and both turn out to be features.' },
+      { num: 'II', title: 'The Sea of Monsters', sub: 'April 2006', meta: 'Set the following summer · Percy is thirteen', desc: 'The Golden Fleece, the Bermuda Triangle, and a cyclops brother.' },
+      { num: 'III', title: 'The Titan’s Curse', sub: 'May 2007', meta: 'Set that December, over the winter solstice · Percy is fourteen', desc: 'The Hunters of Artemis, and holding up the sky.' },
+      { num: 'IV', title: 'The Battle of the Labyrinth', sub: 'May 2008', meta: 'Set the summer after · Percy is fifteen', desc: 'Daedalus’ maze under America, rebuilding itself as it goes.' },
+      { num: 'V', title: 'The Last Olympian', sub: 'May 2009', meta: 'Set in August, on Percy’s sixteenth birthday · the deadline in the prophecy', desc: 'Manhattan asleep, Kronos rising, and a prophecy that turns on the wrong hero entirely.' },
     ] },
   /* the complete index. Every other section on this page is a choice; this one
      is the whole list, so nothing is missing just because it is not worth a

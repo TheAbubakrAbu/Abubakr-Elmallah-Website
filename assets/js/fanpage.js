@@ -464,6 +464,9 @@
        to have, and because I have photographs of a couple of those. */
     lands: function (s) { return shelf(s, 'rides', 'attraction'); },
 
+    /* `sub` is when the thing came out in our world, `meta` when it happens in
+       its own: a book published in July 1997 that runs from September 1991 to
+       June 1992. The two are never the same clock, so they get two slots. */
     rank: function (s) {
       return '<ol class="fan-rank">' + s.items.map(function (it, i) {
         return '<li class="fan-rankrow reveal"' + a(it) + '>'
@@ -472,17 +475,21 @@
           +   '<span class="fan-rankhead"><b>' + esc(it.title) + '</b>'
           +     (it.sub ? '<i>' + esc(it.sub) + '</i>' : '') + '</span>'
           +   (it.desc ? '<span class="fan-rankdesc">' + esc(it.desc) + '</span>' : '')
+          +   (it.meta ? '<span class="fan-meta fan-rankmeta">' + esc(it.meta) + '</span>' : '')
           + '</span>'
           + '</li>';
       }).join('') + '</ol>';
     },
 
+    /* `when` is our calendar, running down the rule; `meta` is the other one,
+       the date the thing happens inside its own world. */
     timeline: function (s) {
       return '<div class="fan-time">' + s.items.map(function (it) {
         return '<div class="fan-tick reveal"' + a(it) + '>'
           + '<span class="fan-when">' + esc(it.when) + '</span>'
           + '<span class="fan-what"><b>' + esc(it.title) + '</b>'
           + (it.desc ? '<em>' + esc(it.desc) + '</em>' : '')
+          + (it.meta ? '<span class="fan-meta fan-tickmeta">' + esc(it.meta) + '</span>' : '')
           + out(it) + '</span>'
           + '</div>';
       }).join('') + '</div>';

@@ -4,11 +4,11 @@ window.FAN_PAGE = {
   when: { at: '11th grade, 2022, for Way of Water', note: 'Way of Water in December of eleventh grade is what did it.' },
   sections: [
 
-  { id: 'films', kind: 'rank', title: 'The Films', note: '2009 – now',
+  { id: 'films', kind: 'rank', title: 'The Films', note: 'released 2009 – now · set on Pandora from 2154',
     items: [
-      { num: 'I', title: 'Avatar', sub: '2009', desc: 'Highest-grossing film ever made, twice, and the reason every cinema on earth bought 3D projectors.' },
-      { num: 'II', title: 'The Way of Water', sub: '2022', desc: 'Thirteen years later, and the underwater capture work is still unmatched by anything since.' },
-      { num: 'III', title: 'Fire and Ash', sub: '2025', desc: 'The Ash People, and Pandora’s fire clans.' },
+      { num: 'I', title: 'Avatar', sub: '2009', meta: 'Released December 2009 · set 2154 · Pandora, the Omatikaya forest', desc: 'Highest-grossing film ever made, twice, and the reason every cinema on earth bought 3D projectors.' },
+      { num: 'II', title: 'The Way of Water', sub: '2022', meta: 'Released December 2022 · set about sixteen years later · the Metkayina reefs', desc: 'Thirteen years later, and the underwater capture work is still unmatched by anything since.' },
+      { num: 'III', title: 'Fire and Ash', sub: '2025', meta: 'Released December 2025 · picks up straight off The Way of Water · the Ash People’s volcanic range', desc: 'The Ash People, and Pandora’s fire clans.' },
     ] },
   /* the complete index. Every other section on this page is a choice; this one
      is the whole list, so nothing is missing just because it is not worth a

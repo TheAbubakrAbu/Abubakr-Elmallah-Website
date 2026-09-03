@@ -81,7 +81,7 @@ window.LEGO_GAMES =
       { key: 'rating', label: 'My rating',    asc: 'Worst',    desc: 'Best' },
       { key: 'hours',  label: 'My time',      asc: 'Quickest', desc: 'Longest' },
       { key: 'proj',   label: 'Projected',    asc: 'Shortest', desc: 'Longest' },
-      /* Twelve of the thirteen finished titles carry a `finished` date; LEGO
+      /* Thirteen of the fourteen finished titles carry a `finished` date; LEGO
          Batman: The Videogame does not, and sinks to the bottom of this sort
          the way an unrated game sinks in the rating sort. */
       { key: 'finished', label: 'When I finished it', asc: 'First', desc: 'Most recent' },
@@ -110,7 +110,14 @@ window.LEGO_GAMES =
       { title: 'LEGO Jurassic World', accent: '#e0642a', year: 2015, series: 'Standalone', proj: '29.7', sub: '2015 · Steam', desc: 'All four films at the time, and you can play as the dinosaurs.' },
       { title: 'LEGO Batman 3: Beyond Gotham', accent: '#0055bf', year: 2015, series: 'Batman & DC', proj: '35.9', sub: '2015 · Steam', desc: 'The Justice League in space, with the Lantern corps.' },
       { title: 'LEGO The Hobbit', accent: '#9a7a4a', year: 2014, series: 'Middle-earth', proj: '36.8', sub: '2014 · Steam', desc: 'Only ever covered two of the three films. It just stops.' },
-      { title: 'The LEGO Movie Videogame', accent: '#4fc0e0', year: 2014, series: 'The LEGO Movie', proj: '17.6', sub: '2014 · Steam', desc: 'The film, and the instruction-following joke made playable.' },
+      { title: 'The LEGO Movie Videogame', accent: '#4fc0e0', year: 2014, series: 'The LEGO Movie', proj: '17.6', rating: 7, sub: '2014 · Steam', desc: 'The film, and the instruction-following joke made playable. A nice short easy one: fourteen hours to a hundred percent, second-quickest of these after LEGO Indiana Jones, and it never once fought me. A seven for exactly that.',
+        done: true, hours: '14', shot: '/assets/img/franchises/lego/movie/banner.jpg',
+        /* from its own load-game screen: slot 1, 9/3/2026 3:34am, 100.0%; the
+           Steam banner reads 48/48 achievements and 14 hours the same night,
+           and the Everything Is Awesome! achievement stamps 3:07am */
+        finished: '2026-09-03',
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters'],
+        shotAlt: 'Steam library banner for The LEGO Movie Videogame, showing my play time' },
       { title: 'LEGO Marvel Super Heroes', accent: '#d01012', year: 2013, series: 'Marvel', proj: '39.5', rating: 9, sub: '2013 · Steam', desc: 'The best open world they built. Manhattan, properly.',
         done: true, hours: '34.1', shot: '/assets/img/franchises/lego/marvel-super-heroes/banner.jpg',
         finished: '2026-08-02',

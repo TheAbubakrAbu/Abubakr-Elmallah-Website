@@ -6,11 +6,11 @@ window.FAN_PAGE = {
   { id: 'seasons', kind: 'rank', title: 'The Seasons', note: '2016 – 2025 · scroll and the world changes under you',
     lede: 'Five seasons, and the backdrop of this page follows whichever one you are reading: 1983 in the woods, 1984 rotting in the fields, 1985 under mall neon, 1986 in Vecna’s violet, 1987 with the rifts open. Three is my favourite and by a distance the most fun: silly in places, and that is exactly the bit that made me love this show. One is the one that started all of it, and it is the best television of the five by a mile. Scroll outside the season run and the whole thing blends into one.',
     items: [
-      { num: '01', title: 'Stranger Things', sub: '2016 · the best television', accent: '#e8261d', desc: 'A boy vanishes on the way home from a D&D game, and a girl with a shaved head walks out of the woods.' },
-      { num: '02', title: 'The Vanishing', sub: '2017', desc: 'Will comes back wrong, the Mind Flayer arrives, and Dustin adopts something he should not have.' },
-      { num: '03', title: 'Starcourt', sub: '2019 · my favourite', accent: '#ff5fb0', desc: 'A mall, a Russian bunker under it, and the best summer-blockbuster season of the lot.' },
-      { num: '04', title: 'Vecna', sub: '2022', desc: 'Split across three states, and the one where a song saves a life four minutes at a time.' },
-      { num: '05', title: 'The Final Season', sub: '2025', desc: 'Back to Hawkins, with the gates open and the party grown up.' },
+      { num: '01', title: 'Stranger Things', sub: '2016 · the best television', accent: '#e8261d', meta: 'Released July 2016 · November 1983', desc: 'A boy vanishes on the way home from a D&D game, and a girl with a shaved head walks out of the woods.' },
+      { num: '02', title: 'The Vanishing', sub: '2017', meta: 'Released October 2017 · October and November 1984', desc: 'Will comes back wrong, the Mind Flayer arrives, and Dustin adopts something he should not have.' },
+      { num: '03', title: 'Starcourt', sub: '2019 · my favourite', accent: '#ff5fb0', meta: 'Released July 2019 · summer 1985, over the Fourth of July', desc: 'A mall, a Russian bunker under it, and the best summer-blockbuster season of the lot.' },
+      { num: '04', title: 'Vecna', sub: '2022', meta: 'Released May and July 2022 · spring 1986', desc: 'Split across three states, and the one where a song saves a life four minutes at a time.' },
+      { num: '05', title: 'The Final Season', sub: '2025', meta: 'Released November and December 2025 · autumn 1987', desc: 'Back to Hawkins, with the gates open and the party grown up.' },
     ] },
 
 

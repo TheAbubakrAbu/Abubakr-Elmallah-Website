@@ -75,13 +75,14 @@ window.FAN_PAGE = {
     ] },
 
 
-  { id: 'arcs', kind: 'timeline', title: 'The Arcs', note: '2011 – now · sixteen seasons and counting',
+  { id: 'arcs', kind: 'timeline', title: 'The Arcs', note: 'aired 2011 – now · sixteen seasons and counting',
+    lede: 'Ninjago never puts a year on anything, so the in-universe clock is measured in gaps: the show jumps a year after season seven and the ninja visibly grow into it, which almost no cartoon on this list bothers to do.',
     items: [
-      { when: '2011 · Pilot', title: 'Spinjitzu', desc: 'Four golden weapons, a spinning martial art, and a toy line that was supposed to last two years.' },
-      { when: 'S1–2 · Snakes', title: 'The Serpentine & the Overlord', desc: 'The prophecy of the Green Ninja pays off, and the show quietly starts being serialised.' },
-      { when: 'S3–4 · Rebooted', title: 'Nindroids & Tournament', desc: 'Zane’s sacrifice, and the season everyone points to when they say the show got good.' },
-      { when: 'S8–10 · Oni', title: 'Sons of Garmadon & March of the Oni', desc: 'The darkest run, and the one that finally settles the Garmadon question.' },
-      { when: 'S11–15', title: 'Crystalized & Dragons Rising', desc: 'Realms merge, timelines fold, and a LEGO show ends up with continuity most franchises would envy.' },
+      { when: '2011 · Pilot', title: 'Spinjitzu', meta: 'Aired January 2011 · Ninjago before the Serpentine, no year given', desc: 'Four golden weapons, a spinning martial art, and a toy line that was supposed to last two years.' },
+      { when: 'S1–2 · Snakes', title: 'The Serpentine & the Overlord', meta: 'Aired December 2011 – April 2013 · about a year of story', desc: 'The prophecy of the Green Ninja pays off, and the show quietly starts being serialised.' },
+      { when: 'S3–4 · Rebooted', title: 'Nindroids & Tournament', meta: 'Aired January 2014 – February 2015 · set a year after the Overlord falls', desc: 'Zane’s sacrifice, and the season everyone points to when they say the show got good.' },
+      { when: 'S8–10 · Oni', title: 'Sons of Garmadon & March of the Oni', meta: 'Aired April 2018 – March 2019 · one year on from season seven, and the ninja are drawn older for it', desc: 'The darkest run, and the one that finally settles the Garmadon question.' },
+      { when: 'S11–15', title: 'Crystalized & Dragons Rising', meta: 'Aired June 2019 – 2022, with Dragons Rising from June 2023 · the merge resets the map', desc: 'Realms merge, timelines fold, and a LEGO show ends up with continuity most franchises would envy.' },
     ] },
 
   { id: 'weapons', kind: 'tiles', title: 'What They Do', note: 'forged by the First Spinjitzu Master',

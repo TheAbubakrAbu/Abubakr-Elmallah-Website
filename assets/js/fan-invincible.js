@@ -5,10 +5,10 @@ window.FAN_PAGE = {
 
   { id: 'seasons', kind: 'rank', title: 'The Show', note: '2021 \u2013 now \u00b7 four seasons',
     items: [
-      { num: '01', title: 'Season One', sub: '2021', desc: 'Opens as a cheerful teen superhero cartoon and, at the end of episode one, stops being one.' },
-      { num: '02', title: 'Season Two', sub: '2023–24', desc: 'The fallout: a family, a planet, and a son working out what he inherited.' },
-      { num: '03', title: 'Season Three', sub: '2025', desc: 'The Viltrumite question stops being theoretical.' },
-      { num: '04', title: 'Season Four', sub: '2026', desc: 'The one that finally got me to finish it. I had heard the finale being talked about as one of the best episodes anybody had put out, went back to catch up, and it was worth the detour.' },
+      { num: '01', title: 'Season One', sub: '2021', meta: 'Released March – April 2021 · Mark’s last year of high school', desc: 'Opens as a cheerful teen superhero cartoon and, at the end of episode one, stops being one.' },
+      { num: '02', title: 'Season Two', sub: '2023–24', meta: 'Released November 2023 – April 2024 · the months straight after', desc: 'The fallout: a family, a planet, and a son working out what he inherited.' },
+      { num: '03', title: 'Season Three', sub: '2025', meta: 'Released February – March 2025 · Mark at college', desc: 'The Viltrumite question stops being theoretical.' },
+      { num: '04', title: 'Season Four', sub: '2026', meta: 'Released 2026 · picks up where season three ends', desc: 'The one that finally got me to finish it. I had heard the finale being talked about as one of the best episodes anybody had put out, went back to catch up, and it was worth the detour.' },
     ] },
   /* the complete index. Every other section on this page is a choice; this one
      is the whole list, so nothing is missing just because it is not worth a
@@ -100,10 +100,10 @@ window.FAN_PAGE = {
 
   { id: 'start', kind: 'rank', title: 'Where To Start', note: 'the show, or a very large book',
     items: [
-      { title: 'The show, season one', sub: '2021', desc: 'Eight episodes, and the first one does the whole trick. Start here if you want the reveal to land.' },
-      { title: 'Compendium One', sub: 'Issues 1 to 47', desc: 'A brick of a book covering everything the first two seasons adapt, and it is the cheapest way in.' },
-      { title: 'Compendium Two and Three', sub: 'Issues 48 to 144', desc: 'Where the comic goes places the show has not reached yet. Worth waiting on if you are watching.' },
-      { title: 'Atom Eve', sub: 'One shot, 2023', desc: 'A standalone special that fills in the best supporting character\u2019s history.' },
+      { title: 'The show, season one', sub: '2021', meta: 'Released March 2021 · adapts issues 1 to 13', desc: 'Eight episodes, and the first one does the whole trick. Start here if you want the reveal to land.' },
+      { title: 'Compendium One', sub: 'Issues 1 to 47', meta: 'Issues published 2003 – 2008', desc: 'A brick of a book covering everything the first two seasons adapt, and it is the cheapest way in.' },
+      { title: 'Compendium Two and Three', sub: 'Issues 48 to 144', meta: 'Issues published 2008 – 2018', desc: 'Where the comic goes places the show has not reached yet. Worth waiting on if you are watching.' },
+      { title: 'Atom Eve', sub: 'One shot, 2023', meta: 'Released July 2023 · Eve’s childhood onward', desc: 'A standalone special that fills in the best supporting character\u2019s history.' },
     ] },
 
   { id: 'comic', kind: 'timeline', title: 'The Comic', note: 'Kirkman & Ottley, 2003 – 2018',

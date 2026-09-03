@@ -143,14 +143,14 @@ window.FAN_PAGE = {
       { title: 'Greninja', sub: 'No. 658 · Water, Dark', tag: 'Gen VI', desc: 'A ninja frog that throws shuriken made of compressed water. Voted the single most popular Pok\u00e9mon in a global poll.', meta: 'Kalos' },
     ] },
 
-  { id: 'start', kind: 'rank', title: 'Where To Start', note: 'if you are picking one up now',
+  { id: 'start', kind: 'rank', title: 'Where To Start', note: 'if you are picking one up now · with the Western release and the region’s own place in the timeline',
     items: [
-      { title: 'HeartGold and SoulSilver', sub: '2009 · DS', desc: 'Two regions, sixteen gyms, and your lead Pok\u00e9mon walks behind you. Widely rated the best remakes ever made.' },
-      { title: 'Emerald', sub: '2004 · GBA', desc: 'Hoenn with both villain teams, the Battle Frontier, and the tightest of the early-generation games.' },
-      { title: 'Platinum', sub: '2008 · DS', desc: 'Sinnoh fixed: better pacing, better dex, and the Distortion World.' },
-      { title: 'Black and White', sub: '2010 · DS', desc: 'A completely new dex until the credits roll, and the only game in the series with a villain who has a point.' },
-      { title: 'Legends: Arceus', sub: '2022 · Switch', desc: 'Throws out the formula: no gyms, real-time catching, and an open region two hundred years before the rest.' },
-      { title: 'Scarlet and Violet', sub: '2022 · Switch', desc: 'Fully open, three storylines at once, and a frame rate everybody argued about for a year.' },
+      { title: 'HeartGold and SoulSilver', sub: '2009 · DS', meta: 'Released March 2010 in the West · Johto, three years after Red and Blue', desc: 'Two regions, sixteen gyms, and your lead Pok\u00e9mon walks behind you. Widely rated the best remakes ever made.' },
+      { title: 'Emerald', sub: '2004 · GBA', meta: 'Released May 2005 in the West · Hoenn, running alongside Ruby and Sapphire', desc: 'Hoenn with both villain teams, the Battle Frontier, and the tightest of the early-generation games.' },
+      { title: 'Platinum', sub: '2008 · DS', meta: 'Released March 2009 in the West · Sinnoh, the definitive version of that story', desc: 'Sinnoh fixed: better pacing, better dex, and the Distortion World.' },
+      { title: 'Black and White', sub: '2010 · DS', meta: 'Released March 2011 in the West · Unova, and its own sequels are set two years later', desc: 'A completely new dex until the credits roll, and the only game in the series with a villain who has a point.' },
+      { title: 'Legends: Arceus', sub: '2022 · Switch', meta: 'Released January 2022 · Hisui, about two hundred years before Sinnoh', desc: 'Throws out the formula: no gyms, real-time catching, and an open region two hundred years before the rest.' },
+      { title: 'Scarlet and Violet', sub: '2022 · Switch', meta: 'Released November 2022 · Paldea, present day', desc: 'Fully open, three storylines at once, and a frame rate everybody argued about for a year.' },
     ] },
 
   { id: 'beyond', kind: 'tiles', title: 'Beyond The Games', note: 'the rest of the machine',

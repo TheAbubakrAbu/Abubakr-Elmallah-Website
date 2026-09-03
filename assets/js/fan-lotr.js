@@ -120,14 +120,15 @@ window.FAN_PAGE = {
         meta: 'Drawn from the Somme' },
     ] },
 
-  { id: 'published', kind: 'timeline', title: 'On The Page And Screen', note: '1937 to now',
+  { id: 'published', kind: 'timeline', title: 'On The Page And Screen', note: 'published 1937 to now · set in the Second and Third Ages',
+    lede: 'Two calendars at once. The date on the left is ours; the line under each entry is Middle-earth\u2019s own, counted in Ages, where the whole of the War of the Ring takes about six months and the Silmarillion takes several thousand years.',
     items: [
-      { when: '1937', title: 'The Hobbit', desc: 'A children\u2019s book written for his own children, with a ring in it that is barely important.' },
-      { when: '1954 and 1955', title: 'The Lord of the Rings', desc: 'Seventeen years of writing, published in three volumes because paper was expensive, which is why people call a six-book novel a trilogy.' },
-      { when: '1977', title: 'The Silmarillion', desc: 'Published after his death by his son Christopher, out of decades of drafts. The mythology the rest is standing on.' },
-      { when: '2001 to 2003', title: 'The Jackson trilogy', desc: 'Shot back to back in New Zealand over 438 days, and the last film took eleven Academy Awards from eleven nominations.' },
-      { when: '2012 to 2014', title: 'The Hobbit films', desc: 'One short book stretched to three films, and the argument about that has not stopped.' },
-      { when: '2022', title: 'The Rings of Power', desc: 'The Second Age, adapted from the appendices, and the most expensive television ever commissioned.' },
+      { when: 'September 1937', title: 'The Hobbit', meta: 'Set TA 2941 \u2013 2942 \u00b7 April 2941 to midsummer 2942', desc: 'A children\u2019s book written for his own children, with a ring in it that is barely important.' },
+      { when: 'July 1954 \u2013 October 1955', title: 'The Lord of the Rings', meta: 'Set TA 3001 \u2013 3021 \u00b7 the quest itself September 3018 to March 3019', desc: 'Seventeen years of writing, published in three volumes because paper was expensive, which is why people call a six-book novel a trilogy.' },
+      { when: 'September 1977', title: 'The Silmarillion', meta: 'Set from the Years of the Trees to the end of the First Age', desc: 'Published after his death by his son Christopher, out of decades of drafts. The mythology the rest is standing on.' },
+      { when: 'December 2001 \u2013 December 2003', title: 'The Jackson trilogy', meta: 'Set TA 3001 \u2013 3021 \u00b7 Fellowship to January 3019, Two Towers to March 3019, Return of the King to the Grey Havens', desc: 'Shot back to back in New Zealand over 438 days, and the last film took eleven Academy Awards from eleven nominations.' },
+      { when: 'December 2012 \u2013 December 2014', title: 'The Hobbit films', meta: 'Set TA 2941 \u2013 2942', desc: 'One short book stretched to three films, and the argument about that has not stopped.' },
+      { when: 'September 2022', title: 'The Rings of Power', meta: 'Set in the Second Age, thousands of years before the rest of this list', desc: 'The Second Age, adapted from the appendices, and the most expensive television ever commissioned.' },
     ] },
 
   { id: 'films', kind: 'cards', title: 'The Jackson Trilogy', note: '2001 – 2003, and it should not have worked',

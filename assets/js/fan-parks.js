@@ -60,15 +60,15 @@ window.FAN_PAGE = {
         meta: 'The one that hurts' },
     ] },
 
-  { id: 'seasons', kind: 'rank', title: 'Seven Seasons', note: '2009 to 2015',
+  { id: 'seasons', kind: 'rank', title: 'Seven Seasons', note: 'aired 2009 to 2015 · set contemporary until the jump to 2017',
     items: [
-      { title: 'Season One', sub: '2009', desc: 'Six episodes, played much closer to The Office, with a Leslie who is mostly the joke. Everyone agrees to skip it.' },
-      { title: 'Season Two', sub: '2009 to 2010', desc: 'The rewrite: Leslie becomes competent, Ron gets a philosophy, and the show finds out it likes its characters.' },
-      { title: 'Season Three', sub: '2011', desc: 'Ben and Chris arrive, the Harvest Festival saves the department, and Li\u2019l Sebastian gets a funeral.' },
-      { title: 'Season Four', sub: '2011 to 2012', desc: 'The city council campaign, which is the best sustained arc the show ran.' },
-      { title: 'Season Five', sub: '2012 to 2013', desc: 'Washington, a wedding, and the Cones of Dunshire.' },
-      { title: 'Season Six', sub: '2013 to 2014', desc: 'The unity concert, and a three year jump in the last thirty seconds.' },
-      { title: 'Season Seven', sub: '2015', desc: '2017, tablets everywhere, and a finale that follows every single character to the end of their life. Almost nothing else has tried that.' },
+      { title: 'Season One', sub: '2009', meta: 'Aired April – May 2009 · spring 2009 in Pawnee', desc: 'Six episodes, played much closer to The Office, with a Leslie who is mostly the joke. Everyone agrees to skip it.' },
+      { title: 'Season Two', sub: '2009 to 2010', meta: 'Aired September 2009 – May 2010 · set across the same year', desc: 'The rewrite: Leslie becomes competent, Ron gets a philosophy, and the show finds out it likes its characters.' },
+      { title: 'Season Three', sub: '2011', meta: 'Aired January – May 2011 · the Harvest Festival, autumn into spring', desc: 'Ben and Chris arrive, the Harvest Festival saves the department, and Li\u2019l Sebastian gets a funeral.' },
+      { title: 'Season Four', sub: '2011 to 2012', meta: 'Aired September 2011 – May 2012 · one full council campaign', desc: 'The city council campaign, which is the best sustained arc the show ran.' },
+      { title: 'Season Five', sub: '2012 to 2013', meta: 'Aired September 2012 – May 2013 · set contemporary', desc: 'Washington, a wedding, and the Cones of Dunshire.' },
+      { title: 'Season Six', sub: '2013 to 2014', meta: 'Aired September 2013 – April 2014 · ends by jumping three years forward', desc: 'The unity concert, and a three year jump in the last thirty seconds.' },
+      { title: 'Season Seven', sub: '2015', meta: 'Aired January – February 2015 · set in 2017, and then decades past it', desc: '2017, tablets everywhere, and a finale that follows every single character to the end of their life. Almost nothing else has tried that.' },
     ] },
 
   { id: 'bits', kind: 'tiles', title: 'The Running Bits', note: 'the ones that outlived the show',

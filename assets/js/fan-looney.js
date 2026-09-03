@@ -82,8 +82,8 @@ window.FAN_PAGE = {
 
   /* the complete index. ◆ marks the ones that are mine; nothing is marked yet,
      see the note at the top of this file. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the shorts, the series, the features',
-    lede: 'A thousand shorts is not a list anybody can put on a page, so this is the shorts worth starting with, and then the complete television and film side.',
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the shorts, the series, the features · release dates only',
+    lede: 'A thousand shorts is not a list anybody can put on a page, so this is the shorts worth starting with, and then the complete television and film side. Every date here is a release date: Looney Tunes is the one thing on this site with no in-universe clock at all, because a short can be set in the Stone Age, on Mars and in an opera house without ever admitting a year.',
     items: [
       { title: 'The Shorts To Start With', sub: '1938 – 1957', unit: 'short',
         desc: 'Ten of about a thousand. Four of these are in the National Film Registry.',

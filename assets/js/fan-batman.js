@@ -6,11 +6,11 @@ window.FAN_PAGE = {
   { id: 'films', kind: 'films', title: 'My Two', note: 'the ones I actually put on',
     lede: 'Batman has been rebooted more than any other character alive, and two of them are, for me, well clear of the rest.',
     items: [
-      { num: 'I', title: 'The Dark Knight', sub: '2008 · Nolan', accent: '#e0a03a', meta: 'Bale · Ledger',
+      { num: 'I', title: 'The Dark Knight', sub: 'July 2008 · Nolan', accent: '#e0a03a', meta: 'Bale · Ledger · Gotham, a year after Batman Begins',
         desc: 'Not really a superhero film: a crime picture with a cape in it, shot on IMAX, about what a city does when someone shows up who cannot be bargained with. Ledger’s Joker has no origin, no plan he will admit to, and no interest in money, and the film is genuinely better for refusing to explain him.' },
-      { num: 'II', title: 'The Batman', sub: '2022 · Reeves', accent: '#c04a3a', meta: 'Pattinson · year two',
+      { num: 'II', title: 'The Batman', sub: 'March 2022 · Reeves', accent: '#c04a3a', meta: 'Pattinson · Gotham, year two, over about a fortnight',
         desc: 'The one that finally remembered he is the World’s Greatest Detective. Three hours of rain, a serial killer leaving ciphers, and a Bruce Wayne who is visibly bad at this and getting worse. The best-looking Batman film by a distance, and the only one that feels like a case rather than a war.' },
-      { num: 'III', title: 'Batman v Superman & the Snyder Cut', sub: '2016 · 2021 · Snyder', accent: '#8f9fb0', meta: 'Affleck · the Batfleck',
+      { num: 'III', title: 'Batman v Superman & the Snyder Cut', sub: 'March 2016 · March 2021 · Snyder', accent: '#8f9fb0', meta: 'Affleck · the Batfleck, twenty years into the job',
         desc: 'And the Batman himself: Affleck is the best physical Batman anyone has cast. Older, scarred, brutal, and genuinely frightening; the warehouse fight is the first time a film made the fighting look the way it does in the comics. A Batman who has already been doing this for twenty years and lost people, which none of the others start from.' },
     ] },
   /* the complete index. Every other section on this page is a choice; this one
@@ -133,14 +133,14 @@ window.FAN_PAGE = {
       { when: '2022', title: 'The Batman', desc: 'Year two, in the rain, as a serial killer procedural. The most patient version yet.' },
     ] },
 
-  { id: 'best', kind: 'rank', title: 'The Best Of It', note: 'across every medium',
+  { id: 'best', kind: 'rank', title: 'The Best Of It', note: 'across every medium · when it came out, and when it is set',
     items: [
-      { title: 'Batman: The Animated Series', sub: '1992–95', desc: 'Painted on black card, scored like a noir, and still the definitive version of nearly every character in it.' },
-      { title: 'Batman: Arkham Asylum & City', sub: '2009 · 2011', desc: 'The games that finally made the combat, the detective work and the dread all work at once.' },
-      { title: 'The Dark Knight', sub: '2008', desc: 'A crime film that happens to have a cape in it. Still the ceiling for the genre.' },
-      { title: 'The Batman', sub: '2022', desc: 'Year two, in the rain, as a serial-killer procedural.' },
-      { title: 'Year One', sub: '1987', desc: 'Miller and Mazzucchelli, the origin nearly every adaptation since has quietly copied.' },
-      { title: 'The Killing Joke', sub: '1988', desc: 'One bad day. Contested, and unavoidable.' },
+      { title: 'Batman: The Animated Series', sub: '1992–95', meta: 'Aired September 1992 – September 1995 · Gotham, deliberately undated', desc: 'Painted on black card, scored like a noir, and still the definitive version of nearly every character in it.' },
+      { title: 'Batman: Arkham Asylum & City', sub: '2009 · 2011', meta: 'Released August 2009 · October 2011 · one night each', desc: 'The games that finally made the combat, the detective work and the dread all work at once.' },
+      { title: 'The Dark Knight', sub: '2008', meta: 'Released July 2008 · Gotham, a year after Batman Begins', desc: 'A crime film that happens to have a cape in it. Still the ceiling for the genre.' },
+      { title: 'The Batman', sub: '2022', meta: 'Released March 2022 · Gotham, year two', desc: 'Year two, in the rain, as a serial-killer procedural.' },
+      { title: 'Year One', sub: '1987', meta: 'Published February – May 1987 · Bruce’s first year, and Gordon’s', desc: 'Miller and Mazzucchelli, the origin nearly every adaptation since has quietly copied.' },
+      { title: 'The Killing Joke', sub: '1988', meta: 'Published March 1988 · one bad day, no year given', desc: 'One bad day. Contested, and unavoidable.' },
     ] },
 
   { id: 'lines', kind: 'quotes', title: 'Lines', note: 'the ones that stuck',

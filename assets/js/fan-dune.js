@@ -101,14 +101,15 @@ window.FAN_PAGE = {
       { title: 'Crysknife', accent: '#a8c0c8', sub: 'From a worm\u2019s tooth', desc: 'Drawn only when it will draw blood, and never shown to an outsider who leaves alive.' },
     ] },
 
-  { id: 'books', kind: 'timeline', title: 'The Books & The Films', note: 'Herbert, 1965 onward',
+  { id: 'books', kind: 'timeline', title: 'The Books & The Films', note: 'published 1965 onward · set 10191 AG onward',
+    lede: 'Two clocks. Ours on the left, and the Imperium’s underneath: AG counts from the founding of the Spacing Guild, and the six novels cover about five thousand years of it, most of that in a single jump.',
     items: [
-      { when: '1965', title: 'Dune', desc: 'Rejected by twenty publishers and printed by a car-manual company. Now the best-selling science fiction novel ever written.' },
-      { when: '1969 – 1985', title: 'The other five', desc: 'Messiah, Children, God Emperor, Heretics, Chapterhouse: each one stranger than the last, and Messiah exists to tell you Paul is not a hero.' },
-      { when: '1984', title: 'Lynch’s Dune', desc: 'A beautiful mess made under studio conditions nobody could have survived.' },
-      { when: '2000 · 2003', title: 'The miniseries', desc: 'Sci-Fi Channel, low budget, surprisingly faithful.' },
-      { when: '2021 · 2024', title: 'Villeneuve', desc: 'Part One and Part Two, the adaptation that finally had the runtime and the nerve to keep the ending bitter.' },
-      { when: '2026', title: 'Dune: Part Three', desc: 'Messiah, and the book that exists specifically to tell you Paul was never the hero. Dated for December, the same day as Avengers: Doomsday, which is an absurd thing for a calendar to do.' },
+      { when: 'August 1965', title: 'Dune', meta: 'Set 10191 – 10193 AG', desc: 'Rejected by twenty publishers and printed by a car-manual company. Now the best-selling science fiction novel ever written.' },
+      { when: 'July 1969 – 1985', title: 'The other five', meta: 'Set 10207 AG to about 15240 AG · God Emperor alone jumps three and a half thousand years', desc: 'Messiah, Children, God Emperor, Heretics, Chapterhouse: each one stranger than the last, and Messiah exists to tell you Paul is not a hero.' },
+      { when: 'December 1984', title: 'Lynch’s Dune', meta: 'Set 10191 AG', desc: 'A beautiful mess made under studio conditions nobody could have survived.' },
+      { when: 'December 2000 · March 2003', title: 'The miniseries', meta: 'Set 10191 – 10217 AG · Dune through Children of Dune', desc: 'Sci-Fi Channel, low budget, surprisingly faithful.' },
+      { when: 'October 2021 · March 2024', title: 'Villeneuve', meta: 'Set 10191 – 10193 AG', desc: 'Part One and Part Two, the adaptation that finally had the runtime and the nerve to keep the ending bitter.' },
+      { when: 'December 2026', title: 'Dune: Part Three', meta: 'Set 10207 AG, twelve years after Part Two', desc: 'Messiah, and the book that exists specifically to tell you Paul was never the hero. Dated for December, the same day as Avengers: Doomsday, which is an absurd thing for a calendar to do.' },
     ] },
 
   { id: 'three', kind: 'cards', title: 'Part Three', note: 'December 2026 · and it shares the day with Doomsday',

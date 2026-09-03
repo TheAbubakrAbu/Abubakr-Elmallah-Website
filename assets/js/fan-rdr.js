@@ -3,11 +3,11 @@ window.FAN_PAGE = {
   when: { at: '1st year of college, 2024\u201325', note: 'First year of college.' },
   sections: [
 
-  { id: 'games', kind: 'rank', title: 'The Games', note: '2004 – 2018',
+  { id: 'games', kind: 'rank', title: 'The Games', note: 'released 2004 – 2018 · set 1899 – 1914, in the wrong order',
     items: [
-      { num: 'I', title: 'Red Dead Revolver', sub: '2004', desc: 'The arcade western that started it, and the one almost nobody played.' },
-      { num: 'II', title: 'Red Dead Redemption', sub: '2010', desc: 'John Marston hunting down his old gang for a government that owns his family. The ending is still the best in the medium.' },
-      { num: 'III', title: 'Red Dead Redemption 2', sub: '2018', desc: 'A prequel about a gang that is already dying, told slowly enough that you feel every mile of it.' },
+      { num: 'I', title: 'Red Dead Revolver', sub: '2004', meta: 'Released May 2004 · set in the 1880s, its own continuity', desc: 'The arcade western that started it, and the one almost nobody played.' },
+      { num: 'II', title: 'Red Dead Redemption', sub: '2010', meta: 'Released May 2010 · set 1911, with an epilogue in 1914', desc: 'John Marston hunting down his old gang for a government that owns his family. The ending is still the best in the medium.' },
+      { num: 'III', title: 'Red Dead Redemption 2', sub: '2018', meta: 'Released October 2018 · set 1899, with an epilogue in 1907', desc: 'A prequel about a gang that is already dying, told slowly enough that you feel every mile of it.' },
     ] },
 
   { id: 'gang', kind: 'cards', title: 'The Van der Linde Gang', note: '1899, and running out of country',

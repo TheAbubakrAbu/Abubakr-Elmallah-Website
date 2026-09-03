@@ -4,11 +4,12 @@ window.FAN_PAGE = {
   when: { at: 'Elementary school', note: 'Somewhere in elementary school, and it has held up better on every rewatch since.' },
   sections: [
 
-  { id: 'books', kind: 'rank', title: 'The Three Books', note: '2005 – 2008 · sixty-one episodes',
+  { id: 'books', kind: 'rank', title: 'The Three Books', note: 'aired 2005 – 2008 · set 99 – 100 AG · sixty-one episodes',
+    lede: 'AG counts from the Air Nomad genocide, which is also the year Aang went into the iceberg. He comes out in 99 AG and the whole series is over by the end of the following summer: three years of television covering about one year of their lives.',
     items: [
-      { num: 'I', title: 'Book One: Water', sub: '2005', desc: 'Aang out of the iceberg, Katara and Sokka out of the South Pole, and a hundred years of war to catch up on.' },
-      { num: 'II', title: 'Book Two: Earth', sub: '2006', desc: 'Toph, the Earth Kingdom, the library, and the best redemption arc in animation quietly starting in the background.' },
-      { num: 'III', title: 'Book Three: Fire', sub: '2007–08', desc: 'The invasion, the comet, and an ending that solves an impossible moral problem instead of dodging it.' },
+      { num: 'I', title: 'Book One: Water', sub: '2005', meta: 'Aired February – December 2005 · 99 AG, winter', desc: 'Aang out of the iceberg, Katara and Sokka out of the South Pole, and a hundred years of war to catch up on.' },
+      { num: 'II', title: 'Book Two: Earth', sub: '2006', meta: 'Aired March – December 2006 · 100 AG, spring', desc: 'Toph, the Earth Kingdom, the library, and the best redemption arc in animation quietly starting in the background.' },
+      { num: 'III', title: 'Book Three: Fire', sub: '2007–08', meta: 'Aired September 2007 – July 2008 · 100 AG, up to the day of Sozin’s Comet', desc: 'The invasion, the comet, and an ending that solves an impossible moral problem instead of dodging it.' },
     ] },
   /* the complete index. Every other section on this page is a choice; this one
      is the whole list, so nothing is missing just because it is not worth a
@@ -179,12 +180,12 @@ window.FAN_PAGE = {
 
   { id: 'eps', kind: 'rank', title: 'The Episodes', note: 'the ones people rewatch',
     items: [
-      { title: 'The Blue Spirit', sub: 'Book 1, ch. 13', desc: 'Zuko rescues Aang in a mask and cannot say why. The first crack in the whole villain premise.' },
-      { title: 'Zuko Alone', sub: 'Book 2, ch. 7', desc: 'A western in twenty-two minutes, with the best ending line in the series.' },
-      { title: 'The Tales of Ba Sing Se', sub: 'Book 2, ch. 15', desc: 'Six short stories, and Iroh\u2019s ends with a song for his son. The crew dedicated it to Mako.' },
-      { title: 'The Crossroads of Destiny', sub: 'Book 2 finale', desc: 'Zuko chooses wrong, Azula wins outright, and the show ends its middle act on a loss.' },
-      { title: 'The Puppetmaster', sub: 'Book 3, ch. 8', desc: 'Bloodbending, on a full moon, in a children\u2019s cartoon.' },
-      { title: 'Sozin\u2019s Comet', sub: 'Book 3 finale', desc: 'Four parts, every thread paid off, and a solution that refuses the easy answer.' },
+      { title: 'The Blue Spirit', sub: 'Book 1, ch. 13', meta: 'Aired June 2005 · 99 AG', desc: 'Zuko rescues Aang in a mask and cannot say why. The first crack in the whole villain premise.' },
+      { title: 'Zuko Alone', sub: 'Book 2, ch. 7', meta: 'Aired May 2006 · 100 AG', desc: 'A western in twenty-two minutes, with the best ending line in the series.' },
+      { title: 'The Tales of Ba Sing Se', sub: 'Book 2, ch. 15', meta: 'Aired September 2006 · 100 AG', desc: 'Six short stories, and Iroh\u2019s ends with a song for his son. The crew dedicated it to Mako.' },
+      { title: 'The Crossroads of Destiny', sub: 'Book 2 finale', meta: 'Aired December 2006 · 100 AG', desc: 'Zuko chooses wrong, Azula wins outright, and the show ends its middle act on a loss.' },
+      { title: 'The Puppetmaster', sub: 'Book 3, ch. 8', meta: 'Aired November 2007 · 100 AG', desc: 'Bloodbending, on a full moon, in a children\u2019s cartoon.' },
+      { title: 'Sozin\u2019s Comet', sub: 'Book 3 finale', meta: 'Aired July 2008 · 100 AG, the day the comet arrives', desc: 'Four parts, every thread paid off, and a solution that refuses the easy answer.' },
     ] },
 
   { id: 'lines', kind: 'quotes', title: 'Lines', note: 'the ones that stuck',

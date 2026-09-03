@@ -4,24 +4,25 @@ window.FAN_PAGE = {
   when: { at: 'Middle school, around 2017\u201320', note: 'Middle school, around the same time as Pirates.' },
   sections: [
 
-  { id: 'films', kind: 'rank', title: 'The Six Films', note: '1993 – 2022',
+  { id: 'films', kind: 'rank', title: 'The Six Films', note: 'released 1993 – 2022 · set 1993 – 2022, in step',
+    lede: 'One of the few franchises whose two clocks run together: every film is set in the year it came out, so the twenty-two-year gap between the third and Jurassic World is a twenty-two-year gap in the story too.',
     items: [
-      { num: 'I', title: 'Jurassic Park', sub: '1993', desc: 'Fifteen minutes of dinosaur screen time, six of them animatronic, and it has never been beaten.' },
-      { num: 'II', title: 'The Lost World', sub: '1997', desc: 'Site B, the trailer over the cliff, and a T. rex loose in San Diego.' },
-      { num: 'III', title: 'Jurassic Park III', sub: '2001', desc: 'Spinosaurus, the aviary, and a talking raptor dream. Ninety-two minutes, no fat.' },
-      { num: 'IV', title: 'Jurassic World', sub: '2015', desc: 'The park finally open, and a hybrid designed by a marketing department.' },
-      { num: 'V', title: 'Fallen Kingdom', sub: '2018', desc: 'A volcano, an auction in a basement, and the moment the franchise stops being about an island.' },
-      { num: 'VI', title: 'Dominion', sub: '2022', desc: 'Both casts, locusts, and dinosaurs loose in the world at last.' },
+      { num: 'I', title: 'Jurassic Park', sub: '1993', meta: 'Released June 1993 · set 1993 · Isla Nublar', desc: 'Fifteen minutes of dinosaur screen time, six of them animatronic, and it has never been beaten.' },
+      { num: 'II', title: 'The Lost World', sub: '1997', meta: 'Released May 1997 · set 1997, four years on · Isla Sorna', desc: 'Site B, the trailer over the cliff, and a T. rex loose in San Diego.' },
+      { num: 'III', title: 'Jurassic Park III', sub: '2001', meta: 'Released July 2001 · set 2001 · Isla Sorna', desc: 'Spinosaurus, the aviary, and a talking raptor dream. Ninety-two minutes, no fat.' },
+      { num: 'IV', title: 'Jurassic World', sub: '2015', meta: 'Released June 2015 · set 2015, twenty-two years after the park failed', desc: 'The park finally open, and a hybrid designed by a marketing department.' },
+      { num: 'V', title: 'Fallen Kingdom', sub: '2018', meta: 'Released June 2018 · set 2018, three years later', desc: 'A volcano, an auction in a basement, and the moment the franchise stops being about an island.' },
+      { num: 'VI', title: 'Dominion', sub: '2022', meta: 'Released June 2022 · set 2022, four years later', desc: 'Both casts, locusts, and dinosaurs loose in the world at last.' },
     ] },
 
   { id: 'favourites', kind: 'films', title: 'My Three', note: 'the ones I actually rewatch',
     lede: 'Six films, and these are the three that work. The other three are about the same island getting worse.',
     items: [
-      { num: 'I', title: 'Jurassic Park', sub: '1993 · Spielberg', accent: '#e0642a', meta: 'Isla Nublar',
+      { num: 'I', title: 'Jurassic Park', sub: 'June 1993 · Spielberg', accent: '#e0642a', meta: 'Isla Nublar · set 1993',
         desc: 'Fourteen minutes of dinosaur across two hours and it is still the most convincing they have ever looked, because most of them are physical objects being rained on. The kitchen, the glass of water, the goat leg on the sunroof, and a T. rex that arrives because the power went off rather than because a plot needed it.' },
-      { num: 'II', title: 'The Lost World', sub: '1997 · Spielberg', accent: '#7fbf4f', meta: 'Isla Sorna',
+      { num: 'II', title: 'The Lost World', sub: 'May 1997 · Spielberg', accent: '#7fbf4f', meta: 'Isla Sorna · set 1997',
         desc: 'Much meaner than the first, and deliberately so. The trailer over the cliff with the cracking glass is the best sustained sequence in the series, and the long grass raptor scene is the scariest thing Spielberg shot in the nineties.' },
-      { num: 'III', title: 'Jurassic World', sub: '2015 · Trevorrow', accent: '#3fbf9f', meta: 'The park, open',
+      { num: 'III', title: 'Jurassic World', sub: 'June 2015 · Trevorrow', accent: '#3fbf9f', meta: 'The park, open · set 2015',
         desc: 'The one that finally shows you the park working, full of bored tourists who think dinosaurs are boring now, which is a genuinely sharp idea. Then the Indominus gets out, and the last ten minutes hand the film to the T. rex and Blue and it absolutely earns it.' },
     ] },
   /* the complete index. Every other section on this page is a choice; this one

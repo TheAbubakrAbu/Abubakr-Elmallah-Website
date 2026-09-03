@@ -9,25 +9,26 @@ window.FAN_PAGE = {
   when: { at: '5th grade, 2016\u201317', note: 'Read the whole set in fifth grade, before I could have told you what a compiler was. The first series I finished on my own, and still the bar.' },
   sections: [
 
-  { id: 'books', kind: 'rank', title: 'The Seven Books', note: '1997 – 2007',
+  { id: 'books', kind: 'rank', title: 'The Seven Books', note: 'published 1997 – 2007 · set 1991 – 1998',
+    lede: 'Ten years of publishing covering seven school years. The date beside each title is when it reached our world; the line under it is when it happens in theirs, which is almost always the first of September to the end of June.',
     items: [
-      { num: 'I', title: 'The Philosopher’s Stone', sub: '1997', desc: 'Diagon Alley, the Sorting Hat, and a mirror that shows you exactly what you want.' },
-      { num: 'II', title: 'The Chamber of Secrets', sub: '1998', desc: 'A basilisk, a diary that writes back, and the first Horcrux nobody knew was one.' },
-      { num: 'III', title: 'The Prisoner of Azkaban', sub: '1999', desc: 'The Marauders, a hippogriff and a time-turner. The best-plotted book of the seven.' },
-      { num: 'IV', title: 'The Goblet of Fire', sub: '2000', desc: 'The Triwizard Tournament, and the graveyard scene that ends the childhood half of the series.' },
-      { num: 'V', title: 'The Order of the Phoenix', sub: '2003', desc: 'Umbridge, the D.A., and the Ministry refusing to believe what everyone saw.' },
-      { num: 'VI', title: 'The Half-Blood Prince', sub: '2005', desc: 'Memories, Horcruxes, and the Astronomy Tower.' },
-      { num: 'VII', title: 'The Deathly Hallows', sub: '2007', desc: 'The hunt, the Hallows, King’s Cross, and the Battle of Hogwarts.' },
+      { num: 'I', title: 'The Philosopher’s Stone', sub: 'June 1997', meta: 'July 1991 – June 1992 · first year', desc: 'Diagon Alley, the Sorting Hat, and a mirror that shows you exactly what you want.' },
+      { num: 'II', title: 'The Chamber of Secrets', sub: 'July 1998', meta: 'July 1992 – June 1993 · second year', desc: 'A basilisk, a diary that writes back, and the first Horcrux nobody knew was one.' },
+      { num: 'III', title: 'The Prisoner of Azkaban', sub: 'July 1999', meta: 'July 1993 – June 1994 · third year', desc: 'The Marauders, a hippogriff and a time-turner. The best-plotted book of the seven.' },
+      { num: 'IV', title: 'The Goblet of Fire', sub: 'July 2000', meta: 'August 1994 – June 1995 · fourth year', desc: 'The Triwizard Tournament, and the graveyard scene that ends the childhood half of the series.' },
+      { num: 'V', title: 'The Order of the Phoenix', sub: 'June 2003', meta: 'August 1995 – June 1996 · fifth year', desc: 'Umbridge, the D.A., and the Ministry refusing to believe what everyone saw.' },
+      { num: 'VI', title: 'The Half-Blood Prince', sub: 'July 2005', meta: 'July 1996 – June 1997 · sixth year', desc: 'Memories, Horcruxes, and the Astronomy Tower.' },
+      { num: 'VII', title: 'The Deathly Hallows', sub: 'July 2007', meta: 'August 1997 – May 1998 · no seventh year, plus an epilogue in September 2017', desc: 'The hunt, the Hallows, King’s Cross, and the Battle of Hogwarts.' },
     ] },
 
   { id: 'beasts', kind: 'films', title: 'Fantastic Beasts', note: '2016 – 2022 · seventy years earlier',
     lede: 'Newt Scamander’s films, set between the wars and built out of the textbook Harry buys in his first year. They are the same world from the other end of it: no school, no chosen one, just a magizoologist with a suitcase and a wizarding war coming.',
     items: [
-      { num: 'I', title: 'Fantastic Beasts and Where to Find Them', sub: '2016', accent: '#c9a95f', meta: 'New York · 1926',
+      { num: 'I', title: 'Fantastic Beasts and Where to Find Them', sub: 'November 2016', accent: '#c9a95f', meta: 'New York · December 1926',
         desc: 'A suitcase opens on a New York street and the whole American wizarding world falls out of it: MACUSA, No-Majs, the Second Salemers, and an Obscurial nobody wanted to see.' },
-      { num: 'II', title: 'The Crimes of Grindelwald', sub: '2018', accent: '#7b9be0', meta: 'Paris · 1927',
+      { num: 'II', title: 'The Crimes of Grindelwald', sub: 'November 2018', accent: '#7b9be0', meta: 'Paris · 1927',
         desc: 'Grindelwald recruiting in the open, a young Dumbledore who cannot move against him, and the blood pact that explains why.' },
-      { num: 'III', title: 'The Secrets of Dumbledore', sub: '2022', accent: '#4cc47f', meta: 'Bhutan · Berlin · 1932',
+      { num: 'III', title: 'The Secrets of Dumbledore', sub: 'April 2022', accent: '#4cc47f', meta: 'Bhutan · Berlin · 1932',
         desc: 'A Qilin picks the next leader of the wizarding world, and the blood pact finally breaks.' },
     ] },
   /* the complete index. Every other section on this page is a choice; this one
