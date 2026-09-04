@@ -111,7 +111,10 @@
   .fr-group--secondary .fr-grid { --cols: 2; }
   .fr-group--tertiary  .fr-grid { --cols: 2; }
 }
-.fr-group + .fr-group { margin-top: 0.6rem; }
+/* Every rank gets the same breathing room above its heading as it has below
+   it before the tile row. The old 0.6rem gap made every group after Who I Am
+   feel glued to the cards above it. */
+.fr-group + .fr-group { margin-top: clamp(2.5rem, 4vw, 3.5rem); }
 
 /* fandom.js renders each group as a <section>, and .fandoms is a <section>
    too, so the global `section { padding: 0 var(--gutter); max-width: var(--maxw) }`
@@ -560,6 +563,17 @@ a.fr-card { cursor: pointer; }
   font-family: "Marker Felt", "Bradley Hand", "Comic Sans MS", cursive;
   font-weight: 700; letter-spacing: 0.02em; font-size: 1.2rem;
   text-shadow: 2px 2px 0 #16255c;
+}
+
+.wm--phineas {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans);
+  font-weight: 800; letter-spacing: .015em; color: #f5d84b;
+  text-shadow: 2px 2px 0 #317346;
+}
+.wm--mazerunner {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+  text-shadow: 2px 2px 0 #355a35;
 }
 
 /* LEGOLAND is the LEGO mark with a park under it. Same rounded bold as

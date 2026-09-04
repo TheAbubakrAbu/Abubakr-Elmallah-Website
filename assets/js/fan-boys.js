@@ -124,13 +124,27 @@ window.FAN_PAGE = {
     ] },
 
 
-  /* the music: the show's theme; nothing from The Boys is on my playlist yet */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · the theme',
-    lede: 'Nothing from The Boys is on my playlist yet, so this is the one: the theme, linked to the composer’s own upload.',
+  /* the music: explicitly supplied tracks are in the playlist */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes & Songs', note: 'seven tracks · from my playlist',
+    lede: 'The title theme, the little Homelander violin meme cue, a few perfect Vought pop songs, and the sped-up Party in the U.S.A. edit.',
     items: [
       { title: 'Main Title', accent: '#e02a2a', sub: 'Christopher Lennertz · The Boys · 2019 · 1:10',
         desc: 'Christopher Lennertz. The main title, all seventy seconds of it, which the show itself barely ever plays in full: guitars, and a sneer.',
         href: 'https://www.youtube.com/watch?v=GRyxwcPm_BI', link: 'Listen' },
+      { title: 'Homelander in Hallway', accent: '#c9a05f', sub: 'Christopher Lennertz · Season 2 · 2020 · 0:34',
+        desc: 'The tiny, unnerving violin cue from the Homelander hallway meme. It is a real score track, not just trailer music.',
+        href: 'https://music.amazon.com/tracks/B08KL3TWZ7', link: 'Listen' },
+      { title: 'Never Truly Vanish', accent: '#f0c840', sub: 'Erin Moriarty · Season 2 · 2020',
+        desc: 'Starlight’s glossy, totally sincere Vought pop anthem.' },
+      { title: 'Faster', accent: '#5f9fd0', sub: 'Jessie T. Usher & Aimée Proal · Season 2 · 2020',
+        desc: 'A-Train’s own track: absurdly polished, just like the Vought rollout.' },
+      { title: 'Pressure', accent: '#e0603a', sub: 'Billy Joel · Season 2 · 2020',
+        desc: 'The Billy Joel needle-drop: pressure, then worse pressure.' },
+      { title: 'We Didn’t Start the Fire', accent: '#e0483a', sub: 'Billy Joel · Season 2 · 2020',
+        desc: 'The other essential Billy Joel choice: history as a list of disasters, which is basically the show’s format.' },
+      { title: 'Party in the U.S.A. (Sped Up)', accent: '#6f9fd0', sub: 'Miley Cyrus · The Boys meme edit',
+        desc: 'The “walked into LAX” sped-up meme version. A meme association, not a song used in the series.',
+        href: 'https://open.spotify.com/search/Party%20in%20the%20U.S.A.%20Miley%20Cyrus', link: 'Listen' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

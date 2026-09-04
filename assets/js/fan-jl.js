@@ -117,6 +117,17 @@ window.FAN_PAGE = {
         meta: 'Cyborg and the waffles' },
     ] },
 
+  { id: 'lanterns', kind: 'cards', title: 'Lanterns', note: 'HBO · 2026 · John Stewart and Hal Jordan',
+    lede: 'Not a space-opera team-up first: Lanterns starts as an American murder mystery. Two Green Lanterns arrive in Rushville, Nebraska, where every person involved is hiding something and the case turns out to be much bigger than one small town.',
+    items: [
+      { title: 'The pairing', sub: 'John Stewart & Hal Jordan', tag: 'Sector 2814', accent: '#4fd07f',
+        desc: 'Aaron Pierre plays John, the taciturn new recruit; Kyle Chandler plays Hal, the veteran legend training him. The whole show runs on the gap between the person learning what the ring means and the one who thinks he already knows.', meta: 'Rookie · veteran' },
+      { title: 'A detective story', sub: 'Rushville, Nebraska', tag: 'The case', accent: '#5f9fe0',
+        desc: 'An Earthbound investigation into a murder in the American heartland: more cops on a case than heroes assembling for a sky beam. The sci-fi is there, but it arrives through the mystery.', meta: 'Rural noir' },
+      { title: 'The larger DCU', sub: 'Manhunters · Sinestro · Guy Gardner', tag: 'Beyond Earth', accent: '#d8b45f',
+        desc: 'It is grounded without pretending the Green Lantern mythos is small. The show reaches toward the Corps, the Manhunters and Sinestro, while still making John and Hal’s partnership the centre.', meta: 'Cosmic stakes' },
+    ] },
+
   { id: 'films', kind: 'cards', title: 'The Films', note: 'the ones I liked, against the consensus',
     lede: 'I liked parts of the DCEU that most people wrote off. The Snyder cut is the one everybody allows themselves to like; I liked the theatrical Justice League too, and the three that got laughed at are the ones I loved.',
     items: [
@@ -147,19 +158,33 @@ window.FAN_PAGE = {
       { title: 'The Legion of Doom', accent: '#c9402f', sub: 'Hall of Doom', desc: 'The mirror image: thirteen villains in a swamp headquarters shaped like a helmet.' },
     ] },
 
-  /* the music: the one DC track on my playlist that is not Batman's (those
-     are on the Batman page), named as the 1978 album names it and linked to
-     John Williams' own upload; the playlist has the Royal Philharmonic's
-     recording of it */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'two tracks · Superman, and the cartoon',
-    lede: 'Two here; the Batman ones are on his own page. The Superman march is on my playlist in the Royal Philharmonic’s recording, and this is Williams’ own; the cartoon theme is not on it yet.',
+  { id: 'batman-music', kind: 'tiles', compact: true, title: 'Batman', note: 'seventeen tracks · shared with Batman',
+    lede: 'One Batman collection, rendered here and on his own page from the same list.',
+    groupable: { key: 'series', label: 'Group', on: 'By film / series', open: 'on' },
+    sortable: { label: 'Sort', authored: 'asc', by: [
+      { key: 'year', label: 'Released', asc: 'Oldest', desc: 'Newest' },
+      { key: 'secs', label: 'Length', asc: 'Shortest', desc: 'Longest' },
+    ] },
+    items: window.BATMAN_MUSIC },
+
+  /* The rest of the DC music, kept separate from the shared Batman list. */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes & Songs', note: 'ten tracks · from my playlist',
+    lede: 'Superman, the Snyder films, and the Justice League cartoon—sorted here separately from the Batman collection above.',
     items: [
-      { title: 'Prelude and Main Title March', accent: '#5f9fe0', sub: 'Superman · 1978 · 5:30',
+      { title: 'Theme from Superman', accent: '#5f9fe0', sub: 'John Williams · Superman · 1978 · 5:30',
         desc: 'John Williams. The Superman march, and the only theme that has been handed down to every version of him since.',
         href: 'https://www.youtube.com/watch?v=QmHhIDUrdVA', link: 'Listen' },
       { title: 'Justice League Unlimited Theme', accent: '#4f8fe0', sub: 'Michael McCuistion · 2004 · 1:03',
         desc: 'Michael McCuistion. The guitar and the drums under the roll call, and the reason a whole generation knows every hero on the roster. How I actually met these people.',
         href: 'https://www.youtube.com/watch?v=pesEIkgz5Ko', link: 'Listen' },
+      { title: 'John Stewart Theme', accent: '#4fd07f', sub: 'Lolita Ritmanis · Justice League · 2001', desc: 'The determined brass-and-strings theme for the Lantern most people first met on the Justice League cartoon.' },
+      { title: 'Your Choices, Your Actions', accent: '#5f9fe0', sub: 'Hans Zimmer · Man of Steel · 2013', desc: 'The score cue from Clark choosing what kind of symbol he is going to be.' },
+      { title: 'The Last Son of Krypton', accent: '#5f9fe0', sub: 'Hans Zimmer · Man of Steel · 2013', desc: 'Krypton falling, and the full weight of the name Clark inherits.' },
+      { title: 'Flight', accent: '#5f9fe0', sub: 'Hans Zimmer · Man of Steel · 2013', desc: 'Clark learning to fly: the Man of Steel cue that finally lets the theme lift off.' },
+      { title: 'Man of Steel (Main Theme)', accent: '#5f9fe0', sub: 'Hans Zimmer · Man of Steel · 2013', desc: 'The soaring Man of Steel theme, officially heard in the score’s closing “What Are You Going to Do When You Are Not Saving the World?”' },
+      { title: 'Beautiful Lie', accent: '#8f98a8', sub: 'Hans Zimmer & Junkie XL · Batman v Superman: Dawn of Justice · 2016', desc: 'The opening BvS cue: Bruce’s dream and the grief that makes him see Superman as a threat.' },
+      { title: 'Look Up', accent: '#5f9fe0', sub: 'David Fleming · Superman · 2025', desc: 'The new Superman score looking straight at the old Williams idea of hope.' },
+      { title: 'Punkrocker', accent: '#e0603a', sub: 'Teddybears feat. Iggy Pop · Superman · 2025', desc: '“’Cause I’m a punk rocker, yes I am.” The needle-drop over Superman’s ending and credits.' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

@@ -140,7 +140,7 @@ window.FAN_PAGE = {
      seven. `season` is the sort key (0 is the pilot), `year` the air year,
      `secs` the length of the first link. The openings link to The Fold's own
      channel; the Overture to the composers' album upload. */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'seven tracks · the Overture and six openings',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'eleven tracks · the Overture and ten openings',
     lede: 'The Overture first, because it is the best piece of music in the show and my favourite by a distance: Jay Vincent and Michael Kramer’s main title, the melody most of the openings borrow for their last few seconds. Then the openings, which are one song, The Weekend Whip, remixed once a season from the pilot to Hands of Time. Seasons one and two share the classic; of the rest, Tournament of Elements is my favourite and Possession is second. Every link is the band’s own upload, or the composers’ album for the Overture. Sort by season, by when they came out, or by length.',
     sortable: { label: 'Sort', authored: 'asc', by: [
       { key: 'season', label: 'Season',   asc: 'First',    desc: 'Latest' },
@@ -157,6 +157,7 @@ window.FAN_PAGE = {
           { href: 'https://www.youtube.com/watch?v=UVhm9XO_Vw0', label: 'Listen' },
           { href: 'https://www.youtube.com/watch?v=TMw9UNXVDG0', label: 'Music video' },
         ] },
+      { title: 'The Weekend Whip (Instrumental)', accent: '#e07040', season: 1, year: 2011, sub: 'Pilot, seasons 1–2 · 2011' },
       { title: 'The Weekend Whip (Remix)', accent: '#5cc8ff', season: 3, year: 2014, secs: 258, sub: 'Rebooted · season 3 · 2014 · 4:18',
         desc: 'Michael AM’s remix for Rebooted, the first time the show changed its opening: the same song with the Nindroid-era electronics on top. On the band’s channel, though The Fold did not make this one themselves.',
         links: [
@@ -184,6 +185,9 @@ window.FAN_PAGE = {
           { href: 'https://www.youtube.com/watch?v=tNI01U1sGiE', label: 'Listen' },
           { href: 'https://www.youtube.com/watch?v=e8nQcIeaWJM', label: 'Lyric video' },
         ] },
+      { title: 'The Shintaro Dungeon Whip', accent: '#b477d8', season: 13, year: 2020, sub: 'Master of the Mountain · season 13 · 2020' },
+      { title: 'The Arcadian Whip', accent: '#4aa6cf', season: 15, year: 2021, sub: 'Seabound · season 15 · 2021' },
+      { title: 'Dragons Rising Main Theme', accent: '#85c8ff', season: 16, year: 2023, sub: 'Dragons Rising · 2023' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

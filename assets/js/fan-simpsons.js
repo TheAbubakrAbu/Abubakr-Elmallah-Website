@@ -115,14 +115,26 @@ window.FAN_PAGE = {
     ] },
 
 
-  /* the music: the one track, linked to the show's own upload (the playlist
-     also has a fan clip of the opening, which is not available any more) */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · from my playlist',
-    lede: 'One track, and the only one there could be. Linked to the show’s own upload of it.',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes & Songs', note: 'fifteen tracks · from my playlist',
+    lede: 'The opening, the songs from Springfield, and one 2026 Homer meme.',
     items: [
       { title: '"The Simpsons" Main Title Theme', accent: '#ffd21f', sub: 'Testify · 1989 · 1:24',
         desc: 'Danny Elfman. Written in two days in 1989 and still opening every episode. From Testify, the 2007 album, which is where the full-length version lives.',
         href: 'https://www.youtube.com/watch?v=Fttst9dG6Ko', link: 'Listen' },
+      { title: 'D’oh! Anthem', accent: '#f0a63b', sub: 'The D’Oh Account · Homer drops his donut meme · 2026' },
+      { title: 'Baby on Board', accent: '#ffd21f', sub: 'The Be Sharps · “Homer’s Barbershop Quartet” · Season 5 · 1993' },
+      { title: 'They Have the Plant, But We Have the Power', accent: '#4fbf7f', sub: 'Lisa Simpson · “Last Exit to Springfield” · Season 4 · 1993' },
+      { title: 'The Monorail Song', accent: '#ffd21f', sub: '“Marge vs. the Monorail” · Season 4 · 1993' },
+      { title: 'See My Vest', accent: '#a8c6d9', sub: 'Mr. Burns · “Two Dozen and One Greyhounds” · Season 6 · 1995' },
+      { title: 'Who Needs the Kwik-E-Mart?', accent: '#f0a63b', sub: 'Apu · “Homer and Apu” · Season 5 · 1994' },
+      { title: 'We Put the Spring in Springfield', accent: '#e87993', sub: '“Bart After Dark” · Season 8 · 1996' },
+      { title: 'Canyonero', accent: '#c7904c', sub: '“The Last Temptation of Krust” · Season 9 · 1998' },
+      { title: 'We Do', accent: '#8c9acb', sub: 'The Stonecutters · “Homer the Great” · Season 6 · 1995' },
+      { title: 'Everybody Hates Ned Flanders', accent: '#6dbb75', sub: 'Homer Simpson · “Dude, Where’s My Ranch?” · Season 14 · 2003' },
+      { title: 'Talkin’ Softball', accent: '#d7b15a', sub: '“Homer at the Bat” · Season 3 · 1992' },
+      { title: 'Dr. Zaius', accent: '#b98a5c', sub: 'Troy McClure · “A Fish Called Selma” · Season 7 · 1996' },
+      { title: 'Flaming Moe', accent: '#e87b43', sub: '“Flaming Moe’s” · Season 3 · 1991' },
+      { title: 'The Garbage Man', accent: '#76a889', sub: 'Homer Simpson & U2 · “Trash of the Titans” · Season 9 · 1998' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

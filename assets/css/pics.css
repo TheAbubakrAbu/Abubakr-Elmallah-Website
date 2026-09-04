@@ -61,14 +61,14 @@ html:not([data-show-pics="on"]) .tv-photo:active { transform: none; }
 /* ── the switch ──
    Sits between the last section and the footer, quiet enough that you only find
    it if you have read to the bottom of the page and gone looking. */
-/* Centred inside the page column, the same way the closing verse is: the auto
-   margin here was a no-op anyway (no max-width, so the block already filled the
-   width) and the centring was measured against main's content box, which runs
-   past the column on a wide screen. */
+/* Share the same leading edge as the page sections. This is a utility control,
+   not a closing verse, so it should read from the left instead of floating in
+   the middle of the page. */
 .picsw {
-  display: flex; justify-content: center;
-  margin: 3.5rem 0 0.5rem;
-  max-width: var(--maxw); padding: 0 var(--gutter);
+  display: flex; justify-content: flex-start;
+  width: 100%; max-width: var(--maxw);
+  margin: 3.5rem auto 0.5rem;
+  padding: 0 var(--gutter);
 }
 
 .picsw-btn {

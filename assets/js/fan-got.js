@@ -238,34 +238,45 @@ window.FAN_PAGE = {
     ] },
 
 
-  /* the music: the six Thrones tracks on my playlist, in season order, named
+  /* the music: the Thrones tracks on my playlist, in season order, named
      as the albums name them and linked to the album's own upload (Ramin
      Djawadi's Topic channel, WaterTower) wherever there is one; Light of the
      Seven has no album upload on YouTube, so that copy is a fan's */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'seven tracks · seasons one to eight',
-    lede: 'Ramin Djawadi, from the first cello note to the last piano one, and one song. Seven tracks in season order, six from my playlist and one that should be, named as the albums name them and linked to the albums’ own uploads wherever there is one.',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'eighteen tracks · Game of Thrones and A Knight of the Seven Kingdoms',
+    lede: 'Ramin Djawadi, from the first cello note to the last piano one, plus Dan Romer’s music for A Knight of the Seven Kingdoms. Eighteen tracks from my playlist, named as the albums name them.',
     items: [
+      { title: 'Leaving the Reach', accent: '#8a714f', sub: 'A Knight of the Seven Kingdoms · Season 1 · 2026' },
+      { title: 'Arrival in Ashford', accent: '#8a714f', sub: 'A Knight of the Seven Kingdoms · Season 1 · 2026' },
+      { title: 'What Chance Do I Have?', accent: '#8a714f', sub: 'A Knight of the Seven Kingdoms · Season 1 · 2026' },
+      { title: 'Get Up, Ser', accent: '#8a714f', sub: 'A Knight of the Seven Kingdoms · Season 1 · 2026' },
       { title: 'Main Title', accent: '#b9c2cc', sub: 'Season 1 · 2011 · 1:47',
         desc: 'The cello over the clockwork map, and the theme every parody used for a decade.',
         href: 'https://www.youtube.com/watch?v=uXZd_W5B7N0', link: 'Listen' },
       { title: 'Goodbye Brother', accent: '#b9c2cc', sub: 'Season 1 · 2011 · 3:08',
         desc: 'Jon leaving Winterfell for the Wall, and the Stark theme as a farewell before anyone has died.',
         href: 'https://www.youtube.com/watch?v=spQljapBR7s', link: 'Listen' },
+      { title: 'The Stark Theme', accent: '#b9c2cc', sub: 'Season 1 · 2011' },
+      { title: 'The Targaryen Theme', accent: '#c44a40', sub: 'Season 1 · 2011' },
       { title: 'The Rains of Castamere', accent: '#c9a24a', sub: 'The National · Season 2 · 2012 · 2:25',
-        desc: 'The National, over the second season’s credits. The Lannister song, which the show then plays at a wedding, and nobody who has seen it can hear the first bar neutrally. Not on the playlist yet, and it should be.',
+        desc: 'The National, over the second season’s credits. The Lannister song, which the show then plays at a wedding, and nobody who has seen it can hear the first bar neutrally.',
         href: 'https://www.youtube.com/watch?v=9vDL7AgLdYQ', link: 'Listen' },
       { title: 'A Lannister Always Pays His Debts', accent: '#c9a24a', sub: 'Season 3 · 2013 · 2:51',
         desc: 'The Rains of Castamere turned into the Lannister theme: low strings, and menace.',
         href: 'https://www.youtube.com/watch?v=nkMZnSQE-tw', link: 'Listen' },
+      { title: 'The Bear and the Maiden Fair', accent: '#c9a24a', sub: 'Season 3 · 2013' },
+      { title: 'The North Remembers', accent: '#b9c2cc', sub: 'Season 4 · 2014' },
       { title: 'Light of the Seven', accent: '#5fbf7f', sub: 'Season 6 · 2016 · 9:50',
         desc: 'Piano, which the show had never used, for the ten minutes before the Sept of Baelor goes up. The best cue in the series, and the one with no album upload, so this copy is a fan’s.',
         href: 'https://www.youtube.com/watch?v=pS-gbqbVd8c', link: 'Fan upload' },
+      { title: 'Winter Has Come', accent: '#b9c2cc', sub: 'Season 6 · 2016' },
       { title: 'The Last of the Starks', accent: '#b9c2cc', sub: 'Season 8 · 2019 · 4:53',
         desc: 'After the Long Night, the Stark theme for the few of them left.',
         href: 'https://www.youtube.com/watch?v=Izj3IsXi6Gs', link: 'Listen' },
       { title: 'The Night King', accent: '#7fb8e0', sub: 'Season 8 · 2019 · 8:51',
         desc: 'Piano again, for the walk to Bran through the godswood, and the nine minutes before Arya.',
         href: 'https://www.youtube.com/watch?v=k1frgt0D_f4', link: 'Listen' },
+      { title: 'A Song of Ice and Fire', accent: '#c44a40', sub: 'Season 8 · 2019' },
+      { title: 'Jenny of Oldstones', accent: '#c9a24a', sub: 'Florence + the Machine · Season 8 · 2019' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

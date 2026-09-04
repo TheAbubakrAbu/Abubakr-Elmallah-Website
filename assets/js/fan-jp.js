@@ -157,12 +157,13 @@ window.FAN_PAGE = {
   /* the music: the tracks from my playlist, named as the album names them,
      each linked to the album's own upload on YouTube (John Williams' Topic
      channel) */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'four tracks · from my playlist',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'seventeen tracks · from my playlist',
     lede: 'The Jurassic Park I actually have on. Named as the albums name them, and each one linked to the album’s own upload.',
     items: [
       { title: 'Theme From Jurassic Park', accent: '#e0642a', sub: 'Jurassic Park · 1993 · 3:28',
         desc: 'John Williams. Written as a hymn rather than as a monster theme, which is the whole trick of the film.',
         href: 'https://www.youtube.com/watch?v=lDlU08RU7Tk', link: 'Listen' },
+      { title: 'Jurassic Park Epic Theme', accent: '#e0642a', sub: 'Jurassic Park · 1993' },
       { title: 'Journey To The Island', accent: '#e0642a', sub: 'Jurassic Park · 1993 · 8:53',
         desc: 'The helicopter through the waterfall valley: the fanfare that says the island exists before a single animal is on screen.',
         href: 'https://www.youtube.com/watch?v=TMNcMAqWG-I', link: 'Listen' },
@@ -172,6 +173,18 @@ window.FAN_PAGE = {
       { title: 'The Lost World', accent: '#b8935a', sub: 'The Lost World: Jurassic Park · 1997 · 3:34',
         desc: 'The sequel gets a theme of its own, all drums and jungle, and Williams holds the first one back until the end.',
         href: 'https://www.youtube.com/watch?v=Yr4OmiKsNe4', link: 'Listen' },
+      { title: 'Malcolm’s Journey', accent: '#b8935a', sub: 'The Lost World: Jurassic Park · 1997' },
+      { title: 'The Park Is Closed', accent: '#6f9d7c', sub: 'Jurassic World · 2015' },
+      { title: 'Jurassic World Theme', accent: '#6f9d7c', sub: 'Jurassic World · 2015' },
+      { title: 'Welcome to Jurassic World', accent: '#6f9d7c', sub: 'Jurassic World · 2015' },
+      { title: 'The Trek', accent: '#6f9d7c', sub: 'Jurassic World · 2015' },
+      { title: 'Hammond’s Plan', accent: '#6f9d7c', sub: 'Jurassic World · 2015' },
+      { title: 'Chasing the Dragons', accent: '#6f9d7c', sub: 'Jurassic World · 2015' },
+      { title: 'As the Jurassic World Turns', accent: '#6f9d7c', sub: 'Jurassic World · 2015' },
+      { title: 'Gyrosphere of Influence', accent: '#6f9d7c', sub: 'Jurassic World · 2015' },
+      { title: 'Pavane for a Dead Apatosaurus', accent: '#6f9d7c', sub: 'Jurassic World · 2015' },
+      { title: 'The Indominus Wrecks Everything', accent: '#6f9d7c', sub: 'Jurassic World · 2015' },
+      { title: 'Bury the Hatchling', accent: '#7899a8', sub: 'Jurassic World: Fallen Kingdom · 2018' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

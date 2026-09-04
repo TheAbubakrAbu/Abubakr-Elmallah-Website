@@ -217,10 +217,9 @@ window.FAN_PAGE = {
       { title: 'Cherish Ball', accent: '#e0483a', sub: 'Event only', desc: 'Tells you where a Pokemon came from.' },
     ] },
 
-  /* the music: the two main themes, the anime's and the games'; nothing from
-     Pokémon is on my playlist yet */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'two tracks · the main themes',
-    lede: 'Nothing from Pokémon is on my playlist yet, so these are the two that count: the song every kid in 1998 could sing, and the Game Boy title screen under it.',
+  /* explicitly supplied tracks are in the playlist */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes & Songs', note: 'eight tracks · from my playlist',
+    lede: 'Yellow’s Game Boy title screen, the anime opener, the Pokémon GO sounds that make walking around feel like 2016, and the unavoidable meme song.',
     items: [
       { title: 'Pokémon Theme', accent: '#f0c840', sub: 'Jason Paige · 1998 · 3:19',
         desc: 'Jason Paige. Gotta catch ’em all: the anime opening, and the reason a whole generation can sing a song about a training regimen.',
@@ -228,6 +227,19 @@ window.FAN_PAGE = {
       { title: 'Title Screen', accent: '#e0602a', sub: 'Pokémon Red & Green · Junichi Masuda · 1996 · 1:39',
         desc: 'Junichi Masuda, on a Game Boy sound chip. The title screen with the two starters fighting, and the four bars everything since has been arranged from.',
         href: 'https://www.youtube.com/watch?v=njoPUWILwpo', link: 'Fan upload' },
+      { title: 'Title Screen / Main Theme', accent: '#f0c840', sub: 'Pokémon Yellow · Junichi Masuda · 1998',
+        desc: 'Yellow’s title-screen theme: Pikachu following you into the version that felt most like the cartoon.' },
+      { title: 'Main Theme', accent: '#4f9fd0', sub: 'Pokémon GO · Junichi Masuda · 2016',
+        desc: 'The opening music: the screen that made the entire summer feel like an adventure was about to start.' },
+      { title: 'Walking / Map Theme', accent: '#5fbf7f', sub: 'Pokémon GO · 2016',
+        desc: 'The idle overworld loop—the sound of actually walking between PokéStops.' },
+      { title: 'Wild Pokémon Battle', accent: '#e0603a', sub: 'Pokémon GO · 2016',
+        desc: 'The catch/battle music, right when something appears on the map.' },
+      { title: 'Night Theme', accent: '#6f7fd0', sub: 'Pokémon GO · Junichi Masuda · 2021',
+        desc: 'The nighttime idle theme, including the version later released with lyrics.' },
+      { title: 'POKEMON GO SONG!!!', accent: '#f08a3a', sub: 'Misha / Mishovy silenosti · meme song · 2016',
+        desc: '“I play Pokémon GO every day.” The song is exactly as iconic and exactly as chaotic as the line promises.',
+        href: 'https://www.youtube.com/watch?v=vfc42Pb5RA8', link: 'Watch' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

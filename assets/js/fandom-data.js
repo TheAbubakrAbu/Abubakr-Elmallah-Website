@@ -230,6 +230,14 @@ window.FANDOMS = [
       when: 'As a kid',
       meta: 'Animation \u00b7 1930', href: '/worlds/looney-tunes/',
       desc: 'Warner\u2019s answer to Disney and funnier than it: seven minutes, no moral, and a rabbit who wins by staying calm. Chuck Jones and Tex Avery drawing, and Mel Blanc doing nearly every voice in the building.' },
+    { name: 'Phineas and Ferb', wm: 'phineas', glyph: 'bolt', c1: '#74c95a', c2: '#102617',
+      when: 'As a kid',
+      meta: 'Animation \u00b7 2007',
+      desc: 'A hundred and four days of summer vacation, a new impossible project every morning, and an agent platypus who never misses work.' },
+    { name: 'The Maze Runner', wm: 'mazerunner', glyph: 'spiral', c1: '#8fbf78', c2: '#132018',
+      when: 'Middle school',
+      meta: 'Books \u00b7 2009',
+      desc: 'A boy wakes in a maze with no memory, a lift arriving once a month, and rules everyone follows until somebody does not.' },
 
       ] },
 

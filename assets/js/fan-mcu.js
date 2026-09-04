@@ -294,11 +294,22 @@ window.FAN_PAGE = {
         meta: 'Universal holds the rights' },
     ] },
 
+  /* The Spider-Man list is defined once in spider-man-music.js and rendered
+     here as well as on the Spider-Man page. */
+  { id: 'spider-music', kind: 'tiles', compact: true, title: 'Spider-Man', note: 'shared with the Spider-Man page',
+    lede: 'One collection, shown in both places: the Raimi films, Amazing, MCU Spider-Man and the Spider-Verse.',
+    groupable: { key: 'series', label: 'Group', on: 'By film', open: 'on' },
+    sortable: { label: 'Sort', authored: 'asc', by: [
+      { key: 'year', label: 'Released', asc: 'Oldest', desc: 'Newest' },
+      { key: 'secs', label: 'Length', asc: 'Shortest', desc: 'Longest' },
+    ] },
+    items: window.SPIDER_MAN_MUSIC },
+
   /* the music: the MCU tracks on my playlist, named as the albums name them
      and linked to the album's own upload (MarvelMusicVEVO, the composers'
      Topic channels) wherever there is one; the one that is a fan cut says so */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'five tracks · from my playlist',
-    lede: 'The MCU I actually have on, named as the albums name them and linked to the albums’ own uploads. The Spider-Man ones live on the Spider-Man page.',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes & Songs', note: 'thirty-four tracks · from my playlist',
+    lede: 'The MCU music I actually have on: score themes, the Guardians’ needle-drops, and the songs that carry a film through its credits. Spider-Man has its own shared collection above.',
     items: [
       { title: 'Marvel Studios Fanfare', accent: '#e0483a', sub: 'Marvel Studios · 2016 · 1:41',
         desc: 'Michael Giacchino. The logo music, written in 2016 for the flip-book opening, and the thirty seconds every one of these films starts with.',
@@ -315,6 +326,35 @@ window.FAN_PAGE = {
       { title: 'Portals', accent: '#e0483a', sub: 'Avengers: Endgame · 2019 · 3:18',
         desc: 'Alan Silvestri. On your left. Every portal opening at once, and the cue the whole eleven years were building to.',
         href: 'https://www.youtube.com/watch?v=gTyE3geyRmk', link: 'Listen' },
+      { title: 'All The Stars', accent: '#8f5fd0', sub: 'Kendrick Lamar & SZA · Black Panther · 2018', desc: 'The song over the first film’s credits: Kendrick and SZA over the lights of Oakland.' },
+      { title: 'Pray for Me', accent: '#8f5fd0', sub: 'The Weeknd & Kendrick Lamar · Black Panther · 2018', desc: 'The other huge Black Panther song, built around T’Challa’s burden.' },
+      { title: 'Alone', accent: '#73503c', sub: 'Burna Boy · Black Panther: Wakanda Forever · 2022', desc: 'The one in Shuri’s lab before she takes up the mantle: deep voice, drums, and all that anger becoming purpose.' },
+      { title: 'Lift Me Up', accent: '#73503c', sub: 'Rihanna · Black Panther: Wakanda Forever · 2022', desc: 'Rihanna over the closing credits, written as a farewell to Chadwick Boseman.' },
+      { title: 'Born Again', accent: '#73503c', sub: 'Rihanna · Black Panther: Wakanda Forever · 2022', desc: 'Rihanna’s second Wakanda Forever song: the one that burns slower.' },
+      { title: 'It’s Been a Long, Long Time', accent: '#b99860', sub: 'Harry James & His Orchestra · Avengers: Endgame · 2019', desc: 'Steve and Peggy at last, dancing through the final image of the Infinity Saga.' },
+      { title: 'Back in Black', accent: '#d84a52', sub: 'AC/DC · Iron Man · 2008', desc: 'Tony’s first entrance in the Humvee, and the sound the MCU starts with.' },
+      { title: 'The Rubberband Man', accent: '#9f704a', sub: 'The Spinners · Avengers: Infinity War · 2018', desc: 'The cheerful song under the worst possible opening: the Guardians answering a distress call.' },
+      { title: 'Immigrant Song', accent: '#5f8fbf', sub: 'Led Zeppelin · Thor: Ragnarok · 2017', desc: 'Thor arriving on the Bifrost with lightning behind him. Twice, because once was not enough.' },
+      { title: 'Come and Get Your Love', accent: '#a06fd0', sub: 'Redbone · Guardians of the Galaxy · 2014', desc: 'Peter dancing through Morag with the Orb, headphones on.' },
+      { title: 'Hooked on a Feeling', accent: '#a06fd0', sub: 'Blue Swede · Guardians of the Galaxy · 2014', desc: 'The opening mixtape, and the ooga-chaka that became inseparable from the team.' },
+      { title: 'Ain’t No Mountain High Enough', accent: '#a06fd0', sub: 'Marvin Gaye & Tammi Terrell · Guardians of the Galaxy · 2014', desc: 'Meredith’s last gift to Peter, playing as the new family leaves Xandar.' },
+      { title: 'I Want You Back', accent: '#a06fd0', sub: 'The Jackson 5 · Guardians of the Galaxy · 2014', desc: 'Baby Groot dancing through the credits while Drax tries to catch him.' },
+      { title: 'Mr. Blue Sky', accent: '#e0403a', sub: 'Electric Light Orchestra · Guardians of the Galaxy Vol. 2 · 2017', desc: 'The opening battle with the Abilisk, seen from Baby Groot’s dance floor.' },
+      { title: 'The Chain', accent: '#e0403a', sub: 'Fleetwood Mac · Guardians of the Galaxy Vol. 2 · 2017', desc: 'The Ravagers, the family fracture, and the bass line that keeps returning.' },
+      { title: 'Father and Son', accent: '#e0403a', sub: 'Cat Stevens · Guardians of the Galaxy Vol. 2 · 2017', desc: 'Yondu’s funeral: the song that lets the film say goodbye properly.' },
+      { title: 'Guardians Inferno', accent: '#e0403a', sub: 'The Sneepers feat. David Hasselhoff · Guardians of the Galaxy Vol. 2 · 2017', desc: 'The end-credits disco song, with the whole cast dancing in silhouette.' },
+      { title: 'Creep (Acoustic Version)', accent: '#70a89f', sub: 'Radiohead · Guardians of the Galaxy Vol. 3 · 2023', desc: 'Rocket walking through Knowhere at the start: the new mixtape beginning with a bruise.' },
+      { title: 'Dog Days Are Over', accent: '#70a89f', sub: 'Florence + the Machine · Guardians of the Galaxy Vol. 3 · 2023', desc: 'The final dance, each Guardian finding the life they are supposed to have.' },
+      { title: 'I Will Dare', accent: '#70a89f', sub: 'The Replacements · Guardians of the Galaxy Vol. 3 · 2023', desc: 'The last credits song: the end of the trilogy without pretending the family is gone.' },
+      { title: 'Doom?', accent: '#4d7153', sub: 'Alan Silvestri · Avengers: Doomsday · theme preview', desc: 'Doctor Doom’s published theme preview. The full trailer mix is not yet available as an official standalone track.' },
+      { title: '90210', accent: '#c07040', sub: 'Travis Scott feat. Kacy Hill · Fantastic Four: First Steps', desc: 'The one from the Fantastic Four basketball edit.' },
+      { title: 'The Fantastic Four: First Steps Main Theme', accent: '#d85a42', sub: 'Michael Giacchino · Fantastic Four: First Steps · 2025', desc: 'The First Family’s retro-futurist main theme: brass, choir, and a team that actually sounds like a team.' },
+      { title: 'Fantastic Four, First Cue', accent: '#d85a42', sub: 'Michael Giacchino · Fantastic Four: First Steps · 2025', desc: 'The full opening statement of the First Steps score.' },
+      { title: 'Captain America March', accent: '#3f7fe0', sub: 'Alan Silvestri · Captain America: The First Avenger · 2011', desc: 'The horn line for Steve Rogers: earnest on purpose, and it earns it.' },
+      { title: 'Standoff', accent: '#3f7fe0', sub: 'Henry Jackman · Captain America: Civil War · 2016', desc: 'The airport confrontation score: tense strings, snare, and the team on opposite sides of the runway.' },
+      { title: 'T’Challa', accent: '#8f5fd0', sub: 'Ludwig Göransson · Black Panther · 2018', desc: 'The king’s theme, built around the talking drum and the sound of Wakanda.' },
+      { title: 'We Know What You Whisper', accent: '#8f5fd0', sub: 'Ludwig Göransson · Black Panther · 2018', desc: 'The quiet, haunted Black Panther cue.' },
+      { title: 'Shang-Chi Main Titles', accent: '#c95048', sub: 'Joel P. West · Shang-Chi and the Legend of the Ten Rings · 2021', desc: 'The family theme and the Ten Rings’ sound opening out into the film’s title sequence.' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

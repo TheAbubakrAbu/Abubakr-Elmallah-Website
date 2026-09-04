@@ -1390,9 +1390,13 @@ html.intro-lock { overflow: hidden; }
 .portal:hover .portal-icons:has(img:nth-child(4)) img:nth-child(4) { transform: rotate(14deg) translateY(0) scale(1.05); }
 
 .portal-body {
-  position: relative; z-index: 2; margin-top: -2.4rem; flex: 1;
+  position: relative; z-index: 2; margin-top: 0; flex: 1;
   display: flex; flex-direction: column; gap: 0.65rem;
-  padding: 0 clamp(1.2rem, 2.4vw, 1.8rem) clamp(1.2rem, 2.4vw, 1.7rem);
+  /* Keep the title and copy entirely on the card surface. They used to pull
+     upward into the black media layer, which made the image background cut
+     through the Star Wars and Al-Islam text. */
+  padding: clamp(1.2rem, 2.4vw, 1.7rem) clamp(1.2rem, 2.4vw, 1.8rem)
+    clamp(1.2rem, 2.4vw, 1.7rem);
 }
 .portal-kicker {
   font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em;

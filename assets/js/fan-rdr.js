@@ -61,23 +61,37 @@ window.FAN_PAGE = {
     ] },
 
 
-  /* the music: the three Red Dead 2 songs on my playlist, named as the albums
+  /* the music: the Red Dead tracks on my playlist, named as the albums
      name them and linked to the artists' own uploads */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'four tracks · the theme, and three songs',
-    lede: 'The first game’s title theme, and then three songs rather than score, because that is how the second one does its biggest moments. Named as the albums name them and linked to the artists’ own uploads wherever there is one.',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes & Songs', note: 'fourteen tracks · by game',
+    lede: 'The first game’s title music, then Red Dead Redemption 2’s score and songs. Cowpoke was not used in the game, but it belongs beside it. Grouped by game.',
+    groupable: { key: 'series', label: 'Group', on: 'By game', open: 'on' },
+    sortable: { label: 'Sort', authored: 'asc', by: [
+      { key: 'year', label: 'Released', asc: 'Oldest', desc: 'Newest' },
+    ] },
     items: [
-      { title: 'Born Unto Trouble', accent: '#d0a060', sub: 'Bill Elm & Woody Jackson · Red Dead Redemption · 2010 · 3:13',
+      { title: 'Born Unto Trouble', series: 'Red Dead Redemption', year: 2010, accent: '#d0a060', sub: 'Bill Elm & Woody Jackson · Red Dead Redemption · 2010 · 3:13',
         desc: 'Bill Elm and Woody Jackson. The first game’s title theme: a Morricone whistle, a harmonica, and the sound of 1911 running out. No upload of the album’s own, so this copy is a fan’s.',
         href: 'https://www.youtube.com/watch?v=ehhkPbjdIKc', link: 'Fan upload' },
-      { title: 'Unshaken', accent: '#c9402f', sub: 'Red Dead Redemption 2 · 2018 · 3:54',
+      { title: 'Theme from Red Dead Redemption', series: 'Red Dead Redemption', year: 2010, accent: '#d0a060', sub: 'Bill Elm & Woody Jackson · Red Dead Redemption · 2010' },
+      { title: 'Far Away', series: 'Red Dead Redemption', year: 2010, accent: '#d0a060', sub: 'José González · Red Dead Redemption · 2010' },
+      { title: 'Cowpoke', series: 'Outside the games', year: 2015, accent: '#a56d42', sub: 'Colter Wall · not featured in Red Dead Redemption 2' },
+      { title: 'Outlaws from the West', series: 'Red Dead Redemption 2', year: 2018, accent: '#c9402f', sub: 'Red Dead Redemption 2 · 2018' },
+      { title: 'American Venom', series: 'Red Dead Redemption 2', year: 2018, accent: '#c9402f', sub: 'Red Dead Redemption 2 · 2018' },
+      { title: 'Cruel World', series: 'Red Dead Redemption 2', year: 2018, accent: '#c9402f', sub: 'Willie Nelson · Red Dead Redemption 2 · 2018' },
+      { title: 'Mountain Hymn', series: 'Red Dead Redemption 2', year: 2018, accent: '#c9402f', sub: 'Rhiannon Giddens · Red Dead Redemption 2 · 2018' },
+      { title: 'Unshaken', series: 'Red Dead Redemption 2', year: 2018, accent: '#c9402f', sub: 'Red Dead Redemption 2 · 2018 · 3:54',
         desc: 'D’Angelo. May I stand unshaken, amid a crashing world: the ride home the game lets a whole song play under.',
         href: 'https://www.youtube.com/watch?v=L0AykH20X3Q', link: 'Listen' },
-      { title: 'That\'s The Way It Is', accent: '#c9402f', sub: 'Red Dead Redemption 2 · 2018 · 4:09',
+      { title: 'That\'s The Way It Is', series: 'Red Dead Redemption 2', year: 2018, accent: '#c9402f', sub: 'Red Dead Redemption 2 · 2018 · 4:09',
         desc: 'Daniel Lanois. The song after Arthur’s story ends, which is why nobody who has played it can hear it neutrally.',
         href: 'https://www.youtube.com/watch?v=HjYLY3BGDY4', link: 'Listen' },
-      { title: 'The Housebuilding Song', accent: '#d8b06a', sub: 'The Housebuilding EP · 2018 · 3:12',
+      { title: 'The Housebuilding Song', series: 'Red Dead Redemption 2', year: 2018, accent: '#d8b06a', sub: 'The Housebuilding EP · Red Dead Redemption 2 · 2018 · 3:12',
         desc: 'David Ferguson. Building Beecher’s Hope in the epilogue, plank by plank, with Charles and Uncle. The happiest the game ever is.',
         href: 'https://www.youtube.com/watch?v=TMQeYF_xOxE', link: 'Listen' },
+      { title: 'A Quiet Time', series: 'Red Dead Redemption 2', year: 2018, accent: '#c9402f', sub: 'Red Dead Redemption 2 · 2018' },
+      { title: 'Crash of Worlds', series: 'Red Dead Redemption 2', year: 2018, accent: '#c9402f', sub: 'Red Dead Redemption 2 · 2018' },
+      { title: 'Table Top', series: 'Red Dead Redemption 2', year: 2018, accent: '#c9402f', sub: 'Red Dead Redemption 2 · 2018' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

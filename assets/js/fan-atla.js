@@ -198,11 +198,11 @@ window.FAN_PAGE = {
       { title: 'You have to look within yourself to save yourself from your other self. Only then will your true self reveal itself.', sub: 'King Bumi · and he means it' },
     ] },
 
-  /* the music: the five tracks on my playlist, named as the albums name them
+  /* the music: the tracks on my playlist, named as the albums name them
      and linked to Jeremy Zuckerman's own uploads wherever there is one; the
      two with no album upload say so */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'five tracks · from my playlist',
-    lede: 'Jeremy Zuckerman, whose music the show went fifteen years without an album for. Named as the albums name them now, and linked to his own uploads wherever there is one; the two that only exist as fan uploads say so.',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'seventeen tracks · from my playlist',
+    lede: 'Jeremy Zuckerman, whose music the show went fifteen years without an album for. Seventeen tracks from my playlist, arranged by Book.',
     items: [
       { title: 'Avatar: The Last Airbender', accent: '#e8a13f', sub: 'Book 1: Water · 2005 · 1:52',
         desc: 'The main title: water, earth, fire, air, and the drum that starts every episode.',
@@ -210,12 +210,23 @@ window.FAN_PAGE = {
       { title: 'Winter, Spring, Summer and Fall', accent: '#e8a13f', sub: 'Book 1: Water · 2005 · 1:49',
         desc: 'The song Uncle Iroh sings to himself in the first season, four seasons and four loves, written out properly for the album.',
         href: 'https://www.youtube.com/watch?v=TGfAwfgWY-E', link: 'Listen' },
+      { title: 'Into a Nighttime Sky', accent: '#e8a13f', sub: 'Book 1: Water · 2005' },
+      { title: 'Aang (The Avatar State)', accent: '#e8a13f', sub: 'Book 1: Water · 2005' },
+      { title: 'Blue Spirit Rescue', accent: '#e8a13f', sub: 'Book 1: Water · 2005' },
+      { title: 'The North Pole', accent: '#e8a13f', sub: 'Book 1: Water · 2005' },
+      { title: 'The Blind Bandit', accent: '#5fbf7f', sub: 'Book 2: Earth · 2006' },
+      { title: 'Leaves from the Vine', accent: '#5fbf7f', sub: 'Iroh · Book 2: Earth · 2006' },
+      { title: 'Leaves from the Vine (Instrumental)', accent: '#5fbf7f', sub: 'Book 2: Earth · 2006' },
+      { title: 'Secret Tunnel', accent: '#5fbf7f', sub: 'Chong · Book 2: Earth · 2006' },
+      { title: 'The Crossroads of Destiny', accent: '#5fbf7f', sub: 'Book 2: Earth · 2006' },
+      { title: 'The Firebending Masters', accent: '#e04a3a', sub: 'Book 3: Fire · 2008' },
       { title: 'Last Agni Kai', accent: '#e04a3a', sub: 'Book 3: Fire · 2008 · 2:10',
         desc: 'Zuko against Azula, and the only fight in the show scored like a funeral.',
         href: 'https://www.youtube.com/watch?v=JONpdQyvl88', link: 'Listen' },
       { title: 'The Avatar\'s Love', accent: '#e8a13f', sub: 'Book 3: Fire · 2008 · 1:23',
         desc: 'The theme for Aang and Katara, over the last shot of the series. No album upload, so the copy is a fan’s.',
         href: 'https://www.youtube.com/watch?v=EZ8ipWYTK_E', link: 'Fan upload' },
+      { title: 'Peace', accent: '#e04a3a', sub: 'Book 3: Fire · 2008' },
       { title: 'Aang\'s Memorial Island', accent: '#4fa8e0', sub: 'The Legend of Korra · 2012 · 1:20',
         desc: 'Korra’s first look at Republic City, with Aang’s statue in the harbour. A fan upload, as the Korra albums are thin.',
         href: 'https://www.youtube.com/watch?v=_4iqEYdcEPw', link: 'Fan upload' },

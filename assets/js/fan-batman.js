@@ -151,29 +151,15 @@ window.FAN_PAGE = {
     ] },
 
 
-  /* the music: the four Batman tracks on my playlist, named as the albums name
-     them and linked to the albums' own uploads wherever there is one; the
-     Dark Knight theme only exists whole as a fan edit, and says so. The Dark
-     Knight also sits on the Christopher Nolan page. */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'five tracks · three films and the cartoon',
-    lede: 'Three films’ worth of Batman music, named as the albums name them and linked to the albums’ own uploads wherever there is one. The Dark Knight’s theme was never put on one track, so that copy is a fan edit, and says so.',
-    items: [
-      { title: 'The Batman Theme', accent: '#8f8f9f', sub: 'Batman · 1989 · 2:39',
-        desc: 'Danny Elfman. Burton’s Batman, the march, and the reason the 1992 cartoon sounds the way it does. I keep Erich Kunzel’s Cincinnati Pops recording of it too.',
-        href: 'https://www.youtube.com/watch?v=YoaU3kRFvLg', link: 'Listen' },
-      { title: 'Main Title (Batman: The Animated Series)', accent: '#7f9fd0', sub: 'Shirley Walker · 1992 · 1:36',
-        desc: 'Elfman’s theme, arranged by Shirley Walker for the cartoon: ninety seconds over a title sequence that never once says the name. Not on the playlist yet, and it should be.',
-        href: 'https://www.youtube.com/watch?v=1WgoiJs8vFE', link: 'Listen' },
-      { title: 'The Dark Knight (Main Theme)', accent: '#e0a03a', sub: 'The Dark Knight · 2008 · 7:43',
-        desc: 'Hans Zimmer and James Newton Howard. Two notes for Batman, one rising note for the Joker. A fan edit of the theme; on the album it runs through Like a Dog Chasing Cars and A Dark Knight.',
-        href: 'https://www.youtube.com/watch?v=iGx5a1ifSDs', link: 'Fan edit' },
-      { title: 'The Batman', accent: '#c04a3a', sub: 'The Batman · 2022 · 6:48',
-        desc: 'Michael Giacchino. Four notes, a funeral march for a man who is still alive, and the best Batman theme since Elfman.',
-        href: 'https://www.youtube.com/watch?v=Cwcinb2OxUo', link: 'Listen' },
-      { title: 'Something In The Way', accent: '#c04a3a', sub: 'Nirvana · 1991 · 3:53',
-        desc: 'Nirvana, from Nevermind. Not score, but the song The Batman opens and closes on, and the one Reeves says he wrote the whole character to.',
-        href: 'https://www.youtube.com/watch?v=4VxdufqB9zg', link: 'Listen' },
+  /* One shared list, also displayed on the Justice League page. */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes & Songs', note: 'seventeen tracks · films, animation, LEGO',
+    lede: 'One collection, also shown on the Justice League page. The Dark Knight theme was never put on one track, so that copy is a fan edit, and says so.',
+    groupable: { key: 'series', label: 'Group', on: 'By film / series', open: 'on' },
+    sortable: { label: 'Sort', authored: 'asc', by: [
+      { key: 'year', label: 'Released', asc: 'Oldest', desc: 'Newest' },
+      { key: 'secs', label: 'Length', asc: 'Shortest', desc: 'Longest' },
     ] },
+    items: window.BATMAN_MUSIC },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
