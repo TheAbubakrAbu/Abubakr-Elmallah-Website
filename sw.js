@@ -21,10 +21,12 @@ permalink: /sw.js
 
    Serving strategy, per request type:
 
-     HTML            network-first, on a stopwatch
-                                    : fresh online, but the network only gets
-                                      NAV_TIMEOUT ms before we serve the cached
-                                      copy instead. See "the dead tab bar".
+     HTML            cache-first, refreshed behind the page
+                                    : a page already on the device is served
+                                      at once, and the network copy fetched at
+                                      the same moment replaces it for the NEXT
+                                      visit. A page never seen before waits for
+                                      the network. See "the dead tab bar".
      CSS / JS        cache-first    : safe because these carry ?v=<mtime>
                                       (see _includes/v.html), so a changed file
                                       is a different URL and misses naturally.
@@ -32,6 +34,9 @@ permalink: /sw.js
                                     : instant from cache, refreshed quietly.
                                       Images have no ?v=, so this is what stops
                                       a replaced image being stale forever.
+                                      The photographs are the exception: they
+                                      are keyed by content hash (see below), so
+                                      a hit is served with no network at all.
 
    THE DEAD TAB BAR, and why two things here look over-engineered:
 
@@ -43,8 +48,10 @@ permalink: /sw.js
         exactly as fast as `fetch()` decides to be, and on a bad connection that
         is a minute or more. The browser will not paint the old page's exit or
         the new page's entry while that promise is unsettled, so the tap looked
-        ignored. Fixed by racing the network against NAV_TIMEOUT and falling
-        back to the cached page: see networkFirst().
+        ignored. First fixed by racing the network against a 900 ms timeout,
+        which still cost every tap up to a second whenever the photographs
+        were coming down behind it. Now the cached page is served straight
+        away and the network copy lands behind it: see servePage().
 
      2. and the real one: the whole-site download was inside the activate
         event's waitUntil(). A worker stays in the "activating" state until
@@ -112,21 +119,23 @@ const PAGES  = `ae-pages-${CACHE_VERSION}`;
 const ASSETS = `ae-assets-${CACHE_VERSION}`;
 const KEEP   = [PAGES, ASSETS];
 
-/* How long a navigation may wait on the network before we serve the copy we
-   already have.
+/* Why a page on the device is served before the network is even asked.
 
-   Short on purpose, and shorter than it first looks like it should be. This is
-   not a choice between fresh and stale: the network request carries on after
-   the timeout and its result still goes into the cache, so falling back costs
-   one tap's worth of staleness on a site that changes a few times a month. It
-   IS a choice between a tab bar that responds and one that does not, and at
-   2.5 s a tap still felt broken. GitHub Pages answers in about 100-300 ms on
-   any connection worth the name, so the network still wins this race whenever
-   there is a network to win it.
+   This site changes a few times a month; a tap happens every few seconds. So
+   a navigation is answered from the cache the moment the copy is found, and
+   the network request runs behind it with its result stored for the next
+   visit. The cost is one visit's worth of staleness after a deploy. The gain
+   is a tab bar that switches pages instantly however busy the connection is,
+   which with the whole site coming down in the background (see the fill,
+   below) is the difference between an app and a spinner.
+
+   Two things keep the staleness short. Every navigation refreshes the page it
+   lands on, so the second visit is always current. And a new build of this
+   worker re-fetches every page in its first pass (doFill), so a deploy that
+   touches any CSS, JS or image list brings the pages with it.
 
    Only applies when there IS a cached copy. A page never seen before has
    nothing to fall back to and waits as long as it takes. */
-const NAV_TIMEOUT = 900;
 
 /* How long the background fill stands down after a page asks for anything.
    Long enough to cover the navigation plus the images it pulls in behind it. */
@@ -214,7 +223,7 @@ const wait = ms => new Promise(r => setTimeout(r, ms));
 self.addEventListener('install', e => {
   /* The home page goes into PAGES, not ASSETS. caches.match() searches caches
      in creation order, and ASSETS is created first, so a copy of '/' in it
-     would shadow every fresher copy networkFirst() later stores in PAGES: the
+     would shadow every fresher copy servePage() later stores in PAGES: the
      home page would be frozen at install time. 'reload' skips the HTTP cache
      (GitHub Pages sends max-age=600) so the stored copy is current. */
   e.waitUntil(
@@ -236,7 +245,8 @@ self.addEventListener('activate', e => {
          navigation IN PARALLEL with waking this worker up, instead of waiting
          for the worker to boot and call fetch() itself. On a cold start that
          is the worker's whole spin-up time taken off every page load; the
-         response arrives in networkFirst() as e.preloadResponse. */
+         response arrives in servePage() as e.preloadResponse, and is what
+         refreshes the cached copy behind the one being shown. */
       .then(() => self.registration.navigationPreload ? self.registration.navigationPreload.enable() : null)
       .then(() => self.clients.claim())
       .then(() => migratePhotos())
@@ -376,17 +386,23 @@ async function doFill(withPhotos) {
   if (mark === BUILD + '|photos') return;                 // everything is here
   if (mark === BUILD && !withPhotos) return;              // and the rest is not wanted
 
+  /* A build this device has not finished before. Pages are served from the
+     cache first (servePage), so the copies on the device are what a visitor
+     sees; a new build re-fetches all of them rather than trusting "already
+     have it", which is ~190 KB and bounds the staleness to one deploy. */
+  const newBuild = mark.split('|')[0] !== BUILD;
+
   const pages  = await caches.open(PAGES);
   const assets = assetsCache;
 
-  async function warm(cache, urls, concurrency) {
+  async function warm(cache, urls, concurrency, refresh) {
     const queue = urls.slice();
     const workers = Array.from({ length: concurrency }, async () => {
       while (queue.length) {
         await gate();                                 // stand down while a page is loading
         const u = queue.shift();
         try {
-          if (await cache.match(u)) continue;         // already have it
+          if (!refresh && await cache.match(u)) continue;   // already have it
           if (!inFlight) inFlight = new AbortController();
           const res = await fetch(u, { cache: 'no-cache', signal: inFlight.signal });
           if (res && res.ok) await cache.put(u, res);
@@ -406,15 +422,20 @@ async function doFill(withPhotos) {
   /* Pages first: they are small, and they are what makes the tab bar instant,
      which matters far more than having every photo on the device. Worth doing
      even on a poor connection (~190 KB of HTML in total). */
-  await warm(pages, ALL_PAGES, 3);
+  await warm(pages, ALL_PAGES, 3, newBuild);
 
   if (connectionIsPoor()) return;                     // leave the 16 MB for a better day
 
   await warm(assets, ALL_ASSETS, 2);                  // then the artwork, gently
 
-  /* The galleries, and only if asked. This is the tens of megabytes, so it goes
-     last and it goes nowhere near a visitor who has not turned the switch on. */
-  if (withPhotos) await warm(assets, PHOTOS, 2);
+  /* The galleries, and only if asked. This is the hundreds of megabytes, so
+     it goes last and it goes nowhere near a visitor who has not turned the
+     switch on. One file at a time: this pass runs for many minutes on an
+     installed app, and the visitor is using the site the whole time. Two in
+     flight was enough to make a photograph the page actually wanted queue
+     behind a megabyte of gallery it did not; one leaves the pipe mostly free,
+     and the gate hands it over entirely the moment a page asks. */
+  if (withPhotos) await warm(assets, PHOTOS, 1);
 
   await assets.put(DONE_KEY, new Response(BUILD + (withPhotos ? '|photos' : '')));
   const clients = await self.clients.matchAll();
@@ -427,36 +448,41 @@ const isMedia     = url => /\/assets\/img\//.test(url.pathname) ||
                            url.hostname === 'fonts.gstatic.com' ||
                            url.hostname === 'fonts.googleapis.com';
 
-/* Network-first, but only for as long as NAV_TIMEOUT. Past that the cached page
-   is served and the network request is left running: whatever it returns still
-   lands in the cache, so the copy is fresh by the next tap. This is the whole
-   fix for a tab bar that did nothing on a weak connection.
+/* A page: the cached copy at once if there is one, and the network copy
+   stored behind it for next time. Nothing about the network, not its speed
+   and not the fill running on it, can delay a tap on a page that is already
+   on the device. This is the whole fix for a tab bar that did nothing while
+   the site was downloading.
 
-   `preload` is the navigation-preload response the browser started before this
-   worker had even woken up (see activate). Using it instead of a second
-   fetch() means a cold worker start costs the navigation nothing; when it is
-   absent (non-navigations, or a browser without the API) this falls straight
-   back to fetching. Either way the result is stored, so the race below still
-   freshens the cache even when the cached copy wins it. */
-async function networkFirst(req, preload) {
+   `e.preloadResponse` is the navigation-preload request the browser started
+   before this worker had even woken up (see activate). Using it instead of a
+   second fetch() means a cold worker start costs the navigation nothing, and
+   when it is absent (non-navigations, or a browser without the API) this
+   falls straight back to fetching. Either way the result is stored.
+
+   waitUntil() keeps the worker alive until that copy has landed: without it
+   the worker may be shut down as soon as the cached response has gone out,
+   and the refresh with it. */
+async function servePage(e) {
+  const req = e.request;
   const pages = await caches.open(PAGES);
   const cached = await pages.match(req);
 
-  const net = Promise.resolve(preload).then(p => p || fetch(req)).then(res => {
+  let stored = Promise.resolve();      // the put, so waitUntil can cover the whole write
+  const net = Promise.resolve(e.preloadResponse).then(p => p || fetch(req)).then(res => {
     if (res && res.ok) {
       const copy = res.clone();
-      pages.put(req, copy).catch(() => {});
+      stored = pages.put(req, copy).catch(() => {});
     }
     return res;
   }).catch(() => null);
 
-  if (!cached) {
-    // never seen this page: the network is the only option, so wait it out
-    return (await net) || (await pages.match('/')) || offlineResponse();
+  if (cached) {
+    e.waitUntil(net.then(() => stored));
+    return cached;
   }
-
-  const first = await Promise.race([net, wait(NAV_TIMEOUT).then(() => null)]);
-  return first || cached;
+  // never seen this page: the network is the only option, so wait it out
+  return (await net) || (await pages.match('/')) || offlineResponse();
 }
 
 async function cacheFirst(req) {
@@ -477,8 +503,19 @@ async function cacheFirst(req) {
 
 async function staleWhileRevalidate(req) {
   const cache = await caches.open(ASSETS);
+  const photo = PHOTO_KEY.has(new URL(req.url).pathname);
   req = photoKey(req);                       // a photograph: its versioned key, see PHOTO_KEY
   const hit = await cache.match(req);
+  /* A photograph is keyed by the hash of its bytes, so a hit cannot be stale
+     and there is nothing to revalidate: served, and the network left alone.
+     While the fill is running every needless request is one more thing in
+     front of the next tap, and a gallery scroll used to make hundreds. */
+  if (hit && photo) return hit;
+  /* A miss means the page needs the pipe right now. Cancel whatever the fill
+     has open so this file is not queued behind a gallery frame nobody has
+     asked to see; the fill puts the cancelled file back and carries on once
+     the page has what it wants. */
+  if (!hit) yieldFill(1500);
   /* The Google Fonts stylesheet is requested no-cors by the <link>, which makes
      the response opaque: its status is invisible (an error page would be
      cached as if it were the CSS) and Chrome pads every opaque entry to
@@ -513,7 +550,7 @@ self.addEventListener('fetch', e => {
        down for FILL_HOLD. Runs before respondWith so the sockets are already
        free by the time the fetch below is made. */
     yieldFill(FILL_HOLD);
-    e.respondWith(networkFirst(req, e.preloadResponse));
+    e.respondWith(servePage(e));
   } else if (isCodeAsset(url) || url.pathname === '/manifest.webmanifest') {
     /* Almost always a cache hit, and the page cannot render without it. Push
        the fill back but do not cancel: a miss here is one small file. */

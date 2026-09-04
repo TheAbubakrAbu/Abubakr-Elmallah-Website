@@ -868,8 +868,15 @@ a.fr-card { cursor: pointer; }
 }
 
 /* Content sits above it. The rift is z-index 0 and fixed, so anything that is
-   not positioned would otherwise paint underneath it. */
-body > header, body > main, body > footer, body > nav, body > .tabbar {
+   not positioned would otherwise paint underneath it.
+
+   NOT the tab bar. It is fixed at z-index 200 already (layout.css), so it sits
+   above the rift on its own. It used to be listed here too, and `body >
+   .tabbar` outranks `.tabbar`, so this rule turned its position: fixed into
+   position: relative and dropped the bar into the page flow under the footer:
+   on this page, and only this page, the tab bar was gone until you scrolled
+   to the very bottom. */
+body > header, body > main, body > footer {
   position: relative; z-index: 1;
 }
 

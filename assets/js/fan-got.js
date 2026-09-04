@@ -279,6 +279,15 @@ window.FAN_PAGE = {
       { title: 'Jenny of Oldstones', accent: '#c9a24a', sub: 'Florence + the Machine · Season 8 · 2019' },
     ] },
 
+  { id: 'unofficial-songs', kind: 'tiles', compact: true, title: 'Not In The Show', note: 'two songs that still feel like Westeros',
+    lede: 'Neither appears in Game of Thrones. They are just two songs from my playlist that make me think of it anyway.',
+    items: [
+      { title: 'Runaway', accent: '#7a91b8', sub: 'AURORA · unofficial · reminds me of Game of Thrones',
+        desc: 'Not a soundtrack track—just the voice, the cold air around it, and the feeling of somebody trying to get home through a world that is much too big.' },
+      { title: 'Golden Brown', accent: '#b89054', sub: 'The Stranglers · unofficial · reminds me of Game of Thrones',
+        desc: 'Not in the show either. Its strange, courtly waltz feel belongs somewhere between a candlelit hall, a scheming Lannister, and the old world underneath the story.' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'On HBO', href: 'https://www.hbo.com/game-of-thrones',
