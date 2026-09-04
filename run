@@ -43,9 +43,10 @@
 
 cd "$(dirname "$0")" || exit 1
 
-# The CSS/JS cache-busting hashes (_data/versions.yml, see tools/stamp.py) are
-# refreshed here and by the pre-commit hook in tools/hooks, which this wires up
-# once. The hook only touches that one generated file.
+# The cache-busting hashes (_data/versions.yml for CSS/JS, photo_versions.yml
+# for the photographs; see tools/stamp.py) are refreshed here and by the
+# pre-commit hook in tools/hooks, which this wires up once. The hook only
+# touches those two generated files.
 python3 tools/stamp.py --quiet 2>/dev/null
 [ "$(git config core.hooksPath 2>/dev/null)" = "tools/hooks" ] || git config core.hooksPath tools/hooks 2>/dev/null
 

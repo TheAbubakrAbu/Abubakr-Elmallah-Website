@@ -67,6 +67,13 @@ addEventListener('load', () => {
 
    Only over https (or localhost); file:// and http:// are skipped, and a
    failure here must never take the page down with it. */
+/* Is this running as an installed app (added to the home screen) rather than
+   in a browser tab? */
+function installed() {
+  if (navigator.standalone === true) return true;
+  try { return window.matchMedia('(display-mode: standalone)').matches; } catch (e) { return false; }
+}
+
 (function serviceWorker() {
   if (!('serviceWorker' in navigator)) return;
   if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
@@ -93,10 +100,19 @@ addEventListener('load', () => {
          too. They are the bulk of the site and nobody wants them unless they
          have turned "show other pictures" on, so the answer is normally no.
          Read straight from storage rather than via pics.js, because most pages
-         do not load pics.js and the default there has to be the safe one. */
+         do not load pics.js and the default there has to be the safe one.
+
+         The exception is the home screen. Somebody who has installed this as
+         an app wants the whole site on the device, photographs included, so
+         that opening it with no connection shows everything rather than
+         everything-but-the-galleries. The home-screen app also has its own
+         storage, separate from Safari's, so nothing cached in a tab carries
+         over: this is what fills it. `navigator.standalone` is the iOS
+         property; the display-mode query is everyone else's. */
       var kick = function () {
         var wants = false;
         try { wants = localStorage.getItem('ae-show-pics') === 'on'; } catch (e) { /* private mode */ }
+        if (installed()) wants = true;
         reg.active.postMessage({ type: 'prefetch', photos: wants });
       };
       if (window.requestIdleCallback) requestIdleCallback(kick, { timeout: 8000 });

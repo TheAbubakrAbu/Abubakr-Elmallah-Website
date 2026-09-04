@@ -86,9 +86,20 @@ permalink: /sw.js
    So the fill runs in tiers. ALL_PAGES and ALL_ASSETS -- every page, the CSS,
    the JS, the icons, the app and franchise art -- are always fetched: that is
    what makes the site work offline. PHOTOS is only fetched when a page has
-   told this worker the switch is on. The handful of cover images somebody sees
-   with the switch off are picked up the ordinary way, by looking at them, via
-   stale-while-revalidate.
+   told this worker the switch is on, or that the site is running from the
+   home screen (an installed app gets everything; see utils.js). The handful of
+   cover images somebody sees with the switch off are picked up the ordinary
+   way, by looking at them, via stale-while-revalidate.
+
+   A PHOTOGRAPH IS STORED UNDER ITS CONTENT HASH, NOT ITS PATH.
+
+   Pages ask for /assets/img/years/x.avif, plain. This worker keys that file
+   as /assets/img/years/x.avif?v=<hash of its bytes> (photo_versions.yml,
+   written by tools/stamp.py), the same trick the CSS and JS get from v.html.
+   The fill decides "already have it" by looking the key up, so a photograph
+   replaced under the same filename is a new key: it is fetched, and prune()
+   drops the old copy. Before this the fill trusted the path alone and a
+   replaced photograph stayed stale on the device for good. See photoKey().
 
    Bump CACHE_VERSION only for a deliberate full flush. Routine deploys must NOT
    bump it: that would re-download the whole site on every deploy, which is the
@@ -158,10 +169,23 @@ const ALL_ASSETS = [
    half nobody sees unless "show other pictures" is on. Fetched only when a page
    says so -- see doFill(). */
 const PHOTOS = [
-{%- for f in site.static_files %}{% if f.path contains '/assets/img/years/' or f.path contains '/assets/img/years-large/' %}
-  '{{ f.path }}',
+{%- for f in site.static_files %}{% if f.path contains '/assets/img/years/' or f.path contains '/assets/img/years-large/' %}{% assign pv = site.data.photo_versions[f.path] %}
+  '{{ f.path }}{% if pv %}?v={{ pv }}{% endif %}',
 {%- endif %}{% endfor %}
 ];
+
+/* plain path -> the versioned key above. Every request for a photograph, from
+   a page or from the fill, goes through this so the cache is only ever asked
+   about, and only ever holds, the current version. The network is asked for
+   the versioned URL too: GitHub Pages ignores the query, and it keeps the
+   browser's own HTTP cache (max-age=600) from handing back the old bytes. */
+const PHOTO_KEY = new Map(PHOTOS.map(u => [u.split('?')[0], u]));
+function photoKey(req) {
+  const url = new URL(req.url);
+  if (url.search) return req;
+  const v = PHOTO_KEY.get(url.pathname);
+  return v ? new Request(new URL(v, self.location.origin).href) : req;
+}
 
 /* A fingerprint of what this worker actually knows about, used to answer "have
    I already pulled the whole site down for this version?" without re-walking
@@ -174,8 +198,9 @@ const PHOTOS = [
    has to read as "not done any more", and now it does.
 
    Still deliberately derived from the lists rather than from the build clock:
-   the CSS/JS urls carry ?v=<mtime>, so this only changes when a real file
-   changes. Stamping it with site.time instead would make sw.js differ on every
+   the CSS/JS urls carry ?v=<content hash>, and so do the photographs, so this
+   only changes when a real file changes, and a photograph replaced under its
+   old name reads as "not done any more" just like a renamed one. Stamping it with site.time instead would make sw.js differ on every
    rebuild and force a pointless worker update on deploys that changed nothing. */
 function fingerprint(s) {
   let h = 2166136261;                                    // FNV-1a, 32-bit
@@ -214,6 +239,7 @@ self.addEventListener('activate', e => {
          response arrives in networkFirst() as e.preloadResponse. */
       .then(() => self.registration.navigationPreload ? self.registration.navigationPreload.enable() : null)
       .then(() => self.clients.claim())
+      .then(() => migratePhotos())
       .then(() => prune())
   );
 
@@ -230,6 +256,27 @@ self.addEventListener('activate', e => {
      "no". utils.js sends the real state a few seconds later. */
   fillCache(false);
 });
+
+/* One-time move for devices that cached photographs before they were keyed by
+   content hash (the worker up to August 2026 stored them under the plain
+   path). Re-key each one under its current hash rather than let prune() throw
+   half a gigabyte away and have the fill pull it all down again. The copy is
+   trusted as current; anything replaced from here on is caught by the hash.
+   Idle after the first activation: there are no plain photo keys left. */
+async function migratePhotos() {
+  const cache = await caches.open(ASSETS);
+  const keys = await cache.keys();
+  for (const req of keys) {
+    const url = new URL(req.url);
+    if (url.origin !== self.location.origin || url.search) continue;
+    const key = PHOTO_KEY.get(url.pathname);
+    if (!key) continue;
+    try {
+      const res = await cache.match(req);
+      if (res) await cache.put(key, res);
+    } catch (err) { /* prune() takes the old entry either way */ }
+  }
+}
 
 /* Drop asset entries this build no longer knows about.
 
@@ -430,6 +477,7 @@ async function cacheFirst(req) {
 
 async function staleWhileRevalidate(req) {
   const cache = await caches.open(ASSETS);
+  req = photoKey(req);                       // a photograph: its versioned key, see PHOTO_KEY
   const hit = await cache.match(req);
   /* The Google Fonts stylesheet is requested no-cors by the <link>, which makes
      the response opaque: its status is invisible (an error page would be
@@ -493,7 +541,8 @@ self.addEventListener('fetch', e => {
    Already-cached URLs cost nothing: warm() checks before it fetches. */
 async function keep(urls) {
   const cache = await caches.open(ASSETS);
-  const queue = urls.filter(u => typeof u === 'string' && /^\/assets\/img\/years(-large)?\//.test(u));
+  const queue = urls.filter(u => typeof u === 'string' && /^\/assets\/img\/years(-large)?\//.test(u))
+                    .map(u => PHOTO_KEY.get(u) || u);        // under its versioned key
   for (const u of queue) {
     await gate();                                    // never race a navigation
     try {
