@@ -116,12 +116,27 @@ window.FAN_PAGE = {
 
 
   /* the music: the main theme; nothing Invincible is on my playlist yet */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · the main theme',
-    lede: 'Nothing Invincible is on my playlist yet, so this is the one: the title music, linked to the composer’s own upload.',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'six tracks · the score and the needle drops',
+    lede: 'John Paesano’s score, plus the two songs the show is best known for using: a Radiohead single over an Omni-Man scene, and a d4vd track written for Mark and Eve. Invincible picks needle drops the way it picks fights, which is to say it goes further than you expect.',
     items: [
       { title: 'Invincible', accent: '#f0d040', sub: 'John Paesano · Invincible · 2021 · 4:56',
         desc: 'John Paesano. The title card and the theme under it, which the show cuts off a beat early every time, because it is that kind of show.',
         href: 'https://www.youtube.com/watch?v=1J6_NCoh8tY', link: 'Listen' },
+      { title: 'Omni-Man', accent: '#e04a4a', sub: 'John Paesano · Invincible · 2021 · 5:22',
+        desc: 'Nolan’s theme: brass written like a superhero and then held a fraction too long, so that by the time you work out what it actually is, episode eight has already happened.',
+        href: 'https://www.youtube.com/watch?v=-NVI_JnB6lw', link: 'Listen' },
+      { title: 'Thragg', accent: '#8f6fd0', sub: 'John Paesano · Invincible · 2:19',
+        desc: 'The Grand Regent of the Viltrum Empire, and the only character in the show who makes Omni-Man look reasonable. Unreleased on any album, so the copy is a fan’s rip of the score.',
+        href: 'https://www.youtube.com/watch?v=uEh46AaELNw', link: 'Fan upload' },
+      { title: 'Tom Tom', accent: '#e06a3a', sub: 'Holy Fuck · Latin · 2010 · 3:48',
+        desc: 'The Canadian noise-rock band whose track opens the show’s first title sequence and gets used again for Omni-Man. Written in 2010 for an album called Latin, and now permanently attached to a cartoon about a boy whose father is a war crime.',
+        href: 'https://www.youtube.com/watch?v=U6OywaZjyOI', link: 'Listen' },
+      { title: 'Karma Police', accent: '#6f8fa8', sub: 'Radiohead · OK Computer · 1997 · 4:25',
+        desc: 'Used over the opening of a season two episode, straight, no irony, while Omni-Man does what Omni-Man does. "For a minute there, I lost myself" is not subtle and the show does not care.',
+        href: 'https://www.youtube.com/watch?v=4IJI6soiQhI', link: 'Listen' },
+      { title: 'Feel It', accent: '#e8b0c8', sub: 'd4vd · Invincible · 2024 · 2:35',
+        desc: 'd4vd wrote it for the show, for Mark and Eve, in about forty-five minutes. The one soft thing in the entire soundtrack.',
+        href: 'https://www.youtube.com/watch?v=vZi8ET9k11g', link: 'Listen' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

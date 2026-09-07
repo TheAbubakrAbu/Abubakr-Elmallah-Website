@@ -336,6 +336,13 @@ window.MYPHOTOS = {
         title: 'Welcome to Hawkins',
         desc: 'A Stranger Things pop-up in an Osaka department store: the Starcourt sign, a Demogorgon, and a Steve cutout.',
         when: 'July 2026 · Osaka' },
+      /* The same frame is on the Star Wars page, where it is about the film.
+         Here it is about the shirt, which is the only reason it belongs on
+         this page at all. */
+      { src: 'uci-second/2026-07-27-2041.avif',
+        title: 'The Palace Arcade shirt',
+        desc: 'A premiere, but not this show’s: Vader II, the Star Wars Theory fan film, with a Vader in costume behind me and the poster in hand. The only Hawkins in the frame is the one I am wearing.',
+        when: 'July 2026' },
     ],
 
     mc: [

@@ -87,13 +87,15 @@
 .fr-group--primary   .fr-grid { --cols: 3; }
 .fr-group--secondary .fr-grid { --cols: 3; }
 .fr-group--tertiary  .fr-grid { --cols: 4; }
+.fr-group--kid       .fr-grid { --cols: 4; }
 .fr-group--parks     .fr-grid { --cols: 3; }
 
 /* Step-downs. Each group loses a column when its tiles would otherwise get too
    narrow to hold a name, so the ranking still reads on a laptop and a phone:
    the order is preserved even once the counts converge. */
 @media (max-width: 1180px) {
-  .fr-group--tertiary  .fr-grid { --cols: 3; }
+  .fr-group--tertiary  .fr-grid,
+  .fr-group--kid       .fr-grid { --cols: 3; }
 }
 @media (max-width: 900px) {
   .fr-group--identity  .fr-grid,
@@ -101,7 +103,8 @@
   .fr-group--primary   .fr-grid,
   .fr-group--secondary .fr-grid,
   .fr-group--parks     .fr-grid { --cols: 2; }
-  .fr-group--tertiary  .fr-grid { --cols: 3; }
+  .fr-group--tertiary  .fr-grid,
+  .fr-group--kid       .fr-grid { --cols: 3; }
 }
 @media (max-width: 620px) {
   .fr-group--identity  .fr-grid,
@@ -109,7 +112,8 @@
   .fr-group--primary   .fr-grid,
   .fr-group--parks     .fr-grid { --cols: 1; }
   .fr-group--secondary .fr-grid { --cols: 2; }
-  .fr-group--tertiary  .fr-grid { --cols: 2; }
+  .fr-group--tertiary  .fr-grid,
+  .fr-group--kid       .fr-grid { --cols: 2; }
 }
 /* Every rank gets the same breathing room above its heading as it has below
    it before the tile row. The old 0.6rem gap made every group after Who I Am
@@ -187,7 +191,8 @@ a.fr-card { cursor: pointer; }
 .fr-group--primary .fr-plate { min-height: 195px; }
 .fr-group--secondary .fr-plate { min-height: 175px; }
 .fr-group--parks .fr-plate { min-height: 170px; }
-.fr-group--tertiary .fr-plate { min-height: 150px; }
+.fr-group--tertiary .fr-plate,
+.fr-group--kid .fr-plate { min-height: 150px; }
 .fr-plate::before {                       /* faint scan texture, keeps it from going flat */
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: repeating-linear-gradient(to bottom, rgba(255,255,255,.025) 0 1px, transparent 1px 4px);
@@ -236,7 +241,8 @@ a.fr-card { cursor: pointer; }
   line-height: 1.15; letter-spacing: -0.01em;
   text-wrap: balance;
 }
-.fr-group--tertiary .fr-name { font-size: 1.14rem; }
+.fr-group--tertiary .fr-name,
+.fr-group--kid .fr-name { font-size: 1.14rem; }
 .fr-group--core .fr-name { font-size: 1.7rem; }
 
 /* ── who I am ──
@@ -576,6 +582,82 @@ a.fr-card { cursor: pointer; }
   text-shadow: 2px 2px 0 #355a35;
 }
 
+/* ── the nine added in September 2026 ───────────────────────────────────────
+   Same rule as everything above: the tile is set in type, so each of these is
+   a typeface choice plus one offset in the mark's own colour. No logos, no
+   images, and nothing here loads a font the site does not already have. */
+
+/* Rio: the title card is a fat rounded sans over Carnival colour. */
+.wm--rio {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans);
+  font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+  text-shadow: 2px 2px 0 #0f6f7a;
+}
+
+/* Overwatch's own face is a squared-off industrial sans; Space Grotesk wide
+   and tracked out is the nearest thing already on the page. */
+.wm--overwatch {
+  font-family: "Space Grotesk", var(--sans);
+  font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  font-size: .96rem; text-shadow: 2px 2px 0 #16233a;
+}
+
+/* Mario: rounded, heavy, and the red mark with a dark outline under it. */
+.wm--mario {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans);
+  font-weight: 800; letter-spacing: .02em;
+  text-shadow: 2px 2px 0 #2a0a0c, 3px 3px 0 rgba(0,0,0,.45);
+}
+
+/* Bloons is a cartoon wordmark; same rounded face, hot offset. */
+.wm--bloons {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans);
+  font-weight: 800; letter-spacing: .03em;
+  text-shadow: 2px 2px 0 #3a1512;
+}
+
+/* Beyblade: italic, tracked, and leaning, because everything about that toy
+   line leans. */
+.wm--beyblade {
+  font-family: "Space Grotesk", var(--sans);
+  font-weight: 700; font-style: italic; letter-spacing: .06em;
+  text-transform: uppercase; font-size: 1.02rem;
+  text-shadow: 2px 2px 0 #10263c;
+}
+
+/* Yu-Gi-Oh!: the logo is a spiky display face; Impact with a purple offset is
+   the honest approximation at this size. */
+.wm--ygo {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  text-shadow: 2px 2px 0 #2a1440;
+}
+
+/* Ice Age: chiselled and cold, so a condensed face with a pale blue shadow
+   under it rather than a black one. */
+.wm--iceage {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  text-shadow: 2px 2px 0 #16303f, 3px 3px 0 rgba(143,208,232,.25);
+}
+
+/* Skylanders: a fantasy-game wordmark, so the same rounded bold with a gold
+   offset and a little more tracking. */
+.wm--skylanders {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans);
+  font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
+  font-size: .98rem; text-shadow: 2px 2px 0 #2a2044;
+}
+
+/* LEGO Fortnite: the LEGO half wins the typeface, since that is the half you
+   can see in the game, and the offset is Fortnite's blue rather than red so
+   the tile is not mistaken for the LEGO one two rows up. */
+.wm--legofortnite {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans);
+  font-weight: 700; text-transform: uppercase; letter-spacing: .02em;
+  font-size: .95rem; text-shadow: 2px 2px 0 #1c3320, 4px 4px 0 rgba(0,0,0,.45);
+}
+
 /* LEGOLAND is the LEGO mark with a park under it. Same rounded bold as
    .wm--lego on purpose, and the offset is green rather than red so the two
    tiles are still telling apart at a glance. */
@@ -592,6 +674,54 @@ a.fr-card { cursor: pointer; }
   font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
   font-size: 1.24rem; transform: skewX(-8deg);
   text-shadow: 0 2px 14px rgba(0,0,0,.7);
+}
+
+/* ── the two added on 2026-09-06 ─────────────────────────────────────────── */
+
+/* Teen Titans Go sets itself in a fat rounded cartoon face. Tight rather than
+   tracked out, because the wordmark is three words and the plate is not wide. */
+.wm--ttg {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans);
+  font-weight: 800; letter-spacing: .01em; font-size: 1.02rem;
+  text-shadow: 2px 2px 0 #3a1140, 3px 3px 0 rgba(0,0,0,.45);
+}
+
+/* Despicable Me is a heavy squared sans with a hard dark edge under it, which
+   is Space Grotesk's job on this page. Not Impact: three tiles in the group
+   below already lean on it and this one should not read as a fourth. */
+.wm--despicable {
+  font-family: "Space Grotesk", var(--sans);
+  font-weight: 700; letter-spacing: .02em; text-transform: uppercase;
+  font-size: .98rem; text-shadow: 2px 2px 0 #2b2340, 3px 3px 0 rgba(0,0,0,.5);
+}
+
+/* ── the three added later on 2026-09-06 ─────────────────────────────────── */
+
+/* Roblox sets itself in a heavy squared grotesque, tight and all caps, on a
+   red mark. Narrow rather than Space Grotesk so it does not read as the
+   Despicable Me tile two rows up in the same group. */
+.wm--roblox {
+  font-family: "Arial Narrow", "Helvetica Neue", var(--sans);
+  font-weight: 700; letter-spacing: .09em; text-transform: uppercase;
+  font-size: 1.2rem; text-shadow: 2px 2px 0 #1b1d22;
+}
+
+/* Wild Kratts is a bouncy hand-lettered mark on a children's channel, so the
+   casual face is right here in the way it is right for Looney Tunes. The
+   offset is Martin's blue under Chris's green, which is the whole show. */
+.wm--kratts {
+  font-family: "Marker Felt", "Bradley Hand", "Comic Sans MS", cursive;
+  font-weight: 700; letter-spacing: .02em; font-size: 1.16rem;
+  text-shadow: 2px 2px 0 #14527e;
+}
+
+/* Dinosaur Train is a fat rounded cartoon face with a warm shadow: a preschool
+   wordmark, and the tile should look like the youngest thing on the page,
+   because it is. */
+.wm--dinotrain {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans);
+  font-weight: 800; letter-spacing: .02em; font-size: 1rem;
+  text-shadow: 2px 2px 0 #123c40, 3px 3px 0 rgba(0,0,0,.4);
 }
 
 /* Breaking Bad writes its own two elements */
@@ -619,7 +749,8 @@ a.fr-card { cursor: pointer; }
   .fr-group--core .fr-plate,
   .fr-group--primary .fr-plate,
   .fr-group--secondary .fr-plate,
-  .fr-group--tertiary .fr-plate { min-height: 120px; padding: 1.1rem 0.8rem; }
+  .fr-group--tertiary .fr-plate,
+  .fr-group--kid .fr-plate { min-height: 120px; padding: 1.1rem 0.8rem; }
   .fr-name, .fr-group--core .fr-name, .fr-group--primary .fr-name { font-size: 1.02rem; }
 }
 
@@ -895,13 +1026,20 @@ body > header, body > main, body > footer {
    working typeface. Large and on a short measure, because at 52ch in Inter it
    read as a paragraph of body copy that had wandered into the middle of the
    page rather than as the door it is. */
+/* Leading, not centred. The button underneath it is full width and its label
+   starts at the left gutter, so a centred sentence above it hung in the middle
+   of nothing; set flush left, the two share an edge and the invitation reads as
+   the label on the door rather than as a caption floating over it. `balance`
+   went with the centring: it is meant for short centred display lines, and on a
+   flush-left block it evens the rag at the cost of the last line. `pretty` just
+   keeps the orphan off the end. */
 .fr-invite {
-  max-width: 40ch; margin: 0 auto 2.6rem; text-align: center;
+  max-width: 40ch; margin: 0 0 2.6rem; text-align: left;
   font-family: "Cormorant Garamond", "Amiri", var(--serif);
   font-style: italic; font-weight: 400;
   font-size: clamp(1.4rem, 1.05rem + 1.15vw, 2.15rem);
   line-height: 1.26; letter-spacing: 0.004em;
-  color: var(--ink); text-wrap: balance;
+  color: var(--ink); text-wrap: pretty;
 }
 
 /* The invitation had 112px of dead air above it and 24px below, so it floated

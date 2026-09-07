@@ -1,0 +1,10 @@
+/* fan/yu-gi-oh.css: /worlds/yu-gi-oh/ only.
+   The backdrop geometry is shared (.np-sky in fanpages.css); this file
+   only says what colour this world is. */
+
+body[data-fan="ygo"] {
+  --a: #b06fd8;
+  --np1: #2a1840;
+  --np2: #06090f;
+  --np3: rgba(176,111,216,.15);
+}

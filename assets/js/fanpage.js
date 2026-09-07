@@ -715,9 +715,7 @@
      tag up. One list, one place to edit, and a page with no photographs simply
      renders nothing extra.
 
-     It is spliced in BEFORE the Links block, because Links is the sign-off at
-     the foot of every one of these pages and photographs of mine reading after
-     it looked like an afterthought. */
+     Where it is spliced in: see photoSlot(). */
   function myPhotoSection(list) {
     return {
       kind: 'gallery',
@@ -778,13 +776,46 @@
   var tail = document.getElementById('fanBodyEnd');
   var all = (page.sections || []).map(resolveShots);
 
-  if (mine && mine.length) {
-    var at = all.length;
-    for (var li = all.length - 1; li >= 0; li--) {
-      if (all[li].kind === 'links') at = li;              // sit above the sign-off
-    }
-    all.splice(at, 0, myPhotoSection(mine));
+  /* ── where the photographs go ──
+
+     They used to be spliced in directly above Links, which is the very foot of
+     the page and therefore UNDERNEATH the soundtrack. On any page that also
+     has screenshots of its own that read as: some pictures, then the music,
+     then more pictures, with the tracklist wedged between two halves of the
+     same thing. Minecraft was the worst of it -- five sets of frames, the
+     music, and then my own camera roll on its own at the bottom.
+
+     So the block now goes in above the run of music sections that closes these
+     pages, which lands it directly under whatever galleries the page already
+     ends with. Every picture on the page ends up in one stretch: the sets the
+     page names for itself first, then my own photographs under them.
+
+     The anchor is FOUND rather than named, because the id is not the same
+     everywhere ('themes', 'music', 'songs', 'unofficial-songs', 'spider-music'
+     ...). Take the last music section, walk back over any others directly
+     above it, and go in at the top of that run. Only a run at the FOOT of the
+     page can be the anchor, which is what keeps Indiana Jones' "The Score" and
+     Stranger Things' "The Sound" -- both of them mid-page, with unrelated
+     sections after them -- from pulling the photographs halfway up. A page
+     with no music section at all (Islam, Egypt) keeps the old spot above
+     Links, and a page with neither is left exactly as it was. */
+  var MUSICID = /(^|-)(themes?|music|songs?|score|sound|soundtrack)($|-)/i;
+  var MUSICTITLE = /\b(themes?|songs?|music|score|soundtrack)\b/i;
+  function isMusic(s) {
+    return MUSICID.test(s.id || '') || MUSICTITLE.test(s.title || '');
   }
+  function photoSlot(list) {
+    var last = -1, i;
+    for (i = 0; i < list.length; i++) if (isMusic(list[i])) last = i;
+    if (last > -1) {
+      while (last > 0 && isMusic(list[last - 1])) last--;
+      return last;
+    }
+    for (i = 0; i < list.length; i++) if (list[i].kind === 'links') return i;   // above the sign-off
+    return list.length;
+  }
+
+  if (mine && mine.length) all.splice(photoSlot(all), 0, myPhotoSection(mine));
 
   var main = tail ? all.filter(function (s) { return s.mount !== 'end'; }) : all;
 
@@ -1157,9 +1188,34 @@
     armApi();
   }
 
+  /* ── warming the connection ──
+     Pressing Play should not also be paying for a DNS lookup, a TCP handshake
+     and a TLS negotiation with three Google hosts before the embed document
+     has even been asked for; on a cold connection that is most of the wait
+     between the press and the sound. These are hints and nothing else: no
+     request is made, no content is fetched and no cookie is sent, the browser
+     simply opens the sockets early so that when the iframe is created the
+     connection it needs is already there. They go in alongside the API script,
+     so only the pages that actually carry a track pay for them. */
+  var WARM = [
+    'https://www.youtube-nocookie.com',   // the embed document itself
+    'https://www.youtube.com',            // the API script and the player core
+    'https://i.ytimg.com',                // the poster frame behind the player
+  ];
+  function warm() {
+    WARM.forEach(function (href) {
+      var l = document.createElement('link');
+      l.rel = 'preconnect';
+      l.href = href;
+      l.crossOrigin = '';
+      document.head.appendChild(l);
+    });
+  }
+
   function armApi() {
     if (apiState) return;
     apiState = 1;
+    warm();
 
     function settle(ok) {
       apiState = ok ? 2 : 3;
@@ -1234,11 +1290,45 @@
       + '</div>';
   }
 
+  /* ── why this is not simply a click handler ──
+     A mouse press and the click it turns into are two separate events with a
+     gap between them: the browser will not call click until the button comes
+     back up, so every millisecond the finger rests on the button is a
+     millisecond the player has not started loading. Building it on the way
+     down instead hands the embed that gap for free, and the embed needs every
+     bit of it -- it is a whole second document, fetched and parsed before a
+     note can play.
+
+     Only for mouse and pen. On touch, pointerdown fires at the START of a
+     gesture that very often turns out to be a scroll, and a page that starts
+     playing music because somebody swiped past a tile is far worse than one
+     that takes an extra moment; touch keeps the click, which fires only once
+     the gesture has resolved into a tap. Anything other than the primary
+     button is left alone too.
+
+     The click still arrives afterwards, and running the toggle a second time
+     would stop the track that had just been started, so a button handled on
+     the way down swallows its own click. Keyboard activation (Enter, Space)
+     produces a click with no pointerdown before it and is unaffected. */
+  var primed = null, primedAt = 0;
+
+  root.addEventListener('pointerdown', function (e) {
+    if (e.pointerType === 'touch' || (e.button !== undefined && e.button !== 0)) return;
+    var btn = e.target.closest('.fan-hear');
+    if (!btn) return;
+    primed = btn; primedAt = Date.now();
+    hear(btn);
+  });
+
   root.addEventListener('click', function (e) {
     var btn = e.target.closest('.fan-hear');
     if (!btn) return;
     e.preventDefault();
+    if (btn === primed && Date.now() - primedAt < 900) { primed = null; return; }
+    hear(btn);
+  });
 
+  function hear(btn) {
     /* pressing the one that is already going is how you stop it */
     if (btn === heard) { silence(); return; }
     silence();
@@ -1378,7 +1468,7 @@
         }
       }, 250);
     });
-  });
+  }
 
   /* ── wiring one transport to the live player ── */
   function wire(host) {

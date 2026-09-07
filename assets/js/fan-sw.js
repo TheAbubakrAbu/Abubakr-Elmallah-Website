@@ -366,7 +366,8 @@ window.FAN_PAGE = {
       { title: 'The Arrival at Tatooine and the Flag Parade', series: 'The Prequels', accent: '#f0c840', when: -32, year: 1999, secs: 244, sub: 'The Phantom Menace · 1999 · 4:04',
         desc: 'The Boonta Eve podrace, the flags going up. The parade is the back half of the track and the part that lives on loop.',
         href: 'https://www.youtube.com/watch?v=inyJGAXkbEg', link: 'Listen' },
-      { title: 'The Phantom Menace End Credits', series: 'The Prequels', accent: '#f0c840', when: -32, year: 1999, sub: 'The Phantom Menace · 1999' },
+      { title: 'The Phantom Menace End Credits', series: 'The Prequels', accent: '#f0c840', when: -32, year: 1999, sub: 'The Phantom Menace · 1999',
+        href: 'https://www.youtube.com/watch?v=DqLSBS8E7Do', link: 'Listen' },
       { title: 'Across the Stars', series: 'The Prequels', accent: '#e08a3a', when: -22, year: 2002, secs: 334, sub: 'Attack of the Clones · 2002 · 5:34',
         desc: 'Anakin and Padmé’s love theme, written to sound doomed from its first phrase.',
         href: 'https://www.youtube.com/watch?v=7wMiMDBHnJ0', link: 'Listen' },
@@ -393,7 +394,8 @@ window.FAN_PAGE = {
       { title: 'Star Wars Main Title & A Galaxy Divided', series: 'The Clone Wars', accent: '#3f7fe0', when: -22, year: 2008, secs: 74, sub: 'The Clone Wars · 2008 · 1:14',
         desc: 'Kevin Kiner. The fanfare, then the drums and the newsreel theme that opened every episode for twelve years.',
         href: 'https://www.youtube.com/watch?v=iKZgzM8Ghns', link: 'Listen' },
-      { title: 'Ahsoka’s Theme', series: 'The Clone Wars', accent: '#3f7fe0', when: -22, year: 2008, sub: 'The Clone Wars · 2008' },
+      { title: 'Ahsoka’s Theme', series: 'The Clone Wars', accent: '#3f7fe0', when: -22, year: 2008, sub: 'The Clone Wars · 2008',
+        href: 'https://www.youtube.com/watch?v=jvmWhIJurqk', link: 'Listen' },
       { title: 'Ahsoka Leaves', series: 'The Clone Wars', accent: '#3f7fe0', when: -20, year: 2013, secs: 143, sub: 'The Clone Wars · 2013 · 2:23',
         desc: 'Kevin Kiner. The Wrong Jedi: Ahsoka walking down the Temple steps and not turning round.',
         href: 'https://www.youtube.com/watch?v=QE3AMWnfVXM', link: 'Listen' },
@@ -402,7 +404,8 @@ window.FAN_PAGE = {
         href: 'https://www.youtube.com/watch?v=MJrEkTEkE4Q', link: 'Listen' },
 
       // The Bad Batch
-      { title: 'The Bad Batch', series: 'The Bad Batch', accent: '#627f9d', when: -19, year: 2021, sub: 'The Bad Batch · 2021' },
+      { title: 'The Bad Batch', series: 'The Bad Batch', accent: '#627f9d', when: -19, year: 2021, sub: 'The Bad Batch · 2021',
+        href: 'https://www.youtube.com/watch?v=sjKjkVmB2Ag', link: 'Listen' },
 
       // Obi-Wan Kenobi
       { title: 'Obi-Wan', series: 'Obi-Wan Kenobi', accent: '#3f8fff', when: -9, year: 2022, secs: 246, sub: 'Obi-Wan Kenobi · 2022 · 4:06',
@@ -424,8 +427,10 @@ window.FAN_PAGE = {
       { title: 'Past/Present Suite', series: 'Andor', accent: '#e0642a', when: -5, year: 2022, secs: 225, sub: 'Andor · 2022 · 3:45',
         desc: 'Nicholas Britell. The Kenari flashbacks cut against Ferrix in the present, as one suite.',
         href: 'https://www.youtube.com/watch?v=DbQAyWJxOQE', link: 'Listen' },
-      { title: 'Niamos!', series: 'Andor', accent: '#e0642a', when: -5, year: 2022, sub: 'Andor · 2022' },
-      { title: 'My Name Is Kino Loy', series: 'Andor', accent: '#e0642a', when: -5, year: 2022, sub: 'Andor · 2022' },
+      { title: 'Niamos!', series: 'Andor', accent: '#e0642a', when: -5, year: 2022, sub: 'Andor · 2022',
+        href: 'https://www.youtube.com/watch?v=3YMFs7NPj7I', link: 'Listen' },
+      { title: 'My Name Is Kino Loy', series: 'Andor', accent: '#e0642a', when: -5, year: 2022, sub: 'Andor · 2022',
+        href: 'https://www.youtube.com/watch?v=yJzxJk33ZAQ', link: 'Listen' },
       { title: 'Pilgrim', series: 'Andor', accent: '#e0642a', when: -5, year: 2022, secs: 89, sub: 'Andor · 2022 · 1:29',
         desc: 'Nicholas Britell at his sparest: a handful of notes and a lot of air.',
         href: 'https://www.youtube.com/watch?v=lyKYUivIUlE', link: 'Listen' },
@@ -501,7 +506,8 @@ window.FAN_PAGE = {
       { title: 'Mando Rescue', series: 'The Mandalorian', accent: '#9aa8b4', when: 9, year: 2019, secs: 135, sub: 'Chapter 3 · 2019 · 2:15',
         desc: 'Ludwig Göransson. The Sin: the covert coming out of hiding to get him and the child off Nevarro. This is the way.',
         href: 'https://www.youtube.com/watch?v=jnVaD71JeQo', link: 'Listen' },
-      { title: 'You Are a Mandalorian', series: 'The Mandalorian', accent: '#9aa8b4', when: 9, year: 2019, sub: 'The Mandalorian · 2019' },
+      { title: 'You Are a Mandalorian', series: 'The Mandalorian', accent: '#9aa8b4', when: 9, year: 2019, sub: 'The Mandalorian · 2019',
+        href: 'https://www.youtube.com/watch?v=CBvQ75bwn28', link: 'Listen' },
 
       // The Book of Boba Fett
       { title: 'The Book of Boba Fett', series: 'The Book of Boba Fett', accent: '#5fbf6a', when: 9, year: 2022, secs: 176, sub: 'The Book of Boba Fett · 2022 · 2:56',

@@ -89,21 +89,21 @@ window.FANDOMS = [
 
   ] },
   { id: 'secondary', label: 'Secondary', note: 'in regular rotation', items: [
-    { name: 'Red Dead Redemption', wm: 'reddead', glyph: 'badge', c1: '#c9402f', c2: '#26100c',
-      when: '1st year of college, 2024\u201325',
-      meta: 'Game · 2010', href: '/worlds/red-dead/', desc: 'A western that respects your time and then breaks your heart in the epilogue.' },
-
     { name: 'Ninjago', wm: 'ninjago', glyph: 'spinner', c1: '#e0b040', c2: '#20180a',
       when: 'Around 2012\u201313, age six or seven',
       meta: 'Animation · 2011', href: '/worlds/ninjago/', desc: 'Picked it up right after Star Wars and never really put it down. A toy line that grew into a sixteen-season saga.' },
 
-    { name: 'The Simpsons', wm: 'simpsons', glyph: 'donut', c1: '#ffd21f', c2: '#1a2438',
-      when: '8th and 9th grade, 2019\u201321',
-      meta: 'Animation · 1989', href: '/worlds/the-simpsons/', desc: 'Universal Studios got me into it before I had really watched it. The golden-age seasons wrote half the jokes the internet runs on.' },
+    { name: 'Red Dead Redemption', wm: 'reddead', glyph: 'badge', c1: '#c9402f', c2: '#26100c',
+      when: '1st year of college, 2024\u201325',
+      meta: 'Game · 2010', href: '/worlds/red-dead/', desc: 'A western that respects your time and then breaks your heart in the epilogue.' },
 
     { name: 'The Office', wm: 'office', glyph: 'mug', c1: '#e8e6e0', c2: '#191b20',
       when: '8th grade, 2019\u201320',
       meta: 'Series · 2005', href: '/worlds/the-office/', desc: 'The comfort rewatch, and the first of the two. Parks might be funnier; this is the one that stuck.' },
+
+    { name: 'The Simpsons', wm: 'simpsons', glyph: 'donut', c1: '#ffd21f', c2: '#1a2438',
+      when: '8th and 9th grade, 2019\u201321',
+      meta: 'Animation · 1989', href: '/worlds/the-simpsons/', desc: 'Universal Studios got me into it before I had really watched it. The golden-age seasons wrote half the jokes the internet runs on.' },
 
     { name: 'The Boys', wm: 'boys', glyph: 'splat', c1: '#e02a2a', c2: '#210b0b',
       when: 'Summer 2022, going into 11th grade',
@@ -169,11 +169,6 @@ window.FANDOMS = [
       meta: 'Toy · 1958', href: '/worlds/lego/',
       desc: 'The clutch power patent is from 1958 and a brick from then still fits one moulded this morning.' },
 
-    { name: 'Clash Royale', wm: 'clash', glyph: 'kingtower', c1: '#6f9fe8', c2: '#101a30',
-      when: 'Elementary school, when it launched',
-      meta: 'Game · 2016', href: '/worlds/clash-royale/',
-      desc: 'Three-minute chess with an elixir bar: two lanes, three towers, eight cards. Clash of Clans lives inside its page, because that is the village the whole thing marched out of.' },
-
     { name: 'How to Train Your Dragon', wm: 'httyd', glyph: 'helm', c1: '#7fd0e8', c2: '#0c1620',
       when: 'Since the first film, as a kid',
       meta: 'Film · 2010', href: '/worlds/how-to-train-your-dragon/',
@@ -184,19 +179,17 @@ window.FANDOMS = [
       meta: 'Animation · 1999', href: '/worlds/spongebob/',
       desc: 'The golden-age seasons are some of the best-written comedy ever animated, and the internet has been speaking in its screenshots for twenty years.' },
 
-    /* The nine that were added after the first pass, now in the order he ranks
-       them rather than the order they arrived. They went in without a `when`
-       line, because the rest of this file says when I actually got into each
-       thing and a made-up date would make the one honest column on the page
-       unreliable; he has since given all nine, so every tile here has one. */
+    /* The batch that went in after the first pass, in the order he ranks them
+       rather than the order they arrived. They went in without a `when` line,
+       because the rest of this file says when I actually got into each thing
+       and a made-up date would make the one honest column on the page
+       unreliable; he has since given every one, so every tile here has one.
+       Two of that batch, Angry Birds and Geometry Dash, are down in the
+       As a Kid group now. */
     { name: 'Pixar', wm: 'pixar', glyph: 'lamp', c1: '#4fa8e0', c2: '#0a1524',
       when: 'Since elementary school',
       meta: 'Studio · 1986', href: '/worlds/pixar/',
       desc: 'The studio that kept betting a cartoon could be about grief and kept being right. Toy Story was the first fully computer-animated feature; the shorts before it are where the software came from.' },
-    { name: 'Angry Birds', wm: 'angrybirds', glyph: 'bird', c1: '#e03a2a', c2: '#241009',
-      when: 'Since elementary school',
-      meta: 'Game · 2009', href: '/worlds/angry-birds/',
-      desc: 'A projectile-motion problem with a grudge. Rovio’s fifty-second game, one control, no tutorial, and a three-star rating that turned five minutes into a hundred hours.' },
     { name: 'The Hunger Games', wm: 'hunger', glyph: 'mockingjay', c1: '#e0b040', c2: '#1a1408',
       when: 'Somewhere in middle school',
       meta: 'Books · 2008', href: '/worlds/hunger-games/',
@@ -216,30 +209,113 @@ window.FANDOMS = [
       when: 'Since I was a kid; the Switch on launch, 2017',
       meta: 'Company \u00b7 1889', href: '/worlds/nintendo/',
       desc: 'A playing-card company from 1889 that spent eighty years trying taxis, instant rice and a love hotel before it found the thing it was for. Mario, Zelda and Splatoon are all in there, and it is still the only one of the three console makers that builds the hardware around one idea and dares the software to catch up.' },
-    { name: 'Geometry Dash', wm: 'geodash', glyph: 'cube', c1: '#39d6f0', c2: '#0a1a24',
-      when: 'As a kid, as far as Theory of Everything',
-      meta: 'Game \u00b7 2013', href: '/worlds/geometry-dash/',
-      desc: 'One button, no health bar and no checkpoints inside a level: touch anything and the attempt is over from the first frame. Twenty-two official levels, and a level editor that has produced millions more, some of which take a year to finish once.' },
-    /* The two studios he grew up on, and the last two tiles on this list. The
-       theme parks that came in with them are down in the parks group. */
+    /* The studios he grew up on. Looney Tunes came in beside this one and has
+       since gone down to the As a Kid group; the theme parks that arrived with
+       them are in the parks group at the foot of the page. */
     { name: 'DreamWorks', wm: 'dreamworks', glyph: 'moon', c1: '#8fb8e0', c2: '#0c1626',
       when: 'As a kid',
       meta: 'Studio \u00b7 1994', href: '/worlds/dreamworks/',
       desc: 'Spielberg, Katzenberg and Geffen started it in 1994 to be the studio Disney would not let them run, and it is the only one that ever seriously took animation off Disney. Shrek, Madagascar, and two more that are far enough up this page to have tiles of their own.' },
+    { name: 'The Maze Runner', wm: 'mazerunner', glyph: 'spiral', c1: '#8fbf78', c2: '#132018',
+      when: 'Middle school',
+      meta: 'Books \u00b7 2009', href: '/worlds/maze-runner/',
+      desc: 'A boy wakes in a maze with no memory, a lift arriving once a month, and rules everyone follows until somebody does not.' },
+
+    /* September 2026. Mario comes out from under Nintendo, which keeps the
+       company and hands over the plumber. The rest of that batch, Rio and the
+       toy lines, are in the As a Kid group below. */
+    { name: 'Mario', wm: 'mario', glyph: 'mushroom', c1: '#e0403a', c2: '#2a0e0c',
+      when: 'Since I was a kid',
+      meta: 'Game \u00b7 1981', href: '/worlds/mario/',
+      desc: 'The jump was designed before the character was. Forty years later it is still the most reliable set of movement rules in games, and he has appeared in more of them than anyone.' },
+    { name: 'Overwatch', wm: 'overwatch', glyph: 'visor', c1: '#f09d3a', c2: '#16233a',
+      when: 'After it launched',
+      meta: 'Game \u00b7 2016', href: '/worlds/overwatch/',
+      desc: 'The hero shooter that invented the genre: nobody has the same gun, and switching character mid-match is the actual skill.' },
+    { name: 'LEGO Fortnite', wm: 'legofortnite', glyph: 'brickeye', c1: '#7fbf5f', c2: '#16281a',
+      when: 'December 2023, when it opened',
+      meta: 'Game \u00b7 2023', href: '/worlds/lego-fortnite/',
+      desc: 'Epic and the Billund brick: a survival-crafting game living inside a battle royale, where everything you build snaps to the stud grid.' },
+
+      ] },
+
+  /* ── As a Kid ──
+     Split out of Tertiary on 2026-09-06, and nothing above Tertiary was
+     touched to do it. Everything in here I loved properly once, at an age when
+     a thing being on after school was most of the argument for it, and none of
+     it is what I put on now. That is not the same as thinking less of them:
+     the tiles above are the ones I would still argue for with somebody my own
+     age, and these are the ones I would argue for with a nine-year-old. The
+     `when` line on each tile is the reason it is down here rather than up
+     there. Teen Titans Go and Despicable Me arrived straight into this group
+     on the same day, because there was never a point at which they belonged
+     anywhere else. */
+  { id: 'kid', label: 'As a Kid', note: 'everything to me then; I do not put them on now', items: [
+    { name: 'Clash Royale', wm: 'clash', glyph: 'kingtower', c1: '#6f9fe8', c2: '#101a30',
+      when: 'Elementary school, when it launched',
+      meta: 'Game · 2016', href: '/worlds/clash-royale/',
+      desc: 'Three-minute chess with an elixir bar: two lanes, three towers, eight cards. Clash of Clans lives inside its page, because that is the village the whole thing marched out of.' },
+    { name: 'Angry Birds', wm: 'angrybirds', glyph: 'bird', c1: '#e03a2a', c2: '#241009',
+      when: 'Since elementary school',
+      meta: 'Game · 2009', href: '/worlds/angry-birds/',
+      desc: 'A projectile-motion problem with a grudge. Rovio’s fifty-second game, one control, no tutorial, and a three-star rating that turned five minutes into a hundred hours.' },
+    { name: 'Roblox', wm: 'roblox', glyph: 'noob', c1: '#e5453c', c2: '#1b1d22',
+      when: 'As a kid, on a school laptop',
+      meta: 'Platform \u00b7 2006', href: '/worlds/roblox/',
+      desc: 'Not a game: an engine and a shopfront, where everything you played was made by somebody else who was not being paid for it and was often about your age. Roblox Studio is free, it scripts in a real typed language, and for a lot of people my age it was the first one they ever touched.' },
+    { name: 'Geometry Dash', wm: 'geodash', glyph: 'cube', c1: '#39d6f0', c2: '#0a1a24',
+      when: 'As a kid, as far as Theory of Everything',
+      meta: 'Game \u00b7 2013', href: '/worlds/geometry-dash/',
+      desc: 'One button, no health bar and no checkpoints inside a level: touch anything and the attempt is over from the first frame. Twenty-two official levels, and a level editor that has produced millions more, some of which take a year to finish once.' },
     { name: 'Looney Tunes', wm: 'looney', glyph: 'target', c1: '#f0c040', c2: '#111c3a',
       when: 'As a kid',
       meta: 'Animation \u00b7 1930', href: '/worlds/looney-tunes/',
       desc: 'Warner\u2019s answer to Disney and funnier than it: seven minutes, no moral, and a rabbit who wins by staying calm. Chuck Jones and Tex Avery drawing, and Mel Blanc doing nearly every voice in the building.' },
     { name: 'Phineas and Ferb', wm: 'phineas', glyph: 'bolt', c1: '#74c95a', c2: '#102617',
       when: 'As a kid',
-      meta: 'Animation \u00b7 2007',
+      meta: 'Animation \u00b7 2007', href: '/worlds/phineas-and-ferb/',
       desc: 'A hundred and four days of summer vacation, a new impossible project every morning, and an agent platypus who never misses work.' },
-    { name: 'The Maze Runner', wm: 'mazerunner', glyph: 'spiral', c1: '#8fbf78', c2: '#132018',
-      when: 'Middle school',
-      meta: 'Books \u00b7 2009',
-      desc: 'A boy wakes in a maze with no memory, a lift arriving once a month, and rules everyone follows until somebody does not.' },
-
-      ] },
+    { name: 'Teen Titans Go!', wm: 'ttg', glyph: 'ttower', c1: '#e04a9f', c2: '#1d0e26',
+      when: 'As a kid, on after school',
+      meta: 'Animation \u00b7 2013', href: '/worlds/teen-titans-go/',
+      desc: 'Eleven minutes an episode, nine seasons, and the same five actors who played these characters in the serious 2003 version. The film in 2018 is about a superhero who cannot get a film made, and it is far better than a spin-off of a spin-off needed to be.' },
+    { name: 'Despicable Me', wm: 'despicable', glyph: 'goggle', c1: '#f2c531', c2: '#2b2340',
+      when: 'As a kid; the first one when I was four',
+      meta: 'Film \u00b7 2010', href: '/worlds/despicable-me/',
+      desc: 'A supervillain adopts three girls so he can get past a doorbell, and then cannot give them back. The henchmen in the background speak no real language, so they needed translating nowhere on earth, and that is most of why this is the highest-grossing animated franchise there is.' },
+    { name: 'Rio', wm: 'rio', glyph: 'macaw', c1: '#3fc8d8', c2: '#0d2b31',
+      when: 'As a kid, and again at the zoo',
+      meta: 'Film \u00b7 2011', href: '/worlds/rio/',
+      desc: 'Two films about the last Spix\u2019s macaws, made by a director from the city, and a real bird that was declared extinct in the wild and then put back.' },
+    { name: 'Yu-Gi-Oh!', wm: 'ygo', glyph: 'duelcard', c1: '#b06fd8', c2: '#22133a',
+      when: 'As a kid',
+      meta: 'Manga \u00b7 1996', href: '/worlds/yu-gi-oh/',
+      desc: 'A manga about games in which one card game took over the whole series, left the page, and sold twenty-five billion cards.' },
+    { name: 'Beyblade', wm: 'beyblade', glyph: 'beytop', c1: '#4f9fe0', c2: '#122238',
+      when: 'As a kid',
+      meta: 'Toy \u00b7 1999', href: '/worlds/beyblade/',
+      desc: 'Spinning tops with interchangeable parts and a rip cord, and an anime to sell them. A customisation game about angular momentum, aimed at eight-year-olds.' },
+    { name: 'Ice Age', wm: 'iceage', glyph: 'acorn', c1: '#8fd0e8', c2: '#12262f',
+      when: 'As a kid',
+      meta: 'Film \u00b7 2002', href: '/worlds/ice-age/',
+      desc: 'A mammoth, a sloth and a sabre-tooth carrying a baby across a freezing continent, and a squirrel in a completely different film who never gets the acorn.' },
+    { name: 'Skylanders', wm: 'skylanders', glyph: 'portal', c1: '#f0a83a', c2: '#221a38',
+      when: 'As a kid',
+      meta: 'Game \u00b7 2011', href: '/worlds/skylanders/',
+      desc: 'Put the figure on the portal and it appears in the game, with your save file stored in its base. It invented toys-to-life and had Hans Zimmer write the theme.' },
+    { name: 'Bloons TD', wm: 'bloons', glyph: 'balloon', c1: '#d84a3a', c2: '#2c1512',
+      when: 'Since the browser days',
+      meta: 'Game \u00b7 2007', href: '/worlds/bloons/',
+      desc: 'Monkeys throwing darts at balloons, and one of the deepest tower defence systems anyone has shipped underneath it.' },
+    { name: 'Wild Kratts', wm: 'kratts', glyph: 'cdisc', c1: '#4fce6a', c2: '#08210f',
+      when: 'As a kid, on PBS in the morning',
+      meta: 'Animation \u00b7 2011', href: '/worlds/wild-kratts/',
+      desc: 'Two brothers with actual zoology degrees, a suit that gives you one ability the animal really has, and a disc you cannot charge without finding the real animal first. The fact is the price of the superpower, which is the best trick in children\u2019s television.' },
+    { name: 'Dinosaur Train', wm: 'dinotrain', glyph: 'loco', c1: '#3fb8b0', c2: '#10262c',
+      when: 'As a kid, before I could read',
+      meta: 'Animation \u00b7 2009', href: '/worlds/dinosaur-train/',
+      desc: 'The earliest thing on this page. A T. rex raised by pteranodons, a Troodon driving because it had the biggest brain, and a real palaeontologist turning up on camera to say which parts were true. It is why I knew what the Cretaceous was before I knew what a continent was.' },
+  ] },
 
   { id: 'parks', label: 'Theme Parks', note: 'the ones worth the drive', items: [
     { name: 'Disney', wm: 'disney', glyph: 'castle', c1: '#8fd8f0', c2: '#141033',

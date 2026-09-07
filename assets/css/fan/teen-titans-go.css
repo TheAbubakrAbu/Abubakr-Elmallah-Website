@@ -1,0 +1,10 @@
+/* fan/teen-titans-go.css: /worlds/teen-titans-go/ only.
+   The backdrop geometry is shared (.np-sky in fanpages.css); this file
+   only says what colour this world is. */
+
+body[data-fan="ttg"] {
+  --a: #e04a9f;
+  --np1: #3a1140;
+  --np2: #06090f;
+  --np3: rgba(224,74,159,.16);
+}

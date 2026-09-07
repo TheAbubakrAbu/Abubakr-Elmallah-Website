@@ -5,10 +5,10 @@
    of the village game’s cast and the two belong on one page the way the
    films and the shows share a page elsewhere on this site. */
 window.FAN_PAGE = {
-  when: { at: 'Elementary school, when it launched', note: 'Clash of Clans was already on every iPad in every classroom; Royale arrived in 2016 and turned the same characters into a competitive game you could finish before recess ended.' },
+  when: { at: 'Elementary school, when it launched', note: 'Clash of Clans was the first or second game I ever played, full stop. It was already on every iPad in every classroom and it is where I started. Royale arrived in 2016, turned the same cast into something you could finish before recess ended, and is the one I actually like more; the village is the one I was brought up on. I also recorded YouTube videos of myself playing Clash of Clans, the same way I did with Minecraft and Geometry Dash.' },
   sections: [
 
-  { id: 'loop', kind: 'cards', title: 'The Loop', note: 'three minutes, no downtime',
+  { id: 'loop', kind: 'cards', title: 'Clash Royale', note: 'three minutes, no downtime',
     lede: 'Every match is the same shape: an elixir bar that refills on its own, a hand of four cards, two lanes, and three towers a side. Take more towers than you lose before the clock runs out. That is the entire rulebook, and people have been arguing about it at the highest level for a decade.',
     items: [
       { title: 'Elixir', sub: 'One drop every 2.8 seconds', tag: 'The economy', accent: '#c96ff0',
@@ -88,6 +88,9 @@ window.FAN_PAGE = {
       { title: 'Clan Wars', sub: '2014 onward', tag: 'The social game', accent: '#5f8fe8',
         desc: 'Forty villages a side, two attacks each, and a chat full of people you have never met coordinating like it is a group project worth grading. The clan castle donation economy taught more kids reciprocity than any classroom.',
         meta: 'Donate before you request' },
+      { title: 'I recorded it', sub: 'The channel nobody watched', tag: 'Mine', accent: '#e8a13f',
+        desc: 'One of the three games I actually filmed myself playing and put on YouTube as a kid, along with Minecraft and Geometry Dash. Raids narrated to an audience of approximately nobody, which is exactly the correct number for that footage.',
+        meta: 'Clash of Clans · Minecraft · Geometry Dash' },
     ] },
 
   { id: 'timeline', kind: 'timeline', title: 'The Franchise', note: '2012 → now',
@@ -100,13 +103,32 @@ window.FAN_PAGE = {
       { when: 'Now', title: 'Both still enormous', desc: 'Two of the highest-grossing games ever made, still updating, still installed on a childhood’s worth of devices.' },
     ] },
 
-  /* the music: the menu theme; nothing Clash Royale is on my playlist yet */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · the menu',
-    lede: 'Nothing Clash Royale is on my playlist yet, so this is the one: the brass that plays over the menu before every three-minute match.',
+  /* the music: both menus, the sound logo, and the four noises that are more
+     recognisable than any of the actual music */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'seven tracks · two menus and five noises',
+    lede: 'Supercell games are mostly remembered for their sound effects rather than their scores, which is a strange thing to be able to say about a company. Both menu themes are here, and so are the noises: the sound logo, the King’s two emotes, the Hog Rider, and an hour of village ambience.',
     items: [
-      { title: 'Main Menu Theme', accent: '#6f9fe8', sub: 'Supercell · Clash Royale · 2016 · 5:20',
-        desc: 'The menu theme: the fanfare between matches, which is where most of the time in this game is actually spent.',
-        href: 'https://www.youtube.com/watch?v=bmi3LmloCIk', link: 'Fan upload' },
+      { title: 'Clash Royale Main Menu', accent: '#6f9fe8', sub: 'Supercell · Clash Royale · 2016 · 3:16',
+        desc: 'The brass fanfare between matches, which is where most of the time in this game is actually spent: deck editing, chest timers, and staring at a card you cannot afford to upgrade.',
+        href: 'https://www.youtube.com/watch?v=nt5wkVsuEcs', link: 'Fan upload' },
+      { title: 'Clash of Clans Main Theme', accent: '#7fd07f', sub: 'Supercell · Clash of Clans · 2012 · 2:33',
+        desc: 'The older one, and the better one: a marching theme for a village that is about to be raided. If you were in an elementary school between 2012 and 2016 you can hum this from memory.',
+        href: 'https://www.youtube.com/watch?v=dT3-6GWVRug', link: 'Listen' },
+      { title: 'Village Ambience', accent: '#5fa86f', sub: 'Clash of Clans · Home Village · 6:51',
+        desc: 'Not music: birds, hammers, the elixir collectors bubbling, and a builder whistling. Left running on a tablet on a kitchen table for most of 2014.',
+        href: 'https://www.youtube.com/watch?v=xV3zVuLchzw', link: 'Fan upload' },
+      { title: 'The Supercell Sound Logo', accent: '#e8c56a', sub: 'Supercell · 0:02',
+        desc: 'Two seconds of a rising chime, in front of every game they have ever shipped. A whole company\u2019s branding in a sound shorter than a sneeze.',
+        href: 'https://www.youtube.com/watch?v=f2X0UxX8YrA', link: 'Listen' },
+      { title: 'HEHEHEHA', accent: '#e0b040', sub: 'Clash Royale · the King\u2019s laugh emote · 0:42',
+        desc: 'The single most annoying sound in mobile gaming, spammed at you after every tower you lose, and the reason Supercell eventually let people mute emotes. Twenty variations of it here, which is nineteen too many.',
+        href: 'https://www.youtube.com/watch?v=h0wK_aLgTY0', link: 'Listen' },
+      { title: 'The Angry King (GRRR)', accent: '#e0483a', sub: 'Clash Royale · the angry emote · 0:13',
+        desc: 'The other half of the psychological warfare: a growl, sent by someone who has just lost a tower and would like you to know about it.',
+        href: 'https://www.youtube.com/watch?v=nu99dH14MOI', link: 'Listen' },
+      { title: 'Hog Rider!', accent: '#c98f4f', sub: 'Supercell · Clash of Clans · 1:01',
+        desc: 'HOG RIDAAAAH. One voice line, shouted on deployment, that outgrew both games and became a whole internet noise. Supercell liked it enough to build a television advert around it.',
+        href: 'https://www.youtube.com/watch?v=XH3Xu1-cvII', link: 'Watch' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where the numbers live',

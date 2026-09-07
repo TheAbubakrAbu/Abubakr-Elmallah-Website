@@ -1,0 +1,10 @@
+/* fan/ice-age.css: /worlds/ice-age/ only.
+   The backdrop geometry is shared (.np-sky in fanpages.css); this file
+   only says what colour this world is. */
+
+body[data-fan="iceage"] {
+  --a: #8fd0e8;
+  --np1: #16303f;
+  --np2: #06090f;
+  --np3: rgba(143,208,232,.15);
+}

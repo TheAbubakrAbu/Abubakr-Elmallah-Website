@@ -124,8 +124,8 @@ window.FAN_PAGE = {
      cues on my playlist, named as the libraries name them, plus the theme.
      Linked to the library's own upload wherever there is one; the two that
      only exist as fan uploads say so. */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Music', note: 'seventeen tracks · the library, and the theme',
-    lede: 'Nickelodeon never wrote SpongeBob a score. The show is cut to production-library music, mostly Hawaiian steel guitar licensed from the APM catalogue, which is how a Kapono Beamer track recorded decades earlier became the most recognisable music of a generation. These are the cues on my playlist, named as the libraries name them and linked to their own uploads wherever there is one, and the theme at the end.',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Music', note: 'twenty-two tracks · the library, the themes and the songs',
+    lede: 'Nickelodeon never wrote SpongeBob a score. The show is cut to production-library music, mostly Hawaiian steel guitar licensed from the APM catalogue, which is how a Kapono Beamer track recorded decades earlier became the most recognisable music of a generation. These are the cues on my playlist, named as the libraries name them and linked to their own uploads wherever there is one, and then the themes and the four songs everybody actually knows at the end.',
     items: [
       { title: 'Hawaiian Cocktail', accent: '#f0e03f', sub: 'Richard Myhill · Solo Instruments · 1:05',
         desc: 'The steel-guitar sting that opens half the scenes in the show. Sixty-five seconds, and the sound of a new day in Bikini Bottom.',
@@ -178,6 +178,21 @@ window.FAN_PAGE = {
       { title: 'SpongeBob SquarePants Theme', accent: '#f0e03f', sub: 'Painty the Pirate and Kids · 1999 · 0:46',
         desc: 'Are ya ready, kids? Forty-six seconds, a painting of a pirate, and the theme a whole generation can do the call-and-response to on demand.',
         href: 'https://www.youtube.com/watch?v=Do5B6aad8IA', link: 'Listen' },
+      { title: 'SpongeBob SquarePants Closing Theme', accent: '#f0a83a', sub: 'The Bikini Bottom Band · 2:17',
+        desc: 'The steel drums and slide guitar over the end credits, which for a lot of people is the actual sound of the show: the one that means it is over and you have to go and do something else.',
+        href: 'https://www.youtube.com/watch?v=1S2BYfGwMFE', link: 'Listen' },
+      { title: 'Stadium Rave', accent: '#5fc0e0', sub: 'Production music · 1:08',
+        desc: 'The jellyfish rave. Another library cue, given a strobe light and a field of jellyfish, and now one of the most recognised twenty seconds in the show: a meme first and a dance-floor request second. Nobody planned any of that.',
+        href: 'https://www.youtube.com/watch?v=0Bnhv_3RPYo', link: 'Listen' },
+      { title: 'The Best Day Ever', accent: '#7fd0f0', sub: 'SpongeBob · 2:04',
+        desc: 'From the episode where he tries to have the perfect day and it collapses on him. A genuinely well-built song about optimism, sung by a sponge, and it works.',
+        href: 'https://www.youtube.com/watch?v=xPgjL7AsCX4', link: 'Listen' },
+      { title: 'Goofy Goober Rock', accent: '#e0704a', sub: 'Tom Rothrock with Jim Wise · The SpongeBob SquarePants Movie · 2004 · 2:55',
+        desc: 'Twisted Sister’s I Wanna Rock, rewritten as an ice-cream jingle, played on a guitar made of a sponge, to defeat a man called Plankton. The climax of the first film, and unimprovable.',
+        href: 'https://www.youtube.com/watch?v=FRfL43xD-ZQ', link: 'Listen' },
+      { title: 'Squeeze Me', accent: '#3fc0a0', sub: 'N.E.R.D. · Sponge Out of Water · 2015 · 2:36',
+        desc: 'Pharrell and N.E.R.D. wrote a single for the second film, and it is much better than a SpongeBob soundtrack cut needed to be.',
+        href: 'https://www.youtube.com/watch?v=acUqPKHG4JQ', link: 'Listen' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'further down the reef',

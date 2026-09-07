@@ -1,0 +1,10 @@
+/* fan/dinosaur-train.css: /worlds/dinosaur-train/ only.
+   The backdrop geometry is shared (.np-sky in fanpages.css); this file
+   only says what colour this world is. */
+
+body[data-fan="dinotrain"] {
+  --a: #3fb8b0;
+  --np1: #123c40;
+  --np2: #06090f;
+  --np3: rgba(63,184,176,.15);
+}

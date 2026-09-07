@@ -145,12 +145,27 @@ window.FAN_PAGE = {
 
 
   /* the music: the series' main title; nothing Percy Jackson is on my playlist yet */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · the main title',
-    lede: 'Nothing Percy Jackson is on my playlist yet, so this is the one: the Disney+ series’ title music, which is the first time the books got a theme that sounds like the books.',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'six tracks · two shows, two films',
+    lede: 'Bear McCreary’s Disney+ music first, which is the first time these books got a theme that sounds like the books, then the two 2010s films, which got the casting wrong and the scores mostly right.',
     items: [
-      { title: 'Percy Jackson and the Olympians', accent: '#5fa8e0', sub: 'Bear McCreary · Percy Jackson and the Olympians · 2023 · 5:12',
+      { title: 'Percy Jackson and the Olympians', accent: '#5fa8e0', sub: 'Bear McCreary · Season 1 · 2023 · 5:12',
         desc: 'Bear McCreary. Greek instruments and a choir under a theme that is allowed to be heroic, which the 2010 films never quite managed.',
         href: 'https://www.youtube.com/watch?v=9GqjbGknmYw', link: 'Listen' },
+      { title: 'Percy Jackson and the Olympians (Season 2 Extended Theme)', accent: '#4a90c8', sub: 'Bear McCreary · Season 2 · 2025 · 5:43',
+        desc: 'The same theme with the Sea of Monsters in it: more brass, more weather, and the lyre line from season one still underneath.',
+        href: 'https://www.youtube.com/watch?v=LKw0k04tp7g', link: 'Listen' },
+      { title: 'Perseus', accent: '#7fc0e8', sub: 'Bear McCreary · Percy Jackson and the Olympians · 2023 · 4:23',
+        desc: 'Percy’s own theme, named for the hero he was named after, which is the joke the books open with and the show finally scores.',
+        href: 'https://www.youtube.com/watch?v=v05kwKCfdXM', link: 'Listen' },
+      { title: 'Camp Half-Blood', accent: '#5fbf7f', sub: 'Bear McCreary · Percy Jackson and the Olympians · 2023 · 6:45',
+        desc: 'The cabins, the pine tree and the strawberry fields: nearly seven minutes for the only place in the books where any of these kids get to be children.',
+        href: 'https://www.youtube.com/watch?v=dZQk2bq8qe8', link: 'Listen' },
+      { title: 'The Lightning Thief', accent: '#c9a05f', sub: 'Christophe Beck · Percy Jackson & the Olympians · 2010 · 2:32',
+        desc: 'Christophe Beck, for the first film. The film aged Percy up four years and skipped the prophecy; the theme is better than the film deserved.',
+        href: 'https://www.youtube.com/watch?v=l_8ByBUnXzs', link: 'Fan upload' },
+      { title: 'Sea of Monsters (Main Titles)', accent: '#4fa8b0', sub: 'Andrew Lockington · Percy Jackson: Sea of Monsters · 2013 · 3:16',
+        desc: 'Andrew Lockington, for the second and last of the films. Big, wet and Greek, and then the series was quietly dropped for a decade.',
+        href: 'https://www.youtube.com/watch?v=FNOhYl1q0Zs', link: 'Listen' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

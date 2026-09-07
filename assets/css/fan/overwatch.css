@@ -1,0 +1,10 @@
+/* fan/overwatch.css: /worlds/overwatch/ only.
+   The backdrop geometry is shared (.np-sky in fanpages.css); this file
+   only says what colour this world is. */
+
+body[data-fan="ow"] {
+  --a: #f09d3a;
+  --np1: #1a2740;
+  --np2: #06090f;
+  --np3: rgba(240,157,58,.15);
+}

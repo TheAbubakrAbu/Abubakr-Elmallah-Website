@@ -85,13 +85,21 @@ window.FAN_PAGE = {
       { title: 'René Belloq', sub: 'Raiders', tag: 'Rival', desc: 'The shadow version: same training, no scruples, and always about ten minutes ahead until the very end.', meta: 'Paul Freeman' },
     ] },
 
+  /* Every card here names a real cue, so every card gets the cue attached: on
+     this site a YouTube link renders a Listen link and a Play button, and a
+     section about music with nothing to play is a section about nothing.
+     Marion's theme used to be listed twice, once with each kind of
+     apostrophe. */
   { id: 'score', kind: 'tiles', title: 'The Score', note: 'John Williams, at the top of his powers',
     items: [
-      { title: 'The Raiders March', accent: '#d8b06a', sub: '1981', desc: 'Two themes stitched together because Spielberg could not choose. It is now shorthand for adventure itself.' },
-      { title: 'Marion’s Theme', accent: '#c98f4f', sub: 'Raiders', desc: 'Warm, a little wistful, and the reason the romance lands without the script having to work at it.' },
-      { title: 'Marion\u2019s theme', accent: '#e0a050', sub: 'Raiders', desc: 'The romance written as a waltz, and the reason the Nepal scenes work.' },
-      { title: 'The Desert Chase', accent: '#c9a05f', sub: 'Raiders', desc: 'Nine minutes of orchestra keeping pace with a truck. Williams scoring action better than almost anyone has since.' },
-      { title: 'Scherzo for Motorcycle', accent: '#b8935a', sub: 'Last Crusade', desc: 'A chase written as an actual scherzo, which is a very funny thing to do.' },
+      { title: 'The Raiders March', accent: '#d8b06a', sub: 'Raiders of the Lost Ark · 1981', desc: 'Two themes stitched together because Spielberg could not choose. It is now shorthand for adventure itself.',
+        href: 'https://www.youtube.com/watch?v=bC77czRbjd0', link: 'Listen' },
+      { title: 'Marion’s Theme', accent: '#c98f4f', sub: 'Raiders of the Lost Ark · 1981 · 4:00', desc: 'Warm, a little wistful, and written as a waltz. The reason the Nepal scenes and the romance land without the script having to work at it.',
+        href: 'https://www.youtube.com/watch?v=hgkswCoo9f4', link: 'Listen' },
+      { title: 'The Desert Chase', accent: '#c9a05f', sub: 'Raiders of the Lost Ark · 1981 · 7:32', desc: 'Nine minutes of orchestra keeping pace with a truck. Williams scoring action better than almost anyone has since.',
+        href: 'https://www.youtube.com/watch?v=0XUKgbOXXdc', link: 'Listen' },
+      { title: 'Scherzo for Motorcycle and Orchestra', accent: '#b8935a', sub: 'The Last Crusade · 1989 · 3:53', desc: 'A chase written as an actual scherzo, which is a very funny thing to do, and Williams doing it completely straight.',
+        href: 'https://www.youtube.com/watch?v=1IFmRniWa0U', link: 'Listen' },
     ] },
 
   { id: 'lines', kind: 'quotes', title: 'Lines', note: 'the ones that stuck',
@@ -106,12 +114,21 @@ window.FAN_PAGE = {
 
   /* the music: the one Indiana Jones track on my playlist (twice, in two
      recordings), linked to the album's own upload */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'one track · from my playlist',
-    lede: 'One track, and it is the only one that matters. I have it twice: the 2008 recording from the Crystal Skull album, linked here, and the Boston Pops one.',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'four tracks · Williams, across forty years',
+    lede: 'The Raiders March is the one that matters and the one on my playlist, twice: the 2008 recording linked here and the Boston Pops one. The other three are John Williams doing the parts of these films the march does not cover: the awe, the sidekick, and the last time he wrote for the character.',
     items: [
       { title: 'Raiders March', accent: '#d8b06a', sub: 'Kingdom of the Crystal Skull · 2008 · 5:06',
         desc: 'John Williams. The march itself with Marion’s theme in the middle of it, because Spielberg could not choose between them, and shorthand for adventure ever since.',
         href: 'https://www.youtube.com/watch?v=bC77czRbjd0', link: 'Listen' },
+      { title: 'The Map Room: Dawn', accent: '#c9a05f', sub: 'Raiders of the Lost Ark · 1981 · 3:50',
+        desc: 'John Williams. Sunlight through the headpiece of the Staff of Ra, and the Ark theme opening out for the first time. No action in it at all: it is four minutes of a man being right, scored like a cathedral.',
+        href: 'https://www.youtube.com/watch?v=xgK0KlCMnKw', link: 'Listen' },
+      { title: 'Short Round\'s Theme', accent: '#e0964a', sub: 'Temple of Doom · 1984 · 2:28',
+        desc: 'John Williams. The bit of Temple of Doom nobody argues about: a jaunty little theme for the eleven-year-old who drives the car, calls Indy on his nonsense, and gets him out of the mine.',
+        href: 'https://www.youtube.com/watch?v=Xe7Ol-3YO4M', link: 'Listen' },
+      { title: 'New York, 1969', accent: '#b09a6a', sub: 'Dial of Destiny · 2023 · 4:18',
+        desc: 'John Williams, at ninety-one, writing for Indiana Jones one last time. A ticker-tape parade for the moon landing going past a man who is too old for this, and the march coming back in slowly underneath it.',
+        href: 'https://www.youtube.com/watch?v=glf5KmRGvOk', link: 'Listen' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

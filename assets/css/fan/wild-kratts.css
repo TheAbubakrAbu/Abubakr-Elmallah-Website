@@ -1,0 +1,10 @@
+/* fan/wild-kratts.css: /worlds/wild-kratts/ only.
+   The backdrop geometry is shared (.np-sky in fanpages.css); this file
+   only says what colour this world is. */
+
+body[data-fan="kratts"] {
+  --a: #4fce6a;
+  --np1: #12401f;
+  --np2: #06090f;
+  --np3: rgba(79,206,106,.15);
+}

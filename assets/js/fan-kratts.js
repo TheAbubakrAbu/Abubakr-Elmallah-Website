@@ -1,0 +1,112 @@
+/* fan-kratts.js: content for /worlds/wild-kratts/. Rendered by fanpage.js.
+   Two actual zoologists who worked out that the way to teach a six-year-old
+   animal biology is to let them believe they are wearing the animal. */
+window.FAN_PAGE = {
+  when: { at: 'As a kid', note: 'PBS Kids in the morning, and the only cartoon I watched that was quietly teaching me real things. I could tell you what a cheetah’s tail is for before I could tell you what a fraction was.' },
+  sections: [
+
+  { id: 'crew', kind: 'cards', title: 'The Crew', note: 'two zoologists and three engineers',
+    lede: 'Chris and Martin Kratt are real brothers with real degrees, and they had been making animal television for fifteen years before this one. The trick they landed on here is that the show starts in live action, with the two of them actually outdoors, and then they say "what if?" and the whole thing turns into a cartoon.',
+    items: [
+      { title: 'Chris Kratt', sub: 'Green', tag: 'The younger one', accent: '#4fce6a',
+        desc: 'A biology degree from Carleton College. The methodical half of the pair: he is the one who wants to know how the animal does it, which is the half of the show that is actually the lesson.',
+        meta: 'Born 1969 · Creature Power, green' },
+      { title: 'Martin Kratt', sub: 'Blue', tag: 'The older one', accent: '#4f9fe0',
+        desc: 'A zoology degree from Duke. The one who names every animal they meet, hugs things he should not, and gets the episode into trouble so that Chris can get it out.',
+        meta: 'Born 1965 · Creature Power, blue' },
+      { title: 'Aviva Corcovado', sub: 'Purple', tag: 'The inventor', accent: '#b06fd8',
+        desc: 'She designs and builds the Creature Power Suits, which means the entire premise of the show is one woman’s engineering. She is also the one who says no, which is why the brothers keep having to argue for the episode to happen.',
+        meta: 'Builds the suits and the discs' },
+      { title: 'Koki', sub: 'Yellow', tag: 'The engineer', accent: '#f0c93a',
+        desc: 'Mechanical engineer and the one who keeps the Tortuga and all its systems running. The most competent person on the team by a distance and the least likely to be listened to.',
+        meta: 'Runs the Tortuga' },
+      { title: 'Jimmy Z', sub: 'Orange', tag: 'The pilot', accent: '#f0913a',
+        desc: 'Flies the Tortuga, works the teleporter that gets the discs to the brothers wherever they are, and would rather be eating. The show’s one running joke, and it lands every time.',
+        meta: 'Pilot and transporter' },
+      { title: 'The Tortuga', sub: 'HQ', tag: 'The ship', accent: '#3fb8b0',
+        desc: 'Their headquarters is a jet shaped like a turtle. It lands anywhere, it holds the whole lab, and no episode has ever explained where the fuel comes from, which is correct.',
+        meta: 'A turtle-shaped jump jet' },
+    ] },
+
+  { id: 'power', kind: 'tiles', title: 'Creature Power', note: 'how every single episode works',
+    lede: 'The format never changes and it does not need to. They find an animal, something goes wrong, Aviva builds or hands over a disc, and the suit gives them one specific real ability that animal actually has. The suit is the delivery mechanism for the fact, and a child will sit through the fact to get to the suit.',
+    items: [
+      { title: 'Find the animal', sub: 'Live action, outdoors', accent: '#4fce6a',
+        desc: 'Every episode opens with the two of them genuinely on location with a real animal, and closes the same way. The cartoon is the middle.' },
+      { title: 'Touch it, scan it', sub: 'The disc', accent: '#b06fd8',
+        desc: 'A Creature Power Disc has to be charged off the actual animal before it will do anything, so the show has to show you the animal first.' },
+      { title: 'Activate', sub: 'The suit', accent: '#4f9fe0',
+        desc: 'The suit gives one power, and only the ones the animal really has: the gecko’s feet, the cheetah’s stride, the pangolin’s scales. No flight for things that cannot fly.' },
+      { title: 'Use it wrong first', sub: 'The lesson', accent: '#f0913a',
+        desc: 'They almost always misuse the power before they understand what it is for, which is the episode teaching you the biology twice.' },
+      { title: 'Villain of the week', sub: 'The stakes', accent: '#e0483a',
+        desc: 'Somebody is exploiting the animal, and the resolution is always the animal’s own adaptation beating the person exploiting it.' },
+      { title: 'Back to live action', sub: 'The close', accent: '#f0c93a',
+        desc: 'Chris and Martin, outdoors again, telling you the thing was real. That switch is the whole reason the show teaches anything.' },
+    ] },
+
+  { id: 'villains', kind: 'cards', title: 'The Villains', note: 'four ways to be wrong about animals',
+    lede: 'Every one of them wants animals for something other than what they are, and the show is careful that they are each wrong in a different way. It is a surprisingly precise piece of writing for a programme aimed at six-year-olds.',
+    items: [
+      { title: 'Zach Varmitech', sub: 'The technologist', tag: 'Wants to replace them', accent: '#5f9fe0',
+        desc: 'Builds robots, hates real animals, and would rather have a machine that does the same job. The recurring one, and the one whose plans are always the most fun to watch fail.',
+        meta: 'Zachbots' },
+      { title: 'Donita Donata', sub: 'The fashion designer', tag: 'Wants to wear them', accent: '#e04a9f',
+        desc: 'Turns living animals into accessories, with Dabio carrying the equipment. The most direct point the show ever makes, and it never labours it.',
+        meta: 'And Dabio' },
+      { title: 'Gaston Gourmand', sub: 'The chef', tag: 'Wants to eat them', accent: '#f0913a',
+        desc: 'A chef pursuing rarity for its own sake, which is a real thing that really happens to real species, put in front of children without a lecture attached.',
+        meta: 'Rarity as an ingredient' },
+      { title: 'The point of all four', sub: 'Nobody is a supervillain', tag: 'The argument', accent: '#4fce6a',
+        desc: 'None of them want to destroy the world. They want a thing off an animal, cheaply, which is exactly what the real threats are, and the show got that in front of an enormous number of children.',
+        href: '/worlds/san-diego-zoo/', link: 'The same argument, for real',
+        meta: 'It is a conservation show wearing a cape' },
+    ] },
+
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'thirty years of the two of them',
+    lede: 'Wild Kratts is their fourth series and by far the longest: eight seasons and a hundred and seventy-nine episodes since January 2011, made by their own company with 9 Story in Canada. Everything before it was live action.',
+    items: [
+      { title: 'The Shows', sub: '1996 – now', unit: 'series',
+        desc: 'Two zoologists who have been doing this since before I was born.',
+        rows: [
+          { n: 'Kratts’ Creatures', y: '1996' },
+          { n: 'Zoboomafoo', y: '1999', big: true },
+          { n: 'Be the Creature', y: '2003' },
+          { n: 'Wild Kratts', y: '2011', big: true },
+        ] },
+      { title: 'Wild Kratts Itself', sub: '2011 – now', unit: 'season',
+        desc: 'Eight seasons on PBS Kids in the States, TVOKids and Knowledge Network in Canada. A hundred and seventy-nine episodes and still running.',
+        rows: [
+          { n: 'Season 1, from 3 January 2011', y: '2011', big: true },
+          { n: 'Seasons 2 to 4', y: '2012' },
+          { n: 'Seasons 5 and 6', y: '2018' },
+          { n: 'Wild Kratts Live 2.0, on stage', y: '2019' },
+          { n: 'Seasons 7 and 8', y: '2021' },
+        ] },
+    ] },
+
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Theme', note: 'one song, and it is the same one every time',
+    lede: 'Gonna Go Wild Kratts, sung by Sterling Jarvis with music by Pure West. There is no soundtrack album to work through and there does not need to be: the show has one piece of music that everybody who watched it can still start singing from the second word.',
+    items: [
+      { title: 'Wild Kratts Theme Song', accent: '#4fce6a', sub: 'PBS KIDS · 1:00',
+        desc: 'The full opening: the two of them in live action, the "what if?", and the turn into animation, which is the moment the whole format is built on.',
+        href: 'https://www.youtube.com/watch?v=cAwT4E5aybQ', link: 'Listen' },
+      { title: 'The show’s own upload', accent: '#4f9fe0', sub: 'Wild Kratts · 1:00',
+        desc: 'The same thing on the Wild Kratts channel rather than the PBS one. Same song, and the one the Kratt Brothers put up themselves.',
+        href: 'https://www.youtube.com/watch?v=1MiLODIj5pY', link: 'Listen' },
+      { title: 'Sing-a-long', accent: '#f0c93a', sub: 'PBS KIDS · 1:03',
+        desc: 'The words on screen, which is how PBS publishes nearly everything and the reason a generation knows this one by heart rather than roughly.',
+        href: 'https://www.youtube.com/watch?v=MD4ULBTefVY', link: 'Listen' },
+    ] },
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'elsewhere',
+    items: [
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Wild_Kratts',
+        desc: 'The run, the format, the cast and the production.' },
+      { title: 'Wild Kratts on PBS Kids', href: 'https://pbskids.org/wildkratts',
+        desc: 'Where it actually lives: episodes and games, still free.' },
+      { title: 'The Kratt brothers', href: 'https://en.wikipedia.org/wiki/Kratt_brothers',
+        desc: 'Duke and Carleton, Kratts’ Creatures, Zoboomafoo, and thirty years of the same job.' },
+    ] },
+
+] };

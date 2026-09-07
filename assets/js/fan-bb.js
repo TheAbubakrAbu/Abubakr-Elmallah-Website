@@ -113,8 +113,8 @@ window.FAN_PAGE = {
 
   /* the music: the two title themes on my playlist, named as the albums name
      them and linked to the artists' own uploads */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'two tracks · from my playlist',
-    lede: 'Two title themes, one per show, both in the album versions that run the whole thing out instead of cutting off after fifteen seconds. Linked to the artists’ own uploads.',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'five tracks · two titles, one corrido, one goodbye, one joke',
+    lede: 'Both title themes in the album versions that run the whole thing out instead of cutting off after fifteen seconds, the narcocorrido an episode is named after, the song the last shot fades on, and the one the internet did to Saul.',
     items: [
       { title: 'Breaking Bad Main Title Theme (Extended)', accent: '#4fbf7f', sub: 'Breaking Bad · 2008 · 1:16',
         desc: 'Dave Porter. The slide guitar and the twenty seconds the show actually used, stretched to a minute and a quarter for the album.',
@@ -122,6 +122,15 @@ window.FAN_PAGE = {
       { title: 'Better Call Saul Main Title Theme (Extended)', accent: '#e0b040', sub: 'Better Call Saul · 2015 · 3:19',
         desc: 'Little Barrie. The surf-rock riff the show cut off after fifteen seconds every week, on purpose, run to its full length.',
         href: 'https://www.youtube.com/watch?v=x7fe-SWRHPA', link: 'Listen' },
+      { title: 'Negro y Azul: The Ballad of Heisenberg', accent: '#3fa86a', sub: 'Los Cuates de Sinaloa · Breaking Bad · 2009 · 3:28',
+        desc: 'A real narcocorrido, written for the show and played over the cold open of the episode named after it, in which a band in Michoacán tells you the whole plot and then tells you Heisenberg is already dead. Season two, and the boldest four minutes the show ever opened with.',
+        href: 'https://www.youtube.com/watch?v=UD0y4yZBhuc', link: 'Listen' },
+      { title: 'Baby Blue', accent: '#5fa8e0', sub: 'Badfinger · 1971 · 3:38',
+        desc: 'The song the finale fades out on, with Walt on the floor of the lab and the police coming in. "Guess I got what I deserved." A 1971 power-pop single about a girl, used as the last word on the whole thing, and the reason it charted again forty-two years later.',
+        href: 'https://www.youtube.com/watch?v=33oAuvbRg-c', link: 'Listen' },
+      { title: 'Better Call Saul, in Arabic', accent: '#c98f4f', sub: 'The meme · 0:14',
+        desc: 'The title theme redone as if it had always been a Levantine wedding band, which is the funniest thing anyone has done to a prestige-television cold open. Fourteen seconds, and I cannot hear the original the same way now.',
+        href: 'https://www.youtube.com/watch?v=FhyMMo7HirY', link: 'Watch' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

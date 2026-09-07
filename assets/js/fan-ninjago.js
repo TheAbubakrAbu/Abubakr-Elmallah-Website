@@ -137,11 +137,22 @@ window.FAN_PAGE = {
 
 
   /* the music: the Overture, then every opening from the pilot to season
-     seven. `season` is the sort key (0 is the pilot), `year` the air year,
-     `secs` the length of the first link. The openings link to The Fold's own
-     channel; the Overture to the composers' album upload. */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'eleven tracks · the Overture and ten openings',
-    lede: 'The Overture first, because it is the best piece of music in the show and my favourite by a distance: Jay Vincent and Michael Kramer’s main title, the melody most of the openings borrow for their last few seconds. Then the openings, which are one song, The Weekend Whip, remixed once a season from the pilot to Hands of Time. Seasons one and two share the classic; of the rest, Tournament of Elements is my favourite and Possession is second. Every link is the band’s own upload, or the composers’ album for the Overture. Sort by season, by when they came out, or by length.',
+     seven, plus the three later Whips and the Dragons Rising theme. `season`
+     is the sort key (0 is the pilot), `year` the air year, `secs` the length
+     of the SONG, which is what the tile is named for and what its sub reads.
+
+     Two different things live behind these buttons and the labels say which:
+     "Season N intro" is the opening title sequence exactly as it aired, about
+     twenty-five seconds of it, and that is the one to press if you want the
+     thing you remember from television. "Listen" and "Full song" are The
+     Fold's own three-and-a-half-minute single of the same tune, which is a
+     different experience and was the only thing linked here before. Seasons
+     one and two run the identical opening, so they share one tile and one
+     intro. The songs are the band's own uploads and the Overture is the
+     composers' album; the aired openings are not published by anybody
+     official, so those are the cleanest fan uploads of each. */
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'thirteen tracks · the Overture, the openings and the film',
+    lede: 'The Overture first, because it is the best piece of music in the show and my favourite by a distance: Jay Vincent and Michael Kramer’s main title, the melody most of the openings borrow for their last few seconds. Then the openings, which are one song, The Weekend Whip, remixed once a season from the pilot to Hands of Time. Seasons one and two run the exact same opening, so they share a tile; of the rest, Tournament of Elements is my favourite and Possession is second. Every season from three to seven carries the opening as it actually aired, alongside the band’s full-length single of it. The two from the 2017 film sit with season twelve, since that is roughly where they fall. Sort by season, by when they came out, or by length.',
     sortable: { label: 'Sort', authored: 'asc', by: [
       { key: 'season', label: 'Season',   asc: 'First',    desc: 'Latest' },
       { key: 'year',   label: 'Released', asc: 'Oldest',   desc: 'Newest' },
@@ -152,42 +163,74 @@ window.FAN_PAGE = {
         desc: 'Jay Vincent and Michael Kramer, from the first minute of the first pilot episode. Ninety-nine seconds of the show’s real sound, the tune every remix of the opening ends on, and my favourite piece of music in all of Ninjago. Peak.',
         href: 'https://www.youtube.com/watch?v=dlnfFk7Rl2A', link: 'Listen' },
       { title: 'The Weekend Whip', accent: '#e07040', season: 1, year: 2011, secs: 210, sub: 'Pilot, seasons 1–2 · 2011 · 3:30',
-        desc: 'The Fold, written by Erin Chapman and Zack Jones. Jump up, kick back, whip around and spin: the classic, the same one for the pilot, Rise of the Snakes and Legacy of the Green Ninja.',
+        desc: 'The Fold, written by Erin Chapman and Zack Jones. Jump up, kick back, whip around and spin: the classic, and the same opening runs unchanged over the pilot, Rise of the Snakes and Legacy of the Green Ninja, which is why seasons one and two are one tile here.',
         links: [
           { href: 'https://www.youtube.com/watch?v=UVhm9XO_Vw0', label: 'Listen' },
+          { href: 'https://www.youtube.com/watch?v=uOh0faa1G94', label: 'Seasons 1–2 intro' },
           { href: 'https://www.youtube.com/watch?v=TMw9UNXVDG0', label: 'Music video' },
         ] },
-      { title: 'The Weekend Whip (Instrumental)', accent: '#e07040', season: 1, year: 2011, sub: 'Pilot, seasons 1–2 · 2011' },
+      { title: 'The Weekend Whip (Instrumental)', accent: '#e07040', season: 1, year: 2011, secs: 212, sub: 'Pilot, seasons 1–2 · 2011 · 3:32',
+        desc: 'The same track with Erin Chapman’s vocal taken off it, which leaves the guitar line that the show’s score keeps quoting back at you for fifteen seasons.',
+        href: 'https://www.youtube.com/watch?v=6rdFEPudKzk', link: 'Listen' },
       { title: 'The Weekend Whip (Remix)', accent: '#5cc8ff', season: 3, year: 2014, secs: 258, sub: 'Rebooted · season 3 · 2014 · 4:18',
-        desc: 'Michael AM’s remix for Rebooted, the first time the show changed its opening: the same song with the Nindroid-era electronics on top. On the band’s channel, though The Fold did not make this one themselves.',
+        desc: 'Michael AM’s remix for Rebooted, the first time the show changed its opening: the same song with the Nindroid-era electronics on top. The intro is twenty-three seconds of it; the full single runs four and a quarter minutes.',
         links: [
-          { href: 'https://www.youtube.com/watch?v=Eqf4Hz94fF0', label: 'Listen' },
+          { href: 'https://www.youtube.com/watch?v=ZHRFMO6iHzg', label: 'Season 3 intro' },
+          { href: 'https://www.youtube.com/watch?v=Eqf4Hz94fF0', label: 'Full song' },
           { href: 'https://www.youtube.com/watch?v=kg9WonGMXHo', label: 'Kai chase video' },
         ] },
       { title: 'The Weekend Whip (Anacondrai Remix)', accent: '#c070ff', season: 4, year: 2015, secs: 161, sub: 'Tournament of Elements · season 4 · 2015 · 2:41',
         desc: 'The Tournament of Elements opening: faster, heavier, and cut down to the length of an arena bout. My favourite of the openings, and the season I would point anyone to first.',
-        href: 'https://www.youtube.com/watch?v=2gLNldzuNjw', link: 'Music video' },
+        links: [
+          { href: 'https://www.youtube.com/watch?v=4HbFfsFTGdY', label: 'Season 4 intro' },
+          { href: 'https://www.youtube.com/watch?v=AgYl0zHsy_A', label: 'Full song' },
+          { href: 'https://www.youtube.com/watch?v=2gLNldzuNjw', label: 'Music video' },
+        ] },
       { title: 'The Ghost Whip', accent: '#6ff0b0', season: 5, year: 2015, secs: 226, sub: 'Possession · season 5 · 2015 · 3:46',
         desc: 'The Fold and Kruegersound, for Possession: The Weekend Whip gone eerie for Morro’s season, the one with Zane’s ghost story and the Cursed Realm. My second favourite of the openings.',
         links: [
-          { href: 'https://www.youtube.com/watch?v=UZsjNmF_ZII', label: 'Listen' },
+          { href: 'https://www.youtube.com/watch?v=0osMMDYrd9g', label: 'Season 5 intro' },
+          { href: 'https://www.youtube.com/watch?v=UZsjNmF_ZII', label: 'Full song' },
           { href: 'https://www.youtube.com/watch?v=bRFRHc6ETO8', label: 'Morro Strikes video' },
         ] },
       { title: 'The Pirate Whip', accent: '#ffb050', season: 6, year: 2016, secs: 171, sub: 'Skybound · season 6 · 2016 · 2:51',
         desc: 'For Skybound, Nadakhan and the sky pirates: the third of three singles the band put out for that season, and the opening for every episode of it.',
         links: [
-          { href: 'https://www.youtube.com/watch?v=SgL5JFsMyNc', label: 'Listen' },
+          { href: 'https://www.youtube.com/watch?v=7tTuIoFzD4s', label: 'Season 6 intro' },
+          { href: 'https://www.youtube.com/watch?v=SgL5JFsMyNc', label: 'Full song' },
           { href: 'https://www.youtube.com/watch?v=wFlruN2NLok', label: 'Music video' },
         ] },
       { title: 'The Temporal Whip', accent: '#ff6050', season: 7, year: 2017, secs: 151, sub: 'Hands of Time · season 7 · 2017 · 2:31',
         desc: 'For Hands of Time, Krux, Acronix and the Vermillion: the band’s own punk-rock take on the song, and the last remix of it for over two years.',
         links: [
-          { href: 'https://www.youtube.com/watch?v=tNI01U1sGiE', label: 'Listen' },
+          { href: 'https://www.youtube.com/watch?v=H0ANTkh_ZMw', label: 'Season 7 intro' },
+          { href: 'https://www.youtube.com/watch?v=tNI01U1sGiE', label: 'Full song' },
           { href: 'https://www.youtube.com/watch?v=e8nQcIeaWJM', label: 'Lyric video' },
         ] },
-      { title: 'The Shintaro Dungeon Whip', accent: '#b477d8', season: 13, year: 2020, sub: 'Master of the Mountain · season 13 · 2020' },
-      { title: 'The Arcadian Whip', accent: '#4aa6cf', season: 15, year: 2021, sub: 'Seabound · season 15 · 2021' },
-      { title: 'Dragons Rising Main Theme', accent: '#85c8ff', season: 16, year: 2023, sub: 'Dragons Rising · 2023' },
+      { title: 'The Shintaro Dungeon Whip', accent: '#b477d8', season: 13, year: 2020, secs: 195, sub: 'Master of the Mountain · season 13 · 2020 · 3:15',
+        desc: 'The Fold again after three seasons away, for the dungeon under Shintaro and the season that is mostly Cole’s. Heavier than any of the earlier remixes, and the band cut two videos for it.',
+        links: [
+          { href: 'https://www.youtube.com/watch?v=2AvUuYOOgkM', label: 'Listen' },
+          { href: 'https://www.youtube.com/watch?v=UfeLkoLkYBg', label: 'Music video' },
+        ] },
+      { title: 'The Arcadian Whip', accent: '#4aa6cf', season: 15, year: 2021, secs: 217, sub: 'Seabound · season 15 · 2021 · 3:37',
+        desc: 'Written for Prime Empire and used again for Seabound: the arcade-synth version of the same four bars, which is the trick the whole run of these is built on.',
+        links: [
+          { href: 'https://www.youtube.com/watch?v=QBUuCbRf-ic', label: 'Listen' },
+          { href: 'https://www.youtube.com/watch?v=7jhIpP3aZWE', label: 'Music video' },
+        ] },
+      { title: 'Wise Master Wu', accent: '#7fd0b0', season: 12, year: 2017, secs: 182, sub: 'The LEGO Ninjago Movie · 2017 · 3:02',
+        desc: 'Mark Mothersbaugh, from the film rather than the show. Wu\u2019s theme: bamboo flute over a string figure that keeps not resolving, which is the joke about him and also the truth about him.',
+        href: 'https://www.youtube.com/watch?v=whperb_192I', link: 'Listen' },
+      { title: 'It\u2019s Garmadon', accent: '#a06fd8', season: 12, year: 2017, secs: 170, sub: 'The De Luca Brothers · The LEGO Ninjago Movie · 2017 · 2:50',
+        desc: 'The De Luca Brothers, for the film. A city-wide jingle about the warlord who attacks Ninjago every week and whose son is in your class. Garmadon gets a theme song the way a weather event gets a name.',
+        href: 'https://www.youtube.com/watch?v=7xgZab14eGQ', link: 'Listen' },
+      { title: 'Dragons Rising Main Theme', accent: '#85c8ff', season: 16, year: 2023, secs: 116, sub: 'Dragons Rising · 2023 · 1:56',
+        desc: 'The soft reboot drops The Weekend Whip entirely and scores itself properly instead. It is a good piece of music and it is not the show I grew up on, both of which are true at once.',
+        links: [
+          { href: 'https://www.youtube.com/watch?v=-5_ih0Bqh0Q', label: 'Listen' },
+          { href: 'https://www.youtube.com/watch?v=adnLt1obkck', label: 'We Rise video' },
+        ] },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

@@ -1,0 +1,10 @@
+/* fan/mario.css: /worlds/mario/ only.
+   The backdrop geometry is shared (.np-sky in fanpages.css); this file
+   only says what colour this world is. */
+
+body[data-fan="mario"] {
+  --a: #e0403a;
+  --np1: #3a1518;
+  --np2: #06090f;
+  --np3: rgba(224,64,58,.15);
+}

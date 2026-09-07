@@ -152,7 +152,7 @@ window.FAN_PAGE = {
 
 
   /* One shared list, also displayed on the Justice League page. */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes & Songs', note: 'seventeen tracks · films, animation, LEGO',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes & Songs', note: 'twenty-three tracks · films, animation, LEGO',
     lede: 'One collection, also shown on the Justice League page. The Dark Knight theme was never put on one track, so that copy is a fan edit, and says so.',
     groupable: { key: 'series', label: 'Group', on: 'By film / series', open: 'on' },
     sortable: { label: 'Sort', authored: 'asc', by: [

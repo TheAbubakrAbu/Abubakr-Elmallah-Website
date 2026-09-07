@@ -1,0 +1,10 @@
+/* fan/roblox.css: /worlds/roblox/ only.
+   The backdrop geometry is shared (.np-sky in fanpages.css); this file
+   only says what colour this world is. */
+
+body[data-fan="roblox"] {
+  --a: #e5453c;
+  --np1: #2e2226;
+  --np2: #06090f;
+  --np3: rgba(229,69,60,.14);
+}

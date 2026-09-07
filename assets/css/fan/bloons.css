@@ -1,0 +1,10 @@
+/* fan/bloons.css: /worlds/bloons/ only.
+   The backdrop geometry is shared (.np-sky in fanpages.css); this file
+   only says what colour this world is. */
+
+body[data-fan="bloons"] {
+  --a: #d84a3a;
+  --np1: #3a1a16;
+  --np2: #06090f;
+  --np3: rgba(216,74,58,.15);
+}

@@ -1,0 +1,111 @@
+/* fan-mario.js: content for /worlds/mario/. Rendered by fanpage.js.
+   The Nintendo page is the company; this one is the plumber. Keep the two
+   from repeating each other: hardware belongs there, the jump belongs here. */
+window.FAN_PAGE = {
+  when: { at: 'Since I was a kid', note: 'The Nintendo page on this site covers the company, the consoles and Zelda and Splatoon alongside him. This one is just Mario.' },
+  sections: [
+
+  { id: 'games', kind: 'rank', title: 'The Ones That Matter', note: 'not a full list; the full list is below',
+    lede: 'Forty-odd years and a hundred-odd games. These are the ones that changed what the next twenty looked like.',
+    items: [
+      { num: '01', title: 'Super Mario Bros.', sub: 'NES · 1985',
+        desc: 'The one that taught a generation to read a video game. World 1-1 is still the most studied level ever built: a Goomba walks at you, the pipe is a wall, the mushroom moves towards you rather than away, and nobody ever had to write any of that down.' },
+      { num: '02', title: 'Super Mario World', sub: 'SNES · 1990',
+        desc: 'The spin jump, the cape and Yoshi. Ninety-six exits and a map with secret paths threaded through it, which is still the best-structured 2D game Nintendo has made.' },
+      { num: '03', title: 'Super Mario 64', sub: 'Nintendo 64 · 1996',
+        desc: 'The single largest jump in the history of the medium: an analogue stick, a camera on a second stick, and a set of movement rules invented from nothing that every 3D game since has borrowed from.' },
+      { num: '04', title: 'Super Mario Galaxy', sub: 'Wii · 2007',
+        desc: 'Spherical gravity, so the horizon curves under you and "down" changes as you run. The score is a live orchestra, which Nintendo had never done for a Mario game, and Gusty Garden Galaxy is the best piece of music in the series.' },
+      { num: '05', title: 'Super Mario Odyssey', sub: 'Switch · 2017',
+        desc: 'The hat, and capturing anything you throw it at. Hundreds of moons rather than a handful of stars, so the game is a field of things to find rather than a set of exams to sit.' },
+      { num: '06', title: 'Mario Kart 8 Deluxe', sub: 'Switch · 2017',
+        desc: 'The best-selling game on the best-selling Nintendo console, and the reason the Switch was in every living room. Anti-gravity, and a blue shell that has ended friendships.' },
+    ] },
+
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the main lines, in order',
+    lede: 'He is the most-appearing character in games. This is not all of it, because all of it is well over two hundred titles once you count sports and party games, but it is every mainline platformer and the series that matter.',
+    items: [
+      { title: 'The 2D Platformers', sub: '1985 – now', unit: 'game',
+        desc: 'The original line, still running, and still the clearest thing Nintendo makes.',
+        rows: [
+          { n: 'Super Mario Bros.', y: '1985', big: true },
+          { n: 'Super Mario Bros. 2', y: '1988' },
+          { n: 'Super Mario Bros. 3', y: '1988', big: true },
+          { n: 'Super Mario World', y: '1990', big: true },
+          { n: 'Super Mario Land 2', y: '1992' },
+          { n: 'New Super Mario Bros.', y: '2006' },
+          { n: 'New Super Mario Bros. Wii', y: '2009' },
+          { n: 'New Super Mario Bros. U', y: '2012' },
+          { n: 'Super Mario Maker', y: '2015' },
+          { n: 'Super Mario Bros. Wonder', y: '2023', big: true },
+        ] },
+      { title: 'The 3D Platformers', sub: '1996 – now', unit: 'game',
+        desc: 'Two shapes: the open sandbox, and the linear course. Odyssey went back to the sandbox and Wonder went back to 2D, both in the same console generation.',
+        rows: [
+          { n: 'Super Mario 64', y: '1996', big: true },
+          { n: 'Super Mario Sunshine', y: '2002' },
+          { n: 'Super Mario Galaxy', y: '2007', big: true },
+          { n: 'Super Mario Galaxy 2', y: '2010' },
+          { n: 'Super Mario 3D Land', y: '2011' },
+          { n: 'Super Mario 3D World', y: '2013' },
+          { n: 'Super Mario Odyssey', y: '2017', big: true },
+        ] },
+      { title: 'The Spin-offs', sub: '1992 – now', unit: 'series',
+        desc: 'Karts, tennis, golf, parties, and two genuinely good role-playing lines. Nintendo will put him in anything and it usually works.',
+        rows: [
+          { n: 'Mario Kart', y: '1992', big: true },
+          { n: 'Super Mario RPG', y: '1996' },
+          { n: 'Mario Party', y: '1998' },
+          { n: 'Paper Mario', y: '2000' },
+          { n: 'Mario & Luigi', y: '2003' },
+          { n: 'Mario + Rabbids', y: '2017' },
+          { n: 'Mario Kart World', y: '2025' },
+        ] },
+      { title: 'On Screen', sub: '1993 – now', unit: 'film',
+        desc: 'One famously bad live-action film, and one billion-dollar animated one thirty years later.',
+        rows: [
+          { n: 'Super Mario Bros. (live action)', y: '1993' },
+          { n: 'The Super Mario Bros. Movie', y: '2023', big: true },
+          { n: 'The Super Mario Galaxy Movie', y: '2026' },
+        ] },
+    ] },
+
+  { id: 'jump', kind: 'tiles', compact: true, title: 'The Jump', note: 'why it still feels right',
+    lede: 'Miyamoto built the movement before the character and before the story. Everything below was decided in 1985 and has barely been touched since, because it was right.',
+    items: [
+      { title: 'Variable height', accent: '#e0403a', sub: 'Hold to go higher', desc: 'Tapping and holding give different jumps. One button, two verbs, and no tutorial ever explains it.' },
+      { title: 'Air control', accent: '#f0a83a', sub: 'You can steer mid-jump', desc: 'Physically wrong and absolutely correct: it turns a commitment into a conversation.' },
+      { title: 'Momentum', accent: '#5f9fe0', sub: 'Run-up carries', desc: 'Mario accelerates and skids. The distance you clear depends on what you were doing three seconds ago.' },
+      { title: 'Coyote time', accent: '#5fbf7f', sub: 'A few frames of grace', desc: 'You can jump just after leaving the ledge. Everyone does this now; it started as somebody deciding the game should be generous.' },
+      { title: 'The stomp', accent: '#c9a05f', sub: 'Attack is a jump', desc: 'No separate attack button in the original. Landing on something is the whole combat system, which is why the enemies are all placed as platforming problems.' },
+      { title: 'The bounce', accent: '#b06fd8', sub: 'Chained stomps score more', desc: 'Eight in a row gives a 1-Up. A scoring rule that quietly teaches you to keep moving.' },
+    ] },
+
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Music', note: 'four tracks · Koji Kondo and after',
+    lede: 'Koji Kondo wrote the ground theme on a keyboard with hardware that could play three notes at once, and it is still the most recognised piece of music written in the last fifty years. Nintendo does not upload its soundtracks, so most of these are the copies everybody actually uses.',
+    items: [
+      { title: 'Super Mario Bros. Ground Theme', accent: '#e0403a', sub: 'Koji Kondo · 1985 · 1:39',
+        desc: 'Three channels, a Latin shuffle, and a melody Kondo rewrote after playing the game because his first version did not match how it felt to move. That is the whole philosophy of Nintendo music in one anecdote.',
+        href: 'https://www.youtube.com/watch?v=n_2KZntBhRg', link: 'Fan upload' },
+      { title: 'Super Mario World Overworld', accent: '#5fbf7f', sub: 'Koji Kondo · 1990 · 1:32',
+        desc: 'The one that changes instrumentation when you get on Yoshi, which in 1990 was a genuinely startling thing for a game to do.',
+        href: 'https://www.youtube.com/watch?v=SyN7qOFyG9Q', link: 'Fan upload' },
+      { title: 'Gusty Garden Galaxy', accent: '#5f9fe0', sub: 'Mahito Yokota · Super Mario Galaxy · 2007 · 5:30',
+        desc: 'The first Mario game scored for a live orchestra, and the best piece of music in the series by a wide margin. A waltz for falling through space.',
+        href: 'https://www.youtube.com/watch?v=1bvDHAUv2ak', link: 'Fan upload' },
+      { title: 'Jump Up, Super Star!', accent: '#f0c840', sub: 'Kate Davis · Super Mario Odyssey · 2017 · 1:42',
+        desc: 'A big-band swing number with vocals, for a Mario game, revealed at E3 and then used as the finale of the whole thing. Nintendo had never done anything like it.',
+        href: 'https://www.youtube.com/watch?v=A5zPmAKlPds', link: 'Watch' },
+    ] },
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'elsewhere',
+    items: [
+      { title: 'Nintendo', href: 'https://mario.nintendo.com/',
+        desc: 'The official hub for the games still on sale.' },
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Mario',
+        desc: 'Every appearance, and the Donkey Kong origin.' },
+      { title: 'Super Mario Wiki', href: 'https://www.mariowiki.com/',
+        desc: 'The fan encyclopedia: every level, every enemy, every version difference.' },
+    ] },
+
+] };

@@ -155,8 +155,8 @@ window.FAN_PAGE = {
         desc: 'Captive-bred birds from a German breeding programme were released into the caatinga at Curaçá in June 2022, and some have bred in the wild since. It is the same argument as the condor two sections up, run by somebody else and won.',
         meta: 'And they have bred since' },
       { title: 'Blue Sky is gone', sub: 'Closed April 2021', tag: 'The studio', accent: '#c9ced6',
-        desc: 'The studio that made both films, and Ice Age, was shut by Disney in April 2021 after the Fox acquisition. There will not be a third one, which is part of why this is a section here rather than a page of its own.',
-        meta: 'Shut after the Fox deal' },
+        desc: 'The studio that made both films, and Ice Age, was shut by Disney in April 2021 after the Fox acquisition. There will not be a third one.',
+        href: '/worlds/rio/', link: 'Rio has its own page now', meta: 'Shut after the Fox deal' },
     ] },
 
   /* the complete index. On a zoo page this is the whole institution rather
@@ -202,7 +202,10 @@ window.FAN_PAGE = {
         href: 'https://www.youtube.com/watch?v=clK9rM9JoIs', link: 'Listen' },
       { title: 'Balboa Park Organ Pavilion', accent: '#e0a050', sub: 'Spreckels Organ · since 1915',
         desc: 'Not the zoo, but a hundred metres from its gate: the largest outdoor pipe organ in the world, installed for the same 1915 exposition the animals were left over from, and still played free on Sundays.',
-        href: 'https://spreckelsorgan.org/', link: 'The pavilion' },
+        links: [
+          { href: 'https://www.youtube.com/watch?v=rZOKxmpJ9g4', label: 'Listen' },
+          { href: 'https://spreckelsorgan.org/', label: 'The pavilion' },
+        ] },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'elsewhere',

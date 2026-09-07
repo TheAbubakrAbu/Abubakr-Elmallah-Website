@@ -228,7 +228,110 @@
              + '<path d="M11 6.2h1.5v15.8H11z" opacity=".8"/>'
              + '<path d="M12.5 7 19.2 9.4l-6.7 2.4z" opacity=".8"/>'
              + '<path d="M17.6 10.2h1.3V22h-1.3z" opacity=".58"/>'
-             + '<path d="M18.9 11 23.8 12.8l-4.9 1.8z" opacity=".58"/>'
+             + '<path d="M18.9 11 23.8 12.8l-4.9 1.8z" opacity=".58"/>',
+
+    /* ── eight for the pages added in September 2026 ── */
+    // Overwatch: the visor. The real mark is a rounded shield with a slot cut
+    // across it, which at 24px reads as a helmet and nothing else, so this is
+    // the slot doing the work.
+    visor:   '<path d="M12 2.8c5 0 8.6 3.4 8.6 8.2 0 5.4-3.9 9.4-8.6 10.2'
+             + '-4.7-.8-8.6-4.8-8.6-10.2 0-4.8 3.6-8.2 8.6-8.2z" opacity=".9"/>'
+             + '<rect x="6.4" y="9.2" width="11.2" height="3.1" rx="1.55" fill="#0b0b0f"/>',
+    // Mario: the mushroom, not the M. The M belongs to a cap and the cap
+    // belongs to a face, and a face does not survive being drawn this small.
+    mushroom: '<path d="M12 3c4.7 0 8.4 3.4 8.4 7.7 0 1.3-.5 2.1-1.7 2.1H5.3'
+             + 'c-1.2 0-1.7-.8-1.7-2.1C3.6 6.4 7.3 3 12 3z"/>'
+             + '<circle cx="8.1" cy="8.2" r="1.9" fill="#0b0b0f"/>'
+             + '<circle cx="15.9" cy="8.2" r="1.9" fill="#0b0b0f"/>'
+             + '<path d="M8.8 14.4h6.4v4.2c0 1.6-1.4 2.8-3.2 2.8s-3.2-1.2-3.2-2.8z" opacity=".75"/>',
+    // Bloons: one balloon and the dart that is about to reach it. The whole
+    // game is that gap.
+    balloon: '<path d="M14.6 2.6c3 0 5.2 2.4 5.2 5.6 0 3.5-2.6 6.6-5.2 7.9'
+             + '-2.6-1.3-5.2-4.4-5.2-7.9 0-3.2 2.2-5.6 5.2-5.6z"/>'
+             + '<path d="M14.6 16.1 13.4 18h2.4z" opacity=".8"/>'
+             + '<path d="M14.6 18c0 2 .9 2.6.9 4" fill="none" stroke="currentColor"'
+             + ' stroke-width="1.1" opacity=".7"/>'
+             + '<path d="M1.6 20.4 8 14" fill="none" stroke="currentColor" stroke-width="1.6"/>'
+             + '<path d="M8 14l-.6 2.6L10 16z"/>',
+    // Beyblade: the top, seen from the side, with the rip cord going in. Four
+    // spokes because every generation of the toy has had them.
+    beytop:  '<path d="M12 2.6 15.2 7H8.8z" opacity=".85"/>'
+             + '<path d="M12 6.6c4.1 0 7.4 2.1 7.4 4.7S16.1 16 12 16s-7.4-2.1-7.4-4.7 3.3-4.7 7.4-4.7z"/>'
+             + '<path d="M12 16l1.9 3.6a2.1 2.1 0 1 1-3.8 0z" opacity=".8"/>'
+             + '<path d="M2.4 8.6h6.6" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".65"/>',
+    // Yu-Gi-Oh: a face-down card being flipped, which is the one image the
+    // whole franchise runs on.
+    duelcard: '<rect x="3.2" y="4.4" width="9.4" height="13.4" rx="1.5" opacity=".5"'
+             + ' transform="rotate(-9 7.9 11.1)"/>'
+             + '<rect x="10.6" y="5.6" width="10.2" height="14.4" rx="1.6"/>'
+             + '<path d="M15.7 9.1l1.3 2.7 2.9.4-2.1 2 .5 2.9-2.6-1.4-2.6 1.4.5-2.9-2.1-2 2.9-.4z"'
+             + ' fill="#0b0b0f"/>',
+    // Ice Age: the acorn Scrat is never going to get.
+    acorn:   '<path d="M12 8.4c3.2 0 5.6 2.5 5.6 5.6 0 3.6-2.5 6.6-5.6 7.6'
+             + '-3.1-1-5.6-4-5.6-7.6 0-3.1 2.4-5.6 5.6-5.6z"/>'
+             + '<path d="M6.2 5.2h11.6c.8 0 1.3.6 1.3 1.4 0 1.4-1.2 2.4-2.7 2.4H7.6'
+             + 'C6.1 9 4.9 8 4.9 6.6c0-.8.5-1.4 1.3-1.4z" opacity=".85"/>'
+             + '<path d="M11.4 2.2h1.2v3h-1.2z" opacity=".7"/>',
+    // Skylanders: the Portal of Power, seen at an angle, with the light coming
+    // off it. A disc and a glow, which is all it ever was.
+    portal:  '<ellipse cx="12" cy="16.6" rx="8.6" ry="4"/>'
+             + '<ellipse cx="12" cy="16.6" rx="4.6" ry="2.1" fill="#0b0b0f"/>'
+             + '<path d="M8.4 14.2 10.6 4h2.8l2.2 10.2z" opacity=".55"/>'
+             + '<path d="M11.1 2.2h1.8v2.4h-1.8z" opacity=".8"/>',
+    // LEGO Fortnite: a brick with the storm eye behind it. Both parents, in
+    // one mark, because the tile is about the join rather than either side.
+    brickeye: '<circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor"'
+             + ' stroke-width="1.3" opacity=".5"/>'
+             + '<circle cx="12" cy="12" r="5.6" fill="none" stroke="currentColor"'
+             + ' stroke-width="1.1" opacity=".32"/>'
+             + '<rect x="5.6" y="10.4" width="12.8" height="6.2" rx="1.1"/>'
+             + '<rect x="7.4" y="7.9" width="3.1" height="2.7" rx="1"/>'
+             + '<rect x="13.5" y="7.9" width="3.1" height="2.7" rx="1"/>',
+
+    /* ── the two added on 2026-09-06 ── */
+    // Teen Titans Go: Titans Tower. A building shaped like a letter T, on its
+    // island in the bay, which is the least practical thing in comics and the
+    // only mark this show has that is not a wordmark.
+    ttower:  '<path d="M4.6 3.2h14.8v3.6h-5.5V17h-3.8V6.8H4.6z"/>'
+             + '<path d="M7.2 8.6h1.9v2.2H7.2zM14.9 8.6h1.9v2.2h-1.9z" fill="#0b0b0f" opacity=".5"/>'
+             + '<path d="M2.2 18.4c3.4-2.2 6-2.2 9.8 0 3.8 2.2 6.4 1.4 9.8-1.6v5.4H2.2z" opacity=".7"/>',
+    // Despicable Me: the goggle. One lens, one strap, and nothing else, since
+    // the Minion is a shape everybody can already draw and the goggle is the
+    // half of it that is not a face.
+    goggle:  '<circle cx="12" cy="12" r="6.2" fill="none" stroke="currentColor" stroke-width="2.2"/>'
+             + '<circle cx="12" cy="12" r="3.4"/>'
+             + '<circle cx="10.7" cy="10.7" r="1.1" fill="#0b0b0f" opacity=".55"/>'
+             + '<path d="M1.6 10.1h4.4v3.8H1.6zM18 10.1h4.4v3.8H18z" opacity=".8"/>',
+
+    /* ── the three added on 2026-09-06, later the same day ── */
+    // Roblox: the default avatar's head. The tilted square with the hole in it
+    // is their logo and this page does not draw logos; the blocky head with two
+    // dots and a smile is the thing the platform actually looks like, and
+    // nobody designed it on purpose, which is the joke.
+    noob:    '<path d="M6.4 4.6h11.2v9.4H6.4z"/>'
+             + '<circle cx="9.6" cy="8.4" r="1.35" fill="#0b0b0f" opacity=".6"/>'
+             + '<circle cx="14.4" cy="8.4" r="1.35" fill="#0b0b0f" opacity=".6"/>'
+             + '<path d="M9.2 10.6c.8 1.4 1.8 2.1 2.8 2.1s2-.7 2.8-2.1" fill="none"'
+             + ' stroke="#0b0b0f" stroke-width="1.3" opacity=".6" stroke-linecap="round"/>'
+             + '<path d="M8.8 15.2h6.4v5.9H8.8z" opacity=".72"/>'
+             + '<path d="M4.9 15.2h3.1v5.9H4.9zM16 15.2h3.1v5.9H16z" opacity=".5"/>',
+    // Wild Kratts: a Creature Power Disc. A ring with a claw mark through it,
+    // rather than a paw, because `paw` is already the San Diego Zoo's on this
+    // page and the disc is the thing this show actually invented.
+    cdisc:   '<circle cx="12" cy="12" r="9.4" fill="none" stroke="currentColor" stroke-width="2"/>'
+             + '<circle cx="12" cy="12" r="2.3"/>'
+             + '<path d="M7.4 6.6 10 17.8M11 5.8l1.6 12.6M14.6 6.6 16 17.4"'
+             + ' fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"'
+             + ' opacity=".78"/>',
+    // Dinosaur Train: the locomotive, with a long neck coming out of the last
+    // carriage. Two objects, because either one alone is somebody else's page.
+    loco:    '<path d="M2.2 11.2h7.4v6.4H2.2z"/>'
+             + '<path d="M3.4 7.6h2.2v3.6H3.4z" opacity=".8"/>'
+             + '<path d="M10.4 12.4h6.2v5.2h-6.2z" opacity=".72"/>'
+             + '<circle cx="4.6" cy="19.4" r="1.7"/><circle cx="8.6" cy="19.4" r="1.7"/>'
+             + '<circle cx="14.6" cy="19.4" r="1.5" opacity=".72"/>'
+             + '<path d="M18.4 12.4c0-4.2 1-6.6 3.4-8.2-1 2.6-1.2 4.8-.6 6.6l.8 2.6'
+             + 'c.4 1.4-.2 2.4-1.6 2.4h-2z"/>'
   };
 
   function glyph(key) {

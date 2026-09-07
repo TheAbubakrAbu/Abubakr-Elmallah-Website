@@ -1,0 +1,10 @@
+/* fan/maze-runner.css: /worlds/maze-runner/ only.
+   The backdrop geometry is shared (.np-sky in fanpages.css); this file
+   only says what colour this world is. */
+
+body[data-fan="maze"] {
+  --a: #8fbf78;
+  --np1: #1a2a1c;
+  --np2: #06090f;
+  --np3: rgba(143,191,120,.14);
+}

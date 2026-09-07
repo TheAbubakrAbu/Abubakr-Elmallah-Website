@@ -1,0 +1,125 @@
+/* fan-dm.js: content for /worlds/despicable-me/. Rendered by fanpage.js.
+   A supervillain adopts three girls, and the studio that made it turned a
+   background gag into the highest-grossing animated franchise ever made. */
+window.FAN_PAGE = {
+  when: { at: 'As a kid', note: 'The first one came out when I was four and the Minions were unavoidable for the whole of my childhood. The ride at Universal is still the one I would queue for.' },
+  sections: [
+
+  { id: 'cast', kind: 'cards', title: 'Who Is In It', note: 'a villain, three girls, and the yellow ones',
+    lede: 'The pitch is a heist film in which the getaway driver adopts three orphans to get past a doorbell, and then cannot give them back. Everything the franchise became afterwards came out of a gag in the background of that film.',
+    items: [
+      { title: 'Gru', sub: 'Steve Carell', tag: 'The villain', accent: '#a8a2b8',
+        desc: 'A supervillain with a Slavic accent nobody can place, a mother who never praised him, and a plan to steal the moon. Steve Carell invented the voice himself and it carried a decade of films.',
+        meta: 'Steals the moon in the first one' },
+      { title: 'Margo, Edith and Agnes', sub: 'Miranda Cosgrove, Dana Gaier, Elsie Fisher', tag: 'The girls', accent: '#f0913a',
+        desc: 'The eldest who does not trust him, the middle one who breaks things, and the youngest who wants a unicorn. Agnes gets the line the whole franchise is remembered for and she was six years old when she recorded it.',
+        meta: 'It is so fluffy' },
+      { title: 'The Minions', sub: 'Pierre Coffin', tag: 'The accident', accent: '#f2c531',
+        desc: 'Yellow, indestructible, and speaking a made-up language of Spanish, French, Italian and food words. Pierre Coffin, who co-directed the first film, voices nearly all of them himself, which means one man is the voice of thousands of characters.',
+        meta: 'Banana. Bello. Poopaye.' },
+      { title: 'Dr Nefario', sub: 'Russell Brand', tag: 'The lab', accent: '#5f9fe0',
+        desc: 'The elderly gadget man who is slightly deaf and builds the wrong device roughly half the time. The dart gun and the fart gun mix-up is his, and it is the best joke in the first film.',
+        meta: 'Fart gun' },
+      { title: 'Vector', sub: 'Jason Segel', tag: 'The rival', accent: '#f0a83a',
+        desc: 'A rich, orange-tracksuited nerd with a squid launcher, who is the villain of the first film and the best one the series has had. "Oh yeah. Vector. It’s a mathematical term."',
+        meta: 'Direction AND magnitude' },
+      { title: 'Lucy Wilde', sub: 'Kristen Wiig', tag: 'The turn', accent: '#e0704a',
+        desc: 'The Anti-Villain League agent who arrests Gru in the second film and marries him by the end of it. The moment the franchise stopped being about a villain and became a family comedy.',
+        meta: 'Despicable Me 2, 2013' },
+    ] },
+
+  { id: 'works', kind: 'works', title: 'Everything In It', note: 'seven films, two of them prequels about the yellow ones',
+    lede: 'Illumination was set up by Chris Meledandri in 2007 to make animated films cheaply, and this is the proof of the method: the first one cost sixty-nine million dollars, which is roughly a third of what a Pixar film cost that year, and it made five hundred and forty-three. The franchise has now passed six billion worldwide, which makes it the highest-grossing animated series ever made.',
+    items: [
+      { title: 'Despicable Me', sub: '2010 – 2024', unit: 'film',
+        desc: 'Four films about Gru. The first is a small story about adoption with a moon heist attached; the rest are bigger and less interesting, and all four made money.',
+        rows: [
+          { n: 'Despicable Me', y: '2010', big: true },
+          { n: 'Despicable Me 2', y: '2013', big: true },
+          { n: 'Despicable Me 3', y: '2017' },
+          { n: 'Despicable Me 4', y: '2024' },
+        ] },
+      { title: 'The Minions Films', sub: '2015 – 2026', unit: 'film',
+        desc: 'Three prequels handed to the background characters, because the background characters were on every lunchbox in the world. Minions cost seventy-four million and took over a billion.',
+        rows: [
+          { n: 'Minions', y: '2015', big: true },
+          { n: 'Minions: The Rise of Gru', y: '2022' },
+          { n: 'Minions & Monsters', y: '2026' },
+        ] },
+      { title: 'Where You Can Ride It', sub: '2012 – now', unit: 'ride',
+        desc: 'Minion Mayhem is a motion simulator that turns you into one of them, and it is at both American Universal parks. The land around it in Orlando is the whole franchise built at scale.',
+        rows: [
+          { n: 'Minion Mayhem, Orlando', y: '2012', big: true },
+          { n: 'Minion Mayhem, Hollywood', y: '2014', big: true },
+          { n: 'Super Silly Fun Land', y: '2014' },
+          { n: 'Villain-Con Minion Blast', y: '2023' },
+        ] },
+    ] },
+
+  { id: 'minions', kind: 'cards', title: 'The Minions', note: 'the background gag that ate the franchise',
+    lede: 'They were meant to be henchmen. They have since carried three films of their own, a language, and roughly a decade of internet culture, most of it not aimed at children at all.',
+    items: [
+      { title: 'The language', sub: 'Minionese', tag: 'How they talk', accent: '#f2c531',
+        desc: 'Not gibberish. It is built out of real words from Spanish, French, Italian, Indonesian and English, chosen for sound, with food words doing most of the work. Coffin improvises it in the booth, which is why it scans as speech.',
+        meta: '"Poopaye" is goodbye' },
+      { title: 'One voice, thousands of them', sub: 'Pierre Coffin', tag: 'Who does it', accent: '#f0a83a',
+        desc: 'Coffin co-directed the first film and voices almost every Minion in every film. He is the grandson of Yves Coffin and the son of the animator Jacques Coffin, and he has said he does not know how many of them he has voiced.',
+        meta: 'And he directed them too' },
+      { title: 'Why they work', sub: 'No dialogue to translate', tag: 'The business', accent: '#5f9fe0',
+        desc: 'A character who communicates entirely in physical comedy and nonsense needs no dub, no localisation and no cultural adjustment. That is not an accident: it is why the films earn more outside America than inside it.',
+        meta: 'Buster Keaton, in yellow' },
+      { title: 'Gentleminions', sub: 'Summer 2022', tag: 'What happened next', accent: '#e0704a',
+        desc: 'Teenagers turned up to The Rise of Gru in suits, en masse, because of a TikTok, and some cinemas banned them for it. Universal thanked them publicly. A children’s film franchise had become a teenage in-joke about itself.',
+        meta: '#gentleminions' },
+    ] },
+
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Songs', note: 'four tracks · Pharrell wrote most of them',
+    lede: 'Pharrell Williams and Heitor Pereira have scored this franchise from the start, which is a strange and very good decision for a cartoon about a supervillain. One of the songs became the biggest single in the world.',
+    items: [
+      { title: 'Happy', accent: '#f2c531', sub: 'Pharrell Williams · Despicable Me 2 · 2013 · 3:53',
+        desc: 'Written for the scene where Gru realises he is in love, released as a single months later, and then it went to number one in two dozen countries and was nominated for the Oscar. The twenty-four-hour music video was the first of its kind.',
+        href: 'https://www.youtube.com/watch?v=ZbZSe6N_BXs', link: 'Listen' },
+      { title: 'The Songs of Pharrell Williams', accent: '#e0704a', sub: 'Illumination · Despicable Me 2 · 2:56',
+        desc: 'Illumination’s own reel of what he wrote for the second film: Happy, Just a Cloud Away, Fun Fun Fun and Scream. He produced the score with Heitor Pereira rather than handing over a single and leaving.',
+        href: 'https://www.youtube.com/watch?v=Amzufxa5Mok', link: 'Listen' },
+      { title: 'Turn Up The Sunshine', accent: '#f0a83a', sub: 'Diana Ross ft. Tame Impala · The Rise of Gru · 2022 · 4:11',
+        desc: 'Jack Antonoff produced a whole seventies soundtrack for the prequel and opened it by putting Diana Ross and Kevin Parker on the same record. The video is Minions dancing in place of both of them.',
+        href: 'https://www.youtube.com/watch?v=GX3nHam4wRs', link: 'Listen' },
+      { title: 'Double Life', accent: '#5f9fe0', sub: 'Pharrell Williams · Despicable Me 4 · 2024 · 3:03',
+        desc: 'Fourteen years after the first film, the same person is still writing the single. That is a longer run on one franchise than most composers get.',
+        href: 'https://www.youtube.com/watch?v=fWtn6RMNiok', link: 'Listen' },
+    ] },
+
+  { id: 'parks', kind: 'cards', title: 'Where It Exists', note: 'the ride, and the land around it',
+    lede: 'Universal put this franchise at the front of both American parks, which tells you what it is worth to them. It is the first thing you walk into in Hollywood and it is very hard to get past.',
+    items: [
+      { title: 'Minion Mayhem', sub: 'Hollywood and Orlando', tag: 'The ride', accent: '#f2c531',
+        desc: 'A motion simulator in Gru’s house where you are turned into a Minion and put through the training course. Steve Carell, Miranda Cosgrove and the rest recorded for it, so it is the actual cast rather than soundalikes.',
+        href: '/worlds/universal-studios/', link: 'The park it is in',
+        meta: 'Orlando 2012 · Hollywood 2014' },
+      { title: 'Super Silly Fun Land', sub: 'Universal Studios Hollywood', tag: 'The land', accent: '#f0a83a',
+        desc: 'The seaside carnival from the first film, built for real next to the ride, with the spinning fairground attraction and a water play area. Small, and exactly the right thing to put beside a simulator with a queue.',
+        meta: 'Opened 2014' },
+      { title: 'Villain-Con Minion Blast', sub: 'Universal Orlando', tag: 'The newer one', accent: '#e0704a',
+        desc: 'A moving walkway you shoot targets from, inside a convention for supervillains. Orlando got the bigger version of everything, which is the pattern with that resort.',
+        meta: 'Opened 2023' },
+    ] },
+
+  { id: 'quotes', kind: 'quotes', title: 'Lines', note: 'the ones that got out',
+    items: [
+      { title: 'It’s so fluffy I’m gonna die!', sub: 'Agnes', accent: '#f0913a' },
+      { title: 'Oh yeah. Vector. It’s a mathematical term.', sub: 'Vector', accent: '#f0a83a' },
+      { title: 'Banana!', sub: 'Every Minion, at all times', accent: '#f2c531' },
+    ] },
+
+  { id: 'links', kind: 'links', title: 'Links', note: 'elsewhere',
+    items: [
+      { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Despicable_Me_(franchise)',
+        desc: 'All seven films, the box office, and how it became the biggest animated franchise there is.' },
+      { title: 'Illumination', href: 'https://en.wikipedia.org/wiki/Illumination_(company)',
+        desc: 'Chris Meledandri’s studio, and the budget discipline the whole thing runs on.' },
+      { title: 'Minionese', href: 'https://en.wikipedia.org/wiki/Minions_(franchise)',
+        desc: 'The Minions on their own, including the language and the three prequels.' },
+    ] },
+
+] };

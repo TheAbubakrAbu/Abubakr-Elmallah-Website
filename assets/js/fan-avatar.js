@@ -85,12 +85,24 @@ window.FAN_PAGE = {
 
   /* the music: Horner's theme and the song from the sequel; nothing from
      Avatar is on my playlist yet */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'two tracks · the theme, and the song',
-    lede: 'Nothing from Avatar is on my playlist yet, so these are the two: James Horner’s theme opening out over the first flight, and the song Zoe Saldaña sings over the credits of the second film.',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'six tracks · Horner, then Franglen',
+    lede: 'James Horner scored the first film and died before the second; Simon Franglen, who had worked with him for twenty years, finished the job and kept his themes. These are the six, linked to the albums’ own uploads.',
     items: [
+      { title: 'Becoming One of the People', accent: '#5fc0d0', sub: 'James Horner · Avatar · 2009 · 7:44',
+        desc: 'James Horner. The Iknimaya climb, the training montage and Jake being taken into the Omaticaya, run together into one seven-minute cue. The film’s whole middle act, and the closest Horner ever got to writing an anthem for a place that does not exist.',
+        href: 'https://www.youtube.com/watch?v=ODXpYfZ_fHU', link: 'Listen' },
       { title: 'Jake\'s First Flight', accent: '#8fd0e0', sub: 'James Horner · Avatar · 2009 · 4:50',
         desc: 'James Horner. Jake on a banshee for the first time, and the theme opening out over the Hallelujah Mountains.',
         href: 'https://www.youtube.com/watch?v=XQfkeiVrJ5Y', link: 'Listen' },
+      { title: 'The Way of Water', accent: '#4fb0c8', sub: 'Simon Franglen · The Way of Water · 2022 · 2:36',
+        desc: 'Simon Franglen. The Metkayina reef, and the second film announcing that it is going to be about water for three hours and is not embarrassed about it.',
+        href: 'https://www.youtube.com/watch?v=SPLfNT_oeXg', link: 'Listen' },
+      { title: 'Happiness Is Simple', accent: '#6fd0b0', sub: 'Simon Franglen · The Way of Water · 2022 · 2:28',
+        desc: 'The Sully family before anything goes wrong: the one stretch of either film that is just people living somewhere. Named for the line, and the calmest thing in a very loud franchise.',
+        href: 'https://www.youtube.com/watch?v=cMuC8hkY7bA', link: 'Listen' },
+      { title: 'Brothers', accent: '#e08a5f', sub: 'Simon Franglen · The Way of Water · 2022 · 3:52',
+        desc: 'Neteyam. The film spends two hours making you like a teenager and then does that, and this is what plays over it.',
+        href: 'https://www.youtube.com/watch?v=RInzljR4Oko', link: 'Listen' },
       { title: 'The Songcord', accent: '#5fd6e0', sub: 'Zoe Saldaña · The Way of Water · 2022 · 3:25',
         desc: 'Zoe Saldaña, as Neytiri, singing the song of her family’s cord over the credits of the second film. Simon Franglen wrote it after Horner died.',
         href: 'https://www.youtube.com/watch?v=0lDvyER0E6Y', link: 'Listen' },

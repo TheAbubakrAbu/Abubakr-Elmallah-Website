@@ -1,0 +1,10 @@
+/* fan/despicable-me.css: /worlds/despicable-me/ only.
+   The backdrop geometry is shared (.np-sky in fanpages.css); this file
+   only says what colour this world is. */
+
+body[data-fan="dm"] {
+  --a: #f2c531;
+  --np1: #2b2340;
+  --np2: #06090f;
+  --np3: rgba(242,197,49,.14);
+}
