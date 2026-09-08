@@ -2988,10 +2988,9 @@ html:not([data-show-pics="on"]) .fan-been .been-hint { display: block; }
 @media (prefers-reduced-motion: reduce) { .been a { transition: none; } }
 
 /* ── the shared backdrop, for the pages added in 2026-09 ──────────────────
-   Eleven pages went up at once (Phineas and Ferb, Maze Runner, Rio, Overwatch,
-   Mario, Bloons, Beyblade, Yu-Gi-Oh, Ice Age, Skylanders, LEGO Fortnite) and
-   giving each of them its own hand-drawn sky would have meant eleven
-   near-identical files. The markup and the geometry live here once; each
+   Ten pages went up at once (Phineas and Ferb, Maze Runner, Rio, Overwatch,
+   Mario, Bloons, Beyblade, Yu-Gi-Oh, Ice Age, Skylanders) and giving each of
+   them its own hand-drawn sky would have meant ten near-identical files. The markup and the geometry live here once; each
    page's own stylesheet sets three custom properties and nothing else, which
    is the same bargain the tile lettering makes over in fandom.css.
 

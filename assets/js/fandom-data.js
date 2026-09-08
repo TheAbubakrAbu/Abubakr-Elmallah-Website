@@ -169,27 +169,13 @@ window.FANDOMS = [
       meta: 'Toy · 1958', href: '/worlds/lego/',
       desc: 'The clutch power patent is from 1958 and a brick from then still fits one moulded this morning.' },
 
-    { name: 'How to Train Your Dragon', wm: 'httyd', glyph: 'helm', c1: '#7fd0e8', c2: '#0c1620',
-      when: 'Since the first film, as a kid',
-      meta: 'Film · 2010', href: '/worlds/how-to-train-your-dragon/',
-      desc: 'The best flight scenes in animation, John Powell’s best score, and a boy who fixes what he broke with engineering. The Test Drive sequence still does it.' },
-
-    { name: 'SpongeBob', wm: 'spongebob', glyph: 'pineapple', c1: '#f0e03f', c2: '#0a2a3a',
-      when: 'Since I was a kid',
-      meta: 'Animation · 1999', href: '/worlds/spongebob/',
-      desc: 'The golden-age seasons are some of the best-written comedy ever animated, and the internet has been speaking in its screenshots for twenty years.' },
-
     /* The batch that went in after the first pass, in the order he ranks them
        rather than the order they arrived. They went in without a `when` line,
        because the rest of this file says when I actually got into each thing
        and a made-up date would make the one honest column on the page
        unreliable; he has since given every one, so every tile here has one.
-       Two of that batch, Angry Birds and Geometry Dash, are down in the
-       As a Kid group now. */
-    { name: 'Pixar', wm: 'pixar', glyph: 'lamp', c1: '#4fa8e0', c2: '#0a1524',
-      when: 'Since elementary school',
-      meta: 'Studio · 1986', href: '/worlds/pixar/',
-      desc: 'The studio that kept betting a cartoon could be about grief and kept being right. Toy Story was the first fully computer-animated feature; the shorts before it are where the software came from.' },
+       Three of that batch, Pixar, Angry Birds and Geometry Dash, are down in
+       the As a Kid group now. */
     { name: 'The Hunger Games', wm: 'hunger', glyph: 'mockingjay', c1: '#e0b040', c2: '#1a1408',
       when: 'Somewhere in middle school',
       meta: 'Books · 2008', href: '/worlds/hunger-games/',
@@ -202,40 +188,16 @@ window.FANDOMS = [
       when: '10th grade',
       meta: 'Director · 1998', href: '/worlds/christopher-nolan/',
       desc: 'Thirteen films about time, told out of order and shot on film stock the size of a postcard: Inception, Interstellar, Oppenheimer, and now The Odyssey. Zimmer and Göransson did the rest.' },
-    /* The Zelda and Splatoon tiles came out on 2026-08-31, when both of their
-       pages were folded into this one; Mario, which never had a tile or a page
-       of its own, is in there now as well. */
-    { name: 'Nintendo', wm: 'nintendo', glyph: 'dpad', c1: '#e0403a', c2: '#220e0c',
-      when: 'Since I was a kid; the Switch on launch, 2017',
-      meta: 'Company \u00b7 1889', href: '/worlds/nintendo/',
-      desc: 'A playing-card company from 1889 that spent eighty years trying taxis, instant rice and a love hotel before it found the thing it was for. Mario, Zelda and Splatoon are all in there, and it is still the only one of the three console makers that builds the hardware around one idea and dares the software to catch up.' },
-    /* The studios he grew up on. Looney Tunes came in beside this one and has
-       since gone down to the As a Kid group; the theme parks that arrived with
-       them are in the parks group at the foot of the page. */
-    { name: 'DreamWorks', wm: 'dreamworks', glyph: 'moon', c1: '#8fb8e0', c2: '#0c1626',
-      when: 'As a kid',
-      meta: 'Studio \u00b7 1994', href: '/worlds/dreamworks/',
-      desc: 'Spielberg, Katzenberg and Geffen started it in 1994 to be the studio Disney would not let them run, and it is the only one that ever seriously took animation off Disney. Shrek, Madagascar, and two more that are far enough up this page to have tiles of their own.' },
-    { name: 'The Maze Runner', wm: 'mazerunner', glyph: 'spiral', c1: '#8fbf78', c2: '#132018',
-      when: 'Middle school',
-      meta: 'Books \u00b7 2009', href: '/worlds/maze-runner/',
-      desc: 'A boy wakes in a maze with no memory, a lift arriving once a month, and rules everyone follows until somebody does not.' },
 
-    /* September 2026. Mario comes out from under Nintendo, which keeps the
-       company and hands over the plumber. The rest of that batch, Rio and the
-       toy lines, are in the As a Kid group below. */
-    { name: 'Mario', wm: 'mario', glyph: 'mushroom', c1: '#e0403a', c2: '#2a0e0c',
-      when: 'Since I was a kid',
-      meta: 'Game \u00b7 1981', href: '/worlds/mario/',
-      desc: 'The jump was designed before the character was. Forty years later it is still the most reliable set of movement rules in games, and he has appeared in more of them than anyone.' },
     { name: 'Overwatch', wm: 'overwatch', glyph: 'visor', c1: '#f09d3a', c2: '#16233a',
       when: 'After it launched',
       meta: 'Game \u00b7 2016', href: '/worlds/overwatch/',
       desc: 'The hero shooter that invented the genre: nobody has the same gun, and switching character mid-match is the actual skill.' },
-    { name: 'LEGO Fortnite', wm: 'legofortnite', glyph: 'brickeye', c1: '#7fbf5f', c2: '#16281a',
-      when: 'December 2023, when it opened',
-      meta: 'Game \u00b7 2023', href: '/worlds/lego-fortnite/',
-      desc: 'Epic and the Billund brick: a survival-crafting game living inside a battle royale, where everything you build snaps to the stud grid.' },
+
+    { name: 'Clash Royale', wm: 'clash', glyph: 'kingtower', c1: '#6f9fe8', c2: '#101a30',
+      when: 'Elementary school, when it launched; still on my phone',
+      meta: 'Game · 2016', href: '/worlds/clash-royale/',
+      desc: 'Three-minute chess with an elixir bar: two lanes, three towers, eight cards. Clash of Clans lives inside its page, because that is the village the whole thing marched out of.' },
 
       ] },
 
@@ -249,12 +211,57 @@ window.FANDOMS = [
      `when` line on each tile is the reason it is down here rather than up
      there. Teen Titans Go and Despicable Me arrived straight into this group
      on the same day, because there was never a point at which they belonged
-     anywhere else. */
+     anywhere else.
+
+     2026-09-07: eight more came down out of Tertiary, in the order he ranks
+     them, which is why they sit above the ones that were always here. Clash
+     Royale went the other way on the same day; it is still on his phone, so it
+     was never an As a Kid tile in the first place. */
   { id: 'kid', label: 'As a Kid', note: 'everything to me then; I do not put them on now', items: [
-    { name: 'Clash Royale', wm: 'clash', glyph: 'kingtower', c1: '#6f9fe8', c2: '#101a30',
-      when: 'Elementary school, when it launched',
-      meta: 'Game · 2016', href: '/worlds/clash-royale/',
-      desc: 'Three-minute chess with an elixir bar: two lanes, three towers, eight cards. Clash of Clans lives inside its page, because that is the village the whole thing marched out of.' },
+    { name: 'SpongeBob', wm: 'spongebob', glyph: 'pineapple', c1: '#f0e03f', c2: '#0a2a3a',
+      when: 'Since I was a kid',
+      meta: 'Animation · 1999', href: '/worlds/spongebob/',
+      desc: 'The golden-age seasons are some of the best-written comedy ever animated, and the internet has been speaking in its screenshots for twenty years.' },
+    { name: 'DuckTales', wm: 'ducktales', glyph: 'moneybin', c1: '#f0b333', c2: '#10363a',
+      when: 'As a kid',
+      meta: 'Animation \u00b7 1987', href: '/worlds/ducktales/',
+      desc: 'Three nephews parked with the richest duck in the world, and a building full of money on a hill. Carl Barks invented him in 1947 for one story and never got him back; the 2017 reboot went back past the cartoon to the comics and was better for it.' },
+    { name: 'How to Train Your Dragon', wm: 'httyd', glyph: 'helm', c1: '#7fd0e8', c2: '#0c1620',
+      when: 'Since the first film, as a kid',
+      meta: 'Film · 2010', href: '/worlds/how-to-train-your-dragon/',
+      desc: 'The best flight scenes in animation, John Powell’s best score, and a boy who fixes what he broke with engineering. The Test Drive sequence still does it.' },
+
+    /* The studios he grew up on. Looney Tunes came in beside this one and is
+       down here too; the theme parks that arrived with them are in the parks
+       group at the foot of the page. */
+    { name: 'DreamWorks', wm: 'dreamworks', glyph: 'moon', c1: '#8fb8e0', c2: '#0c1626',
+      when: 'As a kid',
+      meta: 'Studio \u00b7 1994', href: '/worlds/dreamworks/',
+      desc: 'Spielberg, Katzenberg and Geffen started it in 1994 to be the studio Disney would not let them run, and it is the only one that ever seriously took animation off Disney. Shrek, Madagascar, and two more that are far enough up this page to have tiles of their own.' },
+    { name: 'Pixar', wm: 'pixar', glyph: 'lamp', c1: '#4fa8e0', c2: '#0a1524',
+      when: 'Since elementary school',
+      meta: 'Studio · 1986', href: '/worlds/pixar/',
+      desc: 'The studio that kept betting a cartoon could be about grief and kept being right. Toy Story was the first fully computer-animated feature; the shorts before it are where the software came from.' },
+
+    /* The Zelda and Splatoon tiles came out on 2026-08-31, when both of their
+       pages were folded into this one. */
+    { name: 'Nintendo', wm: 'nintendo', glyph: 'dpad', c1: '#e0403a', c2: '#220e0c',
+      when: 'Since I was a kid; the Switch on launch, 2017',
+      meta: 'Company \u00b7 1889', href: '/worlds/nintendo/',
+      desc: 'A playing-card company from 1889 that spent eighty years trying taxis, instant rice and a love hotel before it found the thing it was for. Mario, Zelda and Splatoon are all in there, and it is still the only one of the three console makers that builds the hardware around one idea and dares the software to catch up.' },
+
+    /* September 2026. Mario comes out from under Nintendo, which keeps the
+       company and hands over the plumber. The rest of that batch, Rio and the
+       toy lines, are further down this group. */
+    { name: 'Mario', wm: 'mario', glyph: 'mushroom', c1: '#e0403a', c2: '#2a0e0c',
+      when: 'Since I was a kid',
+      meta: 'Game \u00b7 1981', href: '/worlds/mario/',
+      desc: 'The jump was designed before the character was. Forty years later it is still the most reliable set of movement rules in games, and he has appeared in more of them than anyone.' },
+    { name: 'The Maze Runner', wm: 'mazerunner', glyph: 'spiral', c1: '#8fbf78', c2: '#132018',
+      when: 'Middle school',
+      meta: 'Books \u00b7 2009', href: '/worlds/maze-runner/',
+      desc: 'A boy wakes in a maze with no memory, a lift arriving once a month, and rules everyone follows until somebody does not.' },
+
     { name: 'Angry Birds', wm: 'angrybirds', glyph: 'bird', c1: '#e03a2a', c2: '#241009',
       when: 'Since elementary school',
       meta: 'Game · 2009', href: '/worlds/angry-birds/',

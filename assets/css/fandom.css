@@ -649,15 +649,6 @@ a.fr-card { cursor: pointer; }
   font-size: .98rem; text-shadow: 2px 2px 0 #2a2044;
 }
 
-/* LEGO Fortnite: the LEGO half wins the typeface, since that is the half you
-   can see in the game, and the offset is Fortnite's blue rather than red so
-   the tile is not mistaken for the LEGO one two rows up. */
-.wm--legofortnite {
-  font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans);
-  font-weight: 700; text-transform: uppercase; letter-spacing: .02em;
-  font-size: .95rem; text-shadow: 2px 2px 0 #1c3320, 4px 4px 0 rgba(0,0,0,.45);
-}
-
 /* LEGOLAND is the LEGO mark with a park under it. Same rounded bold as
    .wm--lego on purpose, and the offset is green rather than red so the two
    tiles are still telling apart at a glance. */
@@ -722,6 +713,15 @@ a.fr-card { cursor: pointer; }
   font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans);
   font-weight: 800; letter-spacing: .02em; font-size: 1rem;
   text-shadow: 2px 2px 0 #123c40, 3px 3px 0 rgba(0,0,0,.4);
+}
+
+/* DuckTales sets itself in a fat rounded serif with a hard drop shadow, which
+   is the Disney Afternoon house look and nothing else on this page uses it.
+   Cooper Black if the machine has it, Bookman or Georgia bold if not. */
+.wm--ducktales {
+  font-family: "Cooper Black", "Bookman Old Style", Georgia, serif;
+  font-weight: 700; letter-spacing: .01em; font-size: 1.06rem;
+  text-shadow: 2px 2px 0 #10363a, 3px 3px 0 rgba(0,0,0,.45);
 }
 
 /* Breaking Bad writes its own two elements */

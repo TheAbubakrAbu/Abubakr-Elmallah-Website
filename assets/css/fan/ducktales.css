@@ -1,0 +1,12 @@
+/* fan/ducktales.css: /worlds/ducktales/ only.
+   The backdrop geometry is shared (.np-sky in fanpages.css); this file
+   only says what colour this world is. Gold on a deep harbour green,
+   because the Money Bin sits on a hill over Duckburg and the gold is
+   the only bright thing in the frame. */
+
+body[data-fan="ducktales"] {
+  --a: #f0b333;
+  --np1: #10363a;
+  --np2: #06090f;
+  --np3: rgba(240,179,51,.14);
+}

@@ -5,7 +5,7 @@
    of the village game’s cast and the two belong on one page the way the
    films and the shows share a page elsewhere on this site. */
 window.FAN_PAGE = {
-  when: { at: 'Elementary school, when it launched', note: 'Clash of Clans was the first or second game I ever played, full stop. It was already on every iPad in every classroom and it is where I started. Royale arrived in 2016, turned the same cast into something you could finish before recess ended, and is the one I actually like more; the village is the one I was brought up on. I also recorded YouTube videos of myself playing Clash of Clans, the same way I did with Minecraft and Geometry Dash.' },
+  when: { at: 'Elementary school, when it launched; still on my phone', note: 'Clash of Clans was the first or second game I ever played, full stop. It was already on every iPad in every classroom and it is where I started. Royale arrived in 2016, turned the same cast into something you could finish before recess ended, and is the one I actually like more; the village is the one I was brought up on. I also recorded YouTube videos of myself playing Clash of Clans, the same way I did with Minecraft and Geometry Dash.' },
   sections: [
 
   { id: 'loop', kind: 'cards', title: 'Clash Royale', note: 'three minutes, no downtime',

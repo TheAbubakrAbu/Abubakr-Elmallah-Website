@@ -278,16 +278,6 @@
              + '<ellipse cx="12" cy="16.6" rx="4.6" ry="2.1" fill="#0b0b0f"/>'
              + '<path d="M8.4 14.2 10.6 4h2.8l2.2 10.2z" opacity=".55"/>'
              + '<path d="M11.1 2.2h1.8v2.4h-1.8z" opacity=".8"/>',
-    // LEGO Fortnite: a brick with the storm eye behind it. Both parents, in
-    // one mark, because the tile is about the join rather than either side.
-    brickeye: '<circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor"'
-             + ' stroke-width="1.3" opacity=".5"/>'
-             + '<circle cx="12" cy="12" r="5.6" fill="none" stroke="currentColor"'
-             + ' stroke-width="1.1" opacity=".32"/>'
-             + '<rect x="5.6" y="10.4" width="12.8" height="6.2" rx="1.1"/>'
-             + '<rect x="7.4" y="7.9" width="3.1" height="2.7" rx="1"/>'
-             + '<rect x="13.5" y="7.9" width="3.1" height="2.7" rx="1"/>',
-
     /* ── the two added on 2026-09-06 ── */
     // Teen Titans Go: Titans Tower. A building shaped like a letter T, on its
     // island in the bay, which is the least practical thing in comics and the
@@ -325,6 +315,11 @@
              + ' opacity=".78"/>',
     // Dinosaur Train: the locomotive, with a long neck coming out of the last
     // carriage. Two objects, because either one alone is somebody else's page.
+    // the Money Bin: the cube on the hill above Duckburg, with the mark on it
+    moneybin: '<path d="M6.4 3.2h11.2v2.6H6.4z"/>'
+             + '<path d="M4.4 6.4h15.2v13.2H4.4z"/>'
+             + '<path d="M12 8.2v9.6M14.6 10.6c0-1.1-1.2-1.8-2.6-1.8s-2.6.7-2.6 1.8 1.1 1.6 2.6 2.1 2.6 1 2.6 2.1-1.2 1.8-2.6 1.8-2.6-.7-2.6-1.8" fill="none" stroke="#000" stroke-width="1.5" opacity=".38" stroke-linecap="round"/>'
+             + '<rect x="2.4" y="19.6" width="19.2" height="1.8" rx=".7"/>',
     loco:    '<path d="M2.2 11.2h7.4v6.4H2.2z"/>'
              + '<path d="M3.4 7.6h2.2v3.6H3.4z" opacity=".8"/>'
              + '<path d="M10.4 12.4h6.2v5.2h-6.2z" opacity=".72"/>'
