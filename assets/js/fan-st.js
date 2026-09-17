@@ -344,6 +344,68 @@ window.FAN_PAGE = {
         href: 'https://www.youtube.com/watch?v=GdQpg--0H8w', link: 'Listen' },
     ] },
 
+  /* Songs that are not in Stranger Things at all. They live here because this
+     is the page they feel like, not because the show ever used one: the same
+     move as Game of Thrones' own 'Not In The Show' section. `mood` is the
+     group, `viral` is the year the song actually took over reels and TikTok,
+     which is usually nowhere near the release year (After Dark is 2014 and
+     went viral in 2021; Where Is My Mind? is 1988 and went round again in
+     2020). Sorted by `viral` rather than by release because that is the order
+     I met them in. Every release year and viral year below is off Wikipedia
+     or the artist's own upload, not memory. */
+  { id: 'reels-songs', kind: 'tiles', compact: true, title: 'Not In The Show', note: 'thirteen songs · the ones reels made sad',
+    lede: 'None of these appear in Stranger Things. They are the sad ones off my playlist, and most of them got to me the same way: sped up, slowed down, or reverbed under somebody’s edit at two in the morning. They sound like this show even when they have nothing to do with it. Grouped by what they sound like, sorted by the year each one actually went round on reels and TikTok, which is rarely the year it came out.',
+    groupable: { key: 'mood', label: 'Group', on: 'By mood', open: 'on' },
+    sortable: { label: 'Sort', authored: 'asc', by: [
+      { key: 'viral', label: 'Went viral', asc: 'Earliest', desc: 'Latest' },
+      { key: 'year',  label: 'Released',   asc: 'Oldest',   desc: 'Newest' },
+    ] },
+    items: [
+      { title: 'Where Is My Mind?', mood: 'The older ones that came back', accent: '#c9cdd2', year: 1988, viral: 2020, sub: 'Pixies · 1988 · round again 2020',
+        desc: 'Surfer Rosa, and already the sound of a mind coming apart before Fight Club or anybody’s edit got hold of it. The one on this list that was uncanny first and sad second.',
+        href: 'https://www.youtube.com/watch?v=OJ62RzJkYUo', link: 'Listen' },
+      { title: 'No Surprises', mood: 'The older ones that came back', accent: '#8f9fb0', year: 1997, viral: 2021, sub: 'Radiohead · OK Computer · 1997 · round again 2021',
+        desc: 'A lullaby about giving up, sung by a man with his head in a fishbowl. It is the quietest track on OK Computer and the most frightening.',
+        href: 'https://www.youtube.com/watch?v=u5CVsCnxyXg', link: 'Listen' },
+      { title: 'Je te laisserai des mots', mood: 'The older ones that came back', accent: '#a0a8c0', year: 2010, viral: 2021, sub: 'Patrick Watson · 2010 · viral 2021–22',
+        desc: 'Two minutes of piano and a voice barely above a whisper, written for a film almost nobody saw, and then adopted wholesale by a generation trying to score the pandemic. I will leave you words under your door.',
+        href: 'https://www.youtube.com/watch?v=XZfyyk0_Yqs', link: 'Listen' },
+
+      { title: 'After Dark', mood: 'The synth-sad ones', accent: '#e8261d', year: 2014, viral: 2021, sub: 'Mr.Kitty · Time · 2014 · viral 2021',
+        desc: 'The one that sounds most like this page: a cold eighties synth, a voice mixed too far back, and somebody walking home alone. Released in 2014, pulled out of nowhere by a fan video in 2019, and everywhere by 2021.',
+        href: 'https://www.youtube.com/watch?v=zZQgmM_ZhEc', link: 'Listen' },
+      { title: 'The Perfect Girl', mood: 'The synth-sad ones', accent: '#e05a9a', year: 2021, viral: 2021, sub: 'Mareux · 2021 · viral 2021',
+        desc: 'A darkwave cover of The Cure, which is why it feels older than it is. It went round on TikTok in the summer before it was even released as a single.',
+        href: 'https://www.youtube.com/watch?v=CskXMu9mRDk', link: 'Listen' },
+      { title: 'Little Dark Age', mood: 'The synth-sad ones', accent: '#8f4fd0', year: 2018, viral: 2021, sub: 'MGMT · 2018 · viral 2020–21',
+        desc: 'Written as a synth-pop record and re-heard three years later as the soundtrack to every edit with a painting in it. The sped-up version is the one most people know, which MGMT have been very relaxed about.',
+        href: 'https://www.youtube.com/watch?v=rtL5oMyBHPs', link: 'Listen' },
+      { title: 'Resonance', mood: 'The synth-sad ones', accent: '#5fd0d0', year: 2014, viral: 2016, sub: 'HOME · Odyssey · 2014 · viral from 2016',
+        desc: 'The single most-used piece of nostalgia music on the internet, and the one that basically invented the genre of a slowed synth over old footage. It was doing this on Vine years before reels existed.',
+        href: 'https://www.youtube.com/watch?v=8GW6sLrK40k', link: 'Listen' },
+
+      { title: 'snowfall', mood: 'The phonk ones', accent: '#4f9fd0', year: 2022, viral: 2023, sub: 'øneheart x reidenshi · 2022 · viral 2023',
+        desc: 'Two minutes of ambient nothing with a beat under it, and over a billion streams. It is barely a song and completely effective.',
+        href: 'https://www.youtube.com/watch?v=U1m46getoEw', link: 'Listen' },
+      { title: 'Memory Reboot', mood: 'The phonk ones', accent: '#6f7fd0', year: 2023, viral: 2023, sub: 'VØJ, Narvent · 2023 · viral 2023',
+        desc: 'The edit song. If you have seen a slow-motion cut of anything in the last three years, this was probably under it, usually with Blade Runner 2049 on screen.',
+        href: 'https://www.youtube.com/watch?v=ivPjMJl9yfY', link: 'Listen' },
+
+      { title: 'Chamber of Reflection', mood: 'The lonely ones', accent: '#d09a4f', year: 2014, viral: 2022, sub: 'Mac DeMarco · Salad Days · 2014 · viral from 2022',
+        desc: 'Built on a 1975 Shigeo Sekito sample, and the standard soundtrack for being alone on purpose. Alone again.',
+        href: 'https://www.youtube.com/watch?v=kz9jhG963no', link: 'Listen' },
+      { title: 'welcome and goodbye', mood: 'The lonely ones', accent: '#9f8fd0', year: 2018, viral: 2022, sub: 'Dream, Ivory · 2018 · viral in the slowed edit',
+        desc: 'Dream-pop that most people, me included, met as a slowed and reverbed edit rather than as the record. The original is faster and less sad than the version in your head.',
+        href: 'https://www.youtube.com/watch?v=DWJh0Dny5Ug', link: 'Listen' },
+      { title: 'Hadal Ahbek', mood: 'The lonely ones', accent: '#e0a83a', year: 2020, viral: 2021, sub: 'Issam Alnajjar · 2020 · viral 2021',
+        desc: 'A Jordanian teenager recording in his bedroom, and the first Arabic song to sit at number one globally. The only one on this list I can understand without the subtitles.',
+        href: 'https://www.youtube.com/watch?v=FFwCkyHXyAQ', link: 'Listen' },
+
+      { title: 'Dimensions', mood: 'The space one', accent: '#4fd07f', year: 2013, viral: 2022, sub: 'Arcade Fire with Owen Pallett · Her · 2013',
+        desc: 'Off the score for Her, which is the other thing that sounds like being the last person awake. Arcade Fire wrote a whole film’s worth of this and then people cut it over footage of space.',
+        href: 'https://www.youtube.com/watch?v=pn-yzvKxiW0', link: 'Listen' },
+    ] },
+
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'On Netflix', href: 'https://www.netflix.com/title/80057281',

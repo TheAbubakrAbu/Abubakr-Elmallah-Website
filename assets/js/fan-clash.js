@@ -105,8 +105,8 @@ window.FAN_PAGE = {
 
   /* the music: both menus, the sound logo, and the four noises that are more
      recognisable than any of the actual music */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'seven tracks · two menus and five noises',
-    lede: 'Supercell games are mostly remembered for their sound effects rather than their scores, which is a strange thing to be able to say about a company. Both menu themes are here, and so are the noises: the sound logo, the King’s two emotes, the Hog Rider, and an hour of village ambience.',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'eight tracks · two menus, five noises, and a meme',
+    lede: 'Supercell games are mostly remembered for their sound effects rather than their scores, which is a strange thing to be able to say about a company. Both menu themes are here, and so are the noises: the sound logo, the King’s two emotes, the Hog Rider, and an hour of village ambience. At the end, the one song on here Supercell had nothing to do with.',
     items: [
       { title: 'Clash Royale Main Menu', accent: '#6f9fe8', sub: 'Supercell · Clash Royale · 2016 · 3:16',
         desc: 'The brass fanfare between matches, which is where most of the time in this game is actually spent: deck editing, chest timers, and staring at a card you cannot afford to upgrade.',
@@ -129,6 +129,13 @@ window.FAN_PAGE = {
       { title: 'Hog Rider!', accent: '#c98f4f', sub: 'Supercell · Clash of Clans · 1:01',
         desc: 'HOG RIDAAAAH. One voice line, shouted on deployment, that outgrew both games and became a whole internet noise. Supercell liked it enough to build a television advert around it.',
         href: 'https://www.youtube.com/watch?v=XH3Xu1-cvII', link: 'Watch' },
+      /* Not a Supercell track and not in the game: a rap song that became the
+         standard audio under Clash Royale meme edits, which is the only reason
+         it is on this page. Flagged as such in the sub so the list stays
+         honest about what Supercell actually made. */
+      { title: 'Intelligence', accent: '#9f6fe8', sub: 'is0kenny \u00b7 2023 \u00b7 not in the game',
+        desc: 'The song every Clash Royale meme edit runs on: a rap track with nothing to do with Supercell that got welded to the game by reels, usually under a clip of somebody making an unbelievably stupid play and calling it intelligence.',
+        href: 'https://www.youtube.com/watch?v=GI2ZSrFEEc4', link: 'Listen' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where the numbers live',
