@@ -94,7 +94,16 @@ window.LEGO_GAMES =
         finished: '2022-05-06',
         shots: ['start-screen', 'pause-screen', 'load-game', 'characters', 'stud-fountain'],
         shotAlt: 'Steam library banner for LEGO Star Wars: The Skywalker Saga, showing my play time' },
-      { title: 'The LEGO Movie 2 Videogame', accent: '#4fc0e0', year: 2019, series: 'The LEGO Movie', proj: '16.5', sub: '2019 · Steam', desc: 'Building as a mechanic rather than a cutscene.' },
+      { title: 'The LEGO Movie 2 Videogame', accent: '#4fc0e0', year: 2019, series: 'The LEGO Movie', proj: '16.5', rating: 7, sub: '2019 · Steam', desc: 'Building as a mechanic rather than a cutscene: you gather bricks and spend them on what a place is missing, which is the first time one of these games made the building part the actual verb. Thirteen hours, and the shortest route to a hundred percent of any of them after the first Movie game.',
+        done: true, hours: '13', shot: '/assets/img/franchises/lego/movie-2/banner.jpg',
+        /* from the frames: the pause screen reads 11:56:03, 475/475 Master
+           Pieces, 134,240 studs and 100.0%; the Steam banner reads 13 hours and
+           50/50; and Intergalactic Planetary Scavenger, which is the one for
+           finishing at 100%, stamps Sep 16 2026 10:36pm, which the load-game
+           slot agrees with at 10:37pm */
+        finished: '2026-09-16',
+        shots: ['start-screen', 'pause-screen', 'load-game', 'characters', 'galaxy-map'],
+        shotAlt: 'Steam library banner for The LEGO Movie 2 Videogame, showing my play time' },
       { title: 'LEGO DC Super-Villains', accent: '#8f6fd0', year: 2018, series: 'Batman & DC', proj: '41.8', sub: '2018 · Steam', desc: 'You play a custom villain. Easily the best idea they had in the late run.' },
       { title: 'LEGO The Incredibles', accent: '#e0642a', year: 2018, series: 'Standalone', proj: '20.2', sub: '2018 · Steam', desc: 'Both films, and crime waves in the open world.' },
       { title: 'LEGO Marvel Super Heroes 2', accent: '#d01012', year: 2017, series: 'Marvel', proj: '60.0', sub: '2017 · Steam', desc: 'Chronopolis, and Kang pulling eras together.' },
@@ -110,7 +119,7 @@ window.LEGO_GAMES =
       { title: 'LEGO Jurassic World', accent: '#e0642a', year: 2015, series: 'Standalone', proj: '29.7', sub: '2015 · Steam', desc: 'All four films at the time, and you can play as the dinosaurs.' },
       { title: 'LEGO Batman 3: Beyond Gotham', accent: '#0055bf', year: 2015, series: 'Batman & DC', proj: '35.9', sub: '2015 · Steam', desc: 'The Justice League in space, with the Lantern corps.' },
       { title: 'LEGO The Hobbit', accent: '#9a7a4a', year: 2014, series: 'Middle-earth', proj: '36.8', sub: '2014 · Steam', desc: 'Only ever covered two of the three films. It just stops.' },
-      { title: 'The LEGO Movie Videogame', accent: '#4fc0e0', year: 2014, series: 'The LEGO Movie', proj: '17.6', rating: 7, sub: '2014 · Steam', desc: 'The film, and the instruction-following joke made playable. A nice short easy one: fourteen hours to a hundred percent, second-quickest of these after LEGO Indiana Jones, and it never once fought me. A seven for exactly that.',
+      { title: 'The LEGO Movie Videogame', accent: '#4fc0e0', year: 2014, series: 'The LEGO Movie', proj: '17.6', rating: 7, sub: '2014 · Steam', desc: 'The film, and the instruction-following joke made playable. A nice short easy one: fourteen hours to a hundred percent, third-quickest of these behind LEGO Indiana Jones and its own sequel, and it never once fought me. A seven for exactly that.',
         done: true, hours: '14', shot: '/assets/img/franchises/lego/movie/banner.jpg',
         /* from its own load-game screen: slot 1, 9/3/2026 3:34am, 100.0%; the
            Steam banner reads 48/48 achievements and 14 hours the same night,

@@ -66,6 +66,52 @@ body[data-fan="travels"] { --a: #7fb8e8; }
    and the wider the monitor the further apart they get. If you add a block
    here, give it a zero side margin. */
 
+/* ───────── the mode picker ─────────
+   Plane travels, road trips, or both. Three buttons that are ONE choice, so
+   they are a radiogroup and they look like a segmented control rather than
+   three separate toggles: one bordered track, no gaps, the chosen segment
+   filled. */
+.tv-modes { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 1.5rem; }
+.tv-modebar {
+  display: inline-flex; flex-wrap: wrap; gap: 2px; padding: 3px;
+  border: 1px solid var(--line); border-radius: 9px;
+  background: rgba(255,255,255,.02);
+}
+.tv-mode {
+  display: grid; gap: 0.12rem; justify-items: start;
+  padding: 0.5rem 0.95rem; border: 0; border-radius: 6px;
+  background: transparent; color: inherit; cursor: pointer; text-align: left;
+  transition: background .16s ease, color .16s ease;
+}
+.tv-mode b {
+  font-family: var(--mono); font-weight: 500; font-size: 0.66rem;
+  letter-spacing: 0.1em; color: var(--ink-dim); transition: color .16s ease;
+}
+.tv-mode span {
+  font-family: var(--mono); font-size: 0.48rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mute);
+}
+.tv-mode:hover b { color: var(--ink); }
+.tv-mode[aria-checked="true"] {
+  background: color-mix(in srgb, var(--a) 16%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--a) 40%, transparent);
+}
+.tv-mode[aria-checked="true"] b { color: var(--a); }
+.tv-mode:focus-visible { outline: 2px solid var(--a); outline-offset: 2px; }
+.tv-modehint {
+  margin: 0.7rem 0 0; font-family: var(--mono); font-size: 0.55rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
+}
+
+/* ── what each mode hides ──
+   Every trip is on the page in every mode; only the display changes, so the
+   indices travels-map.js addresses trips by stay put. data-road is written by
+   travels.js: "1" for a drive, "0" for a flight. */
+#tvRoot[data-mode="plane"] .tv-trip[data-road="1"],
+#tvRoot[data-mode="plane"] .tv-shortgrp li[data-road="1"],
+#tvRoot[data-mode="road"]  .tv-trip[data-road="0"],
+#tvRoot[data-mode="road"]  .tv-shortgrp li[data-road="0"] { display: none; }
+
 /* ───────── summary ───────── */
 .tv-summary { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 1.8rem; }
 /* --n is the number of tiles, set inline by travels.js: four normally, five
@@ -275,6 +321,24 @@ body[data-fan="travels"] { --a: #7fb8e8; }
 .tv-s-tag--rd {
   color: #cfd6dd; background: rgba(200,212,224,.10); border-color: rgba(200,212,224,.28);
 }
+
+/* ── lived there ──
+   Three entries on this page are not trips: they are the places I lived
+   before I can remember any of it. Green rather than the road's grey or
+   Umrah's gold, and a house rather than a road, because the distinction it
+   marks is not how I got there but that I did not leave. The counts treat
+   these apart too: see `lived` in travels-data.js. */
+.tv-trip-tag--lv {
+  display: inline-flex; align-items: center; gap: 0.32rem;
+  color: #9fd8b8; background: rgba(120,200,160,.10); border-color: rgba(120,200,160,.32);
+}
+.tv-trip-tag--lv svg {
+  width: 11px; height: 11px; flex: none; fill: none;
+  stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.tv-s-tag--lv {
+  color: #9fd8b8; background: rgba(120,200,160,.10); border-color: rgba(120,200,160,.28);
+}
 .tv-trip h3 {
   font-family: var(--sans); font-weight: 650; font-size: clamp(1.05rem, 2.4vw, 1.35rem);
   color: var(--c1); line-height: 1.25;
@@ -289,18 +353,80 @@ body[data-fan="travels"] { --a: #7fb8e8; }
    Drawn small and quiet next to the countries line: it is there to answer
    "what does that one look like", not to be a second illustration competing
    with the photograph beside it. A trip through two countries gets two. */
+/* The country first, then every state the trip was in. A drive across eight
+   states is eight outlines; wrap, because a cross-country run has more of them
+   than fit on one line. */
 .tv-shapes {
-  display: flex; align-items: flex-end; gap: 0.55rem;
+  display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.55rem 0.5rem;
   margin-top: 0.55rem;
 }
-.tv-shape { display: block; width: 46px; height: 46px; }
-.tv-shape svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.tv-shape { display: grid; justify-items: center; gap: 0.2rem; width: 46px; }
+.tv-shape svg { display: block; width: 46px; height: 46px; overflow: visible; }
 .tv-shape svg path {
   fill: color-mix(in srgb, var(--c1) 26%, transparent);
   stroke: color-mix(in srgb, var(--c1) 75%, #fff);
   stroke-width: 1.6; stroke-linejoin: round; vector-effect: non-scaling-stroke;
 }
-@media (max-width: 560px) { .tv-shape { width: 38px; height: 38px; } }
+/* The name under each one. Without it a row of eight small silhouettes is a
+   puzzle: Missouri and Illinois are not tellable apart at 46px. */
+.tv-shape i {
+  font-style: normal; font-family: var(--mono); font-size: 0.4rem;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--mute);
+  text-align: center; line-height: 1.25; max-width: 100%;
+}
+/* A state sits quieter than the country it is inside. */
+.tv-shape.is-state svg path { fill: color-mix(in srgb, var(--c1) 16%, transparent); }
+/* Crossed, but with no photograph to prove it: drawn as an outline only, and
+   dashed, so the page never shows a deduction the way it shows evidence. */
+.tv-shape.is-crossed svg path {
+  fill: none; stroke-dasharray: 3 2;
+  stroke: color-mix(in srgb, var(--c1) 50%, #fff);
+}
+.tv-shape.is-crossed i { color: color-mix(in srgb, var(--mute) 70%, transparent); }
+@media (max-width: 560px) {
+  .tv-shape { width: 38px; }
+  .tv-shape svg { width: 38px; height: 38px; }
+}
+
+/* ── how big it is, and how many people were in it then ──
+   Two figures per place, set in the mono face because they are measurements.
+   The label above each says which year the population is from, so the number
+   is never mistaken for today's. Laid out as a row that wraps rather than a
+   table: there are two figures, and a table of two figures is furniture. */
+.tv-facts { list-style: none; margin: 0.75rem 0 0; padding: 0; display: grid; gap: 0.55rem; }
+.tv-facts li {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.3rem 1.4rem;
+  padding: 0.5rem 0.7rem; border-radius: 6px;
+  border: 1px solid var(--line); background: rgba(255,255,255,.02);
+}
+.tv-facts > li > b {
+  flex: 0 0 100%;
+  font-family: var(--mono); font-weight: 500; font-size: 0.56rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--c1) 80%, #fff);
+}
+.tv-fact {
+  display: grid; gap: 0.06rem;
+  font-family: var(--mono); font-size: 0.86rem; color: var(--ink);
+}
+.tv-fact i {
+  font-style: normal; font-size: 0.5rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+/* the second unit, and the "at the time" note: the same size as the label so
+   the actual figure is the only thing at full size on the line */
+.tv-fact em {
+  font-style: normal; font-size: 0.5rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute);
+}
+/* Only 'The Balkans' has one of these so far: a line saying the figures are
+   seven countries added together rather than one country's. It sits on its
+   own row under the figures, in italic, so it reads as a footnote to them and
+   not as a third figure. */
+.tv-factnote {
+  flex: 0 0 100%; margin-top: 0.15rem;
+  font-size: 0.7rem; font-style: italic; line-height: 1.5; color: var(--mute);
+}
 
 /* ── the cities, from the photographs' own GPS ──
    A wrapping run of small names, quieter than .tv-spots below it: those are
@@ -489,25 +615,31 @@ body[data-fan="travels"] { --a: #7fb8e8; }
 
 @media (prefers-reduced-motion: reduce) { .tv-photo:hover { transform: none; } }
 
-/* ── selection ──
-   Cards are real controls: clickable, focusable, Enter/Space. Picking one dims
-   the rest so a single entry can be read on its own; picking it again clears. */
-.tv-trip { cursor: pointer; transition: border-color .18s ease, opacity .25s ease, transform .18s ease; }
+/* ── the trip card ──
+   TOUCHING ANYWHERE ON A CARD SHOWS ITS PHOTOGRAPHS, and touching it again
+   puts them away. It replaced click-to-select, which dimmed the rest of the
+   page and read as the page breaking rather than as a feature.
+
+   So the card has to look touchable: a pointer cursor and a border that lifts
+   toward the trip's own colour. Only while the photographs switch is on,
+   though. With it off there is nothing behind the gesture, and a card that
+   invites a press and then does nothing is worse than one that never asked.
+
+   The text stays selectable. Copying a line out of a note ends in a click, and
+   the handler ignores that case rather than folding the card away underneath
+   it. */
+.tv-trip { transition: border-color .18s ease, transform .18s ease; }
 .tv-trip:hover { border-color: color-mix(in srgb, var(--c1) 45%, transparent); }
-.tv-trip:focus-visible { outline: 2px solid var(--c1); outline-offset: 2px; }
-.is-picking .tv-trip { opacity: .32; }
-.is-picking .tv-trip.is-sel {
-  opacity: 1;
-  border-color: var(--c1);
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--c1) 40%, transparent),
-              0 18px 40px -26px var(--c1);
+
+html[data-show-pics="on"] .tv-trip { cursor: pointer; }
+html[data-show-pics="on"] .tv-trip:hover {
+  border-color: color-mix(in srgb, var(--c1) 62%, transparent);
 }
-.is-picking .tv-trip.is-sel .tv-trip-bg { opacity: .85; }
-.is-picking .tv-grade { opacity: .4; }
-.tv-shortgrp a.is-sel {
-  background: color-mix(in srgb, var(--c) 16%, transparent);
-  border-left-color: var(--c);
-}
+/* the parts that do their own thing keep their own cursor */
+html[data-show-pics="on"] .tv-trip a,
+html[data-show-pics="on"] .tv-trip button { cursor: pointer; }
+html[data-show-pics="on"] .tv-trip .tv-shots { cursor: default; }
+
 @media (prefers-reduced-motion: reduce) { .tv-trip { transition: none; } }
 
 /* ───────── the map ─────────
@@ -726,4 +858,36 @@ body[data-fan="travels"] { --a: #7fb8e8; }
 @media (prefers-reduced-motion: reduce) {
   .tvm-arcs path { animation: none; stroke-dashoffset: 0; opacity: .3; }
   .tvm-pin .tvm-halo, .tvm-home .tvm-halo { animation: none; }
+}
+
+/* ── the map under the mode picker ──
+   travels-map.js stamps #tvMapMount with the chosen mode and every pin with
+   data-road. A filtered mode HIDES what it is not showing rather than fading
+   it: the picker is a filter, and a Road Trips map with the flights still
+   ghosted on it is answering a question that was not asked. Everything brings
+   them all back, which is what that mode is for.
+
+   The arcs go with the flights, since an arc belongs to a pin. The lit
+   countries stay lit in every mode: they are where I have been, which does not
+   change with how I got there. */
+#tvMapMount[data-mode="plane"] .tvm-pin[data-road="1"],
+#tvMapMount[data-mode="road"]  .tvm-pin[data-road="0"],
+#tvMapMount[data-mode="road"]  .tvm-arcs {
+  opacity: 0; pointer-events: none;
+}
+#tvMapMount[data-mode="plane"] .tvm-legend button[data-road="1"],
+#tvMapMount[data-mode="road"]  .tvm-legend button[data-road="0"] {
+  display: none;
+}
+
+/* ROAD TRIPS ZOOMS THE FRAME to North America, which is the only continent
+   they are on. travels-map.js swaps the viewBox; this transitions it, on the
+   browsers that animate that attribute, and the rest simply land on it. */
+#tvMapMount svg { transition: opacity .18s ease; }
+@supports (transition: d 1s) {
+  #tvMapMount svg { transition: view-box .45s var(--ease, ease), opacity .18s ease; }
+}
+.tvm-pin, .tvm-legend button, .tvm-arcs { transition: opacity .18s ease; }
+@media (prefers-reduced-motion: reduce) {
+  .tvm-pin, .tvm-legend button, .tvm-arcs, #tvMapMount svg { transition: none; }
 }

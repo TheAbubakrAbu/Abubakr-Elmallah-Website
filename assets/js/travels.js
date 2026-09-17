@@ -79,6 +79,14 @@
       return m ? +m[3] + ' ' + MONTHS[+m[2] - 1] + ' ' + m[1] : '';
     }
 
+    /* "Nov 2007", or just "2006" for an entry with no month. The three `lived`
+       entries are the only ones without one: a year somewhere is not dated to a
+       month the way a trip is, and concatenating an empty `m` left a leading
+       space in the heading and a double space in the aria-label. */
+    function whenOf(t) {
+      return (t.m ? t.m + ' ' : '') + t.y;
+    }
+
     function reveal(el) {
       if (typeof window.AEreveal === 'function') window.AEreveal(el);
       else {
@@ -171,57 +179,56 @@
       }).filter(function (g) { return g.rows.length; });
     }
 
-    /* ── the page ── */
-    function show() {
-      var trips = data.trips;
+    /* ── how you got there ──
+       Two ways of travelling and one timeline. The picker at the top of the
+       page switches between them, and everything below it -- the figures, the
+       map, the index and the trip sections -- answers to the same choice.
 
-      var places = {}, years = {}, stops = {}, flags = {};
+       It FILTERS rather than re-renders. Every trip is drawn once, with its
+       index into data.trips baked into the markup (`data-i`), and those indices
+       have to stay stable: travels-map.js addresses trips by them through
+       window.AEtravelSelect, and re-rendering a filtered array would renumber
+       every trip underneath it. So the whole page is built as it always was and
+       the mode only decides what is SHOWN, which also means switching modes
+       costs a class change rather than a rebuild, and a photo grid you have
+       already opened is still open when you come back.
+
+       The figures are the one part that cannot be done with a class, because
+       "4 countries" is a different sentence in each mode. Those are rewritten
+       in applyMode() below from the trips the mode actually contains. */
+    var MODES = [
+      { k: 'plane', label: 'Plane Travels', hint: 'the ones I flew to' },
+      { k: 'road',  label: 'Road Trips', hint: 'the ones I drove to' },
+      { k: 'all',   label: 'Everything', hint: 'every trip, however I got there' },
+    ];
+    /* ORDER MATTERS TWICE HERE. The first entry is what the page opens on, and
+       that is Plane Travels on purpose: Everything is the widest view but it is
+       not the most useful one to land on, and it is last in the row so it reads
+       as the way out of a filter rather than the default state of the page. */
+    function inMode(t, mode) {
+      return mode === 'all' || (mode === 'road' ? !!t.road : !t.road);
+    }
+
+    /* The inside of the "what kind of places" block, for whichever trips the
+       mode is showing. Pulled out of show() so applyMode() can rebuild it:
+       a Road Trips view that still claims twenty countries, most of them
+       across an ocean, is describing trips that are not on the screen.
+
+       Counted off the trips it is handed rather than off data.trips, for the
+       same reason the summary is. The note names the mode when it is filtered,
+       because "9 countries" with no qualifier reads as a total. */
+    function kindStats(trips, mode) {
+      var seen = {};
       trips.forEach(function (t) {
-        years[t.y] = 1;
-        String(t.countries).split('·').forEach(function (c) {
-          c = c.trim(); if (c) places[c] = 1;
-        });
-        if (t.via) stops[t.via] = 1;
-        (t.flags.match(/[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/g) || [])
-          .forEach(function (f) { flags[f] = 1; });
+        countriesOf(t).forEach(function (c) { seen[c] = 1; });
       });
+      var n = Object.keys(seen).length;
+      var what = mode === 'road' ? ' I have driven to'
+               : mode === 'plane' ? ' I have flown to'
+               : '';
 
-      /* Road trips sit in the same timeline as the flights (they are trips; the
-         only difference is how you got there), so they are counted in `Trips`
-         like everything else and get one figure of their own rather than a
-         separate list. No road trips on the page means no fifth tile, which is
-         why the stats are a list and the column count comes from its length. */
-      var driven = trips.filter(function (t) { return t.road; }).length;
-
-      var stats = [
-        [trips.length, 'Trips'],
-        [Object.keys(places).length, 'Countries'],
-        [Object.keys(years).length, 'Years'],
-        [Object.keys(stops).length, 'Layovers'],
-      ];
-      if (driven) stats.push([driven, 'Driven']);
-
-      var html =
-        '<section class="tv-summary reveal">'
-        + '<div class="tv-stats" style="--n:' + stats.length + '">'
-        +   stats.map(function (r) {
-              return '<div><b>' + r[0] + '</b><span>' + esc(r[1]) + '</span></div>';
-            }).join('')
-        + '</div>'
-        + '<div class="tv-flagwall" aria-label="Countries visited">'
-        +   Object.keys(flags).map(function (f) { return '<span>' + f + '</span>'; }).join('')
-        + '</div>'
-        + '</section>';
-
-      /* ── what kind of places ──
-         The summary above counts trips and countries; this counts what those
-         countries ARE. Every figure overlaps every other one on purpose:
-         Morocco is Arab and Muslim and African and Maghreb all at once, so it
-         is in four of these rows and that is the point of having them. */
-      html += '<section class="tv-kindstats reveal">'
-        + '<h2>What kind of places</h2>'
-        + '<p class="tv-kindnote">' + Object.keys(places).length
-        +   ' countries, counted by what they are rather than by where the plane landed.'
+      return '<p class="tv-kindnote">' + n + ' countr' + (n === 1 ? 'y' : 'ies') + what
+        +   ', counted by what they are rather than by where the plane landed.'
         +   ' The rows overlap on purpose: a country is in every one that is true of it,'
         +   ' and repeat visits do not count twice.</p>'
         + kindTally(trips).map(function (g) {
@@ -232,7 +239,96 @@
                     + '<b>' + r.n + '</b><span>' + esc(r.label) + '</span></li>';
                 }).join('') + '</ul>'
               + '</div>';
-          }).join('')
+          }).join('');
+    }
+
+    /* ── the page ── */
+    function show() {
+      var trips = data.trips;
+
+      /* The figures and the flag wall, for whichever trips the mode is showing.
+         Read off the trips it is handed rather than off data.trips, so the same
+         function answers for all three modes. `Driven` only appears where it
+         says something: in 'all', where it splits the total, and never in the
+         two modes that are already nothing but one kind of travel. */
+      function summaryOf(rows, mode) {
+        var places = {}, years = {}, stops = {}, flags = {};
+        rows.forEach(function (t) {
+          years[t.y] = 1;
+          String(t.countries).split('·').forEach(function (c) {
+            c = c.trim(); if (c) places[c] = 1;
+          });
+          if (t.via) stops[t.via] = 1;
+          (t.flags.match(/[\uD83C][\uDDE6-\uDDFF][\uD83C][\uDDE6-\uDDFF]/g) || [])
+            .forEach(function (f) { flags[f] = 1; });
+        });
+
+        /* Somewhere I lived is not a trip and is not counted as one; it is
+           still in `rows`, because it is still on the page and its country
+           still belongs in the flag wall and the country count.
+
+           There is no "Driven" figure any more: with the Everything tab gone
+           every trip in Road Trips is driven and every trip in Plane Travels
+           is not, so the number would only ever have been the trip count again
+           or zero. */
+        var trps = rows.filter(function (t) { return !t.lived; });
+        var lived = rows.length - trps.length;
+        var stats = [
+          [trps.length, 'Trips'],
+          [Object.keys(places).length, 'Countries'],
+          [Object.keys(years).length, 'Years'],
+          [Object.keys(stops).length, 'Layovers'],
+        ];
+        if (lived) stats.push([lived, 'Lived in']);
+
+        return '<div class="tv-stats" style="--n:' + stats.length + '">'
+          +   stats.map(function (r) {
+                return '<div><b>' + r[0] + '</b><span>' + esc(r[1]) + '</span></div>';
+              }).join('')
+          + '</div>'
+          + '<div class="tv-flagwall" aria-label="Countries visited">'
+          +   Object.keys(flags).map(function (f) { return '<span>' + f + '</span>'; }).join('')
+          + '</div>';
+      }
+
+      /* ── the picker ──
+         Three buttons, a radiogroup rather than a row of toggles: they are one
+         choice with three answers, not three independent switches, and that is
+         what a screen reader should be told. */
+      var html =
+        '<section class="tv-modes reveal">'
+        + '<div class="tv-modebar" role="radiogroup" aria-label="How I got there">'
+        +   MODES.map(function (m) {
+              var rows = data.trips.filter(function (t) { return inMode(t, m.k); });
+              var n = rows.filter(function (t) { return !t.lived; }).length;
+              var lv = rows.length - n;
+              return '<button class="tv-mode" type="button" role="radio" data-mode="' + m.k + '"'
+                + ' aria-checked="' + (m.k === 'all' ? 'true' : 'false') + '"'
+                + ' tabindex="' + (m.k === 'all' ? '0' : '-1') + '" data-magnetic>'
+                + '<b>' + esc(m.label) + '</b>'
+                + '<span>' + n + (n === 1 ? ' trip' : ' trips')
+                +   (lv ? ' + ' + lv + ' lived' : '') + '</span>'
+                + '</button>';
+            }).join('')
+        + '</div>'
+        + '<p class="tv-modehint" id="tvModeHint">' + esc(MODES[0].hint) + '</p>'
+        + '</section>';
+
+      html +=
+        '<section class="tv-summary reveal" id="tvSummary">'
+        + summaryOf(trips, 'all')
+        + '</section>';
+
+      /* ── what kind of places ──
+         The summary above counts trips and countries; this counts what those
+         countries ARE. Every figure overlaps every other one on purpose:
+         Morocco is Arab and Muslim and African and Maghreb all at once, so it
+         is in four of these rows and that is the point of having them. */
+      html += '<section class="tv-kindstats reveal">'
+        + '<h2>What kind of places</h2>'
+        + '<div id="tvKinds">' + kindStats(trips.filter(function (t) {
+            return inMode(t, MODES[0].k);
+          }), MODES[0].k) + '</div>'
         + '</section>';
 
       /* ── the map ──
@@ -253,15 +349,17 @@
         + data.grades.map(function (g) {
             var rows = trips.filter(function (t) { return t.grade === g.k; });
             if (!rows.length) return '';
-            return '<div class="tv-shortgrp">'
+            return '<div class="tv-shortgrp" data-grade="' + esc(g.k) + '">'
               + '<h3><span>' + esc(g.name) + '</span><i></i><em>' + esc(g.years) + '</em></h3>'
               + '<ul>' + rows.map(function (t) {
                   var i = trips.indexOf(t);
-                  return '<li><a href="#trip' + i + '" data-i="' + i + '" style="--c:' + esc(t.c1) + '">'
+                  return '<li data-road="' + (t.road ? '1' : '0') + '">'
+                    + '<a href="#trip' + i + '" data-i="' + i + '" style="--c:' + esc(t.c1) + '">'
                     + '<span class="tv-s-flag">' + t.flags + '</span>'
                     + '<span class="tv-s-when">' + esc(t.m) + '</span>'
                     + '<span class="tv-s-place">' + esc(t.places) + '</span>'
                     + (t.road ? '<span class="tv-s-tag tv-s-tag--rd">Road trip</span>' : '')
+                    + (t.lived ? '<span class="tv-s-tag tv-s-tag--lv">Lived there</span>' : '')
                     + (t.tag ? '<span class="tv-s-tag">' + esc(t.tag) + '</span>' : '')
                     + (t.via ? '<span class="tv-s-via">via ' + esc(t.via) + '</span>' : '')
                     + '</a></li>';
@@ -350,17 +448,112 @@
          countries draws two silhouettes and a trip through a region draws that
          region. A country with no shape drawn simply gets none: the file is
          optional and the page is whole without it. */
-      function shapeSvg(name) {
+      function shapeSvg(name, cls) {
         var sh = window.TRAVELS_SHAPES && window.TRAVELS_SHAPES[name];
         if (!sh) return '';
-        return '<span class="tv-shape" title="' + esc(name) + '">'
+        var crossed = /is-crossed/.test(cls || '');
+        return '<span class="tv-shape ' + esc(cls || '') + '" title="' + esc(name)
+          + (crossed ? ' (crossed, no photograph)' : '') + '">'
           + '<svg viewBox="0 0 ' + sh.w + ' ' + sh.h + '" role="img"'
           + ' aria-label="Outline of ' + esc(name) + '" preserveAspectRatio="xMidYMid meet">'
-          + '<path d="' + sh.d + '" fill-rule="evenodd"/></svg></span>';
+          + '<path d="' + sh.d + '" fill-rule="evenodd"/></svg>'
+          + '<i>' + esc(name) + '</i></span>';
       }
+      /* ── how big it is, and how many people were in it at the time ──
+         One row per country on the trip: its area, and its population in the
+         YEAR OF THE TRIP rather than today. See `facts` in travels-data.js for
+         where the numbers come from and which of them are contested.
+
+         A trip inside one country (the drives, and Hawaii) gets the state or
+         province instead of the country wherever `regions` names one that is
+         in the `states` table: "Arizona, 113,990 sq mi" says something about
+         that trip and "United States, 3.8 million sq mi" does not.
+
+         A place with no row renders nothing rather than a blank: the table is
+         allowed to be incomplete. */
+      var FACTS = data.facts || {};
+      var STATES = data.states || {};
+
+      function nfmt(n) {
+        return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      }
+      /* People read "84.3 million" and cannot read "84,276,225". Both are
+         shown: the round one as the figure, the exact one in the title. */
+      function human(n) {
+        if (n >= 1e9) return (n / 1e9).toFixed(n >= 1e10 ? 0 : 1) + ' billion';
+        if (n >= 1e6) return (n / 1e6).toFixed(n >= 1e8 ? 0 : 1) + ' million';
+        if (n >= 1e3) return nfmt(Math.round(n / 1e3) * 1e3);
+        return nfmt(n);
+      }
+
+      /* The population in the trip's own year, or the nearest year the table
+         has. `exact` is false when it fell back, so the line can say which
+         year it is actually quoting instead of implying the trip's. */
+      function popAt(row, year) {
+        if (!row || !row.pop) return null;
+        var ys = Object.keys(row.pop);
+        if (!ys.length) return null;
+        if (row.pop[year] != null) return { n: row.pop[year], y: year, exact: true };
+        var best = ys[0];
+        ys.forEach(function (y) {
+          if (Math.abs(+y - +year) < Math.abs(+best - +year)) best = y;
+        });
+        return { n: row.pop[best], y: best, exact: false };
+      }
+
+      function factsOf(t) {
+        /* The states a trip names in `where` win over its country, because
+           they are the more specific true thing: "Arizona, 7.3 million" is
+           about the trip and "United States, 342 million" is not. A trip with
+           no `where` falls back to its countries, which is every trip abroad. */
+        var names = [], seen = {};
+        (t.where || []).forEach(function (r) {
+          if (STATES[r] && !seen[r]) { seen[r] = 1; names.push([r, STATES[r]]); }
+        });
+        if (!names.length) {
+          countriesOf(t).forEach(function (c) {
+            if (FACTS[c] && !seen[c]) { seen[c] = 1; names.push([c, FACTS[c]]); }
+          });
+        }
+        if (!names.length) return '';
+
+        return '<ul class="tv-facts" aria-label="Size and population">'
+          + names.map(function (row) {
+              var name = row[0], f = row[1];
+              var p = popAt(f, t.y);
+              return '<li>'
+                + '<b>' + esc(name) + '</b>'
+                + '<span class="tv-fact"><i>Area</i>' + nfmt(f.area[0]) + ' sq mi'
+                +   '<em>' + nfmt(f.area[1]) + ' km²</em></span>'
+                + (p
+                    ? '<span class="tv-fact" title="' + nfmt(p.n) + ' in ' + esc(p.y) + '">'
+                      + '<i>People' + (p.exact ? ' in ' + esc(p.y) : '') + '</i>'
+                      + human(p.n)
+                      + '<em>' + (p.exact ? 'at the time' : esc(p.y) + ' estimate') + '</em></span>'
+                    : '')
+                + (f.note ? '<span class="tv-factnote">' + esc(f.note) + '</span>' : '')
+                + '</li>';
+            }).join('')
+          + '</ul>';
+      }
+
+      /* The country, then every state or province the trip was actually in.
+         A drive across eight states says far more as eight state outlines than
+         as one outline of the United States, which is the same picture on
+         every domestic trip. The country still leads, so the states are read
+         as being inside something.
+
+         `crossed` states are drawn too, in the same row but marked: they are
+         the ones with no photograph that the drive cannot not have gone
+         through. See `crossed` in travels-data.js for the rule. */
       function shapesOf(t) {
-        var names = String(t.countries).split('\u00b7').map(function (c) { return c.trim(); });
-        var svg = names.map(shapeSvg).join('');
+        var svg = String(t.countries).split('\u00b7').map(function (c) {
+          return shapeSvg(c.trim());
+        }).join('');
+
+        (t.where || []).forEach(function (n) { svg += shapeSvg(n, 'is-state'); });
+        (t.crossed || []).forEach(function (n) { svg += shapeSvg(n, 'is-state is-crossed'); });
+
         return svg ? '<div class="tv-shapes" aria-hidden="false">' + svg + '</div>' : '';
       }
 
@@ -368,34 +561,50 @@
       html += data.grades.map(function (g) {
         var rows = trips.filter(function (t) { return t.grade === g.k; });
         if (!rows.length) return '';
-        return '<section class="tv-grade reveal">'
+        return '<section class="tv-grade reveal" data-grade="' + esc(g.k) + '">'
           + '<div class="tv-gradehead">'
           +   '<h2>' + esc(g.name) + '</h2>'
-          +   '<span>' + esc(g.years) + ' &#183; ' + rows.length
-          +     (rows.length === 1 ? ' trip' : ' trips') + '</span>'
+          /* the count is per mode, so applyMode() rewrites this span; the
+             number rendered here is the one the page opens on */
+          +   '<span>' + esc(g.years) + ' &#183; <i class="tv-gradeN">' + rows.length
+          +     (rows.length === 1 ? ' trip' : ' trips') + '</i></span>'
           + '</div>'
           + '</section>'
           + rows.map(function (t) {
               var i = trips.indexOf(t);
               return '<section class="tv-trip reveal" id="trip' + i + '"'
                 + ' style="--c1:' + esc(t.c1) + ';--c2:' + esc(t.c2) + '" data-look="' + esc(t.look) + '"'
-                + ' data-i="' + i + '" tabindex="0" role="button" aria-pressed="false"'
-                + ' aria-label="' + esc(t.places + ', ' + t.m + ' ' + t.y) + '">'
+                + ' data-road="' + (t.road ? '1' : '0') + '"'
+                /* Clicking a trip used to pick it out and dim the rest of the
+                   page, which was more annoying than useful. Now it shows the
+                   trip's photographs instead, which is what the gesture was
+                   always reaching for; the handler is delegated from the root
+                   further down. Still a <section> and not a <button>: the real
+                   control is the cover thumbnail inside it, which carries the
+                   aria-expanded and is what a screen reader is handed, and a
+                   card full of headings and a paragraph has no business being
+                   a button. The map still jumps here by id. */
+                + ' data-i="' + i + '">'
                 + '<div class="tv-trip-bg" aria-hidden="true"><i></i><i></i><i></i></div>'
                 + '<div class="tv-trip-row">'
                 + '<div class="tv-trip-in">'
                 +   '<div class="tv-trip-head">'
                 +     '<span class="tv-trip-flags">' + t.flags + '</span>'
-                +     '<span class="tv-trip-when">' + esc(t.m + ' ' + t.y) + '</span>'
+                +     '<span class="tv-trip-when">' + esc(whenOf(t)) + '</span>'
                 +     (t.road ? '<span class="tv-trip-tag tv-trip-tag--rd">'
                 +       '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21 9.5 3h5L20 21"/><path d="M12 5v3M12 11v3M12 17v3"/></svg>'
                 +       'Road trip</span>' : '')
+                +     (t.lived ? '<span class="tv-trip-tag tv-trip-tag--lv">'
+                +       '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg>'
+                +       'Lived there</span>' : '')
                 +     (t.tag ? '<span class="tv-trip-tag">' + esc(t.tag) + '</span>' : '')
                 +   '</div>'
                 +   '<h3>' + esc(t.places) + '</h3>'
                 +   '<p class="tv-trip-c">' + esc(t.countries)
                 +     (t.via ? '<em>via ' + esc(t.via) + '</em>' : '') + '</p>'
                 +   shapesOf(t)
+                /* how big it is and who was in it, in the year of the trip */
+                +   factsOf(t)
                 /* Which countries a region-shaped entry actually was. Only
                    here, in the long version: "At a glance" is one line per
                    trip and seven flags would swamp it. Nothing is counted off
@@ -466,59 +675,85 @@
       if (window.AElazy) window.AElazy.watch(root);   // the covers are data-src: hand them over
 
 
-      /* ── selection ──
-         Click (or focus and press Enter) a trip to pick it out; the page dims
-         everything else so one entry can be read on its own. Clicking the same
-         one again clears it, so there is always a way back to the whole list. */
-      var cards = root.getElementsByClassName('tv-trip');
-      var rows = root.querySelectorAll('.tv-shortgrp a');
-      var chosen = -1;
+      /* ── the map's way in ──
+         travels-map.js calls this to bring a trip into view when a pin or a
+         legend chip is clicked. It used to also select the trip and dim every
+         other one; the dimming is gone, so all that is left is the scroll,
+         which travels-map.js does itself. This stays defined and does nothing
+         so that an older cached copy of that file cannot throw. */
+      window.AEtravelSelect = function () {};
 
-      function select(i, force) {
-        chosen = (i === chosen && !force) ? -1 : i;
-        root.classList.toggle('is-picking', chosen !== -1);
-        for (var c = 0; c < cards.length; c++) {
-          var on = Number(cards[c].getAttribute('data-i')) === chosen;
-          cards[c].classList.toggle('is-sel', on);
-          cards[c].setAttribute('aria-pressed', on ? 'true' : 'false');
+      /* ── the mode picker ──
+         Everything is already on the page; this only decides what is shown.
+         A trip and its index row carry data-road, so hiding is a class on the
+         root and one attribute comparison in CSS. The three things CSS cannot
+         do are done here: the figures, the per-year counts, and dropping a
+         school year whose trips are all in the other mode. */
+      var modeBtns = root.querySelectorAll('.tv-mode');
+      var summaryEl = root.querySelector('#tvSummary');
+      var hintEl = root.querySelector('#tvModeHint');
+      var mode = MODES[0].k;
+
+      function applyMode(next) {
+        mode = next;
+        root.setAttribute('data-mode', mode);
+
+        var shown = data.trips.filter(function (t) { return inMode(t, mode); });
+        if (summaryEl) summaryEl.innerHTML = summaryOf(shown, mode);
+
+        /* The kinds block counts what the countries ARE, so it has to be
+           recounted from the same trips the rest of the page is showing. */
+        var kindsEl = root.querySelector('#tvKinds');
+        if (kindsEl) kindsEl.innerHTML = kindStats(shown, mode);
+
+        var m = MODES.filter(function (x) { return x.k === mode; })[0];
+        if (hintEl && m) hintEl.textContent = m.hint;
+
+        for (var b = 0; b < modeBtns.length; b++) {
+          var on = modeBtns[b].getAttribute('data-mode') === mode;
+          modeBtns[b].setAttribute('aria-checked', on ? 'true' : 'false');
+          /* one tab stop for the whole group, which is what a radiogroup is */
+          modeBtns[b].setAttribute('tabindex', on ? '0' : '-1');
         }
-        for (var r = 0; r < rows.length; r++) {
-          rows[r].classList.toggle('is-sel', Number(rows[r].getAttribute('data-i')) === chosen);
-        }
+
+        /* A school year with nothing in it in this mode is hidden outright,
+           heading and all, rather than left as an empty bar. The count beside
+           the year is rewritten for the same reason: "5 trips" over two is
+           worse than no count. */
+        data.grades.forEach(function (g) {
+          var n = shown.filter(function (t) { return t.grade === g.k; }).length;
+          var head = root.querySelector('.tv-grade[data-grade="' + g.k + '"]');
+          var grp = root.querySelector('.tv-shortgrp[data-grade="' + g.k + '"]');
+          if (head) {
+            head.hidden = !n;
+            var nEl = head.querySelector('.tv-gradeN');
+            if (nEl) nEl.textContent = n + (n === 1 ? ' trip' : ' trips');
+          }
+          if (grp) grp.hidden = !n;
+        });
+
+        /* the map dims the pins the mode is not showing */
+        if (window.AEtravelMode) window.AEtravelMode(mode);
       }
 
-      for (var c2 = 0; c2 < cards.length; c2++) {
-        (function (el) {
-          var idx = Number(el.getAttribute('data-i'));
-          el.addEventListener('click', function () { select(idx); });
-          el.addEventListener('keydown', function (e) {
-            if (e.target !== el) return;   // a button inside handles its own keys
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(idx); }
+      for (var mb = 0; mb < modeBtns.length; mb++) {
+        (function (btn) {
+          btn.addEventListener('click', function () { applyMode(btn.getAttribute('data-mode')); });
+          /* arrow keys move within a radiogroup, which is what makes it one */
+          btn.addEventListener('keydown', function (e) {
+            var d = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1
+                  : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
+            if (!d) return;
+            e.preventDefault();
+            var i = 0;
+            for (var k = 0; k < modeBtns.length; k++) if (modeBtns[k] === btn) i = k;
+            var nxt = modeBtns[(i + d + modeBtns.length) % modeBtns.length];
+            applyMode(nxt.getAttribute('data-mode'));
+            nxt.focus();
           });
-        })(cards[c2]);
+        })(modeBtns[mb]);
       }
-      /* The index rows still jump via their href; they also set the selection
-         so you land on a highlighted entry rather than an anonymous one. */
-      for (var r2 = 0; r2 < rows.length; r2++) {
-        (function (a) {
-          a.addEventListener('click', function () {
-            var idx = Number(a.getAttribute('data-i'));
-            if (idx !== chosen) select(idx);
-          });
-        })(rows[r2]);
-      }
-
-      /* The map on this page drives the same selection, so it lives on window
-         rather than being duplicated there. */
-      window.AEtravelSelect = select;
-
-      /* Touching anywhere that is not a trip, the index, the map or the
-         photo viewer clears the selection: the background is the way out. */
-      document.addEventListener('click', function (e) {
-        if (chosen === -1) return;
-        if (e.target.closest('.tv-trip, .tv-shortgrp, #tvMapMount, .yg-deck')) return;
-        select(chosen);
-      });
+      applyMode(MODES[0].k);
 
       /* ── trip photos ──
          The cover card expands into the trip's photos; a photo opens
@@ -673,23 +908,73 @@
       }
 
       var covers = root.querySelectorAll('.tv-photo');
+
+      /* Unfold or fold one trip's photographs. `from` is whatever was pressed,
+         so a fold can scroll the card back into view rather than leaving you
+         somewhere down the page where the grid used to be. */
+      function toggleShots(btn, from) {
+        if (!picsOn()) return;
+        var grid = document.getElementById(btn.getAttribute('aria-controls'));
+        if (!grid) return;
+        var opening = grid.hidden;
+        if (opening) shots(grid);              // first unfold: build it now
+        grid.hidden = !opening;
+        btn.setAttribute('aria-expanded', opening ? 'true' : 'false');
+        /* the rows can only be solved against a measurable width, so the
+           maths runs after the unfold, not at render time */
+        if (opening) layout();
+        else backTo(from || btn);
+      }
+
       for (var p = 0; p < covers.length; p++) {
         (function (btn) {
           btn.addEventListener('click', function (e) {
             e.stopPropagation();
-            if (!picsOn()) return;
-            var grid = document.getElementById(btn.getAttribute('aria-controls'));
-            var opening = grid.hidden;
-            if (opening) shots(grid);            // first unfold: build it now
-            grid.hidden = !opening;
-            btn.setAttribute('aria-expanded', opening ? 'true' : 'false');
-            /* the rows can only be solved against a measurable width, so the
-               maths runs after the unfold, not at render time */
-            if (opening) layout();
-            else backTo(btn);
+            toggleShots(btn);
           });
         })(covers[p]);
       }
+
+      /* ── THE WHOLE CARD IS THE CONTROL ──
+         Touching a trip anywhere shows its photographs, and touching it again
+         puts them away. This replaces the old click-to-select, which dimmed the
+         page and was more annoying than useful: the gesture people were already
+         making now does the thing they actually wanted.
+
+         Delegated from the root rather than bound per card, so it costs one
+         listener for the whole page and keeps working for cards the mode
+         filter shows later.
+
+         WHAT IT DECLINES TO SWALLOW:
+           a real control  the cover thumbnail has its own handler (and calls
+                           stopPropagation), a photo in the grid opens the deck,
+                           and any link or button must do its own job;
+           a selection     dragging across the note to copy it ends in a click,
+                           and folding the card away underneath that is
+                           infuriating. If anything is selected, do nothing;
+           a photo grid    clicking the open grid's own background is not a
+                           request to close the card you are looking into. */
+      root.addEventListener('click', function (e) {
+        if (!picsOn()) return;
+        var card = e.target.closest ? e.target.closest('.tv-trip') : null;
+        if (!card) return;
+        if (e.target.closest('a, button, input, select, textarea, .tv-shots')) return;
+        /* A drag to copy text ends in a click, and folding the card away
+           underneath that is infuriating. Test the selection's own anchor
+           rather than sel.containsNode(): that method is missing or a no-op in
+           more than one engine (jsdom returns false for a node that plainly
+           contains the range), so relying on it means the guard quietly never
+           fires. The anchor node is always present when there is a selection,
+           and walking up from it answers the only question that matters. */
+        var sel = window.getSelection && window.getSelection();
+        if (sel && String(sel).length > 1) {
+          var n = sel.anchorNode;
+          if (n && n.nodeType === 3) n = n.parentNode;
+          if (n && card.contains(n)) return;
+        }
+        var btn = card.querySelector('.tv-photo');
+        if (btn) toggleShots(btn, card);
+      });
 
       /* Switching it back off folds everything up again, so the page is never
          left showing photos underneath a switch that says it is not. */

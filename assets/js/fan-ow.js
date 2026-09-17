@@ -2,7 +2,7 @@
    The game that invented the hero shooter and then told its story everywhere
    except inside itself. */
 window.FAN_PAGE = {
-  when: { at: 'After it launched', note: 'The only shooter I have played where switching character mid-match is the actual skill rather than an admission of defeat.' },
+  when: { at: '5th grade, 2016–17; properly in 6th and 7th', note: 'It came out at the very end of 4th grade, in May 2016, and 5th is when I picked it up and played a little of it; 6th and 7th grade is when I actually put the hours in. The only shooter I have played where switching character mid-match is the actual skill rather than an admission of defeat.' },
   sections: [
 
   { id: 'roles', kind: 'cards', title: 'How It Works', note: 'nobody has the same gun',

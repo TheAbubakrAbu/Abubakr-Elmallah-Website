@@ -5,7 +5,7 @@
    is on the franchises list at all: the bricks I grew up with, and the TT Games
    catalogue is how I met half the other franchises on this website. */
 window.FAN_PAGE = {
-  when: { at: 'Since I was a kid', note: 'Everyone is into LEGO. LEGO Star Wars first, and then I grew up on the whole run of games: Star Wars, Indiana Jones, Batman, the superheroes, Pirates of the Caribbean.' },
+  when: { at: 'Since I was a young kid', note: 'Everyone is into LEGO. LEGO Star Wars first, and then I grew up on the whole run of games: Star Wars, Indiana Jones, Batman, the superheroes, Pirates of the Caribbean.' },
   sections: [
 
   /* every LEGO game, in lego-games.js, because /gaming/ shows the same

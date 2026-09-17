@@ -1,6 +1,6 @@
 /* fan-kfp.js: content for /worlds/kung-fu-panda/. Rendered by fanpage.js. */
 window.FAN_PAGE = {
-  when: { at: 'Since I was a kid', note: 'Around for as long as I can remember, and Kung Fu Panda 2 is the best of them, and it is not a close call.' },
+  when: { at: 'Since I was a kid; the first film is older than I can remember', note: 'The first film came out in 2008, when I was two, so it has genuinely always been there. Kung Fu Panda 2 is the best of them, and it is not a close call.' },
   sections: [
 
   { id: 'films', kind: 'rank', title: 'The Films', note: '2008 \u2013 2024 \u00b7 my order, not release order',

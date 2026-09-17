@@ -2,7 +2,7 @@
    Thirteen films about time, told out of order and shot on film stock the
    size of a postcard, and the two composers who kept up with him. */
 window.FAN_PAGE = {
-  when: { at: '10th grade' },
+  when: { at: '10th grade, 2021–22, through Inception', note: 'Inception got me here, in 10th grade, though I think it is a little overrated: the idea is better than the film around it.' },
   sections: [
 
   { id: 'films', kind: 'rank', title: 'The Thirteen', note: '1998 – 2026 · in order · released, and set',

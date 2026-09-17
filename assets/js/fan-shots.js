@@ -632,6 +632,16 @@ window.FAN_SHOTS = {
     'lego/movie/pause-screen.jpg':                                 '2026-09-03 03:10',
     'lego/movie/start-screen.jpg':                                 '2026-08-30 12:15',
 
+    /* All six off the 100% save on the night it was finished, except the start
+       screen, which is from the night it was first opened. The capture clock in
+       the library's own filenames puts the completion set at 22:36 to 22:38. */
+    'lego/movie-2/banner.jpg':                                     '2026-09-16 22:43',
+    'lego/movie-2/characters.jpg':                                 '2026-09-16 22:36',
+    'lego/movie-2/galaxy-map.jpg':                                 '2026-09-16 22:36',
+    'lego/movie-2/load-game.jpg':                                  '2026-09-16 22:37',
+    'lego/movie-2/pause-screen.jpg':                               '2026-09-16 22:37',
+    'lego/movie-2/start-screen.jpg':                               '2026-09-03 23:47',
+
     'lego/pirates/banner.jpg':                                     '2023-09-28 16:01',
     'lego/pirates/characters.jpg':                                 '2023-09-28 15:51',
     'lego/pirates/load-game.jpg':                                  '2023-09-28 16:01',

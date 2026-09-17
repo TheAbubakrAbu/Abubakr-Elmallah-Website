@@ -5,7 +5,7 @@
    copper golem arrived in the 2025 drops, so those are described in words
    rather than quoted at with numbers I would only be half sure of. */
 window.FAN_PAGE = {
-  when: { at: 'Since I was a kid', note: 'Around for most of my childhood. Redstone was my first logic gate and command blocks were my first scripting language. It is also one of the three games I recorded myself playing and put on YouTube as a kid, along with Clash of Clans and Geometry Dash. The summer of 2026 added a Realm: four of us, a beach on the fourth of July, the dragon on the nineteenth of August.' },
+  when: { at: '2nd grade, around 2013–14', note: 'Around for most of my childhood. Redstone was my first logic gate and command blocks were my first scripting language. It is also one of the three games I recorded myself playing and put on YouTube as a kid, along with Clash of Clans and Geometry Dash. The summer of 2026 added a Realm: four of us, a beach on the fourth of July, the dragon on the nineteenth of August.' },
   sections: [
 
   { id: 'tiers', kind: 'tiles', title: 'Tool Tiers', note: 'durability · what it can mine',

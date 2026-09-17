@@ -164,8 +164,23 @@ redirect_from:
        rather than greeting you. fandom.js wires the toggle and fills the counts. -->
   <section class="fandoms">
     <!-- The invitation sits here rather than in the hero on purpose: it is not
-         about the two builds above it, it is what the button under it opens. -->
-    <p class="fr-invite reveal">Enter the worlds and dimensions in my mind, born of the franchises, the movies, the TV shows and the books that have shaped my life from when I was a kid until now.</p>
+         about the two builds above it, it is what the button under it opens.
+
+         Beside it, the plaque over the tunnels at the Disneyland entrance,
+         which says the same thing in eleven words and said it in 1955. Mine is
+         on the left because it is the one that belongs to this page; the
+         plaque is on the right, smaller and set off, because it is a quotation
+         and not a claim. Credited to the plaque itself rather than to the man,
+         which is deliberate: leave the byline off. Verbatim off the bronze:
+         the world is singular, there is one comma, and there is no serial
+         comma before "and fantasy". -->
+    <div class="fr-invitewrap reveal">
+      <p class="fr-invite">Enter the worlds and dimensions in my mind, born of the franchises, the movies, the TV shows and the books that have shaped my life from when I was a kid until now.</p>
+      <figure class="fr-plaque">
+        <blockquote>Here you leave today and enter the world of yesterday, tomorrow and fantasy.</blockquote>
+        <figcaption>the plaque over the entrance tunnels<i>Disneyland, 1955</i></figcaption>
+      </figure>
+    </div>
     <button class="fr-vaultbtn" id="frVaultBtn" type="button" aria-expanded="false" aria-controls="frVault" data-magnetic>
       <span class="fr-vaultbtn-i" aria-hidden="true">
         <svg viewBox="0 0 24 24"><path d="M12 2.6a9.4 9.4 0 1 0 0 18.8 9.4 9.4 0 0 0 0-18.8z M12 2.6v18.8 M2.6 12h18.8 M5.4 6.2c3.6 2.4 9.6 2.4 13.2 0 M5.4 17.8c3.6-2.4 9.6-2.4 13.2 0"/></svg>
@@ -182,8 +197,9 @@ redirect_from:
       <p class="fr-lede reveal"><b><span class="fr-total">70</span></b> tiles, ranked the way I actually rank them. <b>Who I am comes first, and none of it is a fandom</b>: my faith, my language and where my family is from are not things I chose off a shelf, and everything under them makes more sense once they are on the page. Then the three I know by heart, the ones I have lived in, regular rotation, the rest, the ones that were everything to me as a kid and are not what I put on now, and the theme parks at the end. Every one of them has its own page now, click a tile. Apart from Islam and Star Wars at the top, none of these ship an app; every tile is set in type and drawn by hand, with no studio logos, no posters and no photographs.</p>
       <div id="fandoms"></div>
 
-      <!-- The three pages that are mine rather than anybody else's: where I
-           have been, what I sound like, and what I have played. They sit at the
+      <!-- The pages that are mine rather than anybody else's: where I have
+           been, what I sound like and what I have played. (Music, what was
+           playing while I was here, is written and hidden; see below.) They sit at the
            foot of the block this button opens rather than on the page itself:
            they are not builds either, so they belong behind the same switch as
            everything else in here. One per row and full width, so each one
@@ -195,7 +211,7 @@ redirect_from:
           <span class="fr-travels-i" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h18 M12 3c3 4 3 14 0 18 M12 3c-3 4-3 14 0 18"/></svg>
           </span>
-          <span class="fr-travels-t"><b>Real Worlds I Have Travelled</b><i>22 trips &#183; 2007&#8211;2026 &#183; the ones I have actually stood in</i></span>
+          <span class="fr-travels-t"><b>Worlds I Have Travelled To</b><i>22 trips &#183; 2007&#8211;2026 &#183; the ones I have actually stood in</i></span>
           <span class="fr-travels-a" aria-hidden="true">&#8594;</span>
         </a>
 
@@ -214,6 +230,21 @@ redirect_from:
           <span class="fr-travels-t"><b>Worlds I Have Played</b><i>four Steam Replays &#183; 2022&#8211;2025 &#183; the ones I took to a hundred percent</i></span>
           <span class="fr-travels-a" aria-hidden="true">&#8594;</span>
         </a>
+
+        <!-- MUSIC IS HIDDEN FOR NOW. The page, its data and its styles are all
+             still in the repo and still work; only the way in is closed, and
+             src/music.html has `published: false` so Jekyll does not build it
+             at all. To bring it back: delete that line from music.html's front
+             matter, uncomment this block, and uncomment the matching line on
+             the home page. Nothing else has to change.
+        <a class="fr-travels-btn fr-travels-btn--mu" href="/music/" data-magnetic>
+          <span class="fr-travels-i" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M9 18V5.5l11-2V16 M9 18a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z M20 16a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z M9 9.5l11-2"/></svg>
+          </span>
+          <span class="fr-travels-t"><b>Worlds I Have Heard</b><i>the top twenty of every year &#183; 2006&#8211;2026 &#183; one block a year</i></span>
+          <span class="fr-travels-a" aria-hidden="true">&#8594;</span>
+        </a>
+        -->
       </div>
     </div>
   </section>

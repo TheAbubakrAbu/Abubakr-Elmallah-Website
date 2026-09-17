@@ -3030,3 +3030,18 @@ html:not([data-show-pics="on"]) .fan-been .been-hint { display: block; }
 @media (prefers-reduced-motion: reduce) {
   .np-glow { animation: none; }
 }
+
+/* ── a video that will not play inside another page ──
+   YouTube error 101/150: the owner disabled embedding. Nothing the page can do
+   except say so plainly and offer the link that does work. Styled as a quiet
+   notice rather than an error, because it is not a fault of the site. */
+.fan-stage.is-refused {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap; padding: 0.9rem 1rem;
+}
+
+.fan-stage-no {
+  margin: 0; font-size: 0.82rem; line-height: 1.55; color: var(--ink-dim);
+}
+
+.fan-stage-no a { color: var(--a, var(--gold)); text-underline-offset: 2px; }

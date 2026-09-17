@@ -29,8 +29,20 @@
        is unique per trip and does not move, so a pin can now only be stale by
        naming a trip that does not exist, which reports itself below. */
     var PINS = [
+      { name: 'New York',          e: '🇺🇸',  lat:  40.71, lon:  -74.01, w: '2006' },
       { name: 'Egypt',             e: '🇪🇬',  lat:  30.04, lon:   31.24, w: '2007 Jan' },
+      { name: 'Honolulu',          e: '🌺🇺🇸', lat:  21.31, lon: -157.86, w: '2007 Nov' },
+      { name: 'Victoria',          e: '🇨🇦',  lat:  48.43, lon: -123.37, w: '2015 Jul' },
+      { name: 'Reno',              e: '🇺🇸',  lat:  39.53, lon: -119.81, w: '2016 Apr' },
+      { name: 'Las Vegas 2017',    e: '🇺🇸',  lat:  36.17, lon: -115.14, w: '2017 Apr' },
+      { name: 'Kansas City',       e: '🇺🇸',  lat:  39.10, lon:  -94.58, w: '2017 Jul' },
+      { name: 'Banff',             e: '🇨🇦',  lat:  51.18, lon: -115.57, w: '2017 Aug' },
       { name: 'Ensenada',          e: '🇲🇽',  lat:  31.87, lon: -116.60, w: '2018 Aug' },
+      { name: 'Orlando 2019',      e: '🇺🇸',  lat:  28.42, lon:  -81.30, w: '2019 Dec' },
+      { name: 'Portland',          e: '🇺🇸',  lat:  45.52, lon: -122.68, w: '2020 Aug' },
+      { name: 'Sedona',            e: '🇺🇸',  lat:  34.87, lon: -111.76, w: '2020 Nov' },
+      { name: 'Orlando 2020',      e: '🇺🇸',  lat:  28.43, lon:  -81.31, w: '2020 Dec' },
+      { name: 'Across the country', e: '🇺🇸', lat:  38.90, lon:  -77.04, w: '2021 Jun' },
       { name: 'Puerto Vallarta',   e: '🇲🇽',  lat:  20.62, lon: -105.23, w: '2021 Aug' },
       { name: 'Cancún · Cozumel', e: '🇲🇽',  lat:  20.70, lon:  -86.90, w: '2021 Dec' },
       { name: 'San Felipe',        e: '🇲🇽',  lat:  30.95, lon: -114.75, w: '2022 Feb' },
@@ -48,12 +60,16 @@
       { name: 'Tunisia',           e: '🇹🇳',  lat:  36.80, lon:   10.18, w: '2024 Dec' },
       { name: 'Malta',             e: '🇲🇹',  lat:  35.90, lon:   14.51, w: '2025 Apr' },
       { name: 'The Balkans',       e: '🇧🇦',  lat:  43.86, lon:   18.41, w: '2025 Jul' },
+      { name: 'Phoenix',           e: '🇺🇸',  lat:  33.45, lon: -112.07, w: '2021 Sep' },
+      { name: 'Las Vegas 2024',    e: '🇺🇸',  lat:  36.18, lon: -115.15, w: '2024 Feb' },
+      { name: 'Tucson',            e: '🇺🇸',  lat:  32.22, lon: -110.93, w: '2024 Nov' },
       { name: 'Maui',              e: '🌺🇺🇸', lat:  20.80, lon: -156.33, w: '2025 Sep' },
       { name: 'Ecuador',           e: '🇪🇨',  lat:  -0.18, lon:  -78.47, w: '2025 Nov' },
       { name: 'The Galápagos',    e: '🇪🇨',  lat:  -0.75, lon:  -90.31, w: '2025 Nov' },
       { name: 'The Algarve',       e: '🇵🇹🇪🇸', lat:  37.10, lon:   -8.30, w: '2025 Dec' },
       { name: 'Ireland',           e: '🇮🇪',  lat:  53.35, lon:   -6.26, w: '2026 Apr' },
       { name: 'Japan',             e: '🇯🇵',  lat:  35.68, lon:  139.69, w: '2026 Jul' },
+      { name: 'Oahu',              e: '🌺🇺🇸', lat:  21.33, lon: -157.88, w: '2026 Sep' },
     ];
     var LAYOVERS = [
       { name: 'France', lat: 48.85, lon: 2.35 },
@@ -70,7 +86,10 @@
     var TRIPS = (window.TRAVELS && window.TRAVELS.trips) || [];
     PINS.forEach(function (p) {
       for (var i = 0; i < TRIPS.length; i++) {
-        if (TRIPS[i].when === p.w) { p.t = i; p.c = TRIPS[i].c1; return; }
+        /* `road` comes along with the index and the colour so the map can be
+           filtered by the picker at the top of the page without knowing
+           anything about it beyond this flag */
+        if (TRIPS[i].when === p.w) { p.t = i; p.c = TRIPS[i].c1; p.road = !!TRIPS[i].road; return; }
       }
       p.c = '#9fb6c8';
     });
@@ -137,7 +156,7 @@
       var x = r1(px(p.lon)), y = r1(py(p.lat));
       var anchor = x < 90 ? 'start' : (x > W - 90 ? 'end' : 'middle');
       return '<g class="' + cls + '" data-k="' + p.name + '"'
-        + (p.t == null ? '' : ' data-t="' + p.t + '"')
+        + (p.t == null ? '' : ' data-t="' + p.t + '" data-road="' + (p.road ? '1' : '0') + '"')
         + ' style="--pc:' + (p.c || '#9fb6c8') + '">'
         + '<circle class="tvm-halo" cx="' + x + '" cy="' + y + '" r="7.5"/>'
         + '<circle class="tvm-hit" cx="' + x + '" cy="' + y + '" r="11"/>'
@@ -160,8 +179,28 @@
       + '<text x="' + (pm + 6) + '" y="' + (H - 8) + '">Prime Meridian</text>'
       + '</g>';
 
+    /* ── the two framings ──
+       Road Trips never leave North America, so showing the whole world for
+       them wastes four fifths of the frame on ocean and puts sixteen pins in
+       one corner. The mode switch retargets the viewBox instead of redrawing
+       anything: same SVG, same pins, same arcs, just a different window onto
+       them, which is why it can animate.
+
+       The box is derived from the road pins themselves (28.4N to 51.2N,
+       123.4W to 77.0W) with enough padding for the labels and for home, so
+       adding a road trip inside that span needs no change here. One outside it
+       would, and the test harness checks exactly that. */
+    var NA = { lon: [-132, -68], lat: [21, 58] };
+    var naX = r1(px(NA.lon[0])), naY = r1(py(NA.lat[1]));
+    var naW = r1(px(NA.lon[1]) - naX), naH = r1(py(NA.lat[0]) - naY);
+    var VIEW = {
+      all:   '0 0 ' + W + ' ' + H,
+      plane: '0 0 ' + W + ' ' + H,
+      road:  naX + ' ' + naY + ' ' + naW + ' ' + naH,
+    };
+
     var svg =
-      '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" '
+      '<svg viewBox="' + VIEW.plane + '" role="img" '
       + 'aria-label="World map with every country visited lit up and flight arcs from Southern California">'
       + '<g class="tvm-pars">' + lines + '</g>'
       + '<path class="tvm-land" d="' + paths.l + '"/>'
@@ -179,7 +218,8 @@
 
     var legend = '<div class="tvm-legend" aria-label="Countries on the map">'
       + PINS.map(function (p) {
-          return '<button type="button" data-k="' + p.name + '" data-t="' + p.t + '" style="--pc:' + p.c + '">'
+          return '<button type="button" data-k="' + p.name + '" data-t="' + p.t + '"'
+            + ' data-road="' + (p.road ? '1' : '0') + '" style="--pc:' + p.c + '">'
             + '<i></i><span class="tvm-flag" aria-hidden="true">' + (p.e || '') + '</span>' + p.name + '</button>';
         }).join('')
       + '</div>';
@@ -341,12 +381,12 @@
       root.classList.toggle('is-heating', hot !== '');
     }
 
-    /* jump to the trip entry and select it, if travels.js is on the page */
+    /* Jump to the trip entry. It used to select it as well, which dimmed the
+       rest of the page; that behaviour is gone, so this only scrolls. */
     function goto(t) {
       if (t == null || t === '') return;
       var card = document.getElementById('trip' + t);
       if (!card) return;
-      if (typeof window.AEtravelSelect === 'function') window.AEtravelSelect(Number(t), true);
       card.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
@@ -369,5 +409,22 @@
         g.addEventListener('mouseleave', function () { if (hot === k) heat(k); });
       })(pins[q]);
     }
+
+    /* ── the picker at the top of the page ──
+       travels.js owns the choice and calls this; the map only has to know
+       which of its pins are drives. The arcs and the lit countries are left
+       alone on purpose: they are the shape of everywhere that has been
+       visited, which does not change with how you got there. Only the pins
+       and their chips dim, so a mode reads as a highlight over the whole map
+       rather than as a different map. */
+    root.setAttribute('data-mode', 'all');
+    window.AEtravelMode = function (mode) {
+      mode = mode || 'all';
+      root.setAttribute('data-mode', mode);
+      /* Retarget the frame. CSS transitions the viewBox on browsers that
+         animate it and snaps on the rest; either way it lands on the box. */
+      var sv = root.querySelector('svg');
+      if (sv) sv.setAttribute('viewBox', VIEW[mode] || VIEW.all);
+    };
   } catch (err) { /* the map is decoration; never take the page down */ }
 })();

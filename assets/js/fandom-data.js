@@ -63,7 +63,7 @@ window.FANDOMS = [
 
   { id: 'primary', label: 'Primary', note: 'lived in, not just watched', items: [
     { name: 'Minecraft', wm: 'minecraft', glyph: 'block', c1: '#7fbf4f', c2: '#16240f',
-      when: 'Since I was a kid',
+      when: '2nd grade, around 2013–14',
       meta: 'Game · 2011', href: '/worlds/minecraft/',
       desc: 'Redstone was my first logic gate. Command blocks were my first scripting language.' },
     { name: 'Pirates of the Caribbean', wm: 'pirates', glyph: 'skull', c1: '#d8c9a0', c2: '#1c1a14',
@@ -130,12 +130,24 @@ window.FANDOMS = [
   ] },
 
   { id: 'tertiary', label: 'Tertiary', note: 'good, and picked up when the mood hits', items: [
-    { name: 'Five Nights at Freddy’s', wm: 'fnaf', glyph: 'bear', c1: '#c98f4f', c2: '#1a1410',
-      when: 'Middle school, around 2017\u201320',
-      meta: 'Game · 2014', href: '/worlds/five-nights-at-freddys/', desc: 'A horror game made of security cameras and a battery meter. Ruthlessly efficient design.' },
+    { name: 'LEGO', wm: 'lego', glyph: 'brick', c1: '#ffd21f', c2: '#2a0d0c',
+      when: 'Since I was a young kid',
+      meta: 'Toy · 1958', href: '/worlds/lego/',
+      desc: 'The clutch power patent is from 1958 and a brick from then still fits one moulded this morning.' },
+
+    /* The batch that went in after the first pass, in the order he ranks them
+       rather than the order they arrived. They went in without a `when` line,
+       because the rest of this file says when I actually got into each thing
+       and a made-up date would make the one honest column on the page
+       unreliable; he has since given every one, so every tile here has one.
+       Four of that batch, Pixar, Angry Birds, Geometry Dash and The Hunger
+       Games, are down in the As a Kid group now. */
     { name: 'Fortnite', wm: 'fortnite', glyph: 'storm', c1: '#6fb0ff', c2: '#141a30',
       when: '2018\u201319, 6th\u20137th grade',
       meta: 'Game · 2017', href: '/worlds/fortnite/', desc: 'Chapter 1, seasons three to seven, and Omega at tier one hundred. Nothing since has come close.' },
+    { name: 'Five Nights at Freddy’s', wm: 'fnaf', glyph: 'bear', c1: '#c98f4f', c2: '#1a1410',
+      when: 'Middle school, around 2017\u201320',
+      meta: 'Game · 2014', href: '/worlds/five-nights-at-freddys/', desc: 'A horror game made of security cameras and a battery meter. Ruthlessly efficient design.' },
     { name: 'Indiana Jones', wm: 'indiana', glyph: 'fedora', c1: '#d8b06a', c2: '#221a0e',
       when: 'As a kid, through the LEGO games',
       meta: 'Film · 1981', href: '/worlds/indiana-jones/', desc: 'Archaeology as an action sport, with the best-scored opening scene in cinema.' },
@@ -158,44 +170,28 @@ window.FANDOMS = [
       when: 'Summer 2024, into freshman year',
       meta: 'Animation · 2021', href: '/worlds/invincible/', desc: 'Starts as a superhero cartoon and turns, in one episode, into something else. I bounced off it once and came back for the finale.' },
     { name: 'Kung Fu Panda', wm: 'kungfu', glyph: 'panda', c1: '#e0703a', c2: '#231108',
-      when: 'Since I was a kid',
+      when: 'Since I was a kid; the first film is older than I can remember',
       meta: 'Animation · 2008', href: '/worlds/kung-fu-panda/', desc: 'A slapstick premise that turned out to have a real film underneath it.' },
     { name: 'Dune', wm: 'dune', glyph: 'worm', c1: '#e0a050', c2: '#241a0e',
       when: '2021 and 2024, 10th and 12th grade',
       meta: 'Books · 1965', href: '/worlds/dune/', desc: 'One of the greatest things I have ever seen in a cinema. I fell asleep in both films and still knew they were great.' },
 
-    { name: 'LEGO', wm: 'lego', glyph: 'brick', c1: '#ffd21f', c2: '#2a0d0c',
-      when: 'Since I was a kid',
-      meta: 'Toy · 1958', href: '/worlds/lego/',
-      desc: 'The clutch power patent is from 1958 and a brick from then still fits one moulded this morning.' },
-
-    /* The batch that went in after the first pass, in the order he ranks them
-       rather than the order they arrived. They went in without a `when` line,
-       because the rest of this file says when I actually got into each thing
-       and a made-up date would make the one honest column on the page
-       unreliable; he has since given every one, so every tile here has one.
-       Three of that batch, Pixar, Angry Birds and Geometry Dash, are down in
-       the As a Kid group now. */
-    { name: 'The Hunger Games', wm: 'hunger', glyph: 'mockingjay', c1: '#e0b040', c2: '#1a1408',
-      when: 'Somewhere in middle school',
-      meta: 'Books · 2008', href: '/worlds/hunger-games/',
-      desc: 'A children’s series about a televised child-killing contest, which is a sentence it earns. Katniss wins the first book by refusing to finish it, and the rest is about who was watching.' },
     { name: 'John Wick', wm: 'wick', glyph: 'coin', c1: '#d84a52', c2: '#170a0d',
       when: '9th or 10th grade',
       meta: 'Film · 2014', href: '/worlds/john-wick/',
       desc: 'Four films shot wide and held, by stuntmen who got to pick the camera. Underneath the fighting is a better invention: an assassins’ guild with a currency, an arbitration process and paperwork.' },
     { name: 'Christopher Nolan', wm: 'nolan', glyph: 'top', c1: '#d0d8e0', c2: '#0e1217',
-      when: '10th grade',
+      when: '10th grade, 2021–22, through Inception',
       meta: 'Director · 1998', href: '/worlds/christopher-nolan/',
       desc: 'Thirteen films about time, told out of order and shot on film stock the size of a postcard: Inception, Interstellar, Oppenheimer, and now The Odyssey. Zimmer and Göransson did the rest.' },
 
     { name: 'Overwatch', wm: 'overwatch', glyph: 'visor', c1: '#f09d3a', c2: '#16233a',
-      when: 'After it launched',
+      when: '5th grade, 2016–17; properly in 6th and 7th',
       meta: 'Game \u00b7 2016', href: '/worlds/overwatch/',
       desc: 'The hero shooter that invented the genre: nobody has the same gun, and switching character mid-match is the actual skill.' },
 
     { name: 'Clash Royale', wm: 'clash', glyph: 'kingtower', c1: '#6f9fe8', c2: '#101a30',
-      when: 'Elementary school, when it launched; still on my phone',
+      when: '4th grade, 2016, when it launched; still on my phone',
       meta: 'Game · 2016', href: '/worlds/clash-royale/',
       desc: 'Three-minute chess with an elixir bar: two lanes, three towers, eight cards. Clash of Clans lives inside its page, because that is the village the whole thing marched out of.' },
 
@@ -218,6 +214,10 @@ window.FANDOMS = [
      Royale went the other way on the same day; it is still on his phone, so it
      was never an As a Kid tile in the first place. */
   { id: 'kid', label: 'As a Kid', note: 'everything to me then; I do not put them on now', items: [
+    { name: 'The Hunger Games', wm: 'hunger', glyph: 'mockingjay', c1: '#e0b040', c2: '#1a1408',
+      when: 'Somewhere in middle school',
+      meta: 'Books · 2008', href: '/worlds/hunger-games/',
+      desc: 'A children’s series about a televised child-killing contest, which is a sentence it earns. Katniss wins the first book by refusing to finish it, and the rest is about who was watching.' },
     { name: 'SpongeBob', wm: 'spongebob', glyph: 'pineapple', c1: '#f0e03f', c2: '#0a2a3a',
       when: 'Since I was a kid',
       meta: 'Animation · 1999', href: '/worlds/spongebob/',

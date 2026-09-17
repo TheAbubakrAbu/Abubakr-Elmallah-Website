@@ -859,11 +859,14 @@ a.fr-card { cursor: pointer; }
   border-color: color-mix(in srgb, var(--d) 55%, transparent);
 }
 
-/* Accents is gold and Gaming is green, against the blue of Travels, so the
-   three doors read as three different rooms and not one control repeated down
-   the page. One custom property does all of it. */
+/* Accents is gold, Gaming is green and Music is violet, against the blue of
+   Travels, so the four doors read as four different rooms and not one control
+   repeated down the page. One custom property does all of it. Violet is the
+   one hue the rest of the site does not already use, which is the whole
+   reason Music got it. */
 .fr-travels-btn--ac { --d: var(--gold, #f5c63c); }
 .fr-travels-btn--gm { --d: var(--green-2, #3fd589); }
+.fr-travels-btn--mu { --d: var(--violet, #a98cf0); }
 
 @media (max-width: 720px) {
   .fr-travels-btn { min-height: 108px; padding: 1.2rem 1.2rem 1.2rem 1.1rem; gap: 0.95rem; }
@@ -1034,12 +1037,59 @@ body > header, body > main, body > footer {
    flush-left block it evens the rag at the cost of the last line. `pretty` just
    keeps the orphan off the end. */
 .fr-invite {
-  max-width: 40ch; margin: 0 0 2.6rem; text-align: left;
+  max-width: 40ch; margin: 0; text-align: left;
   font-family: "Cormorant Garamond", "Amiri", var(--serif);
   font-style: italic; font-weight: 400;
   font-size: clamp(1.4rem, 1.05rem + 1.15vw, 2.15rem);
   line-height: 1.26; letter-spacing: 0.004em;
   color: var(--ink); text-wrap: pretty;
+}
+
+/* ── the invitation, and the plaque that got there first ──
+   Two sentences about walking into somewhere that is not real, side by side.
+   The margin that used to live on .fr-invite is on the wrapper now, or the
+   two columns would sit on different baselines at the bottom.
+
+   `align-items: end` rather than stretch or start: the invitation is three or
+   four lines and the quotation is two, and hanging the short one off the top
+   left it floating in the middle of nothing. Sharing the BOTTOM edge sets them
+   both on the line the button underneath starts from. */
+.fr-invitewrap {
+  display: grid; gap: 1.6rem 3.2rem; align-items: end;
+  margin: 0 0 2.6rem;
+}
+@media (min-width: 900px) {
+  .fr-invitewrap { grid-template-columns: minmax(0, 40ch) minmax(0, 34ch); }
+}
+
+/* Set smaller than the invitation and rules off on its leading edge: it is
+   somebody else's sentence, so it is quoted rather than said. The rule is a
+   border on the inline start so it flips with the writing direction and does
+   not need a second rule for the stacked layout. */
+/* --gold rather than --a: `--a` is set per fandom page and /worlds/ sets no
+   data-fan at all, so it does not resolve here. The heading this block sits
+   under is already gold (.subsec--fr). */
+.fr-plaque { margin: 0; padding: 0 0 0 1.2rem; border-inline-start: 2px solid color-mix(in srgb, var(--gold) 42%, transparent); }
+.fr-plaque blockquote {
+  margin: 0; padding: 0;
+  font-family: "Cormorant Garamond", "Amiri", var(--serif);
+  font-style: italic; font-weight: 400;
+  font-size: clamp(1.15rem, 0.95rem + 0.7vw, 1.6rem);
+  line-height: 1.3; letter-spacing: 0.004em;
+  color: color-mix(in srgb, var(--ink) 86%, transparent); text-wrap: pretty;
+}
+/* The source, not a byline: what the plaque is, then where and when it is.
+   Two lines rather than one long one, so "Disneyland, 1955" sits under the
+   description instead of running on past it. Both quiet, so the sentence above
+   stays the loudest thing in the block; the second line is dimmer still, since
+   the place and the year are the footnote to the footnote. */
+.fr-plaque figcaption {
+  margin-top: 0.7rem; display: grid; gap: 0.2rem;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute);
+}
+.fr-plaque figcaption i {
+  font-style: normal; color: color-mix(in srgb, var(--mute) 78%, transparent);
 }
 
 /* The invitation had 112px of dead air above it and 24px below, so it floated
@@ -1051,7 +1101,8 @@ body > header, body > main, body > footer {
 .fandoms { padding-top: 0.5rem; }
 
 @media (max-width: 560px) {
-  .fr-invite { max-width: 30ch; margin-bottom: 2rem; }
+  .fr-invite { max-width: 30ch; }
+  .fr-invitewrap { margin-bottom: 2rem; }
 }
 
 /* Everything here is decoration and none of it is worth making somebody ill.

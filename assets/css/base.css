@@ -18,6 +18,8 @@
   --blue:    #2f7fd6;
   --blue-2:  #5fa3ec;
   --gold:    #f5c63c;
+  /* the one accent nothing else claims, used by /music/ */
+  --violet:  #a98cf0;
 
   /* modern grotesque display + clean sans body */
   --serif: "Space Grotesk", "Inter", system-ui, sans-serif; /* display */
