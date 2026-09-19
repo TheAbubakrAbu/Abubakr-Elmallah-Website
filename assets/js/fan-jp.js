@@ -29,7 +29,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'two novels, seven films, the games',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'two novels, seven films, the games',
     lede: 'Two Crichton novels, seven films across thirty-two years, two animated series and a long run of games. The three marked are the three at the top of this page.',
     items: [
       { title: 'The Films', sub: '1993 – 2025', unit: 'film',
@@ -89,7 +89,7 @@ window.FAN_PAGE = {
       { title: 'Giganotosaurus', sub: 'Dominion', tag: 'Late Cretaceous', desc: 'Brought in as the apex of the last film, and it takes two others to bring it down.', meta: 'Carnivore · 13 m' },
     ] },
 
-  { id: 'science', kind: 'timeline', title: 'How The Park Worked', note: 'and the four ways it did not',
+  { id: 'science', kind: 'timeline', fold: true, title: 'How The Park Worked', note: 'and the four ways it did not',
     items: [
       { when: 'Step one', title: 'Amber', desc: 'A mosquito that fed on a dinosaur, trapped in tree resin a hundred million years ago and mined in the Dominican Republic.' },
       { when: 'Step two', title: 'Extract & sequence', desc: 'Blood from the insect’s gut, then the genome read out of it: with holes all through the strand.' },

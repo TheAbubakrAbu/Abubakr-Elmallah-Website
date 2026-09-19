@@ -34,7 +34,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five seasons, and the rest of it',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'five seasons, and the rest of it',
     lede: 'Five seasons across ten years, a stage play that is proper canon, a shelf of novels, and a couple of games. The seasons themselves are taken apart one by one below this.',
     items: [
       { title: 'The Seasons', sub: 'Netflix · 2016 – 2026', unit: 'season',

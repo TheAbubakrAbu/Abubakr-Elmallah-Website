@@ -85,7 +85,7 @@ window.FAN_PAGE = {
         meta: 'Still being arranged, thirty-five years on' },
     ] },
 
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'two series, one film, and the games',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'two series, one film, and the games',
     lede: 'The 1987 run and the 2017 run are the same premise made twice, thirty years apart, and both of them are worth the time. The film sits inside the first run, between its third and fourth seasons.',
     items: [
       { title: 'The 1987 Series', sub: '1987 – 1990', unit: 'season',

@@ -15,7 +15,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the show, the spin-offs, the comic',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the show, the spin-offs, the comic',
     lede: 'Five seasons planned from the start, two animated and live-action spin-offs around it, and the Garth Ennis comic underneath, which is meaner than the show and much less interested in being liked.',
     items: [
       { title: 'The Show', sub: 'Amazon · 2019 – 2026', unit: 'season',
@@ -56,7 +56,7 @@ window.FAN_PAGE = {
       { title: 'Starlight', sub: 'Annie January', tag: 'Vought', desc: 'Joins as a true believer, finds out what the job is in her first week, and spends four seasons deciding what to do about it.', meta: 'Light manipulation' },
     ] },
 
-  { id: 'crew', kind: 'cards', title: 'The Boys', note: 'no powers, a lot of grievances',
+  { id: 'crew', kind: 'cards', fold: true, title: 'The Boys', note: 'no powers, a lot of grievances',
     items: [
       { title: 'Billy Butcher', sub: 'The one with the plan', tag: 'Crew', desc: 'Right about the supes and wrong about nearly everything else, and willing to burn anyone standing near the fire.', meta: 'Ex-SAS' },
       { title: 'Hughie Campbell', sub: 'The audience', tag: 'Crew', desc: 'Pulled in by a personal loss and spends the series working out whether he is becoming what he is fighting.', meta: 'Everyman' },

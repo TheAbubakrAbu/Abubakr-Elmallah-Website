@@ -17,7 +17,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the books, the films, the games',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the books, the films, the games',
     lede: 'Tolkien published three of these in his lifetime; his son Christopher spent forty years publishing the rest out of the notes. On screen it is six Jackson films, one animated one, and a series.',
     items: [
       { title: 'The Books', sub: '1937 – 2018', unit: 'book',
@@ -154,7 +154,7 @@ window.FAN_PAGE = {
         meta: 'Three films, one small book' },
     ] },
 
-  { id: 'places', kind: 'timeline', title: 'The Road', note: 'Bag End to Mount Doom',
+  { id: 'places', kind: 'timeline', fold: true, title: 'The Road', note: 'Bag End to Mount Doom',
     items: [
       { when: 'The Shire', title: 'Where it starts', desc: 'A party, a ring left on a mantelpiece, and seventeen years before anybody moves.' },
       { when: 'Rivendell', title: 'The Council', desc: 'Elrond’s house, and the meeting where nine walkers are chosen.' },

@@ -7,7 +7,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the games, the films, the shows',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the games, the films, the shows',
     lede: 'Rovio shipped these faster than anyone could keep up with, and then took most of them back off the store. The struck-through ones cannot be bought any more, which is the subject of a section further down.',
     items: [
       { title: 'The Games', sub: 'Rovio · 2009 – now', unit: 'game',
@@ -45,7 +45,7 @@ window.FAN_PAGE = {
     ] },
 
 
-  { id: 'flock', kind: 'tiles', title: 'The Flock', note: 'one ability each', compact: true,
+  { id: 'flock', kind: 'tiles', fold: true, title: 'The Flock', note: 'one ability each', compact: true,
     lede: 'The original roster, in the order the game hands them to you. The design rule is that the ability has to be guessable from the silhouette, which is why nothing here needs a label in-game.',
     items: [
       { title: 'Red', accent: '#e03a2a', sub: 'No ability', desc: 'The baseline. Pure mass and angle, and the one the whole game is calibrated against.' },

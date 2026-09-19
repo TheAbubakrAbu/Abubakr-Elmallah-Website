@@ -9,7 +9,7 @@ window.FAN_PAGE = {
   when: { at: 'Before I could read a word of it', note: 'His murattal was the sound of the house and the car. I knew how half the Qurʾān was supposed to sound years before I could follow it on a page, and the half I know best is still welded to his phrasing.' },
   sections: [
 
-  { id: 'numbers', kind: 'stats', title: 'The Life, in Numbers', note: 'محمد صديق المنشاوي',
+  { id: 'numbers', kind: 'stats', fold: true, title: 'The Life, in Numbers', note: 'محمد صديق المنشاوي',
     items: [
       { title: '1920', sub: 'Born in Sohag', accent: '#d9b88a', desc: 'Upper Egypt, into a family whose trade was the Qurʾān: his father Ṣiddīq was a celebrated reciter before him.' },
       { title: '3', sub: 'Generations of Qurrāʾ', accent: '#e8c56a', desc: 'His father before him, his brother Maḥmūd beside him. Recitation ran in the family the way a craft runs through a workshop.' },

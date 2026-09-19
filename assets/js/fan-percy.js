@@ -33,7 +33,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'four series, two films, one show',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'four series, two films, one show',
     lede: 'Riordan has written five books in the main sequence and about twenty more around it. The films are best treated as a rumour; the Disney+ series is the one that adapts the books properly.',
     items: [
       { title: 'Percy Jackson & the Olympians', sub: '2005 – 2009', unit: 'book',

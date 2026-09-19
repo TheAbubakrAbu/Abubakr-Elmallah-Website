@@ -65,7 +65,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'every feature, in order',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'every feature, in order',
     lede: 'Thirty features in thirty years. The franchises come first, because that is how the studio actually works now: six of the properties account for most of the sequels, and everything else is a one-off. The ten marked are the ten this page argues for above; the rest are here because a list that quietly drops Cars 2 is not a list.',
     items: [
       { title: 'The Franchises', sub: 'the six that came back', unit: 'entry',
@@ -154,7 +154,7 @@ window.FAN_PAGE = {
 
   /* the parks. Pixar is the only animation studio whose films have a whole
      pier named after them, and most of these are within an hour of here. */
-  { id: 'rides', kind: 'tiles', compact: true, title: 'In The Parks', note: 'Pixar Pier, Cars Land, and the rest',
+  { id: 'rides', kind: 'tiles', fold: true, compact: true, title: 'In The Parks', note: 'Pixar Pier, Cars Land, and the rest',
     lede: 'Disney owns Pixar, so the films end up as land. Disney California Adventure, an hour up the road, is now more than half Pixar: a whole pier renamed for it in 2018, and a full-scale Radiator Springs built out of the back of the park in 2012. These are the ones actually built on Pixar films.',
     items: [
       { title: 'Pixar Pier', accent: '#4fa8e0', sub: 'Disney California Adventure · 2018',

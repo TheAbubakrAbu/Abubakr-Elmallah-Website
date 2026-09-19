@@ -124,7 +124,7 @@
 /* The pill wraps as a set of whole words, never mid-phrase: "I went here" and
    the date each stay on one line and the date drops below when the card is too
    narrow for both, which is what the twelve-across parks grid does. */
-.fan-been {
+.fan-beenstamp {
   display: inline-flex; align-items: baseline; flex-wrap: wrap;
   gap: 0.1rem 0.4rem;
   padding: 0.28rem 0.6rem 0.3rem; max-width: 100%;
@@ -136,9 +136,9 @@
   white-space: nowrap;
 }
 
-.fan-been i { font-style: normal; font-size: 0.72rem; line-height: 1; }
+.fan-beenstamp i { font-style: normal; font-size: 0.72rem; line-height: 1; }
 
-.fan-been em {
+.fan-beenstamp em {
   font-style: normal; color: var(--mute);
   white-space: normal;
 }
@@ -2925,12 +2925,10 @@ body[data-fan="knotts"] .fan-title {
    in it looks like, and on at least one of the ten it computed to inline-flex,
    which shrank the grid to its content and stacked nine photographs in a
    single 375px column. Saying it here costs one line and cannot be lost. */
-/* white-space for the same reason. `.fan-been` is also the name of the "I went
-   here" stamp on a card three thousand lines up, which sets nowrap so the tick
-   and the words never split; that rule reaches this section too, and a note
-   longer than the viewport then ran straight off the right edge instead of
-   wrapping. Two things should not share a class name, and until they stop,
-   this states what it wants. */
+/* white-space is stated for the same reason. The "I went here" stamp on a card
+   used to share this class name and set nowrap, which reached in here and ran
+   long notes off the right edge; it is `.fan-beenstamp` now, so the collision
+   is gone. This still says what it wants rather than relying on the default. */
 .fan-been {
   display: block; width: 100%; white-space: normal;
   padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
@@ -3045,3 +3043,48 @@ html:not([data-show-pics="on"]) .fan-been .been-hint { display: block; }
 }
 
 .fan-stage-no a { color: var(--a, var(--gold)); text-underline-offset: 2px; }
+
+/* ── folded sections ──
+   `fold: true` in a page's data file wraps the section in a <details> that
+   starts closed. The heading itself is the summary, so it has to keep looking
+   exactly like an open section's heading: same .subsec rules, with the marker
+   and the count sitting on the same row as the rule. Everything here is about
+   the summary; the body inside is untouched and styles itself as it always
+   did. */
+.fan-fold { margin: 3rem 0 0; }
+.fan-fold + .fan-fold { margin-top: 1.1rem; }
+
+/* The default triangle is removed in both dialects: ::-webkit-details-marker
+   for Safari and iOS, list-style for everything else. The arrow that replaces
+   it is .fan-fold-i, which can be positioned and rotated. */
+.fan-fold-sum { list-style: none; cursor: pointer; }
+.fan-fold-sum::-webkit-details-marker { display: none; }
+.fan-fold-sum { display: flex; align-items: center; gap: 1rem; }
+
+/* The heading inside the summary drops its own vertical margin: the <details>
+   carries the spacing now, and .subsec's 3rem top margin would double it. */
+.fan-fold-sum .subsec { margin: 0; flex: 1; }
+
+.fan-fold-n {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute); white-space: nowrap;
+}
+
+.fan-fold-i {
+  font-style: normal; font-size: 0.7rem; line-height: 1;
+  color: var(--a, var(--gold));
+  transition: transform .3s var(--ease);
+}
+.fan-fold[open] .fan-fold-i { transform: rotate(180deg); }
+
+/* Hover and keyboard focus both land on the summary, so they share a state:
+   the heading brightens and the arrow picks up the accent. */
+.fan-fold-sum:hover .subsec--fan,
+.fan-fold-sum:focus-visible .subsec--fan { color: var(--a, var(--gold)); filter: brightness(1.25); }
+.fan-fold-sum:focus-visible { outline: 2px solid var(--a, var(--gold)); outline-offset: 4px; border-radius: 6px; }
+
+.fan-fold-body { padding-top: 1.4rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fan-fold-i { transition: none; }
+}

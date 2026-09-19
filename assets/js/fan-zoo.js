@@ -34,7 +34,7 @@ window.FAN_PAGE = {
         desc: 'Giant pandas arrived on loan in 1996, and the zoo worked out enough about their reproduction that the technique spread everywhere. The last two went back to China in 2019. Two more, Yun Chuan and Xin Bao, arrived in 2024.' },
     ] },
 
-  { id: 'places', kind: 'lands', title: 'Inside The Zoo', note: 'both sites, and what is in them',
+  { id: 'places', kind: 'lands', fold: true, title: 'Inside The Zoo', note: 'both sites, and what is in them',
     lede: 'It is organised by climate and terrain rather than by continent, which is why the map does not look like a world map. The canyon does most of the sorting.',
     items: [
       { title: 'Africa Rocks', sub: 'Opened 2017', unit: 'habitat',
@@ -161,7 +161,7 @@ window.FAN_PAGE = {
 
   /* the complete index. On a zoo page this is the whole institution rather
      than a filmography: both sites, the habitats, and the programmes. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'two sites, and the record',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'two sites, and the record',
     lede: 'One institution on two sites, about twelve thousand animals across some six hundred and fifty species, and a research arm older than most of them.',
     items: [
       { title: 'The Two Sites', sub: '1916 · 1972', unit: 'site',

@@ -576,10 +576,60 @@ a.app-badge:hover {
 .hs-award .honor-line { font-size: 0.7rem; margin: 0.35rem 0 0.5rem; }
 
 .wwdc-grid--ssc .wwdc-shot img { height: 380px; }
+/* The CliftonStrengths set is three 16:9 name tents plus one tall certificate,
+   so a single fixed height either crops the cards or strands them in empty
+   space. Let each tile take its own ratio instead, capped so the portrait
+   certificate cannot run away from the row. */
 .wwdc-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 1.4rem;
+}
+/* ───────────── CliftonStrengths ─────────────
+   The certificate is a tall portrait page (598x1106, w/h 0.54); the three
+   name tents are 16:9. Three tents stacked with two gaps between them come
+   to almost exactly the certificate's ratio, so standing the certificate on
+   the left with the tents in a column beside it squares the row off with no
+   dead space on either side.
+
+   The row is driven by its HEIGHT rather than by column fractions: both
+   sides are given the same height and each column takes whatever width its
+   own aspect-ratio needs (--cert-h / 1.85 for the page, and for a tent
+   (--cert-h - 2 gaps) / 3 * 1.77). That way the two sides stay level at any
+   width instead of drifting apart as the container grows, and nothing is
+   cropped or stretched. Every tile is still a .wwdc-shot, so it keeps the
+   frame, the hover lift and the lightbox the award shots use. */
+.strengths {
+  --cert-h: 680px;
+  --sgap: 1.4rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--sgap);
+  flex-wrap: wrap;
+}
+/* Each width solves its own tile back from --cert-h. A .wwdc-shot--doc tile
+   is 11.2px of padding and a 1px border around the picture on every side, so
+   that frame is taken off before the ratio is applied and added back after,
+   or the two columns come out ~50px apart. */
+.strengths-cert {
+  flex: 0 1 auto;
+  width: calc((var(--cert-h) - 24.4px) * 0.5407 + 22.4px);
+}
+.strengths-tents {
+  flex: 0 1 auto;
+  display: flex; flex-direction: column; gap: var(--sgap);
+  width: calc(((var(--cert-h) - 2 * var(--sgap)) / 3 - 24.4px) * 1.766 + 22.4px);
+}
+/* contain, not cover: these are documents, so they are shown whole */
+.strengths .wwdc-shot img { width: 100%; height: auto; object-fit: contain; display: block; }
+
+/* Narrower than the two columns need, the row wraps on its own: the
+   certificate sits on top and the three tents follow, each still at its own
+   ratio. Both sides are capped so neither runs the full page width. */
+@media (max-width: 820px) {
+  .strengths { --cert-h: 560px; }
+  .strengths-cert, .strengths-tents { width: min(100%, 420px); }
 }
 .wwdc-shot {
   display: flex; flex-direction: column;
@@ -668,6 +718,13 @@ a.app-badge:hover {
 .subsec:first-of-type { margin-top: 0; }
 .subsec::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 .subsec .subsec-yr { color: var(--mute); letter-spacing: 0.1em; }
+
+/* A subsec whose subtitle is too long to sit beside the title: the row wraps,
+   the subtitle takes the whole second line, and the rule stays on the title's
+   line rather than being pushed down with it. */
+.subsec--stack { flex-wrap: wrap; row-gap: 0.5rem; }
+.subsec--stack::after { order: 1; }
+.subsec--stack .subsec-yr { order: 2; flex: 0 0 100%; }
 
 /* App Store developer-page link beneath a section grid */
 .dev-link {
@@ -1167,6 +1224,17 @@ html.intro-lock { overflow: hidden; }
   padding: 0.85rem 1.1rem; border-top: 1px solid var(--line);
 }
 .embed-note b { color: var(--ink-dim); font-weight: 400; }
+
+/* A label above a single embed, for the pages that stack more than one Google
+   Doc under one heading (/al-islam/ and /high-school/ both show the two
+   Al-Islam documents). Lighter than .subsec on purpose: the subsec names the
+   section, this only says which of the documents follows. */
+.isl-doc-head {
+  font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gold); margin: 2.2rem 0 0.7rem;
+}
+.isl-doc-head + .embed-wrap { margin-top: 0; }
 
 /* ───────────── Closing verse ───────────── */
 /* Centred on purpose, but centred INSIDE the page column: the block takes the

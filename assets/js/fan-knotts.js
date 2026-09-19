@@ -24,7 +24,7 @@ window.FAN_PAGE = {
       { title: 'Every October', sub: 'Scary Farm', desc: 'For anybody who grew up in Orange County this is simply what October is.' },
     ] },
 
-  { id: 'lands', kind: 'cards', title: 'The Four Lands', note: 'walkable in an afternoon, which is the point',
+  { id: 'lands', kind: 'cards', fold: true, title: 'The Four Lands', note: 'walkable in an afternoon, which is the point',
     lede: 'Knott\u2019s is small next to the parks down the road and that is its best feature. You can cross the whole thing in ten minutes, the queues move, and nothing about the day is a logistics exercise. It is the one big park in Southern California you can go to on a whim.',
     items: [
       { title: 'Ghost Town', sub: '1940 · the original', tag: 'Land', accent: '#c9924a',
@@ -41,7 +41,7 @@ window.FAN_PAGE = {
         meta: 'The oldest Peanuts licence in parks' },
     ] },
 
-  { id: 'rides', kind: 'cards', title: 'The Rides', note: 'oldest first',
+  { id: 'rides', kind: 'cards', fold: true, title: 'The Rides', note: 'oldest first',
     items: [
       { title: 'Calico Mine Ride', sub: '1960', tag: 'Dark ride', desc: 'Ore cars through a mountain of glowing minerals and a cave-in. Built by the park itself, and restored rather than replaced.',
         href: 'https://www.knotts.com/rides/calico-mine-ride', link: 'knotts.com', meta: 'Ghost Town' },

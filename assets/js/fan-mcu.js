@@ -68,7 +68,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'every film and every series, in order',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'every film and every series, in order',
     lede: 'Thirty-odd films and fifteen-odd series in eighteen years, released in an order that is also a reading order. The four marked are the solo debuts of the four characters this page opens with.',
     items: [
       { title: 'The Infinity Saga', sub: 'Phases One to Three · 2008 – 2019', unit: 'film',

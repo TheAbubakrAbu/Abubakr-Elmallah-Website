@@ -17,7 +17,9 @@ window.FAN_PAGE = {
         photoCap: 'Galaxy’s Edge, June 2024' },
       { title: 'Walt Disney World', sub: 'Bay Lake, Florida · 1971', tag: 'Resort II', desc: 'The largest of them by a distance: Magic Kingdom, EPCOT, Hollywood Studios and Animal Kingdom on a site the size of a city.',
         href: 'https://disneyworld.disney.go.com/', link: 'disneyworld.disney.go.com', meta: '4 parks · 2 water parks',
-        been: true, beenWhen: 'all four parks' },
+        been: true, beenWhen: 'all four parks', photo: 'ms-middle/2019-12-30-1200-2.avif',
+        photoAlt: 'holding a lit lightsaber in front of the Millennium Falcon at Batuu, at night',
+        photoCap: 'Galaxy’s Edge, December 2019' },
       { title: 'Tokyo Disney Resort', sub: 'Urayasu, Japan · 1983', tag: 'Resort III', desc: 'Licensed rather than owned, run by the Oriental Land Company, and home to DisneySea: which a lot of people will tell you is the best theme park ever built.',
         href: 'https://www.tokyodisneyresort.jp/en/', link: 'tokyodisneyresort.jp', meta: 'Disneyland · DisneySea',
         been: true, beenWhen: 'July 2026', photo: 'uci-second/2026-07-14-0941.avif',
@@ -29,13 +31,9 @@ window.FAN_PAGE = {
         href: 'https://www.hongkongdisneyland.com/', link: 'hongkongdisneyland.com', meta: '1 park' },
       { title: 'Shanghai Disney Resort', sub: 'Pudong, China · 2016', tag: 'Resort VI', desc: 'The newest and the most different: Enchanted Storybook Castle is the biggest of them, and Tron Lightcycle Power Run debuted here.',
         href: 'https://www.shanghaidisneyresort.com/en/', link: 'shanghaidisneyresort.com', meta: '1 park · Disneytown' },
-      { title: 'All Disney Parks', sub: 'The hub', tag: 'Official', desc: 'One page for every resort, cruise line and Adventures by Disney trip.',
-        href: 'https://disneyparks.disney.go.com/', link: 'disneyparks.disney.go.com', meta: 'Parks, Experiences & Products' },
-      { title: 'Disney Cruise Line', sub: 'Since 1998', tag: 'At sea', desc: 'Plus Castaway Cay and Lookout Cay, the private-island half of the parks business.',
-        href: 'https://disneycruise.disney.go.com/', link: 'disneycruise.disney.go.com', meta: 'Growing fleet' },
     ] },
 
-  { id: 'studios', kind: 'cards', title: 'The Studios', note: 'what Disney actually owns',
+  { id: 'studios', kind: 'cards', fold: true, fold: true, title: 'The Studios', note: 'what Disney actually owns',
     items: [
       { title: 'Walt Disney Animation', sub: 'Since 1923', tag: 'Animation', desc: 'Snow White in 1937 was the first full-length animated feature anyone had attempted. Sixty-odd films later it is still the flagship.',
         href: 'https://www.disneyanimation.com/', link: 'disneyanimation.com', meta: 'Burbank' },
@@ -51,7 +49,7 @@ window.FAN_PAGE = {
         href: 'https://www.disneyplus.com/', link: 'disneyplus.com', meta: 'Nov 2019' },
     ] },
 
-  { id: 'rides', kind: 'cards', title: 'The Rides', note: 'the ones that turn up in more than one park',
+  { id: 'rides', kind: 'cards', fold: true, fold: true, title: 'The Rides', note: 'the ones that turn up in more than one park',
     items: [
       { title: 'Pirates of the Caribbean', sub: '1967', tag: 'Dark ride', desc: 'The last attraction Walt personally worked on, and the only ride that has ever produced a film franchise rather than the other way round.',
         href: 'https://disneyland.disney.go.com/attractions/disneyland/pirates-of-the-caribbean/', link: 'disneyland.disney.go.com', meta: 'Anaheim · Orlando · Paris · Tokyo · Shanghai' },
@@ -64,7 +62,7 @@ window.FAN_PAGE = {
         href: 'https://disneyworld.disney.go.com/attractions/hollywood-studios/star-wars-rise-of-the-resistance/', link: 'disneyworld.disney.go.com', meta: 'Anaheim · Orlando' },
     ] },
 
-  { id: 'numbers', kind: 'tiles', title: 'The Numbers', note: 'the scale of it',
+  { id: 'numbers', kind: 'tiles', fold: true, title: 'The Numbers', note: 'the scale of it',
     items: [
       { title: 'Opening day, 1955', accent: '#9fd0ff', sub: 'A disaster', desc: 'Counterfeit tickets, a gas leak, tarmac still setting in the heat. Walt called it Black Sunday, and it recovered inside a month.' },
       { title: 'Twice Manhattan', accent: '#7fd0ff', sub: 'Walt Disney World', desc: 'Around a hundred square kilometres in Florida, bought quietly through shell companies so the price would not move.' },
@@ -74,7 +72,7 @@ window.FAN_PAGE = {
       { title: '12 parks', accent: '#5fd0a0', sub: 'Six resorts', desc: 'Plus a cruise line, two private islands, and a seventh resort under discussion more or less permanently.' },
     ] },
 
-  { id: 'eras', kind: 'timeline', title: 'The Animation Eras', note: '1937 – now',
+  { id: 'eras', kind: 'timeline', fold: true, fold: true, title: 'The Animation Eras', note: '1937 – now',
     items: [
       { when: '1937 – 1942', title: 'The Golden Age', desc: 'Snow White, Pinocchio, Fantasia, Dumbo, Bambi. Five films that invented the form and nearly bankrupted the studio.' },
       { when: '1950 – 1959', title: 'The Silver Age', desc: 'Cinderella, Alice, Peter Pan, Lady and the Tramp, Sleeping Beauty, and Disneyland opening in the middle of it.' },
@@ -89,6 +87,7 @@ window.FAN_PAGE = {
       { title: '8 of 12', sub: 'Parks visited', desc: 'Every park at Disneyland, Walt Disney World and Tokyo.' },
       { title: '3 of 6', sub: 'Resorts visited', desc: 'Anaheim, Orlando and Chiba. Paris, Hong Kong and Shanghai still to do.' },
       { title: '2', sub: 'Continents', desc: 'North America and Asia.' },
+      { title: 'Aulani', sub: 'Hotels', desc: 'Oahu in September 2026: a Disney resort with no theme park, so it counts for neither total above.' },
       { title: '1955 \u2013 2001', sub: 'Opening range', desc: 'From the original Disneyland to Tokyo DisneySea and California Adventure.' },
     ] },
 
@@ -115,7 +114,7 @@ window.FAN_PAGE = {
      land and ride by ride, because that is the part of it I actually know on
      foot rather than off a map. `kind: 'lands'` is the only place on these
      pages that lists attractions individually; see fanpage.js. */
-  { id: 'dl-park-lands', kind: 'lands', title: 'Disneyland Park, Land by Land',
+  { id: 'dl-park-lands', kind: 'lands', fold: true, fold: true, title: 'Disneyland Park, Land by Land',
     note: 'nine lands · every ride in each',
     lede: 'Walt laid this out as a wheel: Main Street runs north from the gate to the castle, and everything else hangs off the hub around it, so you are never more than one turn from the middle. Sixty-odd acres, which is a third of Magic Kingdom, and it is the tightness that makes it work. Diamonds are the headliners.',
     items: [
@@ -213,7 +212,7 @@ window.FAN_PAGE = {
         ] },
     ] },
 
-  { id: 'dca-lands', kind: 'lands', title: 'California Adventure, Land by Land',
+  { id: 'dca-lands', kind: 'lands', fold: true, fold: true, title: 'California Adventure, Land by Land',
     note: 'eight lands · across the esplanade',
     lede: 'The park that opened badly in 2001 and spent a billion dollars fixing itself. There is no hub here: it is a loop around a lagoon, and almost every land you walk through has been rebuilt or renamed since it opened. Cars Land in 2012 is the one that turned it around.',
     items: [
@@ -329,6 +328,44 @@ window.FAN_PAGE = {
       { title: 'Walt Disney Studios Park', accent: '#8f98a8', sub: '2002 · not yet', desc: 'Paris\u2019 second gate, currently being rebuilt into Disney Adventure World.' },
       { title: 'Hong Kong Disneyland', accent: '#7fc0f0', sub: '2005 · not yet', desc: 'The smallest of them, with a castle that got a full rebuild in 2020.' },
       { title: 'Shanghai Disneyland', accent: '#f0a8d8', sub: '2016 · not yet', desc: 'The newest and largest castle, and TRON Lightcycle Power Run, which Florida then copied.' },
+    ] },
+
+  /* ── the rest of the parks business ──
+     Everything above this point has a gate you walk through. These two
+     sections are the parts that do not: the hotels, which are Disney resorts
+     without a theme park attached, and the ships. Aulani is the reason this
+     split exists: it is a Disney resort I have actually stayed at, and it was
+     misleading sitting in a list titled "The Parks". */
+  { id: 'hotels', kind: 'cards', title: 'Disney Resorts', note: 'hotels, not parks', been: true,
+    lede: 'The hotel half of the business. Most Disney hotels sit beside a park, but three were built as destinations by themselves, with no gate anywhere near them: Vero Beach, Hilton Head and Aulani. Aulani is the big one, and the only one of the three I have stayed at.',
+    items: [
+      { title: 'Aulani', sub: 'Kapolei, Hawaii · 2011', tag: 'Standalone', desc: 'The largest of the three with no theme park next to it, and the only one that is a full resort rather than a retreat. Built around Hawaiian story rather than the castle formula, on the Ko Olina lagoons.',
+        href: 'https://www.disneyaulani.com/', link: 'disneyaulani.com', meta: 'Resort & spa · no gate',
+        been: true, beenWhen: 'September 2026' },
+      { title: 'The Disneyland Hotels', sub: 'Anaheim · since 1955', tag: 'On property', desc: 'Three of them, and I have stayed at all three: the original Disneyland Hotel, the Grand Californian with a door straight into California Adventure, and Pixar Place.',
+        href: 'https://disneyland.disney.go.com/hotels/', link: 'disneyland.disney.go.com', meta: '3 hotels',
+        been: true, beenWhen: 'all three' },
+      { title: 'The Walt Disney World Resorts', sub: 'Florida · since 1971', tag: 'On property', desc: 'More than twenty of them across the site, sorted into value, moderate and deluxe, with the monorail running through the Contemporary.',
+        href: 'https://disneyworld.disney.go.com/resorts/', link: 'disneyworld.disney.go.com', meta: '20+ hotels' },
+      { title: 'Disney’s Vero Beach Resort', sub: 'Florida · 1995', tag: 'Standalone', desc: 'The first Disney hotel built nowhere near a park: a beach resort on the Treasure Coast, about two hours from Orlando, with sea turtles nesting outside it.',
+        href: 'https://disneyvacationclub.disney.go.com/resorts/vero-beach-resort/', link: 'disneyvacationclub.disney.go.com', meta: 'Atlantic coast' },
+      { title: 'Disney’s Hilton Head Island Resort', sub: 'South Carolina · 1996', tag: 'Standalone', desc: 'A Lowcountry island retreat done as a 1940s fishing camp, with its own beach house on the Atlantic. No park, no castle, no monorail.',
+        href: 'https://disneyvacationclub.disney.go.com/resorts/hilton-head-island-resort/', link: 'disneyvacationclub.disney.go.com', meta: 'Sea Pines' },
+      { title: 'Disney Vacation Club', sub: 'Since 1991', tag: 'Timeshare', desc: 'The points system behind a lot of these buildings: Aulani, Vero Beach and Hilton Head are all DVC, which is why the three standalone resorts are the three it built.',
+        href: 'https://disneyvacationclub.disney.go.com/', link: 'disneyvacationclub.disney.go.com', meta: 'Members’ half' },
+    ] },
+
+  { id: 'cruise', kind: 'cards', title: 'Disney Cruise Line', note: 'the ships · since 1998',
+    lede: 'The part of the parks business that moves. A growing fleet, plus two private islands in the Bahamas that function as ports the company owns outright.',
+    items: [
+      { title: 'The Fleet', sub: 'Since 1998', tag: 'Ships', desc: 'Magic and Wonder first, then Dream and Fantasy, then Wish, Treasure and Destiny, with more on the way. Every ship carries the same funnels and the same horn.',
+        href: 'https://disneycruise.disney.go.com/', link: 'disneycruise.disney.go.com', meta: 'Growing fleet' },
+      { title: 'Castaway Cay', sub: 'Bahamas · 1998', tag: 'Private island', desc: 'The original private island, a former airstrip at Gorda Cay, where the ship ties up at a dock rather than tendering people in.',
+        href: 'https://disneycruise.disney.go.com/ports-of-call/castaway-cay/', link: 'disneycruise.disney.go.com', meta: 'Own port' },
+      { title: 'Lookout Cay', sub: 'Eleuthera · 2024', tag: 'Private island', desc: 'The second one, at Lighthouse Point, built with Bahamian artists and a much lighter footprint than the first.',
+        href: 'https://disneycruise.disney.go.com/ports-of-call/lookout-cay/', link: 'disneycruise.disney.go.com', meta: 'Own port' },
+      { title: 'All Disney Parks', sub: 'The hub', tag: 'Official', desc: 'One page for every resort, the cruise line and Adventures by Disney.',
+        href: 'https://disneyparks.disney.go.com/', link: 'disneyparks.disney.go.com', meta: 'Parks, Experiences & Products' },
     ] },
 
   { id: 'florida', kind: 'cards', title: 'Florida Is The Best One', note: 'and it is not close',

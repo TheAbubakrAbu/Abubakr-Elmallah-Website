@@ -366,7 +366,7 @@
   var beenRow = function (it) {
     if (!it.been && !it.photo) return SLOT;
     var stamp = it.been
-      ? '<span class="fan-been"><i aria-hidden="true">✓</i>I went here'
+      ? '<span class="fan-beenstamp"><i aria-hidden="true">✓</i>I went here'
         + (it.beenWhen ? '<em>' + esc(it.beenWhen) + '</em>' : '') + '</span>'
       : '';
     var pic = it.photo
@@ -690,20 +690,49 @@
       + '</figure>';
   }
 
+  /* ── folded sections ──
+     `fold: true` on a section starts it closed behind its own heading. It is
+     for the deep-cut reference lists -- a park land by land, a full
+     filmography -- which are worth having and are not worth making somebody
+     scroll past to reach the next thing. What stays open is the pivotal
+     stuff: the photographs, the music, the links, and anything carrying an
+     opinion rather than an inventory.
+
+     Native <details> rather than a JS toggle, so it opens with no script, is
+     keyboard-operable and announces itself to a screen reader on its own. The
+     heading moves inside the <summary>: it is the click target, so it must be
+     the thing that looks like the heading. `foldNote` overrides the count
+     shown beside it when the item count is not the useful number. */
+  function folded(s, body) {
+    var n = s.items.length;
+    var hint = s.foldNote || (n ? n + (n === 1 ? ' entry' : ' entries') : '');
+    return '<details class="fan-fold reveal"' + (s.open ? ' open' : '') + '>'
+      + '<summary class="fan-fold-sum">'
+      +   '<h3 class="subsec subsec--fan">' + esc(s.title)
+      +     (s.note ? '<span class="subsec-yr">' + esc(s.note) + '</span>' : '')
+      +   '</h3>'
+      +   (hint ? '<span class="fan-fold-n">' + esc(hint) + '</span>' : '')
+      +   '<i class="fan-fold-i" aria-hidden="true">↓</i>'
+      + '</summary>'
+      + '<div class="fan-fold-body">' + body + '</div>'
+      + '</details>';
+  }
+
   function markup(s) {
     if (!Array.isArray(s.items)) s.items = [];   // a section with no items renders empty, not a blank page
     var build = KINDS[s.kind] || KINDS.cards;
-    return '<section class="fan-sec" id="' + esc(s.id || '') + '"'
+    var head = '<h3 class="subsec subsec--fan reveal">' + esc(s.title)
+      + (s.note ? '<span class="subsec-yr">' + esc(s.note) + '</span>' : '')
+      + '</h3>';
+    var body = (s.lede ? '<p class="fan-lede reveal">' + esc(s.lede) + '</p>' : '')
+      + art(s)
+      + controls(s)
+      + build(s);
+    return '<section class="fan-sec' + (s.fold ? ' is-folded' : '') + '" id="' + esc(s.id || '') + '"'
       + (s.tone ? ' style="--a:' + esc(s.tone) + '"' : '')
       + (s.season ? ' data-season="' + s.season + '"' : '')
       + (s.symbiote ? ' data-symbiote="1"' : '') + '>'
-      + '<h3 class="subsec subsec--fan reveal">' + esc(s.title)
-      +   (s.note ? '<span class="subsec-yr">' + esc(s.note) + '</span>' : '')
-      + '</h3>'
-      + (s.lede ? '<p class="fan-lede reveal">' + esc(s.lede) + '</p>' : '')
-      + art(s)
-      + controls(s)
-      + build(s)
+      + (s.fold ? folded(s, body) : head + body)
       + '</section>';
   }
 
@@ -834,6 +863,36 @@
      that a load-order dependency is how the atlas on /star-wars/ ended up blank.
      Handing the markup back is idempotent and makes the order irrelevant. */
   if (typeof window.AEreveal === 'function') window.AEreveal(root);
+
+  /* ── a link into a folded section opens it ──
+     Every fan page has a row of jump links, and several of them point at
+     sections that now start closed. A browser will scroll to a node inside a
+     shut <details> and show nothing, so the fold is opened first and then
+     scrolled to. Covers both the click (same-page hash) and the initial load
+     with a hash already in the URL. */
+  (function openTargetFold() {
+    function reveal(hash) {
+      if (!hash || hash.length < 2) return;
+      var el;
+      try { el = document.getElementById(decodeURIComponent(hash.slice(1))); }
+      catch (e) { return; }
+      if (!el) return;
+      var d = el.closest ? el.closest('details.fan-fold') : null;
+      if (!d) d = el.querySelector && el.querySelector('details.fan-fold');
+      if (d && !d.open) {
+        d.open = true;
+        requestAnimationFrame(function () {
+          el.scrollIntoView({ block: 'start', behavior: 'auto' });
+        });
+      }
+    }
+    if (location.hash) reveal(location.hash);
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+      if (a) reveal(a.getAttribute('href'));
+    });
+    window.addEventListener('hashchange', function () { reveal(location.hash); });
+  })();
 
   if (tail) {
     tail.innerHTML = all.filter(function (s) { return s.mount === 'end'; }).map(markup).join('');

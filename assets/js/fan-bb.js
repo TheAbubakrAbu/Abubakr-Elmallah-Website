@@ -16,7 +16,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'two shows, one film, one universe',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'two shows, one film, one universe',
     lede: 'Sixty-two episodes of Breaking Bad, sixty-three of Better Call Saul, and one film to close out Jesse. The prequel is longer than the show it is a prequel to, which nobody expected and which turned out fine.',
     items: [
       { title: 'Breaking Bad', sub: 'AMC · 2008 – 2013', unit: 'season',

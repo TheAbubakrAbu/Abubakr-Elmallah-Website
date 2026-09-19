@@ -46,7 +46,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'one launcher, seven games',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'one launcher, seven games',
     lede: 'Fortnite stopped being a game and became a platform: Battle Royale is the one everybody means, but there are now six other games behind the same front door, and the original paid mode is still there underneath all of it.',
     items: [
       { title: 'The Modes', sub: 'Epic · 2017 – now', unit: 'mode',
@@ -74,7 +74,7 @@ window.FAN_PAGE = {
     ] },
 
 
-  { id: 'chapters', kind: 'timeline', title: 'The Chapters', note: '2017 – now',
+  { id: 'chapters', kind: 'timeline', fold: true, title: 'The Chapters', note: '2017 – now',
     items: [
       { when: '2017 · Chapter 1', title: 'Battle Royale', desc: 'Bolted onto a co-op zombie game in two months, and it swallowed the industry inside a year.' },
       { when: 'Oct 2019 · The End', title: 'The black hole', desc: 'The map was pulled into a black hole and the game was simply gone for two days. Nothing has matched it since.' },
@@ -84,7 +84,7 @@ window.FAN_PAGE = {
       { when: '2023 → now', title: 'Chapter 5 and beyond', desc: 'LEGO, Rocket Racing, Festival: one launcher, four games, and the metaverse pitch made real enough to argue about.' },
     ] },
 
-  { id: 'build', kind: 'tiles', title: 'Building', note: 'the mechanic nobody else copied successfully',
+  { id: 'build', kind: 'tiles', fold: true, title: 'Building', note: 'the mechanic nobody else copied successfully',
     lede: 'Every fight is a race for high ground, and the whole skill ceiling is how fast your hands can put a box around you.',
     items: [
       { title: 'Wall', accent: '#8fb0ff', sub: 'The panic button', desc: 'Ten materials, instant cover, and the first thing anyone learns.' },
@@ -94,7 +94,7 @@ window.FAN_PAGE = {
       { title: 'Zero Build', accent: '#7fd07f', sub: '2022', desc: 'Overshield instead of walls. Half the playerbase never went back.' },
     ] },
 
-  { id: 'loot', kind: 'tiles', title: 'The Loot', note: 'rarity, by colour',
+  { id: 'loot', kind: 'tiles', fold: true, title: 'The Loot', note: 'rarity, by colour',
     lede: 'You learn the colours before you learn the guns. A gold glow across a room ends whatever conversation you were having.',
     items: [
       { title: 'Common', accent: '#9aa0a8', sub: 'Grey', desc: 'The one you drop the moment anything else appears.' },

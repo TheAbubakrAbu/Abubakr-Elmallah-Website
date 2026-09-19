@@ -28,7 +28,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'On Screen', note: 'the films and the series',
+  { id: 'works', kind: 'works', fold: true, title: 'On Screen', note: 'the films and the series',
     lede: 'The games are the catalogue above, all twenty-nine of them. This is the other half: five cinema films and the television line, which by now has run longer than most of the things it parodies.',
     items: [
       { title: 'The Films', sub: '2010 – 2024', unit: 'film',

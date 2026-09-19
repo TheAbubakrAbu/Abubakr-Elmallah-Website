@@ -11,7 +11,7 @@
 window.FAN_PAGE = {
   when: { at: 'Around 2012, age six', note: 'As Cassian says: I have been in this fight since I was six years old. Lightsabers and the Force were the first things that ever made me want a whole universe to be real.' },
   sections: [
-  { id: 'eras', kind: 'era', title: 'The Eras', note: 'BBY / ABY, before and after the Battle of Yavin',
+  { id: 'eras', kind: 'era', fold: true, title: 'The Eras', note: 'BBY / ABY, before and after the Battle of Yavin',
     lede: 'Everything canon is filed into one of these. The whole Skywalker story is about fifty years wide; the galaxy around it runs for twenty-five thousand. Drag the rail sideways to travel down it.',
     items: [
       { when: '25,000 BBY', title: 'The Republic is founded', meta: 'Coruscant',
@@ -92,7 +92,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the films, the series, the games',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the films, the series, the games',
     lede: 'Twelve films, a television side that is now longer than the film side, and a games shelf that goes back to 1982. The marked games are the ones I have finished, listed again at the bottom of this page with the dates.',
     items: [
       { title: 'The Films', sub: '1977 – now', unit: 'film',

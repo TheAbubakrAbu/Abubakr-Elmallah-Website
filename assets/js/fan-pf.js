@@ -28,7 +28,7 @@ window.FAN_PAGE = {
         meta: 'Self-destruct button included' },
     ] },
 
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'four series runs, two films, one spin-off',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'four series runs, two films, one spin-off',
     lede: 'It ended in 2015, got a film in 2020, and then came back in 2025 because Disney worked out that the people who watched it are now the people who pay for Disney+.',
     items: [
       { title: 'On Television', sub: '2007 – now', unit: 'series',

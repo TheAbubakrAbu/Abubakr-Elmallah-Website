@@ -31,7 +31,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'four films, three series, the shorts',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'four films, three series, the shorts',
     lede: 'Four films, three television series, four half-hour shorts and a run of tie-in games. The second film is the one this page argues for.',
     items: [
       { title: 'The Films', sub: 'DreamWorks · 2008 – 2024', unit: 'film',

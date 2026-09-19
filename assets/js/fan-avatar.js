@@ -14,7 +14,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five films, planned as five',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'five films, planned as five',
     lede: 'Cameron announced five films and has been shooting them more or less back to back since 2017. Everything else here exists to support them, including a theme park land that opened five years before the second one.',
     items: [
       { title: 'The Films', sub: '2009 – 2031', unit: 'film',
@@ -53,7 +53,7 @@ window.FAN_PAGE = {
       { title: 'Four minutes', accent: '#c04a3a', sub: 'Exopack off', desc: 'That is how long a human lasts breathing Pandoran air. It matters twice.' },
     ] },
 
-  { id: 'tech', kind: 'tiles', title: 'The Hardware', note: 'what the humans brought',
+  { id: 'tech', kind: 'tiles', fold: true, title: 'The Hardware', note: 'what the humans brought',
     items: [
       { title: 'AMP suits', accent: '#c9a05f', sub: 'Amplified Mobility Platform', desc: 'Four metres of walking exoskeleton with a knife the size of a car door, and the final fight is one of them against a bow.' },
       { title: 'Exopacks', accent: '#8fd0e0', sub: 'Four minutes', desc: 'The Pandoran atmosphere is breathable for about four minutes before it kills you. The mask is the whole tension of every outdoor scene.' },
@@ -63,7 +63,7 @@ window.FAN_PAGE = {
       { title: 'The Sea Dragon', accent: '#4f9fd0', sub: 'Film two', desc: 'A hunting vessel built to take tulkun, and the sequence that makes the second film work.' },
     ] },
 
-  { id: 'made', kind: 'timeline', title: 'How It Was Shot', note: 'the technology is the story of the production',
+  { id: 'made', kind: 'timeline', fold: true, title: 'How It Was Shot', note: 'the technology is the story of the production',
     items: [
       { when: '1994', title: 'The treatment', desc: 'Cameron writes eighty pages and then shelves it, on the grounds that nothing available can shoot it.' },
       { when: '2005 to 2009', title: 'Performance capture', desc: 'A purpose-built camera rig with a head-mounted lens per actor, and a virtual camera that let him walk a set that did not exist.' },

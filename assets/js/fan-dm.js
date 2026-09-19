@@ -28,7 +28,7 @@ window.FAN_PAGE = {
         meta: 'Despicable Me 2, 2013' },
     ] },
 
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'seven films, two of them prequels about the yellow ones',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'seven films, two of them prequels about the yellow ones',
     lede: 'Illumination was set up by Chris Meledandri in 2007 to make animated films cheaply, and this is the proof of the method: the first one cost sixty-nine million dollars, which is roughly a third of what a Pixar film cost that year, and it made five hundred and forty-three. The franchise has now passed six billion worldwide, which makes it the highest-grossing animated series ever made.',
     items: [
       { title: 'Despicable Me', sub: '2010 – 2024', unit: 'film',

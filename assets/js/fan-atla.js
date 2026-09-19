@@ -15,7 +15,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'two series, the comics, the games',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'two series, the comics, the games',
     lede: 'Sixty-one episodes of the original, fifty-two of Korra, and then a comic line that is genuine canon and picks up the morning after the finale. The 2010 film is on the list because pretending otherwise would be dishonest.',
     items: [
       { title: 'The Series', sub: '2005 – now', unit: 'series',
@@ -143,7 +143,7 @@ window.FAN_PAGE = {
         meta: 'Wins: flexibility' },
     ] },
 
-  { id: 'nations', kind: 'tiles', title: 'The Four Nations', note: 'element · style · source',
+  { id: 'nations', kind: 'tiles', fold: true, title: 'The Four Nations', note: 'element · style · source',
     items: [
       { title: 'Air Nomads', accent: '#e8c46a', sub: 'Airbending', desc: 'Baguazhang, circles and evasion. Four temples, and all of them gone in one day.' },
       { title: 'Water Tribes', accent: '#4f9fd0', sub: 'Waterbending', desc: 'Tai chi, redirection. Strongest under a full moon, taught by the moon spirit itself.' },
@@ -153,7 +153,7 @@ window.FAN_PAGE = {
       { title: 'The Avatar State', accent: '#7fe0ff', sub: 'Every past life at once', desc: 'Enormous power and the one condition: die in it, and the cycle ends forever.' },
     ] },
 
-  { id: 'bending', kind: 'tiles', compact: true, title: 'The Sub-Bendings', note: 'every specialisation in both shows',
+  { id: 'bending', kind: 'tiles', fold: true, compact: true, title: 'The Sub-Bendings', note: 'every specialisation in both shows',
     lede: 'Four elements, and then a whole tree of specialisations underneath them, most of which somebody had to invent, usually under pressure, and usually by watching a different element and stealing the idea.',
     items: [
       { title: 'Healing', accent: '#4fd0e0', sub: 'Water', desc: 'Water over a wound and chi guided through the body. Taught properly in the Northern Water Tribe, and Katara learns it because Yugoda assumes that is what she came for.' },

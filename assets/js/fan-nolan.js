@@ -38,7 +38,7 @@ window.FAN_PAGE = {
         desc: 'Homer, shot entirely on IMAX film cameras, the first feature ever to be. Matt Damon as Odysseus, a decade at sea in one summer, and Göransson scoring it on ancient instruments and gongs instead of an orchestra: Sirens, further down, is the whole approach in two and a half minutes.' },
     ] },
 
-  { id: 'rules', kind: 'tiles', title: 'The Rules', note: 'what a Nolan film is made of',
+  { id: 'rules', kind: 'tiles', fold: true, title: 'The Rules', note: 'what a Nolan film is made of',
     lede: 'Thirteen films and the same habits in every one. Some of them are method and some of them are stubbornness, and it is not always clear which.',
     items: [
       { title: 'Time is the subject', accent: '#d0d8e0', sub: 'Every film', desc: 'Backwards, nested, relative, inverted, or simply running out. The clock is the villain more often than any person is.' },

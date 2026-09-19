@@ -29,7 +29,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, and those are taken from what this
      page already says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the films, the cartoons, the animated ones',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the films, the cartoons, the animated ones',
     lede: 'The whole live-action run in order, the animated series that are still the best version of most of these characters, and a shelf of direct-to-video animated films that quietly outclass the cinema ones.',
     items: [
       { title: 'The Films', sub: 'DC Extended Universe · 2013 – 2023', unit: 'film',
@@ -148,7 +148,7 @@ window.FAN_PAGE = {
         meta: 'Both set weeks after Batman v Superman · two cuts, both liked' },
     ] },
 
-  { id: 'foes', kind: 'tiles', title: 'The Opposition', note: 'what needs seven of them',
+  { id: 'foes', kind: 'tiles', fold: true, title: 'The Opposition', note: 'what needs seven of them',
     items: [
       { title: 'Darkseid', accent: '#c04a3a', sub: 'Apokolips', desc: 'The Anti-Life Equation, the Omega Beams, and the reason a League has to exist at all.' },
       { title: 'Starro', accent: '#a06fe0', sub: 'The first', desc: 'A giant telepathic starfish. Genuinely the villain of the League\u2019s first appearance in 1960.' },

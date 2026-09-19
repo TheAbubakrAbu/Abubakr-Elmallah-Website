@@ -22,7 +22,7 @@ window.FAN_PAGE = {
         meta: 'Chosen for the brain size, genuinely' },
     ] },
 
-  { id: 'tunnel', kind: 'tiles', title: 'The Time Tunnel', note: 'the three periods, on a timetable',
+  { id: 'tunnel', kind: 'tiles', fold: true, title: 'The Time Tunnel', note: 'the three periods, on a timetable',
     lede: 'The train runs through tunnels that come out in different geological periods, which is the cleverest thing in the show: it means a Cretaceous animal can meet a Triassic one without the programme having to lie about when either of them lived. The date is the destination.',
     items: [
       { title: 'Triassic', sub: '252 to 201 million years ago', accent: '#e0763a',
@@ -58,7 +58,7 @@ window.FAN_PAGE = {
         meta: 'The first dinosaurs I knew by name' },
     ] },
 
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five seasons, a hundred episodes, one film',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'five seasons, a hundred episodes, one film',
     lede: 'It ran on PBS Kids from September 2009 to June 2020, which is eleven years, and then came back once more for a film. There is no filler in the run: every episode is about an animal that existed.',
     items: [
       { title: 'The Series', sub: '2009 – 2020', unit: 'season',

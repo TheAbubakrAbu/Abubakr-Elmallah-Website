@@ -56,7 +56,7 @@ window.FAN_PAGE = {
         meta: 'Edited, not just maintained' },
     ] },
 
-  { id: 'lands', kind: 'lands', title: 'Inside Carlsbad', note: 'the areas, and what is in them',
+  { id: 'lands', kind: 'lands', fold: true, title: 'Inside Carlsbad', note: 'the areas, and what is in them',
     lede: 'Twelve areas on about a hundred and eighty acres, plus a water park and an aquarium next door. It is a park built for people who are eight, and it does not pretend otherwise, which is why it is better at it than the parks that hedge.',
     items: [
       { title: 'Miniland USA', sub: 'The centre of the park', unit: 'section',
@@ -128,7 +128,7 @@ window.FAN_PAGE = {
 
   /* the complete index. On a park page this is the chain rather than a
      filmography: every resort, every discovery centre, and the two hotels. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the whole chain',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the whole chain',
     lede: 'Eleven parks, and a much larger number of the small indoor version, which is the format the company actually expands with now.',
     items: [
       { title: 'The Resorts', sub: '1968 – 2025', unit: 'park',

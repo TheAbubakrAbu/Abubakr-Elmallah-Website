@@ -39,7 +39,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'nine seasons, and where it came from',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'nine seasons, and where it came from',
     lede: 'Nine seasons and two hundred and one episodes, adapted from a fourteen-episode British series that is a completely different show. The groupings above are of these.',
     items: [
       { title: 'The Seasons', sub: 'NBC · 2005 – 2013', unit: 'season',

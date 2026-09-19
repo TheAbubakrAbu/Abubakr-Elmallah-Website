@@ -71,7 +71,7 @@ window.FAN_PAGE = {
 
   /* the complete index. On a park page this is the chain: every property that
      currently carries the name. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the chain, the coasters, and the record',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the chain, the coasters, and the record',
     lede: 'The parks that carry the name, every coaster at the one I know, and the records the chain is actually known for.',
     items: [
       { title: 'The Named Parks', sub: '1961 onward', unit: 'park',

@@ -17,7 +17,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'eighty-five years of him',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'eighty-five years of him',
     lede: 'No character on this site has been adapted more. Every live-action film, every animated series that matters, the Arkham games, and the six comics that most of the rest is built out of.',
     items: [
       { title: 'The Films', sub: 'live action · 1966 – 2022', unit: 'film',
@@ -99,7 +99,7 @@ window.FAN_PAGE = {
       { title: 'Damian Wayne', accent: '#d0a040', sub: 'Robin V', desc: 'Raised by the League of Assassins, and ten years old.' },
     ] },
 
-  { id: 'onscreen', kind: 'tiles', compact: true, title: 'Every Screen Batman', note: 'and which one is which',
+  { id: 'onscreen', kind: 'tiles', fold: true, compact: true, title: 'Every Screen Batman', note: 'and which one is which',
     lede: 'The suit gets handed on roughly every decade, and each one is answering a different question about the character.',
     items: [
       { title: 'Ben Affleck', accent: '#c9a24a', sub: '2016 – 2023 · mine', desc: 'The best of them. Twenty years in, scarred, enormous, and past caring about restraint. The warehouse scene finally put comic-book fighting on screen properly.' },
@@ -111,7 +111,7 @@ window.FAN_PAGE = {
       { title: 'Val Kilmer & George Clooney', accent: '#6f7f8f', sub: '1995 · 1997', desc: 'The wilderness years. Batman & Robin is bad enough that it stopped the films for eight years.' },
     ] },
 
-  { id: 'gotham', kind: 'cards', title: 'Gotham', note: 'the city as a character',
+  { id: 'gotham', kind: 'cards', fold: true, title: 'Gotham', note: 'the city as a character',
     items: [
       { title: 'The Batcave', sub: 'Under Wayne Manor', tag: 'Base', desc: 'A cave he fell into as a child, turned into the best-equipped forensics lab on the east coast. The dinosaur and the giant penny are canon.', meta: 'Alfred keeps it running' },
       { title: 'Arkham Asylum', sub: 'The revolving door', tag: 'Institution', desc: 'A hospital that has never once cured anybody, and the reason the rogues gallery keeps coming back.', meta: 'Amadeus Arkham' },
@@ -121,7 +121,7 @@ window.FAN_PAGE = {
       { title: 'Blackgate', sub: 'The prison', tag: 'Institution', desc: 'For the ones the courts rule sane, which is a distinction Gotham makes badly.', meta: 'Across the water' },
     ] },
 
-  { id: 'eras', kind: 'timeline', title: 'The Eras', note: '1939 to now',
+  { id: 'eras', kind: 'timeline', fold: true, title: 'The Eras', note: '1939 to now',
     items: [
       { when: '1939', title: 'Detective Comics #27', desc: 'A pulp vigilante with a gun and no origin, six issues before either of those get fixed.' },
       { when: '1966', title: 'The Adam West era', desc: 'Camp, bright, and a smash hit. It defined the character in the public eye for twenty years.' },

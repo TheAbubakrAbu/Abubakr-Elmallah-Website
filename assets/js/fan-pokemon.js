@@ -20,7 +20,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'every main game, by generation',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'every main game, by generation',
     lede: 'Nine generations of main-series games, a spin-off shelf larger than most franchises manage in total, and an anime that has been running since 1997 without ever quite ending.',
     items: [
       { title: 'The Main Series', sub: 'Game Freak · 1996 – now', unit: 'game',
@@ -80,7 +80,7 @@ window.FAN_PAGE = {
     ] },
 
 
-  { id: 'types', kind: 'tiles', title: 'The Eighteen Types', note: 'the entire game is this chart',
+  { id: 'types', kind: 'tiles', fold: true, title: 'The Eighteen Types', note: 'the entire game is this chart',
     items: [
       { title: 'Normal', accent: '#a8a878', sub: 'Weak to Fighting' },
       { title: 'Fire', accent: '#f08030', sub: 'Beats Grass, Ice, Bug, Steel' },

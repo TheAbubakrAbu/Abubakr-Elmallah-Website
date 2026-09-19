@@ -25,7 +25,7 @@ window.FAN_PAGE = {
         meta: 'Closed by Disney in April 2021' },
     ] },
 
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five films, and a lot of specials',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'five films, and a lot of specials',
     lede: 'The first is very good, the third is fine, and the series went on for a decade after it had anything left to say. All of it stopped when Disney closed the studio.',
     items: [
       { title: 'The Films', sub: '2002 – 2016', unit: 'film',

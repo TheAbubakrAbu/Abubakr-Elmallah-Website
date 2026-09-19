@@ -57,7 +57,7 @@ window.FAN_PAGE = {
         meta: 'Twenty-two years, one a week' },
     ] },
 
-  { id: 'rules', kind: 'tiles', title: 'The Nine Rules', note: 'Chuck Jones, for the Road Runner', compact: true,
+  { id: 'rules', kind: 'tiles', fold: true, title: 'The Nine Rules', note: 'Chuck Jones, for the Road Runner', compact: true,
     lede: 'Jones wrote these down for himself and then held to them for thirty shorts. It is the clearest thing ever written about why constraint is funnier than freedom.',
     items: [
       { title: 'Only beep beep', accent: '#3fd589', sub: 'Rule one',
@@ -82,7 +82,7 @@ window.FAN_PAGE = {
 
   /* the complete index. ◆ marks the ones that are mine; nothing is marked yet,
      see the note at the top of this file. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the shorts, the series, the features · release dates only',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the shorts, the series, the features · release dates only',
     lede: 'A thousand shorts is not a list anybody can put on a page, so this is the shorts worth starting with, and then the complete television and film side. Every date here is a release date: Looney Tunes is the one thing on this site with no in-universe clock at all, because a short can be set in the Stone Age, on Mars and in an opera house without ever admitting a year.',
     items: [
       { title: 'The Shorts To Start With', sub: '1938 – 1957', unit: 'short',

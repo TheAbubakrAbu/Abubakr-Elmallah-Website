@@ -29,7 +29,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'fifteen seasons, four films',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'fifteen seasons, four films',
     lede: 'Running since 1999 with over three hundred episodes. The consensus, which this page shares, is that the first three seasons and the 2004 film are one thing and everything after is another.',
     items: [
       { title: 'The Series', sub: 'Nickelodeon · 1999 – now', unit: 'era',

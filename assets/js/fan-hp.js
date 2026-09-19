@@ -35,7 +35,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'seven books, eleven films, the games',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'seven books, eleven films, the games',
     lede: 'Seven novels, eight films made from them, three more set seventy years earlier, a stage play, three companion books, and the games. The marked ones are the four I have taken to a hundred percent, listed again further down with the receipts.',
     items: [
       { title: 'The Books', sub: 'J. K. Rowling · 1997 – 2007', unit: 'book',
@@ -129,7 +129,7 @@ window.FAN_PAGE = {
         desc: 'Poisonous, badly meant, and the only place Harry can find out about Ariana and Grindelwald. True in the facts, wrong in every line.', meta: 'Published 1997' },
     ] },
 
-  { id: 'spells', kind: 'tiles', title: 'The Spellbook', note: 'incantation · effect',
+  { id: 'spells', kind: 'tiles', fold: true, title: 'The Spellbook', note: 'incantation · effect',
     lede: 'Wand movement matters as much as the words. Swish and flick. Click a spell to cast it, and mind which one you pick: Lumos really will light the page up, and only Nox will put it out again.',
     items: [
       { title: 'Expelliarmus', accent: '#d3a625', sub: 'Disarming Charm', desc: 'Harry’s signature, and the spell he wins the whole thing with.' },
@@ -163,7 +163,7 @@ window.FAN_PAGE = {
         meta: 'The Death Eaters’ alibi' },
     ] },
 
-  { id: 'cores', kind: 'tiles', title: 'Wand Cores', note: 'the substance at the centre',
+  { id: 'cores', kind: 'tiles', fold: true, title: 'Wand Cores', note: 'the substance at the centre',
     lede: 'Ollivander used only three, and held that no others were worth the trouble. A wand is the wood and the core together, and it is the core that decides the temperament.',
     items: [
       { title: 'Phoenix Feather', accent: '#e07a3a', sub: 'Ollivander · rarest', desc: 'The rarest of the three and the hardest to win over. Fawkes gave exactly two feathers, and both of them ended up pointed at each other.' },
@@ -175,7 +175,7 @@ window.FAN_PAGE = {
       { title: 'Troll Whisker', accent: '#9a8f7a', sub: 'Poor quality', desc: 'Used by wandmakers with lower standards. Nothing good has been made with one.' },
     ] },
 
-  { id: 'woods', kind: 'tiles', title: 'Wand Woods', note: 'the wood chooses too',
+  { id: 'woods', kind: 'tiles', fold: true, title: 'Wand Woods', note: 'the wood chooses too',
     lede: 'Ollivander matched the wood to the person before he ever got to the core. These are the ones the books name, and what the wood was saying about whoever ended up holding it.',
     items: [
       { title: 'Holly', accent: '#c04a4a', sub: 'Harry Potter · 11″', desc: 'For those working through anger, and it is drawn to owners on a dangerous quest. Paired with phoenix feather.' },
@@ -192,7 +192,7 @@ window.FAN_PAGE = {
       { title: 'Blackthorn', accent: '#6f6f8f', sub: 'A warrior’s wood', desc: 'It bonds through hardship, and only becomes loyal after it has been through danger with its owner.' },
     ] },
 
-  { id: 'wands', kind: 'rank', title: 'The Wands', note: 'wood · core · length',
+  { id: 'wands', kind: 'rank', fold: true, title: 'The Wands', note: 'wood · core · length',
     lede: 'The wand chooses the wizard, and Ollivander kept records. Every wand in the series is a small character sketch of whoever ends up with it.',
     items: [
       { num: '11″', title: 'Harry Potter', sub: 'Holly · phoenix feather', accent: '#e8524a',
@@ -209,7 +209,7 @@ window.FAN_PAGE = {
         desc: 'The Elder Wand. He took it off Grindelwald in 1945 and spent the rest of his life making sure it died with him.' },
     ] },
 
-  { id: 'places', kind: 'tiles', compact: true, title: 'The Map of It', note: 'everywhere the books actually go',
+  { id: 'places', kind: 'tiles', fold: true, compact: true, title: 'The Map of It', note: 'everywhere the books actually go',
     lede: 'The wizarding world is hidden inside the ordinary one: a doorway nobody can see, a wall that opens, a platform between two platforms, a phone box that goes down instead of along.',
     items: [
       { title: 'Hogwarts', accent: '#d3a625', sub: 'Scottish Highlands', desc: 'Unplottable, Muggle-repelled, and to anyone who should not be there it looks like a ruin with a sign warning them off.' },
@@ -244,7 +244,7 @@ window.FAN_PAGE = {
       { title: 'King’s Cross', accent: '#e8e2d2', sub: 'The white one', desc: 'The other King’s Cross, the one that is clean and bright and entirely Harry’s own, where he gets a choice.' },
     ] },
 
-  { id: 'schools', kind: 'cards', title: 'The Eleven Schools', note: 'these are the ones we get names for',
+  { id: 'schools', kind: 'cards', fold: true, title: 'The Eleven Schools', note: 'these are the ones we get names for',
     lede: 'There are eleven long-established wizarding schools in the world, kept small and hidden on purpose. Eight of them have been named.',
     items: [
       { title: 'Hogwarts', sub: 'Scottish Highlands', tag: 'Britain', accent: '#d3a625',
@@ -286,7 +286,7 @@ window.FAN_PAGE = {
         desc: 'Ireland win, Bulgaria\u2019s Seeker catches the Snitch, and Krum pulls a Wronski Feint that puts the Irish Seeker into the ground. Then the Dark Mark goes up over the campsite and book four properly begins.', meta: 'Krum \u00b7 the Wronski Feint' },
     ] },
 
-  { id: 'brooms', kind: 'tiles', title: 'The Brooms', note: 'what you are actually flying',
+  { id: 'brooms', kind: 'tiles', fold: true, title: 'The Brooms', note: 'what you are actually flying',
     items: [
       { title: 'Nimbus 2000', accent: '#c9a95f', sub: 'Harry \u00b7 1991', desc: 'A gift from McGonagall to a first-year who was not allowed one, which tells you how badly Gryffindor wanted the Cup.' },
       { title: 'Nimbus 2001', accent: '#4cc47f', sub: 'Slytherin \u00b7 1992', desc: 'Lucius Malfoy bought seven of them so his son could be on the team. Nobody pretended otherwise.' },

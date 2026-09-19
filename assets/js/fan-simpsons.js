@@ -3,7 +3,7 @@ window.FAN_PAGE = {
   when: { at: '8th and 9th grade, 2019\u201321', note: 'Universal Studios Hollywood is what got me into it: Krusty Burger, the Cletus chicken sandwich and the ride, all before I had really watched the show. Then I fell for it properly across eighth and ninth grade.' },
   sections: [
 
-  { id: 'family', kind: 'cards', title: 'The Family', note: '742 Evergreen Terrace · just the five of them',
+  { id: 'family', kind: 'cards', fold: true, title: 'The Family', note: '742 Evergreen Terrace · just the five of them',
     lede: 'Five people and two pets in a yellow house in Springfield. The show has been on for thirty-five years and none of them has aged a day, and it still works because underneath every joke they genuinely love each other.',
     items: [
       { title: 'Homer', sub: 'Homer Jay Simpson', tag: 'Dad', accent: '#f0c840',
@@ -32,7 +32,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'thirty-six seasons and counting',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'thirty-six seasons and counting',
     lede: 'The longest-running scripted primetime series in American television, at over seven hundred and eighty episodes. Listed by era, because listing thirty-six seasons one at a time would be a worse way to understand it.',
     items: [
       { title: 'The Series', sub: 'Fox · 1989 – now', unit: 'era',

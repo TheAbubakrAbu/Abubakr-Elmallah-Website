@@ -23,7 +23,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'one game, and everything built around it',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'one game, and everything built around it',
     lede: 'The whole franchise is one game from 2011 that never stopped updating, plus a shelf of spin-offs of varying necessity and, eventually, a film.',
     items: [
       { title: 'The Games', sub: 'Mojang · 2011 – now', unit: 'game',
@@ -230,7 +230,7 @@ window.FAN_PAGE = {
      sword from the Wall, a bow named for a battle station, a helmet from
      Mandalore, two caliphates on the chest and the legs, a broom and a villain
      on the boots, and a jetpack that belongs to Fett. */
-  { id: 'gear', kind: 'tiles', compact: true, cols: 3, views: true, title: 'The Named Gear', note: 'twelve receipts · every one of them Mending',
+  { id: 'gear', kind: 'tiles', fold: true, compact: true, cols: 3, views: true, title: 'The Named Gear', note: 'twelve receipts · every one of them Mending',
     lede: 'Everything we finished the Realm in, named on an anvil and photographed with its tooltip open. Click a tile for the receipt.',
     items: [
       { title: 'Ice Longclaw', sub: 'diamond sword', accent: '#9fd8ff',

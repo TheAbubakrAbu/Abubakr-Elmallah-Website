@@ -28,7 +28,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the whole Supercell shelf',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the whole Supercell shelf',
     lede: 'One company, one shared cast, and a habit of shutting things down: Supercell tests games in a few countries and kills them publicly if they do not hold. Three of these are struck through for exactly that.',
     items: [
       { title: 'The Games', sub: 'Supercell · 2012 – now', unit: 'game',

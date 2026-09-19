@@ -24,7 +24,7 @@ window.FAN_PAGE = {
         meta: 'Greenie' },
     ] },
 
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'six books and three films',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'six books and three films',
     lede: 'James Dashner wrote three novels, then two prequels and a late addition. The films are a straight adaptation of the trilogy and got faster and louder as they went, which is roughly what the books did too.',
     items: [
       { title: 'The Books', sub: 'James Dashner · 2009 – 2020', unit: 'book',

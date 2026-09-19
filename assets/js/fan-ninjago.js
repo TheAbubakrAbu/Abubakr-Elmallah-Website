@@ -28,7 +28,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'fifteen seasons, then a sequel series',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'fifteen seasons, then a sequel series',
     lede: 'A toy line that turned into fifteen seasons of television with continuous continuity, which is more than most prestige dramas manage. Named by season here, because the arcs above are groupings of these.',
     items: [
       { title: 'Masters of Spinjitzu', sub: '2011 – 2022 · seasons 1 to 15', unit: 'season',

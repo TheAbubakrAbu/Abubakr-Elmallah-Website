@@ -16,7 +16,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'six novels, the sequels, the films',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'six novels, the sequels, the films',
     lede: 'Frank Herbert wrote six and died mid-story; his son and Kevin J. Anderson have written well over a dozen more. On screen it took fifty years and three attempts to get one that works.',
     items: [
       { title: 'The Herbert Novels', sub: '1965 – 1985', unit: 'novel',
@@ -68,7 +68,7 @@ window.FAN_PAGE = {
     ] },
 
 
-  { id: 'arrakis', kind: 'tiles', title: 'Arrakis', note: 'the spice must flow',
+  { id: 'arrakis', kind: 'tiles', fold: true, title: 'Arrakis', note: 'the spice must flow',
     items: [
       { title: 'Melange', accent: '#e0a050', sub: 'The spice', desc: 'Extends life, opens prescience, and exists in exactly one place in the universe.' },
       { title: 'Shai-Hulud', accent: '#c98040', sub: 'Sandworm', desc: 'Up to four hundred metres. Makes the spice, destroys the harvesters, and is ridden by the Fremen.' },
@@ -90,7 +90,7 @@ window.FAN_PAGE = {
       { title: 'Alia', sub: 'Born aware', tag: 'Atreides', desc: 'Awakened in the womb by the water of life, and the price the family pays for the shortcut.', meta: 'St Alia of the Knife' },
     ] },
 
-  { id: 'words', kind: 'tiles', title: 'The Vocabulary', note: 'Herbert borrowed heavily, and openly',
+  { id: 'words', kind: 'tiles', fold: true, title: 'The Vocabulary', note: 'Herbert borrowed heavily, and openly',
     lede: 'A great deal of the language of Dune is Arabic and Islamic in origin, reshaped for a desert people ten thousand years from now. Reading it with that in mind changes the book considerably.',
     items: [
       { title: 'Lisan al-Gaib', accent: '#e0c060', sub: 'The voice from the outer world', desc: 'The offworld prophet of Fremen legend, and a title the Bene Gesserit planted centuries in advance for exactly this.' },

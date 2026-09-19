@@ -5,7 +5,7 @@ window.FAN_PAGE = {
   when: { at: 'As a kid', note: 'PBS Kids in the morning, and the only cartoon I watched that was quietly teaching me real things. I could tell you what a cheetah’s tail is for before I could tell you what a fraction was.' },
   sections: [
 
-  { id: 'crew', kind: 'cards', title: 'The Crew', note: 'two zoologists and three engineers',
+  { id: 'crew', kind: 'cards', fold: true, title: 'The Crew', note: 'two zoologists and three engineers',
     lede: 'Chris and Martin Kratt are real brothers with real degrees, and they had been making animal television for fifteen years before this one. The trick they landed on here is that the show starts in live action, with the two of them actually outdoors, and then they say "what if?" and the whole thing turns into a cartoon.',
     items: [
       { title: 'Chris Kratt', sub: 'Green', tag: 'The younger one', accent: '#4fce6a',
@@ -63,7 +63,7 @@ window.FAN_PAGE = {
         meta: 'It is a conservation show wearing a cape' },
     ] },
 
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'thirty years of the two of them',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'thirty years of the two of them',
     lede: 'Wild Kratts is their fourth series and by far the longest: eight seasons and a hundred and seventy-nine episodes since January 2011, made by their own company with 9 Story in Canada. Everything before it was live action.',
     items: [
       { title: 'The Shows', sub: '1996 – now', unit: 'series',

@@ -25,7 +25,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, and those are taken from what this
      page already says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five films, one series, the games',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'five films, one series, the games',
     lede: 'A franchise that stayed small on purpose: five films in eleven years, one television spin-off, and a couple of games. Nothing here is a cinematic universe, which is most of why it works.',
     items: [
       { title: 'The Films', sub: '2014 – 2025', unit: 'film',

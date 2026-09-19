@@ -28,7 +28,7 @@ window.FAN_PAGE = {
         meta: 'Master Duel brought a lot of people back' },
     ] },
 
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the manga, the shows, the game',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the manga, the shows, the game',
     lede: 'Kazuki Takahashi started it as a manga about all kinds of games in 1996. Duel Monsters appeared in one chapter, got the loudest reader response, and took over.',
     items: [
       { title: 'The Anime', sub: '1998 – now', unit: 'series',

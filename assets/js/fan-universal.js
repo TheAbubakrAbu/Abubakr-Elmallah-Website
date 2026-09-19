@@ -37,7 +37,7 @@ window.FAN_PAGE = {
         href: 'https://www.universaldestinationsandexperiences.com/', link: 'universaldestinationsandexperiences.com', meta: 'NBCUniversal' },
     ] },
 
-  { id: 'lands', kind: 'tiles', title: 'The Lands', note: 'what Universal builds better than anyone',
+  { id: 'lands', kind: 'tiles', fold: true, title: 'The Lands', note: 'what Universal builds better than anyone',
     items: [
       { title: 'The Wizarding World', accent: '#c9a05f', sub: 'Since 2010', desc: 'Hogsmeade, Diagon Alley, a train between them in Orlando, and the land that reset what a theme park could be.' },
       { title: 'Super Nintendo World', accent: '#e04a3a', sub: 'Since 2021', desc: 'A Power-Up Band on your wrist turns the whole land into a game with a score.' },
@@ -47,7 +47,7 @@ window.FAN_PAGE = {
       { title: 'Minion Land', accent: '#f0c840', sub: 'Since 2012', desc: 'Illumination’s side of the business, and the most profitable animation studio in the group.' },
     ] },
 
-  { id: 'rides', kind: 'cards', title: 'The Rides', note: 'what Universal actually builds',
+  { id: 'rides', kind: 'cards', fold: true, title: 'The Rides', note: 'what Universal actually builds',
     items: [
       { title: 'Forbidden Journey', sub: '2010', tag: 'Wizarding World', desc: 'A robotic arm on a track, inside Hogwarts, and the ride system that made every other park rethink what a dark ride could do.',
         href: 'https://www.universalorlando.com/', link: 'universalorlando.com', meta: 'Orlando · Hollywood · Japan' },
@@ -102,7 +102,7 @@ window.FAN_PAGE = {
      because its geography is genuinely odd: the park is cut in half by a
      hillside, and which lot a land is on tells you more about it than the year
      it opened does. See fanpage.js. */
-  { id: 'ush-lands', kind: 'lands', title: 'Universal Studios Hollywood, Land by Land',
+  { id: 'ush-lands', kind: 'lands', fold: true, title: 'Universal Studios Hollywood, Land by Land',
     note: 'eight areas · two lots · every ride in each',
     lede: 'This park is built up the side of a hill, which no theme park would ever choose. The Upper Lot has the gate, the tram and everything themed; the Lower Lot has the three big rides and is reached by the Starway, a stack of escalators that drops about a hundred feet and takes a few minutes each way. Diamonds are the headliners.',
     items: [

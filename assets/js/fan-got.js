@@ -49,7 +49,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five books, two unwritten, three shows',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'five books, two unwritten, three shows',
     lede: 'Five novels published, one promised since 2011, and one after that. The show overtook the books in 2016 and has been making it up ever since, which is the whole story of this franchise in one sentence.',
     items: [
       { title: 'A Song of Ice and Fire', sub: 'George R. R. Martin · 1996 – ', unit: 'novel',
@@ -183,7 +183,7 @@ window.FAN_PAGE = {
         desc: 'The Hedge Knight, ninety years before the main show. A hedge knight of no birth and a bald boy who turns out to be a prince, walking from tourney to tourney. Small, warm and human, which is the opposite of everything else with this logo on it, and it is the best thing Martin has written.' },
     ] },
 
-  { id: 'words', kind: 'tiles', title: 'Words', note: 'house mottoes',
+  { id: 'words', kind: 'tiles', fold: true, title: 'Words', note: 'house mottoes',
     items: [
       { title: 'Winter Is Coming', accent: '#c9cdd2', sub: 'Stark · Winterfell', desc: 'A warning, not a boast, and the only house whose words turn out to be a weather report.' },
       { title: 'Hear Me Roar', accent: '#d0b040', sub: 'Lannister · Casterly Rock', desc: 'Though the one everyone actually quotes is: a Lannister always pays his debts.' },

@@ -28,7 +28,7 @@ window.FAN_PAGE = {
         meta: 'Ninja Kiwi, Auckland' },
     ] },
 
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the tower defence line, and the rest',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the tower defence line, and the rest',
     lede: 'Bloons started in 2007 as a puzzle game about a monkey throwing darts. The tower defence spin-off arrived a few months later and completely ate the parent series.',
     items: [
       { title: 'Bloons TD', sub: '2007 – now', unit: 'game',

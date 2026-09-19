@@ -6,7 +6,7 @@ window.FAN_PAGE = {
   when: { at: 'As a kid, and again at the zoo', note: 'The San Diego Zoo ran Rio as something you could walk into, with the toys and the film attached to the real macaws, and it was one of the coolest things there. It turned out to be about the most serious conservation story in the building.' },
   sections: [
 
-  { id: 'works', kind: 'films', title: 'Both Films', note: 'Blue Sky · 2011 and 2014',
+  { id: 'works', kind: 'films', fold: true, title: 'Both Films', note: 'Blue Sky · 2011 and 2014',
     lede: 'Carlos Saldanha directed both, and he is from Rio, which is why the city has weather and traffic in it rather than a beach on a postcard: Corcovado kept small on its hill, the favelas as stacked colour up the slopes, and the wave pattern in the Copacabana pavement that almost nobody bothers to animate.',
     items: [
       { title: 'Rio', sub: 'April 2011', accent: '#3fc8d8',

@@ -27,7 +27,7 @@ window.FAN_PAGE = {
         meta: 'Ring out, sleep out, burst' },
     ] },
 
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'four generations of toy and anime',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'four generations of toy and anime',
     lede: 'Takara (later Takara Tomy) has rebooted this four times, each with its own toy line and its own anime, and each generation is a genuine redesign of the toy rather than a repaint.',
     items: [
       { title: 'The Generations', sub: '1999 – now', unit: 'era',

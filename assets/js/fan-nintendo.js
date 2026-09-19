@@ -98,7 +98,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it did not earn a
      card. ◆ marks the ones that are mine: the one machine I own, and the
      three series I grew up on, each of which has its own section below. */
-  { id: 'works', kind: 'works', title: 'Everything They Made', note: 'the machines and the series',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything They Made', note: 'the machines and the series',
     lede: 'Two lists: every machine, and the first-party series that are still running. The second list is the reason a bad generation has never actually killed this company.',
     items: [
       { title: 'The Home Consoles', sub: '1977 – 2025', unit: 'machine',

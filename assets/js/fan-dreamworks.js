@@ -58,7 +58,7 @@ window.FAN_PAGE = {
 
   /* the complete index. ◆ marks the ones that are mine; nothing is marked yet,
      see the note at the top of this file. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the features, in four eras',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the features, in four eras',
     lede: 'Around fifty features since 1998, split by what the studio was actually doing at the time. The two with their own pages are in here too, because leaving them out would make this list a lie.',
     items: [
       { title: 'Hand-Drawn And Early CG', sub: '1998 – 2004', unit: 'film',

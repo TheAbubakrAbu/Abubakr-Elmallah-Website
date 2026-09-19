@@ -51,7 +51,7 @@ window.FAN_PAGE = {
         meta: 'One completion can take a year' },
     ] },
 
-  { id: 'hard', kind: 'tiles', title: 'How Hard It Gets', note: 'the difficulty faces', compact: true,
+  { id: 'hard', kind: 'tiles', fold: true, title: 'How Hard It Gets', note: 'the difficulty faces', compact: true,
     lede: 'The game grades itself with a set of faces, and then the community added a whole tier the game does not have a face for.',
     items: [
       { title: 'Auto', accent: '#8fd8f0', sub: 'It plays itself',
@@ -74,7 +74,7 @@ window.FAN_PAGE = {
 
   /* the complete index. ◆ marks the ones that are mine, in the order given
      at the top of this file. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'twenty-two levels, four games',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'twenty-two levels, four games',
     lede: 'The complete official list, which is short, and the spin-offs, which are shorter.',
     items: [
       { title: 'The Main Levels', sub: '2013 – 2023', unit: 'level',

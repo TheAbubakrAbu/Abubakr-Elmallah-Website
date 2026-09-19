@@ -44,7 +44,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything Else In It', note: 'the games, the series, the runs',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything Else In It', note: 'the games, the series, the runs',
     lede: 'Every film is already listed above, one by one. This is the rest of it: the games, which are as much a part of this character as the films are, the animated series, and the comic runs everything is adapted out of.',
     items: [
       { title: 'The Games', sub: '2000 – now', unit: 'game',
@@ -136,7 +136,7 @@ window.FAN_PAGE = {
         meta: 'Harry Osborn' },
     ] },
 
-  { id: 'rogues', kind: 'tiles', title: 'The Rogues', note: 'and what they want',
+  { id: 'rogues', kind: 'tiles', fold: true, title: 'The Rogues', note: 'and what they want',
     items: [
       { title: 'Green Goblin', accent: '#5fb04f', sub: 'Norman Osborn', desc: 'The one who makes it personal, and the only villain whose wins actually stay won.' },
       { title: 'Doctor Octopus', accent: '#c9a040', sub: 'Otto Octavius', desc: 'A brilliant man with four arms and a bad afternoon. Spider-Man 2 is still the ceiling.' },

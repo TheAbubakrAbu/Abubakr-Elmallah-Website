@@ -28,7 +28,7 @@ window.FAN_PAGE = {
         meta: 'A decade-long argument' },
     ] },
 
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'two games, a pile of shorts, and the lore',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'two games, a pile of shorts, and the lore',
     lede: 'Overwatch 2 replaced Overwatch 1 outright in 2022, which is a thing almost no other live game has done: the original was switched off and its sequel took over the same install.',
     items: [
       { title: 'The Games', sub: '2016 – now', unit: 'game',

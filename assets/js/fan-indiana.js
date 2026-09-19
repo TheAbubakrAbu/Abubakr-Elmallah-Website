@@ -16,7 +16,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, and those are taken from what this
      page already says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five films, one series, and a lot of games',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'five films, one series, and a lot of games',
     lede: 'Five films across forty-two years, one television series that nobody watched and everybody should, and a run of games that is where I actually met him.',
     items: [
       { title: 'The Films', sub: '1981 – 2023', unit: 'film',
@@ -65,7 +65,7 @@ window.FAN_PAGE = {
         meta: 'The Cairo swordsman' },
     ] },
 
-  { id: 'setpieces', kind: 'tiles', title: 'The Set Pieces', note: 'practical, and still unbeaten',
+  { id: 'setpieces', kind: 'tiles', fold: true, title: 'The Set Pieces', note: 'practical, and still unbeaten',
     items: [
       { title: 'The boulder', accent: '#c98f4f', sub: 'Raiders, 1981', desc: 'Twelve feet of rolling fibreglass, shot ten times with Ford actually running. The opening sequence is a masterclass in teaching a character through action alone.' },
       { title: 'The truck chase', accent: '#b8935a', sub: 'Raiders, 1981', desc: 'Dragged under a moving lorry and back up over the tailgate. Almost entirely a stuntman, almost entirely real, and nothing since has improved on it.' },

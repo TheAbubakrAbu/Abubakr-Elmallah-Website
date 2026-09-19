@@ -32,7 +32,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five films, the games, the ride',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'five films, the games, the ride',
     lede: 'Five films built out of a theme park ride, a handful of games, and one online world that was shut down and is struck through for it. A sixth film has been announced more times than it has been written.',
     items: [
       { title: 'The Films', sub: 'Disney · 2003 – 2017', unit: 'film',

@@ -22,7 +22,7 @@ window.FAN_PAGE = {
         desc: 'The best-selling game on the best-selling Nintendo console, and the reason the Switch was in every living room. Anti-gravity, and a blue shell that has ended friendships.' },
     ] },
 
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the main lines, in order',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the main lines, in order',
     lede: 'He is the most-appearing character in games. This is not all of it, because all of it is well over two hundred titles once you count sports and party games, but it is every mainline platformer and the series that matter.',
     items: [
       { title: 'The 2D Platformers', sub: '1985 – now', unit: 'game',

@@ -3,7 +3,7 @@ window.FAN_PAGE = {
   when: { at: 'Middle school, around 2017\u201320', note: 'Picked it up in middle school, mostly through the theory videos before I ever played it properly.' },
   sections: [
 
-  { id: 'rules', kind: 'tiles', title: 'The Rules', note: 'the entire first game, in five mechanics',
+  { id: 'rules', kind: 'tiles', fold: true, title: 'The Rules', note: 'the entire first game, in five mechanics',
     lede: 'You cannot move, you cannot fight, and you have a battery. Everything else is arithmetic.',
     items: [
       { title: 'Power', accent: '#f0c840', sub: '100% at 12 AM', desc: 'Every camera, door and light drains it. Run out and the office goes dark, and then the music starts.' },
@@ -16,7 +16,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the games, the books, the films',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the games, the books, the films',
     lede: 'One person made the first six of these in three years, alone, and the release schedule is part of why the theory community got as big as it did: there was never time to finish arguing before the next one landed.',
     items: [
       { title: 'The Games', sub: 'Scott Cawthon and after · 2014 – now', unit: 'game',
@@ -90,7 +90,7 @@ window.FAN_PAGE = {
         meta: 'Headphones required' },
     ] },
 
-  { id: 'lore', kind: 'timeline', title: 'The Story, In Order', note: 'assembled by the fanbase out of minigames and cutscenes',
+  { id: 'lore', kind: 'timeline', fold: true, title: 'The Story, In Order', note: 'assembled by the fanbase out of minigames and cutscenes',
     lede: 'None of this is told to you directly. It is pieced together from eight-bit minigames, newspaper clippings on the loading screens, and lines hidden in the phone calls.',
     items: [
       { when: 'Fredbear\u2019s', title: 'The bite', desc: 'A birthday, a group of older kids, and a child lifted into an animatronic mouth. The event the whole series circles.' },

@@ -14,7 +14,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, and those are taken from what this
      page already says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the comic first, then the show',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the comic first, then the show',
     lede: 'A hundred and forty-four issues that ran to a planned ending, then an animated adaptation that has been following them closely, and a couple of games at the edges.',
     items: [
       { title: 'The Show', sub: '2021 – now', unit: 'season',
@@ -87,7 +87,7 @@ window.FAN_PAGE = {
         meta: 'The Guardians' },
     ] },
 
-  { id: 'viltrum', kind: 'cards', title: 'The Viltrum Empire', note: 'the thing the whole story is actually about',
+  { id: 'viltrum', kind: 'cards', fold: true, title: 'The Viltrum Empire', note: 'the thing the whole story is actually about',
     lede: 'A civilisation that culled its own weak, then decided the rest of the galaxy would benefit from the same treatment. They send one man per planet, because one is enough.',
     items: [
       { title: 'Nolan Grayson', sub: 'Omni-Man', tag: 'Viltrumite', desc: 'Sent to soften Earth up over decades. The plan runs into the problem that he spent twenty years actually living here.', meta: 'Author of forty travel books' },
@@ -106,7 +106,7 @@ window.FAN_PAGE = {
       { title: 'Atom Eve', sub: 'One shot, 2023', meta: 'Released July 2023 · Eve’s childhood onward', desc: 'A standalone special that fills in the best supporting character\u2019s history.' },
     ] },
 
-  { id: 'comic', kind: 'timeline', title: 'The Comic', note: 'Kirkman & Ottley, 2003 – 2018',
+  { id: 'comic', kind: 'timeline', fold: true, title: 'The Comic', note: 'Kirkman & Ottley, 2003 – 2018',
     items: [
       { when: '2003 · Issue #1', title: 'Image Comics', desc: 'Robert Kirkman and Cory Walker start a deliberately traditional superhero book.' },
       { when: '2005 · Ottley', title: 'Ryan Ottley on art', desc: 'The look that defines the run, and the source of the show’s frame-for-frame moments.' },

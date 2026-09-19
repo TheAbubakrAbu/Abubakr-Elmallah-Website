@@ -30,7 +30,7 @@ window.FAN_PAGE = {
         meta: 'Rebuilt by the next episode' },
     ] },
 
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'nine seasons, four films',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'nine seasons, four films',
     lede: 'It started in April 2013 as a shorts idea and has now outrun the 2003 series by an order of magnitude: four hundred and fifty-odd eleven-minute episodes against sixty-five. Aaron Horvath and Michael Jelenic developed it, and both of them went on to direct feature films off the back of it.',
     items: [
       { title: 'The Series', sub: '2013 – now', unit: 'season',

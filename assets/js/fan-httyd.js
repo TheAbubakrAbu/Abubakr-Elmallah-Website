@@ -25,7 +25,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, and those are taken from what this
      page already says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'twelve books, four films, five series',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'twelve books, four films, five series',
     lede: 'The books and the films are barely the same story: Cressida Cowell wrote twelve of them, DreamWorks kept the names and the dragons and built something else. Both are worth it, and the television side is much larger than anyone expects.',
     items: [
       { title: 'The Films', sub: 'DreamWorks · 2010 – 2025', unit: 'film',
@@ -79,7 +79,7 @@ window.FAN_PAGE = {
     ] },
 
 
-  { id: 'dragons', kind: 'tiles', title: 'The Dragons', note: 'the Book of Dragons, abridged', compact: true,
+  { id: 'dragons', kind: 'tiles', fold: true, title: 'The Dragons', note: 'the Book of Dragons, abridged', compact: true,
     lede: 'The franchise’s quiet masterstroke: dragons designed like animals, not monsters, each species with its own silhouette, gait and personality, catalogued by the vikings into classes like a field guide.',
     items: [
       { title: 'Night Fury', accent: '#3a3f4a', sub: 'Strike class', desc: 'The unholy offspring of lightning and death itself, who turns out to move like a cat and act like a dog. Speed: unknown. Size: unknown.' },

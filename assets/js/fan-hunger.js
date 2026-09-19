@@ -43,7 +43,7 @@ window.FAN_PAGE = {
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'five books, six films',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'five books, six films',
     lede: 'Collins has written five books in thirty years and every one of them has been filmed, which is a completeness rate almost nothing else on this site can match. There are no games and no series: it is the one franchise here that stayed a franchise of books.',
     items: [
       { title: 'The Books', sub: 'Suzanne Collins · 2008 – 2025', unit: 'book',
@@ -68,7 +68,7 @@ window.FAN_PAGE = {
     ] },
 
 
-  { id: 'panem', kind: 'tiles', title: 'Panem', note: 'the country, and how it is run', compact: true,
+  { id: 'panem', kind: 'tiles', fold: true, title: 'Panem', note: 'the country, and how it is run', compact: true,
     lede: 'Twelve districts, each assigned one industry, feeding one city that produces nothing. The thirteenth was bombed flat as a demonstration, or so the Capitol says. The whole arrangement is a resource-extraction empire with a light-entertainment department bolted on the front.',
     items: [
       { title: 'The Capitol', accent: '#b06fd8', sub: 'The city', desc: 'In the Rockies, ringed by mountains, and dependent on every district for everything it eats and wears. Its power is logistical, not military, until it needs to be.' },

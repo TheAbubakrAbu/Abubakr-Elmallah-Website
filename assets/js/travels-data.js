@@ -1239,6 +1239,7 @@ window.TRAVELS = {
       note: 'The second Hawaiian island, a year after the first: Honolulu and the rest of Oahu rather than Maui. Photos to come.',
       spots: [
         ['Honolulu', 'Oahu'],
+        ['Aulani, a Disney Resort & Spa', 'Kapolei, Oahu'],
       ] },
   ]
 };

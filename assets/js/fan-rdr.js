@@ -30,7 +30,7 @@ window.FAN_PAGE = {
       { title: 'Guarma', accent: '#4fb0a0', sub: 'Chapter 5', desc: 'The detour everybody complains about, and the one that finally breaks Dutch.' },
     ] },
 
-  { id: 'chapters', kind: 'timeline', title: 'Six Chapters and Two Epilogues', note: 'RDR2, 1899',
+  { id: 'chapters', kind: 'timeline', fold: true, title: 'Six Chapters and Two Epilogues', note: 'RDR2, 1899',
     items: [
       { when: 'Chapter 1', title: 'Colter', desc: 'Snowbound in the mountains after Blackwater goes wrong. Everyone is cold, hungry and lying about how bad it is.' },
       { when: 'Chapter 2', title: 'Horseshoe Overlook', desc: 'The best the gang ever is: camp songs, a full table, and the last stretch where the plan still sounds possible.' },

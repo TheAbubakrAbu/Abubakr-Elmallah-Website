@@ -25,7 +25,7 @@ window.FAN_PAGE = {
         meta: 'One world, versus a shopping centre of them' },
     ] },
 
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'the platform, and the games I actually played',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the platform, and the games I actually played',
     lede: 'David Baszucki and Erik Cassel built it after Knowledge Revolution, where they made Interactive Physics: a 2D physics lab for schools. The story Baszucki tells is that the students were not running the experiments, they were building things and smashing them, and that is the whole company in one observation.',
     items: [
       { title: 'The Platform', sub: '2004 – now', unit: 'moment',

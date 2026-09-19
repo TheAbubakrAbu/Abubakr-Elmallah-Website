@@ -27,7 +27,7 @@ window.FAN_PAGE = {
         meta: 'The whole genre went with it' },
     ] },
 
-  { id: 'works', kind: 'works', title: 'Everything In It', note: 'six games in six years',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'six games in six years',
     lede: 'One a year, each with a new gimmick and a new set of figures that mostly still worked with the old portal. That last part is the thing the competitors got wrong.',
     items: [
       { title: 'The Games', sub: '2011 – 2018', unit: 'game',
