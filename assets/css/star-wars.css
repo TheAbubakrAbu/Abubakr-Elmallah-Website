@@ -211,7 +211,7 @@ body[data-intro="starwars"] #field { opacity: 0.32; }
 .pl-body { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.45rem; }
 .pl-titlerow { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; }
 .pl-titlerow h4 {
-  font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em;
+  font-family: var(--serif); font-weight: 800; letter-spacing: -0.02em;
   font-size: 1.12rem; line-height: 1.1; transition: color .3s;
 }
 .pl-card:hover .pl-titlerow h4 { color: var(--glow); }
@@ -592,7 +592,7 @@ body[data-intro="starwars"] #field { opacity: 0.32; }
   text-transform: uppercase; color: var(--gold);
 }
 
-.sw-con-h h4 { font-family: var(--serif); font-weight: 600; font-size: 1.14rem; letter-spacing: -0.01em; }
+.sw-con-h h4 { font-family: var(--serif); font-weight: 800; font-size: 1.14rem; letter-spacing: -0.01em; }
 
 .sw-con-h p { flex-basis: 100%; font-size: 0.8rem; line-height: 1.6; color: var(--ink-dim); }
 

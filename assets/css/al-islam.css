@@ -20,7 +20,11 @@ body[data-intro="alislam"] #field { opacity: 0.3; }
    Fixed, behind the circuit field and the HUD grid. --sy is written by
    islam.js on scroll so the lattice slides against the page. */
 .isl-sky {
-  position: fixed; inset: -8% -4%; z-index: 0;
+  /* The -4% horizontal bleed made this backdrop wider than the viewport, and a
+     fixed element overhanging the RIGHT edge still lengthens the document, so
+     the page could be dragged sideways on a phone. The bleed only hides the
+     lattice's edges, which the vertical overhang already does. */
+  position: fixed; inset: -8% 0; z-index: 0;
   pointer-events: none; overflow: hidden;
   background: radial-gradient(120% 85% at 50% -8%, #08201a 0%, #051310 42%, #030807 100%);
 }
@@ -140,7 +144,7 @@ body[data-intro="alislam"] #field { opacity: 0.3; }
 .msq-body { padding: 1.1rem 1.3rem 1.3rem; display: flex; flex-direction: column; gap: 0.45rem; flex: 1; }
 .msq-titlerow { display: flex; align-items: baseline; justify-content: space-between; gap: 0.7rem; }
 .msq-body h4 {
-  font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em;
+  font-family: var(--serif); font-weight: 800; letter-spacing: -0.02em;
   font-size: 1.16rem; line-height: 1.15; transition: color .3s;
 }
 .msq-card:hover .msq-body h4 { color: var(--glow); }
@@ -262,7 +266,7 @@ body[data-intro="alislam"] #field { opacity: 0.3; }
   .sch-slot { display: block; height: 0; }
 }
 .sch-titlerow h4 {
-  font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em;
+  font-family: var(--serif); font-weight: 800; letter-spacing: -0.02em;
   font-size: 1.04rem; line-height: 1.25; transition: color .3s;
 }
 .sch-card:hover .sch-titlerow h4 { color: var(--green-2); }
@@ -392,7 +396,7 @@ body[data-intro="alislam"] #field { opacity: 0.3; }
   margin-bottom: 0.4rem;
 }
 
-.isl-panel-h h4 { font-family: var(--serif); font-weight: 600; font-size: 1.16rem; letter-spacing: -0.01em; }
+.isl-panel-h h4 { font-family: var(--serif); font-weight: 800; font-size: 1.16rem; letter-spacing: -0.01em; }
 
 .isl-place { margin-top: 0.3rem; font-size: 0.76rem; line-height: 1.5; color: var(--ink-dim); }
 
@@ -411,7 +415,7 @@ body[data-intro="alislam"] #field { opacity: 0.3; }
   text-transform: uppercase; color: var(--mute);
 }
 
-.isl-next b { font-family: var(--serif); font-weight: 600; font-size: 1.1rem; color: var(--green-2); }
+.isl-next b { font-family: var(--serif); font-weight: 800; font-size: 1.1rem; color: var(--green-2); }
 
 .isl-next-ar { font-family: "Amiri", "Scheherazade New", serif; font-size: 1.05rem; color: var(--ink-dim); }
 
@@ -608,7 +612,7 @@ body[data-intro="alislam"] #field { opacity: 0.3; }
   transition: opacity .3s;
 }
 
-.tj-note b { display: block; margin-bottom: 0.25rem; font-family: var(--serif); font-weight: 600; }
+.tj-note b { display: block; margin-bottom: 0.25rem; font-family: var(--serif); font-weight: 800; }
 
 .tj-note--madd b     { color: #a88fe0; }
 .tj-note--qalqalah b { color: #e8c56a; }

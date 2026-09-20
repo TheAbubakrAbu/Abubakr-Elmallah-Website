@@ -345,16 +345,26 @@
   }
 
   /* The whole tile is the link, not just the plate: clicking the blurb, the
-     meta line or any dead space opens the page. The plate keeps data-magnetic
-     so it still drifts toward the cursor inside the card. */
+     meta line or any dead space opens the page.
+
+     The drift is on an INNER wrapper, not on the plate itself. magnetic.js
+     translates whatever carries data-magnetic by up to a third of the
+     distance to the cursor, and the plate is the plate: moving it slid its
+     square corners out through the card's 18px radius and over the blurb
+     underneath, because a translated grid item is painted outside the
+     parent's rounded padding box rather than being clipped back into it.
+     Moving the CONTENTS instead keeps the drift (that was the point) while
+     the plate stays exactly where it is and goes on being the clip. */
   function tile(f) {
     var tag = f.href ? 'a' : 'article';
     var attr = f.href ? ' href="' + f.href + '"' : '';
     return '<' + tag + ' class="fr-card reveal" style="--c1:' + f.c1 + ';--c2:' + f.c2 + '"' + attr + '>'
-      + '<span class="fr-plate"' + (f.href ? ' data-magnetic' : '') + '>'
-      +   glyph(f.glyph)
-      +   lettering(f)
-      +   (f.href ? '<span class="fr-enter">Enter ↗</span>' : '')
+      + '<span class="fr-plate">'
+      +   '<span class="fr-plate-i"' + (f.href ? ' data-magnetic' : '') + '>'
+      +     glyph(f.glyph)
+      +     lettering(f)
+      +     (f.href ? '<span class="fr-enter">Enter ↗</span>' : '')
+      +   '</span>'
       + '</span>'
       + '<span class="fr-body">'
       +   '<span class="fr-desc">' + esc(f.desc) + '</span>'

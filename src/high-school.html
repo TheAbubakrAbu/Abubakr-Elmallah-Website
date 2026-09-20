@@ -31,8 +31,8 @@ redirect_from:
      and render immediately; onload promotes it to the real stylesheet.
      Every family here already carries display=swap, so text is on
      screen in the fallback face straight away and swaps when it lands. -->
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Darker+Grotesque:wght@400..900&family=Nunito:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Darker+Grotesque:wght@400..900&family=Nunito:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
@@ -145,7 +145,7 @@ redirect_from:
 
     <h3 class="subsec reveal">Apps I Shipped in High School <span class="subsec-yr">11th &amp; 12th grade</span></h3>
     <p class="hs-p reveal">Five apps written and shipped to the App Store between junior year and graduation, two of which went on to win the Congressional App Challenge and the Swift Student Challenge.</p>
-    <div class="apps-grid apps-grid--3" data-cards="datapad,al-islam,icoi,al-adhan,al-quran" data-cards-cat></div>
+    <div class="apps-grid apps-grid--3" data-cards="datapad,al-adhan,al-islam,al-quran,icoi" data-cards-cat></div>
     <a class="dev-link reveal" href="https://apps.apple.com/tr/developer/abubakr-elmallah/id1690310648" target="_blank" rel="noopener" data-magnetic>
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.78c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.13 5.84c.64-.78 1.07-1.85.95-2.93-.92.04-2.04.61-2.7 1.38-.59.68-1.11 1.79-.97 2.84 1.03.08 2.08-.52 2.72-1.29z"/></svg>
       <span>View My Apple Developer Page</span><i>↗</i>
@@ -323,6 +323,14 @@ redirect_from:
     </div>
     <div class="wwdc-sub reveal">
       <p class="honor-line"><span>🏆 Swift Student Challenge &#183; Issued by Apple</span><span>June 2024</span><span>Awarded in my senior year of high school</span></p>
+      <p class="wwdc-note">
+        Every winner is listed on <b>WWDCScholars</b>, the community directory of Swift Student Challenge and WWDC Scholarship
+        winners going back to 2012. The 2024 list runs alphabetically by first name, which puts <b>Abubakr</b> first on the page.
+      </p>
+      <a class="dev-link reveal" href="https://www.wwdcscholars.com/2024" target="_blank" rel="noopener" data-magnetic>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>See the 2024 winners on WWDCScholars</span><i>↗</i>
+    </a>
       <div class="wwdc-grid wwdc-grid--ssc">
         <a class="wwdc-shot wwdc-shot--doc reveal" href="../assets/img/awards/wwdc-scholars-2024.jpg" data-label="WWDC 2024 Scholar &#183; Swift Student Challenge" target="_blank" rel="noopener">
           <img src="../assets/img/awards/wwdc-scholars-2024.jpg" alt="Abubakr Elmallah featured on Apple's WWDC 2024 Scholars page for the Swift Student Challenge" loading="lazy" />
@@ -364,9 +372,11 @@ redirect_from:
             <li>Wrote the curriculum: Swift syntax, optionals, structs and classes, then UI with stacks, event-driven programming with gestures, and animations.</li>
           </ul>
           <p>Started in my senior year of high school and carried on through both years of college, finishing in February 2026.</p>
-          <span class="role-tag">Muslim Village, ICOI &#183; Dr Yasser Shoukry</span>
-          <span class="role-tag">Ran into college</span>
-          <a class="role-tag" href="https://www.stemirvine.com/" target="_blank" rel="noopener">stemirvine.com ↗</a>
+          <div class="role-tags">
+            <span class="role-tag">Muslim Village, ICOI &#183; Dr Yasser Shoukry</span>
+            <span class="role-tag">Ran into college</span>
+            <a class="role-tag role-tag--link" href="https://www.stemirvine.com/" target="_blank" rel="noopener">stemirvine.com ↗</a>
+          </div>
         </div>
       </li>
       <li class="role reveal">
@@ -374,7 +384,9 @@ redirect_from:
         <div class="role-body">
           <h4>Tennis Court Supervisor</h4>
           <p>My coach offered me the job after 9th grade. Every weekend overseeing the local community courts: keeping them clean, in good condition, and players to the rules. First job, and the first time I was responsible for something on my own.</p>
-          <span class="role-tag">Coach Mike Kovar</span>
+          <div class="role-tags">
+            <span class="role-tag">Coach Mike Kovar</span>
+          </div>
         </div>
       </li>
     </ol>

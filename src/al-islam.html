@@ -31,8 +31,8 @@ redirect_from:
      and render immediately; onload promotes it to the real stylesheet.
      Every family here already carries display=swap, so text is on
      screen in the fallback face straight away and swaps when it lands. -->
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Scheherazade+New:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Scheherazade+New:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Scheherazade+New:wght@400;500;700&family=Darker+Grotesque:wght@400..900&family=Nunito:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Scheherazade+New:wght@400;500;700&family=Darker+Grotesque:wght@400..900&family=Nunito:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
@@ -110,13 +110,23 @@ redirect_from:
   </section>
 
   <section class="work alislam">
-    <div class="apps-grid" data-cards="al-adhan,al-islam,al-quran"></div>
+    <div class="apps-grid apps-grid--3" data-cards="al-adhan,al-islam,al-quran"></div>
   </section>
 
   <section class="work alislam">
     <h3 class="subsec subsec--isl reveal">The Engines<span class="subsec-yr">what the apps are built on</span></h3>
     <p class="isl-lede reveal">The data layers underneath. Both exist because the alternative was hand-marking a text that runs to six thousand verses, or scraping someone else&#8217;s HTML.</p>
     <div class="apps-grid apps-grid--2" data-cards="quran-tajweed-engine,hadith-json-engine"></div>
+  </section>
+
+  <!-- The two that are not on the App Store: OC Ummah is not there yet, ICOI
+       is not there any more. They share a section because that is the one
+       thing they have in common, and because a lone card under its own
+       heading twice in a row read as two stubs rather than a closing block. -->
+  <section class="work alislam">
+    <h3 class="subsec subsec--isl reveal">Not on the App Store<span class="subsec-yr">one still coming, one retired</span></h3>
+    <p class="isl-lede reveal">OC Ummah is the newest of these and is not out yet. ICOI is the oldest: the first app I ever shipped, built for my own mosque in my senior year of high school and maintained for two and a half years, until the mosque moved to another app. It is also what led to teaching iOS at the Muslim Village.</p>
+    <div class="apps-grid apps-grid--2" data-cards="oc-ummah,icoi"></div>
   </section>
 
   <section class="verse reveal" aria-label="Quran verse">

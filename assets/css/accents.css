@@ -150,7 +150,7 @@ body[data-fan="accents"] { --a: var(--gold); }
 .ac-titles { flex: 1; min-width: 0; }
 
 .ac-titles h4 {
-  font-family: var(--serif); font-weight: 600; font-size: 1.02rem;
+  font-family: var(--serif); font-weight: 800; font-size: 1.02rem;
   letter-spacing: -0.01em; line-height: 1.25;
 }
 

@@ -107,36 +107,109 @@
 .ts-terms--uni .ts-rows li { grid-template-columns: 4rem minmax(0, 1fr) auto; }
 .ts-terms--uni .ts-tags u { white-space: nowrap; }
 
-/* ── roles timeline (high school + college) ── */
-.roles { list-style: none; display: grid; gap: 0.5rem; margin: 1.4rem 0 2.2rem; }
-.role {
-  position: relative; display: grid; gap: 0.3rem 1.2rem;
-  grid-template-columns: 1fr; padding: 1rem 1.1rem;
-  border: 1px solid var(--line); border-radius: 8px;
-  background: linear-gradient(150deg, rgba(255,255,255,.028), transparent 70%);
-  transition: border-color .16s ease, transform .16s ease;
+/* ── roles timeline (high school + college) ──
+   Was a boxed card per role: a full border around each one, a 3px accent slab
+   down the side of the current job, gold pill tags set in 8px uppercase mono,
+   and a date column that did not line up with the title beside it. Four
+   competing frames around what is really one continuous list.
+
+   Now it IS a timeline. One hairline runs down the column, each role hangs a
+   node off it, and the roles are separated by space rather than by boxes. No
+   border, no card fill: the rule and the node carry the structure, which is
+   what the eye follows anyway. */
+.roles {
+  list-style: none; display: grid; gap: 0;
+  margin: 1.6rem 0 2.4rem; padding-left: 1.35rem;
+  position: relative;
 }
-@media (min-width: 760px) { .role { grid-template-columns: 8.5rem minmax(0, 1fr); } }
-.role:hover { border-color: rgba(255,255,255,.22); transform: translateY(-2px); }
-/* The current role gets the accent rail so the latest one reads first. */
-.role--now { border-left: 3px solid var(--accent, #5fbf8f); }
-.role-when { display: grid; gap: 0.1rem; align-content: start; }
+/* the continuous rule: it stops at the last node rather than running off the
+   bottom of the list, which is what makes it read as a finished timeline */
+.roles::before {
+  content: ""; position: absolute; left: 0; top: 0.55rem; bottom: 1.6rem;
+  width: 1px; background: linear-gradient(
+    var(--accent, #5fbf8f) 0, color-mix(in srgb, var(--accent, #5fbf8f) 22%, transparent) 14%,
+    var(--line) 60%, transparent 100%);
+}
+.role {
+  position: relative; display: grid; gap: 0.15rem 1.6rem;
+  grid-template-columns: 1fr;
+  padding: 0 0 2.2rem 1.35rem;
+}
+.role:last-child { padding-bottom: 0; }
+/* the node. Filled and ringed for the current role, hollow for past ones, so
+   "where I am now" is legible without a slab of colour. */
+.role::before {
+  content: ""; position: absolute; left: calc(-1.35rem - 4px); top: 0.42rem;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--bg); border: 1.5px solid var(--line-2, #26262c);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.role--now::before {
+  background: var(--accent, #5fbf8f); border-color: var(--accent, #5fbf8f);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent, #5fbf8f) 16%, transparent);
+}
+.role:hover::before { border-color: var(--accent, #5fbf8f); }
+/* the date rail sits in its own column on a wide screen and above the title on
+   a narrow one, and is baseline-aligned with the title either way */
+@media (min-width: 860px) {
+  .role { grid-template-columns: 10.5rem minmax(0, 1fr); }
+  /* nudge the date onto the title's optical baseline: the title is 1.06rem at
+     700, the date 0.7rem mono, so they do not sit level by default */
+  .role-when { padding-top: 0.2rem; }
+}
+.role-when { display: grid; gap: 0.15rem; align-content: start; }
 .role-when b {
-  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; color: var(--accent, #7fd8a8);
+  font-family: var(--mono); font-weight: 500; font-size: 0.7rem;
+  letter-spacing: 0.04em; color: var(--accent, #7fd8a8);
+  font-variant-numeric: tabular-nums;
 }
 .role-when span {
-  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--mute);
+  font-family: var(--mono); font-size: var(--fs-micro, 0.66rem);
+  letter-spacing: 0.08em; color: var(--mute); text-transform: none;
 }
-.role-body h4 { font-family: var(--sans); font-weight: 650; font-size: 0.98rem; color: var(--ink); }
-.role-body p { margin-top: 0.35rem; font-size: 0.9rem; line-height: 1.7; color: var(--ink-dim); max-width: 68ch; }
+.role-body h4 {
+  font-family: var(--sans); font-weight: 700; font-size: 1.06rem;
+  line-height: 1.3; color: var(--ink); letter-spacing: -0.01em;
+}
+/* the employer, told apart from the job title without a second line */
+.role-body h4 .role-at { color: var(--ink-dim); font-weight: 600; }
+.role-body p {
+  margin-top: 0.4rem; font-size: 0.92rem; line-height: 1.7;
+  color: var(--ink-dim); max-width: 68ch;
+}
+/* Tags: the gold pills were the loudest thing in the block and said the least.
+   One quiet row, separated by the rule above them rather than by three borders. */
+.role-tags {
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem;
+  margin-top: 1rem; padding-top: 0.75rem;
+  /* the rule is capped to the text column: run full width and it reads as a
+     section divider between the two jobs rather than as this job's footer */
+  max-width: 70ch;
+  border-top: 1px solid var(--line);
+}
+/* Separators between tags, so the row reads as one line of metadata rather
+   than three phrases floating at different distances. Only where the tags
+   actually SHARE a line: below 860px they stack, and a leading "·" hanging
+   off the front of each stacked line is worse than no separator at all. */
+@media (min-width: 860px) {
+  .role-tags .role-tag + .role-tag::before {
+    content: "·"; color: var(--line-2, #26262c); margin-right: 1.1rem;
+  }
+}
+/* stacked: tighten the row gap, since each tag is now its own line */
+@media (max-width: 859px) {
+  .role-tags { gap: 0.3rem 1rem; }
+}
 .role-tag {
-  display: inline-block; margin-top: 0.6rem;
-  font-family: var(--mono); font-size: 0.5rem; letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 0.2rem 0.5rem; border-radius: 100px; color: #e6d5a2;
-  background: rgba(216,198,138,.1); border: 1px solid rgba(216,198,138,.28);
+  font-family: var(--mono); font-size: var(--fs-micro, 0.66rem);
+  letter-spacing: 0.04em; color: var(--mute);
+  background: none; border: 0; padding: 0; border-radius: 0;
 }
-@media (prefers-reduced-motion: reduce) { .role:hover { transform: none; } }
+/* a tag that is actually a link has to look like one, now that the pill
+   border no longer implies it is pressable */
+a.role-tag { color: var(--accent, #7fd8a8); transition: color .2s ease; }
+a.role-tag:hover { color: var(--ink); }
+@media (prefers-reduced-motion: reduce) { .role:hover::before { transition: none; } }
 
 /* ── high-school extracurriculars, awards and service ── */
 .hs-cols { display: grid; gap: 1.2rem; margin: 1.3rem 0 2.2rem; }
@@ -210,15 +283,17 @@
 
 /* Bulleted detail inside a role. Kept out of .role-body p so a role can have
    both a paragraph and points without the two fighting for spacing. */
-.role-points { list-style: none; margin: 0.55rem 0 0; display: grid; gap: 0.35rem; }
+.role-points { list-style: none; margin: 0.75rem 0 0; display: grid; gap: 0.5rem; }
 .role-points li {
-  position: relative; padding-left: 0.95rem;
-  font-size: 0.88rem; line-height: 1.7; color: var(--ink-dim); max-width: 70ch;
+  position: relative; padding-left: 1.05rem;
+  font-size: 0.92rem; line-height: 1.65; color: var(--ink-dim); max-width: 70ch;
 }
+/* an en dash rather than a dot: it sits on the text baseline instead of
+   needing to be nudged to it, and reads as a list marker at this size */
 .role-points li::before {
-  content: ""; position: absolute; left: 0; top: 0.62em;
-  width: 4px; height: 4px; border-radius: 50%;
-  background: var(--accent, #7fd8a8); opacity: .6;
+  content: ""; position: absolute; left: 0; top: 0.72em;
+  width: 6px; height: 1.5px; border-radius: 1px;
+  background: var(--accent, #7fd8a8); opacity: .75;
 }
 .role-points b { color: var(--ink); font-weight: 600; }
 .role-body p + .role-points, .role-points + p { margin-top: 0.55rem; }

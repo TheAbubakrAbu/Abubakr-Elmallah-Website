@@ -13,6 +13,10 @@ img, svg { display: block; max-width: 100%; }
 html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
 
 .hc {
+  /* This page loads no shared stylesheet, so it defines the font tokens it
+     uses itself rather than inheriting them from base.css. */
+  --mono:    "DM Mono", ui-monospace, SFMono-Regular, monospace;
+  --serif:   "Darker Grotesque", "Nunito", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --holo:    #7fd6ff;          /* projector blue */
   --holo-2:  #bfeaff;
   --amber:   #ffc94a;          /* Sith / warning */
@@ -23,7 +27,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 
   background: #02070c;
   color: var(--ink);
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: var(--serif);
   min-height: 100vh;
   padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
   overflow-x: hidden;
@@ -56,7 +60,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding: 1rem clamp(1rem, 4vw, 2.6rem);
   border-bottom: 1px solid var(--line);
-  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-family: var(--mono);
   font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim);
 }
 .hc-exit { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--holo); }
@@ -124,7 +128,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 }
 .hc-caption span {
   display: block; margin-top: 0.4rem;
-  font-family: "JetBrains Mono", monospace; font-size: 0.62rem;
+  font-family: var(--mono); font-size: 0.62rem;
   letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim);
 }
 
@@ -145,7 +149,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .hc-panel::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
 .hc-h {
   display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.9rem;
-  font-family: "JetBrains Mono", monospace; font-size: 0.64rem;
+  font-family: var(--mono); font-size: 0.64rem;
   letter-spacing: 0.22em; text-transform: uppercase; color: var(--holo);
 }
 .hc-h i { width: 6px; height: 6px; border-radius: 50%; background: var(--holo); box-shadow: 0 0 10px var(--holo); }
@@ -153,14 +157,14 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .hc-name { font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
 .hc-role { margin-top: 0.4rem; color: var(--dim); font-size: 0.9rem; }
 .hc-aur {
-  margin-top: 0.9rem; font-family: "JetBrains Mono", monospace;
+  margin-top: 0.9rem; font-family: var(--mono);
   font-size: 0.66rem; letter-spacing: 0.16em; color: var(--amber);
 }
 
 .hc-rows { display: flex; flex-direction: column; gap: 0.55rem; }
 .hc-row {
   display: flex; justify-content: space-between; gap: 1rem;
-  font-family: "JetBrains Mono", monospace; font-size: 0.7rem;
+  font-family: var(--mono); font-size: 0.7rem;
   padding-bottom: 0.5rem; border-bottom: 1px dashed rgba(127,214,255,.14);
 }
 .hc-row span:first-child { color: var(--dim); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.6rem; }
@@ -170,7 +174,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .hc-link {
   display: flex; align-items: center; gap: 0.7rem;
   padding: 0.6rem 0.7rem; border: 1px solid transparent; border-radius: 3px;
-  font-family: "JetBrains Mono", monospace; font-size: 0.74rem;
+  font-family: var(--mono); font-size: 0.74rem;
   color: var(--ink); transition: background .25s, border-color .25s, transform .25s, color .25s;
 }
 .hc-link i { width: 5px; height: 5px; background: var(--holo); flex: none; rotate: 45deg; }
@@ -184,7 +188,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .hc-bar { display: flex; flex-direction: column; gap: 0.3rem; }
 .hc-bar-top {
   display: flex; justify-content: space-between;
-  font-family: "JetBrains Mono", monospace; font-size: 0.6rem;
+  font-family: var(--mono); font-size: 0.6rem;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim);
 }
 .hc-bar-track { height: 5px; border-radius: 3px; background: rgba(127,214,255,.12); overflow: hidden; }
@@ -195,7 +199,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .hc-sabers { display: flex; flex-wrap: wrap; gap: 0.45rem; }
 .hc-saber {
   display: flex; align-items: center; gap: 0.4rem;
-  font-family: "JetBrains Mono", monospace; font-size: 0.6rem;
+  font-family: var(--mono); font-size: 0.6rem;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim);
   padding: 0.3rem 0.55rem; border: 1px solid var(--line); border-radius: 100px;
 }
@@ -207,7 +211,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
   padding: 1rem clamp(1rem, 4vw, 2.6rem);
   border-top: 1px solid var(--line);
-  font-family: "JetBrains Mono", monospace; font-size: 0.62rem;
+  font-family: var(--mono); font-size: 0.62rem;
   letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim);
 }
 .hc-bottom a { color: var(--holo); }

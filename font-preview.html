@@ -1,0 +1,108 @@
+---
+permalink: /font-preview/
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Font preview · pick one</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400..900&family=Nunito:wght@400;500;600;700;800&family=Syne:wght@400..800&family=Sora:wght@400..800&family=Epilogue:wght@400..900&family=Archivo:wght@400..900&family=Manrope:wght@400..800&family=Onest:wght@400..900&family=Schibsted+Grotesk:wght@400..900&family=Anybody:wght@400..900&family=Instrument+Serif:ital@0;1&family=Orbitron:wght@400..900&family=Michroma&family=Audiowide&family=Oxanium:wght@400..800&family=Saira:wght@400..900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --bg:#08080a; --ink:#ECEAE3; --dim:#9a988f; --mute:#5d5c64;
+         --line:#1c1c20; --green-2:#3fd589; --blue-2:#5fa3ec; --gold:#f5c63c; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;
+       padding:clamp(1.25rem,5vw,4rem);-webkit-font-smoothing:antialiased}
+  .top{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.16em;
+       text-transform:uppercase;color:var(--green-2);margin-bottom:.6rem}
+  .sub{color:var(--dim);max-width:62ch;line-height:1.6;margin-bottom:2.5rem;font-size:.98rem}
+  .row{padding:1.6rem 0 2rem;border-top:1px solid var(--line)}
+  .lab{font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.14em;
+       text-transform:uppercase;color:var(--mute);margin-bottom:.9rem;
+       display:flex;gap:.7rem;align-items:baseline;flex-wrap:wrap}
+  .lab b{color:var(--green-2);font-weight:500;font-size:.8rem}
+  .lab.sw b{color:var(--gold)}
+  .lab .now{color:var(--blue-2)}
+  .name{font-size:clamp(2.2rem,7vw,4.6rem);font-weight:800;letter-spacing:-.03em;
+        line-height:.98;word-break:break-word}
+  .name .l{font-weight:400;color:var(--dim)}
+  .bits{margin-top:.9rem;display:flex;gap:1.6rem;flex-wrap:wrap;align-items:baseline}
+  .h2{font-size:1.7rem;font-weight:700;letter-spacing:-.02em}
+  .h3{font-size:1.15rem;font-weight:700;letter-spacing:-.01em}
+  .body{font-family:'Nunito',sans-serif;color:var(--dim);font-size:.92rem;
+        margin-top:.7rem;max-width:56ch;line-height:1.6}
+</style>
+</head>
+<body>
+  <p class="top">Font preview · 16 options</p>
+  <p class="sub">Your name and a few real headings in each candidate. Body text stays Nunito everywhere and the mono labels stay DM Mono, so you are only judging the display face. The gold-numbered ones at the bottom are the Star Wars flavoured faces. Tell Claude a number to apply it site-wide.</p>
+
+  <div class="row"><p class="lab"><b>1</b> Darker Grotesque <span>— tall and narrow — LIVE ON THE SITE NOW</span> <span class="now">← live right now</span></p>
+    <p class="name" style="font-family:'Darker Grotesque', sans-serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Darker Grotesque', sans-serif">Projects</span><span class="h3" style="font-family:'Darker Grotesque', sans-serif">ZOTFinder</span><span class="h3" style="font-family:'Darker Grotesque', sans-serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+  <div class="row"><p class="lab"><b>2</b> Nunito <span>— the body font, no separate display face</span></p>
+    <p class="name" style="font-family:'Nunito', sans-serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Nunito', sans-serif">Projects</span><span class="h3" style="font-family:'Nunito', sans-serif">ZOTFinder</span><span class="h3" style="font-family:'Nunito', sans-serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+  <div class="row"><p class="lab"><b>3</b> Syne <span>— art-gallery display; wide, quirky</span></p>
+    <p class="name" style="font-family:'Syne', sans-serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Syne', sans-serif">Projects</span><span class="h3" style="font-family:'Syne', sans-serif">ZOTFinder</span><span class="h3" style="font-family:'Syne', sans-serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+  <div class="row"><p class="lab"><b>4</b> Sora <span>— technical and squarish</span></p>
+    <p class="name" style="font-family:'Sora', sans-serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Sora', sans-serif">Projects</span><span class="h3" style="font-family:'Sora', sans-serif">ZOTFinder</span><span class="h3" style="font-family:'Sora', sans-serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+  <div class="row"><p class="lab"><b>5</b> Epilogue <span>— sharp modern grotesque</span></p>
+    <p class="name" style="font-family:'Epilogue', sans-serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Epilogue', sans-serif">Projects</span><span class="h3" style="font-family:'Epilogue', sans-serif">ZOTFinder</span><span class="h3" style="font-family:'Epilogue', sans-serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+  <div class="row"><p class="lab"><b>6</b> Archivo <span>— sturdy, editorial</span></p>
+    <p class="name" style="font-family:'Archivo', sans-serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Archivo', sans-serif">Projects</span><span class="h3" style="font-family:'Archivo', sans-serif">ZOTFinder</span><span class="h3" style="font-family:'Archivo', sans-serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+  <div class="row"><p class="lab"><b>7</b> Manrope <span>— semi-rounded, close cousin of Nunito</span></p>
+    <p class="name" style="font-family:'Manrope', sans-serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Manrope', sans-serif">Projects</span><span class="h3" style="font-family:'Manrope', sans-serif">ZOTFinder</span><span class="h3" style="font-family:'Manrope', sans-serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+  <div class="row"><p class="lab"><b>8</b> Onest <span>— neutral but warm</span></p>
+    <p class="name" style="font-family:'Onest', sans-serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Onest', sans-serif">Projects</span><span class="h3" style="font-family:'Onest', sans-serif">ZOTFinder</span><span class="h3" style="font-family:'Onest', sans-serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+  <div class="row"><p class="lab"><b>9</b> Schibsted Grotesk <span>— newspaper grotesk</span></p>
+    <p class="name" style="font-family:'Schibsted Grotesk', sans-serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Schibsted Grotesk', sans-serif">Projects</span><span class="h3" style="font-family:'Schibsted Grotesk', sans-serif">ZOTFinder</span><span class="h3" style="font-family:'Schibsted Grotesk', sans-serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+  <div class="row"><p class="lab"><b>10</b> Anybody <span>— retro-technical, unusual shapes</span></p>
+    <p class="name" style="font-family:'Anybody', sans-serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Anybody', sans-serif">Projects</span><span class="h3" style="font-family:'Anybody', sans-serif">ZOTFinder</span><span class="h3" style="font-family:'Anybody', sans-serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+  <div class="row"><p class="lab"><b>11</b> Instrument Serif <span>— high-contrast serif, elegant</span></p>
+    <p class="name" style="font-family:'Instrument Serif', serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Instrument Serif', serif">Projects</span><span class="h3" style="font-family:'Instrument Serif', serif">ZOTFinder</span><span class="h3" style="font-family:'Instrument Serif', serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+  <div class="row"><p class="lab sw"><b>12</b> Orbitron <span>— STAR WARS · squared sci-fi, already used on /jarvis/</span></p>
+    <p class="name" style="font-family:'Orbitron', sans-serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Orbitron', sans-serif">Projects</span><span class="h3" style="font-family:'Orbitron', sans-serif">ZOTFinder</span><span class="h3" style="font-family:'Orbitron', sans-serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+  <div class="row"><p class="lab sw"><b>13</b> Michroma <span>— STAR WARS · wide techno, very Imperial</span></p>
+    <p class="name" style="font-family:'Michroma', sans-serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Michroma', sans-serif">Projects</span><span class="h3" style="font-family:'Michroma', sans-serif">ZOTFinder</span><span class="h3" style="font-family:'Michroma', sans-serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+  <div class="row"><p class="lab sw"><b>14</b> Audiowide <span>— STAR WARS · rounded retro-futurist</span></p>
+    <p class="name" style="font-family:'Audiowide', sans-serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Audiowide', sans-serif">Projects</span><span class="h3" style="font-family:'Audiowide', sans-serif">ZOTFinder</span><span class="h3" style="font-family:'Audiowide', sans-serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+  <div class="row"><p class="lab sw"><b>15</b> Oxanium <span>— STAR WARS · angular HUD/game face</span></p>
+    <p class="name" style="font-family:'Oxanium', sans-serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Oxanium', sans-serif">Projects</span><span class="h3" style="font-family:'Oxanium', sans-serif">ZOTFinder</span><span class="h3" style="font-family:'Oxanium', sans-serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+  <div class="row"><p class="lab sw"><b>16</b> Saira <span>— STAR WARS · condensed technical, readable</span></p>
+    <p class="name" style="font-family:'Saira', sans-serif">Abubakr <span class="l">Elmallah</span></p>
+    <div class="bits"><span class="h2" style="font-family:'Saira', sans-serif">Projects</span><span class="h3" style="font-family:'Saira', sans-serif">ZOTFinder</span><span class="h3" style="font-family:'Saira', sans-serif">Al-Quran · Beginner Quran</span></div>
+    <p class="body">Body text stays Nunito. A Computer Science student at UC Irvine and an iOS developer.</p></div>
+</body>
+</html>

@@ -31,8 +31,8 @@ redirect_from:
      and render immediately; onload promotes it to the real stylesheet.
      Every family here already carries display=swap, so text is on
      screen in the fallback face straight away and swaps when it lands. -->
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Darker+Grotesque:wght@400..900&family=Nunito:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Darker+Grotesque:wght@400..900&family=Nunito:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
@@ -94,15 +94,16 @@ redirect_from:
   <section class="work">
 
     <h3 class="subsec reveal">My UCI Work</h3>
-    <div class="apps-grid apps-grid--2" data-cards="zotfinder,uci-now,uci-esports,peterplate"></div>
+    <div class="apps-grid apps-grid--2" data-cards="zotfinder,uci-now,uci-esports,real-time-ops,peterplate"></div>
     <a class="dev-link reveal" href="https://apps.apple.com/us/developer/uci-student-center/id1382415697" target="_blank" rel="noopener" data-magnetic>
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.78c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.13 5.84c.64-.78 1.07-1.85.95-2.93-.92.04-2.04.61-2.7 1.38-.59.68-1.11 1.79-.97 2.84 1.03.08 2.08-.52 2.72-1.29z"/></svg>
       <span>View the UCI Apple Developer Page</span><i>↗</i>
     </a>
 
     <h3 class="subsec reveal">My Apple Ecosystem Apps</h3>
-    <!-- one three-up grid: row 1 = Star Wars + ICOI, row 2 = the Islamic apps -->
-    <div class="apps-grid apps-grid--3" data-cards="aurebesh-translator,datapad,icoi,al-adhan,al-islam,al-quran,quran-tajweed-engine,hadith-json-engine"></div>
+    <!-- one three-up grid: row 1 = the two Star Wars apps + ICOI, then the
+         Islamic apps, their engines, and OC Ummah -->
+    <div class="apps-grid apps-grid--3" data-cards="aurebesh-translator,datapad,icoi,al-adhan,al-islam,al-quran,quran-tajweed-engine,hadith-json-engine,oc-ummah"></div>
     <a class="dev-link reveal" href="https://apps.apple.com/tr/developer/abubakr-elmallah/id1690310648" target="_blank" rel="noopener" data-magnetic>
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.78c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.13 5.84c.64-.78 1.07-1.85.95-2.93-.92.04-2.04.61-2.7 1.38-.59.68-1.11 1.79-.97 2.84 1.03.08 2.08-.52 2.72-1.29z"/></svg>
       <span>View My Apple Developer Page</span><i>↗</i>

@@ -24,7 +24,7 @@
 .kicker span:first-child { color: var(--green); }
 
 .display {
-  font-family: var(--serif); font-weight: 600;
+  font-family: var(--serif); font-weight: 800;
   font-size: clamp(3.6rem, 11vw, 11rem);
   line-height: 0.9; letter-spacing: -0.04em;
 }
@@ -125,7 +125,7 @@
 }
 .marquee-track {
   display: inline-flex; align-items: center; gap: 2.5rem;
-  font-family: var(--serif); font-weight: 500; letter-spacing: -0.02em;
+  font-family: var(--serif); font-weight: 700; letter-spacing: -0.02em;
   font-size: clamp(1.8rem, 4vw, 3rem); color: var(--ink);
   animation: scroll-x 28s linear infinite;
 }
@@ -142,7 +142,7 @@
   border-bottom: 1px solid var(--line);
 }
 .sec-idx { font-family: var(--mono); font-size: 0.75rem; color: var(--blue-2); }
-.sec-head h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -0.03em; }
+.sec-head h2 { font-family: var(--serif); font-weight: 800; font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -0.03em; }
 .sec-note { font-family: var(--mono); font-size: 0.7rem; color: var(--mute); text-align: right; }
 @media (max-width: 560px) { .sec-note:not(.sec-link) { display: none; } }
 
@@ -218,7 +218,7 @@ a.app-badge:hover {
 }
 
 .app-card h3 {
-  font-family: var(--serif); font-weight: 600;
+  font-family: var(--serif); font-weight: 800;
   font-size: clamp(1.7rem, 3vw, 2.2rem); line-height: 1; letter-spacing: -0.03em;
   transition: color .3s;
 }
@@ -349,18 +349,78 @@ a.app-badge:hover {
    z-index 2: over the overlay's 1, under the inner links' 3. */
 .app-more { position: relative; z-index: 2; }
 
-/* the affordance line: "Read more ↓" */
+/* ── "Read more" / "Show less" ──
+   Was a bare line of uppercase mono with an arrow after it: the only thing
+   marking it as pressable was its colour, which a touch device never shows,
+   and it read as a caption rather than a control. It is a real pill button
+   now, sized and shaped like the other buttons on the site (--r-pill, the
+   same green tint as .app-action), with its own hover, press and focus.
+
+   The text case is dropped from uppercase: "Show less" in a button reads as
+   a label, and the letter-spaced caps were what made it look like a heading. */
 .app-expand {
-  align-self: flex-start; margin-top: 1rem;
-  display: inline-flex; align-items: center; gap: 0.45rem;
-  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em;
-  text-transform: uppercase; color: var(--green-2);
-  background: transparent; border: 0; padding: 0;
-  cursor: inherit; transition: color .25s, gap .25s;
+  /* justify-self as well as align-self: inside the subgrid row a stretched
+     grid item took the whole column when closed (512px) and snapped back to
+     its text width when open (122px), so the button jumped 390px on every
+     toggle. Pinned instead: "Read more" and "Show less" are near enough the
+     same length that one width holds both, and the button no longer moves. */
+  align-self: flex-start; justify-self: start;
+  width: 9.5rem; justify-content: space-between;
+  margin-top: 1.1rem;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em;
+  color: var(--green-2);
+  padding: 0.5rem 0.95rem; border-radius: 100px;
+  border: 1px solid color-mix(in srgb, var(--green) 38%, transparent);
+  background: color-mix(in srgb, var(--green) 9%, transparent);
+  cursor: inherit;
+  transition: background .2s var(--ease), border-color .2s var(--ease),
+              color .2s var(--ease), transform .12s var(--ease);
 }
-.app-expand i { font-style: normal; transition: transform .3s var(--ease); }
-.app-card:hover .app-expand, .proj-card:hover .app-expand { color: var(--gold); gap: 0.7rem; }
-.app-card--dead .app-expand { color: var(--ink-dim); }
+/* the arrow sits in its own round well, so the button reads as label + control
+   rather than as text with a glyph stuck on the end */
+.app-expand i {
+  font-style: normal; font-size: 0.78em; line-height: 1;
+  display: grid; place-items: center;
+  width: 15px; height: 15px; border-radius: 50%;
+  background: color-mix(in srgb, var(--green) 22%, transparent);
+  transition: transform .3s var(--ease), background .2s var(--ease);
+}
+.app-expand:hover {
+  background: color-mix(in srgb, var(--green) 20%, transparent);
+  border-color: var(--green-2); color: var(--green-2);
+}
+.app-expand:hover i { background: color-mix(in srgb, var(--green) 38%, transparent); }
+.app-expand:active { transform: translateY(1px); }
+/* open: the button inverts, so "Show less" is visibly the active state */
+.app-expand[aria-expanded="true"] {
+  background: var(--green); border-color: var(--green); color: #05140c;
+}
+.app-expand[aria-expanded="true"] i { background: rgba(5, 20, 12, 0.22); }
+.app-expand[aria-expanded="true"]:hover {
+  background: var(--green-2); border-color: var(--green-2); color: #05140c;
+}
+/* a deprecated card keeps the shape but drops the green */
+.app-card--dead .app-expand {
+  color: var(--ink-dim);
+  border-color: var(--line-2, #26262c);
+  background: rgba(255, 255, 255, 0.03);
+}
+.app-card--dead .app-expand i { background: rgba(255, 255, 255, 0.07); }
+.app-card--dead .app-expand:hover {
+  color: var(--ink); border-color: var(--mute);
+  background: rgba(255, 255, 255, 0.06);
+}
+/* On a touch device this is the control that opens the write-up, so it has to
+   clear the 44px minimum. It stretches full width there too: on a phone the
+   card is one column, and a button that spans it is easier to hit and reads
+   as the card's action rather than as a chip floating at the bottom left. */
+@media (pointer: coarse) {
+  .app-expand {
+    min-height: 44px; width: 100%;
+    justify-content: space-between; padding: 0.5rem 1.1rem;
+  }
+}
 
 /* the panel itself */
 .app-more { margin-top: 1.4rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
@@ -495,7 +555,7 @@ a.app-badge:hover {
 .proj-info { padding: 1.3rem 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 0.55rem; flex: 1; }
 .proj-titlerow { display: flex; align-items: baseline; justify-content: space-between; gap: 0.8rem; }
 .proj-titlerow h3 {
-  font-family: var(--serif); font-weight: 600;
+  font-family: var(--serif); font-weight: 800;
   font-size: clamp(1.4rem, 2.4vw, 1.8rem); line-height: 1; letter-spacing: -0.03em;
   transition: color .3s;
 }
@@ -559,7 +619,7 @@ a.app-badge:hover {
 /* Swift Student Challenge, a separated sub-block inside the WWDC section */
 .wwdc-sub { margin-top: 3.4rem; padding-top: 2.6rem; border-top: 1px solid var(--line); }
 .wwdc-subhead {
-  font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em;
+  font-family: var(--serif); font-weight: 800; letter-spacing: -0.03em;
   font-size: clamp(1.7rem, 3.5vw, 2.4rem); line-height: 1; margin-bottom: 1.1rem;
   color: var(--green-2);
 }
@@ -684,7 +744,7 @@ a.app-badge:hover {
 }
 .back-link:hover { color: var(--green-2); }
 .page-title {
-  font-family: var(--serif); font-weight: 600;
+  font-family: var(--serif); font-weight: 800;
   font-size: clamp(3rem, 9vw, 7rem); line-height: 0.9;
   letter-spacing: -0.04em; margin-bottom: 1.2rem;
 }
@@ -710,13 +770,26 @@ a.app-badge:hover {
 
 /* ───────────── Subsection header ───────────── */
 .subsec {
-  display: flex; align-items: center; gap: 1rem;
+  display: flex; align-items: center; gap: 0.75rem 1rem;
+  /* the row carries a title, a rule, and on some pages a trailing year or
+     count chip. Without wrapping, those trailing items ran off the right of a
+     narrow screen instead of dropping to a second line. */
+  flex-wrap: wrap; min-width: 0;
   font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--green-2);
   margin: 3rem 0 1.6rem;
 }
-.subsec:first-of-type { margin-top: 0; }
-.subsec::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+/* The intent is "no dead space when this header OPENS its section". But
+   :first-of-type only means it is the first .subsec among its siblings, which
+   is also true when it follows a portal grid, an .edu row or a gallery: on
+   /education/, /work/, /college/ and /high-school/ that zeroed the 3rem and
+   left the label crammed against the block above it (16-38px, against 26px of
+   space below it, so it read as belonging to the wrong side).
+   :first-child is the condition that was actually meant: nothing above it. */
+.subsec:first-child { margin-top: 0; }
+/* the rule takes the leftover space but may also shrink away entirely, so a
+   long title plus a trailing chip still fits before anything wraps */
+.subsec::after { content: ""; flex: 1 1 2rem; min-width: 0; height: 1px; background: var(--line); }
 .subsec .subsec-yr { color: var(--mute); letter-spacing: 0.1em; }
 
 /* A subsec whose subtitle is too long to sit beside the title: the row wraps,
@@ -756,7 +829,7 @@ html.intro-lock { overflow: hidden; }
   transition: opacity .4s ease, visibility .4s;
 }
 .intro-name {
-  font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em; text-align: center; line-height: 1;
+  font-family: var(--serif); font-weight: 800; letter-spacing: -0.03em; text-align: center; line-height: 1;
   font-size: clamp(2.2rem, 8vw, 6rem); letter-spacing: -0.02em; color: var(--ink);
   opacity: 0; transform: translateY(24px) scale(.96);
 }
@@ -890,7 +963,7 @@ html.intro-lock { overflow: hidden; }
 
 .intro-isl-title {
   position: relative; z-index: 3;
-  font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em;
+  font-family: var(--serif); font-weight: 800; letter-spacing: -0.02em;
   font-size: clamp(2rem, 7vw, 4.4rem); color: #eafff3; opacity: 0;
 }
 .intro--alislam.run .intro-isl-title { animation: intro-rise .42s var(--ease) .5s forwards; }
@@ -911,7 +984,7 @@ html.intro-lock { overflow: hidden; }
 .intro--projects.run .intro-tile { animation: tile-pop .4s var(--ease) forwards; }
 @keyframes tile-pop { to { opacity: 1; transform: none; } }
 .intro-proj-title {
-  font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em; font-size: clamp(2.2rem, 8vw, 5rem);
+  font-family: var(--serif); font-weight: 800; letter-spacing: -0.03em; font-size: clamp(2.2rem, 8vw, 5rem);
   letter-spacing: -0.02em; color: var(--ink); opacity: 0;
 }
 .intro-proj-title .dot { color: var(--gold); }
@@ -934,7 +1007,7 @@ html.intro-lock { overflow: hidden; }
 .intro--school.run .intro-photo { animation: fan-in .42s var(--ease) forwards; }
 @keyframes fan-in { to { opacity: 1; transform: translate(calc(-50% + var(--x)), 0) rotate(var(--rot)) scale(1); } }
 .intro-school-title {
-  font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em; font-size: clamp(2.2rem, 8vw, 5rem);
+  font-family: var(--serif); font-weight: 800; letter-spacing: -0.03em; font-size: clamp(2.2rem, 8vw, 5rem);
   letter-spacing: -0.02em; color: var(--ink); opacity: 0;
 }
 .intro-school-title .dot { color: var(--gold); }
@@ -952,12 +1025,28 @@ html.intro-lock { overflow: hidden; }
   border-radius: 14px; background: var(--bg-2);
   transition: border-color .25s, background .25s;
 }
-.edu-meta h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em; font-size: 1.5rem; line-height: 1; transition: color .25s; }
+.edu-meta h3 { font-family: var(--serif); font-weight: 800; letter-spacing: -0.03em; font-size: 1.5rem; line-height: 1; transition: color .25s; }
 .edu-row:hover .edu-pic { border-color: var(--green); background: rgba(31,157,92,0.06); }
 .edu-row:hover .edu-meta h3 { color: var(--green-2); }
 .edu-meta p { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-dim); margin-top: 0.45rem; letter-spacing: 0.04em; }
 .cta--big { margin-left: auto; padding: 1.1rem 1.8rem; font-size: 0.85rem; }
 .cta--big:hover { background: var(--green); color: #05140c; border-color: var(--green); }
+
+/* ── the résumé button inside an .edu row ──
+   .edu is a wrapping flex row: the two school rows and the button share a
+   line while they fit, and the button drops to its own line when they do not.
+   But `margin-left: auto` follows it down, so once it wraps it sits alone on
+   the right of a full-width line with a dead gap beside it, which is what it
+   looks like on /education/ and /work/ at desktop widths. A wrapped item
+   should own its line: flex-basis 100% makes the wrap explicit and the
+   button spans the block, so it reads as the row's action rather than as
+   something left over beside it.
+
+   No min-width branch: the two school rows are wide enough that the button
+   never really shares their line at any normal viewport, so a "keep it a
+   pill while it fits" exception only ever produced the stranded state it
+   was supposed to avoid. */
+.edu > .cta--big { flex: 1 0 100%; justify-content: space-between; margin-left: 0; }
 @media (max-width: 680px) {
   .cta--big { margin-left: 0; width: 100%; justify-content: center; }
   /* .cta is nowrap, which is right for a short pill and wrong for a full-width
@@ -1021,7 +1110,7 @@ html.intro-lock { overflow: hidden; }
   color: var(--m, var(--green)); margin-bottom: 0.55rem;
 }
 .mascot h4 {
-  font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em;
+  font-family: var(--serif); font-weight: 800; letter-spacing: -0.03em;
   font-size: clamp(1.4rem, 2.6vw, 1.9rem); line-height: 1;
 }
 .mascot-school { display: block; margin-top: 0.6rem; font-size: 0.85rem; line-height: 1.35; }
@@ -1060,7 +1149,7 @@ html.intro-lock { overflow: hidden; }
 .mascot-rail:hover .ms-node { opacity: 0.75; }
 .ms-node.is-mark, .mascot-rail:hover .ms-node.is-mark { opacity: 1; }
 .ms-node b {
-  font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em;
+  font-family: var(--serif); font-weight: 800; letter-spacing: -0.02em;
   font-size: 0.98rem; line-height: 1;
 }
 .ms-node.is-mark b { color: var(--m, var(--green)); }
@@ -1112,7 +1201,7 @@ html.intro-lock { overflow: hidden; }
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 0.55rem;
 }
 .acad-v {
-  font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em;
+  font-family: var(--serif); font-weight: 800; letter-spacing: -0.02em;
   font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1;
 }
 .acad-v span { font-family: var(--mono); font-size: 0.66rem; font-weight: 400; color: var(--mute); letter-spacing: 0.04em; }
@@ -1192,7 +1281,7 @@ html.intro-lock { overflow: hidden; }
 .lightbox.open { opacity: 1; visibility: visible; }
 /* while closed (including the fade-out) it must not intercept taps */
 .lightbox:not(.open) { pointer-events: none; }
-.lightbox-title { font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em; font-size: clamp(1.8rem, 5vw, 2.8rem); color: #fff; margin-bottom: 1.6rem; }
+.lightbox-title { font-family: var(--serif); font-weight: 800; letter-spacing: -0.03em; font-size: clamp(1.8rem, 5vw, 2.8rem); color: #fff; margin-bottom: 1.6rem; }
 .lightbox-title i { font-style: italic; color: var(--gold); }
 .lightbox-imgs { display: flex; flex-direction: column; gap: 1.2rem; width: 100%; max-width: 540px; }
 .lightbox-imgs img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); }
@@ -1313,7 +1402,7 @@ html.intro-lock { overflow: hidden; }
 .about-wide figcaption b { color: var(--blue-2); font-weight: 400; }
 
 .about-lede {
-  font-family: var(--serif); font-weight: 500;
+  font-family: var(--serif); font-weight: 700;
   font-size: clamp(1.6rem, 3.4vw, 2.6rem);
   line-height: 1.2; color: var(--ink); letter-spacing: -0.03em;
   margin-bottom: 1.5rem;
@@ -1372,7 +1461,7 @@ html.intro-lock { overflow: hidden; }
 .legacy-ico svg { width: 16px; height: 16px; }
 
 .legacy-card h4 {
-  font-family: var(--serif); font-weight: 600; font-size: 1rem;
+  font-family: var(--serif); font-weight: 800; font-size: 1rem;
   letter-spacing: -0.01em; margin-bottom: 0.35rem;
 }
 
@@ -1398,7 +1487,7 @@ html.intro-lock { overflow: hidden; }
   gap: 0.75rem 1.75rem; padding: 1.2rem 0;
 }
 .big-mail {
-  font-family: var(--serif); font-weight: 600;
+  font-family: var(--serif); font-weight: 800;
   font-size: clamp(1.4rem, 4.5vw, 3rem); line-height: 1.1; letter-spacing: -0.03em;
   word-break: break-word; transition: color .3s;
 }
@@ -1493,7 +1582,7 @@ html.intro-lock { overflow: hidden; }
 }
 .portal--starwars .portal-kicker { color: var(--gold); }
 .portal h2 {
-  font-family: var(--serif); font-weight: 600; line-height: 1; letter-spacing: -0.03em;
+  font-family: var(--serif); font-weight: 800; line-height: 1; letter-spacing: -0.03em;
   font-size: clamp(1.8rem, 3.4vw, 2.6rem); transition: color .3s;
 }
 .portal:hover h2 { color: var(--green-2); }
@@ -1546,7 +1635,7 @@ html.intro-lock { overflow: hidden; }
   text-transform: uppercase; color: #29e7ff;
 }
 .jarvis-txt h3 {
-  font-family: var(--serif); font-weight: 600; letter-spacing: 0.08em; margin-top: 0.5rem;
+  font-family: var(--serif); font-weight: 800; letter-spacing: 0.08em; margin-top: 0.5rem;
   font-size: clamp(1.3rem, 3vw, 2rem); color: #d8fbff;
 }
 .jarvis-txt p { color: var(--ink-dim); font-size: 0.9rem; margin-top: 0.5rem; max-width: 54ch; }

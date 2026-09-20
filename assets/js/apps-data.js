@@ -66,6 +66,22 @@ window.APP_CARDS = {
     tags: 'iOS · Swift · SwiftUI',
     links: [{ label: 'App Store ↗', href: 'https://apps.apple.com/us/app/uci-esports/id6751213697' }],
   },
+  'real-time-ops': {
+    /* Internal staff tool: unlisted, SSO-gated, and not on the App Store.
+       Deliberately no infrastructure details and no link - the site sits
+       behind UCI Shibboleth, so a link is useless publicly and naming the
+       stack of a private system serves nobody. Keep it that way. */
+    icon: 'apps/real-time-ops.jpg', alt: 'SCES Real-Time Ops app icon',
+    title: 'SCES Real-Time Ops', sub: 'Internal tool \u00b7 Maintained by me since 2025',
+    desc: 'The in-house operations app for UCI Student Center &amp; Event Services. Operations staff use it to run shift reports, daily logs, event information and room checks. An internal staff tool: unlisted, not on the App Store, and not publicly accessible.',
+    long: [
+      'SCES Real-Time Ops is the internal iOS app the operations teams at UC Irvine Student Center &amp; Event Services run their shifts on: shift reports, daily logs, event information and room checks.',
+      'I am the current maintainer and iOS developer. The app has been in service since 2018, and I took it over in 2025: a large legacy codebase where the work is the unglamorous kind that keeps a live system running, and I own its database migrations, backend tests and architecture documentation.',
+      'It is distributed internally to staff and sits behind university single sign-on, so there is nothing here to link to.',
+    ],
+    tags: 'iOS \u00b7 Swift \u00b7 Python \u00b7 Internal tool',
+  },
+
   'peterplate': {
     icon: 'apps/peterplate.jpg', alt: 'PeterPlate app icon',
     title: 'PeterPlate', sub: '2025 · Dining menu viewer',
@@ -120,6 +136,19 @@ window.APP_CARDS = {
     ],
     links: [{ label: 'App Store ↗', href: 'https://apps.apple.com/us/app/datapad-aurebesh-translator/id6450498054?platform=iphone' }],
   },
+  'aurebesh-academy': {
+    icon: 'apps/aurebesh-academy.jpg', alt: 'Aurebesh Academy app icon',
+    title: 'Academy | Aurebesh Trainer', sub: '2026 \u00b7 Learn to read Aurebesh',
+    desc: 'A trainer for actually learning Aurebesh rather than just translating it: a full glyph databank, typed read and write drills over 3,200+ words, a rapid-fire quiz, and XP, ranks, streaks and achievements to keep you coming back.',
+    long: [
+      'Academy is the teaching half of the Aurebesh suite. Where Datapad translates for you, Academy makes you learn: a Databank covering all 26 letters with their canonical names, the 8 digraphs, numerals and punctuation; Read and Write drills across 11 word categories and more than 3,200 words, with an on-screen Aurebesh keyboard, optional glyph shuffling, hints and caret editing; and The Trials, a rapid-fire multiple-choice quiz with three lives and a persistent high score.',
+      'Progress is the point, so it keeps a Holocron: XP, ranks from Youngling to Grand Master, day streaks, per-category mastery and 12 achievements. It merges what Aurebesh Trainer 2.0 and Aurebesh Trainer Pro each did separately and adds the layers neither shipped, in the Datapad design language: pure black, an animated starfield and accent-tinted holographic glass.',
+      'Built in SwiftUI. A React port ships the same app as a website and a Play Store build from one codebase.',
+    ],
+    tags: 'iOS \u00b7 SwiftUI \u00b7 React \u00b7 Android',
+    cat: { label: 'Star Wars \u2197', href: '/star-wars/', cls: 'app-cat--starwars' },
+  },
+
   'sabacc-droid': {
     icon: 'bots/sabacc-droid.png', alt: 'Sabacc Droid icon',
     title: 'Sabacc Droid', sub: 'November 14, 2024 · Play Sabacc on Discord',
@@ -251,6 +280,23 @@ window.APP_CARDS = {
   },
 
   /* ---- Web ---- */
+  'oc-ummah': {
+    icon: 'apps/oc-ummah.jpg', alt: 'OC Ummah app icon',
+    title: 'OC Ummah', sub: '2026 \u00b7 Orange County Muslim community',
+    desc: 'A community app for Muslims in Orange County: events pulled from a live calendar feed, a directory of local masjids, a map that pins masaajid, halal food and every event where it is actually being held, and on-device semantic search across Quran and hadith.',
+    long: [
+      'OC Ummah pulls community events from a Google Calendar feed and pairs them with a directory of local masjids, a live community map, and locators for masaajid and halal food. The map merges curated masjids, MapKit results and event venues behind filter chips, with a synced card deck, "Search this area" and "Near me". Masjid coordinates resolve from MapKit at runtime and cache, so a masjid that moves corrects itself instead of staying wrong in a hardcoded list.',
+      'The Islamic side of the app is the larger half: the pillars, beliefs, the Arabic letters, tajweed topics, the names of Allah and duas. It also carries two pieces I am glad I built. <b>Semantic search</b> runs entirely on-device: I measured Apple\u2019s sentence embeddings against this corpus, found them close to random (the lashing verse outranked the patience verse for \u201cpatience in hardship\u201d), and switched to word-embedding MaxSim, which separates related text at 0.42\u20130.70 from unrelated at 0.27\u20130.41.',
+      'The second is <b>on-device question answering</b>: retrieval over the app\u2019s own corpus handed to Apple\u2019s on-device foundation model, so questions are answered locally with no network, no keys and nothing leaving the phone, with a documented fallback when Apple Intelligence is unavailable.',
+      'Written in SwiftUI with no third-party dependencies at all: every framework is Apple\u2019s. Open source on GitHub; not yet on the App Store.',
+    ],
+    tags: 'iOS \u00b7 SwiftUI \u00b7 On-device AI \u00b7 MapKit',
+    cat: { label: 'Islamic \u2197', href: '/al-islam/', cls: 'app-cat--islamic' },
+    links: [
+      { label: 'GitHub \u2197', href: 'https://github.com/TheAbubakrAbu/OC-Ummah' },
+    ],
+  },
+
   'website': {
     /* No bespoke logo: reuses the site's own PWA icon, which is the closest
        thing it has to an app icon. */

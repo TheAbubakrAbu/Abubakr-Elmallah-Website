@@ -16,9 +16,10 @@
   --bg-2:      #000d16;
   --glow:      0 0 12px rgba(41, 231, 255, 0.45);
   --glow-soft: 0 0 26px rgba(41, 231, 255, 0.22);
-  --mono:      'JetBrains Mono', ui-monospace, monospace;
-  --disp:      'Orbitron', 'JetBrains Mono', monospace;
-  --cond:      'Rajdhani', 'Space Grotesk', sans-serif;
+  /* standalone page: no shared stylesheet, so the tokens are real values here */
+  --mono:      "DM Mono", ui-monospace, SFMono-Regular, monospace;
+  --disp:      'Orbitron', var(--mono);
+  --cond:      'Rajdhani', "Nunito", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --ease:      cubic-bezier(0.22, 1, 0.36, 1);
 }
 

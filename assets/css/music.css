@@ -58,7 +58,7 @@ body[data-fan="music"] { --a: var(--violet); }
 }
 
 .mu-tally b {
-  font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
+  font-family: var(--serif); font-size: 1.5rem; font-weight: 800;
   letter-spacing: -0.03em; color: var(--a);
 }
 
@@ -82,7 +82,7 @@ body[data-fan="music"] { --a: var(--violet); }
 }
 
 .mu-chip b {
-  font-family: var(--serif); font-size: 0.86rem; font-weight: 600;
+  font-family: var(--serif); font-size: 0.86rem; font-weight: 800;
   letter-spacing: -0.01em; color: inherit;
 }
 
@@ -139,7 +139,7 @@ body[data-fan="music"] { --a: var(--violet); }
 
 .mu-y {
   font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 2.2rem);
-  font-weight: 700; letter-spacing: -0.04em; color: var(--a);
+  font-weight: 900; letter-spacing: -0.04em; color: var(--a);
   line-height: 1;
 }
 
@@ -192,7 +192,7 @@ body[data-fan="music"] { --a: var(--violet); }
 .mu-song { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
 
 .mu-title {
-  font-family: var(--serif); font-size: 0.92rem; font-weight: 500;
+  font-family: var(--serif); font-size: 0.92rem; font-weight: 700;
   letter-spacing: -0.01em; color: var(--ink); line-height: 1.35;
 }
 
