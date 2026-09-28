@@ -135,7 +135,22 @@ window.FAN_PAGE = {
           { n: 'Win or Lose', y: '2025' },
           { n: 'Dream Productions', y: '2025' },
         ] },
+      { title: 'The Games', sub: '1995 – 2019', unit: 'game',
+        desc: 'Mostly the films, played; LEGO The Incredibles is the LEGO one, and it is a tile below.',
+        rows: [
+          { n: 'Toy Story', y: '1995' },
+          { n: 'Toy Story 2: Buzz Lightyear to the Rescue', y: '1999' },
+          { n: 'Cars', y: '2006' },
+          { n: 'Toy Story 3', y: '2010' },
+          { n: 'Disney Infinity', y: '2013' },
+          { n: 'LEGO The Incredibles', y: '2018' },
+          { n: 'Kingdom Hearts III', y: '2019' },
+        ] },
     ] },
+
+  /* The LEGO games of this franchise, as the same tiles the LEGO page shows
+     (LEGO_FOR, from lego-games.js): nothing about them is written here. */
+  window.LEGO_FOR && window.LEGO_FOR('pixar'),
 
 
   { id: 'shorts', kind: 'tiles', title: 'The Shorts', note: 'where the studio actually experiments', compact: true,

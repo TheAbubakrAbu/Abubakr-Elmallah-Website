@@ -23,10 +23,7 @@
     var host = document.getElementById('fanPlay');
     if (!cfg || !host || !cfg.items || !cfg.items.length) return;
 
-    function esc(t) {
-      return String(t == null ? '' : t)
-        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    }
+    function esc(t) { return window.AEesc(t); }
 
     var isRoll = cfg.kind === 'roll';
     var items = cfg.items;

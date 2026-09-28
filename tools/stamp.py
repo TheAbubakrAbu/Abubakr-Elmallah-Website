@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Write the content hashes the cache busting runs on.
 
-  _data/versions.yml        every CSS and JS file      (read by _includes/v.html)
-  _data/photo_versions.yml  every gallery photograph   (read by sw.js only)
+  _data/versions.yml        every CSS and JS file, and the photo list
+                            (read by _includes/v.html)
+  _data/photo_versions.yml  every gallery photograph
+                            (read by assets/photo-versions.json, which the
+                            service worker fetches when it needs a key)
 
 _includes/v.html appends ?v=<hash> to stylesheet and script URLs so a changed
 file is a new URL and an unchanged one keeps its cached copy. It used to use
@@ -19,6 +22,13 @@ this the fill saw "already have it" and kept the stale one for good. Hashing
 half a gigabyte on every commit would be slow, so a file's hash is remembered
 against its size and mtime in .jekyll-cache/ and only re-read when those move.
 
+The list of those keys is served as /assets/photo-versions.json (a Liquid
+page over photo_versions.yml) rather than inlined into sw.js, and it needs a
+?v= of its own so the worker fetches it again exactly when a photograph has
+changed. v.html reads versions.yml for that, and the file is a page rather
+than a static file, so its entry is written here: the hash of
+photo_versions.yml's content, after that file has been brought up to date.
+
 Runs from the pre-commit hook in tools/hooks (installed by ./run) and from
 ./run itself, so both files are always current. Safe to run by hand.
 """
@@ -28,6 +38,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, '_data')
 CACHE = os.path.join(ROOT, '.jekyll-cache', 'stamp-photos.json')   # gitignored
 PHOTO_DIRS = ('assets/img/years', 'assets/img/years-large')
+PHOTO_LIST = '/assets/photo-versions.json'      # the page built over photo_versions.yml, see above
 
 def sha(full):
     with open(full, 'rb') as fh:
@@ -77,10 +88,15 @@ def photos():
     return entries
 
 def main():
-    changed  = write(os.path.join(DATA, 'versions.yml'),
-                     'content hashes used by _includes/v.html', code())
-    changed += write(os.path.join(DATA, 'photo_versions.yml'),
+    # the photographs first: the list's own version below is a hash of this
+    # file, so it has to be current before it is read. (The header still says
+    # sw.js: it reaches the worker through the JSON page, and rewording a
+    # 3,700-line generated file for that is not worth the diff.)
+    photo_yml = os.path.join(DATA, 'photo_versions.yml')
+    changed  = write(photo_yml,
                      'content hashes of the gallery photographs, used by sw.js', photos())
+    changed += write(os.path.join(DATA, 'versions.yml'),
+                     'content hashes used by _includes/v.html', code() + [(PHOTO_LIST, sha(photo_yml))])
     return changed
 
 if __name__ == '__main__':

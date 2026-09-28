@@ -10,10 +10,7 @@
     var data = window.TRAVELS;
     if (!data) return;
 
-    function esc(t) {
-      return String(t == null ? '' : t)
-        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    }
+    function esc(t) { return window.AEesc(t); }
 
     /* trip photos live in the year galleries; this page only points at them.
        years-data.js is loaded for the w/h and date of each shot, so the grids
@@ -617,6 +614,19 @@
                         + '</ul>'
                       : '')
                 +   '<p class="tv-trip-n">' + esc(t.note) + '</p>'
+                /* `told`: somebody else's account, in their own words and
+                   language, closed until it is asked for. Right to left for
+                   Arabic; the English words inside it keep their own
+                   direction without any help. */
+                +   (t.told && t.told.text && t.told.text.length
+                      ? '<details class="tv-told">'
+                        + '<summary><span>' + esc(t.told.label || 'In their words') + '</span></summary>'
+                        + '<div class="tv-told-t"' + (t.told.lang
+                            ? ' lang="' + esc(t.told.lang) + '" dir="' + (/^(ar|he|fa|ur)$/.test(t.told.lang) ? 'rtl' : 'auto') + '"'
+                            : '') + '>'
+                        + t.told.text.map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('')
+                        + '</div></details>'
+                      : '')
                 +   (function () {
                       var cs = citiesOf(t);
                       if (!cs.length) return '';
@@ -761,15 +771,21 @@
          full-screen deck reuses the yg-deck styles from years.css. Every
          click in here stops propagating so it never doubles as the trip
          card's own select/dim toggle. */
+      /* A real modal, as in years.js: a named dialog, focus on its close
+         button while it is up and back on the photo it ended on after, the
+         page behind it inert, the bar a polite live region. */
       var deck = document.createElement('div');
       deck.className = 'yg-deck';
+      deck.setAttribute('role', 'dialog');
+      deck.setAttribute('aria-modal', 'true');
+      deck.setAttribute('aria-label', 'Photo viewer');
       deck.setAttribute('aria-hidden', 'true');
       deck.innerHTML =
-          '<button class="yg-x" aria-label="Close">&#10005;</button>'
-        + '<button class="yg-prev" aria-label="Previous photo">&#8249;</button>'
-        + '<button class="yg-next" aria-label="Next photo">&#8250;</button>'
+          '<button class="yg-x" type="button" aria-label="Close">&#10005;</button>'
+        + '<button class="yg-prev" type="button" aria-label="Previous photo">&#8249;</button>'
+        + '<button class="yg-next" type="button" aria-label="Next photo">&#8250;</button>'
         + '<figure class="yg-stage"><img alt="" /></figure>'
-        + '<div class="yg-bar"><span class="yg-year"></span><span class="yg-date"></span>'
+        + '<div class="yg-bar" aria-live="polite"><span class="yg-year"></span><span class="yg-date"></span>'
         +   '<span class="yg-place"></span><span class="yg-count"></span></div>';
       document.body.appendChild(deck);
 
@@ -777,6 +793,7 @@
       var elPlace = deck.querySelector('.yg-place');
       var set = [], at = 0, deckTrip = null;
       var pending = null;              // the path whose large copy the stage is waiting on
+      var opener = null, fromGrid = null, unload = 0;
 
       /* Same two-step as years.js: the grid's 1000px frame goes on the stage
          at once (it is in the cache), the 2000px copy is fetched behind it and
@@ -784,25 +801,39 @@
          out from the photo's proportions so nothing jumps. See fit() and
          swapIn() in years.js for the reasoning; the 1100 is .yg-stage's
          max-width in years.css. */
-      function fit(r) {
-        if (!r) { stageImg.style.width = stageImg.style.height = ''; return; }
+      function scaleOf(r) {
         var cs = getComputedStyle(deck);
         var maxW = Math.min(1100, deck.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight));
         var maxH = parseFloat(getComputedStyle(stageImg).maxHeight);
         if (!(maxH > 0)) maxH = innerHeight - 128;
         var cap = Math.max(r[2], r[3]) < 1000 ? 1 : 2;
-        var s = Math.min(maxW / r[2], maxH / r[3], cap);
+        return Math.min(maxW / r[2], maxH / r[3], cap);
+      }
+      function fit(r) {
+        if (!r) { stageImg.style.width = stageImg.style.height = ''; return; }
+        var s = scaleOf(r);
         stageImg.style.width = Math.round(r[2] * s) + 'px';
         stageImg.style.height = Math.round(r[3] * s) + 'px';
       }
+      /* only when the screen would show more pixels than the 1000px frame
+         has (see wantsLarge() in years.js) */
+      function wantsLarge(f) {
+        var r = YP[f];
+        return !r || (Math.max(r[2], r[3]) >= 1000
+          && scaleOf(r) * (window.devicePixelRatio || 1) > 1.15);
+      }
       function swapIn(f) {
         pending = f;
-        var big = new Image();
-        big.onload = function () { if (pending === f) stageImg.src = LARGE + f; };
-        big.src = LARGE + f;
+        if (wantsLarge(f)) {
+          var big = new Image();
+          big.onload = function () { if (pending === f) stageImg.src = LARGE + f; };
+          big.src = LARGE + f;
+        }
         if (set.length > 1) {
-          new Image().src = LARGE + set[(at + 1) % set.length];
-          new Image().src = LARGE + set[(at - 1 + set.length) % set.length];
+          [set[(at + 1) % set.length], set[(at - 1 + set.length) % set.length]].forEach(function (n) {
+            new Image().src = IMG + n;
+            if (wantsLarge(n)) new Image().src = LARGE + n;
+          });
         }
       }
 
@@ -813,7 +844,7 @@
         var r = YP[set[at]], place = (r && r[4]) || '';
         fit(r);
         stageImg.src = IMG + set[at];
-        stageImg.alt = deckTrip.places;
+        stageImg.alt = deckTrip.places + ', ' + shotDate(set[at]);
         swapIn(set[at]);
         deck.querySelector('.yg-year').textContent = deckTrip.places;
         deck.querySelector('.yg-date').textContent = shotDate(set[at]);
@@ -821,20 +852,46 @@
         elPlace.hidden = !place;
         deck.querySelector('.yg-count').textContent = (at + 1) + ' / ' + set.length;
       }
-      function deckOpen(t, i) {
+      function setInert(on) {
+        Array.prototype.forEach.call(document.body.children, function (n) {
+          if (n !== deck && n.tagName !== 'SCRIPT') n.inert = on;
+        });
+      }
+      function deckOpen(t, i, grid) {
         deckTrip = t; set = t.shots;
+        opener = document.activeElement; fromGrid = grid || null;
+        clearTimeout(unload);
         deck.classList.add('open');
         deck.setAttribute('aria-hidden', 'false');
         document.documentElement.classList.add('intro-lock');
         deckShow(i);
+        setInert(true);
+        deck.querySelector('.yg-x').focus({ preventScroll: true });
       }
       function deckClose() {
+        if (!deck.classList.contains('open')) return;
         deck.classList.remove('open');
         deck.setAttribute('aria-hidden', 'true');
         document.documentElement.classList.remove('intro-lock');
+        setInert(false);
         pending = null;
-        stageImg.removeAttribute('src');
-        stageImg.style.width = stageImg.style.height = '';
+        // the photo stays up through the fade-out (see close() in years.js)
+        unload = setTimeout(function () {
+          if (deck.classList.contains('open')) return;
+          stageImg.removeAttribute('src');
+          stageImg.style.width = stageImg.style.height = '';
+        }, 220);
+        var cell = fromGrid && fromGrid.querySelector('.yg-cell[data-s="' + at + '"]');
+        if (cell && cell.offsetParent !== null) {
+          cell.focus({ preventScroll: true });
+          var html = document.documentElement, was = html.style.scrollBehavior;
+          html.style.scrollBehavior = 'auto';
+          cell.scrollIntoView({ block: 'nearest' });
+          html.style.scrollBehavior = was;
+        } else if (opener && opener.isConnected && opener.focus) {
+          opener.focus({ preventScroll: true });
+        }
+        opener = fromGrid = null;
       }
       addEventListener('resize', function () { if (deck.classList.contains('open')) fit(YP[set[at]]); });
       deck.querySelector('.yg-x').addEventListener('click', deckClose);
@@ -843,25 +900,55 @@
       deck.addEventListener('click', function (e) { if (e.target === deck) deckClose(); });
       addEventListener('keydown', function (e) {
         if (!deck.classList.contains('open')) return;
-        if (e.key === 'Escape') deckClose();
-        else if (e.key === 'ArrowLeft') deckShow(at - 1);
-        else if (e.key === 'ArrowRight') deckShow(at + 1);
+        if (e.key === 'Escape') { e.preventDefault(); deckClose(); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); deckShow(at - 1); }
+        else if (e.key === 'ArrowRight') { e.preventDefault(); deckShow(at + 1); }
       });
-      var x0 = null;
-      deck.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      /* swipe: the photo follows the finger, a flick counts, a vertical drag
+         or a pinch never turns the page (the same gesture as years.js) */
+      var x0 = null, y0 = 0, t0 = 0, axis = '';
+      var SPRING = 'transform .26s cubic-bezier(.16,1,.3,1)';
+      function settle(dir) {
+        if (reduceMotion) { stageImg.style.transition = 'none'; stageImg.style.transform = ''; return; }
+        if (dir) {
+          stageImg.style.transition = 'none';
+          stageImg.style.transform = 'translateX(' + (dir * 36) + 'px)';
+          void stageImg.offsetWidth;
+        }
+        stageImg.style.transition = SPRING;
+        stageImg.style.transform = '';
+      }
+      deck.addEventListener('touchstart', function (e) {
+        if (e.touches.length !== 1) { if (x0 !== null) settle(0); x0 = null; return; }
+        x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; t0 = e.timeStamp; axis = '';
+        stageImg.style.transition = 'none';
+      }, { passive: true });
+      deck.addEventListener('touchmove', function (e) {
+        if (x0 === null) return;
+        if (e.touches.length !== 1) { x0 = null; settle(0); return; }
+        var mx = e.touches[0].clientX - x0, my = e.touches[0].clientY - y0;
+        if (!axis && Math.abs(mx) + Math.abs(my) > 10) axis = Math.abs(mx) > Math.abs(my) ? 'x' : 'y';
+        if (axis === 'x' && !reduceMotion) stageImg.style.transform = 'translateX(' + mx + 'px)';
+      }, { passive: true });
       deck.addEventListener('touchend', function (e) {
         if (x0 === null) return;
-        var dx = e.changedTouches[0].clientX - x0;
-        if (Math.abs(dx) > 50) deckShow(at + (dx < 0 ? 1 : -1));
+        var mx = e.changedTouches[0].clientX - x0;
+        var v = Math.abs(mx) / Math.max(1, e.timeStamp - t0);
+        var turn = axis === 'x' && (Math.abs(mx) > 50 || (v > 0.3 && Math.abs(mx) > 12));
         x0 = null;
+        if (!turn) { settle(0); return; }
+        var dir = mx < 0 ? 1 : -1;
+        deckShow(at + dir);
+        settle(dir);
       }, { passive: true });
+      deck.addEventListener('touchcancel', function () { if (x0 !== null) { x0 = null; settle(0); } }, { passive: true });
 
       var grids = root.querySelectorAll('.tv-shots');
       for (var g2 = 0; g2 < grids.length; g2++) {
         grids[g2].addEventListener('click', function (e) {
           e.stopPropagation();
           var b = e.target.closest('button[data-trip]');
-          if (b) deckOpen(trips[Number(b.getAttribute('data-trip'))], Number(b.getAttribute('data-s')));
+          if (b) deckOpen(trips[Number(b.getAttribute('data-trip'))], Number(b.getAttribute('data-s')), this);
         });
       }
 
@@ -958,7 +1045,7 @@
         if (!picsOn()) return;
         var card = e.target.closest ? e.target.closest('.tv-trip') : null;
         if (!card) return;
-        if (e.target.closest('a, button, input, select, textarea, .tv-shots')) return;
+        if (e.target.closest('a, button, input, select, textarea, summary, details, .tv-shots')) return;
         /* A drag to copy text ends in a click, and folding the card away
            underneath that is infuriating. Test the selection's own anchor
            rather than sel.containsNode(): that method is missing or a no-op in
@@ -990,10 +1077,17 @@
          the row exactly on the grid width; the last frame absorbs rounding. */
       var GAP = 10;   // keep in step with --yg-gap in travels.css
       function layout() {
-        for (var gi = 0; gi < grids.length; gi++) {
-          var grid = grids[gi];
-          var W = grid.clientWidth;
-          if (!W) continue;
+        /* measure every open grid before writing any, and floor the real
+           width: clientWidth rounds, and a row solved a fraction too wide
+           drops its last photo onto a line of its own (see years.js) */
+        var jobs = [];
+        for (var gj = 0; gj < grids.length; gj++) {
+          var Wj = Math.floor(grids[gj].getBoundingClientRect().width);
+          if (Wj) jobs.push([grids[gj], Wj]);
+        }
+        for (var gi = 0; gi < jobs.length; gi++) {
+          var grid = jobs[gi][0];
+          var W = jobs[gi][1];
           var target = W < 560 ? 158 : W < 900 ? 200 : 244;
           var row = [], sum = 0;
 

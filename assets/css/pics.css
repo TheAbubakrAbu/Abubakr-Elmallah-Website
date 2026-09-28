@@ -69,25 +69,39 @@ html:not([data-show-pics="on"]) .tv-photo:active { transform: none; }
   width: 100%; max-width: var(--maxw);
   margin: 3.5rem auto 0.5rem;
   padding: 0 var(--gutter);
+  /* outside <main>, so it carries the sideways insets itself, the way the
+     footer does (layout.css, .topbar explains them) */
+  padding-left: calc(var(--gutter) + env(safe-area-inset-left, 0px));
+  padding-right: calc(var(--gutter) + env(safe-area-inset-right, 0px));
 }
 
+/* Quiet by its colour, its size and its place at the foot of the page, not by
+   opacity: at .38 it was 1.7:1, the faintest text on the site and a control
+   that looked disabled. Plain --mute is still the quietest thing here. */
 .picsw-btn {
   display: inline-flex; align-items: center; gap: 0.6rem;
   padding: 0.45rem 0.85rem;
   border: 1px solid transparent; border-radius: 100px;
   background: transparent; cursor: pointer;
-  font-family: var(--mono); font-size: 0.62rem;
+  font-family: var(--mono); font-size: 0.66rem;
   letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--mute);
-  opacity: 0.38;
-  transition: opacity .3s var(--ease), color .3s, border-color .3s, background .3s;
+  transition: color .3s, border-color .3s, background .3s;
 }
+@media (pointer: coarse) { .picsw-btn { min-height: 44px; } }
 
-.picsw-btn:hover,
+/* hover only with a hovering pointer: after a tap it stayed lit */
 .picsw-btn:focus-visible {
-  opacity: 1; color: var(--ink-dim);
+  color: var(--ink-dim);
   border-color: var(--line);
   background: rgba(255, 255, 255, 0.03);
+}
+@media (hover: hover) {
+  .picsw-btn:hover {
+    color: var(--ink-dim);
+    border-color: var(--line);
+    background: rgba(255, 255, 255, 0.03);
+  }
 }
 
 .picsw-btn:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
@@ -95,7 +109,7 @@ html:not([data-show-pics="on"]) .tv-photo:active { transform: none; }
 .picsw-track {
   position: relative; display: block;
   width: 30px; height: 16px; flex: 0 0 auto;
-  border: 1px solid var(--line); border-radius: 100px;
+  border: 1px solid color-mix(in srgb, var(--mute) 60%, transparent); border-radius: 100px;
   background: rgba(255, 255, 255, 0.04);
   transition: background .25s, border-color .25s;
 }
@@ -108,7 +122,7 @@ html:not([data-show-pics="on"]) .tv-photo:active { transform: none; }
 }
 
 /* on */
-.picsw-btn[aria-checked="true"] { opacity: 1; color: var(--green-2); }
+.picsw-btn[aria-checked="true"] { color: var(--green-2); }
 .picsw-btn[aria-checked="true"] .picsw-track {
   background: rgba(31, 157, 92, 0.22); border-color: var(--green);
 }

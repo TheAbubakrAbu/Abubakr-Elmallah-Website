@@ -47,6 +47,10 @@ window.FAN_PAGE = {
         ] },
     ] },
 
+  /* The LEGO games of this franchise, as the same tiles the LEGO page shows
+     (LEGO_FOR, from lego-games.js): nothing about them is written here. */
+  window.LEGO_FOR && window.LEGO_FOR('indiana'),
+
 
   { id: 'gear', kind: 'cards', title: 'The Kit', note: 'the most recognisable silhouette in cinema',
     lede: 'You can identify him from a shadow on a wall, which almost nothing else in film can claim. Four objects do all of that work, and the whip does most of it.',

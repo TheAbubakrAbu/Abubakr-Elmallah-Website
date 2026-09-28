@@ -1,4 +1,10 @@
-/* transcript.css -- the high-school record on /high-school/. */
+/* transcript.css: the high-school record on /high-school/, the course list on
+   /college/, and the roles timeline both pages and /work/ share.
+
+   Nothing here is set below 0.66rem, the site's smallest text, and nothing
+   is dimmed with opacity on top of --mute: the course codes and tags used to
+   be 8px at 2.6:1, the faintest and smallest type on the site, on the one
+   part of it that is a record. */
 
 .ts-exams { display: grid; gap: 1.4rem; margin: 1.6rem 0 2rem; }
 @media (min-width: 860px) { .ts-exams { grid-template-columns: 1fr 1fr; } }
@@ -7,9 +13,9 @@
   background: linear-gradient(160deg, rgba(255,255,255,.03), transparent 70%);
 }
 .ts-examhead { display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 1rem; }
-.ts-examhead h4 { font-family: var(--sans); font-weight: 650; font-size: 1.05rem; color: var(--ink); }
+.ts-examhead :is(h3, h4) { font-family: var(--sans); font-weight: 650; font-size: 1.05rem; color: var(--ink); }
 .ts-examhead span {
-  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.14em;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--mute);
 }
 .ts-list { list-style: none; display: grid; gap: 0.1rem; }
@@ -22,8 +28,8 @@
 }
 .ts-list li:last-child { border-bottom: 0; }
 .ts-n { font-size: 0.9rem; color: var(--ink-dim); min-width: 0; }
-.ts-n i { display: block; font-style: normal; font-family: var(--mono); font-size: 0.52rem; color: var(--mute); }
-.ts-y { font-family: var(--mono); font-size: 0.55rem; color: var(--mute); }
+.ts-n i { display: block; font-style: normal; font-family: var(--mono); font-size: 0.66rem; color: var(--mute); }
+.ts-y { font-family: var(--mono); font-size: 0.66rem; color: var(--mute); }
 .ts-bar {
   position: relative; height: 4px; border-radius: 2px; background: rgba(255,255,255,.07);
 }
@@ -44,26 +50,50 @@
   display: inline-flex; align-items: baseline; gap: 0.4rem;
   padding: 0.28rem 0.6rem; border-radius: 100px;
   border: 1px solid rgba(216,198,138,.3); background: rgba(216,198,138,.09);
-  font-family: var(--mono); font-size: 0.55rem; color: #e6d5a2;
+  font-family: var(--mono); font-size: 0.66rem; color: #e6d5a2;
 }
-.ts-awards b { font-weight: 500; opacity: .65; }
+.ts-awards b { font-weight: 500; color: color-mix(in srgb, #e6d5a2 72%, var(--bg)); }
 .ts-note { margin-top: 0.9rem; font-size: 0.82rem; line-height: 1.7; color: var(--mute); }
 
 /* ── the full transcript ── */
 .ts-full { margin-bottom: 2rem; }
+/* A disclosure, and it looks like one: a chevron at the end that points
+   down while the list is folded away and up once it is open. */
 .ts-toggle {
   font: inherit; cursor: pointer; width: 100%; text-align: left;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  min-height: 44px;
   padding: 0.75rem 1rem; border-radius: 6px; color: var(--ink-dim);
   background: rgba(255,255,255,.03); border: 1px solid var(--line);
-  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
   transition: border-color .15s ease, color .15s ease;
 }
-.ts-toggle:hover { border-color: rgba(255,255,255,.28); color: var(--ink); }
+.ts-toggle::after {
+  content: ""; flex: none; width: 7px; height: 7px; margin-right: 0.2rem;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg); transition: transform .25s var(--ease);
+}
+.ts-toggle[aria-expanded="true"]::after { transform: translateY(2px) rotate(-135deg); }
+@media (hover: hover) { .ts-toggle:hover { border-color: rgba(255,255,255,.28); color: var(--ink); } }
 .ts-toggle:focus-visible { outline: 2px solid var(--accent, #5fbf8f); outline-offset: 2px; }
 .ts-terms { margin-top: 1.2rem; display: grid; gap: 1.6rem; }
 /* display:grid would beat the UA sheet's [hidden] rule, so restate it:
    folded away means gone until the toggle says otherwise */
 .ts-terms[hidden] { display: none; }
+/* the list opens the way a year of photos does: a short settle from above
+   (base.css turns animations off under reduced motion) */
+.ts-full > .ts-terms[id]:not([hidden]) { animation: ts-open .32s var(--ease) both; }
+@keyframes ts-open { from { opacity: 0; translate: 0 -6px; } }
+
+/* the transcript's own key for its tags, set above the terms */
+.ts-key {
+  display: flex; flex-wrap: wrap; gap: 0.3rem 1.1rem; margin: 0 0 1rem;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.04em; color: var(--mute);
+}
+.ts-key b { font-weight: 500; color: var(--ink-dim); margin-right: 0.35rem; }
+/* inside the folded college list, which is a two-column grid, the key takes
+   the whole first row */
+.ts-terms > .ts-key { grid-column: 1 / -1; margin: 0; }
 @media (min-width: 900px) {
   .ts-terms { grid-template-columns: 1fr 1fr; }
   /* senior year starts its own row rather than pairing with 11th summer */
@@ -71,8 +101,8 @@
 }
 .ts-term { border: 1px solid var(--line); border-radius: 8px; padding: 1rem 1.1rem; }
 .ts-termhead { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
-.ts-termhead h5 { font-family: var(--sans); font-weight: 650; font-size: 0.94rem; color: var(--ink); }
-.ts-yr, .ts-where, .ts-gpa { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.1em; color: var(--mute); }
+.ts-termhead :is(h3, h4, h5) { font-family: var(--sans); font-weight: 650; font-size: 0.94rem; color: var(--ink); }
+.ts-yr, .ts-where, .ts-gpa { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; color: var(--mute); }
 .ts-gpa { margin-left: auto; color: var(--accent, #7fd8a8); }
 .ts-where { color: #8fa8c0; }
 .ts-termnote { font-size: 0.76rem; line-height: 1.6; color: var(--mute); margin-bottom: 0.5rem; }
@@ -83,12 +113,12 @@
   padding: 0.3rem 0; border-bottom: 1px solid rgba(255,255,255,.03);
 }
 .ts-rows li:last-child { border-bottom: 0; }
-.ts-code { font-family: var(--mono); font-size: 0.5rem; color: var(--mute); opacity: .6; }
+.ts-code { font-family: var(--mono); font-size: 0.66rem; color: var(--mute); }
 .ts-course { font-size: 0.83rem; color: var(--ink-dim); min-width: 0; }
-.ts-course i { display: block; font-style: normal; font-family: var(--mono); font-size: 0.5rem; color: var(--mute); }
+.ts-course i { display: block; font-style: normal; font-family: var(--mono); font-size: 0.66rem; color: var(--mute); }
 .ts-tags { display: flex; gap: 0.2rem; }
 .ts-tags u {
-  text-decoration: none; font-family: var(--mono); font-size: 0.55rem; color: var(--mute); opacity: .7;
+  text-decoration: none; font-family: var(--mono); font-size: 0.66rem; color: var(--mute);
 }
 /* Left-aligned, not right. Marks are one or two characters (A, A+, A-, B+) and
    right-aligning them lines up the '+' rather than the letter, so a bare A sits
@@ -104,7 +134,7 @@
 /* The college list on /college/: no marks column (no grades published) and a
    wider code column, since "IN4MATX 43" is not "0432". GE chips ride in the
    tags slot. */
-.ts-terms--uni .ts-rows li { grid-template-columns: 4rem minmax(0, 1fr) auto; }
+.ts-terms--uni .ts-rows li { grid-template-columns: 4.8rem minmax(0, 1fr) auto; }
 .ts-terms--uni .ts-tags u { white-space: nowrap; }
 
 /* ── roles timeline (high school + college) ──
@@ -148,7 +178,7 @@
   background: var(--accent, #5fbf8f); border-color: var(--accent, #5fbf8f);
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent, #5fbf8f) 16%, transparent);
 }
-.role:hover::before { border-color: var(--accent, #5fbf8f); }
+@media (hover: hover) { .role:hover::before { border-color: var(--accent, #5fbf8f); } }
 /* the date rail sits in its own column on a wide screen and above the title on
    a narrow one, and is baseline-aligned with the title either way */
 @media (min-width: 860px) {
@@ -167,12 +197,14 @@
   font-family: var(--mono); font-size: var(--fs-micro, 0.66rem);
   letter-spacing: 0.08em; color: var(--mute); text-transform: none;
 }
-.role-body h4 {
+/* /work/ renders the role title as an h3, a level under its section
+   heading; /college/ still uses h4, so these take either */
+.role-body :is(h3, h4) {
   font-family: var(--sans); font-weight: 700; font-size: 1.06rem;
   line-height: 1.3; color: var(--ink); letter-spacing: -0.01em;
 }
 /* the employer, told apart from the job title without a second line */
-.role-body h4 .role-at { color: var(--ink-dim); font-weight: 600; }
+.role-body :is(h3, h4) .role-at { color: var(--ink-dim); font-weight: 600; }
 .role-body p {
   margin-top: 0.4rem; font-size: 0.92rem; line-height: 1.7;
   color: var(--ink-dim); max-width: 68ch;
@@ -209,6 +241,9 @@
    border no longer implies it is pressable */
 a.role-tag { color: var(--accent, #7fd8a8); transition: color .2s ease; }
 a.role-tag:hover { color: var(--ink); }
+/* on a touch screen the site link gets a taller hit area that moves nothing
+   (it was 16px tall) */
+@media (pointer: coarse) { a.role-tag { padding-block: 12px; margin-block: -12px; } }
 @media (prefers-reduced-motion: reduce) { .role:hover::before { transition: none; } }
 
 /* ── high-school extracurriculars, awards and service ── */
@@ -222,7 +257,7 @@ a.role-tag:hover { color: var(--ink); }
   padding: 1.2rem 1.3rem; border: 1px solid var(--line); border-radius: 8px;
   background: linear-gradient(155deg, rgba(255,255,255,.028), transparent 70%);
 }
-.hs-col h4 { font-family: var(--sans); font-weight: 650; font-size: 0.98rem; color: var(--ink); margin-bottom: 0.7rem; }
+.hs-col :is(h3, h4) { font-family: var(--sans); font-weight: 650; font-size: 0.98rem; color: var(--ink); margin-bottom: 0.7rem; }
 .hs-list { list-style: none; display: grid; gap: 0.6rem; }
 .hs-list li { font-size: 0.88rem; line-height: 1.7; color: var(--ink-dim); }
 .hs-list b { color: var(--ink); font-weight: 600; }
@@ -232,50 +267,76 @@ a.role-tag:hover { color: var(--ink); }
    column and the text collapses to a one-word-per-line ribbon. */
 .hs-list--yr li { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); gap: 0.7rem; align-items: baseline; }
 .hs-list--yr li > span {
-  font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em;
   color: var(--accent, #7fd8a8); text-transform: uppercase;
 }
 .hs-list--yr li > p { min-width: 0; font-size: 0.88rem; line-height: 1.7; color: var(--ink-dim); }
-.hs-p { font-size: 0.88rem; line-height: 1.7; color: var(--ink-dim); }
+/* capped like every other paragraph on these pages: at full width it ran to
+   150 characters a line on a laptop */
+.hs-p { font-size: 0.88rem; line-height: 1.7; color: var(--ink-dim); max-width: 72ch; }
+/* two paragraphs in a row were set with no space between them, and the
+   paragraphs under the project cards sat hard against the grid */
+.hs-p + .hs-p { margin-top: 0.9rem; }
+.hs-grid + .hs-p { margin-top: 1.8rem; }
+/* a note that introduces a grid of cards stood right on it (/college/'s
+   "Built on My Own", /high-school/'s shipped apps) */
+.yr-note + .apps-grid, .hs-p + .apps-grid { margin-top: 1.6rem; }
 
 .hs-awards { list-style: none; display: grid; gap: 0.5rem; margin: 1.3rem 0 2.2rem; }
 .hs-award {
   display: grid; gap: 0.25rem 1.2rem; grid-template-columns: 1fr;
   padding: 0.9rem 1.1rem; border: 1px solid var(--line); border-radius: 8px;
-  transition: border-color .16s ease, transform .16s ease;
+  /* opacity for the scroll reveal: without it the award snapped to full
+     opacity and then slid up through its stagger delay */
+  transition: border-color .16s ease, transform .16s ease, opacity .9s var(--ease);
 }
 @media (min-width: 760px) { .hs-award { grid-template-columns: 7rem minmax(0, 1fr); } }
-.hs-award:hover { border-color: rgba(255,255,255,.22); transform: translateY(-2px); }
-/* The two national wins carry the accent; the rest stay level with each other. */
+@media (hover: hover) {
+  .hs-award:hover { border-color: rgba(255,255,255,.22); transform: translateY(-2px); }
+}
+/* The two national wins carry the accent, lead the list and, on a wide
+   screen, sit side by side above the rest; the other seven stay level with
+   each other in date order. */
 .hs-award--big {
   border-color: rgba(216,198,138,.34);
   background: linear-gradient(150deg, rgba(216,198,138,.07), transparent 70%);
 }
+.hs-award.hs-award--big :is(h3, h4) {
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem); line-height: 1.2;
+}
+@media (min-width: 1000px) {
+  .hs-awards { grid-template-columns: 1fr 1fr; }
+  .hs-award { grid-column: 1 / -1; }
+  .hs-award.hs-award--big { grid-column: auto; grid-template-columns: 1fr; }
+}
 .hs-when {
-  font-family: var(--mono); font-size: 0.54rem; letter-spacing: 0.1em;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--mute); align-self: start;
 }
 .hs-award--big .hs-when { color: #e6d5a2; }
-.hs-award h4 { font-family: var(--sans); font-weight: 650; font-size: 0.95rem; color: var(--ink); }
+.hs-award :is(h3, h4) { font-family: var(--sans); font-weight: 650; font-size: 0.95rem; color: var(--ink); }
 .hs-award p { margin-top: 0.3rem; font-size: 0.86rem; line-height: 1.7; color: var(--ink-dim); max-width: 70ch; }
 @media (prefers-reduced-motion: reduce) { .hs-award:hover { transform: none; } }
 
-/* ── year groups (college) ── */
-.yr-block { margin: 2.2rem 0 0.9rem; }
+/* ── year groups (college) ──
+   A <section>, so it took layout.css's page gutter and sat 72px to the right
+   of the timeline it heads (40px on a phone); it belongs flush with it. */
+.yr-block { margin: 2.2rem 0 0.9rem; padding-inline: 0; max-width: none; }
 .yr-head {
   display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap;
   padding-bottom: 0.55rem; border-bottom: 1px solid var(--line);
 }
-.yr-head h4 {
+.yr-head :is(h3, h4) {
   font-family: var(--sans); font-weight: 650;
   font-size: clamp(1.05rem, 2.4vw, 1.32rem); color: var(--ink);
 }
 .yr-span {
-  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em; color: var(--accent, #7fd8a8);
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.16em; color: var(--accent, #7fd8a8);
 }
 /* Pushed to the far end so the count reads as a tally rather than part of the title. */
 .yr-count {
-  margin-left: auto; font-family: var(--mono); font-size: 0.52rem;
+  margin-left: auto; font-family: var(--mono); font-size: 0.66rem;
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
 }
 .yr-note { margin-top: 0.55rem; font-size: 0.88rem; line-height: 1.7; color: var(--ink-dim); max-width: 70ch; }

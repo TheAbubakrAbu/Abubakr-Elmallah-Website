@@ -45,7 +45,7 @@ window.FAN_PAGE = {
           { n: 'Dead Men Tell No Tales', y: '2017' },
         ] },
       { title: 'The Games', sub: '2003 – 2021', unit: 'game',
-        desc: 'LEGO Pirates is the one I took to a hundred percent, and the shot is further down this page.',
+        desc: 'LEGO Pirates is the one I took to a hundred percent, and its tile is further down this page.',
         rows: [
           { n: 'The Curse of the Black Pearl', y: '2003' },
           { n: 'At World’s End', y: '2007' },
@@ -224,11 +224,12 @@ window.FAN_PAGE = {
         meta: 'The best of them' },
     ] },
 
-  { id: 'played', kind: 'gallery', title: 'LEGO Pirates, Finished', note: 'my own screenshot · 100%',
-    lede: 'The LEGO adaptation covers the first four films, and it is the only game that has ever let you play as Jack Sparrow properly.',
-    /* the frame is captioned once, in fan-shots.js, and shown here and on the
-       LEGO page from the same row */
-    pick: ['lego-pirates-hundred'] },
+  /* LEGO Pirates, as the same tile the LEGO page shows (LEGO_FOR, from
+     lego-games.js): its banner, its five screenshots, my time and rating,
+     and what the hundred percent took. It used to be one pause screen of its
+     own here and on the LEGO page, a frame no other finished game had. */
+  window.LEGO_FOR && window.LEGO_FOR('potc', { title: 'LEGO Pirates, Finished',
+    lede: 'The LEGO adaptation covers the first four films, and it is the only game that has ever let you play as Jack Sparrow properly. Click the tile for every screenshot.' }),
 
 
   /* the music: the thirteen Pirates tracks on my playlist, named as the albums

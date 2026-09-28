@@ -1,0 +1,24 @@
+{%- comment -%}
+  The résumé's Work Experience as a timeline, for /work/.
+  Same entries and the same words as /resume/ (both read _data/resume.yml),
+  drawn with the roles timeline from transcript.css that /college/ uses.
+{%- endcomment -%}
+<ol class="roles" role="list">
+{%- for j in site.data.resume.work %}
+  <li class="role reveal{% if j.now %} role--now{% endif %}">
+    <div class="role-when"><b>{{ j.span }}</b><span>{{ j.where }}</span></div>
+    <div class="role-body">
+      <h3>{{ j.title }} <span class="role-at">&#183; {{ j.org }}</span></h3>
+      <ul class="role-points" role="list">
+{%- for p in j.points %}
+        <li>{{ p }}</li>
+{%- endfor %}
+      </ul>
+      <div class="role-tags">
+        <a class="role-tag" href="{{ j.url }}" target="_blank" rel="noopener">{{ j.site }}<span aria-hidden="true"> &#8599;</span><span class="vh"> (opens in a new tab)</span></a>
+        <span class="role-tag">{{ j.stack }}</span>
+      </div>
+    </div>
+  </li>
+{%- endfor %}
+</ol>

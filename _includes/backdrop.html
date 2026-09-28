@@ -1,0 +1,81 @@
+{%- comment -%}
+  The backdrop behind each main tab, the way the rift sits behind /worlds/.
+
+    {% include backdrop.html kind="home" %}        aurora in the site's three accents
+    {% include backdrop.html kind="work" %}        an iPhone on the drafting table
+    {% include backdrop.html kind="projects" %}    a springboard of app icons
+    {% include backdrop.html kind="education" %}   UCI blue and gold, symbols rising
+
+  Goes straight after <canvas id="field">, and the page links
+  /assets/css/backdrops.css, which has the reasoning. Decorative only: hidden
+  from assistive tech, takes no pointer events, and sits under the grid.
+{%- endcomment -%}
+<div class="bd bd--{{ include.kind }}" aria-hidden="true">
+{%- case include.kind -%}
+
+{%- when 'home' %}
+  <div class="bd-aurora"><i></i><i></i><i></i><i></i></div>
+
+{%- when 'work' %}
+  <svg class="bd-sheet" width="0" height="0">
+    <symbol id="bd-phone" viewBox="-70 -60 600 1010">
+      <!-- construction lines through the centre -->
+      <path class="bd-c" d="M220 -50V940M-60 450H500"/>
+      <!-- body, screen, island, buttons -->
+      <rect class="bd-b" x="20" y="20" width="400" height="860" rx="66"/>
+      <rect class="bd-s" x="36" y="36" width="368" height="828" rx="52"/>
+      <rect class="bd-b" x="168" y="58" width="104" height="32" rx="16"/>
+      <path class="bd-b" d="M16 190v46M16 262v70M16 350v70M424 280v110"/>
+      <!-- the app being laid out on it -->
+      <path class="bd-w" d="M66 132h120M66 170h230"/>
+      <rect class="bd-w" x="66" y="214" width="308" height="150" rx="18"/>
+      <rect class="bd-w" x="66" y="388" width="146" height="146" rx="18"/>
+      <rect class="bd-w" x="228" y="388" width="146" height="146" rx="18"/>
+      <rect class="bd-w" x="66" y="558" width="308" height="84" rx="18"/>
+      <rect class="bd-w" x="66" y="660" width="308" height="84" rx="18"/>
+      <rect class="bd-w" x="52" y="778" width="336" height="64" rx="32"/>
+      <!-- dimensions -->
+      <path class="bd-d" d="M460 20v860M452 20h16M452 880h16M20 920h400M20 912v16M420 912v16"/>
+      <text class="bd-t" x="478" y="455" transform="rotate(90 478 455)" text-anchor="middle">852 pt</text>
+      <text class="bd-t" x="220" y="948" text-anchor="middle">393 pt</text>
+      <path class="bd-d" d="M20 86a66 66 0 0 1 66-66"/>
+      <text class="bd-t" x="-8" y="10" text-anchor="end">R 55</text>
+    </symbol>
+  </svg>
+  <!-- each copy in a plain box: the box is what floats (backdrops.css) -->
+  <div class="bd-phone bd-phone--far"><svg><use href="#bd-phone"/></svg></div>
+  <div class="bd-phone"><svg><use href="#bd-phone"/></svg></div>
+
+{%- when 'projects' %}
+  <div class="bd-board">
+    <i style="--x:-3;--y:-2;--c:#3fd589;--t:9s;--d:-1s"></i>
+    <i style="--x:2;--y:-3;--c:#5fa3ec;--t:11s;--d:-6s"></i>
+    <i style="--x:5;--y:-1;--c:#f5c63c;--t:10s;--d:-3s"></i>
+    <i style="--x:-6;--y:1;--c:#a98cf0;--t:12s;--d:-8s"></i>
+    <i style="--x:0;--y:2;--c:#e0785f;--t:9.5s;--d:-4.5s"></i>
+    <i style="--x:4;--y:3;--c:#3fd589;--t:13s;--d:-10s"></i>
+    <i style="--x:-2;--y:4;--c:#5fa3ec;--t:10.5s;--d:-2s"></i>
+    <i style="--x:7;--y:1;--c:#a98cf0;--t:11.5s;--d:-7s"></i>
+    <i style="--x:-8;--y:-3;--c:#f5c63c;--t:12.5s;--d:-5s"></i>
+    <i style="--x:1;--y:-5;--c:#e0785f;--t:10s;--d:-9s"></i>
+  </div>
+
+{%- when 'education' %}
+  <div class="bd-light"></div>
+  <span class="bd-g" style="--x:6%;--y:18%;--s:2.6rem;--t:46s;--d:-4s">&#931;</span>
+  <span class="bd-g bd-g--gold" style="--x:14%;--y:64%;--s:1.4rem;--t:38s;--d:-21s">O(n log n)</span>
+  <span class="bd-g" style="--x:22%;--y:40%;--s:3.2rem;--t:52s;--d:-33s">&#8747;</span>
+  <span class="bd-g bd-g--blue" style="--x:31%;--y:82%;--s:1.6rem;--t:41s;--d:-12s">&#955;x.x</span>
+  <span class="bd-g" style="--x:39%;--y:12%;--s:2.2rem;--t:48s;--d:-40s">&#960;</span>
+  <span class="bd-g bd-g--gold" style="--x:47%;--y:55%;--s:1.3rem;--t:36s;--d:-8s">f(x) = x&#178;</span>
+  <span class="bd-g" style="--x:55%;--y:30%;--s:2.8rem;--t:50s;--d:-26s">&#8734;</span>
+  <span class="bd-g bd-g--blue" style="--x:63%;--y:74%;--s:1.5rem;--t:40s;--d:-17s">{ }</span>
+  <span class="bd-g" style="--x:70%;--y:22%;--s:2.4rem;--t:45s;--d:-2s">&#8706;</span>
+  <span class="bd-g bd-g--gold" style="--x:78%;--y:48%;--s:1.4rem;--t:39s;--d:-29s">&#8730;2</span>
+  <span class="bd-g" style="--x:85%;--y:86%;--s:3rem;--t:54s;--d:-15s">&#916;</span>
+  <span class="bd-g bd-g--blue" style="--x:92%;--y:36%;--s:1.3rem;--t:37s;--d:-35s">01</span>
+  <span class="bd-g" style="--x:10%;--y:90%;--s:1.8rem;--t:43s;--d:-44s">&#8800;</span>
+  <span class="bd-g bd-g--blue" style="--x:74%;--y:8%;--s:1.4rem;--t:42s;--d:-23s">&lt;/&gt;</span>
+
+{%- endcase %}
+</div>

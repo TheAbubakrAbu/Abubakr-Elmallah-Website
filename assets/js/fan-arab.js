@@ -97,9 +97,11 @@ window.FAN_PAGE = {
 
   { id: 'links', kind: 'links', mount: 'end', title: 'Links', note: 'where to actually start',
     items: [
-      { title: 'Madinah Arabic Reader', href: 'https://www.lqtoronto.com/books.html',
+      { title: 'Madinah Arabic Reader', href: 'https://www.lqtoronto.com/downloads.html',
         desc: 'The three-book course most people learn classical Arabic from, and it is free.' },
-      { title: 'Lane’s Lexicon', href: 'https://lexicon.quranic-research.net/',
+      /* the lexicon's own site (lexicon.quranic-research.net) is gone, so
+         this points at the encyclopedia entry for it instead */
+      { title: 'Lane’s Lexicon', href: 'https://en.wikipedia.org/wiki/Arabic%E2%80%93English_Lexicon',
         desc: 'The great nineteenth-century Arabic–English dictionary, arranged by root rather than by spelling, which is the correct way round.' },
       { title: 'Almaany', href: 'https://www.almaany.com/',
         desc: 'The dictionary I actually use day to day.' },

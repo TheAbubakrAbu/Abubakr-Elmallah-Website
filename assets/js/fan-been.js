@@ -21,7 +21,10 @@
 
    fanpage.js checks every file against years-data.js before drawing, so a photo
    pulled out of a year vanishes from here too instead of turning into a broken
-   frame. A page whose shots all vanish renders no section at all.
+   frame. These are the second half of the page's one "I Have Actually Been"
+   section (2026-09-28), under the photographs photos-data.js chooses, with any
+   frame already chosen there left out; `title` heads this half unless it only
+   restates the section's own heading, and `note` sits under it.
 
    ── what is allowed in here ──
    Only photographs I can point at a frame for. Every row below was checked

@@ -1,0 +1,21 @@
+{%- comment -%}
+  The breadcrumb trail at the top of every sub-page: Home / Worlds / Skylanders.
+  Replaces the single "← Back to worlds" / "← Back home" link, which only ever
+  said where one step up was, not where the page sits.
+
+    {% include crumbs.html parent="Worlds" url="/worlds/" here="Skylanders" %}
+    {% include crumbs.html here="Work" %}                  (a top-level page)
+
+  The last crumb is the page itself: not a link, marked aria-current. The
+  separators are drawn in CSS (.crumbs in components.css), so a screen reader
+  hears a list of three places rather than "slash" twice.
+{%- endcomment -%}
+<nav class="crumbs" aria-label="Breadcrumb">
+  <ol role="list">
+    <li><a href="/">Home</a></li>
+    {%- if include.parent %}
+    <li><a href="{{ include.url }}">{{ include.parent }}</a></li>
+    {%- endif %}
+    <li><span aria-current="page">{{ include.here }}</span></li>
+  </ol>
+</nav>

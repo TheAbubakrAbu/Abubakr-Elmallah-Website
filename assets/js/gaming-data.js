@@ -91,7 +91,7 @@ window.FAN_PAGE = (function gaming() {
        this file: it is not a copy. `window.LEGO_GAMES` is the same object
        /worlds/lego/ renders, out of lego-games.js, so the two pages cannot
        drift. It sits here because it is the completion wall above it written
-       out game by game, and because its fourteen finished titles carry 74 of
+       out game by game, and because its sixteen finished titles carry 116 of
        the site's screenshots, which is why there is no LEGO sheet lower down.
        A page that fails to load lego-games.js simply skips it. */
     window.LEGO_GAMES,
@@ -115,7 +115,7 @@ window.FAN_PAGE = (function gaming() {
     /* One card per world on this site that has games in it, each pointing at
        the page that holds the actual list. The line on each card is about the
        GAMES, since the worlds themselves are described on /worlds/. */
-    { id: 'worlds', kind: 'cards', title: 'The Game Worlds', note: 'fifteen pages · the lists live there',
+    { id: 'worlds', kind: 'cards', title: 'The Game Worlds', note: 'fourteen pages · the lists live there',
       lede: 'Every world on this site I have played rather than only watched or read. The catalogues, the completion screens and the write-ups are all on those pages; this is the index to them, and every picture is underneath.',
       items: [
         { tag: 'Since I was a kid', title: 'Minecraft', sub: 'Java · Realms · four servers', accent: '#7fbf4f',
@@ -124,8 +124,8 @@ window.FAN_PAGE = (function gaming() {
         { tag: 'Steam · 36 in one collection', title: 'Star Wars', sub: 'nine at a hundred percent', accent: '#ffe81f',
           desc: 'Four LEGO ones, both Jedi games, Outlaws, Droid Repair Bay and Battlefront II, every one of them with its own banner, save slot and achievement screen on that page. Six of the nine are the row the collection view shows when it is sorted by achievements.',
           href: '/worlds/star-wars/', link: 'The page', meta: 'Sorted by achievements' },
-        { tag: 'TT Games · the whole catalogue', title: 'LEGO', sub: 'fourteen finished', accent: '#ffd21f',
-          desc: 'Every LEGO game since 2005 with a sort control on it: by release date, by my rating, by my time, or by how long each one is reckoned to take. Fourteen at a hundred percent, and the Skywalker Saga alone is 79 hours of that.',
+        { tag: 'TT Games · the whole catalogue', title: 'LEGO', sub: 'sixteen finished', accent: '#ffd21f',
+          desc: 'Every LEGO game since 2005 with a sort control on it: by release date, by my rating, by my time, or by how long each one is reckoned to take. Sixteen at a hundred percent, and the Skywalker Saga alone is 79 hours of that.',
           href: '/worlds/lego/', link: 'The page', meta: 'Grid or list' },
         { tag: 'Wizarding World · 5', title: 'Harry Potter', sub: 'three platinums', accent: '#d9b45f',
           desc: 'Hogwarts Legacy, Quidditch Champions and the LEGO Harry Potter Collection, all three at a hundred percent. The two standalone LEGO years have no achievements to earn, which is the only reason they are not marked too.',
@@ -162,9 +162,9 @@ window.FAN_PAGE = (function gaming() {
         { tag: 'Arkham', title: 'Batman', sub: 'no powers, just preparation', accent: '#c9cdd2',
           desc: 'No powers, just preparation: the animated series and the Arkham games especially. My Arkham City captures go back far enough that Steam still stamped the game’s own id onto the file name.',
           href: '/worlds/batman/', link: 'The page', meta: 'Plus LEGO Batman 1 and 2' },
-        { tag: 'LEGO · 100%', title: 'Pirates of the Caribbean', sub: 'eleven and a half billion studs', accent: '#d8c9a0',
-          desc: 'The LEGO adaptation covers the first four films and is the only game that has ever let you play as Jack Sparrow properly. Finished in September 2023.',
-          href: '/worlds/pirates/', link: 'The page', meta: 'Every collectable' },
+        /* Pirates of the Caribbean had a card here too, and its only game is
+           LEGO Pirates, which is already a tile in the catalogue above like
+           every other finished LEGO game. Taken out on 2026-09-28. */
       ] },
 
     /* Not a game, not on Steam, and the only picture on this site that is a
@@ -197,10 +197,10 @@ window.FAN_PAGE = (function gaming() {
      itself, which is what makes a new franchise no work at all. */
   var FRANCHISES = [
     { dir: 'minecraft', title: 'Minecraft', accent: '#7fbf4f',
-      lede: 'Every Minecraft frame the site has, and not one of them has ever been through Steam: a Realm with three friends, a Disneyland server, and a Pokémon mod on a public server years before either.' },
+      lede: 'Every Minecraft frame the site has, and not one of them has ever been through Steam: a Realm with three friends, a Disneyland server, a Pokémon mod on a public server years before either, and the Badlion Client profile that keeps every name the account has had.' },
     { dir: 'star-wars', title: 'Star Wars', accent: '#ffe81f',
-      lede: 'Two kinds of thing under one flag. The five non-LEGO Star Wars games I have taken to a hundred percent, each with its own banner, save slot and achievement screen; and the two Minecraft servers, Imagine Fun, which has Galaxy’s Edge built at real scale, and a Star Wars one with a saber in every colour. The folders below are in their own alphabetical order, so the two are mixed together.' },
-    /* LEGO builds NO sheet any more and that is not a mistake: all 74 of its
+      lede: 'Three kinds of thing under one flag. The five non-LEGO Star Wars games I have taken to a hundred percent, each with its own banner, save slot and achievement screen; the two Minecraft servers, Imagine Fun, which has Galaxy’s Edge built at real scale, and a Star Wars one with a saber in every colour; and Fortnite’s Star Wars side, the seasons and bundles and Droid Tycoon, filed here the way the screenshot library files them. The folders run in the order they were taken, so the three are mixed together.' },
+    /* LEGO builds NO sheet any more and that is not a mistake: all 116 of its
        frames hang off the catalogue further up this page, so `sheet()` finds
        nothing left and skips it. The entry stays because a LEGO frame that is
        ever added outside a finished game's set would land here. */
@@ -213,17 +213,17 @@ window.FAN_PAGE = (function gaming() {
     { dir: 'fnaf', title: 'Five Nights at Freddy’s', accent: '#c98f4f',
       lede: 'Both of the first two at a hundred percent: the Steam library banners, and the screens the games themselves print for finishing them.' },
 
-    /* THE REST OF THESE HAVE NO PICTURES YET, and a franchise with no folder
-       renders nothing at all, so they sit here dormant: the day a Red Dead or
-       a Fortnite capture is dropped in, its section is already named and
-       written rather than falling back to its own slug. That fallback still
-       works for anything not listed here. */
+    /* MOST OF THE REST HAVE NO PICTURES YET, and a franchise with no folder
+       renders nothing at all, so they sit here dormant: the day a Red Dead
+       capture is dropped in, its section is already named and written rather
+       than falling back to its own slug. That fallback still works for
+       anything not listed here. Fortnite filled in on 2026-09-28. */
     { dir: 'red-dead', title: 'Red Dead Redemption', accent: '#c9402f',
       lede: 'The one that took a fifth of my 2024, over 36 sessions.' },
     { dir: 'pokemon', title: 'Pokémon', accent: '#ffd43f',
       lede: 'Pokémon outside Minecraft; the Pixelmon frame is filed with Minecraft, where it was taken.' },
     { dir: 'fortnite', title: 'Fortnite', accent: '#6fb0ff',
-      lede: 'Chapter 1, and the Creative maps that came after it.' },
+      lede: 'Omega, years after season four, and the crossovers that are not Star Wars: Game of Thrones, and Thanos and the Endgame mode. The Star Wars seasons and Droid Tycoon are in the Star Wars section above, where the screenshot library files them.' },
     { dir: 'batman', title: 'Batman', accent: '#c9cdd2',
       lede: 'The Arkham games, which are the oldest Steam captures I have.' },
     /* ZELDA, MARIO AND SPLATOON DO NOT GET SECTIONS OF THEIR OWN. They are one
@@ -256,6 +256,12 @@ window.FAN_PAGE = (function gaming() {
     'minecraft/realms': 'The Realm',
     'minecraft/imagine-fun': 'Imagine Fun',
     'minecraft/pixelmon': 'Pixelmon',
+    'fortnite/omega': 'Omega',
+    'fortnite/game-of-thrones': 'Game of Thrones, in Fortnite',
+    'fortnite/marvel': 'Marvel, in Fortnite',
+    'star-wars/fortnite': 'Star Wars, in Fortnite',
+    'star-wars/droid-tycoon': 'Droid Tycoon',
+    'minecraft/badlion': 'Badlion Client',
     'star-wars/imagine-fun': 'Imagine Fun',
     'star-wars/star-wars-mc': 'Star Wars MC',
     'harry-potter/potterverse': 'Potterverse',
@@ -290,6 +296,9 @@ window.FAN_PAGE = (function gaming() {
     'lego/indiana-jones-2': 'LEGO Indiana Jones 2',
     'lego/lord-of-the-rings': 'LEGO The Lord of the Rings',
     'lego/marvel-super-heroes': 'LEGO Marvel Super Heroes',
+    'lego/movie': 'The LEGO Movie Videogame',
+    'lego/movie-2': 'The LEGO Movie 2 Videogame',
+    'lego/ninjago-movie': 'The LEGO Ninjago Movie Video Game',
     'lego/pirates': 'LEGO Pirates of the Caribbean',
     'lego/skywalker-saga': 'LEGO Star Wars: The Skywalker Saga',
   };
@@ -305,6 +314,8 @@ window.FAN_PAGE = (function gaming() {
     'characters': 'Characters',
     'stud-fountain': 'Stud fountain',
     'galaxy-map': 'Galaxy map',
+    'gold-ninja': 'The Gold Ninja',
+    'main-menu': 'Main menu',
     'shelf': 'The shelf',
     'thirty-years': 'Thirty years of LEGO games',
     'lego-hundred-percent': 'Four completion screens',
@@ -374,14 +385,16 @@ window.FAN_PAGE = (function gaming() {
       var keys = s.pick || (s.set && sets[s.set] && sets[s.set].items) || [];
       keys.forEach(function (key) { if (shots[key]) USED[shots[key].src] = 1; });
       /* A tiles section can carry screenshots too: the LEGO catalogue holds
-         every LEGO frame the site has, on its fourteen finished games. Those
+         every LEGO frame the site has, on its sixteen finished games. Those
          are shown, so they are used, and the sheets below must not print them
          a second time. Same shorthand fanpage.js resolves: a `shots` entry
          with no slash sits beside the banner. */
       (s.items || []).forEach(function (it) {
         if (!it || !it.shot) return;
         var dir = it.shot.replace(/[^/]*$/, '');
-        [it.shot].concat(it.shots || []).forEach(function (f) {
+        /* `more` too: the frames a tile opens in the viewer without laying
+           them out (the Ninjago Movie game's thirty), shown all the same */
+        [it.shot].concat(it.shots || [], it.more || []).forEach(function (f) {
           var full = f.indexOf('/') === -1 ? dir + f + '.jpg' : f;
           USED[full.indexOf(BASE) === 0 ? full.slice(BASE.length) : full] = 1;
         });

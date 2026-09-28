@@ -10,7 +10,7 @@
    Loads AFTER mosques-data.js / scholars-data.js and BEFORE reveal.js. */
 (function islam() {
   var M = window.ISL_MOSQUES, S = window.ISL_SCHOLARS;
-  var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); };
+  var esc = window.AEesc;
 
   /* An empty stand-in for a part a card hasn't got. The prophet and scholar
      cards share the rows of their grid (subgrid, see al-islam.css) so a row of
@@ -160,8 +160,18 @@
     return [20, 60, 100, 160, 200, 240];           // six
   }
 
+  /* Each drawing's sky gradient needs an id of its own. The nine mosques
+     used to share "msqSky", nine duplicate ids in one document, and a
+     url(#msqSky) resolves to the FIRST element with that id, so every
+     mosque's glow was drawn with the first mosque's colour (the gradient's
+     var(--glow) reads from the card the gradient element sits in, not the
+     card that references it). Counted across the document, like `seat` in
+     ytplay.js, because the holy and the famous lists each start at 0. */
+  var skyN = 0;
+
   function elevation(m) {
     var st = m.style, n = m.minarets, g = '';
+    var sky = 'msqSky' + (++skyN);
     var mn = function (style, top, cap) {
       spots(n === undefined ? 2 : n).forEach(function (x) { g += minaret(x, top, style, cap); });
     };
@@ -296,10 +306,10 @@
     }
 
     return '<svg class="msq-svg" viewBox="0 0 ' + W + ' 150" role="img" aria-label="' + esc(m.name) + '">'
-      + '<defs><linearGradient id="msqSky" x1="0" y1="0" x2="0" y2="1">'
+      + '<defs><linearGradient id="' + sky + '" x1="0" y1="0" x2="0" y2="1">'
       + '<stop offset="0" stop-color="var(--glow)" stop-opacity=".16"/>'
       + '<stop offset="1" stop-color="var(--glow)" stop-opacity="0"/></linearGradient></defs>'
-      + '<circle cx="130" cy="118" r="96" fill="url(#msqSky)"/>'
+      + '<circle cx="130" cy="118" r="96" fill="url(#' + sky + ')"/>'
       + g
       + '<rect x="0" y="' + GROUND + '" width="' + W + '" height="2" fill="var(--trim)" opacity=".5"/>'
       + '</svg>';

@@ -1,7 +1,9 @@
 _site/
+_site.nosync/
 .jekyll-cache/
 .jekyll-metadata
 vendor/
+vendor.nosync/
 .bundle/
 .DS_Store
 

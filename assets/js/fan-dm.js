@@ -54,6 +54,13 @@ window.FAN_PAGE = {
           { n: 'Super Silly Fun Land', y: '2014' },
           { n: 'Villain-Con Minion Blast', y: '2023' },
         ] },
+      { title: 'The Games', sub: '2010 – 2015', unit: 'game',
+        desc: 'The film tie-in, and the endless runner that outlived it.',
+        rows: [
+          { n: 'Despicable Me: The Game', y: '2010' },
+          { n: 'Despicable Me: Minion Rush', y: '2013' },
+          { n: 'Minions Paradise', y: '2015' },
+        ] },
     ] },
 
   { id: 'minions', kind: 'cards', title: 'The Minions', note: 'the background gag that ate the franchise',

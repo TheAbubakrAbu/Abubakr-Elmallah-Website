@@ -1,0 +1,23 @@
+---
+permalink: /search.json
+sitemap: false
+---
+{%- comment -%}
+  The list search.js searches when it looks beyond the page you are on: every
+  real page's title, description and address, written by Jekyll from the
+  pages themselves at build time, so a new page is searchable with no edit
+  anywhere. Redirect stubs, the offline and 404 pages, and anything that is
+  not a page (the feeds, the manifest, this file) are left out.
+{%- endcomment -%}
+[
+{%- assign first = true -%}
+{%- for p in site.pages -%}
+{%- if p.title and p.redirect_to == nil and p.url != '/offline/' and p.url != '/404.html' and p.url != '/search.json' -%}
+{%- unless p.url contains '.json' or p.url contains '.js' or p.url contains '.webmanifest' or p.url contains '/src/' -%}
+{%- unless first %},{% endunless %}
+{"t":{{ p.title | jsonify }},"d":{{ p.description | default: '' | jsonify }},"u":{{ p.url | jsonify }}}
+{%- assign first = false -%}
+{%- endunless -%}
+{%- endif -%}
+{%- endfor %}
+]

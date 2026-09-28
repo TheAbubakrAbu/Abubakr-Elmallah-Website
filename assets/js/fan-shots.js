@@ -290,14 +290,177 @@ window.FAN_SHOTS = {
       desc: 'Mewtwo and Flareon at level 100, then Emboar, Raichu, Staraptor and a Seadra I never got round to. The sign in the middle of the screen is the server telling me off for sending Mewtwo out at spawn, which is fair.',
       meta: 'Pixelmon · aelmallah', alt: 'A Pixelmon server spawn in Minecraft with a level 100 Mewtwo sent out' },
 
+    /* ── Fortnite, my own screenshots (2026-09-28) ──
+       Chosen out of 84 in the Video Game Screenshots library, and cropped
+       before encoding so no username is left in frame: party and squad lists
+       down the left, name tags over the lobby, a gifter's name, and the
+       account line along the top of the Droid Tycoon frames. The uncropped
+       captures stay in the library. */
+    'fn-omega': { src: 'fortnite/omega/omega.jpg', title: 'Omega, still',
+      desc: 'Still the one I would put on: Omega in a lobby years after season four, with the Millennium Falcon parked behind him.',
+      alt: 'Omega, the black armoured Fortnite outfit, in a lobby in front of the Millennium Falcon' },
+    'fn-got-bundle': { src: 'fortnite/game-of-thrones/ice-and-fire-bundle.jpg', title: 'Ice and Fire',
+      desc: 'The Game of Thrones bundle in the item shop: Jon Snow, Daenerys and the Night King, twelve items for 2,200 V-Bucks.',
+      alt: 'The Fortnite item shop page for the Game of Thrones Ice and Fire bundle' },
+    'fn-jon-snow': { src: 'fortnite/game-of-thrones/jon-snow.jpg', title: 'Jon Snow',
+      desc: 'Bought out of that bundle, cloak and all.',
+      alt: 'Jon Snow, the Fortnite outfit, in the locker' },
+    'fn-jon-snow-win': { src: 'fortnite/game-of-thrones/jon-snow-victory-royale.jpg', title: 'Victory Royale, as Jon Snow',
+      alt: 'A Victory Royale banner over Jon Snow in a wooden barn' },
+    'fn-endgame': { src: 'fortnite/marvel/endgame.jpg', title: 'Fortnite: Endgame',
+      desc: 'The card for the Endgame mode in April 2019: Thanos back with the Chitauri, and the Avengers’ own weapons in the loot pool.',
+      alt: 'The Fortnite Endgame title card with the Avengers: Endgame logo' },
+    'fn-thanos': { src: 'fortnite/marvel/thanos.jpg', title: 'Thanos',
+      desc: 'The face of the first Marvel crossover, the Infinity Gauntlet mode in 2018, when whoever picked the Gauntlet up became him.',
+      alt: 'Thanos with the Infinity Gauntlet in Fortnite' },
+    'fnsw-challenges': { src: 'star-wars/fortnite/star-wars-challenges.jpg', title: 'Star Wars Challenges',
+      desc: 'The challenges screen with its two crossed sabers, and a NICE! for finishing them.',
+      alt: 'The Fortnite Star Wars Challenges screen with a red and a blue lightsaber crossed' },
+    'fnsw-find-the-force': { src: 'star-wars/fortnite/find-the-force.jpg', title: 'Find the Force',
+      desc: 'The Chapter 4 event page: Galactic Reputation earned through quests, a reward track of holocrons and troopers, and a Sith Infiltrator glider.',
+      alt: 'The Fortnite Find the Force event page with Darth Maul and a reward track' },
+    'fnsw-battle-pass': { src: 'star-wars/fortnite/galactic-battle-pass.jpg', title: 'The Galactic Battle Pass',
+      desc: 'Star Wars’ own pass, General Grievous on the front, and level 66, which is the only level worth a screenshot.',
+      alt: 'The Fortnite Star Wars Galactic Battle Pass page at level 66' },
+    'fnsw-mace-windu': { src: 'star-wars/fortnite/mace-windu-bundle.jpg', title: 'Mace Windu',
+      desc: 'The nine-item bundle, 2,000 V-Bucks down from 4,000.',
+      alt: 'The Fortnite item shop page for the Mace Windu bundle' },
+    'fnsw-palpatine': { src: 'star-wars/fortnite/emperor-palpatine.jpg', title: 'Emperor Palpatine',
+      desc: 'A battle pass reward, auto-claimed, with his styles lined up under him.',
+      alt: 'The Emperor Palpatine outfit shown as a Fortnite battle pass reward' },
+    'fnsw-moff-gideon': { src: 'star-wars/fortnite/moff-gideon-gift.jpg', title: 'Moff Gideon, a gift',
+      desc: 'From a friend, out of The Mandalorian set: “Only he can seize the fallen Empire’s legacy.”',
+      alt: 'The Moff Gideon outfit received as a gift in Fortnite' },
+    'fnsw-moff-gideon-win': { src: 'star-wars/fortnite/moff-gideon-victory-royale.jpg', title: 'Victory Royale, as Moff Gideon',
+      alt: 'A Victory Royale banner over Moff Gideon under a purple tree' },
+    'fnsw-roof-win': { src: 'star-wars/fortnite/victory-royale-on-a-roof.jpg', title: 'Victory Royale, on a roof',
+      alt: 'A Victory Royale banner over a robed character on a rooftop' },
+    'fnsw-lego-anakin-vader': { src: 'star-wars/fortnite/lego-anakin-and-vader.jpg', title: 'LEGO Anakin and Vader',
+      desc: 'LEGO Fortnite Odyssey on the Star Wars Rebel Adventure world: the same person twice, in bricks.',
+      alt: 'LEGO Anakin Skywalker and LEGO Darth Vader standing in a LEGO Fortnite lobby' },
+    'fnsw-clone-wars': { src: 'star-wars/fortnite/clone-wars-bundle.jpg', title: 'The Clone Wars',
+      desc: 'The six-item bundle with Anakin as he is in the show, 2,700 V-Bucks down from 4,300.',
+      alt: 'The Fortnite item shop page for The Clone Wars bundle with Anakin Skywalker' },
+    'dt-the-tycoon': { src: 'star-wars/droid-tycoon/2026-05-27-0915-the-tycoon.jpg', title: 'The tycoon',
+      desc: '7.70 billion credits, an 11.7x multiplier, and IG-11 Marshal next up for delivery.',
+      alt: 'A Droid Tycoon base in Fortnite with a credit counter at 7.70 billion' },
+    'dt-super-rebirth': { src: 'star-wars/droid-tycoon/2026-07-01-1600-super-rebirth.jpg', title: 'Super Rebirth, rank one',
+      desc: 'Complete, with 79 Nova Crystals for it and two permanent upgrades.',
+      alt: 'The Droid Tycoon Super Rebirth Complete screen with Nova Crystal rewards' },
+    'dt-gonk': { src: 'star-wars/droid-tycoon/2026-07-01-1600-droidex-gonk.jpg', title: 'Droidex: Gonk',
+      desc: '278 of 316 droids found, and a Gonk crafted 121 times.',
+      alt: 'The Droid Tycoon Droidex at 278 of 316, showing a Gonk droid' },
+    'dt-ig-11': { src: 'star-wars/droid-tycoon/2026-07-01-1601-droidex-ig-11-marshal.jpg', title: 'Droidex: IG-11 Marshal',
+      desc: 'Iconic, and not crafted yet.',
+      alt: 'The Droid Tycoon Droidex page for IG-11 Marshal' },
+    'dt-bb9': { src: 'star-wars/droid-tycoon/2026-07-01-1601-droidex-bb9.jpg', title: 'Droidex: BB9',
+      desc: 'In beskar, legendary, crafted 37 times.',
+      alt: 'The Droid Tycoon Droidex page for a beskar BB9' },
+
+    /* ── Badlion Client ── the profile page, which is the only place the
+       account's whole name history is still printed. Dates on it are
+       day/month/year. */
+    'badlion-profile': { src: 'minecraft/badlion/profile.jpg', title: 'Thirteen names, one account',
+      desc: 'The Badlion Client profile for MasterThingW: 211.0 hours in the client, joined 3 April 2020, and every name the account has carried, from Wizard_Potter, Evil_Dark_Lord, A_Ollivander and Gold_Wizard through MasterThing_YT, EagleThing and TheAbubakrAbu, and back to MasterThingW on 24 March 2025.',
+      meta: 'badlion.net/u/MasterThingW', alt: 'The Badlion Client profile page for MasterThingW, with a hooded skin, 211 hours of play time and thirteen names in its history' },
+
     /* ── the shelves shown on two pages ── */
     'lego-star-wars-hundred': { src: 'star-wars/lego-hundred-percent.jpg', title: 'The LEGO Star Wars run',
       desc: 'The Complete Saga at 26 hours 40. The Clone Wars at 22 hours 05. The Force Awakens with every planet on the galaxy map at 100. The Skywalker Saga with all 1,200 Kyber bricks, 380 characters and 135 ships.',
       meta: 'Four games · 100.0% each', alt: 'Completion screens from four LEGO Star Wars games, all at 100 percent' },
-    'lego-pirates-hundred': { src: 'lego/pirates/pause-screen.jpg', title: 'LEGO Pirates of the Caribbean',
-      desc: 'A hundred percent, eleven and a half billion studs, and every collectable in the game: 200 gold bricks, 20 red hats, 20 minikit-ships, 85 characters and 160 of everything else.',
-      meta: '11,536,474,040 studs', alt: 'LEGO Pirates of the Caribbean paused at 100 percent completion',
-      done: true, finished: '2023-09-28' },
+
+    /* ── The LEGO Ninjago Movie Video Game, at a hundred percent ──
+       Taken to 100% on 27 September 2026. Every frame from that night, in the
+       order it was taken: the Gold Ninja unlocking at 20:24, then lined up
+       beside the cast on the beach one at a time. Only the characters that can
+       be named from the frame are named; the rest are described as they look. */
+    'njm-start-screen': { src: 'lego/ninjago-movie/start-screen.jpg', title: 'The title screen',
+      desc: 'Press any key, over the monastery courtyard. Captured on the 21st, six days before the hundred percent.',
+      alt: 'The LEGO Ninjago Movie Video Game title screen, the logo over a monastery courtyard' },
+    'njm-main-menu': { src: 'lego/ninjago-movie/main-menu.jpg', title: 'The main menu',
+      desc: 'Continue, New Game, Load Game, Options, Quit, each with its line of Ninjago script above it.',
+      alt: 'The LEGO Ninjago Movie Video Game main menu over the monastery courtyard' },
+    'njm-lloyds-card': { src: 'lego/ninjago-movie/2026-09-27-2024-lloyds-card.jpg', title: 'Lloyd’s card',
+      desc: 'Between the two lanterns, in the same minute as the unlock.',
+      alt: 'Lloyd’s card between two glowing lanterns in The LEGO Ninjago Movie Video Game' },
+    'njm-gold-ninja': { src: 'lego/ninjago-movie/gold-ninja.jpg', title: 'Gold Ninja, unlocked',
+      desc: 'The toast that comes with him: New Character Parts Unlocked.',
+      alt: 'The Gold Ninja between two lanterns, with the Gold Ninja Unlocked toast' },
+    'njm-on-the-beach': { src: 'lego/ninjago-movie/2026-09-27-2026-on-the-beach.jpg', title: 'On the beach',
+      desc: 'Two minutes later, both golden blades out, under a low sun.',
+      alt: 'The Gold Ninja on a beach holding two golden swords' },
+    'njm-characters': { src: 'lego/ninjago-movie/characters.jpg', title: 'Characters',
+      desc: 'The character select screen, with the Gold Ninja picked in the corner.',
+      alt: 'The LEGO Ninjago Movie Video Game character select grid' },
+    'njm-paused-at-100': { src: 'lego/ninjago-movie/2026-09-27-2031-paused-at-100.jpg', title: 'Paused at 100.0%',
+      desc: 'Ninjago City Downtown: 23 of 23 gold bricks there, and its red brick ticked.',
+      alt: 'The pause menu reading 100.0 percent, for Ninjago City Downtown' },
+    'njm-lloyd': { src: 'lego/ninjago-movie/2026-09-27-2032-lloyd.jpg', title: 'Lloyd',
+      desc: 'The roll call starts: the Gold Ninja beside Lloyd, with the wheel of his variants open.',
+      alt: 'The Gold Ninja beside Lloyd on a beach, a character wheel open' },
+    'njm-kai': { src: 'lego/ninjago-movie/2026-09-27-2032-kai.jpg', title: 'Kai',
+      alt: 'The Gold Ninja beside Kai, flames on his sword' },
+    'njm-cole': { src: 'lego/ninjago-movie/2026-09-27-2033-cole.jpg', title: 'Cole',
+      alt: 'The Gold Ninja beside Cole' },
+    'njm-nya': { src: 'lego/ninjago-movie/2026-09-27-2033-nya.jpg', title: 'Nya',
+      desc: 'As Samurai X, water sparking off the armour.',
+      alt: 'The Gold Ninja beside Nya in red samurai armour' },
+    'njm-zane': { src: 'lego/ninjago-movie/2026-09-27-2034-zane.jpg', title: 'Zane',
+      alt: 'The Gold Ninja beside Zane, ice in hand' },
+    'njm-jay': { src: 'lego/ninjago-movie/2026-09-27-2035-jay.jpg', title: 'Jay',
+      alt: 'The Gold Ninja beside Jay, lightning in hand' },
+    'njm-the-horned-helmet': { src: 'lego/ninjago-movie/2026-09-27-2035-the-horned-helmet.jpg', title: 'The horned helmet',
+      alt: 'A character in dark armour and a gold horned helmet beside the Gold Ninja' },
+    'njm-garmadon': { src: 'lego/ninjago-movie/2026-09-27-2036-garmadon.jpg', title: 'Garmadon',
+      alt: 'The Gold Ninja beside Garmadon in his horned armour and cape' },
+    'njm-pythor': { src: 'lego/ninjago-movie/2026-09-27-2036-pythor.jpg', title: 'Pythor',
+      alt: 'Pythor, white and purple, with his staff, beside the Gold Ninja' },
+    'njm-hypnobrai': { src: 'lego/ninjago-movie/2026-09-27-2037-hypnobrai.jpg', title: 'A Hypnobrai general',
+      alt: 'A blue Serpentine with a spiral-headed staff beside the Gold Ninja' },
+    'njm-venomari': { src: 'lego/ninjago-movie/2026-09-27-2037-venomari.jpg', title: 'A Venomari general',
+      alt: 'A green Serpentine with a staff beside the Gold Ninja' },
+    'njm-fangpyre': { src: 'lego/ninjago-movie/2026-09-27-2037-fangpyre.jpg', title: 'A Fangpyre general',
+      alt: 'A red Serpentine with a staff beside the Gold Ninja' },
+    'njm-constrictai': { src: 'lego/ninjago-movie/2026-09-27-2037-constrictai.jpg', title: 'A Constrictai general',
+      alt: 'A black and orange Serpentine with a staff beside the Gold Ninja' },
+    'njm-the-generals': { src: 'lego/ninjago-movie/2026-09-27-2037-the-generals.jpg', title: 'The Serpentine wheel',
+      alt: 'A Serpentine character with the wheel of Serpentine variants open' },
+    'njm-the-serpentine': { src: 'lego/ninjago-movie/2026-09-27-2038-the-serpentine.jpg', title: 'The Serpentine',
+      alt: 'Pythor and a green Serpentine with the character wheel open' },
+    'njm-the-staff': { src: 'lego/ninjago-movie/2026-09-27-2039-the-staff.jpg', title: 'The staff',
+      alt: 'A character holding a tall ornamented staff beside the Gold Ninja' },
+    'njm-the-green-ghost': { src: 'lego/ninjago-movie/2026-09-27-2039-the-green-ghost.jpg', title: 'The green ghost',
+      alt: 'A hooded green ghost with a glowing blade beside the Gold Ninja' },
+    'njm-the-pirate': { src: 'lego/ninjago-movie/2026-09-27-2039-the-pirate.jpg', title: 'The pirate',
+      alt: 'A pirate in orange with a green bandana beside the Gold Ninja' },
+    'njm-two-in-hoods': { src: 'lego/ninjago-movie/2026-09-27-2039-two-in-hoods.jpg', title: 'Two in hoods',
+      alt: 'Two hooded characters, one with a red blade and one with an axe' },
+    'njm-master-wu': { src: 'lego/ninjago-movie/2026-09-27-2040-master-wu.jpg', title: 'Master Wu, and a ghost',
+      alt: 'Master Wu in white with a straw hat beside a glowing green ghost in a hat' },
+    'njm-in-violet': { src: 'lego/ninjago-movie/2026-09-27-2041-in-violet.jpg', title: 'In violet',
+      alt: 'A character in black and violet armour beside the Gold Ninja' },
+    'njm-the-antlers': { src: 'lego/ninjago-movie/2026-09-27-2041-the-antlers.jpg', title: 'Antlers and a hammer',
+      alt: 'A red antlered warrior with a hammer beside the Gold Ninja' },
+    'njm-the-scythe': { src: 'lego/ninjago-movie/2026-09-27-2041-the-scythe.jpg', title: 'Antlers and a blade',
+      desc: 'The last of the roll call.',
+      alt: 'A red and black antlered warrior with a blade beside the Gold Ninja' },
+    'njm-out-in-ninjago': { src: 'lego/ninjago-movie/2026-09-27-2042-out-in-ninjago.jpg', title: 'Out in Ninjago',
+      desc: '4,170,120 studs on the counter and a x2 multiplier running.',
+      alt: 'The Gold Ninja walking through Ninjago with the stud counter at 4,170,120' },
+    'njm-blades-up': { src: 'lego/ninjago-movie/2026-09-27-2042-blades-up.jpg', title: 'Blades up',
+      alt: 'The Gold Ninja with both golden swords raised in front of green light beams' },
+    'njm-back-in-town': { src: 'lego/ninjago-movie/2026-09-27-2044-back-in-town.jpg', title: 'Back in town',
+      desc: 'The terminals along the wall wait for the Secret Ninja Base, the line along the bottom says.',
+      alt: 'The Gold Ninja in front of a building with character terminals in Ninjago City' },
+    'njm-pause-screen': { src: 'lego/ninjago-movie/pause-screen.jpg', title: 'The map, at 100%',
+      desc: 'Ninjago Island from above, paused, with 100.0% on the bar along the bottom.',
+      alt: 'The Ninjago Island map on the pause screen at 100 percent' },
+    'njm-load-game': { src: 'lego/ninjago-movie/load-game.jpg', title: 'The save slot',
+      desc: 'Slot 1: 9/27/2026 8:54pm, Progress: 100.0%.',
+      alt: 'The save slot screen reading 9/27/2026 8:54pm and Progress 100.0 percent' },
+    'njm-banner': { src: 'lego/ninjago-movie/banner.jpg', title: 'Steam library banner',
+      desc: '14.4 hours and 50 of 50 achievements, captured the same night.',
+      alt: 'Steam library banner for The LEGO Ninjago Movie Video Game, 14.4 hours and 50 of 50 achievements' },
 
     /* The three Steam collection views. Each one is the library filtered to a
        licence and sorted by percentage of achievements complete, so the row of
@@ -445,6 +608,37 @@ window.FAN_SHOTS = {
               'spidey-1-skills', 'spidey-1-suits', 'spidey-mm-banner', 'spidey-mm-last', 'spidey-mm-achievements',
               'spidey-2-banner', 'spidey-2-last', 'spidey-2-skills'] },
 
+    'ninjago-movie': { title: 'The LEGO Ninjago Movie Video Game', note: '100% \u00b7 27 September 2026 \u00b7 36 frames', grid: true, wide: true,
+      lede: 'Every frame of the run, in the order it was taken: the title screen on the 21st, then the night it hit a hundred percent. The last unlock is the Gold Ninja, and I spent the next twenty minutes standing him next to the cast on the beach, one character at a time, before the map, the save slot and the Steam banner that close it out.',
+      items: ['njm-start-screen', 'njm-main-menu', 'njm-lloyds-card', 'njm-gold-ninja',
+              'njm-on-the-beach', 'njm-characters', 'njm-paused-at-100', 'njm-lloyd', 'njm-kai',
+              'njm-cole', 'njm-nya', 'njm-zane', 'njm-jay', 'njm-the-horned-helmet', 'njm-garmadon',
+              'njm-pythor', 'njm-hypnobrai', 'njm-venomari', 'njm-fangpyre', 'njm-constrictai',
+              'njm-the-generals', 'njm-the-serpentine', 'njm-the-staff', 'njm-the-green-ghost',
+              'njm-the-pirate', 'njm-two-in-hoods', 'njm-master-wu', 'njm-in-violet',
+              'njm-the-antlers', 'njm-the-scythe', 'njm-out-in-ninjago', 'njm-blades-up',
+              'njm-back-in-town', 'njm-pause-screen', 'njm-load-game', 'njm-banner'] },
+
+    /* ── Fortnite ── the crossovers are shown on the Fortnite page and again on
+       the page of the world each belongs to, from the same rows */
+    'fortnite-star-wars': { title: 'Star Wars, in Fortnite', note: 'ten of my own screenshots', grid: true, wide: true,
+      lede: 'The Star Wars side of it, from the challenges screen with the crossed sabers to the Galactic Battle Pass: the bundles, the rewards, a gift from a friend, two wins in the robes, and LEGO Fortnite with Anakin and Vader in bricks.',
+      items: ['fnsw-challenges', 'fnsw-find-the-force', 'fnsw-battle-pass', 'fnsw-mace-windu',
+              'fnsw-palpatine', 'fnsw-moff-gideon', 'fnsw-moff-gideon-win', 'fnsw-roof-win',
+              'fnsw-lego-anakin-vader', 'fnsw-clone-wars'] },
+
+    'fortnite-got': { title: 'Westeros, in Fortnite', note: 'the Ice and Fire bundle', grid: true, wide: true,
+      lede: 'Game of Thrones arrived as a twelve-item bundle: the shop page, Jon Snow bought out of it, and a win in the cloak.',
+      items: ['fn-got-bundle', 'fn-jon-snow', 'fn-jon-snow-win'] },
+
+    'fortnite-marvel': { title: 'Marvel, in Fortnite', note: 'Thanos and the Endgame mode', grid: true, wide: true,
+      lede: 'The crossover that started all of them: Thanos in 2018, and the Endgame mode the spring after.',
+      items: ['fn-endgame', 'fn-thanos'] },
+
+    'droid-tycoon': { title: 'Droid Tycoon, Played', note: 'the Droidex at 278 of 316', grid: true, wide: true,
+      lede: 'The receipts for the time sunk into it: a tycoon at 7.7 billion credits, a Super Rebirth at rank one, and the Droidex at 278 of 316.',
+      items: ['dt-the-tycoon', 'dt-super-rebirth', 'dt-gonk', 'dt-ig-11', 'dt-bb9'] },
+
     /* ── /gaming/ ──
        Two sets that belong to no single franchise, which is the whole reason
        that page exists. `steam-replay` runs a year per row: the card first,
@@ -471,7 +665,7 @@ window.FAN_SHOTS = {
   /* ── when every frame was taken ─────────────────────────────────────────
      One row per picture the site serves, keyed by the same path as `src`
      above, and complete: assets/img/franchises/ and this table have exactly
-     the same 230 entries, so no screenshot on this site is undated. Read by
+     the same 299 entries, so no screenshot on this site is undated. Read by
      fanpage.js (the caption under every screenshot) and by gaming-data.js
      (the same, for the frames that have no row above), through when() below.
 
@@ -530,6 +724,17 @@ window.FAN_SHOTS = {
     'gaming/steam/2024.jpg':                                       '2025-12-27',
     'gaming/steam/2025-vs-steam.jpg':                              '2025-12-27',
     'gaming/steam/2025.jpg':                                       '2025-12-27',
+
+    /* Fortnite. The Steam-style names these came in with are import times,
+       not capture times (four Victory Royales cannot happen inside eighty
+       seconds), and the 2023 and 2025 ones also carry the jpeg-recompress
+       comment, so every date here is an upper bound. */
+    'fortnite/game-of-thrones/ice-and-fire-bundle.jpg':            '<2026-03-25',
+    'fortnite/game-of-thrones/jon-snow-victory-royale.jpg':        '<2026-03-25',
+    'fortnite/game-of-thrones/jon-snow.jpg':                       '<2026-03-25',
+    'fortnite/marvel/endgame.jpg':                                 '<2025-08-09',
+    'fortnite/marvel/thanos.jpg':                                  '<2023-10-14',
+    'fortnite/omega/omega.jpg':                                    '<2025-09-28',
 
     'harry-potter/hogwarts-legacy/acceptance-letter.jpg':          '2024-11-05 23:51',
     'harry-potter/hogwarts-legacy/all-houses.jpg':                 '2024-11-07 01:34',
@@ -642,6 +847,48 @@ window.FAN_SHOTS = {
     'lego/movie-2/pause-screen.jpg':                               '2026-09-16 22:37',
     'lego/movie-2/start-screen.jpg':                               '2026-09-03 23:47',
 
+    /* The LEGO Ninjago Movie Video Game. Twenty-nine of these carry Steam's own
+       capture clock in the library's file names; the seven renamed frames
+       (banner, title screen, menu, save slot, pause screen, characters, Gold
+       Ninja) are dated by their creation times in the library, none of which
+       has been through a re-encode. */
+    'lego/ninjago-movie/2026-09-27-2024-lloyds-card.jpg':          '2026-09-27 20:24',
+    'lego/ninjago-movie/2026-09-27-2026-on-the-beach.jpg':         '2026-09-27 20:26',
+    'lego/ninjago-movie/2026-09-27-2031-paused-at-100.jpg':        '2026-09-27 20:31',
+    'lego/ninjago-movie/2026-09-27-2032-kai.jpg':                  '2026-09-27 20:32',
+    'lego/ninjago-movie/2026-09-27-2032-lloyd.jpg':                '2026-09-27 20:32',
+    'lego/ninjago-movie/2026-09-27-2033-cole.jpg':                 '2026-09-27 20:33',
+    'lego/ninjago-movie/2026-09-27-2033-nya.jpg':                  '2026-09-27 20:33',
+    'lego/ninjago-movie/2026-09-27-2034-zane.jpg':                 '2026-09-27 20:34',
+    'lego/ninjago-movie/2026-09-27-2035-jay.jpg':                  '2026-09-27 20:35',
+    'lego/ninjago-movie/2026-09-27-2035-the-horned-helmet.jpg':    '2026-09-27 20:35',
+    'lego/ninjago-movie/2026-09-27-2036-garmadon.jpg':             '2026-09-27 20:36',
+    'lego/ninjago-movie/2026-09-27-2036-pythor.jpg':               '2026-09-27 20:36',
+    'lego/ninjago-movie/2026-09-27-2037-constrictai.jpg':          '2026-09-27 20:37',
+    'lego/ninjago-movie/2026-09-27-2037-fangpyre.jpg':             '2026-09-27 20:37',
+    'lego/ninjago-movie/2026-09-27-2037-hypnobrai.jpg':            '2026-09-27 20:37',
+    'lego/ninjago-movie/2026-09-27-2037-the-generals.jpg':         '2026-09-27 20:37',
+    'lego/ninjago-movie/2026-09-27-2037-venomari.jpg':             '2026-09-27 20:37',
+    'lego/ninjago-movie/2026-09-27-2038-the-serpentine.jpg':       '2026-09-27 20:38',
+    'lego/ninjago-movie/2026-09-27-2039-the-green-ghost.jpg':      '2026-09-27 20:39',
+    'lego/ninjago-movie/2026-09-27-2039-the-pirate.jpg':           '2026-09-27 20:39',
+    'lego/ninjago-movie/2026-09-27-2039-the-staff.jpg':            '2026-09-27 20:39',
+    'lego/ninjago-movie/2026-09-27-2039-two-in-hoods.jpg':         '2026-09-27 20:39',
+    'lego/ninjago-movie/2026-09-27-2040-master-wu.jpg':            '2026-09-27 20:40',
+    'lego/ninjago-movie/2026-09-27-2041-in-violet.jpg':            '2026-09-27 20:41',
+    'lego/ninjago-movie/2026-09-27-2041-the-antlers.jpg':          '2026-09-27 20:41',
+    'lego/ninjago-movie/2026-09-27-2041-the-scythe.jpg':           '2026-09-27 20:41',
+    'lego/ninjago-movie/2026-09-27-2042-blades-up.jpg':            '2026-09-27 20:42',
+    'lego/ninjago-movie/2026-09-27-2042-out-in-ninjago.jpg':       '2026-09-27 20:42',
+    'lego/ninjago-movie/2026-09-27-2044-back-in-town.jpg':         '2026-09-27 20:44',
+    'lego/ninjago-movie/banner.jpg':                               '2026-09-27 21:34',
+    'lego/ninjago-movie/characters.jpg':                           '2026-09-27 20:26',
+    'lego/ninjago-movie/gold-ninja.jpg':                           '2026-09-27 20:24',
+    'lego/ninjago-movie/load-game.jpg':                            '2026-09-27 21:19',
+    'lego/ninjago-movie/main-menu.jpg':                            '2026-09-21 13:00',
+    'lego/ninjago-movie/pause-screen.jpg':                         '2026-09-27 20:53',
+    'lego/ninjago-movie/start-screen.jpg':                         '2026-09-21 12:59',
+
     'lego/pirates/banner.jpg':                                     '2023-09-28 16:01',
     'lego/pirates/characters.jpg':                                 '2023-09-28 15:51',
     'lego/pirates/load-game.jpg':                                  '2023-09-28 16:01',
@@ -656,6 +903,11 @@ window.FAN_SHOTS = {
     'lego/skywalker-saga/stud-fountain.jpg':                       '<2023-10-14',
 
     'lego/thirty-years.jpg':                                       '2026-04-28 02:19',
+
+    /* the Badlion profile is a re-encode (it carries the jpeg-recompress
+       comment), so its 2025-09-28 creation date is only an upper bound; the
+       page it shows says Last Online 14/06/2025, so it is later than that */
+    'minecraft/badlion/profile.jpg':                               '<2025-09-28',
 
     'minecraft/imagine-fun/2025-05-27-2250-halfway.jpg':           '2025-05-27 22:50',
     'minecraft/imagine-fun/2025-07-22-0203-ride-log.jpg':          '2025-07-22 02:03',
@@ -735,6 +987,25 @@ window.FAN_SHOTS = {
     'star-wars/fallen-order/play-time.jpg':                        '2026-08-25 16:43',
     'star-wars/fallen-order/start-screen.jpg':                     '2024-03-17 11:03',
     'star-wars/fallen-order/tactical-guide.jpg':                   '2024-03-22 17:44',
+
+    /* Star Wars in Fortnite: upper bounds, for the reason given above the
+       fortnite/ rows. Droid Tycoon's names are real capture times: a party,
+       a rebirth and a scroll through the Droidex inside two minutes. */
+    'star-wars/droid-tycoon/2026-05-27-0915-the-tycoon.jpg':       '2026-05-27 09:15',
+    'star-wars/droid-tycoon/2026-07-01-1600-droidex-gonk.jpg':     '2026-07-01 16:00',
+    'star-wars/droid-tycoon/2026-07-01-1600-super-rebirth.jpg':    '2026-07-01 16:00',
+    'star-wars/droid-tycoon/2026-07-01-1601-droidex-bb9.jpg':      '2026-07-01 16:01',
+    'star-wars/droid-tycoon/2026-07-01-1601-droidex-ig-11-marshal.jpg':'2026-07-01 16:01',
+    'star-wars/fortnite/clone-wars-bundle.jpg':                    '<2026-05-02',
+    'star-wars/fortnite/emperor-palpatine.jpg':                    '<2025-09-28',
+    'star-wars/fortnite/find-the-force.jpg':                       '<2023-10-14',
+    'star-wars/fortnite/galactic-battle-pass.jpg':                 '<2025-09-28',
+    'star-wars/fortnite/lego-anakin-and-vader.jpg':                '<2025-09-28',
+    'star-wars/fortnite/mace-windu-bundle.jpg':                    '<2025-09-28',
+    'star-wars/fortnite/moff-gideon-gift.jpg':                     '<2025-08-09',
+    'star-wars/fortnite/moff-gideon-victory-royale.jpg':           '<2025-08-09',
+    'star-wars/fortnite/star-wars-challenges.jpg':                 '<2023-10-14',
+    'star-wars/fortnite/victory-royale-on-a-roof.jpg':             '<2025-09-28',
 
     'star-wars/imagine-fun/a-galaxy-far-far-away.jpg':             '2025-05-18 15:20',
     'star-wars/imagine-fun/boba-fett.jpg':                         '2025-05-02 00:15',

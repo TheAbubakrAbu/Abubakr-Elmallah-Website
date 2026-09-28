@@ -126,6 +126,15 @@ window.FAN_PAGE = {
           { n: 'Dog Man', y: '2025' },
           { n: 'The Bad Guys 2', y: '2025' },
         ] },
+      { title: 'The Games', sub: '2004 – 2023', unit: 'game',
+        desc: 'The film tie-ins, and a kart racer with everybody in it. Kung Fu Panda and How to Train Your Dragon keep the rest of theirs on their own pages.',
+        rows: [
+          { n: 'Shrek 2', y: '2004' },
+          { n: 'Madagascar', y: '2005' },
+          { n: 'Kung Fu Panda', y: '2008' },
+          { n: 'How to Train Your Dragon', y: '2010' },
+          { n: 'DreamWorks All-Star Kart Racing', y: '2023' },
+        ] },
     ] },
 
   { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'three tracks',

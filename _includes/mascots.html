@@ -1,0 +1,35 @@
+{%- comment -%}
+  The five schools and their mascots, from _data/mascots.yml (the one list,
+  and where every line of it comes from, is described there).
+
+    {% include mascots.html %}                    the full ladder (/education/)
+    {% include mascots.html mark="mustangs" %}    the one-line rail, with that
+                                                  school lit up (/high-school/,
+                                                  /college/)
+
+  `mark` is an id from the data file; the rail gives that school its own
+  colour and aria-current, and the other four read quieter.
+{%- endcomment -%}
+{%- if include.mark -%}
+<div class="mascot-rail reveal">
+  <span class="mascot-rail-lead">The mascots</span>
+  <ol role="list">
+    {%- for m in site.data.mascots %}
+    <li class="ms-node{% if m.id == include.mark %} is-mark{% endif %}{% unless m.mascot %} is-none{% endunless %}" style="--m: {{ m.tint }}"{% if m.id == include.mark %} aria-current="true"{% endif %}><b>{{ m.mascot | default: "None" | escape }}</b><i>{{ m.short | escape }}</i></li>
+    {%- endfor %}
+  </ol>
+  <a class="mascot-rail-more" href="/education/#mascots" data-magnetic>All five<span aria-hidden="true"> ↗</span></a>
+</div>
+{%- else -%}
+<ol class="mascots" role="list">
+  {%- for m in site.data.mascots %}
+  <li class="mascot reveal{% unless m.mascot %} is-none{% endunless %}" style="--m: {{ m.tint }}">
+    <span class="mascot-step">{{ forloop.index | prepend: "0" | slice: -2, 2 }} · {{ m.step | escape }}</span>
+    <h3>{{ m.mascot | default: "None" | escape }}</h3>
+    <span class="mascot-school">{{ m.school | escape }}</span>
+    <span class="mascot-when">{{ m.when | escape }}</span>
+    <p>{{ m.note | escape }}</p>
+  </li>
+  {%- endfor %}
+</ol>
+{%- endif -%}

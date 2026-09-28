@@ -1,152 +1,100 @@
 ---
 permalink: /college/
+title: "College · Abubakr Elmallah"
+description: "Abubakr Elmallah at UC Irvine. Computer Science, Class of 2028, and the apps he builds as Lead Mobile &amp; Backend Developer on campus."
+tab: "/education/"
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Abubakr Elmallah at UC Irvine. Computer Science, Class of 2028, and the apps he builds as an iOS Developer on campus." />
-<meta name="theme-color" content="#08080a" />
-
-<link rel="icon" type="image/png" href="../assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png" />
-<link rel="manifest" href="/manifest.webmanifest" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Abubakr" />
-<meta property="og:image" content="https://abubakrelmallah.com/assets/img/me/abubakr-circle.png" />
-<meta property="og:type" content="website" />
-<title>College · Abubakr Elmallah</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<!-- Fonts are loaded WITHOUT blocking the first paint. As a plain
-     stylesheet this held the whole page blank until Google answered,
-     which on a weak connection is most of "it opens but it loads
-     slowly". media="print" makes the browser fetch it at low priority
-     and render immediately; onload promotes it to the real stylesheet.
-     Every family here already carries display=swap, so text is on
-     screen in the fallback face straight away and swaps when it lands. -->
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Darker+Grotesque:wght@400..900&family=Nunito:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Darker+Grotesque:wght@400..900&family=Nunito:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
-
-<link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
-<link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
-<link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
+{% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/transcript.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/years.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/pics.css' %}" />
 </head>
 <body data-intro="none">
-<div class="grain" aria-hidden="true"></div>
-<div class="vignette" aria-hidden="true"></div>
-<canvas id="field" aria-hidden="true"></canvas>
+{% include fx.html %}
 
-<div class="cursor" id="cursor" aria-hidden="true"></div>
-<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+{% include cursor.html %}
 
-<aside class="rail">
-  <span class="rail-mark" aria-hidden="true">AE</span>
-  <span class="rail-line" aria-hidden="true"><i id="railFill"></i></span>
-  <span class="rail-meta" id="clock" aria-hidden="true">--:--:--</span>
-  <span class="rail-meta" aria-hidden="true">33.64°N · 117.84°W</span>
-</aside>
+{% include rail.html %}
 
-<header class="topbar">
-  <a href="/" class="brand" data-magnetic>
-    <img class="brand-avatar" src="../assets/img/me/abubakr-circle.png" alt="Abubakr Elmallah" /><span class="brand-glyph"><b>Abubakr</b> Elmallah</span>
-  </a>
-  <!-- top nav controls hidden, using the bottom tab bar instead
-<nav class="nav">
-    <a href="/work/" data-magnetic>Work</a>
-    <a href="/projects/" data-magnetic>Projects</a>
-    <a href="/education/" class="is-current" data-magnetic>Education</a>
-    <a href="/worlds/" data-magnetic>Worlds</a>
-  </nav>
-  -->
-  <div class="toggles"><button class="ql ql--sound is-on" id="soundToggle" type="button" aria-pressed="true" aria-label="Toggle interface sounds" data-magnetic><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><button class="ql ql--cursor" id="cursorToggle" type="button" data-cursor-toggle aria-pressed="true" aria-label="Toggle custom cursor" data-magnetic><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg></button></div>
-  <div class="quicklinks">
-    <a class="ql ql--resume" href="/resume/" data-magnetic>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M8 13h8M8 17h6"/></svg>
-      <span class="ql-label">Résumé</span>
-    </a>
-    <a class="ql ql--linkedin" href="https://www.linkedin.com/in/abubakr-elmallah" target="_blank" rel="noopener" data-magnetic>
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C21.4 8.75 22 11 22 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21h-4z"/></svg>
-      <span class="ql-label">LinkedIn</span>
-    </a>
-    <a class="ql ql--github" href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener" data-magnetic>
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
-      <span class="ql-label">GitHub</span>
-    </a>
-  </div>
-</header>
+{% include topbar.html %}
 
 <main>
 
   <section class="page-hero">
-    <a class="back-link" href="/" data-magnetic>← Back home</a>
+    {% include crumbs.html parent="Education" url="/education/" here="College" %}
     <p class="kicker"><span>(Now)</span><span>Where I am today</span></p>
     <h1 class="page-title"><em>College</em></h1>
-    <p class="lede">Computer Science at UC Irvine, Class of 2028, plus the campus apps I ship as an iOS Developer here. For where it all started, see <a href="/high-school/" data-magnetic>High School</a>.</p>
+    <p class="lede">Computer Science at UC Irvine, Class of 2028, plus the campus apps I ship as Lead Mobile &amp; Backend Developer here. For where it all started, see <a href="/high-school/" data-magnetic>High School</a>.</p>
+    <nav class="jump" aria-label="Sections">
+      <a href="#photos">Photos</a>
+      <a href="#work">Work</a>
+      <a href="#uci-apps">Apps</a>
+      <a href="#leadership">Roles</a>
+      <a href="#strengths">CliftonStrengths</a>
+      <a href="#academics">Academics</a>
+      <a href="#activities">Activities</a>
+    </nav>
   </section>
 
   <section class="work college">
     <div class="edu reveal">
       <div class="edu-row" data-magnetic>
-        <span class="edu-pic">🎓</span>
-        <div class="edu-meta"><h3>University of California, Irvine</h3><p>2024 – 2028 · Irvine, CA</p></div>
+        <span class="edu-pic" aria-hidden="true" style="--m: var(--blue-2)">UCI</span>
+        <div class="edu-meta"><p class="edu-t">University of California, Irvine</p><p>2024 – 2028 · Irvine, CA</p></div>
       </div>
       <div class="edu-row" data-magnetic>
-        <span class="edu-pic">💻</span>
-        <div class="edu-meta"><h3>B.S. Computer Science</h3><p>Class of 2028</p></div>
+        <span class="edu-pic" aria-hidden="true" style="--m: var(--green-2)">CS</span>
+        <div class="edu-meta"><p class="edu-t">B.S. Computer Science</p><p>Class of 2028</p></div>
       </div>
     </div>
 
-    <!-- built by mascots.js from the one list in it, the same list the full
-         ladder on /education/ is built from -->
-    <div data-mascots="rail" data-mark="anteaters"></div>
+    <!-- the one-line rail of the five schools, from _data/mascots.yml, the
+         same list the full ladder on /education/ is built from -->
+    {% include mascots.html mark="anteaters" %}
 
-    <h3 class="subsec reveal">Through the Years <span class="subsec-yr"><span class="pic-n">1002 photos · </span>2024 – now</span></h3>
+    <h2 class="subsec subsec--title reveal" id="photos">Through the Years <span class="subsec-yr"><span class="pic-n">1,070 photos · </span>2024 – now</span></h2>
     <!-- built by years.js from years-data.js -->
     <div class="years" data-years="uci"></div>
 
     <!-- gallery.js owns the app and award shots further down -->
-    <div class="lightbox" id="lightbox" aria-hidden="true">
-      <button class="lightbox-close" type="button" aria-label="Close">✕</button>
-      <span class="lightbox-title"></span>
-      <div class="lightbox-imgs"></div>
-    </div>
+    {% include lightbox.html %}
 
-    <h3 class="subsec reveal">Work <span class="subsec-yr">while at UCI</span></h3>
-    <ol class="roles">
+    <h2 class="subsec subsec--title reveal" id="work">Work <span class="subsec-yr">while at UCI</span></h2>
+    <ol class="roles" role="list">
       <li class="role reveal role--now">
         <div class="role-when"><b>Mar 2025 &#8211; now</b><span>part-time &#183; remote</span></div>
         <div class="role-body">
-          <h4>iOS App Developer &#183; UCI Student Center &amp; Event Services</h4>
+          <h3>Lead Mobile &amp; Backend Developer &#183; UCI Student Center &amp; Event Services</h3>
           <p>The job behind the campus apps below: three production App Store apps I own and ship for the Student Center.</p>
-          <ul class="role-points">
-            <li>Reach <b>100K+ installs</b> and <b>3.2M+ lifetime sessions</b> across three production App Store apps I own and ship: <b>UCI Now</b>, <b>ZOTFinder</b> and <b>UCI Esports</b>.</li>
-            <li>Cut load times <b>40%</b> by rebuilding UCI Now and ZOTFinder from UIKit into <b>SwiftUI</b> with async/await structured concurrency and a full redesign, extending both apps to <b>iPad, Mac and Vision Pro</b>.</li>
-            <li>Raised reliability, cutting ZOTFinder crashes <b>85%</b> (10.4K to under 1.5K a month) by refactoring legacy code.</li>
-            <li>Own <b>20+ CocoaPods dependencies</b> (Google Maps, Firebase, Alamofire, SwiftyJSON) in both UIKit apps.</li>
-            <li>Launched <b>UCI Esports 1.0</b> as sole iOS developer: ggLeap REST APIs for live PC reservations, Google Calendar event feeds, UCINetID authentication with guest mode, and backend profile sync.</li>
+          <!-- the résumé's points for this job, read from _data/resume.yml: the
+               one copy on the site, the same words /work/ and /resume/ print
+               (the role is found by its site, the way the data names it) -->
+          <ul class="role-points" role="list">
+{%- for j in site.data.resume.work %}{% if j.site == 'studentcenter.uci.edu' %}{% for p in j.points %}
+            <li>{{ p }}</li>
+{%- endfor %}{% endif %}{% endfor %}
           </ul>
           <div class="role-tags">
             <span class="role-tag">studentcenter.uci.edu</span>
             <span class="role-tag">Remote &#183; Irvine, California</span>
-            <span class="role-tag">iOS &#183; UIKit &#183; SwiftUI</span>
+            <span class="role-tag">SwiftUI &#183; UIKit &#183; Node.js &#183; AWS</span>
           </div>
         </div>
       </li>
       <li class="role reveal">
         <div class="role-when"><b>Feb 2024 &#8211; Feb 2026</b><span>2 yrs &#183; ran into college</span></div>
         <div class="role-body">
-          <h4>iOS App Development Teacher &#183; STEM Heroes Academy</h4>
+          <h3>iOS App Development Teacher &#183; STEM Heroes Academy</h3>
           <p>The teaching job from senior year of high school, carried through both college years.</p>
-          <ul class="role-points">
-            <li>Launched the academy&#8217;s first <b>iOS App Development</b> course as its <b>youngest instructor</b>, teaching <b>Swift, Swift Playgrounds and SwiftUI</b> to <b>30+ students</b> aged 8&#8211;14, who each shipped a working app over the two years.</li>
+          <!-- the résumé's point for this job, read from _data/resume.yml like
+               the Student Center's above -->
+          <ul class="role-points" role="list">
+{%- for j in site.data.resume.work %}{% if j.site == 'stemirvine.com' %}{% for p in j.points %}
+            <li>{{ p }}</li>
+{%- endfor %}{% endif %}{% endfor %}
           </ul>
           <p>The whole story is on the <a href="/high-school/" data-magnetic>high school page</a>.</p>
           <div class="role-tags">
@@ -157,36 +105,30 @@ permalink: /college/
       </li>
     </ol>
 
-    <h3 class="subsec reveal">What I’ve Built at UCI</h3>
+    <h2 class="subsec subsec--title reveal" id="uci-apps">What I’ve Built at UCI</h2>
     <div class="apps-grid apps-grid--2" data-cards="zotfinder,uci-now,uci-esports,peterplate"></div>
-    <a class="dev-link reveal" href="https://apps.apple.com/us/developer/uci-student-center/id1382415697" target="_blank" rel="noopener" data-magnetic>
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.78c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.13 5.84c.64-.78 1.07-1.85.95-2.93-.92.04-2.04.61-2.7 1.38-.59.68-1.11 1.79-.97 2.84 1.03.08 2.08-.52 2.72-1.29z"/></svg>
-      <span>View the UCI Apple Developer Page</span><i>↗</i>
-    </a>
+    {% include apple-dev-link.html who="uci" %}
 
-    <h3 class="subsec reveal">Built on My Own <span class="subsec-yr">alongside college</span></h3>
+    <h2 class="subsec subsec--title reveal" id="own-apps">Built on My Own <span class="subsec-yr">alongside college</span></h2>
     <p class="yr-note reveal">Not part of any job: the Star Wars apps and bots, the open-source engines behind Al-Quran, and this website. For the apps I shipped before UCI, see the <a href="/high-school/" data-magnetic>high school page</a>.</p>
     <div class="apps-grid apps-grid--3" data-cards="aurebesh-translator,aurebesh-droid,sabacc-droid,quran-tajweed-engine,hadith-json-engine,website" data-cards-cat></div>
-    <a class="dev-link reveal" href="https://apps.apple.com/tr/developer/abubakr-elmallah/id1690310648" target="_blank" rel="noopener" data-magnetic>
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.78c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.13 5.84c.64-.78 1.07-1.85.95-2.93-.92.04-2.04.61-2.7 1.38-.59.68-1.11 1.79-.97 2.84 1.03.08 2.08-.52 2.72-1.29z"/></svg>
-      <span>View My Apple Developer Page</span><i>↗</i>
-    </a>
+    {% include apple-dev-link.html %}
 
-    <h3 class="subsec reveal">Roles &amp; Leadership <span class="subsec-yr">by year</span></h3>
+    <h2 class="subsec subsec--title reveal" id="leadership">Roles &amp; Leadership <span class="subsec-yr">by year</span></h2>
 
     <section class="yr-block reveal">
       <div class="yr-head">
-        <h4>First Year</h4>
+        <h3>First Year</h3>
         <span class="yr-span">2024&#8211;25</span>
         <span class="yr-count">3 roles</span>
       </div>
       <p class="yr-note">A job on campus, and then helping start something. Both of the things I still spend the most time on began this year.</p>
     </section>
-    <ol class="roles">
+    <ol class="roles" role="list">
       <li class="role reveal" data-yr="1st year">
         <div class="role-when"><b>Feb 2024 &#8211; Feb 2026</b><span>carried over &#183; 2 yrs</span></div>
         <div class="role-body">
-          <h4>iOS App Development Teacher &#183; STEM Heroes Academy</h4>
+          <h3>iOS App Development Teacher &#183; STEM Heroes Academy</h3>
           <p>Started in high school and ran through both college years. See the <a href="/high-school/">high school page</a> for the whole story.</p>
           <div class="role-tags">
             <span class="role-tag">Ended Feb 2026</span>
@@ -196,12 +138,8 @@ permalink: /college/
       <li class="role reveal role--now" data-yr="1st year">
         <div class="role-when"><b>Mar 2025 &#8211; now</b><span>1st year &#183; part-time</span></div>
         <div class="role-body">
-          <h4>iOS App Developer &#183; UCI Student Center &amp; Event Services</h4>
-          <ul class="role-points">
-            <li>Develop and maintain UCI&#8217;s official iOS apps, including <b>UCI Now</b> and <b>ZOTFinder</b>, in UIKit.</li>
-            <li>Implement new features, fix bugs, and optimise performance.</li>
-            <li>Integrate real-time campus data, location services and APIs, working with campus departments.</li>
-          </ul>
+          <h3>Lead Mobile &amp; Backend Developer &#183; UCI Student Center &amp; Event Services</h3>
+          <p>Where the job began: developing and maintaining UCI&#8217;s official iOS apps, <b>UCI Now</b> and <b>ZOTFinder</b>, in UIKit, implementing new features, fixing bugs and optimising performance, and integrating real-time campus data, location services and APIs with campus departments. All of it, and what it has grown into, is under <a href="#work">Work</a> above.</p>
           <div class="role-tags">
             <span class="role-tag">Remote &#183; Irvine, California</span>
             <span class="role-tag">iOS &#183; UIKit</span>
@@ -211,8 +149,8 @@ permalink: /college/
       <li class="role reveal role--now" data-yr="1st year">
         <div class="role-when"><b>Apr 2025 &#8211; now</b><span>1st year &#183; part-time</span></div>
         <div class="role-body">
-          <h4>Co-Founder &amp; Vice President &#183; Muslim Tech Collaborative</h4>
-          <ul class="role-points">
+          <h3>Co-Founder &amp; Vice President &#183; Muslim Tech Collaborative</h3>
+          <ul class="role-points" role="list">
             <li>Co-founded the <b>UCI chapter</b> of MTC, a national organisation empowering Muslims in tech through education, professional development, community projects and workshops.</li>
             <li>Lead and manage every project-based initiative: client consulting, technical workshops, and beginner development programmes.</li>
             <li>Coordinate cross-functional teams building websites, tools and apps for masjids, nonprofits and Muslim-owned businesses.</li>
@@ -229,17 +167,17 @@ permalink: /college/
 
     <section class="yr-block reveal">
       <div class="yr-head">
-        <h4>Second Year</h4>
+        <h3>Second Year</h3>
         <span class="yr-span">2025&#8211;26</span>
         <span class="yr-count">4 roles</span>
       </div>
       <p class="yr-note">Every role from first year widened, and two more arrived on top of them.</p>
     </section>
-    <ol class="roles">
+    <ol class="roles" role="list">
       <li class="role reveal" data-yr="2nd year">
         <div class="role-when"><b>Sep 2025 &#8211; Jun 2026</b><span>2nd year</span></div>
         <div class="role-body">
-          <h4>Bros Social Coordinator &#183; Muslim Student Union</h4>
+          <h3>Bros Social Coordinator &#183; Muslim Student Union</h3>
           <p>Took this on at the start of second year, running the social side for the brothers at UCI MSU. Handed it over at the end of the year and moved to dawah.</p>
           <div class="role-tags">
             <span class="role-tag">UCI MSU</span>
@@ -249,7 +187,7 @@ permalink: /college/
       <li class="role reveal" data-yr="2nd year">
         <div class="role-when"><b>2nd year</b><span>2025&#8211;26</span></div>
         <div class="role-body">
-          <h4>Ignite Counseling &#183; Muslim Tech Collaborative</h4>
+          <h3>Ignite Counseling &#183; Muslim Tech Collaborative</h3>
           <p>Kickstarted Ignite Counseling under MTC in my second year, alongside the VP role above.</p>
           <div class="role-tags">
             <span class="role-tag">Founded under MTC</span>
@@ -259,17 +197,17 @@ permalink: /college/
       <li class="role reveal" data-yr="2nd year">
         <div class="role-when"><b>Nov 2025</b><span>2nd year</span></div>
         <div class="role-body">
-          <h4>Developer &#183; PeterPlate, ICSSC</h4>
+          <h3>Developer &#183; PeterPlate, ICSSC</h3>
           <p>Joined the Information &amp; Computer Science Student Council as a developer on PeterPlate.</p>
         </div>
       </li>
       <li class="role reveal role--now" data-yr="2nd year">
         <div class="role-when"><b>Feb 2026</b><span>2nd year</span></div>
         <div class="role-body">
-          <h4>Co-Lead Developer &#183; PeterPlate, ICSSC</h4>
-          <p>Moved up to co-lead about three months after joining, now leading a team of <b>12+</b> developers.</p>
+          <h3>Lead Software Developer &#183; PeterPlate, ICSSC</h3>
+          <p>Moved up to Lead Software Developer about three months after joining, now leading the <b>12-person</b> engineering team building PeterPlate.</p>
           <div class="role-tags">
-            <span class="role-tag">Team of 12+</span>
+            <span class="role-tag">Team of 12</span>
           </div>
         </div>
       </li>
@@ -277,17 +215,17 @@ permalink: /college/
 
     <section class="yr-block reveal">
       <div class="yr-head">
-        <h4>Third Year</h4>
+        <h3>Third Year</h3>
         <span class="yr-span">2026&#8211;27</span>
         <span class="yr-count">1 new role</span>
       </div>
-      <p class="yr-note">The UCI iOS job, MTC and PeterPlate all carry over. The MSU position changes hands each year, and this year it is dawah.</p>
+      <p class="yr-note">The Student Center job, MTC and PeterPlate all carry over. The MSU position changes hands each year, and this year it is dawah.</p>
     </section>
-    <ol class="roles">
+    <ol class="roles" role="list">
       <li class="role reveal role--now" data-yr="3rd year">
         <div class="role-when"><b>Sep 2026 &#8211; now</b><span>3rd year</span></div>
         <div class="role-body">
-          <h4>Dawah Coordinator &#183; Muslim Student Union</h4>
+          <h3>Dawah Coordinator &#183; Muslim Student Union</h3>
           <p>Moved from the social side to dawah for third year.</p>
           <div class="role-tags">
             <span class="role-tag">UCI MSU</span>
@@ -303,7 +241,7 @@ permalink: /college/
          the strengths fell into. The certificate is the assessment itself.
          The cards read as documents rather than photographs, so they use
          .wwdc-shot--doc, which shows them whole instead of cropping. -->
-    <h3 class="subsec subsec--stack reveal">CliftonStrengths <span class="subsec-yr">Maximizer &#183; Relator &#183; Positivity</span></h3>
+    <h2 class="subsec subsec--title subsec--stack reveal" id="strengths">CliftonStrengths <span class="subsec-yr">Maximizer &#183; Relator &#183; Positivity</span></h2>
     <p class="acad-lede reveal">The <b>Student Center &amp; Event Services</b> team took Gallup&#8217;s <b>CliftonStrengths</b> assessment, which ranks 34 themes and gives you your top five. Mine came out <b>Maximizer, Relator, Positivity, Communication</b> and <b>Adaptability</b>: four of the five sit in Gallup&#8217;s <b>yellow</b> domain, influencing and relationship-building rather than analysis, which surprised me for someone who writes code all day.</p>
     <p class="acad-lede reveal">Everyone made a name tent for their desk. One felt like a waste of a good excuse, so I made three, each a LEGO character who fit the yellow band: <b>Anakin Skywalker</b>, <b>the Gold Ninja</b> from Ninjago, and <b>Mr. Gold</b>, the rarest minifigure LEGO ever made.</p>
 
@@ -313,23 +251,23 @@ permalink: /college/
          nearly the same height and the row squares off with no dead space.
          Below 820px the column folds underneath: see the media query. -->
     <div class="strengths">
-      <a class="wwdc-shot wwdc-shot--doc strengths-cert reveal" href="../assets/img/awards/strengths-certificate.jpg" data-label="CliftonStrengths Certificate of Talent" target="_blank" rel="noopener">
-        <img src="../assets/img/awards/strengths-certificate.jpg" alt="Gallup CliftonStrengths Certificate of Talent for Abubakr Elmallah describing Maximizer, Relator, Positivity, Communication and Adaptability" loading="lazy" />
+      <a class="wwdc-shot wwdc-shot--doc strengths-cert reveal" href="/assets/img/awards/strengths-certificate.jpg" data-label="CliftonStrengths Certificate of Talent" target="_blank" rel="noopener">
+        <img src="/assets/img/awards/strengths-certificate.jpg" width="598" height="1106" alt="Gallup CliftonStrengths Certificate of Talent for Abubakr Elmallah describing Maximizer, Relator, Positivity, Communication and Adaptability" loading="lazy" />
       </a>
       <div class="strengths-tents">
-        <a class="wwdc-shot wwdc-shot--doc reveal" href="../assets/img/awards/strengths-anakin.jpg" data-label="Name tent &#183; Anakin Skywalker" target="_blank" rel="noopener">
-          <img src="../assets/img/awards/strengths-anakin.jpg" alt="CliftonStrengths name tent for Abubakr Elmallah with an Anakin Skywalker LEGO theme, listing Maximizer, Relator, Positivity, Communication and Adaptability" loading="lazy" />
+        <a class="wwdc-shot wwdc-shot--doc reveal" href="/assets/img/awards/strengths-anakin.jpg" data-label="Name tent &#183; Anakin Skywalker" target="_blank" rel="noopener">
+          <img src="/assets/img/awards/strengths-anakin.jpg" width="1600" height="906" alt="CliftonStrengths name tent for Abubakr Elmallah with an Anakin Skywalker LEGO theme, listing Maximizer, Relator, Positivity, Communication and Adaptability" loading="lazy" />
         </a>
-        <a class="wwdc-shot wwdc-shot--doc reveal" href="../assets/img/awards/strengths-gold-ninja.jpg" data-label="Name tent &#183; The Gold Ninja" target="_blank" rel="noopener">
-          <img src="../assets/img/awards/strengths-gold-ninja.jpg" alt="CliftonStrengths name tent for Abubakr Elmallah with a Ninjago Gold Ninja theme, listing the same five strengths" loading="lazy" />
+        <a class="wwdc-shot wwdc-shot--doc reveal" href="/assets/img/awards/strengths-gold-ninja.jpg" data-label="Name tent &#183; The Gold Ninja" target="_blank" rel="noopener">
+          <img src="/assets/img/awards/strengths-gold-ninja.jpg" width="1600" height="906" alt="CliftonStrengths name tent for Abubakr Elmallah with a Ninjago Gold Ninja theme, listing the same five strengths" loading="lazy" />
         </a>
-        <a class="wwdc-shot wwdc-shot--doc reveal" href="../assets/img/awards/strengths-mr-gold.jpg" data-label="Name tent &#183; Mr. Gold" target="_blank" rel="noopener">
-          <img src="../assets/img/awards/strengths-mr-gold.jpg" alt="CliftonStrengths name tent for Abubakr Elmallah with a LEGO Mr. Gold theme, listing the same five strengths" loading="lazy" />
+        <a class="wwdc-shot wwdc-shot--doc reveal" href="/assets/img/awards/strengths-mr-gold.jpg" data-label="Name tent &#183; Mr. Gold" target="_blank" rel="noopener">
+          <img src="/assets/img/awards/strengths-mr-gold.jpg" width="1600" height="906" alt="CliftonStrengths name tent for Abubakr Elmallah with a LEGO Mr. Gold theme, listing the same five strengths" loading="lazy" />
         </a>
       </div>
     </div>
 
-    <h3 class="subsec reveal">Academics <span class="subsec-yr">Class of 2028</span></h3>
+    <h2 class="subsec subsec--title reveal" id="academics">Academics <span class="subsec-yr">Class of 2028</span></h2>
     <div class="acad reveal">
       <p class="acad-lede">Reading for a <b>B.S. in Computer Science</b> at the <b>Donald Bren School of Information &amp; Computer Sciences</b> at UC Irvine, expected <b>June 2028</b>.</p>
       <div class="acad-stats">
@@ -343,7 +281,7 @@ permalink: /college/
       <div class="acad-courses">
         <div class="course-group">
           <span class="course-label course-label--ap" data-magnetic="0.5">CS</span>
-          <ul class="course-chips">
+          <ul class="course-chips" role="list">
             <li data-magnetic="0.5">Data Structures &amp; Algorithms</li>
             <li data-magnetic="0.5">Object-Oriented Programming</li>
             <li data-magnetic="0.5">C/C++</li>
@@ -356,7 +294,7 @@ permalink: /college/
         </div>
         <div class="course-group">
           <span class="course-label course-label--ib" data-magnetic="0.5">Math</span>
-          <ul class="course-chips">
+          <ul class="course-chips" role="list">
             <li data-magnetic="0.5">Discrete Mathematics</li>
             <li data-magnetic="0.5">Linear Algebra</li>
             <li data-magnetic="0.5">Probability &amp; Statistics</li>
@@ -364,7 +302,7 @@ permalink: /college/
         </div>
         <div class="course-group">
           <span class="course-label course-label--lang" data-magnetic="0.5">Languages</span>
-          <ul class="course-chips">
+          <ul class="course-chips" role="list">
             <li data-magnetic="0.5">Swift</li>
             <li data-magnetic="0.5">Python</li>
             <li data-magnetic="0.5">C/C++</li>
@@ -384,10 +322,15 @@ permalink: /college/
          transcript's clothes -->
     <div id="collegeTranscript"></div>
 
-    <h3 class="subsec reveal">Activities &amp; Awards</h3>
+    <h2 class="subsec subsec--title reveal" id="activities">Activities &amp; Awards</h2>
     <div class="embed-wrap reveal">
-      <iframe class="embed-frame" src="https://docs.google.com/document/d/1zioMjAZAw8NhcJAiqedlRzqNQ3OM0sFF8d6uAy7p1v4/preview" title="College activities and awards document" loading="lazy"></iframe>
-      <p class="embed-note"><b>Full document above.</b> Or <a href="https://docs.google.com/document/d/1zioMjAZAw8NhcJAiqedlRzqNQ3OM0sFF8d6uAy7p1v4/edit?usp=sharing" target="_blank" rel="noopener">open it in Google Docs &#8599;</a>.</p>
+      <div class="embed-facade">
+        <button class="cta embed-load" type="button" aria-label="Load the document: College activities and awards document">Load the document</button>
+        <p class="embed-facade-note">Opens Google Docs&#8217; viewer here</p>
+      </div>
+      <iframe class="embed-frame embed-frame--doc" data-doc-src="https://docs.google.com/document/d/1zioMjAZAw8NhcJAiqedlRzqNQ3OM0sFF8d6uAy7p1v4/preview" title="College activities and awards document" hidden></iframe>
+      <noscript><iframe class="embed-frame embed-frame--doc" src="https://docs.google.com/document/d/1zioMjAZAw8NhcJAiqedlRzqNQ3OM0sFF8d6uAy7p1v4/preview" title="College activities and awards document" loading="lazy"></iframe></noscript>
+      <p class="embed-note"><b class="embed-live">Full document above. </b>Or <a href="https://docs.google.com/document/d/1zioMjAZAw8NhcJAiqedlRzqNQ3OM0sFF8d6uAy7p1v4/edit?usp=sharing" target="_blank" rel="noopener">open it in Google Docs<span aria-hidden="true"> &#8599;</span><span class="vh"> (opens in a new tab)</span></a>.</p>
     </div>
 
     <!-- the one big call to action sits at the foot of the page, after the
@@ -398,9 +341,9 @@ permalink: /college/
     </a>
 
     <div class="hs-extra reveal">
-      <a href="/high-school/" data-magnetic>↳ Where it started: High School ↗</a>
-      <a href="/projects/" data-magnetic>↳ Browse everything I’ve built ↗</a>
-      <a href="/resume/" data-magnetic>↳ Résumé ↗</a>
+      <a href="/high-school/" data-magnetic><span aria-hidden="true">↳ </span>Where it started: High School<span aria-hidden="true">&nbsp;↗</span></a>
+      <a href="/projects/" data-magnetic><span aria-hidden="true">↳ </span>Browse everything I’ve built<span aria-hidden="true">&nbsp;↗</span></a>
+      <a href="/resume/" data-magnetic><span aria-hidden="true">↳ </span>Résumé<span aria-hidden="true">&nbsp;↗</span></a>
     </div>
   </section>
 
@@ -409,27 +352,16 @@ permalink: /college/
 <!-- The switch itself is on /worlds/ now, not here. pics.js stays loaded so
      this page still OBEYS it; it just no longer offers it in three places. -->
 
-<footer class="footer">
-  <span>© 2026 Abubakr Elmallah</span>
-  <a class="footer-mid" href="/" data-magnetic>← Back to home</a>
-  <button class="totop" id="totop" type="button" data-magnetic>Back to top ↑</button>
-</footer>
+{% include footer.html back="/" %}
 
 <!-- bottom tab bar -->
-<nav class="tabbar" aria-label="Primary">
-  <a href="/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg><span>Home</span></a>
-  <a href="/work/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/><path d="M3 12.5h18"/></svg><span>Work</span></a>
-  <a href="/projects/"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Projects</span></a>
-  <a href="/education/" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1 2.5 2 5 2s5-1 5-2v-5"/></svg><span>Education</span></a>
-  <a href="/worlds/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Worlds</span></a>
-</nav>
+{% include tabbar.html %}
 
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <!-- card data + renderer (must load before reveal.js / tilt.js / cardlink.js) -->
 <script src="{% include v.html f='/assets/js/apps-data.js' %}"></script>
 <script src="{% include v.html f='/assets/js/cards.js' %}"></script>
-<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
-<script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
 <!-- the "show other pictures" switch: must run before the galleries that read it -->
 <script src="{% include v.html f='/assets/js/pics.js' %}"></script>
 <!-- the gallery loader: must run before years.js, which writes data-src frames for it -->
@@ -437,9 +369,11 @@ permalink: /college/
 <script src="{% include v.html f='/assets/js/years-data.js' %}"></script>
 <script src="{% include v.html f='/assets/js/years.js' %}"></script>
 <script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
-<script src="{% include v.html f='/assets/js/mascots.js' %}"></script>
 <!-- after reveal.js on purpose, same as transcript.js on /high-school/ -->
 <script src="{% include v.html f='/assets/js/college-transcript.js' %}"></script>
+<!-- after the transcript renderer above, so the toggle it writes gets the
+     drift too -->
+<script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
 <script src="{% include v.html f='/assets/js/clock.js' %}"></script>
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/tilt.js' %}"></script>

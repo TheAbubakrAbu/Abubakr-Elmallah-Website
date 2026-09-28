@@ -15,8 +15,8 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .hc {
   /* This page loads no shared stylesheet, so it defines the font tokens it
      uses itself rather than inheriting them from base.css. */
-  --mono:    "DM Mono", ui-monospace, SFMono-Regular, monospace;
-  --serif:   "Darker Grotesque", "Nunito", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --mono:    "JetBrains Mono", ui-monospace, monospace;
+  --serif:   "Space Grotesk", system-ui, sans-serif;
   --holo:    #7fd6ff;          /* projector blue */
   --holo-2:  #bfeaff;
   --amber:   #ffc94a;          /* Sith / warning */

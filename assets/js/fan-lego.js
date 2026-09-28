@@ -21,15 +21,18 @@ window.FAN_PAGE = {
         desc: 'LEGO’s own anniversary page for the games. Three decades from LEGO Island to the Skywalker Saga, and the studs never stopped being satisfying to hoover up.',
         meta: '#LEGOGames30' },
     ],
-    /* the Star Wars run and the Pirates pause screen are captioned once, in
-       fan-shots.js, and shown here and on their own pages from the same rows */
-    pick: ['lego-star-wars-hundred', 'lego-pirates-hundred'] },
+    /* the Star Wars run is captioned once, in fan-shots.js, and shown here
+       and on its own page from the same row. LEGO Pirates used to have its
+       pause screen here as well, a special frame no other finished game got
+       (it was simply the first one added); it came out on 2026-09-28 and is
+       one tile in the catalogue above like the rest. */
+    pick: ['lego-star-wars-hundred'] },
   /* the complete index. Every other section on this page is a choice; this one
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
   { id: 'works', kind: 'works', fold: true, title: 'On Screen', note: 'the films and the series',
-    lede: 'The games are the catalogue above, all twenty-nine of them. This is the other half: five cinema films and the television line, which by now has run longer than most of the things it parodies.',
+    lede: 'The games are the catalogue above: twenty-six you can buy on Steam, and three that never were. This is the other half: five cinema films and the television line, which by now has run longer than most of the things it parodies.',
     items: [
       { title: 'The Films', sub: '2010 – 2024', unit: 'film',
         desc: 'Four in the LEGO Movie universe, one direct-to-video before it, and one documentary after. The first one is a genuinely good film about creativity that also happens to be a two-hour toy advert, and it knows it.',

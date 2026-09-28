@@ -1,0 +1,222 @@
+/* ============================================================
+   backdrops.css: the backdrop behind each main tab.
+   Markup: _includes/backdrop.html. /worlds/ has its own (the rift, in
+   fandom.css), and these follow the rules that one learned the hard way:
+
+     A FIXED LAYER, not inside any section, so no box can crop it.
+     NO FILTERS, NO MASKS, NO GROUP OPACITY: every one of those is an
+       offscreen pass over a screen-sized layer, and the first rift did all
+       three and made the tiles below the fold paint late. Soft colour comes
+       from radial gradients, which are soft by construction and rasterise once.
+     ONLY TRANSFORM AND OPACITY ANIMATE, which the compositor handles without
+       a repaint.
+
+   It sits at z-index 0 with #field, after it in the document so it paints
+   over the circuit canvas, and under the HUD grid (body::before, z-index 1)
+   and everything else. Reduced motion keeps every layer, and stops it moving.
+   ============================================================ */
+
+.bd {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
+}
+/* the same foot fade as the rift: keeps the tab bar legible over whatever is
+   drifting behind it. A gradient in the page colour, not a mask. */
+.bd::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(transparent 70%, rgba(8, 8, 10, .5));
+}
+
+
+/* ── Home: aurora ──
+   Four long, thin bands of the site's own gradient (the green, blue and gold
+   under the hero lede) swaying across the top of the screen like northern
+   lights. Each band is one radial gradient squashed into a ribbon: an ellipse
+   far wider than it is tall, fading to nothing at its own edge, so there is
+   no blur anywhere and nothing to rasterise twice. */
+.bd-aurora {
+  position: absolute; left: -30%; right: -30%; top: -18%; height: 90%;
+}
+.bd-aurora i {
+  position: absolute; inset: 0;
+  animation: bd-sway var(--t) ease-in-out infinite alternate;
+  animation-delay: var(--d);
+}
+.bd-aurora i:nth-child(1) {
+  --t: 28s; --d: -6s; --r0: -9deg; --r1: -3deg;
+  background: radial-gradient(ellipse 34% 7% at 38% 36%, rgba(63, 213, 137, .20), transparent 70%);
+}
+.bd-aurora i:nth-child(2) {
+  --t: 36s; --d: -19s; --r0: 5deg; --r1: 11deg;
+  background: radial-gradient(ellipse 30% 6% at 60% 28%, rgba(95, 163, 236, .19), transparent 70%);
+}
+.bd-aurora i:nth-child(3) {
+  --t: 44s; --d: -30s; --r0: -4deg; --r1: 3deg;
+  background: radial-gradient(ellipse 26% 5% at 72% 50%, rgba(245, 198, 60, .12), transparent 70%);
+}
+/* the wide, faint wash the bands hang in, so they read as light in the air
+   rather than four stripes */
+.bd-aurora i:nth-child(4) {
+  --t: 60s; --d: -12s; --r0: -2deg; --r1: 2deg;
+  background:
+    radial-gradient(ellipse 48% 26% at 44% 34%, rgba(63, 191, 127, .07), transparent 72%),
+    radial-gradient(ellipse 40% 22% at 66% 40%, rgba(95, 163, 236, .07), transparent 72%);
+}
+@keyframes bd-sway {
+  from { transform: translateX(-7%) rotate(var(--r0)) scaleY(.85); }
+  to   { transform: translateX(7%)  rotate(var(--r1)) scaleY(1.2); }
+}
+
+
+/* ── Work: the drafting table ──
+   The job is building iPhone apps, so the backdrop is one being drawn: a
+   phone in blueprint line with its dimensions called out and an app laid out
+   on its screen in dashed wireframe, turning slowly on the right of the page.
+   A second copy, smaller and fainter, sits further back on the left for depth.
+
+   One <symbol>, drawn twice with <use>. The strength of each copy is --k,
+   which inherits into the use tree, so the far one is fainter without an
+   opacity on the element (group opacity is an offscreen pass). */
+.bd-sheet { position: absolute; width: 0; height: 0; }
+.bd-phone {
+  --k: 1; --r0: -10deg; --r1: -6deg;
+  position: absolute; right: -4%; top: 50%;
+  height: 118vh; aspect-ratio: 600 / 1010; width: auto;
+  transform: translateY(-50%) rotate(var(--r0));
+  animation: bd-float 34s ease-in-out infinite alternate;
+  overflow: visible;
+}
+.bd-phone--far {
+  --k: .42; --r0: 11deg; --r1: 15deg;
+  right: auto; left: -9%; top: 58%; height: 70vh;
+  animation-duration: 46s; animation-delay: -20s;
+}
+@keyframes bd-float {
+  from { transform: translateY(-52%) rotate(var(--r0)); }
+  to   { transform: translateY(-47%) rotate(var(--r1)); }
+}
+/* .bd-phone is a <div> around the drawing, not the <svg> itself. Animated on
+   the <svg> element, the float was not handed to the compositor: Chromium
+   re-laid out and repainted both phones on every frame, forever (~58 layouts
+   and ~178 paints a second on an idle page). The same animation on a plain
+   box draws identically and costs nothing between frames. */
+.bd-phone > svg { display: block; width: 100%; height: 100%; overflow: visible; }
+/* Class selectors only, no ".bd-phone *": the shapes are drawn through <use>,
+   and a selector that needs the <svg> as an ancestor does not reach into the
+   copy. --k does, because inherited properties flow from <use> into it. */
+.bd-b, .bd-s, .bd-w, .bd-c, .bd-d { fill: none; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.bd-b { stroke: rgba(95, 163, 236, calc(.34 * var(--k))); stroke-width: 1.4; fill: rgba(95, 163, 236, calc(.025 * var(--k))); }
+.bd-s { stroke: rgba(95, 163, 236, calc(.22 * var(--k))); stroke-dasharray: 6 5; }
+.bd-w { stroke: rgba(63, 213, 137, calc(.22 * var(--k))); stroke-dasharray: 3 4; }
+.bd-c { stroke: rgba(95, 163, 236, calc(.12 * var(--k))); stroke-dasharray: 10 6 2 6; }
+.bd-d { stroke: rgba(245, 198, 60, calc(.34 * var(--k))); }
+.bd-t {
+  fill: rgba(245, 198, 60, calc(.55 * var(--k)));
+  font-family: var(--mono); font-size: 18px; letter-spacing: .08em;
+}
+/* on a phone the drawing would sit under the text, so it moves further off
+   the edge and only the nearer copy stays */
+@media (max-width: 700px) {
+  .bd-phone { right: -50%; height: 72vh; --k: .6; }
+  .bd-phone--far { display: none; }
+  /* the dimension labels are text, and on a phone they sat in the reading
+     column: "R 55" read as a footnote on whatever line scrolled under it */
+  .bd-t { display: none; }
+}
+
+
+/* ── Projects: a springboard ──
+   A home screen of app icons, far bigger than the window and turned on its
+   side, panning slowly back and forth. The outlines are one SVG tile repeated
+   by the background, so a hundred of them cost one small image. A handful are
+   lit in the site's accents and pulse at their own pace, like apps getting
+   notifications.
+
+   The tile is centred on the board (background-position: 50% 50%), so the
+   board's centre is the centre of an icon and each lit one is placed in whole
+   cells from there: --x / --y count icons, not pixels. It pans with an
+   alternate animation rather than a loop, because a loop would have to jump
+   back a cell and the lit icons would jump with it. */
+.bd-board {
+  --cell: 108px;
+  position: absolute; left: 50%; top: 50%;
+  width: max(190vw, 190vh); aspect-ratio: 1 / 1;
+  margin: calc(max(190vw, 190vh) / -2) 0 0 calc(max(190vw, 190vh) / -2);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='108' height='108'%3E%3Crect x='16' y='16' width='76' height='76' rx='20' fill='rgba(236,234,227,0.018)' stroke='rgba(236,234,227,0.07)'/%3E%3C/svg%3E");
+  background-size: var(--cell) var(--cell);
+  background-position: 50% 50%;
+  animation: bd-pan 70s ease-in-out infinite alternate;
+}
+@keyframes bd-pan {
+  from { transform: rotate(-14deg) translate(-2.5%, 1.5%); }
+  to   { transform: rotate(-11deg) translate(2.5%, -1.5%); }
+}
+.bd-board i {
+  position: absolute;
+  left: calc(50% - 38px + var(--x) * var(--cell));
+  top:  calc(50% - 38px + var(--y) * var(--cell));
+  width: 76px; height: 76px; border-radius: 20px;
+  background: linear-gradient(145deg,
+    color-mix(in srgb, var(--c) 30%, transparent),
+    color-mix(in srgb, var(--c) 6%, transparent));
+  border: 1px solid color-mix(in srgb, var(--c) 45%, transparent);
+  box-shadow: 0 0 40px -6px color-mix(in srgb, var(--c) 40%, transparent);
+  opacity: .12;
+  animation: bd-notify var(--t) ease-in-out infinite;
+  animation-delay: var(--d);
+}
+@keyframes bd-notify {
+  0%, 100% { opacity: .12; }
+  45%, 60% { opacity: .85; }
+}
+/* Reduce Transparency / Increase Contrast: the lit tiles hold still at their
+   resting glow instead of pulsing up behind card text (components.css makes
+   the cards themselves solid) */
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .bd-board i { animation: none; opacity: .12; }
+}
+
+
+/* ── Education: chalk ──
+   UCI blue and gold in the air, and the notation of the two subjects rising
+   through it the way chalk dust does: maths and computer science, a sum and
+   an integral beside O(n log n) and a lambda. Each symbol has its own column
+   (--x), size (--s), pace (--t) and a negative start (--d), so on arrival the
+   screen is already mid-drift rather than everything starting at the floor. */
+.bd-light {
+  position: absolute; left: 50%; top: 45%;
+  width: max(160vw, 160vh); aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 34%, rgba(0, 100, 164, .13), transparent 40%),
+    radial-gradient(circle at 70% 40%, rgba(255, 210, 0, .04), transparent 34%),
+    radial-gradient(circle at 56% 70%, rgba(0, 100, 164, .07), transparent 38%);
+  animation: bd-turn 90s linear infinite;
+}
+@keyframes bd-turn {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.bd-g {
+  position: absolute; left: var(--x); top: 104%;
+  font-family: var(--mono); font-size: var(--s); line-height: 1;
+  white-space: nowrap; color: rgba(236, 234, 227, .11);
+  animation: bd-rise var(--t) linear infinite;
+  animation-delay: var(--d);
+}
+.bd-g--gold { color: rgba(255, 210, 0, .12); }
+.bd-g--blue { color: rgba(110, 170, 225, .2); }
+@keyframes bd-rise {
+  0%   { transform: translateY(0) rotate(-6deg); opacity: 0; }
+  12%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateY(-118vh) rotate(8deg); opacity: 0; }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .bd-aurora i, .bd-phone, .bd-board, .bd-board i, .bd-light { animation: none; }
+  /* the symbols stand still where they were placed instead of at the floor */
+  .bd-g { animation: none; top: var(--y); }
+}

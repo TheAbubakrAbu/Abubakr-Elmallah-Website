@@ -38,6 +38,17 @@
   const mouse = { x: -9999, y: -9999 };
   let w, h, dpr, cols, rows, packets = [], sparks = [];
 
+  /* A touch screen: no mouse, so nothing steers the packets, and they only
+     travel 26 to 73px a second. Two things are cheaper there and read the
+     same: the canvas is one pixel per CSS pixel (below, in size()) and it is
+     drawn about sixteen times a second (MIN_MS, further down). Nearly the
+     whole cost of this file is clearing and rastering the canvas, and at up
+     to two pixels per pixel and 30fps that was 1,170 x 1,688 pixels thirty
+     times a second: 80 to 130ms of every second of a phone's main thread
+     (105ms/s measured at 390x844 with the CPU slowed 4x; 27ms/s after,
+     with the field switched off entirely at 1ms/s). */
+  const TOUCH = window.matchMedia('(hover: none)').matches;
+
   const X = c => c * STEP;
   const Y = r => r * STEP;
 
@@ -88,7 +99,11 @@
        during a scroll. That is not a new viewport, and respawning the whole
        field for it made the animation visibly restart mid-scroll. */
     if (innerWidth === w && Math.abs(innerHeight - h) < 120 && packets.length) return;
-    dpr = Math.min(devicePixelRatio || 1, 2);
+    /* one canvas pixel per CSS pixel on a touch screen (see TOUCH): the
+       traces are hairlines over a dark page, and at 3x a phone screen the
+       softness of a 1px line drawn at 1x is not there to be seen behind the
+       page, while the canvas is a quarter the pixels of the 2x one */
+    dpr = Math.min(devicePixelRatio || 1, TOUCH ? 1 : 2);
     w = innerWidth; h = innerHeight;
     canvas.width = w * dpr; canvas.height = h * dpr;
     canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
@@ -105,10 +120,23 @@
   document.documentElement.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
   size();
 
+  /* About 16fps on a touch screen (see TOUCH): at 26 to 73px a second a
+     packet moves under 5px between frames, which the eye reads as the same
+     glide it read at 30 and at 60. It was 60, full-viewport, for the life
+     of the page, then 30, and the rest of the cost was in the frame count.
+     A mouse keeps every frame, since the packets answer to it. */
+  const MIN_MS = TOUCH ? 60 : 0;
   let last = 0;
+  /* The next frame is asked for when it is due, not every frame: at a fixed
+     rate a touch screen used to take every animation frame and hand most of
+     them back unused, which kept the browser rendering sixty times a second.
+     Under a cover (the launch screen, the lightbox, a photo deck) it checks
+     back every quarter second instead of every frame. */
+  const next = ms => ms ? setTimeout(() => requestAnimationFrame(frame), ms) : requestAnimationFrame(frame);
   function frame(ts) {
     /* fully covered by the intro cover or the lightbox: skip the drawing, keep the clock */
-    if (document.documentElement.classList.contains('intro-lock')) { last = ts; requestAnimationFrame(frame); return; }
+    if (document.documentElement.classList.contains('intro-lock')) { last = 0; next(250); return; }
+    if (MIN_MS && last && ts - last < MIN_MS - 4) { requestAnimationFrame(frame); return; }
     const dt = last ? Math.min((ts - last) / 1000, 0.05) : 0;
     last = ts;
     ctx.clearRect(0, 0, w, h);
@@ -173,7 +201,7 @@
     }
     if (sparks.length > 400) sparks.splice(0, sparks.length - 400);
 
-    requestAnimationFrame(frame);
+    next(MIN_MS ? MIN_MS - 12 : 0);
   }
   requestAnimationFrame(frame);
 })();

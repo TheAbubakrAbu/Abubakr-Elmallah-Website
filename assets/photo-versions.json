@@ -1,0 +1,29 @@
+---
+permalink: /assets/photo-versions.json
+---
+{%- comment -%}
+  The photo list the service worker reads: every file under /assets/img/years/
+  and /assets/img/years-large/ as 'path?v=<hash of its bytes>', the hash out of
+  _data/photo_versions.yml (tools/stamp.py), in site.static_files order.
+
+  It used to be inlined into sw.js itself, which made the worker 334 KB for a
+  list most visits never look at; see "the photo list" in sw.js for when it is
+  read. The front matter makes this a page, so Jekyll runs the Liquid below
+  and, because a page is not a static file, keeps it out of the worker's
+  ALL_ASSETS list. tools/stamp.py writes a versions.yml entry for it, the hash
+  of photo_versions.yml, so v.html gives it a ?v= that changes exactly when a
+  photograph does.
+
+  Plain JSON, one entry per line, comma before every entry but the first: the
+  loop filters as it goes, so forloop.last cannot say where the list ends.
+{%- endcomment -%}
+[
+{%- assign first = true -%}
+{%- for f in site.static_files -%}
+{%- if f.path contains '/assets/img/years/' or f.path contains '/assets/img/years-large/' -%}
+{%- assign pv = site.data.photo_versions[f.path] -%}
+{%- if first -%}{%- assign first = false -%}{%- else -%},{%- endif %}
+  "{{ f.path }}{% if pv %}?v={{ pv }}{% endif %}"
+{%- endif -%}
+{%- endfor %}
+]

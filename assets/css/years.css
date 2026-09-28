@@ -9,6 +9,27 @@
    breathing room between the copy and the first row of cards lives here */
 .years { --yg-gap: 10px; margin-top: 1.6rem; }
 
+/* The covers are written by years.js, which on a slow first visit runs after
+   the page has first painted: the mount was 0px tall until then, and on a
+   phone everything under it (the roles, the apps) was pushed down a screen
+   or more as the covers arrived (CLS 0.12 on /college/). An empty mount now
+   holds the room its covers will take: --n public covers (the ID card is
+   behind the photo switch and not counted), square, in rows of four, of two
+   at 760px and below, 1.2rem apart (0.75rem at 420px), the same grid as
+   .years-grid in components.css. Keep --n in step with years-data.js. */
+.years { container-type: inline-size; }
+.years[data-years="uci"] { --n: 2; }
+.years[data-years="hs"]  { --n: 4; }
+.years[data-years="ms"]  { --n: 2; }
+.years:empty::before {
+  --cols: 4; --g: 1.2rem;
+  --rows: round(up, calc(var(--n, 1) / var(--cols)), 1);
+  content: ""; display: block;
+  height: calc(var(--rows) * (100cqw - (var(--cols) - 1) * var(--g)) / var(--cols) + (var(--rows) - 1) * var(--g));
+}
+@media (max-width: 760px) { .years:empty::before { --cols: 2; } }
+@media (max-width: 420px) { .years:empty::before { --g: 0.75rem; } }
+
 /* ── the cards ──
    .years-grid / .year-card live in components.css and are unchanged; all that
    is added here is the open state, so it is obvious which year is showing. */
@@ -26,9 +47,12 @@
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
 }
 
-/* ── the expanded year ── */
+/* ── the expanded year ──
+   A <section>, so it picked up layout.css's page gutter and sat 72px in
+   from the covers that opened it (40px on a phone); it belongs flush with
+   them. */
 .yg-panel {
-  margin-top: 1.4rem;
+  margin-top: 1.4rem; padding-inline: 0; max-width: none;
   opacity: 0; transform: translateY(-6px);
   transition: opacity .32s var(--ease), transform .32s var(--ease);
 }
@@ -42,10 +66,13 @@
   border-bottom: 1px solid var(--line);
 }
 
-.yg-head h4 {
-  font-family: var(--serif); font-weight: 900; font-size: 1.5rem;
+.yg-head :is(h3, h4) {
+  font-family: var(--serif); font-weight: 700; font-size: 1.5rem;
   letter-spacing: -0.02em; color: var(--ink);
 }
+/* years.js moves focus here when it scrolls a phone down to an opened year;
+   the ring is for a keyboard arrival, not for that */
+.yg-head h3:focus:not(:focus-visible) { outline: none; }
 
 .yg-head .yg-span {
   font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em;
@@ -65,14 +92,18 @@
 }
 
 .yg-shut {
-  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--mute);
   padding: 0.32rem 0.7rem; border-radius: 100px;
   border: 1px solid var(--line); background: transparent; cursor: pointer;
   transition: color .2s, border-color .2s, background .2s;
 }
 
-.yg-shut:hover { color: var(--ink); border-color: var(--green); background: rgba(31,157,92,.08); }
+@media (hover: hover) {
+  .yg-shut:hover { color: var(--ink); border-color: var(--green); background: rgba(31,157,92,.08); }
+}
+/* the one way to fold a year back up, so a thumb-sized target on a phone */
+@media (pointer: coarse) { .yg-shut { min-height: 44px; padding-inline: 1rem; } }
 
 /* ── the justified rows ──
    years.js sets the width and height on every frame; all this has to do is put
@@ -109,7 +140,7 @@
 .yg-when {
   position: absolute; left: 0; right: 0; bottom: 0;
   padding: 1.6rem 0.7rem 0.55rem;
-  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em;
   color: #fff; text-align: left;
   background: linear-gradient(to top, rgba(0,0,0,.78), transparent);
   opacity: 0; transform: translateY(4px);
@@ -121,18 +152,39 @@
 
 @media (hover: none) { .yg-when { opacity: 1; transform: none; } }
 
-/* ── the deck ── */
+/* ── the deck ──
+   9500, the shared lightbox's layer: over the grain (9000) and the vignette
+   (8000), which at 300 animated over the photo and darkened its corners,
+   and under the custom cursor (10000). No backdrop blur: behind a 96% fill
+   it could not be seen, and it cost a full-screen blur on every frame of
+   the fade. Closing is quicker than opening, and ease-out. */
 .yg-deck {
-  position: fixed; inset: 0; z-index: 300; overscroll-behavior: contain;
+  position: fixed; inset: 0; z-index: 9500; overscroll-behavior: contain;
   display: flex; align-items: center; justify-content: center;
-  padding: clamp(1rem, 4vw, 3rem);
-  background: rgba(4,4,6,.94);
-  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  /* The insets are the status bar, the Dynamic Island and the home indicator
+     in the home-screen app (head.html, viewport-fit=cover), 0 in a tab. The
+     photo, the close button and the arrows all sit inside them; years.js
+     reads the side padding back to size the photo, so it follows too. */
+  --pad: clamp(1rem, 4vw, 3rem);
+  padding: var(--pad);
+  padding-top: calc(var(--pad) + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(var(--pad) + env(safe-area-inset-bottom, 0px));
+  padding-left: calc(var(--pad) + env(safe-area-inset-left, 0px));
+  padding-right: calc(var(--pad) + env(safe-area-inset-right, 0px));
+  /* iOS scrolls the page behind by touch even with html.intro-lock's
+     overflow: hidden on (components.css). The deck does its own swiping from
+     touch events, which touch-action does not affect, so nothing is lost by
+     telling the browser there is no scrolling or zooming to do here. */
+  touch-action: none;
+  background: rgba(4,4,6,.96);
   opacity: 0; visibility: hidden;
-  transition: opacity .28s var(--ease), visibility .28s;
+  transition: opacity .18s ease-out, visibility 0s .18s;
 }
 
-.yg-deck.open { opacity: 1; visibility: visible; }
+/* visible at once on open (the fade is opacity's job): a visibility
+   transition is still `hidden` at its first instant, and years.js moves
+   focus to the close button in that instant, which a hidden element refuses */
+.yg-deck.open { opacity: 1; visibility: visible; transition: opacity .28s var(--ease), visibility 0s; }
 /* while closed (including the fade-out) it must not intercept taps */
 .yg-deck:not(.open) { pointer-events: none; }
 
@@ -144,9 +196,17 @@
 /* years.js sets width and height inline from the photo's own proportions, so
    the 1000px grid frame and the 2000px copy that replaces it take exactly the
    same room; the bounds below are what it fits inside. Keep the 1100px of
-   .yg-stage in step with fit() in years.js and travels.js. */
+   .yg-stage in step with fit() in years.js and travels.js.
+
+   dvh, not vh: on iPhone Safari 100vh is the height with the toolbars
+   collapsed, so with them showing the bottom of a tall photo, and the
+   caption bar with it, ran under the toolbar. The vh line stays first for a
+   browser without dvh. The insets come off too, since the deck's padding
+   now holds them (scaleOf() in years.js reads this computed value). */
 .yg-stage img {
-  max-width: 100%; max-height: calc(100vh - 8rem);
+  max-width: 100%;
+  max-height: calc(100vh - 8rem);
+  max-height: calc(100dvh - 8rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
   width: auto; height: auto; display: block;
   border-radius: 14px; border: 1px solid var(--line);
   box-shadow: 0 40px 90px -40px #000;
@@ -161,13 +221,20 @@
   transition: background .2s, border-color .2s, color .2s;
 }
 
-.yg-x:hover, .yg-prev:hover, .yg-next:hover {
-  background: var(--green); border-color: var(--green); color: #05140c;
+/* hover only where there is a pointer: on a phone every tapped arrow
+   stayed filled green until the next tap somewhere else */
+@media (hover: hover) {
+  .yg-x:hover, .yg-prev:hover, .yg-next:hover {
+    background: var(--green); border-color: var(--green); color: #05140c;
+  }
 }
+.yg-x:active, .yg-prev:active, .yg-next:active { scale: .92; }
 
-.yg-x { top: 1.1rem; right: 1.1rem; }
-.yg-prev { left: 1.1rem; top: 50%; margin-top: -22px; font-size: 1.6rem; }
-.yg-next { right: 1.1rem; top: 50%; margin-top: -22px; font-size: 1.6rem; }
+/* each one clears the status bar, the Dynamic Island and the home indicator
+   in the home-screen app (see .yg-deck); the insets are 0 in a browser tab */
+.yg-x { top: calc(1.1rem + env(safe-area-inset-top, 0px)); right: calc(1.1rem + env(safe-area-inset-right, 0px)); }
+.yg-prev { left: calc(1.1rem + env(safe-area-inset-left, 0px)); top: 50%; margin-top: -22px; font-size: 1.6rem; }
+.yg-next { right: calc(1.1rem + env(safe-area-inset-right, 0px)); top: 50%; margin-top: -22px; font-size: 1.6rem; }
 
 /* year · date · place · position, along the bottom. The place is the town
    the photo was taken in, and is only there for the photos that carry one
@@ -176,6 +243,7 @@
   position: absolute; left: 0; right: 0; bottom: 0;
   display: flex; align-items: baseline; justify-content: center; gap: 1.2rem;
   flex-wrap: wrap; padding: 1.1rem 1.4rem 1.4rem;
+  padding-bottom: calc(1.4rem + env(safe-area-inset-bottom, 0px));   /* over the home indicator */
   font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em;
 }
 
@@ -186,8 +254,11 @@
 .yg-bar .yg-count { color: var(--mute); }
 
 @media (max-width: 620px) {
-  .yg-stage img { max-height: calc(100vh - 10rem); }
-  .yg-prev, .yg-next { top: auto; bottom: 4.4rem; margin-top: 0; }
+  .yg-stage img {
+    max-height: calc(100vh - 10rem);
+    max-height: calc(100dvh - 10rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  }
+  .yg-prev, .yg-next { top: auto; bottom: calc(4.4rem + env(safe-area-inset-bottom, 0px)); margin-top: 0; }
   .yg-head h4 { font-size: 1.25rem; }
 }
 
@@ -199,6 +270,6 @@
 }
 .yg-panel .yg-chap:first-of-type { margin-top: 0.2rem; }
 .yg-chap span {
-  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em;
   color: var(--gold);
 }

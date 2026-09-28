@@ -1,0 +1,85 @@
+# The five schools I have been to, in order, each one an animal.
+#
+# ONE LIST, THREE PAGES, drawn by _includes/mascots.html. /education/ is the
+# only page that spans all five, so it gets the full ladder. /high-school/ and
+# /college/ get the same list compressed into a single rail with their own
+# school lit up and the rest quieter, because on those pages the run of
+# schools is context, not the subject. Two renderings, one list, so a
+# correction is made once and lands everywhere.
+#
+# EVERY LINE HERE IS OFF A PHOTOGRAPH, not off memory. The hawk is on the
+# Cielo Vista marquee in pre-ms/2016-09-08-0721, the roadrunner is printed on
+# the 7th-grade ID card in id-pics, the mustang is on the school sign in
+# hs-senior/2024-05-20-1744-2. The years chain back from the one hard anchor
+# in the library, the ID card that reads Gr: 007 for 2018-2019.
+#
+# A missing `mascot` is not missing data, it is the finding: Minaret is the one
+# school of the five with no animal on record anywhere I can find. The page
+# prints "None" for it rather than skipping the card, since the gap at the
+# start of the row is the point.
+#
+# This used to be mascots.js, which wrote the same markup into the page after
+# it had loaded. Built here instead, the ladder and the rail are in the page
+# from its first paint: the rail no longer arrives late and pushes /college/
+# down on a phone, and both read without scripts.
+#
+#   id     what `mark` names on a page's rail
+#   short  the school's name on the rail
+#   step   the ladder's label for that stage
+#   tint   the card's own colour (--m)
+
+- id: minaret
+  school: Minaret Academy
+  short: Minaret
+  step: First school
+  when: 2011 – 2015 · grades K to 3
+  tint: var(--green)
+  note: >-
+    Kindergarten through 3rd grade at the Islamic school in Anaheim, and the
+    one gap in the row: no mascot on record anywhere I can find, and none I
+    ever knew. The name is the emblem.
+
+- id: hawks
+  mascot: Hawks
+  school: Cielo Vista Elementary
+  short: Cielo Vista
+  step: Elementary
+  when: 2015 – 2018 · grades 4 to 6
+  tint: var(--blue)
+  note: >-
+    The marquee out front put it plainly: “It’s a great day to be a HAWK!”
+    There is a photo of me standing under that sign in September 2016,
+    backpack on.
+
+- id: roadrunners
+  mascot: Roadrunners
+  school: RSM Intermediate
+  short: RSM
+  step: Middle
+  when: 2018 – 2020 · grades 7 and 8
+  tint: var(--green-2)
+  note: >-
+    “Home of the Roadrunners” is printed on the student ID card itself, on
+    the line directly under my name.
+
+- id: mustangs
+  mascot: Mustangs
+  school: Trabuco Hills High School
+  short: Trabuco Hills
+  step: High school
+  when: 2020 – 2024 · Mission Viejo, CA
+  tint: var(--gold)
+  note: >-
+    Four years of it, and in the last weeks of senior year the school sign
+    read “Congratulations THHS Mustangs” on the way in.
+
+- id: anteaters
+  mascot: Anteaters
+  school: University of California, Irvine
+  short: UC Irvine
+  step: College
+  when: 2024 – 2028 · Irvine, CA
+  tint: var(--blue-2)
+  note: >-
+    The current one, and the only one of the five with its own hand signal
+    and its own war cry. Zot zot zot.

@@ -41,20 +41,24 @@ window.FAN_PAGE = {
         meta: 'The oldest Peanuts licence in parks' },
     ] },
 
+  /* The ride pages live on sixflags.com since the Cedar Fair merger: every
+     knotts.com/rides/* address now lands on the park's front page there.
+     Xcelerator has no page of its own on the new site, so it points at the
+     attractions index. */
   { id: 'rides', kind: 'cards', fold: true, title: 'The Rides', note: 'oldest first',
     items: [
       { title: 'Calico Mine Ride', sub: '1960', tag: 'Dark ride', desc: 'Ore cars through a mountain of glowing minerals and a cave-in. Built by the park itself, and restored rather than replaced.',
-        href: 'https://www.knotts.com/rides/calico-mine-ride', link: 'knotts.com', meta: 'Ghost Town' },
+        href: 'https://www.sixflags.com/knotts/attractions/calico-mine-ride', link: 'sixflags.com', meta: 'Ghost Town' },
       { title: 'Timber Mountain Log Ride', sub: '1969', tag: 'Water', desc: 'One of the oldest log flumes anywhere, with a full show building of animatronics on the way up.',
-        href: 'https://www.knotts.com/rides/timber-mountain-log-ride', link: 'knotts.com', meta: 'Ghost Town' },
+        href: 'https://www.sixflags.com/knotts/attractions/timber-mountain-log-ride', link: 'sixflags.com', meta: 'Ghost Town' },
       { title: 'Montezooma', sub: '1978', tag: 'Coaster', desc: 'A shuttle loop that fires you forwards, through a loop, and then does the whole thing again backwards. Rebuilt in 2024.',
-        href: 'https://www.knotts.com/rides', link: 'knotts.com', meta: 'Fiesta Village' },
+        href: 'https://www.sixflags.com/knotts/attractions/montezooma-the-forbidden-fortress', link: 'sixflags.com', meta: 'Fiesta Village' },
       { title: 'GhostRider', sub: '1998', tag: 'Coaster', desc: 'The longest wooden coaster on the west coast, retracked in 2016 and much better for it.',
-        href: 'https://www.knotts.com/rides/ghostrider', link: 'knotts.com', meta: 'Ghost Town' },
+        href: 'https://www.sixflags.com/knotts/attractions/ghostrider', link: 'sixflags.com', meta: 'Ghost Town' },
       { title: 'Xcelerator', sub: '2002', tag: 'Coaster', desc: 'Nought to eighty-two miles an hour in 2.3 seconds, up a top hat, in a fifties hot-rod car.',
-        href: 'https://www.knotts.com/rides/xcelerator-the-ride', link: 'knotts.com', meta: 'Boardwalk' },
+        href: 'https://www.sixflags.com/knotts/attractions', link: 'sixflags.com', meta: 'Boardwalk' },
       { title: 'Silver Bullet', sub: '2004', tag: 'Coaster', desc: 'An inverted coaster that runs out over the middle of the park, so you hear it all day from anywhere.',
-        href: 'https://www.knotts.com/rides/silver-bullet', link: 'knotts.com', meta: 'Ghost Town' },
+        href: 'https://www.sixflags.com/knotts/attractions/silver-bullet', link: 'sixflags.com', meta: 'Ghost Town' },
     ] },
 
   { id: 'town', kind: 'tiles', title: 'Ghost Town', note: 'the reason the place exists',

@@ -91,6 +91,15 @@ window.FAN_PAGE = {
       { title: '1955 \u2013 2001', sub: 'Opening range', desc: 'From the original Disneyland to Tokyo DisneySea and California Adventure.' },
     ] },
 
+  /* The bronze over both entrance tunnels at Disneyland, word for word: the
+     world is singular, one comma, no serial comma before "and fantasy". The
+     same plaque closes the invitation at the top of /worlds/. */
+  { id: 'plaque', kind: 'quotes', title: 'Over the Tunnels', note: 'the first thing Disneyland says to you',
+    items: [
+      { title: 'Here you leave today and enter the world of yesterday, tomorrow and fantasy.',
+        sub: 'the plaque over the entrance tunnels · Disneyland, 1955' },
+    ] },
+
   { id: 'anaheim', kind: 'cards', title: 'Disneyland Resort', note: 'Anaheim, California \u00b7 both parks, been to all of it', been: true,
     lede: 'The original, and the local one. Walt actually walked around this park, which is a thing no other resort can say, and you can feel it in how tightly everything is packed: there is no spare land here, so every corner had to earn its place.',
     items: [

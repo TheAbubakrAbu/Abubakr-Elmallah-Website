@@ -20,14 +20,14 @@
 }
 
 .fan-title {
-  font-family: var(--serif); font-weight: 900;
+  font-family: var(--serif); font-weight: 700;
   font-size: clamp(2.6rem, 8vw, 6rem); line-height: 0.92;
   letter-spacing: -0.04em; margin-bottom: 1rem;
 }
 
 .fan-lede-hero { max-width: 62ch; color: var(--ink-dim); font-size: 1.04rem; line-height: 1.8; }
 
-.fan-hero .back-link { margin-bottom: 1.6rem; }
+.fan-hero .crumbs { margin-bottom: 1.6rem; }
 
 .fan-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.6rem; }
 
@@ -172,7 +172,7 @@
 }
 
 .fan-card h4 {
-  font-family: var(--serif); font-weight: 800; font-size: 1.1rem;
+  font-family: var(--serif); font-weight: 600; font-size: 1.1rem;
   letter-spacing: -0.02em; line-height: 1.2; color: var(--ink);
 }
 
@@ -235,6 +235,19 @@
 /* the square becomes a stop glyph without a second icon in the markup */
 .fan-hear.is-playing svg { clip-path: inset(18%); border-radius: 1px; }
 
+/* A page's signature track, first in the hero's link row. The same button,
+   sized up to sit level with the .fan-link pills beside it and tinted in the
+   page's accent so it is the one to press. The player opens under the row. */
+.fan-hear--hero {
+  align-self: auto; margin: 0;
+  gap: 0.55rem; padding: 0.6rem 1.15rem 0.6rem 1rem;
+  font-size: 0.72rem; letter-spacing: 0.04em; text-transform: none;
+  background: color-mix(in srgb, var(--a, #f5c63c) 14%, transparent);
+  border-color: color-mix(in srgb, var(--a, #f5c63c) 50%, transparent);
+}
+.fan-hear--hero svg { width: 0.9em; height: 0.9em; }
+.fan-hero > .fan-stage { margin-top: 1.2rem; }
+
 /* The player itself: inserted after the item it belongs to and deleted when
    it stops, so it is never sitting in the page doing nothing. Capped in width
    because these are album uploads, which are a still image and a waveform,
@@ -258,6 +271,14 @@
   animation: fan-spin .7s linear infinite;
 }
 @keyframes fan-spin { to { transform: rotate(360deg); } }
+/* orbs.js: the thinking orb that replaces the spinner when it is loaded.
+   Centred over the black panel, gone as soon as the track is up. */
+.fan-stage.has-orb .fan-stage-vid::after { display: none; }
+.fan-stage-orb {
+  position: absolute; left: 50%; top: 50%; margin: -32px 0 0 -32px;
+  pointer-events: none;
+}
+.fan-stage:not(.is-waiting) .fan-stage-orb { display: none; }
 
 /* ── the transport ──
    Added only once the player is live, so nothing here is ever a dead control.
@@ -413,7 +434,7 @@
 
 .fan-land-head h4 {
   flex: 1 1 auto; min-width: 0;
-  font-family: var(--serif); font-weight: 800; font-size: 1.06rem;
+  font-family: var(--serif); font-weight: 600; font-size: 1.06rem;
   letter-spacing: -0.02em; line-height: 1.2; color: var(--ink);
   transition: color .3s;
 }
@@ -499,7 +520,7 @@
 
 .fan-rankhead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.7rem; }
 
-.fan-rankhead b { font-family: var(--serif); font-weight: 800; font-size: 1.02rem; letter-spacing: -0.01em; }
+.fan-rankhead b { font-family: var(--serif); font-weight: 600; font-size: 1.02rem; letter-spacing: -0.01em; }
 
 .fan-rankhead i { font-style: normal; font-family: var(--mono); font-size: 0.62rem; color: var(--mute); }
 
@@ -534,7 +555,7 @@
 
 .fan-what { display: flex; flex-direction: column; gap: 0.2rem; max-width: 62ch; }
 
-.fan-what b { font-family: var(--serif); font-weight: 800; font-size: 1rem; }
+.fan-what b { font-family: var(--serif); font-weight: 600; font-size: 1rem; }
 
 .fan-what em { font-style: normal; font-size: 0.85rem; line-height: 1.6; color: var(--ink-dim); }
 
@@ -572,7 +593,7 @@
 
 .fan-tiletext { display: flex; flex-direction: column; gap: 0.15rem; }
 
-.fan-tiletext b { font-family: var(--serif); font-weight: 800; font-size: 0.94rem; }
+.fan-tiletext b { font-family: var(--serif); font-weight: 600; font-size: 0.94rem; }
 
 .fan-tiletext i { font-style: normal; font-family: var(--mono); font-size: 0.6rem; color: var(--a, var(--gold)); opacity: .85; }
 
@@ -775,6 +796,16 @@
    is the whole reason the shot is here. */
 .fan-tileshot img { display: block; width: 100%; height: auto; }
 
+/* `more` on a catalogue item: frames that open in the viewer with the rest
+   but are not laid out on the tile. This line says how many are waiting,
+   under the pairs in list view; grid view shows the banner alone. */
+.fan-tilemore {
+  flex: 0 0 100%; text-align: center;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--mute); line-height: 1.6;
+}
+.fan-tiles--switch.is-grid .fan-tilemore { display: none; }
+
 /* `cols: N` on a tiles section. Below the breakpoints it still reflows on its
    own; the fixed count only kicks in once each column can actually hold a
    screenshot at a sensible size. */
@@ -865,6 +896,34 @@
 }
 
 .fan-tiles--switch.is-list .fan-chips { margin-top: 0.55rem; }
+
+/* ── what 100% takes ──
+   Inside a tile's description (see `hundred` in fanpage.js): two short lines
+   under the text, each led by a small label in the tile's own accent. */
+.fan-100 { display: block; margin-top: 0.5rem; }
+.fan-100-l { display: block; font-size: 0.74rem; line-height: 1.5; color: var(--ink-dim); }
+.fan-100-l + .fan-100-l { margin-top: 0.25rem; }
+.fan-100-k {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: color-mix(in srgb, var(--a, var(--gold)) 75%, var(--ink));
+  margin-right: 0.4rem;
+}
+
+/* ── not on Steam ──
+   A dashed, unfilled pill in the muted ink: the opposite of the green
+   hundred-percent stamp, and deliberately the quietest chip on the tile. The
+   tile around it keeps its text at full contrast and only greys its colour
+   swatch and title, so it reads as set aside rather than broken. */
+.fan-na {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.28rem 0.62rem 0.24rem;
+  border: 1px dashed color-mix(in srgb, var(--mute) 75%, transparent); border-radius: 999px;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--mute);
+}
+.fan-na i { font-style: normal; font-size: 0.72rem; line-height: 1; }
+.fan-tile.is-na .fan-swatch { filter: grayscale(1); opacity: .55; }
+.fan-tile.is-na .fan-tiletext b { color: var(--ink-dim); }
 
 .fan-done {
   display: inline-flex; align-items: center; gap: 0.5rem;
@@ -1017,7 +1076,7 @@
 }
 
 .fan-stat b {
-  font-family: var(--serif); font-weight: 900; line-height: 1;
+  font-family: var(--serif); font-weight: 700; line-height: 1;
   font-size: clamp(1.7rem, 3.4vw, 2.35rem); letter-spacing: -0.035em;
   color: var(--a, var(--gold));
 }
@@ -1078,7 +1137,7 @@
   background: var(--a, var(--gold)); box-shadow: 0 0 14px -1px var(--a, #f5c63c);
 }
 
-.fan-era h4 { font-family: var(--serif); font-weight: 800; font-size: 1.02rem; letter-spacing: -0.02em; line-height: 1.2; }
+.fan-era h4 { font-family: var(--serif); font-weight: 600; font-size: 1.02rem; letter-spacing: -0.02em; line-height: 1.2; }
 
 .fan-era p { font-size: 0.82rem; line-height: 1.6; color: var(--ink-dim); }
 
@@ -1116,7 +1175,7 @@
 
 .fan-film-num {
   position: absolute; right: 0.02em; bottom: -0.26em; pointer-events: none;
-  font-family: var(--serif); font-weight: 900; line-height: 0.78;
+  font-family: var(--serif); font-weight: 700; line-height: 0.78;
   font-size: clamp(6.5rem, 15vw, 10.5rem); letter-spacing: -0.05em;
   color: var(--a, var(--gold)); opacity: .1;
   transition: opacity .45s, transform .5s var(--ease);
@@ -1126,7 +1185,7 @@
 
 .fan-film-body { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 0.45rem; width: 100%; }
 
-.fan-film h4 { font-family: var(--serif); font-weight: 900; font-size: 1.32rem; letter-spacing: -0.03em; line-height: 1.1; }
+.fan-film h4 { font-family: var(--serif); font-weight: 700; font-size: 1.32rem; letter-spacing: -0.03em; line-height: 1.1; }
 
 .fan-film p { font-size: 0.86rem; line-height: 1.65; color: var(--ink-dim); max-width: 40ch; }
 
@@ -1223,7 +1282,7 @@
 
 .saber-text { display: flex; flex-direction: column; gap: 0.18rem; }
 
-.saber-text b { font-family: var(--serif); font-weight: 800; font-size: 0.96rem; }
+.saber-text b { font-family: var(--serif); font-weight: 600; font-size: 0.96rem; }
 
 .saber-text i { font-style: normal; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--a, var(--gold)); opacity: .9; }
 
@@ -1267,7 +1326,7 @@
 }
 
 .fan-shot figcaption b {
-  font-family: var(--serif); font-weight: 800; font-size: 0.98rem;
+  font-family: var(--serif); font-weight: 600; font-size: 0.98rem;
   letter-spacing: -0.02em; color: var(--a, var(--gold));
 }
 
@@ -1341,7 +1400,7 @@
 
 .fan-linkhead { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; }
 
-.fan-linkhead b { font-family: var(--serif); font-weight: 800; font-size: 1rem; letter-spacing: -0.02em; }
+.fan-linkhead b { font-family: var(--serif); font-weight: 600; font-size: 1rem; letter-spacing: -0.02em; }
 
 .fan-linkhead i {
   font-style: normal; flex: none; color: var(--a, var(--gold)); opacity: .55;
@@ -1563,7 +1622,7 @@ body[data-fan="sw"] .fan-film-num { font-weight: 700; opacity: .13; }
 body[data-fan="sw"] .fan-film:hover .fan-film-num { opacity: .24; }
 
 /* saga rows: the numeral is the episode number, so give it room and weight */
-body[data-fan="sw"] .fan-num { font-family: var(--serif); font-weight: 900; opacity: .85; }
+body[data-fan="sw"] .fan-num { font-family: var(--serif); font-weight: 700; opacity: .85; }
 
 /* stats read like a datapad readout */
 body[data-fan="sw"] .fan-stat b { text-shadow: 0 0 30px rgba(255,232,31,.3); }
@@ -1828,7 +1887,7 @@ body[data-fan="mcu"] { --a: #e0483a; }
 
 .fan-art-body q {
   quotes: "\201C" "\201D";
-  font-family: var(--serif); font-style: italic; font-weight: 700;
+  font-family: var(--serif); font-style: italic; font-weight: 500;
   font-size: clamp(1.05rem, 2.3vw, 1.45rem); line-height: 1.4;
   letter-spacing: -0.015em; color: var(--ink); text-wrap: balance;
 }
@@ -2917,24 +2976,25 @@ body[data-fan="knotts"] .fan-title {
 
 
 /* ── the real places ──
-   Photographs of a franchise's actual locations, drawn from the year galleries
-   by fan-been.js. A justified-ish grid rather than a strip: these are evidence
-   and they should be big enough to read, not a row of thumbnails. */
-/* Display is stated rather than inherited. This section is injected into a
-   page whose own stylesheet may already have an opinion about what a <section>
-   in it looks like, and on at least one of the ten it computed to inline-flex,
-   which shrank the grid to its content and stacked nine photographs in a
-   single 375px column. Saying it here costs one line and cannot be lost. */
-/* white-space is stated for the same reason. The "I went here" stamp on a card
-   used to share this class name and set nowrap, which reached in here and ran
-   long notes off the right edge; it is `.fan-beenstamp` now, so the collision
-   is gone. This still says what it wants rather than relying on the default. */
-.fan-been {
-  display: block; width: 100%; white-space: normal;
-  padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 auto 3.4rem;
+   Every other photograph of a franchise's actual locations, from fan-been.js,
+   drawn as the second half of the one "I Have Actually Been" section (see
+   kind 'irl' in fanpage.js), under the chosen photographs. A justified-ish
+   grid rather than a strip: these are evidence and they should be big enough
+   to read, not a row of thumbnails. */
+/* Display and white-space are stated rather than inherited: this block lands
+   in pages whose own stylesheets have opinions about what a section in them
+   looks like (one computed it to inline-flex, which shrank the grid to its
+   content and stacked nine photographs in a single column), and the "I went
+   here" stamp once shared a class name with it and set nowrap. */
+.fan-beenset { display: block; width: 100%; white-space: normal; margin-top: 2rem; }
+/* the note under the grid's heading; the switch hint is a .fan-lede too and
+   keeps its own rule (hidden unless the switch is off, below) */
+.fan-beenset > .fan-lede:not(.been-hint) { display: block; }
+.fan-beenset .been-t {
+  font-family: var(--serif); font-weight: 600; font-size: 1.15rem;
+  letter-spacing: -0.01em; color: var(--ink); margin: 0 0 0.35rem;
 }
-.fan-been > .fan-h2, .fan-been > .fan-lede { display: block; }
-.fan-been .been-grid {
+.fan-beenset .been-grid {
   display: grid; width: 100%; gap: 0.9rem;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   margin-top: 1.1rem;
@@ -2960,7 +3020,7 @@ body[data-fan="knotts"] .fan-title {
    The grid collapses to a column of names, because a grid sized for
    photographs is mostly gaps once the photographs are gone. */
 html:not([data-show-pics="on"]) .been a { display: none; }
-html:not([data-show-pics="on"]) .fan-been .been-grid {
+html:not([data-show-pics="on"]) .fan-beenset .been-grid {
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
   gap: 0.45rem 1.4rem;
 }
@@ -2968,7 +3028,7 @@ html:not([data-show-pics="on"]) .been figcaption { margin-top: 0; }
 html:not([data-show-pics="on"]) .been figcaption b::before {
   content: '\00b7'; color: var(--a, var(--gold)); margin-right: 0.4rem; opacity: .8;
 }
-html:not([data-show-pics="on"]) .fan-been .been-hint { display: block; }
+html:not([data-show-pics="on"]) .fan-beenset .been-hint { display: block; }
 .been-hint { display: none; margin-top: 0.9rem; }
 
 .been figcaption { display: grid; gap: 0.1rem; margin-top: 0.45rem; }
@@ -2980,7 +3040,7 @@ html:not([data-show-pics="on"]) .fan-been .been-hint { display: block; }
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
 }
 @media (max-width: 560px) {
-  .fan-been .been-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .fan-beenset .been-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
   .been img { height: 150px; }
 }
 @media (prefers-reduced-motion: reduce) { .been a { transition: none; } }

@@ -137,6 +137,8 @@ window.FAN_PAGE = {
           { n: 'Rogue Squadron', y: '1998' },
           { n: 'Knights of the Old Republic', y: '2003' },
           { n: 'Battlefront II', y: '2005' },
+          { n: 'LEGO Star Wars: The Video Game', y: '2005' },
+          { n: 'LEGO Star Wars II: The Original Trilogy', y: '2006' },
           { n: 'The Force Unleashed', y: '2008' },
           { n: 'LEGO Star Wars: The Complete Saga', y: '2007', big: true },
           { n: 'LEGO Star Wars III: The Clone Wars', y: '2011', big: true },
@@ -270,31 +272,17 @@ window.FAN_PAGE = {
      the LEGO catalogue and the Wizarding World page use. A `shots` name with
      no slash resolves beside the banner, so each game names its folder once.
      Raw captures in _originals/franchises/, and every frame is on /gaming/
-     with the date it was taken. The LEGO four also sit in the catalogue on
-     the LEGO page, where their hours are set against a projected time. */
+     with the date it was taken. The LEGO four are not written here at all:
+     they are the catalogue's own entries (LEGO_GAME, from lego-games.js), so
+     this page and the LEGO page show the same tile, with the same hours,
+     rating and hundred-percent line, and cannot drift apart. */
   { id: 'finished', kind: 'tiles', compact: true, cols: 2, views: true, tally: 'at 100%',
     title: 'When I Finished Them', note: 'to a hundred percent',
     items: [
-      { title: 'LEGO Star Wars: The Skywalker Saga', accent: '#ffd21f', sub: '2022 · Steam', done: true, hours: '79.4', finished: '2022-05-06',
-        desc: 'All nine films rebuilt from scratch, and nearly eighty hours: more than twice any other LEGO game I have finished.',
-        shot: '/assets/img/franchises/lego/skywalker-saga/banner.jpg',
-        shots: ['start-screen', 'pause-screen', 'load-game', 'characters', 'stud-fountain'],
-        shotAlt: 'Steam library banner for LEGO Star Wars: The Skywalker Saga, showing my play time' },
-      { title: 'LEGO Star Wars: The Complete Saga', accent: '#ffd21f', sub: '2007 · Steam', done: true, hours: '35.2', finished: '2022-07-10',
-        desc: 'All six films in one, and the definitive version of the old formula.',
-        shot: '/assets/img/franchises/lego/complete-saga/banner.jpg',
-        shots: ['start-screen', 'pause-screen', 'load-game', 'characters', 'stud-fountain'],
-        shotAlt: 'Steam library banner for LEGO Star Wars: The Complete Saga, showing my play time' },
-      { title: 'LEGO Star Wars III: The Clone Wars', accent: '#ffd21f', sub: '2011 · Steam', done: true, hours: '24.1', finished: '2022-07-13',
-        desc: 'Ground battles with commandable troops. Ambitious, and messy, and the better game for it.',
-        shot: '/assets/img/franchises/lego/clone-wars/banner.jpg',
-        shots: ['start-screen', 'pause-screen', 'load-game', 'characters'],
-        shotAlt: 'Steam library banner for LEGO Star Wars III: The Clone Wars, showing my play time' },
-      { title: 'LEGO Star Wars: The Force Awakens', accent: '#ffd21f', sub: '2016 · Steam', done: true, hours: '24.6', finished: '2022-07-17',
-        desc: 'Multi-build, and blaster battles with cover.',
-        shot: '/assets/img/franchises/lego/force-awakens/banner.jpg',
-        shots: ['start-screen', 'pause-screen', 'load-game', 'characters', 'galaxy-map'],
-        shotAlt: 'Steam library banner for LEGO Star Wars: The Force Awakens, showing my play time' },
+      window.LEGO_GAME && window.LEGO_GAME('LEGO Star Wars: The Skywalker Saga'),
+      window.LEGO_GAME && window.LEGO_GAME('LEGO Star Wars: The Complete Saga'),
+      window.LEGO_GAME && window.LEGO_GAME('LEGO Star Wars III: The Clone Wars'),
+      window.LEGO_GAME && window.LEGO_GAME('LEGO Star Wars: The Force Awakens'),
       { title: 'Jedi: Survivor', accent: '#4fa8ff', sub: '2023', done: true, hours: '50.8', finished: '2023-07-16',
         desc: 'The save slot is the receipt: Koboh, Pyloon’s Saloon, journey complete at 100% on 7/16/23 after 41.7 hours, with a New Journey+ slot started the same evening. Every faction at a hundred percent in the tactical guide, Koboh and Coruscant fully explored on the galaxy map, and 53 of 53 achievements. 144 sessions of it took 38% of my 2023, more than any other game in four years of Replays.',
         shot: '/assets/img/franchises/star-wars/survivor/banner.jpg',
@@ -329,6 +317,9 @@ window.FAN_PAGE = {
   { id: 'may-the-fourth', set: 'may-the-fourth' },
   { id: 'trivia', set: 'star-wars-trivia' },
   { id: 'swmc', set: 'star-wars-mc' },
+
+  /* Star Wars in Fortnite, the same frames as on the Fortnite page */
+  { id: 'fortnite', set: 'fortnite-star-wars' },
 
   /* ── the music ──
      My own playlist: forty-seven tracks, named as the albums name them rather

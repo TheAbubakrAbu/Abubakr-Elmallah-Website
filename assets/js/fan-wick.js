@@ -147,7 +147,7 @@ window.FAN_PAGE = {
     items: [
       { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/John_Wick',
         desc: 'The four films, the spin-offs, and the box office climbing with every one.' },
-      { title: '87Eleven Action Design', href: 'https://en.wikipedia.org/wiki/87Eleven',
+      { title: '87Eleven Action Design', href: 'https://en.wikipedia.org/wiki/87Eleven_Entertainment',
         desc: 'The stunt company Stahelski and Leitch built, and the reason the fights are shot the way they are.' },
       { title: 'John Wick Wiki', href: 'https://johnwick.fandom.com/wiki/John_Wick_Wiki',
         desc: 'Every rule, every Continental, and a body count somebody has actually tallied.' },

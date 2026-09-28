@@ -2,136 +2,81 @@
 permalink: /high-school/
 redirect_from:
   - /src/high-school.html
+title: "High School · Abubakr Elmallah"
+description: "Abubakr Elmallah's high-school work: programming projects, custom flyers, custom wallpapers, and the year galleries from middle school onwards."
+tab: "/education/"
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Abubakr Elmallah's high-school work: programming projects, custom flyers, custom wallpapers, and the year galleries from middle school onwards." />
-<meta name="theme-color" content="#08080a" />
-
-<link rel="icon" type="image/png" href="../assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png" />
-<link rel="manifest" href="/manifest.webmanifest" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Abubakr" />
-<meta property="og:image" content="https://abubakrelmallah.com/assets/img/me/abubakr-circle.png" />
-<meta property="og:type" content="website" />
-<title>High School · Abubakr Elmallah</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<!-- Fonts are loaded WITHOUT blocking the first paint. As a plain
-     stylesheet this held the whole page blank until Google answered,
-     which on a weak connection is most of "it opens but it loads
-     slowly". media="print" makes the browser fetch it at low priority
-     and render immediately; onload promotes it to the real stylesheet.
-     Every family here already carries display=swap, so text is on
-     screen in the fallback face straight away and swaps when it lands. -->
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Darker+Grotesque:wght@400..900&family=Nunito:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Darker+Grotesque:wght@400..900&family=Nunito:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
-
-<link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
-<link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
-<link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
+{% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/transcript.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/years.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/pics.css' %}" />
 </head>
 <body data-intro="none">
-<div class="grain" aria-hidden="true"></div>
-<div class="vignette" aria-hidden="true"></div>
-<canvas id="field" aria-hidden="true"></canvas>
+{% include fx.html %}
 
-<div class="cursor" id="cursor" aria-hidden="true"></div>
-<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+{% include cursor.html %}
 
-<aside class="rail">
-  <span class="rail-mark" aria-hidden="true">AE</span>
-  <span class="rail-line" aria-hidden="true"><i id="railFill"></i></span>
-  <span class="rail-meta" id="clock" aria-hidden="true">--:--:--</span>
-  <span class="rail-meta" aria-hidden="true">33.64°N · 117.84°W</span>
-</aside>
+{% include rail.html %}
 
-<header class="topbar">
-  <a href="/" class="brand" data-magnetic>
-    <img class="brand-avatar" src="../assets/img/me/abubakr-circle.png" alt="Abubakr Elmallah" /><span class="brand-glyph"><b>Abubakr</b> Elmallah</span>
-  </a>
-  <!-- top nav controls hidden, using the bottom tab bar instead
-<nav class="nav">
-    <a href="/work/" data-magnetic>Work</a>
-    <a href="/projects/" data-magnetic>Projects</a>
-    <a href="/education/" class="is-current" data-magnetic>Education</a>
-    <a href="/worlds/" data-magnetic>Worlds</a>
-  </nav>
-  -->
-  <div class="toggles"><button class="ql ql--sound is-on" id="soundToggle" type="button" aria-pressed="true" aria-label="Toggle interface sounds" data-magnetic><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><button class="ql ql--cursor" id="cursorToggle" type="button" data-cursor-toggle aria-pressed="true" aria-label="Toggle custom cursor" data-magnetic><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg></button></div>
-  <div class="quicklinks">
-    <a class="ql ql--resume" href="/resume/" data-magnetic>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M8 13h8M8 17h6"/></svg>
-      <span class="ql-label">Résumé</span>
-    </a>
-    <a class="ql ql--linkedin" href="https://www.linkedin.com/in/abubakr-elmallah" target="_blank" rel="noopener" data-magnetic>
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C21.4 8.75 22 11 22 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21h-4z"/></svg>
-      <span class="ql-label">LinkedIn</span>
-    </a>
-    <a class="ql ql--github" href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener" data-magnetic>
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
-      <span class="ql-label">GitHub</span>
-    </a>
-  </div>
-</header>
+{% include topbar.html %}
 
 <main>
 
   <section class="page-hero">
-    <a class="back-link" href="/" data-magnetic>← Back home</a>
+    {% include crumbs.html parent="Education" url="/education/" here="High School" %}
     <p class="kicker"><span>(Archive)</span><span>Where it started</span></p>
     <h1 class="page-title"><em>High School</em></h1>
     <p class="lede">Where it all started: Code.org &amp; Scratch projects in 10th grade, then the iOS apps I taught myself to build after the IB exams, plus the flyers and wallpapers I designed for clubs and the community.</p>
+    <nav class="jump" aria-label="Sections">
+      <a href="#before-trabuco">Photos</a>
+      <a href="#projects">Projects</a>
+      <a href="#apps">Apps</a>
+      <a href="#awards">Awards</a>
+      <a href="#wwdc">WWDC 2024</a>
+      <a href="#flyers">Flyers &amp; Wallpapers</a>
+      <a href="#academics">Academics</a>
+      <a href="#ring">Class Ring</a>
+      <a href="#extracurriculars">Activities</a>
+    </nav>
   </section>
 
   <section class="work highschool">
     <div class="edu reveal">
       <div class="edu-row" data-magnetic>
-        <span class="edu-pic">🎓</span>
-        <div class="edu-meta"><h3>Trabuco Hills High School</h3><p>2020 – 2024 · Mission Viejo, CA</p></div>
+        <span class="edu-pic" aria-hidden="true" style="--m: var(--gold)">TH</span>
+        <div class="edu-meta"><p class="edu-t">Trabuco Hills High School</p><p>2020 – 2024 · Mission Viejo, CA</p></div>
       </div>
       <div class="edu-row" data-magnetic>
-        <span class="edu-pic">📘</span>
-        <div class="edu-meta"><h3>IB Diploma Programme</h3><p>IB Diploma Student</p></div>
+        <span class="edu-pic" aria-hidden="true" style="--m: var(--ink-dim)">IB</span>
+        <div class="edu-meta"><p class="edu-t">IB Diploma Programme</p><p>IB Diploma Student</p></div>
       </div>
     </div>
 
-    <!-- built by mascots.js from the one list in it, the same list the full
-         ladder on /education/ is built from -->
-    <div data-mascots="rail" data-mark="mustangs"></div>
+    <!-- the one-line rail of the five schools, from _data/mascots.yml, the
+         same list the full ladder on /education/ is built from -->
+    {% include mascots.html mark="mustangs" %}
 
     <!-- middle school first, so the whole run of year cards reads oldest to
          newest down the page, the same rule the photos inside them follow -->
     <!-- "+ the ID cards" rides on .pic-n, like the counts: the ID card itself
          is hidden until the switch is on, so the heading must not advertise
          something that is not on the page. -->
-    <h3 class="subsec reveal">Before Trabuco <span class="subsec-yr"><span class="pic-n">154 photos · </span>2006 – 2020<span class="pic-n"> · + the ID cards</span></span></h3>
+    <h2 class="subsec subsec--title reveal" id="before-trabuco">Before Trabuco <span class="subsec-yr"><span class="pic-n">154 photos · </span>2006 – 2020<span class="pic-n"> · + the ID cards</span></span></h2>
     <!-- the 'ms' groups in years-data.js; same renderer as the years below -->
     <div class="years" data-years="ms"></div>
 
-    <h3 class="subsec reveal">Through the Years <span class="subsec-yr"><span class="pic-n">458 photos · </span>2020 – 2024</span></h3>
+    <h2 class="subsec subsec--title reveal" id="photos">Through the Years <span class="subsec-yr"><span class="pic-n">624 photos · </span>2020 – 2024</span></h2>
     <!-- built by years.js from years-data.js -->
     <div class="years" data-years="hs"></div>
 
     <!-- gallery.js still owns the flyers, wallpapers and app shots below -->
-    <div class="lightbox" id="lightbox" aria-hidden="true">
-      <button class="lightbox-close" type="button" aria-label="Close">✕</button>
-      <span class="lightbox-title"></span>
-      <div class="lightbox-imgs"></div>
-    </div>
+    {% include lightbox.html %}
 
 
-    <h3 class="subsec reveal">Programming Projects <span class="subsec-yr">Code.org, Scratch &amp; Java</span></h3>
+    <h2 class="subsec subsec--title reveal" id="projects">Programming Projects <span class="subsec-yr">Code.org, Scratch &amp; Java</span></h2>
     <div class="hs-grid" data-projects="hs-datapad,hs-calculator,hs-periodic-table,hs-games,hs-order66,hs-periodic-table-explorer"></div>
 
     <p class="hs-p reveal">All of these are small, and nearly all of them are from 10th grade. 11th is generally
@@ -143,36 +88,104 @@ redirect_from:
     a real app on the App Store. Back in 10th grade that was the dream, and I never thought it would actually happen.
     <b>Al-Islam</b> came later that summer, then <b>Al-Quran</b> and <b>Al-Adhan</b> a few months after that, in 12th grade.</p>
 
-    <h3 class="subsec reveal">Apps I Shipped in High School <span class="subsec-yr">11th &amp; 12th grade</span></h3>
+    <h2 class="subsec subsec--title reveal" id="apps">Apps I Shipped in High School <span class="subsec-yr">11th &amp; 12th grade</span></h2>
     <p class="hs-p reveal">Five apps written and shipped to the App Store between junior year and graduation, two of which went on to win the Congressional App Challenge and the Swift Student Challenge.</p>
     <div class="apps-grid apps-grid--3" data-cards="datapad,al-adhan,al-islam,al-quran,icoi" data-cards-cat></div>
-    <a class="dev-link reveal" href="https://apps.apple.com/tr/developer/abubakr-elmallah/id1690310648" target="_blank" rel="noopener" data-magnetic>
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.78c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.48.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.66zM14.13 5.84c.64-.78 1.07-1.85.95-2.93-.92.04-2.04.61-2.7 1.38-.59.68-1.11 1.79-.97 2.84 1.03.08 2.08-.52 2.72-1.29z"/></svg>
-      <span>View My Apple Developer Page</span><i>↗</i>
-    </a>
+    {% include apple-dev-link.html %}
 
-    <h3 class="subsec reveal">Custom Flyers</h3>
+    <!-- the wins come straight after the apps that won them: the awards, the
+         two Al-Islam documents, then WWDC, the part of these four years the
+         rest of the page leads up to. The flyers, wallpapers and the record
+         follow. -->
+    <h2 class="subsec subsec--title reveal" id="awards">Awards &amp; Honors</h2>
+    <ol class="hs-awards" role="list">
+      <!-- the two national wins first, larger; the other seven follow in
+           date order -->
+      <li class="hs-award reveal hs-award--big"><span class="hs-when">2023 &#183; 12th</span><div><h3>Winner: Congressional App Challenge, Best Original App Idea</h3><p class="honor-line"><span><span aria-hidden="true">🏆 </span>Issued by the United States Congress</span><span>December 2023</span><span>Awarded in my senior year of high school</span></p><p>Won with <b>Al-Islam</b>, and awarded a Certificate of Congressional Recognition by U.S. Representative Young Kim. The Arabic Beginner Mode and Traveling Mode were singled out, both of which I built to support new Muslims and learners of Arabic. I wrote the app after finishing my AP and IB exams.</p></div></li>
+      <li class="hs-award reveal hs-award--big"><span class="hs-when">2024 &#183; 12th</span><div><h3>Winner: Apple Swift Student Challenge</h3><p class="honor-line"><span><span aria-hidden="true">🏆 </span>Issued by Apple</span><span>June 2024</span><span>Awarded in my senior year of high school</span></p><p>One of <b>350 winners</b> selected from thousands of high school and college students worldwide, won with <b>Al-Quran</b> <b>while still in high school</b>. Attended WWDC 2024 days after graduating, met Tim Cook and saw Apple Park.</p></div></li>
+      <li class="hs-award reveal"><span class="hs-when">2022 &#183; 10th</span><div><h3>First Place, Orange County American Chemical Society first-year exam</h3><p>Recognised at school and community level for academic excellence in chemistry.</p></div></li>
+      <li class="hs-award reveal"><span class="hs-when">2022 &#183; 11th</span><div><h3>IB Knowledgeable Award</h3><p>Given at our first IB banquet for contribution to class discussion and overall achievement.</p></div></li>
+      <li class="hs-award reveal"><span class="hs-when">2023 &#183; 11th</span><div><h3>AP Scholar with Distinction</h3><p>Average of at least 3.5 across all AP exams with 3 or higher on five or more. Ended with a 5 on six exams and a 4 on three.</p></div></li>
+      <li class="hs-award reveal"><span class="hs-when">2023 &#183; 11th</span><div><h3>Career Technical Education Award</h3><p>For two years of computer science coursework.</p></div></li>
+      <li class="hs-award reveal"><span class="hs-when">2023 &#183; 12th</span><div><h3>ICOI Certificate for App Development Achievement</h3><p>For building and maintaining the ICOI app: prayer times, events and more.</p></div></li>
+      <li class="hs-award reveal"><span class="hs-when">2024 &#183; 12th</span><div><h3>IB Best Performance at Banquet</h3><p>For the speeches at the final senior IB banquet, including for two retiring IB teachers.</p></div></li>
+      <li class="hs-award reveal"><span class="hs-when">2024</span><div><h3>OC Register: Valedictorians and top scholars, Class of 2024</h3><p>Featured in the Orange County Register&#8217;s round-up for the graduating class.</p></div></li>
+    </ol>
+
+    <!-- ─────────── the two Al-Islam documents ───────────
+         Both were written here, junior and senior year, which is why they sit
+         between the awards and WWDC: the first predates every award on the
+         list above, the second is the Congressional App Challenge one being
+         written up. They also appear on /al-islam/, which is the app they are
+         about. Same embed pattern as the Activities & Awards doc below. -->
+    <h2 class="subsec subsec--title reveal" id="al-islam-writing">The Al-Islam Writing <span class="subsec-yr">junior &amp; senior year &#183; 2023</span></h2>
+    <p class="hs-p reveal">Two documents about <b>Al-Islam</b> from the year I wrote it. The first is my own, handed to <b>Ms. Kerawalla</b>, my sophomore and junior year computer science teacher, in <b>May 2023</b>, while the app was still unpublished: it runs from the Code.org projects that came before it (the Aurebesh translator, the wallpaper maker, Hangman and Wordle) through to what Al-Islam could do at that point. The second is what she wrote after it won the <b>Congressional App Challenge</b> that December, with my own account of the journey quoted inside it.</p>
+
+    <h3 class="isl-doc-head reveal">Backstory &#183; 24 May 2023 &#183; 11th</h3>
+    <div class="embed-wrap reveal">
+      <div class="embed-facade">
+        <button class="cta embed-load" type="button" aria-label="Load the document: Al-Islam app backstory, written May 2023">Load the document</button>
+        <p class="embed-facade-note">Opens Google Docs&#8217; viewer here</p>
+      </div>
+      <iframe class="embed-frame embed-frame--doc" data-doc-src="https://docs.google.com/document/d/1QnOlzlriKa6JstmrvC3wtPe2zmv3lY-7z-DEjsGhuXY/preview" title="Al-Islam app backstory, written May 2023" hidden></iframe>
+      <noscript><iframe class="embed-frame embed-frame--doc" src="https://docs.google.com/document/d/1QnOlzlriKa6JstmrvC3wtPe2zmv3lY-7z-DEjsGhuXY/preview" title="Al-Islam app backstory, written May 2023" loading="lazy"></iframe></noscript>
+      <p class="embed-note"><b class="embed-live">Full document above. </b>Or <a href="https://docs.google.com/document/d/1QnOlzlriKa6JstmrvC3wtPe2zmv3lY-7z-DEjsGhuXY/edit?usp=sharing" target="_blank" rel="noopener">open it in Google Docs<span aria-hidden="true"> &#8599;</span><span class="vh"> (opens in a new tab)</span></a>.</p>
+    </div>
+
+    <h3 class="isl-doc-head reveal">Congressional App Challenge &#183; Ms. Kerawalla &#183; 12th</h3>
+    <div class="embed-wrap reveal">
+      <div class="embed-facade">
+        <button class="cta embed-load" type="button" aria-label="Load the document: Congressional App Challenge write-up by Ms. Kerawalla">Load the document</button>
+        <p class="embed-facade-note">Opens Google Docs&#8217; viewer here</p>
+      </div>
+      <iframe class="embed-frame embed-frame--doc" data-doc-src="https://docs.google.com/document/d/1lOCNUbrgj3dY12VZVpt7saqotd-GwAgAP4jS_Oaj_zQ/preview" title="Congressional App Challenge write-up by Ms. Kerawalla" hidden></iframe>
+      <noscript><iframe class="embed-frame embed-frame--doc" src="https://docs.google.com/document/d/1lOCNUbrgj3dY12VZVpt7saqotd-GwAgAP4jS_Oaj_zQ/preview" title="Congressional App Challenge write-up by Ms. Kerawalla" loading="lazy"></iframe></noscript>
+      <p class="embed-note"><b class="embed-live">Full document above. </b>Or <a href="https://docs.google.com/document/d/1lOCNUbrgj3dY12VZVpt7saqotd-GwAgAP4jS_Oaj_zQ/edit?usp=sharing" target="_blank" rel="noopener">open it in Google Docs<span aria-hidden="true"> &#8599;</span><span class="vh"> (opens in a new tab)</span></a>.</p>
+    </div>
+
+    <h2 class="subsec subsec--title reveal" id="wwdc">WWDC 2024 <span class="subsec-yr">the Swift Student Challenge &#183; Apple Park &#183; June 2024</span></h2>
+    <p class="wwdc-note reveal">
+      Apple picks a few hundred <a href="https://developer.apple.com/swift-student-challenge/" target="_blank" rel="noopener" data-magnetic>Swift
+      Student Challenge<span class="vh"> (opens in a new tab)</span></a> winners out of tens of thousands of submissions. I was one of <b>350 worldwide</b> in 2024, for <b>Al-Quran</b>,
+      written in my senior year, with a personal letter from Apple&#8217;s Worldwide Developer Relations team to go with it. And the real prize
+      came attached: an invitation to the <b>Worldwide Developers Conference</b> in Cupertino. I flew up <b>days after graduating</b>, still
+      technically a high schooler: walking Apple Park, meeting <b>Tim Cook</b>, and standing under the WWDC24 sign. Easily the highlight of
+      the four years on this page.
+    </p>
+    {% include wwdcscholars-link.html %}
+    {% include wwdc-photos.html %}
+    <div class="wwdc-sub reveal">
+      <p class="honor-line"><span><span aria-hidden="true">🏆 </span>Swift Student Challenge &#183; Issued by Apple</span><span>June 2024</span><span>Awarded in my senior year of high school</span></p>
+      <p class="wwdc-note">
+        Every winner is listed on <b>WWDCScholars</b>, the community directory of Swift Student Challenge and WWDC Scholarship
+        winners going back to 2012. The 2024 list runs alphabetically by first name, which puts <b>Abubakr</b> first on the page.
+      </p>
+      {% include wwdcscholars-link.html %}
+      {% include ssc-shots.html %}
+    </div>
+
+    <h2 class="subsec subsec--title reveal" id="flyers">Custom Flyers</h2>
     <div class="flyer-grid">
-      <a class="flyer reveal" href="../assets/img/flyers/minecraft.jpg" target="_blank" rel="noopener"><img src="../assets/img/flyers/minecraft.jpg" alt="Minecraft coding workshop flyer" loading="lazy" /><span class="flyer-cap"><b>Minecraft Workshop</b><i>2021</i></span></a>
-      <a class="flyer reveal" href="../assets/img/flyers/star-wars.jpg" target="_blank" rel="noopener"><img src="../assets/img/flyers/star-wars.jpg" alt="Star Wars coding workshop flyer" loading="lazy" /><span class="flyer-cap"><b>Star Wars Workshop</b><i>2022</i></span></a>
-      <a class="flyer reveal" href="../assets/img/flyers/code-combat.png" target="_blank" rel="noopener"><img src="../assets/img/flyers/code-combat.png" alt="Code Combat coding workshop flyer" loading="lazy" /><span class="flyer-cap"><b>Code Combat Workshop</b><i>2022</i></span></a>
-      <a class="flyer reveal" href="../assets/img/flyers/cyberpatriot.png" target="_blank" rel="noopener"><img src="../assets/img/flyers/cyberpatriot.png" alt="CyberPatriot club flyer" loading="lazy" /><span class="flyer-cap"><b>CyberPatriot</b><i>2023</i></span></a>
-      <a class="flyer reveal" href="../assets/img/flyers/girls-who-code.png" target="_blank" rel="noopener"><img src="../assets/img/flyers/girls-who-code.png" alt="Girls Who Code club flyer" loading="lazy" /><span class="flyer-cap"><b>Girls Who Code</b><i>2023</i></span></a>
-      <a class="flyer reveal" href="../assets/img/flyers/msa.png" target="_blank" rel="noopener"><img src="../assets/img/flyers/msa.png" alt="Muslim Student Association flyer" loading="lazy" /><span class="flyer-cap"><b>Muslim Student Assoc.</b><i>2023</i></span></a>
-      <a class="flyer reveal" href="../assets/img/flyers/blood-drive.png" target="_blank" rel="noopener"><img src="../assets/img/flyers/blood-drive.png" alt="Blood drive flyer" loading="lazy" /><span class="flyer-cap"><b>Blood Drive</b><i>2024</i></span></a>
-      <a class="flyer reveal" href="../assets/img/flyers/cs-classes.jpg" target="_blank" rel="noopener"><img src="../assets/img/flyers/cs-classes.jpg" alt="AP and IB Computer Science classes flyer" loading="lazy" /><span class="flyer-cap"><b>Computer Science Classes</b><i>2024</i></span></a>
-      <a class="flyer reveal" href="../assets/img/flyers/solar.jpg" target="_blank" rel="noopener"><img src="../assets/img/flyers/solar.jpg" alt="Solar Energy" loading="lazy" /><span class="flyer-cap"><b>Environmental Science</b><i>2024</i></span></a>
+      <a class="flyer reveal" href="/assets/img/flyers/minecraft.jpg" target="_blank" rel="noopener"><img src="/assets/img/flyers/minecraft.jpg" width="900" height="1200" alt="Minecraft coding workshop flyer" loading="lazy" /><span class="flyer-cap"><b>Minecraft Workshop</b><i>2021</i></span></a>
+      <a class="flyer reveal" href="/assets/img/flyers/star-wars.jpg" target="_blank" rel="noopener"><img src="/assets/img/flyers/star-wars.jpg" width="900" height="1200" alt="Star Wars coding workshop flyer" loading="lazy" /><span class="flyer-cap"><b>Star Wars Workshop</b><i>2022</i></span></a>
+      <a class="flyer reveal" href="/assets/img/flyers/code-combat.png" target="_blank" rel="noopener"><img src="/assets/img/flyers/code-combat.png" width="900" height="1200" alt="Code Combat coding workshop flyer" loading="lazy" /><span class="flyer-cap"><b>Code Combat Workshop</b><i>2022</i></span></a>
+      <a class="flyer reveal" href="/assets/img/flyers/cyberpatriot.png" target="_blank" rel="noopener"><img src="/assets/img/flyers/cyberpatriot.png" width="872" height="1200" alt="CyberPatriot club flyer" loading="lazy" /><span class="flyer-cap"><b>CyberPatriot</b><i>2023</i></span></a>
+      <a class="flyer reveal" href="/assets/img/flyers/girls-who-code.png" target="_blank" rel="noopener"><img src="/assets/img/flyers/girls-who-code.png" width="872" height="1200" alt="Girls Who Code club flyer" loading="lazy" /><span class="flyer-cap"><b>Girls Who Code</b><i>2023</i></span></a>
+      <a class="flyer reveal" href="/assets/img/flyers/msa.png" target="_blank" rel="noopener"><img src="/assets/img/flyers/msa.png" width="872" height="1200" alt="Muslim Student Association flyer" loading="lazy" /><span class="flyer-cap"><b>Muslim Student Assoc.</b><i>2023</i></span></a>
+      <a class="flyer reveal" href="/assets/img/flyers/blood-drive.png" target="_blank" rel="noopener"><img src="/assets/img/flyers/blood-drive.png" width="848" height="1200" alt="Blood drive flyer" loading="lazy" /><span class="flyer-cap"><b>Blood Drive</b><i>2024</i></span></a>
+      <a class="flyer reveal" href="/assets/img/flyers/cs-classes.jpg" target="_blank" rel="noopener"><img src="/assets/img/flyers/cs-classes.jpg" width="848" height="1200" alt="AP and IB Computer Science classes flyer" loading="lazy" /><span class="flyer-cap"><b>Computer Science Classes</b><i>2024</i></span></a>
+      <a class="flyer reveal" href="/assets/img/flyers/solar.jpg" target="_blank" rel="noopener"><img src="/assets/img/flyers/solar.jpg" width="848" height="1200" alt="Solar Earth flyer for Environmental Science, on the case for solar power" loading="lazy" /><span class="flyer-cap"><b>Environmental Science</b><i>2024</i></span></a>
     </div>
 
-    <h3 class="subsec reveal">Custom Wallpapers</h3>
+    <h2 class="subsec subsec--title reveal" id="wallpapers">Custom Wallpapers</h2>
     <div class="wall-grid">
-      <a class="wall reveal" href="../assets/img/wallpapers/palestine.jpg" target="_blank" rel="noopener"><img src="../assets/img/wallpapers/palestine.jpg" alt="Palestine wallpaper: Indeed Allah's help is near" loading="lazy" /><span class="flyer-cap"><b>Palestine</b><i>Phone</i></span></a>
-      <a class="wall reveal" href="../assets/img/wallpapers/phone.jpg" target="_blank" rel="noopener"><img src="../assets/img/wallpapers/phone.jpg" alt="Islamic phone wallpaper" loading="lazy" /><span class="flyer-cap"><b>Phone</b><i>9:19.5</i></span></a>
-      <a class="wall reveal" href="../assets/img/wallpapers/laptop.jpg" target="_blank" rel="noopener"><img src="../assets/img/wallpapers/laptop.jpg" alt="Islamic laptop wallpaper, 16:9" loading="lazy" /><span class="flyer-cap"><b>Laptop</b><i>16:9</i></span></a>
-      <a class="wall reveal" href="../assets/img/wallpapers/desktop.jpg" target="_blank" rel="noopener"><img src="../assets/img/wallpapers/desktop.jpg" alt="Islamic ultrawide desktop wallpaper, 21:9" loading="lazy" /><span class="flyer-cap"><b>Desktop</b><i>21:9</i></span></a>
+      <a class="wall reveal" href="/assets/img/wallpapers/palestine.jpg" target="_blank" rel="noopener"><img src="/assets/img/wallpapers/palestine.jpg" width="555" height="1200" alt="Palestine wallpaper: Indeed Allah's help is near" loading="lazy" /><span class="flyer-cap"><b>Palestine</b><i>Phone</i></span></a>
+      <a class="wall reveal" href="/assets/img/wallpapers/phone.jpg" target="_blank" rel="noopener"><img src="/assets/img/wallpapers/phone.jpg" width="555" height="1200" alt="Islamic phone wallpaper" loading="lazy" /><span class="flyer-cap"><b>Phone</b><i>9:19.5</i></span></a>
+      <a class="wall reveal" href="/assets/img/wallpapers/laptop.jpg" target="_blank" rel="noopener"><img src="/assets/img/wallpapers/laptop.jpg" width="1200" height="776" alt="Islamic laptop wallpaper, 16:9" loading="lazy" /><span class="flyer-cap"><b>Laptop</b><i>16:9</i></span></a>
+      <a class="wall reveal" href="/assets/img/wallpapers/desktop.jpg" target="_blank" rel="noopener"><img src="/assets/img/wallpapers/desktop.jpg" width="1200" height="507" alt="Islamic ultrawide desktop wallpaper, 21:9" loading="lazy" /><span class="flyer-cap"><b>Desktop</b><i>21:9</i></span></a>
     </div>
 
-    <h3 class="subsec reveal">Academics <span class="subsec-yr">Class of 2024</span></h3>
+    <h2 class="subsec subsec--title reveal" id="academics">Academics <span class="subsec-yr">Class of 2024</span></h2>
     <div class="acad reveal">
       <p class="acad-lede">Graduated from <b>Trabuco Hills High School</b> on 30 May 2024 with the <b>IB Diploma</b>, nine AP exams, and dual-enrolment coursework at Saddleback College.</p>
       <div class="acad-stats">
@@ -187,7 +200,7 @@ redirect_from:
       <div class="acad-courses">
         <div class="course-group">
           <span class="course-label course-label--lang" data-magnetic="0.5">Languages</span>
-          <ul class="course-chips">
+          <ul class="course-chips" role="list">
             <li data-magnetic="0.5">Swift</li>
             <li data-magnetic="0.5">Java</li>
             <li data-magnetic="0.5">Python</li>
@@ -204,27 +217,27 @@ redirect_from:
       <p class="acad-note">Concurrent enrolment: real college classes at <b>Saddleback College</b> alongside 11th and 12th grade, the same four terms that open the <a href="/college/" data-magnetic>college transcript</a>.</p>
       <div class="ts-terms ts-terms--uni">
         <section class="ts-term">
-          <div class="ts-termhead"><h5>Fall 2022</h5><span class="ts-yr">11th grade</span><span class="ts-where">Saddleback College</span></div>
-          <ul class="ts-rows">
+          <div class="ts-termhead"><h3>Fall 2022</h3><span class="ts-yr">11th grade</span><span class="ts-where">Saddleback College</span></div>
+          <ul class="ts-rows" role="list">
             <li class="is-college"><span class="ts-code">ARAB 1</span><span class="ts-course">Elementary Arabic 1</span><span class="ts-tags"></span></li>
           </ul>
         </section>
         <section class="ts-term">
-          <div class="ts-termhead"><h5>Spring 2023</h5><span class="ts-yr">11th grade</span><span class="ts-where">Saddleback College</span></div>
-          <ul class="ts-rows">
+          <div class="ts-termhead"><h3>Spring 2023</h3><span class="ts-yr">11th grade</span><span class="ts-where">Saddleback College</span></div>
+          <ul class="ts-rows" role="list">
             <li class="is-college"><span class="ts-code">ARAB 2</span><span class="ts-course">Elementary Arabic 2</span><span class="ts-tags"></span></li>
           </ul>
         </section>
         <section class="ts-term">
-          <div class="ts-termhead"><h5>Summer 2023</h5><span class="ts-yr">before 12th</span><span class="ts-where">Saddleback College</span></div>
-          <ul class="ts-rows">
+          <div class="ts-termhead"><h3>Summer 2023</h3><span class="ts-yr">before 12th</span><span class="ts-where">Saddleback College</span></div>
+          <ul class="ts-rows" role="list">
             <li class="is-college"><span class="ts-code">CIMP 235</span><span class="ts-course">iPhone/iPad Programming</span><span class="ts-tags"></span></li>
             <li class="is-college"><span class="ts-code">CIMP 8A</span><span class="ts-course">Python Programming</span><span class="ts-tags"></span></li>
           </ul>
         </section>
         <section class="ts-term">
-          <div class="ts-termhead"><h5>Fall 2023</h5><span class="ts-yr">12th grade</span><span class="ts-where">Saddleback College</span></div>
-          <ul class="ts-rows">
+          <div class="ts-termhead"><h3>Fall 2023</h3><span class="ts-yr">12th grade</span><span class="ts-where">Saddleback College</span></div>
+          <ul class="ts-rows" role="list">
             <li class="is-college"><span class="ts-code">ARAB 3</span><span class="ts-course">Intermediate Arabic</span><span class="ts-tags"></span></li>
             <li class="is-college"><span class="ts-code">CIMP 7A</span><span class="ts-course">Java Programming</span><span class="ts-tags"></span></li>
             <li class="is-college"><span class="ts-code">HIST 74</span><span class="ts-course">History of the Middle East</span><span class="ts-tags"></span></li>
@@ -235,24 +248,49 @@ redirect_from:
 
     <div id="transcript"></div>
 
-    <h3 class="subsec reveal">Extracurriculars <span class="subsec-yr">2020 &#8211; 2024</span></h3>
+    <!-- The class ring. Two pictures and the order: the band design was only
+         ever concept art, and the gem ring is the one that was made and that
+         I have. The spec list is the order as it was placed, word for word. -->
+    <h2 class="subsec subsec--title reveal" id="ring">The Class Ring <span class="subsec-yr">Trabuco Hills &#183; Class of 2024</span></h2>
+    <div class="ring reveal">
+      <p class="acad-note">Two designs. The band was only ever concept art; the gem ring is the one I actually got, and the one I still have. Under them is the order exactly as it was placed.</p>
+      <div class="ring-grid">
+        <a class="flyer ring-pic" href="/assets/img/highschool/ring.jpg" target="_blank" rel="noopener"><img src="/assets/img/highschool/ring.jpg" width="1400" height="882" alt="Abubakr&#8217;s Trabuco Hills class ring in silver: THHS and the Mustang on one side, Trabuco Class of 2024 on the other, and ABUBAKR across a blue stone on top" loading="lazy" /><span class="flyer-cap"><b>The gem ring, the one I have</b><i>Silver</i></span></a>
+        <a class="flyer ring-pic" href="/assets/img/highschool/ring-concept.jpg" target="_blank" rel="noopener"><img src="/assets/img/highschool/ring-concept.jpg" width="1400" height="912" alt="Concept art for a silver band-style class ring engraved Abubakr Elmallah, Trabuco 2024 and Trabuco Hills around a blue stone" loading="lazy" /><span class="flyer-cap"><b>The band, concept art</b><i>Silver</i></span></a>
+      </div>
+      <dl class="ring-spec">
+        <div><dt>Palm Side</dt><dd>Smooth Band (traditional)</dd></div>
+        <div><dt>Stone 1</dt><dd>Blue Spinel BLS</dd></div>
+        <div><dt>Stone 2</dt><dd>Blue Spinel BLS</dd></div>
+        <div><dt>Ring Top Engraving</dt><dd>ABUBAKR</dd></div>
+        <div><dt>Ring Side 1</dt><dd>School Mascot: THHS</dd></div>
+        <div><dt>Ring Side 2</dt><dd>2024 VV2: TRABUCO</dd></div>
+        <div><dt>Metal Quality</dt><dd>White Lustrium&#174;</dd></div>
+        <div><dt>Metal Finish</dt><dd>Antique</dd></div>
+        <div><dt>Inside Engraving</dt><dd>Full Name Block: ABUBAKR ELMALLAH THHS 2024</dd></div>
+        <div><dt>Graduation Year</dt><dd>2024</dd></div>
+        <div><dt>Ring Size</dt><dd>09.5</dd></div>
+      </dl>
+    </div>
+
+    <h2 class="subsec subsec--title reveal" id="extracurriculars">Extracurriculars <span class="subsec-yr">2020 &#8211; 2024</span></h2>
     <div class="hs-cols">
 
       <div class="hs-col reveal">
-        <h4>All four years</h4>
-        <ul class="hs-list">
+        <h3>All four years</h3>
+        <ul class="hs-list" role="list">
           <li><b>Muslim Student Association</b>: secretary in 10th grade, then <b>president for 11th and 12th</b>. Weekly Jumu&#703;ah on campus; I began giving khu&#7789;bahs in 10th grade and led the prayer.</li>
           <li><b>Weekend Islamic school</b>: fiqh and &#703;aq&#299;dah, and learning to recite the Quran properly with tajw&#299;d.</li>
-          <li><b>Quran recitation</b>: recording <a href="https://www.youtube.com/@MinshawiAbubakr" target="_blank" rel="noopener">Minshawi-style recitations</a> on my own channel, which is also where the tajw&#299;d work behind Al-Quran started.</li>
-          <li><b>Voice of <a href="https://learnsalah.com/attribution" target="_blank" rel="noopener">learnsalah.com</a></b> (2023): recorded the audio the site uses to teach people how to pray.</li>
+          <li><b>Quran recitation</b>: recording <a href="https://www.youtube.com/@MinshawiAbubakr" target="_blank" rel="noopener">Minshawi-style recitations<span class="vh"> (opens in a new tab)</span></a> on my own channel, which is also where the tajw&#299;d work behind Al-Quran started.</li>
+          <li><b>Voice of learnsalah.com</b> (2023): recorded the audio the site used to teach people how to pray. The site itself has since gone offline.</li>
           <li><b>CSF</b>: active member across all four years, volunteering at events.</li>
           <li><b>Tennis, pickleball and ping pong</b>: several times a week, mostly for the company.</li>
         </ul>
       </div>
 
       <div class="hs-col reveal">
-        <h4>By year</h4>
-        <ul class="hs-list hs-list--yr">
+        <h3>By year</h3>
+        <ul class="hs-list hs-list--yr" role="list">
           <li><span>9th</span><p>JV tennis team: two hours a day, through a year of online school.</p></li>
           <li><span>10th</span><p>Varsity tennis. Built my first real projects on <b>code.org</b>: Star Wars Datapad, a periodic table, a calculator, a wallpaper maker, and a games app with Wordle, Hangman and Checkers.</p></li>
           <li><span>10th</span><p><b>Director of STEM Workshops</b> for STEM Extreme: created and ran events teaching elementary schoolers to code, in person and online, and made the posters for each.</p></li>
@@ -264,110 +302,30 @@ redirect_from:
 
     </div>
 
-    <h3 class="subsec reveal">Awards &amp; Honors</h3>
-    <ol class="hs-awards">
-      <li class="hs-award reveal"><span class="hs-when">2022 &#183; 10th</span><div><h4>First Place, Orange County American Chemical Society first-year exam</h4><p>Recognised at school and community level for academic excellence in chemistry.</p></div></li>
-      <li class="hs-award reveal"><span class="hs-when">2022 &#183; 11th</span><div><h4>IB Knowledgeable Award</h4><p>Given at our first IB banquet for contribution to class discussion and overall achievement.</p></div></li>
-      <li class="hs-award reveal"><span class="hs-when">2023 &#183; 11th</span><div><h4>AP Scholar with Distinction</h4><p>Average of at least 3.5 across all AP exams with 3 or higher on five or more. Ended with a 5 on six exams and a 4 on three.</p></div></li>
-      <li class="hs-award reveal"><span class="hs-when">2023 &#183; 11th</span><div><h4>Career Technical Education Award</h4><p>For two years of computer science coursework.</p></div></li>
-      <li class="hs-award reveal hs-award--big"><span class="hs-when">2023 &#183; 12th</span><div><h4>Winner: Congressional App Challenge, Best Original App Idea</h4><p class="honor-line"><span>🏆 Issued by the United States Congress</span><span>December 2023</span><span>Awarded in my senior year of high school</span></p><p>Won with <b>Al-Islam</b>, and awarded a Certificate of Congressional Recognition by U.S. Representative Young Kim. The Arabic Beginner Mode and Traveling Mode were singled out, both of which I built to support new Muslims and learners of Arabic. I wrote the app after finishing my AP and IB exams.</p></div></li>
-      <li class="hs-award reveal"><span class="hs-when">2023 &#183; 12th</span><div><h4>ICOI Certificate for App Development Achievement</h4><p>For building and maintaining the ICOI app: prayer times, events and more.</p></div></li>
-      <li class="hs-award reveal hs-award--big"><span class="hs-when">2024 &#183; 12th</span><div><h4>Winner: Apple Swift Student Challenge</h4><p class="honor-line"><span>🏆 Issued by Apple</span><span>June 2024</span><span>Awarded in my senior year of high school</span></p><p>One of <b>350 winners</b> selected from thousands of high school and college students worldwide, won with <b>Al-Quran</b> <b>while still in high school</b>. Attended WWDC 2024 days after graduating, met Tim Cook and saw Apple Park.</p></div></li>
-      <li class="hs-award reveal"><span class="hs-when">2024 &#183; 12th</span><div><h4>IB Best Performance at Banquet</h4><p>For the speeches at the final senior IB banquet, including for two retiring IB teachers.</p></div></li>
-      <li class="hs-award reveal"><span class="hs-when">2024</span><div><h4>OC Register: Valedictorians and top scholars, Class of 2024</h4><p>Featured in the Orange County Register&#8217;s round-up for the graduating class.</p></div></li>
-    </ol>
-
-    <!-- ─────────── the two Al-Islam documents ───────────
-         Both were written here, junior and senior year, which is why they sit
-         between the awards and WWDC: the first predates every award on the
-         list above, the second is the Congressional App Challenge one being
-         written up. They also appear on /al-islam/, which is the app they are
-         about. Same embed pattern as the Activities & Awards doc below. -->
-    <h3 class="subsec reveal">The Al-Islam Writing <span class="subsec-yr">junior &amp; senior year &#183; 2023</span></h3>
-    <p class="hs-p reveal">Two documents about <b>Al-Islam</b> from the year I wrote it. The first is my own, handed to <b>Ms. Kerawalla</b>, my sophomore and junior year computer science teacher, in <b>May 2023</b>, while the app was still unpublished: it runs from the Code.org projects that came before it (the Aurebesh translator, the wallpaper maker, Hangman and Wordle) through to what Al-Islam could do at that point. The second is what she wrote after it won the <b>Congressional App Challenge</b> that December, with my own account of the journey quoted inside it.</p>
-
-    <h4 class="isl-doc-head reveal">Backstory &#183; 24 May 2023 &#183; 11th</h4>
-    <div class="embed-wrap reveal">
-      <iframe class="embed-frame" src="https://docs.google.com/document/d/1QnOlzlriKa6JstmrvC3wtPe2zmv3lY-7z-DEjsGhuXY/preview" title="Al-Islam app backstory, written May 2023" loading="lazy"></iframe>
-      <p class="embed-note"><b>Full document above.</b> Or <a href="https://docs.google.com/document/d/1QnOlzlriKa6JstmrvC3wtPe2zmv3lY-7z-DEjsGhuXY/edit?usp=sharing" target="_blank" rel="noopener">open it in Google Docs &#8599;</a>.</p>
-    </div>
-
-    <h4 class="isl-doc-head reveal">Congressional App Challenge &#183; Ms. Kerawalla &#183; 12th</h4>
-    <div class="embed-wrap reveal">
-      <iframe class="embed-frame" src="https://docs.google.com/document/d/1lOCNUbrgj3dY12VZVpt7saqotd-GwAgAP4jS_Oaj_zQ/preview" title="Congressional App Challenge write-up by Ms. Kerawalla" loading="lazy"></iframe>
-      <p class="embed-note"><b>Full document above.</b> Or <a href="https://docs.google.com/document/d/1lOCNUbrgj3dY12VZVpt7saqotd-GwAgAP4jS_Oaj_zQ/edit?usp=sharing" target="_blank" rel="noopener">open it in Google Docs &#8599;</a>.</p>
-    </div>
-
-    <h3 class="subsec reveal">WWDC 2024 <span class="subsec-yr">the Swift Student Challenge &#183; Apple Park &#183; June 2024</span></h3>
-    <p class="wwdc-note reveal">
-      Apple picks a few hundred <a href="https://developer.apple.com/swift-student-challenge/" target="_blank" rel="noopener" data-magnetic>Swift
-      Student Challenge</a> winners out of tens of thousands of submissions. I was one of <b>350 worldwide</b> in 2024, for <b>Al-Quran</b>,
-      written in my senior year, with a personal letter from Apple&#8217;s Worldwide Developer Relations team to go with it. And the real prize
-      came attached: an invitation to the <b>Worldwide Developers Conference</b> in Cupertino. I flew up <b>days after graduating</b>, still
-      technically a high schooler: walking Apple Park, meeting <b>Tim Cook</b>, and standing under the WWDC24 sign. Easily the highlight of
-      the four years on this page.
-    </p>
-    <div class="wwdc-grid">
-      <a class="wwdc-shot reveal" href="../assets/img/awards/wwdc-tim-cook.jpg" data-label="Meeting Tim Cook" target="_blank" rel="noopener">
-        <img src="../assets/img/awards/wwdc-tim-cook.jpg" alt="Abubakr Elmallah with Apple CEO Tim Cook at Apple Park during WWDC 2024" loading="lazy" />
-      </a>
-      <a class="wwdc-shot reveal" href="../assets/img/awards/wwdc-sign.jpg" data-label="WWDC24 Sign &#183; Apple Park" target="_blank" rel="noopener">
-        <img src="../assets/img/awards/wwdc-sign.jpg" alt="Abubakr Elmallah beside the WWDC24 sign at Apple Park" loading="lazy" />
-      </a>
-      <a class="wwdc-shot reveal" href="../assets/img/awards/wwdc-apple-park.jpg" data-label="At Apple Park" target="_blank" rel="noopener">
-        <img src="../assets/img/awards/wwdc-apple-park.jpg" alt="Abubakr Elmallah at Apple Park for WWDC 2024" loading="lazy" />
-      </a>
-      <a class="wwdc-shot reveal" href="../assets/img/awards/wwdc-rainbow.jpg" data-label="The Rainbow Stage &#183; Apple Park" target="_blank" rel="noopener">
-        <img src="../assets/img/awards/wwdc-rainbow.jpg" alt="Abubakr Elmallah on the Apple Park lawn with the iconic rainbow stage during WWDC 2024" loading="lazy" />
-      </a>
-    </div>
-    <div class="wwdc-sub reveal">
-      <p class="honor-line"><span>🏆 Swift Student Challenge &#183; Issued by Apple</span><span>June 2024</span><span>Awarded in my senior year of high school</span></p>
-      <p class="wwdc-note">
-        Every winner is listed on <b>WWDCScholars</b>, the community directory of Swift Student Challenge and WWDC Scholarship
-        winners going back to 2012. The 2024 list runs alphabetically by first name, which puts <b>Abubakr</b> first on the page.
-      </p>
-      <a class="dev-link reveal" href="https://www.wwdcscholars.com/2024" target="_blank" rel="noopener" data-magnetic>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      <span>See the 2024 winners on WWDCScholars</span><i>↗</i>
-    </a>
-      <div class="wwdc-grid wwdc-grid--ssc">
-        <a class="wwdc-shot wwdc-shot--doc reveal" href="../assets/img/awards/wwdc-scholars-2024.jpg" data-label="WWDC 2024 Scholar &#183; Swift Student Challenge" target="_blank" rel="noopener">
-          <img src="../assets/img/awards/wwdc-scholars-2024.jpg" alt="Abubakr Elmallah featured on Apple's WWDC 2024 Scholars page for the Swift Student Challenge" loading="lazy" />
-        </a>
-        <a class="wwdc-shot wwdc-shot--doc reveal" href="../assets/img/awards/al-quran-ssc.jpg" data-label="Swift Student Challenge Winner &#183; Al-Quran" target="_blank" rel="noopener">
-          <img src="../assets/img/awards/al-quran-ssc.jpg" alt="Swift Student Challenge 2024 winner award for Al-Quran" loading="lazy" />
-        </a>
-        <a class="wwdc-shot wwdc-shot--doc reveal" href="../assets/img/awards/al-quran-apple-letter.jpg" data-label="Apple WWDC Congratulatory Letter" target="_blank" rel="noopener">
-          <img src="../assets/img/awards/al-quran-apple-letter.jpg" alt="Apple Worldwide Developer Relations letter congratulating Abubakr Elmallah" loading="lazy" />
-        </a>
-      </div>
-    </div>
-
-    <h3 class="subsec reveal">Community Service</h3>
+    <h2 class="subsec subsec--title reveal" id="service">Community Service</h2>
     <div class="hs-cols hs-cols--3">
       <div class="hs-col reveal">
-        <h4>Islamic Center of Irvine &#183; grades 9&#8211;12</h4>
+        <h3>Islamic Center of Irvine &#183; grades 9&#8211;12</h3>
         <p class="hs-p">Many projects over the four years: website content, organising Ramadan taraweeh prayers, running programmes like the coffee chats, and building their iOS app.</p>
       </div>
       <div class="hs-col reveal">
-        <h4>CSF &#183; grades 9&#8211;12</h4>
+        <h3>CSF &#183; grades 9&#8211;12</h3>
         <p class="hs-p">California Scholarship Federation, all four years: an active member across many of its events.</p>
       </div>
       <div class="hs-col reveal">
-        <h4>NHS &#183; grades 11&#8211;12</h4>
+        <h3>NHS &#183; grades 11&#8211;12</h3>
         <p class="hs-p">Juniors and seniors only. Volunteered at events and organised my own at ICOI: the highest hour count in the chapter junior year at over 30, and around 50 by the end of senior year. Also a year of Key Club alongside it in 11th grade.</p>
       </div>
     </div>
 
-    <h3 class="subsec reveal">Work <span class="subsec-yr">while still at school</span></h3>
-    <ol class="roles">
+    <h2 class="subsec subsec--title reveal" id="work">Work <span class="subsec-yr">while still at school</span></h2>
+    <ol class="roles" role="list">
       <li class="role reveal">
         <div class="role-when"><b>Feb 2024 &#8211; Feb 2026</b><span>2 yrs &#183; part-time</span></div>
         <div class="role-body">
-          <h4>iOS App Development Teacher &#183; STEM Heroes Academy</h4>
+          <h3>iOS App Development Teacher &#183; STEM Heroes Academy</h3>
           <p>After the ICOI app shipped I was asked to help build out the STEM academy at the Muslim Village, a new ICOI programme. It was robotics only; I proposed an iOS course, and that proposal is what expanded the curriculum.</p>
-          <ul class="role-points">
+          <ul class="role-points" role="list">
             <li>Launched the academy&#8217;s first <b>iOS App Development</b> course as its <b>youngest instructor</b>, at 17, teaching <b>Swift, Swift Playgrounds and SwiftUI</b> to <b>30+ students</b> aged 8&#8211;14, who each shipped a working app over the two years.</li>
             <li>Wrote the curriculum: Swift syntax, optionals, structs and classes, then UI with stacks, event-driven programming with gestures, and animations.</li>
           </ul>
@@ -375,14 +333,14 @@ redirect_from:
           <div class="role-tags">
             <span class="role-tag">Muslim Village, ICOI &#183; Dr Yasser Shoukry</span>
             <span class="role-tag">Ran into college</span>
-            <a class="role-tag role-tag--link" href="https://www.stemirvine.com/" target="_blank" rel="noopener">stemirvine.com ↗</a>
+            <a class="role-tag role-tag--link" href="https://www.stemirvine.com/" target="_blank" rel="noopener">stemirvine.com<span aria-hidden="true"> ↗</span><span class="vh"> (opens in a new tab)</span></a>
           </div>
         </div>
       </li>
       <li class="role reveal">
         <div class="role-when"><b>Summer 2021</b><span>9th &#8594; 10th</span></div>
         <div class="role-body">
-          <h4>Tennis Court Supervisor</h4>
+          <h3>Tennis Court Supervisor</h3>
           <p>My coach offered me the job after 9th grade. Every weekend overseeing the local community courts: keeping them clean, in good condition, and players to the rules. First job, and the first time I was responsible for something on my own.</p>
           <div class="role-tags">
             <span class="role-tag">Coach Mike Kovar</span>
@@ -391,20 +349,26 @@ redirect_from:
       </li>
     </ol>
 
-    <h3 class="subsec reveal">Activities &amp; Awards</h3>
+    <h2 class="subsec subsec--title reveal" id="activities">Activities &amp; Awards</h2>
     <div class="embed-wrap reveal">
-      <iframe class="embed-frame" src="https://docs.google.com/document/d/1T7b_Pa1ShLFYjpGPapTChNVMuvpCA-K38JaWMgspUy0/preview" title="High-school activities and awards document" loading="lazy"></iframe>
-      <p class="embed-note"><b>Full document above.</b> Or <a href="https://docs.google.com/document/d/1T7b_Pa1ShLFYjpGPapTChNVMuvpCA-K38JaWMgspUy0/edit?usp=sharing" target="_blank" rel="noopener">open it in Google Docs ↗</a>.</p>
+      <div class="embed-facade">
+        <button class="cta embed-load" type="button" aria-label="Load the document: High-school activities and awards document">Load the document</button>
+        <p class="embed-facade-note">Opens Google Docs&#8217; viewer here</p>
+      </div>
+      <iframe class="embed-frame embed-frame--doc" data-doc-src="https://docs.google.com/document/d/1T7b_Pa1ShLFYjpGPapTChNVMuvpCA-K38JaWMgspUy0/preview" title="High-school activities and awards document" hidden></iframe>
+      <noscript><iframe class="embed-frame embed-frame--doc" src="https://docs.google.com/document/d/1T7b_Pa1ShLFYjpGPapTChNVMuvpCA-K38JaWMgspUy0/preview" title="High-school activities and awards document" loading="lazy"></iframe></noscript>
+      <p class="embed-note"><b class="embed-live">Full document above. </b>Or <a href="https://docs.google.com/document/d/1T7b_Pa1ShLFYjpGPapTChNVMuvpCA-K38JaWMgspUy0/edit?usp=sharing" target="_blank" rel="noopener">open it in Google Docs<span aria-hidden="true"> &#8599;</span><span class="vh"> (opens in a new tab)</span></a>.</p>
     </div>
     <a class="cta cta--big reveal" href="https://docs.google.com/document/d/1T7b_Pa1ShLFYjpGPapTChNVMuvpCA-K38JaWMgspUy0/edit?usp=sharing" target="_blank" rel="noopener" data-magnetic>
-      <span>See it as a Google Doc &#183; as written after my senior year</span>
+      <span>See it as a Google Doc &#183; as written after my senior year</span><span class="vh"> (opens in a new tab)</span>
       <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
 
     <div class="hs-extra reveal">
-      <a href="/college/" data-magnetic>↳ What I’m doing now: College ↗</a>
-      <a href="https://learnsalah.com/attribution" target="_blank" rel="noopener" data-magnetic>🎙 Voice of learnsalah.com · 2023 ↗</a>
-      <a href="https://www.youtube.com/@MinshawiAbubakr" target="_blank" rel="noopener" data-magnetic>▶ Minshawi-style Quran recitations ↗</a>
+      <a href="/college/" data-magnetic><span aria-hidden="true">↳ </span>What I’m doing now: College<span aria-hidden="true">&nbsp;↗</span></a>
+      <!-- no link: learnsalah.com is offline, and the attribution page with it -->
+      <span style="color: var(--ink-dim)"><span aria-hidden="true">🎙 </span>Voice of learnsalah.com · 2023</span>
+      <a href="https://www.youtube.com/@MinshawiAbubakr" target="_blank" rel="noopener" data-magnetic><span aria-hidden="true">▶ </span>Minshawi-style Quran recitations<span aria-hidden="true">&nbsp;↗</span><span class="vh"> (opens in a new tab)</span></a>
     </div>
   </section>
 
@@ -413,27 +377,16 @@ redirect_from:
 <!-- The switch itself is on /worlds/ now, not here. pics.js stays loaded so
      this page still OBEYS it; it just no longer offers it in three places. -->
 
-<footer class="footer">
-  <span>© 2026 Abubakr Elmallah</span>
-  <a class="footer-mid" href="/" data-magnetic>← Back to home</a>
-  <button class="totop" id="totop" type="button" data-magnetic>Back to top ↑</button>
-</footer>
+{% include footer.html back="/" %}
 
 <!-- mobile bottom tab bar -->
-<nav class="tabbar" aria-label="Primary">
-  <a href="/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg><span>Home</span></a>
-  <a href="/work/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/><path d="M3 12.5h18"/></svg><span>Work</span></a>
-  <a href="/projects/"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span>Projects</span></a>
-  <a href="/education/" class="is-current"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-4 9 4-9 4z"/><path d="M7 11v5c0 1 2.5 2 5 2s5-1 5-2v-5"/></svg><span>Education</span></a>
-  <a href="/worlds/"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg><span>Worlds</span></a>
-</nav>
+{% include tabbar.html %}
 
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <!-- card data + renderer (must load before reveal.js / tilt.js / cardlink.js) -->
 <script src="{% include v.html f='/assets/js/apps-data.js' %}"></script>
 <script src="{% include v.html f='/assets/js/cards.js' %}"></script>
-<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
-<script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
 <!-- the "show other pictures" switch: must run before the galleries that read it -->
 <script src="{% include v.html f='/assets/js/pics.js' %}"></script>
 <!-- the gallery loader: must run before years.js, which writes data-src frames for it -->
@@ -441,10 +394,12 @@ redirect_from:
 <script src="{% include v.html f='/assets/js/years-data.js' %}"></script>
 <script src="{% include v.html f='/assets/js/years.js' %}"></script>
 <script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
-<script src="{% include v.html f='/assets/js/mascots.js' %}"></script>
 <script src="{% include v.html f='/assets/js/transcript-data.js' %}"></script>
 <!-- after reveal.js on purpose: see the comment in transcript.js -->
 <script src="{% include v.html f='/assets/js/transcript.js' %}"></script>
+<!-- after the transcript renderer above, so the toggle it writes gets the
+     drift too -->
+<script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
 <script src="{% include v.html f='/assets/js/clock.js' %}"></script>
 <script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
 <script src="{% include v.html f='/assets/js/tilt.js' %}"></script>

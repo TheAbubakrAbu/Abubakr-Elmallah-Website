@@ -47,6 +47,16 @@ window.FAN_PAGE = {
           { n: 'The Adventures of Buck Wild', y: '2022' },
           { n: 'Scrat Tales', y: '2022' },
         ] },
+      { title: 'The Games', sub: '2002 – 2019', unit: 'game',
+        desc: 'One per film for a while, and then Scrat got a game of his own.',
+        rows: [
+          { n: 'Ice Age', y: '2002' },
+          { n: 'Ice Age 2: The Meltdown', y: '2006' },
+          { n: 'Ice Age: Dawn of the Dinosaurs', y: '2009' },
+          { n: 'Continental Drift: Arctic Games', y: '2012' },
+          { n: 'Ice Age Village', y: '2012' },
+          { n: 'Ice Age: Scrat’s Nutty Adventure', y: '2019' },
+        ] },
     ] },
 
   { id: 'themes', kind: 'tiles', compact: true, title: 'The Music', note: 'three tracks · David Newman, and the song',

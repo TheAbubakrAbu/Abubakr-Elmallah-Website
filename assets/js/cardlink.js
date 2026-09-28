@@ -15,8 +15,10 @@
    read and selected without the card navigating out from under it. */
 (function cardLinks() {
   document.querySelectorAll('.app-card, .proj-card').forEach(card => {
-    // primary destination: the project media link, else the first footer link (App Store, etc.)
-    const primary = card.querySelector('.proj-media, .app-links a');
+    /* primary destination: the first footer link (App Store, GitHub, the
+       project); a project card's screenshot is not it any more, it opens the
+       picture full size (cards.js) */
+    const primary = card.querySelector('.app-links a') || card.querySelector('.proj-media');
     if (!primary || !primary.href) return;
 
     card.classList.add('is-clickable');

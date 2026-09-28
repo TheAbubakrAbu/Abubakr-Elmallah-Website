@@ -238,6 +238,9 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* Westeros in Fortnite, the same frames as on the Fortnite page */
+  { id: 'fortnite', set: 'fortnite-got' },
+
   /* the music: the Thrones tracks on my playlist, in season order, named
      as the albums name them and linked to the album's own upload (Ramin
      Djawadi's Topic channel, WaterTower) wherever there is one; Light of the
@@ -290,8 +293,8 @@ window.FAN_PAGE = {
         href: 'https://www.youtube.com/watch?v=eTa1jHk1Lxc', link: 'Listen' },
     ] },
 
-  { id: 'unofficial-songs', kind: 'tiles', compact: true, title: 'Not In The Show', note: 'two songs that still feel like Westeros',
-    lede: 'Neither appears in Game of Thrones. They are just two songs from my playlist that make me think of it anyway.',
+  { id: 'unofficial-songs', kind: 'tiles', compact: true, title: 'Not In The Show', note: 'four songs that still feel like Westeros',
+    lede: 'None of these appears in Game of Thrones. They are just four songs from my playlist that make me think of it anyway.',
     items: [
       { title: 'Runaway', accent: '#7a91b8', sub: 'AURORA · unofficial · reminds me of Game of Thrones',
         desc: 'Not a soundtrack track: just the voice, the cold air around it, and the feeling of somebody trying to get home through a world that is much too big.',
@@ -299,6 +302,12 @@ window.FAN_PAGE = {
       { title: 'Golden Brown', accent: '#b89054', sub: 'The Stranglers · unofficial · reminds me of Game of Thrones',
         desc: 'Not in the show either. Its strange, courtly waltz feel belongs somewhere between a candlelit hall, a scheming Lannister, and the old world underneath the story.',
         href: 'https://www.youtube.com/watch?v=7KIHvuMl4Kk', link: 'Listen' },
+      { title: 'Dark Fantasy', accent: '#8a5fb0', sub: 'posssole feat. NNITRO · 2024 · 3:30 · unofficial',
+        desc: 'Not from the show: a dark, driving club track at a hundred and sixty beats a minute, and the name alone says why it is filed under Westeros.',
+        href: 'https://www.youtube.com/watch?v=AbLbM6mR1m8', link: 'Listen' },
+      { title: 'Hide (CS01 Version)', accent: '#5f7f9f', sub: 'Dorian Concept · 2023 · 3:01 · unofficial',
+        desc: 'The track the “dark fantasy” edits are cut to, which is where it and Westeros meet. Dorian Concept tags his own upload with it.',
+        href: 'https://www.youtube.com/watch?v=tlFolRo1WiE', link: 'Listen' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

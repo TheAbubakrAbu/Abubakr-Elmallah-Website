@@ -1,0 +1,63 @@
+{%- comment -%}
+  The shared <head>, from the charset to the three shared stylesheets.
+  Every page used to carry its own copy of all of this. A page now sets only
+  what is its own, in front matter:
+
+    title        the <title>
+    description  the meta description
+    theme        theme-color, when it is not the site's #08080a
+    fonts        the Google Fonts families, when not the default set below
+    standalone   true on the pages that load no shared stylesheet
+                 (/elmallah/, /holocron/, /jarvis/, /marauders-map/)
+
+  and links its own stylesheets straight after the include.
+{%- endcomment -%}
+{%- assign fonts = page.fonts | default: "family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700" -%}
+<meta charset="UTF-8" />
+<!-- viewport-fit=cover goes with the black-translucent status bar below: as
+     a home-screen app WebKit lays the page under the status bar and the
+     Dynamic Island either way, and without cover every
+     env(safe-area-inset-*) is 0, so nothing could move out from under them.
+     With it the insets carry the real values and the top bar, the overlays'
+     close buttons and the page gutters clear them (base.css, layout.css,
+     components.css, years.css). In a browser tab the insets are 0. -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="description" content="{{ page.description }}" />
+<meta name="theme-color" content="{{ page.theme | default: '#08080a' }}" />
+
+<!-- the tab icon: a 64px copy of the circle mark (the 512px original is 93 KB,
+     which every first visit downloaded for a 16px icon; it stays the share image) -->
+<link rel="icon" type="image/png" sizes="64x64" href="/assets/img/me/abubakr-circle-64.png" />
+<link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Abubakr" />
+<meta property="og:image" content="https://abubakrelmallah.com/assets/img/me/abubakr-circle.png" />
+<meta property="og:type" content="website" />
+<title>{{ page.title }}</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- Fonts are loaded WITHOUT blocking the first paint. As a plain
+     stylesheet this held the whole page blank until Google answered,
+     which on a weak connection is most of "it opens but it loads
+     slowly". media="print" makes the browser fetch it at low priority
+     and render immediately; onload promotes it to the real stylesheet.
+     Every family here already carries display=swap, so text is on
+     screen in the fallback face straight away and swaps when it lands. -->
+<link href="https://fonts.googleapis.com/css2?{{ fonts }}&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+<noscript><link href="https://fonts.googleapis.com/css2?{{ fonts }}&display=swap" rel="stylesheet" /></noscript>
+{%- unless page.standalone %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/base.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/layout.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/components.css' %}" />
+<!-- .reveal starts at opacity 0 and waits for reveal.js to bring it in, so
+     with scripts off most of every page stayed invisible (/education/ showed
+     its hero and nothing else). Without scripts, everything simply shows. -->
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }
+.embed-frame--doc[data-doc-src], .embed-facade { display: none !important; }
+.embed-live { display: inline !important; }</style></noscript>
+{%- endunless %}

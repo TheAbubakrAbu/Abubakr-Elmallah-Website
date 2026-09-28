@@ -1,0 +1,46 @@
+{%- comment -%}
+  The top bar: name, the sound and cursor toggles, and the quick links.
+
+  The avatar is a 96px WebP of the circle mark (2.5 KB): 30 CSS px at the
+  3x density of a phone screen, so nothing sharper is ever drawn. It used to
+  be the 256px WebP (16 KB, kept for the launch screen's logo in intro.js),
+  and before that the 512px PNG (95 KB), which on the home page was fetched
+  alongside the portrait, the largest image, and slowed it by most of a
+  second on a slow phone connection. The PNG stays as the share image.
+  alt="" because the link's own text already says the name.
+
+  The magnifier opens search (search.js, loaded here with defer so every page
+  with this bar has it, and it runs after the page has drawn its content).
+
+  Résumé comes last in the markup because it is drawn last (.ql--resume has
+  order: 2), so Tab moves left to right like the eye does.
+
+  .brand-last lets a phone show just "Abubakr" so the bar fits on one row
+  (layout.css); the surname stays readable to screen readers there.
+
+  "Skip to content" is the first thing Tab reaches, shown only while focused
+  (base.css). It jumps to #main: /projects/ sets that id on its <main>, and
+  utils.js gives it to the <main> of any page that has not.
+{%- endcomment -%}
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="topbar">
+  <a href="/" class="brand" data-magnetic>
+    <img class="brand-avatar" src="/assets/img/me/abubakr-circle-96.webp" alt="" width="30" height="30" /><span class="brand-glyph"><b>Abubakr</b><span class="brand-last"> Elmallah</span></span>
+  </a>
+  <div class="toggles"><button class="ql ql--search" id="searchOpen" type="button" aria-label="Search this page and the site" aria-haspopup="dialog" aria-keyshortcuts="/ Control+K Meta+K" data-magnetic><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></button><button class="ql ql--sound is-on" id="soundToggle" type="button" aria-pressed="true" aria-label="Toggle interface sounds" data-magnetic><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg></button><button class="ql ql--cursor" id="cursorToggle" type="button" data-cursor-toggle aria-pressed="true" aria-label="Toggle custom cursor" data-magnetic><svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg><svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3l15 9-6.5 1.5L17 20l-2.5 1-3.5-6.5L5 19z"/></svg></button></div>
+  <div class="quicklinks">
+    <a class="ql ql--linkedin" href="https://www.linkedin.com/in/abubakr-elmallah" target="_blank" rel="noopener" data-magnetic>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C21.4 8.75 22 11 22 14.2V21h-4v-6c0-1.43-.03-3.27-2-3.27-2 0-2.3 1.56-2.3 3.17V21h-4z"/></svg>
+      <span class="ql-label">LinkedIn</span><span class="vh"> (opens in a new tab)</span>
+    </a>
+    <a class="ql ql--github" href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener" data-magnetic>
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+      <span class="ql-label">GitHub</span><span class="vh"> (opens in a new tab)</span>
+    </a>
+    <a class="ql ql--resume" href="/resume/"{% if page.url == "/resume/" %} aria-current="page"{% endif %} data-magnetic>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3v5h5M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M8 13h8M8 17h6"/></svg>
+      <span class="ql-label">Résumé</span>
+    </a>
+  </div>
+</header>
+<script src="{% include v.html f='/assets/js/search.js' %}" defer></script>

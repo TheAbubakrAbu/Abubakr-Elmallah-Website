@@ -1,36 +1,15 @@
 ---
 permalink: /jarvis/
+title: "J.A.R.V.I.S. · Abubakr Elmallah"
+description: "J.A.R.V.I.S., a Stark-inspired heads-up interface for Abubakr Elmallah's portfolio."
+theme: "#00060b"
+fonts: "family=Orbitron:wght@400;500;700&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500"
+standalone: true
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="J.A.R.V.I.S., a Stark-inspired heads-up interface for Abubakr Elmallah's portfolio." />
-<meta name="theme-color" content="#00060b" />
-
-<link rel="icon" type="image/png" href="../assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png" />
-<link rel="manifest" href="/manifest.webmanifest" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Abubakr" />
-<meta property="og:image" content="https://abubakrelmallah.com/assets/img/me/abubakr-circle.png" />
-<meta property="og:type" content="website" />
-<title>J.A.R.V.I.S. · Abubakr Elmallah</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<!-- Fonts are loaded WITHOUT blocking the first paint. As a plain
-     stylesheet this held the whole page blank until Google answered,
-     which on a weak connection is most of "it opens but it loads
-     slowly". media="print" makes the browser fetch it at low priority
-     and render immediately; onload promotes it to the real stylesheet.
-     Every family here already carries display=swap, so text is on
-     screen in the fallback face straight away and swaps when it lands. -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+{% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/jarvis.css' %}" />
 <!-- the HUD reveals itself from JS; without JS, show everything immediately -->
@@ -83,7 +62,7 @@ permalink: /jarvis/
       <article class="jv-mod">
         <div class="jv-mod-h"><span class="jv-dot"></span>Operator</div>
         <div class="jv-id-name">ABUBAKR<br />ELMALLAH</div>
-        <div class="jv-id-role">iOS Developer · CS @ UC Irvine ’28</div>
+        <div class="jv-id-role">Lead Mobile &amp; Backend Developer · CS @ UC Irvine ’28</div>
         <div class="jv-id-greet" id="jvGreet"></div>
       </article>
 
@@ -128,15 +107,26 @@ permalink: /jarvis/
 
       <article class="jv-mod">
         <div class="jv-mod-h"><span class="jv-dot"></span>Directories</div>
+        <!-- every page on the site, so the home page's "every page wired into
+             one console" is true: the main sections, the two schools, the
+             worlds and their three personal pages, and the other terminals -->
         <nav class="jv-links">
           <a class="jv-link" href="/"><i></i>Main Interface<em>HOME</em></a>
           <a class="jv-link" href="/work/"><i></i>Work<em>UCI</em></a>
           <a class="jv-link" href="/projects/"><i></i>Projects<em>ALL</em></a>
-          <a class="jv-link" href="/star-wars/"><i></i>Star Wars<em>AUREBESH</em></a>
-          <a class="jv-link" href="/al-islam/"><i></i>Al-Islam<em>ISLAMIC</em></a>
+          <a class="jv-link" href="/education/"><i></i>Education<em>SCHOOLS</em></a>
           <a class="jv-link" href="/college/"><i></i>College<em>UCI ’28</em></a>
           <a class="jv-link" href="/high-school/"><i></i>High School<em>ARCHIVE</em></a>
           <a class="jv-link" href="/resume/"><i></i>Résumé<em>DOC</em></a>
+          <a class="jv-link" href="/worlds/"><i></i>Worlds<em>70 PAGES</em></a>
+          <a class="jv-link" href="/star-wars/"><i></i>Star Wars<em>AUREBESH</em></a>
+          <a class="jv-link" href="/al-islam/"><i></i>Al-Islam<em>ISLAMIC</em></a>
+          <a class="jv-link" href="/travels/"><i></i>Travels<em>MAP</em></a>
+          <a class="jv-link" href="/accents/"><i></i>Accents<em>VOICES</em></a>
+          <a class="jv-link" href="/gaming/"><i></i>Gaming<em>STEAM</em></a>
+          <a class="jv-link" href="/elmallah/"><i></i>E.L.M.A.L.L.A.H.<em>TERMINAL</em></a>
+          <a class="jv-link" href="/holocron/"><i></i>Holocron<em>TERMINAL</em></a>
+          <a class="jv-link" href="/marauders-map/"><i></i>Marauder’s Map<em>TERMINAL</em></a>
         </nav>
       </article>
 
@@ -221,7 +211,7 @@ permalink: /jarvis/
         <div class="jv-mod-h"><span class="jv-dot"></span>Deployments</div>
         <div class="jv-feed">
           <div class="jv-feed-item is-live"><i></i><div class="jv-feed-body">
-            <div class="jv-feed-t">UCI Esports</div><div class="jv-feed-m">2025 · Swift · App Store</div></div></div>
+            <div class="jv-feed-t">UCI Esports</div><div class="jv-feed-m">2026 · Swift · App Store</div></div></div>
           <div class="jv-feed-item is-live"><i></i><div class="jv-feed-body">
             <div class="jv-feed-t">PeterPlate</div><div class="jv-feed-m">2025 · Next.js · Web</div></div></div>
           <div class="jv-feed-item is-live"><i></i><div class="jv-feed-body">
@@ -252,7 +242,7 @@ permalink: /jarvis/
           <a class="jv-link" href="mailto:ammelmallah@gmail.com"><i></i>Secure Mail<em>EMAIL</em></a>
           <a class="jv-link" href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener"><i></i>Source Vault<em>GITHUB</em></a>
           <a class="jv-link" href="https://www.linkedin.com/in/abubakr-elmallah" target="_blank" rel="noopener"><i></i>Network<em>LINKEDIN</em></a>
-          <a class="jv-link" href="https://apps.apple.com/tr/developer/abubakr-elmallah/id1690310648" target="_blank" rel="noopener"><i></i>Distribution<em>APP STORE</em></a>
+          <a class="jv-link" href="https://apps.apple.com/us/developer/abubakr-elmallah/id1690310648" target="_blank" rel="noopener"><i></i>Distribution<em>APP STORE</em></a>
         </nav>
       </article>
 

@@ -23,13 +23,74 @@
 }
 .kicker span:first-child { color: var(--green); }
 
+/* ── "Latest" pill ──
+   One line above the name pointing at the newest thing shipped: a live dot,
+   a label, the news, an arrow. Pill-shaped and green-tinted like .app-expand,
+   so it reads as something to press rather than as another kicker line. */
+.news-pill {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  max-width: 100%; margin-bottom: clamp(1.2rem, 2.4vw, 1.8rem);
+  padding: 0.45rem 0.9rem 0.45rem 0.75rem; border-radius: 100px;
+  border: 1px solid color-mix(in srgb, var(--green) 28%, transparent);
+  background: color-mix(in srgb, var(--green) 7%, transparent);
+  font-size: 0.84rem; color: var(--ink-dim);
+  transition: background .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease);
+}
+.news-pill:hover {
+  background: color-mix(in srgb, var(--green) 14%, transparent);
+  border-color: color-mix(in srgb, var(--green) 55%, transparent);
+  color: var(--ink);
+}
+/* The ping is a copy of the dot that grows and fades. It used to be an
+   animated box-shadow, which repaints on every frame; scale and opacity stay
+   on the compositor. Same look: out to 3x (7px past the dot), gone by 70%. */
+.news-dot {
+  position: relative;
+  flex: none; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--green-2);
+}
+.news-dot::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  background: var(--green-2); opacity: 0;
+  animation: news-ping 2.4s ease-out infinite;
+}
+@keyframes news-ping {
+  0%       { opacity: .55; transform: scale(1); }
+  70%, 100% { opacity: 0;   transform: scale(3); }
+}
+.news-k {
+  flex: none; font-family: var(--mono); font-size: 0.68rem;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-2);
+}
+.news-t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* a phone keeps the name and drops the rest, rather than ellipsising mid-word */
+@media (max-width: 480px) { .news-more { display: none; } }
+.news-pill svg { flex: none; width: 14px; height: 14px; transition: transform .25s var(--ease); }
+.news-pill:hover svg { transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) { .news-dot::after { animation: none; } }
+
 .display {
-  font-family: var(--serif); font-weight: 800;
+  font-family: var(--serif); font-weight: 600;
   font-size: clamp(3.6rem, 11vw, 11rem);
   line-height: 0.9; letter-spacing: -0.04em;
 }
 .display .line { display: block; width: fit-content; will-change: transform; }
 .display .line--italic { font-weight: 400; color: var(--ink-dim); }
+
+/* scramble.js draws its decoding glyphs on a layer over the real text, which
+   stays in place (transparent) for the whole effect: the line keeps its size,
+   nothing around it moves, and a screen reader reads the name, not the
+   glyphs. The layer takes the element's colour, hover transitions included. */
+.is-scrambling { position: relative; -webkit-text-fill-color: transparent; }
+.scramble-layer {
+  position: absolute; left: 0; top: 0; white-space: nowrap; pointer-events: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+/* The gutter stays reserved while the launch screen and the lightbox lock
+   scrolling, so the page does not shift sideways when the scrollbar comes
+   back. (The clearance for the two bars is site-wide now: base.css.) */
+html:has(> body[data-intro="home"]) { scrollbar-gutter: stable; }
 
 .hero-role {
   display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
@@ -60,11 +121,22 @@
   font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.05em;
   padding: 0.95rem 1.5rem; border: 1px solid var(--line);
   border-radius: 100px; color: var(--ink);
-  transition: border-color .3s, color .3s, background .3s; white-space: nowrap;
+  /* opacity and transform for the scroll reveal (see .app-card); scale for
+     the press, which composes with magnetic.js's translate */
+  transition: border-color .3s, color .3s, background .3s,
+              opacity .9s var(--ease), transform .9s var(--ease), scale .12s var(--ease);
+  white-space: nowrap;
 }
-.cta:hover { border-color: var(--green); color: var(--green-2); }
+/* hover only where there is a pointer: a tapped button that opens a new
+   tab (the Google Doc on /high-school/) came back still lit */
+@media (hover: hover) { .cta:hover { border-color: var(--green); color: var(--green-2); } }
+/* A press shows, and so does a link that is on its way (utils.js marks it
+   .is-going): on a phone a tapped button used to give no sign at all but the
+   hairline at the top of the screen. */
+.cta:active { scale: .97; }
+.cta.is-going { border-color: var(--green); color: var(--green-2); }
 .cta svg { transition: transform .3s; }
-.cta:hover svg { transform: translateX(4px); }
+@media (hover: hover) { .cta:hover svg { transform: translateX(4px); } }
 
 /* hero actions: CTA + quick buttons + section links */
 .hero-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1.1rem; }
@@ -96,7 +168,7 @@
   transition: filter .6s var(--ease);
 }
 .portrait figcaption {
-  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--mute);
   margin-top: 0.8rem; display: flex; justify-content: space-between;
 }
@@ -110,10 +182,31 @@
 .scroll-hint i { width: 40px; height: 1px; background: linear-gradient(90deg, var(--mute), transparent); animation: slide 1.8s ease-in-out infinite; transform-origin: left; }
 @keyframes slide { 0%,100%{transform:scaleX(0.3)} 50%{transform:scaleX(1)} }
 
+/* One column: the name, the role and both buttons come first and the photo
+   follows. The photo used to go first (order: -1), which on a phone filled
+   the whole first screen and left the name under the tab bar. */
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; gap: 2.5rem; }
-  .portrait { justify-self: start; max-width: 300px; order: -1; }
+  .portrait { justify-self: start; max-width: 300px; }
   .scroll-hint { display: none; }
+}
+
+/* Short laptop screens. The floating tab bar covers the bottom ~90px of the
+   window, and at 1280x720, 1280x800, 1366x768 and 1536x864 the hero's two
+   buttons loaded underneath it. The name now also scales with the window's
+   height (17svh: at 1280x720 it is 122px rather than 141px, at 1440x900
+   153px rather than 158px, and 1920x1080 is unchanged), and on windows under
+   820px tall the hero's vertical spacing tightens, so both buttons sit above
+   the bar on first load. */
+@media (min-width: 901px) {
+  .hero .display { font-size: clamp(3.6rem, min(11vw, 17svh), 11rem); }
+}
+@media (min-width: 901px) and (max-height: 820px) {
+  .hero { padding-top: 1.5rem; }
+  .hero .kicker { margin-bottom: 1rem; }
+  .hero .news-pill { margin-bottom: 1rem; }
+  .hero .hero-role { margin-top: 1.1rem; }
+  .hero .hero-foot { margin-top: 1.5rem; row-gap: 1.25rem; }
 }
 
 /* ───────────── Marquee ───────────── */
@@ -125,7 +218,7 @@
 }
 .marquee-track {
   display: inline-flex; align-items: center; gap: 2.5rem;
-  font-family: var(--serif); font-weight: 700; letter-spacing: -0.02em;
+  font-family: var(--serif); font-weight: 500; letter-spacing: -0.02em;
   font-size: clamp(1.8rem, 4vw, 3rem); color: var(--ink);
   animation: scroll-x 28s linear infinite;
 }
@@ -142,7 +235,7 @@
   border-bottom: 1px solid var(--line);
 }
 .sec-idx { font-family: var(--mono); font-size: 0.75rem; color: var(--blue-2); }
-.sec-head h2 { font-family: var(--serif); font-weight: 800; font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -0.03em; }
+.sec-head h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: -0.03em; }
 .sec-note { font-family: var(--mono); font-size: 0.7rem; color: var(--mute); text-align: right; }
 @media (max-width: 560px) { .sec-note:not(.sec-link) { display: none; } }
 
@@ -157,12 +250,17 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: clamp(1.2rem, 2.5vw, 2rem);
 }
+/* two grids under one heading (a row of three, then a row of two) keep the
+   same spacing between them as between the cards inside each */
+.apps-grid + .apps-grid { margin-top: clamp(1.2rem, 2.5vw, 2rem); }
 .app-card {
   display: flex; flex-direction: column;
   padding: 1.8rem; border: 1px solid var(--line); border-radius: 20px;
   background: rgba(255,255,255,0.012);
   position: relative; overflow: hidden;
-  transition: transform .4s var(--ease), border-color .4s, background .4s;
+  /* opacity for the scroll reveal: this list replaces the one .reveal sets,
+     and without it the card popped in instead of fading */
+  transition: transform .4s var(--ease), border-color .4s, background .4s, opacity .9s var(--ease);
 }
 .app-card::after {
   content: ""; position: absolute; inset: 0; border-radius: 20px;
@@ -170,6 +268,11 @@
   box-shadow: inset 0 0 0 1px var(--green), 0 0 40px -8px var(--green);
   transition: opacity .4s;
 }
+/* arrived at by a link to the card itself (/projects/#app-…): the hover glow
+   comes up on its own, holds long enough to find, then lets go */
+.app-card:target::after { animation: card-found 2.8s var(--ease) .9s backwards; }
+@keyframes card-found { 0%, 60% { opacity: 1; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .app-card:target::after { animation: none; opacity: 1; } }
 .app-card.is-clickable, .proj-card.is-clickable { cursor: none; }
 @media (hover: none) { .app-card.is-clickable, .proj-card.is-clickable { cursor: pointer; } }
 
@@ -180,8 +283,11 @@
 .card-link-overlay { position: absolute; inset: 0; z-index: 1; cursor: inherit; }
 .is-clickable a:not(.card-link-overlay),
 .is-clickable button { position: relative; z-index: 3; }
-.app-card:hover { transform: translateY(-6px); border-color: transparent; background: rgba(31,157,92,0.04); }
-.app-card:hover::after { opacity: 1; }
+/* The card hovers only where there is a pointer to hover with: a phone keeps
+   :hover on whatever was last tapped, so after Read more / Show less a card
+   stayed lifted, glowing, its icon tilted. Mouse users keep every lift. */
+@media (hover: hover) { .app-card:hover { transform: translateY(-6px); border-color: transparent; background: rgba(31,157,92,0.04); } }
+@media (hover: hover) { .app-card:hover::after { opacity: 1; } }
 
 /* 3D tilt glare (added by tilt.js), a soft highlight that tracks the pointer */
 .card-glare {
@@ -202,10 +308,10 @@
   box-shadow: 0 10px 30px -10px rgba(0,0,0,0.8);
   transition: transform .4s var(--ease);
 }
-.app-card:hover .app-icon { transform: scale(1.06) rotate(-2deg); }
+@media (hover: hover) { .app-card:hover .app-icon { transform: scale(1.06) rotate(-2deg); } }
 
 .app-badge {
-  font-family: var(--mono); font-size: 0.62rem; line-height: 1.3;
+  font-family: var(--mono); font-size: 0.66rem; line-height: 1.3;
   letter-spacing: 0; color: var(--gold);
   border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
   background: color-mix(in srgb, var(--gold) 8%, transparent);
@@ -218,11 +324,11 @@ a.app-badge:hover {
 }
 
 .app-card h3 {
-  font-family: var(--serif); font-weight: 800;
+  font-family: var(--serif); font-weight: 600;
   font-size: clamp(1.7rem, 3vw, 2.2rem); line-height: 1; letter-spacing: -0.03em;
   transition: color .3s;
 }
-.app-card:hover h3 { color: var(--green-2); }
+@media (hover: hover) { .app-card:hover h3 { color: var(--green-2); } }
 .app-sub { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em; color: var(--blue-2); margin-top: 0.6rem; }
 .app-card p:not(.app-sub) { color: var(--ink-dim); font-size: 0.92rem; margin-top: 0.7rem; flex: 1; }
 
@@ -243,7 +349,7 @@ a.app-badge:hover {
 /* shift the crop window DOWN so the iOS status bar (clock/battery) is cropped out */
 .app-shots img.shift-down     { object-position: center 24%; }
 .app-shots figcaption {
-  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em;
   text-transform: uppercase; color: var(--mute); margin-top: 0.5rem; text-align: center;
 }
 
@@ -255,15 +361,36 @@ a.app-badge:hover {
 }
 .app-tags { color: var(--mute); }
 .app-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; flex: none; }
-.app-foot .app-links { justify-content: flex-end; text-align: right; }
+.app-foot .app-links { justify-content: flex-end; text-align: right; margin-left: auto; }
+/* When tags and links do not both fit, the links drop to their own line
+   (still on the right) instead of squeezing the tags to a third of the width
+   ("iOS · SwiftUI · On-device AI · / MapKit"). Each " · " part of a tag or
+   date line stays whole (.nw, cards.js runs()). */
+.app-foot { flex-wrap: wrap; row-gap: 0.6rem; }
+.app-foot .app-tags { flex: 1 1 10rem; }
+.nw { white-space: nowrap; }
+/* no one-word last lines on the longer texts */
+.lede, .app-card > p, .app-more-body p, .proj-info p { text-wrap: pretty; }
 .app-links a { color: var(--ink); transition: color .25s; white-space: nowrap; }
 .app-links a:hover { color: var(--green-2); }
+.app-links a i { font-style: normal; }
+/* 17px tall on a phone, and sitting on the card's own link overlay, so a
+   near miss on "GitHub" opened the card's website instead. The padding grows
+   the hit area; the negative margin gives the space back. */
+.app-links a { padding-block: 6px; margin-block: -6px; }
+@media (pointer: coarse) {
+  .app-links a { padding-block: 13.5px; margin-block: -13.5px; }   /* 17px text + 27 = 44 */
+  /* an award ribbon: a larger hit area without a larger pill */
+  a.app-badge { position: relative; }
+  a.app-badge::before { content: ""; position: absolute; inset: -8px -4px; }
+  .dev-link { min-height: 44px; }
+}
 
 /* deprecated card (no working link) */
 .app-card--dead .app-icon { filter: grayscale(0.5); opacity: 0.8; }
-.app-card--dead:hover { border-color: var(--line); background: rgba(255,255,255,0.012); transform: translateY(-6px); }
-.app-card--dead:hover::after { opacity: 0; }
-.app-card--dead:hover h3 { color: inherit; }
+@media (hover: hover) { .app-card--dead:hover { border-color: var(--line); background: rgba(255,255,255,0.012); transform: translateY(-6px); } }
+@media (hover: hover) { .app-card--dead:hover::after { opacity: 0; } }
+@media (hover: hover) { .app-card--dead:hover h3 { color: inherit; } }
 .app-badge--dead {
   color: #d3897e;
   border-color: color-mix(in srgb, #d3897e 40%, transparent);
@@ -291,6 +418,62 @@ a.app-badge:hover {
 .apps-grid--4 { grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 1100px) { .apps-grid--4 { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px)  { .apps-grid--4 { grid-template-columns: 1fr; } }
+
+/* one card with a row to itself (PeterPlate under its employer on /work/):
+   the full row, with the text held to a readable measure */
+.apps-grid--1 { grid-template-columns: 1fr; }
+.apps-grid--1 > .app-card > p { max-width: 70ch; }
+/* A card with a row of its own shows its award screenshots at their usual
+   size rather than stretched across the row. */
+.apps-grid--1 .app-shots { max-width: 460px; }
+/* The feature row (/projects/, Datapad): on a wide screen the screenshots sit
+   beside the text rather than under it. A single card, so it steps out of
+   the row-sharing subgrid (components.css, "Row alignment") and lays out its
+   own two columns: the icon row and the footer across both, the text on the
+   left, the screenshots on the right. */
+@media (min-width: 1101px) {
+  .apps-grid.apps-grid--feature > .app-card:not(.is-open) {
+    display: grid; grid-row: auto; grid-template-rows: none;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 27rem); column-gap: 3rem; align-content: start;
+  }
+  .apps-grid.apps-grid--feature > .app-card:not(.is-open) > * { grid-column: 1; }
+  .apps-grid.apps-grid--feature > .app-card:not(.is-open) > :is(.app-head, .app-foot) { grid-column: 1 / -1; }
+  .apps-grid.apps-grid--feature > .app-card:not(.is-open) > .app-shots {
+    grid-column: 2; grid-row: 2 / span 5; margin-top: 0; align-self: start; max-width: none;
+  }
+}
+/* The same for a card that would otherwise sit alone beside an empty cell:
+   the last of an odd number in a two-up grid, and the third of a three-up
+   grid while it is showing two columns (761-1100px, where Al-Quran was
+   left on its own row at iPad widths). */
+@media (min-width: 761px) {
+  .apps-grid--2 > .app-card:last-child:nth-child(odd):not(:only-child) { grid-column: 1 / -1; }
+  .apps-grid--2 > .app-card:last-child:nth-child(odd):not(:only-child) > p { max-width: 70ch; }
+}
+@media (min-width: 761px) and (max-width: 1100px) {
+  .apps-grid--3 > .app-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .apps-grid--3 > .app-card:last-child:nth-child(odd) > p { max-width: 70ch; }
+}
+/* Five cards in a three-up grid (/high-school/'s shipped apps) left an empty
+   cell beside the last two on a wide screen. On a six-column track the row
+   of three and the row of two each fill the width. */
+@media (min-width: 1101px) {
+  .apps-grid--3:has(> .app-card:nth-child(5):last-child) { grid-template-columns: repeat(6, 1fr); }
+  .apps-grid--3:has(> .app-card:nth-child(5):last-child) > .app-card:not(.is-open) { grid-column: span 2; }
+  .apps-grid--3:has(> .app-card:nth-child(5):last-child) > .app-card:nth-child(n+4):not(.is-open) { grid-column: span 3; }
+}
+
+/* Who a group of apps was built for, inside one section (/work/): a quiet
+   label over its grid, a step below the section's own .subsec heading. */
+.apps-group {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-dim);
+  margin: 0 0 1rem;
+}
+.apps-grid + .apps-group, .dev-link + .apps-group { margin-top: 2.8rem; }
+/* a grid that follows an App Store developer link (/projects/: the link sits
+   under the apps that are on that page, with more cards after it) */
+.dev-link + .apps-grid { margin-top: clamp(1.2rem, 2.5vw, 2rem); }
 
 /* ───────────── Row alignment: every card part on the same line ─────────────
    Cards used to be independent flex columns, so a two-line title pushed that
@@ -334,6 +517,31 @@ a.app-badge:hover {
   .proj-card:not(.is-open) .app-links { margin-top: 0.7rem; align-self: end; }
   /* the placeholders themselves take a row but no space */
   .app-slot { display: block; height: 0; }
+}
+
+/* ───────────── Room for the cards before they arrive ─────────────
+   cards.js writes every [data-cards] and [data-projects] grid once the page
+   has been parsed, and the browser can paint before that script has run
+   (on a slow first visit it does): every grid was 0px tall, so the headings,
+   the verse and the footer painted a screen high and dropped as the cards
+   landed (CLS 0.034 on /al-islam/ at 1440x900, all of it that one drop). An
+   empty grid now holds about one row of cards, and once the cards are in
+   :empty no longer matches and the grid is its own height.
+
+   The values are measured on the live pages: one row runs 387 to 826px on a
+   wide screen, 379 to 769px at tablet widths and 438 to 781px on a phone.
+   They sit toward the short end on purpose: a reservation that undershoots
+   moves what follows further DOWN when the cards land, and what was below
+   the fold stays there uncounted, whereas one that overshoots pulls what
+   follows UP into view, which is a shift too.
+
+   The gap trap again (see Row alignment): the subgrid rules give each grid a
+   negative bottom margin of one row gap, empty or not, so one gap is added
+   back here to leave exactly the row's height in the flow (--rowgap only
+   exists where subgrid does, which is also the only place the margin is). */
+[data-cards]:empty, [data-projects]:empty { min-height: calc(24rem + var(--rowgap, 0px)); }
+@media (max-width: 760px) {
+  [data-cards]:empty, [data-projects]:empty { min-height: calc(27rem + var(--rowgap, 0px)); }
 }
 
 /* ───────────── Expanding cards (see expand.js) ─────────────
@@ -392,13 +600,20 @@ a.app-badge:hover {
 }
 .app-expand:hover i { background: color-mix(in srgb, var(--green) 38%, transparent); }
 .app-expand:active { transform: translateY(1px); }
-/* open: the button inverts, so "Show less" is visibly the active state */
+/* Open: a stronger tint and a turned arrow say "Show less" is the active
+   state. It used to fill solid green, which put two filled buttons in an open
+   card (the top toggle and the one at its end) beside the header's Résumé,
+   and on a phone the full-width fill outranked the card's real action. */
 .app-expand[aria-expanded="true"] {
-  background: var(--green); border-color: var(--green); color: #05140c;
+  background: color-mix(in srgb, var(--green) 20%, transparent);
+  border-color: var(--green-2); color: var(--green-2);
 }
-.app-expand[aria-expanded="true"] i { background: rgba(5, 20, 12, 0.22); }
+.app-expand[aria-expanded="true"] i {
+  background: color-mix(in srgb, var(--green) 38%, transparent);
+  transform: rotate(180deg);
+}
 .app-expand[aria-expanded="true"]:hover {
-  background: var(--green-2); border-color: var(--green-2); color: #05140c;
+  background: color-mix(in srgb, var(--green) 30%, transparent);
 }
 /* a deprecated card keeps the shape but drops the green */
 .app-card--dead .app-expand {
@@ -425,18 +640,77 @@ a.app-badge:hover {
 /* the panel itself */
 .app-more { margin-top: 1.4rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
 .app-more-body { max-width: 78ch; }
+/* the write-up settles in as the card opens (expand.js glides the cards);
+   closing stays instant */
+@media (prefers-reduced-motion: no-preference) {
+  .app-more { transition: opacity .24s var(--ease), translate .24s var(--ease); }
+  @starting-style { .app-more { opacity: 0; translate: 0 -6px; } }
+}
+/* the card's own summary keeps the write-up's line length once the card
+   spans the row (it ran ~140 characters a line) */
+.app-card.is-open > p:not(.app-sub) { max-width: 78ch; }
 .app-card .app-more-body p, .proj-card .app-more-body p {
   color: var(--ink-dim); font-size: 0.98rem; line-height: 1.75;
   margin-top: 0; flex: none;
 }
-/* scoped the same way as the rule above, or .app-card p's own margin wins */
-.app-card .app-more-body p + p, .proj-card .app-more-body p + p { margin-top: 1.1rem; }
+/* scoped the same way as the rule above, or .app-card p's own margin wins.
+   Every part of the body, not just paragraphs: a heading, list or number
+   strip (block() in cards.js) drops into the same rhythm. The `+ p` pair is
+   spelled out because the paragraph rule above outranks a bare `* + *`. */
+.app-card .app-more-body > * + *, .proj-card .app-more-body > * + *,
+.app-card .app-more-body > * + p, .proj-card .app-more-body > * + p { margin-top: 1.1rem; }
 .app-more-body b { color: var(--ink); font-weight: 600; }
 .app-more-body code {
   font-family: var(--mono); font-size: 0.85em;
   color: var(--blue-2); background: rgba(95,163,236,0.08);
   padding: 0.1em 0.4em; border-radius: 5px;
 }
+
+/* subheadings: the same mono label voice as .kicker, so a long write-up
+   reads as sections of one story rather than as a second page title */
+.app-more-body .app-more-h {
+  font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--green-2);
+  padding-top: 1rem;
+}
+.app-card .app-more-body .app-more-h + *, .proj-card .app-more-body .app-more-h + * { margin-top: 0.6rem; }
+.app-more-body > .app-more-h:first-child { padding-top: 0; }
+
+.app-more-list { list-style: none; display: grid; gap: 0.55rem; }
+.app-more-list li {
+  position: relative; padding-left: 1.25rem;
+  color: var(--ink-dim); font-size: 0.95rem; line-height: 1.7;
+}
+.app-more-list li::before {
+  content: ""; position: absolute; left: 0.2rem; top: 0.72em;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--green);
+}
+
+/* headline numbers: small tiles in balanced rows (--cols is set by cards.js
+   from the number of tiles), two to a row on a phone */
+.app-more-facts {
+  list-style: none; display: grid; gap: 0.6rem;
+  grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr));
+}
+@media (max-width: 560px) {
+  .app-more-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.app-more-facts li {
+  padding: 0.85rem 1rem 0.9rem; border: 1px solid var(--line); border-radius: 14px;
+  background: rgba(255, 255, 255, 0.015);
+}
+.app-more-facts strong {
+  display: block; font-family: var(--serif); font-weight: 600;
+  font-size: 1.75rem; line-height: 1; letter-spacing: -0.02em; color: var(--ink);
+}
+.app-more-facts span {
+  display: block; margin-top: 0.4rem;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.05em;
+  line-height: 1.35; color: var(--ink-dim);
+}
+
+/* the second "Show less", closing the panel from its end */
+.app-expand--end { margin-top: 1.6rem; }
 .app-more-dead {
   font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em;
   color: #d3897e; margin-top: 1.2rem;
@@ -492,6 +766,15 @@ a.app-badge:hover {
   .proj-card.is-open .proj-info { flex: 1; padding: 1.8rem 2rem 2rem; }
 }
 .proj-card.is-open .proj-media img { transform: none !important; }
+/* The screenshot column is as tall as the write-up, and the picture sat in
+   its middle, up to 680px below the title: the first screen of an open card
+   was an empty dark panel. It sits at the top now and stays in view while
+   the write-up scrolls past (clip, not hidden, so sticky still works). */
+@media (min-width: 761px) {
+  .proj-card.is-open, .proj-card.is-open .proj-media { overflow: clip; }
+  .proj-card.is-open .proj-media { align-items: flex-start; }
+  .proj-card.is-open .proj-media img { position: sticky; top: 6rem; }
+}
 
 /* filter chips */
 .filters { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2.5rem; }
@@ -512,7 +795,7 @@ a.app-badge:hover {
 /* theme tag on each card */
 .app-cat {
   align-self: flex-start;
-  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.16em;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.16em;
   text-transform: uppercase; padding: 0.25rem 0.6rem;
   border: 1px solid currentColor; border-radius: 100px;
   opacity: 0.85; margin-bottom: 0.9rem;
@@ -532,16 +815,18 @@ a.app-badge:hover {
 /* ───────────── High School projects ───────────── */
 .hs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  /* at most three across: auto-fit made four on a wide screen, so the six
+     projects ended 4 + 2 beside two empty cells; now 3 + 3 */
+  grid-template-columns: repeat(auto-fit, minmax(max(250px, calc(33.34% - 2rem)), 1fr));
   gap: clamp(1.2rem, 2.5vw, 2rem);
 }
 .proj-card {
   display: flex; flex-direction: column;
-  border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--line); border-radius: 20px; overflow: hidden;   /* the app cards' 20 */
   background: rgba(255,255,255,0.012);
-  transition: transform .4s var(--ease), border-color .4s;
+  transition: transform .4s var(--ease), border-color .4s, opacity .9s var(--ease);   /* opacity: see .app-card */
 }
-.proj-card:hover { transform: translateY(-6px); border-color: var(--green); }
+@media (hover: hover) { .proj-card:hover { transform: translateY(-6px); border-color: var(--green); } }
 
 .proj-media {
   display: flex; align-items: center; justify-content: center;
@@ -550,23 +835,32 @@ a.app-badge:hover {
   border-bottom: 1px solid var(--line);
 }
 .proj-media img { max-width: 100%; max-height: 100%; object-fit: contain; transition: transform .5s var(--ease); }
-.proj-card:hover .proj-media img { transform: scale(1.05); }
+@media (hover: hover) { .proj-card:hover .proj-media img { transform: scale(1.05); } }
 
 .proj-info { padding: 1.3rem 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 0.55rem; flex: 1; }
 .proj-titlerow { display: flex; align-items: baseline; justify-content: space-between; gap: 0.8rem; }
 .proj-titlerow h3 {
-  font-family: var(--serif); font-weight: 800;
+  font-family: var(--serif); font-weight: 600;
   font-size: clamp(1.4rem, 2.4vw, 1.8rem); line-height: 1; letter-spacing: -0.03em;
   transition: color .3s;
 }
-.proj-card:hover .proj-titlerow h3 { color: var(--green-2); }
+@media (hover: hover) { .proj-card:hover .proj-titlerow h3 { color: var(--green-2); } }
 .proj-yr { font-family: var(--mono); font-size: 0.7rem; color: var(--mute); flex: none; }
 /* the school year it was built in, under the title */
 .proj-grade {
   font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.06em;
   color: var(--green-2); margin-top: -0.25rem;
 }
-.proj-info .app-links { margin-top: auto; padding-top: 0.4rem; font-size: 0.72rem; justify-content: flex-end; }
+.proj-info .app-links { margin-top: auto; padding-top: 0.4rem; font-size: 0.72rem; justify-content: flex-end; font-family: var(--mono); }
+/* the tech line in the app cards' voice: small mono, not a 16px grey subtitle */
+.proj-info > .app-tags { font-family: var(--mono); font-size: 0.72rem; }
+/* the card clips its corners, which cut the screenshot link's focus ring
+   down to its bottom edge */
+.proj-media:focus-visible { outline-offset: -3px; }
+/* a very wide screenshot (crop: true in apps-data.js) fills the frame from
+   its top-left corner rather than shrinking to a 53px strip */
+.proj-media--crop { padding: 0; }
+.proj-media--crop img { width: 100%; height: 100%; max-width: none; max-height: none; object-fit: cover; object-position: left top; }
 
 .hs-extra {
   display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem;
@@ -582,29 +876,69 @@ a.app-badge:hover {
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 1.4rem;
 }
+/* Nine flyers in rows of four left the ninth alone on a row of its own.
+   Three across fills every row, and each poster, all of them about 3:4
+   portrait, gets the room to be read. */
+@media (min-width: 761px) {
+  .flyer-grid { grid-template-columns: repeat(3, 1fr); }
+  .flyer-grid .flyer img { height: auto; aspect-ratio: 3 / 4; }
+}
+/* and two across below that, a phone included (one per row was 3,650px) */
+@media (max-width: 760px) {
+  .flyer-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .flyer-grid .flyer img { height: auto; aspect-ratio: 3 / 4; padding: 0.45rem; }
+  .flyer-cap { flex-direction: column; gap: 0.15rem; padding: 0.6rem 0.7rem; font-size: 0.68rem; }
+}
+/* opacity in the transition list for the scroll reveal: without it a
+   .reveal tile snapped to full opacity and then slid up through its delay */
 .flyer {
   display: flex; flex-direction: column;
   border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
   background: var(--bg-2);
-  transition: transform .4s var(--ease), border-color .4s, box-shadow .4s;
+  transition: transform .4s var(--ease), border-color .4s, box-shadow .4s, opacity .9s var(--ease);
 }
-.flyer:hover {
-  transform: translateY(-4px); border-color: var(--green);
-  box-shadow: 0 18px 40px -20px rgba(0,0,0,0.9);
+@media (hover: hover) {
+  .flyer:hover {
+    transform: translateY(-4px); border-color: var(--green);
+    box-shadow: 0 18px 40px -20px rgba(0,0,0,0.9);
+  }
 }
 .flyer img {
   width: 100%; height: 340px; object-fit: contain;
   background: radial-gradient(120% 120% at 50% 0%, #15151b, #0a0a0d);
   padding: 0.7rem; transition: transform .5s var(--ease);
 }
-.flyer:hover img { transform: scale(1.03); }
+@media (hover: hover) { .flyer:hover img { transform: scale(1.03); } }
 .flyer-cap {
   display: flex; align-items: baseline; justify-content: space-between; gap: 0.8rem;
   padding: 0.8rem 1rem; font-family: var(--mono); font-size: 0.72rem;
   border-top: 1px solid var(--line);
 }
-.flyer-cap b { font-weight: 400; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* a caption wraps rather than ending in an ellipsis: nothing is cut short */
+.flyer-cap b { font-weight: 400; color: var(--ink); min-width: 0; }
 .flyer-cap i { font-style: normal; color: var(--mute); flex: none; }
+
+/* ───────────── The class ring (/high-school/) ─────────────
+   The two renders side by side on a laptop, one above the other on a phone,
+   where a landscape picture two across is too small to read; the flyer card
+   underneath, so they hover and open in the lightbox like everything else
+   on the page. Then the order as placed, one field to a cell. */
+.ring-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; margin: 1.3rem 0 1.6rem; }
+.ring-grid .flyer img { height: auto; aspect-ratio: 16 / 10; }
+@media (max-width: 760px) {
+  .ring-grid { grid-template-columns: 1fr; gap: 0.9rem; }
+  .ring-grid .flyer img { padding: 0.45rem; }
+}
+.ring-spec {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.8rem 1.6rem; margin: 0 0 1rem;
+}
+.ring-spec div { display: grid; gap: 0.2rem; padding-top: 0.6rem; border-top: 1px solid var(--line); }
+.ring-spec dt {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute);
+}
+.ring-spec dd { margin: 0; font-size: 0.95rem; color: var(--ink); }
 
 /* ───────────── WWDC 2024 gallery (home) ───────────── */
 .wwdc { padding-bottom: 5rem; }
@@ -615,11 +949,19 @@ a.app-badge:hover {
 .wwdc-note b { color: var(--ink); font-weight: 600; }
 .wwdc-note a { color: var(--green-2); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .wwdc-note a:hover { color: var(--green); }
+/* The WWDCScholars link between the last note and the screenshots. As an
+   inline pill its 1.5rem top margin stacked on the note's 2.2rem instead of
+   collapsing into it, and nothing held it off the grid, so it floated far
+   below its paragraph and sat on the screenshots. Block-level here, so the
+   margins collapse: it hangs just under the note it belongs to, and the grid
+   gets the same 2.2rem a note would give it. */
+.wwdc-note:has(+ .dev-link) { margin-bottom: 1.4rem; }
+.wwdc-note + .dev-link { display: flex; width: fit-content; margin: 0 0 2.2rem; }
 
 /* Swift Student Challenge, a separated sub-block inside the WWDC section */
 .wwdc-sub { margin-top: 3.4rem; padding-top: 2.6rem; border-top: 1px solid var(--line); }
 .wwdc-subhead {
-  font-family: var(--serif); font-weight: 800; letter-spacing: -0.03em;
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em;
   font-size: clamp(1.7rem, 3.5vw, 2.4rem); line-height: 1; margin-bottom: 1.1rem;
   color: var(--green-2);
 }
@@ -695,17 +1037,20 @@ a.app-badge:hover {
   display: flex; flex-direction: column;
   border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
   background: var(--bg-2);
-  transition: transform .4s var(--ease), border-color .4s, box-shadow .4s;
+  /* opacity for the scroll reveal (see .jarvis-cta) */
+  transition: transform .4s var(--ease), border-color .4s, box-shadow .4s, opacity .9s var(--ease);
 }
-.wwdc-shot:hover {
-  transform: translateY(-5px); border-color: var(--green);
-  box-shadow: 0 22px 50px -24px rgba(0,0,0,0.9);
+@media (hover: hover) {
+  .wwdc-shot:hover {
+    transform: translateY(-5px); border-color: var(--green);
+    box-shadow: 0 22px 50px -24px rgba(0,0,0,0.9);
+  }
+  .wwdc-shot:hover img { transform: scale(1.04); }
 }
 .wwdc-shot img {
   width: 100%; height: 300px; object-fit: cover;
   transition: transform .6s var(--ease);
 }
-.wwdc-shot:hover img { transform: scale(1.04); }
 /* the scholars screenshot reads as a document, show it whole rather than crop */
 .wwdc-shot--doc img {
   object-fit: contain; padding: 0.7rem;
@@ -714,42 +1059,105 @@ a.app-badge:hover {
 
 /* ───────────── Wallpapers (masonry, natural ratios) ───────────── */
 .wall-grid { column-count: 4; column-gap: 1.4rem; }
+/* Four wallpapers in four balanced columns used three of them, leaving the
+   fourth empty and the two widescreen ones 276px wide. On a wide screen the
+   two phone wallpapers stand side by side and the laptop and desktop ones
+   stack beside them; 1.8fr is the share at which the stack, captions and
+   all, ends level with the phones. (Written for these four, in this order:
+   phone, phone, laptop, desktop.) */
+@media (min-width: 761px) {
+  .wall-grid { display: grid; grid-template-columns: 1fr 1fr 1.8fr; gap: 1.4rem; align-items: start; column-count: auto; }
+  .wall-grid > .wall { margin-bottom: 0; }
+  .wall-grid > .wall:nth-child(-n+2) { grid-row: span 2; }
+  .wall-grid > .wall:nth-child(n+3) { grid-column: 3; }
+}
 @media (max-width: 1100px) { .wall-grid { column-count: 3; } }
-@media (max-width: 760px)  { .wall-grid { column-count: 2; } }
-@media (max-width: 460px)  { .wall-grid { column-count: 1; } }
+/* At 760px and below the two phone wallpapers stand side by side and the
+   laptop and desktop ones take the full width under them, each at its own
+   ratio. (One per row on a phone was 2,200px, the phone wallpaper alone
+   820px tall.) */
+@media (max-width: 760px) {
+  .wall-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; column-count: auto; }
+  .wall-grid > .wall { margin-bottom: 0; }
+  .wall-grid > .wall:nth-child(n+3) { grid-column: 1 / -1; }
+}
 .wall {
   display: block; break-inside: avoid; margin-bottom: 1.4rem;
   border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
   background: var(--bg-2);
-  transition: transform .4s var(--ease), border-color .4s, box-shadow .4s;
+  transition: transform .4s var(--ease), border-color .4s, box-shadow .4s, opacity .9s var(--ease);
 }
-.wall:hover {
-  transform: translateY(-4px); border-color: var(--green);
-  box-shadow: 0 18px 40px -20px rgba(0,0,0,0.9);
+@media (hover: hover) {
+  .wall:hover {
+    transform: translateY(-4px); border-color: var(--green);
+    box-shadow: 0 18px 40px -20px rgba(0,0,0,0.9);
+  }
+  .wall:hover img { transform: scale(1.03); }
 }
-.wall img { width: 100%; display: block; transition: transform .5s var(--ease); }
-.wall:hover img { transform: scale(1.03); }
+/* width and height are in the markup, so each tile holds its shape before
+   its picture arrives (the page used to grow by ~2,000px as they landed) */
+.wall img { width: 100%; height: auto; display: block; transition: transform .5s var(--ease); }
 
 /* ───────────── Sub-page hero (Star Wars / Al-Islam) ───────────── */
 .page-hero { padding: 7rem var(--gutter) 2.5rem; max-width: var(--maxw); }
+@media (max-width: 640px) { .page-hero { padding-top: 2rem; } }
+
+/* ── breadcrumbs (_includes/crumbs.html) ──
+   Home / Worlds / Skylanders. Kept on a phone, unlike the "← Back home" link
+   it replaced: the tab bar covers Home, but not the middle step, and the
+   middle step is the one people want from a fan page.
+
+   One line always. On a narrow screen each crumb is capped and ellipsised
+   rather than wrapping, so "Avatar: The Last Airbender" becomes "Avatar: Th…"
+   and the trail keeps its shape. The page's own crumb gets the most room. */
+.crumbs { margin-bottom: 1.8rem; min-width: 0; }
+.crumbs ol {
+  list-style: none; display: flex; align-items: center; min-width: 0;
+  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.03em;
+  color: var(--mute);
+}
+.crumbs li {
+  display: flex; align-items: center; min-width: 0;
+  white-space: nowrap;
+}
+.crumbs li > * { overflow: hidden; text-overflow: ellipsis; }
+.crumbs li + li::before {
+  content: "/"; content: "/" / ""; flex: none; margin: 0 0.7rem;
+}
+.crumbs a {
+  color: var(--ink-dim); padding: 0.35rem 0;
+  transition: color .2s var(--ease);
+}
+@media (pointer: coarse) { .crumbs a { padding-block: 13px; margin-block: -0.4rem; } }
+.crumbs a:hover { color: var(--green-2); }
+.crumbs [aria-current] { color: var(--ink); }
 @media (max-width: 640px) {
-  .page-hero { padding-top: 2rem; }
-  /* top "← Back home" is redundant on mobile, the bottom nav has Home (footer link stays) */
-  .back-link { display: none; }
+  .crumbs { margin-bottom: 1.2rem; }
+  .crumbs li { max-width: 34vw; }
+  .crumbs li:last-child { max-width: none; flex: 1 1 auto; }
 }
-.back-link {
-  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.05em;
-  color: var(--ink-dim); display: inline-block; margin-bottom: 1.8rem;
-  transition: color .25s;
-}
-.back-link:hover { color: var(--green-2); }
 .page-title {
-  font-family: var(--serif); font-weight: 800;
+  font-family: var(--serif); font-weight: 600;
   font-size: clamp(3rem, 9vw, 7rem); line-height: 0.9;
   letter-spacing: -0.04em; margin-bottom: 1.2rem;
 }
 .page-title em { font-style: normal; }
 .page-hero .lede { max-width: 54ch; }
+/* A link inside a lede looks like one. It was the lede's own grey with no
+   underline, so "Projects" in /work/'s intro read as plain text. The same
+   goes for a link in any running text: a role's paragraph, a year note, the
+   extracurricular lists, the note under an embedded document ("high school
+   page" and "open it in Google Docs" were the colour of the words around
+   them, with nothing else to tell them apart). */
+.lede a,
+:is(.role-body p, .yr-note, .hs-list, .hs-p, .embed-note) a {
+  color: var(--ink);
+  text-decoration: underline 1px; text-underline-offset: 0.2em;
+  text-decoration-color: color-mix(in srgb, var(--green-2) 55%, transparent);
+  transition: color .2s var(--ease), text-decoration-color .2s var(--ease);
+}
+.lede a:hover,
+:is(.role-body p, .yr-note, .hs-list, .hs-p, .embed-note) a:hover { color: var(--green-2); text-decoration-color: currentColor; }
 
 /* Al-Islam hero: title beside a spread icon gallery (mirrors the intro) */
 .hero-head {
@@ -799,13 +1207,41 @@ a.app-badge:hover {
 .subsec--stack::after { order: 1; }
 .subsec--stack .subsec-yr { order: 2; flex: 0 0 100%; }
 
+/* A section heading that reads as one (/projects/). The catalog's seven
+   sections were small mono caps, the smallest text on the page and smaller
+   than the card titles under them (11px against 35px), so 25 cards read as
+   one stream. Same face and weight as the home page's section titles; the
+   subtitle and the rule stay as they were. */
+.subsec.subsec--title {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(2rem, 3.6vw, 2.75rem); line-height: 1.05; letter-spacing: -0.03em;
+  text-transform: none; color: var(--ink);
+  margin: clamp(3.5rem, 7vw, 5rem) 0 1.8rem;
+}
+.subsec.subsec--title .subsec-yr {
+  font-family: var(--mono); font-weight: 400; font-size: 0.7rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+/* In-page section links under a page's intro (/projects/) */
+.jump { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.6rem; }
+.jump a {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em;
+  color: var(--ink-dim); padding: 0.5rem 0.95rem; border-radius: 100px;
+  border: 1px solid color-mix(in srgb, var(--mute) 45%, transparent);
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.jump a:hover { color: var(--green-2); border-color: color-mix(in srgb, var(--green) 55%, transparent); }
+@media (pointer: coarse) { .jump a { display: inline-flex; align-items: center; min-height: 44px; } }
+
 /* App Store developer-page link beneath a section grid */
 .dev-link {
   display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.5rem;
   font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.03em;
   color: var(--ink-dim); border: 1px solid var(--line); border-radius: 100px;
   padding: 0.65rem 1.15rem;
-  transition: color .25s, border-color .25s, background .25s;
+  /* opacity and transform for the scroll reveal (see .jarvis-cta) */
+  transition: color .25s, border-color .25s, background .25s, opacity .9s var(--ease), transform .9s var(--ease);
 }
 .dev-link svg { width: 15px; height: 15px; flex: none; opacity: 0.85; }
 .dev-link i { font-style: normal; color: var(--mute); transition: color .25s, transform .25s; }
@@ -816,7 +1252,95 @@ a.app-badge:hover {
 }
 .dev-link:hover i { color: var(--green-2); transform: translate(2px, -2px); }
 
+/* ═════════════ Search (search.js) ═════════════
+   A sheet dropped from the top of the screen: the field, then what matched on
+   this page, then the other pages. Same layer as the lightbox (under the
+   custom cursor), the page behind locked and paused the way the lightbox
+   does it. */
+html.srch-lock { overflow: hidden; }
+html.srch-lock .bd *, html.srch-lock .grain, html.srch-lock body::after { animation-play-state: paused; }
+.srch {
+  position: fixed; inset: 0; z-index: 9600;
+  display: flex; justify-content: center; align-items: flex-start;
+  background: rgba(5, 6, 8, 0.78);
+  padding: calc(4.2rem + env(safe-area-inset-top, 0px)) 1rem calc(1rem + env(safe-area-inset-bottom, 0px));
+  overscroll-behavior: contain; touch-action: pan-y;
+}
+.srch[hidden] { display: none; }
+.srch-panel {
+  width: min(680px, 100%); max-height: 100%;
+  display: flex; flex-direction: column;
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 16px;
+  box-shadow: 0 30px 80px -30px #000;
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .srch-panel { transition: translate .25s var(--ease), opacity .25s var(--ease); }
+  @starting-style { .srch-panel { translate: 0 -10px; opacity: 0; } }
+}
+.srch-bar {
+  display: flex; align-items: center; gap: 0.7rem;
+  padding: 0.85rem 1rem; border-bottom: 1px solid var(--line);
+}
+.srch-bar svg { width: 18px; height: 18px; flex: none; fill: none; stroke: var(--green-2); stroke-width: 2; stroke-linecap: round; }
+.srch-in {
+  flex: 1; min-width: 0; background: transparent; border: 0; outline: 0;
+  font-family: var(--sans); font-size: 1.05rem; color: var(--ink);
+}
+.srch-in::placeholder { color: var(--mute); }
+.srch-in::-webkit-search-cancel-button { display: none; }
+.srch-x {
+  flex: none; padding: 0.35rem 0.6rem; border-radius: 8px;
+  border: 1px solid var(--line); background: transparent; color: var(--mute);
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.srch-x:hover, .srch-x:focus-visible { color: var(--ink); border-color: var(--mute); }
+@media (pointer: coarse) { .srch-x { min-height: 44px; min-width: 44px; } }
+.srch-out { overflow-y: auto; overscroll-behavior: contain; padding: 0.4rem 0 0.8rem; }
+.srch-out ul { list-style: none; margin: 0; padding: 0; }
+.srch-h {
+  display: flex; align-items: baseline; gap: 0.5rem;
+  margin: 0.8rem 1rem 0.3rem;
+  font-family: var(--mono); font-weight: 500; font-size: 0.66rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mute);
+}
+.srch-h i { font-style: normal; color: var(--green-2); }
+.srch-hit {
+  display: grid; gap: 0.12rem; width: 100%; text-align: left;
+  padding: 0.6rem 1rem; border: 0; border-left: 2px solid transparent;
+  background: transparent; color: var(--ink); font: inherit;
+}
+.srch-hit:hover, .srch-hit:focus-visible { background: rgba(255, 255, 255, 0.04); border-left-color: var(--green); outline: 0; }
+.srch-hit b { font-weight: 500; font-size: 0.92rem; line-height: 1.4; }
+.srch-hit i {
+  font-style: normal; font-family: var(--mono); font-size: 0.66rem;
+  letter-spacing: 0.06em; color: var(--mute);
+}
+.srch-hit span { font-size: 0.8rem; line-height: 1.5; color: var(--ink-dim); }
+.srch-hit mark { background: color-mix(in srgb, var(--green) 30%, transparent); color: var(--ink); border-radius: 3px; padding: 0 1px; }
+.srch-empty, .srch-none { margin: 0.8rem 1rem; font-size: 0.85rem; line-height: 1.6; color: var(--ink-dim); }
+.srch-empty kbd {
+  font-family: var(--mono); font-size: 0.72rem; padding: 0.05rem 0.35rem;
+  border: 1px solid var(--line); border-radius: 5px; color: var(--ink);
+}
+/* the ring on a result you jumped to, in the page */
+.srch-ring { outline: 2px solid var(--green); outline-offset: 4px; border-radius: 6px; }
+@media (prefers-reduced-motion: no-preference) {
+  .srch-ring { animation: srch-ring 2.2s var(--ease) both; }
+  @keyframes srch-ring { 0%, 60% { outline-color: var(--green); } 100% { outline-color: transparent; } }
+}
+/* the top-bar button, the same icon-only pill as the sound toggle */
+.ql--search { padding: 0.55rem; color: var(--ink-dim); background: transparent; }
+.ql--search svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+.ql--search:hover, .ql--search[aria-expanded="true"] { color: var(--ink); border-color: var(--mute); }
+@media (max-width: 560px) {
+  .srch { padding: calc(0.6rem + env(safe-area-inset-top, 0px)) 0.6rem calc(0.6rem + env(safe-area-inset-bottom, 0px)); }
+}
+
 /* ═════════════ Launch intro animations ═════════════ */
+/* The page behind a cover holds still. iOS does not honour this for touch
+   scrolling, so the two covers a finger can land on, the lightbox above and
+   the photo deck (years.css), also set touch-action on themselves. */
 html.intro-lock { overflow: hidden; }
 .intro {
   position: fixed; inset: 0; z-index: 12000;
@@ -826,10 +1350,23 @@ html.intro-lock { overflow: hidden; }
   pointer-events: none;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden; background: var(--bg);
+  /* the backdrop still covers the whole screen, status bar included (the
+     panels are absolute, so they ignore this); the padding only keeps the
+     centred name and mark inside the safe area of the home-screen app.
+     Each pair is the LARGER of its two insets on both sides: padded by the
+     raw insets (62px above, 34px below on an iPhone 17 Pro) the name and
+     the mark sat 14px low, centred in the safe area rather than on the
+     screen the launch screen covers. */
+  padding: max(env(safe-area-inset-top, 0px), env(safe-area-inset-bottom, 0px))
+           max(env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
   transition: opacity .4s ease, visibility .4s;
 }
+/* A block, so text-align and the rise below both apply: as an inline span
+   it could not be transformed at all, and a name that wrapped (a narrow
+   phone, or Safari's text zoom) sat flush left under a centred mark. */
 .intro-name {
-  font-family: var(--serif); font-weight: 800; letter-spacing: -0.03em; text-align: center; line-height: 1;
+  display: block; text-wrap: balance;
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em; text-align: center; line-height: 1;
   font-size: clamp(2.2rem, 8vw, 6rem); letter-spacing: -0.02em; color: var(--ink);
   opacity: 0; transform: translateY(24px) scale(.96);
 }
@@ -845,7 +1382,13 @@ html.intro-lock { overflow: hidden; }
 .intro-panel { position: absolute; top: 0; bottom: 0; width: 51%; background: var(--bg); transition: transform .5s var(--ease); }
 .intro-panel--l { left: 0; }
 .intro-panel--r { right: 0; }
-.intro-center { position: relative; z-index: 3; transition: opacity .3s ease; }
+/* one centred column: the mark, the name and the line share a centre line
+   however the name wraps, and the column keeps a margin off the screen edge */
+.intro-center {
+  position: relative; z-index: 3; transition: opacity .3s ease;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  max-width: 100%; padding: 0 1rem; box-sizing: border-box;
+}
 /* the site's own circle mark, rising in just ahead of the name */
 .intro-logo {
   display: block; margin: 0 auto 1.5rem;
@@ -963,7 +1506,7 @@ html.intro-lock { overflow: hidden; }
 
 .intro-isl-title {
   position: relative; z-index: 3;
-  font-family: var(--serif); font-weight: 800; letter-spacing: -0.02em;
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em;
   font-size: clamp(2rem, 7vw, 4.4rem); color: #eafff3; opacity: 0;
 }
 .intro--alislam.run .intro-isl-title { animation: intro-rise .42s var(--ease) .5s forwards; }
@@ -984,7 +1527,7 @@ html.intro-lock { overflow: hidden; }
 .intro--projects.run .intro-tile { animation: tile-pop .4s var(--ease) forwards; }
 @keyframes tile-pop { to { opacity: 1; transform: none; } }
 .intro-proj-title {
-  font-family: var(--serif); font-weight: 800; letter-spacing: -0.03em; font-size: clamp(2.2rem, 8vw, 5rem);
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em; font-size: clamp(2.2rem, 8vw, 5rem);
   letter-spacing: -0.02em; color: var(--ink); opacity: 0;
 }
 .intro-proj-title .dot { color: var(--gold); }
@@ -1007,7 +1550,7 @@ html.intro-lock { overflow: hidden; }
 .intro--school.run .intro-photo { animation: fan-in .42s var(--ease) forwards; }
 @keyframes fan-in { to { opacity: 1; transform: translate(calc(-50% + var(--x)), 0) rotate(var(--rot)) scale(1); } }
 .intro-school-title {
-  font-family: var(--serif); font-weight: 800; letter-spacing: -0.03em; font-size: clamp(2.2rem, 8vw, 5rem);
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em; font-size: clamp(2.2rem, 8vw, 5rem);
   letter-spacing: -0.02em; color: var(--ink); opacity: 0;
 }
 .intro-school-title .dot { color: var(--gold); }
@@ -1019,18 +1562,28 @@ html.intro-lock { overflow: hidden; }
   padding-bottom: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--line);
 }
 .edu-row { display: flex; align-items: center; gap: 1rem; }
+/* a typed monogram in the school's own colour (the mascot palette), not an
+   emoji: the emoji drew differently on every platform and swapped meanings
+   between pages (the cap was UC Irvine on one page and Trabuco on the next) */
 .edu-pic {
-  font-size: 1.9rem; width: 60px; height: 60px; flex: none;
+  width: 60px; height: 60px; flex: none;
   display: grid; place-items: center; border: 1px solid var(--line);
   border-radius: 14px; background: var(--bg-2);
+  font-family: var(--serif); font-weight: 600; font-size: 1.05rem;
+  letter-spacing: -0.02em; line-height: 1; color: var(--m, var(--ink));
   transition: border-color .25s, background .25s;
 }
-.edu-meta h3 { font-family: var(--serif); font-weight: 800; letter-spacing: -0.03em; font-size: 1.5rem; line-height: 1; transition: color .25s; }
-.edu-row:hover .edu-pic { border-color: var(--green); background: rgba(31,157,92,0.06); }
-.edu-row:hover .edu-meta h3 { color: var(--green-2); }
+/* a heading under /education/'s At a Glance; on /college/ and /high-school/,
+   where the rows come before any section, the same line is a .edu-t
+   paragraph rather than a heading that skips from the h1 to an h3 */
+.edu-meta :is(h3, .edu-t) { font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em; font-size: 1.5rem; line-height: 1; transition: color .25s; }
+@media (hover: hover) {
+  .edu-row:hover .edu-pic { border-color: var(--green); background: rgba(31,157,92,0.06); }
+  .edu-row:hover .edu-meta :is(h3, .edu-t) { color: var(--green-2); }
+}
 .edu-meta p { font-family: var(--mono); font-size: 0.72rem; color: var(--ink-dim); margin-top: 0.45rem; letter-spacing: 0.04em; }
 .cta--big { margin-left: auto; padding: 1.1rem 1.8rem; font-size: 0.85rem; }
-.cta--big:hover { background: var(--green); color: #05140c; border-color: var(--green); }
+@media (hover: hover) { .cta--big:hover { background: var(--green); color: #05140c; border-color: var(--green); } }
 
 /* ── the résumé button inside an .edu row ──
    .edu is a wrapping flex row: the two school rows and the button share a
@@ -1092,31 +1645,33 @@ html.intro-lock { overflow: hidden; }
   padding: 1.15rem 1.2rem 1.15rem;
   border: 1px solid var(--line); border-radius: 16px;
   background: rgba(255,255,255,0.014);
-  transition: transform .4s var(--ease), border-color .3s, background .3s;
+  transition: transform .4s var(--ease), border-color .3s, background .3s, opacity .9s var(--ease);
 }
 .mascot::before {
   content: ''; position: absolute; inset: 0 0 auto; height: 3px;
   background: linear-gradient(90deg, var(--m, var(--green)),
     color-mix(in srgb, var(--m, var(--green)) 10%, transparent));
 }
-.mascot:hover {
-  transform: translateY(-3px);
-  border-color: color-mix(in srgb, var(--m, var(--green)) 55%, transparent);
-  background: color-mix(in srgb, var(--m, var(--green)) 6%, transparent);
+@media (hover: hover) {
+  .mascot:hover {
+    transform: translateY(-3px);
+    border-color: color-mix(in srgb, var(--m, var(--green)) 55%, transparent);
+    background: color-mix(in srgb, var(--m, var(--green)) 6%, transparent);
+  }
 }
 .mascot-step {
-  display: block; font-family: var(--mono); font-size: 0.6rem;
+  display: block; font-family: var(--mono); font-size: 0.66rem;
   letter-spacing: 0.13em; text-transform: uppercase;
   color: var(--m, var(--green)); margin-bottom: 0.55rem;
 }
-.mascot h4 {
-  font-family: var(--serif); font-weight: 800; letter-spacing: -0.03em;
+.mascot :is(h3, h4) {
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em;
   font-size: clamp(1.4rem, 2.6vw, 1.9rem); line-height: 1;
 }
 .mascot-school { display: block; margin-top: 0.6rem; font-size: 0.85rem; line-height: 1.35; }
 .mascot-when {
   display: block; margin-top: 0.35rem; font-family: var(--mono);
-  font-size: 0.64rem; letter-spacing: 0.05em; color: var(--mute);
+  font-size: 0.66rem; letter-spacing: 0.05em; color: var(--mute);
 }
 .mascot p {
   margin-top: 0.9rem; padding-top: 0.8rem; border-top: 1px solid var(--line);
@@ -1124,7 +1679,7 @@ html.intro-lock { overflow: hidden; }
 }
 /* the school with no mascot. Not an error state: it is the finding, so it is
    set in the same face as the others and only the colour says it is empty. */
-.mascot.is-none h4 { color: var(--mute); }
+.mascot.is-none :is(h3, h4) { color: var(--mute); }
 
 /* ── the rail ── the same five compressed onto one line, for /high-school/ and
    /college/, where the run of schools is context rather than the subject. */
@@ -1135,42 +1690,53 @@ html.intro-lock { overflow: hidden; }
   background: rgba(255,255,255,0.012);
 }
 .mascot-rail-lead {
-  flex: none; font-family: var(--mono); font-size: 0.6rem;
+  flex: none; font-family: var(--mono); font-size: 0.66rem;
   letter-spacing: 0.13em; text-transform: uppercase; color: var(--mute);
 }
 .mascot-rail ol {
   list-style: none; display: flex; align-items: center; flex-wrap: wrap;
   gap: 0.4rem 0.75rem; margin: 0; padding: 0;
 }
-.ms-node {
-  display: flex; align-items: baseline; gap: 0.45rem;
-  opacity: 0.5; transition: opacity .3s;
-}
-.mascot-rail:hover .ms-node { opacity: 0.75; }
-.ms-node.is-mark, .mascot-rail:hover .ms-node.is-mark { opacity: 1; }
+/* The four schools that are not this page's read quieter by colour, not by
+   opacity: at half opacity their names were 2.1:1 against the page, and
+   "None" fainter still. The school this page is about takes its own colour
+   and aria-current. */
+.ms-node { display: flex; align-items: baseline; gap: 0.45rem; }
 .ms-node b {
-  font-family: var(--serif); font-weight: 800; letter-spacing: -0.02em;
-  font-size: 0.98rem; line-height: 1;
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em;
+  font-size: 0.98rem; line-height: 1; color: var(--ink-dim);
 }
 .ms-node.is-mark b { color: var(--m, var(--green)); }
 .ms-node.is-none b { color: var(--mute); }
 .ms-node i {
-  font-style: normal; font-family: var(--mono); font-size: 0.58rem;
+  font-style: normal; font-family: var(--mono); font-size: 0.66rem;
   letter-spacing: 0.06em; color: var(--mute);
 }
 /* the chevron between nodes, drawn rather than written, so the list stays a
    list of five schools and not a list of nine things */
 .mascot-rail li + li::before {
-  content: '\203a'; margin-right: 0.35rem; color: var(--line);
+  content: '\203a'; content: '\203a' / '';   /* drawn, and not read aloud */
+  margin-right: 0.35rem; color: var(--line);
   font-size: 0.9rem; line-height: 1;
 }
 .mascot-rail-more {
   margin-left: auto; flex: none;
-  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.06em;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em;
   color: var(--ink-dim); transition: color .25s;
 }
 .mascot-rail-more:hover { color: var(--gold); }
+/* the rail's only control, 15px tall: a taller target that moves nothing */
+@media (pointer: coarse) { .mascot-rail-more { padding-block: 14px; margin-block: -14px; } }
 @media (max-width: 720px) { .mascot-rail-more { margin-left: 0; } }
+/* On a phone the one line wrapped into ragged lines that began with a
+   chevron. There the five read down a rule instead, oldest first. */
+@media (max-width: 560px) {
+  .mascot-rail ol {
+    flex-direction: column; align-items: flex-start; gap: 0.45rem;
+    border-left: 1px solid var(--line); padding-left: 0.8rem;
+  }
+  .mascot-rail li + li::before { content: none; }
+}
 
 .mascot-lede {
   color: var(--ink-dim); font-size: 1.05rem; line-height: 1.6;
@@ -1181,27 +1747,35 @@ html.intro-lock { overflow: hidden; }
 /* ───────────── Academics (High School) ───────────── */
 .acad { padding-top: 0.6rem; padding-bottom: 1rem; }
 .acad-lede {
-  color: var(--ink-dim); max-width: none;
+  color: var(--ink-dim); max-width: 72ch;
   font-size: 1.05rem; line-height: 1.6;
   margin: 0.4rem 0 2rem;
 }
 .acad-lede b { color: var(--ink); font-weight: 500; }
 
+/* as many columns as there are stats (four on /high-school/, three on
+   /college/, which used to leave an empty fourth cell), two on a phone with
+   an odd last stat taking the whole row */
 .acad-stats {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2.2rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: 1rem; margin-bottom: 2.2rem;
 }
-@media (max-width: 720px) { .acad-stats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 720px) {
+  .acad-stats { grid-template-columns: repeat(2, 1fr); }
+  .acad-stat:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
 .acad-stat {
   border: 1px solid var(--line); border-radius: 16px; padding: 1.1rem 1.2rem;
   background: rgba(255,255,255,0.012);
 }
-.acad-stat:hover { border-color: color-mix(in srgb, var(--green) 55%, transparent); background: rgba(31,157,92,0.05); }
+@media (hover: hover) {
+  .acad-stat:hover { border-color: color-mix(in srgb, var(--green) 55%, transparent); background: rgba(31,157,92,0.05); }
+}
 .acad-k {
-  display: block; font-family: var(--mono); font-size: 0.6rem;
+  display: block; font-family: var(--mono); font-size: 0.66rem;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); margin-bottom: 0.55rem;
 }
 .acad-v {
-  font-family: var(--serif); font-weight: 800; letter-spacing: -0.02em;
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em;
   font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1;
 }
 .acad-v span { font-family: var(--mono); font-size: 0.66rem; font-weight: 400; color: var(--mute); letter-spacing: 0.04em; }
@@ -1223,30 +1797,43 @@ html.intro-lock { overflow: hidden; }
 }
 .course-label--ap { color: var(--gold); border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent); }
 .course-label--ib { color: var(--blue-2); border: 1px solid color-mix(in srgb, var(--blue) 45%, transparent); }
-.course-label--ap:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold) 12%, transparent); }
-.course-label--ib:hover { border-color: var(--blue-2); background: color-mix(in srgb, var(--blue) 12%, transparent); }
 .course-label--lang { color: var(--green-2); border: 1px solid color-mix(in srgb, var(--green) 45%, transparent); }
-.course-label--lang:hover { border-color: var(--green-2); background: color-mix(in srgb, var(--green) 12%, transparent); }
+@media (hover: hover) {
+  .course-label--ap:hover { border-color: var(--gold); background: color-mix(in srgb, var(--gold) 12%, transparent); }
+  .course-label--ib:hover { border-color: var(--blue-2); background: color-mix(in srgb, var(--blue) 12%, transparent); }
+  .course-label--lang:hover { border-color: var(--green-2); background: color-mix(in srgb, var(--green) 12%, transparent); }
+  .course-chips li:hover { color: var(--ink); border-color: var(--mute); }
+}
 .course-chips { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .course-chips li {
   font-family: var(--mono); font-size: 0.74rem; color: var(--ink-dim);
   border: 1px solid var(--line); border-radius: 100px; padding: 0.45rem 0.85rem;
   transition: color .2s, border-color .2s;
 }
-.course-chips li:hover { color: var(--ink); border-color: var(--mute); }
 
 /* ───────────── Through the Years (square cards + lightbox) ───────────── */
+/* Two across on a phone too: one full-width square each made /high-school/'s
+   six covers 2,300px of faces before anything else on the page. */
 .years-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
 @media (max-width: 760px) { .years-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 420px) { .years-grid { grid-template-columns: 1fr; } }
+@media (max-width: 420px) { .years-grid { gap: 0.75rem; } }
 
 .year-card {
   position: relative; aspect-ratio: 1; padding: 0; overflow: hidden;
   border: 1px solid var(--line); border-radius: 16px; background: var(--bg-2);
   cursor: none; font: inherit;
-  transition: transform .4s var(--ease), border-color .4s, box-shadow .4s;
+  transition: transform .4s var(--ease), border-color .4s, box-shadow .4s, opacity .9s var(--ease), scale .12s var(--ease);
 }
-.year-card:hover { transform: translateY(-4px); border-color: var(--green); box-shadow: 0 18px 40px -20px rgba(0,0,0,.9); }
+/* The lift, zoom and green border are for a hovering pointer. On a phone a
+   tapped cover used to keep all three, the same green as an opened year,
+   whether or not anything opened. */
+@media (hover: hover) {
+  .year-card:hover { transform: translateY(-4px); border-color: var(--green); box-shadow: 0 18px 40px -20px rgba(0,0,0,.9); }
+  .year-card:hover img { transform: scale(1.06); }
+  .year-card:hover .year-more { background: var(--green); border-color: var(--green); color: #05140c; }
+}
+/* a cover that opens something (the photo switch is on) gives a press */
+.year-card[role="button"]:active { scale: .98; }
 .year-card img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; transition: transform .5s var(--ease), opacity .35s; }
 /* the ID Pics card: two columns wide at the same height as the square cards
    beside it. 2.06 ≈ two columns plus the gap, so the row stays level; the
@@ -1254,39 +1841,75 @@ html.intro-lock { overflow: hidden; }
 .years-grid { align-items: start; }
 .year-card--wide { grid-column: span 2; aspect-ratio: 2.06 / 1; }
 .year-card--wide img { object-fit: cover; object-position: center; }
-@media (max-width: 420px) { .year-card--wide { grid-column: auto; aspect-ratio: 16 / 9; } }
-.year-card:hover img { transform: scale(1.06); }
+@media (max-width: 420px) { .year-card--wide { aspect-ratio: 16 / 9; } }
 .year-cap {
   position: absolute; inset: auto 0 0 0; display: flex; justify-content: space-between; align-items: baseline;
   padding: 0.7rem 0.9rem; font-family: var(--mono); font-size: 0.74rem; color: #fff; text-align: left;
   background: linear-gradient(transparent, rgba(0,0,0,.78));
 }
+/* a half-width cover: the year's name and its dates may take two lines */
+@media (max-width: 420px) {
+  .year-cap { flex-wrap: wrap; gap: 0 0.5rem; padding: 0.6rem 0.7rem; font-size: 0.7rem; }
+}
 .year-cap i { font-style: normal; color: var(--gold); }
 .year-more {
   position: absolute; top: 0.6rem; right: 0.6rem;
-  font-family: var(--mono); font-size: 0.64rem; padding: 0.3rem 0.55rem; border-radius: 100px;
+  font-family: var(--mono); font-size: 0.66rem; padding: 0.3rem 0.55rem; border-radius: 100px;
   background: rgba(8,8,10,.7); border: 1px solid rgba(255,255,255,.28); color: #fff;
   -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); transition: background .25s, color .25s, border-color .25s;
 }
-.year-card:hover .year-more { background: var(--green); border-color: var(--green); color: #05140c; }
 @media (hover: none) { .year-card { cursor: pointer; } }
 
 .lightbox {
-  position: fixed; inset: 0; z-index: 11000;
+  /* 9500: over the grain (9000), the vignette (8000) and both bars, under the
+     custom cursor (10000). At 11000 it covered the cursor too, and with the
+     native cursor hidden there was no pointer at all over the dialog. */
+  position: fixed; inset: 0; z-index: 9500;
   background: rgba(5,6,8,.95);   /* was also blur(10px); invisible at this opacity and costly */
   display: flex; flex-direction: column; align-items: center;
   padding: 4.5rem 1.5rem 3rem; overflow-y: auto; overscroll-behavior: contain;
-  opacity: 0; visibility: hidden; transition: opacity .35s ease, visibility .35s;
+  /* in the home-screen app the status bar and the home indicator sit over
+     the top and bottom of this (head.html, viewport-fit=cover); the insets
+     keep the title and the last photo clear of them, and are 0 in a tab */
+  padding-top: calc(4.5rem + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
+  padding-left: calc(1.5rem + env(safe-area-inset-left, 0px));
+  padding-right: calc(1.5rem + env(safe-area-inset-right, 0px));
+  /* iOS scrolls the page under an overlay by touch even with html.intro-lock's
+     overflow: hidden on (see below). pan-y keeps the touches on this box,
+     which scrolls itself, and its overscroll-behavior stops the scroll from
+     chaining to the page behind when it reaches an end. */
+  touch-action: pan-y;
+  opacity: 0; visibility: hidden; transition: opacity .18s ease-out, visibility 0s .18s;
 }
-.lightbox.open { opacity: 1; visibility: visible; }
+/* visible at once on open (the fade is opacity's job): a visibility transition
+   is still `hidden` at its first instant, and gallery.js moves focus to the
+   close button in that instant, which a hidden element refuses. Closing keeps
+   the .35s delay from the rule above, so the fade-out still plays. */
+.lightbox.open { opacity: 1; visibility: visible; transition: opacity .26s var(--ease), visibility 0s; }
+/* the pictures rise in as it opens; closing is the quick fade above */
+@media (prefers-reduced-motion: no-preference) {
+  .lightbox-imgs img { transition: opacity .3s var(--ease), translate .3s var(--ease); }
+  @starting-style { .lightbox-imgs img { opacity: 0; translate: 0 12px; } }
+}
+/* nothing loops behind a covered page (intro-lock is set while the lightbox,
+   a photo deck or the launch screen is up): the backdrop, the grain and the
+   HUD sweep all hold still under the overlay */
+html.intro-lock .bd *,
+html.intro-lock .grain,
+html.intro-lock body::after { animation-play-state: paused; }
+html:has(#lightbox) { scrollbar-gutter: stable; }
 /* while closed (including the fade-out) it must not intercept taps */
 .lightbox:not(.open) { pointer-events: none; }
-.lightbox-title { font-family: var(--serif); font-weight: 800; letter-spacing: -0.03em; font-size: clamp(1.8rem, 5vw, 2.8rem); color: #fff; margin-bottom: 1.6rem; }
+.lightbox-title { font-family: var(--serif); font-weight: 600; letter-spacing: -0.03em; font-size: clamp(1.8rem, 5vw, 2.8rem); color: #fff; margin-bottom: 1.6rem; }
 .lightbox-title i { font-style: italic; color: var(--gold); }
 .lightbox-imgs { display: flex; flex-direction: column; gap: 1.2rem; width: 100%; max-width: 540px; }
 .lightbox-imgs img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); }
 .lightbox-close {
   position: fixed; top: 1.2rem; right: 1.4rem; width: 46px; height: 46px;
+  /* off the status bar and the Dynamic Island in the home-screen app */
+  top: calc(1.2rem + env(safe-area-inset-top, 0px));
+  right: calc(1.4rem + env(safe-area-inset-right, 0px));
   display: grid; place-items: center; font-size: 1.2rem;
   background: rgba(255,255,255,.06); border: 1px solid var(--line); color: #fff;
   border-radius: 50%; cursor: none; transition: background .25s, border-color .25s;
@@ -1308,11 +1931,40 @@ html.intro-lock { overflow: hidden; }
   background: var(--bg-2);
 }
 .embed-frame { width: 100%; height: 78vh; min-height: 460px; border: 0; display: block; }
+/* A Google Doc (/college/, /high-school/, /al-islam/). A Docs preview is the
+   whole Docs web app, 6 to 18 MB and up to a second and a half of work on
+   the page's own main thread on a phone, so nothing of it loads until it is
+   asked for: a compact panel with a "Load the document" button stands in for
+   the frame (utils.js swaps them), and the "open it in Google Docs" link
+   under it works either way. Loaded, the frame is one Docs page wide
+   (52.5rem; wider, a third of it was the grey margin Docs draws around the
+   page), and on a touch screen shorter than the screen, so there is always
+   page left to scroll by. */
+.embed-wrap:has(.embed-frame--doc) { max-width: 52.5rem; }
+.embed-facade {
+  display: grid; justify-items: center; align-content: center; gap: 0.8rem;
+  min-height: 13rem; padding: 2rem 1.2rem; text-align: center;
+  background: radial-gradient(120% 120% at 50% 0%, #15151b, #0a0a0d);
+}
+/* a <button> in the .cta pill's clothes: without this it kept the
+   browser's own white button face under the pill's light text */
+.embed-load { background: transparent; font-family: var(--mono); cursor: pointer; }
+.embed-facade-note {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--mute);
+}
+.embed-wrap.is-live .embed-facade { display: none; }
+.embed-frame--doc[hidden] { display: none; }
+/* "Full document above." is only true once it is */
+.embed-wrap:not(.is-live) .embed-live { display: none; }
+@media (pointer: coarse) { .embed-frame--doc { height: min(60svh, 520px); min-height: 0; } }
 .embed-note {
   font-family: var(--mono); font-size: 0.7rem; color: var(--mute);
   padding: 0.85rem 1.1rem; border-top: 1px solid var(--line);
 }
 .embed-note b { color: var(--ink-dim); font-weight: 400; }
+/* the button after an embedded document sat flush against its frame */
+.embed-wrap + .cta--big { margin-top: 1.6rem; }
 
 /* A label above a single embed, for the pages that stack more than one Google
    Doc under one heading (/al-islam/ and /high-school/ both show the two
@@ -1375,7 +2027,7 @@ html.intro-lock { overflow: hidden; }
 }
 .pic-frame:hover::before { inset: -7px; }
 .about-photo figcaption {
-  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--mute); margin-top: 0.8rem;
 }
 .about-photo figcaption b { color: var(--blue-2); font-weight: 400; }
@@ -1396,13 +2048,13 @@ html.intro-lock { overflow: hidden; }
   border: 1px solid var(--line); border-radius: 16px;
 }
 .about-wide figcaption {
-  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--mute); margin-top: 0.8rem;
 }
 .about-wide figcaption b { color: var(--blue-2); font-weight: 400; }
 
 .about-lede {
-  font-family: var(--serif); font-weight: 700;
+  font-family: var(--serif); font-weight: 500;
   font-size: clamp(1.6rem, 3.4vw, 2.6rem);
   line-height: 1.2; color: var(--ink); letter-spacing: -0.03em;
   margin-bottom: 1.5rem;
@@ -1441,7 +2093,8 @@ html.intro-lock { overflow: hidden; }
 .legacy-card {
   padding: 1.1rem 1.2rem 1.2rem; border: 1px solid var(--line); border-radius: 14px;
   background: rgba(255,255,255,0.012);
-  transition: transform .35s var(--ease), border-color .35s, background .35s;
+  /* opacity for the scroll reveal (see .jarvis-cta) */
+  transition: transform .35s var(--ease), border-color .35s, background .35s, opacity .9s var(--ease);
 }
 
 .legacy-card:hover {
@@ -1460,8 +2113,8 @@ html.intro-lock { overflow: hidden; }
 
 .legacy-ico svg { width: 16px; height: 16px; }
 
-.legacy-card h4 {
-  font-family: var(--serif); font-weight: 800; font-size: 1rem;
+.legacy-card h3 {
+  font-family: var(--serif); font-weight: 600; font-size: 1rem;
   letter-spacing: -0.01em; margin-bottom: 0.35rem;
 }
 
@@ -1487,16 +2140,11 @@ html.intro-lock { overflow: hidden; }
   gap: 0.75rem 1.75rem; padding: 1.2rem 0;
 }
 .big-mail {
-  font-family: var(--serif); font-weight: 800;
+  font-family: var(--serif); font-weight: 600;
   font-size: clamp(1.4rem, 4.5vw, 3rem); line-height: 1.1; letter-spacing: -0.03em;
   word-break: break-word; transition: color .3s;
 }
 .big-mail:hover { color: var(--green-2); }
-.mail-link {
-  font-family: var(--mono); font-size: 0.85rem; letter-spacing: 0.03em;
-  color: var(--ink-dim); transition: color .25s; white-space: nowrap;
-}
-.mail-link:hover { color: var(--green-2); }
 
 /* custom-cursor on/off toggle, beside the email */
 .cursor-toggle {
@@ -1528,21 +2176,39 @@ html.intro-lock { overflow: hidden; }
   position: relative; display: flex; flex-direction: column; min-height: 380px;
   border: 1px solid var(--line); border-radius: 22px; overflow: hidden;
   background: rgba(255,255,255,0.012);
-  transition: transform .45s var(--ease), border-color .45s, background .45s;
+  transition: transform .45s var(--ease), border-color .45s, background .45s, opacity .9s var(--ease);
 }
-.portal:hover { transform: translateY(-8px); border-color: var(--green); background: rgba(31,157,92,0.035); }
-.portal--starwars:hover { border-color: var(--gold); background: rgba(245,198,60,0.04); }
+/* every portal hover is for a hovering pointer only: on a phone the tapped
+   portal stayed lifted and lit on the way back from the page it opened */
+@media (hover: hover) {
+  .portal:hover { transform: translateY(-8px); border-color: var(--green); background: rgba(31,157,92,0.035); }
+  .portal--starwars:hover { border-color: var(--gold); background: rgba(245,198,60,0.04); }
+  .portal:hover .portal-media img.portal-photo { transform: scale(1.06); opacity: 1; }
+  .portal:hover .portal-icons img:nth-child(1) { transform: rotate(-11deg) translateY(0) scale(1.04); }
+  .portal:hover .portal-icons img:nth-child(2) { transform: translateY(-6px) scale(1.06); }
+  .portal:hover .portal-icons img:nth-child(3) { transform: rotate(11deg) translateY(0) scale(1.04); }
+  .portal:hover .portal-icons:has(img:nth-child(4)) img:nth-child(1) { transform: rotate(-14deg) translateY(0) scale(1.05); }
+  .portal:hover .portal-icons:has(img:nth-child(4)) img:nth-child(2) { transform: rotate(-4deg) translateY(-6px) scale(1.07); }
+  .portal:hover .portal-icons:has(img:nth-child(4)) img:nth-child(3) { transform: rotate(4deg) translateY(-6px) scale(1.07); }
+  .portal:hover .portal-icons:has(img:nth-child(4)) img:nth-child(4) { transform: rotate(14deg) translateY(0) scale(1.05); }
+  .portal:hover h2 { color: var(--green-2); }
+  .portal--starwars:hover h2 { color: var(--gold); }
+  .portal:hover .portal-go i { transform: translate(3px, -3px); }
+}
 
 .portal-media { position: relative; height: 230px; overflow: hidden; background: radial-gradient(120% 120% at 50% 0%, #14141a, #0a0a0d); }
+/* near full strength: at half opacity under the fade the College portrait
+   (dark clothes, dark concrete) was a near-black tile */
 .portal-media img.portal-photo {
-  width: 100%; height: 100%; object-fit: cover; opacity: 0.5;
+  width: 100%; height: 100%; object-fit: cover; opacity: 0.9;
   transition: transform .7s var(--ease), opacity .45s;
 }
-.portal:hover .portal-media img.portal-photo { transform: scale(1.06); opacity: 0.72; }
 .portal-media::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to top, var(--bg) 4%, rgba(8,8,10,0.35) 45%, transparent 85%);
+  background: linear-gradient(to top, var(--bg) 0%, transparent 45%);
 }
+/* the résumé button standing on its own under the /education/ portals */
+.cta--after-portals { display: flex; justify-content: space-between; margin: clamp(1.2rem, 2.5vw, 2rem) 0 0; }
 
 /* icon trio variant (franchise cards) */
 .portal-icons { display: flex; align-items: center; justify-content: center; gap: 0.8rem; height: 100%; padding: 1.4rem; }
@@ -1554,18 +2220,11 @@ html.intro-lock { overflow: hidden; }
 /* three-up fan */
 .portal-icons img:nth-child(1) { transform: rotate(-7deg) translateY(6px); }
 .portal-icons img:nth-child(3) { transform: rotate(7deg) translateY(6px); }
-.portal:hover .portal-icons img:nth-child(1) { transform: rotate(-11deg) translateY(0) scale(1.04); }
-.portal:hover .portal-icons img:nth-child(2) { transform: translateY(-6px) scale(1.06); }
-.portal:hover .portal-icons img:nth-child(3) { transform: rotate(11deg) translateY(0) scale(1.04); }
 /* four-up fan (Star Wars: two apps plus two droids) */
 .portal-icons:has(img:nth-child(4)) img:nth-child(1) { transform: rotate(-9deg) translateY(7px); }
 .portal-icons:has(img:nth-child(4)) img:nth-child(2) { transform: rotate(-3deg) translateY(1px); }
 .portal-icons:has(img:nth-child(4)) img:nth-child(3) { transform: rotate(3deg) translateY(1px); }
 .portal-icons:has(img:nth-child(4)) img:nth-child(4) { transform: rotate(9deg) translateY(7px); }
-.portal:hover .portal-icons:has(img:nth-child(4)) img:nth-child(1) { transform: rotate(-14deg) translateY(0) scale(1.05); }
-.portal:hover .portal-icons:has(img:nth-child(4)) img:nth-child(2) { transform: rotate(-4deg) translateY(-6px) scale(1.07); }
-.portal:hover .portal-icons:has(img:nth-child(4)) img:nth-child(3) { transform: rotate(4deg) translateY(-6px) scale(1.07); }
-.portal:hover .portal-icons:has(img:nth-child(4)) img:nth-child(4) { transform: rotate(14deg) translateY(0) scale(1.05); }
 
 .portal-body {
   position: relative; z-index: 2; margin-top: 0; flex: 1;
@@ -1577,16 +2236,14 @@ html.intro-lock { overflow: hidden; }
     clamp(1.2rem, 2.4vw, 1.7rem);
 }
 .portal-kicker {
-  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--blue-2);
 }
 .portal--starwars .portal-kicker { color: var(--gold); }
 .portal h2 {
-  font-family: var(--serif); font-weight: 800; line-height: 1; letter-spacing: -0.03em;
+  font-family: var(--serif); font-weight: 600; line-height: 1; letter-spacing: -0.03em;
   font-size: clamp(1.8rem, 3.4vw, 2.6rem); transition: color .3s;
 }
-.portal:hover h2 { color: var(--green-2); }
-.portal--starwars:hover h2 { color: var(--gold); }
 .portal p { color: var(--ink-dim); font-size: 0.92rem; }
 .portal-go {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
@@ -1596,18 +2253,31 @@ html.intro-lock { overflow: hidden; }
 .portal-go span { color: var(--mute); }
 .portal-go i { font-style: normal; color: var(--green-2); transition: transform .3s; }
 .portal--starwars .portal-go i { color: var(--gold); }
-.portal:hover .portal-go i { transform: translate(3px, -3px); }
 
 /* ───────────── J.A.R.V.I.S. teaser (home) ───────────── */
 
-.jarvis-sec { padding-top: 0; padding-bottom: clamp(0.9rem, 2vw, 1.4rem); }
-.jarvis-sec:last-of-type { padding-bottom: 6rem; }
+/* The four teasers (E.L.M.A.L.L.A.H., J.A.R.V.I.S., Holocron, Marauder's Map)
+   are one section, "Interfaces", above Contact: they used to be four headless
+   sections after it, so the page ended on the toys and their h3s sat under
+   the Contact heading. On a wide screen they are a 2x2 grid; each card then
+   stacks its mark, its text and its button, and the buttons line up along
+   the bottom of each row. */
+.interfaces { padding-top: 2rem; padding-bottom: 5rem; }
+.jarvis-grid { display: grid; gap: clamp(0.9rem, 2vw, 1.4rem); }
+@media (min-width: 901px) {
+  .jarvis-grid { grid-template-columns: 1fr 1fr; }
+  .jarvis-grid .jarvis-cta { flex-direction: column; align-items: flex-start; gap: 1.1rem; }
+  .jarvis-grid .jarvis-go { margin: auto 0 0; }
+}
 .jarvis-cta {
   position: relative; display: flex; align-items: center; gap: clamp(1.2rem, 3vw, 2.2rem);
   padding: clamp(1.4rem, 3vw, 2.2rem); border-radius: 22px; overflow: hidden;
   border: 1px solid rgba(41,231,255,0.22);
   background: linear-gradient(135deg, rgba(41,231,255,0.07), rgba(41,231,255,0.01) 55%, transparent);
-  transition: border-color .45s, transform .45s var(--ease);
+  /* opacity is in the list for the scroll reveal: a component's own
+     `transition` replaces the one .reveal sets in base.css, and without it the
+     card snapped in instead of fading */
+  transition: border-color .45s, transform .45s var(--ease), opacity .9s var(--ease);
 }
 .jarvis-cta::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -1631,11 +2301,11 @@ html.intro-lock { overflow: hidden; }
 
 .jarvis-txt { position: relative; z-index: 2; min-width: 0; }
 .jarvis-txt .jarvis-k {
-  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.26em;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.26em;
   text-transform: uppercase; color: #29e7ff;
 }
 .jarvis-txt h3 {
-  font-family: var(--serif); font-weight: 800; letter-spacing: 0.08em; margin-top: 0.5rem;
+  font-family: var(--serif); font-weight: 600; letter-spacing: 0.08em; margin-top: 0.5rem;
   font-size: clamp(1.3rem, 3vw, 2rem); color: #d8fbff;
 }
 .jarvis-txt p { color: var(--ink-dim); font-size: 0.9rem; margin-top: 0.5rem; max-width: 54ch; }
@@ -1656,7 +2326,6 @@ html.intro-lock { overflow: hidden; }
 
 /* ── E.L.M.A.L.L.A.H. teaser, tri-colour variant of the JARVIS card ── */
 
-#terminals { padding-bottom: clamp(1.2rem, 2.5vw, 2rem); }
 .elm-cta {
   border-color: rgba(95,163,236,0.24);
   background: linear-gradient(135deg, rgba(95,163,236,0.08), rgba(95,163,236,0.05) 45%, rgba(245,198,60,0.03) 75%, transparent);
@@ -1758,4 +2427,199 @@ html.intro-lock { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .hc-mini i, .mm-mini i { animation: none; }
   .mm-mini i { opacity: .6; }
+}
+
+/* ───────────── "At a glance" (_includes/glance.html) ─────────────
+   The summary at the top of /work/, /projects/, /al-islam/ and /star-wars/.
+   cards.js fills it from the cards on the page. A native <details>, so it
+   opens and closes with no script, and the count line is its summary: shut,
+   it still says what the page holds. */
+.glance {
+  margin: 0 0 3rem;
+  border: 1px solid var(--line); border-radius: 20px;
+  background: rgba(255, 255, 255, 0.015);
+}
+.glance-sum {
+  list-style: none; cursor: pointer;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem 1rem;
+  padding: 1.1rem 1.4rem;
+}
+.glance-sum::-webkit-details-marker { display: none; }
+.glance-k {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--green-2);
+}
+.glance-n { flex: 1; min-width: 12rem; font-size: 0.92rem; color: var(--ink-dim); }
+.glance-chev {
+  flex: none; width: 9px; height: 9px; margin-right: 0.2rem;
+  border-right: 1.5px solid var(--mute); border-bottom: 1.5px solid var(--mute);
+  transform: rotate(45deg) translateY(-2px); transition: transform .25s var(--ease);
+}
+.glance[open] .glance-chev { transform: rotate(-135deg) translateY(-2px); }
+.glance-sum:hover .glance-chev { border-color: var(--green-2); }
+.glance-sum:focus-visible { outline: 2px solid var(--green); outline-offset: -2px; border-radius: 20px; }
+
+.glance-body { padding: 0 1.4rem 1.4rem; border-top: 1px solid var(--line); }
+
+/* the headline numbers, when the page passes some in (Work) */
+.glance-facts {
+  list-style: none; display: grid; gap: 0.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+  margin-top: 1.2rem;
+}
+.glance-facts li {
+  padding: 0.8rem 0.95rem; border: 1px solid var(--line); border-radius: 14px;
+  background: rgba(255, 255, 255, 0.015);
+}
+.glance-facts strong {
+  display: block; font-family: var(--serif); font-weight: 600;
+  font-size: 1.55rem; line-height: 1; letter-spacing: -0.02em; color: var(--ink);
+}
+.glance-facts span {
+  display: block; margin-top: 0.35rem;
+  font-size: 0.8rem; line-height: 1.35; color: var(--ink-dim);
+}
+
+/* the index: one column per group, as many side by side as fit */
+.glance-index {
+  display: grid; gap: 1.4rem 2rem; margin-top: 1.3rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+}
+/* With four or more groups (/projects/ has seven) a grid of rows left a
+   ~230px hole under a short group and two empty cells beside the last one;
+   in columns the groups pack down in page order (1,055 -> ~810px tall). */
+.glance-index:has(> .glance-group:nth-child(4)) { display: block; columns: 3 19rem; column-gap: 2rem; }
+.glance-index:has(> .glance-group:nth-child(4)) > .glance-group { break-inside: avoid; }
+.glance-index:has(> .glance-group:nth-child(4)) > .glance-group + .glance-group { margin-top: 1.4rem; }
+/* a group name that jumps to its section */
+.glance-h a { color: inherit; transition: color .2s var(--ease); }
+.glance-h a:hover { color: var(--green-2); }
+.glance-h {
+  font-family: var(--mono); font-weight: 400; font-size: 0.66rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
+  margin-bottom: 0.4rem;
+}
+.glance-group ul { list-style: none; }
+/* one group on its own (Work) would be a single narrow column beside empty
+   space, so its rows flow across columns instead */
+.glance-index:has(> .glance-group:only-child) { grid-template-columns: 1fr; }
+.glance-group:only-child ul { columns: 3 17rem; column-gap: 2rem; }
+.glance-group:only-child li { break-inside: avoid; }
+.glance-row {
+  display: grid; align-items: center; column-gap: 0.75rem; row-gap: 0.2rem;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  grid-template-areas: "ic t y" "ic c c";
+  padding: 0.5rem 0.5rem; margin: 0 -0.5rem; border-radius: 10px;
+  transition: background .2s var(--ease);
+}
+.glance-row:hover { background: rgba(255, 255, 255, 0.04); }
+.glance-row:hover .glance-t { color: var(--green-2); }
+.glance-ic {
+  grid-area: ic; width: 30px; height: 30px; border-radius: 8px;
+  object-fit: cover; background: var(--line);
+}
+.glance-t {
+  /* whole titles: an ellipsis cut five of them at 320px and more at larger
+     text sizes; the row grows a line instead */
+  grid-area: t; min-width: 0; overflow-wrap: anywhere;
+  font-size: 0.92rem; color: var(--ink); transition: color .2s var(--ease);
+}
+.glance-y {
+  grid-area: y; font-family: var(--mono); font-size: 0.7rem;
+  color: var(--mute); font-variant-numeric: tabular-nums;
+}
+.glance-chips { grid-area: c; display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.glance-chips:empty { display: none; }
+.gc {
+  font-style: normal; font-family: var(--mono); font-size: 0.66rem;
+  letter-spacing: 0.03em; line-height: 1; white-space: nowrap;
+  padding: 0.22rem 0.45rem; border-radius: 100px;
+  border: 1px solid var(--line); color: var(--ink-dim);
+}
+.gc--store { color: var(--blue-2); border-color: color-mix(in srgb, var(--blue-2) 35%, transparent); }
+.gc--open  { color: var(--green-2); border-color: color-mix(in srgb, var(--green-2) 35%, transparent); }
+.gc--award { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 40%, transparent); }
+.gc--dead  { color: #d3897e; border-color: rgba(211, 137, 126, .35); }
+/* each part of the count stays whole (cards.js wraps them), so a line never
+   starts with "· 1 open source" */
+.glance-n > span { white-space: nowrap; }
+@media (max-width: 640px) {
+  .glance-sum { padding: 1rem 1.1rem; }
+  .glance-body { padding: 0 1.1rem 1.1rem; }
+  /* label and count stacked on the left, the chevron at the trailing edge:
+     the count's 12rem minimum used to push the chevron onto a row of its
+     own, under the label at the bottom left */
+  .glance-sum {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 1rem; row-gap: 0.35rem;
+  }
+  .glance-k, .glance-n { grid-column: 1; min-width: 0; }
+  .glance-chev { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+}
+
+/* the six headline numbers in balanced rows (3 + 3, 6 on a wide screen,
+   2 + 2 + 2 on a phone): "as many as fit" left 5 + 1 and 4 + 2 */
+.glance-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* on /work/ they sit above the At a glance box rather than inside it */
+.glance-facts--lead { margin: 0 0 1rem; }
+@media (min-width: 1300px) { .glance-facts { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .glance-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* opening settles the contents in rather than snapping them; closing stays
+   instant */
+@media (prefers-reduced-motion: no-preference) {
+  .glance[open] > .glance-body { animation: glance-in .28s var(--ease); }
+  @keyframes glance-in { from { opacity: 0; translate: 0 -6px; } }
+}
+
+/* A card jumped to from the index lands clear of the sticky top bar: the
+   page's own scroll-padding-top (base.css) plus a little air. It was 6rem
+   here alone, back when nothing else cleared the bar. */
+.app-card, .proj-card { scroll-margin-top: 1rem; }
+/* A card still waiting to reveal sits 28px low (the reveal's slide), and a
+   jump measured that offset box, then the card slid up under the bar. The
+   targeted card skips the slide; the fade still plays. */
+.reveal:target { transform: none; }
+/* arrived at by a link: a project card glows the way an app card does */
+.proj-card { position: relative; }
+.proj-card::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  z-index: 4; opacity: 0; box-shadow: inset 0 0 0 1px var(--green-2), 0 0 40px -8px var(--green);
+}
+.proj-card:target::after { animation: card-found 2.8s var(--ease) .9s backwards; }
+@media (prefers-reduced-motion: reduce) { .proj-card:target::after { animation: none; opacity: 1; } }
+
+/* The Experience timeline (transcript.css) reads --accent and --line-2,
+   which nothing defines, so on /work/ it fell back to a mint (#7fd8a8) right
+   under the page's own --green-2 label, and a past role's node got a #26262c
+   ring (about 1.3:1, all but invisible). /college/ and /high-school/ keep
+   their look. */
+.work .roles { --accent: var(--green-2); --line-2: var(--mute); }
+
+/* the résumé button under the Work timeline */
+.work-cv { display: flex; width: fit-content; margin: 0 0 3.4rem; }
+@media (max-width: 640px) { .work-cv { width: 100%; } }
+
+/* Reduce Transparency / Increase Contrast: the cards, the index and the
+   project cards stop letting the backdrop through (its lit tiles could pulse
+   under their text); backdrops.css stills the tiles themselves. */
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .app-card, .proj-card, .glance { background: var(--bg-2) !important; }
+}
+
+/* /projects/ (the page whose backdrop is the board of lit app icons,
+   .bd-board): its cards were 1% white, and a tile pulsing up behind one took
+   its small grey text below 4.5:1. A mostly solid dark fill, the way the
+   planet cards sit over the moving sky on /star-wars/; the tiles still show
+   between the cards. The hover and open tints are layered over the fill
+   rather than replacing it. */
+body:has(.bd-board) :is(.app-card, .proj-card, .glance) { background: color-mix(in srgb, var(--bg) 80%, transparent); }
+body:has(.bd-board) :is(.app-card, .proj-card).is-open {
+  background: linear-gradient(rgba(31,157,92,0.045), rgba(31,157,92,0.045)), color-mix(in srgb, var(--bg) 80%, transparent);
+}
+@media (hover: hover) {
+  body:has(.bd-board) .app-card:hover {
+    background: linear-gradient(rgba(31,157,92,0.04), rgba(31,157,92,0.04)), color-mix(in srgb, var(--bg) 80%, transparent);
+  }
+  body:has(.bd-board) .app-card--dead:hover { background: color-mix(in srgb, var(--bg) 80%, transparent); }
 }

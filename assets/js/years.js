@@ -56,9 +56,7 @@
     return MONTHS[+p[1] - 1] + ' ' + p[0];
   }
 
-  function esc(s) {
-    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
-  }
+  function esc(s) { return window.AEesc(s); }
 
   /* Where a photo actually lives.
 
@@ -89,16 +87,25 @@
       : 'src="' + src + '" loading="lazy" fetchpriority="low"';
   }
 
-  /* ── the deck ── */
+  /* ── the deck ──
+     A real modal, like the shared lightbox (gallery.js): a dialog with a name,
+     focus on its close button while it is up and back on the photo it ended
+     on when it goes, and the rest of the page inert meanwhile. Before, focus
+     stayed on the grid cell behind the overlay and Tab walked on through the
+     photos underneath it. The bar along the bottom is a polite live region,
+     so paging with the arrow keys says where you are. */
   var deck = document.createElement('div');
   deck.className = 'yg-deck';
+  deck.setAttribute('role', 'dialog');
+  deck.setAttribute('aria-modal', 'true');
+  deck.setAttribute('aria-label', 'Photo viewer');
   deck.setAttribute('aria-hidden', 'true');
   deck.innerHTML =
-      '<button class="yg-x" aria-label="Close">&#10005;</button>'
-    + '<button class="yg-prev" aria-label="Previous photo">&#8249;</button>'
-    + '<button class="yg-next" aria-label="Next photo">&#8250;</button>'
+      '<button class="yg-x" type="button" aria-label="Close">&#10005;</button>'
+    + '<button class="yg-prev" type="button" aria-label="Previous photo">&#8249;</button>'
+    + '<button class="yg-next" type="button" aria-label="Next photo">&#8250;</button>'
     + '<figure class="yg-stage"><img alt="" /></figure>'
-    + '<div class="yg-bar"><span class="yg-year"></span><span class="yg-date"></span>'
+    + '<div class="yg-bar" aria-live="polite"><span class="yg-year"></span><span class="yg-date"></span>'
     +   '<span class="yg-place"></span><span class="yg-count"></span></div>';
   document.body.appendChild(deck);
 
@@ -110,6 +117,8 @@
 
   var set = [], at = 0, label = '';
   var pending = null;                 // the photo whose large copy the stage is waiting on
+  var opener = null, from = null;     // what opened the deck, and the open year it came from
+  var unload = 0;                     // the stage is emptied after the fade-out, not during it
 
   /* Both copies of a photo are shown at the same size, worked out from the
      photo's own proportions and the room the stage has, rather than from
@@ -117,28 +126,47 @@
      when the large copy lands. Never above the large copy's own pixels (twice
      the grid frame), and never above 1:1 for a photo too small to have been
      given a large copy at all. The 1100 is .yg-stage's max-width in years.css. */
-  function fit(p) {
+  function scaleOf(p) {
     var cs = getComputedStyle(deck);
     var maxW = Math.min(1100, deck.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight));
     var maxH = parseFloat(getComputedStyle(stageImg).maxHeight);
     if (!(maxH > 0)) maxH = innerHeight - 128;
     var cap = Math.max(p.w, p.h) < 1000 ? 1 : 2;
-    var s = Math.min(maxW / p.w, maxH / p.h, cap);
+    return Math.min(maxW / p.w, maxH / p.h, cap);
+  }
+  function fit(p) {
+    var s = scaleOf(p);
     stageImg.style.width = Math.round(p.w * s) + 'px';
     stageImg.style.height = Math.round(p.h * s) + 'px';
   }
 
+  /* Whether the stage shows this photo at more device pixels than the grid's
+     1000px frame has. Often it does not: a 1100px stage on an ordinary
+     screen, or a landscape photo across a phone, is covered by the frame
+     that is already in the cache, and fetching the 2000px copy for it spent
+     a quarter of a megabyte a photo on nothing anyone could see. */
+  function wantsLarge(p) {
+    return Math.max(p.w, p.h) >= 1000
+      && scaleOf(p) * (window.devicePixelRatio || 1) > 1.15;
+  }
+
   /* Fetch the large copy behind the frame on the stage and put it in its
      place when it lands, unless the deck has moved on. The two neighbours
-     are fetched next, so an arrow press finds its large copy already here. */
+     are fetched next, their grid frames and, where the screen can use it,
+     their large copies, so an arrow press or a swipe finds the next photo
+     already here instead of an empty frame. */
   function swapIn(p) {
     pending = p;
-    var big = new Image();
-    big.onload = function () { if (pending === p) stageImg.src = p.full; };
-    big.src = p.full;
+    if (wantsLarge(p)) {
+      var big = new Image();
+      big.onload = function () { if (pending === p) stageImg.src = p.full; };
+      big.src = p.full;
+    }
     if (set.length > 1) {
-      new Image().src = set[(at + 1) % set.length].full;
-      new Image().src = set[(at - 1 + set.length) % set.length].full;
+      [set[(at + 1) % set.length], set[(at - 1 + set.length) % set.length]].forEach(function (n) {
+        new Image().src = n.src;
+        if (wantsLarge(n)) new Image().src = n.full;
+      });
     }
   }
 
@@ -152,7 +180,7 @@
     var p = set[at];
     fit(p);
     stageImg.src = p.src;
-    stageImg.alt = p.alt;
+    stageImg.alt = p.alt + (p.date ? ', ' + fmt(p.date) : '');
     swapIn(p);
     elYear.textContent = label;
     elDate.textContent = p.date ? fmt(p.date) : 'Date unrecorded';
@@ -160,20 +188,55 @@
     elPlace.hidden = !p.place;
     elCount.textContent = (at + 1) + ' / ' + set.length;
   }
-  function open(list, name, i) {
+
+  /* Everything but the deck goes inert while it is up (the deck is a child of
+     <body>, so its siblings are the whole page). */
+  function setInert(on) {
+    Array.prototype.forEach.call(document.body.children, function (n) {
+      if (n !== deck && n.tagName !== 'SCRIPT') n.inert = on;
+    });
+  }
+
+  function open(list, name, i, panel) {
     set = list; label = name;
+    opener = document.activeElement; from = panel || null;
+    clearTimeout(unload);
     deck.classList.add('open');
     deck.setAttribute('aria-hidden', 'false');
     document.documentElement.classList.add('intro-lock');
     show(i);
+    setInert(true);
+    deck.querySelector('.yg-x').focus({ preventScroll: true });
   }
   function close() {
+    if (!deck.classList.contains('open')) return;   // Escape elsewhere on the page is not ours
     deck.classList.remove('open');
     deck.setAttribute('aria-hidden', 'true');
     document.documentElement.classList.remove('intro-lock');
+    setInert(false);
     pending = null;
-    stageImg.removeAttribute('src');
-    stageImg.style.width = stageImg.style.height = '';
+    /* The photo stays on the stage through the fade-out. Emptying it in the
+       first frame showed a broken-image box and the alt text for the length
+       of the fade, over a backdrop that had not started to go. */
+    unload = setTimeout(function () {
+      if (deck.classList.contains('open')) return;
+      stageImg.removeAttribute('src');
+      stageImg.style.width = stageImg.style.height = '';
+    }, 220);
+    /* Focus goes back to the photo the deck ended on, which is where the
+       page behind it is brought to as well: page through forty photos and
+       close, and you are looking at the fortieth, not the first. */
+    var cell = from && from.querySelector('.yg-cell[data-i="' + at + '"]');
+    if (cell && cell.offsetParent !== null) {
+      cell.focus({ preventScroll: true });
+      var html = document.documentElement, was = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';            // under the fade, not a second movement after it
+      cell.scrollIntoView({ block: 'nearest' });
+      html.style.scrollBehavior = was;
+    } else if (opener && opener.isConnected && opener.focus) {
+      opener.focus({ preventScroll: true });
+    }
+    opener = from = null;
   }
   addEventListener('resize', function () { if (deck.classList.contains('open')) fit(set[at]); });
 
@@ -181,22 +244,57 @@
   deck.querySelector('.yg-prev').addEventListener('click', function () { show(at - 1); });
   deck.querySelector('.yg-next').addEventListener('click', function () { show(at + 1); });
   deck.addEventListener('click', function (e) { if (e.target === deck || e.target.closest('.yg-stage') === e.target) close(); });
+  /* handled keys are marked as such, so expand.js does not also fold away an
+     open "Read more" card on the same Escape */
   addEventListener('keydown', function (e) {
     if (!deck.classList.contains('open')) return;
-    if (e.key === 'Escape') close();
-    else if (e.key === 'ArrowLeft') show(at - 1);
-    else if (e.key === 'ArrowRight') show(at + 1);
+    if (e.key === 'Escape') { e.preventDefault(); close(); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); show(at - 1); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); show(at + 1); }
   });
 
-  // swipe, for the half of this that will be read on a phone
-  var x0 = null;
-  deck.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  /* Swipe, for the half of this that will be read on a phone. The photo
+     follows the finger once the drag has picked a direction; a sideways
+     drag past 50px, or a quick flick, turns the page, and anything else
+     springs back. A drag that starts out vertical never turns it (that was
+     most accidental page turns), and a second finger (a pinch) cancels. The
+     next photo slides in from the side the finger was heading for. */
+  var x0 = null, y0 = 0, t0 = 0, axis = '';
+  var SPRING = 'transform .26s cubic-bezier(.16,1,.3,1)';
+  function settle(dir) {
+    if (reduceMotion) { stageImg.style.transition = 'none'; stageImg.style.transform = ''; return; }
+    if (dir) {                                     // the new photo starts a little to that side
+      stageImg.style.transition = 'none';
+      stageImg.style.transform = 'translateX(' + (dir * 36) + 'px)';
+      void stageImg.offsetWidth;
+    }
+    stageImg.style.transition = SPRING;
+    stageImg.style.transform = '';
+  }
+  deck.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) { if (x0 !== null) settle(0); x0 = null; return; }
+    x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; t0 = e.timeStamp; axis = '';
+    stageImg.style.transition = 'none';
+  }, { passive: true });
+  deck.addEventListener('touchmove', function (e) {
+    if (x0 === null) return;
+    if (e.touches.length !== 1) { x0 = null; settle(0); return; }
+    var mx = e.touches[0].clientX - x0, my = e.touches[0].clientY - y0;
+    if (!axis && Math.abs(mx) + Math.abs(my) > 10) axis = Math.abs(mx) > Math.abs(my) ? 'x' : 'y';
+    if (axis === 'x' && !reduceMotion) stageImg.style.transform = 'translateX(' + mx + 'px)';
+  }, { passive: true });
   deck.addEventListener('touchend', function (e) {
     if (x0 === null) return;
-    var dx = e.changedTouches[0].clientX - x0;
-    if (Math.abs(dx) > 50) show(at + (dx < 0 ? 1 : -1));
+    var mx = e.changedTouches[0].clientX - x0;
+    var v = Math.abs(mx) / Math.max(1, e.timeStamp - t0);          // px per ms
+    var turn = axis === 'x' && (Math.abs(mx) > 50 || (v > 0.3 && Math.abs(mx) > 12));
     x0 = null;
+    if (!turn) { settle(0); return; }
+    var dir = mx < 0 ? 1 : -1;
+    show(at + dir);
+    settle(dir);
   }, { passive: true });
+  deck.addEventListener('touchcancel', function () { if (x0 !== null) { x0 = null; settle(0); } }, { passive: true });
 
   /* ── one square card per year, and the grid it opens ── */
   mounts.forEach(function (mount) {
@@ -206,6 +304,14 @@
     var cards = '', panels = '';
     var byId = {};
     groups.forEach(function (g) { byId[g.id] = g; });
+
+    /* who the photos are of, for the alt text: "freshman year", "first
+       year", "middle school", never "first year year" */
+    function whoOf(g) {
+      if (g.id === 'id-pics') return 'school ID cards';
+      var l = g.label.toLowerCase();
+      return /(year|school)$/.test(l) ? l : l + ' year';
+    }
 
     groups.forEach(function (g) {
       var rows = DATA.photos[g.id];
@@ -225,17 +331,21 @@
          them, so the whole card is behind the switch: `year-card--ids` is
          display:none until "show other pictures" is on (pics.css). It is the
          one year card that is not public, so it does not sit on the page as a
-         cover the way the others do. */
-      cards += '<button class="year-card reveal'
+         cover the way the others do.
+
+         A cover is a button only while the switch is on (arm() below). With
+         it off, the default, it is a picture with a caption: it used to be a
+         <button> that did nothing, a Tab stop and a "collapsed, button" for
+         every school year, promising a gallery that was not there. */
+      cards += '<div class="year-card reveal'
         + (g.id === 'id-pics' ? ' year-card--wide year-card--ids' : '')
-        + '" type="button" data-group="' + g.id + '"'
-        + ' aria-expanded="false" aria-controls="ygp-' + g.id + '">'
+        + '" data-group="' + g.id + '">'
         + '<img ' + pic(url(g.id, g.cover))
-        +   ' alt="Abubakr Elmallah, ' + esc(g.label.toLowerCase()) + ' year"'
+        +   ' alt="Abubakr Elmallah, ' + esc(whoOf(g)) + '"'
         +   ' decoding="async" />'
         + '<span class="year-cap">' + esc(g.label) + ' <i>' + yr + '</i></span>'
-        + '<span class="year-more">' + rows.length + '</span>'
-        + '</button>';
+        + '<span class="year-more">' + rows.length + '<span class="vh"> photos</span></span>'
+        + '</div>';
 
       /* the shell only; body() below fills it in on first open */
       panels += '<section class="yg-panel" id="ygp-' + g.id + '" data-group="' + g.id + '" hidden></section>';
@@ -253,7 +363,7 @@
         ? fmtShort(dates[0]) + ' – ' + fmtShort(dates[dates.length - 1])
         : 'undated';
       var out = '<div class="yg-head">'
-        +   '<h4>' + esc(g.label) + '</h4>'
+        +   '<h3 tabindex="-1">' + esc(g.label) + '</h3>'
         +   '<span class="yg-span">' + esc(g.span) + '</span>'
         +   '<span class="yg-range">' + esc(range) + '</span>'
         +   '<span class="yg-n">' + rows.length + ' photo' + (rows.length === 1 ? '' : 's') + '</span>'
@@ -272,13 +382,13 @@
         var file = r[0], date = r[1], w = r[2], h = r[3];
         if (breaks[i]) {
           out += (i > 0 ? '</div>' : '')
-            + '<h5 class="yg-chap">' + esc(breaks[i][1])
-            + '<span>' + esc(breaks[i][2]) + '</span></h5>'
+            + '<h4 class="yg-chap">' + esc(breaks[i][1])
+            + '<span>' + esc(breaks[i][2]) + '</span></h4>'
             + '<div class="yg" data-group="' + g.id + '">';
         } else if (i === 0) {
           out += '<div class="yg" data-group="' + g.id + '">';
         }
-        var alt = 'Abubakr Elmallah, ' + g.label.toLowerCase()
+        var alt = 'Abubakr Elmallah, ' + whoOf(g)
                 + (date ? ', ' + fmt(date) : '');
         /* The school ID photographs, pinned to the front of their year, are
            hidden with the same switch. Hidden in CSS rather than dropped here
@@ -322,7 +432,10 @@
       var card = mount.querySelector('.year-card[data-group="' + panel.dataset.group + '"]');
       panel.classList.remove('in');
       panel.hidden = true;
-      if (card) { card.classList.remove('is-open'); card.setAttribute('aria-expanded', 'false'); }
+      if (card) {
+        card.classList.remove('is-open');
+        if (card.hasAttribute('aria-expanded')) card.setAttribute('aria-expanded', 'false');
+      }
     }
 
     /* Where the page stands after a year folds up.
@@ -356,6 +469,24 @@
        at all; with it off the click is simply dropped */
     function picsOn() { return !!(window.AEpics && window.AEpics.on()); }
 
+    /* A cover takes on the button role, its Tab stop and its expanded state
+       while the switch is on, and puts them all down again when it goes off.
+       The element stays the same one either way, so tilt, the reveal and the
+       lazy-loaded cover photo are not disturbed by the change. */
+    function arm(on) {
+      mount.querySelectorAll('.year-card').forEach(function (card) {
+        if (on) {
+          card.setAttribute('role', 'button');
+          card.tabIndex = 0;
+          card.setAttribute('aria-expanded', card.classList.contains('is-open') ? 'true' : 'false');
+          card.setAttribute('aria-controls', 'ygp-' + card.dataset.group);
+        } else {
+          ['role', 'tabindex', 'aria-expanded', 'aria-controls'].forEach(function (a) { card.removeAttribute(a); });
+        }
+      });
+    }
+    arm(picsOn());
+
     mount.querySelectorAll('.year-card').forEach(function (card) {
       card.addEventListener('click', function () {
         if (!picsOn()) return;
@@ -372,27 +503,53 @@
         void panel.offsetHeight;                   // and a reflow before the transition
         panel.classList.add('in');
         if (window.AEreveal) window.AEreveal(panel);
+
+        /* The year opens underneath the whole row of covers, which on a phone
+           is one or two screens below the cover you touched: the only sign
+           anything had happened was the green border. When the year's heading
+           lands below the lower part of the screen, the page is taken to it,
+           and focus goes with it so a keyboard or VoiceOver user is in the
+           year and not left on its cover. */
+        var head = panel.querySelector('.yg-head h3');
+        if (head && head.getBoundingClientRect().top > innerHeight * 0.7) {
+          head.focus({ preventScroll: true });
+          head.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+        }
       });
+    });
+
+    /* role="button" on a div needs the keys a real button gets for free */
+    mount.addEventListener('keydown', function (e) {
+      var card = e.target;
+      if (!card.classList || !card.classList.contains('year-card') || card.getAttribute('role') !== 'button') return;
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
     });
 
     /* Delegated, not bound per element: the Close button and the photo cells
        are written by body() the first time a year is opened, so there is
-       nothing to bind to when this runs. */
+       nothing to bind to when this runs. The cover it belongs to takes focus
+       before the page moves back to it; closing used to hide the button that
+       had focus and leave it on <body>. */
     mount.addEventListener('click', function (e) {
       var b = e.target.closest('.yg-shut');
       if (!b) return;
       var panel = b.closest('.yg-panel');
+      var card = mount.querySelector('.year-card[data-group="' + panel.dataset.group + '"]');
       shut(panel);
-      backTo(mount.querySelector('.year-card[data-group="' + panel.dataset.group + '"]'));
+      if (card) card.focus({ preventScroll: true });
+      backTo(card);
     });
 
     /* Turning the switch back off has to put the page back the way it was, so
        an open year folds up rather than being left showing behind a switch
-       that says the pictures are hidden. */
+       that says the pictures are hidden. Either way the covers change role. */
     document.addEventListener('ae:pics', function (e) {
-      if (e.detail && e.detail.on) return;
-      mount.querySelectorAll('.yg-panel:not([hidden])').forEach(shut);
-      close();
+      var on = !!(e.detail && e.detail.on);
+      if (!on) {
+        mount.querySelectorAll('.yg-panel:not([hidden])').forEach(shut);
+        close();
+      }
+      arm(on);
     });
 
     /* clicking any photo in an open year opens the deck at that photo.
@@ -404,7 +561,7 @@
         lists[g.id] = DATA.photos[g.id].map(function (r) {
           return { src: url(g.id, r[0]), full: large(g.id, r[0]), w: r[2], h: r[3],
                    date: r[1], place: r[4] || '',
-                   alt: 'Abubakr Elmallah, ' + g.label.toLowerCase() };
+                   alt: 'Abubakr Elmallah, ' + whoOf(g) };
         });
       }
       return lists[g.id];
@@ -416,7 +573,7 @@
       var panel = cell.closest('.yg-panel');
       if (!panel) return;
       var g = byId[panel.dataset.group];
-      open(listFor(g), g.label + ' ' + g.span, +cell.dataset.i);
+      open(listFor(g), g.label + ' ' + g.span, +cell.dataset.i, panel);
     });
   });
 
@@ -428,9 +585,31 @@
      keeps its own aspect ratio, nothing is cropped, nothing is out of order and
      there are no holes; the rows just breathe in and out a bit. */
   function layout() {
+    /* Every measurement first, every write after. A year with chapters is a
+       grid per chapter, and measuring each grid after writing the one before
+       it forced a full re-layout per chapter: that, more than anything, was
+       the ~120 ms of forced layout in opening Second Year on a phone.
+
+       The width is the real, fractional one, rounded DOWN. clientWidth
+       rounds to the nearest pixel, so a 321.8px column (an iPhone 17 Pro, a
+       14-inch MacBook at its default scale) was solved as 322: every row came
+       out a fraction too wide, its last photo wrapped onto a line of its own,
+       and a year became a ragged stack of short rows. A row a fraction short
+       of the edge is invisible; one a fraction too long breaks. */
+    var jobs = [];
     document.querySelectorAll('.yg').forEach(function (grid) {
-      var W = grid.clientWidth;
+      var W = Math.floor(grid.getBoundingClientRect().width);
       if (!W) return;
+      /* A cell the pics switch has hidden takes up no space, so it must not
+         be counted into a row either: leaving it in would solve the row for
+         a width one frame wider than the row actually is, and that row would
+         land short of the container. */
+      jobs.push([grid, W, Array.prototype.filter.call(grid.querySelectorAll('.yg-cell'), function (c) {
+        return c.offsetParent !== null;
+      })]);
+    });
+    jobs.forEach(function (job) {
+      var W = job[1], cells = job[2];
       var target = W < 560 ? 158 : W < 900 ? 200 : 244;
       var row = [], sum = 0;
 
@@ -453,17 +632,9 @@
         row = []; sum = 0;
       }
 
-      /* A cell the pics switch has hidden takes up no space, so it must not
-         be counted into a row either: leaving it in would solve the row for
-         a width one frame wider than the row actually is, and that row would
-         land short of the container.
-
-         Read every offsetParent up front, before any width is written: reading
-         one after the previous row's writes forces a full re-layout per row
-         (150 of them on a big year, on every resize). */
-      var cells = Array.prototype.filter.call(grid.querySelectorAll('.yg-cell'), function (c) {
-        return c.offsetParent !== null;
-      });
+      /* the offsetParents were read up front with the widths, before any
+         width is written: reading one after the previous row's writes forced
+         a full re-layout per row (150 of them on a big year, on every resize) */
       cells.forEach(function (c) {
         row.push(c);
         sum += +c.dataset.w / +c.dataset.h;

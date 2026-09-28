@@ -123,7 +123,11 @@ main, .footer, .rail { position: relative; z-index: 10; }
   pointer-events: none; border-radius: 50%;
   transform: translate(-50%, -50%);
   mix-blend-mode: difference;
+  opacity: 0;
 }
+/* shown from the first mouse move (cursor.js adds .cursor-live), not parked
+   in the middle of the screen, over the name, until the mouse arrives */
+html.cursor-live .cursor, html.cursor-live .cursor-dot { opacity: 1; }
 .cursor {
   width: 34px; height: 34px;
   border: 1px solid #fff;
@@ -142,7 +146,14 @@ main, .footer, .rail { position: relative; z-index: 10; }
   display: flex; flex-direction: column; align-items: center;
   justify-content: space-between;
   padding: 1.4rem 0;
-  font-family: var(--mono); font-size: 0.62rem;
+  /* a phone held sideways is wider than the 820px that hides the rail, so
+     it shows there, with the Dynamic Island on one side: the insets move it
+     in from the edge and its two ends off the status bar and the home
+     indicator (see .topbar) */
+  left: env(safe-area-inset-left, 0px);
+  padding-top: calc(1.4rem + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(1.4rem + env(safe-area-inset-bottom, 0px));
+  font-family: var(--mono); font-size: 0.66rem;   /* the site's floor; it was 0.62 */
   letter-spacing: 0.18em; color: var(--mute);
   z-index: 50; pointer-events: none;
 }
@@ -151,6 +162,9 @@ main, .footer, .rail { position: relative; z-index: 10; }
 .rail-line i { position: absolute; inset: 0; transform: scaleY(0); transform-origin: top;
   background: linear-gradient(var(--green-2), var(--blue)); will-change: transform; }
 .rail-meta { writing-mode: vertical-rl; }
+/* the clock ends in "PT" and the coordinates start with a digit: without a
+   gap they read as one string, "01:04:57 PT33.64°N" */
+.rail-meta + .rail-meta { margin-top: 1.2rem; }
 /* sound toggle lives in the rail (rail itself is click-through, so re-enable it here) */
 .rail-sound {
   pointer-events: auto; cursor: none;
@@ -170,10 +184,24 @@ main, .footer, .rail { position: relative; z-index: 10; }
 
 /* ───────────── Sticky header ───────────── */
 
+/* ── the safe-area insets ──
+   In the home-screen app the page runs under the status bar, the Dynamic
+   Island and the home indicator (head.html: black-translucent status bar
+   and viewport-fit=cover), and env(safe-area-inset-*) says by how much. The
+   rule is the same everywhere it is used: the inset is ADDED to the padding
+   or the offset that was there, so in a browser tab, where every inset is
+   0, nothing changes. Top goes on this bar (it is sticky, so it is the one
+   thing that is always under the status bar); left and right go on the bar,
+   the rail, <main> and the footer for a phone held sideways; bottom is
+   already on the tab bar and on <body> further down. The overlays' close
+   buttons carry their own (components.css, years.css). */
 .topbar {
   position: sticky; top: 0; z-index: 100;
   display: flex; align-items: center; gap: 1.5rem;
   padding: 0.85rem var(--gutter);
+  padding-top: calc(0.85rem + env(safe-area-inset-top, 0px));
+  padding-left: calc(var(--gutter) + env(safe-area-inset-left, 0px));
+  padding-right: calc(var(--gutter) + env(safe-area-inset-right, 0px));
   background: rgba(8, 8, 10, 0.72);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
@@ -201,12 +229,22 @@ a.footer-mid:hover { color: var(--green-2); }
   transition: transform .25s var(--ease), background .25s, border-color .25s, color .25s;
 }
 .ql svg { width: 15px; height: 15px; }
+/* Résumé is the one filled button up here. LinkedIn and GitHub are outline
+   buttons that take their brand colour on hover: filled by default, the
+   header and the hero between them put six filled pills (two of them green
+   Résumés) on the first screen, and the page's own main action was the
+   quietest button in view. */
 .ql--resume   { order: 2; background: var(--green); color: #05140c; border-color: var(--green); font-weight: 500; }
 .ql--resume:hover   { background: var(--green-2); border-color: var(--green-2); }
-.ql--linkedin { background: var(--blue); color: #04101f; border-color: var(--blue); font-weight: 500; }
-.ql--linkedin:hover { background: var(--blue-2); border-color: var(--blue-2); }
-.ql--github   { background: var(--gold); color: #1a1405; border-color: var(--gold); font-weight: 500; }
-.ql--github:hover   { background: #ffd766; border-color: #ffd766; }
+/* on /resume/ itself it marks where you are rather than asking to be pressed,
+   and the page's own Download button is the filled one (resume.css) */
+.ql--resume[aria-current="page"] {
+  background: transparent; color: var(--green-2);
+  border-color: color-mix(in srgb, var(--green) 50%, transparent);
+}
+.ql--linkedin, .ql--github { font-weight: 500; }
+.ql--linkedin:hover { background: var(--blue); color: #04101f; border-color: var(--blue); }
+.ql--github:hover   { background: var(--gold); color: #1a1405; border-color: var(--gold); }
 
 /* sound toggle: sits in the top-bar quicklinks, icon-only, swaps on/off glyph */
 .ql--sound { padding: 0.55rem; color: var(--ink-dim); background: transparent; }
@@ -233,13 +271,62 @@ a.footer-mid:hover { color: var(--green-2); }
 /* top nav controls are commented out, push the toggle+quicklinks group to the right */
 @media (min-width: 561px) { .topbar .toggles { margin-left: auto; } }
 @media (max-width: 560px) {
-  .topbar { gap: 0.6rem; padding: 0.7rem 1rem; flex-wrap: wrap; }
-  /* brand + toggles share the top row (toggles pinned right); social pills wrap below */
-  .brand { width: auto; }
+  /* One row: brand on the left, sound toggle and the three links on the
+     right. It used to wrap the links onto a second row, and with the tab bar
+     that was about a fifth of a phone screen in chrome. */
+  .topbar {
+    gap: 0.6rem; padding: 0.7rem 1rem; flex-wrap: nowrap;
+    padding-top: calc(0.7rem + env(safe-area-inset-top, 0px));
+    padding-left: calc(1rem + env(safe-area-inset-left, 0px));
+    padding-right: calc(1rem + env(safe-area-inset-right, 0px));
+  }
+  .brand { width: auto; min-width: 0; }
+  .brand-glyph { white-space: nowrap; }
   .topbar .toggles { margin-left: auto; }
-  .topbar .quicklinks { width: 100%; margin-left: 0; margin-right: auto; }
-  .ql .ql-label { display: none; }
+  .topbar .quicklinks { width: auto; margin-left: 0; }
+  /* icon-only on a phone, but the label stays in the accessibility tree:
+     display:none took the only name these links had, so a screen reader
+     announced six of them as a bare "link" */
+  .ql .ql-label {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip-path: inset(50%); white-space: nowrap;
+  }
   .ql { padding: 0.55rem 0.7rem; }
+}
+
+/* the smallest phones: five icons and the name on one row (search joined
+   the bar on 2026-09-28), so the pills and the gaps between them tighten */
+@media (max-width: 380px) {
+  .topbar { gap: 0.4rem; }
+  .topbar .toggles, .topbar .quicklinks { gap: 0.35rem; }
+  .ql { padding: 0.5rem 0.55rem; }
+  .ql--sound, .ql--search { padding: 0.5rem; }
+}
+
+/* the cursor toggle means nothing without a mouse: there is no custom cursor
+   on a touch screen for it to switch */
+@media (hover: none) { .ql--cursor { display: none; } }
+
+/* What keeps the bar on one row: a phone shows the avatar and "Abubakr",
+   the narrowest phones the avatar alone. Hidden the accessible way, so the
+   link is still "Abubakr Elmallah" to a screen reader. */
+@media (max-width: 430px) {
+  .brand-last { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+@media (max-width: 340px) {
+  .brand-glyph { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+
+/* Touch targets: 44px is Apple's minimum for anything a finger has to hit.
+   Links inside running text are exempt (WCAG 2.5.8) and keep their size. */
+@media (pointer: coarse) {
+  .ql { min-width: 44px; min-height: 44px; justify-content: center; }
+  .brand { min-height: 44px; }
+  .hs-extra a, .totop { display: inline-flex; align-items: center; min-height: 44px; }
+  /* a taller hit area that moves nothing: the padding grows it, the negative
+     margin gives the space straight back (components.css, transcript.css and
+     resume.css do the same for their small links) */
+  .footer-mid { padding-block: 12px; margin-block: -12px; }
 }
 
 /* ───────────── Bottom tab bar, floating liquid glass (now shown on every screen) ───────────── */
@@ -271,10 +358,14 @@ a.footer-mid:hover { color: var(--green-2); }
   display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
   padding: 0.4rem 0.2rem;
   border-radius: 18px;
-  font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.02em;
+  /* 0.66rem is the site's smallest text; at 0.55rem (8.8px) the labels on the
+     main navigation were the smallest thing on the page. "Education" still
+     fits its tab at 375px wide. */
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.02em;
   color: var(--ink-dim); text-align: center;
   transition: color .25s var(--ease), background .25s, transform .25s var(--ease);
 }
+@media (max-width: 360px) { .tabbar a { font-size: 0.6rem; } }
 .tabbar a svg { width: 21px; height: 21px; stroke: currentColor; fill: none; stroke-width: 1.8; }
 .tabbar a:hover { color: var(--green-2); }
 .tabbar a:active { transform: scale(0.92); }
@@ -295,9 +386,12 @@ a.footer-mid:hover { color: var(--green-2); }
 .tabbar a.is-going svg { animation: tab-going 1s var(--ease) infinite; }
 @keyframes tab-going { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
 
-/* hairline progress along the very top of the screen */
+/* hairline progress along the very top of the screen (under the status bar
+   in the home-screen app it could not be seen at all, so it sits just below
+   it there; see .topbar for the insets) */
 .navbar-progress {
   position: fixed; top: 0; left: 0; z-index: 12500;
+  top: env(safe-area-inset-top, 0px);
   height: 2px; width: 0;
   background: linear-gradient(90deg, var(--green), var(--blue) 60%, var(--gold));
   box-shadow: 0 0 10px rgba(31, 157, 92, 0.7);
@@ -316,6 +410,11 @@ a.footer-mid:hover { color: var(--green-2); }
   .navbar-progress.run { animation: none; width: 90%; }
 }
 
+/* Reduce Transparency (accessibility setting): the two glass bars go solid */
+@media (prefers-reduced-transparency: reduce) {
+  .topbar, .tabbar { background: var(--bg-2); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+
 /* keep content & footer clear of the floating bar */
 body { padding-bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
 
@@ -330,6 +429,20 @@ body { padding-bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
    be centred INSIDE the column (max-width + padding on the block, auto margins
    on the thing inside it), not by floating the block. */
 main { padding-left: var(--gutter); }
+/* Sideways on a phone the Dynamic Island sits at one end of the page, and
+   the insets say which and by how much (see .topbar): the page's own gutter
+   is added on top of the inset, so the text clears the island by the same
+   margin it clears the edge with. In a browser tab both are 0. */
+main {
+  padding-left: calc(var(--gutter) + env(safe-area-inset-left, 0px));
+  padding-right: env(safe-area-inset-right, 0px);
+}
+/* That padding is room for the left rail, which is hidden at 820px and below
+   (see .rail). Left on, every phone page had twice the margin on the left
+   that it had on the right: 40px against 20px. */
+@media (max-width: 820px) {
+  main { padding-left: 0; padding-left: env(safe-area-inset-left, 0px); }
+}
 section { padding: 0 var(--gutter); max-width: var(--maxw); }
 
 /* ───────────── Footer ───────────── */
@@ -338,6 +451,9 @@ section { padding: 0 var(--gutter); max-width: var(--maxw); }
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 1rem;
   padding: 2rem var(--gutter); border-top: 1px solid var(--line);
+  /* outside <main>, so it carries the sideways insets itself (see .topbar) */
+  padding-left: calc(var(--gutter) + env(safe-area-inset-left, 0px));
+  padding-right: calc(var(--gutter) + env(safe-area-inset-right, 0px));
   font-family: var(--mono); font-size: 0.7rem; color: var(--mute);
 }
 .footer-mid { color: var(--ink-dim); }

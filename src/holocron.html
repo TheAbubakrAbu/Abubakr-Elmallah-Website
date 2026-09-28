@@ -1,36 +1,15 @@
 ---
 permalink: /holocron/
+title: "Holocron · Abubakr Elmallah"
+description: "The Jedi Archives: a Star Wars holocron terminal for Abubakr Elmallah's portfolio, with a turning holocron, archive entries and a Galactic Standard chronometer."
+theme: "#02070c"
+fonts: "family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500"
+standalone: true
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="The Jedi Archives: a Star Wars holocron terminal for Abubakr Elmallah's portfolio, with a turning holocron, archive entries and a Galactic Standard chronometer." />
-<meta name="theme-color" content="#02070c" />
-
-<link rel="icon" type="image/png" href="/assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
-<link rel="manifest" href="/manifest.webmanifest" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Abubakr" />
-<meta property="og:image" content="https://abubakrelmallah.com/assets/img/me/abubakr-circle.png" />
-<meta property="og:type" content="website" />
-<title>Holocron · Abubakr Elmallah</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<!-- Fonts are loaded WITHOUT blocking the first paint. As a plain
-     stylesheet this held the whole page blank until Google answered,
-     which on a weak connection is most of "it opens but it loads
-     slowly". media="print" makes the browser fetch it at low priority
-     and render immediately; onload promotes it to the real stylesheet.
-     Every family here already carries display=swap, so text is on
-     screen in the fallback face straight away and swaps when it lands. -->
-<link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400..900&family=Nunito:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400..900&family=Nunito:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+{% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/holocron.css' %}" />
 </head>
@@ -70,19 +49,33 @@ permalink: /holocron/
     <article class="hc-panel">
       <div class="hc-h"><i></i>Keeper of this archive</div>
       <div class="hc-name">Abubakr Elmallah</div>
-      <div class="hc-role">iOS developer · Computer Science at UC Irvine, class of 2028</div>
+      <div class="hc-role">Lead Mobile &amp; Backend Developer · Computer Science at UC Irvine, class of 2028</div>
       <div class="hc-aur">Aurebesh: ABUBAKR ELMALLAH · translated by an app I shipped</div>
     </article>
 
     <article class="hc-panel">
       <div class="hc-h"><i></i>Archive entries</div>
+      <!-- every page on the site filed here, as the home page promises: the
+           Star Wars entries first, then the rest of the site, then the other
+           terminals and the way out -->
       <nav class="hc-links">
         <a class="hc-link" href="/worlds/star-wars/"><i></i>The galaxy<em>Fandom</em></a>
         <a class="hc-link" href="/star-wars/"><i></i>Aurebesh &amp; Sabacc<em>Apps</em></a>
         <a class="hc-link" href="/worlds/star-wars/#planets"><i></i>Planet atlas<em>126 worlds</em></a>
+        <a class="hc-link" href="/work/"><i></i>Work<em>UCI</em></a>
+        <a class="hc-link" href="/projects/"><i></i>Projects<em>Catalog</em></a>
+        <a class="hc-link" href="/education/"><i></i>Education<em>Schools</em></a>
+        <a class="hc-link" href="/college/"><i></i>College<em>UCI ’28</em></a>
+        <a class="hc-link" href="/high-school/"><i></i>High School<em>Archive</em></a>
+        <a class="hc-link" href="/resume/"><i></i>Résumé<em>Document</em></a>
+        <a class="hc-link" href="/worlds/"><i></i>Worlds<em>70 pages</em></a>
+        <a class="hc-link" href="/al-islam/"><i></i>Al-Islam<em>Apps</em></a>
+        <a class="hc-link" href="/travels/"><i></i>Travels<em>Map</em></a>
+        <a class="hc-link" href="/accents/"><i></i>Accents<em>Voices</em></a>
+        <a class="hc-link" href="/gaming/"><i></i>Gaming<em>Steam</em></a>
         <a class="hc-link" href="/elmallah/"><i></i>E.L.M.A.L.L.A.H. holotable<em>Terminal</em></a>
         <a class="hc-link" href="/jarvis/"><i></i>J.A.R.V.I.S.<em>Terminal</em></a>
-        <a class="hc-link" href="/marauders-map/"><i></i>The Marauder's Map<em>Terminal</em></a>
+        <a class="hc-link" href="/marauders-map/"><i></i>The Marauder’s Map<em>Terminal</em></a>
         <a class="hc-link" href="/"><i></i>Main interface<em>Home</em></a>
       </nav>
     </article>

@@ -68,10 +68,16 @@ window.FAN_PAGE = {
           { n: 'Operation Genesis', y: '2003' },
           { n: 'Jurassic Park: The Game', y: '2011' },
           { n: 'LEGO Jurassic World', y: '2015' },
+          { n: 'LEGO Dimensions', y: '2015' },
           { n: 'Jurassic World Evolution', y: '2018' },
           { n: 'Jurassic World Evolution 2', y: '2021' },
+          { n: 'Jurassic World Evolution 3', y: '2025' },
         ] },
     ] },
+
+  /* The LEGO games of this franchise, as the same tiles the LEGO page shows
+     (LEGO_FOR, from lego-games.js): nothing about them is written here. */
+  window.LEGO_FOR && window.LEGO_FOR('jp'),
 
 
   { id: 'animals', kind: 'cards', title: 'The Animals', note: 'period · diet · size on screen',

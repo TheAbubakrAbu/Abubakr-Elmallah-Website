@@ -12,10 +12,7 @@
     var T = window.TRANSCRIPT;
     if (!root || !T) return;
 
-    function esc(t) {
-      return String(t == null ? '' : t)
-        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    }
+    function esc(t) { return window.AEesc(t); }
 
     /* AP is out of 5, IB out of 7 -- so the bar has to know which scale it is
        on or a 5 would look identical in both. */
@@ -30,8 +27,8 @@
     /* ── exams ── */
     html += '<div class="ts-exams reveal">'
       + '<div class="ts-exambox">'
-      +   '<div class="ts-examhead"><h4>AP Exams</h4><span>College Board · out of 5</span></div>'
-      +   '<ul class="ts-list">'
+      +   '<div class="ts-examhead"><h3>AP Exams</h3><span>College Board · out of 5</span></div>'
+      +   '<ul class="ts-list" role="list">'
       +     T.ap.exams.map(function (e) {
             return '<li' + (e.score === 5 ? ' class="is-top"' : '') + '>'
               + '<span class="ts-n">' + esc(e.name)
@@ -49,9 +46,9 @@
       +   '</div>'
       + '</div>'
       + '<div class="ts-exambox">'
-      +   '<div class="ts-examhead"><h4>IB Exams</h4><span>' + esc(T.ib.result)
+      +   '<div class="ts-examhead"><h3>IB Exams</h3><span>' + esc(T.ib.result)
       +     ' · ' + T.ib.points + ' points</span></div>'
-      +   '<ul class="ts-list">'
+      +   '<ul class="ts-list" role="list">'
       +     T.ib.exams.map(function (e) {
             return '<li' + (e.score === 7 ? ' class="is-top"' : '') + '>'
               + '<span class="ts-n">' + esc(e.name) + '</span>'
@@ -72,13 +69,13 @@
       return terms.map(function (t) {
         return '<section class="ts-term' + (t.break ? ' ts-term--break' : '') + '">'
           + '<div class="ts-termhead">'
-          +   '<h5>' + esc(t.term) + '</h5>'
+          +   '<h3>' + esc(t.term) + '</h3>'
           +   '<span class="ts-yr">' + esc(t.years) + '</span>'
           +   (t.where ? '<span class="ts-where">' + esc(t.where) + '</span>' : '')
           +   (t.gpa ? '<span class="ts-gpa">GPA ' + esc(t.gpa) + '</span>' : '')
           + '</div>'
           + (t.note ? '<p class="ts-termnote">' + esc(t.note) + '</p>' : '')
-          + '<ul class="ts-rows">'
+          + '<ul class="ts-rows" role="list">'
           +   t.rows.map(function (r) {
                 return '<li' + (r.college ? ' class="is-college"' : '') + '>'
                   + '<span class="ts-code">' + esc(r.code) + '</span>'
@@ -87,9 +84,9 @@
                   +   (r.span ? '<i>' + esc(r.span) + '</i>' : '')
                   + '</span>'
                   + '<span class="ts-tags">'
-                  +   (r.tag.indexOf('+') > -1 ? '<u title="Honours, weighted">+</u>' : '')
-                  +   (r.tag.indexOf('p') > -1 ? '<u title="College prep">p</u>' : '')
-                  +   (r.tag.indexOf('*') > -1 ? '<u title="Non-academic">*</u>' : '')
+                  +   (r.tag.indexOf('+') > -1 ? '<u title="Honours, weighted" aria-hidden="true">+</u><span class="vh">honours, weighted</span>' : '')
+                  +   (r.tag.indexOf('p') > -1 ? '<u title="College prep" aria-hidden="true">p</u><span class="vh">college prep</span>' : '')
+                  +   (r.tag.indexOf('*') > -1 ? '<u title="Non-academic" aria-hidden="true">*</u><span class="vh">non-academic</span>' : '')
                   + '</span>'
                   + '<span class="ts-mark">' + esc(r.mark) + '</span>'
                   + '</li>';
@@ -105,18 +102,21 @@
     ms.forEach(function (t) { msRows += t.rows.length; });
     hs.forEach(function (t) { hsRows += t.rows.length; });
 
-    var msLabel = 'Middle school &#183; ' + msRows + ' rows, grades 7 to 8';
+    var msLabel = 'Show middle school &#183; ' + msRows + ' rows, grades 7 to 8';
 
     html += '<div class="ts-full reveal">'
-      + '<button class="ts-toggle" type="button" id="tsToggleMs" aria-expanded="false" data-magnetic>' + msLabel + '</button>'
+      + '<button class="ts-toggle" type="button" id="tsToggleMs" aria-expanded="false" aria-controls="tsTermsMs" data-magnetic>' + msLabel + '</button>'
       + '<p class="ts-termnote">Middle school, off the RSM trimester grade reports. None of it counts toward high-school graduation except Algebra 1, taken early in 8th grade.</p>'
       + '<div class="ts-terms" id="tsTermsMs" hidden>' + termsHtml(ms) + '</div>'
       + '</div>';
 
     /* the high-school record itself is never folded: it is the whole point
        of the section */
+    /* the tags are the transcript's own key (see transcript-data.js); they
+       used to be explained only in a hover title, which a phone never shows */
     html += '<div class="ts-full reveal">'
       + '<p class="ts-termnote">Every course, grade 9 to 12 &#183; ' + hsRows + ' rows.</p>'
+      + '<p class="ts-key"><span><b>+</b>honours, weighted</span><span><b>p</b>college prep</span><span><b>*</b>non-academic</span></p>'
       + '<div class="ts-terms">' + termsHtml(hs) + '</div>'
       + '</div>';
 

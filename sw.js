@@ -12,12 +12,16 @@ permalink: /sw.js
 
    How that is done, in two stages, because they have different urgency:
 
-     1. install  : the shell only (CSS, JS, the icons, the home page). Small and
-                   fast, because if install fails the worker never activates.
-     2. activate : then a background pass quietly downloads EVERY page and EVERY
-                   image. That is the bit that makes it work offline. It runs
-                   after the page is already interactive, so the visitor never
-                   waits on it.
+     1. install  : the shell only: the three shared stylesheets, utils.js,
+                   reveal.js and intro.js, the manifest, the 192px icon, the
+                   offline page and the home page. Small and fast, because if
+                   install fails the worker never activates, and complete
+                   enough that a page served from the cache with no network
+                   at all still renders (see "the shell" below).
+     2. activate : then a background pass quietly downloads the rest, in
+                   tiers (see "the tiers"). That is the bit that makes it work
+                   offline. It runs after the page is already interactive, so
+                   the visitor never waits on it.
 
    Serving strategy, per request type:
 
@@ -26,12 +30,13 @@ permalink: /sw.js
                                       at once, and the network copy fetched at
                                       the same moment replaces it for the NEXT
                                       visit. A page never seen before waits for
-                                      the network. See "the dead tab bar".
-     CSS / JS        cache-first    : safe because these carry ?v=<mtime>
+                                      the network, and with no network gets
+                                      the offline page. See "the dead tab bar".
+     CSS / JS        cache-first    : safe because these carry ?v=<hash>
                                       (see _includes/v.html), so a changed file
                                       is a different URL and misses naturally.
      Images / fonts  stale-while-revalidate
-                                    : instant from cache, refreshed quietly.
+     the manifest                   : instant from cache, refreshed quietly.
                                       Images have no ?v=, so this is what stops
                                       a replaced image being stale forever.
                                       The photographs are the exception: they
@@ -59,8 +64,8 @@ permalink: /sw.js
    installed app with the whole site on the device did all of that reading
    for pictures the page had not asked for. So:
 
-     PAGES    every page                                ~80 records
-     ASSETS   CSS, JS, icons, app and franchise art     ~500 records
+     PAGES    every page                                ~90 records
+     ASSETS   CSS, JS, icons, app and franchise art     ~570 records
      GALLERY  the year galleries and trip photographs   ~3,700 records,
               opened only when a photograph is actually requested
 
@@ -112,7 +117,7 @@ permalink: /sw.js
         the pass has open, handing the connections straight back. Aborted URLs
         go on the end of the queue. See "the gate" below.
 
-   THE PHOTOS ARE NOT PART OF THE DEAL UNLESS YOU ASK FOR THEM.
+   THE TIERS: THE PHOTOS ARE NOT PART OF THE DEAL UNLESS YOU ASK FOR THEM.
 
    /assets/img/years/ and /assets/img/years-large/ are the year galleries and
    the trip photos: about 1,600 photographs in two sizes, the 1000px frame the
@@ -124,13 +129,34 @@ permalink: /sw.js
    downloaded to satisfy nothing at all, competing with the pages they
    actually wanted.
 
-   So the fill runs in tiers. ALL_PAGES and ALL_ASSETS -- every page, the CSS,
-   the JS, the icons, the app and franchise art -- are always fetched: that is
-   what makes the site work offline. PHOTOS is only fetched when a page has
-   told this worker the switch is on, or that the site is running from the
-   home screen (an installed app gets everything; see utils.js). The handful of
-   cover images somebody sees with the switch off are picked up the ordinary
-   way, by looking at them, via stale-while-revalidate.
+   So the fill runs in tiers, each one wider than the last:
+
+     CORE_PAGES  the pages that are not fan pages: home, work, projects,
+                 education, the galleries, /worlds/ itself and the rest,
+                 17 pages and ~340 KB of HTML (~105 KB over the wire).
+                 Fetched on any visit: it is what makes the tab bar instant,
+                 and it is small enough to be worth doing on a poor
+                 connection.
+     FAN_PAGES   the 70 pages under /worlds/<franchise>/, ~1.05 MB of HTML
+                 (~360 KB over the wire), three quarters of every page on the
+                 site put together. Nobody reads seventy of them on a first
+                 visit, so they wait for a second one.
+     ALL_ASSETS  the CSS, the JS, the icons, the app and franchise art,
+                 ~20 MB. Waits with the fan pages for a second visit (utils.js
+                 decides what counts as one), or for the site running from the
+                 home screen, and never comes down with Save-Data on or over
+                 3G or slower: a first visit to one page used to pull the
+                 whole site down behind it.
+     the photos  only fetched when a page has told this worker the switch is
+                 on, or that the site is running from the home screen (an
+                 installed app gets everything; see utils.js), and then only
+                 the 1000px frames the galleries show: the 2000px copies the
+                 deck swaps in (/years-large/) are fetched when a photo is
+                 opened and the screen can use them, never ahead of time. That
+                 was 419 MB of the ~500 MB queued. The handful of frames
+                 somebody sees with the switch off are picked up the ordinary
+                 way, by looking at them, and the fan pages hand over the
+                 frames they show so those work offline too (see keep()).
 
    A PHOTOGRAPH IS STORED UNDER ITS CONTENT HASH, NOT ITS PATH.
 
@@ -140,7 +166,17 @@ permalink: /sw.js
    The fill decides "already have it" by looking the key up, so a photograph
    replaced under the same filename is a new key: it is fetched, and prune()
    drops the old copy. Before this the fill trusted the path alone and a
-   replaced photograph stayed stale on the device for good. See photoKey().
+   replaced photograph stayed stale on the device for good.
+
+   The list of keys is NOT in this file. It used to be: 3,688 strings inlined
+   by Jekyll made sw.js 334 KB (69 KB over the wire), and a browser re-fetches
+   and re-parses the worker on every update check, for a list that most
+   visits never look at. It now lives in /assets/photo-versions.json, whose
+   URL carries a ?v= of its own that changes only when a photograph does, and
+   photoList() reads it when something actually needs a key: the photo pass,
+   the gallery sweep in prune(), keep(), and a photograph a page has asked for
+   that is not on the device yet. A first visit to a page without photographs
+   never fetches it.
 
    Bump CACHE_VERSION only for a deliberate full flush. Routine deploys must NOT
    bump it: that would re-download the whole site on every deploy, which is the
@@ -156,6 +192,7 @@ const KEEP    = [PAGES, ASSETS, GALLERY];
 /* Bookkeeping entries, kept in the caches themselves so they survive the
    worker being shut down. None of them is a URL a page could ask for. */
 const DONE_KEY   = '/__offline-complete';   // ASSETS : which build is fully on the device, see doFill()
+const FAN_KEY    = '/__fan-pages';          // ASSETS : which build last refreshed the fan pages, see doFill()
 const MOVED_KEY  = '/__gallery-moved';      // ASSETS : the photographs have left this cache, see migrateGallery()
 const PRUNED_KEY = '/__pruned';             // ASSETS : which build last swept it; GALLERY: which photo list, see prune()
 const CURSOR_KEY = '/__gallery-cursor';     // GALLERY: how far the photo pass got, see warmGallery()
@@ -206,27 +243,52 @@ openCache(ASSETS).catch(() => {});
    Long enough to cover the navigation plus the images it pulls in behind it. */
 const FILL_HOLD = 6000;
 
-/* The shell: needed before anything can render. Kept deliberately short.
-   The home page itself is not in here: it lives in PAGES with every other
-   page (see install), so the fresh copy each visit writes is the one read. */
+/* The shell: what a page served from the cache needs before it can render,
+   with no network at all. Kept deliberately short. The home page itself is
+   not in here: it lives in PAGES with every other page (see install), so the
+   fresh copy each visit writes is the one read.
+
+   reveal.js and intro.js are shell, not "assets". Every .reveal block starts
+   at opacity 0 and waits for reveal.js to bring it in, and the launch-screen
+   cover waits for intro.js to lift it; both used to sit in ALL_ASSETS, which
+   a first visit never fetches, so a returning visitor who was offline got a
+   page out of PAGES, its stylesheets out of the shell, a 504 for reveal.js,
+   and a page of invisible content. (utils.js also shows the blocks itself if
+   reveal.js has not turned up a couple of seconds after load, as a second
+   line of defence.) The 512px icon is not in here any more: 95 KB the
+   browser only reads when the app is installed, and it fetches it itself
+   then. The offline page is what servePage() answers with for a page that is
+   not on the device when there is no network. */
+const OFFLINE_PAGE = '/offline/';
 const SHELL = [
   '/manifest.webmanifest',
   '{% include v.html f='/assets/css/base.css' %}',
   '{% include v.html f='/assets/css/layout.css' %}',
   '{% include v.html f='/assets/css/components.css' %}',
   '{% include v.html f='/assets/js/utils.js' %}',
+  '{% include v.html f='/assets/js/reveal.js' %}',
+  '{% include v.html f='/assets/js/intro.js' %}',
   '/assets/img/icons/icon-192.png',
-  '/assets/img/icons/icon-512.png',
+  OFFLINE_PAGE,
 ];
 
-/* Everything else, written out by Jekyll at build time so the list can never
-   drift from what the site actually contains. */
-const ALL_PAGES = [
+/* Everything else, written out by Jekyll at build time so the lists can never
+   drift from what the site actually contains. Two lists of pages because
+   they are two tiers (see "the tiers" above): a fan page is anything under
+   /worlds/ other than /worlds/ itself. */
+const CORE_PAGES = [
 {%- comment -%} Redirect stubs (jekyll-redirect-from) are never navigated to
-once cached, the real URL is served instead, so they are left out. {%- endcomment -%}
-{%- for p in site.pages %}{% unless p.redirect_to or p.url contains '.js' or p.url contains '.webmanifest' or p.url contains '.json' or p.url contains '/src/' or p.url contains '/franchises/' %}
+once cached, the real URL is served instead, so they are left out. So are the
+offline page (it is in the shell) and 404.html (GitHub Pages serves it for a
+missing address; there is nothing to navigate to). {%- endcomment -%}
+{%- for p in site.pages %}{% unless p.redirect_to or p.url contains '.js' or p.url contains '.webmanifest' or p.url contains '.json' or p.url contains '/src/' or p.url contains '/franchises/' or p.url == '/offline/' or p.url == '/404.html' %}{% unless p.url contains '/worlds/' and p.url != '/worlds/' %}
   '{{ p.url }}',
-{%- endunless %}{% endfor %}
+{%- endunless %}{% endunless %}{% endfor %}
+];
+const FAN_PAGES = [
+{%- for p in site.pages %}{% unless p.redirect_to %}{% if p.url contains '/worlds/' and p.url != '/worlds/' %}
+  '{{ p.url }}',
+{%- endif %}{% endunless %}{% endfor %}
 ];
 
 /* CSS and JS get the same ?v= the pages request them with (see v.html). Without it
@@ -240,26 +302,15 @@ const ALL_ASSETS = [
 ];
 
 /* The year galleries and the trip photos: the heavy half of the site, and the
-   half nobody sees unless "show other pictures" is on. Fetched only when a page
-   says so -- see doFill(). */
-const PHOTOS = [
-{%- for f in site.static_files %}{% if f.path contains '/assets/img/years/' or f.path contains '/assets/img/years-large/' %}{% assign pv = site.data.photo_versions[f.path] %}
-  '{{ f.path }}{% if pv %}?v={{ pv }}{% endif %}',
-{%- endif %}{% endfor %}
-];
-
-/* plain path -> the versioned key above. Every request for a photograph, from
-   a page or from the fill, goes through this so the cache is only ever asked
-   about, and only ever holds, the current version. The network is asked for
-   the versioned URL too: GitHub Pages ignores the query, and it keeps the
-   browser's own HTTP cache (max-age=600) from handing back the old bytes. */
-const PHOTO_KEY = new Map(PHOTOS.map(u => [u.split('?')[0], u]));
-function photoKey(req) {
-  const url = new URL(req.url);
-  if (url.search) return req;
-  const v = PHOTO_KEY.get(url.pathname);
-  return v ? new Request(new URL(v, self.location.origin).href) : req;
-}
+   half nobody sees unless "show other pictures" is on. Their list is a file
+   of its own (see "a photograph is stored under its content hash" above):
+   a JSON array of 'path?v=<hash>' in the same order this file used to inline
+   them, generated by assets/photo-versions.json. tools/stamp.py gives the
+   file a ?v= of its own, the hash of photo_versions.yml, so the URL below
+   changes exactly when a photograph does. (In development v.html finds no
+   static file to stamp and emits the bare path; the list still loads, it is
+   just not versioned.) */
+const PHOTO_LIST = '{% include v.html f='/assets/photo-versions.json' %}';
 
 /* Anything under the two gallery folders, whether or not this build still
    lists it: what belongs in GALLERY and nowhere else. */
@@ -276,17 +327,18 @@ const PHOTO_PATH = /^\/assets\/img\/years(-large)?\//;
    has to read as "not done any more", and now it does.
 
    Still deliberately derived from the lists rather than from the build clock:
-   the CSS/JS urls carry ?v=<content hash>, and so do the photographs, so this
-   only changes when a real file changes, and a photograph replaced under its
-   old name reads as "not done any more" just like a renamed one. Stamping it with site.time instead would make sw.js differ on every
+   the CSS/JS urls carry ?v=<content hash>, and so does the photo list's URL,
+   so this only changes when a real file changes, and a photograph replaced
+   under its old name reads as "not done any more" just like a renamed one.
+   Stamping it with site.time instead would make sw.js differ on every
    rebuild and force a pointless worker update on deploys that changed nothing. */
 function fingerprint(s) {
   let h = 2166136261;                                    // FNV-1a, 32-bit
   for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
   return (h >>> 0).toString(36);
 }
-const BUILD = fingerprint(['/', SHELL.join(), ALL_PAGES.join(), ALL_ASSETS.join(), PHOTOS.join()].join('|'));
-const PHOTO_BUILD = fingerprint(PHOTOS.join());        // the photographs alone, for prune()
+const BUILD = fingerprint(['/', SHELL.join(), CORE_PAGES.join(), FAN_PAGES.join(), ALL_ASSETS.join(), PHOTO_LIST].join('|'));
+const PHOTO_BUILD = PHOTO_LIST.split('?v=')[1] || '';   // the photographs alone, for prune()
 
 const wait = ms => new Promise(r => setTimeout(r, ms));
 
@@ -334,8 +386,11 @@ self.addEventListener('activate', e => {
      us whether the switch is on, and the answer that costs nothing if wrong is
      "no". utils.js sends the real state a few seconds later. The move of any
      photographs already on the device, and the sweep of stale entries, happen
-     inside this pass too, in that order: see doFill(). */
-  fillCache(false);
+     inside this pass too, in that order: see doFill(). The catch is not
+     decoration: a pass that fails (a store that will not open, a network that
+     is gone) must not surface as an unhandled rejection in a worker nobody
+     is watching. */
+  fillCache(false).catch(() => {});
 });
 
 /* ── the gate ──
@@ -366,15 +421,66 @@ async function gate() {
   while (Date.now() < holdUntil) await wait(Math.min(300, holdUntil - Date.now()));
 }
 
-/* Is this connection worth pushing ~10 MB down? Save-Data is an explicit "no",
-   and 2g means the fill would eat the whole pipe for an hour to no benefit.
+/* Is this connection worth pushing ~20 MB down? Save-Data is an explicit "no",
+   and on 2g or 3g the fill would eat the pipe for a long time to no benefit.
    Not fatal, just deferred: the next visit on a better connection picks it up
    exactly where this one stopped, because warm() skips what is already there. */
 function connectionIsPoor() {
   const c = self.navigator && self.navigator.connection;
   if (!c) return false;
   if (c.saveData) return true;
-  return c.effectiveType === 'slow-2g' || c.effectiveType === '2g';
+  return c.effectiveType === 'slow-2g' || c.effectiveType === '2g' || c.effectiveType === '3g';
+}
+
+/* ── running out of room ──
+   Every put in the fill used to swallow its error and the loop carried on, so
+   a device with no storage left downloaded the whole tier and stored none of
+   it, on every visit. Now the first put that fails for want of space stops
+   the pass for the rest of this worker's life, and no DONE marker is written
+   for the tier it was in. A later start tries again (there may be room by
+   then), and warm() skips whatever did land. */
+let storageFull = false;
+const outOfSpace = err => !!err && err.name === 'QuotaExceededError';
+
+/* ── the photo list ──
+   Read when something needs a key and held for the life of the worker: the
+   photo pass, the gallery sweep in prune(), keep(), and servePhoto() for a
+   photograph that is not on the device yet. Cache-first out of ASSETS under
+   its versioned URL, so it is fetched once per change to the photographs; a
+   miss asks the network with 'no-cache', which is what keeps the browser's
+   own HTTP cache from handing back the old list in development, where the
+   URL carries no ?v=. photoMap is the plain path -> versioned key lookup the
+   rest of this file uses once the list is here. */
+let photos = null;                // the list's promise, once asked for
+let photoMap = null;              // plain path -> 'path?v=<hash>', once the list has arrived
+function photoList() {
+  if (!photos) photos = readPhotoList().catch(err => { photos = null; throw err; });
+  return photos;
+}
+async function readPhotoList() {
+  const assets = await openCache(ASSETS);
+  let res = await assets.match(PHOTO_LIST);
+  if (!res) {
+    res = await fetch(PHOTO_LIST, { cache: 'no-cache' });
+    if (!res || !res.ok) throw new Error('photo list: ' + (res && res.status));
+    await assets.put(PHOTO_LIST, res.clone()).catch(() => {});
+  }
+  let list;
+  try { list = await res.json(); }
+  catch (err) { assets.delete(PHOTO_LIST).catch(() => {}); throw err; }   // a bad copy is not kept
+  photoMap = new Map(list.map(u => [u.split('?')[0], u]));
+  return list;
+}
+
+/* plain path -> the versioned key, once the list is here; the path itself
+   until then, or for a photograph this build does not list. Every request
+   for a photograph, from a page or from the fill, goes through this so the
+   cache is only ever asked about, and only ever holds, the current version.
+   The network is asked for the versioned URL too: GitHub Pages ignores the
+   query, and it keeps the browser's own HTTP cache (max-age=600) from
+   handing back the old bytes. */
+function photoKey(pathname) {
+  return (photoMap && photoMap.get(pathname)) || pathname;
 }
 
 /* ── moving house ──
@@ -386,12 +492,18 @@ function connectionIsPoor() {
    the list has been walked. Resumable: a worker shut down halfway leaves
    ASSETS holding whatever is still to move, and the next pass carries on.
 
-   Driven by the PHOTOS list, one match at a time, rather than by keys() on
+   Driven by the photo list, one match at a time, rather than by keys() on
    the cache: listing thousands of records was the single most expensive
    call this worker made, with every page request queued behind it, and the
    old activate() made it twice. Whatever the list does not name
    (a copy stored before the hash keys, a superseded hash) is left for
    prune() to sweep.
+
+   A device with no DONE marker at all never finished a pass under the old
+   layout, so there is nothing worth fetching the list for: it is marked
+   moved and the pass goes on. (A device the old fill only part-filled loses
+   that handful of photographs to prune() and fetches them again if wanted;
+   cheaper than every fresh install reading the list to find nothing.)
 
    Idle once done: one match on the small cache says so. */
 let galleryMoved = false;         // MOVED_KEY seen or written this lifetime
@@ -405,8 +517,14 @@ function migrateGallery() {
 async function doMigrate() {
   const assets = await openCache(ASSETS);
   if (await assets.match(MOVED_KEY)) { galleryMoved = true; return; }
+  if (!(await assets.match(DONE_KEY))) {
+    await assets.put(MOVED_KEY, new Response('1')).catch(() => {});
+    galleryMoved = true;
+    return;
+  }
+  const list = await photoList();
   const gallery = await openCache(GALLERY);
-  for (const key of PHOTOS) {
+  for (const key of list) {
     await gate();                                    // never race a page
     try {
       const res = await assets.match(key);
@@ -420,7 +538,7 @@ async function doMigrate() {
       await assets.delete(key);
     } catch (err) { /* one bad record must not stop the move; prune() takes what is left */ }
   }
-  await assets.put(MOVED_KEY, new Response('1'));
+  await assets.put(MOVED_KEY, new Response('1')).catch(() => {});
   galleryMoved = true;
 }
 
@@ -435,9 +553,17 @@ async function doMigrate() {
    most expensive thing this worker can do (every record serialised across
    to the worker) and it must not happen on every page load. The gallery is
    the worst of them by far, so it is only listed when the photo list itself
-   has changed, which its own stamp in GALLERY records. Runs after
+   has changed, which its own stamp in GALLERY records, and only on a device
+   that has a gallery at all: caches.has() is the one question about it that
+   costs nothing, and opening it here would create it. That sweep is the one
+   place a visitor who has never turned the switch on may read the photo
+   list: once per photo change, and only if they hold photographs. Runs after
    migrateGallery() on purpose: swept first, the photographs still sitting in
-   ASSETS would be deleted rather than moved. */
+   ASSETS would be deleted rather than moved.
+
+   A listing that throws is skipped, not fatal: the sweep is housekeeping, and
+   a pass that died here would leave the DONE marker unwritten and start over
+   on every load. */
 async function prune() {
   const assets = await openCache(ASSETS);
   const stamp = await assets.match(PRUNED_KEY);
@@ -445,34 +571,44 @@ async function prune() {
 
   const here = u => new URL(u, self.location.origin).href;
   async function sweep(cache, keep) {
-    const keys = await cache.keys();
+    let keys;
+    try { keys = await cache.keys(); } catch (err) { return; }
     await Promise.all(keys.map(req => {
       const url = new URL(req.url);
       if (url.origin !== self.location.origin) return null;      // fonts: not ours to judge
-      if (!url.pathname.startsWith('/assets/')) return null;      // the markers, the manifest
-      return keep.has(url.href) ? null : cache.delete(req);
+      if (!url.pathname.startsWith('/assets/')) return null;      // the markers, the manifest, the offline page
+      return keep.has(url.href) ? null : cache.delete(req).catch(() => {});
     }));
   }
-  await sweep(assets, new Set([...SHELL, ...ALL_ASSETS].map(here)));
+  await sweep(assets, new Set([...SHELL, ...ALL_ASSETS, PHOTO_LIST].map(here)));
 
-  const gallery = await openCache(GALLERY);
-  const gstamp = await gallery.match(PRUNED_KEY);
-  if (!(gstamp && await gstamp.text() === PHOTO_BUILD)) {
-    await sweep(gallery, new Set(PHOTOS.map(here)));
-    await gallery.put(PRUNED_KEY, new Response(PHOTO_BUILD));
+  if (await caches.has(GALLERY).catch(() => false)) {
+    const gallery = await openCache(GALLERY);
+    const gstamp = await gallery.match(PRUNED_KEY);
+    if (!(gstamp && await gstamp.text() === PHOTO_BUILD)) {
+      let list = null;
+      try { list = await photoList(); } catch (err) { /* no list (offline): swept at the next chance */ }
+      if (list) {
+        await sweep(gallery, new Set(list.map(here)));
+        await gallery.put(PRUNED_KEY, new Response(PHOTO_BUILD)).catch(() => {});
+      }
+    }
   }
 
-  // and pages this build no longer has (renamed or deleted), which used to stay forever
+  /* and pages this build no longer has (renamed or deleted), which used to
+     stay forever, plus any copy stored under a query string before
+     navigations were keyed by their bare path (see servePage): a duplicate */
   const pages = await openCache(PAGES);
-  const known = new Set(['/', ...ALL_PAGES]);
-  const pkeys = await pages.keys();
+  const known = new Set(['/', ...CORE_PAGES, ...FAN_PAGES]);
+  let pkeys = [];
+  try { pkeys = await pages.keys(); } catch (err) { /* as above */ }
   await Promise.all(pkeys.map(req => {
     const url = new URL(req.url);
     if (url.origin !== self.location.origin) return null;
-    return known.has(url.pathname) ? null : pages.delete(req);
+    return known.has(url.pathname) && !url.search ? null : pages.delete(req).catch(() => {});
   }));
 
-  await assets.put(PRUNED_KEY, new Response(BUILD));
+  await assets.put(PRUNED_KEY, new Response(BUILD)).catch(() => {});
 }
 
 /* Download the rest of the site, a few at a time so we never saturate the
@@ -480,29 +616,38 @@ async function prune() {
 
    Guarded twice: `filling` dedupes concurrent calls within one worker, and the
    DONE_KEY marker means that once this build is fully cached we return
-   immediately instead of re-walking 190 URLs on every navigation. */
+   immediately instead of re-walking ~650 URLs on every navigation. */
 let filling = null;
-let photosQueued = false;
+let queued = null;               // a wider pass asked for while one was running
 
-/* `withPhotos` comes from the page, which knows whether the switch is on.
-   A pass already running is not restarted; if it was a core-only pass and the
-   switch has since been turned on, the photos are picked up straight after. */
-function fillCache(withPhotos) {
+/* `withPhotos` and `withAssets` come from the page, which knows whether the
+   switch is on and whether this is a repeat visit or the installed app. The
+   photographs always come after the assets, never instead of them. A pass
+   already running is not restarted; if it was narrower than what has since
+   been asked for, the rest is picked up straight after. */
+function fillCache(withPhotos, withAssets) {
+  if (withPhotos) withAssets = true;
   if (filling) {
-    if (withPhotos) photosQueued = true;
+    if (withAssets) queued = { photos: !!(withPhotos || (queued && queued.photos)) };
     return filling;
   }
-  filling = doFill(withPhotos).finally(() => {
+  filling = doFill(withPhotos, withAssets).finally(() => {
     filling = null;
-    if (photosQueued) { photosQueued = false; fillCache(true); }
+    if (queued) { const q = queued; queued = null; fillCache(q.photos, true).catch(() => {}); }
   });
   return filling;
 }
 
-/* What the DONE marker can say: BUILD for "everything except the photographs",
-   BUILD|photos for "everything". Two values rather than a boolean so that
-   turning the switch on after a core-only pass is noticed. */
-async function doFill(withPhotos) {
+/* What the DONE marker can say: BUILD|pages for "the first tier only" (the
+   core pages: a first visit, or a poor connection), BUILD for "everything
+   except the photographs", BUILD|photos for "everything". More than a
+   boolean so that a wider pass after a narrower one is noticed. FAN_KEY
+   beside it names the build that last refreshed the fan pages, so a second
+   tier cut short by the worker being shut down (iOS does that within seconds
+   of it going idle) picks the fan pages up where it stopped instead of
+   fetching all seventy again on every start. */
+async function doFill(withPhotos, withAssets) {
+  if (storageFull) return;                                // see "running out of room"
   const assets = await openCache(ASSETS);
   /* Before anything else, and before the DONE check below: a device that had
      finished the whole site under the old layout is marked done for this very
@@ -512,45 +657,72 @@ async function doFill(withPhotos) {
   const mark = done ? await done.text() : '';
   if (mark === BUILD + '|photos') return;                 // everything is here
   if (mark === BUILD && !withPhotos) return;              // and the rest is not wanted
+  if (mark === BUILD + '|pages' && !withAssets) return;   // a first visit: the core pages are here, the rest waits
 
   /* A build this device has not finished before. Pages are served from the
      cache first (servePage), so the copies on the device are what a visitor
      sees; a new build re-fetches all of them rather than trusting "already
-     have it", which is ~190 KB and bounds the staleness to one deploy.
-     When the marker already says BUILD, the pages and the assets are done and
-     only the photographs are wanted: neither list is walked again. */
+     have it", which is ~340 KB for the core pages and bounds the staleness
+     to one deploy. When the marker already says BUILD, the pages and the
+     assets are done and only the photographs are wanted: no list is walked
+     again. */
   const newBuild = mark.split('|')[0] !== BUILD;
+  const pages = await openCache(PAGES);
 
-  /* Pages first: they are small, and they are what makes the tab bar instant,
-     which matters far more than having every photo on the device. Worth doing
-     even on a poor connection (~190 KB of HTML in total). */
-  if (newBuild) await warm(await openCache(PAGES), ALL_PAGES, 3, true);
+  /* Core pages first: they are small, and they are what makes the tab bar
+     instant, which matters far more than having every photo on the device.
+     Worth doing even on a poor connection (~340 KB of HTML in total). */
+  if (newBuild && !(await warm(pages, CORE_PAGES, 3, true))) return;
 
   /* Then sweep what this build no longer lists; idle once done (one match).
      After the move above on purpose: swept first, the photographs still in
      ASSETS would have been thrown away rather than moved. */
   await prune();
 
-  if (connectionIsPoor()) return;                     // leave the 16 MB for a better day
+  /* The first tier is on the device: say so NOW, before anything that can end
+     the pass. Written after the poor-connection check, as it once was, the
+     marker never landed on 3G or with Save-Data on, so every page load on
+     such a connection fetched every core page again with 'no-cache'. */
+  if (newBuild) await assets.put(DONE_KEY, new Response(BUILD + '|pages')).catch(() => {});
 
-  if (newBuild) await warm(assets, ALL_ASSETS, 2);    // then the artwork, gently
+  /* A first visit stops here: the core pages are on the device, and the fan
+     pages and the ~20 MB of assets wait for a second visit (or the installed
+     app). So does a poor connection: leave the 20 MB for a better day. */
+  if (!withAssets || connectionIsPoor()) return;
+
+  /* The second tier: the fan pages, then the artwork, gently. The fan pages
+     are re-fetched once per build (FAN_KEY), like the core pages, so a copy
+     stored under an older build cannot outlive the deploy that changed it;
+     after that a resumed pass only fills in what is missing. */
+  if (newBuild || mark === BUILD + '|pages') {
+    const fan = await assets.match(FAN_KEY);
+    const fanFresh = !!fan && await fan.text() === BUILD;
+    if (!(await warm(pages, FAN_PAGES, 3, !fanFresh))) return;
+    await assets.put(FAN_KEY, new Response(BUILD)).catch(() => {});
+    if (!(await warm(assets, ALL_ASSETS, 2))) return;
+  }
 
   /* The galleries, and only if asked. This is the hundreds of megabytes, so
      it goes last and it goes nowhere near a visitor who has not turned the
      switch on. */
-  if (withPhotos) await warmGallery();
+  if (withPhotos && !(await warmGallery())) return;
 
-  await assets.put(DONE_KEY, new Response(BUILD + (withPhotos ? '|photos' : '')));
+  await assets.put(DONE_KEY, new Response(BUILD + (withPhotos ? '|photos' : ''))).catch(() => {});
   const clients = await self.clients.matchAll();
   clients.forEach(c => c.postMessage({ type: 'offline-ready', photos: !!withPhotos }));
 }
 
+/* Fetch a list into a cache, `concurrency` at a time. Resolves true when the
+   list has been walked, false when the pass stopped because the device is
+   out of room (see "running out of room"), which is the caller's cue not to
+   claim the tier is done. */
 async function warm(cache, urls, concurrency, refresh) {
   const queue = urls.slice();
   const workers = Array.from({ length: concurrency }, async () => {
-    while (queue.length) {
+    while (queue.length && !storageFull) {
       await gate();                                 // stand down while a page is loading
       const u = queue.shift();
+      if (u === undefined) break;                   // another worker took the last one during the wait
       try {
         if (!refresh && await cache.match(u)) continue;   // already have it
         if (!inFlight) inFlight = new AbortController();
@@ -560,14 +732,16 @@ async function warm(cache, urls, concurrency, refresh) {
         /* Cancelled to get out of a navigation's way: that is the gate doing
            its job, not a failure, so put the URL back and come to it once the
            page has settled. gate() blocks first, so this cannot spin.
-           Anything else -- a 404, a dead connection -- is dropped: one bad
-           file must not stop the pass. */
+           No room left: stop, see above. Anything else -- a 404, a dead
+           connection -- is dropped: one bad file must not stop the pass. */
         if (err && err.name === 'AbortError') queue.push(u);
+        else if (outOfSpace(err)) storageFull = true;
       }
     }
   });
   await Promise.all(workers);
   inFlight = null;
+  return !storageFull;
 }
 
 /* The photo pass. One file at a time: this runs for many minutes on an
@@ -582,20 +756,23 @@ async function warm(cache, urls, concurrency, refresh) {
    found the first one still missing: a couple of seconds of chatter with the
    cache on every page load until the whole thing was done. Now it picks up at
    the file it stopped on. The cursor names the build it counts for, so a new
-   list starts from the top. */
+   list starts from the top. Resolves like warm(): false if the device ran
+   out of room. */
 async function warmGallery() {
+  const list = await photoList();
   const gallery = await openCache(GALLERY);
   let i = 0;
   const saved = await gallery.match(CURSOR_KEY);
   if (saved) {
     const [b, n] = (await saved.text()).split('|');
-    if (b === BUILD) i = Math.min(parseInt(n, 10) || 0, PHOTOS.length);
+    if (b === BUILD) i = Math.min(parseInt(n, 10) || 0, list.length);
   }
-  while (i < PHOTOS.length) {
+  while (i < list.length && !storageFull) {
     await gate();                                       // never race a page
-    const u = PHOTOS[i];
+    const u = list[i];
     try {
-      if (!(await gallery.match(u))) {
+      /* the 1000px frames only: a 2000px copy is fetched when it is opened */
+      if (u.indexOf('/years-large/') === -1 && !(await gallery.match(u))) {
         if (!inFlight) inFlight = new AbortController();
         const res = await fetch(u, { cache: 'no-cache', signal: inFlight.signal });
         if (res && res.ok) await gallery.put(u, res);
@@ -603,14 +780,16 @@ async function warmGallery() {
     } catch (err) {
       // cancelled for a navigation: the same file again once the page has settled
       if (err && err.name === 'AbortError') continue;
+      if (outOfSpace(err)) { storageFull = true; break; }
       /* anything else is dropped: one bad file must not stop the pass */
     }
     i++;
-    if (i % 25 === 0 || i === PHOTOS.length) {
+    if (i % 25 === 0 || i === list.length) {
       await gallery.put(CURSOR_KEY, new Response(BUILD + '|' + i)).catch(() => {});
     }
   }
   inFlight = null;
+  return !storageFull;
 }
 
 const isHTML      = (req, url) => req.mode === 'navigate' || url.pathname.endsWith('.html');
@@ -631,19 +810,26 @@ const isMedia     = url => /\/assets\/img\//.test(url.pathname) ||
    when it is absent (non-navigations, or a browser without the API) this
    falls straight back to fetching. Either way the result is stored.
 
+   One copy per page, whatever the query string. A shared link with
+   ?utm_source= on it used to miss the cached page when offline and, online,
+   store a second copy under the decorated address; now the lookup ignores
+   the search and the copy is stored under the bare path.
+
    waitUntil() keeps the worker alive until that copy has landed: without it
    the worker may be shut down as soon as the cached response has gone out,
    and the refresh with it. */
 async function servePage(e) {
   const req = e.request;
+  const url = new URL(req.url);
+  const key = url.origin + url.pathname;
   const pages = await openCache(PAGES);
-  const cached = await pages.match(req);
+  const cached = await pages.match(req, { ignoreSearch: true });
 
   let stored = Promise.resolve();      // the put, so waitUntil can cover the whole write
   const net = Promise.resolve(e.preloadResponse).then(p => p || fetch(req)).then(res => {
     if (res && res.ok) {
       const copy = res.clone();
-      stored = pages.put(req, copy).catch(() => {});
+      stored = pages.put(key, copy).catch(() => {});
     }
     return res;
   }).catch(() => null);
@@ -652,8 +838,14 @@ async function servePage(e) {
     e.waitUntil(net.then(() => stored));
     return cached;
   }
-  // never seen this page: the network is the only option, so wait it out
-  return (await net) || (await pages.match('/')) || offlineResponse();
+  /* Never seen this page: the network is the only option, so wait it out.
+     With no network at all, the offline page out of the shell says so and
+     offers the pages that are here. It used to be the home page under the
+     wrong address, or an empty 504 if even that was missing. */
+  const res = await net;
+  if (res) return res;
+  const offline = await (await openCache(ASSETS)).match(OFFLINE_PAGE);
+  return offline || offlineResponse();
 }
 
 async function cacheFirst(req) {
@@ -672,27 +864,16 @@ async function cacheFirst(req) {
   }
 }
 
-/* Images and fonts: stale-while-revalidate out of ASSETS, except a photograph,
-   which lives in GALLERY and is served with no network at all when it is
-   there. GALLERY is opened here and nowhere else on the request path, so a
-   page with no photographs on it never pays for its walk. */
-async function serveMedia(req) {
+/* Images, fonts and the manifest: stale-while-revalidate out of ASSETS. The
+   manifest used to be cache-first, and exempt from prune() with it, so a
+   change to it reached a returning visitor only with the next change to
+   this file. A photograph is a different matter: see servePhoto(). */
+async function serveMedia(e) {
+  const req = e.request;
   const url = new URL(req.url);
-  const photo = PHOTO_PATH.test(url.pathname);
-  const cache = await openCache(photo ? GALLERY : ASSETS);
-  if (photo) req = photoKey(req);            // its versioned key, see PHOTO_KEY
+  if (PHOTO_PATH.test(url.pathname)) return servePhoto(e, url);
+  const cache = await openCache(ASSETS);
   const hit = await cache.match(req);
-  /* A photograph is keyed by the hash of its bytes, so a hit cannot be stale
-     and there is nothing to revalidate: served, and the network left alone.
-     While the fill is running every needless request is one more thing in
-     front of the next tap, and a gallery scroll used to make hundreds. */
-  if (hit && photo) return hit;
-  if (photo && !galleryMoved) {
-    /* Still moving house (see migrateGallery): the copy may not have crossed
-       yet. Served from where it still is, and left for the move to carry. */
-    const old = await (await openCache(ASSETS)).match(req);
-    if (old) return old;
-  }
   /* A miss means the page needs the pipe right now. Cancel whatever the fill
      has open so this file is not queued behind a gallery frame nobody has
      asked to see; the fill puts the cancelled file back and carries on once
@@ -717,6 +898,57 @@ async function serveMedia(req) {
   return (await net) || offlineResponse();
 }
 
+/* A photograph lives in GALLERY, keyed by the hash of its bytes, so a hit
+   cannot be stale and there is nothing to revalidate: served, and the network
+   left alone. While the fill is running every needless request is one more
+   thing in front of the next tap, and a gallery scroll used to make hundreds.
+   GALLERY is opened here and nowhere else on the request path, so a page
+   with no photographs on it never pays for its walk.
+
+   With the list in memory the lookup is exact: the current version or
+   nothing. Without it (the first photograph of this worker's life), any
+   version of the path that is on the device is served, which is the one
+   build's worth of staleness the pages accept too, and prune() sweeps the
+   old copy the moment the fill runs.
+
+   A miss fetches the photograph at once, under its versioned URL when the
+   list is here. Otherwise the plain URL is fetched now and the list read
+   alongside it, so the copy is still stored under its key without the
+   photograph waiting on a list it does not need to be shown. (That read is
+   the one way a page without the switch on fetches the list, and the pages
+   it happens on, the fan pages and /travels/, hand their frames to keep()
+   and read it anyway; /education/ shows one frame and reads it for that.) */
+async function servePhoto(e, url) {
+  const req = e.request;
+  const gallery = await openCache(GALLERY);
+  const hit = photoMap
+    ? await gallery.match(photoKey(url.pathname))
+    : await gallery.match(req, { ignoreSearch: true });
+  if (hit) return hit;
+  if (!galleryMoved) {
+    /* Still moving house (see migrateGallery): the copy may not have crossed
+       yet. Served from where it still is, and left for the move to carry. */
+    const old = await (await openCache(ASSETS)).match(req, { ignoreSearch: true });
+    if (old) return old;
+  }
+  yieldFill(1500);                                   // the page needs the pipe now, see serveMedia
+  const listing = photoMap ? null : photoList().catch(() => null);
+  try {
+    const res = await fetch(photoMap ? photoKey(url.pathname) : req);
+    if (res && res.ok) {
+      const copy = res.clone();
+      const stored = (async () => {
+        if (listing) await listing;                  // then photoKey() knows the key, if the list came
+        await gallery.put(photoKey(url.pathname), copy);
+      })().catch(() => {});
+      e.waitUntil(stored);
+    }
+    return res;
+  } catch (err) {
+    return offlineResponse();
+  }
+}
+
 const offlineResponse = () =>
   new Response('', { status: 504, statusText: 'Offline' });
 
@@ -733,23 +965,23 @@ self.addEventListener('fetch', e => {
        free by the time the fetch below is made. */
     yieldFill(FILL_HOLD);
     e.respondWith(servePage(e));
-  } else if (isCodeAsset(url) || url.pathname === '/manifest.webmanifest') {
+  } else if (isCodeAsset(url)) {
     /* Almost always a cache hit, and the page cannot render without it. Push
        the fill back but do not cancel: a miss here is one small file. */
     holdFill(3000);
     e.respondWith(cacheFirst(req));
-  } else if (isMedia(url)) {
+  } else if (isMedia(url) || url.pathname === '/manifest.webmanifest') {
     /* A page full of lazy photos would otherwise keep the fill down forever,
        so this is the shortest hold of the three. */
     holdFill(1500);
-    e.respondWith(serveMedia(req));
+    e.respondWith(serveMedia(e));
   }
 });
 
 /* A page asking for specific gallery files to be kept.
 
    The fan pages, the parks pages and /travels/ now show a handful of frames
-   out of /assets/img/years/ (see photos-data.js). Those live in the PHOTOS
+   out of /assets/img/years/ (see photos-data.js). Those live in the photo
    tier, which is deliberately NOT fetched unless the "show other pictures"
    switch is on -- so without this they would be the one part of the site that
    did not work offline, on pages where they are ordinary published content
@@ -757,18 +989,26 @@ self.addEventListener('fetch', e => {
 
    So a page hands over the exact list it uses and this keeps those, and only
    those. Thirty-odd files rather than the sixteen hundred behind the switch.
-   Already-cached URLs cost nothing beyond the match. */
+   Already-cached URLs cost nothing beyond the match. Needs the photo list
+   for the keys, and the page's own requests for the same frames (servePhoto)
+   wait on the same read, so the two agree on the key and nothing is fetched
+   twice. */
 async function keep(urls) {
   const gallery = await openCache(GALLERY);
+  await photoList();                                 // so photoKey() below knows the keys
   const queue = urls.filter(u => typeof u === 'string' && PHOTO_PATH.test(u))
-                    .map(u => PHOTO_KEY.get(u) || u);        // under its versioned key
+                    .map(u => photoKey(u));          // under its versioned key
   for (const u of queue) {
+    if (storageFull) return;
     await gate();                                    // never race a navigation
     try {
       if (await gallery.match(u)) continue;
       const res = await fetch(u, { cache: 'no-cache' });
       if (res && res.ok) await gallery.put(u, res);
-    } catch (err) { /* one missing frame must not stop the rest */ }
+    } catch (err) {
+      if (outOfSpace(err)) storageFull = true;       // see "running out of room"
+      /* anything else: one missing frame must not stop the rest */
+    }
   }
 }
 
@@ -778,7 +1018,7 @@ async function keep(urls) {
 self.addEventListener('message', e => {
   if (!e.data) return;
   if (e.data.type === 'keep' && Array.isArray(e.data.urls)) {
-    e.waitUntil(keep(e.data.urls));
+    e.waitUntil(keep(e.data.urls).catch(() => {}));
   }
   if (e.data.type === 'flush') {
     for (const k of Object.keys(handles)) delete handles[k];
@@ -788,5 +1028,6 @@ self.addEventListener('message', e => {
         .then(() => self.registration.unregister())
     );
   }
-  if (e.data.type === 'prefetch') e.waitUntil(fillCache(!!e.data.photos));
+  // `assets` absent (a page cached before it was sent) means the full pass, as it always was
+  if (e.data.type === 'prefetch') e.waitUntil(fillCache(!!e.data.photos, e.data.assets !== false).catch(() => {}));
 });

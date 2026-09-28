@@ -19,14 +19,9 @@
 (function () {
   'use strict';
 
-  /* A local copy rather than a parameter: it escapes a title and a video id
-     into a double-quoted attribute, so it has to handle the quote too, and
-     the callers' own esc() helpers do not all do that. Three lines is cheaper
-     than an option nobody can get wrong. */
-  var esc = function (s) {
-    return String(s == null ? '' : s)
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
-  };
+  /* the shared escaper (utils.js): it handles the quote, which matters here
+     because a title and a video id go into double-quoted attributes */
+  var esc = window.AEesc;
 
   /* ── the player ──
      One player for the whole page, built when a button is pressed and DESTROYED
@@ -146,6 +141,7 @@
     var stage = null;    // the panel under it
     var player = null;   // the YT.Player, when the API came up
     var ticker = null;   // the progress poll
+    var orbStop = null;  // the loading orb's stop(), while one is mounted (orbs.js)
 
     function clock(t) {
       if (!isFinite(t) || t < 0) t = 0;
@@ -153,8 +149,16 @@
       return m + ':' + (sec < 10 ? '0' : '') + sec;
     }
 
+    /* The orb is hidden, not removed, once the track is up, and orbs.js only
+       notices a removal it can see, so its observer and its listener would
+       outlive the panel; every teardown here stops it by hand. */
+    function unorb() {
+      if (orbStop) { orbStop(); orbStop = null; }
+    }
+
     function silence() {
       if (ticker) { clearInterval(ticker); ticker = null; }
+      unorb();
       if (player && player.destroy) { try { player.destroy(); } catch (e) {} }
       player = null;
       if (stage && stage.parentNode) stage.parentNode.removeChild(stage);
@@ -258,6 +262,23 @@
       if (holder.parentNode) holder.parentNode.insertBefore(stage, holder.nextSibling);
       else holder.appendChild(stage);
 
+      /* The loading state: a "listening" thinking orb (orbs.js) where the
+         spinner was. The panel hides it once is-waiting goes, and mount()
+         hands back a stop() that unorb() calls from every exit (silence,
+         refuse, fall): the orb stops drawing on its own when it is hidden,
+         but its observer and its visibilitychange listener only go when
+         stop() is called, and a hidden canvas removed with the panel was
+         never seen going (one leaked orb per Play). Without orbs.js on the
+         page the CSS spinner is still there. */
+      if (window.AEorb) {
+        var orb = document.createElement('canvas');
+        orb.className = 'fan-stage-orb';
+        orb.setAttribute('aria-hidden', 'true');
+        stage.querySelector('.fan-stage-vid').appendChild(orb);
+        stage.classList.add('has-orb');
+        orbStop = window.AEorb.mount(orb, 'listening', 64);
+      }
+
       heard = btn;
       btn.classList.add('is-playing');
       btn.setAttribute('aria-pressed', 'true');
@@ -265,6 +286,12 @@
       if (lbl) lbl.textContent = O.stopText;
 
       var mine = stage;   // so a late callback from a player already stopped does nothing
+      /* The readiness poll (set up below, once the API is in). It lives out
+         here so that refuse() and fall() can clear it: it used to be local to
+         the API callback, so after a player error the poll ran on, gave up
+         at four seconds and called fall() a second time, which rebuilt the
+         plain iframe and started the track over. */
+      var probe = null;
 
       /* ── when the video refuses to play here ──
          YouTube error 101 and 150 both mean the same thing: the owner has
@@ -279,7 +306,9 @@
          claiming to be playing. */
       function refuse() {
         if (mine !== stage) return;
+        if (probe) { clearInterval(probe); probe = null; }
         if (ticker) { clearInterval(ticker); ticker = null; }
+        unorb();
         if (player && player.destroy) { try { player.destroy(); } catch (e) {} }
         player = null;
         stage.classList.remove('is-waiting');
@@ -300,6 +329,10 @@
       /* the no-API path: what this did before there was a scrubber */
       function fall() {
         if (mine !== stage) return;
+        /* the poll must not give up on a player that is no longer there and
+           call this again (see `probe` above) */
+        if (probe) { clearInterval(probe); probe = null; }
+        unorb();
         /* If a player was constructed but never came up, it still owns an iframe
            in here; drop it before writing the plain one over the top. */
         if (player && player.destroy) { try { player.destroy(); } catch (e) {} }
@@ -371,7 +404,7 @@
           }, 400);
         }
 
-        var probe = null, waited = 0;
+        var waited = 0;
         try {
           player = new window.YT.Player(slot, {
             videoId: vid,

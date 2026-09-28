@@ -83,6 +83,8 @@ window.FAN_PAGE = {
           { n: 'The EA film tie-ins', y: '2001' },
           { n: 'LEGO Harry Potter: Years 1–4', y: '2010', big: true },
           { n: 'LEGO Harry Potter: Years 5–7', y: '2011', big: true },
+          { n: 'LEGO Dimensions', y: '2015' },
+          { n: 'Harry Potter: Hogwarts Mystery', y: '2018' },
           { n: 'Harry Potter: Wizards Unite', y: '2019' },
           { n: 'Harry Potter: Magic Awakened', y: '2021' },
           { n: 'Hogwarts Legacy', y: '2023', big: true },
@@ -374,7 +376,8 @@ window.FAN_PAGE = {
      (`finished`, see fanpage.js) and, where I have one, the library banner
      as the receipt (`shot`, opening in the lightbox, same as the FNAF page;
      the raw captures live in _originals/franchises/harry-potter/). The LEGO
-     pair also sit in the catalogue on the LEGO page with their hours. */
+     pair are the catalogue's own entries (LEGO_GAME, from lego-games.js), the
+     same tiles the LEGO page shows. */
   { id: 'finished', kind: 'tiles', compact: true, cols: 2, views: true, tally: 'at 100%', title: 'When I Finished Them', note: 'to a hundred percent',
     items: [
       { title: 'Hogwarts Legacy', accent: '#8f5fd0', sub: '2023', done: true, hours: '61.1', finished: '2024-11-07',
@@ -382,8 +385,8 @@ window.FAN_PAGE = {
         shot: '/assets/img/franchises/harry-potter/hogwarts-legacy/banner.jpg',
         shots: ['challenges', 'menu', 'story-complete', 'highlands-map', 'hogwarts-map', 'all-houses', 'acceptance-letter'],
         shotAlt: 'Library banner for Hogwarts Legacy, showing 100% and my play time' },
-      { title: 'LEGO Harry Potter: Years 1–4', accent: '#d9b45f', sub: '2010 · Steam', done: true, finished: '2025-09-02' },
-      { title: 'LEGO Harry Potter: Years 5–7', accent: '#d9b45f', sub: '2011 · Steam', done: true, finished: '2025-09-20' },
+      window.LEGO_GAME && window.LEGO_GAME('LEGO Harry Potter: Years 1–4'),
+      window.LEGO_GAME && window.LEGO_GAME('LEGO Harry Potter: Years 5–7'),
       { title: 'Harry Potter: Quidditch Champions', accent: '#3f9f5f', sub: '2024', done: true, hours: '14', finished: '2025-09-26',
         desc: 'Ravenclaw Chaser, every skill point spent, and the last achievement was winning a hundredth game 100 to 0.',
         shot: '/assets/img/franchises/harry-potter/quidditch-champions/banner.jpg',

@@ -2,9 +2,9 @@
 
 <img src="assets/img/me/abubakr-circle.png" alt="Abubakr Elmallah" width="160" />
 
-# Abubakr Elmallah — Portfolio
+# Abubakr Elmallah · Portfolio
 
-**UC Irvine Computer Science, Class of 2028 · iOS Developer**
+**UC Irvine Computer Science, Class of 2028 · Lead Mobile & Backend Developer**
 
 🔗 **[abubakrelmallah.com](https://abubakrelmallah.com/)**
 
@@ -14,7 +14,7 @@
 
 My personal site: the apps I ship for UC Irvine, my own Apple ecosystem apps and
 Discord bots, the projects I built in high school, and a large set of fan pages
-for the things I like. Hand-written HTML, CSS and vanilla JavaScript — no React,
+for the things I like. Hand-written HTML, CSS and vanilla JavaScript: no React,
 no Tailwind, no bundler, and no npm dependencies at all. Jekyll is used only for
 permalinks, redirects and cache-busting; every page is a real `.html` file you
 can open and read.
@@ -30,21 +30,21 @@ can open and read.
 | `/projects/` | Full catalog: UCI apps, my own apps, Discord bots, web, high school |
 | `/education/` | Portal to the two school pages |
 | `/college/` | UC Irvine: roles by year, what I've built, academics |
-| `/high-school/` | Trabuco Hills: apps, projects, flyers, wallpapers, transcript, awards, WWDC — and middle school before it |
+| `/high-school/` | Trabuco Hills: apps, projects, flyers, wallpapers, transcript, awards, WWDC, and middle school before it |
 | `/resume/` | Résumé, embedded with Drive and download links |
 | `/travels/` | Where I've been, with an interactive map |
 | `/accents/` | Nineteen accents and four impersonations, in the order I learned them |
-| `/gaming/` | Four Steam Replays, every completion shelf, the fifteen worlds here with games in them, and **every game screenshot on the site**, in a section per franchise (the list is built by Jekyll from `assets/img/franchises/`, so a new picture needs no edit) |
+| `/gaming/` | Four Steam Replays, every completion shelf, the fourteen worlds here with games in them, and **every game screenshot on the site**, in a section per franchise (the list is built by Jekyll from `assets/img/franchises/`, so a new picture needs no edit) |
 
 **Themed collections**
 
 | Page | What's on it |
 | --- | --- |
-| `/star-wars/` | Datapad, Aurebesh Translator, the droids — plus the alphabet, a playable hand of sabacc and a kyber forge, all running in the page |
-| `/al-islam/` | Al-Islam, Al-Quran, Al-Adhan, the open-source engines — plus prayer times and a qiblah computed in the browser, and a tajwīd sheet |
-| `/franchises/` | Index of **36** pages: **who I am** (Islam, Arab, Egypt) first, then Star Wars, Harry Potter, LEGO, Pokémon, Minecraft, LOTR, Marvel, Avatar and the rest, each with its own stylesheet and behaviour |
+| `/star-wars/` | Datapad, Aurebesh Translator, the droids, plus the alphabet, a playable hand of sabacc and a kyber forge, all running in the page |
+| `/al-islam/` | Al-Islam, Al-Quran, Al-Adhan, the open-source engines, plus prayer times and a qiblah computed in the browser, and a tajwīd sheet |
+| `/worlds/` | Index of **70** pages: **who I am** (Islam, Arab, Egypt) first, then Star Wars, Harry Potter, LEGO, Pokémon, Minecraft, LOTR, Marvel, Avatar and the rest, each with its own stylesheet and behaviour |
 
-**Alternate interfaces** — the same content, re-skinned end to end:
+**Alternate interfaces**, the same content re-skinned end to end:
 
 | Page | Theme |
 | --- | --- |
@@ -55,18 +55,23 @@ can open and read.
 
 ## Highlights
 
-- 🏆 **Swift Student Challenge 2024** winner with **Al-Quran** — one of 350 worldwide; attended WWDC at Apple Park
+- 🏆 **Swift Student Challenge 2024** winner with **Al-Quran**, one of 350 worldwide; attended WWDC at Apple Park
 - 🏆 **Congressional App Challenge 2023**, Best Original App Idea, with **Al-Islam**
 - 🏆 **Datapad** reached **#10** on the App Store Entertainment chart
 - 📱 Ship **ZOTFinder**, **UCI Now**, **UCI Esports** and **PeterPlate** for UC Irvine
 
 ## How it's built
 
-- **Jekyll on GitHub Pages.** Used for three things only: clean permalinks,
+- **Jekyll, deployed by GitHub Actions.** The site is built and deployed by
+  `.github/workflows/pages.yml` (Jekyll, the stamp step, minification, checks).
+  Jekyll itself is used for three things only: clean permalinks,
   `jekyll-redirect-from` stubs so old `/src/*.html` links never 404, and the
-  `_includes/v.html` cache-buster.
-- **Per-file cache busting.** `v.html` appends `?v=<that file's own mtime>`, so
-  changing one stylesheet doesn't force visitors to re-download 410 MB of images.
+  `_includes/v.html` cache-buster. A new clone must run
+  `git config core.hooksPath tools/hooks` (or `./run`, which does it) so
+  commits keep `_data/versions.yml` fresh.
+- **Per-file cache busting.** `v.html` appends `?v=<a short hash of that file's
+  content>` (from `_data/versions.yml`; the file's mtime in development), so
+  changing one stylesheet doesn't force visitors to re-download 526 MB of images.
 - **Installable and fully offline.** [`sw.js`](sw.js) caches the shell on install,
   then quietly pulls every page and image in the background on activate. HTML is
   network-first, CSS/JS cache-first (safe because of `?v=`), images
@@ -98,11 +103,15 @@ can open and read.
   so each row of cards puts its titles on one line, then its dates, then the
   text, whatever any single card's content does. Cards and franchise tiles
   render an empty slot for a part they haven't got, which is what keeps the
-  rows in step — see the comments in `cards.js` and `fanpage.js` before
+  rows in step; see the comments in `cards.js` and `fanpage.js` before
   changing what a card emits.
 - **Motion.** Custom cursor, magnetic links, scramble text, a flow-field canvas,
-  scroll reveals, tilt, interface sounds and per-page launch animations — all
+  scroll reveals, tilt, interface sounds and per-page launch animations: all
   hand-rolled, and all gated behind `prefers-reduced-motion`.
+- **Search on every page.** The magnifier in the top bar (or `/`, or Cmd/Ctrl+K)
+  searches the page you are on card by card, then every other page by title and
+  description: [`search.js`](assets/js/search.js) reads the rendered page, and
+  [`search.json`](search.json) is written by Jekyll from the pages themselves.
 - **Responsive** with a desktop side rail and a mobile bottom tab bar.
 
 ## Structure
@@ -110,7 +119,16 @@ can open and read.
 ```
 index.html               # home (root, so GitHub Pages serves it)
 _config.yml              # plugins: jekyll-redirect-from
-_includes/v.html         # ?v=<mtime> per-file cache busting
+_includes/v.html         # ?v=<content hash> per-file cache busting
+_includes/               # every piece more than one page uses, written once:
+  head.html              #   the <head>; a page sets title, description (and
+                         #   theme, fonts, standalone, tab) in front matter
+  topbar · tabbar · footer · rail · cursor · fx · lightbox
+  site-scripts.html      #   cursor … sound, the scripts every page ends with
+  fan-engine.html        #   orbs + ytplay + fanpage, for the fan pages
+  crumbs · glance · backdrop · work-roles · resume-work
+  wwdc-photos · ssc-shots · wwdcscholars-link · apple-dev-link
+_data/resume.yml         # the résumé's Work Experience, read by /resume/, /work/ and /college/
 sw.js                    # service worker: offline + install
 manifest.webmanifest     # PWA manifest
 CNAME                    # abubakrelmallah.com
@@ -119,16 +137,17 @@ run                      # ./run -> local Jekyll server with livereload
 tools/photos.py          # the image pipeline: ingest (year galleries) + sweep
 _originals/              # gitignored camera-roll originals, one folder per year
 
-src/                     # 51 pages, each with a permalink in its front matter
+src/                     # 86 pages, each with a permalink in its front matter
+                         # (plus music.html, written but unpublished)
   work · projects · education · college · high-school · resume · travels
-  accents · gaming · star-wars · al-islam · worlds · fan-*.html (36 fan pages)
+  accents · gaming · star-wars · al-islam · worlds · fan-*.html (70 fan pages)
   jarvis · holocron · elmallah · marauders-map
 
 assets/
   css/                   # base · layout · components · transcript · travels ·
                          # accents · gaming
     fan/                 # one stylesheet per fan page
-  js/                    # 100 files
+  js/                    # 135 files
     apps-data.js         # SINGLE source of truth for every app/project card
     photos-data.js       # my own photos, keyed by fandom and by park; every
                          # path points into assets/img/years/, never a copy
@@ -139,7 +158,7 @@ assets/
     cursor · magnetic · scramble · reveal · clock · flowfield · tilt
     gallery · sound · intro · scroll · cardlink · utils
     transcript-data · planets-data · travels-data · fandom-data · …
-    years-data · years    # the 1,613-photo year galleries on /high-school/ and
+    years-data · years    # the 1,844-photo year galleries on /high-school/ and
                           # /college/: justified rows, strictly chronological
   img/                   # me · apps · bots · awards · highschool · flyers
                          # wallpapers · franchises · icons
@@ -147,7 +166,7 @@ assets/
                          # its own EXIF capture time, so the folder sorts itself
     years-large/<year>/  # the same names at 2000px: what the full-screen
                          # viewer swaps in once a photo is opened
-  audio/accents/         # <id>.m4a per accent — none recorded yet; see the
+  audio/accents/         # <id>.m4a per accent (none recorded yet); see the
                          # header of assets/js/accents-data.js for the convention
 ```
 
@@ -181,7 +200,7 @@ never a coordinate, and nothing ships for a photo whose address mentions a
 place on that file's `hide` list, which is where home is and is why the list
 lives outside the repository (see `_originals/README.md`).
 
-Nothing about the grid is hand-written — `years.js` reads the
+Nothing about the grid is hand-written: `years.js` reads the
 widths and heights out of that file and justifies the rows before any image has
 loaded, so the layout never jumps. The frames themselves are fetched by
 [`lazy.js`](assets/js/lazy.js): written with `data-src`, given a real `src` a
@@ -202,7 +221,10 @@ bigger. Everything else is JPEG.
 Don't write markup. Add the entry to `APP_CARDS` in
 [`apps-data.js`](assets/js/apps-data.js), then list its id in a grid's
 `data-cards` attribute on whichever pages should show it. Give it a `long`
-array of paragraphs too — that is what the card shows when it is clicked open.
+array of paragraphs too; that is what the card shows when it is clicked open.
+Alongside paragraph strings it can hold `{ h: 'Heading' }`, `{ list: [...] }`
+and `{ facts: [['6,236', 'ayahs'], ...] }` for subheadings, bulleted lists and
+a strip of headline numbers (see `block()` in [`cards.js`](assets/js/cards.js)).
 
 ## Run locally
 
@@ -216,7 +238,7 @@ First time, install the gems:
 bundle install
 ```
 
-Jekyll is required — `permalink`, `redirect_from` and the `v.html` include mean
+Jekyll is required: `permalink`, `redirect_from` and the `v.html` include mean
 opening the raw files from disk won't resolve links or stylesheet versions.
 
 `run` also passes `--livereload-ignore '/assets/*'`. Without it, every save

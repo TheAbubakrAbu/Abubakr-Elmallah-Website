@@ -1,0 +1,13 @@
+{%- comment -%}
+  The footer. back is where its middle link goes, if anywhere:
+    {% include footer.html back="/worlds/" %}   "← Back to worlds"
+    {% include footer.html back="/" %}          "← Back to home"
+    {% include footer.html %}                   no middle link (the home page)
+{%- endcomment -%}
+<footer class="footer">
+  <span>© 2026 Abubakr Elmallah</span>
+{%- if include.back %}
+  <a class="footer-mid" href="{{ include.back }}" data-magnetic>← Back to {% if include.back == "/" %}home{% else %}worlds{% endif %}</a>
+{%- endif %}
+  <button class="totop" id="totop" type="button" data-magnetic>Back to top ↑</button>
+</footer>

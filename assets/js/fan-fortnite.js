@@ -42,6 +42,10 @@ window.FAN_PAGE = {
         desc: 'There have been hundreds of skins since, most of them technically better made, plenty of them tied to franchises I love more than Fortnite. None of them are Omega. Progression skins were the best idea the Battle Pass ever had and the game mostly stopped doing them.',
         meta: 'Still the ceiling' },
     ] },
+
+  /* my own screenshot of it, years on; captioned once, in fan-shots.js */
+  { id: 'omega-shot', kind: 'gallery', title: 'Still Mine', note: 'my own screenshot',
+    pick: ['fn-omega'] },
   /* the complete index. Every other section on this page is a choice; this one
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
@@ -115,6 +119,13 @@ window.FAN_PAGE = {
       { title: 'The concerts', sub: 'Since 2019', tag: 'Music', desc: 'Marshmello, Travis Scott, Ariana Grande, Eminem. Tens of millions of people in one venue with the guns switched off.', meta: 'Soundwave · Big Bang' },
     ] },
 
+  /* the crossovers I actually played, in my own screenshots, cropped so no
+     username is left in frame; each set is also on the page of its own world,
+     from the same rows in fan-shots.js */
+  { id: 'cross-star-wars', set: 'fortnite-star-wars' },
+  { id: 'cross-got', set: 'fortnite-got' },
+  { id: 'cross-marvel', set: 'fortnite-marvel' },
+
   { id: 'events', kind: 'cards', title: 'The Live Events', note: 'everyone in one server, once',
     items: [
       { title: 'The Rocket Launch', sub: 'June 2018', tag: 'Season 4', desc: 'The first one: a rocket, a crack in the sky, and the moment people realised the map was a story.', meta: '~20 minutes' },
@@ -143,6 +154,8 @@ window.FAN_PAGE = {
         desc: 'Tycoons are much better with somebody else in the lobby splitting the work, and that is most of why I put the hours in. Half the appeal was just having something low-stakes to do while talking.',
         meta: 'Low stakes, long sessions' },
     ] },
+
+  { id: 'droid-shots', set: 'droid-tycoon' },
 
   { id: 'now', kind: 'cards', title: 'How I Play Now', note: 'events only, basically',
     lede: 'I stopped playing properly around season nine. I have not really come back, and I am fine with that, but I still turn up for the big ones, because nothing else in games does what a Fortnite live event does.',

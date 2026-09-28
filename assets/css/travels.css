@@ -520,6 +520,33 @@ body[data-fan="travels"] { --a: #7fb8e8; }
 .tv-within li span { font-size: 0.82rem; line-height: 1; }
 .tv-trip-n { margin-top: 0.5rem; font-size: 0.92rem; line-height: 1.65; color: var(--ink-dim); }
 
+/* ── `told`: somebody else's account, opened on request ──
+   A native <details>, so it opens with no script and a keyboard gets it for
+   free. The text keeps its own line breaks (pre-line) and runs right to left
+   when it is Arabic; the rule down its leading edge is on the start side,
+   which is the right-hand side for Arabic. */
+.tv-told { margin-top: 0.75rem; }
+.tv-told summary {
+  display: inline-flex; align-items: center; gap: 0.45rem; cursor: pointer;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: color-mix(in srgb, var(--c1) 70%, var(--ink));
+  list-style: none; padding-block: 0.4rem;
+}
+.tv-told summary::-webkit-details-marker { display: none; }
+.tv-told summary::before {
+  content: '\25B8'; font-size: 0.7rem; transition: transform .25s var(--ease);
+}
+.tv-told[open] summary::before { transform: rotate(90deg); }
+.tv-told summary:focus-visible { outline: 2px solid var(--c1); outline-offset: 3px; border-radius: 4px; }
+@media (pointer: coarse) { .tv-told summary { min-height: 44px; } }
+.tv-told-t {
+  margin-top: 0.4rem; padding-inline-start: 0.9rem;
+  border-inline-start: 2px solid color-mix(in srgb, var(--c1) 45%, transparent);
+  font-size: 1rem; line-height: 1.9; color: var(--ink); white-space: pre-line;
+}
+.tv-told-t p + p { margin-top: 0.8rem; }
+@media (prefers-reduced-motion: reduce) { .tv-told summary::before { transition: none; } }
+
 /* ── the places themselves ──
    One chip per landmark that is actually in this trip's photographs. Wraps as
    a set rather than a list, so a nine-place trip stays two or three lines. */

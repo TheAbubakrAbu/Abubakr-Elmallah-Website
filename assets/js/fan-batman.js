@@ -50,18 +50,24 @@ window.FAN_PAGE = {
           { n: 'The Penguin', y: '2024' },
           { n: 'Batman: Caped Crusader', y: '2024' },
         ] },
-      { title: 'The Games', sub: '2008 – 2024', unit: 'game',
-        desc: 'Rocksteady’s two are the ones that proved a licensed game could be the best version of the thing.',
+      { title: 'The Games', sub: '2008 – 2026', unit: 'game',
+        desc: 'Rocksteady’s two are the ones that proved a licensed game could be the best version of the thing. The two LEGO ones marked are finished, and every LEGO one is a tile below.',
         rows: [
-          { n: 'LEGO Batman: The Videogame', y: '2008' },
+          { n: 'LEGO Batman: The Videogame', y: '2008', big: true },
           { n: 'Batman: Arkham Asylum', y: '2009', big: true },
           { n: 'Batman: Arkham City', y: '2011', big: true },
-          { n: 'LEGO Batman 2: DC Super Heroes', y: '2012' },
+          { n: 'LEGO Batman 2: DC Super Heroes', y: '2012', big: true },
           { n: 'Batman: Arkham Origins', y: '2013' },
           { n: 'LEGO Batman 3: Beyond Gotham', y: '2014' },
           { n: 'Batman: Arkham Knight', y: '2015' },
+          { n: 'LEGO Dimensions', y: '2015' },
+          { n: 'Batman: The Telltale Series', y: '2016' },
+          { n: 'Batman: Arkham VR', y: '2016' },
+          { n: 'Batman: The Enemy Within', y: '2017' },
+          { n: 'LEGO DC Super-Villains', y: '2018' },
           { n: 'Gotham Knights', y: '2022' },
           { n: 'Batman: Arkham Shadow', y: '2024' },
+          { n: 'LEGO Batman: Legacy of the Dark Knight', y: '2026' },
         ] },
       { title: 'The Comics', sub: 'the ones everything is built from', unit: 'book',
         desc: 'Six stories that between them supply most of the plot of most of the films above.',
@@ -74,6 +80,10 @@ window.FAN_PAGE = {
           { n: 'The Court of Owls', y: '2011' },
         ] },
     ] },
+
+  /* The LEGO games of this franchise, as the same tiles the LEGO page shows
+     (LEGO_FOR, from lego-games.js): nothing about them is written here. */
+  window.LEGO_FOR && window.LEGO_FOR('batman'),
 
 
   { id: 'rogues', kind: 'cards', title: 'The Rogues Gallery', note: 'the best in comics, and it is not close',

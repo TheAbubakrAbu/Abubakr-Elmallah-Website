@@ -127,7 +127,7 @@ window.FAN_PAGE = {
     items: [
       { title: 'The Grand Egyptian Museum', href: 'https://visit-gem.com/',
         desc: 'The new one at Giza, and the largest museum in the world dedicated to a single civilisation.' },
-      { title: 'The Griffith Institute · Tutankhamun', href: 'https://www.griffith.ox.ac.uk/discoveringtut/',
+      { title: 'The Griffith Institute · Tutankhamun', href: 'https://archive.griffith.ox.ac.uk/index.php/tutankhamun-archive',
         desc: 'Carter’s original excavation records, notes and photographs, digitised card by card.' },
       { title: 'The British Museum · Rosetta Stone', href: 'https://www.britishmuseum.org/collection/object/Y_EA24',
         desc: 'The trilingual decree that broke hieroglyphs open in 1822. Still in London, which Egypt has opinions about.' },

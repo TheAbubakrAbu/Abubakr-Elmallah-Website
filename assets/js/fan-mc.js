@@ -288,6 +288,12 @@ window.FAN_PAGE = {
 
   { id: 'played', set: 'pixelmon' },
 
+  /* the account itself: Badlion's profile page, the one place its whole name
+     history is still printed. Captioned once, in fan-shots.js. */
+  { id: 'account', kind: 'gallery', title: 'The Account', note: 'Badlion Client · MasterThingW',
+    lede: 'Badlion outlived its PvP servers as a client, and its profile page for my account keeps every name it has ever had, in order: thirteen of them, the Harry Potter ones first.',
+    pick: ['badlion-profile'] },
+
   /* the music: the C418 tracks on my playlist and Pigstep, grouped by album.
      `series` is the album, `year` its year, `secs` the length; written
      earliest-first, hence `authored`. Linked to C418's and Lena Raine's own

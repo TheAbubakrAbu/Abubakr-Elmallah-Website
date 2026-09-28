@@ -1,0 +1,9 @@
+{%- comment -%}
+  The fan-page engine, after a page's own data script: the thinking orb and
+  the inline YouTube player it uses while a track loads, then fanpage.js,
+  which renders the page. In this order; see each file for why.
+{%- endcomment -%}
+<!-- the shared inline YouTube player, used by the Play buttons below -->
+<script src="{% include v.html f='/assets/js/orbs.js' %}"></script>
+<script src="{% include v.html f='/assets/js/ytplay.js' %}"></script>
+<script src="{% include v.html f='/assets/js/fanpage.js' %}"></script>

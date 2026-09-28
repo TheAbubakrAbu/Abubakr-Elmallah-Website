@@ -6,6 +6,7 @@
   const role = document.querySelector('.hero .role');
   const heroDisperse = lines.length && !reduceMotion;
   let ticking = false;
+  let lastEase = -1;                       // the hero progress the last frame wrote
 
   function update() {
     const y = window.scrollY || window.pageYOffset || 0;
@@ -21,6 +22,15 @@
     if (heroDisperse) {
       const prog = Math.min(y / (innerHeight * 0.8), 1);
       const ease = prog * prog;            // accelerate the disperse
+      /* Past the hero the progress sits at 1, and every scroll frame for the
+         rest of the page used to write the same eight styles again, a style
+         invalidation on each of four elements per frame for nothing. Once a
+         frame has written the finished state, the next frame at 1 leaves it
+         alone; the moment the progress moves again it is written as before.
+         (At 1 the values do not depend on the viewport, so a resize while
+         parked there changes nothing either.) */
+      if (ease === 1 && lastEase === 1) { ticking = false; return; }
+      lastEase = ease;
       const shift = ease * 14;             // vw the lines slide apart
       if (lines[0]) { lines[0].style.transform = 'translateX(' + (-shift).toFixed(2) + 'vw)'; lines[0].style.opacity = (1 - ease).toFixed(3); }
       if (lines[1]) { lines[1].style.transform = 'translateX(' + shift.toFixed(2) + 'vw)'; lines[1].style.opacity = (1 - ease).toFixed(3); }

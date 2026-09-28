@@ -1,0 +1,70 @@
+# The résumé's Work Experience, the one copy on the site.
+#
+# Read by /resume/ (_includes/resume-work.html), which prints it word for
+# word as it is on the PDF, and by /work/ (_includes/work-roles.html), which
+# draws the same entries as a timeline. Edit the wording here, and only to
+# match the PDF: the résumé page promises it is a transcription.
+#
+#   title, org, url, site, where, when, points   exactly as on the PDF
+#   pdf     false for a role the PDF no longer lists: /work/ still shows it
+#   span    the short date for the timeline's side column
+#   now     still in the role: the timeline fills its node
+#   stack   the one line of tags under the role on /work/
+#
+# highlights: the headline numbers the /work/ summary opens with. Each one is
+# in a point below; change them together.
+
+work:
+  - title: 'Lead Software Developer'
+    org: 'ICS Student Council (ICSSC)'
+    url: 'https://studentcouncil.ics.uci.edu'
+    site: 'studentcouncil.ics.uci.edu'
+    where: 'Irvine, CA'
+    when: 'February 2026 &#8211; Present'
+    span: 'Feb 2026 &#8211; now'
+    now: true
+    stack: 'Next.js &#183; TypeScript &#183; AWS'
+    points:
+      - 'Lead a <b>12-person engineering team</b> building <b>PeterPlate</b>, ICSSC&#8217;s open-source campus dining platform, <b>live in production</b> on web and iOS, serving menu, allergen, nutrition, and ratings data.'
+      - 'Built a type-safe frontend with <b>Next.js (React)</b>, <b>TypeScript</b>, <b>Zustand</b>, <b>Tailwind CSS</b>, and <b>shadcn/ui</b>.'
+      - 'Shipped a <b>scalable</b> serverless backend by pairing <b>tRPC</b> with <b>Drizzle ORM</b> on a 13-table <b>PostgreSQL</b> schema, deployed to <b>AWS Lambda</b> and <b>RDS</b> via <b>GitHub Actions</b> CI/CD with <b>Docker</b> + <b>Testcontainers</b> tests.'
+  - title: 'Lead Mobile &amp; Backend Developer'
+    org: 'UCI Student Center &amp; Event Services'
+    url: 'https://studentcenter.uci.edu'
+    site: 'studentcenter.uci.edu'
+    where: 'Irvine, CA'
+    when: 'March 2025 &#8211; Present'
+    span: 'Mar 2025 &#8211; now'
+    now: true
+    stack: 'SwiftUI &#183; UIKit &#183; Node.js &#183; AWS'
+    points:
+      - 'Own and ship three App Store apps: <b>100K+ installs</b>, <b>3.2M+ sessions</b> (<b>UCI Now</b>, <b>ZOTFinder</b>, <b>Esports</b>).'
+      - 'Shipped <b>UCI Esports</b> solo: <b>15K-line SwiftUI</b> client plus a <b>Node.js</b> backend on <b>AWS Lambda</b>/<b>DynamoDB</b> with role-based staff auth.'
+      - 'Lead a <b>4+ person Android team</b>, running hiring, technical interviews, and code review.'
+      - 'Own the <b>AWS</b> infrastructure and <b>Python</b> backends behind the department&#8217;s apps.'
+      - 'Cut load times <b>40%</b> rebuilding two apps from <b>UIKit</b> to <b>SwiftUI</b>, extending both to <b>Mac</b> and <b>Vision Pro</b>.'
+      - 'Cut crashes <b>85%</b> (10.4K to under 1.5K/month) refactoring a decade-old codebase with <b>20+ dependencies</b>.'
+  # No longer under Work Experience on the PDF, which now carries it as a
+  # Teaching line under Education. `pdf: false` keeps it off /resume/'s
+  # transcription and on /work/'s timeline, where it is still part of the
+  # story.
+  - title: 'iOS App Development Teacher'
+    org: 'STEM Heroes Academy'
+    url: 'https://stemirvine.com'
+    site: 'stemirvine.com'
+    where: 'Irvine, CA'
+    when: 'February 2024 &#8211; February 2026'
+    span: 'Feb 2024 &#8211; Feb 2026'
+    now: false
+    pdf: false
+    stack: 'Swift &#183; SwiftUI &#183; Teaching'
+    points:
+      - 'Launched the academy&#8217;s first <b>iOS App Development</b> course as its <b>youngest instructor</b>, teaching <b>Swift</b>, <b>Swift Playgrounds</b>, and <b>SwiftUI</b> to 30+ students (ages 8&#8211;14) who each shipped a working app over two years.'
+
+highlights:
+  - ['100K+', 'installs across my UCI apps']
+  - ['3.2M+', 'lifetime sessions']
+  - ['85%', 'fewer ZOTFinder crashes']
+  - ['40%', 'shorter load times after the SwiftUI rebuild']
+  - ['12-person', 'engineering team I lead on PeterPlate']
+  - ['30+', 'students taught to ship an app']

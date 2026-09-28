@@ -51,6 +51,13 @@ window.FAN_PAGE = {
           { n: 'Beyblade Burst', y: '2016' },
           { n: 'Beyblade X', y: '2023' },
         ] },
+      { title: 'The Games', sub: '2002 – 2016', unit: 'game',
+        desc: 'Mostly the toy in another form; the Burst app scans codes off the real tops.',
+        rows: [
+          { n: 'Beyblade: Let It Rip!', y: '2002' },
+          { n: 'Beyblade: Metal Fusion', y: '2009' },
+          { n: 'Beyblade Burst', y: '2016' },
+        ] },
     ] },
 
   { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'three tracks · one per generation',

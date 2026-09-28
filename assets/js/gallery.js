@@ -10,24 +10,66 @@
 (function gallery() {
   const lb = document.getElementById('lightbox');
   if (!lb) return;
+  /* The overlay lives at the end of <body>, whatever page it was included in.
+     Inside <main> (z-index 10, a stacking context) its own z-index counted
+     for nothing: the tab bar drew over the open dialog, still inert and still
+     showing the current tab, and covered the bottom of the last picture. */
+  if (lb.parentElement !== document.body) document.body.appendChild(lb);
+  const esc = window.AEesc || (t => String(t));
+  // a title as words: textContent drops a <br> ("Datapad ·Aurebesh Translator")
+  const words = el => {
+    if (!el) return '';
+    const c = el.cloneNode(true);
+    c.querySelectorAll('br').forEach(b => b.replaceWith(' '));
+    return c.textContent.replace(/\s+/g, ' ').trim();
+  };
   const wrap = lb.querySelector('.lightbox-imgs');
   const title = lb.querySelector('.lightbox-title');
+  const closeBtn = lb.querySelector('.lightbox-close');
   const isImg = href => /\.(jpe?g|png|webp|gif|avif)$/i.test(href || '');
+
+  /* A real modal (role="dialog" in lightbox.html): focus moves to the close
+     button on open and back to whatever opened it on close, and everything
+     else on the page is inert meanwhile. Before, focus stayed on the photo
+     behind the overlay and Tab walked on through the page underneath it. */
+  let opener = null;
+  function setInert(on) {
+    for (let n = lb; n.parentElement; n = n.parentElement) {
+      for (const sib of n.parentElement.children) {
+        if (sib !== n && sib.tagName !== 'SCRIPT') sib.inert = on;
+      }
+      if (n.parentElement === document.body) break;
+    }
+  }
 
   function open(label, images) {
     label = label || '';
+    opener = document.activeElement;
     const m = label.match(/^(.*?)(\s*[’']\d+)?$/);
-    title.innerHTML = m ? (m[1] + (m[2] ? '<i>' + m[2] + '</i>' : '')) : label;
-    wrap.innerHTML = images.map(s => '<img src="' + s + '" alt="' + label + '" loading="lazy" decoding="async">').join('');
+    title.innerHTML = m ? (esc(m[1]) + (m[2] ? '<i>' + esc(m[2]) + '</i>' : '')) : esc(label);
+    /* each picture keeps its own description where it has one (an award
+       screenshot says what it shows); a plain path falls back to the title */
+    wrap.innerHTML = images.map(s => {
+      const src = typeof s === 'string' ? s : s.src;
+      const alt = (typeof s === 'string' ? '' : s.alt) || label;
+      return '<img src="' + esc(src) + '" alt="' + esc(alt) + '" loading="lazy" decoding="async">';
+    }).join('');
+    lb.setAttribute('aria-label', label || 'Photo');
     lb.classList.add('open');
     lb.setAttribute('aria-hidden', 'false');
     document.documentElement.classList.add('intro-lock');
     wrap.scrollTop = 0;
+    setInert(true);
+    closeBtn.focus({ preventScroll: true });
   }
   function close() {
+    if (!lb.classList.contains('open')) return;   // Escape anywhere else on the page is not ours
     lb.classList.remove('open');
     lb.setAttribute('aria-hidden', 'true');
     document.documentElement.classList.remove('intro-lock');
+    setInert(false);
+    if (opener && opener.isConnected && opener.focus) opener.focus({ preventScroll: true });
+    opener = null;
   }
 
   /* "Through the Years" year cards from the OLD hand-written markup, where the
@@ -45,10 +87,12 @@
   // app / award proof screenshots: grouped per card, open together
   document.querySelectorAll('.app-shots').forEach(shots => {
     const card = shots.closest('.app-card, .proj-card');
-    const h3 = card && card.querySelector('h3');
-    const label = h3 ? h3.textContent.trim() : '';
+    const label = words(card && card.querySelector('h3'));
     const links = Array.from(shots.querySelectorAll('a'));
-    const images = links.map(a => a.getAttribute('href')).filter(Boolean);
+    const images = links.filter(a => a.getAttribute('href')).map(a => {
+      const img = a.querySelector('img');
+      return { src: a.getAttribute('href'), alt: img ? img.alt : '' };
+    });
     links.forEach(a => a.addEventListener('click', e => { e.preventDefault(); open(label, images); }));
   });
 
@@ -76,7 +120,10 @@
     a.addEventListener('click', e => { e.preventDefault(); open(label, [href]); });
   });
 
-  lb.querySelector('.lightbox-close').addEventListener('click', close);
+  closeBtn.addEventListener('click', close);
   lb.addEventListener('click', e => { if (e.target === lb) close(); });
-  addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  /* marked handled, so expand.js does not close an open card with the same press */
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lb.classList.contains('open')) { e.preventDefault(); close(); }
+  });
 })();

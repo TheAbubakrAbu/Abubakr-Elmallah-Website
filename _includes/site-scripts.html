@@ -1,0 +1,16 @@
+{%- comment -%}
+  The site's behaviour, the same on every page and loaded after the page's
+  content scripts: the cursor, magnetic hover, scroll reveals, the rail clock,
+  the circuit field, scrolling and sounds.
+    {% include site-scripts.html tilt=true %}   also the card tilt (tilt.js)
+{%- endcomment -%}
+<script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
+<script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
+<script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
+{%- if include.tilt %}
+<script src="{% include v.html f='/assets/js/tilt.js' %}"></script>
+{%- endif %}
+<script src="{% include v.html f='/assets/js/clock.js' %}"></script>
+<script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
+<script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
+<script src="{% include v.html f='/assets/js/sound.js' %}"></script>

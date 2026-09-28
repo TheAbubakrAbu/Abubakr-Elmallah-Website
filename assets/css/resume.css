@@ -16,7 +16,28 @@
 
 /* the header block keeps the hero's top padding but hands the spacing below
    over to .rt; the preview block sits back under it */
-.embed--head { padding-bottom: 0; }
+.embed--head { padding-top: 7rem; padding-bottom: 0; }
+/* the same place on the screen as every other page's header (.page-hero):
+   on a phone this one started 64px lower */
+@media (max-width: 640px) { .embed--head { padding-top: 2rem; } }
+
+/* Download is what most people come here to do, so it is the page's one
+   filled button; the header's Résumé button, which points at this page, goes
+   to an outline here (layout.css, aria-current). */
+.embed-actions .cta--download {
+  background: var(--green); border-color: var(--green); color: #05140c; font-weight: 500;
+}
+.embed-actions .cta--download:hover { background: var(--green-2); border-color: var(--green-2); color: #05140c; }
+
+/* "Skip the PDF preview": only there for keyboard users, shown when focused */
+.embed-skip {
+  display: inline-block; margin-bottom: 0.8rem;
+  font-family: var(--mono); font-size: 0.75rem; color: var(--green-2);
+}
+.embed-skip:not(:focus) {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
 .embed--preview { padding-top: 4.5rem; }
 /* same width as .rt-doc, so all three blocks are one column */
 .embed--preview .embed-wrap { max-width: 62rem; }
@@ -24,12 +45,13 @@
 .rt-head {
   display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between;
   gap: 0.8rem; margin-bottom: 0.6rem;
+  max-width: 62rem;   /* the document's width, so the stamp ends where it does */
 }
 
-.rt-head h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 900; letter-spacing: -0.01em; }
+.rt-head h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; }
 
 .rt-head .rt-stamp {
-  font-family: var(--mono); font-size: 0.62rem;
+  font-family: var(--mono); font-size: 0.66rem;
   letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
 }
 
@@ -47,7 +69,7 @@
 }
 
 .rt-name {
-  font-family: var(--serif); font-weight: 900;
+  font-family: var(--serif); font-weight: 700;
   font-size: clamp(1.9rem, 4.6vw, 2.6rem); line-height: 1.1;
   letter-spacing: -0.02em; text-align: center;
 }
@@ -63,6 +85,11 @@
 .rt-contact span[aria-hidden] { color: var(--mute); }
 
 .rt-sec { margin-top: 2.1rem; }
+/* Each .rt-sec is a <section>, and layout.css gives every section the page
+   gutter: inside the document that inset the body a second time (72px a side
+   on a desktop, down to a 255px text column on a phone) while the name and
+   contact line ran full width. */
+.rt-doc .rt-sec { padding: 0; max-width: none; }
 
 .rt-sec > h3 {
   font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
@@ -111,7 +138,9 @@
 }
 
 .rt-points li::before {
-  content: "•"; position: absolute; left: 0.15rem; top: -0.05rem;
+  /* drawn, not read: a screen reader announced "bullet" before every point
+     (the first value is the fallback where alt text in content is unsupported) */
+  content: "•"; content: "•" / ""; position: absolute; left: 0.15rem; top: -0.05rem;
   color: var(--mute);
 }
 
@@ -130,4 +159,33 @@
 @media (max-width: 620px) {
   .rt-line { flex-direction: column; }
   .rt-when, .rt-where { white-space: normal; }
+  /* the contact line wrapped mid-run, leaving "| abubakrelmallah.com |" with a
+     bar hanging off each end: one item a line instead, and no bars */
+  .rt-contact { flex-direction: column; gap: 0.2rem; }
+  .rt-contact span[aria-hidden] { display: none; }
+  /* the preview as a page, not 78% of the screen: at 78vh Drive drew the PDF
+     256px wide with 285px of grey under it */
+  .embed--preview .embed-frame { height: auto; min-height: 0; aspect-ratio: 8.5 / 11; }
+}
+
+/* Touch screens: a taller hit area for the standalone links (contact line,
+   company sites, GitHub) that moves nothing. Links inside a sentence are
+   left alone. */
+@media (pointer: coarse) {
+  .rt-contact a, .rt-org a, .rt-when a { padding-block: 12px; margin-block: -12px; }
+}
+
+/* Printing /resume/ prints the résumé: just the document, black on white,
+   on letter paper (base.css already drops the site's chrome and decoration). */
+@media print {
+  .embed--head, .embed--preview, .embed-skip, .rt-head, .rt-note { display: none !important; }
+  main, .rt { padding: 0 !important; max-width: none !important; }
+  .rt-doc { border: 0; padding: 0; max-width: none; }
+  .rt-doc a { text-decoration: underline; }
+  /* one line on letter paper, as on the PDF, rather than a bar left dangling
+     (measured: 709px of the page's 720) */
+  .rt-contact { font-size: 0.68rem; column-gap: 0.4rem; }
+  .rt-sec > h3 { border-color: #000; break-after: avoid; }
+  .rt-entry { break-inside: avoid; }
+  @page { size: letter; margin: 0.5in; }
 }

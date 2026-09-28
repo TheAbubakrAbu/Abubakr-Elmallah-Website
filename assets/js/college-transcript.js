@@ -67,27 +67,25 @@
       ] },
     ];
 
-    function esc(t) {
-      return String(t == null ? '' : t)
-        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-    }
+    function esc(t) { return window.AEesc(t); }
 
     var rows = 0;
     TERMS.forEach(function (t) { rows += t.rows.length; });
 
     var html = '<div class="ts-full reveal">'
-      + '<button class="ts-toggle" type="button" id="ctToggle" aria-expanded="false" data-magnetic>'
+      + '<button class="ts-toggle" type="button" id="ctToggle" aria-expanded="false" aria-controls="ctTerms" data-magnetic>'
       +   'Show every course &#183; ' + rows + ' rows, Saddleback to UCI'
       + '</button>'
       + '<div class="ts-terms ts-terms--uni" id="ctTerms" hidden>'
+      +   '<p class="ts-key"><span><b>GE</b>the UC Irvine General Education category a course satisfied</span></p>'
       +   TERMS.map(function (t) {
             return '<section class="ts-term">'
               + '<div class="ts-termhead">'
-              +   '<h5>' + esc(t.term) + '</h5>'
+              +   '<h3>' + esc(t.term) + '</h3>'
               +   '<span class="ts-yr">' + esc(t.yr) + '</span>'
               +   (t.sb ? '<span class="ts-where">Saddleback College</span>' : '')
               + '</div>'
-              + '<ul class="ts-rows">'
+              + '<ul class="ts-rows" role="list">'
               +   t.rows.map(function (r) {
                     return '<li' + (t.sb ? ' class="is-college"' : '') + '>'
                       + '<span class="ts-code">' + esc(r.code) + '</span>'

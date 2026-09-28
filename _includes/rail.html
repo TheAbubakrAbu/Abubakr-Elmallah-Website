@@ -1,0 +1,11 @@
+{%- comment -%}
+  The left rail: monogram, scroll progress (railFill), the live clock
+  (clock.js) and the coordinates. All of it is decoration, so the whole rail is
+  aria-hidden: an <aside> with nothing readable inside was an empty landmark.
+{%- endcomment -%}
+<aside class="rail" aria-hidden="true">
+  <span class="rail-mark" aria-hidden="true">AE</span>
+  <span class="rail-line" aria-hidden="true"><i id="railFill"></i></span>
+  <span class="rail-meta" id="clock" aria-hidden="true">--:--:--</span>
+  <span class="rail-meta" aria-hidden="true">33.64°N · 117.84°W</span>
+</aside>

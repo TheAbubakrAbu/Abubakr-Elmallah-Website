@@ -1,0 +1,10 @@
+{%- comment -%}
+  The photo lightbox that gallery.js opens. A modal dialog: gallery.js names
+  it after the photo, moves focus in and back out, and makes the page behind
+  it inert while it is open.
+{%- endcomment -%}
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo" aria-hidden="true">
+      <button class="lightbox-close" type="button" aria-label="Close">✕</button>
+      <span class="lightbox-title"></span>
+      <div class="lightbox-imgs"></div>
+    </div>

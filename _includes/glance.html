@@ -1,0 +1,35 @@
+{%- comment -%}
+  "At a glance": the summary at the top of /work/, /projects/, /al-islam/ and
+  /star-wars/. Everything in it is read off the page itself, so it cannot
+  drift from what the page shows:
+
+    the index   cards.js lists every card on the page, grouped under the
+                heading of the grid it sits in, each one a link to its card
+    the count   how many there are, how many are on the App Store, open
+                source, and award winners, worked out from the same cards
+    the facts   optional headline numbers passed in, e.g. on /work/:
+                {% include glance.html facts=site.data.resume.highlights %}
+
+  A grid with no heading above it names its group with data-label.
+  Open by default; cards.js closes it on a phone, where the index is long.
+
+  The facts sit ABOVE the box, not inside it: on a phone the box starts
+  closed, and the page's headline numbers were hidden behind a tap.
+{%- endcomment -%}
+{%- if include.facts %}
+<ul class="glance-facts glance-facts--lead reveal" role="list">
+{%- for f in include.facts %}
+  <li><strong>{{ f[0] }}</strong><span>{{ f[1] }}</span></li>
+{%- endfor %}
+</ul>
+{%- endif %}
+<details class="glance reveal" open data-glance>
+  <summary class="glance-sum">
+    <span class="glance-k">At a glance</span>
+    <span class="glance-n" data-glance-count></span>
+    <i class="glance-chev" aria-hidden="true"></i>
+  </summary>
+  <div class="glance-body">
+    <div class="glance-index" data-glance-index></div>
+  </div>
+</details>

@@ -125,6 +125,15 @@ window.FAN_PAGE = {
           { n: 'Space Jam: A New Legacy', y: '2021' },
           { n: 'The Day the Earth Blew Up', y: '2025' },
         ] },
+      { title: 'The Games', sub: '1996 – 2024', unit: 'game',
+        desc: 'The ones built around them rather than a cameo.',
+        rows: [
+          { n: 'Space Jam', y: '1996' },
+          { n: 'Bugs Bunny: Lost in Time', y: '1999' },
+          { n: 'Looney Tunes: Back in Action', y: '2003' },
+          { n: 'Looney Tunes: World of Mayhem', y: '2018' },
+          { n: 'MultiVersus', y: '2024' },
+        ] },
     ] },
 
   { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'three tracks',

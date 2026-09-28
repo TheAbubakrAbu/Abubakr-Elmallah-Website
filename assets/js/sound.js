@@ -14,19 +14,49 @@
   }
   paint();
 
+  /* Anything but 'running' is resumed, not just 'suspended': WebKit has a
+     state of its own, 'interrupted', that the context lands in after a phone
+     call, Siri or a spell in the background, and it does not always leave it
+     by itself. tick() only plays while the state is 'running', so a context
+     stuck there meant no sound for the rest of the visit. ('closed' is left
+     alone; nothing here closes it, and resuming a closed one is an error.)
+     resume() can refuse, when no gesture has happened yet, and that refusal
+     is the promise rejecting, which is nothing to report. */
+  function wake() {
+    if (!ac || ac.state === 'running' || ac.state === 'closed') return;
+    const p = ac.resume();
+    if (p && p.catch) p.catch(() => {});
+  }
+
   function ctx() {
     if (!ac) {
       const AC = window.AudioContext || window.webkitAudioContext;
       if (AC) ac = new AC();
     }
-    if (ac && ac.state === 'suspended') ac.resume();
+    wake();
     return ac;
   }
+
+  /* Building the AudioContext costs ~140-180 ms of main thread. It used to be
+     built by the first hover, so that stall landed inside the first click.
+     Hovers now never build it: the first click or key schedules it for an
+     idle moment, and a later click resumes it if the browser started it
+     suspended. Not pointerdown: on a phone the first touch is usually a
+     scroll, and building it there froze that scroll. */
+  function warm() {
+    removeEventListener('click', warm, true);
+    removeEventListener('keydown', warm, true);
+    if (!on) return;
+    if (window.requestIdleCallback) requestIdleCallback(ctx, { timeout: 2000 });
+    else setTimeout(ctx, 400);
+  }
+  addEventListener('click', warm, true);
+  addEventListener('keydown', warm, true);
 
   // one short enveloped sine: a soft tick, not a beep
   function tick(freq, dur, vol) {
     if (!on) return;
-    const a = ctx();
+    const a = ac;
     /* Until a real gesture has resumed the context, currentTime sits at 0 and
        every hover would queue an oscillator at t=0 that all fire together on
        the first click. Just skip the tick until the context is running. */
@@ -54,7 +84,7 @@
     });
   }
 
-  const HOVER = '.tabbar a, .ql, .cta, .app-card, .proj-card, .back-link, .totop, .brand, .app-links a, .app-badge';
+  const HOVER = '.tabbar a, .ql, .cta, .app-card, .proj-card, .crumbs a, .totop, .brand, .app-links a, .app-badge';
   let lastHover = 0;
   document.addEventListener('pointerover', e => {
     if (!on || !e.target.closest(HOVER)) return;
@@ -65,7 +95,9 @@
   }, { passive: true });
 
   document.addEventListener('click', e => {
-    if (!on || !e.target.closest('a, button, .app-card, .proj-card')) return;
+    if (!on) return;
+    wake();   // a click is a gesture: wake it, whatever state it is stuck in
+    if (!e.target.closest('a, button, .app-card, .proj-card')) return;
     tick(440, 0.05, 0.03);
   });
 })();

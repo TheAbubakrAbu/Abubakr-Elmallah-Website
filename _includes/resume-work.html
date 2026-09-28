@@ -1,0 +1,20 @@
+{%- comment -%}
+  The résumé's Work Experience as the PDF prints it, for /resume/.
+  The words live in _data/resume.yml (shared with /work/); this only lays
+  them out in the résumé's own markup, skipping a role marked `pdf: false`
+  (one the PDF no longer lists but /work/ still shows).
+{%- endcomment -%}
+      <section class="rt-sec">
+        <h3>Work Experience</h3>
+{% for j in site.data.resume.work %}{% if j.pdf == false %}{% continue %}{% endif %}
+        <div class="rt-entry">
+          <div class="rt-line"><h4>{{ j.title }}</h4><span class="rt-when">{{ j.when }}</span></div>
+          <div class="rt-line rt-line--sub"><span class="rt-org">{{ j.org }} | <a href="{{ j.url }}" target="_blank" rel="noopener">{{ j.site }}</a></span><span class="rt-where">{{ j.where }}</span></div>
+          <ul class="rt-points" role="list">
+{%- for p in j.points %}
+            <li>{{ p }}</li>
+{%- endfor %}
+          </ul>
+        </div>
+{% endfor %}
+      </section>

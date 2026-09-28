@@ -1,36 +1,15 @@
 ---
 permalink: /elmallah/
+title: "E.L.M.A.L.L.A.H. · Abubakr Elmallah"
+description: "E.L.M.A.L.L.A.H., a holoterminal interface for Abubakr Elmallah's portfolio. Embedded Logic Matrix · Adaptive Learning, Language & Archive Hub."
+theme: "#03070d"
+fonts: "family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500"
+standalone: true
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="E.L.M.A.L.L.A.H., a holoterminal interface for Abubakr Elmallah's portfolio. Embedded Logic Matrix · Adaptive Learning, Language & Archive Hub." />
-<meta name="theme-color" content="#03070d" />
-
-<link rel="icon" type="image/png" href="../assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="../assets/img/icons/apple-touch-icon.png" />
-<link rel="manifest" href="/manifest.webmanifest" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Abubakr" />
-<meta property="og:image" content="https://abubakrelmallah.com/assets/img/me/abubakr-circle.png" />
-<meta property="og:type" content="website" />
-<title>E.L.M.A.L.L.A.H. · Abubakr Elmallah</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<!-- Fonts are loaded WITHOUT blocking the first paint. As a plain
-     stylesheet this held the whole page blank until Google answered,
-     which on a weak connection is most of "it opens but it loads
-     slowly". media="print" makes the browser fetch it at low priority
-     and render immediately; onload promotes it to the real stylesheet.
-     Every family here already carries display=swap, so text is on
-     screen in the fallback face straight away and swaps when it lands. -->
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+{% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/elmallah.css' %}" />
 <noscript><style>
@@ -93,7 +72,7 @@ permalink: /elmallah/
       <article class="el-panel"><div>
         <div class="el-h">Operator Manifest</div>
         <div class="el-name">ABUBAKR<br />ELMALLAH</div>
-        <div class="el-desig">iOS Developer · CS @ UC Irvine ’28</div>
+        <div class="el-desig">Lead Mobile &amp; Backend Developer · CS @ UC Irvine ’28</div>
         <div class="el-say" id="elSay"></div>
       </div></article>
 
@@ -123,13 +102,25 @@ permalink: /elmallah/
 
       <article class="el-panel"><div>
         <div class="el-h">Sector Charts</div>
+        <!-- every page on the site: the main sections, the two schools, the
+             worlds and their three personal pages, and the other terminals
+             (J.A.R.V.I.S. is the footer's exit) -->
         <nav class="el-links">
           <a class="el-link" data-lock href="/">Main Base<em>HOME</em></a>
           <a class="el-link" data-lock href="/work/">Work<em>UCI</em></a>
           <a class="el-link" data-lock href="/projects/">Projects<em>ALL</em></a>
           <a class="el-link" data-lock href="/education/">Education<em>SCHOOLS</em></a>
-          <a class="el-link" data-lock href="/worlds/">Worlds<em>THEMED</em></a>
+          <a class="el-link" data-lock href="/college/">College<em>UCI ’28</em></a>
+          <a class="el-link" data-lock href="/high-school/">High School<em>ARCHIVE</em></a>
           <a class="el-link" data-lock href="/resume/">Résumé<em>DOC</em></a>
+          <a class="el-link" data-lock href="/worlds/">Worlds<em>70 PAGES</em></a>
+          <a class="el-link" data-lock href="/star-wars/">Star Wars<em>AUREBESH</em></a>
+          <a class="el-link" data-lock href="/al-islam/">Al-Islam<em>ISLAMIC</em></a>
+          <a class="el-link" data-lock href="/travels/">Travels<em>MAP</em></a>
+          <a class="el-link" data-lock href="/accents/">Accents<em>VOICES</em></a>
+          <a class="el-link" data-lock href="/gaming/">Gaming<em>STEAM</em></a>
+          <a class="el-link" data-lock href="/holocron/">Holocron<em>TERMINAL</em></a>
+          <a class="el-link" data-lock href="/marauders-map/">Marauder’s Map<em>TERMINAL</em></a>
         </nav>
       </div></article>
 
@@ -169,12 +160,12 @@ permalink: /elmallah/
         <div class="el-motes" id="elMotes" aria-hidden="true"></div>
         <div class="el-cube-stage" id="elStage">
           <div class="el-cube" id="elCube" aria-hidden="true">
-            <span class="f1"><img loading="lazy" decoding="async" src="../assets/img/apps/datapad.jpg" alt="" /></span>
-            <span class="f2"><img loading="lazy" decoding="async" src="../assets/img/apps/aurebesh-translator.jpg" alt="" /></span>
-            <span class="f3"><img loading="lazy" decoding="async" src="../assets/img/bots/sabacc-droid.png" alt="" /></span>
-            <span class="f4"><img loading="lazy" decoding="async" src="../assets/img/bots/aurebesh-droid.jpg" alt="" /></span>
-            <span class="f5"><img loading="lazy" decoding="async" src="../assets/img/apps/datapad.jpg" alt="" /></span>
-            <span class="f6"><img loading="lazy" decoding="async" src="../assets/img/apps/aurebesh-translator.jpg" alt="" /></span>
+            <span class="f1"><img loading="lazy" decoding="async" src="/assets/img/apps/datapad.jpg" width="512" height="512" alt="" /></span>
+            <span class="f2"><img loading="lazy" decoding="async" src="/assets/img/apps/aurebesh-translator.jpg" width="512" height="512" alt="" /></span>
+            <span class="f3"><img loading="lazy" decoding="async" src="/assets/img/bots/sabacc-droid.png" width="300" height="300" alt="" /></span>
+            <span class="f4"><img loading="lazy" decoding="async" src="/assets/img/bots/aurebesh-droid.jpg" width="512" height="512" alt="" /></span>
+            <span class="f5"><img loading="lazy" decoding="async" src="/assets/img/apps/datapad.jpg" width="512" height="512" alt="" /></span>
+            <span class="f6"><img loading="lazy" decoding="async" src="/assets/img/apps/aurebesh-translator.jpg" width="512" height="512" alt="" /></span>
           </div>
           <div class="el-heart" aria-hidden="true"></div>
           <div class="el-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -228,42 +219,42 @@ permalink: /elmallah/
         <div class="el-h el-h--y">Personal Fleet</div>
         <div class="el-craft">
           <a class="el-craft-row" href="/star-wars/" data-lock>
-            <img loading="lazy" decoding="async" src="../assets/img/apps/aurebesh-translator.jpg" alt="" />
-            <span class="el-craft-b"><span class="el-craft-t">Aurebesh Translator</span><span class="el-craft-m">2024 · Free · 4 platforms</span></span>
+            <img loading="lazy" decoding="async" src="/assets/img/apps/aurebesh-translator.jpg" width="512" height="512" alt="" />
+            <span class="el-craft-b"><span class="el-craft-t">Aurebesh Translator</span><span class="el-craft-m">2024 · Free · iPhone, iPad, Mac</span></span>
             <span class="el-craft-s">ACTIVE</span>
           </a>
           <a class="el-craft-row" href="/star-wars/" data-lock>
-            <img loading="lazy" decoding="async" src="../assets/img/apps/datapad.jpg" alt="" />
+            <img loading="lazy" decoding="async" src="/assets/img/apps/datapad.jpg" width="512" height="512" alt="" />
             <span class="el-craft-b"><span class="el-craft-t">Datapad · Aurebesh Translator</span><span class="el-craft-m">2023 · Top 10 · Entertainment</span></span>
             <span class="el-craft-s">ACTIVE</span>
           </a>
           <a class="el-craft-row" href="/star-wars/" data-lock>
-            <img loading="lazy" decoding="async" src="../assets/img/bots/sabacc-droid.png" alt="" />
+            <img loading="lazy" decoding="async" src="/assets/img/bots/sabacc-droid.png" width="300" height="300" alt="" />
             <span class="el-craft-b"><span class="el-craft-t">Sabacc Droid</span><span class="el-craft-m">2024 · Discord · Python</span></span>
             <span class="el-craft-s">ACTIVE</span>
           </a>
           <a class="el-craft-row" href="/star-wars/" data-lock>
-            <img loading="lazy" decoding="async" src="../assets/img/bots/aurebesh-droid.jpg" alt="" />
+            <img loading="lazy" decoding="async" src="/assets/img/bots/aurebesh-droid.jpg" width="512" height="512" alt="" />
             <span class="el-craft-b"><span class="el-craft-t">Aurebesh Droid</span><span class="el-craft-m">2025 · Discord · C++</span></span>
             <span class="el-craft-s">ACTIVE</span>
           </a>
           <a class="el-craft-row is-off" href="/projects/" data-lock>
-            <img loading="lazy" decoding="async" src="../assets/img/apps/icoi.jpg" alt="" />
+            <img loading="lazy" decoding="async" src="/assets/img/apps/icoi.jpg" width="512" height="512" alt="" />
             <span class="el-craft-b"><span class="el-craft-t">Islamic Center of Irvine</span><span class="el-craft-m">2023 · Decommissioned May 2026</span></span>
             <span class="el-craft-s off">OFFLINE</span>
           </a>
           <a class="el-craft-row" href="/al-islam/" data-lock>
-            <img loading="lazy" decoding="async" src="../assets/img/apps/al-adhan.jpg" alt="" />
+            <img loading="lazy" decoding="async" src="/assets/img/apps/al-adhan.jpg" width="512" height="512" alt="" />
             <span class="el-craft-b"><span class="el-craft-t">Al-Adhan</span><span class="el-craft-m">2023 · Prayer times · qibla</span></span>
             <span class="el-craft-s">ACTIVE</span>
           </a>
           <a class="el-craft-row" href="/al-islam/" data-lock>
-            <img loading="lazy" decoding="async" src="../assets/img/apps/al-islam.jpg" alt="" />
+            <img loading="lazy" decoding="async" src="/assets/img/apps/al-islam.jpg" width="512" height="512" alt="" />
             <span class="el-craft-b"><span class="el-craft-t">Al-Islam</span><span class="el-craft-m">2023 · Congressional ’23</span></span>
             <span class="el-craft-s">ACTIVE</span>
           </a>
           <a class="el-craft-row" href="/al-islam/" data-lock>
-            <img loading="lazy" decoding="async" src="../assets/img/apps/al-quran.jpg" alt="" />
+            <img loading="lazy" decoding="async" src="/assets/img/apps/al-quran.jpg" width="512" height="512" alt="" />
             <span class="el-craft-b"><span class="el-craft-t">Al-Quran</span><span class="el-craft-m">2023 · Swift Student ’24</span></span>
             <span class="el-craft-s">ACTIVE</span>
           </a>

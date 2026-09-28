@@ -1,36 +1,15 @@
 ---
 permalink: /marauders-map/
+title: "The Marauder’s Map · Abubakr Elmallah"
+description: "The Marauder’s Map: a Harry Potter parchment terminal for Abubakr Elmallah's portfolio, with corridors, footprints and every room on the site."
+theme: "#120c07"
+fonts: "family=JetBrains+Mono:wght@400;500"
+standalone: true
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="The Marauder's Map: a Harry Potter parchment terminal for Abubakr Elmallah's portfolio, with corridors, footprints and every room on the site." />
-<meta name="theme-color" content="#120c07" />
-
-<link rel="icon" type="image/png" href="/assets/img/me/abubakr-circle.png" />
-<link rel="apple-touch-icon" href="/assets/img/icons/apple-touch-icon.png" />
-<link rel="manifest" href="/manifest.webmanifest" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Abubakr" />
-<meta property="og:image" content="https://abubakrelmallah.com/assets/img/me/abubakr-circle.png" />
-<meta property="og:type" content="website" />
-<title>The Marauder's Map · Abubakr Elmallah</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<!-- Fonts are loaded WITHOUT blocking the first paint. As a plain
-     stylesheet this held the whole page blank until Google answered,
-     which on a weak connection is most of "it opens but it loads
-     slowly". media="print" makes the browser fetch it at low priority
-     and render immediately; onload promotes it to the real stylesheet.
-     Every family here already carries display=swap, so text is on
-     screen in the fallback face straight away and swaps when it lands. -->
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-<noscript><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" /></noscript>
+{% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/marauders.css' %}" />
 </head>
@@ -48,7 +27,7 @@ permalink: /marauders-map/
     </header>
 
     <p class="mm-oath">I solemnly swear that I am up to no good.</p>
-    <h1 class="mm-title">The Marauder's Map</h1>
+    <h1 class="mm-title">The Marauder’s Map</h1>
     <p class="mm-sub">Every room on this site, drawn as corridors. The footprints move on their own, the ink shows who is where, and the map folds itself away when you are done with it.</p>
     <p class="mm-makers">Messrs Moony, Wormtail, Padfoot &amp; Prongs, purveyors of aids to magical mischief-makers</p>
 
@@ -61,17 +40,26 @@ permalink: /marauders-map/
       </div>
       <div class="mm-you" aria-hidden="true"><b></b>You are here</div>
 
+      <!-- every room on the site, as the copy above promises: the main
+           sections, both schools, the worlds and their three personal pages,
+           and the other terminals. The grid is auto-fill, so a new room is
+           one more line here. -->
       <div class="mm-rooms">
         <a class="mm-room" href="/"><b>The Entrance Hall</b><span>Home</span></a>
         <a class="mm-room" href="/work/"><b>The Trophy Room</b><span>Work at UC Irvine</span></a>
         <a class="mm-room" href="/projects/"><b>The Room of Requirement</b><span>Every project</span></a>
         <a class="mm-room" href="/education/"><b>The Great Hall</b><span>Education</span></a>
-        <a class="mm-room" href="/worlds/"><b>The Library</b><span>All 31 franchises</span></a>
+        <a class="mm-room" href="/college/"><b>Ravenclaw Tower</b><span>College · UC Irvine</span></a>
+        <a class="mm-room" href="/high-school/"><b>The Transfiguration Classroom</b><span>High School · where it started</span></a>
+        <a class="mm-room" href="/worlds/#franchises"><b>The Library</b><span>All 70 worlds</span></a>
         <a class="mm-room" href="/worlds/harry-potter/"><b>Gryffindor Tower</b><span>Harry Potter</span></a>
         <a class="mm-room" href="/al-islam/"><b>The Quiet Courtyard</b><span>Al-Islam</span></a>
         <a class="mm-room" href="/star-wars/"><b>The Astronomy Tower</b><span>Star Wars apps</span></a>
+        <a class="mm-room" href="/travels/"><b>The Boathouse</b><span>Travels · where I have been</span></a>
+        <a class="mm-room" href="/accents/"><b>The Portrait Gallery</b><span>Accents &amp; impersonations</span></a>
+        <a class="mm-room" href="/gaming/"><b>The Quidditch Pitch</b><span>Gaming</span></a>
         <a class="mm-room" href="/holocron/"><b>The Restricted Section</b><span>Holocron terminal</span></a>
-        <a class="mm-room" href="/jarvis/"><b>The Headmaster's Office</b><span>J.A.R.V.I.S. terminal</span></a>
+        <a class="mm-room" href="/jarvis/"><b>The Headmaster’s Office</b><span>J.A.R.V.I.S. terminal</span></a>
         <a class="mm-room" href="/elmallah/"><b>The Owlery</b><span>E.L.M.A.L.L.A.H. holotable</span></a>
         <a class="mm-room" href="/resume/"><b>The Records Office</b><span>Résumé</span></a>
       </div>
@@ -96,7 +84,7 @@ permalink: /marauders-map/
           <div class="mm-item"><span>House</span><i>Sorted by the reader</i></div>
           <div class="mm-item"><span>Year</span><i>UC Irvine, class of 2028</i></div>
           <div class="mm-item"><span>Apps shipped</span><i>Twelve, four platforms</i></div>
-          <div class="mm-item"><span>Franchise pages</span><i>Thirty-one</i></div>
+          <div class="mm-item"><span>Worlds</span><i>Seventy</i></div>
           <div class="mm-item"><span>Drawn with</span><i>CSS only, no images</i></div>
         </div>
       </section>

@@ -14,7 +14,7 @@
   var groups = window.SW_PLANETS;
   if (!root || !groups) return;
 
-  var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); };
+  var esc = window.AEesc;
 
   function sphere(w) {
     return '<div class="pl-globe">'

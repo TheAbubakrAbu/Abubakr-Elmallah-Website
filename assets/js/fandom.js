@@ -10,7 +10,7 @@
   var data = window.FANDOMS;
   if (!root || !data) return;
 
-  var esc = function (s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
+  var esc = window.AEesc;
 
   /* hand-drawn emblems, 24×24, currentColor */
   var GLYPHS = {
@@ -334,14 +334,18 @@
     return '<svg class="fr-glyph" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">' + GLYPHS[key] + '</svg>';
   }
 
-  // Breaking Bad sets its own two letters as elements; everything else is one word-mark
-  function lettering(f) {
+  /* Breaking Bad sets its own two letters as elements; everything else is one
+     word-mark. The element tiles are drawn, not read: a screen reader used to
+     say "Br 35 eaking Ba 56 ad". `id` names the tile's link (see tile()). */
+  function lettering(f, id) {
+    var idAttr = id ? ' id="' + id + '"' : '';
     if (f.wm === 'breakingbad') {
-      return '<span class="fr-name wm--breakingbad">'
-        + '<i class="bb-tile"><b>Br</b><em>35</em></i>eaking '
-        + '<i class="bb-tile"><b>Ba</b><em>56</em></i>ad</span>';
+      return '<span class="fr-name wm--breakingbad"' + idAttr + '>'
+        + '<span aria-hidden="true"><i class="bb-tile"><b>Br</b><em>35</em></i>eaking '
+        + '<i class="bb-tile"><b>Ba</b><em>56</em></i>ad</span>'
+        + '<span class="vh">Breaking Bad</span></span>';
     }
-    return '<span class="fr-name wm--' + f.wm + '">' + esc(f.name) + '</span>';
+    return '<span class="fr-name wm--' + f.wm + '"' + idAttr + '>' + esc(f.name) + '</span>';
   }
 
   /* The whole tile is the link, not just the plate: clicking the blurb, the
@@ -355,19 +359,29 @@
      parent's rounded padding box rather than being clipped back into it.
      Moving the CONTENTS instead keeps the drift (that was the point) while
      the plate stays exactly where it is and goes on being the clip. */
+  /* A tile's link is named by its name and described by its blurb: read whole,
+     it was 150 to 400 characters ("Wild Kratts Enter ↗ Two brothers ...
+     Since I was a kid Studio · 1923") every time it was reached.
+
+     "Enter" is a sibling of the drifting layer, not a child of it, so it stays
+     pinned to the plate's corner instead of riding the drift. */
+  var seq = 0;
   function tile(f) {
     var tag = f.href ? 'a' : 'article';
-    var attr = f.href ? ' href="' + f.href + '"' : '';
+    var id = 'frt' + (++seq);
+    var attr = f.href
+      ? ' href="' + f.href + '" aria-labelledby="' + id + 'n" aria-describedby="' + id + 'd"'
+      : '';
     return '<' + tag + ' class="fr-card reveal" style="--c1:' + f.c1 + ';--c2:' + f.c2 + '"' + attr + '>'
       + '<span class="fr-plate">'
       +   '<span class="fr-plate-i"' + (f.href ? ' data-magnetic' : '') + '>'
       +     glyph(f.glyph)
-      +     lettering(f)
-      +     (f.href ? '<span class="fr-enter">Enter ↗</span>' : '')
+      +     lettering(f, id + 'n')
       +   '</span>'
+      +   (f.href ? '<span class="fr-enter" aria-hidden="true">Enter ↗</span>' : '')
       + '</span>'
       + '<span class="fr-body">'
-      +   '<span class="fr-desc">' + esc(f.desc) + '</span>'
+      +   '<span class="fr-desc" id="' + id + 'd">' + esc(f.desc) + '</span>'
       /* when I got into it -- the one line that makes this a personal list
          rather than a catalogue. Optional, so a tile without it still works. */
       /* the empty stand-in matters: the tiles share the rows of their grid
@@ -383,11 +397,24 @@
 
   var total = data.reduce(function (n, g) { return n + g.items.length; }, 0);
 
-  root.innerHTML = data.map(function (g) {
-    return '<section class="fr-group fr-group--' + g.id + '">'
-      + '<h3 class="subsec subsec--fr reveal">' + esc(g.label)
-      +   '<span class="subsec-yr">' + esc(g.note) + '</span>'
-      +   '<span class="fr-count">' + g.items.length + '</span>'
+  /* One link per rank, straight under the lede, and one to the three doors at
+     the foot: open, this is the longest page on the site (about 25 phone
+     screens), and the ranks were only reachable by scrolling. Built from the
+     same data as the groups, so it cannot drift from them. */
+  var doors = document.getElementById('fr-doors');
+  var jump = '<nav class="jump fr-jump" aria-label="Ranks">'
+    + data.map(function (g) { return '<a href="#fr-' + g.id + '">' + esc(g.label) + '</a>'; }).join('')
+    + (doors ? '<a href="#fr-doors">Travels, Accents &amp; Gaming</a>' : '')
+    + '</nav>';
+
+  /* Each heading reads with a pause before its note and says what its count
+     counts ("Who I Am, not fandoms ..., 6 tiles", not "Who I Am not fandoms ... 6"). */
+  root.innerHTML = jump + data.map(function (g) {
+    return '<section class="fr-group fr-group--' + g.id + '" id="fr-' + g.id + '">'
+      + '<h3 class="subsec subsec--fr subsec--title reveal">' + esc(g.label)
+      +   '<span class="vh">, </span><span class="subsec-yr">' + esc(g.note) + '</span>'
+      +   '<span class="fr-count" aria-hidden="true">' + g.items.length + '</span>'
+      +   '<span class="vh">, ' + g.items.length + ' tiles</span>'
       + '</h3>'
       + '<div class="fr-grid">' + g.items.map(tile).join('') + '</div>'
       + '</section>';
@@ -418,7 +445,6 @@
   if (!btn || !vault) return;
 
   var label = btn.querySelector('.fr-vaultbtn-l');
-  var arrow = btn.querySelector('.fr-vaultbtn-a');
 
   /* Remembered, the same way the "show other pictures" switch is (pics.js) and
      the cursor and sound toggles are: one localStorage key, wrapped in
@@ -442,23 +468,135 @@
      box. On LOAD it needs nothing: this file runs before reveal.js, so the
      block is already open by the time reveal.js does its first scan and the
      tiles are picked up like anything else on the page. */
+  /* The arrow turns rather than being swapped for another glyph (CSS, on
+     .is-open), so the change is seen happening. */
   function apply(open, late) {
     vault.hidden = !open;
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     btn.classList.toggle('is-open', open);
     if (label) label.textContent = open ? 'Hide the other worlds' : 'Show the other worlds';
-    if (arrow) arrow.textContent = open ? '\u2191' : '\u2193';
     if (open && late && typeof window.AEreveal === 'function') {
       requestAnimationFrame(function () { window.AEreveal(vault); });
     }
   }
 
+  /* The state a page arrives in is not a change: nothing on the button turns
+     or slides on load, only when it is pressed. */
+  btn.classList.add('is-instant');
   apply(read(), false);
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { btn.classList.remove('is-instant'); });
+  });
 
+  /* Opening brings the button up the screen when it is low (on a phone it
+     sat near the foot, and the only sign anything had happened was its label).
+     Closing takes away up to 20,000px from under the page in one frame, and
+     the browser clamps the scroll: the button jumped 300 to 400px and left the
+     pointer on something else. The page glides from where the button was to
+     where it has to be instead. */
+  var still = typeof reduceMotion !== 'undefined' && reduceMotion;
   btn.addEventListener('click', function () {
     var open = vault.hidden;
+    var y0 = btn.getBoundingClientRect().top;
     write(open);
     apply(open, true);
+    if (open) {
+      if (y0 > innerHeight * 0.45) btn.scrollIntoView({ block: 'start', behavior: still ? 'auto' : 'smooth' });
+      return;
+    }
+    var dy = btn.getBoundingClientRect().top - y0;
+    if (still || Math.abs(dy) < 2) return;
+    document.querySelectorAll('main, .picsw, .footer').forEach(function (el) {
+      if (el.animate) el.animate(
+        [{ transform: 'translateY(' + (-dy) + 'px)' }, { transform: 'none' }],
+        { duration: 360, easing: 'cubic-bezier(.16,1,.3,1)' });
+    });
+  });
+
+  /* A link into the worlds (/worlds/#franchises from the home page and the
+     franchise pages, #fr-kid from the jump row, #fr-doors from Travels,
+     Accents and Gaming) opens them, without changing what is remembered:
+     following a link is not the same as pressing the button. */
+  /* The groups skip their layout until they are near the screen (fandom.css,
+     content-visibility), so until they have been seen the page only has a
+     guess at their heights, and a jump to "As a Kid" or to the doors landed
+     thousands of pixels short as the real groups grew under it. So a jump
+     lays every group out once (.is-whole), goes, and hands the groups back:
+     each keeps the size it was just measured at, and later jumps are exact. */
+  /* An instant scrollIntoView. 'instant' is what these jumps want (with the
+     page-wide smooth scrolling on, html.smooth, 'auto' would turn a jump and
+     every one of settle()'s corrections into a glide), but Safari before
+     15.4 throws on the value rather than ignoring it, so the fallback
+     switches the smooth scrolling off by hand for the one call, the way
+     years.js does when it closes the deck. utils.js guards its own call the
+     same way. */
+  function jumpTo(t) {
+    try { t.scrollIntoView({ block: 'start', behavior: 'instant' }); }
+    catch (e) {
+      var html = document.documentElement, was = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';
+      t.scrollIntoView({ block: 'start' });
+      html.style.scrollBehavior = was;
+    }
+  }
+
+  function goTo(t, smooth) {
+    vault.classList.add('is-whole');
+    requestAnimationFrame(function () {
+      if (smooth) t.scrollIntoView({ block: 'start', behavior: 'smooth' }); else jumpTo(t);
+      requestAnimationFrame(function () { vault.classList.remove('is-whole'); });
+      settle(t);
+    });
+  }
+
+  /* And once it has arrived, it stays arrived. The names with ā, ḥ or ʾ in
+     them pull in a second web-font file the first time they are drawn, and
+     when it lands, a second or so later, the tiles above the target gain a
+     line here and there and carry it down the screen. So for a few seconds
+     after a jump, whenever the page has stopped moving, the target is put
+     back if it has drifted; the moment the reader scrolls, it lets go. */
+  var lastMove = 0;
+  addEventListener('scroll', function () { lastMove = performance.now(); }, { passive: true });
+  function settle(t) {
+    var quit = false, tries = 0;
+    function stop() { quit = true; }
+    ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
+      addEventListener(ev, stop, { once: true, passive: true });
+    });
+    (function check() {
+      if (quit || ++tries > 14) return;
+      setTimeout(function () {
+        if (quit) return;
+        if (performance.now() - lastMove > 180) {
+          var pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+          var off = t.getBoundingClientRect().top - pad;
+          var atEnd = scrollY + innerHeight >= document.documentElement.scrollHeight - 2;
+          if (Math.abs(off) > 6 && !(atEnd && off > 0)) jumpTo(t);
+        }
+        check();
+      }, 220);
+    })();
+  }
+  function fromHash() {
+    var id = location.hash.slice(1);
+    var t = id && document.getElementById(id);
+    if (!t || !vault.contains(t)) return;
+    if (vault.hidden) apply(true, true);
+    goTo(t, false);
+  }
+  fromHash();
+  addEventListener('hashchange', fromHash);
+
+  /* the jump row's own links go the same way, without the browser's jump to
+     the guessed position first */
+  vault.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('.fr-jump a[href^="#"]');
+    if (!a) return;
+    var t = document.getElementById(a.getAttribute('href').slice(1));
+    if (!t) return;
+    e.preventDefault();
+    if (history.pushState) history.pushState(null, '', a.getAttribute('href'));
+    goTo(t, !still);
   });
 
   /* Another tab flipped it: keep every open copy of this page in step rather

@@ -20,7 +20,7 @@
   var page = window.ACCENT_PAGE;
   if (!root || !page) return;
 
-  var esc = function (s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); };
+  var esc = window.AEesc;
 
   var AUDIO_DIR = '/assets/audio/accents/';
 

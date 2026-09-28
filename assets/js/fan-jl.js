@@ -82,7 +82,24 @@ window.FAN_PAGE = {
           { n: 'Justice League: War', y: '2014' },
           { n: 'Justice League Dark', y: '2017' },
         ] },
+      { title: 'The Games', sub: '2006 – 2024', unit: 'game',
+        desc: 'LEGO Batman 2 is the one I finished, and the LEGO ones are tiles below with what a hundred percent takes in each.',
+        rows: [
+          { n: 'Justice League Heroes', y: '2006' },
+          { n: 'DC Universe Online', y: '2011' },
+          { n: 'LEGO Batman 2: DC Super Heroes', y: '2012', big: true },
+          { n: 'Injustice: Gods Among Us', y: '2013' },
+          { n: 'LEGO Batman 3: Beyond Gotham', y: '2014' },
+          { n: 'LEGO Dimensions', y: '2015' },
+          { n: 'Injustice 2', y: '2017' },
+          { n: 'LEGO DC Super-Villains', y: '2018' },
+          { n: 'Suicide Squad: Kill the Justice League', y: '2024' },
+        ] },
     ] },
+
+  /* The LEGO games of this franchise, as the same tiles the LEGO page shows
+     (LEGO_FOR, from lego-games.js): nothing about them is written here. */
+  window.LEGO_FOR && window.LEGO_FOR('jl'),
 
 
   { id: 'seven', kind: 'cards', title: 'The Founders', note: 'the rest of the table, for completeness',
@@ -168,7 +185,7 @@ window.FAN_PAGE = {
     items: window.BATMAN_MUSIC },
 
   /* The rest of the DC music, kept separate from the shared Batman list. */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes & Songs', note: 'ten tracks · from my playlist',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes & Songs', note: 'eleven tracks · from my playlist',
     lede: 'Superman, the Snyder films, and the Justice League cartoon, sorted here separately from the Batman collection above.',
     items: [
       { title: 'Theme from Superman', accent: '#5f9fe0', sub: 'John Williams · Superman · 1978 · 5:30',
@@ -191,6 +208,8 @@ window.FAN_PAGE = {
         href: 'https://www.youtube.com/watch?v=z9BL59uiAz8', link: 'Listen' },
       { title: 'Look Up', accent: '#5f9fe0', sub: 'David Fleming · Superman · 2025', desc: 'The new Superman score looking straight at the old Williams idea of hope.',
         href: 'https://www.youtube.com/watch?v=G01DHYr-teA', link: 'Listen' },
+      { title: 'Your Choices, Your Actions', accent: '#5f9fe0', sub: 'David Fleming · Superman · 2025 · 2:54', desc: 'The cue named for what Pa Kent tells Clark on the farm: your choices and your actions are what make you who you are.',
+        href: 'https://www.youtube.com/watch?v=gpLAlTw3r0Y', link: 'Listen' },
       { title: 'Punkrocker', accent: '#e0603a', sub: 'Teddybears feat. Iggy Pop · Superman · 2025', desc: '“’Cause I’m a punk rocker, yes I am.” The needle-drop over Superman’s ending and credits.',
         href: 'https://www.youtube.com/watch?v=8P09rxVaQAM', link: 'Listen' },
     ] },

@@ -21,7 +21,11 @@
   const cover = document.getElementById('introCover');
   const dropCover = () => { if (cover && cover.parentNode) cover.remove(); };
 
-  if (reduceMotion) { dropCover(); return; }
+  /* reduceMotion comes from utils.js; if that file failed to load, asking the
+     browser directly beats throwing here and leaving the cover up */
+  const rm = typeof reduceMotion === 'boolean' ? reduceMotion
+    : window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (rm) { dropCover(); return; }
   const type = document.body.dataset.intro || 'veil';
   if (type === 'none') { dropCover(); return; }   // pages that opt out of the launch animation (e.g. résumé)
 
@@ -47,12 +51,14 @@
     /* the circle mark is the site's logo: the favicon, the app icon on a home
        screen and the og:image are all this same file, so the launch screen
        opening with it is the app opening with its own icon. Preloaded in
-       index.html, so it is on screen with the name rather than after it. */
+       index.html, so it is on screen with the name rather than after it.
+       The 256px WebP (15 KB): the 512px PNG is 95 KB and competed with the
+       portrait for the connection. */
     ov.innerHTML =
       '<div class="intro-panel intro-panel--l"></div>' +
       '<div class="intro-panel intro-panel--r"></div>' +
       '<div class="intro-center">' +
-        '<img class="intro-logo" src="/assets/img/me/abubakr-circle.png" alt="" aria-hidden="true" width="512" height="512" />' +
+        '<img class="intro-logo" src="/assets/img/me/abubakr-circle.webp" alt="" aria-hidden="true" width="512" height="512" />' +
         '<span class="intro-name">Abubakr Elmallah</span>' +
         '<span class="intro-line"></span>' +
       '</div>';
@@ -125,6 +131,7 @@
       stopWarp();                                           // starfield is black now, kill the canvas loop
       ov.classList.add('is-done');                          // dismiss the (now black) overlay
       document.documentElement.classList.remove('intro-lock');
+      document.dispatchEvent(new Event('ae:intro-done'));
       setTimeout(() => ov.remove(), 550);
     }, 1750);
     return;
@@ -132,11 +139,24 @@
 
   const DUR = { home: 820, alislam: 1050, projects: 900, work: 820, franchises: 880,
                 school: 900, education: 900, veil: 650 }[type] || 650;
-  setTimeout(() => {
+  /* A click, a key or a scroll during the launch screen skips the rest of it:
+     it plays once per session and should never stand between somebody and
+     the page. 'ae:intro-done' tells the page the screen is opening (the
+     home page starts decoding the name on it; see scramble.js). */
+  const SKIP = ['pointerdown', 'keydown', 'wheel', 'touchstart'];
+  let finished = false;
+  const timer = setTimeout(finish, DUR);
+  SKIP.forEach(t => addEventListener(t, finish, { capture: true, passive: true }));
+  function finish() {
+    if (finished) return;
+    finished = true;
+    clearTimeout(timer);
+    SKIP.forEach(t => removeEventListener(t, finish, { capture: true }));
     ov.classList.add('is-done');
     document.documentElement.classList.remove('intro-lock');
+    document.dispatchEvent(new Event('ae:intro-done'));
     setTimeout(() => ov.remove(), 480);
-  }, DUR);
+  }
 
   /* hyperspace starfield warp for the Star Wars intro. Single acceleration into lightspeed;
      the caller fades the canvas to black (CSS) and then calls the returned stop() fn. */

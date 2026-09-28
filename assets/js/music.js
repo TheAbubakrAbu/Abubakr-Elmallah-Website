@@ -18,9 +18,7 @@
   var page = window.MUSIC_PAGE;
   if (!root || !page || !page.years) return;
 
-  var esc = function (s) {
-    return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
-  };
+  var esc = window.AEesc;
 
   /* Years arrive keyed by year. Sort numerically, newest first: the most
      recent list is the one worth opening on, and the older ones are the

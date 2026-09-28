@@ -137,7 +137,25 @@ window.FAN_PAGE = {
           { n: 'Ironheart', y: '2025' },
           { n: 'Wonder Man', y: '2026' },
         ] },
+      { title: 'The Games', sub: '2006 – 2024', unit: 'game',
+        desc: 'LEGO Marvel Super Heroes is the one I finished; the three LEGO ones are tiles below.',
+        rows: [
+          { n: 'Marvel: Ultimate Alliance', y: '2006' },
+          { n: 'Marvel: Ultimate Alliance 2', y: '2009' },
+          { n: 'LEGO Marvel Super Heroes', y: '2013', big: true },
+          { n: 'LEGO Marvel’s Avengers', y: '2016' },
+          { n: 'LEGO Marvel Super Heroes 2', y: '2017' },
+          { n: 'Marvel Ultimate Alliance 3: The Black Order', y: '2019' },
+          { n: 'Marvel’s Avengers', y: '2020' },
+          { n: 'Marvel’s Guardians of the Galaxy', y: '2021' },
+          { n: 'Marvel’s Midnight Suns', y: '2022' },
+          { n: 'Marvel Rivals', y: '2024' },
+        ] },
     ] },
+
+  /* The LEGO games of this franchise, as the same tiles the LEGO page shows
+     (LEGO_FOR, from lego-games.js): nothing about them is written here. */
+  window.LEGO_FOR && window.LEGO_FOR('mcu'),
 
 
   { id: 'assemble', kind: 'rank', title: 'The Avengers Films', note: 'the team-ups, including the one that never happened',
@@ -296,6 +314,9 @@ window.FAN_PAGE = {
 
   /* The Spider-Man list is defined once in spider-man-music.js and rendered
      here as well as on the Spider-Man page. */
+  /* Marvel in Fortnite, the same frames as on the Fortnite page */
+  { id: 'fortnite', set: 'fortnite-marvel' },
+
   { id: 'spider-music', kind: 'tiles', compact: true, title: 'Spider-Man', note: 'shared with the Spider-Man page',
     lede: 'One collection, shown in both places: the Raimi films, Amazing, MCU Spider-Man and the Spider-Verse.',
     groupable: { key: 'series', label: 'Group', on: 'By film', open: 'on' },
@@ -308,7 +329,7 @@ window.FAN_PAGE = {
   /* the music: the MCU tracks on my playlist, named as the albums name them
      and linked to the album's own upload (MarvelMusicVEVO, the composers'
      Topic channels) wherever there is one; the one that is a fan cut says so */
-  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes & Songs', note: 'thirty-four tracks · from my playlist',
+  { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes & Songs', note: 'thirty-five tracks · from my playlist',
     lede: 'The MCU music I actually have on: score themes, the Guardians’ needle-drops, and the songs that carry a film through its credits. Spider-Man has its own shared collection above.',
     items: [
       { title: 'Marvel Studios Fanfare', accent: '#e0483a', sub: 'Marvel Studios · 2016 · 1:41',
@@ -326,6 +347,9 @@ window.FAN_PAGE = {
       { title: 'Portals', accent: '#e0483a', sub: 'Avengers: Endgame · 2019 · 3:18',
         desc: 'Alan Silvestri. On your left. Every portal opening at once, and the cue the whole eleven years were building to.',
         href: 'https://www.youtube.com/watch?v=gTyE3geyRmk', link: 'Listen' },
+      { title: 'The Real Hero', accent: '#d8a13a', sub: 'Avengers: Endgame · 2019 · 5:54',
+        desc: 'Alan Silvestri. The cue under Tony Stark’s funeral at the lake house, with everybody from eleven years of these films standing on one lawn.',
+        href: 'https://www.youtube.com/watch?v=QMe8e5GcY0c', link: 'Listen' },
       { title: 'All The Stars', accent: '#8f5fd0', sub: 'Kendrick Lamar & SZA · Black Panther · 2018', desc: 'The song over the first film’s credits: Kendrick and SZA over the lights of Oakland.',
         href: 'https://www.youtube.com/watch?v=JQbjS0_ZfJ0', link: 'Listen' },
       { title: 'Pray for Me', accent: '#8f5fd0', sub: 'The Weeknd & Kendrick Lamar · Black Panther · 2018', desc: 'The other huge Black Panther song, built around T’Challa’s burden.',

@@ -1,0 +1,56 @@
+---
+permalink: /404.html
+sitemap: false
+title: "Not found · Abubakr Elmallah"
+description: "There is no page at this address on abubakrelmallah.com. The pages that are here."
+tab: ""
+---
+{%- comment -%}
+  GitHub Pages serves /404.html, with a 404 status, for any address that does
+  not exist. Nothing links to it, and the service worker leaves it out of its
+  page lists (a missing address is not one you can navigate to twice). Built
+  like every other page, with no .reveal on it, so it reads whatever else
+  fails to load.
+{%- endcomment -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+<meta name="robots" content="noindex" />
+</head>
+<body data-intro="none">
+{% include fx.html %}
+
+{% include cursor.html %}
+
+{% include rail.html %}
+
+{% include topbar.html %}
+
+<main>
+  <section class="page-hero">
+    {% include crumbs.html here="Not found" %}
+    <p class="kicker"><span>(404)</span><span>Not found</span></p>
+    <h1 class="page-title"><em>Nothing here</em></h1>
+    <p class="lede">There’s no page at this address: it moved, or it never existed. Everything I’ve made is on one of these.</p>
+    <div class="embed-actions">
+      <a class="cta" href="/" data-magnetic><span>Home</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="cta" href="/work/" data-magnetic><span>Work</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="cta" href="/projects/" data-magnetic><span>Projects</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="cta" href="/education/" data-magnetic><span>Education</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="cta" href="/worlds/" data-magnetic><span>Worlds</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+</main>
+
+{% include footer.html back="/" %}
+
+<!-- mobile bottom tab bar -->
+{% include tabbar.html %}
+
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
+{% include site-scripts.html %}
+<script src="{% include v.html f='/assets/js/intro.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

@@ -61,7 +61,17 @@ window.FAN_PAGE = {
           { n: 'Seasons 2 to 5', y: '2004' },
           { n: 'Trouble in Tokyo', y: '2006' },
         ] },
+      { title: 'The Games', sub: '2016', unit: 'game',
+        desc: 'Two, both from the same year: a phone game about collecting the figures, and the team pack that put them in LEGO Dimensions.',
+        rows: [
+          { n: 'Teeny Titans', y: '2016' },
+          { n: 'LEGO Dimensions: Teen Titans Go! Team Pack', y: '2016' },
+        ] },
     ] },
+
+  /* The LEGO games of this franchise, as the same tiles the LEGO page shows
+     (LEGO_FOR, from lego-games.js): nothing about them is written here. */
+  window.LEGO_FOR && window.LEGO_FOR('ttg'),
 
   { id: 'movie', kind: 'cards', title: 'To The Movies', note: '2018 · the one that is actually good',
     lede: 'A film about a superhero who cannot get a film made, released into a summer of superhero films, by the people making the joke. It is the sharpest thing the franchise has done and it is far better than a spin-off of a spin-off had any business being.',

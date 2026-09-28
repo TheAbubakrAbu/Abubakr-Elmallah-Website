@@ -4,6 +4,20 @@
 plugins:
   - jekyll-redirect-from
 
+# The site's public address. Without this line the host filled site.url in
+# with http://, and every redirect stub (the 65 old /franchises/ and
+# /src/*.html addresses) pointed its canonical link and its meta refresh at
+# the insecure address. `jekyll serve` overrides it locally.
+url: "https://abubakrelmallah.com"
+
+# The built site goes to a folder iCloud Drive does not sync: it skips any
+# folder whose name ends in .nosync. The build is a byte-for-byte copy of
+# assets/ (half a gigabyte), and with the plain _site name every rebuild was
+# re-uploaded to iCloud. Jekyll never reads its own destination as source and
+# the watcher ignores it, so ./run works unchanged; the deploy workflow passes
+# its own --destination.
+destination: _site.nosync
+
 # Repo housekeeping is not site content: without this list the deploy shipped
 # README.md, LICENSE, the run script and tools/photos.py verbatim. Jekyll 3
 # replaces its default exclude list the moment this key exists, so the
@@ -12,7 +26,15 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  # The gems moved here (see .bundle/config) for the same iCloud reason as the
+  # destination above: 2,900 tiny files it synced one by one.
+  - vendor.nosync
   - node_modules
+  # A scratch page from the font experiment that was reverted. Kept for
+  # reference, but it must not build: it shipped at /font-preview/, the
+  # service worker saved it on every first visit, and its text still claimed
+  # the other font was live.
+  - font-preview.html
   - README.md
   - LICENSE
   - run

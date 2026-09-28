@@ -50,19 +50,27 @@ window.FAN_PAGE = {
         rows: [
           { n: 'The Rings of Power', y: '2022' },
         ] },
-      { title: 'The Games', sub: '2002 – 2017', unit: 'game',
+      { title: 'The Games', sub: '2002 – 2025', unit: 'game',
         desc: 'The two Battle for Middle-earth strategy games and the two Mordor ones are the good ones. The LEGO one is the one I have actually finished, to a hundred percent on 30 August 2026: a solid eight, unique in a lot of ways, with story levels that are bad and repetitive.',
         rows: [
           { n: 'The Two Towers', y: '2002' },
           { n: 'The Return of the King', y: '2003' },
           { n: 'The Battle for Middle-earth', y: '2004' },
+          { n: 'The Third Age', y: '2004' },
           { n: 'The Battle for Middle-earth II', y: '2006' },
+          { n: 'The Lord of the Rings Online', y: '2007' },
           { n: 'LEGO The Lord of the Rings', y: '2012', big: true },
           { n: 'LEGO The Hobbit', y: '2014' },
           { n: 'Shadow of Mordor', y: '2014' },
+          { n: 'LEGO Dimensions', y: '2015' },
           { n: 'Shadow of War', y: '2017' },
+          { n: 'Tales of the Shire', y: '2025' },
         ] },
     ] },
+
+  /* The LEGO games of this franchise, as the same tiles the LEGO page shows
+     (LEGO_FOR, from lego-games.js): nothing about them is written here. */
+  window.LEGO_FOR && window.LEGO_FOR('lotr'),
 
 
   { id: 'tolkien', kind: 'cards', title: 'He Built The Languages First', note: 'the thing that makes it different',

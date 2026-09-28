@@ -47,6 +47,15 @@ window.FAN_PAGE = {
           { n: 'Across the 2nd Dimension', y: '2011', big: true },
           { n: 'Candace Against the Universe', y: '2020' },
         ] },
+      { title: 'The Games', sub: '2009 – 2013', unit: 'game',
+        desc: 'Where’s My Perry? is the odd one: a Where’s My Water? spin-off with an agent at the bottom of every level.',
+        rows: [
+          { n: 'Phineas and Ferb', y: '2009' },
+          { n: 'Phineas and Ferb: Ride Again', y: '2010' },
+          { n: 'Phineas and Ferb: Across the 2nd Dimension', y: '2011' },
+          { n: 'Where’s My Perry?', y: '2012' },
+          { n: 'Phineas and Ferb: Quest for Cool Stuff', y: '2013' },
+        ] },
     ] },
 
   { id: 'themes', kind: 'tiles', compact: true, title: 'The Songs', note: 'four tracks · out of more than two hundred',

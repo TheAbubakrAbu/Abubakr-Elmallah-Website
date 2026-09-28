@@ -74,6 +74,11 @@
              you visited. Rare, and it should stay rare, or the list stops
              being read off the photographs at all.
      note    why that one mattered
+     told    somebody else's account of the trip, in their own words: `label`
+             for the line that opens it, `lang` for the language it is in
+             (Arabic sets it right to left), `text` one string per paragraph
+             with its line breaks kept. It opens under the note, because it is
+             theirs rather than mine and the page should say so.
      cover   the one photo the trip's bar shows until it is touched
      shots   every photo from that trip, in date order; touching the cover
              unfolds them as justified rows. Both are paths under
@@ -312,7 +317,20 @@ window.TRAVELS = {
     { when: '2007 Nov', y: '2007', m: 'Nov', grade: 'baby', places: 'Honolulu, Hawaii', lived: true,
       countries: 'United States', where: ['Hawaii'], regions: ['Pacific', 'Polynesia'],
       flags: '\u{1F33A}\u{1F1FA}\u{1F1F8}', c1: '#5fc8b0', c2: '#04201b', look: 'volcano',
-      note: 'A year in Honolulu from about eighteen months old, so the same island I went back to as a tourist in 2026 is one I had already lived on and could not remember a second of. Nothing survives of it in the galleries, which is why this one has no photographs.' },
+      note: 'A year in Honolulu from about eighteen months old, so the same island I went back to as a tourist in 2026 is one I had already lived on and could not remember a second of. Nothing survives of it in the galleries, which is why this one has no photographs.',
+      /* The memory this trip does not have, from the one person who has it:
+         my mom's own message about that year, in her words and her Arabic,
+         exactly as she wrote it (the English words in it are hers too). It
+         opens under the note; see `told` in travels.js. */
+      told: { label: 'What my mom remembers', lang: 'ar',
+        text: [
+          "أنزلكم الميه في العوامات وعامللكم رز وخضار ولحمة تاكلوا وتشربوا وخضار طماطم وخيار وتطلعوا اغير لكم هدومكم تلبسو لبس التنس وتأخذوا المضارب تلعبوا كله كان في ال stroller بتاعتكم وبعدين تروحوا أحميكم وتلبسوا البيجامات وتناموا . طول اليوم في الشارع بحر وتنس . والأيام التانية zoo او ال museum\nWas fun الحمد لله",
+          "ابوبكر قبل ما نيجي لوس انجلوس قعدنا في فندق\nHilton Waikiki\nالمشي هناك جميل فيه محلات وفيه محل ايس كريم جميل كنا كلنا بناكل من عنده . هي منطقة Waikiki\nاحلى منطقة في هاواي البحر امان وجميل والتمشية حلوه مع المحلات مع الآيس كريم\nوفيه المول جميل فيه كل المحلات وقريب منه وول مارت وتارجت",
+          "وكنا سكنين في بيت ابيض دورين في منطقة ال ا  موانا هو البيت الأبيض الوحيد الدورين كنا ماجرين الدور الفوق وتحت عيلة تانية .  وهي مستشفى واحدة كنتوا بتروحوا تشك اب وانا تشك اب وحمل تسنيم ومدرسة مصطفى كانت هناك نسيت اسمها كله مشي كنت بروح المستشفى مشي شارع واحد من بيتنا بس ماشية طويلة شويه . كانت ايام جميلة",
+          "انجوي . ذكرياتك هناك\nاحنا روحنا هاواي كنت سنه ونص ومصطفى تلت سنين ونص\nكانت ايام حلوة أنا وانت ومصطفى كل يوم في مكان والويك اند مع بابا",
+          "روحت ال zoo صغيرة تتلف بسرعة",
+          "انجوي حبيبي",
+        ] } },
     /* ── the drives, read off the GPS the same way everything else here is ──
        These were not on the page until the year galleries were searched for
        everywhere outside California the camera has been. Each one below is a

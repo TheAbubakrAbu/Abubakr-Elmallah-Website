@@ -22,7 +22,10 @@
    file mentioning them. Add a tag here and the section appears; add nothing
    and the page renders exactly as it did before.
 
-     fandom.<tag>  the "I Have Actually Been" gallery, spliced in above Links
+     fandom.<tag>  the chosen photographs at the top of the page's one
+                   "I Have Actually Been" section, above the music; the rest
+                   of the places follow in the same section, out of
+                   fan-been.js (see myPhotoSection in fanpage.js)
      parks.<id>    one photo for one park card, pulled in by `photo:` in
                    fan-disney.js / fan-universal.js under the "I went here"
                    stamp

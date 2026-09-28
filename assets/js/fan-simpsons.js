@@ -61,12 +61,18 @@ window.FAN_PAGE = {
         desc: 'Hit & Run is the one people still ask to be remade, and they are right to.',
         rows: [
           { n: 'The Simpsons Arcade Game', y: '1991' },
+          { n: 'Bart vs. the Space Mutants', y: '1991' },
           { n: 'Road Rage', y: '2001' },
           { n: 'Hit & Run', y: '2003', big: true },
           { n: 'The Simpsons Game', y: '2007' },
           { n: 'Tapped Out', y: '2012' },
+          { n: 'LEGO Dimensions', y: '2015' },
         ] },
     ] },
+
+  /* The LEGO games of this franchise, as the same tiles the LEGO page shows
+     (LEGO_FOR, from lego-games.js): nothing about them is written here. */
+  window.LEGO_FOR && window.LEGO_FOR('simpsons'),
 
 
   { id: 'episodes', kind: 'rank', title: 'The Golden Age', note: 'seasons 3 – 9, roughly · with the night each one aired',
@@ -147,8 +153,8 @@ window.FAN_PAGE = {
         href: 'https://www.youtube.com/watch?v=PVKMXWN0fUY', link: 'Listen' },
       { title: 'Flaming Moe', accent: '#e87b43', sub: '“Flaming Moe’s” · Season 3 · 1991',
         href: 'https://www.youtube.com/watch?v=vaHkNwluNPA', link: 'Listen' },
-      { title: 'The Garbage Man', accent: '#76a889', sub: 'Homer Simpson & U2 · “Trash of the Titans” · Season 9 · 1998',
-        href: 'https://www.youtube.com/watch?v=m5Kx1fbUTeY', link: 'Watch' },
+      /* no link: the upload this pointed at is gone from YouTube */
+      { title: 'The Garbage Man', accent: '#76a889', sub: 'Homer Simpson & U2 · “Trash of the Titans” · Season 9 · 1998' },
     ] },
 
   { id: 'links', kind: 'links', title: 'Links', note: 'where I actually read about it',

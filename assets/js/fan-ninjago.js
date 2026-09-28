@@ -65,12 +65,13 @@ window.FAN_PAGE = {
           { n: 'The LEGO Ninjago Movie', y: '2017' },
         ] },
       { title: 'The Games', sub: '2011 – 2017', unit: 'game',
-        desc: 'Four of them, and the movie tie-in is the only one anybody finished.',
+        desc: 'Five, counting the Ninjago levels in LEGO Dimensions. The movie tie-in is the one I took to a hundred percent, and every frame of that is further down this page.',
         rows: [
           { n: 'LEGO Battles: Ninjago', y: '2011' },
           { n: 'LEGO Ninjago: Nindroids', y: '2014' },
           { n: 'LEGO Ninjago: Shadow of Ronin', y: '2015' },
-          { n: 'The LEGO Ninjago Movie Video Game', y: '2017' },
+          { n: 'LEGO Dimensions', y: '2015' },
+          { n: 'The LEGO Ninjago Movie Video Game', y: '2017', big: true },
         ] },
     ] },
 
@@ -134,6 +135,15 @@ window.FAN_PAGE = {
       { title: 'Only one can be the Green Ninja.', sub: 'Master Wu' },
       { title: 'Never trust a snake.', sub: 'Ninjago, learning the hard way' },
     ] },
+
+  /* The LEGO games of this franchise, as the same tiles the LEGO page shows
+     (LEGO_FOR, from lego-games.js): nothing about them is written here. */
+  window.LEGO_FOR && window.LEGO_FOR('ninjago'),
+
+  /* The movie game at a hundred percent, every frame of it: the LEGO page
+     shows the same run as one catalogue tile with six of these on it, and
+     this page lays out all thirty-six. Captioned once, in fan-shots.js. */
+  { id: 'game', set: 'ninjago-movie' },
 
 
   /* the music: the Overture, then every opening from the pilot to season

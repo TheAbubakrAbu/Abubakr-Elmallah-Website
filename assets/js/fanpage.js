@@ -47,7 +47,7 @@
   if (!root || !page) return;
 
   // used inside attributes too (alt, data-label, href), so quotes must go as well
-  var esc = function (s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;'); };
+  var esc = window.AEesc;
   var a = function (it) { return it.accent ? ' style="--a:' + it.accent + '"' : ''; };
 
   /* Where a real photograph of mine lives. Every photo these pages show is one
@@ -200,6 +200,32 @@
       + '</span>';
   };
 
+  /* `unavailable`: a title that cannot be bought on Steam today, because it
+     was never released there or has been taken off sale. `true` prints
+     "Not on Steam"; a string prints itself. The tile is marked and dimmed,
+     and the tally leaves it out of the total, so "out of" only ever counts
+     games that can actually be played on the same shelf as the rest. */
+  var na = function (it) {
+    if (!it.unavailable) return '';
+    return '<span class="fan-na"><i aria-hidden="true">\u2298</i>'
+      + esc(it.unavailable === true ? 'Not on Steam' : it.unavailable) + '</span>';
+  };
+
+  /* `hundred`: what taking a game to 100% involves, `needs` (the collectables
+     and the characters) and `reward` (what it hands you at the end, stud
+     fountain or not). Printed inside the description rather than as a part
+     of its own: tiles share their grid's rows (see .fan-tiles in
+     fanpages.css), and a sixth part would have to be carried as an empty
+     slot by every tile on the site that does not have one. */
+  var hundred = function (it) {
+    var h = it.hundred;
+    if (!h || !(h.needs || h.reward)) return '';
+    return '<span class="fan-100">'
+      + (h.needs ? '<span class="fan-100-l"><span class="fan-100-k">To 100%</span>' + esc(h.needs) + '</span>' : '')
+      + (h.reward ? '<span class="fan-100-l"><span class="fan-100-k">The reward</span>' + esc(h.reward) + '</span>' : '')
+      + '</span>';
+  };
+
   /* `rating`: mine, out of ten, on an item. The bar behind the figure is the
      score itself, so a column of these reads as a ranking at a glance without
      having to compare the numbers one by one. */
@@ -318,8 +344,10 @@
      render time rather than written down, so it cannot drift from the list. */
   var tally = function (s) {
     if (!s.tally || !s.items) return '';
-    var fin = s.items.filter(function (it) { return it.done; });
-    var pill = '<span class="fan-tally"><b>' + fin.length + '</b><em>/</em><b>' + s.items.length + '</b>'
+    /* out of the ones that can still be had: see `unavailable` */
+    var live = s.items.filter(function (it) { return !it.unavailable; });
+    var fin = live.filter(function (it) { return it.done; });
+    var pill = '<span class="fan-tally"><b>' + fin.length + '</b><em>/</em><b>' + live.length + '</b>'
       + '<i>' + esc(s.tally === true ? 'completed' : s.tally) + '</i></span>';
 
     /* Second pill: my total against the projected total, over the finished ones
@@ -518,9 +546,14 @@
            <shot's folder>/banner.jpg, so the data file names each game's
            folder once instead of five times. */
         var base = it.shot ? it.shot.replace(/[^/]*$/, '') : '';
-        var imgs = (it.shot ? [it.shot] : []).concat((it.shots || []).map(function (s) {
-          return s.indexOf('/') === -1 ? base + s + '.jpg' : s;
-        }));
+        var full = function (s) { return s.indexOf('/') === -1 ? base + s + '.jpg' : s; };
+        var imgs = (it.shot ? [it.shot] : []).concat((it.shots || []).map(full));
+        /* `more`: frames that open in the lightbox with the rest but are not
+           laid out on the tile. A game with a whole night of captures behind
+           it (the Ninjago Movie game has thirty-six) still shows the same
+           handful every other finished game shows, and a click on the tile
+           opens every one of them. Same shorthand as `shots`. */
+        var extra = (it.more || []).map(full);
         /* the whole set renders as links (list view lays them out as a grid;
            grid view hides them), and gallery.js opens any click on the tile
            into the lightbox. Alts for the extras are derived from the file
@@ -538,11 +571,13 @@
                 + esc((n === 0 ? (it.shotAlt || it.title) : it.title + ': ' + name)
                       + (w ? ', taken ' + w : ''))
                 + '" loading="lazy" decoding="async" /></a>';
-            }).join('') + '</span>';
-        return '<div class="fan-tile reveal' + (it.done ? ' is-done' : '') + '"'
+            }).join('')
+          + (extra.length ? '<span class="fan-tilemore">+' + extra.length + ' more in the viewer</span>' : '')
+          + '</span>';
+        return '<div class="fan-tile reveal' + (it.done ? ' is-done' : '') + (it.unavailable ? ' is-na' : '') + '"'
           + (keys.length ? ' data-i="' + i + '"' : '')
           + (gkey && it[gkey] ? ' data-group="' + esc(it[gkey]) + '"' : '')
-          + (imgs.length ? ' data-images="' + esc(imgs.join(',')) + '" data-label="' + esc(it.title) + '"' : '')
+          + (imgs.length ? ' data-images="' + esc(imgs.concat(extra).join(',')) + '" data-label="' + esc(it.title) + '"' : '')
           + keys.map(function (k) {
               return it[k] == null || it[k] === '' ? ''
                 : ' data-sort-' + k + '="' + esc(it[k]) + '"';
@@ -550,8 +585,8 @@
           + '<span class="fan-swatch" aria-hidden="true"></span>'
           + '<span class="fan-tiletext"><b>' + esc(it.title) + '</b>'
           + (it.sub ? '<i>' + esc(it.sub) + '</i>' : SLOT)
-          + (it.desc ? '<em>' + esc(it.desc) + '</em>' : SLOT)
-          + '<span class="fan-chips">' + rate(it) + done(it) + fin(it) + proj(it) + '</span>'
+          + (it.desc || it.hundred ? '<em>' + esc(it.desc || '') + hundred(it) + '</em>' : SLOT)
+          + '<span class="fan-chips">' + rate(it) + done(it) + fin(it) + proj(it) + na(it) + '</span>'
           + (out(it) || SLOT) + '</span>'
           + strip
           + '</div>';
@@ -663,6 +698,45 @@
       }).join('') + '</div>';
     },
 
+    /* ── kind: irl ── my own photographs (see myPhotoSection): the chosen
+       ones as a gallery, then every other frame of the place as a grid of
+       names and places. The grid's pictures wait for the photo switch (see
+       .fan-beenset in fanpages.css); its names never do. A fan-been.js
+       title that only restates the heading ("Places I have actually stood
+       in") is not printed again; one that says something ("Isla Nublar,
+       twice") heads the grid. */
+    irl: function (s) {
+      var html = s.items.length ? KINDS.gallery(s) : '';
+      var b = s.been;
+      if (!b) return html;
+      var head = b.title && !/actually (stood|been)/i.test(b.title) ? b.title : '';
+      return html + '<div class="fan-beenset reveal">'
+        + (head ? '<h4 class="been-t">' + esc(head) + '</h4>' : '')
+        + (b.note ? '<p class="fan-lede">' + esc(b.note) + '</p>' : '')
+        + '<div class="been-grid">'
+        + b.rows.map(function (r) {
+            return '<figure class="been" style="--ar:' + (r.dim[2] / r.dim[3] || 1) + '">'
+              + '<a href="/assets/img/years-large/' + esc(r.file) + '" target="_blank" rel="noopener">'
+              /* plain src + native lazy: fan pages do not load lazy.js, which
+                 is what /travels/ uses, so there is no AElazy to hand this to */
+              + '<img src="/assets/img/years/' + esc(r.file) + '"'
+              +   ' width="' + r.dim[2] + '" height="' + r.dim[3] + '"'
+              +   ' alt="' + esc(r.name) + '" loading="lazy" decoding="async" /></a>'
+              + '<figcaption><b>' + esc(r.name) + '</b>'
+              + (r.where ? '<i>' + esc(r.where) + '</i>' : '') + '</figcaption>'
+              + '</figure>';
+          }).join('')
+        + '</div>'
+        /* Shown only with the switch off (see pics.css). Says what is being
+           withheld and where to turn it on, rather than leaving the list
+           looking like all there ever was. */
+        + '<p class="fan-lede been-hint">' + b.rows.length
+        +   (b.rows.length === 1 ? ' photograph of these is' : ' photographs of these are')
+        +   ' in here. Personal photos are off by default;'
+        +   ' the switch is at the foot of <a href="/worlds/">Worlds</a>.</p>'
+        + '</div>';
+    },
+
     /* ── kind: links ── the "elsewhere" block at the foot of every fan page.
        The host line is derived from the href, so the data file never repeats
        the domain and it can never drift out of sync with the link. */
@@ -720,6 +794,7 @@
 
   function markup(s) {
     if (!Array.isArray(s.items)) s.items = [];   // a section with no items renders empty, not a blank page
+    s.items = s.items.filter(Boolean);            // a shared entry that did not load (window.LEGO_GAME) leaves no hole
     var build = KINDS[s.kind] || KINDS.cards;
     var head = '<h3 class="subsec subsec--fan reveal">' + esc(s.title)
       + (s.note ? '<span class="subsec-yr">' + esc(s.note) + '</span>' : '')
@@ -738,20 +813,57 @@
 
   /* ── my own photographs, pulled in rather than written down ──
 
-     Every fan page that has real photographs behind it gets a section of them
-     without its data file saying anything: photos-data.js keys them by the same
-     tag the page already carries on <body data-fan="...">, and this looks that
-     tag up. One list, one place to edit, and a page with no photographs simply
-     renders nothing extra.
+     Every fan page that has real photographs behind it gets ONE section of
+     them without its data file saying anything, from two lists keyed by the
+     same tag the page carries on <body data-fan="...">:
+
+       photos-data.js  the chosen few, each with a line about it; published
+                       like any other picture on the page, always shown
+       fan-been.js     every other frame of the place, as a grid of names and
+                       places; the pictures only with "show other pictures"
+                       on, the names always
+
+     They used to be two sections, "I Have Actually Been" above the music and
+     "Places I have actually stood in" at the foot, which on thirteen pages
+     meant the same subject twice, sometimes with the same photograph in both.
+     Now they are one (2026-09-28): the chosen photographs first, then the rest
+     of the places under the same heading, and a frame already chosen is not
+     listed again. A page with neither renders nothing extra.
 
      Where it is spliced in: see photoSlot(). */
-  function myPhotoSection(list) {
+  function beenRows(tag, skip) {
+    var BEEN = window.FAN_BEEN;
+    var set = tag && BEEN && BEEN.pages && BEEN.pages[tag];
+    if (!set || !set.use || !set.use.length) return null;
+    /* `use` is a list of KEYS into BEEN.shots, because a photograph that
+       belongs to two franchises is written once and referenced twice (see
+       the header of fan-been.js). A key with no row behind it is dropped the
+       same way a missing file is, rather than drawing an empty frame. And
+       like /travels/, it only POINTS at the year galleries, so every path is
+       checked against years-data.js first: a photo pulled out of a year drops
+       out of here rather than leaving a broken frame. */
+    var YP = {};
+    if (window.YEARS && window.YEARS.photos) {
+      Object.keys(window.YEARS.photos).forEach(function (g) {
+        window.YEARS.photos[g].forEach(function (r) {
+          YP[String(r[0]).indexOf('/') >= 0 ? r[0] : g + '/' + r[0]] = r;
+        });
+      });
+    }
+    var rows = set.use.map(function (k) { return BEEN.shots[k]; }).filter(function (sh) {
+      return sh && Object.prototype.hasOwnProperty.call(YP, sh[0]) && !skip[sh[0]];
+    }).map(function (sh) { return { file: sh[0], name: sh[1], where: sh[2], dim: YP[sh[0]] }; });
+    return rows.length ? { title: set.title, note: set.note, rows: rows } : null;
+  }
+
+  function myPhotoSection(list, been) {
+    var n = list.length + (been ? been.rows.length : 0);
     return {
-      kind: 'gallery',
+      kind: 'irl',
       grid: true,
       id: 'irl',
       title: 'I Have Actually Been',
-      note: list.length + (list.length === 1 ? ' photo of mine' : ' photos of mine'),
+      note: n + (n === 1 ? ' photo of mine' : ' photos of mine'),
       lede: 'Not press shots: my own camera roll, out of the year galleries.',
       items: list.map(function (p) {
         return {
@@ -763,6 +875,7 @@
           accent: p.accent,
         };
       }),
+      been: been,
     };
   }
 
@@ -803,7 +916,10 @@
   // sections marked mount:'end' go after whatever the page hand-writes between
   // the two mounts; with no #fanBodyEnd they simply stay in #fanBody, in order
   var tail = document.getElementById('fanBodyEnd');
-  var all = (page.sections || []).map(resolveShots);
+  /* filter(Boolean): a section a page only has when another file is loaded
+     (window.LEGO_FOR, window.LEGO_GAMES) is written `window.X && ...`, and
+     leaves a gap rather than an error when that file is missing */
+  var all = (page.sections || []).filter(Boolean).map(resolveShots);
 
   /* ── where the photographs go ──
 
@@ -844,7 +960,10 @@
     return list.length;
   }
 
-  if (mine && mine.length) all.splice(photoSlot(all), 0, myPhotoSection(mine));
+  var chosen = {};
+  (mine || []).forEach(function (p) { chosen[p.src] = 1; });
+  var been = beenRows(tag, chosen);
+  if ((mine && mine.length) || been) all.splice(photoSlot(all), 0, myPhotoSection(mine || [], been));
 
   var main = tail ? all.filter(function (s) { return s.mount !== 'end'; }) : all;
 
@@ -1132,75 +1251,6 @@
     saber.setAttribute('aria-pressed', lit ? 'true' : 'false');
   });
 
-  /* ── the real places ──
-     fan-been.js keyed by this page's own data-fan, drawn at the foot of the
-     page. Like /travels/, it only POINTS at the year galleries, so every path
-     is checked against years-data.js first: a photo pulled out of a year drops
-     out of here rather than leaving a broken frame, and a page left with none
-     renders nothing at all instead of an empty heading.
-
-     Deliberately last on the page. Everything above it is what I think about a
-     thing; this is the one part that is evidence. */
-  (function been() {
-    var BEEN = window.FAN_BEEN;
-    var key = document.body.getAttribute('data-fan');
-    var set = key && BEEN && BEEN.pages && BEEN.pages[key];
-    if (!set || !set.use || !set.use.length) return;
-
-    /* `use` is a list of KEYS into BEEN.shots, because a photograph that
-       belongs to two franchises is written once and referenced twice; see the
-       header of fan-been.js for why. A key with no row behind it is dropped
-       the same way a missing file is, rather than drawing an empty frame. */
-    var rows = set.use.map(function (k) { return BEEN.shots[k]; }).filter(Boolean);
-    if (!rows.length) return;
-    set = { title: set.title, note: set.note, shots: rows };
-
-    var YP = {};
-    if (window.YEARS && window.YEARS.photos) {
-      Object.keys(window.YEARS.photos).forEach(function (g) {
-        window.YEARS.photos[g].forEach(function (r) {
-          YP[String(r[0]).indexOf('/') >= 0 ? r[0] : g + '/' + r[0]] = r;
-        });
-      });
-    }
-    var live = set.shots.filter(function (sh) {
-      return Object.prototype.hasOwnProperty.call(YP, sh[0]);
-    });
-    if (!live.length) return;
-
-    var html = '<section class="fan-sec fan-been reveal">'
-      + '<h2 class="fan-h2"><span>' + esc(set.title || 'Places I have been') + '</span></h2>'
-      + (set.note ? '<p class="fan-lede">' + esc(set.note) + '</p>' : '')
-      + '<div class="been-grid">'
-      + live.map(function (sh) {
-          var r = YP[sh[0]];
-          return '<figure class="been" style="--ar:' + (r[2] / r[3] || 1) + '">'
-            + '<a href="/assets/img/years-large/' + esc(sh[0]) + '" target="_blank" rel="noopener">'
-            /* plain src + native lazy: fan pages do not load lazy.js, which
-               is what /travels/ uses, so there is no AElazy to hand this to */
-            + '<img src="/assets/img/years/' + esc(sh[0]) + '"'
-            +   ' width="' + r[2] + '" height="' + r[3] + '"'
-            +   ' alt="' + esc(sh[1]) + '" loading="lazy" decoding="async" /></a>'
-            + '<figcaption><b>' + esc(sh[1]) + '</b>'
-            + (sh[2] ? '<i>' + esc(sh[2]) + '</i>' : '') + '</figcaption>'
-            + '</figure>';
-        }).join('')
-      + '</div>'
-      /* Shown only with the switch off (see pics.css). Says what is being
-         withheld and where to turn it on, rather than leaving the list
-         looking like all there ever was. */
-      + '<p class="fan-lede been-hint">' + live.length
-      +   (live.length === 1 ? ' photograph of these is' : ' photographs of these are')
-      +   ' in here. Personal photos are off by default;'
-      +   ' the switch is at the foot of <a href="/worlds/">Worlds</a>.</p>'
-      + '</section>';
-
-    var host = document.getElementById('fanBeen')
-      || root.appendChild(document.createElement('div'));
-    host.innerHTML = html;
-    if (typeof window.AEreveal === 'function') window.AEreveal(host);
-  })();
-
   /* ── the player ──
      Lifted out to assets/js/ytplay.js when /music/ wanted the same thing, and
      unchanged in the move. This page drives it with the defaults, which are
@@ -1208,12 +1258,18 @@
      so nothing here behaves differently than when the code sat inline.
 
      ytplay.js loads before this file; if it somehow did not, every Play button
-     simply does nothing rather than the page dying on an undefined. */
-  if (window.AEyt) window.AEyt.attach(root);
+     simply does nothing rather than the page dying on an undefined.
+
+     Attached to <main>, not just the rendered body, so a hero can carry a Play
+     button of its own (the Skylanders main theme sits beside the hero links).
+     One root means one player: pressing the hero's track stops whatever is
+     playing further down, and the other way round. */
+  var stageRoot = root.closest('main') || root;
+  if (window.AEyt) window.AEyt.attach(stageRoot);
 
   /* The page is rendered by now, so wantsApi tells us whether anything on it
      can be played. Pages with no track never touch Google. */
-  if (wantsApi && window.AEyt) window.AEyt.arm();
+  if ((wantsApi || stageRoot.querySelector('.fan-hero .fan-hear')) && window.AEyt) window.AEyt.arm();
 
   /* the era rail: grab and drag to scrub it. Touch and trackpads already
      scroll sideways on their own, so this is only wired for mouse/pen. */

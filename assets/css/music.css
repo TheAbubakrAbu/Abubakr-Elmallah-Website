@@ -58,7 +58,7 @@ body[data-fan="music"] { --a: var(--violet); }
 }
 
 .mu-tally b {
-  font-family: var(--serif); font-size: 1.5rem; font-weight: 800;
+  font-family: var(--serif); font-size: 1.5rem; font-weight: 600;
   letter-spacing: -0.03em; color: var(--a);
 }
 
@@ -82,7 +82,7 @@ body[data-fan="music"] { --a: var(--violet); }
 }
 
 .mu-chip b {
-  font-family: var(--serif); font-size: 0.86rem; font-weight: 800;
+  font-family: var(--serif); font-size: 0.86rem; font-weight: 600;
   letter-spacing: -0.01em; color: inherit;
 }
 
@@ -120,7 +120,9 @@ body[data-fan="music"] { --a: var(--violet); }
 /* ═════════════ a year ═════════════ */
 .mu-years { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
 
-.mu-year { margin-bottom: 3.2rem; scroll-margin-top: 4.5rem; }
+/* the jump clearance comes from base.css's scroll-padding-top now; 4.5rem here
+   added to it */
+.mu-year { margin-bottom: 3.2rem; }
 
 /* the filter hides years rather than removing them, so the anchors survive */
 #muRoot[data-era="10s"] .mu-year:not([data-era="10s"]),
@@ -139,7 +141,7 @@ body[data-fan="music"] { --a: var(--violet); }
 
 .mu-y {
   font-family: var(--serif); font-size: clamp(1.6rem, 4vw, 2.2rem);
-  font-weight: 900; letter-spacing: -0.04em; color: var(--a);
+  font-weight: 700; letter-spacing: -0.04em; color: var(--a);
   line-height: 1;
 }
 
@@ -192,7 +194,7 @@ body[data-fan="music"] { --a: var(--violet); }
 .mu-song { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
 
 .mu-title {
-  font-family: var(--serif); font-size: 0.92rem; font-weight: 700;
+  font-family: var(--serif); font-size: 0.92rem; font-weight: 500;
   letter-spacing: -0.01em; color: var(--ink); line-height: 1.35;
 }
 

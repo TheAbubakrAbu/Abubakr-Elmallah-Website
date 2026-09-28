@@ -48,13 +48,20 @@ window.FAN_PAGE = {
     lede: 'Every film is already listed above, one by one. This is the rest of it: the games, which are as much a part of this character as the films are, the animated series, and the comic runs everything is adapted out of.',
     items: [
       { title: 'The Games', sub: '2000 – now', unit: 'game',
-        desc: 'The three marked are Insomniac’s, and all three are at a hundred percent further down this page.',
+        desc: 'Insomniac’s three are at a hundred percent further down this page, and so is LEGO Marvel Super Heroes, the fourth one marked, which has him in it; both LEGO Marvel games are tiles below.',
         rows: [
           { n: 'Spider-Man', y: '2000' },
+          { n: 'Spider-Man: The Movie', y: '2002' },
           { n: 'Spider-Man 2', y: '2004' },
           { n: 'Ultimate Spider-Man', y: '2005' },
+          { n: 'Spider-Man 3', y: '2007' },
+          { n: 'Web of Shadows', y: '2008' },
           { n: 'Shattered Dimensions', y: '2010' },
+          { n: 'Edge of Time', y: '2011' },
           { n: 'The Amazing Spider-Man', y: '2012' },
+          { n: 'LEGO Marvel Super Heroes', y: '2013', big: true },
+          { n: 'The Amazing Spider-Man 2', y: '2014' },
+          { n: 'LEGO Marvel Super Heroes 2', y: '2017' },
           { n: 'Marvel’s Spider-Man', y: '2018', big: true },
           { n: 'Marvel’s Spider-Man: Miles Morales', y: '2020', big: true },
           { n: 'Marvel’s Spider-Man 2', y: '2023', big: true },
@@ -102,6 +109,10 @@ window.FAN_PAGE = {
         meta: 'Venom · Kraven',
         done: true, finished: '2026-07-25' },
     ] },
+
+  /* The LEGO games of this franchise, as the same tiles the LEGO page shows
+     (LEGO_FOR, from lego-games.js): nothing about them is written here. */
+  window.LEGO_FOR && window.LEGO_FOR('spidey'),
 
   { id: 'spiders', kind: 'cards', title: 'The Spiders', note: 'anyone can wear the mask',
     items: [

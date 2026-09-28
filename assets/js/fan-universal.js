@@ -26,7 +26,7 @@ window.FAN_PAGE = {
         been: true, beenWhen: 'July 2026', photo: 'uci-second/2026-07-21-1549.avif',
         photoAlt: 'the Super Nintendo World warp pipe at Universal Studios Japan', photoCap: 'Super Nintendo World' },
       { title: 'Universal Studios Singapore', sub: 'Sentosa · 2010', tag: 'International', desc: 'Inside Resorts World Sentosa: the most compact of them, with Minion Land and a Jurassic Park river ride.',
-        href: 'https://www.rwsentosa.com/en/attractions/universal-studios-singapore', link: 'rwsentosa.com', meta: '7 zones',
+        href: 'https://www.rwsentosa.com/en/play/universal-studios-singapore', link: 'rwsentosa.com', meta: '7 zones',
         been: true, beenWhen: 'Jan 2024', photo: 'hs-senior/2024-01-05-1900.avif',
         photoAlt: 'the globe at Universal Studios Singapore', photoCap: 'The globe, Sentosa' },
       { title: 'Universal Beijing Resort', sub: 'Tongzhou · 2021', tag: 'International', desc: 'The largest Universal park by area, with a Kung Fu Panda land that exists nowhere else.',
