@@ -908,6 +908,8 @@
   text-transform: uppercase; color: color-mix(in srgb, var(--a, var(--gold)) 75%, var(--ink));
   margin-right: 0.4rem;
 }
+/* Grid is the banner and the numbers, so the two lines wait for list view */
+.fan-tiles--switch.is-grid .fan-100 { display: none; }
 
 /* ── not on Steam ──
    A dashed, unfilled pill in the muted ink: the opposite of the green
@@ -996,9 +998,16 @@
 
 .fan-proj .fan-proj-d.is-over { color: #e8a24c; }
 
+/* the same gap as a share of the estimate: its colour, one step quieter */
+.fan-proj .fan-proj-p { font-size: 0.62rem; opacity: .8; }
+
 .fan-tally--time { border-color: var(--line); background: rgba(255,255,255,0.025); }
 
 .fan-tally--time b { color: var(--ink); }
+
+.fan-tally--time b.is-under { color: #7fe0b8; }
+
+.fan-tally--time b.is-over { color: #e8a24c; }
 
 .fan-tile.is-done .fan-swatch { box-shadow: 0 0 12px -1px var(--a, #f5c63c), 0 0 0 3px rgba(95,208,160,0.18); }
 

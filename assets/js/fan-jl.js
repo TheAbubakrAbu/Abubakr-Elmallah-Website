@@ -83,7 +83,7 @@ window.FAN_PAGE = {
           { n: 'Justice League Dark', y: '2017' },
         ] },
       { title: 'The Games', sub: '2006 – 2024', unit: 'game',
-        desc: 'LEGO Batman 2 is the one I finished, and the LEGO ones are tiles below with what a hundred percent takes in each.',
+        desc: 'LEGO Batman 2 is the one I finished, and the LEGO ones are tiles below: switch them to list view for what a hundred percent takes in each.',
         rows: [
           { n: 'Justice League Heroes', y: '2006' },
           { n: 'DC Universe Online', y: '2011' },

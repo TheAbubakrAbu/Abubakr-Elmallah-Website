@@ -186,17 +186,26 @@
 
   /* `proj`: how long a thing is reckoned to take, from an outside source. On an
      item I have actually finished it also prints the gap between that estimate
-     and my own time, which is the entire point of carrying it. */
+     and my own time, which is the entire point of carrying it, in hours and
+     then as a share of the estimate, so a short game and a long one can be
+     read against each other: 6 hours off 90 and 6 off 17 are not the same. */
+  var pct = function (r) {
+    var n = Math.round(r * 100);
+    return (n < 0 ? '−' : n > 0 ? '+' : '') + Math.abs(n) + '%';
+  };
+
   var proj = function (it) {
     if (it.proj == null) return '';
     var p = parseFloat(it.proj), h = parseFloat(it.hours);
     var gap = (it.done && !isNaN(h) && !isNaN(p)) ? h - p : null;
+    var cls = gap <= 0 ? 'is-under' : 'is-over';
     return '<span class="fan-proj">'
       + '<span class="fan-proj-v">~' + esc(it.proj) + ' h</span>'
       + (gap === null
           ? '<span class="fan-proj-l">projected</span>'
-          : '<span class="fan-proj-d ' + (gap <= 0 ? 'is-under' : 'is-over') + '">'
-            + (gap <= 0 ? '−' : '+') + Math.abs(gap).toFixed(1) + ' h</span>')
+          : '<span class="fan-proj-d ' + cls + '">'
+            + (gap <= 0 ? '−' : '+') + Math.abs(gap).toFixed(1) + ' h</span>'
+            + '<span class="fan-proj-d fan-proj-p ' + cls + '">' + pct(gap / p) + '</span>')
       + '</span>';
   };
 
@@ -216,7 +225,8 @@
      fountain or not). Printed inside the description rather than as a part
      of its own: tiles share their grid's rows (see .fan-tiles in
      fanpages.css), and a sixth part would have to be carried as an empty
-     slot by every tile on the site that does not have one. */
+     slot by every tile on the site that does not have one. On a section
+     with the grid/list switch it is list view only (see .fan-100). */
   var hundred = function (it) {
     var h = it.hundred;
     if (!h || !(h.needs || h.reward)) return '';
@@ -352,10 +362,10 @@
 
     /* Second pill: my total against the projected total, over the finished ones
        only, since an unfinished title has no time of mine to weigh against. */
-    var mine = 0, est = 0, n = 0;
+    var mine = 0, est = 0, n = 0, share = 0;
     fin.forEach(function (it) {
       var h = parseFloat(it.hours), p = parseFloat(it.proj);
-      if (!isNaN(h) && !isNaN(p)) { mine += h; est += p; n++; }
+      if (!isNaN(h) && !isNaN(p)) { mine += h; est += p; share += (h - p) / p; n++; }
     });
     /* Third pill: the average of my own ratings across the whole list, so the
        column of scores has a middle to be read against. Over every rated item,
@@ -370,8 +380,14 @@
 
     if (!n) return pill + avg;
     var gap = mine - est;
+    /* And beside it, the per-game percentages from the chips, averaged. Each game
+       counts once, so the one ninety-hour game cannot outvote the fifteen
+       short ones the way it does in the hours total beside it. */
+    share /= n;
     return pill + '<span class="fan-tally fan-tally--time"><b>' + mine.toFixed(1) + ' h</b>'
       + '<i>' + (gap <= 0 ? '−' : '+') + Math.abs(gap).toFixed(0) + ' h vs ' + est.toFixed(0) + ' projected</i></span>'
+      + '<span class="fan-tally fan-tally--time"><b class="' + (share <= 0 ? 'is-under' : 'is-over') + '">' + pct(share) + '</b>'
+      + '<i>vs projected, on average per game</i></span>'
       + avg;
   };
 
