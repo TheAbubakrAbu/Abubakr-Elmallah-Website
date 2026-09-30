@@ -399,6 +399,8 @@ a.footer-mid:hover { color: var(--green-2); }
 }
 /* creeps to 90% and waits there: the last 10% is the new document arriving */
 .navbar-progress.run { opacity: 1; animation: nav-progress 10s cubic-bezier(.06,.76,.2,1) forwards; }
+/* the thinking orb on the bar's leading edge (utils.js) */
+.navbar-orb { position: absolute; right: -10px; top: 5px; width: 20px; height: 20px; }
 @keyframes nav-progress {
   0%   { width: 0; }
   30%  { width: 55%; }
@@ -457,6 +459,8 @@ section { padding: 0 var(--gutter); max-width: var(--maxw); }
   font-family: var(--mono); font-size: 0.7rem; color: var(--mute);
 }
 .footer-mid { color: var(--ink-dim); }
+.foot-sig { display: inline-flex; align-items: center; gap: 0.6rem; }
+.foot-orb { flex: none; width: 20px; height: 20px; }
 .totop { background: none; border: none; color: var(--mute); font-family: var(--mono); font-size: 0.7rem; cursor: none; transition: color .25s; }
 .totop:hover { color: var(--green-2); }
 @media (hover: none) { .totop { cursor: pointer; } }

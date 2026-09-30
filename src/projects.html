@@ -12,6 +12,7 @@ tab: "/projects/"
 <head>
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/backdrops.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/projects.css' %}" />
 </head>
 <body data-intro="none">
 {% include fx.html %}
@@ -45,6 +46,17 @@ tab: "/projects/"
 
   <section class="work">
 
+    <div class="project-sort" data-project-sort hidden>
+      <label for="project-order">Sort projects</label>
+      <select id="project-order">
+        <option value="default">Default · By category</option>
+        <option value="asc">Ascending · Oldest first</option>
+        <option value="desc">Descending · Newest first</option>
+      </select>
+      <span class="project-sort-note" role="status" aria-live="polite" data-sort-status>Grouped by category</span>
+    </div>
+    <div class="project-timeline" data-project-timeline hidden></div>
+    <div data-project-categories>
     {% include glance.html %}
 
     <h2 class="subsec subsec--title reveal" id="uci">UCI Work</h2>
@@ -89,6 +101,8 @@ tab: "/projects/"
     <h2 class="subsec subsec--title reveal" id="high-school">High School Projects</h2>
     <div class="hs-grid" data-projects="hs-datapad,hs-calculator,hs-periodic-table,hs-games,hs-order66,hs-periodic-table-explorer"></div>
 
+    </div>
+
     <div class="hs-extra reveal">
       <a href="/college/" data-magnetic><span aria-hidden="true">↳ </span>See what I’m doing now on the College page<span aria-hidden="true">&nbsp;↗</span></a>
       <a href="/high-school/" data-magnetic><span aria-hidden="true">↳ </span>See flyers &amp; wallpapers on the High School page<span aria-hidden="true">&nbsp;↗</span></a>
@@ -113,6 +127,7 @@ tab: "/projects/"
 <script src="{% include v.html f='/assets/js/cardlink.js' %}"></script>
 <script src="{% include v.html f='/assets/js/expand.js' %}"></script>
 <script src="{% include v.html f='/assets/js/gallery.js' %}"></script>
+<script src="{% include v.html f='/assets/js/projects.js' %}"></script>
 {% include analytics.html %}
 </body>
 </html>

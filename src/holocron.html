@@ -36,10 +36,13 @@ standalone: true
   <section class="hc-proj" aria-label="Holocron">
     <span class="hc-cone" aria-hidden="true"></span>
     <span class="hc-base" aria-hidden="true"></span>
+    <!-- the thinking orbs on this page are orbs.js, in projector blue: here
+         the archive's globe, projected round the holocron -->
+    <canvas class="hc-think" data-orb="searching" data-orb-size="fit" data-orb-ink="#7fd6ff" aria-hidden="true"></canvas>
     <div class="hc-cube" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <div class="hc-caption">
       <b>Holocron</b>
-      <span>Gatekeeper active · archive unsealed</span>
+      <span><canvas class="hc-gk" data-orb="listening" data-orb-size="20" data-orb-ink="#7fd6ff" aria-hidden="true"></canvas>Gatekeeper active · archive unsealed</span>
     </div>
   </section>
 
@@ -51,6 +54,17 @@ standalone: true
       <div class="hc-name">Abubakr Elmallah</div>
       <div class="hc-role">Lead Mobile &amp; Backend Developer · Computer Science at UC Irvine, class of 2028</div>
       <div class="hc-aur">Aurebesh: ABUBAKR ELMALLAH · translated by an app I shipped</div>
+    </article>
+
+    <!-- a holocron's gatekeeper is the construct inside it that hears the
+         question, searches the archive and gives the answer its shape -->
+    <article class="hc-panel">
+      <div class="hc-h"><i></i>The gatekeeper</div>
+      <div class="hc-think-row">
+        <figure><canvas data-orb="listening" data-orb-size="fit" data-orb-ink="#7fd6ff" aria-hidden="true"></canvas><figcaption>Hears<i>the question</i></figcaption></figure>
+        <figure><canvas data-orb="searching" data-orb-size="fit" data-orb-ink="#7fd6ff" aria-hidden="true"></canvas><figcaption>Searches<i>the archive</i></figcaption></figure>
+        <figure><canvas data-orb="shaping" data-orb-size="fit" data-orb-ink="#ffc94a" aria-hidden="true"></canvas><figcaption>Shapes<i>the answer</i></figcaption></figure>
+      </div>
     </article>
 
     <article class="hc-panel">

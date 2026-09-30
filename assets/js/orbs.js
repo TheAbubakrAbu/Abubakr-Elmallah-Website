@@ -8,19 +8,31 @@
 
    WHAT IS HERE: the library ships as a Vue component, and this site has no
    Vue and no build step. So this file is its framework-free engine
-   (src/engine/*.ts and src/presets.ts, bundled to plain JS with esbuild and
-   otherwise untouched) plus a small wrapper at the bottom that does what the
-   Vue component did: size the canvas for the screen, run the clock, pause
-   offscreen and in a background tab, and draw one still frame for reduced
-   motion.
+   (src/engine/*.ts and src/presets.ts, bundled to plain JS with esbuild)
+   plus a small wrapper at the bottom that does what the Vue component did:
+   size the canvas for the screen, run the clock, pause offscreen and in a
+   background tab, and draw one still frame for reduced motion. The engine
+   has three additions of this site's own, each marked "(this site)": a
+   coloured ink in paint(), and a third "big" tier in PRESETS (the library's
+   full-size profiles, slowed down) for the orbs drawn behind the headings.
 
-   Used by ytplay.js as the loading state of the inline YouTube player, in
-   place of the spinner: "listening" while a track loads.
+   Loaded on every page from head.html, with thinking.js after it, which
+   decides where they go. Two ways to put one on a page:
 
-     AEorb.mount(canvas, 'listening', 64)   -> returns a stop() function
+     <canvas data-orb="searching" data-orb-size="20" aria-hidden="true">
+       drawn by scan(), which runs once the page is parsed. data-orb-size is
+       pixels, or "fit" to take the canvas's own CSS width and follow it as
+       it changes. data-orb-ink is "dark" for dark ink on a light page, a
+       colour (#29e7ff), or a custom property (--a) read off the canvas.
+       data-orb-speed scales the clock.
 
-   Sizes are 64 and 20: two separately tuned designs, not a scale factor.
-   The ink is always the light one, because the site is always dark.
+     AEorb.mount(canvas, 'listening', 64, { ink, speed })   -> stop()
+
+   The six states: working (orbits), searching (a globe with a scan line),
+   solving (a turning cube), listening (a wave), composing (a ribbon),
+   shaping (a morphing polyhedron). Up to 36px draws the library's 20px
+   design, up to 150px its 64px one, and anything larger the full profile:
+   separately tuned designs, not a scale factor.
 
    MIT License
 
@@ -97,8 +109,17 @@
       const alpha = (_a = d.a) != null ? _a : 1;
       if (alpha < 0.02) continue;
       const w = Math.min(1, Math.max(0, d.white));
-      const g = Math.round((dark ? 1 - w : w) * 255);
-      ctx.fillStyle = `rgba(${g},${g},${g},${alpha})`;
+      if (dark && dark.rgb) {
+        // (this site) a coloured ink: bright for light ink, strong for dark
+        const k = dark.light ? 1 - w : 1 - w * 0.75;
+        const c = dark.rgb;
+        ctx.fillStyle = dark.light
+          ? `rgba(${Math.round(c[0] * k)},${Math.round(c[1] * k)},${Math.round(c[2] * k)},${alpha})`
+          : `rgba(${c[0]},${c[1]},${c[2]},${alpha * k})`;
+      } else {
+        const g = Math.round((dark ? 1 - w : w) * 255);
+        ctx.fillStyle = `rgba(${g},${g},${g},${alpha})`;
+      }
       ctx.beginPath();
       ctx.arc(d.x, d.y, Math.max(rMin, d.r), 0, Math.PI * 2);
       ctx.fill();
@@ -632,26 +653,32 @@
   };
   var PRESETS = {
     orbits: {
+      big: { speed: 1.1, count: 1, size: 1 },
       64: { speed: 1.885, count: 1, size: 1 },
       20: { speed: 3.9, count: 0.238, size: 2.4 }
     },
     globe: {
+      big: { speed: 1.2, count: 1, size: 1, extra: { scanMul: 4.08, dimBase: 0.45 } },
       64: { speed: 2.015, count: 0.42, size: 1.15, extra: { scanMul: 4.08, dimBase: 0.45 } },
       20: { speed: 2.665, count: 0.105, size: 1.75, extra: { scanMul: 4.335, dimBase: 0.45 } }
     },
     rubik: {
+      big: { speed: 1.1, count: 1, size: 1 },
       64: { speed: 1.82, count: 0.35, size: 1.05 },
       20: { speed: 1.95, count: 0.088, size: 1.9 }
     },
     wave: {
+      big: { speed: 2.4, count: 1, size: 1 },
       64: { speed: 4.388, count: 0.341, size: 1 },
       20: { speed: 3.998, count: 0.105, size: 1.6 }
     },
     ribbon: {
+      big: { speed: 1.4, count: 1, size: 1, extra: { spin: 0, bandMul: 2, wobMul: 1 } },
       64: { speed: 2.34, count: 0.25, size: 0.85, extra: { spin: 0, bandMul: 3.9, wobMul: 1 } },
       20: { speed: 3.12, count: 0.051, size: 1.073, extra: { spin: 0, bandMul: 4.94, wobMul: 1 } }
     },
     morph: {
+      big: { speed: 1.5, count: 2, size: 0.2, extra: { spread: 1.45 } },
       64: { speed: 2.405, count: 0.54, size: 0.395, extra: { spread: 1.45 } },
       20: { speed: 2.08, count: 0.53, size: 1.011, extra: { spread: 1.45 } }
     }
@@ -687,32 +714,91 @@
     try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; }
   };
 
-  function mount(canvas, state, size) {
-    size = size === 20 ? 20 : 64;
-    var dpr = Math.min(2, window.devicePixelRatio || 1);
-    canvas.width = Math.round(size * dpr);
-    canvas.height = Math.round(size * dpr);
-    canvas.style.width = size + 'px';
-    canvas.style.height = size + 'px';
+  /* A colour as the engine wants it, [r, g, b], from anything CSS takes:
+     a 2D context normalises whatever it is given to #rrggbb or rgba(). */
+  var probe = null;
+  function rgbOf(c) {
+    if (!c) return null;
+    probe = probe || document.createElement('canvas').getContext('2d');
+    probe.fillStyle = '#010203';            // kept if c is not a colour
+    probe.fillStyle = String(c).trim();
+    var v = probe.fillStyle, m;
+    if (v === '#010203') return null;
+    if ((m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(v))) {
+      return [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)];
+    }
+    if ((m = /rgba?\((\d+),\s*(\d+),\s*(\d+)/.exec(v))) return [+m[1], +m[2], +m[3]];
+    return null;
+  }
+
+  /* opt.ink: undefined for the light ink of a dark page, 'dark' for dark ink
+     on a light one, or a colour, light by default ({ c, dark: true } for a
+     coloured dark ink, the Marauder's Map's iron gall) */
+  function inkOf(ink) {
+    if (!ink) return true;
+    if (ink === 'dark') return false;
+    var dark = typeof ink === 'object' && ink.dark;
+    var rgb = rgbOf(typeof ink === 'object' ? ink.c : ink);
+    return rgb ? { rgb: rgb, light: !dark } : !dark;
+  }
+
+  function tierOf(px) { return px <= 36 ? 20 : px <= 150 ? 64 : 'big'; }
+
+  /* size: pixels, or 'fit' to take the canvas's CSS width (it must have
+     one) and follow it. opt.speed scales the clock. */
+  function mount(canvas, state, size, opt) {
+    opt = opt || {};
+    var fit = size === 'fit';
     var ctx = canvas.getContext('2d');
     if (!ctx) return function () {};
+    var ink = inkOf(opt.ink);
+    var speed = opt.speed || 1;
+    var px = 0, dpr = 1, p = null, draw = null;
 
-    var p = E.resolvePreset(state || 'working', size);
-    var draw = E.MODE_DRAWS[p.mode];
+    function size_() {
+      var want = fit ? Math.round(canvas.getBoundingClientRect().width) : +size || 64;
+      if (!want || want === px) return !!px;
+      px = want;
+      // the big ones are mostly empty space: a 1.5x backing store is plenty
+      dpr = Math.min(px > 150 ? 1.5 : 2, window.devicePixelRatio || 1);
+      canvas.width = Math.round(px * dpr);
+      canvas.height = Math.round(px * dpr);
+      if (!fit) { canvas.style.width = px + 'px'; canvas.style.height = px + 'px'; }
+      p = E.resolvePreset(state || 'working', tierOf(px));
+      draw = E.MODE_DRAWS[p.mode];
+      return true;
+    }
     var frame = function (t) {
+      if (!draw) return;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      ctx.clearRect(0, 0, size, size);
-      draw(ctx, size, t, true, p.opts);   // true: light ink, for a dark page
+      ctx.clearRect(0, 0, px, px);
+      draw(ctx, px, t, ink, p.opts);
     };
+    var now = function () { return performance.now() / 1000 * (p ? p.speed : 1) * speed; };
 
-    if (still()) { frame(0.6); return function () {}; }
+    size_();
+    var ro = null;
+    if (fit && 'ResizeObserver' in window) {
+      ro = new ResizeObserver(function () { if (size_()) frame(now()); });
+      ro.observe(canvas);
+    }
+
+    if (still()) {
+      frame(0.6);
+      if (ro) {
+        ro.disconnect();
+        ro = new ResizeObserver(function () { if (size_()) frame(0.6); });
+        ro.observe(canvas);
+      }
+      return function () { if (ro) ro.disconnect(); };
+    }
 
     var raf = 0, running = false, visible = true, io = null;
     var loop = function () {
       /* taken out of the page (the player panel it sat in was replaced or
          closed): stop for good rather than drawing into nothing forever */
       if (!canvas.isConnected) { stop(); return; }
-      frame(performance.now() / 1000 * p.speed);
+      frame(now());
       if (running) raf = requestAnimationFrame(loop);
     };
     var start = function () {
@@ -724,10 +810,11 @@
     function stop() {
       halt();
       if (io) io.disconnect();
+      if (ro) ro.disconnect();
       document.removeEventListener('visibilitychange', onVis);
     }
 
-    frame(performance.now() / 1000 * p.speed);
+    frame(now());
     /* offscreen or display:none (the player hides it once the track is up)
        reads as not intersecting, so it stops drawing on its own */
     if ('IntersectionObserver' in window) {
@@ -749,5 +836,19 @@
     return stop;
   }
 
-  window.AEorb = { mount: mount };
+  /* every <canvas data-orb> under root not already drawn */
+  function scan(root) {
+    (root || document).querySelectorAll('canvas[data-orb]:not([data-orb-on])').forEach(function (c) {
+      c.setAttribute('data-orb-on', '');
+      var d = c.dataset, ink = d.orbInk;
+      if (ink && ink.slice(0, 2) === '--') ink = getComputedStyle(c).getPropertyValue(ink).trim() || undefined;
+      if (d.orbInkDark != null) ink = { c: ink, dark: true };
+      var sz = d.orbSize === 'fit' ? 'fit' : +d.orbSize || 64;
+      mount(c, d.orb, sz, { ink: ink, speed: +d.orbSpeed || 1 });
+    });
+  }
+
+  window.AEorb = { mount: mount, scan: scan, rgb: rgbOf };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { scan(); });
+  else scan();
 })();

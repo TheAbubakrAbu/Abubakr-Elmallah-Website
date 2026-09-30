@@ -179,6 +179,15 @@
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent, #5fbf8f) 16%, transparent);
 }
 @media (hover: hover) { .role:hover::before { border-color: var(--accent, #5fbf8f); } }
+/* A current role's node is a small "working" thinking orb instead (put in
+   by thinking.js): still going. Centred where the dot was, on a disc of the
+   page's colour so the timeline's line does not run through it. */
+.role.has-orb::before { display: none; }
+.role-orb {
+  position: absolute; left: calc(-1.35rem - 9.5px); top: calc(0.42rem - 5.5px);
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--bg); pointer-events: none;
+}
 /* the date rail sits in its own column on a wide screen and above the title on
    a narrow one, and is baseline-aligned with the title either way */
 @media (min-width: 860px) {

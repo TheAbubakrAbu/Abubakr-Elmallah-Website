@@ -24,6 +24,8 @@ standalone: true
 
 <!-- ═══════════ boot ═══════════ -->
 <div class="jv-boot" id="jvBoot">
+  <!-- the thinking orbs on this page are orbs.js, in the HUD's cyan -->
+  <canvas class="jv-boot-orb" data-orb="solving" data-orb-size="96" data-orb-ink="#29e7ff" aria-hidden="true"></canvas>
   <div class="jv-boot-mark">J.A.R.V.I.S.</div>
   <div class="jv-boot-log" id="jvBootLog"></div>
   <div class="jv-boot-bar"><i id="jvBootBar"></i></div>
@@ -91,6 +93,16 @@ standalone: true
             <div class="jv-meter-top"><span>Archive Integrity</span><i>NOMINAL</i></div>
             <div class="jv-bar jv-bar--seg" style="--v:92%"><i></i></div>
           </div>
+        </div>
+      </article>
+
+      <article class="jv-mod">
+        <div class="jv-mod-h"><span class="jv-dot"></span>Subroutines · Thinking</div>
+        <div class="jv-think">
+          <figure><canvas data-orb="listening" data-orb-size="fit" data-orb-ink="#29e7ff" aria-hidden="true"></canvas><figcaption>Voice<i>Listening</i></figcaption></figure>
+          <figure><canvas data-orb="searching" data-orb-size="fit" data-orb-ink="#29e7ff" aria-hidden="true"></canvas><figcaption>Archive<i>Scanning</i></figcaption></figure>
+          <figure><canvas data-orb="solving" data-orb-size="fit" data-orb-ink="#29e7ff" aria-hidden="true"></canvas><figcaption>Build<i>Solving</i></figcaption></figure>
+          <figure><canvas data-orb="composing" data-orb-size="fit" data-orb-ink="#29e7ff" aria-hidden="true"></canvas><figcaption>Comms<i>Drafting</i></figcaption></figure>
         </div>
       </article>
 
@@ -178,6 +190,8 @@ standalone: true
         </svg>
 
         <div class="jv-sweep" aria-hidden="true"></div>
+        <!-- the core's particles: a "working" orb, orbiting behind the glow -->
+        <canvas class="jv-core-think" data-orb="working" data-orb-size="fit" data-orb-ink="#29e7ff" aria-hidden="true"></canvas>
         <div class="jv-core-orb" aria-hidden="true"></div>
       </div>
 

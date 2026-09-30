@@ -31,10 +31,15 @@
    data-projects. (These used to be copy-pasted <article> blocks, and the
    copies had already drifted apart.) */
 
+// date: release date, or the start of my contribution to an existing project.
+// Keep only the precision known; equal dates retain their authored order.
+// The high-school projects use the day each was created, read from Scratch's
+// and Code.org's own project records.
 window.APP_CARDS = {
 
   /* ---- UCI Work ---- */
   'zotfinder': {
+    date: '2025-05-29',
     icon: 'apps/zotfinder.jpg', alt: 'ZOTFinder app icon',
     title: 'ZOTFinder', sub: 'September 14, 2014 · Remastered by me May 29, 2025',
     desc: 'A free interactive campus map for UCI. Search buildings, find professor offices, view emergency info, and get directions with estimated travel times. On the App Store since 2014; I rewrote it from the ground up in SwiftUI for the 2025 remaster, giving it a brand new modern look.',
@@ -65,6 +70,7 @@ window.APP_CARDS = {
     links: [{ label: 'App Store ↗', href: 'https://apps.apple.com/us/app/zotfinder/id915256719?platform=iphone' }],
   },
   'uci-now': {
+    date: '2025-08-31',
     icon: 'apps/uci-now.jpg', alt: 'UCI Now app icon',
     title: 'UCI Now', sub: 'July 23, 2018 · Remastered by me August 31, 2025',
     desc: 'Navigate the Student Center, book study rooms, find Ring Mall events, and view real-time campus activities with searchable maps and listings. On the App Store since 2018; I rewrote it from the ground up in SwiftUI for the 2025 remaster, giving it a brand new modern look.',
@@ -91,6 +97,7 @@ window.APP_CARDS = {
     links: [{ label: 'App Store ↗', href: 'https://apps.apple.com/us/app/uci-now/id1382415698?platform=iphone' }],
   },
   'uci-esports': {
+    date: '2026-03-02',
     icon: 'apps/uci-esports.jpg', alt: 'UCI Esports app icon',
     title: 'UCI Esports', sub: 'March 2, 2026 · Arena &amp; events',
     desc: 'Check arena hours, reserve PCs, discover tournaments and events, watch live Twitch streams, and get reminders so you never miss a match.',
@@ -118,6 +125,7 @@ window.APP_CARDS = {
     links: [{ label: 'App Store ↗', href: 'https://apps.apple.com/us/app/uci-esports/id6751213697' }],
   },
   'real-time-ops': {
+    date: '2025',
     /* Internal staff tool: unlisted, SSO-gated, and not on the App Store.
        Deliberately no infrastructure details and no link - the site sits
        behind UCI Shibboleth, so a link is useless publicly and naming the
@@ -152,6 +160,7 @@ window.APP_CARDS = {
   },
 
   'peterplate': {
+    date: '2025-11',
     icon: 'apps/peterplate.jpg', alt: 'PeterPlate app icon',
     title: 'PeterPlate', sub: '2025 · Dining menu viewer',
     desc: "A menu viewer for UCI's Brandywine and Anteatery dining halls. Browse current and upcoming menus, check allergen and dietary info, follow dining events, and rate dishes to plan your meal swipes and nutrition goals.",
@@ -186,6 +195,7 @@ window.APP_CARDS = {
 
   /* ---- Star Wars ---- */
   'aurebesh-translator': {
+    date: '2024-10-22',
     icon: 'apps/aurebesh-translator.jpg', alt: 'Aurebesh Translator app icon',
     title: 'Aurebesh Translator', sub: 'October 22, 2024',
     desc: 'The free version of Datapad: a simple, ad-free way to translate between English and Aurebesh, fully offline, with a distraction-free interface.',
@@ -216,6 +226,7 @@ window.APP_CARDS = {
     ],
   },
   'datapad': {
+    date: '2023-06-26',
     icon: 'apps/datapad.jpg', alt: 'Datapad app icon',
     /* the App Store name in full, styled like the Islamic apps' two-part
        names ("Al-Adhan · Prayer Times") rather than with the store's pipe */
@@ -271,6 +282,7 @@ window.APP_CARDS = {
     links: [{ label: 'App Store ↗', href: 'https://apps.apple.com/us/app/datapad-aurebesh-translator/id6450498054?platform=iphone' }],
   },
   'aurebesh-academy': {
+    date: '2026',
     icon: 'apps/aurebesh-academy.jpg', alt: 'Aurebesh Academy app icon',
     title: 'Academy | Aurebesh Trainer', sub: '2026 \u00b7 Learn to read Aurebesh',
     desc: 'A trainer for actually learning Aurebesh rather than just translating it: a full glyph databank, typed read and write drills over 3,200+ words, a rapid-fire quiz, and XP, ranks, streaks and achievements to keep you coming back.',
@@ -308,6 +320,7 @@ window.APP_CARDS = {
   },
 
   'sabacc-droid': {
+    date: '2024-11-14',
     icon: 'bots/sabacc-droid.png', alt: 'Sabacc Droid icon',
     title: 'Sabacc Droid', sub: 'November 14, 2024 · Play Sabacc on Discord',
     desc: 'A Discord bot that brings the Star Wars card game Sabacc to your server, with multiplayer rounds, rules variants, and a galaxy-flavored interface.',
@@ -338,6 +351,7 @@ window.APP_CARDS = {
     ],
   },
   'aurebesh-droid': {
+    date: '2025-06-18',
     icon: 'bots/aurebesh-droid.jpg', alt: 'Aurebesh Droid icon',
     title: 'Aurebesh Droid', sub: 'June 18, 2025 · Aurebesh Translator on Discord',
     desc: 'Translate English to and from Aurebesh right inside Discord. Fast, server-friendly, and written in C++ for speed.',
@@ -368,6 +382,7 @@ window.APP_CARDS = {
 
   /* ---- Islam ---- */
   'quran-tajweed-engine': {
+    date: '2026-06-25',
     icon: 'apps/quran-tajweed-engine.jpg', alt: 'Quran Tajweed Engine logo',
     title: 'Quran Tajweed Engine', sub: 'June 25, 2026 · Open source',
     desc: 'A tajweed rule engine for the Quran: it takes the Uthmani text and works out where each rule applies (the idghām, the ikhfāʾ, the qalqalah, the madd and its lengths) so an app can colour the letters correctly instead of shipping a hand-marked copy. This is the engine behind the colour-coded recitation in Al-Quran.',
@@ -414,6 +429,7 @@ window.APP_CARDS = {
   },
 
   'hadith-json-engine': {
+    date: '2026-08-10',
     icon: 'apps/hadith-json-engine.jpg', alt: 'Hadith JSON Engine logo',
     title: 'Hadith JSON Engine', sub: 'August 10, 2026 · Open source',
     desc: 'The same idea applied to ḥadīth: turning the major collections into clean, structured JSON (book, chapter, number, Arabic, translation and grading) so anything built on top of them starts from consistent data rather than scraped HTML.',
@@ -453,6 +469,7 @@ window.APP_CARDS = {
   },
 
   'al-adhan': {
+    date: '2023-12-31',
     icon: 'apps/al-adhan.jpg', alt: 'Al-Adhan | Prayer Times app icon',
     title: 'Al-Adhan ·<br>Prayer Times', sub: 'December 31, 2023',
     desc: 'An offshoot of Al-Islam that enhances daily worship with precise prayer times, real-time qibla direction, and a unique Traveling Mode for on-the-go adjustments.',
@@ -495,6 +512,7 @@ window.APP_CARDS = {
     ],
   },
   'al-islam': {
+    date: '2023-07-26',
     icon: 'apps/al-islam.jpg', alt: 'Al-Islam | Islamic Pillars app icon',
     title: 'Al-Islam ·<br>Islamic Pillars', sub: 'July 26, 2023',
     desc: 'An all-in-one companion for lifelong Muslims and converts alike, with Traveling Mode, Beginner Arabic Mode, prayer times, qibla direction, Quran access, and tools to deepen faith and connect with Allah.',
@@ -562,6 +580,7 @@ window.APP_CARDS = {
     ],
   },
   'al-quran': {
+    date: '2023-12-26',
     icon: 'apps/al-quran.jpg', alt: 'Al-Quran | Beginner Quran app icon',
     title: 'Al-Quran ·<br>Beginner Quran', sub: 'December 26, 2023',
     desc: 'Makes learning and studying the Holy Quran accessible, with Arabic Beginner Mode, ayah sharing, recitations, and tools for enhancing your spiritual journey.',
@@ -608,6 +627,7 @@ window.APP_CARDS = {
 
   /* ---- Web ---- */
   'oc-ummah': {
+    date: '2026',
     icon: 'apps/oc-ummah.jpg', alt: 'OC Ummah app icon',
     title: 'OC Ummah', sub: '2026 \u00b7 Orange County Muslim community',
     desc: 'A community app for Muslims in Orange County: events pulled from a live calendar feed, a directory of local masjids, a map that pins masaajid, halal food and every event where it is actually being held, and on-device semantic search across Quran and hadith.',
@@ -637,6 +657,7 @@ window.APP_CARDS = {
   },
 
   'website': {
+    date: '2026-06-24',
     /* No bespoke logo: reuses the site's own PWA icon, which is the closest
        thing it has to an app icon. */
     icon: 'icons/icon-512.png', alt: 'abubakrelmallah.com icon',
@@ -674,6 +695,7 @@ window.APP_CARDS = {
 
   /* ---- Deprecated ---- */
   'icoi': {
+    date: '2023-10-03',
     icon: 'apps/icoi.jpg', alt: 'Islamic Center of Irvine (ICOI) app icon',
     title: 'Islamic Center of Irvine', sub: 'October 3, 2023 – May 2026',
     desc: 'Built for the Irvine Muslim community. Accurate mosque prayer times, important links, Quran access, Islamic tools, and local business support. Discontinued in May 2026, when ICOI moved to The Masjid App.',
@@ -726,6 +748,7 @@ window.APP_CARDS = {
 window.PROJ_CARDS = {
 
   'hs-datapad': {
+    date: '2021-10-07',
     img: 'highschool/datapad.png', alt: 'Star Wars Datapad, a Code.org App Lab project',
     title: 'Star Wars Datapad', year: '2021',
     grade: '10th grade',
@@ -750,6 +773,7 @@ window.PROJ_CARDS = {
     ],
   },
   'hs-calculator': {
+    date: '2021-11-14',
     img: 'highschool/calculator.png', alt: 'Calculator, a Code.org App Lab project',
     title: 'Calculator', year: '2021',
     grade: '10th grade',
@@ -767,6 +791,7 @@ window.PROJ_CARDS = {
     ],
   },
   'hs-periodic-table': {
+    date: '2022-03-18',
     img: 'highschool/periodic-table.png', alt: 'Periodic Table, a Code.org App Lab project',
     title: 'Periodic Table', year: '2022',
     grade: '10th grade',
@@ -785,12 +810,13 @@ window.PROJ_CARDS = {
     ],
   },
   'hs-games': {
+    date: '2022-03-03',
     img: 'highschool/games.png', alt: 'Games: Hangman, Wordle and Two-Player Checkers',
     title: 'Games', year: '2022',
     grade: '10th grade',
     tags: 'Code.org · JavaScript',
     long: [
-      'Three classic games bundled into one Code.org web app. It began in Spring 2022, after my AP exams in 10th grade, as a Hangman game to cure boredom; Wordle followed soon after, the app got renamed “Games”, and then Checkers took over most of the effort.',
+      'Three classic games bundled into one Code.org web app. It started in March 2022 as a little Hangman game, made because I was bored, and after my AP exams at the end of 10th grade I really locked in on it: Wordle followed, the app got renamed “Games”, and then Checkers took over most of the effort.',
       { facts: [['3', 'games'], ['986', 'lines of JavaScript'], ['9', 'Hangman categories'], ['24', 'checkers on the board']] },
       { h: 'Hangman' },
       'Nine categories plus Random, each drawn from a real dataset: cats, countries and territories, the most spoken languages, US states, US national parks, planets, the elements, video game titles and the cities with a Target. Words are capped at ten letters and letters only, the same word never comes up twice in a row, the gallows is drawn one piece at a time over seven images, wrong letters are listed alphabetically, and a repeated or invalid guess is refused rather than counted.',
@@ -806,6 +832,7 @@ window.PROJ_CARDS = {
     ],
   },
   'hs-order66': {
+    date: '2021-09-03',
     img: 'highschool/order66.jpg', alt: 'Star Wars: Order 66, a Scratch game',
     title: 'Star Wars: Order 66', year: '2021',
     grade: '10th grade · my first ever',
@@ -820,6 +847,7 @@ window.PROJ_CARDS = {
     ],
   },
   'hs-periodic-table-explorer': {
+    date: '2023',
     img: 'highschool/periodic-table-explorer.png', alt: 'Periodic Table Explorer, a Java console application',
     crop: true,   // a wide console capture: fill the frame from its top-left rather than shrink it to a strip
     title: 'Periodic Table Explorer', year: '2023',

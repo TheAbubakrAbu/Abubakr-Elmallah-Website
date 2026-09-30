@@ -5,7 +5,8 @@
     {% include footer.html %}                   no middle link (the home page)
 {%- endcomment -%}
 <footer class="footer">
-  <span>© 2026 Abubakr Elmallah</span>
+  <!-- the mark: a small "working" thinking orb (orbs.js), always building -->
+  <span class="foot-sig"><canvas class="foot-orb" data-orb="working" data-orb-size="20" aria-hidden="true"></canvas>© 2026 Abubakr Elmallah</span>
 {%- if include.back %}
   <a class="footer-mid" href="{{ include.back }}" data-magnetic>← Back to {% if include.back == "/" %}home{% else %}worlds{% endif %}</a>
 {%- endif %}

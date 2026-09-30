@@ -140,6 +140,8 @@ tab: ""
          this, Tab spent 28 presses inside it with nothing visible in focus -->
     <a class="embed-skip" href="#after-preview">Skip the PDF preview</a>
     <div class="embed-wrap reveal">
+      <!-- a "composing" thinking orb (orbs.js) until Drive has drawn the PDF -->
+      <canvas class="embed-orb embed-orb--mid" data-orb="composing" data-orb-size="64" aria-hidden="true"></canvas>
       <iframe class="embed-frame" data-src="https://drive.google.com/file/d/1o_S34-5F7B7Kb6jZfOuIz2TYWOfNs55s/preview" title="Résumé PDF, Google Drive preview" loading="lazy"></iframe>
       <noscript><iframe class="embed-frame" src="https://drive.google.com/file/d/1o_S34-5F7B7Kb6jZfOuIz2TYWOfNs55s/preview" title="Résumé PDF, Google Drive preview" loading="lazy"></iframe></noscript>
       <p class="embed-note"><b>The original file.</b> If it doesn’t load, use “Open in Google Drive” at the top.</p>
@@ -167,7 +169,11 @@ tab: ""
   (function () {
     var f = document.querySelector('.embed-frame[data-src]');
     if (!f) return;
-    function go() { f.src = f.getAttribute('data-src'); }
+    function go() {
+      var orb = f.parentNode.querySelector('.embed-orb');
+      if (orb) f.addEventListener('load', function () { orb.remove(); }, { once: true });
+      f.src = f.getAttribute('data-src');
+    }
     function later() {
       if ('requestIdleCallback' in window) requestIdleCallback(go, { timeout: 2000 });
       else setTimeout(go, 200);

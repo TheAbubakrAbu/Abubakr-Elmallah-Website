@@ -184,6 +184,7 @@
       '<div class="srch-panel">'
       + '<div class="srch-bar">'
       +   '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>'
+      +   '<canvas class="srch-orb" data-orb="searching" data-orb-size="20" data-orb-ink="--green-2" aria-hidden="true"></canvas>'
       +   '<input class="srch-in" type="search" placeholder="Search this page and the site" aria-label="Search"'
       +     ' aria-controls="srchOut" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go" />'
       +   '<button class="srch-x" type="button" aria-label="Close search"><span aria-hidden="true">Esc</span></button>'
@@ -210,12 +211,20 @@
       + ' class="srch-hit">' + inner + '</' + (attrs.href ? 'a' : 'button') + '></li>';
   }
 
+  /* the thinking orbs (orbs.js): the magnifier becomes a turning globe
+     while there is something typed, and the empty dialog has a larger one */
+  function orbs(root) { if (window.AEorb) window.AEorb.scan(root); }
+
   function run() {
     var q = input.value, ws = words(q);
+    dlg.querySelector('.srch-bar').classList.toggle('is-typing', ws.length > 0);
     if (!ws.length) {
-      out.innerHTML = '<p class="srch-empty">Type to search ' + esc(document.title.replace(/\s*·.*$/, '') || 'this page')
+      if (out.querySelector('.srch-empty')) return;
+      out.innerHTML = '<canvas class="srch-empty-orb" data-orb="searching" data-orb-size="64" data-orb-ink="--green-2" aria-hidden="true"></canvas>'
+        + '<p class="srch-empty">Type to search ' + esc(document.title.replace(/\s*·.*$/, '') || 'this page')
         + ', then every other page. <kbd>/</kbd> or <kbd>⌘K</kbd> opens this anywhere.</p>';
       live.textContent = '';
+      orbs(dlg);
       return;
     }
     var mine = rank(page, ws, 40);

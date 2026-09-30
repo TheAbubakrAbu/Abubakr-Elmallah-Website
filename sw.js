@@ -268,6 +268,8 @@ const SHELL = [
   '{% include v.html f='/assets/js/utils.js' %}',
   '{% include v.html f='/assets/js/reveal.js' %}',
   '{% include v.html f='/assets/js/intro.js' %}',
+  '{% include v.html f='/assets/js/orbs.js' %}',
+  '{% include v.html f='/assets/js/thinking.js' %}',
   '/assets/img/icons/icon-192.png',
   OFFLINE_PAGE,
 ];

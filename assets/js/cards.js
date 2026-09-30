@@ -161,7 +161,7 @@
        list a card twice (PeterPlate is UCI work and web work), so only the
        first copy carries the id; fill() says which one that is. */
     var domId = opts.domId || (opts.anchor === false ? '' : 'app-' + id);
-    return '<article' + (domId ? ' id="' + domId + '"' : '') + ' class="' + cls + '">'
+    return '<article' + (domId ? ' id="' + domId + '"' : '') + ' data-project-id="' + id + '" data-project-date="' + (d.date || '') + '" class="' + cls + '">'
       + head(d)
       + cat(d, opts.showCat)
       + '<h3>' + d.title + '</h3>'
@@ -192,7 +192,7 @@
     var media = IMG + d.img;
     var cls = 'proj-card' + (d.long && d.long.length ? ' is-expandable' : '') + ' reveal';
     var domId = opts.domId || (opts.anchor === false ? '' : 'proj-' + id);
-    return '<article' + (domId ? ' id="' + domId + '"' : '') + ' class="' + cls + '">'
+    return '<article' + (domId ? ' id="' + domId + '"' : '') + ' data-project-id="' + id + '" data-project-date="' + (d.date || '') + '" class="' + cls + '">'
       + '<a class="proj-media' + (d.crop ? ' proj-media--crop' : '') + '" href="' + media + '" data-label="' + strip(d.title) + '" target="_blank" rel="noopener">'
       + '<img src="' + IMG + d.img + '" alt="' + d.alt + '" loading="lazy" decoding="async" /><span class="vh"> (full size)</span></a>'
       + '<div class="proj-info">'
@@ -219,7 +219,14 @@
     for (var i = 0; i < grids.length; i++) {
       var grid = grids[i];
       var showCat = grid.hasAttribute('data-cards-cat');
-      var ids = grid.getAttribute(attr).split(',');
+      var ids = grid.getAttribute(attr).split(',').map(function (id) { return id.trim(); });
+      if (grid.hasAttribute('data-chronological')) {
+        var data = attr === 'data-projects' ? window.PROJ_CARDS : window.APP_CARDS;
+        ids.sort(function (a, b) {
+          return ((data[a] || {}).date || '9999').localeCompare((data[b] || {}).date || '9999');
+        });
+        grid.setAttribute(attr, ids.join(','));
+      }
       var html = '';
       for (var j = 0; j < ids.length; j++) {
         var id = ids[j].trim();

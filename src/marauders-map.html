@@ -69,11 +69,14 @@ standalone: true
     <div class="mm-cols">
       <section class="mm-panel">
         <div class="mm-h">Charms on this parchment</div>
+        <!-- each charm's sigil is a thinking orb (orbs.js) in iron-gall ink:
+             the Homonculous Charm searches the castle, Confundus scrambles,
+             Lumos shapes the light, and Mischief Managed writes itself away -->
         <div class="mm-list">
-          <div class="mm-spell"><b>Homonculous Charm</b><span>Shows every person in the castle, and where they are walking.</span></div>
-          <div class="mm-spell"><b>Confundus Charm</b><span>Insults anyone who tries to read it without the oath.</span></div>
-          <div class="mm-spell"><b>Lumos</b><span>Light at the wand tip. Nox puts it out again.</span></div>
-          <div class="mm-spell"><b>Mischief Managed</b><span>Wipes the map blank. The button below does the same thing.</span></div>
+          <div class="mm-spell"><canvas class="mm-sigil" data-orb="searching" data-orb-size="fit" data-orb-ink="#2a1c0e" data-orb-ink-dark aria-hidden="true"></canvas><b>Homonculous Charm</b><span>Shows every person in the castle, and where they are walking.</span></div>
+          <div class="mm-spell"><canvas class="mm-sigil" data-orb="solving" data-orb-size="fit" data-orb-ink="#2a1c0e" data-orb-ink-dark aria-hidden="true"></canvas><b>Confundus Charm</b><span>Insults anyone who tries to read it without the oath.</span></div>
+          <div class="mm-spell"><canvas class="mm-sigil" data-orb="shaping" data-orb-size="fit" data-orb-ink="#2a1c0e" data-orb-ink-dark aria-hidden="true"></canvas><b>Lumos</b><span>Light at the wand tip. Nox puts it out again.</span></div>
+          <div class="mm-spell"><canvas class="mm-sigil" data-orb="composing" data-orb-size="fit" data-orb-ink="#2a1c0e" data-orb-ink-dark aria-hidden="true"></canvas><b>Mischief Managed</b><span>Wipes the map blank. The button below does the same thing.</span></div>
         </div>
       </section>
 
@@ -98,6 +101,7 @@ standalone: true
 <!-- the blank parchment, after the map is wiped -->
 <div class="mm-done" id="mmDone">
   <div>
+    <canvas class="mm-done-orb" data-orb="composing" data-orb-size="96" data-orb-ink="#e8d5ab" aria-hidden="true"></canvas>
     <p>Mischief managed.</p>
     <a href="/">Return to the entrance hall</a>
   </div>

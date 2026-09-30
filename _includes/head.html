@@ -61,3 +61,8 @@
 .embed-frame--doc[data-doc-src], .embed-facade { display: none !important; }
 .embed-live { display: inline !important; }</style></noscript>
 {%- endunless %}
+
+<!-- the thinking orbs (orbs.js) and where they go on this site (thinking.js):
+     deferred, so they run once the page and its own scripts have drawn it -->
+<script defer src="{% include v.html f='/assets/js/orbs.js' %}"></script>
+<script defer src="{% include v.html f='/assets/js/thinking.js' %}"></script>

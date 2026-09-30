@@ -121,6 +121,14 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   .hc-cone { animation: none; }
 }
 
+/* the archive's globe (orbs.js), projected round the cube, a little above
+   its centre, where the cone is widest */
+.hc-think {
+  position: absolute; left: 50%; top: 44%; translate: -50% -50%;
+  width: min(300px, 72%); height: auto; aspect-ratio: 1;
+  opacity: 0.55; pointer-events: none;
+  filter: drop-shadow(0 0 6px rgba(127,214,255,0.5));
+}
 .hc-caption { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; }
 .hc-caption b {
   display: block; font-size: 1.15rem; font-weight: 600; letter-spacing: 0.28em;
@@ -160,6 +168,17 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   margin-top: 0.9rem; font-family: var(--mono);
   font-size: 0.66rem; letter-spacing: 0.16em; color: var(--amber);
 }
+
+/* the gatekeeper beside "Gatekeeper active", and its panel of three */
+.hc-gk { width: 20px; height: 20px; vertical-align: -6px; margin-right: 0.5rem; }
+.hc-think-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+.hc-think-row figure { margin: 0; display: grid; justify-items: center; gap: 0.5rem; text-align: center; }
+.hc-think-row canvas { width: 64px; height: auto; aspect-ratio: 1; filter: drop-shadow(0 0 5px rgba(127,214,255,0.4)); }
+.hc-think-row figcaption {
+  display: grid; gap: 0.15rem;
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--holo-2);
+}
+.hc-think-row figcaption i { font-style: normal; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: none; color: var(--dim); }
 
 .hc-rows { display: flex; flex-direction: column; gap: 0.55rem; }
 .hc-row {

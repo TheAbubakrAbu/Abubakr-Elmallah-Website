@@ -1,0 +1,20 @@
+.project-sort {
+  display: flex; align-items: center; flex-wrap: wrap; gap: .8rem 1.2rem;
+  padding-block: 1.2rem; border-block: 1px solid var(--line);
+  margin-bottom: 2rem;
+}
+.project-sort label { font-family: var(--mono); font-size: .8rem; }
+.project-sort select {
+  min-height: 44px; max-width: 100%; padding: .6rem 2rem .6rem .8rem;
+  border: 1px solid var(--line); border-radius: 8px;
+  background: var(--bg); color: var(--ink); font: inherit; color-scheme: dark;
+}
+.project-sort-note { color: var(--ink-dim); font-size: .8rem; }
+.project-timeline { display: grid; gap: 2rem; }
+.project-timeline > .apps-grid { margin-top: 0; }
+.project-timeline-school { grid-template-columns: 1fr; }
+[data-project-sort][hidden], [data-project-timeline][hidden],
+[data-project-categories][hidden], .jump[hidden] { display: none; }
+@media (max-width: 540px) {
+  .project-sort-note { flex-basis: 100%; }
+}

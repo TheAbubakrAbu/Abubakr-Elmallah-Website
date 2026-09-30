@@ -257,13 +257,16 @@ function installed() {
    pressed state and a hairline bar creeps across the top of the screen until
    the new document replaces this one. Purely cosmetic; the link is a plain
    <a href> and is never intercepted, so a failed navigation just leaves the
-   page as it was (and the timeout below tidies up after it). */
+   page as it was (and the timeout below tidies up after it). A small
+   "working" thinking orb (orbs.js) rides the tip of the bar; it only draws
+   while the bar runs. */
 (function navFeedback() {
   const root = document.documentElement;
-  let bar = null, timer = 0;
+  let bar = null, orb = null, orbStop = null, timer = 0;
 
   function stop() {
     clearTimeout(timer);
+    if (orbStop) { orbStop(); orbStop = null; }
     root.classList.remove('nav-busy');
     document.querySelectorAll('.is-going').forEach(el => el.classList.remove('is-going'));
   }
@@ -277,6 +280,14 @@ function installed() {
     }
     // restart the animation from zero on every tap
     bar.classList.remove('run'); void bar.offsetWidth; bar.classList.add('run');
+    if (window.AEorb && !orbStop) {
+      if (!orb) {
+        orb = document.createElement('canvas');
+        orb.className = 'navbar-orb';
+        bar.appendChild(orb);
+      }
+      orbStop = window.AEorb.mount(orb, 'working', 20, { ink: '#3fd589' });
+    }
     root.classList.add('nav-busy');
     if (link) link.classList.add('is-going');
     clearTimeout(timer);
@@ -308,13 +319,24 @@ function installed() {
    behind a "Load the document" panel (see .embed-facade in components.css)
    and is only fetched when that button is pressed. The frame takes the
    panel's place and takes focus, so a keyboard carries straight on into it.
-   A <noscript> copy beside each frame keeps it readable without scripts. */
+   A <noscript> copy beside each frame keeps it readable without scripts.
+   Docs takes a second or two to draw anything, so a "composing" thinking
+   orb (orbs.js) sits over the empty frame until the frame's load event,
+   then stops and goes. */
 (function docEmbeds() {
   document.querySelectorAll('.embed-load').forEach(btn => {
     btn.addEventListener('click', () => {
       const wrap = btn.closest('.embed-wrap');
       const f = wrap && wrap.querySelector('iframe[data-doc-src]');
       if (!f) return;
+      if (window.AEorb) {
+        const orb = document.createElement('canvas');
+        orb.className = 'embed-orb';
+        orb.setAttribute('aria-hidden', 'true');
+        f.before(orb);
+        const stop = window.AEorb.mount(orb, 'composing', 64);
+        f.addEventListener('load', () => { stop(); orb.remove(); }, { once: true });
+      }
       f.src = f.dataset.docSrc;
       f.removeAttribute('data-doc-src');
       f.hidden = false;

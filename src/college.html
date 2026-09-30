@@ -64,6 +64,25 @@ tab: "/education/"
 
     <h2 class="subsec subsec--title reveal" id="work">Work <span class="subsec-yr">while at UCI</span></h2>
     <ol class="roles" role="list">
+      <li class="role reveal">
+        <div class="role-when"><b>Feb 2024 &#8211; Feb 2026</b><span>2 yrs &#183; ran into college</span></div>
+        <div class="role-body">
+          <h3>iOS App Development Teacher &#183; STEM Heroes Academy</h3>
+          <p>The teaching job from senior year of high school, carried through both college years.</p>
+          <!-- the résumé's point for this job, read from _data/resume.yml like
+               the Student Center's above -->
+          <ul class="role-points" role="list">
+{%- for j in site.data.resume.work %}{% if j.site == 'stemirvine.com' %}{% for p in j.points %}
+            <li>{{ p }}</li>
+{%- endfor %}{% endif %}{% endfor %}
+          </ul>
+          <p>The whole story is on the <a href="/high-school/" data-magnetic>high school page</a>.</p>
+          <div class="role-tags">
+            <span class="role-tag">Muslim Village, ICOI</span>
+            <span class="role-tag">Ended Feb 2026</span>
+          </div>
+        </div>
+      </li>
       <li class="role reveal role--now">
         <div class="role-when"><b>Mar 2025 &#8211; now</b><span>part-time &#183; remote</span></div>
         <div class="role-body">
@@ -84,34 +103,15 @@ tab: "/education/"
           </div>
         </div>
       </li>
-      <li class="role reveal">
-        <div class="role-when"><b>Feb 2024 &#8211; Feb 2026</b><span>2 yrs &#183; ran into college</span></div>
-        <div class="role-body">
-          <h3>iOS App Development Teacher &#183; STEM Heroes Academy</h3>
-          <p>The teaching job from senior year of high school, carried through both college years.</p>
-          <!-- the résumé's point for this job, read from _data/resume.yml like
-               the Student Center's above -->
-          <ul class="role-points" role="list">
-{%- for j in site.data.resume.work %}{% if j.site == 'stemirvine.com' %}{% for p in j.points %}
-            <li>{{ p }}</li>
-{%- endfor %}{% endif %}{% endfor %}
-          </ul>
-          <p>The whole story is on the <a href="/high-school/" data-magnetic>high school page</a>.</p>
-          <div class="role-tags">
-            <span class="role-tag">Muslim Village, ICOI</span>
-            <span class="role-tag">Ended Feb 2026</span>
-          </div>
-        </div>
-      </li>
     </ol>
 
     <h2 class="subsec subsec--title reveal" id="uci-apps">What I’ve Built at UCI</h2>
-    <div class="apps-grid apps-grid--2" data-cards="zotfinder,uci-now,uci-esports,peterplate"></div>
+    <div class="apps-grid apps-grid--2" data-cards="zotfinder,uci-now,uci-esports,peterplate" data-chronological></div>
     {% include apple-dev-link.html who="uci" %}
 
     <h2 class="subsec subsec--title reveal" id="own-apps">Built on My Own <span class="subsec-yr">alongside college</span></h2>
     <p class="yr-note reveal">Not part of any job: the Star Wars apps and bots, the open-source engines behind Al-Quran, and this website. For the apps I shipped before UCI, see the <a href="/high-school/" data-magnetic>high school page</a>.</p>
-    <div class="apps-grid apps-grid--3" data-cards="aurebesh-translator,aurebesh-droid,sabacc-droid,quran-tajweed-engine,hadith-json-engine,website" data-cards-cat></div>
+    <div class="apps-grid apps-grid--3" data-cards="aurebesh-translator,aurebesh-droid,sabacc-droid,quran-tajweed-engine,hadith-json-engine,website" data-chronological data-cards-cat></div>
     {% include apple-dev-link.html %}
 
     <h2 class="subsec subsec--title reveal" id="leadership">Roles &amp; Leadership <span class="subsec-yr">by year</span></h2>

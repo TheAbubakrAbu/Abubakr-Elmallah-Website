@@ -182,7 +182,12 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .mm-list { display: flex; flex-direction: column; gap: 0.55rem; }
 .mm-item { display: flex; justify-content: space-between; gap: 1rem; font-size: 0.92rem; }
 .mm-item i { font-style: italic; color: var(--ink-2); }
-.mm-spell { display: flex; flex-direction: column; gap: 0.1rem; }
+/* a charm's sigil (a thinking orb in iron gall, orbs.js) beside its name */
+.mm-spell {
+  display: grid; grid-template-columns: 40px minmax(0, 1fr);
+  column-gap: 0.8rem; row-gap: 0.1rem; align-items: center;
+}
+.mm-sigil { grid-row: span 2; width: 40px; height: auto; aspect-ratio: 1; }
 .mm-spell b { font-size: 1rem; }
 .mm-spell span { font-size: 0.84rem; color: var(--ink-2); }
 
@@ -212,5 +217,8 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   border-bottom: 1px solid var(--burn); padding-bottom: 2px;
 }
 .mm-done a:hover { color: var(--parch); border-color: var(--parch); }
+/* the ink writing itself away; only drawn once the map has been wiped */
+.mm-done-orb { display: block; width: 96px; height: 96px; margin: 0 auto 1.4rem; opacity: 0.8; }
+.mm:not(.is-managed) .mm-done-orb { display: none; }
 
 @media (prefers-reduced-motion: reduce) { .mm-steps i { animation: none; opacity: .5; } }

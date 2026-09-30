@@ -310,7 +310,10 @@ tab: "/"
     </div>
 
     <div class="jarvis-grid">
+      <!-- each card's thinking orb (orbs.js) is the one its interface runs,
+           in its colours -->
       <a class="jarvis-cta elm-cta reveal" id="terminals" href="/elmallah/" data-magnetic>
+        <canvas class="cta-orb" data-orb="solving" data-orb-size="fit" data-orb-ink="#f5c63c" aria-hidden="true"></canvas>
         <span class="elm-holo" aria-hidden="true"><i></i><i></i><i></i></span>
         <span class="jarvis-txt">
           <span class="jarvis-k">Holoterminal · Interface</span>
@@ -320,6 +323,7 @@ tab: "/"
         <span class="jarvis-go">ENGAGE ↗</span>
       </a>
       <a class="jarvis-cta reveal" id="jarvis" href="/jarvis/" data-magnetic>
+        <canvas class="cta-orb" data-orb="working" data-orb-size="fit" data-orb-ink="#29e7ff" aria-hidden="true"></canvas>
         <span class="jarvis-orb" aria-hidden="true"></span>
         <span class="jarvis-txt">
           <span class="jarvis-k">Heads-up display · Interface</span>
@@ -329,6 +333,7 @@ tab: "/"
         <span class="jarvis-go">BOOT INTERFACE ↗</span>
       </a>
       <a class="jarvis-cta hc-cta reveal" id="holocron" href="/holocron/" data-magnetic>
+        <canvas class="cta-orb" data-orb="shaping" data-orb-size="fit" data-orb-ink="#7fd6ff" aria-hidden="true"></canvas>
         <span class="hc-mini" aria-hidden="true"><i></i><i></i><i></i></span>
         <span class="jarvis-txt">
           <span class="jarvis-k">Jedi Archives · Interface</span>
@@ -338,6 +343,7 @@ tab: "/"
         <span class="jarvis-go">UNSEAL ARCHIVE ↗</span>
       </a>
       <a class="jarvis-cta mm-cta reveal" id="marauders" href="/marauders-map/" data-magnetic>
+        <canvas class="cta-orb" data-orb="composing" data-orb-size="fit" data-orb-ink="#e8d5ab" aria-hidden="true"></canvas>
         <span class="mm-mini" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
         <span class="jarvis-txt">
           <span class="jarvis-k">Parchment · Interface</span>
@@ -361,6 +367,8 @@ tab: "/"
       <a class="big-mail" href="mailto:ammelmallah@gmail.com" data-magnetic data-scramble-hover>
         ammelmallah@gmail.com
       </a>
+      <!-- listening: a thinking orb (orbs.js) -->
+      <canvas class="contact-orb" data-orb="listening" data-orb-size="fit" data-orb-ink="#3fd589" aria-hidden="true"></canvas>
     </div>
   </section>
 

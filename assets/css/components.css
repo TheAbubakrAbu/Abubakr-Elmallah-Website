@@ -1102,6 +1102,32 @@ a.app-badge:hover {
 .page-hero { padding: 7rem var(--gutter) 2.5rem; max-width: var(--maxw); }
 @media (max-width: 640px) { .page-hero { padding-top: 2rem; } }
 
+/* ── the thinking orb behind a page's heading (thinking.js) ──
+   In the empty right-hand side of the heading on a wide screen; on a phone,
+   where the words take the whole width, bigger, fainter and half off the
+   edge, so it reads as a backdrop and never as something on the words. The
+   hero is its own stacking context so the orb can sit under its text. */
+.has-orb { position: relative; isolation: isolate; overflow-x: clip; }
+.hero-orb {
+  position: absolute; z-index: -1; pointer-events: none;
+  right: max(0px, calc(var(--gutter) - 1rem)); top: 50%;
+  width: clamp(260px, 32vw, 460px); height: auto; aspect-ratio: 1;
+  translate: 0 -46%; opacity: 0.6;
+  animation: orb-in 1.4s var(--ease, ease) both;
+}
+@keyframes orb-in { from { opacity: 0; scale: 0.9; } }
+/* on the home page, round the portrait: a green ribbon centred on the
+   picture and wide enough that its band shows on both sides of the frame */
+.hero-orb--portrait {
+  right: auto; left: 50%; top: 45%; translate: -50% -50%;
+  width: 200%; opacity: 0.75;
+}
+@media (max-width: 760px) {
+  .hero-orb { width: 78vw; right: -22vw; top: 0.5rem; translate: 0 0; opacity: 0.32; }
+  .hero-orb--portrait { width: 150%; right: auto; top: 45%; translate: -50% -50%; opacity: 0.6; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-orb { animation: none; } }
+
 /* ── breadcrumbs (_includes/crumbs.html) ──
    Home / Worlds / Skylanders. Kept on a phone, unlike the "← Back home" link
    it replaced: the tab bar covers Home, but not the middle step, and the
@@ -1283,6 +1309,11 @@ html.srch-lock .bd *, html.srch-lock .grain, html.srch-lock body::after { animat
   padding: 0.85rem 1rem; border-bottom: 1px solid var(--line);
 }
 .srch-bar svg { width: 18px; height: 18px; flex: none; fill: none; stroke: var(--green-2); stroke-width: 2; stroke-linecap: round; }
+/* while there is a query the magnifier is a turning globe (search.js) */
+.srch-orb { flex: none; width: 20px; height: 20px; margin: 0 -1px; }
+.srch-bar:not(.is-typing) .srch-orb, .srch-bar.is-typing svg { display: none; }
+.srch-empty-orb { display: block; width: 64px; height: 64px; margin: 1.2rem auto 0; opacity: 0.85; }
+.srch-empty-orb + .srch-empty { text-align: center; }
 .srch-in {
   flex: 1; min-width: 0; background: transparent; border: 0; outline: 0;
   font-family: var(--sans); font-size: 1.05rem; color: var(--ink);
@@ -1958,6 +1989,17 @@ html:has(#lightbox) { scrollbar-gutter: stable; }
 /* "Full document above." is only true once it is */
 .embed-wrap:not(.is-live) .embed-live { display: none; }
 @media (pointer: coarse) { .embed-frame--doc { height: min(60svh, 520px); min-height: 0; } }
+/* the "composing" orb over a document while Docs loads (utils.js), in the
+   middle of the frame: half of each height the frame can take above */
+.embed-wrap { position: relative; }
+.embed-orb {
+  position: absolute; left: 50%; top: max(39vh, 230px);
+  margin: -32px 0 0 -32px; pointer-events: none;
+}
+@media (pointer: coarse) { .embed-orb { top: min(30svh, 260px); } }
+/* a frame sized by its own shape (the résumé PDF): the middle of the wrap,
+   less the note under the frame */
+.embed-orb.embed-orb--mid { top: calc(50% - 1.3rem); }
 .embed-note {
   font-family: var(--mono); font-size: 0.7rem; color: var(--mute);
   padding: 0.85rem 1.1rem; border-top: 1px solid var(--line);
@@ -2145,6 +2187,13 @@ html:has(#lightbox) { scrollbar-gutter: stable; }
   word-break: break-word; transition: color .3s;
 }
 .big-mail:hover { color: var(--green-2); }
+/* "Say something.": a listening thinking orb at the end of the row */
+.contact-row { position: relative; }
+.contact-orb {
+  width: clamp(110px, 14vw, 190px); height: auto; aspect-ratio: 1;
+  margin-left: auto; align-self: center; opacity: 0.8; pointer-events: none;
+}
+@media (max-width: 640px) { .contact-orb { width: 120px; margin: 0.4rem auto 0; } }
 
 /* custom-cursor on/off toggle, beside the email */
 .cursor-toggle {
@@ -2285,6 +2334,14 @@ html:has(#lightbox) { scrollbar-gutter: stable; }
   opacity: 0.55;
 }
 .jarvis-cta:hover { transform: translateY(-5px); border-color: rgba(41,231,255,0.6); }
+/* each interface's own thinking orb, in the card's empty top corner */
+.cta-orb {
+  position: absolute; top: clamp(1rem, 2.4vw, 1.8rem); right: clamp(1rem, 2.4vw, 1.8rem);
+  width: 110px; height: auto; aspect-ratio: 1; opacity: 0.75; pointer-events: none;
+  transition: opacity .4s, scale .6s var(--ease);
+}
+.jarvis-cta:hover .cta-orb { opacity: 1; scale: 1.08; }
+@media (max-width: 780px) { .cta-orb { width: 76px; } }
 .jarvis-orb {
   position: relative; flex: none; width: clamp(58px, 9vw, 82px); aspect-ratio: 1; border-radius: 50%;
   background: radial-gradient(circle at 50% 45%, #ffffff 0%, #d8fbff 13%, #29e7ff 38%, #0f7fa8 68%, #032031 100%);
