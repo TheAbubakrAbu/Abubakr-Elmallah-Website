@@ -1,0 +1,242 @@
+---
+permalink: /monastery/
+title: "The Monastery · Abubakr Elmallah"
+description: "The Monastery: a Ninjago interface for Abubakr Elmallah's portfolio, with a spinjitzu tornado, the four Golden Weapons, and every page a training station."
+theme: "#0c0a0b"
+fonts: "family=Kaisei+Tokumin:wght@500;700;800&family=Shippori+Mincho:wght@400;500;600;700"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/monastery.css' %}" />
+</head>
+<body class="mo" id="mo">
+
+<!-- night on the mountain, painted the way an ink-wash scroll is: a pale
+     moon, three ranges of peaks each a wash lighter than the one in front,
+     mist pooled between them, and the Monastery of Spinjitzu lit on the
+     highest one. Gold motes drift up off it. All of it fixed behind the page. -->
+<div class="mo-sky" aria-hidden="true">
+  <span class="mo-moon"></span>
+  <span class="mo-peaks">
+    <svg viewBox="0 0 1400 420" preserveAspectRatio="xMidYMax slice">
+      <path class="mo-p1" d="M0 420V200l90-40 70 30 110-96 90 70 80-34 120 92 70-52 130 100 90-60 110 48 120-110 100 74 100-36 120 64v190z"/>
+      <path class="mo-mist" d="M0 300q180-40 360 0t360 0 360 0 320 0v120H0z"/>
+      <path class="mo-p2" d="M0 420V290l130-60 120 80 150-110 120 96 140-70 110 60 150-86 140 92 130-58 110 70v116z"/>
+      <!-- the Monastery, on the middle peak: two roofs, the upper one
+           swept up at the ends the way the real one is, and lit windows -->
+      <g class="mo-temple">
+        <path d="M638 186h104v44H638z"/>
+        <path d="M612 190q20-6 30-20h96q10 14 30 20z"/>
+        <path d="M652 170h76v-24h-76z"/>
+        <path d="M628 150q18-4 26-18h72q8 14 26 18z"/>
+        <path d="M688 132v-16"/>
+        <rect class="mo-lit" x="656" y="198" width="12" height="16"/>
+        <rect class="mo-lit" x="684" y="198" width="12" height="16"/>
+        <rect class="mo-lit" x="712" y="198" width="12" height="16"/>
+      </g>
+      <path class="mo-p3" d="M0 420V352l160-40 140 50 180-62 160 54 170-46 160 40 150-52 150 44 130-26v136z"/>
+    </svg>
+  </span>
+  <span class="mo-motes"></span>
+</div>
+
+<header class="mo-top">
+  <a class="mo-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the Monastery</span>
+  </a>
+  <span class="mo-top-mid">Ninjago · the Monastery of Spinjitzu</span>
+  <!-- the hour as an old temple bell counts it, from your clock (monastery.js) -->
+  <span class="mo-top-hour" id="moHour">Hour of the ·····</span>
+</header>
+
+<main class="mo-main" id="moMain">
+
+  <!-- ─────────── the dojo ───────────
+       Two columns on a wide screen: the courtyard on the left stays put
+       while the title and the training course scroll past it on the right,
+       so pointing at a station shows its element in the tornado. On a phone
+       they stack in reading order: the title, the courtyard, the course. -->
+  <div class="mo-dojo">
+
+    <section class="mo-hero">
+      <p class="mo-kicker">Sensei Wu’s monastery, on the highest peak</p>
+      <h1 class="mo-title">The Monastery</h1>
+      <p class="mo-sub">Every room on this site, kept at the Monastery of Spinjitzu. The four Golden Weapons circle the courtyard, every page is a station on the training course, and each one spins up in its own element when you point at it.</p>
+      <p class="mo-epi">“Ninja never quit.” <span>Lloyd, and every ninja after him</span></p>
+    </section>
+
+    <!-- the courtyard: a spinjitzu tornado (canvas, monastery.js) with the
+         four Golden Weapons circling it on their rack. It idles, turning
+         slowly through the elements; point at a station, pick an element
+         or press Spin and it spins up. The tornado and the weapons are for
+         the eye only; the element buttons under them are real. -->
+    <section class="mo-yard" aria-label="The courtyard">
+      <div class="mo-stage" id="moStage">
+        <span class="mo-floor" aria-hidden="true"></span>
+        <canvas class="mo-twister" id="moTwister" aria-hidden="true"></canvas>
+        <!-- the four Golden Weapons, drawn once each; monastery.js carries
+             them round the tornado on an ellipse, behind it on the far side -->
+        <div class="mo-rack" id="moRack" aria-hidden="true">
+          <svg class="mo-gw" viewBox="0 0 60 120" style="--g:#ff5a3c">
+            <path d="M30 4c11 18 20 26 20 40 0 13-9 21-20 21S10 57 10 44c0-14 9-22 20-40z" class="mo-gw-aura"/>
+            <path d="M26 40h8l4 10v40H22V50z"/><path d="M16 90h28v6H16z"/><path d="M12 90q4-7 10-7h16q6 0 10 7z"/><rect x="26" y="96" width="8" height="18" rx="2"/>
+          </svg>
+          <svg class="mo-gw" viewBox="0 0 60 120" style="--g:#4fb0ff">
+            <path d="M36 4 18 52h12l-6 40 24-50H36z" class="mo-gw-aura"/>
+            <rect x="8" y="50" width="11" height="54" rx="4"/><rect x="41" y="50" width="11" height="54" rx="4"/>
+            <path d="M13.5 50q0-22 16.5-22t16.5 22" fill="none" stroke="url(#moGold)" stroke-width="3" stroke-dasharray="4 3"/>
+          </svg>
+          <svg class="mo-gw" viewBox="0 0 60 120" style="--g:#dff4ff">
+            <circle cx="30" cy="58" r="28" class="mo-gw-aura"/>
+            <path d="M30 22l6 22 22 6-22 6-6 22-6-22-22-6 22-6z"/><circle cx="30" cy="50" r="4" fill="#3a2a0c"/>
+            <path d="M30 70l4 14 14 4-14 4-4 14-4-14-14-4 14-4z"/>
+          </svg>
+          <svg class="mo-gw" viewBox="0 0 60 120" style="--g:#c9a46a">
+            <path d="M6 30q24-30 50-8-16-4-30 8T6 30z" class="mo-gw-aura"/>
+            <path d="M6 32q24-30 50-6-18-6-30 6T6 32z"/><rect x="28" y="28" width="7" height="84" rx="3"/><circle cx="31.5" cy="114" r="4"/>
+          </svg>
+        </div>
+        <!-- the gold every weapon is cast in, referenced above by url() -->
+        <svg width="0" height="0" class="mo-defs" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="moGold" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#fff0b8"/>
+              <stop offset=".45" stop-color="#e0b040"/>
+              <stop offset="1" stop-color="#8a5a14"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <!-- what the tornado is showing, said in words. Not a live region:
+           it changes on every hover, and the buttons' pressed state already
+           tells a screen reader which element is chosen -->
+      <p class="mo-read" id="moRead"><b id="moReadT">Golden Power</b><span id="moReadS">the First Spinjitzu Master</span></p>
+
+      <div class="mo-els" role="group" aria-label="Choose an element">
+        <button type="button" class="mo-el" data-el="fire" aria-pressed="false" style="--e:#ff5a3c">Fire<span>Kai</span></button>
+        <button type="button" class="mo-el" data-el="lightning" aria-pressed="false" style="--e:#4fb0ff">Lightning<span>Jay</span></button>
+        <button type="button" class="mo-el" data-el="earth" aria-pressed="false" style="--e:#c9a46a">Earth<span>Cole</span></button>
+        <button type="button" class="mo-el" data-el="ice" aria-pressed="false" style="--e:#dff4ff">Ice<span>Zane</span></button>
+        <button type="button" class="mo-el" data-el="water" aria-pressed="false" style="--e:#5ec8e0">Water<span>Nya</span></button>
+        <button type="button" class="mo-el" data-el="energy" aria-pressed="false" style="--e:#6fe08a">Energy<span>Lloyd</span></button>
+      </div>
+      <button type="button" class="mo-spin" id="moSpin">Spinjitzu!</button>
+    </section>
+
+    <!-- ─────────── the training course ───────────
+         Every room on the site, as a station on Wu's course. data-el is
+         the element each one spins the tornado up in; monastery.js reads
+         it from here, so this list is the only place it is written. -->
+    <section class="mo-course" aria-labelledby="moCourseH">
+      <h2 class="mo-h" id="moCourseH">
+        <canvas class="mo-think" data-orb="searching" data-orb-size="22" data-orb-ink="#e0b040" aria-hidden="true"></canvas>The training course<span>fifteen stations, every room on the site</span>
+      </h2>
+      <ol class="mo-stations">
+        <li><a class="mo-st" href="/" data-el="gold" style="--e:#e0b040; --i:0"><b>The Monastery of Spinjitzu</b><i>Home</i><em>Gold</em></a></li>
+        <li><a class="mo-st" href="/work/" data-el="water" style="--e:#5ec8e0; --i:1"><b>Destiny’s Bounty</b><i>Work at UC Irvine</i><em>Water</em></a></li>
+        <li><a class="mo-st" href="/projects/" data-el="ice" style="--e:#dff4ff; --i:2"><b>Borg Tower</b><i>Every project, built in New Ninjago City</i><em>Ice</em></a></li>
+        <li><a class="mo-st" href="/education/" data-el="earth" style="--e:#c9a46a; --i:3"><b>Wu’s Teachings</b><i>Education</i><em>Earth</em></a></li>
+        <li><a class="mo-st" href="/college/" data-el="energy" style="--e:#6fe08a; --i:4"><b>Wu’s Academy</b><i>College · UC Irvine</i><em>Energy</em></a></li>
+        <li><a class="mo-st" href="/high-school/" data-el="fire" style="--e:#ff5a3c; --i:5"><b>The Training Course</b><i>High school · where it started</i><em>Fire</em></a></li>
+        <li><a class="mo-st" href="/worlds/" data-el="lightning" style="--e:#4fb0ff; --i:6"><b>The Sixteen Realms</b><i>All 71 worlds</i><em>Lightning</em></a></li>
+        <li><a class="mo-st" href="/worlds/ninjago/" data-el="gold" style="--e:#e0b040; --i:7"><b>Ninjago</b><i>The world page</i><em>Gold</em></a></li>
+        <li><a class="mo-st" href="/star-wars/" data-el="lightning" style="--e:#4fb0ff; --i:8"><b>The Dark Island</b><i>Star Wars apps</i><em>Lightning</em></a></li>
+        <li><a class="mo-st" href="/al-islam/" data-el="energy" style="--e:#6fe08a; --i:9"><b>The Meditation Hall</b><i>Al-Islam</i><em>Energy</em></a></li>
+        <li><a class="mo-st" href="/travels/" data-el="water" style="--e:#5ec8e0; --i:10"><b>The Map Room</b><i>Travels · where I have been</i><em>Water</em></a></li>
+        <li><a class="mo-st" href="/accents/" data-el="fire" style="--e:#ff5a3c; --i:11"><b>The Mask of Deception</b><i>Accents &amp; impersonations</i><em>Fire</em></a></li>
+        <li><a class="mo-st" href="/gaming/" data-el="lightning" style="--e:#4fb0ff; --i:12"><b>Prime Empire</b><i>Gaming</i><em>Lightning</em></a></li>
+        <li><a class="mo-st" href="/lightsabers/" data-el="ice" style="--e:#dff4ff; --i:13"><b>The Temple of Light</b><i>Where the blades are charged · the lightsaber guide</i><em>Ice</em></a></li>
+        <li><a class="mo-st" href="/resume/" data-el="gold" style="--e:#e0b040; --i:14"><b>The Master’s Scroll</b><i>Résumé</i><em>Gold</em></a></li>
+      </ol>
+    </section>
+  </div>
+
+  <!-- ─────────── two scrolls ─────────── -->
+  <div class="mo-cols">
+
+    <!-- a ninja earns an element by mastering it; these are the feats so
+         far, one to an element, each with its colour on the brush stroke -->
+    <section class="mo-panel" aria-labelledby="moFeatsH">
+      <h2 class="mo-h mo-h--sm" id="moFeatsH">Spinjitzu, unlocked<span>a feat for every element</span></h2>
+      <ol class="mo-feats">
+        <li style="--e:#e0b040"><b>Gold · the Golden Master’s honour</b><p>Winner of the Apple Swift Student Challenge, 2024.</p></li>
+        <li style="--e:#4fb0ff"><b>Lightning · the loudest weapon</b><p>Datapad, in the Top 10 of the paid Entertainment chart.</p></li>
+        <li style="--e:#dff4ff"><b>Ice · Nindroid work</b><p>Two Discord bots, running in more than 500 servers.</p></li>
+        <li style="--e:#6fe08a"><b>Energy · balance</b><p>Al-Adhan, which computes prayer times 22 ways.</p></li>
+        <li style="--e:#ff5a3c"><b>Fire · the arena</b><p>The UCI Esports app: the arena, its PCs and its events.</p></li>
+        <li style="--e:#c9a46a"><b>Earth · the first stone</b><p>Order 66 and Datapad, the first solo projects, in 2021.</p></li>
+      </ol>
+    </section>
+
+    <section class="mo-panel" aria-labelledby="moFileH">
+      <h2 class="mo-h mo-h--sm" id="moFileH">The ninja’s file<span>as Sensei Wu keeps it</span></h2>
+      <dl class="mo-file">
+        <div><dt>Ninja</dt><dd>Abubakr Elmallah</dd></div>
+        <div><dt>Training</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
+        <div><dt>Rank</dt><dd>Lead mobile &amp; backend developer</dd></div>
+        <div><dt>Weapons forged</dt><dd>Twelve apps, across four platforms</dd></div>
+        <div><dt>Realms charted</dt><dd>Seventy</dd></div>
+        <div><dt>Joined the ninja</dt><dd>Around 2012–13, age six or seven</dd></div>
+        <div><dt>Drawn with</dt><dd>CSS, SVG and canvas, no images</dd></div>
+      </dl>
+    </section>
+
+  </div>
+
+  <!-- ─────────── the Realm Crystal ─────────── -->
+  <section class="mo-panel mo-realms" aria-labelledby="moRealmsH">
+    <h2 class="mo-h mo-h--sm" id="moRealmsH">The Realm Crystal<span>to every other interface</span></h2>
+    <div class="mo-crystals">
+      <a class="mo-cr" href="/elmallah/" style="--w:#e0b040"><span class="mo-gem" aria-hidden="true"></span><b>E.L.M.A.L.L.A.H.</b><i>Star Wars · the holotable hub</i></a>
+      <a class="mo-cr" href="/holocron/" style="--w:#4f9fd0"><span class="mo-gem" aria-hidden="true"></span><b>The Holocron</b><i>Star Wars · a Jedi archive</i></a>
+      <a class="mo-cr" href="/jarvis/" style="--w:#3fc4d4"><span class="mo-gem" aria-hidden="true"></span><b>J.A.R.V.I.S.</b><i>Avengers · a Stark display</i></a>
+      <a class="mo-cr" href="/marauders-map/" style="--w:#c08a50"><span class="mo-gem" aria-hidden="true"></span><b>The Marauder’s Map</b><i>Harry Potter</i></a>
+      <a class="mo-cr" href="/crafting-table/" style="--w:#6fb04a"><span class="mo-gem" aria-hidden="true"></span><b>The Crafting Table</b><i>Minecraft</i></a>
+      <a class="mo-cr" href="/citadel/" style="--w:#d8b26a"><span class="mo-gem" aria-hidden="true"></span><b>The Citadel</b><i>Game of Thrones</i></a>
+      <a class="mo-cr" href="/compass/" style="--w:#5ab0a8"><span class="mo-gem" aria-hidden="true"></span><b>The Compass</b><i>Pirates of the Caribbean</i></a>
+      <a class="mo-cr" href="/control-room/" style="--w:#e07a3a"><span class="mo-gem" aria-hidden="true"></span><b>The Control Room</b><i>Jurassic Park</i></a>
+      <a class="mo-cr" href="/upside-down/" style="--w:#e0463a"><span class="mo-gem" aria-hidden="true"></span><b>The Upside Down</b><i>Stranger Things</i></a>
+      <a class="mo-cr" href="/starcourt/" style="--w:#e060b0"><span class="mo-gem" aria-hidden="true"></span><b>Starcourt</b><i>Stranger Things</i></a>
+      <a class="mo-cr" href="/spirit-library/" style="--w:#d0a050"><span class="mo-gem" aria-hidden="true"></span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a>
+      <a class="mo-cr" href="/wanted/" style="--w:#d0503a"><span class="mo-gem" aria-hidden="true"></span><b>The Wanted Board</b><i>Red Dead Redemption</i></a>
+      <a class="mo-cr" href="/dunder-mifflin/" style="--w:#8fb0d0"><span class="mo-gem" aria-hidden="true"></span><b>Dunder Mifflin</b><i>The Office</i></a>
+      <a class="mo-cr" href="/springfield/" style="--w:#f0d040"><span class="mo-gem" aria-hidden="true"></span><b>Springfield</b><i>The Simpsons</i></a>
+      <a class="mo-cr" href="/vought/" style="--w:#c0c8d8"><span class="mo-gem" aria-hidden="true"></span><b>Vought Tower</b><i>The Boys</i></a>
+      <a class="mo-cr" href="/pokedex/" style="--w:#e8504a"><span class="mo-gem" aria-hidden="true"></span><b>The Pokédex</b><i>Pokémon</i></a>
+      <a class="mo-cr" href="/batcomputer/" style="--w:#9aa0b0"><span class="mo-gem" aria-hidden="true"></span><b>The Batcomputer</b><i>Batman</i></a>
+      <a class="mo-cr" href="/daily-bugle/" style="--w:#d84040"><span class="mo-gem" aria-hidden="true"></span><b>The Daily Bugle</b><i>Spider-Man</i></a>
+    </div>
+  </section>
+
+  <button class="mo-go" id="moGo" type="button"><span class="mo-go-spin" aria-hidden="true"></span>Ninja, go!</button>
+
+</main>
+
+<!-- the answer, after the call: the tornado spins up gold first (monastery.js) -->
+<div class="mo-done" id="moDone">
+  <div>
+    <canvas class="mo-done-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#e0b040" aria-hidden="true"></canvas>
+    <p class="mo-done-k">And the team answers</p>
+    <p class="mo-done-t">Ninja never quit.</p>
+    <a class="mo-done-home" href="/">Down the mountain, home</a>
+    <button class="mo-done-stay" id="moStay" type="button">Keep training</button>
+  </div>
+</div>
+
+<script>
+  /* smooth scrolling only after load, so back/forward restores the position instantly instead of sliding to it */
+  addEventListener('load', function () {
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      document.documentElement.classList.add('smooth');
+    }); });
+  });
+</script>
+<script src="{% include v.html f='/assets/js/monastery.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

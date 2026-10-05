@@ -125,7 +125,7 @@ window.FAN_PAGE = {
       { title: 'Omni-Man', accent: '#e04a4a', sub: 'John Paesano · Invincible · 2021 · 5:22',
         desc: 'Nolan’s theme: brass written like a superhero and then held a fraction too long, so that by the time you work out what it actually is, episode eight has already happened.',
         href: 'https://www.youtube.com/watch?v=-NVI_JnB6lw', link: 'Listen' },
-      { title: 'Thragg', accent: '#8f6fd0', sub: 'John Paesano · Invincible · 2:19',
+      { title: 'Thragg', accent: '#8f6fd0', sub: 'John Paesano · Invincible · 2026 · 2:19',
         desc: 'The Grand Regent of the Viltrum Empire, and the only character in the show who makes Omni-Man look reasonable. Unreleased on any album, so the copy is a fan’s rip of the score.',
         href: 'https://www.youtube.com/watch?v=uEh46AaELNw', link: 'Fan upload' },
       { title: 'Tom Tom', accent: '#e06a3a', sub: 'Holy Fuck · Latin · 2010 · 3:48',

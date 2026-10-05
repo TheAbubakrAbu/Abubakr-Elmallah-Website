@@ -16,9 +16,21 @@ tab: "/worlds/"
 </head>
 <body data-intro="none" data-fan="batman">
 
-<!-- a signal thrown at the cloud -->
-<!-- Gotham at night: rain, the skyline, and the signal on the clouds. Kept
-     deliberately dark; the whole point of this city is that it is unlit. -->
+<!-- a signal thrown at the cloud, and the cave under it -->
+<!-- The descent. You arrive in Gotham (rain, the skyline, the signal on the
+     clouds) and scroll down into the cave under Wayne Manor: the city rises
+     away, the rock closes in from the sides, the stalactites come down and
+     the pool comes up. One backdrop, not two, so the change happens as you
+     read rather than at a seam.
+
+     The whole thing is driven by one number, --depth, 0 at the top of the
+     page and 1 once you are in the cave; batman-descent.js sets it off the
+     scroll and the CSS below does the rest. Without scripts --depth stays at
+     its stylesheet value and the page is Gotham at night, which is what it
+     has always been.
+
+     Kept deliberately dark at both ends; the point of this city is that it
+     is unlit, and the point of the cave is that it is underground. -->
 <div class="bat-sky" aria-hidden="true">
   <span class="bat-signal">
     <svg viewBox="0 0 400 400">
@@ -61,6 +73,36 @@ tab: "/worlds/"
     </svg>
   </span>
   <span class="bat-rain"></span>
+
+  <!-- The cave, drawn over the city and brought in by --depth. Rock down both
+       sides, the stalactite ceiling, the pool at the foot, and the drips. All
+       CSS and inline SVG, no images. -->
+  <span class="bat-cave">
+    <span class="bcv-wall bcv-wall--l"></span>
+    <span class="bcv-wall bcv-wall--r"></span>
+    <span class="bcv-roof">
+      <svg viewBox="0 0 1400 260" preserveAspectRatio="xMidYMin slice">
+        <defs>
+          <!-- the rock, lit from below by the wall of monitors -->
+          <linearGradient id="bcvRock" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#05080c"/>
+            <stop offset="0.55" stop-color="#121a25"/>
+            <stop offset="1" stop-color="#28374a"/>
+          </linearGradient>
+        </defs>
+        <!-- One ragged edge with the teeth cut into it: the ceiling and its
+             stalactites are a single closed path, so there is no join to see.
+             Generated rather than typed, because a hand-written one drifted
+             off the left of the viewBox as the relative steps accumulated
+             (it measured 2106 wide inside a 1400 box and most of the teeth
+             were off-screen). Absolute coordinates, every tooth inside the
+             box by construction. -->
+        <path d="M0 0 H1400 L1400 29 L1400 29 L1390 117 L1357 29 L1331 36 L1298 158 L1265 36 L1254 39 L1234 84 L1214 39 L1190 47 L1159 108 L1128 47 L1111 43 L1077 144 L1043 43 L1022 55 L989 138 L956 55 L938 51 L922 127 L906 51 L902 36 L871 110 L840 36 L836 47 L817 94 L798 47 L779 32 L756 163 L733 32 L716 55 L689 125 L662 55 L647 57 L631 159 L615 57 L591 57 L572 156 L553 57 L544 52 L510 187 L476 52 L456 28 L431 115 L406 28 L393 45 L375 184 L357 45 L346 33 L322 170 L298 33 L287 38 L257 95 L227 38 L218 35 L193 181 L168 35 L144 56 L123 206 L102 56 L95 45 L79 181 L63 45 L48 46 L24 116 L0 46 L0 46 Z"/>
+      </svg>
+    </span>
+    <span class="bcv-drip"></span>
+    <span class="bcv-pool"></span>
+  </span>
 </div>
 
 {% include fx.html %}
@@ -77,6 +119,8 @@ tab: "/worlds/"
     {% include crumbs.html parent="Worlds" url="/worlds/#franchises" here="Batman" %}
     <p class="fan-kicker"><span>Franchise · Secondary · since 1939</span></p>
     <h1 class="fan-title">Batman</h1>
+    {% include interface-link.html world="Batman" href="/batcomputer/" name="The Batcomputer" %}
+    {% include interface-peek.html tone="#4cc3ff" bg="#07080b" rows="Case files|24 ROOMS;Rogues indexed|12;Detective mode|ENGAGED;Cave status|ONLINE" note="The Batcomputer files every page on this site as a case, and the rogues as suspects." href="/batcomputer/" name="The Batcomputer" world="Batman" %}
     <p class="fan-lede-hero">No powers, just preparation. The best rogues gallery in comics, the family under the cape, and the handful of adaptations that actually got him right.</p>
     <div class="fan-links">
       <a class="fan-link" href="/worlds/#franchises" data-magnetic>All worlds ↗</a>
@@ -151,6 +195,8 @@ tab: "/worlds/"
 {% include tabbar.html %}
 
 <script src="{% include v.html f='/assets/js/utils.js' %}"></script>
+<!-- the descent from the city into the cave: sets --depth off the scroll -->
+<script src="{% include v.html f='/assets/js/batman-descent.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
 <script src="{% include v.html f='/assets/js/batman-music.js' %}"></script>
 <!-- the LEGO catalogue, which this page's LEGO tiles come out of -->

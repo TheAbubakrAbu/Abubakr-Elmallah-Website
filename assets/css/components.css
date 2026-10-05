@@ -23,52 +23,6 @@
 }
 .kicker span:first-child { color: var(--green); }
 
-/* ── "Latest" pill ──
-   One line above the name pointing at the newest thing shipped: a live dot,
-   a label, the news, an arrow. Pill-shaped and green-tinted like .app-expand,
-   so it reads as something to press rather than as another kicker line. */
-.news-pill {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  max-width: 100%; margin-bottom: clamp(1.2rem, 2.4vw, 1.8rem);
-  padding: 0.45rem 0.9rem 0.45rem 0.75rem; border-radius: 100px;
-  border: 1px solid color-mix(in srgb, var(--green) 28%, transparent);
-  background: color-mix(in srgb, var(--green) 7%, transparent);
-  font-size: 0.84rem; color: var(--ink-dim);
-  transition: background .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease);
-}
-.news-pill:hover {
-  background: color-mix(in srgb, var(--green) 14%, transparent);
-  border-color: color-mix(in srgb, var(--green) 55%, transparent);
-  color: var(--ink);
-}
-/* The ping is a copy of the dot that grows and fades. It used to be an
-   animated box-shadow, which repaints on every frame; scale and opacity stay
-   on the compositor. Same look: out to 3x (7px past the dot), gone by 70%. */
-.news-dot {
-  position: relative;
-  flex: none; width: 7px; height: 7px; border-radius: 50%;
-  background: var(--green-2);
-}
-.news-dot::after {
-  content: ""; position: absolute; inset: 0; border-radius: 50%;
-  background: var(--green-2); opacity: 0;
-  animation: news-ping 2.4s ease-out infinite;
-}
-@keyframes news-ping {
-  0%       { opacity: .55; transform: scale(1); }
-  70%, 100% { opacity: 0;   transform: scale(3); }
-}
-.news-k {
-  flex: none; font-family: var(--mono); font-size: 0.68rem;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-2);
-}
-.news-t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-/* a phone keeps the name and drops the rest, rather than ellipsising mid-word */
-@media (max-width: 480px) { .news-more { display: none; } }
-.news-pill svg { flex: none; width: 14px; height: 14px; transition: transform .25s var(--ease); }
-.news-pill:hover svg { transform: translateX(3px); }
-@media (prefers-reduced-motion: reduce) { .news-dot::after { animation: none; } }
-
 .display {
   font-family: var(--serif); font-weight: 600;
   font-size: clamp(3.6rem, 11vw, 11rem);
@@ -204,7 +158,6 @@ html:has(> body[data-intro="home"]) { scrollbar-gutter: stable; }
 @media (min-width: 901px) and (max-height: 820px) {
   .hero { padding-top: 1.5rem; }
   .hero .kicker { margin-bottom: 1rem; }
-  .hero .news-pill { margin-bottom: 1rem; }
   .hero .hero-role { margin-top: 1.1rem; }
   .hero .hero-foot { margin-top: 1.5rem; row-gap: 1.25rem; }
 }
@@ -918,6 +871,25 @@ a.app-badge:hover {
 .flyer-cap b { font-weight: 400; color: var(--ink); min-width: 0; }
 .flyer-cap i { font-style: normal; color: var(--mute); flex: none; }
 
+/* The same card for things that are not flyers: Discord cards, typing tests,
+   old screenshots of my own pages. `--wide` frames landscape pictures at
+   16:10 instead of the flyers' 3:4; `.flyer--span` is a strip too wide for
+   any cell (a two-line Discord notice, a banner), given the whole row at its
+   own height. */
+.flyer-grid--wide .flyer img { height: auto; aspect-ratio: 16 / 10; }
+.flyer-grid .flyer--span { grid-column: 1 / -1; }
+.flyer-grid .flyer--span img { height: auto; max-height: 200px; aspect-ratio: auto; }
+
+/* two grids of them in a row (Online, Along the Way on /high-school/ and
+   /college/): the second sits a gap below the first */
+.flyer-grid + .edu-online-next { margin-top: 1.4rem; }
+/* rows of exactly two or four, so a set of that size leaves no empty cell;
+   a phone keeps the usual two across */
+@media (min-width: 761px) {
+  .flyer-grid.flyer-grid--2 { grid-template-columns: repeat(2, 1fr); }
+  .flyer-grid.flyer-grid--4 { grid-template-columns: repeat(4, 1fr); }
+}
+
 /* ───────────── The class ring (/high-school/) ─────────────
    The two renders side by side on a laptop, one above the other on a phone,
    where a landscape picture two across is too small to read; the flyer card
@@ -1080,6 +1052,23 @@ a.app-badge:hover {
   .wall-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; column-count: auto; }
   .wall-grid > .wall { margin-bottom: 0; }
   .wall-grid > .wall:nth-child(n+3) { grid-column: 1 / -1; }
+}
+/* The Three Holy Mosques set as it is now: the four phone wallpapers in one
+   row, then laptop and desktop side by side with columns in proportion to
+   their ratios (1200x776 and 1200x507), so the two come out the same height.
+   On a phone: two phones a row, then each wide one across the full width.
+   These two override the four-picture layout above. */
+.wall-grid.wall-grid--phones, .wall-grid.wall-grid--wide {
+  display: grid; gap: 1.4rem; align-items: start; column-count: auto;
+}
+.wall-grid.wall-grid--phones { grid-template-columns: repeat(4, 1fr); }
+.wall-grid.wall-grid--wide { grid-template-columns: 1.546fr 2.367fr; margin-top: 1.4rem; }
+.wall-grid--phones > .wall, .wall-grid--wide > .wall { margin-bottom: 0; }
+.wall-grid.wall-grid--phones > .wall:nth-child(n),
+.wall-grid.wall-grid--wide > .wall:nth-child(n) { grid-row: auto; grid-column: auto; }
+@media (max-width: 760px) {
+  .wall-grid.wall-grid--phones { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .wall-grid.wall-grid--wide { grid-template-columns: 1fr; gap: 0.75rem; margin-top: 0.75rem; }
 }
 .wall {
   display: block; break-inside: avoid; margin-bottom: 1.4rem;
@@ -1704,6 +1693,9 @@ html.intro-lock { overflow: hidden; }
   display: block; margin-top: 0.35rem; font-family: var(--mono);
   font-size: 0.66rem; letter-spacing: 0.05em; color: var(--mute);
 }
+/* the years, then the grades (or the town) under them: two lines, never one
+   wrapped at whatever width the card happens to be */
+.mascot-when > span { display: block; }
 .mascot p {
   margin-top: 0.9rem; padding-top: 0.8rem; border-top: 1px solid var(--line);
   font-size: 0.78rem; line-height: 1.65; color: var(--ink-dim);
@@ -2308,15 +2300,67 @@ html:has(#lightbox) { scrollbar-gutter: stable; }
 /* The four teasers (E.L.M.A.L.L.A.H., J.A.R.V.I.S., Holocron, Marauder's Map)
    are one section, "Interfaces", above Contact: they used to be four headless
    sections after it, so the page ended on the toys and their h3s sat under
-   the Contact heading. On a wide screen they are a 2x2 grid; each card then
+   the Contact heading. On a wide screen E.L.M.A.L.L.A.H. takes the first row
+   to itself, laid out across like the phone cards, and the other three sit
+   three to a row: the other two of the core three worlds' terminals and
+   the Marauder's Map, then the six for the Primary worlds; each of those
    stacks its mark, its text and its button, and the buttons line up along
-   the bottom of each row. */
+   the bottom of the row. They need the room: under 1024px every card is
+   one full-width row. */
 .interfaces { padding-top: 2rem; padding-bottom: 5rem; }
 .jarvis-grid { display: grid; gap: clamp(0.9rem, 2vw, 1.4rem); }
-@media (min-width: 901px) {
-  .jarvis-grid { grid-template-columns: 1fr 1fr; }
-  .jarvis-grid .jarvis-cta { flex-direction: column; align-items: flex-start; gap: 1.1rem; }
-  .jarvis-grid .jarvis-go { margin: auto 0 0; }
+@media (min-width: 1024px) {
+  .jarvis-grid { grid-template-columns: repeat(3, 1fr); }
+  .jarvis-grid .jarvis-cta:not(.elm-cta) { flex-direction: column; align-items: flex-start; gap: 1.1rem; }
+  .jarvis-grid .jarvis-cta:not(.elm-cta) .jarvis-go { margin: auto 0 0; }
+  .jarvis-grid .elm-cta { grid-column: 1 / -1; }
+  /* a third of the row is narrower than the 3vw heading assumes:
+     H.O.L.O.C.R.O.N. ran out of its card at 1100px */
+  .jarvis-grid .jarvis-cta:not(.elm-cta) h3 { font-size: clamp(1.3rem, 1.9vw, 2rem); }
+}
+/* ── the other six terminals ──
+   Ten cards at once buried the ones that matter, so the section opens on
+   E.L.M.A.L.L.A.H. and the three interfaces for the worlds I know by heart,
+   and the six Primary-world terminals open on a button. A details element, so
+   it works with no JS and every card stays in the DOM for the site search.
+   The fold spans the whole grid and runs its own three-across grid inside,
+   so the cards keep the layout they had when they sat in the row. */
+.if-more { grid-column: 1 / -1; }
+.if-more-s {
+  display: flex; align-items: center; gap: 12px; cursor: pointer;
+  padding: 14px clamp(1rem, 2.4vw, 1.6rem);
+  border: 1px solid color-mix(in srgb, var(--blue-2) 30%, transparent);
+  border-radius: 16px; background: color-mix(in srgb, var(--blue-2) 6%, transparent);
+  list-style: none; transition: border-color .2s var(--ease), background .2s var(--ease);
+}
+.if-more-s::-webkit-details-marker { display: none; }
+.if-more-k {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--blue-2); white-space: nowrap;
+}
+.if-more-n { flex: 1; font-size: 0.8rem; color: var(--mute); }
+.if-more-a { color: var(--blue-2); font-size: 0.85rem; transition: transform .25s var(--ease); }
+@media (hover: hover) {
+  .if-more-s:hover { border-color: var(--blue-2); background: color-mix(in srgb, var(--blue-2) 12%, transparent); }
+}
+.if-more-s:focus-visible { outline: 2px solid var(--blue-2); outline-offset: 3px; }
+.if-more[open] .if-more-a { transform: rotate(180deg); }
+.if-more[open] .if-more-k::after { content: ": showing all"; letter-spacing: 0.06em; }
+.if-more-grid { display: grid; gap: clamp(0.9rem, 2vw, 1.4rem); margin-top: clamp(0.9rem, 2vw, 1.4rem); }
+@media (min-width: 1024px) { .if-more-grid { grid-template-columns: repeat(3, 1fr); } }
+/* the name list is the one thing that can push the bar wide on a phone */
+@media (max-width: 680px) {
+  .if-more-s { flex-wrap: wrap; gap: 8px; }
+  .if-more-n { flex: 1 1 100%; font-size: 0.76rem; }
+}
+@media (prefers-reduced-motion: reduce) { .if-more-a, .if-more-s { transition: none; } }
+
+/* Wherever the button sits at the right-hand end of a row, it stops short of
+   the orb in the top-right corner instead of running underneath it (110px
+   orb plus a little air). The stacked cards above reset this with their own
+   margin; under 781px the button is full width below the text. */
+@media (min-width: 781px) {
+  .jarvis-cta .jarvis-go { margin-right: 124px; }
 }
 .jarvis-cta {
   position: relative; display: flex; align-items: center; gap: clamp(1.2rem, 3vw, 2.2rem);
@@ -2381,53 +2425,89 @@ html:has(#lightbox) { scrollbar-gutter: stable; }
   .jarvis-orb, .jarvis-orb::before, .jarvis-orb::after { animation: none; }
 }
 
-/* ── E.L.M.A.L.L.A.H. teaser, tri-colour variant of the JARVIS card ── */
+/* ── E.L.M.A.L.L.A.H. teaser: the war-room holotable ── */
 
+/* The card wears the page's four colours: UCI blue for the hologram, UCI
+   gold for the target, Trabuco blue for the table's light, Islamic green
+   among the systems. A faint chart grid replaces the scan lines the other
+   cards share, because this one is a map. */
 .elm-cta {
-  border-color: rgba(95,163,236,0.24);
-  background: linear-gradient(135deg, rgba(95,163,236,0.08), rgba(95,163,236,0.05) 45%, rgba(245,198,60,0.03) 75%, transparent);
+  border-color: rgba(95,163,236,0.26);
+  background:
+    radial-gradient(circle at 7% 50%, rgba(58,95,217,0.2), transparent 34%),
+    linear-gradient(135deg, rgba(95,163,236,0.08), rgba(58,95,217,0.04) 45%, rgba(245,198,60,0.03) 75%, transparent);
 }
 .elm-cta::after {
-  background: repeating-linear-gradient(115deg, rgba(95,163,236,0.05) 0 1px, transparent 1px 5px);
+  background:
+    linear-gradient(rgba(95,163,236,0.06) 1px, transparent 1px) 0 0 / 100% 24px,
+    linear-gradient(90deg, rgba(95,163,236,0.06) 1px, transparent 1px) 0 0 / 24px 100%;
+  -webkit-mask-image: radial-gradient(ellipse 70% 120% at 20% 50%, #000, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 120% at 20% 50%, #000, transparent 75%);
 }
 .elm-cta:hover { border-color: rgba(245,198,60,0.55); }
 .elm-cta .jarvis-k { color: #f5c63c; }
-.elm-cta .jarvis-txt h3 { color: #cfe6ff; }
-.elm-cta .jarvis-txt p b { color: #5fa3ec; font-weight: 500; }
+.elm-cta .jarvis-txt h3 { color: #cfe6ff; text-shadow: 0 0 18px rgba(95,163,236,0.45); }
+.elm-cta .jarvis-txt p b { color: #f5c63c; font-weight: 500; }
 .elm-cta .jarvis-go { color: #5fa3ec; border-color: rgba(95,163,236,0.4); }
 .elm-cta:hover .jarvis-go { background: #f5c63c; color: #17130a; border-color: #f5c63c; }
 
-/* mini holocron: a rotating cube with orbiting nodes */
-.elm-holo {
-  position: relative; flex: none; display: grid; place-items: center;
-  width: clamp(58px, 9vw, 82px); aspect-ratio: 1; perspective: 320px;
+/* The mark: a small holotable. A dark round table with a lit rim, a cone
+   of light off its emitters, and the projected disc floating over it,
+   tilted like the table and turning its sweep once every seven seconds.
+   Three systems stand over the disc and brighten in turn, as the sweep
+   passes them on the page itself. */
+.elm-table {
+  position: relative; flex: none;
+  width: clamp(76px, 11vw, 112px); aspect-ratio: 1;
+  perspective: 300px;
 }
-.elm-holo::before {
-  content: ""; width: 52%; aspect-ratio: 1;
-  background: linear-gradient(150deg, rgba(95,163,236,0.35), rgba(255,215,106,0.18) 60%, rgba(245,198,60,0.14));
+/* the table: its top, then its body as a second, offset rim below it */
+.elm-table::before {
+  content: ""; position: absolute; left: 4%; right: 4%; bottom: 10%; height: 30%;
+  border-radius: 50%;
+  background:
+    radial-gradient(ellipse 72% 62% at 50% 46%, rgba(58,95,217,0.55), transparent 72%),
+    linear-gradient(180deg, #0c1830, #050a15);
+  box-shadow:
+    0 0 0 1.5px rgba(109,139,255,0.75),
+    0 5px 0 #0a1324, 0 6px 0 rgba(109,139,255,0.35),
+    0 14px 20px rgba(0,0,0,0.6);
+}
+/* the projection */
+.elm-table::after {
+  content: ""; position: absolute; left: 7%; right: 7%; top: -5%; aspect-ratio: 1; border-radius: 50%;
+  transform: rotateX(64deg);
+  background:
+    conic-gradient(from 0deg, rgba(207,230,255,0.65), rgba(95,163,236,0) 70deg, transparent),
+    repeating-radial-gradient(circle, transparent 0 16%, rgba(95,163,236,0.5) 16% calc(16% + 1px)),
+    radial-gradient(circle, rgba(255,236,190,0.95) 0 5%, rgba(95,163,236,0.42) 20%, rgba(95,163,236,0.1) 64%, transparent 70%);
   border: 1px solid rgba(95,163,236,0.85);
-  box-shadow: inset 0 0 18px rgba(95,163,236,0.5), 0 0 26px rgba(95,163,236,0.45);
-  animation: elm-cube 9s linear infinite;
+  box-shadow: 0 0 24px rgba(95,163,236,0.5), inset 0 0 16px rgba(95,163,236,0.35);
+  animation: elm-sweep 7s linear infinite;
 }
-.elm-holo::after {
-  content: ""; position: absolute; width: 26%; aspect-ratio: 1; border-radius: 50%;
-  background: radial-gradient(circle at 50% 45%, #fff, #cfe6ff 25%, #5fa3ec 62%, rgba(255,215,106,0.45));
-  box-shadow: 0 0 24px rgba(95,163,236,0.9), 0 0 50px rgba(245,198,60,0.3);
-  animation: elm-heart 3.2s ease-in-out infinite;
+/* the light rising off the emitters */
+.elm-table i:nth-child(1) {
+  position: absolute; left: 14%; right: 14%; top: 36%; bottom: 25%;
+  background: linear-gradient(to top, rgba(95,163,236,0.4), rgba(95,163,236,0.02));
+  clip-path: polygon(6% 100%, 94% 100%, 100% 0, 0 0);
 }
-.elm-holo i {
-  position: absolute; width: 6px; height: 6px; top: 50%; left: 50%; margin: -3px;
-  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-  animation: elm-orbit 7s linear infinite;
+/* three systems: a planet on a stem over the disc */
+.elm-table i:nth-child(n+2) {
+  position: absolute; width: 5px; height: 5px; margin: -2.5px; border-radius: 50%;
+  background: var(--p); box-shadow: 0 0 8px var(--p), 0 0 2px #fff;
+  animation: elm-ping 7s ease-out infinite;
 }
-.elm-holo i:nth-child(1) { background: #f5c63c; box-shadow: 0 0 8px rgba(245,198,60,0.9); }
-.elm-holo i:nth-child(2) { background: #ffd76a; box-shadow: 0 0 8px rgba(255,215,106,0.9); animation-delay: -2.33s; }
-.elm-holo i:nth-child(3) { background: #5fa3ec; box-shadow: 0 0 8px rgba(95,163,236,0.9); animation-delay: -4.66s; }
-@keyframes elm-cube  { from { transform: rotateX(-20deg) rotateY(0); } to { transform: rotateX(-20deg) rotateY(360deg); } }
-@keyframes elm-heart { 0%,100% { transform: scale(1); opacity: .9; } 50% { transform: scale(1.18); opacity: 1; } }
-@keyframes elm-orbit { from { transform: rotate(0) translateX(30px) rotate(0); } to { transform: rotate(360deg) translateX(30px) rotate(-360deg); } }
+.elm-table i:nth-child(n+2)::after {
+  content: ""; position: absolute; left: 50%; top: 100%; width: 1px; height: 7px; margin-left: -0.5px;
+  background: linear-gradient(var(--p), transparent);
+}
+.elm-table i:nth-child(2) { --p: #f5c63c; left: 66%; top: 40%; animation-delay: -1.2s; }
+.elm-table i:nth-child(3) { --p: #3fd589; left: 34%; top: 44%; animation-delay: -4.6s; }
+.elm-table i:nth-child(4) { --p: #6d8bff; left: 56%; top: 22%; animation-delay: -6.1s; }
+@keyframes elm-sweep { to { transform: rotateX(64deg) rotateZ(360deg); } }
+@keyframes elm-ping { 0%, 100% { transform: scale(1); filter: brightness(1); } 4% { transform: scale(1.7); filter: brightness(1.6); } 18% { transform: scale(1); filter: brightness(1); } }
 @media (prefers-reduced-motion: reduce) {
-  .elm-holo::before, .elm-holo::after, .elm-holo i { animation: none; }
+  .elm-table::after, .elm-table i { animation: none; }
 }
 
 
@@ -2437,22 +2517,290 @@ html:has(#lightbox) { scrollbar-gutter: stable; }
 .hc-cta:hover { border-color: rgba(127,214,255,0.45); background: rgba(127,214,255,0.03); }
 .hc-cta .jarvis-k { color: #7fd6ff; }
 .hc-cta .jarvis-go { color: #7fd6ff; border-color: rgba(127,214,255,0.4); }
-.hc-mini {
-  position: relative; flex: none;
-  width: 84px; height: 84px; display: grid; place-items: center;
-  perspective: 300px;
-}
+.hc-mini { position: relative; flex: none; width: 84px; height: 84px; display: grid; place-items: center; perspective: 300px; }
+/* the holocron, small: a cube of light with a bright rim and the seal on
+   every face, turning the way the big one does on /holocron/ */
+.hc-mini b { position: relative; width: 38px; height: 38px; transform-style: preserve-3d; animation: hc-mini-turn 16s linear infinite; }
 .hc-mini i {
-  position: absolute; width: 42px; height: 42px;
-  border: 1px solid rgba(191,234,255,0.75);
-  background: linear-gradient(135deg, rgba(127,214,255,0.22), rgba(127,214,255,0.04));
-  box-shadow: 0 0 22px -4px rgba(127,214,255,0.8);
-  animation: hc-mini-turn 11s linear infinite;
+  position: absolute; inset: 0;
+  border: 1.5px solid rgba(191,234,255,0.9);
+  background: radial-gradient(circle, rgba(127,214,255,0.32), rgba(127,214,255,0.06) 70%);
+  box-shadow: inset 0 0 10px rgba(127,214,255,0.45), 0 0 12px rgba(127,214,255,0.3);
 }
-.hc-mini i:nth-child(1) { animation-delay: 0s; }
-.hc-mini i:nth-child(2) { animation-delay: -3.7s; }
-.hc-mini i:nth-child(3) { animation-delay: -7.4s; }
-@keyframes hc-mini-turn { from { transform: rotateY(0) rotateX(-18deg); } to { transform: rotateY(360deg) rotateX(-18deg); } }
+.hc-mini i::after { content: ""; position: absolute; inset: 34%; rotate: 45deg; border: 1.5px solid rgba(234,248,255,0.85); }
+.hc-mini i:nth-child(1) { transform: translateZ(19px); }
+.hc-mini i:nth-child(2) { transform: rotateY(180deg) translateZ(19px); }
+.hc-mini i:nth-child(3) { transform: rotateY(90deg) translateZ(19px); }
+.hc-mini i:nth-child(4) { transform: rotateY(-90deg) translateZ(19px); }
+.hc-mini i:nth-child(5) { transform: rotateX(90deg) translateZ(19px); }
+.hc-mini i:nth-child(6) { transform: rotateX(-90deg) translateZ(19px); }
+@keyframes hc-mini-turn { from { transform: rotateX(-24deg) rotateY(0); } to { transform: rotateX(-24deg) rotateY(360deg); } }
+@media (prefers-reduced-motion: reduce) { .hc-mini b { animation: none; transform: rotateX(-24deg) rotateY(35deg); } }
+
+/* the crafting table: a grass block, spinning and bobbing the way a dropped
+   block does in the game */
+.ct-cta { border-color: rgba(127,204,58,0.24); background: linear-gradient(135deg, rgba(127,204,58,0.08), rgba(127,204,58,0.01) 55%, transparent); }
+.ct-cta::after { background: repeating-linear-gradient(90deg, rgba(127,204,58,0.045) 0 1px, transparent 1px 6px); }
+.ct-cta:hover { border-color: rgba(143,209,79,0.6); }
+.ct-cta .jarvis-k { color: #a4e05a; }
+.ct-cta .jarvis-txt h3 { color: #e4f7cf; }
+.ct-cta .jarvis-go { color: #a4e05a; border-color: rgba(164,224,90,0.4); }
+.ct-cta:hover .jarvis-go { background: #8fd14f; color: #0f1a06; border-color: #8fd14f; }
+.ct-mini { position: relative; flex: none; width: 84px; height: 84px; display: grid; place-items: center; perspective: 320px; }
+.ct-mini b { position: relative; width: 40px; height: 40px; transform-style: preserve-3d; animation: ct-mini-spin 9s linear infinite; }
+.ct-mini i {
+  position: absolute; inset: 0; image-rendering: pixelated;
+  background:
+    linear-gradient(180deg, #6aae3b 0 20%, #5a9a30 20% 26%, transparent 26%),
+    linear-gradient(90deg, transparent 0 30%, #5a9a30 30% 40%, transparent 40% 70%, #5a9a30 70% 80%, transparent 80%) 0 0 / 100% 34% no-repeat,
+    repeating-conic-gradient(#866043 0 25%, #79553a 0 50%) 0 0 / 10px 10px;
+}
+.ct-mini i:nth-child(1) { transform: translateZ(20px); }
+.ct-mini i:nth-child(2) { transform: rotateY(90deg) translateZ(20px); filter: brightness(.78); }
+.ct-mini i:nth-child(3) { transform: rotateY(180deg) translateZ(20px); }
+.ct-mini i:nth-child(4) { transform: rotateY(-90deg) translateZ(20px); filter: brightness(.78); }
+.ct-mini i:nth-child(5) { transform: rotateX(90deg) translateZ(20px); background: repeating-conic-gradient(#6aae3b 0 25%, #5f9f35 0 50%) 0 0 / 10px 10px; filter: brightness(1.1); }
+@keyframes ct-mini-spin {
+  0%   { transform: translateY(0) rotateX(-24deg) rotateY(0); }
+  50%  { transform: translateY(-6px) rotateX(-24deg) rotateY(180deg); }
+  100% { transform: translateY(0) rotateX(-24deg) rotateY(360deg); }
+}
+
+/* the citadel: the astrolabe, small: three brass rings turning round a sun */
+.cd-cta { border-color: rgba(216,178,106,0.24); background: linear-gradient(135deg, rgba(216,178,106,0.08), rgba(216,178,106,0.01) 55%, transparent); }
+.cd-cta::after { background: repeating-linear-gradient(0deg, rgba(216,178,106,0.04) 0 1px, transparent 1px 4px); }
+.cd-cta:hover { border-color: rgba(216,178,106,0.6); }
+.cd-cta .jarvis-k { color: #d8b26a; }
+.cd-cta .jarvis-txt h3 { color: #f3e3bd; }
+.cd-cta .jarvis-go { color: #d8b26a; border-color: rgba(216,178,106,0.4); }
+.cd-cta:hover .jarvis-go { background: #d8b26a; color: #1a1208; border-color: #d8b26a; }
+.cd-mini { position: relative; flex: none; width: 84px; height: 84px; perspective: 300px; transform-style: preserve-3d; }
+.cd-mini::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  border: 2px solid #b8862f; box-shadow: inset 0 0 0 4px rgba(216,178,106,0.18);
+}
+.cd-mini::after {
+  content: ""; position: absolute; inset: 33px; border-radius: 50%;
+  background: radial-gradient(circle at 40% 38%, #fff6d8, #ffd27a 35%, #c8741f 72%, #5a2a0a);
+  box-shadow: 0 0 16px rgba(255,180,80,0.75);
+}
+.cd-mini i { position: absolute; inset: 12px; border-radius: 50%; border: 2px solid #d8b26a; }
+.cd-mini i:nth-child(1) { animation: cd-mini-y 7s linear infinite; }
+.cd-mini i:nth-child(2) { inset: 17px; animation: cd-mini-x 10s linear infinite; }
+.cd-mini i:nth-child(3) { inset: 22px; border-color: #b8862f; animation: cd-mini-t 13s linear infinite; }
+@keyframes cd-mini-y { to { transform: rotateY(360deg); } }
+@keyframes cd-mini-x { to { transform: rotateX(360deg); } }
+@keyframes cd-mini-t { from { transform: rotate(45deg) rotateY(0); } to { transform: rotate(45deg) rotateY(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .ct-mini b, .cd-mini i { animation: none; }
+  .ct-mini b { transform: rotateX(-24deg) rotateY(35deg); }
+}
+
+/* the control room: the park map's screen, small. A green island on a
+   dark tube, the tour road round it in amber with one car driving it, and
+   the motion sensors' sweep turning over the lot. The orb in the corner is
+   the same searching orb the page's motion sensors use.
+   On the six-column grid it is a span-2 card like Holocron and J.A.R.V.I.S.;
+   where it sits is the Interfaces section's call. */
+.jp-cta { border-color: rgba(224,100,42,0.26); background: linear-gradient(135deg, rgba(224,100,42,0.08), rgba(109,255,154,0.025) 55%, transparent); }
+.jp-cta::after { background: repeating-linear-gradient(0deg, rgba(109,255,154,0.045) 0 1px, transparent 1px 3px); }
+.jp-cta:hover { border-color: rgba(224,100,42,0.6); }
+.jp-cta .jarvis-k { color: #ff9a5c; }
+.jp-cta .jarvis-txt h3 { color: #f4ead6; }
+.jp-cta .jarvis-go { color: #ff9a5c; border-color: rgba(255,154,92,0.4); }
+.jp-cta:hover .jarvis-go { background: #e0642a; color: #170900; border-color: #e0642a; }
+
+/* the tube: a rounded screen in a grey bezel, scanlines over everything */
+.jp-mini {
+  position: relative; flex: none; width: 84px; height: 84px; overflow: hidden;
+  border-radius: 12px / 14px;
+  background: radial-gradient(120% 100% at 50% 40%, #0a1a11, #030805 78%);
+  box-shadow: 0 0 0 5px #2e2c27, 0 0 0 6px rgba(255,255,255,0.07), inset 0 0 18px rgba(0,0,0,0.85);
+}
+/* the island: an uneven blob with a glowing shore and a canopy of dots */
+.jp-mini::before {
+  content: ""; position: absolute; inset: 15px 13px 13px 16px;
+  border-radius: 46% 54% 40% 60% / 54% 40% 60% 46%;
+  border: 1.5px solid #6dff9a;
+  background:
+    radial-gradient(circle, rgba(109,255,154,0.28) 0 1px, transparent 1.5px) 0 0 / 7px 7px,
+    #082416;
+  box-shadow: 0 0 7px rgba(109,255,154,0.6), inset 0 0 6px rgba(109,255,154,0.25);
+}
+.jp-mini::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,0.25) 0 1px, transparent 1px 3px);
+}
+.jp-mini i { position: absolute; }
+/* the motion sensors' sweep */
+.jp-mini i:nth-child(1) {
+  inset: -30%; z-index: 2; mix-blend-mode: screen;
+  background: conic-gradient(from 0deg, transparent 0 290deg, rgba(109,255,154,0.08) 330deg, rgba(109,255,154,0.3) 359deg, transparent 360deg);
+  animation: jp-mini-sweep 5s linear infinite;
+}
+/* the tour road, a dashed amber loop */
+.jp-mini i:nth-child(2) { inset: 27px; z-index: 1; border-radius: 50%; border: 1.5px dashed rgba(224,100,42,0.9); }
+/* the car on it, driving the loop */
+.jp-mini i:nth-child(3) {
+  left: 50%; top: 50%; z-index: 3; width: 6px; height: 4px; margin: -2px 0 0 -3px; border-radius: 1px;
+  background: #ffd27a; box-shadow: 0 0 5px rgba(255,190,90,0.95);
+  animation: jp-mini-car 8s linear infinite;
+}
+@keyframes jp-mini-sweep { to { transform: rotate(360deg); } }
+@keyframes jp-mini-car {
+  from { transform: rotate(0deg) translateX(14.5px) rotate(90deg); }
+  to   { transform: rotate(360deg) translateX(14.5px) rotate(90deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jp-mini i:nth-child(1), .jp-mini i:nth-child(3) { animation: none; }
+  .jp-mini i:nth-child(1) { transform: rotate(40deg); }
+  .jp-mini i:nth-child(3) { transform: rotate(-35deg) translateX(14.5px) rotate(90deg); }
+}
+
+/* the upside down: a square of Joyce's wallpaper with three bulbs on a
+   sagging wire over R U N, lighting one at a time the way Will spelled it */
+.st-cta { border-color: rgba(232,38,29,0.26); background: linear-gradient(135deg, rgba(232,38,29,0.08), rgba(232,38,29,0.01) 55%, transparent); }
+.st-cta::after { background: repeating-linear-gradient(90deg, rgba(232,38,29,0.045) 0 1px, transparent 1px 14px); }
+.st-cta:hover { border-color: rgba(255,106,92,0.6); }
+.st-cta .jarvis-k { color: #ff6a5c; }
+.st-cta .jarvis-txt h3 { color: #f3e7d3; }
+.st-cta .jarvis-go { color: #ff6a5c; border-color: rgba(255,106,92,0.4); }
+.st-cta:hover .jarvis-go { background: #c41a12; color: #fff4f2; border-color: #c41a12; }
+.st-mini {
+  position: relative; flex: none; width: 84px; height: 84px; border-radius: 3px; overflow: hidden;
+  background:
+    repeating-linear-gradient(90deg, rgba(96,58,22,0.12) 0 2px, transparent 2px 9px),
+    linear-gradient(180deg, #c6a56c, #a98953);
+  box-shadow: inset 0 0 18px 2px rgba(40,20,5,0.5);
+}
+.st-mini::before {                     /* the wire, in one swag across the wall */
+  content: ""; position: absolute; left: -4px; right: -4px; top: 6px; height: 14px;
+  border-bottom: 2px solid #2a3524; border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+.st-mini::after {                      /* the paint */
+  content: "R U N"; position: absolute; left: 0; right: 0; bottom: 16px; text-align: center;
+  font-family: var(--serif); font-weight: 700; font-size: 1.3rem; line-height: 1; letter-spacing: 0.08em;
+  color: #1a120c; transform: rotate(-3deg);
+}
+.st-mini i {
+  position: absolute; top: 15px; width: 9px; height: 13px; margin-left: -4.5px;
+  border-radius: 46% 46% 50% 50% / 32% 32% 68% 68%;
+  background: color-mix(in srgb, var(--b) 40%, #2a1d16);
+  animation: st-mini-spell 4.2s ease-out infinite;
+}
+.st-mini i:nth-child(1) { left: 27%; top: 13px; --b: #4aa8ff; rotate: -8deg; }
+.st-mini i:nth-child(2) { left: 50%; top: 18px; --b: #ff3b2f; rotate: 4deg; animation-delay: .7s; }
+.st-mini i:nth-child(3) { left: 73%; top: 13px; --b: #4fe07a; rotate: 9deg; animation-delay: 1.4s; }
+@keyframes st-mini-spell {
+  0%, 18%, 100% { background: color-mix(in srgb, var(--b) 40%, #2a1d16); box-shadow: none; }
+  3%, 14% { background: radial-gradient(circle at 40% 32%, #fffdf0 0 14%, var(--b) 55%); box-shadow: 0 0 8px 3px var(--b), 0 0 22px 6px color-mix(in srgb, var(--b) 45%, transparent); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .st-mini i { animation: none; }
+  .st-mini i:nth-child(2) { background: radial-gradient(circle at 40% 32%, #fffdf0 0 14%, var(--b) 55%); box-shadow: 0 0 8px 3px var(--b); }
+}
+
+/* the spirit library: the planetarium's ceiling, small. The sun stands at
+   noon over the horizon line; the moon goes round the ceiling once every
+   nine seconds, lit fullest on the far side, dark as it comes back, and
+   once a lap it crosses the sun and the corona shows round it: the Day of
+   Black Sun, which is what Sokka turned the real one to find. */
+.sl-cta { border-color: rgba(232,161,63,0.24); background: linear-gradient(135deg, rgba(232,161,63,0.08), rgba(79,159,208,0.03) 55%, transparent); }
+.sl-cta::after { background: repeating-linear-gradient(176deg, rgba(232,161,63,0.045) 0 1px, transparent 1px 7px); }
+.sl-cta:hover { border-color: rgba(232,161,63,0.6); }
+.sl-cta .jarvis-k { color: #e8a13f; }
+.sl-cta .jarvis-txt h3 { color: #f6e2b8; }
+.sl-cta .jarvis-go { color: #e8a13f; border-color: rgba(232,161,63,0.4); }
+.sl-cta:hover .jarvis-go { background: #e8a13f; color: #1a1006; border-color: #e8a13f; }
+.sl-mini {
+  position: relative; flex: none; width: 84px; height: 84px; border-radius: 50%; overflow: hidden;
+  background: radial-gradient(circle at 50% 50%, #1b2a4a, #070d1a 72%);
+  box-shadow: inset 0 0 0 2px #9a7440, inset 0 0 0 7px rgba(232,161,63,0.1), 0 0 24px -6px rgba(232,161,63,0.55);
+}
+/* the horizon, and the dark under it */
+.sl-mini::before { content: ""; position: absolute; left: 7px; right: 7px; top: 41.5px; height: 1px; background: rgba(232,161,63,0.6); z-index: 5; }
+/* drawn over the moon, so it dims as it passes under the horizon */
+.sl-mini::after { content: ""; position: absolute; left: 0; right: 0; top: 42px; bottom: 0; background: rgba(3,6,14,0.5); z-index: 4; }
+.sl-mini i { position: absolute; z-index: 2; }
+/* the sun, at noon */
+.sl-mini i:nth-child(1) {
+  left: 34px; top: 13px; width: 16px; height: 16px; border-radius: 50%;
+  background: radial-gradient(circle at 42% 40%, #fff7de, #ffd27a 45%, #d9761f);
+  box-shadow: 0 0 10px rgba(255,200,110,0.7);
+}
+/* the corona, only while the moon is over the sun */
+.sl-mini i:nth-child(2) {
+  left: 30px; top: 9px; width: 24px; height: 24px; border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle, transparent 0 7px, rgba(255,246,220,0.9) 8px, rgba(255,224,160,0) 12px);
+  animation: sl-mini-corona 9s linear infinite;
+}
+/* the moon's arm turns about the centre; the moon rides its end, on the sun's own track */
+.sl-mini i:nth-child(3) { inset: 0; z-index: 3; animation: sl-mini-orbit 9s linear infinite; }
+.sl-mini i:nth-child(3)::before {
+  content: ""; position: absolute; left: 34px; top: 13px; width: 16px; height: 16px; border-radius: 50%;
+  background: #0b101c; box-shadow: inset 0 0 0 1px rgba(240,230,210,0.25);
+}
+.sl-mini i:nth-child(3)::after {
+  content: ""; position: absolute; left: 34px; top: 13px; width: 16px; height: 16px; border-radius: 50%;
+  background: #f3ead2; animation: sl-mini-lit 9s linear infinite;
+}
+@keyframes sl-mini-orbit { to { transform: rotate(360deg); } }
+@keyframes sl-mini-lit { 0%, 100% { opacity: 0; } 50% { opacity: 0.95; } }
+@keyframes sl-mini-corona { 0%, 100% { opacity: 1; } 4%, 96% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .sl-mini i:nth-child(2), .sl-mini i:nth-child(3), .sl-mini i:nth-child(3)::after { animation: none; }
+  /* held still with the moon a third of the way round, half lit */
+  .sl-mini i:nth-child(3) { transform: rotate(130deg); }
+  .sl-mini i:nth-child(3)::after { opacity: 0.6; }
+}
+
+/* the compass: a brass pocket compass with its lid up, the needle hunting
+   round, swinging onto something, overshooting, holding, and moving on */
+.pc-cta { border-color: rgba(216,201,160,0.24); background: linear-gradient(135deg, rgba(216,201,160,0.08), rgba(140,201,192,0.03) 55%, transparent); }
+.pc-cta::after { background: repeating-linear-gradient(60deg, rgba(216,201,160,0.04) 0 1px, transparent 1px 9px); }
+.pc-cta:hover { border-color: rgba(216,201,160,0.6); }
+.pc-cta .jarvis-k { color: #d8c9a0; }
+.pc-cta .jarvis-txt h3 { color: #f1e6c8; }
+.pc-cta .jarvis-go { color: #d8c9a0; border-color: rgba(216,201,160,0.4); }
+.pc-cta:hover .jarvis-go { background: #d8c9a0; color: #1a1208; border-color: #d8c9a0; }
+.pc-mini { position: relative; flex: none; width: 84px; height: 84px; }
+/* the lid, open behind */
+.pc-mini::before {
+  content: ""; position: absolute; left: 13px; right: 13px; top: 1px; height: 20px; border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 62%, #4a3416, #170f05 72%);
+  border: 2px solid #c89a48;
+}
+/* the case: a brass rim round a parchment card, north marked */
+.pc-mini b {
+  position: absolute; left: 10px; top: 17px; width: 64px; height: 64px; border-radius: 50%;
+  background:
+    linear-gradient(#2b1d0e, #2b1d0e) 50% 11px / 2px 7px no-repeat,
+    radial-gradient(circle, #f3e8cb 0 42%, #dccb9c 60%, #b8975a 62%, transparent 63%),
+    linear-gradient(135deg, #f6e0a2, #c89a48 45%, #6e4c18);
+  border: 1px solid #3a260c;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.45);
+}
+/* the needle: oxblood point, blued steel, brass tail */
+.pc-mini i {
+  position: absolute; left: 39px; top: 25px; width: 6px; height: 48px;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  background: linear-gradient(180deg, #7a2416 0 18%, #2c3a48 18% 50%, #c9a24e 50%);
+  transform: rotate(40deg);
+  animation: pc-mini-seek 11s ease-in-out infinite;
+}
+@keyframes pc-mini-seek {
+  0%   { transform: rotate(40deg); }
+  22%  { transform: rotate(190deg); }
+  30%  { transform: rotate(262deg); }
+  35%  { transform: rotate(226deg); }
+  39%  { transform: rotate(244deg); }
+  43%  { transform: rotate(238deg); }
+  68%  { transform: rotate(240deg); }
+  100% { transform: rotate(400deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pc-mini i { animation: none; transform: rotate(72deg); }
+}
 
 /* marauder's map: a scrap of parchment with footprints on it */
 .mm-cta:hover { border-color: rgba(216,176,106,0.45); background: rgba(216,176,106,0.03); }
@@ -2485,6 +2833,175 @@ html:has(#lightbox) { scrollbar-gutter: stable; }
   .hc-mini i, .mm-mini i { animation: none; }
   .mm-mini i { opacity: .6; }
 }
+
+/* These twelve carry no mini-glyph, so their text starts at the card's left
+   edge, where the full-width cards have a glyph. Reserving the orb's whole
+   124px here would squeeze a third-width card's text into a ribbon, so the
+   orb is shrunk to 72px instead and only the two lines that reach up beside
+   it, the kicker and the title, stop short of it: 104px clears the drawn
+   orb at every desktop width (measured at 97px at the widest), 76px on a
+   phone. The paragraph and the button start below the orb and keep the full
+   width.
+   Listed by name rather than with :has(), which this file does not rely on. */
+.sc-cta, .mn-cta, .wb-cta, .dm-cta, .sf-cta, .vt-cta,
+.pk-cta, .bc-cta, .db-cta, .ib-cta, .bp-cta, .so-cta { align-items: flex-start; }
+.sc-cta .cta-orb, .mn-cta .cta-orb, .wb-cta .cta-orb,
+.dm-cta .cta-orb, .sf-cta .cta-orb, .vt-cta .cta-orb,
+.pk-cta .cta-orb, .bc-cta .cta-orb, .db-cta .cta-orb,
+.ib-cta .cta-orb, .bp-cta .cta-orb, .so-cta .cta-orb { width: 72px; }
+@media (min-width: 781px) {
+}
+/* Above the three-across breakpoint the orb is the smaller 72px and sits well
+   above the button, so the button takes the full width back. Below it the
+   fold is one card per row with a full-size orb, and the 124px the button
+   reserves by default is what keeps it clear. */
+@media (min-width: 1024px) {
+  .if-more-grid .jarvis-cta .jarvis-go { margin-right: 0; }
+}
+/* The kicker and the title are the lines that reach up beside the orb, so
+   they stop short of it at every width, not only on a laptop: a phone card
+   is one across but the orb is still in its top-right corner. */
+.sc-cta .jarvis-k, .mn-cta .jarvis-k, .wb-cta .jarvis-k,
+.dm-cta .jarvis-k, .sf-cta .jarvis-k, .vt-cta .jarvis-k,
+.pk-cta .jarvis-k, .bc-cta .jarvis-k, .db-cta .jarvis-k,
+.ib-cta .jarvis-k, .bp-cta .jarvis-k, .so-cta .jarvis-k,
+.sc-cta .jarvis-txt h3, .mn-cta .jarvis-txt h3, .wb-cta .jarvis-txt h3,
+.dm-cta .jarvis-txt h3, .sf-cta .jarvis-txt h3, .vt-cta .jarvis-txt h3,
+.pk-cta .jarvis-txt h3, .bc-cta .jarvis-txt h3, .db-cta .jarvis-txt h3,
+.ib-cta .jarvis-txt h3, .bp-cta .jarvis-txt h3, .so-cta .jarvis-txt h3 { padding-right: 104px; }
+@media (max-width: 780px) {
+  .sc-cta .cta-orb, .mn-cta .cta-orb, .wb-cta .cta-orb,
+  .dm-cta .cta-orb, .sf-cta .cta-orb, .vt-cta .cta-orb,
+  .pk-cta .cta-orb, .bc-cta .cta-orb, .db-cta .cta-orb,
+  .ib-cta .cta-orb, .bp-cta .cta-orb, .so-cta .cta-orb { width: 56px; }
+  .sc-cta .jarvis-k, .mn-cta .jarvis-k, .wb-cta .jarvis-k,
+  .dm-cta .jarvis-k, .sf-cta .jarvis-k, .vt-cta .jarvis-k,
+  .pk-cta .jarvis-k, .bc-cta .jarvis-k, .db-cta .jarvis-k,
+  .ib-cta .jarvis-k, .bp-cta .jarvis-k, .so-cta .jarvis-k,
+  .sc-cta .jarvis-txt h3, .mn-cta .jarvis-txt h3, .wb-cta .jarvis-txt h3,
+  .dm-cta .jarvis-txt h3, .sf-cta .jarvis-txt h3, .vt-cta .jarvis-txt h3,
+  .pk-cta .jarvis-txt h3, .bc-cta .jarvis-txt h3, .db-cta .jarvis-txt h3,
+  .ib-cta .jarvis-txt h3, .bp-cta .jarvis-txt h3, .so-cta .jarvis-txt h3 { padding-right: 76px; }
+}
+
+/* ───────────── The Secondary worlds' terminals, on the home page ─────────────
+   The twelve cards the "other eighteen terminals" button opens alongside the
+   six above (asked for 2026-10-04). Each one borrows the accent its own
+   interface is built in, so the card reads as a chip off that page: no
+   mini-glyph on these, the orb in its colour carries them. */
+
+/* Starcourt: the mall's hot pink against the Palace Arcade's red, in the
+   neon of the sign over the food court */
+.sc-cta { border-color: rgba(255,95,180,0.24); background: linear-gradient(135deg, rgba(255,95,180,0.08), rgba(255,95,180,0.02) 55%, transparent); }
+.sc-cta::after { background: repeating-linear-gradient(90deg, rgba(255,95,180,0.045) 0 1px, transparent 1px 12px); }
+.sc-cta:hover { border-color: rgba(255,95,180,0.6); }
+.sc-cta .jarvis-k { color: #ff5fb4; }
+.sc-cta .jarvis-txt h3 { color: #ffe3f2; }
+.sc-cta .jarvis-go { color: #ff5fb4; border-color: rgba(255,95,180,0.4); }
+.sc-cta:hover .jarvis-go { background: #ff5fb4; color: #2a0617; border-color: #ff5fb4; }
+
+/* the Monastery: Wu's gold on the lacquered black of the training hall */
+.mn-cta { border-color: rgba(224,176,64,0.24); background: linear-gradient(135deg, rgba(224,176,64,0.08), rgba(224,176,64,0.02) 55%, transparent); }
+.mn-cta::after { background: repeating-linear-gradient(0deg, rgba(224,176,64,0.045) 0 1px, transparent 1px 6px); }
+.mn-cta:hover { border-color: rgba(224,176,64,0.6); }
+.mn-cta .jarvis-k { color: #e0b040; }
+.mn-cta .jarvis-txt h3 { color: #f6e6bb; }
+.mn-cta .jarvis-go { color: #e0b040; border-color: rgba(224,176,64,0.4); }
+.mn-cta:hover .jarvis-go { background: #e0b040; color: #1a1205; border-color: #e0b040; }
+
+/* the Wanted Board: the bounty bill's red mark on weathered paper and
+   the dark plank behind it */
+.wb-cta { border-color: rgba(224,50,29,0.24); background: linear-gradient(135deg, rgba(224,50,29,0.08), rgba(224,50,29,0.02) 55%, transparent); }
+.wb-cta::after { background: repeating-linear-gradient(88deg, rgba(224,50,29,0.045) 0 1px, transparent 1px 10px); }
+.wb-cta:hover { border-color: rgba(224,50,29,0.6); }
+.wb-cta .jarvis-k { color: #e0321d; }
+.wb-cta .jarvis-txt h3 { color: #ecd9ae; }
+.wb-cta .jarvis-go { color: #e0321d; border-color: rgba(224,50,29,0.4); }
+.wb-cta:hover .jarvis-go { background: #e0321d; color: #1c0a05; border-color: #e0321d; }
+
+/* Dunder Mifflin: the branch's corporate blue, on the grey of the carpet */
+.dm-cta { border-color: rgba(79,143,216,0.24); background: linear-gradient(135deg, rgba(79,143,216,0.08), rgba(79,143,216,0.02) 55%, transparent); }
+.dm-cta::after { background: repeating-linear-gradient(0deg, rgba(79,143,216,0.045) 0 1px, transparent 1px 5px); }
+.dm-cta:hover { border-color: rgba(79,143,216,0.6); }
+.dm-cta .jarvis-k { color: #4f8fd8; }
+.dm-cta .jarvis-txt h3 { color: #dce8f7; }
+.dm-cta .jarvis-go { color: #4f8fd8; border-color: rgba(79,143,216,0.4); }
+.dm-cta:hover .jarvis-go { background: #4f8fd8; color: #07101f; border-color: #4f8fd8; }
+
+/* Springfield: the title-card yellow over the opening titles' sky blue */
+.sf-cta { border-color: rgba(255,217,15,0.24); background: linear-gradient(135deg, rgba(255,217,15,0.08), rgba(255,217,15,0.02) 55%, transparent); }
+.sf-cta::after { background: repeating-linear-gradient(0deg, rgba(255,217,15,0.045) 0 1px, transparent 1px 7px); }
+.sf-cta:hover { border-color: rgba(255,217,15,0.6); }
+.sf-cta .jarvis-k { color: #ffd90f; }
+.sf-cta .jarvis-txt h3 { color: #fff3bd; }
+.sf-cta .jarvis-go { color: #ffd90f; border-color: rgba(255,217,15,0.4); }
+.sf-cta:hover .jarvis-go { background: #ffd90f; color: #2a2200; border-color: #ffd90f; }
+
+/* Vought Tower: the lobby's gold on its glass, the brand's own palette */
+.vt-cta { border-color: rgba(226,181,74,0.24); background: linear-gradient(135deg, rgba(226,181,74,0.08), rgba(226,181,74,0.02) 55%, transparent); }
+.vt-cta::after { background: repeating-linear-gradient(135deg, rgba(226,181,74,0.045) 0 1px, transparent 1px 9px); }
+.vt-cta:hover { border-color: rgba(226,181,74,0.6); }
+.vt-cta .jarvis-k { color: #e2b54a; }
+.vt-cta .jarvis-txt h3 { color: #f6e3b4; }
+.vt-cta .jarvis-go { color: #e2b54a; border-color: rgba(226,181,74,0.4); }
+.vt-cta:hover .jarvis-go { background: #e2b54a; color: #1a1304; border-color: #e2b54a; }
+
+/* the Pokedex: the casing's red, with the screen's white above it */
+.pk-cta { border-color: rgba(240,72,90,0.24); background: linear-gradient(135deg, rgba(240,72,90,0.08), rgba(240,72,90,0.02) 55%, transparent); }
+.pk-cta::after { background: repeating-linear-gradient(0deg, rgba(240,72,90,0.045) 0 1px, transparent 1px 4px); }
+.pk-cta:hover { border-color: rgba(240,72,90,0.6); }
+.pk-cta .jarvis-k { color: #f0485a; }
+.pk-cta .jarvis-txt h3 { color: #ffdde1; }
+.pk-cta .jarvis-go { color: #f0485a; border-color: rgba(240,72,90,0.4); }
+.pk-cta:hover .jarvis-go { background: #f0485a; color: #2a060c; border-color: #f0485a; }
+
+/* the Batcomputer: the signal's yellow on the Batcave's steel and night,
+   scanlines tight like the monitors' */
+.bc-cta { border-color: rgba(245,197,66,0.24); background: linear-gradient(135deg, rgba(245,197,66,0.08), rgba(245,197,66,0.02) 55%, transparent); }
+.bc-cta::after { background: repeating-linear-gradient(0deg, rgba(245,197,66,0.045) 0 1px, transparent 1px 3px); }
+.bc-cta:hover { border-color: rgba(245,197,66,0.6); }
+.bc-cta .jarvis-k { color: #f5c542; }
+.bc-cta .jarvis-txt h3 { color: #e6e8eb; }
+.bc-cta .jarvis-go { color: #f5c542; border-color: rgba(245,197,66,0.4); }
+.bc-cta:hover .jarvis-go { background: #f5c542; color: #1a1200; border-color: #f5c542; }
+
+/* the Daily Bugle: the masthead's red on newsprint */
+.db-cta { border-color: rgba(209,34,44,0.24); background: linear-gradient(135deg, rgba(209,34,44,0.08), rgba(209,34,44,0.02) 55%, transparent); }
+.db-cta::after { background: repeating-linear-gradient(0deg, rgba(209,34,44,0.045) 0 1px, transparent 1px 9px); }
+.db-cta:hover { border-color: rgba(209,34,44,0.6); }
+.db-cta .jarvis-k { color: #d1222c; }
+.db-cta .jarvis-txt h3 { color: #efe6d8; }
+.db-cta .jarvis-go { color: #d1222c; border-color: rgba(209,34,44,0.4); }
+.db-cta:hover .jarvis-go { background: #d1222c; color: #1e0407; border-color: #d1222c; }
+
+/* the Instruction Booklet: the yellow of the box, with the booklet's
+   paper white for the heading */
+.ib-cta { border-color: rgba(245,210,34,0.24); background: linear-gradient(135deg, rgba(245,210,34,0.08), rgba(245,210,34,0.02) 55%, transparent); }
+.ib-cta::after { background: repeating-linear-gradient(0deg, rgba(245,210,34,0.045) 0 1px, transparent 1px 8px); }
+.ib-cta:hover { border-color: rgba(245,210,34,0.6); }
+.ib-cta .jarvis-k { color: #f5d222; }
+.ib-cta .jarvis-txt h3 { color: #fdf6cf; }
+.ib-cta .jarvis-go { color: #f5d222; border-color: rgba(245,210,34,0.4); }
+.ib-cta:hover .jarvis-go { background: #f5d222; color: #2a2300; border-color: #f5d222; }
+
+/* the Battle Pass: the season's blue, the colour the tier track runs in */
+.bp-cta { border-color: rgba(111,176,255,0.24); background: linear-gradient(135deg, rgba(111,176,255,0.08), rgba(111,176,255,0.02) 55%, transparent); }
+.bp-cta::after { background: repeating-linear-gradient(120deg, rgba(111,176,255,0.045) 0 1px, transparent 1px 11px); }
+.bp-cta:hover { border-color: rgba(111,176,255,0.6); }
+.bp-cta .jarvis-k { color: #6fb0ff; }
+.bp-cta .jarvis-txt h3 { color: #e2eeff; }
+.bp-cta .jarvis-go { color: #6fb0ff; border-color: rgba(111,176,255,0.4); }
+.bp-cta:hover .jarvis-go { background: #6fb0ff; color: #04101f; border-color: #6fb0ff; }
+
+/* the Security Office: the office light's amber on the monitor's grain */
+.so-cta { border-color: rgba(240,200,64,0.24); background: linear-gradient(135deg, rgba(240,200,64,0.08), rgba(240,200,64,0.02) 55%, transparent); }
+.so-cta::after { background: repeating-linear-gradient(0deg, rgba(240,200,64,0.045) 0 1px, transparent 1px 4px); }
+.so-cta:hover { border-color: rgba(240,200,64,0.6); }
+.so-cta .jarvis-k { color: #f0c840; }
+.so-cta .jarvis-txt h3 { color: #f2e7d2; }
+.so-cta .jarvis-go { color: #f0c840; border-color: rgba(240,200,64,0.4); }
+.so-cta:hover .jarvis-go { background: #f0c840; color: #1c1400; border-color: #f0c840; }
+
 
 /* ───────────── "At a glance" (_includes/glance.html) ─────────────
    The summary at the top of /work/, /projects/, /al-islam/ and /star-wars/.

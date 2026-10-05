@@ -21,6 +21,79 @@ window.FAN_PAGE = {
       { num: 'VII', title: 'The Deathly Hallows', sub: 'July 2007', meta: 'August 1997 – May 1998 · no seventh year, plus an epilogue in September 2017', desc: 'The hunt, the Hallows, King’s Cross, and the Battle of Hogwarts.' },
     ] },
 
+  /* The series in its three movements, which is how it actually reads rather
+     than as seven equal books: a school story, the one book that turns it, and
+     a war. Goblet of Fire gets a period to itself because it is the hinge: the
+     graveyard is where the childhood half ends. The rail opens on Years 1–3
+     (the owner's call, 2026-10-04). */
+  { id: 'eras', kind: 'conflict', title: 'The Three Movements', railLabel: 'Which years',
+    note: 'a school story, a hinge, and a war',
+    open: 'Years 1\u20133',
+    lede: 'Seven books, but three movements. The first three are a mystery a year inside a castle, with Voldemort a rumour at the edge of it. The fourth is the hinge. The last three are a war, and the school is the thing being fought over.',
+    items: [
+      { title: 'Years 1\u20133', when: '1991 \u2013 1994 \u00b7 Books I\u2013III',
+        note: 'A boarding-school mystery with one puzzle a year and a monster at the end of it. Voldemort is a presence rather than an enemy: a face on the back of a head, a diary, a name nobody will say. Nobody who matters dies.',
+        scale: 'One castle, and one puzzle a year',
+        left: { name: 'Harry and the castle', sub: 'the school story', tone: '#d9b45f',
+          note: 'Three children, a lot of corridors, and teachers who mostly turn out to be on their side. The stakes are a trophy, a detention and a secret.',
+          items: [
+            { n: 'Harry, Ron & Hermione', d: 'eleven to fourteen' },
+            { n: 'Albus Dumbledore', d: 'in charge, and unchallenged' },
+            { n: 'Rubeus Hagrid', d: 'and whatever he is hiding' },
+            { n: 'Remus Lupin', d: 'the best teacher they get' },
+            { n: 'Sirius Black', d: 'the godfather, once cleared' },
+          ] },
+        right: { name: 'The rumour of Voldemort', sub: 'never quite present', tone: '#5f8f6a',
+          note: 'He has no body for all three books: a parasite on a teacher, a memory in a diary, a story told about the night Harry survived. The villains you can actually see are small.',
+          items: [
+            { n: 'Quirinus Quirrell', d: 'and the face under the turban' },
+            { n: 'Tom Riddle\u2019s diary', d: 'a Horcrux nobody knew was one' },
+            { n: 'The basilisk', d: 'the Chamber of Secrets' },
+            { n: 'Peter Pettigrew', d: 'twelve years as a rat' },
+            { n: 'The Dementors', d: 'Azkaban\u2019s guards, off the leash' },
+          ] } },
+      { title: 'Year 4', when: '1994 \u2013 1995 \u00b7 Book IV',
+        note: 'The hinge, and the reason the series is split here rather than in the middle. It opens as the biggest school year yet, a tournament with two visiting schools, and it ends in a graveyard with a body on the ground and Voldemort standing up with a wand.',
+        scale: 'A tournament, then a graveyard: the childhood half ends',
+        left: { name: 'The Triwizard Tournament', sub: 'the last of the school story', tone: '#d9b45f',
+          note: 'Three tasks, a Yule Ball, and a fourteen-year-old entered into a competition meant for adults by someone who wants him somewhere specific at the end of it.',
+          items: [
+            { n: 'Harry Potter', d: 'the fourth champion' },
+            { n: 'Cedric Diggory', d: 'the Hogwarts champion' },
+            { n: 'Viktor Krum & Fleur Delacour', d: 'Durmstrang and Beauxbatons' },
+            { n: 'Mad-Eye Moody', d: 'the new Defence teacher, supposedly' },
+          ] },
+        right: { name: 'The return', sub: 'Little Hangleton', tone: '#8f3f4a',
+          note: 'The whole tournament was a delivery mechanism. Bone of the father, flesh of the servant, blood of the enemy, and the Death Eaters are called back for the first time in thirteen years.',
+          items: [
+            { n: 'Lord Voldemort', d: 'a body again' },
+            { n: 'Barty Crouch Jr.', d: 'Moody for a whole year' },
+            { n: 'Peter Pettigrew', d: 'flesh of the servant' },
+            { n: 'The Death Eaters', d: 'recalled to the graveyard' },
+          ] } },
+      { title: 'Years 5\u20137', when: '1995 \u2013 1998 \u00b7 Books V\u2013VII',
+        note: 'A war, and for most of the fifth book the government is the obstacle rather than the enemy: the Ministry would rather discredit a boy than admit what he saw. By the seventh there is no school year at all.',
+        scale: 'A country: the Ministry, the school, and the war for both',
+        left: { name: 'The Order of the Phoenix', sub: 'and the D.A.', tone: '#d9b45f',
+          note: 'An order reassembled in a house nobody can find, and a student army taught in a room that only appears when you need it, because the subject stopped being taught.',
+          items: [
+            { n: 'Harry, Ron & Hermione', d: 'fifteen to seventeen' },
+            { n: 'Albus Dumbledore', d: 'until the Astronomy Tower' },
+            { n: 'Severus Snape', d: 'on which side, exactly' },
+            { n: 'Neville Longbottom', d: 'who holds the school at the end' },
+            { n: 'Molly & Arthur Weasley', d: 'and the whole family in it' },
+          ] },
+        right: { name: 'The Death Eaters', sub: 'and the Ministry they take', tone: '#8f3f4a',
+          note: 'First a government that will not believe it, then a government they simply walk into and own. The war is not an invasion: it is an institution changing hands.',
+          items: [
+            { n: 'Lord Voldemort', d: 'seven Horcruxes, one soul' },
+            { n: 'Bellatrix Lestrange', d: 'the Department of Mysteries' },
+            { n: 'Dolores Umbridge', d: 'the Ministry, and the worst of it' },
+            { n: 'Lucius & Draco Malfoy', d: 'in far too deep' },
+            { n: 'Fenrir Greyback & the Snatchers', d: 'the war\u2019s foot soldiers' },
+          ] } },
+    ] },
+
   { id: 'beasts', kind: 'films', title: 'Fantastic Beasts', note: '2016 – 2022 · seventy years earlier',
     lede: 'Newt Scamander’s films, set between the wars and built out of the textbook Harry buys in his first year. They are the same world from the other end of it: no school, no chosen one, just a magizoologist with a suitcase and a wizarding war coming.',
     items: [
@@ -163,6 +236,17 @@ window.FAN_PAGE = {
       { title: 'Imperio', sub: 'The Imperius Curse', tag: 'III', accent: '#c0a8e0',
         desc: 'Total control, and it feels wonderful from the inside: a floating, weightless ease with no worry left in it. Harry is one of very few who can throw it off.',
         meta: 'The Death Eaters’ alibi' },
+    ] },
+
+  /* my own Wizarding World profile, as the site printed it; the original is
+     in _originals/archive/harry-potter/ */
+  { id: 'sorted', kind: 'gallery', title: 'Sorted', note: 'Ravenclaw \u00b7 Fox Terrier \u00b7 chestnut',
+    lede: 'My profile on the official site, which I joined in August 2020: Ravenclaw, a Fox Terrier for a Patronus, and a wand of chestnut and dragon heartstring.',
+    items: [
+      { src: '/assets/img/archive/harry-potter/wizarding-world.jpg', accent: '#3f6fd0', title: 'Abubakr Elmallah, Ravenclaw',
+        desc: 'House Ravenclaw: wit, learning, wisdom. Patronus a Fox Terrier, the playful protector. Wand of chestnut wood with a dragon heartstring core, thirteen inches, unyielding.',
+        meta: 'Wizarding World \u00b7 joined August 2020',
+        alt: 'My Wizarding World profile: Ravenclaw, a Fox Terrier Patronus, and a 13 inch chestnut wand with a dragon heartstring core' },
     ] },
 
   { id: 'cores', kind: 'tiles', fold: true, title: 'Wand Cores', note: 'the substance at the centre',
@@ -323,8 +407,8 @@ window.FAN_PAGE = {
       { title: 'The Marauder’s Map', sub: 'Parchment terminal', tag: 'Live', desc: 'Every room on this site drawn as a corridor of the castle, with footprints that move on their own, the charms that make it work, and a button that wipes the whole thing blank.',
         href: '/marauders-map/', link: 'I solemnly swear', meta: 'CSS only · no images' },
       { title: 'Mischief managed', sub: 'The exit', tag: 'Detail', desc: 'Press it and the ink drains out of the parchment, exactly as it should.', meta: 'Moony, Wormtail, Padfoot & Prongs' },
-      { title: 'The other terminals', sub: 'Same idea, other worlds', tag: 'More', desc: 'A Stark heads-up display, a Jedi holocron archive, and a Star Wars holotable of the whole portfolio.',
-        href: '/jarvis/', link: 'J.A.R.V.I.S.', meta: 'Also /holocron/ and /elmallah/' },
+      { title: 'The other terminals', sub: 'Same idea, other worlds', tag: 'More', desc: 'A Stark heads-up display, a Jedi holocron, a Star Wars holotable, and one for every world I have lived in: Minecraft, Pirates, Jurassic Park, Stranger Things, Game of Thrones and Avatar.',
+        href: '/jarvis/', link: 'J.A.R.V.I.S.', meta: 'Ten terminals in all' },
     ] },
 
   { id: 'lines', kind: 'quotes', title: 'Lines', note: 'the ones that stuck',

@@ -83,6 +83,14 @@ window.FAN_PAGE = {
         href: 'https://www.azhar.eg/', link: 'al-Azhar', meta: 'Still teaching' },
     ] },
 
+  /* the family name in the desert; original in _originals/archive/egypt/ */
+  { id: 'elmallah', kind: 'gallery', title: 'Elmallah', note: 'the family name, and a pyramid',
+    items: [
+      { src: '/assets/img/archive/egypt/elmallah.jpg', accent: '#e0b070', title: 'Elmallah, under the Apple',
+        desc: 'My family name in the sand in front of a pyramid, with the Apple logo over it: Egypt and the apps in one picture.',
+        alt: 'The word Elmallah and the Apple logo in desert sand with a pyramid behind' },
+    ] },
+
   { id: 'cairo', kind: 'tiles', mount: 'end', title: 'Cairo', note: 'the city of a thousand minarets', compact: true,
     lede: 'One of the largest cities on earth, and layered rather than planned: Fusṭāṭ, then al-Qāhirah beside it, then Saladin’s citadel above both, then Muḥammad ʿAlī’s boulevards through the middle, then everything since.',
     items: [

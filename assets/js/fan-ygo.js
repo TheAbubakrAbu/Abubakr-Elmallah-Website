@@ -73,7 +73,7 @@ window.FAN_PAGE = {
       { title: 'Get Your Game On', accent: '#e0a83a', sub: 'Yu-Gi-Oh! GX · 2004 · 1:01',
         desc: 'The GX opening, for the spin-off set at a duel academy on an island. Sillier than the original and much better liked than it was at the time.',
         href: 'https://www.youtube.com/watch?v=CN_DjYDHEVU', link: 'Watch' },
-      { title: 'Passionate Duelist', accent: '#e0483a', sub: 'Duel Monsters score · 4:57',
+      { title: 'Passionate Duelist', accent: '#e0483a', sub: 'Duel Monsters score · 2000 · 4:57',
         desc: 'The battle cue: the one that starts when somebody is about to summon something they should not have. Not an opening, and probably the most recognised piece of music in the whole franchise.',
         href: 'https://www.youtube.com/watch?v=m8pZjRTHIa0', link: 'Fan upload' },
     ] },

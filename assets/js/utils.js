@@ -345,3 +345,17 @@ function installed() {
     });
   });
 })();
+
+/* A <details> with data-remember="<key>" reopens the way you left it. Used by
+   the Interfaces fold on the home page, so the other eighteen terminals stay
+   open for anyone who opened them once. Wrapped because localStorage throws
+   outright in private mode. */
+(function rememberFolds() {
+  document.querySelectorAll('details[data-remember]').forEach(function (d) {
+    var key = 'ae-fold-' + d.dataset.remember;
+    try { if (localStorage.getItem(key) === 'on') d.open = true; } catch (e) { /* private mode */ }
+    d.addEventListener('toggle', function () {
+      try { localStorage.setItem(key, d.open ? 'on' : 'off'); } catch (e) { /* private mode */ }
+    });
+  });
+})();

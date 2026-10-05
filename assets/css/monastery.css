@@ -1,0 +1,426 @@
+/* ============================================================
+   monastery.css: /monastery/, the Ninjago terminal.
+   Sister page to /citadel/, /compass/ and the rest: ink wash,
+   lacquer red and gold instead of brass or glass. A spinjitzu
+   tornado spins in the courtyard with the four Golden Weapons
+   circling it, every page is a station on Wu's training course,
+   and the exit is a battle cry.
+   ============================================================ */
+
+/* these pages load no shared stylesheet, so they carry their own reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
+
+.mo {
+  --cap:     "Kaisei Tokumin", "Hiragino Mincho ProN", Georgia, serif;
+  --body:    "Shippori Mincho", "Hiragino Mincho ProN", Georgia, serif;
+  --ink-0:   #0c0a0b;
+  --ink-1:   #16121a;
+  --gold:    #e0b040;
+  --gold-hi: #fff0b8;
+  --lacquer: #b3261e;
+  --lacq-hi: #e2483a;
+  --paper:   #f1e8d6;
+  --dim:     #c2b6a0;
+  --mute:    #9b907e;
+  --line:    rgba(224, 176, 64, .22);
+  --ease:    cubic-bezier(.16, 1, .3, 1);
+
+  background: var(--ink-0);
+  color: var(--paper);
+  font-family: var(--body);
+  font-size: 1.04rem;
+  min-height: 100vh;
+  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+}
+
+/* ───────────── the ink-wash night ───────────── */
+.mo-sky { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background:
+    radial-gradient(70% 50% at 72% 8%, rgba(120, 90, 140, .16), transparent 70%),
+    radial-gradient(60% 40% at 20% 30%, rgba(179, 38, 30, .07), transparent 70%),
+    linear-gradient(180deg, #0f0c12 0%, #0c0a0b 60%, #0a0809 100%);
+}
+.mo-sky > span { position: absolute; }
+/* the moon: soft-edged, the way wet ink blooms round a dry circle */
+.mo-moon {
+  top: 13vh; right: 5vw; width: clamp(64px, 9vw, 130px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 42% 40%, #f6ecd4 0%, #e7d7b4 48%, #bfae8a 70%, transparent 72%);
+  box-shadow: 0 0 80px 20px rgba(240, 220, 170, .08);
+  opacity: .2;
+}
+.mo-peaks { left: 0; right: 0; bottom: 0; height: min(52vh, 460px); }
+.mo-peaks svg { width: 100%; height: 100%; max-width: none; }
+.mo-p1 { fill: #1d1a20; }
+.mo-mist { fill: rgba(200, 190, 210, .05); }
+.mo-p2 { fill: #141117; }
+.mo-p3 { fill: #0d0b0c; }
+.mo-temple path { fill: #241417; stroke: #4a1c1a; stroke-width: 1.5; }
+.mo-temple path:last-of-type { fill: none; stroke: var(--gold); stroke-width: 2; }
+.mo-lit { fill: var(--gold); opacity: .7; animation: mo-lamp 5s ease-in-out infinite; }
+.mo-lit + .mo-lit { animation-delay: -1.7s; }
+.mo-lit + .mo-lit + .mo-lit { animation-delay: -3.1s; }
+@keyframes mo-lamp { 0%, 100% { opacity: .7; } 50% { opacity: .4; } }
+/* gold motes rising off the mountain: a sheet of dots that drifts up and
+   fades at the top, so it never needs a script */
+.mo-motes {
+  inset: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 80%, rgba(224, 176, 64, .7), transparent),
+    radial-gradient(1px 1px at 28% 60%, rgba(224, 176, 64, .6), transparent),
+    radial-gradient(2px 2px at 47% 90%, rgba(255, 210, 120, .6), transparent),
+    radial-gradient(1px 1px at 63% 70%, rgba(224, 176, 64, .6), transparent),
+    radial-gradient(1.5px 1.5px at 81% 85%, rgba(255, 210, 120, .6), transparent),
+    radial-gradient(1px 1px at 92% 55%, rgba(224, 176, 64, .5), transparent);
+  background-size: 100% 100%;
+  -webkit-mask-image: linear-gradient(0deg, #000 30%, transparent 90%);
+          mask-image: linear-gradient(0deg, #000 30%, transparent 90%);
+  animation: mo-rise 18s linear infinite;
+}
+@keyframes mo-rise { from { transform: translateY(20vh); opacity: 0; } 20% { opacity: 1; } to { transform: translateY(-40vh); opacity: 0; } }
+
+/* ───────────── header ───────────── */
+.mo-top {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; flex-wrap: wrap;
+  padding: calc(1rem + env(safe-area-inset-top, 0px)) clamp(1rem, 4vw, 2.6rem) 1rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--cap); font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim);
+}
+/* the red lacquer rail along the top, the colour of the monastery gate */
+.mo-top::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--lacquer) 15%, var(--lacq-hi) 50%, var(--lacquer) 85%, transparent); }
+.mo-exit { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--gold); }
+.mo-exit:hover { color: var(--gold-hi); }
+.mo-exit:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; border-radius: 2px; }
+.mo-exit svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; }
+.mo-top-hour { color: var(--paper); font-variant-numeric: tabular-nums; }
+
+.mo-main { position: relative; z-index: 1; max-width: 1220px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.6rem); }
+
+/* ───────────── the dojo layout ───────────── */
+.mo-dojo {
+  display: grid; gap: 0 clamp(1.4rem, 3.4vw, 3rem);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "hero" "yard" "course";
+}
+.mo-hero   { grid-area: hero; }
+.mo-yard   { grid-area: yard; }
+.mo-course { grid-area: course; }
+@media (min-width: 1000px) {
+  .mo-dojo {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    grid-template-areas: "yard hero" "yard course";
+    grid-template-rows: auto 1fr;
+  }
+  /* the courtyard holds still while the right column scrolls past it */
+  .mo-yard { position: sticky; top: 1rem; align-self: start; }
+}
+
+/* ───────────── the hero ───────────── */
+.mo-hero { padding-top: clamp(1.8rem, 5vw, 3.4rem); }
+.mo-kicker {
+  font-family: var(--cap); font-size: 0.74rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--lacq-hi);
+}
+.mo-title {
+  margin-top: 0.5rem;
+  font-family: var(--cap); font-weight: 800; letter-spacing: 0.04em; line-height: 1;
+  font-size: clamp(2.6rem, 7.4vw, 5rem);
+  background: linear-gradient(180deg, #fff6d6 0%, #f0c860 40%, #c08420 75%, #7a4c10);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 3px 0 rgba(90, 14, 10, .85));
+}
+/* a brush stroke of lacquer under the title, wider at the start where the
+   brush came down and dry at the end where it lifted */
+.mo-title::after {
+  content: ""; display: block; height: 10px; width: min(360px, 80%); margin-top: 0.7rem;
+  background: linear-gradient(90deg, var(--lacquer), var(--lacq-hi) 60%, transparent);
+  border-radius: 10px 40% 40% 10px / 10px 50% 50% 10px;
+  -webkit-mask-image: repeating-linear-gradient(90deg, #000 0 14px, rgba(0, 0, 0, .55) 14px 16px);
+          mask-image: repeating-linear-gradient(90deg, #000 0 14px, rgba(0, 0, 0, .55) 14px 16px);
+}
+.mo-sub { max-width: 58ch; margin-top: 1.2rem; font-size: 1.12rem; line-height: 1.7; color: var(--dim); }
+.mo-epi { margin-top: 1rem; font-family: var(--cap); font-size: 1.08rem; color: var(--gold); }
+.mo-epi span { display: block; margin-top: 0.15rem; font-family: var(--body); font-size: 0.92rem; color: var(--mute); }
+
+/* ───────────── the courtyard ───────────── */
+.mo-yard { padding-top: clamp(1.4rem, 4vw, 2.4rem); }
+.mo-stage {
+  position: relative; width: 100%; max-width: 500px; margin: 0 auto;
+  height: clamp(320px, 88vw, 470px);
+  overflow: hidden;
+  border-radius: 6px;
+  /* the courtyard at night: a dim lantern glow over flagstones */
+  background:
+    radial-gradient(60% 40% at 50% 92%, rgba(224, 176, 64, .12), transparent 70%),
+    radial-gradient(90% 70% at 50% 40%, rgba(40, 30, 50, .35), transparent 70%),
+    rgba(14, 10, 13, .9);
+  border: 1px solid var(--line);
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, .6);
+}
+@media (min-width: 1000px) { .mo-stage { height: min(470px, 58vh); } }
+/* the stage's lacquered frame: two red posts and a beam, a little torii */
+.mo-stage::before, .mo-stage::after { content: ""; position: absolute; z-index: 4; pointer-events: none; }
+.mo-stage::before {
+  left: 0; right: 0; top: 0; height: 12px;
+  background: linear-gradient(180deg, var(--lacq-hi), var(--lacquer) 60%, #5a120e);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .5);
+}
+.mo-stage::after {
+  inset: 12px 0 0 0;
+  border-left: 8px solid var(--lacquer); border-right: 8px solid var(--lacquer);
+  -webkit-mask-image: linear-gradient(180deg, #000 40%, transparent 100%);
+          mask-image: linear-gradient(180deg, #000 40%, transparent 100%);
+}
+.mo-floor {
+  position: absolute; left: 50%; bottom: 7%; width: 70%; height: 16%; translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(224, 176, 64, .18), rgba(224, 176, 64, .05) 60%, transparent);
+  border: 1px solid rgba(224, 176, 64, .18);
+}
+.mo-twister { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; }
+.mo-rack { position: absolute; inset: 0; }   /* no z-index: each weapon sets its own, in front of the tornado or behind it */
+.mo-rack .mo-gw { position: absolute; width: 46px; height: 92px; will-change: transform; }
+.mo-gw path, .mo-gw rect, .mo-gw circle { fill: url(#moGold); }
+.mo-gw .mo-gw-aura { fill: var(--g); opacity: .28; filter: blur(4px); }
+.mo-gw { filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .6)); }
+/* before the script has placed them (or without it), the four stand in a
+   row along the courtyard floor */
+.mo-gw { top: auto; bottom: 6%; z-index: 3; }
+.mo-gw:nth-child(1) { left: 8%; }
+.mo-gw:nth-child(2) { left: 26%; }
+.mo-gw:nth-child(3) { left: auto; right: 26%; }
+.mo-gw:nth-child(4) { left: auto; right: 8%; }
+.mo-rack.is-placed .mo-gw { left: 0; right: auto; top: 0; bottom: auto; }
+.mo-defs { position: absolute; }
+
+/* the readout: the element's name in brush capitals, and who carries it */
+.mo-read { margin: 0.9rem auto 0; max-width: 500px; text-align: center; min-height: 3.2em; }
+.mo-read b { display: block; font-family: var(--cap); font-weight: 700; font-size: 1.3rem; letter-spacing: 0.06em; color: var(--gold); transition: color .4s; }
+.mo-read span { display: block; font-size: 0.98rem; color: var(--dim); }
+
+.mo-els {
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.4rem;
+  max-width: 500px; margin: 0.9rem auto 0;
+}
+@media (max-width: 520px) { .mo-els { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.mo-el {
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.1rem;
+  padding: 0.55rem 0.2rem 0.5rem; cursor: pointer;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--e) 10%, #1a1518), #120e11);
+  border: 1px solid color-mix(in srgb, var(--e) 35%, transparent); border-radius: 4px;
+  font-family: var(--cap); font-weight: 700; font-size: 0.86rem; letter-spacing: 0.03em; color: var(--paper);
+  transition: background .3s, border-color .3s, translate .3s var(--ease);
+}
+.mo-el span { font-family: var(--body); font-weight: 500; font-size: 0.8rem; letter-spacing: 0; color: var(--dim); }
+.mo-el::before {   /* the element's own colour, as a dot of ink */
+  content: ""; width: 9px; height: 9px; border-radius: 50%; margin-bottom: 0.2rem;
+  background: var(--e); box-shadow: 0 0 8px var(--e);
+}
+.mo-el:hover { translate: 0 -2px; border-color: var(--e); }
+.mo-el:focus-visible { outline: 2px solid var(--e); outline-offset: 2px; }
+.mo-el[aria-pressed="true"] {
+  border-color: var(--e);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--e) 26%, #1a1518), #160f12);
+}
+.mo-spin {
+  display: block; margin: 0.8rem auto 0; padding: 0.7rem 1.6rem; cursor: pointer;
+  background: linear-gradient(180deg, var(--lacq-hi), var(--lacquer) 55%, #7a1710);
+  border: 1px solid #f0806a; border-radius: 3px;
+  font-family: var(--cap); font-weight: 800; font-size: 1rem; letter-spacing: 0.12em; color: #fff3dc;
+  box-shadow: 0 4px 0 #4a0c08, 0 8px 18px rgba(0, 0, 0, .4);
+  transition: translate .15s, box-shadow .15s;
+}
+.mo-spin:active, .mo-spin.is-held { translate: 0 3px; box-shadow: 0 1px 0 #4a0c08, 0 4px 10px rgba(0, 0, 0, .4); }
+.mo-spin:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+/* ───────────── headings ───────────── */
+.mo-h {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem 0.8rem;
+  font-family: var(--cap); font-weight: 700; font-size: clamp(1.35rem, 3vw, 1.8rem); letter-spacing: 0.04em;
+  color: var(--paper); margin-bottom: 1.1rem;
+}
+.mo-h span { font-family: var(--body); font-weight: 400; letter-spacing: 0; font-size: 1rem; color: var(--mute); }
+.mo-h--sm { font-size: 1.2rem; margin-bottom: 1rem; }
+.mo-think { width: 22px; height: 22px; }
+
+/* ───────────── the training course ───────────── */
+.mo-course { padding-top: clamp(2rem, 5vw, 2.8rem); }
+.mo-stations { list-style: none; display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+/* a station: a dark lacquered plaque hung from a gold peg, the element's
+   colour brushed down its left edge. It swings in once when the page
+   opens, staggered down the course. */
+.mo-st {
+  position: relative; display: flex; flex-direction: column; gap: 0.2rem; height: 100%;
+  padding: 0.95rem 1rem 0.9rem 1.25rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .035), transparent 40%),
+    linear-gradient(160deg, #22161a, #140e11);
+  border: 1px solid rgba(224, 176, 64, .2); border-radius: 3px;
+  transform-origin: 50% -10px;
+  animation: mo-hang .9s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 50ms + 250ms);
+  transition: border-color .3s, background .3s, translate .35s var(--ease);
+}
+.mo-st::before {   /* the brush stroke */
+  content: ""; position: absolute; left: 6px; top: 10%; bottom: 10%; width: 5px; border-radius: 4px 2px 6px 2px;
+  background: linear-gradient(180deg, var(--e), color-mix(in srgb, var(--e) 40%, transparent));
+}
+.mo-st::after {    /* the peg it hangs from */
+  content: ""; position: absolute; top: -5px; left: 50%; width: 10px; height: 10px; translate: -50% 0; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--gold-hi), var(--gold) 50%, #7a4c10);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+}
+.mo-st b { font-family: var(--cap); font-weight: 700; font-size: 1.04rem; letter-spacing: 0.02em; color: var(--paper); }
+.mo-st i { font-style: normal; font-size: 0.96rem; color: var(--dim); }
+.mo-st em {
+  margin-top: auto; padding-top: 0.35rem;
+  font-style: normal; font-family: var(--cap); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--e) 75%, var(--paper));
+}
+.mo-st:hover, .mo-st:focus-visible, .mo-st.is-on {
+  outline: none; translate: 0 -3px;
+  border-color: var(--e);
+  background:
+    radial-gradient(80% 90% at 0% 50%, color-mix(in srgb, var(--e) 16%, transparent), transparent 70%),
+    linear-gradient(160deg, #2a1a1f, #160f12);
+}
+.mo-st:focus-visible { box-shadow: 0 0 0 2px var(--gold); }
+@keyframes mo-hang {
+  0%   { opacity: 0; transform: rotate(-7deg) translateY(-8px); }
+  55%  { opacity: 1; transform: rotate(2.5deg); }
+  80%  { transform: rotate(-1deg); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* ───────────── panels ───────────── */
+.mo-cols { display: grid; gap: clamp(1rem, 2.4vw, 1.6rem); grid-template-columns: minmax(0, 1fr); margin-top: clamp(2.2rem, 5vw, 3.4rem); }
+@media (min-width: 900px) { .mo-cols { grid-template-columns: 1fr 1fr; } }
+/* a panel is a hanging scroll: paper-dark body, a wooden rod at the top
+   and the bottom in lacquer red with gold caps */
+.mo-panel {
+  position: relative;
+  padding: clamp(1.4rem, 3vw, 1.9rem) clamp(1.1rem, 2.6vw, 1.6rem);
+  background:
+    radial-gradient(90% 60% at 50% 0%, rgba(224, 176, 64, .05), transparent 70%),
+    linear-gradient(180deg, rgba(26, 20, 24, .94), rgba(16, 12, 15, .94));
+  border-left: 1px solid var(--line); border-right: 1px solid var(--line);
+}
+.mo-panel::before, .mo-panel::after {
+  content: ""; position: absolute; left: -10px; right: -10px; height: 9px; border-radius: 5px;
+  background:
+    radial-gradient(circle at 5px 50%, var(--gold) 0 4px, transparent 4.5px),
+    radial-gradient(circle at calc(100% - 5px) 50%, var(--gold) 0 4px, transparent 4.5px),
+    linear-gradient(180deg, var(--lacq-hi), var(--lacquer) 55%, #5a120e);
+}
+.mo-panel::before { top: -4px; }
+.mo-panel::after { bottom: -4px; }
+
+.mo-feats { list-style: none; display: flex; flex-direction: column; gap: 0.2rem; }
+.mo-feats li { position: relative; padding: 0.55rem 0 0.55rem 1.4rem; border-bottom: 1px solid rgba(224, 176, 64, .1); }
+.mo-feats li::before {   /* a dab of the element's ink */
+  content: ""; position: absolute; left: 0; top: 0.95rem; width: 10px; height: 10px;
+  border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+  background: var(--e); box-shadow: 0 0 10px color-mix(in srgb, var(--e) 60%, transparent);
+}
+.mo-feats b { display: block; font-family: var(--cap); font-weight: 700; font-size: 0.86rem; letter-spacing: 0.06em; color: color-mix(in srgb, var(--e) 70%, var(--paper)); }
+.mo-feats p { font-size: 1.02rem; line-height: 1.5; color: var(--paper); }
+
+.mo-file { display: flex; flex-direction: column; }
+.mo-file div {
+  display: flex; justify-content: space-between; gap: 1rem; align-items: baseline;
+  padding: 0.6rem 0; border-bottom: 1px solid rgba(224, 176, 64, .12);
+}
+.mo-file dt { flex: none; font-family: var(--cap); font-weight: 700; font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
+.mo-file dd { text-align: right; color: var(--paper); }
+
+/* ───────────── the Realm Crystal ───────────── */
+.mo-realms { margin-top: clamp(1.6rem, 3.4vw, 2.2rem); }
+.mo-crystals { display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.mo-cr {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 0.85rem; align-items: center;
+  padding: 0.65rem 0.8rem; border: 1px solid rgba(224, 176, 64, .14); border-radius: 3px;
+  background: rgba(241, 232, 214, .03);
+  transition: background .3s, border-color .3s;
+}
+.mo-cr:hover, .mo-cr:focus-visible { outline: none; background: rgba(241, 232, 214, .07); border-color: var(--w); }
+.mo-cr:focus-visible { box-shadow: 0 0 0 2px var(--gold); }
+/* a shard of the Realm Crystal in the destination's colour: a long
+   diamond with a lit facet, that turns a little on hover */
+.mo-gem {
+  grid-row: span 2; width: 26px; height: 40px; margin: 0 6px;
+  clip-path: polygon(50% 0, 100% 38%, 50% 100%, 0 38%);
+  background:
+    linear-gradient(100deg, transparent 48%, rgba(255, 255, 255, .35) 50%, transparent 52%),
+    linear-gradient(160deg, color-mix(in srgb, var(--w) 40%, #fff) 0%, var(--w) 40%, color-mix(in srgb, var(--w) 45%, #000) 100%);
+  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--w) 50%, transparent));
+  transition: transform .5s var(--ease);
+}
+.mo-cr:hover .mo-gem, .mo-cr:focus-visible .mo-gem { transform: rotateY(180deg); }
+.mo-cr b { font-family: var(--cap); font-weight: 700; font-size: 0.94rem; letter-spacing: 0.02em; align-self: end; }
+.mo-cr i { font-style: normal; font-size: 0.94rem; color: var(--dim); align-self: start; }
+
+/* ───────────── Ninja, go! ───────────── */
+.mo-go {
+  display: flex; align-items: center; gap: 0.7rem; margin: clamp(2.4rem, 6vw, 3.6rem) auto 0;
+  padding: 0.9rem 2rem; cursor: pointer;
+  background: linear-gradient(180deg, #f3cf6a, var(--gold) 50%, #a8741c);
+  border: 1px solid var(--gold-hi); border-radius: 3px;
+  font-family: var(--cap); font-weight: 800; font-size: 1.15rem; letter-spacing: 0.14em; color: #2a1606;
+  box-shadow: 0 4px 0 #6a440e, 0 10px 26px rgba(224, 176, 64, .2);
+  transition: translate .15s, box-shadow .15s, filter .3s;
+}
+.mo-go:hover { filter: brightness(1.08); }
+.mo-go:active { translate: 0 3px; box-shadow: 0 1px 0 #6a440e; }
+.mo-go:focus-visible { outline: 2px solid var(--paper); outline-offset: 4px; }
+/* a little spinner in the button, the toy the whole show began as */
+.mo-go-spin {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: conic-gradient(#7a1710 0 25%, #2a1606 0 50%, #7a1710 0 75%, #2a1606 0);
+  animation: mo-twirl 2.4s linear infinite;
+}
+.mo-go:hover .mo-go-spin { animation-duration: .5s; }
+@keyframes mo-twirl { to { transform: rotate(360deg); } }
+
+.mo.is-called .mo-main { opacity: 0; transition: opacity 1.1s ease; pointer-events: none; }
+.mo-done {
+  position: fixed; inset: 0; z-index: 20; display: grid; place-items: center;
+  background: radial-gradient(60% 50% at 50% 45%, rgba(179, 38, 30, .16), transparent 70%), var(--ink-0);
+  opacity: 0; pointer-events: none; transition: opacity 1.1s ease;
+  text-align: center; padding: 2rem;
+}
+.mo.is-called .mo-done { opacity: 1; pointer-events: auto; }
+.mo-done-orb { display: block; width: 96px; height: 96px; margin: 0 auto 1.4rem; opacity: .9; }
+.mo:not(.is-called) .mo-done-orb { display: none; }
+.mo-done-k { font-family: var(--cap); font-size: 0.76rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mute); }
+.mo-done-t {
+  margin-top: 0.5rem; font-family: var(--cap); font-weight: 800; letter-spacing: 0.05em;
+  font-size: clamp(2rem, 7vw, 3.8rem);
+  background: linear-gradient(180deg, #fff6d6, #f0c860 45%, #b07818);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.mo-done-home, .mo-done-stay {
+  display: inline-block; margin: 1.6rem 0.6rem 0;
+  font-family: var(--cap); font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim);
+  border: 0; border-bottom: 1px solid var(--line); background: none; padding: 0 0 3px; cursor: pointer;
+}
+.mo-done-home:hover, .mo-done-stay:hover, .mo-done-home:focus-visible, .mo-done-stay:focus-visible { outline: none; color: var(--gold); border-color: var(--gold); }
+
+@media (max-width: 560px) {
+  .mo-top-mid { order: 3; width: 100%; }
+  .mo-stations { grid-template-columns: 1fr 1fr; gap: 0.8rem 0.55rem; }
+  .mo-st { padding: 0.9rem 0.7rem 0.8rem 1.05rem; }
+  .mo-st::before { left: 4px; width: 4px; }
+  .mo-st b { font-size: 0.94rem; }
+  .mo-st i { font-size: 0.9rem; }
+  .mo-file div { flex-direction: column; gap: 0.15rem; }
+  .mo-file dd { text-align: left; }
+  .mo-panel::before, .mo-panel::after { left: -6px; right: -6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mo-motes, .mo-lit, .mo-st, .mo-go-spin { animation: none; }
+  .mo-st, .mo-el, .mo-gem { transition: none; }
+}

@@ -1,0 +1,313 @@
+/* ============================================================
+   citadel.css: /citadel/, the Game of Thrones terminal.
+   Sister page to /jarvis/, /holocron/, /marauders-map/ and
+   /crafting-table/: brass and candlelight instead of glass. The
+   astrolabe from the opening titles turns over the page, every
+   page rises from the map as a keep, and the exit answers you.
+   ============================================================ */
+
+/* these pages load no shared stylesheet, so they carry their own reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+img, svg { display: block; max-width: 100%; }
+html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
+
+.cd {
+  --cap:    "Cinzel", Georgia, serif;
+  --body:   "Cormorant Garamond", Georgia, serif;
+  --stone:  #0b0a09;
+  --stone-2:#151310;
+  --brass:  #d8b26a;
+  --brass-2:#9c7432;
+  --ink:    #ece3cf;
+  --dim:    #b3a78f;
+  --mute:   #8f8572;
+  --line:   rgba(216, 178, 106, 0.22);
+  --ease:   cubic-bezier(.16, 1, .3, 1);
+
+  background: var(--stone);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.08rem;
+  min-height: 100vh;
+  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+}
+
+/* ───────────── candlelight ───────────── */
+.cd-field { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.cd-field > span { position: absolute; inset: 0; }
+.cd-glow {
+  background:
+    radial-gradient(60% 45% at 50% 0%, rgba(255, 170, 80, .16), transparent 70%),
+    radial-gradient(40% 30% at 85% 90%, rgba(180, 60, 30, .08), transparent 70%),
+    radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(0, 0, 0, .65));
+}
+.cd-grid {
+  opacity: .5;
+  background:
+    repeating-linear-gradient(0deg, rgba(216, 178, 106, .035) 0 1px, transparent 1px 64px),
+    repeating-linear-gradient(90deg, rgba(216, 178, 106, .035) 0 1px, transparent 1px 64px);
+}
+
+/* ───────────── header ───────────── */
+.cd-top {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; flex-wrap: wrap;
+  padding: calc(1rem + env(safe-area-inset-top, 0px)) clamp(1rem, 4vw, 2.6rem) 1rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--cap); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim);
+}
+.cd-exit { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--brass); }
+.cd-exit:hover { color: #fff1cf; }
+.cd-exit svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; }
+
+.cd-main { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.6rem); }
+
+/* ───────────── the astrolabe ───────────── */
+.cd-hero { text-align: center; padding-top: clamp(1.6rem, 5vw, 3rem); }
+.cd-astro {
+  width: min(440px, 82vw); aspect-ratio: 1; margin: 0 auto;
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, .6));
+}
+.cd-astro svg { width: 100%; height: 100%; overflow: visible; }
+.cd-brass { fill: none; stroke: url(#cdBrass); }
+.cd-groove { fill: none; stroke: rgba(40, 24, 6, .65); stroke-width: 1; stroke-dasharray: 3 5; }
+.cd-tick { fill: none; stroke: #c99a45; opacity: .75; }
+.cd-engrave {
+  font-family: var(--cap); font-size: 12px; font-weight: 600; letter-spacing: 2px;
+  fill: #e9c97e;
+}
+.cd-corona { fill: rgba(255, 190, 90, .14); }
+
+/* SVG transforms here turn about the centre of the drawing, (0, 0) in the
+   viewBox above, which is what transform-origin 0 0 means for SVG */
+.cd-ring, .cd-band, .cd-sun { transform-origin: 0 0; transform-box: view-box; }
+.cd-ring--words { animation: cd-turn 240s linear infinite; }
+.cd-ring--ticks { animation: cd-turn 180s linear infinite reverse; }
+@keyframes cd-turn { to { transform: rotate(360deg); } }
+
+/* each band is a ring seen turning about its own axis: squashed through
+   flat to the far side and back, at its own angle and its own speed */
+.cd-band { transform: rotate(var(--a)); animation: cd-tilt var(--t, 13s) ease-in-out var(--d, 0s) infinite; }
+@keyframes cd-tilt {
+  0%   { transform: rotate(var(--a)) scaleY(1); }
+  50%  { transform: rotate(var(--a)) scaleY(-1); }
+  100% { transform: rotate(var(--a)) scaleY(1); }
+}
+.cd-sun { animation: cd-burn 4.5s ease-in-out infinite; filter: drop-shadow(0 0 18px rgba(255, 180, 80, .7)); }
+@keyframes cd-burn { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+
+.cd-kicker {
+  margin-top: 1.6rem;
+  font-family: var(--cap); font-size: 0.72rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--brass);
+}
+.cd-title {
+  margin-top: 0.4rem;
+  font-family: var(--cap); font-weight: 600; letter-spacing: 0.14em; line-height: 1.05;
+  font-size: clamp(2.4rem, 8vw, 5.2rem);
+  background: linear-gradient(180deg, #fff1cf 0%, #e9c97e 45%, #a9792c 80%, #6f4a14);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, .5));
+}
+.cd-sub {
+  max-width: 60ch; margin: 1rem auto 0;
+  font-size: 1.15rem; line-height: 1.6; color: var(--dim); font-style: italic;
+}
+
+/* ───────────── headings ───────────── */
+.cd-h {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem 0.8rem;
+  font-family: var(--cap); font-weight: 600; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: 0.08em;
+  color: var(--ink); margin-bottom: 1.2rem;
+}
+.cd-h span {
+  font-family: var(--body); font-style: italic; font-weight: 400; letter-spacing: 0;
+  font-size: 1rem; color: var(--mute);
+}
+.cd-h--sm { font-size: 1.15rem; margin-bottom: 1rem; }
+.cd-think { width: 22px; height: 22px; }
+
+/* ───────────── the realm ───────────── */
+.cd-realm {
+  margin-top: clamp(2.4rem, 6vw, 4rem); padding: clamp(1.2rem, 3vw, 2rem);
+  border: 1px solid var(--line); border-radius: 4px;
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(216, 178, 106, .06), transparent 70%),
+    linear-gradient(180deg, rgba(21, 19, 16, .9), rgba(11, 10, 9, .9));
+}
+.cd-keeps { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+
+/* a keep: a tower block with battlements along its top, in its house
+   colour, rising out of the map once when the page opens */
+.cd-keep {
+  position: relative; display: flex; flex-direction: column; gap: 0.25rem;
+  padding: 1.35rem 1rem 1rem;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--c) 16%, #1a1713), #12100d);
+  border: 1px solid color-mix(in srgb, var(--c) 40%, transparent);
+  border-top: 0;
+  transform-origin: 50% 100%;
+  animation: cd-rise .9s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 60ms + 200ms);
+  transition: background .35s, translate .35s var(--ease);
+}
+.cd-keep::before {
+  content: ""; position: absolute; left: -1px; right: -1px; top: -8px; height: 8px;
+  background: repeating-linear-gradient(90deg, color-mix(in srgb, var(--c) 70%, #2a2016) 0 12px, transparent 12px 20px);
+}
+.cd-keep b { font-family: var(--cap); font-weight: 600; font-size: 1.02rem; letter-spacing: 0.04em; color: var(--ink); }
+.cd-keep i { font-size: 0.98rem; color: var(--dim); }
+.cd-keep:hover, .cd-keep:focus-visible {
+  outline: none; translate: 0 -4px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--c) 30%, #1a1713), #15120e);
+}
+.cd-keep:focus-visible { box-shadow: 0 0 0 2px var(--brass); }
+@keyframes cd-rise { from { transform: scaleY(0); opacity: 0; } 40% { opacity: 1; } to { transform: scaleY(1); opacity: 1; } }
+
+/* ───────────── the map ───────────── */
+.cd-mapframe {
+  margin: 0 0 1.6rem; border: 1px solid var(--line); border-radius: 3px;
+  overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
+  background: #0c0b09;
+}
+.cd-map { display: block; width: 100%; min-width: 860px; height: auto; }
+/* only where the map is wider than its frame */
+.cd-maphint { display: none; margin: -1rem 0 1.4rem; font-style: italic; font-size: 0.95rem; color: var(--mute); }
+@media (max-width: 920px) { .cd-maphint { display: block; } }
+.cd-land path { fill: url(#cdLand); stroke: #b8862f; stroke-width: 1.6; stroke-linejoin: round; }
+.cd-wall { stroke: #d9e6ee; stroke-width: 4; opacity: .7; stroke-linecap: round; }
+.cd-road { fill: none; stroke: #d8b26a; stroke-width: 1.6; stroke-dasharray: 5 5; opacity: .75; }
+.cd-smoke circle { fill: rgba(140, 120, 100, .18); animation: cd-smoke 6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.cd-smoke circle + circle { animation-delay: -3s; }
+@keyframes cd-smoke { 0%, 100% { transform: scale(1); opacity: .6; } 50% { transform: scale(1.5) translateY(-4px); opacity: .2; } }
+.cd-map-sea { font-family: var(--body); font-style: italic; font-size: 15px; fill: rgba(216, 178, 106, .45); letter-spacing: 2px; }
+.cd-map-region { font-family: var(--cap); font-size: 40px; letter-spacing: 18px; fill: rgba(216, 178, 106, .1); }
+.cd-map-note { font-family: var(--body); font-style: italic; font-size: 12px; fill: rgba(236, 227, 207, .45); }
+.cd-rose circle { fill: none; stroke: rgba(216, 178, 106, .35); }
+.cd-rose path { fill: rgba(216, 178, 106, .5); }
+.cd-rose text { font-family: var(--cap); font-size: 12px; fill: var(--brass); }
+
+/* a pin: a little tower in its house colour that rises out of the map once,
+   staggered, the way the castles come up in the opening titles */
+.cd-pin-rise { transform-box: fill-box; transform-origin: 50% 100%; animation: cd-rise .9s var(--ease) both; animation-delay: calc(var(--i, 0) * 80ms + 400ms); }
+.cd-pin-tower { fill: var(--c); stroke: #120f0b; stroke-width: 1; }
+.cd-pin-base { fill: #f3dc9e; stroke: #120f0b; stroke-width: 1; }
+.cd-pin-t {
+  font-family: var(--cap); font-weight: 600; font-size: 13px; fill: #f1e2bd; letter-spacing: .5px;
+  paint-order: stroke; stroke: #0c0b09; stroke-width: 3.5px; stroke-linejoin: round;
+}
+.cd-pin-s {
+  font-family: var(--body); font-style: italic; font-size: 12px; fill: #c9bb9c;
+  paint-order: stroke; stroke: #0c0b09; stroke-width: 3.5px; stroke-linejoin: round;
+}
+.cd-pin:hover .cd-pin-t, .cd-pin:focus .cd-pin-t { fill: #fff3d0; }
+.cd-pin:hover .cd-pin-tower { filter: brightness(1.4); }
+
+/* ───────────── panels ───────────── */
+.cd-cols { display: grid; gap: clamp(1rem, 2.4vw, 1.6rem); grid-template-columns: 1fr; margin-top: clamp(1rem, 2.4vw, 1.6rem); }
+@media (min-width: 900px) { .cd-cols { grid-template-columns: 1fr 1fr; } }
+.cd-panel {
+  padding: clamp(1.1rem, 2.6vw, 1.6rem);
+  border: 1px solid var(--line); border-radius: 4px;
+  background: linear-gradient(180deg, rgba(21, 19, 16, .92), rgba(13, 12, 10, .92));
+}
+
+/* the chain: each link a ring of its metal, hung one under the next */
+.cd-chain { list-style: none; display: flex; flex-direction: column; }
+.cd-chain li {
+  position: relative; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0.9rem; align-items: start;
+  padding: 0.55rem 0;
+}
+.cd-link {
+  justify-self: center; width: 22px; height: 34px; margin-top: 2px; border-radius: 50%;
+  border: 5px solid var(--m2);
+  border-top-color: var(--m1); border-left-color: var(--m1);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .5), inset 0 0 0 1px rgba(255, 255, 255, .08);
+}
+.cd-chain li:nth-child(even) .cd-link { width: 12px; }   /* the next link, turned side on */
+.cd-chain li + li::before {
+  content: ""; position: absolute; left: 16px; top: -6px; width: 2px; height: 14px; background: rgba(216, 178, 106, .25);
+}
+.cd-chain b { display: block; font-family: var(--cap); font-weight: 600; font-size: 0.86rem; letter-spacing: 0.08em; color: var(--brass); }
+.cd-chain p { font-size: 1.04rem; line-height: 1.45; color: var(--ink); }
+/* Valyrian steel's ripple */
+.cd-chain-vs .cd-link {
+  border-image: repeating-linear-gradient(135deg, #9aa6b4 0 3px, #2c333c 3px 6px) 5;
+  border-radius: 0; border-style: solid;
+  clip-path: ellipse(50% 50% at 50% 50%);
+}
+
+.cd-record { display: flex; flex-direction: column; }
+.cd-record div {
+  display: flex; justify-content: space-between; gap: 1rem; align-items: baseline;
+  padding: 0.55rem 0; border-bottom: 1px solid rgba(216, 178, 106, .12);
+}
+.cd-record dt { font-family: var(--cap); font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
+.cd-record dd { font-style: italic; text-align: right; color: var(--ink); }
+
+/* ───────────── ravens ───────────── */
+.cd-ravens { margin-top: clamp(1rem, 2.4vw, 1.6rem); }
+.cd-seals { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+.cd-raven {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 0.85rem; align-items: center;
+  padding: 0.7rem 0.8rem; border: 1px solid rgba(216, 178, 106, .14); border-radius: 3px;
+  background: rgba(236, 227, 207, .03);
+  transition: background .3s, border-color .3s;
+}
+.cd-raven:hover, .cd-raven:focus-visible { outline: none; background: rgba(236, 227, 207, .07); border-color: var(--brass); }
+/* a wax seal: an uneven blob of the colour, pressed with a letter */
+.cd-seal {
+  grid-row: span 2; display: grid; place-items: center;
+  width: 44px; height: 44px;
+  border-radius: 48% 52% 46% 54% / 52% 46% 54% 48%;
+  background: radial-gradient(circle at 38% 34%, color-mix(in srgb, var(--w) 55%, #fff), var(--w) 45%, color-mix(in srgb, var(--w) 60%, #000));
+  box-shadow: inset 0 0 0 4px color-mix(in srgb, var(--w) 80%, #000), 0 2px 6px rgba(0, 0, 0, .5);
+  font-family: var(--cap); font-weight: 700; font-size: 1.1rem; color: color-mix(in srgb, var(--w) 35%, #000);
+  text-shadow: 0 1px 0 color-mix(in srgb, var(--w) 50%, #fff);
+}
+.cd-raven b { font-family: var(--cap); font-weight: 600; font-size: 0.92rem; letter-spacing: 0.04em; align-self: end; }
+.cd-raven i { font-size: 0.98rem; color: var(--dim); align-self: start; }
+
+/* ───────────── the words ───────────── */
+.cd-words {
+  display: block; margin: clamp(2rem, 5vw, 3rem) auto 0;
+  padding: 0.85rem 1.8rem; border: 1px solid var(--brass); border-radius: 2px;
+  background: transparent; color: var(--brass); cursor: pointer;
+  font-family: var(--cap); font-size: 1rem; letter-spacing: 0.16em;
+  transition: background .3s, color .3s;
+}
+.cd-words:hover, .cd-words:focus-visible { outline: none; background: var(--brass); color: #1a1208; }
+
+.cd.is-spoken .cd-main { opacity: 0; transition: opacity 1.1s ease; pointer-events: none; }
+.cd-done {
+  position: fixed; inset: 0; z-index: 20; display: grid; place-items: center;
+  background: var(--stone); opacity: 0; pointer-events: none; transition: opacity 1.1s ease;
+  text-align: center; padding: 2rem;
+}
+.cd.is-spoken .cd-done { opacity: 1; pointer-events: auto; }
+.cd-done-orb { display: block; width: 96px; height: 96px; margin: 0 auto 1.4rem; opacity: .85; }
+.cd:not(.is-spoken) .cd-done-orb { display: none; }
+.cd-done-k { font-family: var(--cap); font-size: 0.74rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mute); }
+.cd-done-t {
+  margin-top: 0.5rem; font-family: var(--cap); font-weight: 600; letter-spacing: 0.12em;
+  font-size: clamp(1.8rem, 6vw, 3.4rem); color: var(--brass);
+}
+.cd-done a {
+  display: inline-block; margin-top: 1.6rem;
+  font-family: var(--cap); font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim);
+  border-bottom: 1px solid var(--line); padding-bottom: 3px;
+}
+.cd-done a:hover { color: var(--brass); border-color: var(--brass); }
+
+@media (max-width: 560px) {
+  .cd-keeps { grid-template-columns: 1fr 1fr; gap: 1rem 0.55rem; }
+  .cd-keep { padding: 1.15rem 0.7rem 0.8rem; }
+  .cd-keep b { font-size: 0.9rem; }
+  .cd-keep i { font-size: 0.92rem; }
+  .cd-record div { flex-direction: column; gap: 0.15rem; }
+  .cd-record dd { text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cd-ring--words, .cd-ring--ticks, .cd-band, .cd-sun, .cd-keep, .cd-pin-rise, .cd-smoke circle { animation: none; }
+}

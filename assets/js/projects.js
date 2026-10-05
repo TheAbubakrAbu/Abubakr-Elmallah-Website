@@ -1,11 +1,14 @@
 /* projects.js: the "Sort projects" menu on /projects/.
 
    Default is the page as written, grouped by category. Oldest first and
-   Newest first lay every card out in one column by its `date` in
-   apps-data.js (release date, or when my part of it began). The cards are
+   Newest first lay the cards out by their `date` in apps-data.js (release
+   date, or when my part of it began), two app cards to a row like the
+   categories, and the high-school projects in their own usual grid: a run of
+   cards of one kind shares one grid, and a new grid starts only where the
+   kind changes. The cards are
    moved, not copied, so an opened "Read more", the lightbox links and the
    tilt all come along; a comment left in each card's place puts it back. A
-   card listed twice (PeterPlate is UCI work and web work) appears once. */
+   card listed twice would appear once. */
 (function () {
   'use strict';
   var control = document.querySelector('[data-project-sort]');
@@ -23,9 +26,8 @@
       seen[id] = true;
       var placeholder = document.createComment('project: ' + id);
       card.before(placeholder);
-      var row = document.createElement('div');
-      row.className = card.classList.contains('app-card') ? 'apps-grid apps-grid--1' : 'hs-grid project-timeline-school';
-      entries.push({ card: card, placeholder: placeholder, row: row, date: card.dataset.projectDate, index: index });
+      entries.push({ card: card, placeholder: placeholder, app: card.classList.contains('app-card'),
+        date: card.dataset.projectDate, index: index });
     });
     function sort() {
       var mode = order.value;
@@ -33,12 +35,20 @@
       if (grouped) {
         entries.forEach(function (entry) { entry.placeholder.after(entry.card); });
       } else {
-        entries.slice().sort(function (a, b) {
+        var sorted = entries.slice().sort(function (a, b) {
           if (!a.date || !b.date) return !a.date - !b.date || a.index - b.index;
           return a.date.localeCompare(b.date) * (mode === 'desc' ? -1 : 1) || a.index - b.index;
-        }).forEach(function (entry) {
-          entry.row.appendChild(entry.card);
-          timeline.appendChild(entry.row);
+        });
+        timeline.textContent = '';
+        var grid = null;
+        sorted.forEach(function (entry) {
+          if (!grid || grid.app !== entry.app) {
+            grid = document.createElement('div');
+            grid.className = entry.app ? 'apps-grid apps-grid--2' : 'hs-grid';
+            grid.app = entry.app;
+            timeline.appendChild(grid);
+          }
+          grid.appendChild(entry.card);
         });
       }
       categories.hidden = !grouped;

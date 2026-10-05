@@ -1,0 +1,567 @@
+/* ============================================================
+   vought.css: /vought/, The Boys terminal.
+   Sister page to /citadel/, /compass/ and the rest: one page, two
+   readings. Vought's is the corporate intranet, navy glass and
+   gold leaf, every floor of the tower rated and every rating
+   glowing. Butcher's (the switch in the top bar, .is-butcher on
+   the body) is the same page as a manila file: typewriter, red
+   stamp, and black bars that peel back when you touch them.
+   Everything below is written against the tokens on .vt, and the
+   Butcher block near the top swaps them, so most rules never need
+   to know which reading they are in.
+   ============================================================ */
+
+/* these pages load no shared stylesheet, so they carry their own reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+ol, ul { list-style: none; }
+html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
+
+.vt {
+  --hd:    "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --tx:    "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --mono:  "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --bg:    #06101f;
+  --bg-2:  #0b1a33;
+  --panel: rgba(13, 30, 58, .86);
+  --ink:   #eef2fa;
+  --dim:   #b6c2d8;
+  --mute:  #8f9db7;
+  --acc:   #e2b54a;        /* Vought gold */
+  --acc-2: #f6dc94;
+  --red:   #e0453a;        /* VNN red */
+  --line:  rgba(226, 181, 74, .22);
+  --tw:    124px;          /* the tower's width */
+  --ease:  cubic-bezier(.16, 1, .3, 1);
+
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--tx);
+  font-size: 1rem;
+  line-height: 1.5;
+  min-height: 100vh;
+  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+  transition: background-color .5s ease, color .5s ease;
+}
+
+/* Butcher's file: the same tokens, read off paper. Manila for the page,
+   a whiter typed sheet for the panels, typewriter for headings and notes,
+   and the gold becomes the red of a CLASSIFIED stamp. Every colour here
+   holds AA on the manila. */
+.vt.is-butcher {
+  --hd:    "Special Elite", "Courier New", monospace;
+  --tx:    "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --bg:    #d9c9a1;
+  --bg-2:  #cdbb90;
+  --panel: rgba(244, 236, 214, .94);
+  --ink:   #1d1a15;
+  --dim:   #3d372d;
+  --mute:  #574d3d;
+  --acc:   #9e1f18;
+  --acc-2: #9e1f18;
+  --red:   #9e1f18;
+  --line:  rgba(29, 26, 21, .24);
+}
+
+/* each reading's own copy; the other one is gone, not just hidden from view */
+.vt.is-butcher .v-only, .vt:not(.is-butcher) .b-only { display: none !important; }
+
+/* ───────────── the sky, or the desk ───────────── */
+.vt-field { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.vt-field > span { position: absolute; transition: opacity .6s ease; }
+.vt-sky {
+  inset: 0;
+  background:
+    radial-gradient(70% 50% at 50% 0%, rgba(58, 110, 190, .28), transparent 70%),
+    radial-gradient(50% 40% at 15% 100%, rgba(226, 181, 74, .07), transparent 70%),
+    radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(0, 0, 0, .55));
+}
+/* two searchlights from the foot of the screen, crossing and uncrossing
+   slowly, the way the tower is lit at night */
+.vt-beam {
+  left: 50%; bottom: -10%; width: 22vmax; height: 140vmax; margin-left: -11vmax;
+  transform-origin: 50% 100%;
+  background: linear-gradient(0deg, rgba(246, 220, 148, .13), rgba(246, 220, 148, 0) 85%);
+  clip-path: polygon(46% 100%, 54% 100%, 100% 0, 0 0);
+  animation: vt-sweep 16s ease-in-out infinite alternate;
+}
+.vt-beam--b { animation-delay: -8s; animation-duration: 19s; }
+@keyframes vt-sweep { from { transform: rotate(-26deg); } to { transform: rotate(24deg); } }
+.vt-paper, .vt-ring { opacity: 0; }
+.vt-paper {
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(60, 45, 20, .045) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(60, 45, 20, .03) 0 1px, transparent 1px 5px),
+    radial-gradient(120% 90% at 50% 40%, transparent 50%, rgba(80, 55, 20, .28));
+}
+/* a coffee ring, left on the file */
+.vt-ring {
+  right: 6vw; top: 34vh; width: 180px; height: 180px; border-radius: 50%;
+  box-shadow: inset 0 0 0 7px rgba(110, 70, 30, .16), inset 0 0 0 10px rgba(110, 70, 30, .05);
+  transform: rotate(-12deg) scaleX(1.05);
+}
+.vt.is-butcher .vt-sky, .vt.is-butcher .vt-beam { opacity: 0; }
+.vt.is-butcher .vt-paper, .vt.is-butcher .vt-ring { opacity: 1; }
+
+/* ───────────── top bar ───────────── */
+.vt-top {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.7rem 1rem; flex-wrap: wrap;
+  padding: calc(0.9rem + env(safe-area-inset-top, 0px)) clamp(1rem, 4vw, 2.6rem) 0.9rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim);
+}
+.vt-exit { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--acc); font-weight: 600; }
+.vt-exit:hover { color: var(--ink); }
+.vt-exit svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; }
+.vt-live { font-variant-numeric: tabular-nums; }
+.vt-live b { color: var(--acc); font-weight: 600; }
+
+/* the switch: a pill in brand gold that slides to the red of the stamp */
+.vt-switch {
+  display: inline-flex; align-items: center; gap: 0.55rem; cursor: pointer;
+  background: none; border: 0; padding: 0.3rem 0.2rem;
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink);
+}
+.vt-switch-track {
+  position: relative; width: 44px; height: 24px; border-radius: 12px;
+  background: rgba(226, 181, 74, .18); border: 1px solid var(--acc);
+  transition: background .3s, border-color .3s;
+}
+.vt-switch-knob {
+  position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%;
+  background: var(--acc); transition: transform .35s var(--ease), background .3s;
+}
+.vt-switch[aria-checked="true"] .vt-switch-track { background: rgba(158, 31, 24, .15); }
+.vt-switch[aria-checked="true"] .vt-switch-knob { transform: translateX(20px); }
+
+:focus-visible { outline: 2px solid var(--acc); outline-offset: 3px; }
+
+.vt-main { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.6rem); }
+
+/* ───────────── masthead ───────────── */
+.vt-hero {
+  display: grid; gap: clamp(1.4rem, 4vw, 3rem); align-items: center;
+  grid-template-columns: minmax(0, 1fr);
+  padding-top: clamp(1.8rem, 6vw, 4rem);
+}
+@media (min-width: 880px) { .vt-hero { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); } }
+.vt-hero-copy { position: relative; }
+.vt-kicker { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--acc); }
+.vt-title { margin-top: 0.6rem; line-height: .92; font-family: var(--hd); }
+/* inline-block, so the box is as wide as the word: the gilt is a
+   background clipped to the text, and any letter past the box edge would
+   come out transparent */
+.vt-wm {
+  display: inline-block; padding-right: 0.06em;
+  font-stretch: 125%; font-weight: 900; text-transform: uppercase; letter-spacing: 0.06em;
+  font-size: clamp(2.8rem, 12vw, 6.4rem);
+  background: linear-gradient(180deg, #fff6d6 0%, #f3d27a 38%, #c8952c 62%, #f6dc94 78%, #8a5d14 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 3px 0 rgba(0, 0, 0, .35));
+}
+.vt-wm2 {
+  display: block; margin-top: 0.35rem;
+  font-stretch: 125%; font-weight: 500; text-transform: uppercase; letter-spacing: 0.62em;
+  font-size: clamp(0.9rem, 2.4vw, 1.3rem); color: var(--ink);
+}
+.vt-sub { max-width: 58ch; margin-top: 1.3rem; font-size: 1.08rem; line-height: 1.65; color: var(--dim); }
+
+/* in the file: the wordmark goes flat black ink, as if photocopied, and a
+   stamp lands across it */
+.vt.is-butcher .vt-wm {
+  background: none; color: var(--ink); filter: none;
+  font-family: "Archivo", sans-serif; opacity: .9;
+}
+.vt.is-butcher .vt-wm2 { font-family: "Archivo", sans-serif; }
+.vt-stamp {
+  position: absolute; right: 2%; top: 1.6rem;
+  padding: 0.2rem 0.9rem; border: 4px double var(--red); border-radius: 6px;
+  font-family: "Special Elite", monospace; font-size: clamp(1.3rem, 4vw, 2.4rem); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--red); transform: rotate(-9deg); opacity: .82; mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.vt.is-butcher .vt-stamp { animation: vt-stamp .5s cubic-bezier(.3, 1.6, .5, 1) both; }
+@keyframes vt-stamp { from { transform: rotate(-9deg) scale(1.8); opacity: 0; } to { transform: rotate(-9deg) scale(1); opacity: .82; } }
+
+.vt-lifted {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; margin-top: 1rem;
+  font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mute);
+}
+.vt-lifted > span { color: var(--ink); font-weight: 600; }
+.vt-reseal {
+  background: none; border: 1px solid var(--line); border-radius: 3px; padding: 0.25rem 0.6rem; cursor: pointer;
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);
+}
+.vt-reseal:hover { border-color: var(--ink); }
+/* every bar lifted: the file is declassified, and says so */
+.vt.is-declassified .vt-stamp { color: #1f5f2c; border-color: #1f5f2c; }
+
+/* the approval card */
+.vt-health {
+  padding: 1rem 1.1rem 0.9rem; border: 1px solid var(--line); border-radius: 10px;
+  background: linear-gradient(160deg, rgba(226, 181, 74, .08), transparent 60%), var(--panel);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+.vt-health figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.vt-health figcaption span { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
+.vt-health figcaption b { font-family: var(--hd); font-stretch: 125%; font-weight: 800; font-size: 2.2rem; color: var(--acc); font-variant-numeric: tabular-nums; }
+.vt-health svg { width: 100%; height: 86px; margin-top: 0.4rem; overflow: visible; }
+.vt-health-grid { stroke: var(--line); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.vt-health-line { fill: none; stroke: var(--acc); stroke-width: 2.2; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.vt-health-fill { fill: rgba(226, 181, 74, .14); }
+.vt-health-k { display: block; margin-top: 0.4rem; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); }
+.vt.is-butcher .vt-health { box-shadow: 2px 3px 0 rgba(29, 26, 21, .25); border-radius: 2px; position: relative; }
+.vt.is-butcher .vt-health-fill { fill: rgba(158, 31, 24, .08); }
+/* a strip of tape across the corner */
+.vt.is-butcher .vt-health::before {
+  content: ""; position: absolute; top: -10px; right: 22px; width: 70px; height: 20px;
+  background: rgba(240, 230, 190, .7); border: 1px solid rgba(29, 26, 21, .12); transform: rotate(8deg);
+}
+
+/* ───────────── VNN ───────────── */
+.vt-vnn {
+  display: flex; align-items: stretch; margin-top: clamp(1.6rem, 4vw, 2.6rem);
+  border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+  background: rgba(4, 10, 22, .7);
+  font-family: var(--mono); font-size: 0.86rem;
+}
+.vt-vnn-k {
+  flex: none; display: flex; align-items: center; padding: 0.55rem 0.8rem;
+  background: var(--red); color: #fff; font-weight: 600; font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase;
+}
+.vt-vnn-win { flex: 1; min-width: 0; overflow: hidden; display: flex; align-items: center; }
+.vt-vnn-run { display: flex; width: max-content; animation: vt-crawl 70s linear infinite; }
+.vt-vnn-list { display: flex; flex: none; }
+.vt-vnn-list li { padding: 0.55rem 1.4rem; white-space: nowrap; color: var(--ink); }
+.vt-vnn-list li::before { content: "■"; margin-right: 1.4rem; color: var(--acc); font-size: 0.66rem; vertical-align: 0.15em; }
+.vt-vnn:hover .vt-vnn-run { animation-play-state: paused; }
+@keyframes vt-crawl { to { transform: translateX(-50%); } }
+.vt.is-butcher .vt-vnn { background: var(--panel); border-radius: 2px; }
+
+/* ───────────── headings ───────────── */
+.vt-h {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem 0.75rem;
+  font-family: var(--hd); font-stretch: 112%; font-weight: 800; font-size: clamp(1.35rem, 3vw, 1.85rem); letter-spacing: 0.01em;
+  color: var(--ink); margin-bottom: 1.2rem;
+}
+.vt-h small {
+  font-family: var(--mono); font-weight: 400; font-stretch: 100%; letter-spacing: 0.02em;
+  font-size: 0.86rem; color: var(--mute);
+}
+.vt-h--sm { font-size: 1.2rem; margin-bottom: 1rem; }
+.vt.is-butcher .vt-h { font-weight: 400; text-transform: uppercase; letter-spacing: 0.06em; }
+.vt-think { width: 22px; height: 22px; }
+
+/* ───────────── the directory ───────────── */
+.vt-dir {
+  margin-top: clamp(2.4rem, 6vw, 4rem); padding: clamp(1.1rem, 3vw, 2rem);
+  border: 1px solid var(--line); border-radius: 12px;
+  background: linear-gradient(180deg, rgba(11, 26, 51, .92), rgba(6, 16, 31, .92));
+}
+.vt.is-butcher .vt-dir { background: var(--panel); border-radius: 2px; box-shadow: 3px 4px 0 rgba(29, 26, 21, .2); }
+
+/* the lift's indicator panel: brushed brass, an arrow and a floor number
+   in amber segments. Sticky, so on a phone it rides down the list with you. */
+.vt-panel-lift {
+  position: sticky; top: 0.6rem; z-index: 3;
+  display: flex; align-items: center; gap: 0.9rem; margin: 0 0 1.4rem; padding: 0.6rem 0.9rem;
+  border-radius: 8px; border: 1px solid rgba(246, 220, 148, .45);
+  background: linear-gradient(180deg, #2a2312, #120e06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 240, 200, .15);
+  font-family: var(--mono); color: #ffcf6a;
+}
+.vt-arrow { width: 1.2rem; text-align: center; font-size: 0.9rem; }
+.vt-floorno {
+  min-width: 3.1ch; padding: 0.05rem 0.4rem; border-radius: 4px; background: #070502;
+  font-weight: 600; font-size: 1.5rem; letter-spacing: 0.08em; text-align: center; font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 10px rgba(255, 190, 70, .8);
+}
+.vt-floorname { min-width: 0; font-size: 0.86rem; letter-spacing: 0.12em; text-transform: uppercase; color: #f3dfb0; }
+.vt.is-butcher .vt-panel-lift { background: #1d1a15; border-color: #1d1a15; border-radius: 2px; color: #f3e6c4; }
+.vt.is-butcher .vt-floorno { color: #ff8a78; text-shadow: none; }
+
+/* the tower: crown, a band of glass for every floor, and the plaza */
+.vt-tower { position: relative; }
+.vt-crown {
+  position: relative; width: var(--tw); height: 92px;
+  display: grid; place-items: end center;
+}
+.vt-crown-glass {
+  width: 72%; height: 64px; display: grid; place-items: center;
+  clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%);
+  background: linear-gradient(90deg, #0f2547, #2a5d9c 45%, #102a50);
+  border-bottom: 2px solid var(--acc);
+  font-family: "Archivo", sans-serif; font-stretch: 125%; font-weight: 900; font-size: 0.66rem; letter-spacing: 0.18em;
+  color: var(--acc-2); text-shadow: 0 0 8px rgba(246, 220, 148, .9);
+}
+.vt-mast { position: absolute; left: 50%; top: 0; width: 3px; height: 30px; margin-left: -1.5px; background: linear-gradient(#8a7a55, #3b3424); }
+.vt-beacon {
+  position: absolute; left: 50%; top: -4px; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%;
+  background: #ff5040; box-shadow: 0 0 10px 3px rgba(255, 80, 64, .7);
+  animation: vt-blink 2.4s steps(1) infinite;
+}
+@keyframes vt-blink { 50% { opacity: .15; } }
+
+.vt-stack { position: relative; }
+.vt-floor { position: relative; display: grid; grid-template-columns: var(--tw) minmax(0, 1fr); }
+
+/* a band of the facade: glass, gold mullions, a slab line at each storey,
+   and some windows lit (how many is --lit, set per floor) */
+.vt-seg {
+  position: relative;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 13px, rgba(226, 181, 74, .3) 13px 14px),
+    repeating-linear-gradient(0deg, rgba(4, 10, 22, .9) 0 2px, transparent 2px 14px),
+    linear-gradient(90deg, #0d2140 0%, #245289 38%, #1a3f70 62%, #0b1d38 100%);
+  border-left: 2px solid rgba(226, 181, 74, .45); border-right: 2px solid rgba(226, 181, 74, .45);
+  transition: filter .4s ease;
+}
+.vt-seg::before {
+  content: ""; position: absolute; inset: 4px 18px 4px 4px;
+  background: repeating-linear-gradient(90deg, rgba(255, 214, 120, .55) 0 12px, transparent 12px 28px, rgba(255, 214, 120, .4) 28px 40px, transparent 40px 56px);
+  opacity: calc(var(--lit, .5) * .55);
+  mask: repeating-linear-gradient(0deg, #000 0 10px, transparent 10px 14px);
+  -webkit-mask: repeating-linear-gradient(0deg, #000 0 10px, transparent 10px 14px);
+  transition: opacity .35s ease;
+}
+.vt-floor.is-here .vt-seg::before, .vt-floor:hover .vt-seg::before { opacity: 1; }
+/* the lobby's glass doors */
+.vt-floor:last-child .vt-seg::after {
+  content: ""; position: absolute; left: 30%; right: 34%; bottom: 0; height: 60%;
+  border: 2px solid var(--acc); border-bottom: 0; background: linear-gradient(90deg, rgba(246, 220, 148, .35) 0 49%, var(--acc) 49% 51%, rgba(246, 220, 148, .35) 51%);
+}
+.vt-plaza { width: calc(var(--tw) + 40px); margin-left: -20px; height: 8px; border-radius: 0 0 4px 4px; background: linear-gradient(90deg, transparent, var(--acc) 15%, var(--acc) 85%, transparent); opacity: .7; }
+
+.vt-floor > a {
+  display: grid; grid-template-columns: 3.2rem minmax(0, 1fr) auto; gap: 0.3rem 0.9rem; align-items: center;
+  padding: 0.85rem 0.4rem 0.85rem 1.1rem;
+  border-bottom: 1px solid var(--line);
+  transition: background .3s ease;
+}
+.vt-floor:first-child > a { border-top: 1px solid var(--line); }
+.vt-floor > a:hover, .vt-floor > a:focus-visible, .vt-floor.is-here > a {
+  background: linear-gradient(90deg, rgba(226, 181, 74, .12), transparent 80%);
+}
+.vt-floor > a:focus-visible { outline-offset: -2px; }
+.vt-no {
+  font-family: var(--mono); font-weight: 600; font-size: 1.1rem; text-align: center; color: var(--acc);
+  border: 1px solid var(--line); border-radius: 50%; width: 2.6rem; height: 2.6rem; display: grid; place-items: center;
+}
+.vt-txt { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+.vt-txt b { font-family: var(--hd); font-stretch: 110%; font-weight: 700; font-size: 1.12rem; color: var(--ink); }
+.vt-txt i { font-style: normal; font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.04em; color: var(--acc); }
+.vt-note { margin-top: 0.2rem; font-size: 0.95rem; color: var(--dim); }
+.vt.is-butcher .vt-txt b { font-weight: 400; font-family: "Special Elite", monospace; }
+.vt.is-butcher .vt-note { font-family: "Special Elite", monospace; font-size: 0.98rem; }
+
+/* each floor's approval, as a gold meter; in the file it is struck through */
+.vt-ap { display: flex; flex-direction: column; align-items: flex-end; gap: 0.3rem; min-width: 4.6rem; }
+.vt-ap-bar { width: 4.6rem; height: 5px; border-radius: 3px; background: rgba(226, 181, 74, .16); overflow: hidden; position: relative; }
+.vt-ap-bar::before { content: ""; position: absolute; inset: 0; width: var(--ap); background: linear-gradient(90deg, #a87720, var(--acc-2)); border-radius: 3px; }
+.vt-ap-n { font-family: var(--mono); font-size: 0.78rem; font-weight: 600; color: var(--ink); }
+.vt-ap--none .vt-ap-n { font-weight: 400; color: var(--mute); }
+.vt.is-butcher .vt-ap-n { text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 2px; }
+.vt.is-butcher .vt-ap--none .vt-ap-n { text-decoration: none; }
+.vt.is-butcher .vt-ap-bar::before { background: var(--ink); opacity: .35; }
+
+/* in the file, the tower is a surveillance photograph: grey, contrasty,
+   and the floor under watch gets a red crosshair */
+.vt.is-butcher .vt-seg { filter: grayscale(1) contrast(1.25) brightness(.85); }
+.vt.is-butcher .vt-floor.is-here .vt-seg {
+  box-shadow: inset 0 0 0 2px #e23a2c;
+}
+.vt.is-butcher .vt-crown, .vt.is-butcher .vt-plaza { filter: grayscale(1) contrast(1.2); }
+.vt.is-butcher .vt-no { border-radius: 2px; }
+
+/* the shaft runs up the outside right of the facade, the car rides in it */
+.vt-shaft {
+  position: absolute; top: 0; bottom: 0; left: calc(var(--tw) - 16px); width: 12px;
+  background: linear-gradient(90deg, rgba(246, 220, 148, .1), rgba(246, 220, 148, .22), rgba(246, 220, 148, .1));
+  border-left: 1px solid rgba(246, 220, 148, .4); border-right: 1px solid rgba(246, 220, 148, .4);
+  pointer-events: none;
+}
+.vt-car {
+  position: absolute; left: -2px; top: 0; width: 14px; height: 22px;
+  display: flex; border-radius: 2px; overflow: hidden;
+  background: #fff1c4; box-shadow: 0 0 14px 4px rgba(255, 210, 110, .55);
+  transform: translateY(var(--y, 0px));
+  transition: transform var(--dur, .8s) cubic-bezier(.45, 0, .2, 1);
+}
+/* the doors: two gold halves that part when the car arrives */
+.vt-car i { flex: 1; background: linear-gradient(90deg, #b8862f, #f3d27a); transition: transform .35s ease .05s; }
+.vt-car i + i { background: linear-gradient(90deg, #f3d27a, #b8862f); }
+.vt-car.is-open i:first-child { transform: translateX(-80%); }
+.vt-car.is-open i + i { transform: translateX(80%); }
+.vt.is-butcher .vt-car { background: #fff; box-shadow: 0 0 0 2px #e23a2c; }
+
+/* ───────────── panels ───────────── */
+.vt-cols { display: grid; gap: clamp(1rem, 2.4vw, 1.6rem); grid-template-columns: minmax(0, 1fr); margin-top: clamp(1rem, 2.4vw, 1.6rem); }
+@media (min-width: 900px) { .vt-cols { grid-template-columns: 1fr 1fr; } }
+.vt-panel {
+  position: relative;
+  padding: clamp(1.1rem, 2.6vw, 1.6rem);
+  border: 1px solid var(--line); border-radius: 12px;
+  background: var(--panel);
+}
+.vt.is-butcher .vt-panel { border-radius: 2px; box-shadow: 3px 4px 0 rgba(29, 26, 21, .2); }
+
+/* the talent card: a trading card's gold frame and a foil sheen that
+   follows the light; in the file, a paper-clipped sheet */
+.vt-card {
+  background:
+    linear-gradient(115deg, transparent 30%, rgba(246, 220, 148, .1) 45%, transparent 60%) 0 0 / 300% 100%,
+    var(--panel);
+  border: 2px solid rgba(226, 181, 74, .55);
+  animation: vt-foil 9s ease-in-out infinite;
+}
+@keyframes vt-foil { 0%, 100% { background-position: 100% 0, 0 0; } 50% { background-position: 0 0, 0 0; } }
+.vt.is-butcher .vt-card { animation: none; background: var(--panel); border-width: 1px; border-color: var(--line); }
+.vt-card-name {
+  font-family: var(--hd); font-stretch: 125%; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em;
+  font-size: clamp(1.3rem, 4vw, 1.75rem); color: var(--acc); margin-bottom: 0.7rem;
+}
+.vt.is-butcher .vt-card-name { font-weight: 400; letter-spacing: 0.08em; color: var(--ink); }
+.vt-facts { display: flex; flex-direction: column; }
+.vt-facts div {
+  display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 0.2rem 1rem; align-items: baseline;
+  padding: 0.5rem 0; border-bottom: 1px solid var(--line);
+}
+.vt-facts dt { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute); }
+.vt-facts dd { color: var(--ink); }
+.vt-facts-v dd { color: var(--acc); font-weight: 600; }
+
+.vt-memo p + p { margin-top: 0.9rem; }
+.vt-memo p { line-height: 1.7; color: var(--ink); }
+.vt.is-butcher .vt-memo p { font-family: "Special Elite", monospace; font-size: 1.02rem; }
+.vt-sig { font-family: "Special Elite", monospace; font-size: 1.4rem !important; color: var(--red) !important; transform: rotate(-4deg); width: max-content; margin-left: auto; }
+
+/* ───────────── redactions ─────────────
+   The text is always there, for a screen reader and for selection; in
+   the file a black bar sits over it, slightly crooked like real marker
+   tape. Pointing at it (or focusing or tapping it) peels the bar back
+   from the left, curling up as it goes, and it stays peeled. */
+.vt.is-butcher .vt-x {
+  position: relative; cursor: pointer; border-radius: 1px;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.vt.is-butcher .vt-x::after {
+  content: ""; position: absolute; inset: -0.08em -0.15em;
+  background: #121110;
+  transform-origin: 100% 50%;
+  transform: rotate(var(--tilt, -0.6deg));
+  transition: transform .55s var(--ease), opacity .55s ease .15s, box-shadow .55s ease;
+}
+.vt.is-butcher .vt-x:nth-of-type(2n)::after { --tilt: 0.5deg; }
+.vt.is-butcher .vt-x.is-peeled::after {
+  transform: perspective(240px) rotateY(-82deg) rotate(-4deg);
+  box-shadow: -6px 4px 8px rgba(0, 0, 0, .25);
+  opacity: 0;
+}
+.vt.is-butcher .vt-x.is-peeled { background: rgba(158, 31, 24, .12); }
+.vt.is-butcher .vt-x:focus-visible { outline: 2px dashed var(--red); outline-offset: 2px; }
+/* a line that wraps would leave the bar on its first line only, so long
+   bars are drawn on the text itself instead (see vought.js) */
+.vt.is-butcher .vt-x.is-wrap::after { display: none; }
+.vt.is-butcher .vt-x.is-wrap { background: #121110; color: #121110; transition: background .5s, color .5s; }
+.vt.is-butcher .vt-x.is-wrap.is-peeled { background: rgba(158, 31, 24, .12); color: inherit; }
+
+/* ───────────── partners ───────────── */
+.vt-partners { margin-top: clamp(1rem, 2.4vw, 1.6rem); }
+.vt-logos { display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+.vt-logos a {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 0.8rem; align-items: center;
+  padding: 0.7rem 0.8rem; border: 1px solid var(--line); border-radius: 8px;
+  background: rgba(238, 242, 250, .03);
+  transition: background .3s, border-color .3s;
+}
+.vt-logos a:hover, .vt-logos a:focus-visible { background: rgba(226, 181, 74, .1); border-color: var(--acc); }
+/* a brand tile: the catalogue number in a gold-edged square; in the file,
+   the folder tab */
+.vt-tag {
+  grid-row: span 2; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 6px;
+  border: 1px solid var(--acc); color: var(--acc);
+  font-family: var(--mono); font-weight: 600; font-size: 0.86rem;
+}
+.vt-logos b { font-family: var(--hd); font-weight: 700; font-size: 0.98rem; align-self: end; }
+.vt-logos i { font-style: normal; font-size: 0.86rem; color: var(--dim); align-self: start; }
+.vt.is-butcher .vt-logos a { border-radius: 2px; background: rgba(29, 26, 21, .03); }
+.vt.is-butcher .vt-logos a:hover, .vt.is-butcher .vt-logos a:focus-visible { background: rgba(158, 31, 24, .08); }
+.vt.is-butcher .vt-tag { border-radius: 2px 8px 0 0; background: #c9b27e; border-color: #8e7a4c; color: var(--ink); }
+.vt.is-butcher .vt-logos b { font-family: "Special Elite", monospace; font-weight: 400; }
+
+/* ───────────── the sign-off ───────────── */
+.vt-sign {
+  display: block; margin: clamp(2rem, 5vw, 3rem) auto 0; cursor: pointer;
+  padding: 0.9rem 2rem; border: 1px solid var(--acc); border-radius: 999px;
+  background: linear-gradient(180deg, rgba(246, 220, 148, .12), transparent); color: var(--acc);
+  font-family: var(--hd); font-stretch: 118%; font-weight: 700; font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase;
+  transition: background .3s, color .3s;
+}
+.vt-sign:hover, .vt-sign:focus-visible { background: var(--acc); color: #120e06; }
+.vt.is-butcher .vt-sign { border-radius: 2px; font-weight: 400; }
+.vt.is-butcher .vt-sign:hover, .vt.is-butcher .vt-sign:focus-visible { color: #fff6e8; }
+
+.vt.is-signed .vt-main { opacity: 0; transition: opacity 1s ease; pointer-events: none; }
+.vt-done {
+  position: fixed; inset: 0; z-index: 20; display: grid; place-items: center;
+  background: var(--bg); opacity: 0; pointer-events: none; visibility: hidden;
+  transition: opacity 1s ease, visibility 0s linear 1s;
+  text-align: center; padding: 2rem;
+}
+.vt.is-signed .vt-done { opacity: 1; pointer-events: auto; visibility: visible; transition: opacity 1s ease; }
+.vt-done-orb { display: block; width: 96px; height: 96px; margin: 0 auto 1.4rem; }
+.vt:not(.is-signed) .vt-done-orb { display: none; }
+.vt-done-k { font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--mute); }
+.vt-done-t {
+  margin-top: 0.5rem; font-family: var(--hd); font-stretch: 118%; font-weight: 800; letter-spacing: 0.02em;
+  font-size: clamp(1.8rem, 6vw, 3.4rem); color: var(--acc); line-height: 1.1;
+}
+.vt.is-butcher .vt-done-t { font-weight: 400; }
+.vt-done-m { margin-top: 1rem; font-family: "Special Elite", monospace; font-size: 1.05rem; color: var(--red); }
+.vt.is-butcher .vt-done-m { color: var(--dim); }
+.vt-done-home, .vt-done-stay {
+  display: inline-block; margin: 1.8rem 0.6rem 0; cursor: pointer; background: none; border: 0;
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim);
+  border-bottom: 1px solid var(--line); padding-bottom: 3px;
+}
+.vt-done-home:hover, .vt-done-stay:hover { color: var(--acc); border-color: var(--acc); }
+
+/* ───────────── phones ─────────────
+   The tower narrows rather than disappearing, so the lift still runs
+   beside the list; the meter moves under the name instead of beside it. */
+@media (max-width: 620px) {
+  .vt { --tw: 54px; }
+  .vt-top { justify-content: flex-start; }
+  .vt-top .vt-exit { flex: 1 0 auto; }
+  .vt-live { order: 3; flex-basis: 100%; }
+  .vt-crown { height: 70px; }
+  .vt-crown-glass { height: 46px; width: 84%; font-size: 0; }   /* too narrow for the name: just the lit glass */
+  .vt-floor > a { grid-template-columns: minmax(0, 1fr); padding: 0.8rem 0.3rem 0.8rem 0.8rem; gap: 0.35rem; }
+  .vt-no { width: auto; height: auto; border: 0; border-radius: 0; text-align: left; display: block; font-size: 0.8rem; }
+  .vt-ap { flex-direction: row; align-items: center; justify-content: flex-start; gap: 0.6rem; }
+  .vt-seg::before { inset: 4px 14px 4px 3px; }
+  .vt-shaft { left: calc(var(--tw) - 13px); width: 10px; }
+  .vt-car { width: 12px; height: 18px; left: -2px; }
+  .vt-facts div { grid-template-columns: minmax(0, 1fr); }
+  .vt-stamp { top: 0.6rem; right: 0; }
+  .vt-logos { grid-template-columns: minmax(0, 1fr); }
+  .vt-ring { width: 120px; height: 120px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vt-beam, .vt-beacon, .vt-card, .vt.is-butcher .vt-stamp { animation: none; }
+  .vt-beam { transform: rotate(-12deg); }
+  .vt-beam--b { transform: rotate(14deg); }
+  /* the crawl stops and lays its headlines out in rows instead */
+  .vt-vnn { flex-direction: column; }
+  .vt-vnn-run { animation: none; width: auto; }
+  .vt-vnn-list { flex-wrap: wrap; }
+  .vt-vnn-list li { white-space: normal; }
+  .vt-vnn-list[aria-hidden="true"] { display: none; }
+  .vt-car, .vt-car i, .vt-x::after { transition-duration: .01s !important; }
+}

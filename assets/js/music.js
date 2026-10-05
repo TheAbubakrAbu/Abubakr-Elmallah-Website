@@ -91,15 +91,27 @@
       +   ' title="Find it on YouTube Music">' + ICON + '</a>';
   }
 
+  /* `peak` 1, 2 or 3: Peak, Peak Peak, Peak Peak Peak, in those words; each
+     level is a step brighter than the one under it (music.css) */
+  var PEAK = ['', 'Peak', 'Peak Peak', 'Peak Peak Peak'];
+  function pill(level) {
+    var n = level === true ? 1 : +level || 0;
+    return n ? ' <span class="mu-peak mu-peak--' + n + '">' + PEAK[n] + '</span>' : '';
+  }
+
   /* One row. The rank is its own column and the title block is the rest, so
      a long title wraps under itself rather than under the number. */
   function row(s, i) {
-    var n = i + 1;
-    return '<li class="mu-row' + (n === 1 ? ' is-top' : '') + '">'
-      + '<span class="mu-rank" aria-hidden="true">' + (n < 10 ? '0' + n : n) + '</span>'
+    // `r`: the chart rank, where a year has been cut down; an `extra` was never
+    // on the chart, so it has no number. `peak` is my one favourite of the year.
+    var n = s.extra ? 0 : (s.r || (s.i != null ? s.i : i) + 1);   // `i`: its place in its own year, in the grouped views
+    return '<li class="mu-row' + (n === 1 ? ' is-top' : '') + (s.peak ? ' is-peak is-peak-' + (+s.peak || 1) : '')
+      + (s.extra ? ' is-extra' : '') + '"' + (s.era ? ' data-era="' + esc(s.era) + '"' : '') + '>'
+      + '<span class="mu-rank" aria-hidden="true">' + (!n ? '+' : n < 10 ? '0' + n : n) + '</span>'
       + '<span class="mu-song">'
-      +   '<b class="mu-title">' + esc(s.t) + '</b>'
-      +   '<i class="mu-artist">' + esc(s.a) + '</i>'
+      +   '<b class="mu-title">' + esc(s.t) + pill(s.peak) + '</b>'
+      +   '<i class="mu-artist">' + esc(s.a) + (s.yr ? ' &#183; ' + esc(s.yr) : '') + '</i>'
+      +   (s.note ? '<i class="mu-note">' + esc(s.note) + '</i>' : '')
       + '</span>'
       + control(s)
       + '</li>';
@@ -153,14 +165,173 @@
 
   var total = years.reduce(function (n, y) { return n + page.years[y].length; }, 0);
 
+  /* The tally is counted off the lists every load, never typed, so it keeps
+     up while the years are still being cut down: artists by lead credit (the
+     same rule as Group By artist), Peaks at any level, and how many years are
+     already down to the songs I keep. A year counts as picked once it has a
+     Peak in it: length cannot say, because a year that only lost a repeat to
+     the year before is short without having been picked over. */
+  var leads = {}, peaks = 0, top3 = 0, cut = 0;
+  years.forEach(function (y) {
+    var list = page.years[y] || [];
+    if (list.some(function (s) { return s.peak; })) cut++;
+    list.forEach(function (s) {
+      var k = lead(s.a); leads[k] = (leads[k] || 0) + 1;
+      var lv = s.peak === true ? 1 : +s.peak || 0;
+      if (lv) peaks++;
+      if (lv === 3) top3++;
+    });
+  });
+  var most = Object.keys(leads).sort(function (a, b) { return leads[b] - leads[a] || a.localeCompare(b); })[0];
+  var stat = function (n, label) { return '<span><b>' + n + '</b><i>' + label + '</i></span>'; };
+
   var tally = '<div class="mu-tally reveal">'
-    + '<span><b>' + years.length + '</b><i>years</i></span>'
-    + '<span><b>' + total + '</b><i>songs</i></span>'
-    + '<span><b>' + years[years.length - 1] + '&#8211;' + years[0] + '</b><i>covered</i></span>'
+    + stat(years.length, 'years')
+    + stat(total, 'songs')
+    + stat(Object.keys(leads).length, 'artists')
+    + stat(peaks, 'Peaks')
+    + stat(top3, 'Peak Peak Peak')
+    + (most ? stat(esc(most), 'most songs &#183; ' + leads[most]) : '')
+    + stat(cut + ' of ' + years.length, 'years cut to my picks')
     + '</div>';
 
-  root.innerHTML = tally + chips() + jump()
-    + '<div class="mu-years">' + years.map(yearBlock).join('') + '</div>';
+  /* ── sort and group ──
+     The year blocks stay in the page whatever is chosen (the anchors have to
+     keep working); Order just moves them, and a Group other than By year is
+     drawn into .mu-alt while the years are hidden. The era chips filter
+     whichever view is showing. */
+  function views() {
+    var sel = function (id, label, opts) {
+      return '<label class="mu-view-l" for="' + id + '">' + label + '</label>'
+        + '<select id="' + id + '" class="mu-view-s">'
+        + opts.map(function (o) { return '<option value="' + o[0] + '">' + o[1] + '</option>'; }).join('')
+        + '</select>';
+    };
+    return '<div class="mu-view reveal">'
+      + sel('muOrder', 'Order', [['new', 'Newest first'], ['old', 'Oldest first']])
+      + sel('muGroup', 'Group', [['year', 'By year'], ['peak', 'By Peak'], ['artist', 'By artist']])
+      + sel('muPeak', 'Show', [['', 'Every song'], ['any', 'All Peaks'], ['3', 'Peak Peak Peak'], ['2', 'Peak Peak'], ['1', 'Peak']])
+      + '</div>';
+  }
+
+  /* every kept song, flat, with its year on it */
+  var flat = [];
+  years.forEach(function (y) {
+    (page.years[y] || []).forEach(function (s, i) {
+      var o = {}, k; for (k in s) o[k] = s[k];
+      o.yr = y; o.era = eraOf(y); o.i = i;
+      flat.push(o);
+    });
+  });
+
+  /* the lead artist: what comes before "featuring", "and", "&" or a comma */
+  function lead(a) { return String(a).split(/\s+(?:featuring|feat\.|and|&|x)\s+|,\s*/i)[0].trim(); }
+
+  function altBlock(title, sub, list) {
+    return '<section class="mu-year mu-group reveal">'
+      + '<h3 class="mu-head"><span class="mu-y">' + esc(title) + '</span>'
+      + (sub ? '<span class="mu-grade">' + esc(sub) + '</span>' : '')
+      + '<span class="mu-n">' + list.length + (list.length === 1 ? ' song' : ' songs') + '</span></h3>'
+      + '<ol class="mu-list">' + list.map(row).join('') + '</ol></section>';
+  }
+
+  function drawAlt(group, order) {
+    var byYear = function (a, b) {
+      return (order === 'old' ? a.yr - b.yr : b.yr - a.yr) || a.i - b.i;
+    };
+    if (group === 'peak') {
+      return [3, 2, 1, 0].map(function (lv) {
+        var list = flat.filter(function (s) { return (+s.peak || (s.peak === true ? 1 : 0)) === lv; }).sort(byYear);
+        return list.length ? altBlock(lv ? PEAK[lv] : 'Everything else', lv ? '' : 'kept, no Peak', list) : '';
+      }).join('');
+    }
+    var groups = {};
+    flat.forEach(function (s) { var k = lead(s.a); (groups[k] = groups[k] || []).push(s); });
+    return Object.keys(groups).sort(function (a, b) {
+      return groups[b].length - groups[a].length || a.localeCompare(b);
+    }).map(function (k) { return altBlock(k, '', groups[k].sort(byYear)); }).join('');
+  }
+
+  /* ── the worlds' themes ── one main theme for every world, generated from
+     the worlds pages by tools/themes.js into music-themes.js */
+  function themes() {
+    var T = window.MUSIC_THEMES || [];
+    if (!T.length) return '';
+    return '<section class="mu-year mu-themes reveal" id="themes">'
+      + '<h3 class="mu-head"><span class="mu-y">Themes</span>'
+      + '<span class="mu-grade">the main theme of every world</span>'
+      + '<span class="mu-n">' + T.length + ' worlds</span></h3>'
+      + '<ol class="mu-list">' + T.map(function (x) {
+          var s = { t: x.t, a: x.w, v: x.v };
+          return '<li class="mu-row mu-theme">'
+            + '<span class="mu-rank" aria-hidden="true">&#9834;</span>'
+            + '<span class="mu-song"><b class="mu-title">' + esc(x.t) + '</b>'
+            + '<i class="mu-artist"><a href="' + esc(x.href) + '">' + esc(x.w) + '</a>'
+            + (x.a ? ' &#183; ' + esc(x.a) : '') + '</i></span>'
+            + control(s) + '</li>';
+        }).join('') + '</ol></section>';
+  }
+
+  root.innerHTML = tally + chips() + views() + jump()
+    + '<div class="mu-years">' + years.map(yearBlock).join('') + '</div>'
+    + '<div class="mu-years mu-alt" hidden></div>'
+    + '<div class="mu-years">' + themes() + '</div>';
+
+  var yearsEl = root.querySelector('.mu-years');
+  var altEl = root.querySelector('.mu-alt');
+  var jumpEl = root.querySelector('.mu-jump');
+  var orderEl = document.getElementById('muOrder');
+  var groupEl = document.getElementById('muGroup');
+  function applyView() {
+    var order = orderEl.value, group = groupEl.value;
+    var secs = [].slice.call(yearsEl.querySelectorAll(':scope > .mu-year'));
+    secs.sort(function (a, b) {
+      var d = +a.getAttribute('data-year') - +b.getAttribute('data-year');
+      return order === 'old' ? d : -d;
+    }).forEach(function (sec) { yearsEl.appendChild(sec); });
+    var links = [].slice.call(jumpEl.querySelectorAll('a'));
+    if (order === 'old') links.reverse();
+    links.sort(function (a, b) {
+      var d = +a.getAttribute('data-jump') - +b.getAttribute('data-jump');
+      return order === 'old' ? d : -d;
+    }).forEach(function (l) { jumpEl.appendChild(l); });
+    var alt = group !== 'year';
+    yearsEl.hidden = alt;
+    jumpEl.hidden = alt;
+    altEl.hidden = !alt;
+    altEl.innerHTML = alt ? drawAlt(group, order) : '';
+    if (alt && typeof window.AEreveal === 'function') window.AEreveal(altEl);
+    applyPeak();
+  }
+  orderEl.addEventListener('change', applyView);
+  groupEl.addEventListener('change', applyView);
+
+  /* ── the Peak filter ──
+     Show narrows every view to one Peak level (an exact level, not "at least",
+     so Peak shows only the single Peaks) or to all of them. Rows are hidden by
+     music.css off data-peak; this pass hides a block left with nothing in it
+     and recounts its header, so a year reads "3 of 20" rather than "20 songs"
+     over three rows. The themes have no Peaks, so they drop out too. */
+  var peakEl = document.getElementById('muPeak');
+  function applyPeak() {
+    var v = peakEl.value;
+    root.setAttribute('data-peak', v);
+    var sel = v === 'any' ? '.is-peak' : v ? '.is-peak-' + v : '';
+    [].slice.call(root.querySelectorAll('.mu-year')).forEach(function (sec) {
+      var n = sec.querySelector('.mu-n');
+      if (n && !n.hasAttribute('data-all')) n.setAttribute('data-all', n.textContent);
+      var all = sec.querySelectorAll('.mu-list > .mu-row').length;
+      var hit = sel ? sec.querySelectorAll('.mu-list > .mu-row' + sel).length : all;
+      sec.classList.toggle('is-unpeaked', !hit);
+      if (n) n.textContent = sel ? hit + ' of ' + all : n.getAttribute('data-all');
+    });
+    /* the jump strip only offers years that still have something showing */
+    [].slice.call(jumpEl.querySelectorAll('a')).forEach(function (a) {
+      var sec = document.getElementById('y' + a.getAttribute('data-jump'));
+      a.classList.toggle('is-unpeaked', !!sec && sec.classList.contains('is-unpeaked'));
+    });
+  }
+  peakEl.addEventListener('change', applyPeak);
 
   /* ── wiring ── */
   var rootEl = root.querySelector('.mu-years');
@@ -196,6 +367,7 @@
   });
 
   setEra('');
+  applyPeak();
   if (rootEl) rootEl.setAttribute('data-ready', '1');
 
   /* ── the player ──

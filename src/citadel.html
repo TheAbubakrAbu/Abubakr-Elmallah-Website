@@ -1,0 +1,277 @@
+---
+permalink: /citadel/
+title: "The Citadel · Abubakr Elmallah"
+description: "The Citadel: a Game of Thrones interface for Abubakr Elmallah's portfolio, with a brass astrolabe, every page raised as a keep, and the maester's chain."
+theme: "#0b0a09"
+fonts: "family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/citadel.css' %}" />
+</head>
+<body class="cd" id="cd">
+
+<!-- candlelight on stone: a warm glow from above, a vignette, and the faint
+     grid of a map table under everything -->
+<div class="cd-field" aria-hidden="true">
+  <span class="cd-glow"></span>
+  <span class="cd-grid"></span>
+</div>
+
+<header class="cd-top">
+  <a class="cd-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the Citadel</span>
+  </a>
+  <span class="cd-top-mid">The Citadel · Oldtown · the Reach</span>
+  <span id="cdMoon">····</span>
+</header>
+
+<main class="cd-main">
+
+  <!-- ─────────── the astrolabe ───────────
+       The brass sphere from the opening titles, drawn in SVG: the outer
+       ring carries seven houses' words and turns once every four minutes,
+       the ticks turn the other way, and three bands tilt round the sun at
+       three speeds. -->
+  <section class="cd-hero">
+    <div class="cd-astro" aria-hidden="true">
+      <svg viewBox="-250 -250 500 500">
+        <defs>
+          <radialGradient id="cdSun" cx="0" cy="0" r="1" gradientUnits="objectBoundingBox" fx="0.4" fy="0.38">
+            <stop offset="0" stop-color="#fff6d8"/>
+            <stop offset="0.35" stop-color="#ffd27a"/>
+            <stop offset="0.72" stop-color="#c8741f"/>
+            <stop offset="1" stop-color="#5a2a0a"/>
+          </radialGradient>
+          <linearGradient id="cdBrass" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f3d48a"/>
+            <stop offset="0.5" stop-color="#b8862f"/>
+            <stop offset="1" stop-color="#6f4a14"/>
+          </linearGradient>
+          <path id="cdWords" d="M 0,-214 a 214,214 0 1,1 -0.01,0"/>
+        </defs>
+
+        <g class="cd-ring cd-ring--words">
+          <circle r="236" class="cd-brass" stroke-width="4"/>
+          <circle r="196" class="cd-brass" stroke-width="2"/>
+          <text class="cd-engrave"><textPath href="#cdWords" textLength="1336" lengthAdjust="spacing">WINTER IS COMING · FIRE AND BLOOD · HEAR ME ROAR · OURS IS THE FURY · WE DO NOT SOW · GROWING STRONG · UNBOWED, UNBENT, UNBROKEN ·</textPath></text>
+        </g>
+
+        <g class="cd-ring cd-ring--ticks">
+          <circle r="184" class="cd-tick" stroke-width="10" stroke-dasharray="1.2 8.43"/>
+          <circle r="184" class="cd-tick" stroke-width="22" stroke-dasharray="2.4 93.94"/>
+        </g>
+
+        <g class="cd-band" style="--a:-28deg; --t:11s"><circle r="150" class="cd-brass" stroke-width="7"/><circle r="150" class="cd-groove"/></g>
+        <g class="cd-band" style="--a:32deg; --t:15s; --d:-4s"><circle r="132" class="cd-brass" stroke-width="6"/><circle r="132" class="cd-groove"/></g>
+        <g class="cd-band" style="--a:90deg; --t:19s; --d:-9s"><circle r="114" class="cd-brass" stroke-width="5"/><circle r="114" class="cd-groove"/></g>
+
+        <g class="cd-sun">
+          <circle r="58" class="cd-corona"/>
+          <circle r="40" fill="url(#cdSun)"/>
+        </g>
+      </svg>
+    </div>
+
+    <p class="cd-kicker">A maester’s archive</p>
+    <h1 class="cd-title">The Citadel</h1>
+    <p class="cd-sub">Every room on this site, kept by the maesters of Oldtown. The astrolabe turns over the realm, every page rises from the map as a keep, and the chain holds a link for everything forged so far.</p>
+  </section>
+
+  <!-- ─────────── the realm ─────────── -->
+  <!-- every room on the site, as the copy above promises: the main
+       sections, both schools, the worlds and their personal pages. The
+       other terminals are the ravens further down. --i staggers the keeps
+       rising, as the towers do in the opening titles. -->
+  <section class="cd-realm" aria-labelledby="cdRealmH">
+    <h2 class="cd-h" id="cdRealmH">
+      <canvas class="cd-think" data-orb="searching" data-orb-size="22" data-orb-ink="#d8b26a" aria-hidden="true"></canvas>The realm<span>every page, raised as a keep on the map</span>
+    </h2>
+    <!-- The map from the opening titles, as a chart rather than clockwork:
+         Westeros and Essos in brass line on dark water, the Wall across the
+         north, the Kingsroad dashed from Winterfell to King's Landing, and a
+         tower raised at every page's place. The coastlines are drawn by
+         hand and only roughly true. The map is for the eye and the mouse;
+         the keeps under it are the real list, so the map is hidden from
+         screen readers and out of the tab order. On a phone it keeps its
+         size and scrolls sideways inside its frame, rather than shrinking
+         every name to a smudge. -->
+    <div class="cd-mapframe">
+      <svg class="cd-map" viewBox="0 0 1000 620" aria-hidden="true">
+        <defs>
+          <pattern id="cdWaves" width="22" height="12" patternUnits="userSpaceOnUse">
+            <path d="M0,8 q5.5,-4 11,0 t11,0" fill="none" stroke="rgba(216,178,106,.07)" stroke-width="1"/>
+          </pattern>
+          <radialGradient id="cdLand" cx="0.4" cy="0.3" r="0.9">
+            <stop offset="0" stop-color="#2a241a"/>
+            <stop offset="1" stop-color="#18140f"/>
+          </radialGradient>
+        </defs>
+        <rect width="1000" height="620" fill="#0c0b09"/>
+        <rect width="1000" height="620" fill="url(#cdWaves)"/>
+        <g class="cd-land">
+          <path d="M140,-4 C172.7,-8.7 297.0,-9.7 330,-4 C363.0,1.7 334.3,21.3 338,30 C341.7,38.7 351.7,41.3 352,48 C352.3,54.7 342.8,62.0 340,70 C337.2,78.0 333.7,88.0 335,96 C336.3,104.0 344.3,110.7 348,118 C351.7,125.3 357.5,133.0 357,140 C356.5,147.0 349.2,153.0 345,160 C340.8,167.0 336.5,175.3 332,182 C327.5,188.7 323.0,195.0 318,200 C313.0,205.0 305.7,206.7 302,212 C298.3,217.3 298.3,225.3 296,232 C293.7,238.7 291.3,246.0 288,252 C284.7,258.0 280.3,263.3 276,268 C271.7,272.7 262.7,276.0 262,280 C261.3,284.0 267.3,290.3 272,292 C276.7,293.7 284.5,291.7 290,290 C295.5,288.3 300.3,282.0 305,282 C309.7,282.0 314.2,286.7 318,290 C321.8,293.3 327.3,296.7 328,302 C328.7,307.3 321.7,316.0 322,322 C322.3,328.0 330.3,333.0 330,338 C329.7,343.0 324.2,348.0 320,352 C315.8,356.0 309.0,358.3 305,362 C301.0,365.7 296.8,370.0 296,374 C295.2,378.0 300.7,382.3 300,386 C299.3,389.7 292.3,392.3 292,396 C291.7,399.7 298.0,404.7 298,408 C298.0,411.3 290.7,413.3 292,416 C293.3,418.7 301.0,421.3 306,424 C311.0,426.7 318.0,428.3 322,432 C326.0,435.7 330.0,441.0 330,446 C330.0,451.0 325.0,456.7 322,462 C319.0,467.3 314.7,472.3 312,478 C309.3,483.7 305.3,490.3 306,496 C306.7,501.7 310.7,507.3 316,512 C321.3,516.7 330.3,520.3 338,524 C345.7,527.7 353.0,530.3 362,534 C371.0,537.7 385.0,542.3 392,546 C399.0,549.7 404.7,553.3 404,556 C403.3,558.7 395.3,560.3 388,562 C380.7,563.7 369.7,564.0 360,566 C350.3,568.0 340.0,571.0 330,574 C320.0,577.0 310.3,581.3 300,584 C289.7,586.7 278.7,589.3 268,590 C257.3,590.7 246.3,589.0 236,588 C225.7,587.0 215.0,586.3 206,584 C197.0,581.7 188.3,578.0 182,574 C175.7,570.0 173.0,564.3 168,560 C163.0,555.7 156.7,552.7 152,548 C147.3,543.3 143.3,538.0 140,532 C136.7,526.0 134.7,519.0 132,512 C129.3,505.0 126.0,497.7 124,490 C122.0,482.3 119.3,473.7 120,466 C120.7,458.3 124.7,450.3 128,444 C131.3,437.7 139.3,433.7 140,428 C140.7,422.3 134.3,416.0 132,410 C129.7,404.0 126.0,398.3 126,392 C126.0,385.7 129.7,378.3 132,372 C134.3,365.7 137.0,359.7 140,354 C143.0,348.3 146.3,343.3 150,338 C153.7,332.7 158.3,327.3 162,322 C165.7,316.7 168.3,311.3 172,306 C175.7,300.7 180.0,295.0 184,290 C188.0,285.0 195.7,280.7 196,276 C196.3,271.3 190.7,266.0 186,262 C181.3,258.0 173.3,255.7 168,252 C162.7,248.3 157.7,245.0 154,240 C150.3,235.0 148.7,228.0 146,222 C143.3,216.0 140.7,210.0 138,204 C135.3,198.0 132.3,192.0 130,186 C127.7,180.0 126.0,174.0 124,168 C122.0,162.0 118.3,156.3 118,150 C117.7,143.7 122.3,136.7 122,130 C121.7,123.3 116.0,116.7 116,110 C116.0,103.3 119.7,96.7 122,90 C124.3,83.3 129.3,77.0 130,70 C130.7,63.0 125.3,55.7 126,48 C126.7,40.3 131.7,32.7 134,24 C136.3,15.3 107.3,0.7 140,-4 Z"/>
+          <path d="M1010,150 C991.7,82.7 935.0,154.7 900,158 C865.0,161.3 830.0,166.3 800,170 C770.0,173.7 745.0,177.0 720,180 C695.0,183.0 671.7,186.0 650,188 C628.3,190.0 608.3,190.3 590,192 C571.7,193.7 555.0,196.0 540,198 C525.0,200.0 510.3,201.7 500,204 C489.7,206.3 485.0,209.0 478,212 C471.0,215.0 463.3,217.7 458,222 C452.7,226.3 447.0,232.3 446,238 C445.0,243.7 450.0,250.7 452,256 C454.0,261.3 458.7,264.7 458,270 C457.3,275.3 450.7,282.0 448,288 C445.3,294.0 444.0,300.0 442,306 C440.0,312.0 436.3,318.0 436,324 C435.7,330.0 437.7,336.0 440,342 C442.3,348.0 448.0,353.7 450,360 C452.0,366.3 449.3,373.7 452,380 C454.7,386.3 462.7,392.0 466,398 C469.3,404.0 469.7,409.7 472,416 C474.3,422.3 478.0,429.3 480,436 C482.0,442.7 481.3,449.7 484,456 C486.7,462.3 493.0,468.0 496,474 C499.0,480.0 498.7,486.3 502,492 C505.3,497.7 512.0,503.0 516,508 C520.0,513.0 520.7,518.0 526,522 C531.3,526.0 541.3,529.0 548,532 C554.7,535.0 560.7,536.0 566,540 C571.3,544.0 576.3,550.3 580,556 C583.7,561.7 585.0,567.0 588,574 C591.0,581.0 593.3,592.7 598,598 C602.7,603.3 610.3,605.7 616,606 C621.7,606.3 627.0,604.3 632,600 C637.0,595.7 642.0,586.7 646,580 C650.0,573.3 652.0,567.3 656,560 C660.0,552.7 665.3,544.0 670,536 C674.7,528.0 679.3,519.0 684,512 C688.7,505.0 691.7,498.7 698,494 C704.3,489.3 714.0,486.0 722,484 C730.0,482.0 738.0,480.3 746,482 C754.0,483.7 765.3,489.0 770,494 C774.7,499.0 775.0,505.7 774,512 C773.0,518.3 764.3,525.3 764,532 C763.7,538.7 767.3,546.0 772,552 C776.7,558.0 784.3,565.7 792,568 C799.7,570.3 809.7,567.3 818,566 C826.3,564.7 834.3,558.7 842,560 C849.7,561.3 857.0,569.3 864,574 C871.0,578.7 877.0,586.7 884,588 C891.0,589.3 899.0,585.0 906,582 C913.0,579.0 917.0,572.7 926,570 C935.0,567.3 946.0,567.3 960,566 C974.0,564.7 1001.7,631.3 1010,562 C1018.3,492.7 1028.3,217.3 1010,150 Z"/>
+          <path d="M100,322 L112,316 L120,328 L112,340 L100,336 Z"/><path d="M112,342 L122,340 L126,352 L116,356 Z"/><path d="M98,128 L110,122 L116,134 L104,140 Z"/><path d="M343,391 L357,387 L363,399 L351,407 L341,401 Z"/><path d="M458,226 L468,222 L472,232 L462,238 Z"/><path d="M604,580 L616,576 L620,588 L608,594 Z"/><path d="M624,592 L632,590 L634,600 L626,602 Z"/><path d="M418,540 L426,536 L430,544 L422,548 Z"/><path d="M440,526 L447,522 L450,530 L443,533 Z"/><path d="M458,512 L464,508 L467,516 L461,519 Z"/>
+        </g>
+        <path class="cd-wall" d="M118,92 L338,92"/>
+        <text class="cd-map-note" x="228" y="84" text-anchor="middle">The Wall</text>
+        <path class="cd-road" d="M215,175 C225,220 240,250 238,270 S255,330 270,350 S300,400 302,422"/>
+        <g class="cd-smoke"><circle cx="612" cy="584" r="10"/><circle cx="628" cy="595" r="7"/></g>
+        <text class="cd-map-sea" x="404" y="300" transform="rotate(-90 404 300)" text-anchor="middle">The Narrow Sea</text>
+        <text class="cd-map-sea" x="470" y="606" text-anchor="middle">The Summer Sea</text>
+        <text class="cd-map-sea" x="660" y="110" text-anchor="middle">The Shivering Sea</text>
+        <text class="cd-map-region" x="720" y="345" text-anchor="middle">Essos</text>
+        <text class="cd-map-note" x="650" y="300" text-anchor="middle">The Dothraki Sea</text>
+        <text class="cd-map-note" x="736" y="522" text-anchor="middle">Slaver’s Bay</text>
+        <g class="cd-rose" transform="translate(905 90)">
+          <circle r="34"/><circle r="24"/>
+          <path d="M0,-44 L6,0 L0,44 L-6,0 Z M-44,0 L0,6 L44,0 L0,-6 Z"/>
+          <text y="-48" text-anchor="middle">N</text>
+        </g>
+        <g class="cd-pins">
+          <a class="cd-pin" href="/" tabindex="-1" style="--c:#b3342b; --i:0"><g transform="translate(300 425)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="287" y="435" text-anchor="end">King’s Landing</text><text class="cd-pin-s" x="287" y="448" text-anchor="end">home</text></a>
+          <a class="cd-pin" href="/resume/" tabindex="-1" style="--c:#d7a43b; --i:1"><g transform="translate(290 401)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="277" y="391" text-anchor="end">The Tower of the Hand</text><text class="cd-pin-s" x="277" y="404" text-anchor="end">résumé</text></a>
+          <a class="cd-pin" href="/work/" tabindex="-1" style="--c:#8f1d1d; --i:2"><g transform="translate(351 396)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="364" y="390" text-anchor="start">Dragonstone</text><text class="cd-pin-s" x="364" y="403" text-anchor="start">work at UC Irvine</text></a>
+          <a class="cd-pin" href="/college/" tabindex="-1" style="--c:#9aa3ab; --i:3"><g transform="translate(215 175)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="228" y="169" text-anchor="start">Winterfell</text><text class="cd-pin-s" x="228" y="182" text-anchor="start">college · UC Irvine</text></a>
+          <a class="cd-pin" href="/high-school/" tabindex="-1" style="--c:#6f9fd1; --i:4"><g transform="translate(300 318)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="313" y="312" text-anchor="start">The Eyrie</text><text class="cd-pin-s" x="313" y="325" text-anchor="start">high school</text></a>
+          <a class="cd-pin" href="/education/" tabindex="-1" style="--c:#b0793a; --i:5"><g transform="translate(162 548)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="175" y="542" text-anchor="start">Oldtown</text><text class="cd-pin-s" x="175" y="555" text-anchor="start">the Library · education</text></a>
+          <a class="cd-pin" href="/worlds/game-of-thrones/" tabindex="-1" style="--c:#b9c2cc; --i:6"><g transform="translate(195 325)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="182" y="319" text-anchor="end">Westeros</text><text class="cd-pin-s" x="182" y="332" text-anchor="end">the world page</text></a>
+          <a class="cd-pin" href="/al-islam/" tabindex="-1" style="--c:#3f9d6a; --i:7"><g transform="translate(270 362)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="257" y="356" text-anchor="end">The Quiet Isle</text><text class="cd-pin-s" x="257" y="369" text-anchor="end">Al-Islam</text></a>
+          <a class="cd-pin" href="/travels/" tabindex="-1" style="--c:#a88a5a; --i:8"><g transform="translate(238 270)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="251" y="264" text-anchor="start">The Kingsroad</text><text class="cd-pin-s" x="251" y="277" text-anchor="start">travels</text></a>
+          <a class="cd-pin" href="/gaming/" tabindex="-1" style="--c:#e2b33c; --i:9"><g transform="translate(235 482)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="248" y="476" text-anchor="start">Ashford</text><text class="cd-pin-s" x="248" y="489" text-anchor="start">the tourney grounds · gaming</text></a>
+          <a class="cd-pin" href="/projects/" tabindex="-1" style="--c:#6f6aa8; --i:10"><g transform="translate(455 232)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="468" y="226" text-anchor="start">Braavos</text><text class="cd-pin-s" x="468" y="239" text-anchor="start">the Iron Bank · every project</text></a>
+          <a class="cd-pin" href="/accents/" tabindex="-1" style="--c:#d9d4c7; --i:11"><g transform="translate(466 276)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="479" y="270" text-anchor="start">The House of Black and White</text><text class="cd-pin-s" x="479" y="283" text-anchor="start">accents</text></a>
+          <a class="cd-pin" href="/worlds/" tabindex="-1" style="--c:#c9a25a; --i:12"><g transform="translate(450 345)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="463" y="339" text-anchor="start">Pentos</text><text class="cd-pin-s" x="463" y="352" text-anchor="start">across the Narrow Sea · all 71 worlds</text></a>
+          <a class="cd-pin" href="/lightsabers/" tabindex="-1" style="--c:#7d8894; --i:13"><g transform="translate(610 586)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="623" y="580" text-anchor="start">Old Valyria</text><text class="cd-pin-s" x="623" y="593" text-anchor="start">the lightsaber guide</text></a>
+          <a class="cd-pin" href="/star-wars/" tabindex="-1" style="--c:#7a5bb0; --i:14"><g transform="translate(960 505)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="947" y="499" text-anchor="end">Asshai by the Shadow</text><text class="cd-pin-s" x="947" y="512" text-anchor="end">Star Wars apps</text></a>
+        </g>
+      </svg>
+    </div>
+    <p class="cd-maphint" aria-hidden="true">Swipe the map sideways for Essos and the Narrow Sea</p>
+
+    <div class="cd-keeps">
+      <a class="cd-keep" href="/" style="--i:0; --c:#b3342b"><b>King’s Landing</b><i>The Red Keep · home</i></a>
+      <a class="cd-keep" href="/work/" style="--i:1; --c:#8f1d1d"><b>Dragonstone</b><i>The Painted Table · work at UC Irvine</i></a>
+      <a class="cd-keep" href="/projects/" style="--i:2; --c:#6f6aa8"><b>The Iron Bank</b><i>Braavos · every project, accounted for</i></a>
+      <a class="cd-keep" href="/education/" style="--i:3; --c:#b0793a"><b>The Library</b><i>Oldtown · education</i></a>
+      <a class="cd-keep" href="/college/" style="--i:4; --c:#9aa3ab"><b>Winterfell</b><i>College · UC Irvine</i></a>
+      <a class="cd-keep" href="/high-school/" style="--i:5; --c:#6f9fd1"><b>The Eyrie</b><i>High school · where it started</i></a>
+      <a class="cd-keep" href="/worlds/" style="--i:6; --c:#c9a25a"><b>Across the Narrow Sea</b><i>All 71 worlds</i></a>
+      <a class="cd-keep" href="/worlds/game-of-thrones/" style="--i:7; --c:#b9c2cc"><b>Westeros</b><i>Game of Thrones · the world page</i></a>
+      <a class="cd-keep" href="/star-wars/" style="--i:8; --c:#7a5bb0"><b>Asshai by the Shadow</b><i>Star Wars apps</i></a>
+      <a class="cd-keep" href="/al-islam/" style="--i:9; --c:#3f9d6a"><b>The Quiet Isle</b><i>Al-Islam</i></a>
+      <a class="cd-keep" href="/travels/" style="--i:10; --c:#a88a5a"><b>The Kingsroad</b><i>Travels · where I have been</i></a>
+      <a class="cd-keep" href="/accents/" style="--i:11; --c:#d9d4c7"><b>The House of Black and White</b><i>Accents &amp; impersonations</i></a>
+      <a class="cd-keep" href="/gaming/" style="--i:12; --c:#e2b33c"><b>The Tourney Grounds</b><i>Gaming</i></a>
+      <a class="cd-keep" href="/lightsabers/" style="--i:13; --c:#7d8894"><b>Old Valyria</b><i>Where the steel was forged · the lightsaber guide</i></a>
+      <a class="cd-keep" href="/resume/" style="--i:14; --c:#d7a43b"><b>The Tower of the Hand</b><i>Résumé</i></a>
+    </div>
+  </section>
+
+  <!-- ─────────── two panels ─────────── -->
+  <div class="cd-cols">
+
+    <!-- a maester forges a link of a different metal for each subject he
+         masters; these are the ones forged so far -->
+    <section class="cd-panel" aria-labelledby="cdChainH">
+      <h2 class="cd-h cd-h--sm" id="cdChainH">The maester’s chain<span>a link for each thing mastered</span></h2>
+      <ol class="cd-chain">
+        <li style="--m1:#4a4a50; --m2:#1e1e22"><span class="cd-link" aria-hidden="true"></span><div><b>Black iron · ravenry</b><p>Two Discord droids, carrying messages in more than 500 servers.</p></div></li>
+        <li style="--m1:#d9a35c; --m2:#7a4a1a"><span class="cd-link" aria-hidden="true"></span><div><b>Bronze · astronomy</b><p>Al-Adhan, which reads the sun for prayer times, 22 ways.</p></div></li>
+        <li style="--m1:#e08a58; --m2:#7a3416"><span class="cd-link" aria-hidden="true"></span><div><b>Copper · history</b><p>Every project kept, back to Order 66 in 2021.</p></div></li>
+        <li style="--m1:#f6d36b; --m2:#9a6c12"><span class="cd-link" aria-hidden="true"></span><div><b>Gold · the coin</b><p>Datapad, in the Top 10 of the paid Entertainment chart.</p></div></li>
+        <li style="--m1:#b8bbc0; --m2:#4e5156"><span class="cd-link" aria-hidden="true"></span><div><b>Iron · warcraft</b><p>UCI Esports: the arena, its PCs and its events, in one app.</p></div></li>
+        <li class="cd-chain-vs" style="--m1:#9aa6b4; --m2:#2c333c"><span class="cd-link" aria-hidden="true"></span><div><b>Valyrian steel · the higher mysteries</b><p>Winner of the Apple Swift Student Challenge, 2024.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="cd-panel" aria-labelledby="cdRecordH">
+      <h2 class="cd-h cd-h--sm" id="cdRecordH">The record<span>as the Citadel keeps it</span></h2>
+      <dl class="cd-record">
+        <div><dt>Keeper</dt><dd>Abubakr Elmallah</dd></div>
+        <div><dt>Studying</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
+        <div><dt>Office</dt><dd>Lead mobile &amp; backend developer</dd></div>
+        <div><dt>Words</dt><dd>Chosen by the reader</dd></div>
+        <div><dt>Apps shipped</dt><dd>Twelve, across four platforms</dd></div>
+        <div><dt>Realms charted</dt><dd>Seventy</dd></div>
+        <div><dt>Drawn with</dt><dd>CSS and SVG, no images</dd></div>
+      </dl>
+    </section>
+
+  </div>
+
+  <!-- ─────────── ravens ─────────── -->
+  <section class="cd-panel cd-ravens" aria-labelledby="cdRavensH">
+    <h2 class="cd-h cd-h--sm" id="cdRavensH">Send a raven<span>to the other terminals</span></h2>
+    <div class="cd-seals">
+      <a class="cd-raven" href="/elmallah/" style="--w:#b8862f"><span class="cd-seal" aria-hidden="true">E</span><b>E.L.M.A.L.L.A.H.</b><i>The holotable</i></a>
+      <a class="cd-raven" href="/holocron/" style="--w:#2f6d9a"><span class="cd-seal" aria-hidden="true">H</span><b>The Holocron</b><i>A Jedi archive</i></a>
+      <a class="cd-raven" href="/jarvis/" style="--w:#1f8a9a"><span class="cd-seal" aria-hidden="true">J</span><b>J.A.R.V.I.S.</b><i>A Stark display</i></a>
+      <a class="cd-raven" href="/marauders-map/" style="--w:#7a4a24"><span class="cd-seal" aria-hidden="true">M</span><b>The Marauder’s Map</b><i>Parchment and ink</i></a>
+      <a class="cd-raven" href="/crafting-table/" style="--w:#3f7a2a"><span class="cd-seal" aria-hidden="true">C</span><b>The Crafting Table</b><i>Blocks and slots</i></a>
+      <a class="cd-raven" href="/compass/" style="--w:#2f6a6a"><span class="cd-seal" aria-hidden="true">P</span><b>The Compass</b><i>It points where you want</i></a>
+      <a class="cd-raven" href="/control-room/" style="--w:#b4521f"><span class="cd-seal" aria-hidden="true">N</span><b>The Control Room</b><i>Isla Nublar</i></a>
+      <a class="cd-raven" href="/upside-down/" style="--w:#9a1f1a"><span class="cd-seal" aria-hidden="true">U</span><b>The Upside Down</b><i>Hawkins, Indiana</i></a>
+      <a class="cd-raven" href="/starcourt/" style="--w:#c0408f"><span class="cd-seal" aria-hidden="true">S</span><b>Starcourt</b><i>The arcade and the mall</i></a>
+      <a class="cd-raven" href="/spirit-library/" style="--w:#a8742a"><span class="cd-seal" aria-hidden="true">S</span><b>The Spirit Library</b><i>Under the desert sand</i></a>
+      <a class="cd-raven" href="/monastery/" style="--w:#b3261e"><span class="cd-seal" aria-hidden="true">N</span><b>The Monastery</b><i>Ninjago</i></a>
+      <a class="cd-raven" href="/wanted/" style="--w:#d9c08c"><span class="cd-seal" aria-hidden="true">W</span><b>The Wanted Board</b><i>Red Dead Redemption</i></a>
+      <a class="cd-raven" href="/dunder-mifflin/" style="--w:#3d6fb4"><span class="cd-seal" aria-hidden="true">D</span><b>Dunder Mifflin</b><i>The Office</i></a>
+      <a class="cd-raven" href="/springfield/" style="--w:#4a8fd8"><span class="cd-seal" aria-hidden="true">S</span><b>Springfield</b><i>The Simpsons</i></a>
+      <a class="cd-raven" href="/vought/" style="--w:#2a6fdb"><span class="cd-seal" aria-hidden="true">V</span><b>Vought Tower</b><i>The Boys</i></a>
+      <a class="cd-raven" href="/pokedex/" style="--w:#e3242b"><span class="cd-seal" aria-hidden="true">P</span><b>The Pokédex</b><i>Pokémon</i></a>
+      <a class="cd-raven" href="/batcomputer/" style="--w:#f2c230"><span class="cd-seal" aria-hidden="true">B</span><b>The Batcomputer</b><i>Batman</i></a>
+      <a class="cd-raven" href="/daily-bugle/" style="--w:#1f4fa8"><span class="cd-seal" aria-hidden="true">B</span><b>The Daily Bugle</b><i>Spider-Man</i></a>
+    </div>
+  </section>
+
+  <button class="cd-words" id="cdWordsBtn" type="button">Valar morghulis.</button>
+
+</main>
+
+<!-- the answer, after the words are spoken -->
+<div class="cd-done" id="cdDone">
+  <div>
+    <canvas class="cd-done-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#d8b26a" aria-hidden="true"></canvas>
+    <p class="cd-done-k">All men must serve.</p>
+    <p class="cd-done-t">Valar dohaeris.</p>
+    <a href="/">Ride back to King’s Landing</a>
+  </div>
+</div>
+
+<script>
+  /* smooth scrolling only after load, so back/forward restores the position instantly instead of sliding to it */
+  addEventListener('load', function () {
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      document.documentElement.classList.add('smooth');
+    }); });
+  });
+  (function citadel() {
+    /* the date as Westeros counts it, in moons: the month is the moon of the year */
+    var el = document.getElementById('cdMoon');
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function ord(n) { var s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); }
+    function tick() {
+      var d = new Date();
+      if (el) el.textContent = 'Day ' + d.getDate() + ' of the ' + ord(d.getMonth() + 1) + ' moon · ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+    }
+    tick(); setInterval(tick, 20000);
+
+    var root = document.getElementById('cd');
+    var btn = document.getElementById('cdWordsBtn');
+    if (btn) btn.addEventListener('click', function () { root.classList.add('is-spoken'); });
+    // back from the next page, the answer is still on screen; take it down
+    addEventListener('pageshow', function (e) { if (e.persisted) root.classList.remove('is-spoken'); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') root.classList.remove('is-spoken');
+    });
+  })();
+</script>
+{% include analytics.html %}
+</body>
+</html>

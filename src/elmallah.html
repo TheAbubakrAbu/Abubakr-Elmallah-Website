@@ -1,9 +1,9 @@
 ---
 permalink: /elmallah/
 title: "E.L.M.A.L.L.A.H. · Abubakr Elmallah"
-description: "E.L.M.A.L.L.A.H., a holoterminal interface for Abubakr Elmallah's portfolio. Embedded Logic Matrix · Adaptive Learning, Language & Archive Hub."
-theme: "#03070d"
-fonts: "family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500"
+description: "E.L.M.A.L.L.A.H.: a Rebel war-room holotable charting every room on the site, split between the Republic's interfaces and the Empire's main site."
+theme: "#02050b"
+fonts: "family=Saira:wdth,wght@75..125,400..700&family=JetBrains+Mono:wght@400;500"
 standalone: true
 ---
 <!DOCTYPE html>
@@ -12,303 +12,308 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/elmallah.css' %}" />
-<noscript><style>
-  .el-boot { display: none; }
-  .el-shell { opacity: 1 !important; }
-  .el-panel, .el-holo { opacity: 1 !important; transform: none !important; }
-  .el-bar i { width: var(--v, 0%) !important; }
-</style></noscript>
+<!-- without scripts there is no table to draw and nothing to brief, so the
+     page is the title and the charts, which hold every link anyway -->
+<noscript><style>.el-stage, .el-brief, .el-clock { display: none !important; } .el-deck { display: block !important; min-height: 0 !important; }</style></noscript>
 </head>
-<body class="el">
+<body class="el" id="el">
 
-<!-- ═══════════ boot ═══════════ -->
-<div class="el-boot" id="elBoot">
-  <!-- the thinking orbs on this page are orbs.js, in UCI blue and Trabuco gold -->
-  <canvas class="el-boot-orb" data-orb="shaping" data-orb-size="96" data-orb-ink="#5fa3ec" aria-hidden="true"></canvas>
-  <div class="el-boot-mark">E.L.M.A.L.L.A.H.</div>
-  <div class="el-boot-sub">Embedded Logic Matrix · Adaptive Learning, Language &amp; Archive Hub</div>
-  <div class="el-boot-log" id="elBootLog"></div>
-  <div class="el-boot-bar"><i id="elBootBar"></i></div>
-  <button class="el-skip" id="elSkip" type="button">BYPASS</button>
+<!-- the two crests, drawn once: the page's headers <use> them, and
+     elmallah.js reads the same paths to lay them flat on the table.
+     The Republic's eight rays run out through its ring; the Empire's six
+     spokes are closed inside one. -->
+<svg class="el-sprite" aria-hidden="true" focusable="false">
+  <symbol id="elCrestRep" viewBox="-50 -50 100 100"><path d="M9 0A9 9 0 1 1 -9 0A9 9 0 1 1 9 0ZM40.5 0A40.5 40.5 0 1 1 -40.5 0A40.5 40.5 0 1 1 40.5 0ZM35 0A35 35 0 1 0 -35 0A35 35 0 1 0 35 0ZM-1.6 -7L-8.6 -50L8.6 -50L1.6 -7ZM3.82 -6.08L29.27 -41.44L41.44 -29.27L6.08 -3.82ZM7 -1.6L50 -8.6L50 8.6L7 1.6ZM6.08 3.82L41.44 29.27L29.27 41.44L3.82 6.08ZM1.6 7L8.6 50L-8.6 50L-1.6 7ZM-3.82 6.08L-29.27 41.44L-41.44 29.27L-6.08 3.82ZM-7 1.6L-50 8.6L-50 -8.6L-7 -1.6ZM-6.08 -3.82L-41.44 -29.27L-29.27 -41.44L-3.82 -6.08Z"/></symbol>
+  <symbol id="elCrestEmp" viewBox="-50 -50 100 100"><path d="M8.5 0A8.5 8.5 0 1 1 -8.5 0A8.5 8.5 0 1 1 8.5 0ZM15 0A15 15 0 1 1 -15 0A15 15 0 1 1 15 0ZM11.5 0A11.5 11.5 0 1 0 -11.5 0A11.5 11.5 0 1 0 11.5 0ZM50 0A50 50 0 1 1 -50 0A50 50 0 1 1 50 0ZM42 0A42 42 0 1 0 -42 0A42 42 0 1 0 42 0ZM-4.5 -14L-11 -43L11 -43L4.5 -14ZM9.87 -10.9L31.74 -31.03L42.74 -11.97L14.37 -3.1ZM14.37 3.1L42.74 11.97L31.74 31.03L9.87 10.9ZM4.5 14L11 43L-11 43L-4.5 14ZM-9.87 10.9L-31.74 31.03L-42.74 11.97L-14.37 3.1ZM-14.37 -3.1L-42.74 -11.97L-31.74 -31.03L-9.87 -10.9Z"/></symbol>
+</svg>
+
+<!-- the war room: a dark chamber lit only by the table. The far wall is a
+     ring of console panels, too dim to read, the way the briefing rooms on
+     Yavin 4 and aboard Home One are in the films -->
+<div class="el-room" aria-hidden="true">
+  <span class="el-wall"></span>
+  <span class="el-pool"></span>
 </div>
 
-<!-- ═══════════ field ═══════════ -->
-<div class="el-field" aria-hidden="true">
-  <canvas id="elStars"></canvas>
-  <div class="el-hex" data-par="12"></div>
-  <div class="el-aura"></div>
-  <div class="el-vig"></div>
-</div>
-<div class="el-frame" aria-hidden="true"></div>
-<div class="el-cursor" id="elCursor" aria-hidden="true"></div>
-<div class="el-lock" id="elLock" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<header class="el-top">
+  <a class="el-exit" href="/" title="Back to the main site (Esc)">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the war room</span>
+  </a>
+  <span class="el-top-mid">E.L.M.A.L.L.A.H. · Holotable · Irvine</span>
+  <!-- the stardate: years after the Battle of Yavin, counted from the day
+       A New Hope opened (May 25, 1977), then the day of that year and your
+       clock. elmallah.js keeps it running. -->
+  <span class="el-clock"><span class="el-clock-k">Stardate</span> <b id="elClock">·· ABY · Day ··· · --:--:--</b></span>
+</header>
 
-<a class="el-home" href="/" title="Back to the main site (Esc)">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>EXIT TO BASE</span>
-</a>
+<main>
 
-<!-- ═══════════ spine ═══════════ -->
-<aside class="el-spine" aria-hidden="true">
-  <b>Holoterminal</b>
-  <i></i>
-  <em>SECTOR · IRVINE</em>
-</aside>
+  <!-- ═══════════ the deck: title, the table, the briefing ═══════════ -->
+  <div class="el-deck">
 
-<div class="el-shell">
+    <section class="el-intro">
+      <p class="el-kicker"><i aria-hidden="true"></i>Rebel briefing · war room</p>
+      <h1 class="el-title">E.L.M.A.L.L.A.H.</h1>
+      <p class="el-acro"><b>E</b>mbedded <b>L</b>ogic <b>M</b>atrix · <b>A</b>daptive <b>L</b>earning, <b>L</b>anguage &amp; <b>A</b>rchive <b>H</b>ub</p>
+      <p class="el-lede">Every room on this site, charted as a star system on one holotable: the Republic’s interfaces on one side of the frontier, the Empire’s main site on the other. Pick a target, read the briefing, then make the jump to lightspeed.</p>
+    </section>
 
-  <!-- ── top ribbon ── -->
-  <div class="el-ribbon">
-    <span class="el-chip el-chip--ok">◆ ARCHIVE ONLINE</span>
-    <span class="el-chip">STARDATE <b id="elStar">···</b></span>
-    <span class="el-chip">GST <b id="elTime">--:--:--</b></span>
-    <span class="el-spacer"></span>
-    <span class="el-chip el-chip--y">CLEARANCE · OPERATOR</span>
-    <span class="el-chip">33.64°N 117.84°W</span>
+    <!-- The holotable. elmallah.js draws the table, the projected galaxy,
+         the sweep and the systems on the canvas, and puts a button over
+         every system it reads out of the charts below, so the map
+         and the list can never disagree. -->
+    <section class="el-stage" id="elStage" aria-label="Holotable">
+      <canvas class="el-holo" id="elHolo" aria-hidden="true"></canvas>
+      <div class="el-pins" id="elPins" role="group" aria-label="Star map: every room on the site as a system. Arrow keys move between them, Enter jumps."></div>
+      <div class="el-sectors-tags" id="elTags" aria-hidden="true"></div>
+      <span class="el-scan" aria-hidden="true"></span>
+    </section>
+
+    <!-- the briefing readout: what the selected system is and the jump -->
+    <aside class="el-brief" id="elBrief" aria-labelledby="elBriefH">
+      <div class="el-brief-in">
+        <h2 class="el-brief-h" id="elBriefH">Briefing<span id="elBriefState">Awaiting target</span></h2>
+
+        <div class="el-scope">
+          <!-- the briefing's own thinking orb: a globe with a scan line,
+               searching the table for a target, then reading the one you lock -->
+          <canvas class="el-scope-orb" data-orb="searching" data-orb-size="fit" data-orb-ink="#f5c63c" aria-hidden="true"></canvas>
+          <span class="el-scope-ring" aria-hidden="true"></span>
+        </div>
+
+        <div class="el-brief-body" id="elBriefBody">
+          <p class="el-brief-name">The portfolio galaxy</p>
+          <p class="el-brief-sub">Thirty-seven systems, two powers, one frontier</p>
+          <p class="el-brief-p">The Republic holds the interfaces, the Empire the main site. Pick a system on the table to read its briefing, or take one straight from the charts below.</p>
+          <p class="el-legend-f" style="--f: var(--rep)"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#elCrestRep"/></svg>Galactic Republic<i>22 systems</i></p>
+          <ul class="el-legend">
+            <li style="--c: var(--rep)"><b>Interfaces</b><i>Republic blue · 22</i></li>
+          </ul>
+          <p class="el-legend-f" style="--f: var(--emp)"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#elCrestEmp"/></svg>Galactic Empire<i>15 systems</i></p>
+          <ul class="el-legend">
+            <li style="--c: var(--gold)"><b>Core</b><i>Home, the capital</i></li>
+            <li style="--c: var(--gold)"><b>Work</b><i>UCI gold · 2</i></li>
+            <li style="--c: var(--uci)"><b>Schools</b><i>UCI blue · 3</i></li>
+            <li style="--c: var(--green)"><b>Builds</b><i>Islamic green · 3</i></li>
+            <li style="--c: var(--trab)"><b>Worlds</b><i>Trabuco blue · 6</i></li>
+          </ul>
+        </div>
+
+        <div class="el-brief-act" id="elBriefAct" hidden>
+          <a class="el-go" id="elGo" href="/">Make the jump to lightspeed <span aria-hidden="true">↗</span></a>
+          <button class="el-clear" id="elClear" type="button" aria-label="Clear target">Clear</button>
+        </div>
+
+        <p class="el-keys"><span class="el-keys-keys"><kbd>←</kbd><kbd>→</kbd> targets · <kbd>Enter</kbd> jump · <kbd>Esc</kbd> clear</span><span class="el-keys-touch">Tap a system to brief it, tap it again to jump.</span></p>
+      </div>
+    </aside>
+
   </div>
 
-  <div class="el-grid">
+  <!-- ═══════════ the galaxy, divided ═══════════
+       Every room on the site, always visible, in plain words, split
+       between the two powers. The Republic is the interfaces: twenty-two worlds,
+       each with its own government, every one the whole site rebuilt inside
+       one story. The Empire is the main site: one design, one capital, every
+       room in its place.
 
-    <!-- ─────────── LEFT ─────────── -->
-    <section class="el-col" data-par="9">
+       This list is the source of the map: data-a is the bearing on the
+       table in degrees (0 is east, 90 is the edge nearest you), data-r how
+       far out from the core (1 is the rim), data-h how high the system
+       floats over the plane, data-grid the square it sits in. data-brief
+       and data-facts are what the briefing reads out; facts are
+       "Label: value" pairs split by "|". Each .el-faction names its power
+       and its crest, and the table colours its territory from them. -->
+  <section class="el-charts" aria-labelledby="elChartsH">
+    <h2 class="el-h" id="elChartsH">The galaxy, divided<span>every room on this site, by allegiance</span></h2>
 
-      <article class="el-panel"><div>
-        <div class="el-h">Operator Manifest</div>
-        <div class="el-name">ABUBAKR<br />ELMALLAH</div>
-        <div class="el-desig">Lead Mobile &amp; Backend Developer · CS @ UC Irvine ’28</div>
-        <div class="el-say" id="elSay"></div>
-      </div></article>
+    <!-- the standoff: the two powers face each other across the frontier -->
+    <div class="el-vs">
+      <a class="el-vs-side el-vs-side--rep" href="#elRepublic">
+        <svg class="el-vs-crest" viewBox="0 0 100 100" aria-hidden="true"><use href="#elCrestRep"/></svg>
+        <span class="el-vs-name">The Galactic Republic</span>
+        <span class="el-vs-n"><b>19</b> interfaces</span>
+      </a>
+      <span class="el-vs-x" aria-hidden="true">VS</span>
+      <a class="el-vs-side el-vs-side--emp" href="#elEmpire">
+        <svg class="el-vs-crest" viewBox="0 0 100 100" aria-hidden="true"><use href="#elCrestEmp"/></svg>
+        <span class="el-vs-name">The Galactic Empire</span>
+        <span class="el-vs-n"><b>15</b> systems</span>
+      </a>
+      <p class="el-vs-bar" role="img" aria-label="Balance of power: 19 interfaces for the Republic, 15 systems for the Empire"><span style="--n: 19"></span><i></i><span style="--n: 15"></span></p>
+    </div>
 
-      <article class="el-panel"><div>
-        <div class="el-h el-h--y">Ship Systems</div>
-        <div class="el-meters">
-          <div>
-            <div class="el-meter-top"><span>Hyperdrive · Swift</span><i>PRIMARY</i></div>
-            <div class="el-bar el-bar--g" style="--v:100%"><i></i></div>
-          </div>
-          <div>
-            <div class="el-meter-top"><span>Navigation · Python · C++ · Java</span><i>SECONDARY</i></div>
-            <div class="el-bar" style="--v:78%"><i></i></div>
-          </div>
-          <div>
-            <div class="el-meter-top"><span>Comms · JavaScript · Bash</span><i>SUPPORT</i></div>
-            <div class="el-bar el-bar--y" style="--v:58%"><i></i></div>
-          </div>
-        </div>
-        <div class="el-rows" style="margin-top:0.9rem">
-          <div class="el-row"><span>Targets</span><span>iOS · iPadOS · watchOS · macOS</span></div>
-          <div class="el-row"><span>Registry</span><span><b data-count="10">0</b> APPS · <b data-count="2">0</b> DROIDS · <b data-count="8">0</b> PERSONAL</span></div>
-          <div class="el-row"><span>Shields</span><span class="ok">NOMINAL</span></div>
-          <div class="el-row"><span>Session</span><span id="elUp">00:00:00</span></div>
-        </div>
-      </div></article>
+    <!-- ─────────── the Republic: the interfaces ─────────── -->
+    <section class="el-faction" id="elRepublic" style="--f: var(--rep); --f-hi: var(--rep-hi)" data-faction="Republic" data-space="Republic space" data-crest="elCrestRep" aria-labelledby="elRepH">
+      <header class="el-fac-h">
+        <svg class="el-fac-crest" viewBox="0 0 100 100" aria-hidden="true"><use href="#elCrestRep"/></svg>
+        <svg class="el-fac-mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#elCrestRep"/></svg>
+        <p class="el-fac-k">The interfaces · member worlds</p>
+        <h3 class="el-fac-name" id="elRepH">The Galactic Republic</h3>
+        <p class="el-fac-p">Twenty-two worlds, each with its own government. Every one of them is the whole site rebuilt inside one story, and the flagship is this war room.</p>
+        <dl class="el-fac-stats">
+          <div><dt>Interfaces</dt><dd>22</dd></div>
+          <div><dt>Stories</dt><dd>20</dd></div>
+          <div><dt>Flagship</dt><dd>This war room</dd></div>
+        </dl>
+      </header>
 
-      <article class="el-panel"><div>
-        <div class="el-h">Sector Charts</div>
-        <!-- every page on the site: the main sections, the two schools, the
-             worlds and their three personal pages, and the other terminals
-             (J.A.R.V.I.S. is the footer's exit) -->
-        <nav class="el-links">
-          <a class="el-link" data-lock href="/">Main Base<em>HOME</em></a>
-          <a class="el-link" data-lock href="/work/">Work<em>UCI</em></a>
-          <a class="el-link" data-lock href="/projects/">Projects<em>ALL</em></a>
-          <a class="el-link" data-lock href="/education/">Education<em>SCHOOLS</em></a>
-          <a class="el-link" data-lock href="/college/">College<em>UCI ’28</em></a>
-          <a class="el-link" data-lock href="/high-school/">High School<em>ARCHIVE</em></a>
-          <a class="el-link" data-lock href="/resume/">Résumé<em>DOC</em></a>
-          <a class="el-link" data-lock href="/worlds/">Worlds<em>70 PAGES</em></a>
-          <a class="el-link" data-lock href="/star-wars/">Star Wars<em>AUREBESH</em></a>
-          <a class="el-link" data-lock href="/al-islam/">Al-Islam<em>ISLAMIC</em></a>
-          <a class="el-link" data-lock href="/travels/">Travels<em>MAP</em></a>
-          <a class="el-link" data-lock href="/accents/">Accents<em>VOICES</em></a>
-          <a class="el-link" data-lock href="/gaming/">Gaming<em>STEAM</em></a>
-          <a class="el-link" data-lock href="/holocron/">Holocron<em>TERMINAL</em></a>
-          <a class="el-link" data-lock href="/marauders-map/">Marauder’s Map<em>TERMINAL</em></a>
-        </nav>
-      </div></article>
+      <section class="el-sector el-sector--rep" style="--c: var(--rep)" data-sector="Interfaces" aria-label="The interfaces">
+        <ul class="el-worlds">
+          <li class="el-flag"><div class="el-world el-here" aria-current="page"><svg class="el-here-mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#elCrestRep"/></svg><span class="el-sys-g">K-21</span><span class="el-sys-t"><em class="el-sys-w">Star Wars · the flagship</em><b>E.L.M.A.L.L.A.H.</b><i>This war room, where every other world is charted</i></span><span class="el-here-k">You are here</span></div></li>
+          <li><a class="el-sys el-world" data-station href="/holocron/" data-a="268" data-r="0.98" data-h="0.1" data-grid="J-1" data-brief="The quiet counterpart to this war room: a Jedi archive, every room filed away." data-facts=""><span class="el-sys-g">J-1</span><span class="el-sys-t"><em class="el-sys-w">Star Wars</em><b>Holocron</b><i>The Jedi Archives</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/jarvis/" data-a="166" data-r="0.72" data-h="0.07" data-grid="D-12" data-brief="Another way into the same site: a Stark heads-up display." data-facts=""><span class="el-sys-g">D-12</span><span class="el-sys-t"><em class="el-sys-w">The Avengers</em><b>J.A.R.V.I.S.</b><i>A Stark heads-up display</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/marauders-map/" data-a="180" data-r="0.96" data-h="0.06" data-grid="A-11" data-brief="The site as parchment and ink, every room a corridor, with footprints." data-facts=""><span class="el-sys-g">A-11</span><span class="el-sys-t"><em class="el-sys-w">Harry Potter</em><b>The Marauder’s Map</b><i>Parchment, ink and footprints</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+        </ul>
 
-      <article class="el-panel"><div>
-        <div class="el-h">Comm Chatter</div>
-        <div class="el-log" id="elLog"></div>
-      </div></article>
-
+        <!-- The rest of the fleet. The Republic has twenty-two systems and all of
+             them at once buried the flagship and the three worlds I actually know
+             by heart, so those four are the sector and the other eighteen open on
+             a button (the owner’s call, 2026-10-04). Not hidden: a <details> that
+             is open with no JS, remembered once you open it, and every system is
+             still in the page for search and for the map, which reads this list. -->
+        <details class="el-more" id="elMore">
+          <summary class="el-more-s">
+            <span class="el-more-k">The rest of the fleet</span>
+            <b class="el-more-n">18 more systems</b>
+            <span class="el-more-a" aria-hidden="true">▾</span>
+          </summary>
+          <ul class="el-worlds el-worlds--more">
+          <li><a class="el-sys el-world" data-station href="/crafting-table/" data-a="202" data-r="0.64" data-h="0.1" data-grid="E-8" data-brief="Every page an inventory slot, every block drawn in the browser." data-facts=""><span class="el-sys-g">E-8</span><span class="el-sys-t"><em class="el-sys-w">Minecraft</em><b>The Crafting Table</b><i>Every page an inventory slot</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/citadel/" data-a="212" data-r="0.96" data-h="0.1" data-grid="B-5" data-brief="The maesters’ archive in Oldtown, every page raised as a keep." data-facts=""><span class="el-sys-g">B-5</span><span class="el-sys-t"><em class="el-sys-w">Game of Thrones</em><b>The Citadel</b><i>Every page raised as a keep</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/compass/" data-side="r" data-a="226" data-r="0.66" data-h="0.12" data-grid="F-6" data-brief="A compass whose needle swings to whichever room on the site you want most." data-facts=""><span class="el-sys-g">F-6</span><span class="el-sys-t"><em class="el-sys-w">Pirates of the Caribbean</em><b>The Compass</b><i>It points to what you want most</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/control-room/" data-a="254" data-r="0.74" data-h="0.07" data-grid="H-3" data-brief="The island map, a 3D file system, live fences and a locked security grid." data-facts=""><span class="el-sys-g">H-3</span><span class="el-sys-t"><em class="el-sys-w">Jurassic Park</em><b>The Control Room</b><i>The island map and live fences</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/upside-down/" data-a="282" data-r="0.62" data-h="0.1" data-grid="L-4" data-brief="Joyce’s alphabet wall spells every page, and a switch turns the house over." data-facts=""><span class="el-sys-g">L-4</span><span class="el-sys-t"><em class="el-sys-w">Stranger Things</em><b>The Upside Down</b><i>Joyce’s alphabet wall</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/starcourt/" data-a="296" data-r="0.86" data-h="0.09" data-grid="M-5" data-brief="Every page a store in Starcourt Mall or a cabinet in the Palace Arcade, and a switch turns Hawkins over." data-facts=""><span class="el-sys-g">M-5</span><span class="el-sys-t"><em class="el-sys-w">Stranger Things</em><b>Starcourt</b><i>The Palace Arcade and the mall</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/spirit-library/" data-a="240" data-r="0.98" data-h="0.13" data-grid="F-2" data-brief="Every page shelved by nation, under the real moon of the night you visit." data-facts=""><span class="el-sys-g">F-2</span><span class="el-sys-t"><em class="el-sys-w">Avatar: The Last Airbender</em><b>The Spirit Library</b><i>Shelved by nation, under the real moon</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/monastery/" data-a="173" data-r="0.84" data-h="0.08" data-grid="C-9" data-brief="The Monastery of Spinjitzu, every room a station on the training course, round a tornado of whichever element you pick." data-facts=""><span class="el-sys-g">C-9</span><span class="el-sys-t"><em class="el-sys-w">Ninjago</em><b>The Monastery</b><i>Every page a station on Wu’s training course</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/wanted/" data-a="191" data-r="0.8" data-h="0.1" data-grid="D-4" data-brief="The sheriff’s board in Valentine, a bill nailed up for every room, and Dead Eye to mark them and fire." data-facts=""><span class="el-sys-g">D-4</span><span class="el-sys-t"><em class="el-sys-w">Red Dead Redemption</em><b>The Wanted Board</b><i>Every page posted as a bounty</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/dunder-mifflin/" data-a="219" data-r="0.82" data-h="0.07" data-grid="G-7" data-brief="The Scranton branch from above, every room a page, with a documentary camera zooming in on whichever one you pick." data-facts=""><span class="el-sys-g">G-7</span><span class="el-sys-t"><em class="el-sys-w">The Office</em><b>Dunder Mifflin</b><i>Every page a room in the Scranton branch</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/springfield/" data-a="233" data-r="0.86" data-h="0.11" data-grid="G-10" data-brief="One street of Springfield under the clouds from the opening titles, every landmark a page, with a chalkboard and a couch-gag TV." data-facts=""><span class="el-sys-g">G-10</span><span class="el-sys-t"><em class="el-sys-w">The Simpsons</em><b>Springfield</b><i>Every page built as a landmark in town</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/vought/" data-a="247" data-r="0.84" data-h="0.09" data-grid="H-8" data-brief="Vought’s glass-and-gold intranet, a lift to every floor, and Butcher’s view: the same page as a redacted case file." data-facts=""><span class="el-sys-g">H-8</span><span class="el-sys-t"><em class="el-sys-w">The Boys</em><b>Vought Tower</b><i>Every page a floor, every rating approved</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/pokedex/" data-a="261" data-r="0.86" data-h="0.08" data-grid="I-5" data-brief="A Kanto Pokédex open on its hinge, every room a numbered entry with its own cry." data-facts=""><span class="el-sys-g">I-5</span><span class="el-sys-t"><em class="el-sys-w">Pokémon</em><b>The Pokédex</b><i>Every page catalogued as an entry</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/batcomputer/" data-a="275" data-r="0.8" data-h="0.12" data-grid="K-3" data-brief="The Batcave console: every page a case on the wall, the signal thrown into live weather over Gotham, and detective mode." data-facts=""><span class="el-sys-g">K-3</span><span class="el-sys-t"><em class="el-sys-w">Batman</em><b>The Batcomputer</b><i>Every page a case on the wall of monitors</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/daily-bugle/" data-a="289" data-r="0.74" data-h="0.1" data-grid="L-9" data-brief="Today’s front page of the Bugle, every room a story in its editor’s indignant voice, and a web shot to whichever one you point at." data-facts=""><span class="el-sys-g">L-9</span><span class="el-sys-t"><em class="el-sys-w">Spider-Man</em><b>The Daily Bugle</b><i>Every page a headline on today’s front page</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/instructions/" data-a="303" data-r="0.9" data-h="0.11" data-grid="M-7" data-brief="The site as the booklet in the box: every page a numbered build step, with the parts it takes." data-facts=""><span class="el-sys-g">M-7</span><span class="el-sys-t"><em class="el-sys-w">LEGO</em><b>The Instruction Booklet</b><i>Every page a numbered build step</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/battle-pass/" data-a="317" data-r="0.82" data-h="0.07" data-grid="N-2" data-brief="Season four, every page a reward tier, and tier one hundred is another whole interface." data-facts=""><span class="el-sys-g">N-2</span><span class="el-sys-t"><em class="el-sys-w">Fortnite</em><b>The Battle Pass</b><i>Every page a reward tier</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/freddys/" data-a="331" data-r="0.88" data-h="0.13" data-grid="O-6" data-brief="One desk, every page a camera feed, and a power meter that drains while you watch them." data-facts=""><span class="el-sys-g">O-6</span><span class="el-sys-t"><em class="el-sys-w">Five Nights at Freddy’s</em><b>The Security Office</b><i>Every page a camera on the wall</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          </ul>
+        </details>
+      </section>
     </section>
 
-    <!-- ─────────── HOLOTABLE ─────────── -->
-    <section class="el-holo-wrap" data-par="18">
+    <!-- ─────────── the Empire: the main site ─────────── -->
+    <section class="el-faction" id="elEmpire" style="--f: var(--emp); --f-hi: var(--emp-hi)" data-faction="Empire" data-space="Imperial space" data-crest="elCrestEmp" aria-labelledby="elEmpH">
+      <header class="el-fac-h">
+        <svg class="el-fac-crest" viewBox="0 0 100 100" aria-hidden="true"><use href="#elCrestEmp"/></svg>
+        <svg class="el-fac-mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#elCrestEmp"/></svg>
+        <p class="el-fac-k">The main site &#183; the capital and its sectors</p>
+        <h3 class="el-fac-name" id="elEmpH">The Galactic Empire</h3>
+        <p class="el-fac-p">One design, one capital, every room in its place. Fifteen systems: the front page at the core, the work, the schools, the builds and the worlds.</p>
+        <dl class="el-fac-stats">
+          <div><dt>Systems</dt><dd>15</dd></div>
+          <div><dt>Sectors</dt><dd>5</dd></div>
+          <div><dt>Capital</dt><dd>Home</dd></div>
+        </dl>
+      </header>
 
-      <div class="el-holo" id="elHolo">
-        <div class="el-floor" aria-hidden="true"></div>
-        <svg class="el-rings" viewBox="0 0 400 400" aria-hidden="true">
-          <g class="r-spin-a"><path class="r-hex" d="M200 10 L364.5 105 L364.5 295 L200 390 L35.5 295 L35.5 105 Z"/></g>
-          <g class="r-spin-b"><path class="r-hex r-dash" d="M200 40 L338.6 120 L338.6 280 L200 360 L61.4 280 L61.4 120 Z"/></g>
-          <circle class="r-tick" cx="200" cy="200" r="176"/>
-          <g class="r-spin-c"><circle class="r-arc" cx="200" cy="200" r="150" stroke-dasharray="150 793"/></g>
-          <g class="r-spin-d"><path class="r-hex r-thin" d="M200 80 L303.9 140 L303.9 260 L200 320 L96.1 260 L96.1 140 Z"/></g>
-          <g class="r-spoke">
-            <path d="M398 200 h-16 M340 340 l-11.3 -11.3 M200 398 v-16 M60 340 l11.3 -11.3
-                     M2 200 h16 M60 60 l11.3 11.3 M200 2 v16 M340 60 l-11.3 11.3"/>
-          </g>
-          <g class="r-label">
-            <text x="200" y="30" text-anchor="middle">01</text>
-            <text x="352" y="118" text-anchor="middle">02</text>
-            <text x="352" y="290" text-anchor="middle">03</text>
-            <text x="200" y="378" text-anchor="middle">04</text>
-            <text x="48" y="290" text-anchor="middle">05</text>
-            <text x="48" y="118" text-anchor="middle">06</text>
-          </g>
-        </svg>
-        <div class="el-plate" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
-        <div class="el-beam" aria-hidden="true"></div>
-        <div class="el-motes" id="elMotes" aria-hidden="true"></div>
-        <div class="el-cube-stage" id="elStage">
-          <div class="el-cube" id="elCube" aria-hidden="true">
-            <span class="f1"><img loading="lazy" decoding="async" src="/assets/img/apps/datapad.jpg" width="512" height="512" alt="" /></span>
-            <span class="f2"><img loading="lazy" decoding="async" src="/assets/img/apps/aurebesh-translator.jpg" width="512" height="512" alt="" /></span>
-            <span class="f3"><img loading="lazy" decoding="async" src="/assets/img/bots/sabacc-droid.png" width="300" height="300" alt="" /></span>
-            <span class="f4"><img loading="lazy" decoding="async" src="/assets/img/bots/aurebesh-droid.jpg" width="512" height="512" alt="" /></span>
-            <span class="f5"><img loading="lazy" decoding="async" src="/assets/img/apps/datapad.jpg" width="512" height="512" alt="" /></span>
-            <span class="f6"><img loading="lazy" decoding="async" src="/assets/img/apps/aurebesh-translator.jpg" width="512" height="512" alt="" /></span>
-          </div>
-          <div class="el-heart" aria-hidden="true"></div>
-          <div class="el-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
-        </div>
-        <div class="el-holo-scan" aria-hidden="true"></div>
-        <div class="el-holo-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <section class="el-sector" style="--c: var(--gold)" data-sector="Core" aria-labelledby="elSecCore">
+          <h4 id="elSecCore"><span class="el-sw" aria-hidden="true"></span>The Core<em>1 system · the capital</em></h4>
+          <ul>
+            <li><a class="el-sys" href="/" data-a="0" data-r="0" data-h="0.2" data-grid="K-11" data-brief="The capital of this galaxy: who I am, what I build and every way into the rest, on one page." data-facts="Base: 33.64°N 117.84°W"><span class="el-sys-g">K-11</span><span class="el-sys-t"><b>Home</b><i>The front page, everything in one place</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          </ul>
+        </section>
+
+        <section class="el-sector" style="--c: var(--gold)" data-sector="Work" aria-labelledby="elSecWork">
+          <h4 id="elSecWork"><span class="el-sw" aria-hidden="true"></span>Work<em>2 systems</em></h4>
+          <ul>
+            <li><a class="el-sys" href="/work/" data-a="88" data-r="0.52" data-h="0.13" data-grid="K-16" data-brief="The work I do on campus, role by role." data-facts="Post: Lead mobile &amp; backend developer, UC Irvine"><span class="el-sys-g">K-16</span><span class="el-sys-t"><b>Work</b><i>Work at UC Irvine</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+            <li><a class="el-sys" href="/resume/" data-a="100" data-r="0.94" data-h="0.08" data-grid="I-20" data-brief="The whole record on one page: roles, school, projects and the tools I build with." data-facts="Languages: TypeScript, JavaScript, Python, SQL, Java, C, C++, Swift, Kotlin, Bash|Frameworks: React, Next.js, Node.js, tRPC, REST APIs, Drizzle ORM, Tailwind CSS, SwiftUI, UIKit"><span class="el-sys-g">I-20</span><span class="el-sys-t"><b>Résumé</b><i>The résumé, on one page</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          </ul>
+        </section>
+
+        <section class="el-sector" style="--c: var(--uci)" data-sector="Schools" aria-labelledby="elSecSchools">
+          <h4 id="elSecSchools"><span class="el-sw" aria-hidden="true"></span>Schools<em>3 systems</em></h4>
+          <ul>
+            <li><a class="el-sys" href="/education/" data-a="136" data-r="0.5" data-h="0.12" data-grid="G-14" data-brief="College and high school together, in one place." data-facts=""><span class="el-sys-g">G-14</span><span class="el-sys-t"><b>Education</b><i>Both schools, side by side</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+            <li><a class="el-sys" href="/college/" data-a="120" data-r="0.86" data-h="0.1" data-grid="F-18" data-brief="Computer Science at UC Irvine, and the apps I build on campus." data-facts="Class: 2028"><span class="el-sys-g">F-18</span><span class="el-sys-t"><b>College</b><i>UC Irvine, Computer Science</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+            <li><a class="el-sys" href="/high-school/" data-a="150" data-r="0.92" data-h="0.07" data-grid="C-15" data-brief="Where it started: the first projects, the coding camps, the flyers and wallpapers, and the years in pictures." data-facts=""><span class="el-sys-g">C-15</span><span class="el-sys-t"><b>High School</b><i>Where it started</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          </ul>
+        </section>
+
+        <section class="el-sector" style="--c: var(--green)" data-sector="Builds" aria-labelledby="elSecBuilds">
+          <h4 id="elSecBuilds"><span class="el-sw" aria-hidden="true"></span>Builds<em>3 systems</em></h4>
+          <ul>
+            <li><a class="el-sys" href="/projects/" data-a="52" data-r="0.46" data-h="0.15" data-grid="M-14" data-brief="Every project, from the first one on: the apps, the bots, the web work and the school projects." data-facts="Fleet: Twelve apps shipped across four platforms"><span class="el-sys-g">M-14</span><span class="el-sys-t"><b>Projects</b><i>Every project</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+            <li><a class="el-sys" href="/star-wars/" data-a="40" data-r="0.9" data-h="0.1" data-grid="Q-16" data-brief="Two apps, two Discord droids and the Star Wars games from high school." data-facts="Datapad: App Store, June 26, 2023; Top 10 of the paid Entertainment chart|Aurebesh Translator: Released October 22, 2024|Droids: Sabacc Droid and Aurebesh Droid, in more than 500 Discord servers"><span class="el-sys-g">Q-16</span><span class="el-sys-t"><b>Star Wars apps</b><i>Datapad, Aurebesh Translator and the droids</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+            <li><a class="el-sys" href="/al-islam/" data-a="70" data-r="0.8" data-h="0.12" data-grid="M-18" data-brief="Three Islamic apps for the Apple platforms, and the awards they won." data-facts="Record: Three Islamic apps, two national awards|Al-Quran: Winner, Apple Swift Student Challenge 2024 (WWDC 2024)"><span class="el-sys-g">M-18</span><span class="el-sys-t"><b>Al-Islam apps</b><i>Al-Islam, Al-Quran and Al-Adhan</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          </ul>
+        </section>
+
+        <section class="el-sector" style="--c: var(--trab)" data-sector="Worlds" aria-labelledby="elSecWorlds">
+          <h4 id="elSecWorlds"><span class="el-sw" aria-hidden="true"></span>Worlds<em>6 systems</em></h4>
+          <ul>
+            <li><a class="el-sys" href="/worlds/" data-a="334" data-r="0.42" data-h="0.14" data-grid="N-9" data-brief="Every world on this site in one place: the stories and the games the rest of it is built around." data-facts="Charted: 71 worlds"><span class="el-sys-g">N-9</span><span class="el-sys-t"><b>Worlds</b><i>All 71 worlds</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+            <li><a class="el-sys" href="/worlds/star-wars/" data-a="300" data-r="0.92" data-h="0.1" data-grid="O-3" data-brief="The galaxy itself: the eras, the prequels, the Clone Wars, Order 66, kyber crystals, a planet atlas and the lines that stuck." data-facts=""><span class="el-sys-g">O-3</span><span class="el-sys-t"><b>Star Wars</b><i>The world page: the galaxy itself</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+            <li><a class="el-sys" href="/lightsabers/" data-a="312" data-r="0.68" data-h="0.07" data-grid="O-5" data-brief="The lightsaber guide: one-button controls, board by board." data-facts=""><span class="el-sys-g">O-5</span><span class="el-sys-t"><b>Lightsabers</b><i>The lightsaber guide</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+            <li><a class="el-sys" href="/travels/" data-a="340" data-r="0.97" data-h="0.09" data-grid="T-7" data-brief="Where I have been, trip by trip, by plane and by road." data-facts="Trips: 35, from 2015 to 2026|By plane: 19|By road: 16"><span class="el-sys-g">T-7</span><span class="el-sys-t"><b>Travels</b><i>Where I have been</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+            <li><a class="el-sys" href="/accents/" data-a="356" data-r="0.74" data-h="0.12" data-grid="R-10" data-brief="Accents and impersonations, in the order I learned them." data-facts="Accents: 19|Impersonations: 4"><span class="el-sys-g">R-10</span><span class="el-sys-t"><b>Accents</b><i>Accents &amp; impersonations</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+            <li><a class="el-sys" href="/gaming/" data-a="14" data-r="0.96" data-h="0.08" data-grid="T-13" data-brief="Every game I have played, the Steam Replays and the completion shelves." data-facts="Steam achievements: 747, over four Steam Replays, 2022 to 2025"><span class="el-sys-g">T-13</span><span class="el-sys-t"><b>Gaming</b><i>Every game I have played</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          </ul>
+        </section>
+
       </div>
-
-      <div class="el-holo-cap">
-        <b id="elMark" data-glitch="E.L.M.A.L.L.A.H.">E.L.M.A.L.L.A.H.</b>
-        <span>Embedded Logic Matrix</span>
-        <em>Adaptive Learning, Language &amp; Archive Hub</em>
-      </div>
-
-      <div class="el-strip">
-        <div class="el-strip-head"><span>Holocron Schematic · Live Trace</span><span>▲ STABLE</span></div>
-        <canvas id="elScope"></canvas>
-      </div>
-
     </section>
 
-    <!-- ─────────── RIGHT ─────────── -->
-    <section class="el-col" data-par="9">
+  </section>
 
-      <!-- what the name says it does, each part thinking: Logic, Learning,
-           Language, Archive -->
-      <article class="el-panel"><div>
-        <div class="el-h">Thought Matrix</div>
-        <div class="el-think">
-          <figure><canvas data-orb="solving" data-orb-size="fit" data-orb-ink="#5fa3ec" aria-hidden="true"></canvas><figcaption>Logic<i>Solving</i></figcaption></figure>
-          <figure><canvas data-orb="shaping" data-orb-size="fit" data-orb-ink="#f5c63c" aria-hidden="true"></canvas><figcaption>Learning<i>Adapting</i></figcaption></figure>
-          <figure><canvas data-orb="composing" data-orb-size="fit" data-orb-ink="#f5c63c" aria-hidden="true"></canvas><figcaption>Language<i>Composing</i></figcaption></figure>
-          <figure><canvas data-orb="searching" data-orb-size="fit" data-orb-ink="#5fa3ec" aria-hidden="true"></canvas><figcaption>Archive<i>Searching</i></figcaption></figure>
-        </div>
-      </div></article>
+  <!-- ═══════════ the operator ═══════════ -->
+  <section class="el-dossier" aria-labelledby="elDossierH">
+    <h2 class="el-h" id="elDossierH">Operator dossier<span>as the briefing has it</span></h2>
+    <dl class="el-dl">
+      <div><dt>Operator</dt><dd>Abubakr Elmallah</dd></div>
+      <div><dt>Post</dt><dd>Lead mobile &amp; backend developer, UC Irvine</dd></div>
+      <div><dt>Training</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
+      <div><dt>Fleet</dt><dd>Twelve apps shipped across four platforms</dd></div>
+      <div><dt>Commendation</dt><dd>Winner, Apple Swift Student Challenge 2024, with Al-Quran (WWDC 2024)</dd></div>
+      <div><dt>Islamic apps</dt><dd>Al-Islam, Al-Quran and Al-Adhan, with two national awards</dd></div>
+      <div><dt>Droids</dt><dd>Sabacc Droid and Aurebesh Droid, in more than 500 Discord servers</dd></div>
+      <div><dt>Base</dt><dd>33.64°N 117.84°W</dd></div>
+      <div class="el-dl-wide"><dt>Languages</dt><dd>TypeScript · JavaScript · Python · SQL · Java · C · C++ · Swift · Kotlin · Bash</dd></div>
+      <div class="el-dl-wide"><dt>Frameworks</dt><dd>React · Next.js · Node.js · tRPC · REST APIs · Drizzle ORM · Tailwind CSS · SwiftUI · UIKit</dd></div>
+    </dl>
+    <nav class="el-comms" aria-label="Open a channel">
+      <a href="mailto:ammelmallah@gmail.com">Transmit<i>email</i></a>
+      <a href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener">Source vault<i>GitHub</i></a>
+      <a href="https://www.linkedin.com/in/abubakr-elmallah" target="_blank" rel="noopener">Network<i>LinkedIn</i></a>
+    </nav>
+  </section>
 
-      <article class="el-panel"><div>
-        <div class="el-h">Chronometer</div>
-        <div class="el-rows">
-          <div class="el-row"><span>Local</span><span id="elDate">···</span></div>
-          <div class="el-row"><span>Hijri</span><span id="elHijri">···</span></div>
-          <div class="el-row"><span>Base</span><span>IRVINE, CALIFORNIA</span></div>
-          <div class="el-row"><span>Status</span><span class="ok">OPEN TO INTERNSHIPS</span></div>
-        </div>
-        <div class="el-scan" style="margin-top:0.9rem">
-          <svg viewBox="0 0 200 200" aria-hidden="true">
-            <circle class="s-line" cx="100" cy="100" r="98"/>
-            <circle class="s-hex" cx="100" cy="100" r="72"/>
-            <circle class="s-hex" cx="100" cy="100" r="46"/>
-            <circle class="s-hex" cx="100" cy="100" r="20"/>
-            <path class="s-hex" d="M100 2 v196 M2 100 h196"/>
-            <path class="s-line" d="M100 26 l64 37 v74 l-64 37 -64 -37 v-74z"/>
-            <circle class="s-blip" cx="132" cy="72" r="3"/>
-            <circle class="s-blip--g" cx="70" cy="124" r="3"/>
-            <circle class="s-blip" cx="112" cy="140" r="2.5"/>
-            <circle class="s-blip--g" cx="62" cy="78" r="2"/>
-          </svg>
-          <div class="el-scan-sweep"></div>
-        </div>
-      </div></article>
-
-      <article class="el-panel"><div>
-        <div class="el-h el-h--y">Personal Fleet</div>
-        <div class="el-craft">
-          <a class="el-craft-row" href="/star-wars/" data-lock>
-            <img loading="lazy" decoding="async" src="/assets/img/apps/aurebesh-translator.jpg" width="512" height="512" alt="" />
-            <span class="el-craft-b"><span class="el-craft-t">Aurebesh Translator</span><span class="el-craft-m">2024 · Free · iPhone, iPad, Mac</span></span>
-            <span class="el-craft-s">ACTIVE</span>
-          </a>
-          <a class="el-craft-row" href="/star-wars/" data-lock>
-            <img loading="lazy" decoding="async" src="/assets/img/apps/datapad.jpg" width="512" height="512" alt="" />
-            <span class="el-craft-b"><span class="el-craft-t">Datapad · Aurebesh Translator</span><span class="el-craft-m">2023 · Top 10 · Entertainment</span></span>
-            <span class="el-craft-s">ACTIVE</span>
-          </a>
-          <a class="el-craft-row" href="/star-wars/" data-lock>
-            <img loading="lazy" decoding="async" src="/assets/img/bots/sabacc-droid.png" width="300" height="300" alt="" />
-            <span class="el-craft-b"><span class="el-craft-t">Sabacc Droid</span><span class="el-craft-m">2024 · Discord · Python</span></span>
-            <span class="el-craft-s">ACTIVE</span>
-          </a>
-          <a class="el-craft-row" href="/star-wars/" data-lock>
-            <img loading="lazy" decoding="async" src="/assets/img/bots/aurebesh-droid.jpg" width="512" height="512" alt="" />
-            <span class="el-craft-b"><span class="el-craft-t">Aurebesh Droid</span><span class="el-craft-m">2025 · Discord · C++</span></span>
-            <span class="el-craft-s">ACTIVE</span>
-          </a>
-          <a class="el-craft-row is-off" href="/projects/" data-lock>
-            <img loading="lazy" decoding="async" src="/assets/img/apps/icoi.jpg" width="512" height="512" alt="" />
-            <span class="el-craft-b"><span class="el-craft-t">Islamic Center of Irvine</span><span class="el-craft-m">2023 · Decommissioned May 2026</span></span>
-            <span class="el-craft-s off">OFFLINE</span>
-          </a>
-          <a class="el-craft-row" href="/al-islam/" data-lock>
-            <img loading="lazy" decoding="async" src="/assets/img/apps/al-adhan.jpg" width="512" height="512" alt="" />
-            <span class="el-craft-b"><span class="el-craft-t">Al-Adhan</span><span class="el-craft-m">2023 · Prayer times · qibla</span></span>
-            <span class="el-craft-s">ACTIVE</span>
-          </a>
-          <a class="el-craft-row" href="/al-islam/" data-lock>
-            <img loading="lazy" decoding="async" src="/assets/img/apps/al-islam.jpg" width="512" height="512" alt="" />
-            <span class="el-craft-b"><span class="el-craft-t">Al-Islam</span><span class="el-craft-m">2023 · Congressional ’23</span></span>
-            <span class="el-craft-s">ACTIVE</span>
-          </a>
-          <a class="el-craft-row" href="/al-islam/" data-lock>
-            <img loading="lazy" decoding="async" src="/assets/img/apps/al-quran.jpg" width="512" height="512" alt="" />
-            <span class="el-craft-b"><span class="el-craft-t">Al-Quran</span><span class="el-craft-m">2023 · Swift Student ’24</span></span>
-            <span class="el-craft-s">ACTIVE</span>
-          </a>
-        </div>
-      </div></article>
-
-      <article class="el-panel"><div>
-        <div class="el-h el-h--y">Commendations</div>
-        <div class="el-rows">
-          <div class="el-row"><span>Congressional</span><span class="warn">APP CHALLENGE ’23</span></div>
-          <div class="el-row"><span>Apple</span><span class="warn">SWIFT STUDENT ’24</span></div>
-          <div class="el-row"><span>App Store</span><span>TOP 10 · ENTERTAINMENT</span></div>
-          <div class="el-row"><span>WWDC</span><span>APPLE PARK ’24</span></div>
-        </div>
-        <nav class="el-links" style="margin-top:0.8rem">
-          <a class="el-link" data-lock href="mailto:ammelmallah@gmail.com">Transmit<em>MAIL</em></a>
-          <a class="el-link" data-lock href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener">Source Vault<em>GITHUB</em></a>
-          <a class="el-link" data-lock href="https://www.linkedin.com/in/abubakr-elmallah" target="_blank" rel="noopener">Network<em>LINKEDIN</em></a>
-        </nav>
-      </div></article>
-
-    </section>
-  </div>
-
-  <!-- ═══════════ bottom ═══════════ -->
-  <footer class="el-bottom">
-    <a class="el-exit" href="/">◄ RETURN TO BASE</a>
-    <div class="el-marquee" aria-hidden="true"><div>
-      <span><b>E.L.M.A.L.L.A.H.</b> EMBEDDED LOGIC MATRIX · ADAPTIVE LEARNING, LANGUAGE &amp; ARCHIVE HUB</span>
-      <span><b>OPERATOR</b> ABUBAKR ELMALLAH · UC IRVINE ’28</span>
-      <span><b>REGISTRY</b> 10 APPS · 2 DISCORD DROIDS · 4 APPLE PLATFORMS</span>
-      <span><b>COMMENDATIONS</b> CONGRESSIONAL APP CHALLENGE ’23 · SWIFT STUDENT CHALLENGE ’24</span>
-      <span><b>E.L.M.A.L.L.A.H.</b> EMBEDDED LOGIC MATRIX · ADAPTIVE LEARNING, LANGUAGE &amp; ARCHIVE HUB</span>
-      <span><b>OPERATOR</b> ABUBAKR ELMALLAH · UC IRVINE ’28</span>
-      <span><b>REGISTRY</b> 10 APPS · 2 DISCORD DROIDS · 4 APPLE PLATFORMS</span>
-      <span><b>COMMENDATIONS</b> CONGRESSIONAL APP CHALLENGE ’23 · SWIFT STUDENT CHALLENGE ’24</span>
-    </div></div>
-    <a class="el-exit el-exit--alt" href="/jarvis/">J.A.R.V.I.S. ►</a>
+  <footer class="el-foot">
+    <p class="el-quote">“Then man your ships, and may the Force be with you.”<span>General Dodonna, the briefing on Yavin 4</span></p>
+    <a class="el-foot-exit" href="/">Return to base</a>
+    <p class="el-note">The stardate counts in ABY, years after the Battle of Yavin, starting from May 25, 1977, the day A New Hope opened. The map, the table and the jump are drawn in the browser, with no image files.</p>
   </footer>
+
+</main>
+
+<!-- ═══════════ the jump ═══════════
+     The stars stretch into lines, a flash, then the blue of hyperspace,
+     drawn on this canvas by elmallah.js while the next page loads. Any key
+     or click skips it; Esc aborts it; with reduced motion it never plays. -->
+<div class="el-jump" id="elJump" aria-hidden="true">
+  <canvas id="elJumpSky"></canvas>
+  <div class="el-jump-hud">
+    <!-- the crest of the space you are jumping into, faint behind it all -->
+    <svg class="el-jump-crest" viewBox="0 0 100 100" aria-hidden="true"><use id="elJumpCrest" href="#elCrestRep"/></svg>
+    <!-- the navicomputer, solving the jump -->
+    <canvas class="el-jump-orb" data-orb="solving" data-orb-size="48" data-orb-ink="#cfe6ff" aria-hidden="true"></canvas>
+    <p class="el-jump-k">Jumping to lightspeed<span id="elJumpSpace"></span></p>
+    <p class="el-jump-to" id="elJumpTo">···</p>
+    <p class="el-jump-skip">Any key or tap skips · Esc aborts</p>
+  </div>
 </div>
+<p class="vh" id="elSay" role="status"></p>
 
 <script src="{% include v.html f='/assets/js/elmallah.js' %}"></script>
 {% include analytics.html %}

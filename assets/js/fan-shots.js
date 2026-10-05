@@ -364,6 +364,32 @@ window.FAN_SHOTS = {
       desc: 'The Badlion Client profile for MasterThingW: 211.0 hours in the client, joined 3 April 2020, and every name the account has carried, from Wizard_Potter, Evil_Dark_Lord, A_Ollivander and Gold_Wizard through MasterThing_YT, EagleThing and TheAbubakrAbu, and back to MasterThingW on 24 March 2025.',
       meta: 'badlion.net/u/MasterThingW', alt: 'The Badlion Client profile page for MasterThingW, with a hooded skin, 211 hours of play time and thirteen names in its history' },
 
+    /* the skin on that profile, rendered three ways under its own title card.
+       Not in the library either: they came from iCloud's Minecraft folder. */
+    'ender-jedi-front': { src: 'minecraft/ender-jedi/front.jpg', title: 'The Ender Jedi',
+      desc: 'My skin: an Enderman’s head, black with the purple eyes, on a Jedi’s brown robe and tan tunic, with black Enderman hands out of the sleeves.',
+      meta: 'Skin render · MasterThingW', alt: 'A Minecraft player with an Enderman head and Jedi robes standing on grass, under the title The Ender Jedi' },
+    'ender-jedi-side': { src: 'minecraft/ender-jedi/side.jpg', title: 'From the side',
+      desc: 'The robe from an angle: the cloak open over the tunic and belt, and the boots at the bottom.',
+      meta: 'Skin render', alt: 'The Ender Jedi skin turned to one side in a grassy Minecraft field' },
+    'ender-jedi-head-turned': { src: 'minecraft/ender-jedi/head-turned.jpg', title: 'Looking over',
+      desc: 'Head turned, the way an Enderman looks at you right before it teleports.',
+      meta: 'Skin render', alt: 'The Ender Jedi skin with its Enderman head turned sideways' },
+
+    /* ── Lunar Client Wrapped ── the client's own year-end card, one per
+       year, as Lunar sent them. Every figure is read off the card. The
+       account is TheAbubakrAbu on all three, which is what it was called
+       from 2021 to 2025. */
+    'lunar-2022': { src: 'minecraft/lunar/2022.jpg', title: 'Lunar Client, 2022',
+      desc: '46.1 hours in the client, 191 launches (the top 15.4% of players), 1.12 as the favourite version and Hypixel as the favourite server, joined 26 times. The longest streak was four days, 19 to 22 November.',
+      meta: '#LunarClientWrapped \u00b7 2022', alt: 'Lunar Client Wrapped 2022 for TheAbubakrAbu: 46.1 hours, 191 launches, favourite server Hypixel' },
+    'lunar-2023': { src: 'minecraft/lunar/2023.jpg', title: 'Lunar Client, 2023',
+      desc: '27.5 hours, but 244 launches, the top 8.99%. 1.19 was the version and Imagine Fun took over as the server, joined 22 times. A three-day streak, 6 to 8 April.',
+      meta: '#LunarClientWrapped \u00b7 2023', alt: 'Lunar Client Wrapped 2023 for TheAbubakrAbu: 27.5 hours, 244 launches, favourite server ImagineFun' },
+    'lunar-2024': { src: 'minecraft/lunar/2024.jpg', title: 'Lunar Client, 2024',
+      desc: 'Seventeen hours and 57 launches, and Imagine Fun joined 559 times, which is what a Disneyland server does to a year. 1.20, and a three-day streak from 18 to 20 December.',
+      meta: '#LunarClientWrapped \u00b7 2024', alt: 'Lunar Client Wrapped 2024 for TheAbubakrAbu: 17 hours, 57 launches, ImagineFun joined 559 times' },
+
     /* ── the shelves shown on two pages ── */
     'lego-star-wars-hundred': { src: 'star-wars/lego-hundred-percent.jpg', title: 'The LEGO Star Wars run',
       desc: 'The Complete Saga at 26 hours 40. The Clone Wars at 22 hours 05. The Force Awakens with every planet on the galaxy map at 100. The Skywalker Saga with all 1,200 Kyber bricks, 380 characters and 135 ships.',
@@ -525,6 +551,14 @@ window.FAN_SHOTS = {
       desc: 'Eleven lines of Python on a Windows laptop, in IDLE, run five times in a row and landing on a different one of the five names each time. It picks a member of the Oi High Council at random and announces who the smartest person in the Oi Order is; when it lands on Oi_MasterThingW it prints THE SHELL HAS SPOKEN, and when it lands on anybody else it prints THE SHELL HAS MADE A MISTAKE and names me instead. Python 3.8.5, saved as The Oi Order.py.',
       meta: 'random.choice \u00b7 five names', alt: 'A Python script open in IDLE beside a shell that has run it six times' },
 
+    /* ── the faces on my accounts ── */
+    'xbox-avatar': { src: 'gaming/accounts/xbox-avatar.jpg', title: 'The Xbox avatar',
+      desc: 'A cowboy hat, blue shades, a plaid shirt and a long brown coat, on the green screen Xbox renders an avatar against.',
+      meta: 'Xbox', alt: 'An Xbox avatar in a cowboy hat, blue sunglasses and a long brown coat on a green background' },
+    'game-avatar': { src: 'gaming/accounts/game.jpg', title: 'The gaming picture',
+      desc: 'Lit by nothing but the saber: the picture on my gaming accounts.',
+      meta: 'Profile picture', alt: 'Abubakr in the dark, lit only by a white lightsaber held upright in front of him' },
+
     /* ── the four Steam Replays ──
        Steam publishes one of these per year in December and it expires with
        the page; these are my own captures of mine, all four taken in one
@@ -540,7 +574,7 @@ window.FAN_SHOTS = {
       desc: '132 achievements against a community median of 21, 23 games against a median of 5, and a 16-day streak against a median of 10.',
       meta: '2022 · How You Compare', alt: 'Steam Replay 2022 comparison bars against the Steam community medians' },
     'steam-2022-vr': { src: 'gaming/steam/2022-vr.jpg', title: 'The one VR year',
-      desc: 'Four VR games and eight sessions, one percent of the playtime: Blade & Sorcery took 85% of that, Car Parking Simulator 13%, and Virtual Vacations and Broomball the rest. The only year the Replay lists a headset among the devices.',
+      desc: 'Four VR games and eight sessions, one percent of the playtime: Blade & Sorcery took 85% of that, Car Parking Simulator 13%, and Virtual Vacations and Broomball the rest. The only year the Replay lists a headset among the devices, because 2022 is the one year I put real weight on VR through Steam. Before it I still played VR, just mostly on the Meta Quest by itself, without Steam Link connecting it to my PC.',
       meta: '2022 · Windows, macOS and VR', alt: 'Steam Replay 2022 VR card: four games, eight sessions, one percent of playtime' },
     'steam-2023': { src: 'gaming/steam/2023.jpg', title: 'Steam Replay 2023',
       desc: '40 games, 28 of them new, and 96 achievements across 14. Jedi: Survivor took 38% of the year over 144 sessions, which is more sessions than any other game in these four years; Hogwarts Legacy 13% over 22; LEGO Pirates of the Caribbean 12% over 13.',
@@ -665,7 +699,7 @@ window.FAN_SHOTS = {
   /* ── when every frame was taken ─────────────────────────────────────────
      One row per picture the site serves, keyed by the same path as `src`
      above, and complete: assets/img/franchises/ and this table have exactly
-     the same 299 entries, so no screenshot on this site is undated. Read by
+     the same 310 entries, so no screenshot on this site is undated. Read by
      fanpage.js (the caption under every screenshot) and by gaming-data.js
      (the same, for the frames that have no row above), through when() below.
 
@@ -693,7 +727,7 @@ window.FAN_SHOTS = {
      overwrote the creation dates of about 900 files in the library years
      before any of this, and a copy date is an upper bound: the picture is
      older than that, by an unknown amount, and the library has no second
-     source for it. Ninety of the frames here are in that state and say so
+     source for it. 118 of the frames here are in that state and say so
      rather than printing a date that is really the day a folder was moved.
      One test does most of that work: a batch re-encode leaves a
      "Compressed by jpeg-recompress" comment in the file, so a 2025-09-28 file
@@ -719,6 +753,10 @@ window.FAN_SHOTS = {
     'gaming/steam/2022-vs-steam.jpg':                              '2025-12-27',
     'gaming/steam/2022.jpg':                                       '2025-12-27',
     'gaming/steam/2023-vs-steam.jpg':                              '2025-12-27',
+    /* the file's own birth; the folder it came from was copied in 2025 but
+       this one kept its 2017 date */
+    'gaming/accounts/xbox-avatar.jpg':                             '<2017-03-19',
+    'gaming/accounts/game.jpg':                                    '<2025-07-28',
     'gaming/steam/2023.jpg':                                       '2025-12-27',
     'gaming/steam/2024-vs-steam.jpg':                              '2025-12-27',
     'gaming/steam/2024.jpg':                                       '2025-12-27',
@@ -786,6 +824,11 @@ window.FAN_SHOTS = {
     'lego/complete-saga/pause-screen.jpg':                         '2026-08-11 13:45',
     'lego/complete-saga/start-screen.jpg':                         '2026-08-11 13:47',
     'lego/complete-saga/stud-fountain.jpg':                        '<2023-10-14',
+    /* the iPhone run: the achievements card says 24 October 2021, but that
+       is when they unlocked, and the files only carry the 2023 batch date */
+    'lego/complete-saga/ios-100-percent.jpg':                      '<2023-10-14',
+    'lego/complete-saga/ios-achievements.jpg':                     '<2023-10-14',
+    'lego/complete-saga/ios-stud-fountain.jpg':                    '<2023-10-14',
 
     'lego/force-awakens/banner.jpg':                               '<2023-10-14',
     'lego/force-awakens/characters.jpg':                           '<2023-10-14',
@@ -908,6 +951,18 @@ window.FAN_SHOTS = {
        comment), so its 2025-09-28 creation date is only an upper bound; the
        page it shows says Last Online 14/06/2025, so it is later than that */
     'minecraft/badlion/profile.jpg':                               '<2025-09-28',
+
+    /* the jpeg-recompress comment again, so the 2024-04-22 birth of all
+       three is an upper bound */
+    'minecraft/ender-jedi/front.jpg':                              '<2024-04-22',
+    'minecraft/ender-jedi/side.jpg':                               '<2024-04-22',
+    'minecraft/ender-jedi/head-turned.jpg':                        '<2024-04-22',
+
+    /* re-encodes (the jpeg-recompress comment again), all three born on
+       2025-07-28; each card is Lunar's own end-of-year summary */
+    'minecraft/lunar/2022.jpg':                                    '<2025-07-28',
+    'minecraft/lunar/2023.jpg':                                    '<2025-07-28',
+    'minecraft/lunar/2024.jpg':                                    '<2025-07-28',
 
     'minecraft/imagine-fun/2025-05-27-2250-halfway.jpg':           '2025-05-27 22:50',
     'minecraft/imagine-fun/2025-07-22-0203-ride-log.jpg':          '2025-07-22 02:03',

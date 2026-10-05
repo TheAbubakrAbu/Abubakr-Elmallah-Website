@@ -1,0 +1,299 @@
+---
+permalink: /dunder-mifflin/
+title: "Dunder Mifflin · Abubakr Elmallah"
+description: "Dunder Mifflin: an Office interface for Abubakr Elmallah's portfolio. The Scranton branch from above, every page a room, and a documentary camera on the floor."
+theme: "#1d3766"
+fonts: "family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,800;0,900;1,400;1,600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Caveat:wght@500;700"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/dunder-mifflin.css' %}" />
+</head>
+<body class="dm" id="dm">
+
+<!-- the drop ceiling and the fluorescent tubes in it: a grid of tiles over
+     the whole page, and two cold strips of light that hum very slightly -->
+<div class="dm-ceiling" aria-hidden="true">
+  <span class="dm-tiles"></span>
+  <span class="dm-tube dm-tube--a"></span>
+  <span class="dm-tube dm-tube--b"></span>
+</div>
+
+<!-- the intranet's chrome, circa 2005: a navy title bar with the way out
+     and the system clock, then the menu strip under it. The menu items are
+     real links to the four sections below. -->
+<header class="dm-top">
+  <div class="dm-titlebar">
+    <a class="dm-exit" href="/" title="Back to the main site">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the branch</span>
+    </a>
+    <span class="dm-top-mid">DMI Intranet · Scranton Branch</span>
+    <!-- the tray clock, from your clock (dunder-mifflin.js) -->
+    <span class="dm-tray"><span class="dm-tray-dot" aria-hidden="true"></span><span id="dmClock">Business hours</span></span>
+  </div>
+  <nav class="dm-menu" aria-label="Intranet">
+    <a href="#dmFloor">Floor plan</a>
+    <a href="#dmFile">Personnel</a>
+    <a href="#dmDundies">The Dundies</a>
+    <a href="#dmDir">Branch directory</a>
+  </nav>
+</header>
+
+<main class="dm-main">
+
+  <!-- ─────────── the welcome page ───────────
+       The wordmark is set in type here (Libre Franklin at its heaviest,
+       tracked out), not the show's logo. The memo under it is the intranet's
+       pinned notice, typed in Courier the way every memo in the building is. -->
+  <section class="dm-hero">
+    <div class="dm-brand">
+      <p class="dm-kicker">Welcome to the intranet</p>
+      <h1 class="dm-title">Dunder Mifflin</h1>
+      <p class="dm-title-sub">Paper Company, Inc. · Scranton Branch</p>
+    </div>
+    <div class="dm-memo">
+      <p class="dm-memo-h">Memorandum</p>
+      <dl class="dm-memo-head">
+        <div><dt>To</dt><dd>All visitors</dd></div>
+        <div><dt>From</dt><dd>Reception</dd></div>
+        <div><dt>Re</dt><dd>Where everything is</dd></div>
+      </dl>
+      <p>Every room on this site is on one floor of a mid-size paper company in Scranton. There is a documentary crew on the floor: point at a room, or tab to it, and the camera finds the shot. Leave the camera alone and it wanders off for B-roll.</p>
+      <p class="dm-memo-sig">Thank you.</p>
+    </div>
+  </section>
+
+  <!-- ─────────── the floor ─────────── -->
+  <section class="dm-pane dm-floor" id="dmFloor" aria-labelledby="dmFloorH">
+    <div class="dm-pane-bar">
+      <canvas class="dm-think" data-orb="searching" data-orb-size="20" data-orb-ink="#2559a8" aria-hidden="true"></canvas>
+      <h2 class="dm-h" id="dmFloorH">The floor plan<span>every page on the site, as a room in the branch</span></h2>
+      <span class="dm-winbtns" aria-hidden="true"><i></i><i></i><i></i></span>
+    </div>
+
+    <div class="dm-floor-body">
+      <!-- The camera: the floor plan drawn from above in SVG, seen through a
+           documentary viewfinder. dunder-mifflin.js moves the viewBox, so
+           the shot pans and zooms onto a room the way the crew's camera
+           snaps onto a face. The plan is for the eye and the mouse; the
+           seating chart beside it is the real list, so the plan is hidden
+           from screen readers and out of the tab order. On a phone the
+           camera stays pinned at the top while the chart scrolls under it,
+           and cuts to whichever room is in the middle of the screen. -->
+      <div class="dm-camwrap">
+        <div class="dm-cam" id="dmCam">
+<!-- PLAN -->
+<svg class="dm-plan" id="dmPlan" viewBox="-8 0 1216 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+<defs>
+  <pattern id="dmTile" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#e3e1da"/><path d="M0 0H16V16" fill="none" stroke="#c9c6bc" stroke-width="1"/></pattern>
+  <pattern id="dmCarpet" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#b7bec8"/><circle cx="2" cy="2" r=".8" fill="#a9b1bc"/><circle cx="6" cy="6" r=".8" fill="#c3c9d1"/></pattern>
+  <pattern id="dmConcrete" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#b8b3a8"/><path d="M0 0H40V40" fill="none" stroke="#a8a297" stroke-width="1"/><circle cx="13" cy="21" r="1" fill="#a39d91"/><circle cx="31" cy="8" r=".8" fill="#c4bfb4"/></pattern>
+</defs>
+<rect x="-400" y="-300" width="2000" height="1400" fill="#d6d3ca"/>
+<text class="dm-plan-note" x="178" y="14">Suite 200 · second floor</text>
+<text class="dm-plan-note" x="178" y="503">Warehouse · ground floor</text>
+<text class="dm-plan-note" x="1036" y="14">Off-site</text>
+<rect class="dm-shell-floor" x="170" y="20" width="840" height="460" fill="url(#dmCarpet)"/>
+<rect class="dm-shell-floor" x="170" y="510" width="840" height="230" fill="url(#dmConcrete)"/>
+<a class="dm-r dm-r--lot" href="/travels/" data-room="lot" tabindex="-1"><rect class="dm-r-hit" x="10" y="20" width="140" height="720"/><rect class="dm-r-lit" x="10" y="20" width="140" height="720"/><path class="dm-stall" d="M20 40H140"/><path class="dm-stall" d="M20 100H140"/><path class="dm-stall" d="M20 160H140"/><path class="dm-stall" d="M20 220H140"/><path class="dm-stall" d="M20 280H140"/><path class="dm-stall" d="M20 340H140"/><path class="dm-stall" d="M20 400H140"/><path class="dm-stall" d="M20 460H140"/><path class="dm-stall" d="M20 520H140"/><path class="dm-stall" d="M20 580H140"/><g class="dm-car"><rect x="34" y="110" width="90" height="40" rx="9" fill="#b6bcc4"/><rect class="dm-car-glass" x="92" y="114" width="16" height="32" rx="3"/><rect class="dm-car-glass" x="46" y="114" width="12" height="32" rx="3"/></g><g class="dm-car"><rect x="34" y="170" width="90" height="40" rx="9" fill="#7a2f2f"/><rect class="dm-car-glass" x="92" y="174" width="16" height="32" rx="3"/><rect class="dm-car-glass" x="46" y="174" width="12" height="32" rx="3"/></g><g class="dm-car"><rect x="34" y="290" width="90" height="40" rx="9" fill="#2f4a6b"/><rect class="dm-car-glass" x="92" y="294" width="16" height="32" rx="3"/><rect class="dm-car-glass" x="46" y="294" width="12" height="32" rx="3"/></g><g class="dm-car"><rect x="34" y="350" width="90" height="40" rx="9" fill="#c9c3b0"/><rect class="dm-car-glass" x="92" y="354" width="16" height="32" rx="3"/><rect class="dm-car-glass" x="46" y="354" width="12" height="32" rx="3"/></g><g class="dm-car"><rect x="34" y="470" width="90" height="40" rx="9" fill="#3e5a3a"/><rect class="dm-car-glass" x="92" y="474" width="16" height="32" rx="3"/><rect class="dm-car-glass" x="46" y="474" width="12" height="32" rx="3"/></g><g class="dm-car"><rect x="34" y="530" width="90" height="40" rx="9" fill="#5c5f66"/><rect class="dm-car-glass" x="92" y="534" width="16" height="32" rx="3"/><rect class="dm-car-glass" x="46" y="534" width="12" height="32" rx="3"/></g><text class="dm-r-t dm-r-t--sm" x="80" y="686" text-anchor="middle">The Parking Lot</text><text class="dm-r-s" x="80" y="703" text-anchor="middle">travels</text></a>
+<a class="dm-r" href="/al-islam/" data-room="roof" tabindex="-1"><rect class="dm-r-hit" x="170" y="20" width="90" height="130"/><rect class="dm-r-lit" x="170" y="20" width="90" height="130"/><path class="dm-step" d="M184 76H246"/><path class="dm-step" d="M184 84H246"/><path class="dm-step" d="M184 92H246"/><path class="dm-step" d="M184 100H246"/><path class="dm-step" d="M184 108H246"/><path class="dm-step" d="M184 116H246"/><path class="dm-step" d="M184 124H246"/><path class="dm-step" d="M184 132H246"/><path class="dm-step" d="M184 140H246"/><path class="dm-stair-arrow" d="M215 140V84M207 94L215 82L223 94"/><text class="dm-r-t dm-r-t--sm" x="182" y="46" text-anchor="start">The Roof</text><text class="dm-r-s" x="182" y="63" text-anchor="start">Al-Islam</text></a>
+<g class="dm-deco"><rect class="dm-deco-floor" x="170" y="150" width="90" height="80"/><rect class="dm-lift" x="190" y="176" width="50" height="44" rx="2"/><path class="dm-lift-gap" d="M215 176V220"/><text class="dm-deco-t" x="180" y="170">Elevator</text></g>
+<g class="dm-deco"><rect class="dm-deco-floor" x="170" y="230" width="90" height="80"/><rect class="dm-desk" x="180" y="262" width="70" height="12"/><rect class="dm-desk" x="180" y="282" width="70" height="12"/><rect class="dm-paper" x="186" y="263" width="14" height="10"/><rect class="dm-paper" x="204" y="263" width="14" height="10"/><rect class="dm-paper" x="222" y="283" width="14" height="10"/><text class="dm-deco-t" x="180" y="250">Supplies</text></g>
+<g class="dm-deco"><rect class="dm-deco-tile" x="170" y="310" width="90" height="80"/><circle class="dm-fix" cx="194" cy="350" r="8"/><circle class="dm-fix" cx="236" cy="350" r="8"/><path class="dm-wall-in" d="M215 330V385"/><text class="dm-deco-t" x="180" y="330">Restrooms</text></g>
+<a class="dm-r" href="/" data-room="reception" tabindex="-1"><rect class="dm-r-hit" x="260" y="20" width="180" height="180"/><rect class="dm-r-lit" x="260" y="20" width="180" height="180"/><path class="dm-desk" d="M298 96H412V160H386V122H298Z"/><rect class="dm-mon" x="330" y="100" width="22" height="6" rx="1"/><circle class="dm-jar" cx="309" cy="109" r="6"/><circle class="dm-chair" cx="345" cy="140" r="9"/><circle class="dm-plant" cx="424" cy="182" r="11"/><circle class="dm-plant" cx="276" cy="182" r="9"/><text class="dm-r-t" x="272" y="46" text-anchor="start">Reception</text><text class="dm-r-s" x="272" y="63" text-anchor="start">home</text></a>
+<g class="dm-deco"><rect class="dm-deco-tile" x="440" y="20" width="160" height="110"/><rect class="dm-desk" x="450" y="30" width="96" height="16"/><rect class="dm-fridge" x="556" y="30" width="34" height="38" rx="2"/><circle class="dm-desk" cx="520" cy="96" r="17"/><circle class="dm-chair" cx="494" cy="96" r="7"/><circle class="dm-chair" cx="546" cy="96" r="7"/><text class="dm-deco-t" x="450" y="40"></text></g>
+<text class="dm-deco-t" x="450" y="122">Kitchen</text>
+<a class="dm-r" href="/accents/" data-room="conference" tabindex="-1"><rect class="dm-r-hit" x="600" y="20" width="210" height="180"/><rect class="dm-r-lit" x="600" y="20" width="210" height="180"/><rect class="dm-board" x="636" y="25" width="140" height="6" rx="1"/><ellipse class="dm-desk" cx="705" cy="129" rx="72" ry="30"/><circle class="dm-chair" cx="655" cy="88" r="8"/><circle class="dm-chair" cx="655" cy="170" r="8"/><circle class="dm-chair" cx="690" cy="88" r="8"/><circle class="dm-chair" cx="690" cy="170" r="8"/><circle class="dm-chair" cx="725" cy="88" r="8"/><circle class="dm-chair" cx="725" cy="170" r="8"/><circle class="dm-chair" cx="760" cy="88" r="8"/><circle class="dm-chair" cx="760" cy="170" r="8"/><circle class="dm-chair" cx="622" cy="129" r="8"/><circle class="dm-chair" cx="788" cy="129" r="8"/><text class="dm-r-t" x="612" y="50" text-anchor="start">The Conference Room</text><text class="dm-r-s" x="612" y="67" text-anchor="start">accents &amp; impersonations</text></a>
+<a class="dm-r" href="/worlds/the-office/" data-room="michael" tabindex="-1"><rect class="dm-r-hit" x="810" y="20" width="200" height="180"/><rect class="dm-r-lit" x="810" y="20" width="200" height="180"/><path class="dm-blinds" d="M1006 30V190"/><rect class="dm-desk" x="896" y="104" width="86" height="38" rx="2"/><rect class="dm-mon" x="928" y="132" width="22" height="6" rx="1"/><circle class="dm-mug" cx="968" cy="114" r="5"/><circle class="dm-chair dm-chair--boss" cx="940" cy="160" r="12"/><circle class="dm-chair" cx="915" cy="88" r="8"/><circle class="dm-chair" cx="963" cy="88" r="8"/><rect class="dm-couch" x="822" y="120" width="26" height="66" rx="5"/><circle class="dm-plant" cx="990" cy="182" r="9"/><text class="dm-r-t" x="822" y="46" text-anchor="start">Michael’s Office</text><text class="dm-r-s" x="822" y="63" text-anchor="start">the world page</text></a>
+<rect class="dm-hall" x="440" y="130" width="160" height="70"/>
+<a class="dm-r" href="/work/" data-room="sales" tabindex="-1"><rect class="dm-r-hit" x="260" y="200" width="550" height="190"/><rect class="dm-r-lit" x="260" y="200" width="550" height="190"/><rect class="dm-desk" x="278" y="240" width="60" height="30" rx="2"/><rect class="dm-mon" x="297" y="261" width="22" height="6" rx="1"/><circle class="dm-chair" cx="308" cy="229" r="9"/><rect class="dm-desk" x="278" y="270" width="60" height="30" rx="2"/><rect class="dm-mon" x="297" y="273" width="22" height="6" rx="1"/><circle class="dm-chair" cx="308" cy="311" r="9"/><rect class="dm-desk" x="362" y="240" width="60" height="30" rx="2"/><rect class="dm-mon" x="381" y="261" width="22" height="6" rx="1"/><circle class="dm-chair" cx="392" cy="229" r="9"/><rect class="dm-desk" x="362" y="270" width="60" height="30" rx="2"/><rect class="dm-mon" x="381" y="273" width="22" height="6" rx="1"/><circle class="dm-chair" cx="392" cy="311" r="9"/><rect class="dm-desk" x="470" y="240" width="60" height="30" rx="2"/><rect class="dm-mon" x="489" y="261" width="22" height="6" rx="1"/><circle class="dm-chair" cx="500" cy="229" r="9"/><rect class="dm-jello" x="505" y="249" width="16" height="12" rx="3"/><rect class="dm-stapler" x="508" y="253" width="10" height="4" rx="1"/><rect class="dm-desk" x="664" y="240" width="60" height="30" rx="2"/><rect class="dm-mon" x="683" y="261" width="22" height="6" rx="1"/><circle class="dm-chair" cx="694" cy="229" r="9"/><rect class="dm-desk" x="664" y="270" width="60" height="30" rx="2"/><rect class="dm-mon" x="683" y="273" width="22" height="6" rx="1"/><circle class="dm-chair" cx="694" cy="311" r="9"/><rect class="dm-desk" x="740" y="240" width="56" height="30" rx="2"/><rect class="dm-mon" x="757" y="261" width="22" height="6" rx="1"/><circle class="dm-chair" cx="768" cy="229" r="9"/><rect class="dm-desk" x="740" y="270" width="56" height="30" rx="2"/><rect class="dm-mon" x="757" y="273" width="22" height="6" rx="1"/><circle class="dm-chair" cx="768" cy="311" r="9"/><text class="dm-r-t" x="272" y="356" text-anchor="start">The Sales Floor</text><text class="dm-r-s" x="272" y="373" text-anchor="start">work at UC Irvine</text></a>
+<a class="dm-r dm-r--desk" href="/star-wars/" data-room="dwight" tabindex="-1"><rect class="dm-r-hit" x="462" y="266" width="186" height="70"/><rect class="dm-r-lit" x="462" y="266" width="186" height="70"/><rect class="dm-desk" x="470" y="270" width="60" height="30" rx="2"/><rect class="dm-mon" x="489" y="273" width="22" height="6" rx="1"/><circle class="dm-chair" cx="500" cy="311" r="9"/><circle class="dm-bobble" cx="484" cy="290" r="4"/><text class="dm-r-t dm-r-t--sm" x="540" y="292" text-anchor="start">Dwight’s Desk</text><text class="dm-r-s" x="540" y="309" text-anchor="start">Star Wars apps</text></a>
+<a class="dm-r" href="/college/" data-room="accounting" tabindex="-1"><rect class="dm-r-hit" x="170" y="390" width="270" height="90"/><rect class="dm-r-lit" x="170" y="390" width="270" height="90"/><rect class="dm-desk" x="312" y="404" width="52" height="26" rx="2"/><rect class="dm-mon" x="327" y="407" width="22" height="6" rx="1"/><circle class="dm-chair" cx="338" cy="441" r="9"/><rect class="dm-desk" x="376" y="404" width="52" height="26" rx="2"/><rect class="dm-mon" x="391" y="407" width="22" height="6" rx="1"/><circle class="dm-chair" cx="402" cy="441" r="9"/><circle class="dm-jar dm-jar--mm" cx="420" cy="452" r="6"/><text class="dm-r-t" x="182" y="420" text-anchor="start">Accounting</text><text class="dm-r-s" x="182" y="437" text-anchor="start">college · UC Irvine</text></a>
+<a class="dm-r" href="/worlds/" data-room="breakroom" tabindex="-1"><rect class="dm-r-hit" x="440" y="390" width="260" height="90"/><rect class="dm-r-lit" x="440" y="390" width="260" height="90"/><rect class="dm-vend" x="452" y="440" width="26" height="34" rx="2"/><rect class="dm-vend dm-vend--b" x="482" y="440" width="26" height="34" rx="2"/><rect class="dm-tv" x="690" y="402" width="6" height="46" rx="1"/><circle class="dm-desk" cx="620" cy="452" r="15"/><circle class="dm-chair" cx="596" cy="452" r="7"/><circle class="dm-chair" cx="644" cy="452" r="7"/><text class="dm-r-t" x="452" y="420" text-anchor="start">The Break Room</text><text class="dm-r-s" x="452" y="437" text-anchor="start">all 71 worlds</text></a>
+<g class="dm-deco"><rect class="dm-deco-floor" x="700" y="390" width="110" height="90"/><rect class="dm-copier" x="722" y="424" width="56" height="40" rx="3"/><rect class="dm-paper" x="738" y="430" width="24" height="12"/><text class="dm-deco-t" x="710" y="410">Copy room</text></g>
+<a class="dm-r" href="/education/" data-room="annex" tabindex="-1"><rect class="dm-r-hit" x="810" y="200" width="200" height="190"/><rect class="dm-r-lit" x="810" y="200" width="200" height="190"/><rect class="dm-desk" x="830" y="262" width="56" height="30" rx="2"/><rect class="dm-mon" x="847" y="265" width="22" height="6" rx="1"/><circle class="dm-chair" cx="858" cy="303" r="9"/><rect class="dm-desk" x="920" y="262" width="56" height="30" rx="2"/><rect class="dm-mon" x="937" y="265" width="22" height="6" rx="1"/><circle class="dm-chair" cx="948" cy="303" r="9"/><rect class="dm-desk" x="830" y="326" width="56" height="30" rx="2"/><rect class="dm-mon" x="847" y="329" width="22" height="6" rx="1"/><circle class="dm-chair" cx="858" cy="367" r="9"/><rect class="dm-closet" x="930" y="320" width="66" height="54" rx="2"/><text class="dm-r-t" x="822" y="226" text-anchor="start">The Annex</text><text class="dm-r-s" x="822" y="243" text-anchor="start">education</text></a>
+<a class="dm-r" href="/resume/" data-room="hr" tabindex="-1"><rect class="dm-r-hit" x="810" y="390" width="200" height="90"/><rect class="dm-r-lit" x="810" y="390" width="200" height="90"/><rect class="dm-cab" x="822" y="446" width="22" height="26"/><rect class="dm-cab" x="848" y="446" width="22" height="26"/><rect class="dm-desk" x="944" y="434" width="52" height="24" rx="2"/><rect class="dm-mon" x="959" y="437" width="22" height="6" rx="1"/><circle class="dm-chair" cx="970" cy="469" r="9"/><text class="dm-r-t" x="822" y="416" text-anchor="start">Human Resources</text><text class="dm-r-s" x="822" y="433" text-anchor="start">résumé</text></a>
+<rect class="dm-shell" x="170" y="20" width="840" height="460"/>
+<a class="dm-r" href="/projects/" data-room="shipping" tabindex="-1"><rect class="dm-r-hit" x="170" y="510" width="390" height="230"/><rect class="dm-r-lit" x="170" y="510" width="390" height="230"/><rect class="dm-shelf" x="190" y="572" width="34" height="130"/><rect class="dm-box" x="194" y="578" width="26" height="14"/><rect class="dm-box" x="194" y="598" width="26" height="14"/><rect class="dm-box" x="194" y="618" width="26" height="14"/><rect class="dm-box" x="194" y="638" width="26" height="14"/><rect class="dm-box" x="194" y="658" width="26" height="14"/><rect class="dm-box" x="194" y="678" width="26" height="14"/><rect class="dm-box" x="194" y="698" width="26" height="14"/><rect class="dm-shelf" x="250" y="572" width="34" height="130"/><rect class="dm-box" x="254" y="578" width="26" height="14"/><rect class="dm-box" x="254" y="598" width="26" height="14"/><rect class="dm-box" x="254" y="618" width="26" height="14"/><rect class="dm-box" x="254" y="638" width="26" height="14"/><rect class="dm-box" x="254" y="658" width="26" height="14"/><rect class="dm-box" x="254" y="678" width="26" height="14"/><rect class="dm-box" x="254" y="698" width="26" height="14"/><rect class="dm-shelf" x="310" y="572" width="34" height="130"/><rect class="dm-box" x="314" y="578" width="26" height="14"/><rect class="dm-box" x="314" y="598" width="26" height="14"/><rect class="dm-box" x="314" y="618" width="26" height="14"/><rect class="dm-box" x="314" y="638" width="26" height="14"/><rect class="dm-box" x="314" y="658" width="26" height="14"/><rect class="dm-box" x="314" y="678" width="26" height="14"/><rect class="dm-box" x="314" y="698" width="26" height="14"/><rect class="dm-dock" x="400" y="732" width="56" height="8"/><rect class="dm-dock" x="470" y="732" width="56" height="8"/><g class="dm-lift-truck"><rect x="402" y="612" width="34" height="50" rx="4"/><path d="M408 612V590M430 612V590"/></g><rect class="dm-box" x="470" y="660" width="30" height="22"/><rect class="dm-box" x="502" y="660" width="30" height="22"/><rect class="dm-box" x="486" y="638" width="30" height="22"/><text class="dm-r-t" x="182" y="538" text-anchor="start">Shipping &amp; Receiving</text><text class="dm-r-s" x="182" y="555" text-anchor="start">every project</text></a>
+<a class="dm-r" href="/gaming/" data-room="warehouse" tabindex="-1"><rect class="dm-r-hit" x="560" y="510" width="450" height="230"/><rect class="dm-r-lit" x="560" y="510" width="450" height="230"/><rect class="dm-court" x="596" y="560" width="390" height="168"/><path class="dm-court-l" d="M791 560V728"/><circle class="dm-court-l" cx="791" cy="644" r="26"/><rect class="dm-court-l" x="926" y="614" width="60" height="60"/><path class="dm-court-l" d="M986 580A64 64 0 0 0 986 708"/><path class="dm-court-l" d="M596 580A64 64 0 0 1 596 708"/><rect class="dm-court-l" x="596" y="614" width="60" height="60"/><circle class="dm-hoop" cx="976" cy="644" r="6"/><circle class="dm-hoop" cx="606" cy="644" r="6"/><circle class="dm-ball" cx="820" cy="680" r="7"/><text class="dm-r-t" x="572" y="538" text-anchor="start">The Warehouse Floor</text><text class="dm-r-s" x="572" y="555" text-anchor="start">gaming</text></a>
+<rect class="dm-shell" x="170" y="510" width="840" height="230"/>
+<a class="dm-r dm-r--card" href="/high-school/" data-room="stamford" tabindex="-1"><rect class="dm-r-hit" x="1030" y="20" width="160" height="180"/><rect class="dm-r-lit" x="1030" y="20" width="160" height="180"/><path class="dm-bldg" d="M1060 160V96H1160V160Z"/><path class="dm-bldg-roof" d="M1054 96L1110 70L1166 96Z"/><rect class="dm-win" x="1070" y="106" width="14" height="12"/><rect class="dm-win" x="1070" y="130" width="14" height="12"/><rect class="dm-win" x="1094" y="106" width="14" height="12"/><rect class="dm-win" x="1094" y="130" width="14" height="12"/><rect class="dm-win" x="1118" y="106" width="14" height="12"/><rect class="dm-win" x="1118" y="130" width="14" height="12"/><rect class="dm-win" x="1142" y="106" width="14" height="12"/><rect class="dm-win" x="1142" y="130" width="14" height="12"/><rect class="dm-door" x="1102" y="142" width="16" height="18"/><text class="dm-r-t dm-r-t--sm" x="1042" y="46" text-anchor="start">Stamford Branch</text><text class="dm-r-s" x="1042" y="63" text-anchor="start">high school</text></a>
+<a class="dm-r dm-r--card" href="/lightsabers/" data-room="sabre" tabindex="-1"><rect class="dm-r-hit" x="1030" y="210" width="160" height="160"/><rect class="dm-r-lit" x="1030" y="210" width="160" height="160"/><rect class="dm-printer" x="1066" y="290" width="88" height="46" rx="4"/><rect class="dm-paper" x="1082" y="280" width="56" height="12"/><rect class="dm-ptray" x="1078" y="336" width="64" height="8" rx="1"/><circle class="dm-led" cx="1144" cy="302" r="3"/><g class="dm-smoke"><circle cx="1100" cy="270" r="7"/><circle cx="1114" cy="262" r="5"/><circle cx="1122" cy="252" r="4"/></g><text class="dm-r-t dm-r-t--sm" x="1042" y="236" text-anchor="start">Sabre</text><text class="dm-r-s" x="1042" y="253" text-anchor="start">the lightsaber guide</text></a>
+<g class="dm-deco"><rect class="dm-deco-card" x="1030" y="380" width="160" height="130"/><path class="dm-bldg" d="M1076 498V430H1104V498ZM1110 498V410H1144V498Z"/><text class="dm-deco-t" x="1040" y="400">Corporate · New York</text></g>
+<g class="dm-rose" transform="translate(1110 600)"><circle r="34"/><circle r="22"/><path d="M0,-44 L6,0 L0,44 L-6,0 Z M-44,0 L0,6 L44,0 L0,-6 Z"/><text y="-50" text-anchor="middle">N</text></g>
+<text class="dm-plan-addr" x="1110" y="676" text-anchor="middle">1725 Slough Avenue</text>
+<text class="dm-plan-addr" x="1110" y="694" text-anchor="middle">Scranton, Pennsylvania</text>
+<text class="dm-plan-note" x="1110" y="716" text-anchor="middle">Scranton Business Park</text>
+</svg>
+<!-- /PLAN -->
+          <div class="dm-vf" aria-hidden="true">
+            <span class="dm-vf-c dm-vf-c--tl"></span><span class="dm-vf-c dm-vf-c--tr"></span>
+            <span class="dm-vf-c dm-vf-c--bl"></span><span class="dm-vf-c dm-vf-c--br"></span>
+            <span class="dm-vf-rec"><i></i>REC</span>
+            <span class="dm-vf-tc" id="dmTC">00:00:00;00</span>
+            <span class="dm-vf-cross"></span>
+            <span class="dm-vf-cam">CAM B · <span id="dmShot">WIDE</span></span>
+            <span class="dm-vf-bat"><i></i></span>
+            <span class="dm-chy" id="dmChy"><b id="dmChyT">Dunder Mifflin</b><i id="dmChyS">Scranton branch</i></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- every room on the site, as the memo promises: the main sections,
+           both schools, the worlds and the personal pages. The plan and
+           the camera read their names from here (data-room), so nothing is
+           written twice. -->
+      <ol class="dm-seats" id="dmSeats">
+        <li><a class="dm-seat" href="/" data-room="reception"><span class="dm-seat-n">01</span><b>Reception</b><i>The front desk and the jelly bean jar · home</i></a></li>
+        <li><a class="dm-seat" href="/work/" data-room="sales"><span class="dm-seat-n">02</span><b>The Sales Floor</b><i>Where the work gets done · work at UC Irvine</i></a></li>
+        <li><a class="dm-seat" href="/projects/" data-room="shipping"><span class="dm-seat-n">03</span><b>Shipping &amp; Receiving</b><i>Everything that went out the door · every project</i></a></li>
+        <li><a class="dm-seat" href="/education/" data-room="annex"><span class="dm-seat-n">04</span><b>The Annex</b><i>Where the new hires learn the job · education</i></a></li>
+        <li><a class="dm-seat" href="/college/" data-room="accounting"><span class="dm-seat-n">05</span><b>Accounting</b><i>The numbers people · college, UC Irvine</i></a></li>
+        <li><a class="dm-seat" href="/high-school/" data-room="stamford"><span class="dm-seat-n">06</span><b>The Stamford Branch</b><i>Before the merger · high school</i></a></li>
+        <li><a class="dm-seat" href="/worlds/" data-room="breakroom"><span class="dm-seat-n">07</span><b>The Break Room</b><i>The vending machines and the TV · all 71 worlds</i></a></li>
+        <li><a class="dm-seat" href="/worlds/the-office/" data-room="michael"><span class="dm-seat-n">08</span><b>Michael’s Office</b><i>The World’s Best Boss mug · The Office, the world page</i></a></li>
+        <li><a class="dm-seat" href="/star-wars/" data-room="dwight"><span class="dm-seat-n">09</span><b>Dwight’s Desk</b><i>Assistant to the Regional Manager · Star Wars apps</i></a></li>
+        <li><a class="dm-seat" href="/al-islam/" data-room="roof"><span class="dm-seat-n">10</span><b>The Roof</b><i>The quiet place above it all · Al-Islam</i></a></li>
+        <li><a class="dm-seat" href="/travels/" data-room="lot"><span class="dm-seat-n">11</span><b>The Parking Lot</b><i>Where every road trip starts · travels</i></a></li>
+        <li><a class="dm-seat" href="/accents/" data-room="conference"><span class="dm-seat-n">12</span><b>The Conference Room</b><i>Prison Mike and every other character · accents &amp; impersonations</i></a></li>
+        <li><a class="dm-seat" href="/gaming/" data-room="warehouse"><span class="dm-seat-n">13</span><b>The Warehouse Floor</b><i>Office versus Warehouse, the big game · gaming</i></a></li>
+        <li><a class="dm-seat" href="/lightsabers/" data-room="sabre"><span class="dm-seat-n">14</span><b>Sabre</b><i>The new owners, down from Tallahassee · the lightsaber guide</i></a></li>
+        <li><a class="dm-seat" href="/resume/" data-room="hr"><span class="dm-seat-n">15</span><b>Human Resources</b><i>Where the personnel files are kept · résumé</i></a></li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="dm-cols">
+
+    <!-- ─────────── the personnel file ───────────
+         A manila folder with the sheet half out of it, typed. Every line on
+         the sheet is a fact the rest of the site already states. The sticky
+         note is The Office's own line from /worlds/. -->
+    <section class="dm-pane dm-filepane" id="dmFile" aria-labelledby="dmFileH">
+      <div class="dm-pane-bar">
+        <h2 class="dm-h" id="dmFileH">Personnel file<span>Human Resources · confidential-ish</span></h2>
+        <span class="dm-winbtns" aria-hidden="true"><i></i><i></i><i></i></span>
+      </div>
+      <div class="dm-folder">
+        <span class="dm-folder-tab" aria-hidden="true">ELMALLAH, A.</span>
+        <div class="dm-sheet">
+          <span class="dm-stamp" aria-hidden="true">On file</span>
+          <p class="dm-sheet-h">Employee record</p>
+          <dl class="dm-rec">
+            <div><dt>Name</dt><dd>Abubakr Elmallah</dd></div>
+            <div><dt>Position</dt><dd>Lead mobile &amp; backend developer</dd></div>
+            <div><dt>Education</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
+            <div><dt>Output</dt><dd>Twelve apps shipped, across four platforms</dd></div>
+            <div><dt>First accounts</dt><dd>Order 66 and Datapad, the first solo projects (2021)</dd></div>
+            <div><dt>Territory</dt><dd><a href="/worlds/">71 worlds</a>, on /worlds/</dd></div>
+          </dl>
+          <p class="dm-sticky">Re: The Office. The comfort rewatch, and the first of the two. Parks might be funnier; this is the one that stuck.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── the Dundies ───────────
+         The annual awards, held (as ever) at the Chili's down the road: each
+         trophy is the same little gold figure on a base, and each award is a
+         real thing from the record. -->
+    <section class="dm-pane" id="dmDundies" aria-labelledby="dmDundiesH">
+      <div class="dm-pane-bar">
+        <h2 class="dm-h" id="dmDundiesH">The Dundies<span>this year’s winners, all one of them</span></h2>
+        <span class="dm-winbtns" aria-hidden="true"><i></i><i></i><i></i></span>
+      </div>
+      <svg width="0" height="0" class="dm-defs" aria-hidden="true" focusable="false">
+        <defs>
+          <linearGradient id="dmGold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#fff0b8"/><stop offset=".45" stop-color="#e2b33c"/><stop offset="1" stop-color="#8a6416"/>
+          </linearGradient>
+          <!-- the statuette: a figure with both arms up, on a two-step base -->
+          <symbol id="dmDundie" viewBox="0 0 40 72">
+            <rect x="6" y="60" width="28" height="10" rx="1" fill="#2b2a2e"/>
+            <rect x="10" y="54" width="20" height="7" rx="1" fill="#3d3b40"/>
+            <path fill="url(#dmGold)" d="M17 54L18 36L13 22L9 10L12 9L16 19L20 21L24 19L28 9L31 10L27 22L22 36L23 54Z"/>
+            <circle cx="20" cy="15" r="4.6" fill="url(#dmGold)"/>
+          </symbol>
+        </defs>
+      </svg>
+      <ul class="dm-dundies">
+        <li style="--i:0"><svg class="dm-trophy" aria-hidden="true"><use href="#dmDundie"/></svg><div><b>The Fine Work Award</b><p>Winner of the Apple Swift Student Challenge, 2024.</p></div></li>
+        <li style="--i:1"><svg class="dm-trophy" aria-hidden="true"><use href="#dmDundie"/></svg><div><b>Top Salesman</b><p>Datapad, in the Top 10 of the paid Entertainment chart.</p></div></li>
+        <li style="--i:2"><svg class="dm-trophy" aria-hidden="true"><use href="#dmDundie"/></svg><div><b>The Busiest Beaver</b><p>Twelve apps shipped, across four platforms.</p></div></li>
+        <li style="--i:3"><svg class="dm-trophy" aria-hidden="true"><use href="#dmDundie"/></svg><div><b>Most Branches Served</b><p>Two Discord bots, in more than 500 servers.</p></div></li>
+        <li style="--i:4"><svg class="dm-trophy" aria-hidden="true"><use href="#dmDundie"/></svg><div><b>Always On Time</b><p>Al-Adhan, which computes prayer times 22 ways.</p></div></li>
+        <li style="--i:5"><svg class="dm-trophy" aria-hidden="true"><use href="#dmDundie"/></svg><div><b>The Home Court Award</b><p>UCI Esports: the arena, its PCs and its events, in one app.</p></div></li>
+        <li style="--i:6"><svg class="dm-trophy" aria-hidden="true"><use href="#dmDundie"/></svg><div><b>The Day One Award</b><p>Order 66 and Datapad, the first solo projects, 2021.</p></div></li>
+      </ul>
+    </section>
+
+  </div>
+
+  <!-- ─────────── the branch directory ───────────
+       The other terminals, as the company phone list: every other branch
+       with its own extension. -->
+  <section class="dm-pane dm-dir" id="dmDir" aria-labelledby="dmDirH">
+    <div class="dm-pane-bar">
+      <h2 class="dm-h" id="dmDirH">Branch directory<span>the other interfaces, by extension</span></h2>
+      <span class="dm-winbtns" aria-hidden="true"><i></i><i></i><i></i></span>
+    </div>
+    <ul class="dm-lines">
+      <li><a href="/elmallah/"><span class="dm-ext">x101</span><b>E.L.M.A.L.L.A.H.</b><i>Star Wars · the holotable hub</i></a></li>
+      <li><a href="/holocron/"><span class="dm-ext">x102</span><b>The Holocron</b><i>Star Wars · a Jedi archive</i></a></li>
+      <li><a href="/jarvis/"><span class="dm-ext">x103</span><b>J.A.R.V.I.S.</b><i>Avengers · a Stark display</i></a></li>
+      <li><a href="/marauders-map/"><span class="dm-ext">x104</span><b>The Marauder’s Map</b><i>Harry Potter</i></a></li>
+      <li><a href="/crafting-table/"><span class="dm-ext">x105</span><b>The Crafting Table</b><i>Minecraft</i></a></li>
+      <li><a href="/citadel/"><span class="dm-ext">x106</span><b>The Citadel</b><i>Game of Thrones</i></a></li>
+      <li><a href="/compass/"><span class="dm-ext">x107</span><b>The Compass</b><i>Pirates of the Caribbean</i></a></li>
+      <li><a href="/control-room/"><span class="dm-ext">x108</span><b>The Control Room</b><i>Jurassic Park</i></a></li>
+      <li><a href="/upside-down/"><span class="dm-ext">x109</span><b>The Upside Down</b><i>Stranger Things</i></a></li>
+      <li><a href="/starcourt/"><span class="dm-ext">x110</span><b>Starcourt</b><i>Stranger Things</i></a></li>
+      <li><a href="/spirit-library/"><span class="dm-ext">x111</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a></li>
+      <li><a href="/monastery/"><span class="dm-ext">x112</span><b>The Monastery</b><i>Ninjago</i></a></li>
+      <li><a href="/wanted/"><span class="dm-ext">x113</span><b>The Wanted Board</b><i>Red Dead Redemption</i></a></li>
+      <li><a href="/springfield/"><span class="dm-ext">x114</span><b>Springfield</b><i>The Simpsons</i></a></li>
+      <li><a href="/vought/"><span class="dm-ext">x115</span><b>Vought Tower</b><i>The Boys</i></a></li>
+      <li><a href="/pokedex/"><span class="dm-ext">x116</span><b>The Pokédex</b><i>Pokémon</i></a></li>
+      <li><a href="/batcomputer/"><span class="dm-ext">x117</span><b>The Batcomputer</b><i>Batman</i></a></li>
+      <li><a href="/daily-bugle/"><span class="dm-ext">x118</span><b>The Daily Bugle</b><i>Spider-Man</i></a></li>
+    </ul>
+  </section>
+
+  <!-- the closing line: the oldest joke in the building, which this time
+       hands the floor to the last talking head of the documentary -->
+  <div class="dm-close">
+    <button class="dm-twss" id="dmTwss" type="button">That’s what she said.</button>
+  </div>
+
+</main>
+
+<!-- the end of the documentary: the tape stops, the screen goes dark, and
+     Pam has the last word. Out of the tab order until it is shown. -->
+<div class="dm-done" id="dmDone" role="dialog" aria-modal="true" aria-labelledby="dmDoneT">
+  <div class="dm-done-in">
+    <canvas class="dm-done-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#4a86d8" aria-hidden="true"></canvas>
+    <p class="dm-done-k">That’s what she said:</p>
+    <p class="dm-done-t" id="dmDoneT">“There’s a lot of beauty in ordinary things. Isn’t that kind of the point?”</p>
+    <p class="dm-done-by">Pam Beesly, the last talking head of the documentary</p>
+    <div class="dm-done-acts">
+      <a class="dm-done-home" id="dmDoneHome" href="/">Back to reception</a>
+      <button class="dm-done-on" id="dmRoll" type="button">Keep rolling</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* smooth scrolling only after load, so back/forward restores the position instantly instead of sliding to it */
+  addEventListener('load', function () {
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      document.documentElement.classList.add('smooth');
+    }); });
+  });
+</script>
+<script src="{% include v.html f='/assets/js/dunder-mifflin.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

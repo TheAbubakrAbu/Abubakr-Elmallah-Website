@@ -1,0 +1,150 @@
+---
+permalink: /freddys/
+title: "The Security Office · Abubakr Elmallah"
+description: "A Five Nights at Freddy's security office: every page on Abubakr Elmallah's site is a camera feed, watched from one desk on a draining power meter."
+theme: "#0a0806"
+fonts: "family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/freddys.css' %}" />
+</head>
+<body class="fz" id="fz">
+
+<!-- the office: a dark room, the desk fan's shadow, and the static that
+     never quite leaves a CRT alone -->
+<div class="fz-room" aria-hidden="true">
+  <span class="fz-dark"></span>
+  <span class="fz-static"></span>
+  <span class="fz-vign"></span>
+</div>
+
+<header class="fz-top">
+  <a class="fz-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Clock out</span>
+  </a>
+  <span class="fz-top-mid">Freddy Fazbear&#8217;s Pizza &#183; Night Guard &#183; Abubakr Elmallah</span>
+  <span class="fz-top-t"><b id="fzHour">12</b> AM</span>
+</header>
+
+<main class="fz-main">
+
+  <!-- ─────────── the desk ─────────── -->
+  <section class="fz-desk">
+    <div class="fz-desk-l">
+      <p class="fz-kicker">Night 1 &#183; 12 AM &#8211; 6 AM</p>
+      <h1 class="fz-title">The Security Office</h1>
+      <p class="fz-lede">The whole site watched from one desk. Every page is a camera feed, the monitor
+        pulls up one at a time, and checking the cameras drains the power exactly the way it does in the
+        game. Run it down to nothing and the lights go out, which here just means the page tells you so.</p>
+      <p class="fz-lede">A horror game made of security cameras and a battery meter, which is ruthlessly
+        efficient design: the whole thing is a resource you are spending to feel safe. Nothing on this
+        page is a screenshot or a character; every feed is drawn.</p>
+      <div class="fz-acts">
+        <button class="fz-btn" id="fzFlip" type="button">Pull up the monitor</button>
+        <button class="fz-btn fz-btn--ghost" id="fzReset" type="button">Reset the night</button>
+      </div>
+    </div>
+
+    <!-- the power meter, exactly as the office draws it: a percentage and
+         the usage bars that go up with every system you have running -->
+    <div class="fz-power">
+      <div class="fz-power-top"><span>Power left</span><b id="fzPct">100%</b></div>
+      <div class="fz-bar"><i id="fzFill"></i></div>
+      <div class="fz-usage">
+        <span>Usage</span>
+        <span class="fz-pips" id="fzPips" aria-hidden="true"></span>
+        <em id="fzUsage">1</em>
+      </div>
+      <p class="fz-power-n" id="fzNote">The monitor is down. Nothing is drawing power except the lights.</p>
+    </div>
+  </section>
+
+  <!-- ─────────── the cameras ───────────
+       Every room on the site as a camera. Each carries its number and the
+       room it watches; freddys.js runs the monitor, the static and the power
+       drain. The list is ordinary links, so with no JS every feed is simply
+       a link to its page and nothing is lost. -->
+  <section class="fz-cams" id="cams" aria-labelledby="fzCamsH">
+    <h2 class="fz-h" id="fzCamsH">The cameras</h2>
+    <p class="fz-h-sub">Twenty-four feeds. Hover or tab to a feed to watch it; click to go to the room.</p>
+
+    <div class="fz-grid">
+      <a class="fz-cam" href="/" data-cam="1A" data-room="Show Stage"><span class="fz-cam-n">CAM 1A</span><b>Home</b><i>Show Stage &#183; where everybody starts</i></a>
+      <a class="fz-cam" href="/work/" data-cam="1B" data-room="Dining Area"><span class="fz-cam-n">CAM 1B</span><b>Work</b><i>lead mobile &amp; backend developer, UCI</i></a>
+      <a class="fz-cam" href="/projects/" data-cam="1C" data-room="Pirate Cove"><span class="fz-cam-n">CAM 1C</span><b>Projects</b><i>twelve apps, catalogued</i></a>
+      <a class="fz-cam" href="/resume/" data-cam="2A" data-room="West Hall"><span class="fz-cam-n">CAM 2A</span><b>R&#233;sum&#233;</b><i>the whole record on one page</i></a>
+      <a class="fz-cam" href="/education/" data-cam="2B" data-room="W. Hall Corner"><span class="fz-cam-n">CAM 2B</span><b>Education</b><i>both schools</i></a>
+      <a class="fz-cam" href="/college/" data-cam="3" data-room="Supply Closet"><span class="fz-cam-n">CAM 3</span><b>College</b><i>UC Irvine, class of 2028</i></a>
+      <a class="fz-cam" href="/high-school/" data-cam="4A" data-room="East Hall"><span class="fz-cam-n">CAM 4A</span><b>High School</b><i>where it started</i></a>
+      <a class="fz-cam" href="/worlds/" data-cam="4B" data-room="E. Hall Corner"><span class="fz-cam-n">CAM 4B</span><b>Worlds</b><i>all seventy-one of them</i></a>
+      <a class="fz-cam" href="/worlds/five-nights-at-freddys/" data-cam="5" data-room="Backstage"><span class="fz-cam-n">CAM 5</span><b>Five Nights at Freddy&#8217;s</b><i>Backstage &#183; the world page</i></a>
+      <a class="fz-cam" href="/worlds/star-wars/" data-cam="6" data-room="Kitchen"><span class="fz-cam-n">CAM 6</span><b>Star Wars</b><i>126 planets, charted</i></a>
+      <a class="fz-cam" href="/star-wars/" data-cam="7" data-room="Restrooms"><span class="fz-cam-n">CAM 7</span><b>Aurebesh &amp; Sabacc</b><i>the Star Wars apps</i></a>
+      <a class="fz-cam" href="/al-islam/" data-cam="8" data-room="Prize Corner"><span class="fz-cam-n">CAM 8</span><b>Al-Islam</b><i>three Islamic apps</i></a>
+      <a class="fz-cam" href="/travels/" data-cam="9" data-room="Parts &amp; Service"><span class="fz-cam-n">CAM 9</span><b>Travels</b><i>thirty-five trips</i></a>
+      <a class="fz-cam" href="/accents/" data-cam="10" data-room="Game Area"><span class="fz-cam-n">CAM 10</span><b>Accents</b><i>nineteen of them</i></a>
+      <a class="fz-cam" href="/gaming/" data-cam="11" data-room="Arcade"><span class="fz-cam-n">CAM 11</span><b>Gaming</b><i>four Steam Replays</i></a>
+      <a class="fz-cam" href="/lightsabers/" data-cam="12" data-room="Workshop"><span class="fz-cam-n">CAM 12</span><b>Lightsabers</b><i>the build guide</i></a>
+      <a class="fz-cam" href="/elmallah/" data-cam="13" data-room="Control Module"><span class="fz-cam-n">CAM 13</span><b>E.L.M.A.L.L.A.H.</b><i>every interface, on one table</i></a>
+      <a class="fz-cam" href="/jarvis/" data-cam="14" data-room="Vent A"><span class="fz-cam-n">CAM 14</span><b>J.A.R.V.I.S.</b><i>the Stark terminal</i></a>
+      <a class="fz-cam" href="/holocron/" data-cam="15" data-room="Vent B"><span class="fz-cam-n">CAM 15</span><b>Holocron</b><i>the Jedi Archives</i></a>
+      <a class="fz-cam" href="/crafting-table/" data-cam="16" data-room="Storage"><span class="fz-cam-n">CAM 16</span><b>The Crafting Table</b><i>the Minecraft terminal</i></a>
+      <a class="fz-cam" href="/pokedex/" data-cam="17" data-room="Office Desk"><span class="fz-cam-n">CAM 17</span><b>The Pok&#233;dex</b><i>every page a numbered entry</i></a>
+      <a class="fz-cam" href="/batcomputer/" data-cam="18" data-room="Basement"><span class="fz-cam-n">CAM 18</span><b>The Batcomputer</b><i>the Batman terminal</i></a>
+      <a class="fz-cam" href="/instructions/" data-cam="19" data-room="Parts Room"><span class="fz-cam-n">CAM 19</span><b>The Instruction Booklet</b><i>the LEGO terminal</i></a>
+      <a class="fz-cam" href="/battle-pass/" data-cam="20" data-room="Lobby"><span class="fz-cam-n">CAM 20</span><b>The Battle Pass</b><i>the Fortnite terminal</i></a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ─────────── the monitor ───────────
+     Pulled up over the office, the way the game does it. It shows the feed
+     you have chosen, with the static and the room label; closing it puts the
+     power back to only the lights. -->
+<div class="fz-monitor" id="fzMonitor" hidden>
+  <div class="fz-mon-shell">
+    <div class="fz-mon-bar">
+      <span id="fzMonCam">CAM 1A</span>
+      <span id="fzMonRoom">Show Stage</span>
+      <button class="fz-mon-x" id="fzMonX" type="button" aria-label="Put the monitor down">&#215;</button>
+    </div>
+    <div class="fz-mon-screen">
+      <span class="fz-mon-static" aria-hidden="true"></span>
+      <div class="fz-mon-body">
+        <b id="fzMonT">Home</b>
+        <i id="fzMonD">Show Stage &#183; where everybody starts</i>
+        <a class="fz-mon-go" id="fzMonGo" href="/">Go to this room &#8594;</a>
+      </div>
+      <span class="fz-mon-rec" aria-hidden="true">&#9679; REC</span>
+    </div>
+  </div>
+</div>
+
+<!-- power out: the one thing the office is really about -->
+<div class="fz-out" id="fzOut" hidden>
+  <div class="fz-out-box">
+    <p class="fz-out-t">Power out.</p>
+    <p class="fz-out-s">The doors are open and the lights are gone. In the game this is where the music
+      box plays and you find out whether you made it to six. Here, it is just a button.</p>
+    <div class="fz-out-acts">
+      <button class="fz-btn" id="fzOutReset" type="button">Start the night again</button>
+      <a class="fz-btn fz-btn--ghost" href="/">Clock out</a>
+    </div>
+  </div>
+</div>
+
+<footer class="fz-bottom">
+  <a class="fz-back" href="/">&#9668; Back to the main site</a>
+  <span class="fz-foot-n">24 cameras &#183; 12 AM to 6 AM &#183; watch the power</span>
+</footer>
+
+<script src="{% include v.html f='/assets/js/freddys.js' %}" defer></script>
+{% include analytics.html %}
+</body>
+</html>

@@ -69,8 +69,12 @@ tab: "/worlds/"
 
 </main>
 
-<!-- The switch itself is on /worlds/ now, not here. pics.js stays loaded so
-     this page still OBEYS it; it just no longer offers it in three places. -->
+<!-- The switch for personal photographs, asked for where the photographs are.
+     It is the same one as on /worlds/, /high-school/ and /college/: one
+     localStorage key for the whole site, so turning it on here turns it on
+     everywhere. The trips and places all still LIST themselves with it off;
+     only the photographs wait to be asked for. -->
+<div class="picsw" data-pics-toggle></div>
 
 {% include footer.html back="/" %}
 

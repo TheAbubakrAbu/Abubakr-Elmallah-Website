@@ -15,8 +15,10 @@
   Résumé comes last in the markup because it is drawn last (.ql--resume has
   order: 2), so Tab moves left to right like the eye does.
 
-  .brand-last lets a phone show just "Abubakr" so the bar fits on one row
-  (layout.css); the surname stays readable to screen readers there.
+  On a phone the bar is the name, search, sound and Résumé: LinkedIn and
+  GitHub move to buttons on /resume/ (layout.css). .brand-last lets phones
+  under 360px show just "Abubakr"; the surname stays readable to screen
+  readers there.
 
   "Skip to content" is the first thing Tab reaches, shown only while focused
   (base.css). It jumps to #main: /projects/ sets that id on its <main>, and

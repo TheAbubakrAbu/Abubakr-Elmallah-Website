@@ -129,6 +129,14 @@
              + '<ellipse cx="12" cy="12" rx="4" ry="9.4" fill="none" stroke="currentColor" stroke-width="1.2"/>'
              + '<path d="M2.9 9h18.2M2.9 15h18.2" stroke="currentColor" stroke-width="1.2"/>'
              + '<rect x="1" y="10.8" width="22" height="2.4" rx="1.2" opacity=".9"/>',
+    /* the power battery itself: a lamp with a band round its middle. The
+       chest symbol is a trademark; a lantern is a lantern. */
+    lantern: '<rect x="8.2" y="2.2" width="7.6" height="2" rx=".8"/>'
+             + '<path d="M9.4 4.6h5.2l1.2 3.2H8.2z"/>'
+             + '<rect x="7.4" y="8.4" width="9.2" height="7.2" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.7"/>'
+             + '<rect x="6.4" y="11.2" width="11.2" height="2" rx="1"/>'
+             + '<path d="M9.4 16.2h5.2l1.2 3.4H8.2z"/>'
+             + '<rect x="8.2" y="19.8" width="7.6" height="2" rx=".8"/>',
     league:  '<circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/>'
              + '<path d="M6.4 17.6 17.6 6.4" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>'
              + '<path d="M12 6.6l1.5 3.6 3.9.3-3 2.5.9 3.8L12 14.8 8.7 16.8l.9-3.8-3-2.5 3.9-.3z"/>',
@@ -402,15 +410,24 @@
      screens), and the ranks were only reachable by scrolling. Built from the
      same data as the groups, so it cannot drift from them. */
   var doors = document.getElementById('fr-doors');
+  /* The cool interfaces (worlds.html's #frIfaces): E.L.M.A.L.L.A.H., the hub
+     every other interface is reached from, goes in above the Core Three. A
+     template rather than data here, because it is a door and not a tile. */
+  var ifaces = document.getElementById('frIfaces');
+  var ifacesHtml = ifaces ? ifaces.innerHTML : '';
   var jump = '<nav class="jump fr-jump" aria-label="Ranks">'
-    + data.map(function (g) { return '<a href="#fr-' + g.id + '">' + esc(g.label) + '</a>'; }).join('')
+    + data.map(function (g) {
+        return (g.id === 'core' && ifacesHtml ? '<a href="#fr-ifaces">Cool Interfaces</a>' : '')
+          + '<a href="#fr-' + g.id + '">' + esc(g.label) + '</a>';
+      }).join('')
     + (doors ? '<a href="#fr-doors">Travels, Accents &amp; Gaming</a>' : '')
     + '</nav>';
 
   /* Each heading reads with a pause before its note and says what its count
      counts ("Who I Am, not fandoms ..., 6 tiles", not "Who I Am not fandoms ... 6"). */
   root.innerHTML = jump + data.map(function (g) {
-    return '<section class="fr-group fr-group--' + g.id + '" id="fr-' + g.id + '">'
+    return (g.id === 'core' ? ifacesHtml : '')
+      + '<section class="fr-group fr-group--' + g.id + '" id="fr-' + g.id + '">'
       + '<h3 class="subsec subsec--fr subsec--title reveal">' + esc(g.label)
       +   '<span class="vh">, </span><span class="subsec-yr">' + esc(g.note) + '</span>'
       +   '<span class="fr-count" aria-hidden="true">' + g.items.length + '</span>'
@@ -604,4 +621,143 @@
   addEventListener('storage', function (e) {
     if (e.key === KEY) apply(read(), true);
   });
+
+  /* ── where you were ──
+     Click a tile, read the franchise, press Back: you used to land at the top
+     of the page with all seventy-one tiles above you again, which on the longest
+     block on the site is a long way from the tile you had just been looking
+     at.
+
+     The browser does try. It cannot win here, for two reasons that compound:
+     the tiles do not exist in the HTML (this file writes them, so at the
+     moment the browser restores there is nothing below the fold to scroll
+     to), and the groups skip their layout until they are near the screen
+     (fandom.css, content-visibility), so even once the tiles are in, the
+     page's height is a guess of 1400px a group until each has been seen. A
+     restore against either of those lands thousands of pixels out, and
+     against a page shorter than the offset it is clamped to the top.
+
+     So the page keeps the position itself and puts itself back after the
+     tiles are in and measured. sessionStorage, not localStorage: this is
+     where you were in THIS session, and arriving fresh tomorrow should
+     start at the top like any other page.
+
+     Only on a back or forward navigation. Typing the URL, following a link
+     in, or reloading all start where they should (the top, or the hash), and
+     restoring over any of those would be the opposite of the bug. */
+  var POS = 'ae-worlds-y';
+
+  function navType() {
+    try {
+      var e = performance.getEntriesByType('navigation')[0];
+      if (e && e.type) return e.type;
+    } catch (err) { /* older Safari */ }
+    /* the deprecated enum, for browsers without the Navigation Timing 2 entry:
+       2 is TYPE_BACK_FORWARD */
+    try { if (performance.navigation) return performance.navigation.type === 2 ? 'back_forward' : 'navigate'; }
+    catch (err2) { /* nothing left to ask */ }
+    return 'navigate';
+  }
+
+  /* The browser's own attempt is switched off rather than left to race ours:
+     left on, it scrolls to its (clamped, wrong) guess first, so the page
+     visibly jumped to the top and then again to the right place. */
+  if ('scrollRestoration' in history) {
+    try { history.scrollRestoration = 'manual'; } catch (e) { /* locked down */ }
+  }
+
+  function save() {
+    try { sessionStorage.setItem(POS, String(Math.round(scrollY))); } catch (e) { /* private mode */ }
+  }
+
+  /* pagehide, not beforeunload/unload: it is the one that fires when Safari
+     puts the page in the back/forward cache, and it does not stop the page
+     being cached the way an unload handler does. Also on any scroll, rAF'd,
+     because a tile opened from a tap may never fire pagehide at all on iOS. */
+  var pending = false;
+  addEventListener('scroll', function () {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(function () { pending = false; save(); });
+  }, { passive: true });
+  addEventListener('pagehide', save);
+
+  /* A hash in the URL is a destination and beats a remembered position: a
+     crumb back from a franchise points at /worlds/#franchises, and that
+     should land on the heading, not where you happened to be. fromHash()
+     above has already gone there. */
+  function restore() {
+    if (location.hash || navType() !== 'back_forward') return;
+    var y = 0;
+    try { y = parseInt(sessionStorage.getItem(POS) || '0', 10); } catch (e) { return; }
+    if (!y || y < 0) return;
+
+    /* The vault has to be open for the position to mean anything, and it is
+       remembered separately (the KEY above), so if it was shut there is
+       nothing down there to go back to. */
+    if (vault.hidden) return;
+
+    /* Lay every group out, so the page is its real height and the offset is
+       honest. Two frames: the first is where the layout happens, the second
+       is where it can be read.
+
+       Then, before handing the groups back, each one is given the height it
+       was just measured at (contain-intrinsic-size, as an inline style). A
+       group that collapses now collapses to its REAL height instead of the
+       1400px guess in the stylesheet, so the page keeps the height it had
+       when the position was restored and nothing underneath the reader
+       moves.
+
+       Without this the restore slid every time: released, the off-screen
+       groups went back to guessing, the page lost 200-400px of height and
+       the scroll was clamped up with it (measured 11244 -> 11053, and 6000
+       became 5898). Pinning the heights is also what the jumps want (a jump
+       to "As a Kid" was landing short for the same reason), and it costs one
+       measurement each. */
+    vault.classList.add('is-whole');
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        var groups = vault.querySelectorAll('.fr-group');
+        for (var i = 0; i < groups.length; i++) {
+          var h = groups[i].getBoundingClientRect().height;
+          if (h) groups[i].style.containIntrinsicSize = 'auto ' + Math.round(h) + 'px';
+        }
+        vault.classList.remove('is-whole');
+
+        var max = document.documentElement.scrollHeight - innerHeight;
+        window.scrollTo({ top: Math.min(y, Math.max(max, 0)), behavior: 'instant' });
+
+        /* The web fonts land after this and the names with ā or ḥ in them
+           gain a line, which carries the tiles above the position down the
+           screen. So for a few seconds the position is put back whenever it
+           has drifted, and it lets go the moment the reader scrolls by hand:
+           the same bargain settle() makes for a jump, on a number here
+           rather than on an element. */
+        var quit = false, tries = 0;
+        ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
+          addEventListener(ev, function () { quit = true; }, { once: true, passive: true });
+        });
+        (function hold() {
+          if (quit || ++tries > 12) return;
+          setTimeout(function () {
+            if (quit) return;
+            if (Math.abs(scrollY - y) > 2) {
+              var m = document.documentElement.scrollHeight - innerHeight;
+              window.scrollTo({ top: Math.min(y, Math.max(m, 0)), behavior: 'instant' });
+            }
+            hold();
+          }, 120);
+        })();
+      });
+    });
+  }
+
+  restore();
+
+  /* Safari serves a back-navigation out of the back/forward cache without
+     running any of this again: the page comes back exactly as it left, which
+     is already right, so there is nothing to put back. But it comes back with
+     our 'manual' setting too, so a LATER back out of it needs the position,
+     and the scroll handler above is still live to keep it. */
 })();

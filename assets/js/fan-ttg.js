@@ -109,7 +109,7 @@ window.FAN_PAGE = {
       { title: 'Go!', accent: '#5fbf5f', sub: 'To the Movies · 2018 · 1:52',
         desc: 'The opening number of the film: five characters introducing themselves in a rap over their own action sequence, which is exactly how the series would do it if the series had a budget.',
         href: 'https://www.youtube.com/watch?v=F_PhJG4hf1s', link: 'Listen' },
-      { title: 'Lil Yachty', accent: '#e0483a', sub: 'Cartoon Network · 2:35',
+      { title: 'Lil Yachty', accent: '#e0483a', sub: 'Cartoon Network · 2018 · 2:35',
         desc: 'They got Lil Yachty to do a music video for the show. It is on the official channel and it is exactly as strange as that sounds.',
         href: 'https://www.youtube.com/watch?v=QBQkkotcEME', link: 'Listen' },
     ] },

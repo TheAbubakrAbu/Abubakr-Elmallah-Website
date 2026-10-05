@@ -688,6 +688,10 @@ class Generated(object):
         # trip's photographs.
         if loads('travels.js') and re.match(r'^(trip|tvshots)\d+$', frag):
             return True
+        # music.js: 'id="y' + year + '"', one block per year from 2006, the
+        # year Abubakr was born, to the current one.
+        if loads('music.js') and re.match(r'^y(\d{4})$', frag) and 2006 <= int(frag[1:]) <= 2100:
+            return True
         # and the general rule the specific ones above are instances of: an
         # id declared in a script this page loads (see script_declared_ids).
         for src in page.scripts:
@@ -1063,7 +1067,7 @@ def check_counts(report):
     # the gallery headings: "<n> photos" then the grid's data-years="<school>"
     for file in ('src/high-school.html', 'src/college.html'):
         text = src(file)
-        for m in re.finditer(r'(\d[\d,]*)\s+photos', text):
+        for m in re.finditer(r'(\d[\d,]*)\s+(?:photos|pictures)', text):
             grid = re.search(r'data-years="([a-z]+)"', text[m.end():])
             if not grid:
                 continue

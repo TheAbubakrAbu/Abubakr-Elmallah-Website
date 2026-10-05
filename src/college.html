@@ -55,7 +55,7 @@ tab: "/education/"
          same list the full ladder on /education/ is built from -->
     {% include mascots.html mark="anteaters" %}
 
-    <h2 class="subsec subsec--title reveal" id="photos">Through the Years <span class="subsec-yr"><span class="pic-n">1,070 photos · </span>2024 – now</span></h2>
+    <h2 class="subsec subsec--title reveal" id="photos">Through the Years <span class="subsec-yr"><span class="pic-n">1,296 pictures · </span>2024 – now</span></h2>
     <!-- built by years.js from years-data.js -->
     <div class="years" data-years="uci"></div>
 
@@ -113,6 +113,21 @@ tab: "/education/"
     <p class="yr-note reveal">Not part of any job: the Star Wars apps and bots, the open-source engines behind Al-Quran, and this website. For the apps I shipped before UCI, see the <a href="/high-school/" data-magnetic>high school page</a>.</p>
     <div class="apps-grid apps-grid--3" data-cards="aurebesh-translator,aurebesh-droid,sabacc-droid,quran-tajweed-engine,hadith-json-engine,website" data-chronological data-cards-cat></div>
     {% include apple-dev-link.html %}
+
+    <!-- moved here from the home page: the apps page as it grew in college
+         (both list Aurebesh Translator, released October 2024), the LinkedIn
+         banners, and two account pictures. Those last four carry no date of
+         their own; the caption says the latest they can be, from the file.
+         Originals in _originals/archive/home/ and franchises/gaming/accounts/. -->
+    <h2 class="subsec subsec--title reveal" id="online">Online, Along the Way <span class="subsec-yr">college</span></h2>
+    <div class="flyer-grid flyer-grid--wide flyer-grid--2">
+      <a class="flyer reveal" href="/assets/img/archive/home/apple-apps-2.jpg" target="_blank" rel="noopener"><img src="/assets/img/archive/home/apple-apps-2.jpg" width="1200" height="480" alt="My Apple Ecosystem Apps page with years and awards: the Congressional App Challenge, the Swift Student Challenge, #64 in Entertainment" loading="lazy" decoding="async" /><span class="flyer-cap"><b>My apps page, with the awards</b><i>College &#183; first year</i></span></a>
+      <a class="flyer reveal" href="/assets/img/archive/home/apple-apps-3.jpg" target="_blank" rel="noopener"><img src="/assets/img/archive/home/apple-apps-3.jpg" width="1200" height="745" alt="The last version of my apps page, My Apple Ecosystem Apps, with Datapad in the top 10 of the App Store Entertainment chart" loading="lazy" decoding="async" /><span class="flyer-cap"><b>My apps page, the last</b><i>College</i></span></a>
+    </div>
+    <div class="flyer-grid flyer-grid--wide flyer-grid--2 edu-online-next">
+      <a class="flyer reveal" href="/assets/img/archive/home/linkedin-banner-1.jpg" target="_blank" rel="noopener"><img src="/assets/img/archive/home/linkedin-banner-1.jpg" width="1200" height="432" alt="A LinkedIn banner reading iOS App Development beside an iPhone, with rows of language and platform logos" loading="lazy" decoding="async" /><span class="flyer-cap"><b>The LinkedIn banner</b><i>by July 2025</i></span></a>
+      <a class="flyer reveal" href="/assets/img/archive/home/linkedin-banner-2.jpg" target="_blank" rel="noopener"><img src="/assets/img/archive/home/linkedin-banner-2.jpg" width="1200" height="432" alt="A plainer LinkedIn banner reading iOS App Development, with a row of language and platform logos" loading="lazy" decoding="async" /><span class="flyer-cap"><b>The LinkedIn banner, plainer</b><i>by July 2025</i></span></a>
+    </div>
 
     <h2 class="subsec subsec--title reveal" id="leadership">Roles &amp; Leadership <span class="subsec-yr">by year</span></h2>
 
@@ -349,8 +364,12 @@ tab: "/education/"
 
 </main>
 
-<!-- The switch itself is on /worlds/ now, not here. pics.js stays loaded so
-     this page still OBEYS it; it just no longer offers it in three places. -->
+<!-- The switch for personal photographs, asked for where the photographs are.
+     It is the same one as on /worlds/ and /travels/: one localStorage key for
+     the whole site, so turning it on here turns it on everywhere. Every page
+     still LISTS everything with it off; only the photographs wait to be asked
+     for. -->
+<div class="picsw" data-pics-toggle></div>
 
 {% include footer.html back="/" %}
 

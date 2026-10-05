@@ -1,0 +1,254 @@
+---
+permalink: /vought/
+title: "Vought Tower · Abubakr Elmallah"
+description: "Vought Tower: a The Boys interface for Abubakr Elmallah's portfolio. Every page is a floor with an approval rating, and Butcher's switch opens the file."
+theme: "#06101f"
+fonts: "family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Special+Elite"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/vought.css' %}" />
+</head>
+<body class="vt" id="vt">
+<!-- the view you left it in, set before the first paint so the file does
+     not flash navy on its way back open -->
+<script>try { if (localStorage.getItem('vt-view') === 'butcher') document.body.classList.add('is-butcher'); } catch (e) {}</script>
+
+<!-- Two rooms in one page. Vought's: navy glass, gold trim and two
+     searchlights sweeping the sky behind the tower, the way the logo is lit
+     at night. Butcher's: the same page as a manila file on a desk, paper
+     grain and a coffee ring, because his version of the company lives in a
+     folder the CIA would rather he did not have. -->
+<div class="vt-field" aria-hidden="true">
+  <span class="vt-sky"></span>
+  <span class="vt-beam"></span>
+  <span class="vt-beam vt-beam--b"></span>
+  <span class="vt-paper"></span>
+  <span class="vt-ring"></span>
+</div>
+
+<header class="vt-top">
+  <a class="vt-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave Vought Tower</span>
+  </a>
+  <!-- the live element: Vought's clock and the Seven's approval index,
+       which drifts a point or so every few seconds, as polling does when
+       it is being watched. In Butcher's file it is a surveillance log. -->
+  <span class="vt-live" id="vtLive">Vought Standard Time</span>
+  <!-- The switch is the page's other half. It is a real switch (role,
+       state, label) so a screen reader hears which version it is in. -->
+  <button class="vt-switch" id="vtSwitch" type="button" role="switch" aria-checked="false">
+    <span class="vt-switch-track" aria-hidden="true"><span class="vt-switch-knob"></span></span>
+    <span class="vt-switch-l">Butcher’s view</span>
+  </button>
+</header>
+
+<main class="vt-main">
+
+  <!-- ─────────── the masthead ───────────
+       The name set in type, wide and heavy and gilded, the way the brand
+       does everything. No logo artwork: just Archivo stretched to 125%. In
+       the file, a stamp lands across it. -->
+  <section class="vt-hero">
+    <div class="vt-hero-copy">
+      <p class="vt-kicker"><span class="v-only">Employee intranet · Manhattan · all floors</span><span class="b-only">Classified · Subject: Vought International · eyes only</span></p>
+      <h1 class="vt-title"><span class="vt-wm">Vought</span><span class="vt-wm2">Tower</span></h1>
+      <span class="vt-stamp b-only" id="vtStamp" aria-hidden="true">Classified</span>
+      <p class="vt-sub v-only">Every room on this site is a floor of the tower, every floor has an approval rating, and every rating is excellent. Take the lift anywhere you like. Smile: the lobby has cameras.</p>
+      <p class="vt-sub b-only">Same building, the version that is not on the brochure. Every floor is in the file, and the file has been <span class="vt-x">redacted by people who work for Vought</span>. Hover a black bar, or tap it, to peel it back.</p>
+      <p class="vt-lifted b-only" aria-live="polite"><span id="vtLifted">0</span> of <span id="vtTotal">0</span> redactions lifted<button class="vt-reseal" id="vtReseal" type="button">Reseal the file</button></p>
+    </div>
+
+    <!-- the brand-health card: a live line of the approval index, redrawn
+         as it drifts. Vought would put this in the lobby; Butcher would
+         staple "fabricated" across it, so in his file he does. -->
+    <figure class="vt-health" aria-hidden="true">
+      <figcaption><span>Seven approval index</span><b id="vtIndex">94.0</b></figcaption>
+      <svg viewBox="0 0 240 80" preserveAspectRatio="none">
+        <path class="vt-health-grid" d="M0 20H240M0 40H240M0 60H240"/>
+        <path class="vt-health-fill" id="vtSparkFill" d=""/>
+        <path class="vt-health-line" id="vtSpark" d=""/>
+      </svg>
+      <span class="vt-health-k"><span class="v-only">Source: Vought Analytics</span><span class="b-only">Fabricated. Source: Vought Analytics</span></span>
+    </figure>
+  </section>
+
+  <!-- VNN, the crawl along the bottom of the news: true headlines, every
+       one of them, for once. The copy after the first is only there so
+       the loop has no seam, so screen readers skip it. -->
+  <div class="vt-vnn">
+    <span class="vt-vnn-k"><span class="v-only">VNN · Live</span><span class="b-only">Wire intercepts</span></span>
+    <div class="vt-vnn-win">
+      <div class="vt-vnn-run">
+        <ul class="vt-vnn-list">
+          <li>Abubakr Elmallah named an Apple Swift Student Challenge winner, 2024</li>
+          <li>Datapad climbs into the Top 10 of the paid Entertainment chart</li>
+          <li>Al-Adhan computes prayer times 22 ways</li>
+          <li>Two Discord bots now serve more than 500 servers</li>
+          <li>UCI Esports app maps the arena, the PCs and the events</li>
+          <li>Twelve apps shipped across four platforms</li>
+          <li>Seventy-one worlds open on /worlds/</li>
+        </ul>
+        <ul class="vt-vnn-list" aria-hidden="true">
+          <li>Abubakr Elmallah named an Apple Swift Student Challenge winner, 2024</li>
+          <li>Datapad climbs into the Top 10 of the paid Entertainment chart</li>
+          <li>Al-Adhan computes prayer times 22 ways</li>
+          <li>Two Discord bots now serve more than 500 servers</li>
+          <li>UCI Esports app maps the arena, the PCs and the events</li>
+          <li>Twelve apps shipped across four platforms</li>
+          <li>Seventy-one worlds open on /worlds/</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─────────── the floor directory ───────────
+       The centrepiece. The tower is drawn floor by floor down the left of
+       the directory, one band of glass per room, so it always lines up
+       with the list however the text wraps. A glass lift runs up the
+       outside: point at a floor (or tab to it, or on a phone just scroll
+       it to the middle of the screen) and the car travels there, quicker
+       for a short hop than a long one, the indicator counting every floor
+       it passes, and the doors open when it lands.
+
+       The links are a plain ordered list, top floor first. The tower bands,
+       the shaft and the car are decoration and hidden from screen readers. -->
+  <section class="vt-dir" aria-labelledby="vtDirH">
+    <h2 class="vt-h" id="vtDirH">
+      <canvas class="vt-think" data-orb="searching" data-orb-size="22" data-orb-ink="#e2b54a" aria-hidden="true"></canvas><span class="v-only">Floor directory</span><span class="b-only">Building plan, annotated</span><small><span class="v-only">every room on the site, with its approval rating</span><span class="b-only">every floor, and what they are not telling you</span></small>
+    </h2>
+
+    <div class="vt-panel-lift" aria-hidden="true">
+      <span class="vt-arrow" id="vtArrow">■</span>
+      <b class="vt-floorno" id="vtFloorNo">G</b>
+      <span class="vt-floorname" id="vtFloorName">The Lobby</span>
+    </div>
+
+    <div class="vt-tower">
+      <div class="vt-crown" aria-hidden="true"><span class="vt-mast"></span><span class="vt-beacon"></span><span class="vt-crown-glass">VOUGHT</span></div>
+      <div class="vt-stack" id="vtStack">
+        <ol class="vt-floors" id="vtFloors">
+          <li class="vt-floor" data-fl="101" data-n="R" style="--ap:96%; --lit:.7"><span class="vt-seg" aria-hidden="true"></span><a href="/travels/"><span class="vt-no">R</span><span class="vt-txt"><b>The Helipad</b><i>Travels</i><span class="vt-note v-only">Vought Air, wheels up on request.</span><span class="vt-note b-only">Flight logs for this pad are <span class="vt-x">sealed by Vought legal</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">96%</span></span></a></li>
+          <li class="vt-floor" data-fl="99" data-n="99" style="--ap:91%; --lit:.4"><span class="vt-seg" aria-hidden="true"></span><a href="/work/"><span class="vt-no">99</span><span class="vt-txt"><b>The Executive Floor</b><i>Work at UC Irvine</i><span class="vt-note v-only">Where the decisions get made.</span><span class="vt-note b-only">The real work happens <span class="vt-x">well away from the cameras</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">91%</span></span></a></li>
+          <li class="vt-floor" data-fl="88" data-n="88" style="--ap:94%; --lit:.55"><span class="vt-seg" aria-hidden="true"></span><a href="/resume/"><span class="vt-no">88</span><span class="vt-txt"><b>Personnel</b><i>Résumé</i><span class="vt-note v-only">Every role, on one page.</span><span class="vt-note b-only">Personnel files are <span class="vt-x">shredded on Fridays</span>. This one was not.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">94%</span></span></a></li>
+          <li class="vt-floor" data-fl="80" data-n="80" style="--ap:97%; --lit:.8"><span class="vt-seg" aria-hidden="true"></span><a href="/projects/"><span class="vt-no">80</span><span class="vt-txt"><b>Product Development</b><i>Every project</i><span class="vt-note v-only">Built in-house, shipped worldwide.</span><span class="vt-note b-only">Nothing on this floor was <span class="vt-x">made with Compound V</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">97%</span></span></a></li>
+          <li class="vt-floor" data-fl="72" data-n="72" style="--ap:93%; --lit:.35"><span class="vt-seg" aria-hidden="true"></span><a href="/star-wars/"><span class="vt-no">72</span><span class="vt-txt"><b>Vought Studios</b><i>Star Wars apps</i><span class="vt-note v-only">Now in production: the next big franchise.</span><span class="vt-note b-only">The slate is <span class="vt-x">rewritten after every focus group</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">93%</span></span></a></li>
+          <li class="vt-floor" data-fl="64" data-n="64" style="--ap:98%; --lit:.6"><span class="vt-seg" aria-hidden="true"></span><a href="/worlds/"><span class="vt-no">64</span><span class="vt-txt"><b>Vought Cinematic Universe</b><i>All 71 worlds</i><span class="vt-note v-only">Seventy-one worlds, one brand.</span><span class="vt-note b-only">Vought owns <span class="vt-x">exactly one of the seventy-one</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">98%</span></span></a></li>
+          <li class="vt-floor" data-fl="57" data-n="57" style="--ap:89%; --lit:.45"><span class="vt-seg" aria-hidden="true"></span><a href="/worlds/the-boys/"><span class="vt-no">57</span><span class="vt-txt"><b>Vought News Network</b><i>The Boys · the world page</i><span class="vt-note v-only">The news, as approved.</span><span class="vt-note b-only">Every headline is <span class="vt-x">cleared by marketing first</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">89%</span></span></a></li>
+          <li class="vt-floor" data-fl="49" data-n="49" style="--ap:90%; --lit:.3"><span class="vt-seg" aria-hidden="true"></span><a href="/lightsabers/"><span class="vt-no">49</span><span class="vt-txt"><b>The Armoury</b><i>The lightsaber guide</i><span class="vt-note v-only">Licensed replicas, every one of them safe.</span><span class="vt-note b-only">Inventory includes <span class="vt-x">items on no manifest</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">90%</span></span></a></li>
+          <li class="vt-floor" data-fl="41" data-n="41" style="--ap:95%; --lit:.65"><span class="vt-seg" aria-hidden="true"></span><a href="/accents/"><span class="vt-no">41</span><span class="vt-txt"><b>Media Training</b><i>Accents &amp; impersonations</i><span class="vt-note v-only">Find your on-camera voice.</span><span class="vt-note b-only">Coaches here <span class="vt-x">make rehearsed lines sound sincere</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">95%</span></span></a></li>
+          <li class="vt-floor" data-fl="33" data-n="33" style="--ap:99%; --lit:.9"><span class="vt-seg" aria-hidden="true"></span><a href="/gaming/"><span class="vt-no">33</span><span class="vt-txt"><b>Vought Land</b><i>Gaming</i><span class="vt-note v-only">Rides, games and a gift shop.</span><span class="vt-note b-only">The rides last passed inspection <span class="vt-x">in a previous decade</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">99%</span></span></a></li>
+          <li class="vt-floor" data-fl="26" data-n="26" style="--ap:92%; --lit:.5"><span class="vt-seg" aria-hidden="true"></span><a href="/education/"><span class="vt-no">26</span><span class="vt-txt"><b>Talent Development</b><i>Education</i><span class="vt-note v-only">Growing tomorrow’s heroes.</span><span class="vt-note b-only">Curriculum approved by <span class="vt-x">the brand team, not teachers</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">92%</span></span></a></li>
+          <li class="vt-floor" data-fl="19" data-n="19" style="--ap:94%; --lit:.4"><span class="vt-seg" aria-hidden="true"></span><a href="/college/"><span class="vt-no">19</span><span class="vt-txt"><b>Godolkin University</b><i>College · UC Irvine</i><span class="vt-note v-only">The campus with a future in it.</span><span class="vt-note b-only">The funding arrives <span class="vt-x">with strings attached</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">94%</span></span></a></li>
+          <li class="vt-floor" data-fl="12" data-n="12" style="--ap:96%; --lit:.75"><span class="vt-seg" aria-hidden="true"></span><a href="/high-school/"><span class="vt-no">12</span><span class="vt-txt"><b>Hometown Heroes</b><i>High school</i><span class="vt-note v-only">Where every legend starts.</span><span class="vt-note b-only">Scouting reports kept <span class="vt-x">since the first talent show</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">96%</span></span></a></li>
+          <li class="vt-floor vt-floor--quiet" data-fl="5" data-n="5" style="--ap:0%; --lit:.2"><span class="vt-seg" aria-hidden="true"></span><a href="/al-islam/"><span class="vt-no">5</span><span class="vt-txt"><b>The Quiet Room</b><i>Al-Islam</i><span class="vt-note v-only">A calm floor, kept off the brand.</span><span class="vt-note b-only">The one floor in the building with <span class="vt-x">nothing to hide</span>.</span></span><span class="vt-ap vt-ap--none"><span class="vt-ap-n">Not rated</span></span></a></li>
+          <li class="vt-floor" data-fl="0" data-n="G" style="--ap:99%; --lit:1"><span class="vt-seg" aria-hidden="true"></span><a href="/"><span class="vt-no">G</span><span class="vt-txt"><b>The Lobby</b><i>Home</i><span class="vt-note v-only">Welcome. Smile, you are on camera.</span><span class="vt-note b-only">Cameras in the lobby: <span class="vt-x">every single one</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">99%</span></span></a></li>
+        </ol>
+        <div class="vt-shaft" aria-hidden="true"><span class="vt-car" id="vtCar"><i></i><i></i></span></div>
+      </div>
+      <div class="vt-plaza" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- ─────────── two panels ─────────── -->
+  <div class="vt-cols">
+
+    <!-- Vought's talent card for him, the trading-card kind they sell in
+         the gift shop; in the file it is a subject sheet. The facts are the
+         same either way, which is the joke: for once nobody had to spin. -->
+    <section class="vt-panel vt-card" aria-labelledby="vtCardH">
+      <h2 class="vt-h vt-h--sm" id="vtCardH"><span class="v-only">Talent profile</span><span class="b-only">Subject sheet</span><small><span class="v-only">not a Vought asset, sadly</span><span class="b-only">no powers on record</span></small></h2>
+      <p class="vt-card-name">Abubakr Elmallah</p>
+      <dl class="vt-facts">
+        <div><dt>Studying</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
+        <div><dt>Role</dt><dd>Lead mobile &amp; backend developer</dd></div>
+        <div><dt>Apps shipped</dt><dd>Twelve, across four platforms</dd></div>
+        <div><dt>Honours</dt><dd>Apple Swift Student Challenge winner, 2024</dd></div>
+        <div><dt>Chart</dt><dd>Datapad, Top 10 of the paid Entertainment chart</dd></div>
+        <div><dt>Reach</dt><dd>Two Discord bots in 500+ servers</dd></div>
+        <div><dt>Precision</dt><dd>Al-Adhan, prayer times computed 22 ways</dd></div>
+        <div><dt>Arena</dt><dd>The UCI Esports app: the arena, the PCs, the events</dd></div>
+        <div><dt>Origin story</dt><dd>Order 66 and Datapad, the first solo projects, 2021</dd></div>
+        <div><dt>Worlds</dt><dd>Seventy, on /worlds/</dd></div>
+        <div class="vt-facts-v"><dt>Compound V</dt><dd><span class="v-only">Natural talent, says marketing</span><span class="b-only">None. Did it the hard way.</span></dd></div>
+      </dl>
+    </section>
+
+    <!-- Vought's press release on the left of the desk; Butcher's case
+         notes, typed over the same facts, under the same switch. -->
+    <section class="vt-panel vt-memo" aria-labelledby="vtMemoH">
+      <h2 class="vt-h vt-h--sm" id="vtMemoH"><span class="v-only">Press release</span><span class="b-only">Case notes</span><small><span class="v-only">for immediate distribution</span><span class="b-only">typed, not for distribution</span></small></h2>
+      <div class="v-only">
+        <p>Vought International is proud to welcome visitors to the tower. Every room of Abubakr Elmallah’s site is here, one floor each, with a lift that is never out of order.</p>
+        <p>Highlights this quarter: twelve apps across four platforms, a Swift Student Challenge win in 2024, and Datapad in the Top 10 of the paid Entertainment chart. Approval is at an all-time high. Approval is always at an all-time high.</p>
+        <p>The Boys first aired in our schedules in 2019, and Mr. Elmallah first tuned in in the summer of 2022, going into 11th grade. We hope he enjoyed the content.</p>
+      </div>
+      <div class="b-only">
+        <p>Subject started watching in <span class="vt-x">the summer of 2022, going into 11th grade</span>. Has been asking awkward questions about superheroes ever since.</p>
+        <p>Shipped twelve apps across four platforms with <span class="vt-x">no Compound V</span> and no PR department. First solo projects, Order 66 and Datapad, date to <span class="vt-x">2021</span>.</p>
+        <p>Vought’s files claim the tower’s approval is at an all-time high. Vought’s files <span class="vt-x">always claim that</span>.</p>
+        <p class="vt-sig">B.B.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ─────────── the other interfaces ─────────── -->
+  <section class="vt-panel vt-partners" aria-labelledby="vtPartH">
+    <h2 class="vt-h vt-h--sm" id="vtPartH"><span class="v-only">Licensing partners</span><span class="b-only">Other files in the cabinet</span><small><span class="v-only">the other worlds Vought would love to buy</span><span class="b-only">every other interface on the site</span></small></h2>
+    <ul class="vt-logos">
+      <li><a href="/elmallah/"><span class="vt-tag" aria-hidden="true">01</span><b>E.L.M.A.L.L.A.H.</b><i>Star Wars · the holotable hub</i></a></li>
+      <li><a href="/holocron/"><span class="vt-tag" aria-hidden="true">02</span><b>The Holocron</b><i>Star Wars · a Jedi archive</i></a></li>
+      <li><a href="/jarvis/"><span class="vt-tag" aria-hidden="true">03</span><b>J.A.R.V.I.S.</b><i>Avengers · a Stark display</i></a></li>
+      <li><a href="/marauders-map/"><span class="vt-tag" aria-hidden="true">04</span><b>The Marauder’s Map</b><i>Harry Potter</i></a></li>
+      <li><a href="/crafting-table/"><span class="vt-tag" aria-hidden="true">05</span><b>The Crafting Table</b><i>Minecraft</i></a></li>
+      <li><a href="/citadel/"><span class="vt-tag" aria-hidden="true">06</span><b>The Citadel</b><i>Game of Thrones</i></a></li>
+      <li><a href="/compass/"><span class="vt-tag" aria-hidden="true">07</span><b>The Compass</b><i>Pirates of the Caribbean</i></a></li>
+      <li><a href="/control-room/"><span class="vt-tag" aria-hidden="true">08</span><b>The Control Room</b><i>Jurassic Park</i></a></li>
+      <li><a href="/upside-down/"><span class="vt-tag" aria-hidden="true">09</span><b>The Upside Down</b><i>Stranger Things</i></a></li>
+      <li><a href="/starcourt/"><span class="vt-tag" aria-hidden="true">10</span><b>Starcourt</b><i>Stranger Things</i></a></li>
+      <li><a href="/spirit-library/"><span class="vt-tag" aria-hidden="true">11</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a></li>
+      <li><a href="/monastery/"><span class="vt-tag" aria-hidden="true">12</span><b>The Monastery</b><i>Ninjago</i></a></li>
+      <li><a href="/wanted/"><span class="vt-tag" aria-hidden="true">13</span><b>The Wanted Board</b><i>Red Dead Redemption</i></a></li>
+      <li><a href="/dunder-mifflin/"><span class="vt-tag" aria-hidden="true">14</span><b>Dunder Mifflin</b><i>The Office</i></a></li>
+      <li><a href="/springfield/"><span class="vt-tag" aria-hidden="true">15</span><b>Springfield</b><i>The Simpsons</i></a></li>
+      <li><a href="/pokedex/"><span class="vt-tag" aria-hidden="true">16</span><b>The Pokédex</b><i>Pokémon</i></a></li>
+      <li><a href="/batcomputer/"><span class="vt-tag" aria-hidden="true">17</span><b>The Batcomputer</b><i>Batman</i></a></li>
+      <li><a href="/daily-bugle/"><span class="vt-tag" aria-hidden="true">18</span><b>The Daily Bugle</b><i>Spider-Man</i></a></li>
+    </ul>
+  </section>
+
+  <!-- the sign-off: Vought hands you the NDA; in Butcher's file you close
+       the folder. Either way the last word is his. -->
+  <button class="vt-sign" id="vtSignBtn" type="button"><span class="v-only">Sign the NDA</span><span class="b-only">Close the file</span></button>
+
+</main>
+
+<!-- the answer, after signing -->
+<div class="vt-done" id="vtDone">
+  <div>
+    <canvas class="vt-done-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#e2b54a" aria-hidden="true"></canvas>
+    <p class="vt-done-k"><span class="v-only">Signed and countersigned</span><span class="b-only">File closed</span></p>
+    <p class="vt-done-t"><span class="v-only">Welcome to the Vought family.</span><span class="b-only">Diabolical.</span></p>
+    <p class="vt-done-m"><span class="v-only">In the margin, in red pen: “diabolical.” B.B.</span><span class="b-only">Vought’s comment: “We have no record of this file.”</span></p>
+    <a class="vt-done-home" href="/">Take the lift to the lobby</a>
+    <button class="vt-done-stay" id="vtStay" type="button">Stay on this floor</button>
+  </div>
+</div>
+
+<script>
+  /* smooth scrolling only after load, so back/forward restores the position instantly instead of sliding to it */
+  addEventListener('load', function () {
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      document.documentElement.classList.add('smooth');
+    }); });
+  });
+</script>
+<script src="{% include v.html f='/assets/js/vought.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

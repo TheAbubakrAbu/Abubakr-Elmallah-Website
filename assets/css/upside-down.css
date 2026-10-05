@@ -1,0 +1,692 @@
+/* ============================================================
+   upside-down.css: /upside-down/, the Stranger Things terminal.
+   Sister page to /jarvis/, /holocron/, /marauders-map/,
+   /crafting-table/ and /citadel/: a living-room wall instead of
+   glass. Joyce's alphabet hangs under a string of bulbs that
+   spell whatever you point at, and the light switch on the same
+   wall turns the whole house over into the Upside Down. Drawn in
+   CSS and SVG; the spores and the lightning are upside-down.js.
+   ============================================================ */
+
+/* these pages load no shared stylesheet, so they carry their own reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.ud {
+  --type:   "Courier Prime", "Courier New", ui-monospace, monospace;   /* the typewriter: everything read */
+  --paint:  "Permanent Marker", "Marker Felt", cursive;                 /* Joyce's brush: everything painted */
+  --lcd:    "VT323", ui-monospace, monospace;                           /* anything with a screen */
+  --ease:   cubic-bezier(.16, 1, .3, 1);
+  --swap:   1.2s;                                                       /* how long the house takes to turn over */
+
+  /* Hawkins, at night, with the lamps on */
+  --night:   #0e0a0b;
+  --panel:   rgba(26, 18, 16, .84);
+  --panel-2: rgba(38, 27, 22, .92);
+  --ink:     #f3e7d3;
+  --dim:     #d2c2a8;
+  --mute:    #a8977d;
+  --line:    rgba(242, 200, 150, .17);
+  --red:     #e8261d;
+  --red-ink: #ff6a5c;          /* the show's red, lifted until it reads as small text on the dark */
+  --red-deep:#c41a12;          /* and deepened until white reads on it, for the filled buttons */
+  --warm:    #ffb347;
+  --paintc:  #1a120c;          /* the black paint on the wall */
+  --plastic-1: #2c2825;
+  --plastic-2: #1b1816;
+  --folder-1: #dcbc7c;
+  --folder-2: #c9a664;
+  --paper:   #f4eddd;
+
+  background: var(--night);
+  color: var(--ink);
+  font-family: var(--type);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color var(--swap), color var(--swap);
+}
+
+/* the same house, turned over: everything warm goes cold */
+.ud.is-down {
+  --night:   #0a0e13;
+  --panel:   rgba(15, 21, 28, .86);
+  --panel-2: rgba(22, 31, 40, .92);
+  --ink:     #dde6ed;
+  --dim:     #b3c0cb;
+  --mute:    #8f9daa;
+  --line:    rgba(170, 196, 220, .2);
+  --warm:    #ffb347;
+  --paintc:  #0b1015;
+  --plastic-1: #222a31;
+  --plastic-2: #141a1f;
+  --folder-1: #a3afb9;
+  --folder-2: #8e9ba6;
+  --paper:   #dbe2e7;
+}
+
+:focus-visible { outline: 2px solid var(--warm); outline-offset: 3px; }
+
+/* ───────────── the sky: a card with a face on each side ───────────── */
+.ud-field { position: fixed; inset: 0; z-index: 0; pointer-events: none; perspective: 1600px; overflow: hidden; }
+.ud-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+.ud-card {
+  position: absolute; inset: 0; transform-style: preserve-3d;
+  transition: transform 1.3s cubic-bezier(.65, 0, .35, 1);
+}
+.ud.is-down .ud-card { transform: rotateX(180deg); }
+.ud-face { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.ud-face > span { position: absolute; }
+
+/* front: an Indiana night in November, a glow over the house */
+.ud-face--up { background: linear-gradient(180deg, #06070d 0%, #0d0c15 42%, #1b1216 78%, #22161a 100%); }
+.ud-stars {
+  inset: 0 0 30% 0; opacity: .8;
+  background-image:
+    radial-gradient(1.2px 1.2px at 12% 18%, #fff 50%, transparent),
+    radial-gradient(1px 1px at 28% 42%, #f6eadb 50%, transparent),
+    radial-gradient(1.4px 1.4px at 46% 12%, #fff 50%, transparent),
+    radial-gradient(1px 1px at 63% 33%, #e9e2ff 50%, transparent),
+    radial-gradient(1.2px 1.2px at 81% 22%, #fff 50%, transparent),
+    radial-gradient(1px 1px at 92% 48%, #f6eadb 50%, transparent),
+    radial-gradient(1px 1px at 6% 58%, #fff 50%, transparent),
+    radial-gradient(1.3px 1.3px at 37% 64%, #fff 50%, transparent);
+  background-size: 420px 300px;
+}
+.ud-glow {
+  inset: 0;
+  background:
+    radial-gradient(42% 26% at 50% 100%, rgba(255, 150, 70, .16), transparent 70%),
+    radial-gradient(120% 80% at 50% 50%, transparent 55%, rgba(0, 0, 0, .55));
+}
+.ud-trees { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: clamp(150px, 26vh, 260px); }
+.ud-trees use { fill: currentColor; }
+.ud-face--up .ud-trees { color: #040306; }
+.ud-face--up .ud-window { fill: #c9823a; opacity: .8; }
+.ud-face--up .ud-trees { filter: drop-shadow(0 0 1px rgba(255, 190, 110, .2)); }
+.ud-eaves circle { fill: var(--b); animation: ud-twinkle 3.8s ease-in-out infinite; }
+.ud-eaves circle:nth-child(3n+2) { animation-delay: -1.3s; }
+.ud-eaves circle:nth-child(3n) { animation-delay: -2.5s; }
+@keyframes ud-twinkle { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+
+/* back: the Upside Down, cold and stormy, already turned so it lands upright */
+.ud-face--down {
+  transform: rotateX(180deg);
+  background: linear-gradient(180deg, #1c2530 0%, #131a22 46%, #0b0f14 100%);
+}
+.ud-clouds {
+  inset: -12% -25% 28% -25%;
+  background:
+    radial-gradient(60% 34% at 50% 6%, rgba(150, 32, 26, .26), transparent 70%),
+    radial-gradient(30% 22% at 18% 28%, rgba(84, 100, 116, .55), transparent 70%),
+    radial-gradient(34% 26% at 58% 16%, rgba(72, 86, 100, .6), transparent 70%),
+    radial-gradient(28% 20% at 86% 36%, rgba(92, 106, 120, .45), transparent 70%),
+    radial-gradient(40% 24% at 36% 50%, rgba(60, 72, 84, .4), transparent 70%);
+  animation: ud-cloud 70s ease-in-out infinite alternate;
+}
+@keyframes ud-cloud { to { transform: translateX(8%); } }
+.ud-face--down .ud-trees { color: #05080b; filter: drop-shadow(0 -1px 6px rgba(255, 60, 40, .22)); }
+.ud-face--down .ud-window { fill: #0f151b; }
+.ud-roots { fill: none; stroke: #05080b; stroke-width: 4; stroke-linecap: round; }
+
+/* the lightning: one soft red pulse at a time, several seconds apart,
+   never a strobe (upside-down.js picks where and when) */
+.ud-flash {
+  left: var(--x, 50%); top: -30vh; width: 130vmin; height: 95vmin; translate: -50% 0;
+  border-radius: 50%; opacity: 0;
+  background: radial-gradient(closest-side, rgba(255, 64, 44, .5), rgba(170, 26, 20, .22) 45%, transparent);
+}
+.ud-bolt {
+  position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; overflow: visible;
+  filter: drop-shadow(0 0 4px #ff2a1a) drop-shadow(0 0 14px rgba(255, 42, 26, .7));
+}
+.ud-bolt path { fill: none; stroke: #ff7a66; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.ud-face--down.is-strike .ud-flash,
+.ud-face--down.is-strike .ud-bolt { animation: ud-strike 1.9s ease-out both; }
+@keyframes ud-strike { 0% { opacity: 0; } 7% { opacity: 1; } 24% { opacity: .5; } 100% { opacity: 0; } }
+
+.ud-spores {
+  position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none;
+  opacity: 0; transition: opacity var(--swap);
+}
+.ud.is-down .ud-spores { opacity: 1; }
+
+/* ───────────── header ───────────── */
+.ud-top {
+  position: relative; z-index: 3;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.3rem 1rem; flex-wrap: wrap;
+  padding: calc(0.6rem + env(safe-area-inset-top, 0px)) max(clamp(1rem, 4vw, 2.6rem), env(safe-area-inset-right, 0px)) 0.6rem max(clamp(1rem, 4vw, 2.6rem), env(safe-area-inset-left, 0px));
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(0, 0, 0, .55), rgba(0, 0, 0, .15));
+  font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim);
+  transition: opacity 1.1s ease;
+}
+.ud-exit { display: inline-flex; align-items: center; gap: 0.45rem; min-height: 44px; color: var(--red-ink); font-weight: 700; }
+.ud-exit:hover { color: #ffd2cc; }
+.ud-exit svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.2; }
+.ud-clock {
+  font-family: var(--lcd); font-size: 1.2rem; letter-spacing: 0.08em; color: var(--warm);
+  text-shadow: 0 0 8px rgba(255, 179, 71, .45); white-space: nowrap;
+}
+
+.ud-main {
+  position: relative; z-index: 1; max-width: 1280px; margin: 0 auto;
+  padding: 0 max(clamp(1rem, 4vw, 2.6rem), env(safe-area-inset-right, 0px)) calc(5rem + env(safe-area-inset-bottom, 0px)) max(clamp(1rem, 4vw, 2.6rem), env(safe-area-inset-left, 0px));
+  transition: opacity 1.1s ease;
+}
+
+/* ───────────── the stage ─────────────
+   One column on a phone, with the left column dissolved so the wall's
+   sticky box belongs to the whole stage and can ride over the rooms.
+   Two columns from 1000px, where the left column stretches to the height
+   of the right one and the wall sticks inside it. */
+.ud-stage { display: flex; flex-direction: column; gap: 1.6rem; padding-top: clamp(1.4rem, 4vw, 2.6rem); }
+.ud-left { display: contents; }
+.ud-right { display: flex; flex-direction: column; gap: 2.6rem; }
+.ud-wallbox {
+  position: sticky; top: calc(8px + env(safe-area-inset-top, 0px)); z-index: 4;
+  container-type: inline-size;
+  /* riding over the rooms, it should stay about a quarter of the screen:
+     on a tablet held upright a full-width wall would be over a third */
+  width: 100%; max-width: 540px; margin: 0 auto;
+}
+@media (min-width: 1000px) {
+  .ud-stage { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); gap: clamp(2rem, 4vw, 3.6rem); }
+  .ud-left { display: flex; flex-direction: column; gap: 1.6rem; }
+  .ud-wallbox { top: 1.2rem; max-width: none; }
+  .ud-right { padding-top: 0.4rem; }
+}
+/* a phone held sideways has no room for a wall that follows you */
+@media (max-height: 560px) { .ud-wallbox { position: relative; top: auto; } }
+
+/* ───────────── the headline ───────────── */
+.ud-kicker { font-size: 0.74rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red-ink); font-weight: 700; }
+.ud-title {
+  margin-top: 0.4rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; line-height: 0.98;
+  font-size: clamp(2.4rem, 6.6vw, 4.8rem); color: var(--ink);
+  text-shadow: 0 0 30px rgba(232, 38, 29, .38), 0 2px 0 rgba(0, 0, 0, .6);
+  transform: perspective(700px) rotateX(0deg); transform-origin: 50% 52%;
+  transition: transform var(--swap) var(--ease), color var(--swap);
+}
+/* on the other side the title hangs the other way up, like its reflection */
+.ud.is-down .ud-title { transform: perspective(700px) rotateX(180deg); text-shadow: 0 0 30px rgba(120, 170, 220, .3), 0 -2px 0 rgba(0, 0, 0, .6); }
+
+/* ───────────── Joyce's wall ───────────── */
+.ud-wall {
+  position: relative; isolation: isolate; overflow: hidden;
+  padding: clamp(0.5rem, 3cqi, 1.5rem) clamp(0.45rem, 2.4cqi, 1.4rem) clamp(0.5rem, 2cqi, 1rem);
+  border-radius: 3px;
+  /* 1983 wallpaper: an ochre ground, a pinstripe and a small sprig,
+     darkened at the edges where the lamplight does not reach */
+  background:
+    radial-gradient(circle at 25% 30%, rgba(122, 74, 32, .2) 0 1.6px, transparent 2.2px) 0 0 / 30px 30px,
+    radial-gradient(circle at 75% 80%, rgba(255, 238, 200, .16) 0 1.6px, transparent 2.2px) 0 0 / 30px 30px,
+    repeating-linear-gradient(90deg, rgba(96, 58, 22, .11) 0 2px, transparent 2px 15px),
+    linear-gradient(180deg, #c6a56c, #ad8d57);
+  box-shadow: 0 26px 44px -20px rgba(0, 0, 0, .85), inset 0 0 0 1px rgba(255, 240, 210, .14);
+}
+/* the other side's wallpaper, faded in over this one: the same pattern,
+   gone blue-grey, with the plaster showing through where it has peeled */
+.ud-wall::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0;
+  transition: opacity var(--swap);
+  background:
+    radial-gradient(18% 14% at 82% 22%, rgba(180, 194, 204, .5), transparent 70%),
+    radial-gradient(14% 20% at 12% 70%, rgba(176, 190, 200, .4), transparent 70%),
+    radial-gradient(22% 16% at 40% 6%, rgba(20, 26, 32, .4), transparent 70%),
+    radial-gradient(circle at 25% 30%, rgba(20, 30, 40, .22) 0 1.6px, transparent 2.2px) 0 0 / 30px 30px,
+    repeating-linear-gradient(90deg, rgba(20, 30, 40, .12) 0 2px, transparent 2px 15px),
+    linear-gradient(180deg, #8f9ca7, #7b8894);   /* light enough that the black paint still reads */
+}
+.ud.is-down .ud-wall::before { opacity: 1; }
+/* damp on the plaster and the dark at the corners, both sides */
+.ud-wall::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(26% 30% at 10% 18%, rgba(60, 34, 12, .2), transparent 70%),
+    radial-gradient(22% 26% at 90% 74%, rgba(60, 34, 12, .18), transparent 70%),
+    radial-gradient(130% 110% at 50% 45%, transparent 55%, rgba(30, 16, 4, .5));
+}
+
+.ud-vines { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; opacity: 0; transition: opacity var(--swap); }
+.ud-vines path {
+  fill: none; stroke: #121820; stroke-width: 5; stroke-linecap: round; vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  transition: stroke-dashoffset 2.6s var(--ease) .4s;
+}
+.ud-vines path.ud-vines-thin { stroke-width: 2.5; transition-delay: 1.2s; }
+.ud.is-down .ud-vines { opacity: .9; }
+.ud.is-down .ud-vines path { stroke-dashoffset: 0; }
+
+/* nine columns at every width: A to H and the switch, I to Q, R to Z */
+.ud-letters {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: repeat(9, minmax(0, 1fr));
+  row-gap: clamp(0.2rem, 1.8cqi, 1rem);
+}
+.ud-cell {
+  --bw: clamp(9px, 2.6cqi, 17px);            /* a bulb's width; everything on it scales from this */
+  position: relative; display: flex; flex-direction: column; align-items: center;
+  padding-top: 3px;
+}
+/* the wire, sagging from this bulb to the next one along */
+.ud-cell::before {
+  content: ""; position: absolute; z-index: 1; left: 50%; top: 2px; width: 100%; height: calc(var(--bw) * .9);
+  border-bottom: 2px solid #2a3524; border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+.ud-cell[data-c="H"]::before, .ud-cell[data-c="Q"]::before, .ud-cell[data-c="Z"]::before, .ud-cell--switch::before { display: none; }
+/* the light a lit bulb throws on the wallpaper round it */
+.ud-cell::after {
+  content: ""; position: absolute; z-index: 0; left: 50%; top: calc(var(--bw) * 1.4);
+  width: calc(var(--bw) * 7.5); aspect-ratio: 1; translate: -50% -40%; border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--b) 62%, transparent), color-mix(in srgb, var(--b) 18%, transparent) 55%, transparent);
+  opacity: 0; transition: opacity .14s; pointer-events: none;
+}
+
+/* a C9 bulb: a socket on the wire, and a glass drop hung from it at
+   whatever angle it settled when the string went up */
+.ud-bulb {
+  position: relative; z-index: 2; display: block;
+  width: var(--bw); height: calc(var(--bw) * 1.5); margin-top: calc(var(--bw) * .55);
+  border-radius: 46% 46% 50% 50% / 32% 32% 68% 68%;
+  background:
+    radial-gradient(circle at 36% 28%, rgba(255, 255, 255, .38), transparent 32%),
+    color-mix(in srgb, var(--b) 40%, #2a1d16);
+  box-shadow: inset 0 -2px 3px rgba(0, 0, 0, .45), 0 1px 2px rgba(0, 0, 0, .35);
+  transform: rotate(var(--r)); transform-origin: 50% calc(var(--bw) * -.55);
+  transition: filter .4s, box-shadow .4s;
+}
+.ud-bulb::before {                     /* the socket */
+  content: ""; position: absolute; left: 14%; right: 14%; bottom: 94%; height: calc(var(--bw) * .6);
+  border-radius: 2px 2px 1px 1px;
+  background: linear-gradient(90deg, #121c12, #34502f 45%, #121c12);
+}
+.ud-cell b {
+  position: relative; z-index: 1; display: block; margin-top: calc(var(--bw) * .3);
+  font-family: var(--paint); font-weight: 400; line-height: 1;
+  font-size: clamp(1.15rem, 6.6cqi, 2.6rem); color: var(--paintc);
+  transform: rotate(var(--t));
+  transition: color var(--swap), text-shadow .14s;
+}
+/* where the brush was too wet: a thin run off the bottom of the stroke,
+   ending in a bead */
+.ud-drip::after {
+  content: ""; position: absolute; left: 52%; top: 82%; width: 6px; height: 0.3em; translate: -50% 0;
+  background:
+    linear-gradient(currentColor, currentColor) 50% 0 / 2px 78% no-repeat,
+    radial-gradient(circle at 50% calc(100% - 2.5px), currentColor 0 2.2px, transparent 2.7px);
+}
+.ud-cell:nth-child(4n) .ud-drip::after { left: 24%; height: 0.22em; }
+
+/* lit: the glass goes white-hot in the middle, the wall glows, the paint catches it */
+.ud-cell.is-on .ud-bulb {
+  background: radial-gradient(circle at 40% 32%, #fffdf0 0 14%, var(--b) 52%, color-mix(in srgb, var(--b) 72%, #000));
+  box-shadow: 0 0 calc(var(--bw) * .8) calc(var(--bw) * .22) var(--b), 0 0 calc(var(--bw) * 2.4) calc(var(--bw) * .5) color-mix(in srgb, var(--b) 55%, transparent);
+  animation: ud-flick .26s ease-out;
+}
+.ud-cell.is-on::after { opacity: 1; }
+.ud-cell.is-on b { text-shadow: 0 0 calc(var(--bw) * .9) color-mix(in srgb, var(--b) 75%, transparent); }
+@keyframes ud-flick { 0% { filter: brightness(.45); } 40% { filter: brightness(1.2); } 65% { filter: brightness(.8); } 100% { filter: none; } }
+
+/* idle: now and then a bulb warms a little on its own */
+.ud-cell.is-faint .ud-bulb { filter: brightness(1.8) saturate(1.2); box-shadow: 0 0 calc(var(--bw) * .6) 1px color-mix(in srgb, var(--b) 55%, transparent); }
+
+/* the surge before the house turns over: every bulb once, out of order */
+.ud.is-surge .ud-cell .ud-bulb { animation: ud-surge .5s ease-out var(--sd, 0s) both; }
+@keyframes ud-surge {
+  0%, 100% { filter: none; }
+  30% { filter: brightness(2.4) saturate(1.3); box-shadow: 0 0 calc(var(--bw) * .8) calc(var(--bw) * .2) var(--b); }
+}
+
+/* the light switch, screwed to the wall in the ninth place of the top row */
+.ud-cell--switch { justify-content: center; }
+.ud-switch {
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  width: 100%; min-height: 44px; padding: 2px 0; border: 0; background: none; cursor: pointer; color: var(--paintc);
+}
+/* the whole ninth place answers, and a little past it: 44px even on a phone */
+.ud-switch::before { content: ""; position: absolute; inset: -6px -4px; }
+.ud-plate {
+  position: relative; display: block; width: clamp(22px, 5.6cqi, 36px); aspect-ratio: 2.2 / 3.5; border-radius: 3px;
+  background:
+    radial-gradient(circle at 50% 11%, #7d7360 0 1.4px, transparent 2px),
+    radial-gradient(circle at 50% 89%, #7d7360 0 1.4px, transparent 2px),
+    linear-gradient(160deg, #f8f1df, #d8ccaf);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .45), inset 0 0 0 1px rgba(255, 255, 255, .55), inset 0 -2px 3px rgba(0, 0, 0, .14);
+}
+.ud-plate i {                          /* the slot */
+  position: absolute; left: 50%; top: 50%; width: 30%; height: 34%; translate: -50% -50%;
+  border-radius: 2px; background: #2a241c;
+}
+.ud-plate i::after {                   /* the toggle: up in Hawkins, down on the other side */
+  content: ""; position: absolute; left: 50%; bottom: 50%; width: 76%; height: 95%; translate: -50% 0;
+  border-radius: 3px 3px 2px 2px;
+  background: linear-gradient(90deg, #e9ddbf, #fffaf0 50%, #cbbfa0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .5);
+  transform-origin: 50% 100%; transition: transform .28s var(--ease);
+}
+.ud.is-down .ud-plate i::after { transform: scaleY(-1); }
+.ud-switch-t { font-weight: 700; font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; }
+.ud-switch:hover .ud-plate { box-shadow: 0 2px 5px rgba(0, 0, 0, .45), inset 0 0 0 1px rgba(255, 255, 255, .55), 0 0 0 3px rgba(232, 38, 29, .55); }
+.ud-switch:focus-visible { outline: 2px solid var(--paintc); outline-offset: 5px; }
+/* a nudge once the wall has said its first words, so the switch is found */
+.ud-switch.is-nudge .ud-plate { animation: ud-nudge .9s var(--ease) 2; }
+@keyframes ud-nudge { 0%, 100% { translate: 0 0; } 30% { translate: 0 -3px; } 60% { translate: 0 1px; } }
+
+/* what the wall is saying, read out underneath it */
+.ud-wall-cap {
+  position: relative; z-index: 2;
+  display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.1rem 0.8rem;
+  margin-top: clamp(0.4rem, 2cqi, 1rem); padding-top: clamp(0.3rem, 1.4cqi, 0.6rem);
+  border-top: 1px dashed color-mix(in srgb, var(--paintc) 40%, transparent);
+  color: var(--paintc); transition: color var(--swap);
+}
+.ud-cap-k { font-weight: 700; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; }
+.ud-spelt { font-family: var(--paint); font-weight: 400; font-size: clamp(0.9rem, 3.8cqi, 1.35rem); letter-spacing: 0.06em; white-space: pre; }
+
+/* ───────────── the intro and the second switch ───────────── */
+.ud-sub { font-size: 1.06rem; line-height: 1.62; color: var(--dim); max-width: 60ch; transition: color var(--swap); }
+.ud-cross {
+  display: inline-flex; align-items: center; gap: 0.65rem; margin-top: 1.1rem;
+  min-height: 44px; padding: 0.6rem 1.1rem; cursor: pointer;
+  border: 1px solid color-mix(in srgb, var(--red) 65%, transparent); border-radius: 3px;
+  background: rgba(232, 38, 29, .08); color: var(--red-ink);
+  font-weight: 700; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
+  transition: background .3s, color .3s;
+}
+.ud-cross:hover, .ud-cross:focus-visible { background: var(--red-deep); border-color: var(--red-deep); color: #fff4f2; }
+.ud-cross:focus-visible { outline-color: var(--ink); }
+.ud-cross-i {                          /* a toggle, drawn small */
+  position: relative; width: 11px; height: 17px; border: 1.5px solid currentColor; border-radius: 2px;
+}
+.ud-cross-i::after {
+  content: ""; position: absolute; left: 2px; right: 2px; top: 2px; height: 6px; border-radius: 1px; background: currentColor;
+  transition: top .28s var(--ease);
+}
+.ud.is-down .ud-cross-i::after { top: 7px; }
+
+/* ───────────── headings ───────────── */
+.ud-h {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.9rem;
+  font-weight: 700; font-size: clamp(1.25rem, 2.6vw, 1.6rem); letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink); margin-bottom: 1rem; transition: color var(--swap);
+}
+.ud-h span { font-weight: 400; font-style: italic; text-transform: none; letter-spacing: 0; font-size: 0.98rem; color: var(--mute); }
+
+/* ───────────── the town ───────────── */
+.ud-rooms { display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); }
+.ud-room {
+  position: relative; display: flex; flex-direction: column; gap: 0.3rem; min-height: 44px;
+  padding: 0.95rem 1rem 0.95rem 2.5rem;
+  border: 1px solid var(--line); border-radius: 3px; background: var(--panel);
+  transition: border-color .3s, background-color .3s, box-shadow .3s;
+}
+/* each room's own bulb, the colour the wall will light for it */
+.ud-pip {
+  position: absolute; left: 1.05rem; top: 1.2rem; width: 9px; height: 13px;
+  border-radius: 46% 46% 50% 50% / 32% 32% 68% 68%;
+  background: color-mix(in srgb, var(--b) 38%, #241a15);
+  transition: background .25s, box-shadow .25s;
+}
+.ud-pip::before { content: ""; position: absolute; left: 1px; right: 1px; bottom: 94%; height: 5px; border-radius: 1px; background: #34502f; }
+.ud-room b { font-weight: 700; font-size: 1.02rem; line-height: 1.25; color: var(--ink); transition: color var(--swap); }
+.ud-room span { font-size: 0.92rem; line-height: 1.4; color: var(--dim); transition: color var(--swap); }
+.ud-room:hover, .ud-room:focus-visible, .ud-room.is-picked {
+  border-color: color-mix(in srgb, var(--b) 70%, transparent);
+  background: color-mix(in srgb, var(--b) 9%, var(--panel-2));
+  box-shadow: 0 0 26px -8px color-mix(in srgb, var(--b) 70%, transparent);
+}
+.ud-room:hover .ud-pip, .ud-room:focus-visible .ud-pip, .ud-room.is-picked .ud-pip {
+  background: radial-gradient(circle at 40% 32%, #fffdf0 0 14%, var(--b) 55%);
+  box-shadow: 0 0 8px 2px var(--b);
+}
+.ud-room:focus-visible { outline-color: var(--b); }
+
+/* ───────────── the walkie-talkie ───────────── */
+.ud-radio {
+  position: relative; margin-top: 2.6rem; padding: 1.1rem;
+  border-radius: 20px 20px 14px 14px;
+  background: linear-gradient(180deg, var(--plastic-1), var(--plastic-2));
+  border: 1px solid rgba(0, 0, 0, .6);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .09), inset 0 -3px 0 rgba(0, 0, 0, .4), 0 26px 44px -26px #000;
+}
+.ud-radio::before {                    /* the antenna, and its rubber tip */
+  content: ""; position: absolute; right: 30px; bottom: 100%; width: 12px; height: 40px;
+  border-radius: 6px 6px 2px 2px; background: linear-gradient(90deg, #0d0d0d, #3a3a3a 50%, #0d0d0d);
+}
+.ud-radio::after {                     /* the push-to-talk bar, set into its side */
+  content: ""; position: absolute; left: 0; top: 30%; width: 4px; height: 26%; border-radius: 0 3px 3px 0; background: #3a3633;
+}
+.ud-radio-face {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr); grid-template-areas: "lcd grille" "dymo grille";
+  gap: 0.7rem 0.9rem; align-items: center;
+}
+.ud-lcd {
+  grid-area: lcd; display: flex; align-items: center; gap: 0.7rem; min-height: 66px; padding: 0.5rem 0.8rem;
+  border-radius: 6px; background: #150e05;
+  box-shadow: inset 0 0 0 2px #050302, inset 0 0 22px rgba(255, 150, 40, .14);
+}
+.ud-lcd-orb { flex: none; width: 46px; height: auto; aspect-ratio: 1; }
+.ud-lcd-t { display: flex; flex-direction: column; min-width: 0; font-family: var(--lcd); color: #ffb347; text-shadow: 0 0 6px rgba(255, 170, 60, .6); line-height: 1; }
+.ud-lcd-t b { font-weight: 400; font-size: 1.7rem; letter-spacing: 0.06em; }
+.ud-lcd-t i { font-style: normal; font-size: 1.2rem; letter-spacing: 0.05em; text-transform: uppercase; overflow-wrap: anywhere; }
+.ud-grille {
+  grid-area: grille; align-self: stretch; min-height: 84px; border-radius: 10px;
+  background:
+    radial-gradient(circle, #0a0908 0 2.2px, transparent 2.6px) 0 0 / 9px 9px,
+    linear-gradient(180deg, #2f2a26, #221e1b);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, .6), inset 0 0 0 1px rgba(255, 255, 255, .05);
+}
+/* label-maker tape: red plastic, the letters pressed up out of it */
+.ud-dymo {
+  grid-area: dymo; justify-self: start;
+  padding: 0.28rem 0.6rem; border-radius: 2px; background: #b3161a; color: #f6f1e8;
+  font-weight: 700; font-size: 0.72rem; letter-spacing: 0.22em;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .45), 0 -1px 0 rgba(255, 255, 255, .25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22), inset 0 -1px 0 rgba(0, 0, 0, .35), 0 1px 2px rgba(0, 0, 0, .5);
+  transform: rotate(-1.4deg);
+}
+.ud-channels { list-style: none; margin-top: 1rem; display: grid; gap: 0.45rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); }
+.ud-ch {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 0.75rem; align-items: center;
+  min-height: 54px; padding: 0.5rem 0.75rem;
+  border-radius: 8px; border: 1px solid rgba(255, 255, 255, .06);
+  background: rgba(0, 0, 0, .28); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .3);
+  transition: background .25s, border-color .25s;
+}
+.ud-ch-n { grid-row: span 2; min-width: 2.2ch; font-family: var(--lcd); font-size: 1.6rem; line-height: 1; color: #ffb347; text-shadow: 0 0 6px rgba(255, 170, 60, .5); }
+.ud-ch b { font-weight: 700; font-size: 0.96rem; line-height: 1.25; color: #f0e7d8; align-self: end; }
+.ud-ch i { font-style: normal; font-size: 0.86rem; line-height: 1.3; color: #c2b6a5; align-self: start; }
+.ud-ch:hover, .ud-ch:focus-visible, .ud-ch.is-picked { background: rgba(255, 179, 71, .08); border-color: rgba(255, 179, 71, .55); }
+.ud.is-down .ud-ch b { color: #e3ebf1; }
+.ud.is-down .ud-ch i { color: #b2bfca; }
+
+/* ───────────── the file and the arcade ───────────── */
+.ud-cols { display: grid; gap: clamp(2.4rem, 4vw, 3rem); grid-template-columns: minmax(0, 1fr); margin-top: clamp(3rem, 7vw, 4.6rem); }
+@media (min-width: 960px) { .ud-cols { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: start; } }
+
+/* a manila folder with a typed sheet in it */
+.ud-folder {
+  position: relative; margin-top: 1.9rem; padding: 0.9rem;
+  border-radius: 0 6px 6px 6px;
+  background: linear-gradient(180deg, var(--folder-1), var(--folder-2));
+  box-shadow: 0 26px 44px -26px #000, inset 0 1px 0 rgba(255, 255, 255, .35);
+  transition: background var(--swap);
+}
+.ud-folder-tab {
+  position: absolute; left: 0; bottom: 100%; padding: 0.35rem 1rem 0.25rem;
+  border-radius: 6px 6px 0 0; background: var(--folder-1);
+  font-weight: 700; font-size: 0.78rem; letter-spacing: 0.14em; color: #3a2a12;
+}
+.ud-sheet {
+  position: relative; padding: 1.1rem 1.15rem 0.9rem;
+  background: repeating-linear-gradient(180deg, transparent 0 27px, rgba(70, 100, 150, .12) 27px 28px), var(--paper);
+  color: #24190f; box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+  transform: rotate(-0.35deg);
+}
+.ud-stamp {
+  position: absolute; right: 0.9rem; top: 0.75rem;
+  padding: 0.18rem 0.5rem; border: 2px solid #b3161a; border-radius: 3px;
+  font-weight: 700; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: #b3161a;
+  transform: rotate(7deg); opacity: .82;
+}
+.ud-record div {
+  display: grid; grid-template-columns: 9.6rem minmax(0, 1fr); gap: 0.15rem 1rem;
+  padding: 0.5rem 0; border-bottom: 1px dashed rgba(36, 25, 15, .25);
+}
+.ud-record div:last-child { border-bottom: 0; }
+.ud-record dt { padding-top: 0.12rem; font-weight: 700; font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: #5e4523; }
+.ud-record dd { font-size: 0.98rem; line-height: 1.45; color: #22180e; }
+.ud-record div:first-child dd { padding-right: 7.5rem; }      /* clear of the stamp */
+.ud-record a {
+  /* a full 44px to tap, without pushing the line apart */
+  display: inline-block; padding: 11px 0; margin: -11px 0;
+  color: #9a1316; text-decoration: underline; text-underline-offset: 3px;
+}
+.ud-nb { white-space: nowrap; }
+.ud-record a:hover { color: #5e0a0c; }
+.ud-record a:focus-visible { outline-color: #9a1316; }
+.ud.is-down .ud-folder-tab { color: #1d2a36; }
+.ud.is-down .ud-record dt { color: #34475a; }
+
+/* an arcade cabinet's screen, scanlines and all */
+.ud-cabinet {
+  padding: 14px; border-radius: 12px;
+  background: linear-gradient(180deg, #2a1830, #170d1c);
+  box-shadow: inset 0 0 0 2px #3d2547, 0 26px 44px -26px #000;
+}
+.ud-crt {
+  position: relative; overflow: hidden;
+  padding: 1rem 1.15rem 0.9rem; border-radius: 16px / 20px;
+  background: radial-gradient(120% 100% at 50% 40%, #0f151a, #04060a);
+  box-shadow: inset 0 0 44px rgba(0, 0, 0, .9), inset 0 0 0 2px #000;
+  font-family: var(--lcd);
+}
+.ud-crt::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(180deg, rgba(255, 255, 255, .045) 0 1px, transparent 1px 3px);
+}
+.ud-crt-h { text-align: center; font-size: 1.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: #ff5a4f; text-shadow: 0 0 10px rgba(255, 90, 79, .6); }
+.ud-scores { list-style: none; margin-top: 0.5rem; }
+.ud-scores li {
+  display: grid; grid-template-columns: 3ch 4.4ch minmax(0, 1fr); gap: 0.9rem; align-items: baseline;
+  padding: 0.32rem 0; font-size: 1.35rem; line-height: 1.05; color: #eef3ff;
+}
+.ud-rank { color: #ffd23f; text-transform: uppercase; }
+.ud-scores b { font-weight: 400; color: #4fe07a; text-align: right; text-shadow: 0 0 8px rgba(79, 224, 122, .45); }
+.ud-what { text-transform: uppercase; letter-spacing: 0.03em; }
+.ud-what i { display: block; margin-top: 0.1rem; font-style: normal; text-transform: none; font-size: 1.12rem; color: #a9b8cb; }
+.ud-crt-foot { margin-top: 0.7rem; text-align: center; font-size: 1.25rem; letter-spacing: 0.24em; text-transform: uppercase; color: #ffd23f; animation: ud-blink 2.4s steps(1) infinite; }
+@keyframes ud-blink { 50% { opacity: .2; } }
+
+/* ───────────── the way out ───────────── */
+.ud-out { margin-top: clamp(3.4rem, 8vw, 5.4rem); text-align: center; }
+.ud-out-k { margin-bottom: 0.9rem; font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute); transition: color var(--swap); }
+/* a cassette: the label written on in marker, the two reels showing
+   through the window, turning when you point at it */
+.ud-tape {
+  position: relative; display: inline-flex; flex-direction: column; align-items: center; gap: 10px;
+  width: min(460px, 100%); padding: 14px 16px 16px; cursor: pointer;
+  border: 0; border-radius: 10px;
+  background: linear-gradient(180deg, #2c2c30, #18181b);
+  box-shadow: inset 0 0 0 2px #0b0b0c, inset 0 1px 0 rgba(255, 255, 255, .12), 0 26px 44px -22px #000;
+  transition: translate .35s var(--ease), box-shadow .35s;
+}
+.ud-tape::before, .ud-tape::after {    /* the screws in the corners */
+  content: ""; position: absolute; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: #55555b;
+}
+.ud-tape::before { left: 7px; }
+.ud-tape::after { right: 7px; }
+.ud-tape-label {
+  display: block; width: 100%; padding: 0.65rem 0.8rem 0.85rem; border-radius: 4px;
+  border-top: 7px solid #e8261d;
+  background: repeating-linear-gradient(180deg, transparent 0 25px, rgba(60, 90, 160, .25) 25px 26px) 0 6px, #f4edda;
+  font-family: var(--paint); font-size: clamp(1.15rem, 4.6vw, 1.5rem); line-height: 1.3; color: #1c1a26;
+}
+.ud-reels {
+  display: flex; justify-content: center; gap: clamp(48px, 18vw, 86px);
+  width: 74%; padding: 8px 0; border-radius: 18px; background: #0c0c0d;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08);
+}
+.ud-reels i {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: radial-gradient(circle, #0c0c0d 0 6px, transparent 6.5px), repeating-conic-gradient(#ece6d6 0 12deg, #a9a291 12deg 30deg);
+  box-shadow: 0 0 0 3px #3a3a3e;
+  animation: ud-reel 2.6s linear infinite paused;
+}
+.ud-tape:hover, .ud-tape:focus-visible { translate: 0 -4px; box-shadow: inset 0 0 0 2px #0b0b0c, inset 0 1px 0 rgba(255, 255, 255, .12), 0 30px 50px -22px #000, 0 0 0 2px rgba(232, 38, 29, .7); }
+.ud-tape:focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
+.ud-tape:hover .ud-reels i, .ud-tape:focus-visible .ud-reels i { animation-play-state: running; }
+@keyframes ud-reel { to { transform: rotate(360deg); } }
+
+/* ───────────── the Void ───────────── */
+.ud.is-gone .ud-main, .ud.is-gone .ud-top { opacity: 0; }
+.ud-void {
+  position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; overflow: hidden;
+  /* the bottom padding keeps the words above the water line */
+  padding: max(2rem, env(safe-area-inset-top, 0px)) max(1.4rem, env(safe-area-inset-right, 0px)) max(24vh, calc(2rem + env(safe-area-inset-bottom, 0px))) max(1.4rem, env(safe-area-inset-left, 0px));
+  background: #000; text-align: center;
+  opacity: 0; visibility: hidden; transition: opacity 1.1s ease, visibility 0s linear 1.1s;
+}
+.ud.is-gone .ud-void { opacity: 1; visibility: visible; transition: opacity 1.1s ease; }
+/* a skin of black water underfoot, catching what little light there is */
+.ud-void::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 20vh;
+  background:
+    linear-gradient(180deg, rgba(200, 214, 230, .09), transparent 30%),
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, .03) 0 1px, transparent 1px 10px);
+}
+.ud-ripples i {
+  position: absolute; left: 50%; bottom: 9vh; width: 60px; height: 14px; translate: -50% 50%;
+  border: 1px solid rgba(233, 220, 196, .4); border-radius: 50%; opacity: 0;
+  animation: ud-ripple 7s ease-out infinite paused;
+}
+.ud-ripples i:nth-child(2) { animation-delay: 2.3s; }
+.ud-ripples i:nth-child(3) { animation-delay: 4.6s; }
+.ud.is-gone .ud-ripples i { animation-play-state: running; }
+@keyframes ud-ripple { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(12, 9); opacity: 0; } }
+.ud-void-in { position: relative; max-width: 34rem; }
+.ud-void-orb { display: block; width: 96px; height: 96px; margin: 0 auto 1.4rem; opacity: .9; }
+.ud:not(.is-gone) .ud-void-orb { display: none; }
+.ud-void-k { font-size: 0.74rem; letter-spacing: 0.28em; text-transform: uppercase; color: #92969d; }
+.ud-void-t { margin-top: 0.6rem; font-family: var(--paint); font-size: clamp(2.2rem, 8vw, 4rem); line-height: 1.1; color: #f3e7d3; }
+.ud-void-s { margin-top: 0.7rem; font-style: italic; font-size: 1.05rem; line-height: 1.5; color: #bdb5a8; }
+.ud-void-go { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin-top: 1.8rem; }
+.ud-void-go a, .ud-void-go button {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0.6rem 1.3rem; border-radius: 3px; cursor: pointer;
+  font-weight: 700; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
+  transition: background .3s, color .3s, border-color .3s;
+}
+.ud-void-home { background: var(--red-deep); color: #fff4f2; border: 1px solid var(--red-deep); }
+.ud-void-home:hover, .ud-void-home:focus-visible { background: #a8140e; border-color: #a8140e; }
+.ud-void-stay { background: transparent; color: #cfc6b8; border: 1px solid rgba(233, 220, 196, .35); }
+.ud-void-stay:hover, .ud-void-stay:focus-visible { border-color: #f3e7d3; color: #f3e7d3; }
+.ud-void-go :focus-visible { outline-color: #f3e7d3; }
+
+/* ───────────── phones ───────────── */
+@media (max-width: 640px) {
+  .ud-top-mid { order: 3; width: 100%; font-size: 0.68rem; }
+  .ud-clock { font-size: 1.1rem; letter-spacing: 0.04em; }
+  .ud-sub { font-size: 1rem; }
+  .ud-radio { padding: 0.9rem; }
+  .ud-radio-face { grid-template-columns: minmax(0, 1fr) 64px; }
+  .ud-record div { grid-template-columns: minmax(0, 1fr); }
+  .ud-record div:first-child dd { padding-right: 0; }
+  .ud-record div:first-child { padding-right: 7.2rem; }
+  .ud-scores li { grid-template-columns: 3ch 4.4ch minmax(0, 1fr); gap: 0.6rem; font-size: 1.22rem; }
+  .ud-what i { font-size: 1.05rem; }
+}
+
+/* ───────────── stillness ─────────────
+   Everything here that moves stops: the sky no longer turns over (it
+   simply changes), the lightning never strikes, the bulbs light without
+   a flicker and a spelled word lights all at once (upside-down.js). */
+@media (prefers-reduced-motion: reduce) {
+  .ud *, .ud *::before, .ud *::after { animation: none !important; transition: none !important; }
+  .ud { transition: none; }
+  .ud-flash, .ud-bolt { display: none; }
+}

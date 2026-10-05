@@ -1,0 +1,491 @@
+/* ============================================================
+   wanted.css: /wanted/, the Red Dead Redemption terminal.
+   Sister page to /citadel/, /compass/ and the rest: plank wood
+   and parchment instead of glass. Every room is a bill nailed
+   to the sheriff's wall in Valentine, Dead Eye washes the room
+   sepia and paints red marks on the bills, and the page ends
+   the way the game does, riding into the sunset.
+   ============================================================ */
+
+/* these pages load no shared stylesheet, so they carry their own reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+img, svg { display: block; max-width: 100%; }
+ul { list-style: none; }
+html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
+
+.wb {
+  --wood:   "Rye", Georgia, serif;           /* the woodtype on every bill */
+  --orn:    "Ewert", "Rye", Georgia, serif;  /* the ornate face, for WANTED alone */
+  --body:   "Old Standard TT", Georgia, serif;
+  --type:   "Special Elite", "Courier New", monospace;
+  --plank:  #1c120b;
+  --plank-2:#2a1a10;
+  --paper:  #e9d5a8;
+  --paper-2:#d9bf88;
+  --ink:    #2b1a0f;
+  --ink-2:  #5a3c22;
+  --blood:  #9a2416;   /* red ink on paper: 7:1 on the parchment */
+  --mark:   #e0321d;   /* Dead Eye's mark: the one colour the wash never touches */
+  --sun:    #e0b070;
+  --cream:  #f1e2c4;
+  --dim:    #c9b28c;
+  --mute:   #a8916c;
+  --line:   rgba(224, 176, 112, 0.24);
+  --ease:   cubic-bezier(.16, 1, .3, 1);
+  --slow:   1;       /* Dead Eye sets this to 4: every transition below takes it */
+
+  background: var(--plank);
+  color: var(--cream);
+  font-family: var(--body);
+  font-size: 1.05rem;
+  min-height: 100vh;
+  padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+}
+.wb.is-deadeye { --slow: 4; }
+
+/* ───────────── the office ───────────── */
+.wb-room { position: fixed; inset: 0; z-index: 0; pointer-events: none; transition: filter calc(.6s * var(--slow)); }
+.wb-room > span { position: absolute; inset: 0; }
+
+/* planks: vertical boards with dark seams and the grain running down them.
+   The grain is SVG turbulence stretched tall, so it reads as long fibres
+   rather than noise; the knots are two soft radial blots. */
+.wb-planks {
+  background:
+    radial-gradient(14px 22px at 23% 38%, rgba(0, 0, 0, .35), transparent 70%),
+    radial-gradient(10px 16px at 71% 72%, rgba(0, 0, 0, .3), transparent 70%),
+    repeating-linear-gradient(90deg, transparent 0 158px, rgba(0, 0, 0, .55) 158px 161px, rgba(255, 210, 150, .05) 161px 162px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='640'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.32 0.012' numOctaves='3' seed='7'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.34 0 0 0 0 0.18 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+    linear-gradient(90deg, #24170e, #2c1b10 30%, #21150c 60%, #2a1a0f);
+}
+/* late sun through the window: a slanted shaft from the top left */
+.wb-shaft {
+  background:
+    linear-gradient(115deg, transparent 18%, rgba(255, 200, 120, .09) 26%, rgba(255, 200, 120, .03) 40%, transparent 48%),
+    radial-gradient(130% 90% at 50% 40%, transparent 50%, rgba(0, 0, 0, .7));
+}
+.wb-lamp { background: radial-gradient(40% 30% at 88% 6%, rgba(255, 170, 70, .14), transparent 70%); animation: wb-flicker 5s steps(9) infinite; }
+@keyframes wb-flicker { 0%, 100% { opacity: 1; } 30% { opacity: .82; } 55% { opacity: .95; } 70% { opacity: .78; } }
+
+.wb-dust i {
+  position: absolute; left: var(--x); top: var(--y);
+  width: 3px; height: 3px; border-radius: 50%;
+  background: rgba(255, 220, 160, .55);
+  box-shadow: 0 0 6px rgba(255, 200, 120, .6);
+  animation: wb-drift var(--t) ease-in-out var(--d) infinite;
+}
+@keyframes wb-drift {
+  0%   { transform: translate(0, 0); opacity: 0; }
+  20%  { opacity: .9; }
+  50%  { transform: translate(60px, -40px); }
+  80%  { opacity: .7; }
+  100% { transform: translate(120px, 30px); opacity: 0; }
+}
+.wb-blocks { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* ───────────── header ───────────── */
+.wb-top {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; flex-wrap: wrap;
+  padding: calc(0.9rem + env(safe-area-inset-top, 0px)) clamp(1rem, 4vw, 2.6rem) 0.9rem;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(10, 6, 3, .6), rgba(10, 6, 3, .2));
+  font-family: var(--type); font-size: 0.8rem; letter-spacing: 0.06em; color: var(--dim);
+  transition: filter calc(.6s * var(--slow));
+}
+.wb-exit { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--sun); }
+.wb-exit:hover { color: #fff1cf; }
+.wb-exit svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; }
+.wb-top-r { display: inline-flex; align-items: center; gap: 0.6rem; }
+.wb-core { width: 30px; height: 30px; flex: none; }
+.wb-core svg { width: 100%; height: 100%; overflow: visible; }
+.wb-core-bg { fill: rgba(0, 0, 0, .45); stroke: rgba(241, 226, 196, .2); stroke-width: 3; }
+.wb-core-fill {
+  fill: none; stroke: #f0c76a; stroke-width: 3; stroke-linecap: round;
+  stroke-dasharray: 100 100; stroke-dashoffset: 0;
+  transform: rotate(-90deg); transform-origin: 18px 18px;
+}
+.wb-core use { color: #f0c76a; }
+.wb-core use, .wb-de use, .wb-ico use { fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.wb-fill { fill: currentColor; }
+
+/* the focus ring for everything on wood: sun-gold, offset off the edge */
+.wb a:focus-visible, .wb button:focus-visible { outline: 2px solid var(--sun); outline-offset: 3px; }
+
+.wb-main { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.6rem); }
+
+/* ───────────── hero ───────────── */
+.wb-hero {
+  display: grid; gap: clamp(1.6rem, 4vw, 3rem); align-items: center;
+  grid-template-columns: minmax(0, 1fr);
+  padding-top: clamp(1.8rem, 5vw, 3.4rem);
+}
+@media (min-width: 920px) { .wb-hero { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); } }
+.wb-kicker { font-family: var(--type); font-size: 0.86rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sun); }
+.wb-title {
+  margin-top: 0.5rem;
+  font-family: var(--wood); font-weight: 400; line-height: 1;
+  font-size: clamp(2.6rem, 8.4vw, 5.6rem);
+  color: #f4dfb4;
+  text-shadow: 0 2px 0 #6b3a1a, 0 4px 0 #3a1e0c, 0 10px 26px rgba(0, 0, 0, .6);
+}
+.wb-sub { max-width: 54ch; margin-top: 1.1rem; font-size: 1.14rem; line-height: 1.6; color: var(--dim); }
+
+.wb-de-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.9rem 1.2rem; margin-top: 1.6rem; }
+.wb-de {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.75rem 1.3rem 0.7rem 1rem;
+  border: 2px solid #f0c76a; border-radius: 3px;
+  background: linear-gradient(180deg, rgba(240, 199, 106, .14), rgba(240, 199, 106, .04));
+  color: #f6dc9a; cursor: pointer;
+  font-family: var(--wood); font-size: 1.1rem; letter-spacing: 0.06em;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, .35), 0 8px 24px rgba(0, 0, 0, .4);
+  transition: background .3s, color .3s;
+}
+.wb-de svg { width: 30px; height: 30px; color: #f0c76a; }
+.wb-de:hover { background: #f0c76a; color: #2b1a0f; }
+.wb-de:hover svg { color: #2b1a0f; }
+.wb-de[aria-pressed="true"] { background: var(--mark); border-color: var(--mark); color: #fff3e0; }
+.wb-de[aria-pressed="true"] svg { color: #fff3e0; }
+.wb-de-hint { flex: 1 1 16rem; font-style: italic; font-size: 1rem; color: var(--mute); }
+
+/* ───────────── paper ───────────── */
+/* The parchment every bill is printed on: a cream base, tea-coloured
+   stains, the fibre of the paper (more turbulence), and a burnt edge. */
+.wb-paper, .wb-bill {
+  color: var(--ink);
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.22 0 0 0 0 0.1 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"),
+    radial-gradient(40% 30% at 78% 18%, rgba(140, 90, 40, .22), transparent 70%),
+    radial-gradient(35% 25% at 18% 82%, rgba(140, 90, 40, .18), transparent 70%),
+    radial-gradient(120% 120% at 50% 50%, var(--paper) 55%, var(--paper-2) 85%, #b8935a);
+  box-shadow: inset 0 0 22px rgba(90, 50, 20, .35);
+}
+
+/* ───────────── the big bill ───────────── */
+.wb-bill {
+  position: relative; justify-self: center;
+  width: min(100%, 440px);
+  padding: 2rem clamp(1.1rem, 4vw, 1.8rem) 1.6rem;
+  text-align: center;
+  rotate: 1.2deg;
+  filter: drop-shadow(0 14px 22px rgba(0, 0, 0, .55));
+  clip-path: polygon(0 1%, 8% 0, 22% .8%, 40% 0, 61% .6%, 80% 0, 100% 1.2%, 99.4% 22%, 100% 47%, 99.2% 70%, 100% 99%, 78% 100%, 56% 99.2%, 33% 100%, 14% 99.3%, 0 100%, .7% 74%, 0 50%, .8% 24%);
+  transition: filter calc(.6s * var(--slow));
+}
+.wb-bill-nail, .wb-poster::before {
+  position: absolute; left: 50%; top: 10px; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #d8d0c0, #6b6258 45%, #2b2620);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, .5);
+}
+.wb-bill-k {
+  font-family: var(--orn); font-size: clamp(3rem, 12vw, 4.6rem); line-height: 1; color: var(--ink);
+  letter-spacing: 0.04em; margin-top: 0.4rem;
+}
+.wb-bill-by { margin-top: 0.3rem; font-style: italic; font-size: 0.95rem; color: var(--ink-2); }
+.wb-portrait { width: 70%; margin: 0.9rem auto 0.6rem; }
+.wb-portrait-frame { fill: rgba(120, 80, 40, .08); stroke: var(--ink); stroke-width: 2.5; }
+.wb-bill-name {
+  font-family: var(--wood); font-weight: 400; font-size: clamp(1.5rem, 6vw, 2.1rem); line-height: 1.1;
+  border-top: 3px double var(--ink); border-bottom: 3px double var(--ink); padding: 0.35rem 0;
+}
+.wb-bill-alias { margin-top: 0.4rem; font-style: italic; font-size: 1rem; color: var(--ink-2); }
+.wb-bill-reward { margin-top: 0.5rem; font-family: var(--wood); font-size: clamp(1.8rem, 7vw, 2.5rem); color: var(--blood); line-height: 1; }
+.wb-bill-reward span { display: block; font-family: var(--body); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink); margin-bottom: 0.2rem; }
+.wb-bill-h {
+  margin-top: 1.1rem; font-family: var(--body); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.3em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.wb-bill-h::before, .wb-bill-h::after { content: ""; flex: 1; height: 1px; background: var(--ink-2); }
+.wb-bill-list { margin-top: 0.5rem; text-align: left; font-size: 0.98rem; line-height: 1.4; }
+.wb-bill-list li { position: relative; padding: 0.22rem 0 0.22rem 1.1rem; border-bottom: 1px dotted rgba(43, 26, 15, .3); }
+.wb-bill-list li::before { content: "\2605"; position: absolute; left: 0; top: 0.28rem; font-size: 0.7rem; color: var(--blood); }
+.wb-bill-list a { color: var(--blood); text-decoration: underline; text-underline-offset: 2px; }
+.wb-bill-seen { margin-top: 0.9rem; text-align: left; font-size: 0.95rem; }
+.wb-bill-seen div { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.7rem; padding: 0.2rem 0; }
+.wb-bill-seen dt { font-weight: 700; font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; padding-top: 0.2rem; }
+.wb-bill-seen dd { font-style: italic; text-align: right; }
+
+/* ───────────── headings ───────────── */
+.wb-h {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem 0.8rem;
+  font-family: var(--wood); font-weight: 400; font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+  color: #f4dfb4; margin-bottom: 1.4rem;
+  text-shadow: 0 2px 0 #3a1e0c;
+  transition: filter calc(.6s * var(--slow));
+}
+.wb-h span { font-family: var(--body); font-style: italic; font-size: 1.02rem; color: var(--mute); text-shadow: none; }
+.wb-think { width: 22px; height: 22px; }
+
+/* ───────────── the board ───────────── */
+/* a framed board of lighter pine, hung on the darker wall */
+.wb-board {
+  position: relative;
+  margin-top: clamp(2.6rem, 6vw, 4.4rem);
+  padding: clamp(1.2rem, 3vw, 2rem) clamp(0.8rem, 3vw, 2rem) clamp(1.6rem, 3vw, 2.4rem);
+  border: 10px solid #3b2414;
+  border-image: linear-gradient(135deg, #4d3019, #2e1c0f 40%, #533419 70%, #2a190d) 10;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.32 0.01' numOctaves='3' seed='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.25 0 0 0 0 0.14 0 0 0 0 0.06 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(0deg, transparent 0 118px, rgba(0, 0, 0, .4) 118px 120px),
+    linear-gradient(180deg, #6b4526, #5a3a20);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .55), inset 0 0 40px rgba(0, 0, 0, .45);
+  transition: filter calc(.6s * var(--slow));
+}
+/* the board's heading sits on a carved plank of its own */
+.wb-board > .wb-h { padding: 0.4rem 0.9rem; background: rgba(20, 12, 6, .55); border-radius: 2px; width: fit-content; max-width: 100%; }
+
+.wb-posters {
+  display: grid; gap: clamp(1.4rem, 3vw, 2.2rem) clamp(0.7rem, 2vw, 1.4rem);
+  grid-template-columns: repeat(auto-fill, minmax(196px, 1fr));
+  padding-top: 0.6rem;
+}
+.wb-posters li { display: flex; }
+
+/* a bill: crooked on its nail (--r), swinging up straight to read when
+   you reach for it. The swing is about the nail, at the top. */
+.wb-poster {
+  position: relative; display: flex; flex: 1;
+  transform-origin: 50% 16px;
+  rotate: var(--r);
+  filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .5));
+  animation: wb-post .7s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 55ms + 150ms);
+  transition: rotate calc(.45s * var(--slow)) var(--ease), translate calc(.45s * var(--slow)) var(--ease), filter calc(.45s * var(--slow));
+}
+.wb-poster::before { content: ""; z-index: 3; }
+.wb-poster:hover, .wb-poster:focus-visible { rotate: 0deg; translate: 0 -5px; filter: drop-shadow(0 14px 18px rgba(0, 0, 0, .6)); }
+.wb-poster:focus-visible { outline-offset: 5px; }
+@keyframes wb-post { from { opacity: 0; transform: translateY(-14px) scale(1.04); } to { opacity: 1; transform: none; } }
+
+.wb-paper {
+  position: relative; flex: 1;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 1.7rem 0.9rem 1rem;
+  /* torn: a ragged edge, three cuts that repeat down the board */
+  clip-path: polygon(0 2%, 14% 0, 33% 1.4%, 52% 0, 70% 1%, 88% 0, 100% 2%, 99% 30%, 100% 62%, 99.2% 98%, 82% 100%, 63% 98.8%, 41% 100%, 20% 99%, 0 100%, .8% 66%, 0 34%);
+  transition: filter calc(.6s * var(--slow));
+}
+.wb-posters li:nth-child(3n+2) .wb-paper { clip-path: polygon(1% 0, 20% 1.6%, 44% 0, 66% 1.2%, 99% 0, 100% 35%, 99% 70%, 100% 100%, 75% 98.6%, 52% 100%, 28% 98.8%, 0 99%, 1% 60%, 0 28%); }
+.wb-posters li:nth-child(3n) .wb-paper { clip-path: polygon(0 0, 24% 1%, 48% 0, 76% 1.8%, 100% .4%, 99.3% 44%, 100% 79%, 98.8% 100%, 66% 99%, 38% 100%, 12% 98.6%, 0 100%, 1% 52%); }
+
+.wb-k {
+  font-family: var(--wood); font-size: 1.32rem; letter-spacing: 0.04em; line-height: 1; text-transform: uppercase;
+  padding-bottom: 0.4rem; width: 100%;
+  border-bottom: 3px double var(--ink);
+}
+.wb-ico { width: 46px; height: 46px; margin: 0.7rem 0 0.45rem; color: var(--ink); }
+.wb-ico use { stroke-width: 2.2; }
+.wb-n { font-family: var(--wood); font-weight: 400; font-size: 1.18rem; line-height: 1.12; }
+.wb-real {
+  margin-top: 0.3rem; font-family: var(--type); font-size: 0.86rem; letter-spacing: 0.02em; color: var(--blood);
+}
+.wb-f { margin-top: 0.45rem; font-style: italic; font-size: 0.95rem; line-height: 1.35; color: var(--ink-2); }
+.wb-amt {
+  margin-top: auto; padding-top: 0.6rem; width: 100%;
+  font-family: var(--wood); font-size: 1.24rem; color: var(--blood);
+  border-top: 1px solid rgba(43, 26, 15, .4);
+}
+.wb-posters .wb-paper > .wb-f { margin-bottom: 0.6rem; }
+.wb-poster--gang .wb-k { font-size: 1.08rem; color: var(--blood); }
+.wb-poster--calm .wb-paper { background-color: #efe2c0; }
+.wb-poster--calm .wb-amt { font-family: var(--body); font-style: italic; font-size: 1rem; color: var(--ink-2); }
+
+/* the mark: a red X painted with two quick brush strokes where you aimed
+   (--mx, --my), outside the paper so the sepia never reaches it */
+.wb-x {
+  position: absolute; z-index: 4; left: var(--mx, 50%); top: var(--my, 50%);
+  width: 46px; height: 46px; margin: -23px 0 0 -23px; overflow: visible;
+  pointer-events: none;
+}
+.wb-x path {
+  fill: none; stroke: var(--mark); stroke-width: 6; stroke-linecap: round;
+  stroke-dasharray: 48; stroke-dashoffset: 48;
+  filter: drop-shadow(0 0 4px rgba(224, 50, 29, .7));
+}
+.wb-poster.is-marked .wb-x path { animation: wb-paint .16s ease-out forwards; }
+.wb-poster.is-marked .wb-x path + path { animation-delay: .12s; }
+@keyframes wb-paint { to { stroke-dashoffset: 0; } }
+.wb-x.is-spent { opacity: 0; transition: opacity .3s; }
+
+/* a bullet hole: a dark punch with a scorched ring and torn fibres */
+.wb-hole {
+  position: absolute; z-index: 3; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: radial-gradient(circle, #0d0805 0 38%, #3a2412 46%, rgba(90, 55, 25, .55) 62%, transparent 72%);
+  pointer-events: none;
+  animation: wb-hit .25s ease-out both;
+}
+.wb-hole::after {
+  content: ""; position: absolute; inset: -5px; border-radius: 50%;
+  background: repeating-conic-gradient(from var(--a, 0deg), rgba(60, 35, 15, .5) 0 6deg, transparent 6deg 40deg);
+  mask: radial-gradient(circle, transparent 40%, #000 45%, transparent 72%);
+  -webkit-mask: radial-gradient(circle, transparent 40%, #000 45%, transparent 72%);
+}
+@keyframes wb-hit { from { transform: scale(2.2); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ───────────── Dead Eye ───────────── */
+/* The wash: the room, the paper and the type go warm sepia and lose their
+   colour; the marks, painted on top, do not. */
+.wb.is-deadeye .wb-room,
+.wb.is-deadeye .wb-top,
+.wb.is-deadeye .wb-h,
+.wb.is-deadeye .wb-board,
+.wb.is-deadeye .wb-bill,
+.wb.is-deadeye .wb-paper,
+.wb.is-deadeye .wb-hero-text,
+.wb.is-deadeye .wb-wire,
+.wb.is-deadeye .wb-ride { filter: sepia(1) saturate(2.1) hue-rotate(-12deg) contrast(1.15) brightness(.74); }
+/* the board's own filter would wash the marks inside it too, so on the
+   board only the frame darkens and the papers take the wash one by one */
+.wb.is-deadeye .wb-bill { filter: sepia(1) saturate(2.1) hue-rotate(-12deg) contrast(1.15) brightness(.74) drop-shadow(0 14px 22px rgba(0, 0, 0, .55)); }
+.wb.is-deadeye .wb-board { filter: none; box-shadow: 0 20px 50px rgba(0, 0, 0, .55), inset 0 0 0 2000px rgba(70, 40, 10, .28); }
+
+.wb-de-veil {
+  position: fixed; inset: 0; z-index: 6; pointer-events: none; opacity: 0;
+  background: radial-gradient(75% 70% at 50% 50%, transparent 38%, rgba(70, 25, 5, .62) 78%, rgba(20, 6, 2, .92));
+  background-position: center; background-repeat: no-repeat;
+  transition: opacity .6s;
+}
+.wb.is-deadeye .wb-de-veil { opacity: 1; animation: wb-beat 1.2s ease-out infinite; }
+/* lub-dub: two quick swells of the dark edge, then the long pause */
+@keyframes wb-beat {
+  0%, 100% { background-size: 100% 100%; }
+  8%  { background-size: 108% 108%; }
+  16% { background-size: 100% 100%; }
+  26% { background-size: 105% 105%; }
+  36% { background-size: 100% 100%; }
+}
+.wb.is-deadeye .wb-poster { cursor: crosshair; }
+/* the kick of the shot: a hard jolt that settles */
+.wb.is-kick .wb-main { animation: wb-kick .18s ease-out; }
+@keyframes wb-kick { 0% { transform: translate(0, 0); } 25% { transform: translate(-4px, 3px); } 60% { transform: translate(2px, -1px); } 100% { transform: none; } }
+
+/* the HUD: the cylinder, what it says, and the trigger */
+.wb-hud {
+  position: fixed; z-index: 8; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  translate: -50% 0;
+  display: flex; align-items: center; gap: 0.8rem;
+  width: max-content; max-width: calc(100vw - 24px);
+  padding: 0.55rem 0.6rem 0.55rem 0.7rem;
+  background: rgba(20, 10, 4, .88); border: 1px solid rgba(240, 199, 106, .5); border-radius: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .6);
+}
+.wb-hud[hidden] { display: none; }
+.wb-cyl { width: 46px; height: 46px; flex: none; transition: rotate .15s ease-out; }
+.wb-cyl-body { fill: #3c3a36; stroke: #8d867a; stroke-width: 2; }
+.wb-cyl-pin { fill: #8d867a; }
+.wb-ch { fill: #15110d; stroke: #6b655c; stroke-width: 1.2; transition: fill .2s; }
+.wb-ch.is-on { fill: var(--mark); stroke: #ffb0a0; }
+.wb-hud-t { font-family: var(--type); font-size: 0.9rem; color: #f6dc9a; min-width: 9.5em; }
+.wb-fire, .wb-holster {
+  flex: none; padding: 0.55rem 1rem; border-radius: 30px; cursor: pointer;
+  font-family: var(--wood); font-size: 0.98rem; letter-spacing: 0.04em;
+}
+.wb-fire { background: var(--mark); border: 1px solid #ff8c78; color: #fff3e0; }
+.wb-fire:hover { background: #ff4a32; }
+.wb-holster { background: transparent; border: 1px solid rgba(240, 199, 106, .5); color: #f6dc9a; }
+.wb-holster:hover { background: rgba(240, 199, 106, .15); }
+
+/* ───────────── the telegraph office ───────────── */
+.wb-wire { margin-top: clamp(2.6rem, 6vw, 4rem); transition: filter calc(.6s * var(--slow)); }
+.wb-grams { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.wb-grams li { display: flex; }
+/* a telegram form: buff paper, a ruled band at the top, typed in caps */
+.wb-gram {
+  flex: 1; display: flex; flex-direction: column; gap: 0.2rem;
+  padding: 0.75rem 0.9rem 0.8rem;
+  background:
+    linear-gradient(180deg, rgba(120, 70, 20, .2) 0 4px, transparent 4px 8px, rgba(120, 70, 20, .2) 8px 9px, transparent 9px),
+    linear-gradient(180deg, #ecd9a8, #e0c88f);
+  color: var(--ink);
+  border-radius: 1px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, .45);
+  font-family: var(--type);
+  transition: translate calc(.3s * var(--slow)) var(--ease), box-shadow .3s;
+}
+.wb-gram:hover, .wb-gram:focus-visible { translate: 0 -3px; box-shadow: 0 10px 20px rgba(0, 0, 0, .55); }
+.wb-gram-k { margin-top: 0.35rem; font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blood); }
+.wb-gram b { font-weight: 400; font-size: 1.04rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.wb-gram i { font-style: normal; font-size: 0.88rem; color: var(--ink-2); text-transform: uppercase; }
+
+/* ───────────── the ride ───────────── */
+.wb-ride {
+  display: block; margin: clamp(2.4rem, 6vw, 3.6rem) auto 0;
+  padding: 0.9rem 1.8rem; border: 2px solid var(--sun); border-radius: 3px;
+  background: transparent; color: var(--sun); cursor: pointer;
+  font-family: var(--wood); font-size: 1.14rem; letter-spacing: 0.04em;
+  transition: background .3s, color .3s, filter .6s;
+}
+.wb-ride:hover { background: var(--sun); color: #2b1a0f; }
+
+.wb.is-ended .wb-main, .wb.is-ended .wb-top { opacity: 0; transition: opacity 1.2s ease; pointer-events: none; }
+.wb-end {
+  position: fixed; inset: 0; z-index: 20; display: grid; place-items: center;
+  opacity: 0; pointer-events: none; transition: opacity 1.4s ease; overflow: hidden;
+}
+.wb.is-ended .wb-end { opacity: 1; pointer-events: auto; }
+.wb-end-sky {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, #160b1c 0%, #3b1426 26%, #8a2a24 52%, #d8622a 72%, #f2a64a 86%, #f7cf7a 100%);
+}
+/* the sun, sinking: a pale disc with the orb in it, going down behind the mesas */
+.wb-end-sun {
+  position: absolute; left: 50%; top: 46%; width: 260px; height: 260px; margin: -130px 0 0 -130px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: radial-gradient(circle closest-side, #fff1c8 0 34%, #ffd07a 46%, rgba(255, 170, 80, .35) 58%, rgba(255, 150, 70, .12) 78%, transparent);
+}
+.wb.is-ended .wb-end-sun { animation: wb-set 14s cubic-bezier(.3, 0, .5, 1) .6s forwards; }
+@keyframes wb-set { to { transform: translateY(26vh); } }
+.wb-end-orb { width: 96px; height: 96px; }
+.wb:not(.is-ended) .wb-end-orb { display: none; }
+.wb-end-land { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 42vh; max-width: none; }
+.wb-end-far { fill: #4a1c1a; }
+.wb-end-mesa { fill: #2c0f10; }
+.wb-end-near { fill: #140607; }
+.wb-end-poles { fill: none; stroke: #140607; stroke-width: 3; }
+.wb-end-text {
+  position: relative; text-align: center; padding: 2rem; margin-top: -34vh;
+}
+.wb-end-k { font-family: var(--type); font-size: 0.86rem; letter-spacing: 0.3em; text-transform: uppercase; color: #ffd9a8; }
+.wb-end-t {
+  margin-top: 0.4rem; font-family: var(--wood); font-size: clamp(2.2rem, 8vw, 4.4rem); line-height: 1.05; color: #fff0d4;
+  text-shadow: 0 3px 0 #5a1a12, 0 10px 30px rgba(0, 0, 0, .5);
+}
+.wb-end-text a {
+  display: inline-block; margin-top: 1.4rem; padding: 0.55rem 1.1rem;
+  font-family: var(--type); font-size: 0.9rem; letter-spacing: 0.08em; color: #fff0d4;
+  background: rgba(20, 6, 6, .45); border: 1px solid rgba(255, 217, 168, .5); border-radius: 2px;
+}
+.wb-end-text a:hover { background: rgba(20, 6, 6, .7); }
+
+/* ───────────── phones ───────────── */
+@media (max-width: 560px) {
+  .wb-top { font-size: 0.74rem; }
+  .wb-top-mid { order: 3; flex-basis: 100%; }
+  .wb-posters { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.3rem 0.6rem; }
+  .wb-paper { padding: 1.5rem 0.55rem 0.8rem; }
+  .wb-k { font-size: 1.02rem; }
+  .wb-poster--gang .wb-k { font-size: 0.9rem; }
+  .wb-ico { width: 38px; height: 38px; }
+  .wb-n { font-size: 1rem; }
+  .wb-real { font-size: 0.78rem; }
+  .wb-f { font-size: 0.88rem; }
+  .wb-amt { font-size: 1.06rem; }
+  .wb-bill-seen div { grid-template-columns: 1fr; gap: 0; }
+  .wb-bill-seen dd { text-align: left; }
+  .wb-hud { gap: 0.5rem; padding-left: 0.5rem; }
+  .wb-hud-t { min-width: 0; font-size: 0.8rem; }
+  .wb-fire, .wb-holster { padding: 0.5rem 0.75rem; font-size: 0.9rem; }
+  .wb-cyl { width: 38px; height: 38px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wb-dust i, .wb-lamp, .wb-poster, .wb-hole { animation: none; }
+  .wb.is-deadeye .wb-de-veil { animation: none; }
+  .wb.is-kick .wb-main { animation: none; }
+  .wb.is-ended .wb-end-sun { animation: none; transform: translateY(10vh); }
+  .wb-poster.is-marked .wb-x path { animation: none; stroke-dashoffset: 0; }
+}

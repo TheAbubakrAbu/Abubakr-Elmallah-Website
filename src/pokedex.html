@@ -1,0 +1,252 @@
+---
+permalink: /pokedex/
+title: "The Pokédex · Abubakr Elmallah"
+description: "The Pokédex: a Pokémon interface for Abubakr Elmallah's portfolio, a red Kanto device in CSS where every room on the site is a numbered entry with a cry."
+theme: "#0d1120"
+fonts: "family=Press+Start+2P&family=VT323&family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/pokedex.css' %}" />
+</head>
+<body class="px" id="px">
+
+<!-- a route at night: a deep sky, a faint grid of the dot-matrix the old
+     handhelds drew with, and a red glow where the device sits -->
+<div class="px-field" aria-hidden="true">
+  <span class="px-glow"></span>
+  <span class="px-dots"></span>
+</div>
+
+<header class="px-top">
+  <a class="px-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave Kanto</span>
+  </a>
+  <span class="px-top-mid">The Pokédex · Kanto regional edition</span>
+  <!-- the clock the way the second generation kept it: weekday, MORN, DAY
+       or NITE, and the time, from your own clock (pokedex.js) -->
+  <span class="px-clock" id="pxClock">··· ···· ··:··</span>
+</header>
+
+<main class="px-main">
+
+  <section class="px-hero">
+    <p class="px-kicker">A field guide to one website</p>
+    <h1 class="px-title">The Pokédex</h1>
+    <p class="px-sub">Every room on this site, catalogued as a numbered entry: an invented type, a height and a weight that are mostly jokes, a line of field notes, and a cry. Point at an entry, or walk the list with the D-pad or the arrow keys, and press A to go there.</p>
+  </section>
+
+  <!-- ─────────── the device ───────────
+       The red Kanto Pokédex, open on its hinge, built from boxes and
+       gradients. The left half is the show: the big blue lens, the three
+       lights, the screen that shows the chosen entry with a pixel glyph of
+       its own, and the controls. The left half is for the eye, the mouse
+       and the thumb, so it is hidden from screen readers and its buttons
+       are out of the tab order; the right half holds the entries as the
+       real, ordinary list of links. On a phone the halves stack, lens and
+       screen on top and the list under the hinge, instead of shrinking
+       the whole device until nothing on it can be read. -->
+  <section class="px-device" aria-labelledby="pxListH">
+
+    <div class="px-left" aria-hidden="true">
+      <div class="px-lid">
+        <span class="px-lens" id="pxLens"><span class="px-lens-core"></span><span class="px-lens-shine"></span></span>
+        <span class="px-led px-led--r" id="pxLedR"></span>
+        <span class="px-led px-led--y" id="pxLedY"></span>
+        <span class="px-led px-led--g" id="pxLedG"></span>
+      </div>
+
+      <div class="px-bezel">
+        <span class="px-bezel-dots"><i></i><i></i></span>
+        <div class="px-lcd" id="pxLcd">
+          <!-- the boot screen, until the first entry comes up -->
+          <div class="px-boot" id="pxBoot">
+            <canvas class="px-boot-orb" data-orb="searching" data-orb-size="56" data-orb-ink="#0f380f" aria-hidden="true"></canvas>
+            <span class="px-boot-t">The Pokédex</span>
+            <span class="px-boot-s">Scanning the site…</span>
+          </div>
+          <div class="px-card" id="pxCard">
+            <div class="px-glyph"><svg id="pxGlyph" viewBox="0 0 12 12" shape-rendering="crispEdges"></svg>
+              <!-- a wave while the entry's cry plays -->
+              <canvas class="px-cry-orb" data-orb="listening" data-orb-size="40" data-orb-ink="#0f380f" aria-hidden="true"></canvas>
+            </div>
+            <div class="px-id">
+              <span class="px-no" id="pxNo">No.000</span>
+              <span class="px-name" id="pxName">-</span>
+              <span class="px-real" id="pxReal">-</span>
+              <span class="px-types" id="pxTypes"></span>
+            </div>
+            <dl class="px-hw">
+              <div><dt>HT</dt><dd id="pxHt">-</dd></div>
+              <div><dt>WT</dt><dd id="pxWt">-</dd></div>
+            </dl>
+            <p class="px-dexline" id="pxDex"></p>
+          </div>
+          <!-- the old dex screen's menu along the bottom; CRY and OPEN work -->
+          <div class="px-menu">
+            <span class="is-on">Data</span>
+            <button type="button" tabindex="-1" id="pxMenuCry">Cry</button>
+            <button type="button" tabindex="-1" id="pxMenuOpen">Open</button>
+          </div>
+        </div>
+        <span class="px-bezel-foot"><i class="px-bezel-btn"></i><i class="px-grille"></i></span>
+      </div>
+
+      <div class="px-controls">
+        <button class="px-btn-a" id="pxA" type="button" tabindex="-1"><b>A</b><i>open</i></button>
+        <button class="px-btn-b" id="pxB" type="button" tabindex="-1"><b>B</b><i>cry</i></button>
+        <span class="px-mini" id="pxMini">001/015</span>
+        <span class="px-dpad">
+          <button class="px-dp px-dp--u" data-step="-1" type="button" tabindex="-1"></button>
+          <button class="px-dp px-dp--l" data-step="-5" type="button" tabindex="-1"></button>
+          <span class="px-dp-mid"></span>
+          <button class="px-dp px-dp--r" data-step="5" type="button" tabindex="-1"></button>
+          <button class="px-dp px-dp--d" data-step="1" type="button" tabindex="-1"></button>
+        </span>
+      </div>
+    </div>
+
+    <span class="px-hinge" aria-hidden="true"><i></i><i></i></span>
+
+    <div class="px-right">
+      <div class="px-screen">
+        <h2 class="px-h px-h--dark" id="pxListH">
+          <canvas class="px-think" data-orb="searching" data-orb-size="20" data-orb-ink="#7fd0ff" aria-hidden="true"></canvas>Entries<span>every room on the site</span>
+        </h2>
+        <!-- Each entry carries its own dex data: the type or two, height,
+             weight, the field note and the glyph's name. pokedex.js reads
+             them for the screen, so the list here is the one place they
+             live. The types show in the row as well, for everyone. -->
+        <ol class="px-list" id="pxList">
+          <li><a class="px-row" href="/" data-glyph="home" data-ht="1 scroll" data-wt="0.0 lb, all welcome" data-dex="The first entry, found wherever a trainer arrives. It greets everyone who wanders in and points them somewhere better."><span class="px-row-no">001</span><span class="px-row-t"><b>Hearthling</b><i>home</i></span><span class="px-row-ty"><em class="px-ty" data-ty="home">Home</em></span></a></li>
+          <li><a class="px-row" href="/work/" data-glyph="case" data-ht="2 sprints" data-wt="1 backlog" data-dex="Leads mobile and backend work at UC Irvine. Its UCI Esports app keeps the arena, the PCs and the events in one place."><span class="px-row-no">002</span><span class="px-row-t"><b>Zotwright</b><i>work at UC Irvine</i></span><span class="px-row-ty"><em class="px-ty" data-ty="work">Work</em><em class="px-ty" data-ty="backend">Backend</em></span></a></li>
+          <li><a class="px-row" href="/projects/" data-glyph="apps" data-ht="12 apps" data-wt="4 platforms" data-dex="Carries every app it has shipped on its shell, twelve across four platforms. The oldest, Order 66 and Datapad, hatched in 2021."><span class="px-row-no">003</span><span class="px-row-t"><b>Commitoise</b><i>every project</i></span><span class="px-row-ty"><em class="px-ty" data-ty="code">Code</em><em class="px-ty" data-ty="shell">Shell</em></span></a></li>
+          <li><a class="px-row" href="/education/" data-glyph="book" data-ht="2 schools" data-wt="a lot of notes" data-dex="Keeps everything it has learned in one nest: a high school and a university, side by side."><span class="px-row-no">004</span><span class="px-row-t"><b>Lecturtle</b><i>education</i></span><span class="px-row-ty"><em class="px-ty" data-ty="mind">Mind</em></span></a></li>
+          <li><a class="px-row" href="/college/" data-glyph="cap" data-ht="class of 2028" data-wt="1 backpack" data-dex="Native to Irvine, where it studies Computer Science. Expected to evolve in 2028."><span class="px-row-no">005</span><span class="px-row-t"><b>Anteatrix</b><i>college, UC Irvine</i></span><span class="px-row-ty"><em class="px-ty" data-ty="mind">Mind</em><em class="px-ty" data-ty="zot">Zot</em></span></a></li>
+          <li><a class="px-row" href="/high-school/" data-glyph="bell" data-ht="1 hallway" data-wt="1 locker" data-dex="Where it all started. It still flinches a little at the sound of a bell."><span class="px-row-no">006</span><span class="px-row-t"><b>Hallmonitar</b><i>high school</i></span><span class="px-row-ty"><em class="px-ty" data-ty="mind">Mind</em><em class="px-ty" data-ty="normal">Normal</em></span></a></li>
+          <li><a class="px-row" href="/worlds/" data-glyph="globe" data-ht="71 worlds" data-wt="endless trivia" data-dex="Seventy-one worlds live in its den, each with a page of its own. It is never quite finished adding to them."><span class="px-row-no">007</span><span class="px-row-t"><b>Worldwander</b><i>all 71 worlds</i></span><span class="px-row-ty"><em class="px-ty" data-ty="cosmic">Cosmic</em></span></a></li>
+          <li><a class="px-row" href="/worlds/pokemon/" data-glyph="ball" data-ht="150 names" data-wt="1 first partner" data-dex="Memorised a hundred and fifty creatures before it memorised its times tables. The type chart is the whole game, and it knows it."><span class="px-row-no">008</span><span class="px-row-t"><b>Kantophile</b><i>Pokémon, the world page</i></span><span class="px-row-ty"><em class="px-ty" data-ty="fan">Fan</em></span></a></li>
+          <li><a class="px-row" href="/star-wars/" data-glyph="pad" data-ht="Top 10" data-wt="a whole galaxy" data-dex="Its Datapad climbed into the Top 10 of the paid Entertainment chart. Order 66, its first, came the same year."><span class="px-row-no">009</span><span class="px-row-t"><b>Datapadawan</b><i>Star Wars apps</i></span><span class="px-row-ty"><em class="px-ty" data-ty="force">Force</em><em class="px-ty" data-ty="code">Code</em></span></a></li>
+          <li><a class="px-row" href="/al-islam/" data-glyph="moon" data-ht="22 methods" data-wt="5 times a day" data-dex="Reads the sun to know each prayer time, and can work it out twenty-two different ways."><span class="px-row-no">010</span><span class="px-row-t"><b>Dawnward</b><i>Al-Islam</i></span><span class="px-row-ty"><em class="px-ty" data-ty="light">Light</em></span></a></li>
+          <li><a class="px-row" href="/travels/" data-glyph="plane" data-ht="cruising altitude" data-wt="1 carry-on" data-dex="Migrates widely, and keeps a record of everywhere it has landed."><span class="px-row-no">011</span><span class="px-row-t"><b>Wayfarrow</b><i>travels</i></span><span class="px-row-ty"><em class="px-ty" data-ty="roam">Roam</em></span></a></li>
+          <li><a class="px-row" href="/accents/" data-glyph="talk" data-ht="1 voice" data-wt="many accents" data-dex="Imitates the voices it hears so closely that the originals check twice."><span class="px-row-no">012</span><span class="px-row-t"><b>Mimicoo</b><i>accents &amp; impersonations</i></span><span class="px-row-ty"><em class="px-ty" data-ty="sound">Sound</em><em class="px-ty" data-ty="normal">Normal</em></span></a></li>
+          <li><a class="px-row" href="/gaming/" data-glyph="pad2" data-ht="one more game" data-wt="2 thumbs" data-dex="Happiest with a controller in hand. Leave it alone near a console and it will not come back for hours."><span class="px-row-no">013</span><span class="px-row-t"><b>Joypadra</b><i>gaming</i></span><span class="px-row-ty"><em class="px-ty" data-ty="play">Play</em></span></a></li>
+          <li><a class="px-row" href="/lightsabers/" data-glyph="saber" data-ht="1 hilt" data-wt="1 crystal" data-dex="Every blade in the galaxy is catalogued in its hilt, colour by colour, owner by owner."><span class="px-row-no">014</span><span class="px-row-t"><b>Kyberling</b><i>the lightsaber guide</i></span><span class="px-row-ty"><em class="px-ty" data-ty="light">Light</em><em class="px-ty" data-ty="force">Force</em></span></a></li>
+          <li><a class="px-row" href="/resume/" data-glyph="page" data-ht="1 page" data-wt="12 apps" data-dex="Folds a whole career onto a single page, and molts into a new one whenever something ships."><span class="px-row-no">015</span><span class="px-row-t"><b>Curriculix</b><i>résumé</i></span><span class="px-row-ty"><em class="px-ty" data-ty="paper">Paper</em></span></a></li>
+        </ol>
+        <p class="px-keys" id="pxKeys">On a keyboard: up and down walk the list, left and right jump five, Enter or A opens, B plays the cry.</p>
+      </div>
+      <div class="px-rfoot" aria-hidden="true">
+        <span class="px-plate"><b>Seen</b>015</span>
+        <span class="px-plate"><b>Own</b>015</span>
+        <span class="px-amber"></span>
+        <span class="px-amber"></span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─────────── the trainer card ───────────
+       The card the old games kept under your name: the facts on the left,
+       and eight badges in their case. Each badge is an original shape drawn
+       in SVG (none of the real gym badges), and each one is earned by a
+       real thing, captioned under it. -->
+  <section class="px-box px-trainer" aria-labelledby="pxCardH">
+    <h2 class="px-h" id="pxCardH">Trainer card<span>the one who keeps this dex</span></h2>
+    <div class="px-tc">
+      <dl class="px-tc-facts">
+        <div><dt>Name</dt><dd>Abubakr Elmallah</dd></div>
+        <div><dt>School</dt><dd>Computer Science, UC Irvine</dd></div>
+        <div><dt>Class</dt><dd>2028</dd></div>
+        <div><dt>Job</dt><dd>Lead mobile &amp; backend developer</dd></div>
+        <div><dt>Apps</dt><dd>Twelve, across four platforms</dd></div>
+        <div><dt>Worlds</dt><dd>70, on <a href="/worlds/">/worlds/</a></dd></div>
+        <!-- not a fact about anyone: how long this card has been open -->
+        <div><dt>Time</dt><dd><span id="pxTime">0:00</span> on this card</dd></div>
+      </dl>
+      <ol class="px-badges">
+        <li style="--b1:#ffe08a; --b2:#c98a1a"><svg viewBox="-20 -20 40 40" aria-hidden="true"><path d="M0,-17 L5,-5 L17,-4 L8,4 L11,17 L0,10 L-11,17 L-8,4 L-17,-4 L-5,-5 Z"/></svg><b>Swift Badge</b><i>Apple Swift Student Challenge winner, 2024</i></li>
+        <li style="--b1:#ffc0a0; --b2:#c2402a"><svg viewBox="-20 -20 40 40" aria-hidden="true"><path d="M-15,12 L-15,2 L-7,2 L-7,-5 L1,-5 L1,-12 L15,-12 L15,12 Z"/></svg><b>Chart Badge</b><i>Datapad, Top 10 of the paid Entertainment chart</i></li>
+        <li style="--b1:#c6b8ff; --b2:#5640b8"><svg viewBox="-20 -20 40 40" aria-hidden="true"><path d="M0,-17 L15,-8 L15,8 L0,17 L-15,8 L-15,-8 Z M0,-7 L6,-3.5 L6,3.5 L0,7 L-6,3.5 L-6,-3.5 Z" fill-rule="evenodd"/></svg><b>Server Badge</b><i>Two Discord bots in more than 500 servers</i></li>
+        <li style="--b1:#fff2a8; --b2:#d08a10"><svg viewBox="-20 -20 40 40" aria-hidden="true"><path d="M0,-18 L3,-9 L12,-13 L8,-4 L18,0 L8,4 L12,13 L3,9 L0,18 L-3,9 L-12,13 L-8,4 L-18,0 L-8,-4 L-12,-13 L-3,-9 Z"/></svg><b>Dawn Badge</b><i>Al-Adhan, prayer times computed 22 ways</i></li>
+        <li style="--b1:#a8e6ff; --b2:#1f6fa8"><svg viewBox="-20 -20 40 40" aria-hidden="true"><path d="M0,-17 L15,-11 L13,6 L0,17 L-13,6 L-15,-11 Z"/></svg><b>Arena Badge</b><i>The UCI Esports app: arena, PCs and events</i></li>
+        <li style="--b1:#b6f0b0; --b2:#2c8a3a"><svg viewBox="-20 -20 40 40" aria-hidden="true"><path d="M0,-17 C10,-12 15,-2 0,17 C-15,-2 -10,-12 0,-17 Z"/></svg><b>Sprout Badge</b><i>First solo projects: Order 66 and Datapad, 2021</i></li>
+        <li style="--b1:#ffb8d8; --b2:#b02a6a"><svg viewBox="-20 -20 40 40" aria-hidden="true"><path d="M-14,-14 H-2 V-2 H-14 Z M2,-14 H14 V-2 H2 Z M-14,2 H-2 V14 H-14 Z M2,2 H14 V14 H2 Z"/></svg><b>Platform Badge</b><i>Twelve apps shipped, on four platforms</i></li>
+        <li style="--b1:#d8e4ee; --b2:#5a6e80"><svg viewBox="-20 -20 40 40" aria-hidden="true"><path d="M0,-17 A17,17 0 1,1 -0.01,-17 Z M0,-9 A9,9 0 1,0 0.01,-9 Z" fill-rule="evenodd"/></svg><b>World Badge</b><i>71 worlds, every one with a page</i></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ─────────── the link cable ───────────
+       Trading meant two handhelds and a cable between them. Here the cable
+       runs to the other devices: every other cool interface on the site,
+       each shown as a cartridge with its world's label colour. -->
+  <section class="px-box px-cable" aria-labelledby="pxCableH">
+    <h2 class="px-h" id="pxCableH">Link cable<span>trade over to another device</span></h2>
+    <ul class="px-carts">
+      <li><a class="px-cart" href="/elmallah/" style="--k:#c9962f"><span class="px-cart-shell" aria-hidden="true">E</span><b>E.L.M.A.L.L.A.H.</b><i>Star Wars, the holotable hub</i></a></li>
+      <li><a class="px-cart" href="/holocron/" style="--k:#2f7ab8"><span class="px-cart-shell" aria-hidden="true">H</span><b>The Holocron</b><i>Star Wars, a Jedi archive</i></a></li>
+      <li><a class="px-cart" href="/jarvis/" style="--k:#1f9aaa"><span class="px-cart-shell" aria-hidden="true">J</span><b>J.A.R.V.I.S.</b><i>Avengers, a Stark display</i></a></li>
+      <li><a class="px-cart" href="/marauders-map/" style="--k:#8a5a2c"><span class="px-cart-shell" aria-hidden="true">M</span><b>The Marauder’s Map</b><i>Harry Potter</i></a></li>
+      <li><a class="px-cart" href="/crafting-table/" style="--k:#4a8a2e"><span class="px-cart-shell" aria-hidden="true">C</span><b>The Crafting Table</b><i>Minecraft</i></a></li>
+      <li><a class="px-cart" href="/citadel/" style="--k:#a8823a"><span class="px-cart-shell" aria-hidden="true">C</span><b>The Citadel</b><i>Game of Thrones</i></a></li>
+      <li><a class="px-cart" href="/compass/" style="--k:#2f7a7a"><span class="px-cart-shell" aria-hidden="true">C</span><b>The Compass</b><i>Pirates of the Caribbean</i></a></li>
+      <li><a class="px-cart" href="/control-room/" style="--k:#c25a22"><span class="px-cart-shell" aria-hidden="true">C</span><b>The Control Room</b><i>Jurassic Park</i></a></li>
+      <li><a class="px-cart" href="/upside-down/" style="--k:#b0261f"><span class="px-cart-shell" aria-hidden="true">U</span><b>The Upside Down</b><i>Stranger Things</i></a></li>
+      <li><a class="px-cart" href="/starcourt/" style="--k:#c4479a"><span class="px-cart-shell" aria-hidden="true">S</span><b>Starcourt</b><i>Stranger Things</i></a></li>
+      <li><a class="px-cart" href="/spirit-library/" style="--k:#b0802e"><span class="px-cart-shell" aria-hidden="true">S</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a></li>
+      <li><a class="px-cart" href="/monastery/" style="--k:#3a9a5a"><span class="px-cart-shell" aria-hidden="true">M</span><b>The Monastery</b><i>Ninjago</i></a></li>
+      <li><a class="px-cart" href="/wanted/" style="--k:#a0602a"><span class="px-cart-shell" aria-hidden="true">W</span><b>The Wanted Board</b><i>Red Dead Redemption</i></a></li>
+      <li><a class="px-cart" href="/dunder-mifflin/" style="--k:#4f6f9a"><span class="px-cart-shell" aria-hidden="true">D</span><b>Dunder Mifflin</b><i>The Office</i></a></li>
+      <li><a class="px-cart" href="/springfield/" style="--k:#d0a81a"><span class="px-cart-shell" aria-hidden="true">S</span><b>Springfield</b><i>The Simpsons</i></a></li>
+      <li><a class="px-cart" href="/vought/" style="--k:#2a5aa8"><span class="px-cart-shell" aria-hidden="true">V</span><b>Vought Tower</b><i>The Boys</i></a></li>
+      <li><a class="px-cart" href="/batcomputer/" style="--k:#5a6270"><span class="px-cart-shell" aria-hidden="true">B</span><b>The Batcomputer</b><i>Batman</i></a></li>
+      <li><a class="px-cart" href="/daily-bugle/" style="--k:#c0322a"><span class="px-cart-shell" aria-hidden="true">D</span><b>The Daily Bugle</b><i>Spider-Man</i></a></li>
+    </ul>
+  </section>
+
+  <!-- ─────── first partners, from the world page ───────
+       The other half of taking the interface into the world: the Pokémon
+       page's own First Partners, shown here as the choice the lab actually
+       offers. The same six regions and the same lines as
+       /worlds/pokemon/#starters, so the two can never drift apart. -->
+  <section class="px-box px-starters" aria-labelledby="pxStartH">
+    <h2 class="px-h" id="pxStartH">First partners<span>the choice you make in the first five minutes</span></h2>
+    <ul class="px-starts">
+      <li><b>Kanto</b><i>Bulbasaur &#183; Charmander &#183; Squirtle</i><p>The one everybody has an opinion about, thirty years later.</p><em>Prof. Oak</em></li>
+      <li><b>Johto</b><i>Chikorita &#183; Cyndaquil &#183; Totodile</i><p>Cyndaquil, and it is not a debate.</p><em>Prof. Elm</em></li>
+      <li><b>Hoenn</b><i>Treecko &#183; Torchic &#183; Mudkip</i><p>So I herd u liek Mudkipz: the internet has never let this one go.</p><em>Prof. Birch</em></li>
+      <li><b>Sinnoh</b><i>Turtwig &#183; Chimchar &#183; Piplup</i><p>Infernape carried an entire generation of playthroughs.</p><em>Prof. Rowan</em></li>
+      <li><b>Unova</b><i>Snivy &#183; Tepig &#183; Oshawott</i><p>And a regional dex with no old Pok&#233;mon in it until the credits.</p><em>Prof. Juniper</em></li>
+      <li><b>Paldea</b><i>Sprigatito &#183; Fuecoco &#183; Quaxly</i><p>Three routes through an open region, in any order you like.</p><em>Prof. Sada / Turo</em></li>
+    </ul>
+    <a class="px-starts-go" href="/worlds/pokemon/#starters">The whole world page &#8594;</a>
+  </section>
+
+  <button class="px-save-btn" id="pxSaveBtn" type="button"><span aria-hidden="true">▶</span> Save the game</button>
+
+</main>
+
+<!-- the save, after the button: the old prompt, a wait while it writes,
+     and the line that means it worked -->
+<div class="px-done" id="pxDone" role="dialog" aria-modal="true" aria-labelledby="pxDoneT">
+  <div class="px-done-in">
+    <canvas class="px-done-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#e8394d" aria-hidden="true"></canvas>
+    <div class="px-done-box">
+      <p class="px-done-t" id="pxDoneT">Saving… Don’t turn off the power.</p>
+    </div>
+    <div class="px-done-acts">
+      <a href="/" id="pxDoneHome">Continue from Pallet Town</a>
+      <button type="button" id="pxDoneBack">Keep exploring</button>
+    </div>
+  </div>
+</div>
+
+<script src="{% include v.html f='/assets/js/pokedex.js' %}" defer></script>
+{% include analytics.html %}
+</body>
+</html>

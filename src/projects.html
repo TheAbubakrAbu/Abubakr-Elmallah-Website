@@ -35,11 +35,11 @@ tab: "/projects/"
          and ~14,500px on a phone, where At a glance starts folded -->
     <nav class="jump" aria-label="Sections">
       <a href="#uci">UCI Work</a>
+      <a href="#web">Web Work</a>
       <a href="#star-wars">Star Wars Apps</a>
       <a href="#bots">Discord Bots</a>
       <a href="#islamic">Islamic Apps</a>
       <a href="#engines">Engines</a>
-      <a href="#web">Web Work</a>
       <a href="#high-school">High School</a>
     </nav>
   </section>
@@ -61,13 +61,13 @@ tab: "/projects/"
 
     <h2 class="subsec subsec--title reveal" id="uci">UCI Work</h2>
     <!-- As on /work/: the UCI Student Center's App Store page sits under its
-         own four apps (it used to follow PeterPlate, an ICSSC web app that is
-         not on it), and PeterPlate gets a row of its own instead of half of
-         one beside an empty cell. No data-label, so At a glance keeps both
-         grids in one "My UCI Work" group. -->
+         own four apps. PeterPlate, an ICSSC web app that is not on it, is
+         listed once, under Web Work, which follows straight after. -->
     <div class="apps-grid apps-grid--2" data-cards="zotfinder,uci-now,uci-esports,real-time-ops"></div>
     {% include apple-dev-link.html who="uci" %}
-    <div class="apps-grid apps-grid--1" data-cards="peterplate"></div>
+
+    <h2 class="subsec subsec--title reveal" id="web">Web Work</h2>
+    <div class="apps-grid apps-grid--2" data-cards="peterplate,website"></div>
 
     <!-- The Apple apps, split by what they are for, with the engines after
          them in their own section: an engine is what an app is built on, not
@@ -77,29 +77,28 @@ tab: "/projects/"
          award screenshots carried a 270-400px empty band. Datapad and its
          Top 10 screenshots get a row of their own (the screenshots beside the
          text on a wide screen), then its free version. -->
-    <div class="apps-grid apps-grid--1 apps-grid--feature" data-cards="datapad"></div>
-    <div class="apps-grid apps-grid--1" data-cards="aurebesh-translator"></div>
+    <div class="apps-grid apps-grid--2" data-cards="datapad,aurebesh-translator"></div>
 
     <!-- right after the Star Wars apps: both bots are Star Wars too -->
     <h2 class="subsec subsec--title reveal" id="bots">Discord Bots</h2>
     <div class="apps-grid apps-grid--2" data-cards="sabacc-droid,aurebesh-droid"></div>
 
     <h2 class="subsec subsec--title reveal" id="islamic">Islamic Apps</h2>
-    <!-- the two award winners side by side, their screenshots level, then the
-         other three; my App Store page follows, under Al-Adhan (OC Ummah and
-         ICOI are not on it) -->
-    <div class="apps-grid apps-grid--2" data-cards="al-islam,al-quran"></div>
-    <div class="apps-grid apps-grid--3" data-cards="al-adhan,oc-ummah,icoi"></div>
+    <!-- my three, in one row: Al-Adhan, Al-Islam, Al-Quran, with my App Store
+         page under them; then the two community apps, ICOI and OC Ummah,
+         in a row of their own (neither is on my App Store page) -->
+    <div class="apps-grid apps-grid--3" data-cards="al-adhan,al-islam,al-quran"></div>
     {% include apple-dev-link.html %}
+    <div class="apps-grid apps-grid--2" data-cards="icoi,oc-ummah"></div>
 
     <h2 class="subsec subsec--title subsec--stack reveal" id="engines">Open-Source Engines<span class="vh">, </span><span class="subsec-yr">what the Islamic apps are built on</span></h2>
     <div class="apps-grid apps-grid--2" data-cards="quran-tajweed-engine,hadith-json-engine"></div>
 
-    <h2 class="subsec subsec--title reveal" id="web">Web Work</h2>
-    <div class="apps-grid apps-grid--2" data-cards="peterplate,website"></div>
-
     <h2 class="subsec subsec--title reveal" id="high-school">High School Projects</h2>
     <div class="hs-grid" data-projects="hs-datapad,hs-calculator,hs-periodic-table,hs-games,hs-order66,hs-periodic-table-explorer"></div>
+
+    <h2 class="subsec subsec--title subsec--stack reveal" id="mods">Minecraft Mods<span class="vh">, </span><span class="subsec-yr">iD Tech camps, before high school</span></h2>
+    <div class="hs-grid" data-projects="mod-star-wars,mod-gel"></div>
 
     </div>
 

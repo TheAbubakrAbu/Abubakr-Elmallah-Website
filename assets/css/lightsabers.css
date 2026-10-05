@@ -1,0 +1,147 @@
+/* lightsabers.css: /lightsabers/ only.
+
+   Borrows fanpages.css for the hero, like /gaming/ and /accents/. The
+   backdrop is two blades crossed in the dark, red and blue, with a clash glow
+   where they meet; all of it CSS gradients. Each board gets its own blade
+   colour (--k on the card) so the four read as four sabers, not one table
+   repeated. */
+
+body[data-fan="lightsabers"] { --a: #ff5a5f; }
+
+/* ── the backdrop ── */
+.ls-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(120% 80% at 50% 0%, #0c0d18 0%, #07070c 55%, #050507 100%);
+}
+.ls-sky > span { position: absolute; }
+
+.ls-stars {
+  inset: 0; opacity: .55;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 33% 72%, #fff 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 58% 22%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 81% 64%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 91% 12%, #fff 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 6% 86%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 46% 48%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 69% 90%, #fff 50%, transparent 51%);
+  background-size: 520px 520px;
+}
+
+/* the blades: long thin bars with a white core and a coloured bloom, crossed
+   low on the right so the hero copy sits in the dark half */
+.ls-blade {
+  width: 6px; height: 120vh; right: 18vw; top: 10vh;
+  border-radius: 6px; background: #fff; opacity: .5;
+  transform-origin: 50% 100%;
+  animation: ls-hum 3.2s ease-in-out infinite;
+}
+.ls-blade--r { --c: 255,70,80;  transform: rotate(-32deg); box-shadow: 0 0 10px 3px rgb(var(--c)), 0 0 60px 18px rgba(var(--c),.45), 0 0 160px 50px rgba(var(--c),.18); }
+.ls-blade--b { --c: 70,150,255; transform: rotate(28deg);  box-shadow: 0 0 10px 3px rgb(var(--c)), 0 0 60px 18px rgba(var(--c),.45), 0 0 160px 50px rgba(var(--c),.18); animation-delay: -1.6s; }
+.ls-clash {
+  width: 46vmin; height: 46vmin; right: calc(18vw - 23vmin); top: 52vh;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,240,220,.22), rgba(255,140,120,.08) 40%, transparent 70%);
+}
+@keyframes ls-hum { 0%, 100% { opacity: .5; } 50% { opacity: .42; } }
+
+@media (max-width: 720px) {
+  .ls-blade { right: 8vw; opacity: .3; }
+  .ls-clash { right: calc(8vw - 23vmin); }
+}
+
+/* ── hero ── */
+body[data-fan="lightsabers"] .fan-title {
+  background: linear-gradient(180deg, #ffffff, #ffb3b6 45%, #ff5a5f 75%, #9e1f2a);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* the four hilts: a blade, a grip, a name. Each blade glows in its board's
+   colour and grows once on load. */
+.ls-art {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem;
+  max-width: 620px; margin: 2.6rem 0 0; padding: 1.2rem 1.3rem 1rem;
+  border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.014);
+}
+.ls-hilt {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+  text-decoration: none; color: var(--ink); padding-top: 0.4rem;
+}
+.ls-hilt-blade {
+  width: 6px; height: 110px; border-radius: 6px 6px 2px 2px; background: #fff;
+  box-shadow: 0 0 6px 2px var(--k), 0 0 22px 6px color-mix(in srgb, var(--k) 55%, transparent);
+  transform-origin: 50% 100%; animation: ls-ignite .9s var(--ease) both;
+}
+.ls-hilt:nth-child(2) .ls-hilt-blade { animation-delay: .1s; }
+.ls-hilt:nth-child(3) .ls-hilt-blade { animation-delay: .2s; }
+.ls-hilt:nth-child(4) .ls-hilt-blade { animation-delay: .3s; }
+.ls-hilt-grip {
+  width: 14px; height: 34px; border-radius: 3px;
+  background: repeating-linear-gradient(180deg, #8d8c94 0 3px, #3a3a40 3px 6px);
+}
+.ls-hilt b {
+  margin-top: 0.6rem; font-family: var(--mono); font-weight: 500;
+  font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-dim);
+  transition: color .3s;
+}
+.ls-hilt:hover b, .ls-hilt:focus-visible b { color: var(--k); }
+@keyframes ls-ignite { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+/* ── the boards ── */
+.saberguide { position: relative; z-index: 1; max-width: var(--maxw); margin: 1rem 0 2rem; }
+.sg-list { display: grid; gap: 1.1rem; }
+.sg-board {
+  position: relative; scroll-margin-top: 6rem;
+  border: 1px solid var(--line); border-radius: 18px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--k) 7%, #0d0d10), #0b0b0e 40%);
+  padding: 0 1.5rem; overflow: hidden;
+}
+/* the card's own blade, along the top edge */
+.sg-board::before {
+  content: ""; position: absolute; left: 1.5rem; right: 1.5rem; top: 0; height: 2px;
+  background: #fff; border-radius: 2px;
+  box-shadow: 0 0 6px 1px var(--k), 0 0 26px 4px color-mix(in srgb, var(--k) 50%, transparent);
+}
+.sg-board > summary {
+  list-style: none; cursor: pointer; display: flex; flex-wrap: wrap; align-items: center;
+  gap: 0.3rem 0.8rem; padding: 1.3rem 0 1.1rem;
+}
+.sg-board > summary::-webkit-details-marker { display: none; }
+.sg-board > summary::after { content: "+"; margin-left: auto; font-family: var(--mono); color: var(--mute); font-size: 1.1rem; }
+.sg-board[open] > summary::after { content: "\2212"; }
+.sg-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--k); box-shadow: 0 0 12px var(--k); }
+.sg-board summary b { font-family: var(--serif); font-weight: 600; font-size: clamp(1.25rem, 2.4vw, 1.6rem); }
+.sg-board summary i {
+  font-style: normal; font-family: var(--mono); font-size: 0.68rem;
+  color: var(--k); letter-spacing: 0.1em; text-transform: uppercase;
+}
+
+.sg-tables { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; }
+.sg-t { width: 100%; border-collapse: collapse; margin: 0 0 1.2rem; font-size: 0.92rem; align-self: start; }
+.sg-t caption {
+  text-align: left; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--k); padding: 0.4rem 0 0.6rem;
+}
+.sg-t th, .sg-t td { text-align: left; vertical-align: top; padding: 0.6rem 0; border-top: 1px solid var(--line); line-height: 1.5; }
+.sg-t th { font-weight: 600; width: 38%; padding-right: 1rem; }
+.sg-t td { color: var(--ink-dim); }
+.sg-t tr:hover th { color: var(--k); }
+.sg-note {
+  color: var(--mute); font-size: 0.85rem; margin: 0 0 1.4rem; line-height: 1.5;
+  padding-left: 0.8rem; border-left: 2px solid color-mix(in srgb, var(--k) 60%, transparent);
+}
+
+@media (max-width: 860px) { .sg-tables { grid-template-columns: 1fr; } }
+@media (max-width: 560px) {
+  .ls-art { gap: 0.4rem; padding: 1rem 0.6rem 0.8rem; }
+  .ls-hilt-blade { height: 84px; }
+  .ls-hilt b { font-size: 0.66rem; letter-spacing: 0.04em; }
+  .sg-board { padding: 0 1.1rem; }
+  .sg-board::before { left: 1.1rem; right: 1.1rem; }
+  .sg-t th, .sg-t td { display: block; width: auto; }
+  .sg-t td { border-top: 0; padding-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ls-blade, .ls-hilt-blade { animation: none; }
+}

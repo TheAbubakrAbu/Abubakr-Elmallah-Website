@@ -1,0 +1,381 @@
+---
+permalink: /starcourt/
+title: "Starcourt · Abubakr Elmallah"
+description: "Starcourt: a Stranger Things interface for Abubakr Elmallah's portfolio, after the Palace Arcade and Starcourt Mall. Every page is a store in Starcourt Mall or a cabinet in the Palace Arcade, Joyce's alphabet wall spells them out, and a switch turns Hawkins over."
+theme: "#120c1f"
+fonts: "family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&family=VT323&family=Monoton&family=Bungee&family=Yellowtail"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/starcourt.css' %}" />
+</head>
+<body class="ud" id="ud">
+
+<!-- ═══════════ the sky ═══════════
+     Two faces of one card, turned over by the switch on the wall: Hawkins
+     on a summer night in 1985 on the front (stars, the treeline, Starcourt
+     Mall lit up in pastel neon, fireworks over the parking lot), the Upside
+     Down on the back (storm cloud, red lightning, the same mall gone dark
+     and grown over). Both faces are drawn upright, so the flip reads as the
+     town turning over rather than the page going unreadable. The treeline
+     and the mall are one <symbol>, used twice. -->
+<div class="ud-field" aria-hidden="true">
+  <svg width="0" height="0" class="ud-defs">
+    <symbol id="udTreeline" viewBox="0 0 1440 260">
+      <path d="M0,240 Q360,226 720,236 T1440,232 V260 H0 Z"/>
+      <path d="M-66,236 -35,183 -57,183 -31,137 -47,137 -25,95 -35,95 -20,60 -5,95 -15,95 7,137 -9,137 17,183 -5,183 26,236ZM-25,236 -2,194 -18,194 1,158 -11,158 5,124 -2,124 9,96 19,124 13,124 29,158 17,158 36,194 19,194 42,236ZM1,236 22,192 7,192 25,155 13,155 28,120 22,120 32,91 42,120 36,120 51,155 40,155 57,192 42,192 63,236ZM15,236 43,190 23,190 46,151 32,151 51,114 43,114 56,84 69,114 61,114 80,151 66,151 88,190 69,190 97,236ZM44,236 65,196 50,196 68,161 57,161 71,129 65,129 75,102 85,129 79,129 93,161 82,161 100,196 85,196 106,236ZM77,236 97,198 83,198 99,166 89,166 102,136 97,136 106,111 115,136 109,136 123,166 113,166 129,198 115,198 134,236ZM105,236 123,201 110,201 125,171 115,171 128,144 123,144 131,121 139,144 134,144 146,171 137,171 152,201 139,201 157,236ZM124,236 144,196 130,196 146,161 135,161 150,129 144,129 153,102 163,129 157,129 171,161 160,161 177,196 163,196 183,236ZM148,236 172,194 155,194 175,158 162,158 179,124 172,124 183,96 195,124 187,124 204,158 192,158 212,194 195,194 219,236ZM174,236 202,187 182,187 206,144 190,144 211,105 202,105 216,72 230,105 221,105 241,144 226,144 250,187 230,187 258,236ZM210,236 231,193 216,193 233,156 222,156 237,122 231,122 240,93 250,122 244,122 259,156 248,156 265,193 250,193 271,236ZM235,236 257,196 242,196 260,162 248,162 264,130 257,130 268,103 278,130 271,130 287,162 275,162 294,196 278,196 300,236ZM270,236 285,207 274,207 287,181 279,181 289,158 285,158 292,138 299,158 294,158 305,181 297,181 309,207 299,207 314,236ZM289,236 311,196 295,196 314,160 302,160 318,128 311,128 322,101 333,128 326,128 342,160 330,160 348,196 333,196 355,236ZM321,236 338,202 326,202 340,173 331,173 343,147 338,147 347,124 355,147 350,147 362,173 353,173 367,202 355,202 373,236ZM357,236 371,207 361,207 373,183 366,183 375,160 371,160 378,141 384,160 380,160 390,183 383,183 394,207 384,207 398,236ZM384,236 401,203 389,203 403,174 394,174 405,147 401,147 408,125 416,147 411,147 423,174 414,174 428,203 416,203 433,236ZM1022,236 1042,203 1028,203 1045,174 1034,174 1048,148 1042,148 1052,126 1061,148 1055,148 1070,174 1059,174 1076,203 1061,203 1082,236ZM1056,236 1073,206 1061,206 1075,179 1066,179 1078,155 1073,155 1081,135 1089,155 1084,155 1097,179 1087,179 1102,206 1089,206 1107,236ZM1083,236 1100,201 1088,201 1102,171 1093,171 1105,144 1100,144 1108,121 1117,144 1112,144 1124,171 1115,171 1129,201 1117,201 1134,236ZM1107,236 1128,198 1113,198 1130,164 1119,164 1134,134 1128,134 1137,108 1147,134 1141,134 1156,164 1145,164 1162,198 1147,198 1168,236ZM1133,236 1159,194 1140,194 1162,157 1148,157 1167,123 1159,123 1171,95 1184,123 1176,123 1195,157 1181,157 1202,194 1184,194 1210,236ZM1163,236 1182,200 1168,200 1185,170 1174,170 1188,141 1182,141 1192,117 1201,141 1195,141 1209,170 1199,170 1215,200 1201,200 1221,236ZM1189,236 1212,194 1196,194 1215,157 1203,157 1219,123 1212,123 1223,95 1234,123 1227,123 1243,157 1231,157 1250,194 1234,194 1256,236ZM1212,236 1236,195 1219,195 1239,159 1226,159 1243,125 1236,125 1247,98 1259,125 1252,125 1269,159 1256,159 1276,195 1259,195 1283,236ZM1247,236 1268,201 1253,201 1270,171 1259,171 1274,142 1268,142 1277,119 1287,142 1281,142 1296,171 1285,171 1302,201 1287,201 1308,236ZM1270,236 1297,190 1278,190 1300,150 1286,150 1305,113 1297,113 1310,82 1323,113 1315,113 1335,150 1320,150 1343,190 1323,190 1351,236ZM1306,236 1332,187 1313,187 1335,144 1321,144 1339,104 1332,104 1344,71 1356,104 1349,104 1367,144 1353,144 1374,187 1356,187 1382,236ZM1332,236 1361,190 1341,190 1364,149 1349,149 1369,112 1361,112 1374,81 1388,112 1379,112 1399,149 1384,149 1408,190 1388,190 1416,236ZM1366,236 1390,191 1373,191 1393,152 1380,152 1397,115 1390,115 1401,85 1413,115 1405,115 1422,152 1410,152 1430,191 1413,191 1437,236ZM1392,236 1412,195 1398,195 1415,159 1404,159 1418,125 1412,125 1422,98 1432,125 1426,125 1440,159 1429,159 1446,195 1432,195 1452,236ZM1403,236 1429,191 1411,191 1432,152 1418,152 1437,116 1429,116 1441,86 1453,116 1446,116 1464,152 1450,152 1471,191 1453,191 1479,236ZM1419,236 1448,188 1428,188 1451,146 1436,146 1456,107 1448,107 1461,75 1474,107 1466,107 1486,146 1471,146 1494,188 1474,188 1503,236Z"/>
+      <!-- Starcourt: two long wings and the glass atrium between them, under its arch -->
+      <path d="M452,236 V184 H500 V174 H648 V148 A72,72 0 0 1 792,148 V174 H940 V184 H988 V236 Z"/>
+      <!-- a lamp post at each end of the parking lot -->
+      <path d="M352,236 V120 h5 V236 Z M336,118 h37 v6 h-37 Z M1083,236 V120 h5 V236 Z M1067,118 h37 v6 h-37 Z"/>
+    </symbol>
+  </svg>
+
+  <div class="ud-card">
+    <div class="ud-face ud-face--up">
+      <span class="ud-stars"></span>
+      <span class="ud-glow"></span>
+      <!-- the Fourth of July over the parking lot, drawn by starcourt.js -->
+      <canvas class="ud-fire" id="udFire"></canvas>
+      <svg class="ud-trees" viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <linearGradient id="udGlass" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ff7ac0"/><stop offset=".55" stop-color="#b48cff"/><stop offset="1" stop-color="#3ee6d6"/>
+          </linearGradient>
+        </defs>
+        <use href="#udTreeline"/>
+        <!-- the atrium glass, lit from inside, and its ribs -->
+        <path class="ud-glass" d="M660,174 V150 A60,60 0 0 1 780,150 V174 Z"/>
+        <path class="ud-ribs" d="M720,90 V174 M690,98 V174 M750,98 V174 M666,128 H774 M660,152 H780"/>
+        <!-- shop windows along both wings, and the doors under the arch -->
+        <path class="ud-shops" d="M470,200 h26 v14 h-26 Z M510,196 h26 v18 h-26 Z M550,196 h26 v18 h-26 Z M590,196 h26 v18 h-26 Z M824,196 h26 v18 h-26 Z M864,196 h26 v18 h-26 Z M904,196 h26 v18 h-26 Z M944,200 h26 v14 h-26 Z"/>
+        <path class="ud-doors" d="M690,206 h60 v30 h-60 Z"/>
+        <!-- the neon tube along each roofline and the name over the doors -->
+        <path class="ud-tube ud-tube--a" d="M500,176 H648 M792,176 H940"/>
+        <text class="ud-mallname" x="720" y="196" text-anchor="middle">STARCOURT</text>
+        <circle class="ud-lamp" cx="342" cy="126" r="4"/><circle class="ud-lamp" cx="367" cy="126" r="4"/>
+        <circle class="ud-lamp" cx="1073" cy="126" r="4"/><circle class="ud-lamp" cx="1098" cy="126" r="4"/>
+      </svg>
+    </div>
+
+    <div class="ud-face ud-face--down" id="udDownFace">
+      <span class="ud-clouds"></span>
+      <span class="ud-flash"></span>
+      <svg class="ud-bolt" viewBox="0 0 1000 1000" preserveAspectRatio="none"><path id="udBolt" d=""/></svg>
+      <svg class="ud-trees" viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax slice">
+        <use href="#udTreeline"/>
+        <path class="ud-glass" d="M660,174 V150 A60,60 0 0 1 780,150 V174 Z"/>
+        <!-- the vines that grow over everything on this side, the mall included -->
+        <path class="ud-roots" d="M430,236 C470,206 500,214 520,184 S600,170 648,150 M1010,236 C970,206 950,220 930,186 S840,170 792,150 M680,236 C690,200 700,190 696,160 S712,110 720,82 M760,236 C752,208 770,196 760,170 M300,236 C330,214 300,190 336,170 M1180,236 C1150,210 1190,196 1160,170"/>
+      </svg>
+    </div>
+  </div>
+</div>
+<!-- the spores that drift on the far side, drawn by starcourt.js -->
+<canvas class="ud-spores" id="udSpores" aria-hidden="true"></canvas>
+
+<header class="ud-top" id="udTop">
+  <a class="ud-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Ride home</span>
+  </a>
+  <span class="ud-top-mid" id="udWhere">Hawkins, Indiana · Starcourt Mall</span>
+  <span class="ud-clock" id="udClock">··· ··· · 1985</span>
+</header>
+
+<main class="ud-main" id="udMain">
+
+  <!-- ─────────── the stage ───────────
+       The wall on the left and everything it spells on the right. On a wide
+       screen the wall sticks while the mall and the arcade scroll past it;
+       on a phone the left column dissolves (display: contents) so the wall
+       can stick over them there too, and it spells whichever room is in the
+       middle of the screen, because a finger cannot hover. -->
+  <div class="ud-stage" id="udStage">
+
+    <div class="ud-left">
+      <!-- the wall stands in the arcade as a machine of its own: this is
+           its marquee, lit from behind, with the page's name in neon -->
+      <div class="ud-headline">
+        <p class="ud-kicker">An interface · Hawkins, Indiana · 1985</p>
+        <h1 class="ud-title" id="udTitle"><span class="ud-title-a">The</span> <span class="ud-title-b">Starcourt</span></h1>
+        <p class="ud-credit" aria-hidden="true"><span>1 player</span><span>25¢</span><span>Palace Arcade</span></p>
+      </div>
+
+      <!-- ═══════════ Joyce’s wall ═══════════
+           The alphabet in the three rows it is painted in on the show (A to
+           H, I to Q, R to Z), one bulb over each letter on a sagging wire,
+           set behind the glass of the machine's screen. Nine columns at
+           every width, so the shape survives a phone: the ninth place on the
+           first row, empty on the real wall, holds the light switch. The
+           letters are decoration (the links say where they go); the line
+           under the wall reads out what is being spelled. -->
+      <div class="ud-wallbox" id="udWallbox">
+        <div class="ud-wall" id="udWall">
+          <svg class="ud-vines" viewBox="0 0 600 340" preserveAspectRatio="none" aria-hidden="true">
+            <!-- kept to the edges and clear of the switch and the read-out line -->
+            <path pathLength="1" d="M-4,16 C30,26 26,60 58,70 S100,58 118,86 M-4,150 C22,150 28,182 14,210 S22,244 -4,262 M250,-4 C246,18 268,26 258,46 M604,150 C580,158 588,190 570,206 S560,236 604,250"/>
+            <path pathLength="1" class="ud-vines-thin" d="M58,70 C72,86 70,104 86,112 M14,210 C30,208 36,222 50,220 M258,46 C270,56 282,50 290,60 M570,206 C556,198 546,212 532,206"/>
+          </svg>
+
+          <div class="ud-letters">
+            <span class="ud-cell" aria-hidden="true" data-c="A" style="--b:#ff3b2f; --r:-9deg; --t:-4deg"><i class="ud-bulb"></i><b class="ud-drip">A</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="B" style="--b:#4aa8ff; --r:6deg; --t:2deg"><i class="ud-bulb"></i><b>B</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="C" style="--b:#ffd23f; --r:-4deg; --t:-2deg"><i class="ud-bulb"></i><b>C</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="D" style="--b:#4fe07a; --r:11deg; --t:3deg"><i class="ud-bulb"></i><b>D</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="E" style="--b:#ff5fb4; --r:-7deg; --t:-1deg"><i class="ud-bulb"></i><b class="ud-drip">E</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="F" style="--b:#ff8a2a; --r:3deg; --t:4deg"><i class="ud-bulb"></i><b>F</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="G" style="--b:#4aa8ff; --r:-12deg; --t:-3deg"><i class="ud-bulb"></i><b>G</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="H" style="--b:#ff3b2f; --r:8deg; --t:2deg"><i class="ud-bulb"></i><b>H</b></span>
+            <span class="ud-cell ud-cell--switch">
+              <!-- the switch is real: it is the only thing on the wall that is not decoration -->
+              <button class="ud-switch" id="udSwitch" type="button" role="switch" aria-checked="false">
+                <span class="ud-plate" aria-hidden="true"><i></i></span>
+                <span class="ud-switch-t">Flip<span class="vh"> Hawkins into the Upside Down</span></span>
+              </button>
+            </span>
+            <span class="ud-cell" aria-hidden="true" data-c="I" style="--b:#4fe07a; --r:5deg; --t:-3deg"><i class="ud-bulb"></i><b>I</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="J" style="--b:#ffd23f; --r:-6deg; --t:2deg"><i class="ud-bulb"></i><b>J</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="K" style="--b:#ff3b2f; --r:10deg; --t:-2deg"><i class="ud-bulb"></i><b>K</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="L" style="--b:#4aa8ff; --r:-3deg; --t:3deg"><i class="ud-bulb"></i><b>L</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="M" style="--b:#ff8a2a; --r:7deg; --t:-4deg"><i class="ud-bulb"></i><b class="ud-drip">M</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="N" style="--b:#4fe07a; --r:-10deg; --t:1deg"><i class="ud-bulb"></i><b>N</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="O" style="--b:#ff5fb4; --r:4deg; --t:-2deg"><i class="ud-bulb"></i><b>O</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="P" style="--b:#ffd23f; --r:-8deg; --t:3deg"><i class="ud-bulb"></i><b>P</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="Q" style="--b:#ff3b2f; --r:9deg; --t:-1deg"><i class="ud-bulb"></i><b>Q</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="R" style="--b:#4aa8ff; --r:-5deg; --t:2deg"><i class="ud-bulb"></i><b class="ud-drip">R</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="S" style="--b:#ff8a2a; --r:8deg; --t:-3deg"><i class="ud-bulb"></i><b>S</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="T" style="--b:#4fe07a; --r:-11deg; --t:2deg"><i class="ud-bulb"></i><b>T</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="U" style="--b:#ff3b2f; --r:3deg; --t:-2deg"><i class="ud-bulb"></i><b class="ud-drip">U</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="V" style="--b:#ffd23f; --r:-6deg; --t:4deg"><i class="ud-bulb"></i><b>V</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="W" style="--b:#ff5fb4; --r:9deg; --t:-2deg"><i class="ud-bulb"></i><b>W</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="X" style="--b:#4aa8ff; --r:-4deg; --t:3deg"><i class="ud-bulb"></i><b>X</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="Y" style="--b:#4fe07a; --r:7deg; --t:-3deg"><i class="ud-bulb"></i><b class="ud-drip">Y</b></span>
+            <span class="ud-cell" aria-hidden="true" data-c="Z" style="--b:#ff8a2a; --r:-9deg; --t:2deg"><i class="ud-bulb"></i><b>Z</b></span>
+          </div>
+
+          <p class="ud-wall-cap" aria-hidden="true">
+            <span class="ud-cap-k" id="udCapK">Will is spelling</span>
+            <b class="ud-spelt" id="udSpelt">R I G H T &nbsp; H E R E</b>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ud-right">
+      <div class="ud-intro">
+        <p class="ud-sub">Every room on this site, as a store in Starcourt Mall or a cabinet in the Palace Arcade. Point at one, tab to it, or on a phone scroll it into the middle of the screen, and the bulbs on Joyce Byers’ wall light one at a time to spell it out, the way Will talked through them from the other side.</p>
+        <button class="ud-cross" id="udCross" type="button">
+          <span class="ud-cross-i" aria-hidden="true"></span><span id="udCrossT">Turn it upside down</span>
+        </button>
+      </div>
+
+      <!-- ─────────── the mall ───────────
+           every room on the site, as the copy above promises: the main
+           sections, both schools, the worlds and the personal pages, on the
+           directory board by the fountain. Each is a unit in Starcourt (and
+           two are under it); the plain line says what is really there.
+           data-spell is what the wall spells, data-unit the shop it lights
+           on the floor plan. -->
+      <section class="ud-sec ud-board" aria-labelledby="udTownH">
+        <div class="ud-board-top">
+          <p class="ud-board-k" aria-hidden="true">Hawkins, Indiana · open 10 to 9</p>
+          <h2 class="ud-board-h" id="udTownH"><span class="ud-neon">Starcourt</span> <span class="ud-board-d">Mall directory</span></h2>
+          <p class="ud-board-s">Every room on the site, as a store</p>
+        </div>
+
+        <!-- the floor plan: level 2 along the top, level 1 along the bottom,
+             the fountain and the escalators between, and the part of the
+             building nobody was meant to find drawn underneath it all -->
+        <svg class="ud-plan" id="udPlan" viewBox="0 0 600 282" aria-hidden="true">
+          <rect class="ud-plan-wall" x="6" y="6" width="588" height="208" rx="14"/>
+          <g class="ud-plan-floor">
+            <path d="M18,78 H582 V142 H18 Z"/>
+          </g>
+          <g class="ud-plan-esc"><path d="M170,86 l40,48 h14 l-40,-48 Z M376,134 l40,-48 h14 l-40,48 Z"/></g>
+          <g class="ud-plan-fountain"><circle cx="300" cy="110" r="25"/><circle cx="300" cy="110" r="15"/><circle cx="300" cy="110" r="5"/></g>
+          <g data-u="201"><rect x="18" y="18" width="88" height="54" rx="4"/><text x="62" y="50">201</text></g>
+          <g data-u="202"><rect x="112" y="18" width="88" height="54" rx="4"/><text x="156" y="50">202</text></g>
+          <g data-u="203"><rect x="206" y="18" width="88" height="54" rx="4"/><text x="250" y="50">203</text></g>
+          <g data-u="204"><rect x="306" y="18" width="88" height="54" rx="4"/><text x="350" y="50">204</text></g>
+          <g data-u="205"><rect x="400" y="18" width="88" height="54" rx="4"/><text x="444" y="50">205</text></g>
+          <g data-u="206"><rect x="494" y="18" width="88" height="54" rx="4"/><text x="538" y="50">206</text></g>
+          <g data-u="102"><rect x="18" y="148" width="74" height="54" rx="4"/><text x="55" y="180">102</text></g>
+          <g data-u="103"><rect x="98" y="148" width="74" height="54" rx="4"/><text x="135" y="180">103</text></g>
+          <g data-u="104"><rect x="178" y="148" width="74" height="54" rx="4"/><text x="215" y="180">104</text></g>
+          <g data-u="101"><rect x="258" y="148" width="84" height="54" rx="4"/><text x="300" y="180">101</text></g>
+          <g data-u="105"><rect x="348" y="148" width="74" height="54" rx="4"/><text x="385" y="180">105</text></g>
+          <g data-u="106"><rect x="428" y="148" width="74" height="54" rx="4"/><text x="465" y="180">106</text></g>
+          <g data-u="107"><rect x="508" y="148" width="74" height="54" rx="4"/><text x="545" y="180">107</text></g>
+          <g class="ud-plan-here"><path d="M300,206 l4.5,9 10,1.4 -7.3,7 1.8,9.9 -9,-4.7 -9,4.7 1.8,-9.9 -7.3,-7 10,-1.4 Z"/></g>
+          <g class="ud-plan-below">
+            <rect class="ud-plan-cut" x="150" y="238" width="300" height="38" rx="6"/>
+            <g data-u="B1"><rect x="162" y="244" width="132" height="26" rx="3"/><text x="228" y="262">B1</text></g>
+            <g data-u="B2"><rect x="306" y="244" width="132" height="26" rx="3"/><text x="372" y="262">B2</text></g>
+          </g>
+        </svg>
+        <p class="ud-plan-key" aria-hidden="true"><span class="ud-plan-star"></span>You are here <i>·</i> <span class="ud-plan-lvl">Level 2 top · Level 1 bottom</span></p>
+
+        <h3 class="ud-lvl"><span>Level 1</span></h3>
+        <div class="ud-rooms">
+          <a class="ud-room" href="/" data-spell="HOME" data-unit="101" style="--b:#ff5fb4"><span class="ud-unit" aria-hidden="true">101</span><b>Main Entrance</b><span>Home · the front door of the site</span></a>
+          <a class="ud-room" href="/projects/" data-spell="PROJECTS" data-unit="102" style="--b:#3ee6d6"><span class="ud-unit" aria-hidden="true">102</span><b>Scoops Ahoy</b><span>Every project · the Scoops Troop’s headquarters</span></a>
+          <a class="ud-room" href="/worlds/stranger-things/" data-spell="STRANGER THINGS" data-unit="103" style="--b:#ff6a5c"><span class="ud-unit" aria-hidden="true">103</span><b>Starcourt Cinema</b><span>Stranger Things · the world page, now showing</span></a>
+          <a class="ud-room" href="/gaming/" data-spell="GAMING" data-unit="104" style="--b:#ffd23f"><span class="ud-unit" aria-hidden="true">104</span><b>The Palace Arcade</b><span>Gaming</span></a>
+          <a class="ud-room" href="/accents/" data-spell="ACCENTS" data-unit="105" style="--b:#b48cff"><span class="ud-unit" aria-hidden="true">105</span><b>Family Video</b><span>Accents &amp; impersonations</span></a>
+          <a class="ud-room" href="/star-wars/" data-spell="STAR WARS" data-unit="106" style="--b:#4aa8ff"><span class="ud-unit" aria-hidden="true">106</span><b>Radio Shack</b><span>Star Wars apps · and two droids</span></a>
+          <a class="ud-room" href="/lightsabers/" data-spell="LIGHTSABERS" data-unit="107" style="--b:#4fe07a"><span class="ud-unit" aria-hidden="true">107</span><b>Melvald’s General Store</b><span>The lightsaber guide · every light in the shop</span></a>
+        </div>
+
+        <h3 class="ud-lvl"><span>Level 2</span></h3>
+        <div class="ud-rooms">
+          <a class="ud-room" href="/education/" data-spell="EDUCATION" data-unit="201" style="--b:#4aa8ff"><span class="ud-unit" aria-hidden="true">201</span><b>The Bookshop</b><span>Education</span></a>
+          <a class="ud-room" href="/college/" data-spell="COLLEGE" data-unit="202" style="--b:#ff5fb4"><span class="ud-unit" aria-hidden="true">202</span><b>The Varsity Shop</b><span>College · UC Irvine</span></a>
+          <a class="ud-room" href="/high-school/" data-spell="HIGH SCHOOL" data-unit="203" style="--b:#ff8a2a"><span class="ud-unit" aria-hidden="true">203</span><b>The AV Club</b><span>High School · where it started</span></a>
+          <a class="ud-room" href="/resume/" data-spell="RESUME" data-unit="204" style="--b:#3ee6d6"><span class="ud-unit" aria-hidden="true">204</span><b>Mall Security</b><span>Résumé · the file on record</span></a>
+          <a class="ud-room" href="/al-islam/" data-spell="AL ISLAM" data-unit="205" style="--b:#4fe07a"><span class="ud-unit" aria-hidden="true">205</span><b>Cerebro</b><span>Al-Islam apps</span></a>
+          <a class="ud-room" href="/travels/" data-spell="TRAVELS" data-unit="206" style="--b:#ffd23f"><span class="ud-unit" aria-hidden="true">206</span><b>The Travel Agent</b><span>Travels · where I have been</span></a>
+        </div>
+
+        <h3 class="ud-lvl ud-lvl--below"><span>Below the mall <i>· authorized personnel only</i></span></h3>
+        <div class="ud-rooms">
+          <a class="ud-room ud-room--below" href="/work/" data-spell="WORK" data-unit="B1" style="--b:#ff6a5c"><span class="ud-unit" aria-hidden="true">B1</span><b>The Lab</b><span>Work at UC Irvine</span></a>
+          <a class="ud-room ud-room--below" href="/worlds/" data-spell="WORLDS" data-unit="B2" style="--b:#ff6a5c"><span class="ud-unit" aria-hidden="true">B2</span><b>The Gate</b><span>All 71 worlds · a door to each</span></a>
+        </div>
+      </section>
+
+      <!-- ─────────── the arcade ───────────
+           the other terminals, one cabinet each, on the Palace's carpet.
+           The screen over the row is in attract mode until you point at a
+           cabinet, then shows what is in it; its orb listens. -->
+      <section class="ud-sec ud-arcade" aria-labelledby="udRadioH">
+        <div class="ud-palace">
+          <span class="ud-chase" aria-hidden="true"></span>
+          <h2 class="ud-palace-h" id="udRadioH"><span class="ud-palace-a">Palace</span> <span class="ud-palace-b">Arcade</span></h2>
+          <p class="ud-palace-s">The other terminals, one cabinet each</p>
+        </div>
+        <div class="ud-attract" aria-hidden="true">
+          <canvas class="ud-lcd-orb" data-orb="listening" data-orb-size="fit" data-orb-ink="#3ee6d6" aria-hidden="true"></canvas>
+          <span class="ud-lcd-t"><b id="udLcdCh">CAB --</b><i id="udLcdName">Insert coin</i></span>
+          <span class="ud-attract-1up">1UP</span>
+        </div>
+        <ol class="ud-cabs">
+          <li><a class="ud-cab" href="/elmallah/" data-spell="ELMALLAH" data-ch="01" style="--c:#4aa8ff"><span class="ud-cab-m"><b>E.L.M.A.L.L.A.H.</b></span><span class="ud-cab-s"><i>Star Wars holotable</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">01</span></a></li>
+          <li><a class="ud-cab" href="/holocron/" data-spell="HOLOCRON" data-ch="02" style="--c:#3ee6d6"><span class="ud-cab-m"><b>The Holocron</b></span><span class="ud-cab-s"><i>Jedi archive</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">02</span></a></li>
+          <li><a class="ud-cab" href="/jarvis/" data-spell="JARVIS" data-ch="03" style="--c:#ff6a5c"><span class="ud-cab-m"><b>J.A.R.V.I.S.</b></span><span class="ud-cab-s"><i>Stark heads-up display</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">03</span></a></li>
+          <li><a class="ud-cab" href="/marauders-map/" data-spell="MARAUDERS MAP" data-ch="04" style="--c:#ffd23f"><span class="ud-cab-m"><b>The Marauder’s Map</b></span><span class="ud-cab-s"><i>Harry Potter parchment</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">04</span></a></li>
+          <li><a class="ud-cab" href="/crafting-table/" data-spell="CRAFTING TABLE" data-ch="05" style="--c:#4fe07a"><span class="ud-cab-m"><b>The Crafting Table</b></span><span class="ud-cab-s"><i>Minecraft</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">05</span></a></li>
+          <li><a class="ud-cab" href="/citadel/" data-spell="CITADEL" data-ch="06" style="--c:#b48cff"><span class="ud-cab-m"><b>The Citadel</b></span><span class="ud-cab-s"><i>Game of Thrones</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">06</span></a></li>
+          <li><a class="ud-cab" href="/compass/" data-spell="COMPASS" data-ch="07" style="--c:#ff8a2a"><span class="ud-cab-m"><b>The Compass</b></span><span class="ud-cab-s"><i>Pirates of the Caribbean</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">07</span></a></li>
+          <li><a class="ud-cab" href="/control-room/" data-spell="CONTROL ROOM" data-ch="08" style="--c:#ff5fb4"><span class="ud-cab-m"><b>The Control Room</b></span><span class="ud-cab-s"><i>Jurassic Park</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">08</span></a></li>
+          <li><a class="ud-cab" href="/spirit-library/" data-spell="SPIRIT LIBRARY" data-ch="09" style="--c:#3ee6d6"><span class="ud-cab-m"><b>The Spirit Library</b></span><span class="ud-cab-s"><i>Avatar: The Last Airbender</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">09</span></a></li>
+          <li><a class="ud-cab" href="/upside-down/" data-spell="UPSIDE DOWN" data-ch="10" style="--c:#ff4a3d"><span class="ud-cab-m"><b>The Upside Down</b></span><span class="ud-cab-s"><i>The original Hawkins wall</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">10</span></a></li>
+          <li><a class="ud-cab" href="/monastery/" data-spell="MONASTERY" data-ch="11" style="--c:#e0b040"><span class="ud-cab-m"><b>The Monastery</b></span><span class="ud-cab-s"><i>Ninjago</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">11</span></a></li>
+          <li><a class="ud-cab" href="/wanted/" data-spell="WANTED" data-ch="12" style="--c:#c9402f"><span class="ud-cab-m"><b>The Wanted Board</b></span><span class="ud-cab-s"><i>Red Dead Redemption</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">12</span></a></li>
+          <li><a class="ud-cab" href="/dunder-mifflin/" data-spell="DUNDER MIFFLIN" data-ch="13" style="--c:#e8e6e0"><span class="ud-cab-m"><b>Dunder Mifflin</b></span><span class="ud-cab-s"><i>The Office</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">13</span></a></li>
+          <li><a class="ud-cab" href="/springfield/" data-spell="SPRINGFIELD" data-ch="14" style="--c:#ffd21f"><span class="ud-cab-m"><b>Springfield</b></span><span class="ud-cab-s"><i>The Simpsons</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">14</span></a></li>
+          <li><a class="ud-cab" href="/vought/" data-spell="VOUGHT" data-ch="15" style="--c:#e02a2a"><span class="ud-cab-m"><b>Vought Tower</b></span><span class="ud-cab-s"><i>The Boys</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">15</span></a></li>
+          <li><a class="ud-cab" href="/pokedex/" data-spell="POKEDEX" data-ch="16" style="--c:#ffd43f"><span class="ud-cab-m"><b>The Pokédex</b></span><span class="ud-cab-s"><i>Pokémon</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">16</span></a></li>
+          <li><a class="ud-cab" href="/batcomputer/" data-spell="BATCOMPUTER" data-ch="17" style="--c:#c9cdd2"><span class="ud-cab-m"><b>The Batcomputer</b></span><span class="ud-cab-s"><i>Batman</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">17</span></a></li>
+          <li><a class="ud-cab" href="/daily-bugle/" data-spell="DAILY BUGLE" data-ch="18" style="--c:#e02a3a"><span class="ud-cab-m"><b>The Daily Bugle</b></span><span class="ud-cab-s"><i>Spider-Man</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">18</span></a></li>
+        </ol>
+      </section>
+    </div>
+  </div>
+
+  <!-- ─────────── two storefronts ─────────── -->
+  <div class="ud-cols">
+
+    <!-- the Palace's high-score table, sorted the way the machine sorts
+         it: biggest number first, whatever it is a number of. Every entry
+         is under the same initials, the ones from the keeper's handle. -->
+    <section class="ud-sec" aria-labelledby="udArcadeH">
+      <div class="ud-cabinet">
+        <p class="ud-cabinet-m" aria-hidden="true">Palace Arcade</p>
+        <div class="ud-crt">
+          <h2 class="ud-crt-h" id="udArcadeH">High scores<span class="vh">: the Palace Arcade, biggest first</span></h2>
+          <p class="ud-crt-sub" aria-hidden="true">Rank &nbsp; Name &nbsp; Score</p>
+          <ol class="ud-scores">
+            <li><span class="ud-rank" aria-hidden="true">1st</span><span class="ud-ini" aria-hidden="true">ABU</span><b>812</b><span class="ud-what">Lines of JavaScript<i>the Star Wars Datapad, 2021</i></span></li>
+            <li><span class="ud-rank" aria-hidden="true">2nd</span><span class="ud-ini" aria-hidden="true">ABU</span><b>747</b><span class="ud-what">Steam achievements<i>four Steam Replays, 2022–2025</i></span></li>
+            <li><span class="ud-rank" aria-hidden="true">3rd</span><span class="ud-ini" aria-hidden="true">ABU</span><b>500+</b><span class="ud-what">Discord servers<i>Sabacc Droid and Aurebesh Droid</i></span></li>
+            <li><span class="ud-rank" aria-hidden="true">4th</span><span class="ud-ini" aria-hidden="true">ABU</span><b>70</b><span class="ud-what">Worlds<i>on this site</i></span></li>
+            <li><span class="ud-rank" aria-hidden="true">5th</span><span class="ud-ini" aria-hidden="true">ABU</span><b>35</b><span class="ud-what">Trips<i>19 by plane, 16 by road, 2015–2026</i></span></li>
+            <li><span class="ud-rank" aria-hidden="true">6th</span><span class="ud-ini" aria-hidden="true">ABU</span><b>19</b><span class="ud-what">Accents<i>and 4 impersonations</i></span></li>
+            <li><span class="ud-rank" aria-hidden="true">7th</span><span class="ud-ini" aria-hidden="true">ABU</span><b>12</b><span class="ud-what">Apps shipped<i>across four platforms</i></span></li>
+          </ol>
+          <p class="ud-crt-foot" aria-hidden="true">Insert coin</p>
+        </div>
+        <span class="ud-cabinet-c" aria-hidden="true"></span>
+      </div>
+    </section>
+
+    <!-- the keeper, chalked up on the menu board at Scoops Ahoy. Every
+         line is a fact the rest of the site already states; nothing here
+         is new. -->
+    <section class="ud-sec ud-scoops" aria-labelledby="udFileH">
+      <div class="ud-awning" aria-hidden="true"></div>
+      <div class="ud-menu">
+        <h2 class="ud-menu-h" id="udFileH"><span class="ud-script">Scoops Ahoy</span><span class="ud-menu-s">Today’s menu: the keeper, on record</span></h2>
+        <span class="ud-stamp" aria-hidden="true">On the record</span>
+        <dl class="ud-record">
+          <div><dt>Name</dt><dd>Abubakr Elmallah</dd></div>
+          <div><dt>Studying</dt><dd>Computer Science at UC Irvine, class of 2028</dd></div>
+          <div><dt>Position</dt><dd>Lead mobile &amp; backend developer at UC Irvine</dd></div>
+          <div><dt>Shipped</dt><dd>Twelve apps, across four platforms</dd></div>
+          <div><dt>First solo project</dt><dd>Order 66, in Scratch, 2021</dd></div>
+          <div><dt>First real code</dt><dd>The Star Wars Datapad on Code.org, 2021: 812 lines of JavaScript</dd></div>
+          <div><dt>App Store</dt><dd>Datapad, June 26, 2023, which reached the Top 10 of the paid Entertainment chart</dd></div>
+          <div><dt>Award</dt><dd>Winner of the Apple Swift Student Challenge 2024 with <span class="ud-nb">Al-Quran</span>, and a trip to WWDC 2024</dd></div>
+          <div><dt>Islamic apps</dt><dd><span class="ud-nb">Al-Islam</span>, <span class="ud-nb">Al-Quran</span> and <span class="ud-nb">Al-Adhan</span>: three apps, two national awards</dd></div>
+          <div><dt>Radio traffic</dt><dd>Sabacc Droid and Aurebesh Droid, Discord bots in more than 500 servers</dd></div>
+          <div><dt>Last seen</dt><dd>33.64°N 117.84°W</dd></div>
+          <div><dt>Write to</dt><dd><a href="mailto:ammelmallah@gmail.com">ammelmallah@gmail.com</a></dd></div>
+        </dl>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ─────────── the way out ───────────
+       the tape Jonathan made for Will, and the question on its label -->
+  <div class="ud-out">
+    <p class="ud-out-k">The song Jonathan played for Will</p>
+    <button class="ud-tape" id="udTape" type="button">
+      <span class="ud-tape-label">Should I stay or should I go?</span>
+      <span class="ud-reels" aria-hidden="true"><i></i><i></i></span>
+    </button>
+  </div>
+
+</main>
+
+<!-- the answer, in the Void: black water, total silence, and a voice -->
+<div class="ud-void" id="udVoid" role="dialog" aria-modal="true" aria-labelledby="udVoidT">
+  <span class="ud-ripples" aria-hidden="true"><i></i><i></i><i></i></span>
+  <div class="ud-void-in">
+    <canvas class="ud-void-orb" data-orb="searching" data-orb-size="96" data-orb-ink="#e9dcc4" aria-hidden="true"></canvas>
+    <p class="ud-void-k">The Void · black water, and a radio</p>
+    <p class="ud-void-t" id="udVoidT">Friends don’t lie.</p>
+    <p class="ud-void-s">Eleven. So go on home: the lights will be on.</p>
+    <div class="ud-void-go">
+      <a class="ud-void-home" id="udHome" href="/">Ride home</a>
+      <button class="ud-void-stay" id="udStay" type="button">Stay a while</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* smooth scrolling only after load, so back/forward restores the position instantly instead of sliding to it */
+  addEventListener('load', function () {
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      document.documentElement.classList.add('smooth');
+    }); });
+  });
+</script>
+<script src="{% include v.html f='/assets/js/starcourt.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

@@ -1,11 +1,19 @@
 #!/bin/bash
 # Run the site locally:  ./run        (from this project folder in the terminal)
-#                        ./run stop   stop the server
+#                        ./run stop   stop every copy of the server
 #                        ./run log    watch the build log of a running server
 #
-# Starts the Jekyll dev server DETACHED from the terminal, then opens
-# http://127.0.0.1:4000/ and follows the build log. Ctrl+C only stops
-# following the log; the server keeps running until `./run stop`.
+# And for anything else running on this Mac (not just the site):
+#                        ./run ports              list every program serving a port
+#                        ./run kill <PID>         stop one program by its PID
+#                        ./run kill -9 <PID>      force it, if it will not stop
+#                        ./run killall <name>     stop every program of yours matching <name>
+#
+# Every ./run first stops ALL running copies of the Jekyll server (any port,
+# any terminal, any leftover from a closed window) and the terminals still
+# following their log, then starts one fresh server DETACHED from the
+# terminal, opens http://127.0.0.1:4000/ and follows the build log. Ctrl+C
+# only stops following the log; the server keeps running until `./run stop`.
 #
 # WHY DETACHED
 #
@@ -59,7 +67,6 @@ LOG="$HOME/Library/Logs/abubakr-site.log"
 LIVERELOAD_PORT=35729
 
 holder()  { lsof -nP -iTCP:"$1" -sTCP:LISTEN -t 2>/dev/null | head -1; }
-is_ours() { ps -o command= -p "$1" 2>/dev/null | grep -q "jekyll serve"; }
 
 # `./run --port 4001` has to actually work, so honour a --port in the arguments
 PORT=4000
@@ -70,32 +77,70 @@ for i in "$@"; do
 done
 case " $* " in *" --port "*) OWN_PORT="" ;; *) OWN_PORT="--port $PORT" ;; esac
 
+# Stops every `jekyll serve` this user is running, whatever port or terminal
+# started it, plus any `tail` still following the old log. Politely first,
+# then forcefully for anything that has not let go after 5 s.
+stop_all() {
+  local pids tails
+  pids=$(pgrep -u "$(id -u)" -f "bin/jekyll serve")
+  tails=$(pgrep -u "$(id -u)" -f "tail .*$(basename "$LOG")")
+  [ -n "$tails" ] && kill $tails 2>/dev/null
+  if [ -z "$pids" ]; then return 1; fi
+  kill $pids 2>/dev/null
+  for i in $(seq 1 20); do
+    pgrep -u "$(id -u)" -f "bin/jekyll serve" >/dev/null || break
+    sleep 0.25
+  done
+  pids=$(pgrep -u "$(id -u)" -f "bin/jekyll serve")
+  [ -n "$pids" ] && kill -9 $pids 2>/dev/null
+  return 0
+}
+
 case "$1" in
   stop)
-    pid=$(holder "$PORT")
-    if [ -z "$pid" ]; then echo "Nothing is serving on port $PORT."; exit 0; fi
-    if ! is_ours "$pid"; then
-      echo "Port $PORT is held by PID $pid, which is not our Jekyll server:"
-      echo "    $(ps -o command= -p "$pid" | cut -c1-100)"
-      exit 1
-    fi
-    kill "$pid" && echo "Stopped the site server (PID $pid)."
+    before=$(pgrep -u "$(id -u)" -f "bin/jekyll serve" | xargs)
+    if stop_all; then echo "Stopped every site server (PID $before)."
+    else echo "No site server was running."; fi
     exit 0 ;;
   log)
     [ -f "$LOG" ] || { echo "No log yet at $LOG. Run ./run first."; exit 1; }
     exec tail -n 40 -f "$LOG" ;;
+  ports)
+    # One line per program and port (lsof lists IPv4 and IPv6 separately)
+    printf "%-7s  %-22s  %s\n" PID PROGRAM ADDRESS
+    lsof -nP -iTCP -sTCP:LISTEN 2>/dev/null | awk 'NR>1 { print $2, $9 }' | sort -u -k1,1n -k2 |
+      while read -r pid addr; do
+        name=$(basename "$(ps -o comm= -p "$pid" 2>/dev/null)")
+        printf "%-7s  %-22s  %s\n" "$pid" "${name:0:22}" "$addr"
+      done
+    echo
+    echo "Stop one with:  ./run kill <PID>"
+    exit 0 ;;
+  kill)
+    sig=""; [ "$2" = "-9" ] && { sig="-9"; shift; }
+    pid="$2"
+    case "$pid" in ''|*[!0-9]*) echo "Usage: ./run kill [-9] <PID>   (./run ports lists them)"; exit 1 ;; esac
+    what=$(ps -o command= -p "$pid" 2>/dev/null | cut -c1-100)
+    [ -n "$what" ] || { echo "No process with PID $pid."; exit 1; }
+    kill $sig "$pid" && echo "Stopped PID $pid:  $what"
+    exit $? ;;
+  killall)
+    name="$2"
+    [ -n "$name" ] || { echo "Usage: ./run killall <name>   e.g. ./run killall node"; exit 1; }
+    found=$(pgrep -u "$(id -u)" -fl "$name" | grep -v -e "^$$ " -e "^$PPID ")
+    [ -n "$found" ] || { echo "Nothing of yours is running that matches \"$name\"."; exit 0; }
+    echo "Stopping:"; echo "$found" | cut -c1-100 | sed 's/^/    /'
+    kill $(echo "$found" | awk '{ print $1 }') 2>/dev/null
+    exit 0 ;;
 esac
 
-# ── already running? then this is just "open it again" ──
+# ── erase any old copies, so this is always one fresh server ──
+before=$(pgrep -u "$(id -u)" -f "bin/jekyll serve" | xargs)
+if stop_all >/dev/null; then echo "Stopped the old site server (PID $before)."; echo; fi
+
+# ── anything else still on the port is not ours: say so rather than kill it ──
 pid=$(holder "$PORT")
 if [ -n "$pid" ]; then
-  if is_ours "$pid"; then
-    echo "The site is already being served on http://127.0.0.1:$PORT/ (PID $pid)."
-    echo "Following its log; Ctrl+C stops following, ./run stop stops the server."
-    echo
-    open "http://127.0.0.1:$PORT/"
-    exec tail -n 20 -f "$LOG"
-  fi
   echo "Port $PORT is already taken by PID $pid:"
   echo "    $(ps -o command= -p "$pid" 2>/dev/null | cut -c1-100)"
   echo

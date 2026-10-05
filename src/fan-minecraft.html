@@ -63,6 +63,8 @@ tab: "/worlds/"
     {% include crumbs.html parent="Worlds" url="/worlds/#franchises" here="Minecraft" %}
     <p class="fan-kicker"><span>Franchise · Primary · since 2011</span></p>
     <h1 class="fan-title">Minecraft</h1>
+    {% include interface-link.html world="Minecraft" href="/crafting-table/" name="The Crafting Table" %}
+    {% include interface-peek.html tone="#80ff20" bg="#1d1f23" rows="Crafting|3 × 3 GRID;Slots filled|9;Durability|FULL;Mode|SURVIVAL" note="The Crafting Table lays the site out as an inventory: every page is a slot, every block is drawn." href="/crafting-table/" name="The Crafting Table" world="Minecraft" %}
     <p class="fan-lede-hero">Redstone was my first logic gate and command blocks were my first scripting language. Tool tiers, the Y-levels worth digging at, the three dimensions, and the mobs that ended a run.</p>
     <div class="fan-links">
       <a class="fan-link" href="/worlds/#franchises" data-magnetic>All worlds ↗</a>
@@ -175,6 +177,7 @@ tab: "/worlds/"
 
 <script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
+<script src="{% include v.html f='/assets/js/mc-servers.js' %}"></script>
 <script src="{% include v.html f='/assets/js/fan-mc.js' %}"></script>
 <script src="{% include v.html f='/assets/js/fan-shots.js' %}"></script>
 

@@ -1,0 +1,478 @@
+---
+permalink: /spirit-library/
+title: "The Spirit Library · Abubakr Elmallah"
+description: "The Spirit Library: an Avatar: The Last Airbender interface for Abubakr Elmallah's portfolio, every page shelved by nation under today's real moon."
+theme: "#0a1222"
+fonts: "family=Shippori+Mincho:wght@400;500;700;800&family=Zen+Kaku+Gothic+New:wght@500;700"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/spirit-library.css' %}" />
+<!-- set before the first paint, so the scrolls below the fold can start rolled
+     up and unroll as their shelf comes into view; without scripts nothing is
+     rolled up and every scroll simply shows. If spirit-library.js never runs
+     (offline, blocked), the class comes off again at load, so no scroll is
+     ever left rolled up with nothing to unroll it. -->
+<script>
+  document.documentElement.classList.add('sl-js');
+  addEventListener('load', function () { if (!window.slReady) document.documentElement.classList.remove('sl-js'); });
+</script>
+</head>
+<body class="sl" id="sl" data-sky="night">
+
+<!-- the library underground: ink-blue dark, a lamp's warmth from above, and
+     the faint uprights of shelves running all the way down -->
+<div class="sl-field" aria-hidden="true">
+  <span class="sl-lamp"></span>
+  <span class="sl-uprights"></span>
+</div>
+
+<!-- ═══════════ the desert, above the library ═══════════ -->
+<section class="sl-hero" aria-labelledby="slTitle">
+
+  <!-- stars come out at night (spirit-library.js sets data-sky from your clock) -->
+  <svg class="sl-stars" id="slStars" aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1000 600"></svg>
+
+  <header class="sl-top">
+    <a class="sl-exit" href="/" title="Back to the main site">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Climb back out</span>
+    </a>
+    <span class="sl-top-mid">Wan Shi Tong’s Library · the Si Wong Desert</span>
+    <span class="sl-now"><svg class="sl-now-moon" viewBox="-12 -12 24 24" aria-hidden="true"><circle r="10" class="sl-moon-dark"/><path id="slNowLit" class="sl-moon-lit" d=""/></svg><span id="slNow">····</span></span>
+  </header>
+
+  <div class="sl-hero-txt">
+    <p class="sl-kicker">He who knows ten thousand things</p>
+    <h1 class="sl-title" id="slTitle">The Spirit Library</h1>
+    <p class="sl-sub">Every page on this site, filed as a scroll in the library under the Si Wong Desert and shelved by nation. The planetarium’s ceiling is set to today, with the real moon in it, and when you are finished the whole tower goes back under the sand.</p>
+  </div>
+
+  <!-- the tower, as Professor Zei found it: almost all of it buried, the top
+       floors and the dome standing out of a dune. The sun and the moon cross
+       the sky behind it on your clock, by the same reckoning the planetarium
+       uses further down. -->
+  <div class="sl-scene" aria-hidden="true">
+    <div class="sl-bodies">
+      <span class="sl-sun" id="slSun"></span>
+      <span class="sl-moon" id="slMoon"><svg viewBox="-12 -12 24 24"><circle r="11" class="sl-moon-dark"/><path id="slMoonLit" class="sl-moon-lit" d=""/></svg></span>
+    </div>
+    <!-- three layers: the far dunes and the near ones fill the width
+         whatever its shape (slice), and the tower between them keeps its
+         whole height (meet), so the spire is never cropped on a wide screen -->
+    <svg class="sl-land" viewBox="0 0 1440 440" preserveAspectRatio="xMidYMax slice">
+      <!-- far dunes -->
+      <path class="sl-d1" d="M0 300C140 262 260 250 400 272S640 316 760 296 1020 238 1180 252 1360 290 1440 280V440H0z"/>
+
+    </svg>
+    <svg class="sl-land sl-land--tower" viewBox="400 -110 640 550" preserveAspectRatio="xMidYMax meet">
+      <defs>
+        <linearGradient id="slStone" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" class="sl-st-hi"/>
+          <stop offset="0.55" class="sl-st-hi"/>
+          <stop offset="0.56" class="sl-st-lo"/>
+          <stop offset="1" class="sl-st-lo"/>
+        </linearGradient>
+        <linearGradient id="slDome" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" class="sl-dm-hi"/>
+          <stop offset="0.5" class="sl-dm-hi"/>
+          <stop offset="0.52" class="sl-dm-lo"/>
+          <stop offset="1" class="sl-dm-lo"/>
+        </linearGradient>
+      </defs>
+      <!-- a lesser dome off to one side, nearly gone -->
+      <g class="sl-tower">
+        <path fill="url(#slStone)" d="M444 300h84v60h-84z"/>
+        <path class="sl-trim" d="M440 302h92v-6h-92z"/>
+        <path fill="url(#slDome)" d="M448 296c-8-26 16-42 38-58 22 16 46 32 38 58z"/>
+        <path class="sl-ribs" d="M486 238c-8 16-12 36-12 58M486 238c8 16 12 36 12 58"/>
+        <path class="sl-spire" d="M486 238v-20"/>
+        <circle class="sl-finial" cx="486" cy="226" r="3.5"/>
+      </g>
+
+      <!-- the tower, scaled up from its foot so it stands well out of the
+           sand (the inner groups carry .sl-tower, which sinks on leaving) -->
+      <g transform="translate(720 440) scale(1.22) translate(-720 -440)">
+      <g class="sl-tower">
+        <!-- side turrets, each with its own light and shadow -->
+        <path fill="url(#slStone)" d="M596 290h46v150h-46z"/>
+        <path fill="url(#slStone)" d="M798 290h46v150h-46z"/>
+        <path class="sl-win" d="M611 340v-26a8 8 0 0 1 16 0v26z"/>
+        <path class="sl-win" d="M813 340v-26a8 8 0 0 1 16 0v26z"/>
+        <path class="sl-trim" d="M592 294h54v-6h-54z"/>
+        <path class="sl-trim" d="M794 294h54v-6h-54z"/>
+        <path fill="url(#slDome)" d="M598 288c-4-16 9-27 21-36 12 9 25 20 21 36z"/>
+        <path fill="url(#slDome)" d="M800 288c-4-16 9-27 21-36 12 9 25 20 21 36z"/>
+        <path class="sl-spire" d="M619 252v-16M821 252v-16"/>
+        <circle class="sl-finial" cx="619" cy="236" r="3"/>
+        <circle class="sl-finial" cx="821" cy="236" r="3"/>
+        <!-- lower shaft and its windows; one of them still has a lamp lit -->
+        <path fill="url(#slStone)" d="M646 440l10-238h128l10 238z"/>
+        <path class="sl-trim" d="M651 262h138v-5H651z" opacity=".7"/>
+        <path class="sl-win" d="M676 340v-62a10 10 0 0 1 20 0v62zM744 340v-62a10 10 0 0 1 20 0v62z"/>
+        <path class="sl-win sl-win--lit" d="M710 340v-62a10 10 0 0 1 20 0v62z"/>
+        <!-- cornice with its teeth -->
+        <path class="sl-trim" d="M640 204h160v-12H640z"/>
+        <path class="sl-teeth" d="M648 210h144"/>
+        <!-- the gallery: three arches open to the sky, a rail across them -->
+        <path fill="url(#slStone)" d="M664 192v-74h112v74z"/>
+        <path class="sl-win" d="M674 190v-48a10 10 0 0 1 20 0v48zM710 190v-48a10 10 0 0 1 20 0v48zM746 190v-48a10 10 0 0 1 20 0v48z"/>
+        <path class="sl-rail" d="M668 176h104M672 176v14M690 176v14M708 176v14M726 176v14M744 176v14M762 176v14"/>
+        <path class="sl-trim" d="M650 120h140v-10H650z"/>
+        <!-- the dome and its finial -->
+        <path fill="url(#slDome)" d="M664 110c-14-28 22-50 56-74 34 24 70 46 56 74z"/>
+        <path class="sl-ribs" d="M720 38c-14 24-24 46-26 72M720 38c14 24 24 46 26 72M720 38v72M720 38c-26 22-44 44-46 72M720 38c26 22 44 44 46 72"/>
+        <path class="sl-spire" d="M720 38V4"/>
+        <circle class="sl-finial" cx="720" cy="18" r="5"/>
+      </g>
+      </g>
+
+    </svg>
+    <svg class="sl-land sl-land--front" viewBox="0 0 1440 440" preserveAspectRatio="xMidYMax slice">
+      <!-- the dunes that have the rest of it -->
+      <path class="sl-d2" d="M0 352c120-30 260-46 420-30s250 40 360 30 210-58 360-56 230 34 300 44V440H0z"/>
+      <path class="sl-d3" d="M0 404c180-26 330-20 520-4s360 16 520-6 280-18 400 2V440H0z"/>
+      <path class="sl-ripples" d="M120 392c40-6 80-6 120 0M300 380c50-8 100-8 150 0M980 386c40-6 80-6 120 0M1180 398c40-6 80-6 110 0M560 418c50-6 90-6 140 0M820 424c40-4 80-4 110 0"/>
+    </svg>
+    <span class="sl-wind"></span>
+  </div>
+</section>
+
+<!-- the cross-section: sand above, the library below it -->
+<div class="sl-strata" aria-hidden="true"><span>Below the dunes · the library goes down a long way</span></div>
+
+<main class="sl-main" id="slMain">
+
+  <!-- ─────────── the shelves ───────────
+       Every room on the site, as the copy above promises, shelved by
+       nation in the order the show's opening names them (water, earth,
+       fire, air) and then the spirit world. The other terminals are the
+       messenger hawks further down. Each scroll carries its canon name, the
+       plain name of the page underneath, and one line on why it is on that
+       shelf. --i staggers the unrolling. -->
+  <section class="sl-shelves" aria-labelledby="slShelvesH">
+    <h2 class="sl-h" id="slShelvesH">
+      <!-- the searching orb is the knowledge seekers, out fetching -->
+      <canvas class="sl-think" data-orb="searching" data-orb-size="26" data-orb-ink="#e8a13f" aria-hidden="true"></canvas>The shelves<span>every page on this site, filed by nation</span>
+    </h2>
+    <p class="sl-lede">The library keeps its scrolls by nation (Sokka went straight for the Fire Nation section), so these are kept the same way: fifteen pages on five shelves, each with its plain name written underneath.</p>
+
+    <div class="sl-bay" style="--n:var(--water)">
+      <div class="sl-bay-h">
+        <span class="sl-emblem" aria-hidden="true"><svg viewBox="0 0 48 48"><path class="sl-fill" d="M24 6c8 9 13 16 13 22a13 13 0 0 1-26 0c0-6 5-13 13-22z"/><path class="sl-cut" d="M15 30c3-2 6 2 9 0s6-2 9 0"/></svg></span>
+        <div>
+          <h3>Water <span class="sl-seal" lang="zh-Hant" aria-hidden="true">水</span></h3>
+          <p>The Water Tribes. Where things start: home, school, the lessons, and the moon.</p>
+        </div>
+      </div>
+      <div class="sl-rack">
+        <a class="sl-scroll" href="/" style="--i:0"><span class="sl-paper"><b>The Southern Water Tribe</b><i>Home</i><em>Katara and Sokka’s home, at the South Pole.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+        <a class="sl-scroll" href="/high-school/" style="--i:1"><span class="sl-paper"><b>The Iceberg</b><i>High School · where it started</i><em>Aang was found in one, a hundred years late.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+        <a class="sl-scroll" href="/education/" style="--i:2"><span class="sl-paper"><b>Master Pakku’s Lessons</b><i>Education</i><em>Katara had to fight him before he would teach her.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+        <a class="sl-scroll" href="/al-islam/" style="--i:3"><span class="sl-paper"><b>The Moon and the Hours</b><i>Al-Islam apps</i><em>Prayer times by the sun, and a calendar kept by the moon.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+      </div>
+    </div>
+
+    <div class="sl-bay" style="--n:var(--earth)">
+      <div class="sl-bay-h">
+        <span class="sl-emblem" aria-hidden="true"><svg viewBox="0 0 48 48"><path class="sl-fill" d="M24 7l16 12-6 21H14L8 19z"/><path class="sl-cut" d="M24 7v33M8 19h32"/></svg></span>
+        <div>
+          <h3>Earth <span class="sl-seal" lang="zh-Hant" aria-hidden="true">土</span></h3>
+          <p>The Earth Kingdom. Ba Sing Se and round it: the university, the work, and the arena.</p>
+        </div>
+      </div>
+      <div class="sl-rack">
+        <a class="sl-scroll" href="/college/" style="--i:0"><span class="sl-paper"><b>Ba Sing Se University</b><i>College · UC Irvine</i><em>Professor Zei’s university. He found this library.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+        <a class="sl-scroll" href="/work/" style="--i:1"><span class="sl-paper"><b>The Jasmine Dragon</b><i>Work at UC Irvine</i><em>Iroh’s tea shop, in the Upper Ring.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+        <a class="sl-scroll" href="/gaming/" style="--i:2"><span class="sl-paper"><b>Earth Rumble Six</b><i>Gaming</i><em>Where the Blind Bandit was the champion.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+      </div>
+    </div>
+
+    <div class="sl-bay" style="--n:var(--fire)">
+      <div class="sl-bay-h">
+        <span class="sl-emblem" aria-hidden="true"><svg viewBox="0 0 48 48"><path class="sl-fill" d="M24 5c3 8-1 11-5 15-4 4-7 8-7 13a12 12 0 0 0 24 0c0-5-3-9-5-12-1 3-3 5-5 6 3-8 2-15-2-22z"/></svg></span>
+        <div>
+          <h3>Fire <span class="sl-seal" lang="zh-Hant" aria-hidden="true">火</span></h3>
+          <p>The Fire Nation. Swords, suns and stage plays.</p>
+        </div>
+      </div>
+      <div class="sl-rack">
+        <a class="sl-scroll" href="/accents/" style="--i:0"><span class="sl-paper"><b>The Ember Island Players</b><i>Accents &amp; impersonations</i><em>They put the whole Gaang on stage, badly.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+        <a class="sl-scroll" href="/star-wars/" style="--i:1"><span class="sl-paper"><b>The Sun Warriors</b><i>Star Wars apps</i><em>The first firebenders, who learned it from the dragons.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+        <a class="sl-scroll" href="/lightsabers/" style="--i:2"><span class="sl-paper"><b>Sokka’s Space Sword</b><i>The lightsaber guide</i><em>Forged with Master Piandao, out of a meteorite.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+      </div>
+    </div>
+
+    <div class="sl-bay" style="--n:var(--air)">
+      <div class="sl-bay-h">
+        <span class="sl-emblem" aria-hidden="true"><svg viewBox="0 0 48 48"><path class="sl-line" d="M24 9a15 15 0 1 0 15 15 11 11 0 0 0-11-11 7 7 0 0 0-7 7 4 4 0 0 0 4 4"/></svg></span>
+        <div>
+          <h3>Air <span class="sl-seal" lang="zh-Hant" aria-hidden="true">氣</span></h3>
+          <p>The Air Nomads. Things built, places flown to, and arrows earned.</p>
+        </div>
+      </div>
+      <div class="sl-rack">
+        <a class="sl-scroll" href="/projects/" style="--i:0"><span class="sl-paper"><b>The Mechanist’s Workshop</b><i>Every project</i><em>Inventions, at the Northern Air Temple.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+        <a class="sl-scroll" href="/travels/" style="--i:1"><span class="sl-paper"><b>Appa’s Saddle</b><i>Travels · where I have been</i><em>Every trip starts with yip yip.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+        <a class="sl-scroll" href="/resume/" style="--i:2"><span class="sl-paper"><b>The Master’s Arrows</b><i>Résumé</i><em>An airbender’s tattoos are earned, by mastery.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+      </div>
+    </div>
+
+    <div class="sl-bay" style="--n:var(--spirit)">
+      <div class="sl-bay-h">
+        <span class="sl-emblem" aria-hidden="true"><svg viewBox="0 0 48 48"><path class="sl-line" d="M24 8c9 0 16 7 16 16S33 40 24 40 8 33 8 24M24 14c5.5 0 10 4.5 10 10s-4.5 10-10 10-10-4.5-10-10M24 20a4 4 0 1 1-4 4"/></svg></span>
+        <div>
+          <h3>The Spirit World <span class="sl-seal" lang="zh-Hant" aria-hidden="true">靈</span></h3>
+          <p>Other worlds: seventy-one of them, and this one.</p>
+        </div>
+      </div>
+      <div class="sl-rack">
+        <a class="sl-scroll" href="/worlds/" style="--i:0"><span class="sl-paper"><b>Ten Thousand Things</b><i>All 71 worlds</i><em>Wan Shi Tong knows that many. This site has seventy.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+        <a class="sl-scroll" href="/worlds/avatar-last-airbender/" style="--i:1"><span class="sl-paper"><b>The Bridge Between Worlds</b><i>Avatar: The Last Airbender · the world page</i><em>The Avatar’s whole job, and this library’s own world.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── the planetarium ───────────
+       The room Sokka found the eclipse in. The ceiling here is a geared
+       sky seen from below: noon at the top, dawn on the left, dusk on the
+       right, midnight under the horizon. The sun rides the outer track by
+       the hour; the moon rides the inner one, behind the sun by its age, so
+       a full moon sits opposite it and a new moon sits beside it. The two
+       rings outside are the date, turned like a combination lock until the
+       chosen day is under the pointer. All of it is real arithmetic
+       (spirit-library.js): the phases are Meeus's, good to a few minutes. -->
+  <section class="sl-planet" id="slPlanet" aria-labelledby="slPlanetH">
+    <h2 class="sl-h" id="slPlanetH">The planetarium<span>its ceiling, set to today</span></h2>
+    <p class="sl-lede">Sokka came looking for the Fire Nation’s weakness and found it in this room: a ceiling that can be set to any day, which he turned day by day until the moon slid across the sun and the room went dark. This one starts on today, from your clock, with the moon’s real phase. Turn it yourself.</p>
+
+    <div class="sl-pl">
+      <div class="sl-dial-wrap">
+        <svg class="sl-dial" id="slDial" viewBox="-212 -212 424 424" aria-hidden="true">
+          <defs>
+            <radialGradient id="slCeil" cx="0" cy="0" r="1" gradientUnits="objectBoundingBox">
+              <stop offset="0" stop-color="#1b2a4a"/>
+              <stop offset="1" stop-color="#070d1a"/>
+            </radialGradient>
+            <linearGradient id="slDayG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#e9a64c"/>
+              <stop offset="1" stop-color="#f7dfae"/>
+            </linearGradient>
+            <radialGradient id="slSunG" cx="0.42" cy="0.4" r="0.7">
+              <stop offset="0" stop-color="#fff7de"/>
+              <stop offset="0.45" stop-color="#ffd27a"/>
+              <stop offset="1" stop-color="#d9761f"/>
+            </radialGradient>
+            <radialGradient id="slCorona">
+              <stop offset="0.45" stop-color="#fff6dc" stop-opacity="0.95"/>
+              <stop offset="0.62" stop-color="#ffe0a0" stop-opacity="0.45"/>
+              <stop offset="1" stop-color="#ffe0a0" stop-opacity="0"/>
+            </radialGradient>
+            <clipPath id="slCeilClip"><circle r="144"/></clipPath>
+          </defs>
+
+          <!-- the bezel and the two date rings -->
+          <circle r="208" class="sl-bezel"/>
+          <g class="sl-ring" id="slRingM"></g>
+          <circle r="176" class="sl-ring-line"/>
+          <g class="sl-ring" id="slRingD"></g>
+          <circle r="148" class="sl-ring-line sl-ring-line--in"/>
+
+          <!-- the ceiling -->
+          <g clip-path="url(#slCeilClip)">
+            <circle r="144" fill="url(#slCeil)"/>
+            <g id="slCeilStars"></g>
+            <rect class="sl-dayfill" id="slDayFill" x="-144" y="-144" width="288" height="144" fill="url(#slDayG)"/>
+            <rect class="sl-under" x="-144" y="0" width="288" height="144"/>
+            <g id="slHours"></g>
+            <circle r="114" class="sl-track"/>
+            <circle r="82" class="sl-track"/>
+            <line class="sl-horizon" x1="-144" x2="144" y1="0" y2="0"/>
+            <text class="sl-dial-lbl" x="-128" y="-6" text-anchor="start">Dawn</text>
+            <text class="sl-dial-lbl" x="128" y="-6" text-anchor="end">Dusk</text>
+            <text class="sl-dial-lbl" x="0" y="-55" text-anchor="middle">Noon</text>
+            <text class="sl-dial-lbl sl-dial-lbl--dim" x="0" y="64" text-anchor="middle">Midnight</text>
+
+            <!-- the room going dark: under the sun and moon, so the corona still shows -->
+            <circle r="144" class="sl-dark" id="slDark"/>
+            <g class="sl-arm" id="slSunArm">
+              <g transform="translate(0 -114)">
+                <circle class="sl-corona" r="34" fill="url(#slCorona)"/>
+                <g class="sl-rays"><path d="M0-27v-7M0 27v7M-27 0h-7M27 0h7M-19-19l-5-5M19 19l5 5M-19 19l-5 5M19-19l5-5"/></g>
+                <circle r="17" fill="url(#slSunG)"/>
+              </g>
+            </g>
+            <g class="sl-arm" id="slMoonArm">
+              <g class="sl-moonpos" id="slMoonPos">
+                <g id="slMoonRot">
+                  <circle r="14" class="sl-moon-dark sl-moon-dark--dial"/>
+                  <path id="slDialLit" class="sl-moon-lit" d=""/>
+                </g>
+              </g>
+            </g>
+          </g>
+
+          <!-- the pointer the date rings turn under -->
+          <path class="sl-pointer" d="M0-202l-10-22h20z"/>
+        </svg>
+      </div>
+
+      <div class="sl-read">
+        <p class="sl-read-k">The ceiling is set to</p>
+        <p class="sl-read-date" id="slDate">····</p>
+        <p class="sl-read-time" id="slTime">····</p>
+
+        <div class="sl-read-moon">
+          <svg class="sl-bigmoon" viewBox="-30 -30 60 60" aria-hidden="true"><circle r="27" class="sl-moon-dark"/><path id="slBigLit" class="sl-moon-lit" d=""/></svg>
+          <div>
+            <b id="slPhase">····</b>
+            <span id="slLit">····</span>
+          </div>
+        </div>
+        <p class="sl-bend" id="slBend">The moon draws the water and the sun feeds the fire. The ceiling will say which is up.</p>
+
+        <dl class="sl-next">
+          <div><dt>Next full moon</dt><dd id="slNextFull">····</dd></div>
+          <div><dt>Next new moon</dt><dd id="slNextNew">····</dd></div>
+        </dl>
+
+        <div class="sl-ctrl" role="group" aria-label="Turn the ceiling">
+          <div class="sl-ctrl-row sl-ctrl-row--date">
+            <button class="sl-btn" type="button" id="slPrev">‹ Day before</button>
+            <label class="vh" for="slDateIn">Date on the ceiling</label>
+            <input class="sl-datein" type="date" id="slDateIn" min="1900-01-01" max="2100-12-31" />
+            <button class="sl-btn" type="button" id="slNextD">Day after ›</button>
+          </div>
+          <div class="sl-ctrl-row sl-ctrl-row--hour">
+            <label for="slHour">Hour</label>
+            <input class="sl-hour" type="range" id="slHour" min="0" max="1425" step="15" value="720" />
+            <output id="slHourOut" for="slHour">12:00</output>
+          </div>
+          <div class="sl-ctrl-row">
+            <button class="sl-btn" type="button" id="slToday">Today</button>
+            <button class="sl-btn sl-btn--sun" type="button" id="slBlack">Find the next Black Sun</button>
+          </div>
+        </div>
+
+        <div class="sl-ecl">
+          <p class="sl-ecl-h">The next real eclipses of the sun</p>
+          <ul class="sl-ecl-list" id="slEcl"></ul>
+        </div>
+        <p class="vh" id="slStatus" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── two panels ─────────── -->
+  <div class="sl-cols">
+    <section class="sl-panel" aria-labelledby="slRecordH">
+      <h2 class="sl-h sl-h--sm" id="slRecordH">The record<span>the keeper, as the catalogue has him</span></h2>
+      <dl class="sl-record">
+        <div><dt>Keeper</dt><dd>Abubakr Elmallah</dd></div>
+        <div><dt>Studying</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
+        <div><dt>Office</dt><dd>Lead mobile &amp; backend developer, UC Irvine</dd></div>
+        <div><dt>Apps shipped</dt><dd>Twelve, across four platforms</dd></div>
+        <div><dt>Worlds</dt><dd>70 on this site</dd></div>
+        <div><dt>Travels</dt><dd>35 trips, 19 by plane and 16 by road, 2015–2026</dd></div>
+        <div><dt>Voices</dt><dd>19 accents and 4 impersonations</dd></div>
+        <div><dt>Steam</dt><dd>747 achievements across four Steam Replays, 2022–2025</dd></div>
+        <div><dt>Found at</dt><dd>33.64°N 117.84°W, well outside the Si Wong</dd></div>
+        <div><dt>Messenger hawk</dt><dd><a class="sl-mail" href="mailto:ammelmallah@gmail.com">ammelmallah@gmail.com</a></dd></div>
+      </dl>
+    </section>
+
+    <!-- Wan Shi Tong lets no one browse for free: a visitor brings something
+         for the shelves. These are what this one brought, oldest first. -->
+    <section class="sl-panel" aria-labelledby="slGiftsH">
+      <h2 class="sl-h sl-h--sm" id="slGiftsH">Knowledge contributed<span>the price of a visit is something new for the shelves</span></h2>
+      <ol class="sl-gifts">
+        <li style="--n:var(--fire)"><span class="sl-knob" aria-hidden="true"></span><div><b>2021 · Order 66</b><p>The first solo project, in Scratch.</p></div></li>
+        <li style="--n:var(--water)"><span class="sl-knob" aria-hidden="true"></span><div><b>2021 · The Star Wars Datapad</b><p>The first real coding project, on Code.org: 812 lines of JavaScript.</p></div></li>
+        <li style="--n:var(--air)"><span class="sl-knob" aria-hidden="true"></span><div><b>June 26, 2023 · Datapad</b><p>On the App Store, and into the Top 10 of the paid Entertainment chart.</p></div></li>
+        <li style="--n:var(--amber)"><span class="sl-knob" aria-hidden="true"></span><div><b>2024 · Swift Student Challenge</b><p>Winner, with Al-Quran, and a trip to WWDC 2024.</p></div></li>
+        <li style="--n:var(--earth)"><span class="sl-knob" aria-hidden="true"></span><div><b>Al-Islam, Al-Quran, Al-Adhan</b><p>Three Islamic apps, and two national awards.</p></div></li>
+        <li style="--n:var(--spirit)"><span class="sl-knob" aria-hidden="true"></span><div><b>Sabacc Droid and Aurebesh Droid</b><p>Two Discord bots, in more than 500 servers.</p></div></li>
+      </ol>
+    </section>
+  </div>
+
+  <!-- ─────────── messenger hawks ───────────
+       The other terminals, each a message scroll seen end on in its cubby,
+       sealed in its own colour. -->
+  <section class="sl-panel sl-hawks" aria-labelledby="slHawksH">
+    <h2 class="sl-h sl-h--sm" id="slHawksH">Messenger hawks<span>to the other terminals</span></h2>
+    <div class="sl-cubbies">
+      <a class="sl-cubby" href="/elmallah/" style="--w:#f5c63c"><span class="sl-end" aria-hidden="true"></span><b>E.L.M.A.L.L.A.H.</b><i>Star Wars holotable</i></a>
+      <a class="sl-cubby" href="/holocron/" style="--w:#7fd6ff"><span class="sl-end" aria-hidden="true"></span><b>The Holocron</b><i>Jedi archive</i></a>
+      <a class="sl-cubby" href="/jarvis/" style="--w:#29e7ff"><span class="sl-end" aria-hidden="true"></span><b>J.A.R.V.I.S.</b><i>Stark heads-up display</i></a>
+      <a class="sl-cubby" href="/marauders-map/" style="--w:#c9a06a"><span class="sl-end" aria-hidden="true"></span><b>The Marauder’s Map</b><i>Harry Potter parchment</i></a>
+      <a class="sl-cubby" href="/crafting-table/" style="--w:#8fd14f"><span class="sl-end" aria-hidden="true"></span><b>The Crafting Table</b><i>Minecraft</i></a>
+      <a class="sl-cubby" href="/citadel/" style="--w:#d8b26a"><span class="sl-end" aria-hidden="true"></span><b>The Citadel</b><i>Game of Thrones</i></a>
+      <a class="sl-cubby" href="/compass/" style="--w:#4fb3a9"><span class="sl-end" aria-hidden="true"></span><b>The Compass</b><i>Pirates of the Caribbean</i></a>
+      <a class="sl-cubby" href="/control-room/" style="--w:#e0783a"><span class="sl-end" aria-hidden="true"></span><b>The Control Room</b><i>Jurassic Park</i></a>
+      <a class="sl-cubby" href="/upside-down/" style="--w:#d2405a"><span class="sl-end" aria-hidden="true"></span><b>The Upside Down</b><i>Stranger Things</i></a>
+      <a class="sl-cubby" href="/starcourt/" style="--w:#c0408f"><span class="sl-end" aria-hidden="true"></span><b>Starcourt</b><i>Stranger Things</i></a>
+      <a class="sl-cubby" href="/monastery/" style="--w:#e0b040"><span class="sl-end" aria-hidden="true"></span><b>The Monastery</b><i>Ninjago</i></a>
+      <a class="sl-cubby" href="/wanted/" style="--w:#c9402f"><span class="sl-end" aria-hidden="true"></span><b>The Wanted Board</b><i>Red Dead Redemption</i></a>
+      <a class="sl-cubby" href="/dunder-mifflin/" style="--w:#e8e6e0"><span class="sl-end" aria-hidden="true"></span><b>Dunder Mifflin</b><i>The Office</i></a>
+      <a class="sl-cubby" href="/springfield/" style="--w:#ffd21f"><span class="sl-end" aria-hidden="true"></span><b>Springfield</b><i>The Simpsons</i></a>
+      <a class="sl-cubby" href="/vought/" style="--w:#e02a2a"><span class="sl-end" aria-hidden="true"></span><b>Vought Tower</b><i>The Boys</i></a>
+      <a class="sl-cubby" href="/pokedex/" style="--w:#ffd43f"><span class="sl-end" aria-hidden="true"></span><b>The Pokédex</b><i>Pokémon</i></a>
+      <a class="sl-cubby" href="/batcomputer/" style="--w:#c9cdd2"><span class="sl-end" aria-hidden="true"></span><b>The Batcomputer</b><i>Batman</i></a>
+      <a class="sl-cubby" href="/daily-bugle/" style="--w:#e02a3a"><span class="sl-end" aria-hidden="true"></span><b>The Daily Bugle</b><i>Spider-Man</i></a>
+    </div>
+  </section>
+
+  <!-- ─────────── leaving ─────────── -->
+  <section class="sl-leave" aria-labelledby="slLeaveH">
+    <!-- the White Lotus, Iroh's tile: drawn, not downloaded -->
+    <svg class="sl-lotus" viewBox="-50 -50 100 100" aria-hidden="true">
+      <defs>
+        <path id="slPetal" d="M0-38C11-27 12-13 0-5-12-13-11-27 0-38z"/>
+        <path id="slPetalIn" d="M0-25C7-18 7-9 0-4-7-9-7-18 0-25z"/>
+      </defs>
+      <circle r="47" class="sl-tile-rim"/>
+      <circle r="42" class="sl-tile"/>
+      <circle r="37" class="sl-tile-ring"/>
+      <g class="sl-petals">
+        <use href="#slPetal"/><use href="#slPetal" transform="rotate(45)"/><use href="#slPetal" transform="rotate(90)"/><use href="#slPetal" transform="rotate(135)"/>
+        <use href="#slPetal" transform="rotate(180)"/><use href="#slPetal" transform="rotate(225)"/><use href="#slPetal" transform="rotate(270)"/><use href="#slPetal" transform="rotate(315)"/>
+      </g>
+      <g class="sl-petals sl-petals--in">
+        <use href="#slPetalIn" transform="rotate(22.5)"/><use href="#slPetalIn" transform="rotate(67.5)"/><use href="#slPetalIn" transform="rotate(112.5)"/><use href="#slPetalIn" transform="rotate(157.5)"/>
+        <use href="#slPetalIn" transform="rotate(202.5)"/><use href="#slPetalIn" transform="rotate(247.5)"/><use href="#slPetalIn" transform="rotate(292.5)"/><use href="#slPetalIn" transform="rotate(337.5)"/>
+      </g>
+      <circle r="5" class="sl-tile-eye"/>
+    </svg>
+    <h2 class="vh" id="slLeaveH">Leave the library</h2>
+    <p>When Wan Shi Tong decided people could not be trusted with what was on his shelves, he took the whole tower back under the sand. You can leave the same way.</p>
+    <button class="sl-go" id="slLeave" type="button">Leave the library</button>
+  </section>
+
+</main>
+
+<!-- the sand, rising over everything when the library goes down -->
+<div class="sl-sand" aria-hidden="true">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0 120V64c120-40 260-58 420-38s250 46 380 36 230-60 380-58 200 30 260 40v76z"/></svg>
+  <span></span>
+</div>
+
+<!-- what is left: the desert, and the way home -->
+<div class="sl-done" id="slDone" role="region" aria-label="The library is gone">
+  <div>
+    <canvas class="sl-done-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#2a3350" aria-hidden="true"></canvas>
+    <p class="sl-done-k">The library is under the sand again</p>
+    <p class="sl-done-t">“Sharing tea with a fascinating stranger is one of life’s true delights.”</p>
+    <p class="sl-done-by">Uncle Iroh</p>
+    <a class="sl-done-home" id="slHome" href="/">Walk back to the oasis</a>
+    <button class="sl-done-dig" id="slDig" type="button">Dig it back out</button>
+  </div>
+</div>
+
+<script src="{% include v.html f='/assets/js/spirit-library.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

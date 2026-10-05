@@ -1,0 +1,325 @@
+---
+permalink: /compass/
+title: "The Compass · Abubakr Elmallah"
+description: "The Compass: a Pirates of the Caribbean interface for Abubakr Elmallah's portfolio, whose needle swings to whichever room on the site you want most."
+theme: "#07141a"
+fonts: "family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/compass.css' %}" />
+</head>
+<body class="pc" id="pc">
+
+<!-- night water: moonlight off the top right, a slow swell, and the dark
+     closing in at the edges -->
+<div class="pc-sea" aria-hidden="true">
+  <span class="pc-moon"></span>
+  <span class="pc-swell"></span>
+</div>
+
+<header class="pc-top">
+  <a class="pc-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Shut the compass</span>
+  </a>
+  <span class="pc-top-mid">The Caribbean · a chart of abubakrelmallah.com</span>
+  <!-- ship's time, from your clock (compass.js) -->
+  <span class="pc-top-bell" id="pcBell">·· bells</span>
+</header>
+
+<main class="pc-main" id="pcMain">
+
+  <section class="pc-hero">
+    <p class="pc-kicker">It does not point north</p>
+    <h1 class="pc-title">The Compass</h1>
+    <p class="pc-sub">It points to the thing you want most in this world. Every room on this site is charted below by its bearing from the compass: point to one, or tab to it, and the needle swings round and holds. Want nothing, and it wanders.</p>
+    <p class="pc-epi">“No additional shot nor powder. A compass that doesn’t point north.” <span>Commodore Norrington, going through Jack’s effects</span></p>
+  </section>
+
+  <!-- ═══════════ the chart ═══════════
+       A portolan: rhumb lines out of the compass in the middle, coasts off
+       the edges, and every room on the site as an island on a ring round
+       it. On a wide screen the ring is laid out by bearing; under 1100px
+       the same list is a column of log lines under the compass, because a
+       ring of fifteen labels does not fit a phone. -->
+  <section class="pc-chart" id="pcChart" aria-labelledby="pcChartH">
+
+    <!-- the chart's drawing, 1200 by 800, the same proportions as the chart
+         itself on a wide screen, so the ring of islands and the rhumb lines
+         under them line up exactly -->
+    <svg class="pc-art" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <g class="pc-rh"><path class="pc-rh-c" d="M600 400L600 -1100M600 400L1660.7 -660.7M600 400L2100 400M600 400L1660.7 1460.7M600 400L600 1900M600 400L-460.7 1460.7M600 400L-900 400M600 400L-460.7 -660.7"/><path class="pc-rh-h" d="M600 400L1174 -985.8M600 400L1985.8 -174M600 400L1985.8 974M600 400L1174 1785.8M600 400L26 1785.8M600 400L-785.8 974M600 400L-785.8 -174M600 400L26 -985.8"/><path class="pc-rh-q" d="M600 400L892.6 -1071.2M600 400L1433.4 -847.2M600 400L1847.2 -433.4M600 400L2071.2 107.4M600 400L2071.2 692.6M600 400L1847.2 1233.4M600 400L1433.4 1647.2M600 400L892.6 1871.2M600 400L307.4 1871.2M600 400L-233.4 1647.2M600 400L-647.2 1233.4M600 400L-871.2 692.6M600 400L-871.2 107.4M600 400L-647.2 -433.4M600 400L-233.4 -847.2M600 400L307.4 -1071.2"/></g>
+      <ellipse class="pc-orbit" cx="600" cy="400" rx="370" ry="300"/>
+      <!-- the coasts: each drawn once, then traced again a little further
+           out three times, the way an engraver lines the water along a shore -->
+      <g class="pc-land">
+        <g transform="translate(1240 -40) scale(1.13) translate(-1240 40)" class="pc-wl pc-wl--3"><path d="M990 -10C991.1 -2.6 994.2 -0.6 996.3 4.1C998.5 8.8 1001.4 13.3 1002.7 18.3C1003.9 23.3 1001.4 29.2 1004 34C1006.6 38.8 1013.1 43.2 1018.1 47.2C1023.1 51.2 1031.7 52.8 1034 58C1036.3 63.2 1034.1 72 1032.1 78.3C1030.1 84.6 1021.6 91.6 1022 96C1022.4 100.4 1030.1 102.3 1034.5 105C1038.8 107.7 1043.8 109.4 1048.1 112.2C1052.3 115.1 1055.7 121.6 1060 122C1064.3 122.4 1068.8 115.5 1073.7 114.4C1078.6 113.3 1084.3 115.8 1089.3 115.4C1094.4 115 1099.3 111.1 1104 112C1108.7 112.9 1114.1 117.1 1117.6 121C1121 125 1121.8 131.1 1124.5 135.6C1127.3 140.1 1129.9 146.1 1134 148C1138.1 149.9 1144.2 146.7 1149 147.1C1153.8 147.6 1158.4 148.9 1162.9 150.7C1167.4 152.5 1171.8 154.8 1176 158C1180.2 161.2 1184.5 165.6 1187.9 170.2C1191.3 174.7 1192.5 181.2 1196.2 185.5C1199.9 189.8 1202.7 194.3 1210 196C1217.3 197.7 1235 235.3 1240 196C1245 156.7 1281.7 -0.7 1240 -40C1198.3 -79.3 1031.7 -45 990 -40C948.3 -35 988.9 -17.4 990 -10Z"/></g>
+        <g transform="translate(1240 -40) scale(1.08) translate(-1240 40)" class="pc-wl pc-wl--2"><path d="M990 -10C991.1 -2.6 994.2 -0.6 996.3 4.1C998.5 8.8 1001.4 13.3 1002.7 18.3C1003.9 23.3 1001.4 29.2 1004 34C1006.6 38.8 1013.1 43.2 1018.1 47.2C1023.1 51.2 1031.7 52.8 1034 58C1036.3 63.2 1034.1 72 1032.1 78.3C1030.1 84.6 1021.6 91.6 1022 96C1022.4 100.4 1030.1 102.3 1034.5 105C1038.8 107.7 1043.8 109.4 1048.1 112.2C1052.3 115.1 1055.7 121.6 1060 122C1064.3 122.4 1068.8 115.5 1073.7 114.4C1078.6 113.3 1084.3 115.8 1089.3 115.4C1094.4 115 1099.3 111.1 1104 112C1108.7 112.9 1114.1 117.1 1117.6 121C1121 125 1121.8 131.1 1124.5 135.6C1127.3 140.1 1129.9 146.1 1134 148C1138.1 149.9 1144.2 146.7 1149 147.1C1153.8 147.6 1158.4 148.9 1162.9 150.7C1167.4 152.5 1171.8 154.8 1176 158C1180.2 161.2 1184.5 165.6 1187.9 170.2C1191.3 174.7 1192.5 181.2 1196.2 185.5C1199.9 189.8 1202.7 194.3 1210 196C1217.3 197.7 1235 235.3 1240 196C1245 156.7 1281.7 -0.7 1240 -40C1198.3 -79.3 1031.7 -45 990 -40C948.3 -35 988.9 -17.4 990 -10Z"/></g>
+        <g transform="translate(1240 -40) scale(1.04) translate(-1240 40)" class="pc-wl pc-wl--1"><path d="M990 -10C991.1 -2.6 994.2 -0.6 996.3 4.1C998.5 8.8 1001.4 13.3 1002.7 18.3C1003.9 23.3 1001.4 29.2 1004 34C1006.6 38.8 1013.1 43.2 1018.1 47.2C1023.1 51.2 1031.7 52.8 1034 58C1036.3 63.2 1034.1 72 1032.1 78.3C1030.1 84.6 1021.6 91.6 1022 96C1022.4 100.4 1030.1 102.3 1034.5 105C1038.8 107.7 1043.8 109.4 1048.1 112.2C1052.3 115.1 1055.7 121.6 1060 122C1064.3 122.4 1068.8 115.5 1073.7 114.4C1078.6 113.3 1084.3 115.8 1089.3 115.4C1094.4 115 1099.3 111.1 1104 112C1108.7 112.9 1114.1 117.1 1117.6 121C1121 125 1121.8 131.1 1124.5 135.6C1127.3 140.1 1129.9 146.1 1134 148C1138.1 149.9 1144.2 146.7 1149 147.1C1153.8 147.6 1158.4 148.9 1162.9 150.7C1167.4 152.5 1171.8 154.8 1176 158C1180.2 161.2 1184.5 165.6 1187.9 170.2C1191.3 174.7 1192.5 181.2 1196.2 185.5C1199.9 189.8 1202.7 194.3 1210 196C1217.3 197.7 1235 235.3 1240 196C1245 156.7 1281.7 -0.7 1240 -40C1198.3 -79.3 1031.7 -45 990 -40C948.3 -35 988.9 -17.4 990 -10Z"/></g>
+        <g transform="translate(-40 440) scale(1.5 1.04) translate(40 -440)" class="pc-wl pc-wl--2"><path d="M-10 300C-2.1 301.4 1.5 305.7 7.2 308.7C12.8 311.7 20.2 313.7 24 318C27.8 322.3 28.5 329 30.2 334.6C31.9 340.3 33.8 346.2 34 352C34.2 357.8 33.4 363.9 31.4 369.3C29.4 374.6 22.9 379.2 22 384C21.1 388.8 23.1 394.3 26.2 397.9C29.4 401.5 37.9 401.7 40.9 405.4C43.8 409.1 44.3 415 44 420C43.7 425 41.5 430.4 39.3 435.3C37.1 440.2 32.4 444.4 30.9 449.5C29.3 454.6 28.9 461.1 30 466C31.1 470.9 36.4 474.3 37.4 479C38.4 483.7 35.7 489.3 36.1 494.1C36.6 499 40.6 503.6 40 508C39.4 512.4 33.8 516 32.3 520.8C30.8 525.6 32.8 532.2 30.8 536.7C28.7 541.3 23.3 544.2 20 548C16.7 551.8 14.5 556.2 10.9 559.5C7.3 562.8 2 564.5 -1.5 567.9C-5 571.4 -3.6 578 -10 580C-16.4 582 -35 626.7 -40 580C-45 533.3 -45 346.7 -40 300C-35 253.3 -17.9 298.6 -10 300Z"/></g>
+        <g transform="translate(-40 440) scale(1.25 1.02) translate(40 -440)" class="pc-wl pc-wl--1"><path d="M-10 300C-2.1 301.4 1.5 305.7 7.2 308.7C12.8 311.7 20.2 313.7 24 318C27.8 322.3 28.5 329 30.2 334.6C31.9 340.3 33.8 346.2 34 352C34.2 357.8 33.4 363.9 31.4 369.3C29.4 374.6 22.9 379.2 22 384C21.1 388.8 23.1 394.3 26.2 397.9C29.4 401.5 37.9 401.7 40.9 405.4C43.8 409.1 44.3 415 44 420C43.7 425 41.5 430.4 39.3 435.3C37.1 440.2 32.4 444.4 30.9 449.5C29.3 454.6 28.9 461.1 30 466C31.1 470.9 36.4 474.3 37.4 479C38.4 483.7 35.7 489.3 36.1 494.1C36.6 499 40.6 503.6 40 508C39.4 512.4 33.8 516 32.3 520.8C30.8 525.6 32.8 532.2 30.8 536.7C28.7 541.3 23.3 544.2 20 548C16.7 551.8 14.5 556.2 10.9 559.5C7.3 562.8 2 564.5 -1.5 567.9C-5 571.4 -3.6 578 -10 580C-16.4 582 -35 626.7 -40 580C-45 533.3 -45 346.7 -40 300C-35 253.3 -17.9 298.6 -10 300Z"/></g>
+        <g transform="translate(963 72) scale(1.6) translate(-963 -72)" class="pc-wl pc-wl--2"><path d="M948 70C949.3 65.7 957 58.7 962 58C967 57.3 976.3 62 978 66C979.7 70 976 79 972 82C968 85 958 86 954 84C950 82 946.7 74.3 948 70Z"/></g>
+        <g transform="translate(963 72) scale(1.3) translate(-963 -72)" class="pc-wl pc-wl--1"><path d="M948 70C949.3 65.7 957 58.7 962 58C967 57.3 976.3 62 978 66C979.7 70 976 79 972 82C968 85 958 86 954 84C950 82 946.7 74.3 948 70Z"/></g>
+        <g transform="translate(1163 217) scale(1.5) translate(-1163 -217)" class="pc-wl pc-wl--1"><path d="M1150 214C1151 210.3 1161.7 205 1166 206C1170.3 207 1177 216.3 1176 220C1175 223.7 1164.3 229 1160 228C1155.7 227 1149 217.7 1150 214Z"/></g>
+        <path class="pc-shore" d="M990 -10C991.1 -2.6 994.2 -0.6 996.3 4.1C998.5 8.8 1001.4 13.3 1002.7 18.3C1003.9 23.3 1001.4 29.2 1004 34C1006.6 38.8 1013.1 43.2 1018.1 47.2C1023.1 51.2 1031.7 52.8 1034 58C1036.3 63.2 1034.1 72 1032.1 78.3C1030.1 84.6 1021.6 91.6 1022 96C1022.4 100.4 1030.1 102.3 1034.5 105C1038.8 107.7 1043.8 109.4 1048.1 112.2C1052.3 115.1 1055.7 121.6 1060 122C1064.3 122.4 1068.8 115.5 1073.7 114.4C1078.6 113.3 1084.3 115.8 1089.3 115.4C1094.4 115 1099.3 111.1 1104 112C1108.7 112.9 1114.1 117.1 1117.6 121C1121 125 1121.8 131.1 1124.5 135.6C1127.3 140.1 1129.9 146.1 1134 148C1138.1 149.9 1144.2 146.7 1149 147.1C1153.8 147.6 1158.4 148.9 1162.9 150.7C1167.4 152.5 1171.8 154.8 1176 158C1180.2 161.2 1184.5 165.6 1187.9 170.2C1191.3 174.7 1192.5 181.2 1196.2 185.5C1199.9 189.8 1202.7 194.3 1210 196C1217.3 197.7 1235 235.3 1240 196C1245 156.7 1281.7 -0.7 1240 -40C1198.3 -79.3 1031.7 -45 990 -40C948.3 -35 988.9 -17.4 990 -10Z"/>
+        <path class="pc-shore" d="M-10 300C-2.1 301.4 1.5 305.7 7.2 308.7C12.8 311.7 20.2 313.7 24 318C27.8 322.3 28.5 329 30.2 334.6C31.9 340.3 33.8 346.2 34 352C34.2 357.8 33.4 363.9 31.4 369.3C29.4 374.6 22.9 379.2 22 384C21.1 388.8 23.1 394.3 26.2 397.9C29.4 401.5 37.9 401.7 40.9 405.4C43.8 409.1 44.3 415 44 420C43.7 425 41.5 430.4 39.3 435.3C37.1 440.2 32.4 444.4 30.9 449.5C29.3 454.6 28.9 461.1 30 466C31.1 470.9 36.4 474.3 37.4 479C38.4 483.7 35.7 489.3 36.1 494.1C36.6 499 40.6 503.6 40 508C39.4 512.4 33.8 516 32.3 520.8C30.8 525.6 32.8 532.2 30.8 536.7C28.7 541.3 23.3 544.2 20 548C16.7 551.8 14.5 556.2 10.9 559.5C7.3 562.8 2 564.5 -1.5 567.9C-5 571.4 -3.6 578 -10 580C-16.4 582 -35 626.7 -40 580C-45 533.3 -45 346.7 -40 300C-35 253.3 -17.9 298.6 -10 300Z"/>
+        <path class="pc-shore" d="M948 70C949.3 65.7 957 58.7 962 58C967 57.3 976.3 62 978 66C979.7 70 976 79 972 82C968 85 958 86 954 84C950 82 946.7 74.3 948 70Z"/>
+        <path class="pc-shore" d="M1150 214C1151 210.3 1161.7 205 1166 206C1170.3 207 1177 216.3 1176 220C1175 223.7 1164.3 229 1160 228C1155.7 227 1149 217.7 1150 214Z"/>
+      </g>
+      <g class="pc-waves"><path d="M386 206q4-4 8 0t8 0"/><path d="M790 196q4-4 8 0t8 0"/><path d="M322 336q4-4 8 0t8 0"/><path d="M866 372q4-4 8 0t8 0"/><path d="M322 476q4-4 8 0t8 0"/><path d="M868 486q4-4 8 0t8 0"/><path d="M364 612q4-4 8 0t8 0"/><path d="M842 618q4-4 8 0t8 0"/><path d="M150 150q4-4 8 0t8 0"/><path d="M1060 420q4-4 8 0t8 0"/><path d="M110 640q4-4 8 0t8 0"/><path d="M1080 560q4-4 8 0t8 0"/></g>
+      <!-- the Kraken, coming up out of the corner of the chart -->
+      <g class="pc-kraken"><path d="M1190 829.5L1189.5 826.6L1189.1 822.9L1188.7 818.3L1188.4 813.2L1188 807.6L1187.6 801.8L1187.1 795.7L1186.6 789.7L1185.9 783.9L1185.2 778.3L1184.4 773.1L1183.4 768.5L1182.2 764.4L1181 760.5L1179.6 756.8L1178.2 753.3L1176.6 750L1175 746.9L1173.3 743.9L1171.6 741.2L1169.8 738.7L1168 736.3L1166.1 734.2L1164.2 732.1L1162 730.2L1159.7 728.6L1157.3 727.2L1154.9 726L1152.5 725.1L1150.1 724.4L1147.7 723.9L1145.4 723.6L1143.2 723.4L1141.1 723.5L1139.1 723.7L1137.1 724.1L1135.2 724.8L1133.3 726L1131.8 727.3L1130.5 728.8L1129.3 730.4L1128.3 732.1L1127.4 733.9L1126.7 735.6L1126.1 737.3L1125.7 738.9L1125.5 740.5L1125.5 742.1L1125.9 743.7L1126.7 745.1L1127.7 746.3L1128.8 747.4L1130 748.4L1131.3 749.2L1132.6 750L1133.8 750.8L1135 751.4L1136 752L1136.8 752.4L1137.3 752.8L1138.7 751.2L1138.1 750.7L1137.4 750L1136.5 749.2L1135.5 748.3L1134.5 747.5L1133.4 746.5L1132.5 745.6L1131.6 744.6L1131 743.7L1130.5 742.9L1130.4 742.3L1130.5 741.9L1130.7 741.3L1131 740.4L1131.5 739.2L1132.1 738L1132.9 736.8L1133.7 735.6L1134.7 734.5L1135.6 733.5L1136.6 732.8L1137.5 732.2L1138.2 732L1138.9 731.9L1139.8 732L1141 732L1142.4 732.2L1143.9 732.6L1145.6 733L1147.2 733.6L1148.8 734.3L1150.4 735.2L1151.9 736.2L1153.4 737.3L1154.7 738.5L1155.8 739.9L1157.1 741.5L1158.4 743.4L1159.6 745.5L1160.9 747.7L1162.1 750.1L1163.2 752.6L1164.3 755.4L1165.4 758.3L1166.3 761.3L1167.2 764.6L1168 768L1168.6 771.5L1169.2 775.4L1169.6 780.1L1169.9 785.3L1170.2 790.8L1170.3 796.6L1170.4 802.5L1170.5 808.3L1170.4 813.8L1170.4 818.9L1170.3 823.5L1170.2 827.4L1170 830.5Z"/><path d="M1126.7 832.8L1126.9 829.9L1127.3 826.4L1128 822L1128.9 817L1129.8 811.5L1130.8 805.6L1131.8 799.6L1132.7 793.4L1133.4 787.3L1133.9 781.3L1134.2 775.4L1134.1 769.9L1133.7 764.8L1133.1 759.9L1132.4 755.1L1131.5 750.4L1130.4 745.7L1129.2 741.2L1127.8 736.8L1126.2 732.5L1124.5 728.4L1122.7 724.4L1120.8 720.7L1118.6 717L1116.3 713.5L1113.7 710.2L1110.9 707L1108 704L1104.9 701.2L1101.8 698.7L1098.6 696.3L1095.4 694.2L1092.1 692.3L1088.9 690.7L1085.6 689.4L1082.3 688.3L1078.8 687.7L1075.2 687.5L1071.8 687.7L1068.4 688.2L1065.2 689.1L1062.1 690.1L1059.2 691.4L1056.5 692.8L1053.9 694.3L1051.6 696L1049.5 697.7L1047.5 699.7L1045.8 702L1044.5 704.5L1043.4 707.1L1042.7 709.8L1042.2 712.5L1041.9 715.2L1041.8 717.9L1041.9 720.4L1042.1 722.9L1042.5 725.3L1043 727.5L1043.8 729.6L1044.9 731.6L1046.3 733.3L1047.8 734.9L1049.5 736.2L1051.3 737.3L1053.2 738.3L1055.1 739.1L1057 739.8L1058.8 740.3L1060.6 740.7L1062.4 740.9L1064.1 740.8L1065.9 740.5L1067.5 739.7L1068.9 738.7L1070.2 737.6L1071.4 736.3L1072.5 735L1073.5 733.7L1074.4 732.5L1075.2 731.3L1075.9 730.3L1076.4 729.5L1076.9 728.9L1075.1 727.1L1074.4 727.6L1073.6 728.3L1072.7 729.2L1071.7 730.2L1070.6 731.2L1069.5 732.2L1068.4 733.2L1067.3 734L1066.2 734.6L1065.2 735.1L1064.5 735.2L1063.9 735.2L1063.1 735L1062 734.6L1060.8 734.1L1059.5 733.5L1058.1 732.8L1056.8 731.9L1055.6 731L1054.5 730L1053.5 729L1052.9 728.1L1052.4 727.2L1052.2 726.4L1052.1 725.4L1052 724L1051.9 722.3L1052 720.4L1052.2 718.5L1052.6 716.5L1053 714.6L1053.6 712.9L1054.2 711.3L1055 710L1055.7 709L1056.5 708.3L1057.5 707.6L1058.9 706.7L1060.6 705.8L1062.5 705L1064.5 704.2L1066.6 703.6L1068.7 703.1L1070.8 702.9L1072.8 702.8L1074.7 702.9L1076.3 703.2L1077.7 703.7L1079.4 704.5L1081.3 705.5L1083.4 706.9L1085.7 708.5L1087.9 710.3L1090.2 712.3L1092.4 714.5L1094.5 716.9L1096.5 719.3L1098.4 721.8L1100 724.4L1101.4 727L1102.6 729.7L1103.9 732.7L1105 736L1106.1 739.4L1107 742.9L1107.8 746.6L1108.5 750.4L1109.1 754.2L1109.5 758.2L1109.8 762.2L1109.9 766.2L1109.9 770.1L1109.6 774.1L1109.1 778.7L1108.2 783.8L1107.2 789.2L1106 794.8L1104.7 800.4L1103.3 805.8L1101.9 811L1100.6 815.9L1099.4 820.3L1098.2 824.2L1097.3 827.2Z"/><g class="pc-suck"><circle cx="1174.4" cy="827.3" r="3.1"/><circle cx="1174.4" cy="813.6" r="2.9"/><circle cx="1174" cy="796.4" r="2.7"/><circle cx="1173" cy="779.7" r="2.5"/><circle cx="1171.1" cy="767.2" r="2.4"/><circle cx="1168.2" cy="757.2" r="2.2"/><circle cx="1164.5" cy="748.7" r="2.1"/><circle cx="1160.5" cy="741.8" r="1.9"/><circle cx="1156.3" cy="736.7" r="1.8"/><circle cx="1151.4" cy="733.2" r="1.6"/><circle cx="1146" cy="731" r="1.5"/><circle cx="1141" cy="730.2" r="1.4"/><circle cx="1137.5" cy="730.4" r="1.2"/><circle cx="1134.5" cy="732.5" r="1.1"/><circle cx="1131.7" cy="736.2" r="1.1"/><circle cx="1129.8" cy="740" r="1.1"/><circle cx="1129.4" cy="742.6" r="1.1"/><circle cx="1104.5" cy="825.4" r="4.7"/><circle cx="1107.9" cy="812.3" r="4.4"/><circle cx="1111.7" cy="795.8" r="4.2"/><circle cx="1114.5" cy="779.3" r="4"/><circle cx="1115.2" cy="765.9" r="3.8"/><circle cx="1114" cy="753.4" r="3.6"/><circle cx="1111.6" cy="741.6" r="3.5"/><circle cx="1108" cy="730.9" r="3.3"/><circle cx="1103.6" cy="722" r="3.1"/><circle cx="1097.5" cy="714" r="3"/><circle cx="1090.3" cy="707.2" r="2.8"/><circle cx="1083" cy="702.3" r="2.7"/><circle cx="1076.8" cy="699.8" r="2.5"/><circle cx="1070.3" cy="699.6" r="2.4"/><circle cx="1063.3" cy="701.4" r="2.2"/><circle cx="1057.3" cy="704.4" r="2.1"/><circle cx="1053.5" cy="707.4" r="1.9"/><circle cx="1051.2" cy="712.2" r="1.8"/><circle cx="1049.9" cy="718.4" r="1.7"/><circle cx="1049.9" cy="724.3" r="1.5"/><circle cx="1050.8" cy="728.2" r="1.4"/><circle cx="1053.4" cy="731.4" r="1.3"/><circle cx="1057.5" cy="734.2" r="1.1"/></g></g>
+      <g class="pc-scale"><rect x="34" y="752" width="28" height="5" class="pc-sb-f"/><rect x="62" y="752" width="28" height="5"/><rect x="90" y="752" width="28" height="5" class="pc-sb-f"/><rect x="118" y="752" width="28" height="5"/><rect x="146" y="752" width="28" height="5" class="pc-sb-f"/><rect x="174" y="752" width="28" height="5"/><rect class="pc-sb-o" x="34" y="752" width="168" height="5"/><text x="34" y="742">Leagues, more or less</text></g>
+    </svg>
+    <span class="pc-neat" aria-hidden="true"></span>
+
+    <div class="pc-cartouche">
+      <h2 id="pcChartH">A Chart of These Waters</h2>
+      <p>Every room on this site, by bearing</p>
+    </div>
+
+    <!-- the course, pricked out from the compass to whatever it points at -->
+    <svg class="pc-course" id="pcCourseSvg" viewBox="0 0 1200 800" aria-hidden="true"><line id="pcCourse" x1="600" y1="400" x2="600" y2="400"/></svg>
+
+    <!-- ─────────── the compass ───────────
+         Lid hinged open behind, a brass case with a milled edge, and a card
+         with a thirty-two point rose under the glass. The card is fixed to
+         the chart; only the needle moves, and compass.js turns it (a
+         rotate() on #pcNeedle and its shadow) about the pivot at (0, 0),
+         which is the centre of the chart. -->
+    <div class="pc-binn" id="pcBinn" aria-hidden="true">
+      <svg class="pc-cmp" viewBox="-150 -250 300 400">
+        <defs>
+          <linearGradient id="pcBrass" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#f6e0a2"/>
+            <stop offset=".42" stop-color="#c89a48"/>
+            <stop offset=".78" stop-color="#8a5f20"/>
+            <stop offset="1" stop-color="#4f3410"/>
+          </linearGradient>
+          <linearGradient id="pcBevel" x1="1" y1="1" x2="0" y2="0">
+            <stop offset="0" stop-color="#f0d38c"/>
+            <stop offset=".5" stop-color="#a77a30"/>
+            <stop offset="1" stop-color="#5a3c12"/>
+          </linearGradient>
+          <radialGradient id="pcCardG" cx=".5" cy=".46" r=".56">
+            <stop offset="0" stop-color="#f4eacd"/>
+            <stop offset=".7" stop-color="#e3d3a7"/>
+            <stop offset="1" stop-color="#c7b07c"/>
+          </radialGradient>
+          <radialGradient id="pcLidG" cx=".5" cy=".64" r=".62">
+            <stop offset="0" stop-color="#4a3416"/>
+            <stop offset="1" stop-color="#170f05"/>
+          </radialGradient>
+          <linearGradient id="pcSteel" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#6a7d8f"/>
+            <stop offset=".5" stop-color="#2c3a48"/>
+            <stop offset="1" stop-color="#111920"/>
+          </linearGradient>
+          <linearGradient id="pcGlass" x1="0" y1="0" x2=".7" y2="1">
+            <stop offset="0" stop-color="#fff" stop-opacity=".6"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+          </linearGradient>
+          <path id="pcLidArc" d="M-80 -178A80 26 0 0 1 80 -178"/>
+        </defs>
+
+        <!-- the lid, open behind the case, and the hinge -->
+        <ellipse cx="0" cy="-186" rx="124" ry="54" fill="url(#pcBrass)" stroke="#3a260c" stroke-width="1.5"/>
+        <ellipse cx="0" cy="-183" rx="110" ry="44" fill="url(#pcLidG)"/>
+        <ellipse cx="0" cy="-183" rx="97" ry="36" fill="none" stroke="#c89a48" stroke-opacity=".45" stroke-dasharray="2 4"/>
+        <text class="pc-c-engr"><textPath href="#pcLidArc" startOffset="50%" text-anchor="middle">what you want most</textPath></text>
+        <path d="M0 -172l4 10-4 10-4-10zM-16 -162l16-2 16 2-16 2z" fill="#c89a48" opacity=".55"/>
+        <path d="M-22 -141h44v15h-44z" fill="url(#pcBrass)" stroke="#3a260c"/>
+        <path d="M-8 -141v15M8 -141v15" stroke="#3a260c" stroke-width="1"/>
+
+        <!-- the case -->
+        <circle r="132" fill="url(#pcBrass)" stroke="#3a260c" stroke-width="1.5"/>
+        <circle r="127" fill="none" stroke="#fbe7b0" stroke-opacity=".5" stroke-width="3.5" stroke-dasharray="1.2 2.8"/>
+        <circle r="120" fill="url(#pcBevel)"/>
+        <circle r="113.5" fill="url(#pcCardG)" stroke="#3a260c"/>
+
+        <!-- the card: a degree every five, a ring, the rose, the four letters -->
+        <path class="pc-c-ticks" d="M0 -113L0 -103.5M9.85 -112.57L9.46 -108.09M19.62 -111.28L18.41 -104.39M29.25 -109.15L28.08 -104.8M38.65 -106.19L36.25 -99.61M47.76 -102.41L45.85 -98.33M56.5 -97.86L51.75 -89.63M64.81 -92.56L62.23 -88.88M72.63 -86.56L68.14 -81.2M79.9 -79.9L76.72 -76.72M86.56 -72.63L81.2 -68.14M92.56 -64.81L88.88 -62.23M97.86 -56.5L89.63 -51.75M102.41 -47.76L98.33 -45.85M106.19 -38.65L99.61 -36.25M109.15 -29.25L104.8 -28.08M111.28 -19.62L104.39 -18.41M112.57 -9.85L108.09 -9.46M113 0L103.5 0M112.57 9.85L108.09 9.46M111.28 19.62L104.39 18.41M109.15 29.25L104.8 28.08M106.19 38.65L99.61 36.25M102.41 47.76L98.33 45.85M97.86 56.5L89.63 51.75M92.56 64.81L88.88 62.23M86.56 72.63L81.2 68.14M79.9 79.9L76.72 76.72M72.63 86.56L68.14 81.2M64.81 92.56L62.23 88.88M56.5 97.86L51.75 89.63M47.76 102.41L45.85 98.33M38.65 106.19L36.25 99.61M29.25 109.15L28.08 104.8M19.62 111.28L18.41 104.39M9.85 112.57L9.46 108.09M0 113L0 103.5M-9.85 112.57L-9.46 108.09M-19.62 111.28L-18.41 104.39M-29.25 109.15L-28.08 104.8M-38.65 106.19L-36.25 99.61M-47.76 102.41L-45.85 98.33M-56.5 97.86L-51.75 89.63M-64.81 92.56L-62.23 88.88M-72.63 86.56L-68.14 81.2M-79.9 79.9L-76.72 76.72M-86.56 72.63L-81.2 68.14M-92.56 64.81L-88.88 62.23M-97.86 56.5L-89.63 51.75M-102.41 47.76L-98.33 45.85M-106.19 38.65L-99.61 36.25M-109.15 29.25L-104.8 28.08M-111.28 19.62L-104.39 18.41M-112.57 9.85L-108.09 9.46M-113 0L-103.5 0M-112.57 -9.85L-108.09 -9.46M-111.28 -19.62L-104.39 -18.41M-109.15 -29.25L-104.8 -28.08M-106.19 -38.65L-99.61 -36.25M-102.41 -47.76L-98.33 -45.85M-97.86 -56.5L-89.63 -51.75M-92.56 -64.81L-88.88 -62.23M-86.56 -72.63L-81.2 -68.14M-79.9 -79.9L-76.72 -76.72M-72.63 -86.56L-68.14 -81.2M-64.81 -92.56L-62.23 -88.88M-56.5 -97.86L-51.75 -89.63M-47.76 -102.41L-45.85 -98.33M-38.65 -106.19L-36.25 -99.61M-29.25 -109.15L-28.08 -104.8M-19.62 -111.28L-18.41 -104.39M-9.85 -112.57L-9.46 -108.09"/>
+        <circle class="pc-c-ring" r="101"/>
+        <g class="pc-c-rose"><path class="pc-r-q-d" d="M0 0L-2.37 -13.73L7.8 -39.23ZM0 0L3.07 -13.59L22.22 -33.26ZM0 0L8.03 -11.38L33.26 -22.22ZM0 0L11.77 -7.44L39.23 -7.8ZM0 0L13.73 -2.37L39.23 7.8ZM0 0L13.59 3.07L33.26 22.22ZM0 0L11.38 8.03L22.22 33.26ZM0 0L7.44 11.77L7.8 39.23ZM0 0L2.37 13.73L-7.8 39.23ZM0 0L-3.07 13.59L-22.22 33.26ZM0 0L-8.03 11.38L-33.26 22.22ZM0 0L-11.77 7.44L-39.23 7.8ZM0 0L-13.73 2.37L-39.23 -7.8ZM0 0L-13.59 -3.07L-33.26 -22.22ZM0 0L-11.38 -8.03L-22.22 -33.26ZM0 0L-7.44 -11.77L-7.8 -39.23Z"/><path class="pc-r-q-l" d="M0 0L7.8 -39.23L7.44 -11.77ZM0 0L22.22 -33.26L11.38 -8.03ZM0 0L33.26 -22.22L13.59 -3.07ZM0 0L39.23 -7.8L13.73 2.37ZM0 0L39.23 7.8L11.77 7.44ZM0 0L33.26 22.22L8.03 11.38ZM0 0L22.22 33.26L3.07 13.59ZM0 0L7.8 39.23L-2.37 13.73ZM0 0L-7.8 39.23L-7.44 11.77ZM0 0L-22.22 33.26L-11.38 8.03ZM0 0L-33.26 22.22L-13.59 3.07ZM0 0L-39.23 7.8L-13.73 -2.37ZM0 0L-39.23 -7.8L-11.77 -7.44ZM0 0L-33.26 -22.22L-8.03 -11.38ZM0 0L-22.22 -33.26L-3.07 -13.59ZM0 0L-7.8 -39.23L2.37 -13.73Z"/><path class="pc-r-h-d" d="M0 0L-0.81 -17.65L20.66 -49.89ZM0 0L11.91 -13.05L49.89 -20.66ZM0 0L17.65 -0.81L49.89 20.66ZM0 0L13.05 11.91L20.66 49.89ZM0 0L0.81 17.65L-20.66 49.89ZM0 0L-11.91 13.05L-49.89 20.66ZM0 0L-17.65 0.81L-49.89 -20.66ZM0 0L-13.05 -11.91L-20.66 -49.89Z"/><path class="pc-r-h-l" d="M0 0L20.66 -49.89L13.05 -11.91ZM0 0L49.89 -20.66L17.65 0.81ZM0 0L49.89 20.66L11.91 13.05ZM0 0L20.66 49.89L-0.81 17.65ZM0 0L-20.66 49.89L-13.05 11.91ZM0 0L-49.89 20.66L-17.65 -0.81ZM0 0L-49.89 -20.66L-11.91 -13.05ZM0 0L-20.66 -49.89L0.81 -17.65Z"/><path class="pc-r-i-d" d="M0 0L6.36 -20.51L49.5 -49.5ZM0 0L20.51 6.36L49.5 49.5ZM0 0L-6.36 20.51L-49.5 49.5ZM0 0L-20.51 -6.36L-49.5 -49.5Z"/><path class="pc-r-i-l" d="M0 0L49.5 -49.5L20.51 -6.36ZM0 0L49.5 49.5L6.36 20.51ZM0 0L-49.5 49.5L-20.51 6.36ZM0 0L-49.5 -49.5L-6.36 -20.51Z"/><path class="pc-r-c-d" d="M0 0L-13 -22L0 -88ZM0 0L22 -13L88 0ZM0 0L13 22L0 88ZM0 0L-22 13L-88 0Z"/><path class="pc-r-c-l" d="M0 0L0 -88L13 -22ZM0 0L88 0L22 13ZM0 0L0 88L-13 22ZM0 0L-88 0L-22 -13Z"/></g>
+        <circle class="pc-c-ring" r="26"/>
+        <g class="pc-c-letters"><text transform="rotate(0) translate(0 -91)">N</text><text transform="rotate(90) translate(0 -91)">E</text><text transform="rotate(180) translate(0 -91)">S</text><text transform="rotate(270) translate(0 -91)">W</text></g>
+
+        <!-- the needle's shadow on the card, then the needle: blued steel to
+             an oxblood point at the end that wants, brass at the other -->
+        <g class="pc-c-shadow" transform="translate(4 6)"><g id="pcNeedleS" transform="rotate(156)"><path d="M0 -100l7.5 88L0 -4l-7.5-8zM0 -113l7 25-7-5-7 5zM0 4l6 8-6 66-6-66z"/></g></g>
+        <g id="pcNeedle" transform="rotate(156)">
+          <path d="M0 -100l7.5 88L0 -4l-7.5-8z" fill="url(#pcSteel)"/>
+          <path d="M0 -98v86" stroke="#b3c4d2" stroke-width=".8" opacity=".55"/>
+          <path d="M0 -113l7 25-7-5-7 5z" fill="#7a2416"/>
+          <path d="M0 4l6 8-6 66-6-66z" fill="#c9a24e" stroke="#6e4c18" stroke-width=".6"/>
+          <circle cy="70" r="5.5" fill="none" stroke="#c9a24e" stroke-width="2.2"/>
+        </g>
+        <circle r="10" fill="url(#pcBrass)" stroke="#3a260c"/>
+        <circle cx="-2.4" cy="-2.4" r="3.2" fill="#fff3cc" opacity=".8"/>
+
+        <!-- the catch, and the glass catching the moon -->
+        <path d="M-9 130h18v10h-18z" fill="url(#pcBrass)" stroke="#3a260c"/>
+        <path class="pc-c-glass" d="M-98 -44A108 108 0 0 1 26 -106A116 116 0 0 0 -88 -22z" fill="url(#pcGlass)"/>
+      </svg>
+    </div>
+
+    <!-- what the needle is holding on, read out under the compass. The orb
+         is the needle's search, in iron-gall ink. -->
+    <div class="pc-reading">
+      <p class="pc-read-k"><canvas class="pc-think" data-orb="searching" data-orb-size="26" data-orb-ink="#2b1d0e" data-orb-ink-dark aria-hidden="true"></canvas><span id="pcReadK">The needle will not settle</span></p>
+      <p class="pc-read-t" id="pcReadT">Nothing wanted yet. Choose a room, and the needle will find it.</p>
+    </div>
+
+    <!-- every room on the site, as the copy above promises: the main
+         sections, both schools, the worlds and this one's own page. The
+         other terminals are the ships further down.
+
+         Clockwise from north in the order you tab through them. --x and --y
+         put each island where a ray at its bearing meets an ellipse 370 by
+         300 round the compass, in a 1200 by 800 chart, so the needle
+         points at it exactly; --ax and --ay hang the label off the island's
+         far side, and --ox and --oy leave 22px of sea between them. Home is
+         at north on purpose: the one time this compass points north is when
+         what you want most is home. The qiblah is the one real bearing on
+         the chart, the great-circle bearing to the Kaʿbah from Irvine
+         (24.4°), the same one the Al-Islam page computes. -->
+    <ol class="pc-ports">
+      <li class="pc-port" style="--x:50%;--y:12.5%;--ax:-50%;--ay:-100%;--ox:0px;--oy:-22px;--ta:center"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 17.5c3-4 6.5-5 10-5s7 1 10 5"/><path d="M8.5 13.4V9.2L12 6.2l3.5 3v4.2"/><path d="M11 13.2v-2.4h2v2.4"/><path d="M3 21h4M10 21h4M17 21h4"/></svg><a href="/" data-b="0" data-line="Home port, where every crew comes back to."><b>Tortuga</b><span class="vh">: </span><i>Home</i><span class="vh">, bearing </span><span class="pc-brg">000°</span></a></li>
+      <li class="pc-port" style="--x:60.64%;--y:14.81%;--ax:-29.3%;--ay:-95.5%;--ox:9.1px;--oy:-20px;--ta:left"><svg class="pc-mark pc-mark--q" viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M7 7.5h10v11H7z"/><path class="g" d="M7 10.6h10"/></svg><a href="/al-islam/" data-b="24.4" data-line="The one true bearing on this chart: the Kaʿbah, from Irvine. It never moves."><b>The qiblah</b><span class="vh">: </span><i>Al-Islam apps</i><span class="vh">, bearing </span><span class="pc-brg">024°</span></a></li>
+      <li class="pc-port" style="--x:70.63%;--y:22.13%;--ax:-12.8%;--ay:-83.5%;--ox:16.3px;--oy:-14.7px;--ta:left"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19.5V12h2.6v2.2h2.6V12h2.6v2.2h2.6V12h2.6v2.2h2.6V12H21v7.5z"/><path d="M12 12V4.6l4.4 1.6L12 7.8"/><path d="M4 22.5h5M13 22.5h7"/></svg><a href="/work/" data-b="48" data-line="Will Turner’s forge, and three hours of practice a day."><b>Port Royal</b><span class="vh">: </span><i>Work at UC Irvine</i><span class="vh">, bearing </span><span class="pc-brg">048°</span></a></li>
+      <li class="pc-port" style="--x:78.62%;--y:36.05%;--ax:-2.4%;--ay:-65.5%;--ox:20.9px;--oy:-6.8px;--ta:left"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 18c2.5-6.5 6-9.5 10-9.5s7.5 3 10 9.5"/><path d="M9 18v-2.6a3 3 0 0 1 6 0V18"/><circle class="gf" cx="12" cy="16.4" r="1"/><path d="M3 21.5h5M11 21.5h3M17 21.5h4"/></svg><a href="/projects/" data-b="72" data-line="The whole hoard, and every piece of it accounted for."><b>Isla de Muerta</b><span class="vh">: </span><i>Every project</i><span class="vh">, bearing </span><span class="pc-brg">072°</span></a></li>
+      <li class="pc-port" style="--x:80.58%;--y:54.82%;--ax:-0.3%;--ay:-44.8%;--ox:21.9px;--oy:2.3px;--ta:left"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 15.5c3 3.5 15 3.5 18 0"/><path d="M7 17.6 6 10.5M10.3 18.3 10 8.5M13.7 18.3 14 9M17 17.6l1-6"/><path d="M12 8.5 15.5 3"/><path d="M3 21.5h5M11 21.5h3M17 21.5h4"/></svg><a href="/education/" data-b="96" data-line="Where the Pirate Code is kept, and actually read."><b>Shipwreck Cove</b><span class="vh">: </span><i>Education</i><span class="vh">, bearing </span><span class="pc-brg">096°</span></a></li>
+      <li class="pc-port" style="--x:75.12%;--y:71.75%;--ax:-6.7%;--ay:-25%;--ox:19.1px;--oy:11px;--ta:left"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10c3 0 5.5-1.8 8.5-5 3 3.2 5.5 5 8.5 5"/><path d="M5.5 15c2.5 0 4.2-1.2 6.5-3.4 2.3 2.2 4 3.4 6.5 3.4"/><path d="M8 10.8v8.7M16 10.8v8.7M5 19.5h14"/></svg><a href="/college/" data-b="120" data-line="Sao Feng’s charts: the way to the edge of the world."><b>Singapore</b><span class="vh">: </span><i>College, UC Irvine</i><span class="vh">, bearing </span><span class="pc-brg">120°</span></a></li>
+      <li class="pc-port" style="--x:65.65%;--y:82.31%;--ax:-20.6%;--ay:-9.5%;--ox:12.9px;--oy:17.8px;--ta:left"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3c3 3-1.5 6 1.5 9S3 18 6 21"/><path d="M8 3c3 3-1.5 6 1.5 9S8 18 11 21"/><path d="M14 13.5 17.5 10l3.5 3.5V17H14z"/><path d="M15 17v3.5M20 17v3.5"/></svg><a href="/high-school/" data-b="144" data-line="Up the river to Tia Dalma’s, where it all started."><b>The Pantano River</b><span class="vh">: </span><i>High School</i><span class="vh">, bearing </span><span class="pc-brg">144°</span></a></li>
+      <li class="pc-port" style="--x:55.24%;--y:86.96%;--ax:-39.6%;--ay:-1.1%;--ox:4.6px;--oy:21.5px;--ta:center"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 19c3-3.5 6.5-4.5 10-4.5s7 1 10 4.5"/><path class="r" d="M8.6 4.6l6.8 6.8M15.4 4.6l-6.8 6.8"/><path d="M4 22h4M11 22h3M17 22h3"/></svg><a href="/resume/" data-b="168" data-line="Where the chest is buried: the heart of it, in one place."><b>Isla Cruces</b><span class="vh">: </span><i>Résumé</i><span class="vh">, bearing </span><span class="pc-brg">168°</span></a></li>
+      <li class="pc-port" style="--x:44.76%;--y:86.96%;--ax:-60.4%;--ay:-1.1%;--ox:-4.6px;--oy:21.5px;--ta:center"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 8.5h12.5c2.5 0 3.5 1.5 3.5 4V21"/><path d="M2 12.5h9.5c1.8 0 2.5 1 2.5 3V21"/><path d="M21.2 12.5v2M21.2 17v1.4M21.2 20.6v.8"/></svg><a href="/worlds/" data-b="192" data-line="Over the edge of the map, and out the other side."><b>World’s End</b><span class="vh">: </span><i>All 71 worlds</i><span class="vh">, bearing </span><span class="pc-brg">192°</span></a></li>
+      <li class="pc-port" style="--x:34.35%;--y:82.31%;--ax:-79.4%;--ay:-9.5%;--ox:-12.9px;--oy:17.8px;--ta:right"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M3 16h18l-2.5 4h-13z"/><path d="M9 16V3.5M15 16V5"/><path class="f" d="M5.6 5.6q3.4-1 6.8 0v3.8q-3.4-1-6.8 0z"/><path class="f" d="M5.6 10.6q3.4-1 6.8 0v3.4q-3.4-.8-6.8 0z"/><path class="f" d="M12.2 7q2.8-.9 5.6 0v3.4q-2.8-.9-5.6 0z"/><path d="M9 3.5l2.6.8L9 5.1"/></svg><a href="/worlds/pirates/" data-b="216" data-line="Black sails, and everything I love about the films."><b>The Black Pearl</b><span class="vh">: </span><i>Pirates of the Caribbean, the world page</i><span class="vh">, bearing </span><span class="pc-brg">216°</span></a></li>
+      <li class="pc-port" style="--x:24.88%;--y:71.75%;--ax:-93.3%;--ay:-25%;--ox:-19.1px;--oy:11px;--ta:right"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M12 3.2l2.2 5.4 5.8.5-4.4 3.8 1.4 5.7L12 15.6l-5 3 1.4-5.7L4 9.1l5.8-.5z"/><circle class="f" cx="20" cy="18.6" r=".9"/><circle class="f" cx="4.4" cy="17.4" r=".7"/><circle class="f" cx="19.4" cy="3.6" r=".7"/></svg><a href="/star-wars/" data-b="240" data-line="Where an astronomer is tried as a witch for reading the stars."><b>Saint Martin</b><span class="vh">: </span><i>Star Wars apps</i><span class="vh">, bearing </span><span class="pc-brg">240°</span></a></li>
+      <li class="pc-port" style="--x:19.42%;--y:54.82%;--ax:-99.7%;--ay:-44.8%;--ox:-21.9px;--oy:2.3px;--ta:right"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 15.5h20"/><path d="M7 15.5a5 5 0 0 1 10 0"/><path d="M12 6.5v2M6 9l1.3 1.3M18 9l-1.3 1.3M3.5 12.5h2M18.5 12.5h2"/><path d="M5 19h5M13 19h6M8 22h8"/></svg><a href="/travels/" data-b="264" data-line="“Now, bring me that horizon.”"><b>The Horizon</b><span class="vh">: </span><i>Travels</i><span class="vh">, bearing </span><span class="pc-brg">264°</span></a></li>
+      <li class="pc-port" style="--x:21.38%;--y:36.05%;--ax:-97.6%;--ay:-65.5%;--ox:-20.9px;--oy:-6.8px;--ta:right"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 15c3-3.2 6-3.2 9 0s6 2.6 11-1"/><path d="M2 19.5c3.5-2 7.5-2 11 0s6 1.2 9-.2"/><circle cx="17.5" cy="6.8" r="2.6"/></svg><a href="/accents/" data-b="288" data-line="A whole crew of Jacks, and every one of them talking."><b>Davy Jones’ Locker</b><span class="vh">: </span><i>Accents &amp; impersonations</i><span class="vh">, bearing </span><span class="pc-brg">288°</span></a></li>
+      <li class="pc-port" style="--x:29.37%;--y:22.13%;--ax:-87.2%;--ay:-83.5%;--ox:-16.3px;--oy:-14.7px;--ta:right"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="9.4" width="9" height="9" rx="1.6"/><circle class="f" cx="5.9" cy="12.1" r=".9"/><circle class="f" cx="7.7" cy="13.9" r=".9"/><circle class="f" cx="9.5" cy="15.7" r=".9"/><g transform="rotate(16 17 9)"><rect x="13" y="5" width="8" height="8" rx="1.5"/><circle class="f" cx="15.4" cy="7.4" r=".85"/><circle class="f" cx="18.6" cy="10.6" r=".85"/></g></svg><a href="/gaming/" data-b="312" data-line="Liar’s Dice, with an eternity in service as the stake."><b>The Flying Dutchman</b><span class="vh">: </span><i>Gaming</i><span class="vh">, bearing </span><span class="pc-brg">312°</span></a></li>
+      <li class="pc-port" style="--x:39.53%;--y:14.73%;--ax:-70.3%;--ay:-95.7%;--ox:-8.9px;--oy:-20.1px;--ta:right"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 17.4 18 6c1-1 2.6-1.4 3-1-.2 1.4-.8 2.6-1.8 3.6L8.6 19.4"/><path d="M4.2 15.2l4.6 4.6"/><path d="M5.4 18.6 3.2 20.8"/><circle class="f" cx="2.9" cy="21.1" r="1"/></svg><a href="/lightsabers/" data-b="336" data-line="Blackbeard’s ship, worked by a sword that does more than cut."><b>Queen Anne’s Revenge</b><span class="vh">: </span><i>The lightsaber guide</i><span class="vh">, bearing </span><span class="pc-brg">336°</span></a></li>
+    </ol>
+  </section>
+
+  <!-- ═══════════ the log, the record and the fleet ═══════════ -->
+  <div class="pc-cols">
+
+    <section class="pc-panel pc-log" aria-labelledby="pcLogH">
+      <h2 class="pc-h" id="pcLogH">The ship’s log<span>kept by your own clock</span></h2>
+      <p class="pc-log-date" id="pcLogDate">····</p>
+      <div class="pc-bells">
+        <!-- the bells struck so far this watch, in their pairs -->
+        <span class="pc-pips" id="pcPips" aria-hidden="true"><b><i></i><i></i></b><b><i></i><i></i></b><b><i></i><i></i></b><b><i></i><i></i></b></span>
+        <p class="pc-bell-t" id="pcBellT">····</p>
+      </div>
+      <dl class="pc-dl">
+        <div><dt>Watch</dt><dd id="pcWatch">····</dd></div>
+        <div><dt>Next bell</dt><dd id="pcNext">····</dd></div>
+        <div><dt>Heading</dt><dd id="pcHeading">Undecided: the needle is wandering</dd></div>
+        <div><dt>Remarks</dt><dd>Compass consulted. Does not point north.</dd></div>
+      </dl>
+      <button class="pc-strike" id="pcStrike" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2M7 17V11a5 5 0 0 1 10 0v6l1.5 2h-13z"/><path d="M10.5 21h3"/></svg>
+        <span id="pcStrikeT">Strike the bell</span>
+      </button>
+      <p class="pc-note">A bell every half hour by your own clock, one to eight through each four-hour watch. The button strikes them as a ship does, in pairs.</p>
+    </section>
+
+    <section class="pc-panel pc-rec" aria-labelledby="pcRecH">
+      <h2 class="pc-h" id="pcRecH">The record<span>the captain’s papers</span></h2>
+      <dl class="pc-dl pc-dl--rec">
+        <div><dt>Captain</dt><dd>Abubakr Elmallah</dd></div>
+        <div><dt>Studying</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
+        <div><dt>Post</dt><dd>Lead mobile &amp; backend developer, UC Irvine</dd></div>
+        <div><dt>Ships launched</dt><dd>Twelve apps, across four platforms</dd></div>
+        <div><dt>First to sea</dt><dd>Datapad, on the App Store June 26, 2023; it reached the Top 10 of the paid Entertainment chart</dd></div>
+        <div><dt>Honours</dt><dd>Winner of the Apple Swift Student Challenge 2024 with Al-Quran, and to WWDC 2024</dd></div>
+        <div><dt>Islamic apps</dt><dd>Al-Islam, Al-Quran and Al-Adhan: three apps, two national awards</dd></div>
+        <div><dt>Crew</dt><dd>Sabacc Droid and Aurebesh Droid, Discord bots in more than 500 servers</dd></div>
+        <div><dt>Maiden voyages</dt><dd>Order 66 in Scratch (2021), the first solo project; the Star Wars Datapad on Code.org (2021, 812 lines of JavaScript), the first real coding project</dd></div>
+        <div><dt>Voyages logged</dt><dd>35 trips, 19 by plane and 16 by road, 2015–2026</dd></div>
+        <div><dt>Voices</dt><dd>19 accents and 4 impersonations</dd></div>
+        <div><dt>Plunder</dt><dd>747 Steam achievements across four Steam Replays, 2022–2025</dd></div>
+        <div><dt>Waters charted</dt><dd>71 worlds</dd></div>
+        <div><dt>Home port</dt><dd>33.64°N 117.84°W</dd></div>
+        <div><dt>Letters</dt><dd><a href="mailto:ammelmallah@gmail.com">ammelmallah@gmail.com</a></dd></div>
+      </dl>
+    </section>
+
+    <!-- ═══════════ the fleet ═══════════
+         The other terminals, as other ships in these waters, each flying its
+         own colours. They have bearings too (off this chart), so the log's
+         heading follows them. -->
+    <section class="pc-panel pc-fleet" aria-labelledby="pcFleetH">
+      <h2 class="pc-h" id="pcFleetH">Other ships in these waters<span>the other terminals</span></h2>
+      <div class="pc-ships">
+        <a class="pc-ship" href="/elmallah/" data-b="10" style="--f:#5fa3ec; --f2:#f5c63c"><span class="pc-flag" aria-hidden="true"></span><b>E.L.M.A.L.L.A.H.</b><i>The Star Wars holotable</i></a>
+        <a class="pc-ship" href="/holocron/" data-b="30" style="--f:#7fd6ff; --f2:#2f6d9a"><span class="pc-flag" aria-hidden="true"></span><b>The Holocron</b><i>A Jedi archive</i></a>
+        <a class="pc-ship" href="/jarvis/" data-b="50" style="--f:#29e7ff; --f2:#0f7fa8"><span class="pc-flag" aria-hidden="true"></span><b>J.A.R.V.I.S.</b><i>A Stark heads-up display</i></a>
+        <a class="pc-ship" href="/marauders-map/" data-b="70" style="--f:#e8d5ab; --f2:#7a4a24"><span class="pc-flag" aria-hidden="true"></span><b>The Marauder’s Map</b><i>Harry Potter, in parchment and ink</i></a>
+        <a class="pc-ship" href="/crafting-table/" data-b="90" style="--f:#8fd14f; --f2:#866043"><span class="pc-flag" aria-hidden="true"></span><b>The Crafting Table</b><i>Minecraft</i></a>
+        <a class="pc-ship" href="/citadel/" data-b="110" style="--f:#d8b26a; --f2:#6f4a14"><span class="pc-flag" aria-hidden="true"></span><b>The Citadel</b><i>Game of Thrones</i></a>
+        <a class="pc-ship" href="/control-room/" data-b="130" style="--f:#e2b33c; --f2:#b3342b"><span class="pc-flag" aria-hidden="true"></span><b>The Control Room</b><i>Jurassic Park</i></a>
+        <a class="pc-ship" href="/upside-down/" data-b="150" style="--f:#d4343f; --f2:#3a0d14"><span class="pc-flag" aria-hidden="true"></span><b>The Upside Down</b><i>Stranger Things</i></a>
+        <a class="pc-ship" href="/starcourt/" data-b="170" style="--f:#ff6ec7; --f2:#2b1450"><span class="pc-flag" aria-hidden="true"></span><b>Starcourt</b><i>Stranger Things</i></a>
+        <a class="pc-ship" href="/spirit-library/" data-b="190" style="--f:#6aa0d8; --f2:#c9a25a"><span class="pc-flag" aria-hidden="true"></span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a>
+        <a class="pc-ship" href="/monastery/" data-b="210" style="--f:#e0b040; --f2:#b3261e"><span class="pc-flag" aria-hidden="true"></span><b>The Monastery</b><i>Ninjago</i></a>
+        <a class="pc-ship" href="/wanted/" data-b="230" style="--f:#c9402f; --f2:#d9c08c"><span class="pc-flag" aria-hidden="true"></span><b>The Wanted Board</b><i>Red Dead Redemption</i></a>
+        <a class="pc-ship" href="/dunder-mifflin/" data-b="250" style="--f:#e8e6e0; --f2:#3d6fb4"><span class="pc-flag" aria-hidden="true"></span><b>Dunder Mifflin</b><i>The Office</i></a>
+        <a class="pc-ship" href="/springfield/" data-b="270" style="--f:#ffd21f; --f2:#4a8fd8"><span class="pc-flag" aria-hidden="true"></span><b>Springfield</b><i>The Simpsons</i></a>
+        <a class="pc-ship" href="/vought/" data-b="290" style="--f:#e02a2a; --f2:#2a6fdb"><span class="pc-flag" aria-hidden="true"></span><b>Vought Tower</b><i>The Boys</i></a>
+        <a class="pc-ship" href="/pokedex/" data-b="310" style="--f:#ffd43f; --f2:#e3242b"><span class="pc-flag" aria-hidden="true"></span><b>The Pokédex</b><i>Pokémon</i></a>
+        <a class="pc-ship" href="/batcomputer/" data-b="330" style="--f:#c9cdd2; --f2:#f2c230"><span class="pc-flag" aria-hidden="true"></span><b>The Batcomputer</b><i>Batman</i></a>
+        <a class="pc-ship" href="/daily-bugle/" data-b="350" style="--f:#e02a3a; --f2:#1f4fa8"><span class="pc-flag" aria-hidden="true"></span><b>The Daily Bugle</b><i>Spider-Man</i></a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- the Pirate Code's call; the crew's answer is the end screen -->
+  <button class="pc-take" id="pcTake" type="button">Take what you can.</button>
+
+</main>
+
+<!-- on a phone the chart is a list, longer than a screen, so once the
+     compass has scrolled away a small one follows you down it, its needle
+     on the same spring as the big one -->
+<div class="pc-follow" id="pcFollow" aria-hidden="true">
+  <svg class="pc-follow-cmp" viewBox="-60 -60 120 120">
+    <circle r="58" fill="url(#pcBrass)" stroke="#3a260c" stroke-width="2"/>
+    <circle r="48" fill="url(#pcCardG)" stroke="#3a260c"/>
+    <path d="M0-42l5 37-5 5-5-5zM42 0L5 5 0 0l5-5zM0 42l-5-37 5-5 5 5zM-42 0l37-5 5 5-5 5z" fill="#2b1d0e" opacity=".22"/>
+    <g id="pcNeedleM" transform="rotate(156)"><path d="M0-44l5 40-5 4-5-4z" fill="url(#pcSteel)"/><path d="M0-48l4.5 12-4.5-2.5-4.5 2.5z" fill="#7a2416"/><path d="M0 0l4 4-4 32-4-32z" fill="#c9a24e"/></g>
+    <circle r="5.5" fill="url(#pcBrass)" stroke="#3a260c"/>
+  </svg>
+  <p><span id="pcFollowK">Wandering</span><b id="pcFollowT">Nothing wanted yet</b></p>
+</div>
+
+<!-- the answer, after the call -->
+<div class="pc-done" id="pcDone">
+  <div>
+    <canvas class="pc-done-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#8cc9c0" aria-hidden="true"></canvas>
+    <p class="pc-done-k">And the crew answers</p>
+    <p class="pc-done-t">Give nothing back.</p>
+    <a class="pc-done-home" id="pcHome" href="/">Make for home port</a>
+    <button class="pc-done-stay" id="pcStay" type="button">Stay aboard</button>
+  </div>
+</div>
+
+<script>
+  /* smooth scrolling only after load, so back/forward restores the position instantly instead of sliding to it */
+  addEventListener('load', function () {
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      document.documentElement.classList.add('smooth');
+    }); });
+  });
+</script>
+<script src="{% include v.html f='/assets/js/compass.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

@@ -1,0 +1,626 @@
+/* ============================================================
+   control-room.css: /control-room/, the Jurassic Park terminal.
+   Sister page to /jarvis/, /holocron/, /marauders-map/,
+   /crafting-table/ and /citadel/: grey plastic bezels and green
+   phosphor instead of glass, because the room this copies was
+   built in 1993 out of workstations and one Macintosh. The map,
+   the file system and the lockout are all drawn here or in
+   control-room.js; there are no image files.
+   ============================================================ */
+
+/* these pages load no shared stylesheet, so they carry their own reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+html { background: #050806; }
+html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.cr {
+  /* Archivo, narrowed, for the signage; IBM Plex Mono for everything a
+     workstation would print; VT323 only for big phosphor numerals, where
+     its pixels read as a CRT rather than as a blur */
+  --head:   "Archivo", "Arial Narrow", sans-serif;
+  --mono:   "IBM Plex Mono", ui-monospace, monospace;
+  --crt:    "VT323", "IBM Plex Mono", monospace;
+
+  --night:  #050806;
+  --plate:  #0b110d;
+  --amber:  #e0642a;          /* the world's tile colour */
+  --amber-2:#ff9a5c;          /* the same, lifted for small text on black */
+  --amber-3:#ffc49a;
+  --phos:   #6dff9a;          /* P1 green phosphor */
+  --phos-2: #44d978;
+  --phos-3: rgba(109, 255, 154, 0.62);
+  --jungle: #10291a;
+  --water:  #5fb7d0;
+  --hazard: #f2c230;
+  --ink:    #ecf0e6;
+  --dim:    #b5c1b4;
+  --mute:   #8c9a8f;          /* AA on --night and on the plates */
+  --line:   rgba(109, 255, 154, 0.16);
+  --ease:   cubic-bezier(.16, 1, .3, 1);
+
+  background: var(--night);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 1rem;
+  min-height: 100vh;
+  padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+}
+
+:focus-visible { outline: 2px solid var(--amber-2); outline-offset: 3px; }
+
+/* ───────────── the room ───────────── */
+.cr-field { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.cr-field > span { position: absolute; inset: 0; }
+.cr-glow {
+  background:
+    radial-gradient(55% 40% at 50% -6%, rgba(224, 100, 42, .16), transparent 70%),
+    radial-gradient(70% 45% at 50% 108%, rgba(109, 255, 154, .07), transparent 70%),
+    radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(0, 0, 0, .7));
+}
+.cr-grid {
+  opacity: .55;
+  background:
+    repeating-linear-gradient(0deg, rgba(109, 255, 154, .03) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(90deg, rgba(109, 255, 154, .03) 0 1px, transparent 1px 56px);
+}
+/* the storm, through the windows: a rare, faint flash from the top right */
+.cr-storm {
+  background: radial-gradient(60% 50% at 88% 0%, rgba(190, 215, 255, .9), transparent 70%);
+  opacity: 0;
+  animation: cr-flash 14s linear infinite 4s;
+}
+@keyframes cr-flash {
+  0%, 91%  { opacity: 0; }
+  91.6%    { opacity: .09; }
+  92.2%    { opacity: 0; }
+  93.4%    { opacity: .06; }
+  94.6%, 100% { opacity: 0; }
+}
+
+/* ───────────── header ───────────── */
+.cr-top {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; flex-wrap: wrap;
+  padding: calc(0.9rem + env(safe-area-inset-top, 0px)) max(clamp(1rem, 4vw, 2.6rem), env(safe-area-inset-right, 0px)) 0.9rem max(clamp(1rem, 4vw, 2.6rem), env(safe-area-inset-left, 0px));
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(20, 22, 18, .9), rgba(8, 11, 9, .6));
+  font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim);
+}
+.cr-exit { display: inline-flex; align-items: center; gap: 0.45rem; min-height: 44px; color: var(--amber-2); }
+.cr-exit:hover { color: var(--amber-3); }
+.cr-exit svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; }
+.cr-top-clock { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--phos); font-variant-numeric: tabular-nums; }
+
+/* a status lamp: lit green, breathing slowly */
+.cr-led {
+  display: inline-block; flex: none; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--phos); box-shadow: 0 0 6px var(--phos), 0 0 14px rgba(109, 255, 154, .5);
+  animation: cr-breathe 3.2s ease-in-out infinite;
+}
+@keyframes cr-breathe { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+.cr.is-down .cr-led { background: #3a2a22; box-shadow: none; animation: none; }
+
+.cr-main {
+  position: relative; z-index: 1; max-width: 1260px; margin: 0 auto;
+  padding: 0 max(clamp(1rem, 4vw, 2.6rem), env(safe-area-inset-right, 0px)) 0 max(clamp(1rem, 4vw, 2.6rem), env(safe-area-inset-left, 0px));
+}
+
+/* ───────────── monitors ─────────────
+   Every screen on the page sits in the same bezel: warm grey plastic
+   with a label strip and a power lamp, the way the workstations in the
+   room are. The glass inside is a little rounded, a little curved by its
+   vignette, and ruled with scanlines that sit over the content. */
+.cr-mon {
+  position: relative; margin: 0;
+  padding: 10px 12px 12px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #36342e, #23221e 60%, #1c1b18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .09),
+    inset 0 -2px 0 rgba(0, 0, 0, .45),
+    0 26px 50px -26px #000;
+}
+.cr-mon-label {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0 4px 9px;
+  font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: #b3ad9f;
+}
+.cr-mon-label > span:first-child { flex: 1; min-width: 0; }
+.cr-mon-note { color: var(--mute); letter-spacing: 0.12em; }
+
+.cr-screen {
+  position: relative; overflow: hidden;
+  border-radius: 12px / 16px;
+  background: radial-gradient(120% 100% at 50% 40%, #0a1a11, #030805 78%);
+  box-shadow:
+    inset 0 0 0 2px #0b0b09,
+    inset 0 0 40px rgba(0, 0, 0, .85),
+    inset 0 0 90px rgba(109, 255, 154, .05);
+  color: var(--phos);
+  transform-origin: 50% 50%;
+}
+/* the glass: a soft glare top left, scanlines over everything */
+.cr-screen::before, .cr-screen::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 3; border-radius: inherit; }
+.cr-screen::before { background: radial-gradient(70% 50% at 18% 6%, rgba(255, 255, 255, .06), transparent 60%); }
+.cr-screen::after  { background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .2) 0 1px, transparent 1px 3px); }
+.cr-screen--amber { color: var(--amber-2); background: radial-gradient(120% 100% at 50% 40%, #1d0f07, #070403 78%); }
+
+/* ───────────── hero ───────────── */
+.cr-hero {
+  display: grid; gap: clamp(1.4rem, 3vw, 2.4rem); align-items: center;
+  padding-top: clamp(1.6rem, 4.5vw, 3.2rem);
+}
+@media (min-width: 1000px) { .cr-hero { grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr); } }
+
+.cr-kicker { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--phos); }
+.cr-kicker::before { content: "● "; color: var(--phos); text-shadow: 0 0 8px var(--phos); }
+.cr-title {
+  margin-top: 0.6rem;
+  font-family: var(--head); font-weight: 800; font-stretch: 72%;
+  font-size: clamp(3rem, 8vw, 5.6rem); line-height: 0.88; letter-spacing: 0.005em; text-transform: uppercase;
+  color: #f4ead6;
+  text-shadow: 0 0 28px rgba(224, 100, 42, .25);
+}
+.cr-title span { display: block; }
+.cr-title span + span { color: var(--amber); }
+/* the black and orange stripe on every gate and maintenance door */
+.cr-hazard {
+  width: min(260px, 70%); height: 12px; margin-top: 1.1rem; border-radius: 2px;
+  background: repeating-linear-gradient(-45deg, var(--amber) 0 12px, #151510 12px 24px);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .6);
+}
+.cr-sub { margin-top: 1.1rem; max-width: 52ch; font-size: 0.92rem; line-height: 1.7; color: var(--dim); }
+
+/* the park clock */
+.cr-mon--clock { margin-top: 1.6rem; max-width: 440px; }
+.cr-mon--clock .cr-screen { padding: 0.9rem 1.1rem 1rem; }
+.cr-clock-k { font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--amber-2); }
+.cr-clock {
+  font-family: var(--crt); font-size: clamp(3.2rem, 9vw, 4.4rem); line-height: 1; letter-spacing: 0.04em;
+  color: #ffb27a; text-shadow: 0 0 10px rgba(255, 140, 70, .65), 0 0 28px rgba(224, 100, 42, .35);
+  font-variant-numeric: tabular-nums;
+}
+.cr-clock-meta { display: flex; flex-wrap: wrap; gap: 0.35rem 1.4rem; margin-top: 0.5rem; }
+.cr-clock-meta div { display: flex; flex-direction: column; }
+.cr-clock-meta dt { font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: #c08a66; }
+.cr-clock-meta dd { font-size: 0.86rem; color: var(--amber-3); font-variant-numeric: tabular-nums; }
+
+/* ───────────── the map ───────────── */
+.cr-mon--map .cr-screen { aspect-ratio: 4 / 3; }
+.cr-map { position: relative; z-index: 1; width: 100%; height: 100%; }
+/* the motion sensors' sweep, turning over the whole island */
+.cr-sweep {
+  position: absolute; left: 50%; top: 50%; z-index: 2; width: 170%; aspect-ratio: 1;
+  translate: -50% -50%; pointer-events: none; mix-blend-mode: screen;
+  background: conic-gradient(from 0deg, transparent 0 296deg, rgba(109, 255, 154, .05) 330deg, rgba(109, 255, 154, .16) 359deg, transparent 360deg);
+  animation: cr-turn 9s linear infinite;
+}
+@keyframes cr-turn { to { rotate: 360deg; } }
+
+.cr-sea path { fill: none; stroke: rgba(109, 255, 154, .07); stroke-width: 1; }
+.cr-surf { fill: none; stroke: rgba(109, 255, 154, .2); stroke-dasharray: 2 6; }
+.cr-land { fill: #082416; }
+.cr-tree { fill: none; stroke: rgba(109, 255, 154, .2); stroke-width: 1; }
+.cr-contour use { fill: none; stroke: rgba(109, 255, 154, .17); stroke-width: 1; }
+.cr-coast { fill: none; stroke: var(--phos); stroke-width: 1.8; filter: drop-shadow(0 0 3px rgba(109, 255, 154, .7)); }
+.cr-water { fill: rgba(95, 183, 208, .22); stroke: var(--water); stroke-width: 1.2; }
+.cr-river { fill: none; stroke: var(--water); stroke-width: 1.6; stroke-linecap: round; }
+
+/* a fence: a solid line with the current running along it as a dash */
+.cr-fence, .cr-fence rect {
+  fill: rgba(109, 255, 154, .06); stroke: var(--phos-2); stroke-width: 1.6;
+  stroke-dasharray: 7 3; animation: cr-current 1.6s linear infinite;
+  transition: stroke .3s, fill .3s;
+}
+.cr-fence--perim { fill: none; stroke: rgba(255, 154, 92, .5); stroke-width: 1; stroke-dasharray: 3 5; }
+.cr-fence--grid rect { stroke-width: 1.2; }
+.cr-fence--pen rect + rect { fill: none; stroke-dasharray: 3 3; }
+.cr-fence.is-hot, .cr-fence.is-hot rect { stroke: var(--amber-2); fill: rgba(224, 100, 42, .2); }
+.cr-fence--perim.is-hot { fill: none; stroke-width: 2; }
+@keyframes cr-current { to { stroke-dashoffset: -20; } }
+
+.cr-road { fill: none; stroke: var(--amber); stroke-width: 1.6; stroke-dasharray: 5 4; opacity: .85; }
+.cr-car rect { fill: #ffd27a; stroke: #2a1405; stroke-width: 1; filter: drop-shadow(0 0 4px rgba(255, 190, 90, .9)); }
+.cr-bldg { fill: rgba(109, 255, 154, .12); stroke: var(--phos); stroke-width: 1.2; }
+.cr-map-name { font-family: var(--mono); font-weight: 600; font-size: 22px; letter-spacing: 6px; fill: rgba(109, 255, 154, .6); }
+.cr-north path { fill: var(--phos); }
+.cr-north text { font-family: var(--mono); font-weight: 600; font-size: 20px; fill: var(--phos); text-anchor: middle; }
+
+/* the pins. The inner group is what scales, about the pin's own centre,
+   so the translate on the outer one is never overwritten */
+.cr-pin { cursor: pointer; }
+.cr-pin > g { transform-box: fill-box; transform-origin: center; transition: transform .35s var(--ease); }
+.cr-pin circle { fill: #04130b; stroke: var(--amber); stroke-width: 1.6; transition: fill .25s; }
+.cr-pin text { font-family: var(--mono); font-weight: 600; font-size: 14px; fill: #ffb27a; text-anchor: middle; transition: fill .25s; }
+.cr-pin.is-hot > g { transform: scale(1.3); }
+.cr-pin.is-hot circle { fill: var(--amber); stroke: #ffd2b0; }
+.cr-pin.is-hot text { fill: #170900; }
+
+.cr-map-key {
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; padding: 10px 4px 0;
+  font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: #b3ad9f;
+}
+.cr-map-key span { display: inline-flex; align-items: center; gap: 0.45rem; }
+.cr-key { display: inline-block; width: 22px; height: 0; }
+.cr-key--road { border-top: 2px dashed var(--amber); }
+.cr-key--fence { border-top: 2px dashed var(--phos-2); }
+.cr-key--car { width: 12px; height: 7px; border-radius: 2px; background: #ffd27a; box-shadow: 0 0 6px rgba(255, 190, 90, .8); }
+
+/* ───────────── headings ───────────── */
+.cr-h {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.3rem 0.9rem;
+  margin-bottom: 1.1rem;
+  font-family: var(--head); font-weight: 800; font-stretch: 75%; text-transform: uppercase;
+  font-size: clamp(1.6rem, 3.6vw, 2.3rem); line-height: 1; letter-spacing: 0.01em; color: #f4ead6;
+}
+.cr-h::before {
+  content: ""; align-self: center; width: 10px; height: 10px; border-radius: 2px;
+  background: var(--amber); box-shadow: 0 0 10px rgba(224, 100, 42, .7);
+}
+.cr-h span {
+  font-family: var(--mono); font-weight: 400; font-stretch: 100%; text-transform: none;
+  font-size: 0.82rem; letter-spacing: 0.02em; color: var(--mute);
+}
+.cr-h3 {
+  display: flex; flex-direction: column; gap: 0.2rem; margin-bottom: 0.9rem;
+  font-family: var(--head); font-weight: 700; font-stretch: 80%; text-transform: uppercase;
+  font-size: 1.15rem; letter-spacing: 0.04em; color: #f4ead6;
+}
+.cr-h3 span { font-family: var(--mono); font-weight: 400; font-stretch: 100%; text-transform: none; font-size: 0.78rem; letter-spacing: 0.02em; color: var(--mute); }
+.cr-h3--screen { font-family: var(--mono); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.22em; color: var(--phos); }
+
+.cr-dir, .cr-unix, .cr-status, .cr-pair { margin-top: clamp(2.6rem, 6vw, 4.2rem); }
+
+/* ───────────── the directory ───────────── */
+.cr-rooms {
+  list-style: none; display: grid; gap: 0.6rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(330px, 100%), 1fr));
+}
+.cr-room {
+  position: relative; display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 0.9rem; align-items: center;
+  min-height: 76px; height: 100%; padding: 0.75rem 2rem 0.75rem 0.75rem;
+  border: 1px solid rgba(109, 255, 154, .14); border-radius: 6px;
+  background: linear-gradient(180deg, rgba(16, 26, 19, .92), rgba(8, 13, 10, .92));
+  transition: border-color .25s, background .25s, translate .35s var(--ease);
+}
+.cr-room-n {
+  grid-row: span 3; display: grid; place-items: center; height: 52px; border-radius: 4px;
+  font-family: var(--crt); font-size: 2rem; line-height: 1; color: #ffb27a;
+  background: #120a05; box-shadow: inset 0 0 0 1px rgba(224, 100, 42, .45), inset 0 0 14px rgba(224, 100, 42, .18);
+  text-shadow: 0 0 8px rgba(255, 140, 70, .6);
+}
+.cr-room b { font-family: var(--head); font-weight: 700; font-stretch: 82%; font-size: 1.08rem; letter-spacing: 0.01em; color: var(--ink); line-height: 1.2; }
+.cr-room i { font-style: normal; font-size: 0.8rem; line-height: 1.4; color: var(--dim); }
+.cr-room em { font-style: normal; font-size: 0.7rem; color: var(--phos-3); overflow-wrap: anywhere; }
+/* each room's fence lamp, top right */
+.cr-room::after {
+  content: ""; position: absolute; top: 12px; right: 12px; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--phos); box-shadow: 0 0 6px var(--phos);
+}
+.cr-room:hover, .cr-room:focus-visible, .cr-room.is-hot {
+  border-color: var(--amber); translate: 0 -2px;
+  background: linear-gradient(180deg, rgba(48, 26, 12, .95), rgba(16, 10, 6, .95));
+}
+.cr-room:focus-visible { outline-offset: 2px; }
+
+/* ───────────── the file system ───────────── */
+.cr-unix-grid { display: grid; gap: clamp(1.2rem, 2.6vw, 1.8rem); align-items: start; }
+@media (min-width: 1000px) { .cr-unix-grid { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); } }
+.cr-screen--fsn { aspect-ratio: 16 / 10; background: #02060a; }
+.cr-fsn { position: relative; z-index: 1; display: block; width: 100%; height: 100%; touch-action: pan-y; cursor: grab; }
+.cr-fsn.is-dragging { cursor: grabbing; }
+.cr-fsn.is-over { cursor: pointer; }
+/* the status line under the screen: where the camera is, and a real link there */
+.cr-fsn-status {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "path go" "what go";
+  column-gap: 1rem; row-gap: 0.15rem; align-items: center;
+  margin-top: 10px; padding: 0.7rem 0.8rem; border-radius: 8px;
+  background: #0d0f0c; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .05);
+}
+.cr-fsn-path { grid-area: path; font-size: 0.74rem; color: var(--amber-2); overflow-wrap: anywhere; }
+.cr-fsn-what { grid-area: what; display: flex; flex-wrap: wrap; gap: 0.1rem 0.7rem; align-items: baseline; min-width: 0; }
+.cr-fsn-what b { font-family: var(--head); font-weight: 700; font-stretch: 82%; font-size: 1.02rem; color: var(--ink); }
+.cr-fsn-what i { font-style: normal; font-size: 0.78rem; color: var(--dim); }
+.cr-fsn-go {
+  grid-area: go; display: inline-flex; align-items: center; gap: 0.45rem; min-height: 44px; padding: 0 1.1rem;
+  border: 1px solid var(--amber); border-radius: 100px;
+  font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber-2); white-space: nowrap;
+  transition: background .25s, color .25s;
+}
+.cr-fsn-go:hover, .cr-fsn-go:focus-visible { background: var(--amber); color: #170900; }
+
+.cr-hosts-wrap {
+  padding: clamp(1rem, 2.4vw, 1.4rem); border-radius: 10px;
+  border: 1px solid var(--line); background: rgba(8, 13, 10, .9);
+}
+.cr-hosts { list-style: none; display: flex; flex-direction: column; }
+.cr-host {
+  display: grid; grid-template-columns: 7.4rem minmax(0, 1fr); grid-template-areas: "perm name" "path sub";
+  column-gap: 0.9rem; row-gap: 0.05rem; align-items: baseline;
+  min-height: 44px; padding: 0.55rem 0.5rem; border-radius: 4px;
+  border-top: 1px dashed rgba(109, 255, 154, .12);
+  transition: background .2s;
+}
+.cr-hosts li:first-child .cr-host { border-top: 0; }
+.cr-perm { grid-area: perm; font-size: 0.7rem; color: var(--mute); }
+.cr-host em { grid-area: path; font-style: normal; font-size: 0.7rem; color: var(--phos-3); }
+.cr-host b { grid-area: name; font-family: var(--head); font-weight: 700; font-stretch: 82%; font-size: 1.02rem; color: var(--ink); }
+.cr-host i { grid-area: sub; font-style: normal; font-size: 0.8rem; color: var(--dim); }
+.cr-host:hover, .cr-host:focus-visible, .cr-host.is-hot { background: rgba(224, 100, 42, .14); }
+.cr-host:hover b, .cr-host:focus-visible b, .cr-host.is-hot b { color: var(--amber-3); }
+
+/* ───────────── park status ───────────── */
+.cr-status-grid { display: grid; gap: clamp(1rem, 2.4vw, 1.6rem); }
+@media (min-width: 860px) { .cr-status-grid { grid-template-columns: 1fr 1fr; } }
+.cr-screen--list { display: flex; flex-direction: column; height: 100%; padding: 1rem 1.1rem 1.1rem; }
+.cr-status-grid .cr-mon { display: flex; flex-direction: column; }
+.cr-status-grid .cr-screen { flex: 1; }
+
+.cr-fences { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.cr-fences li {
+  display: grid; grid-template-columns: minmax(0, 1fr) 110px auto; gap: 0.8rem; align-items: center;
+  font-size: 0.84rem; color: var(--phos);
+}
+.cr-fences span { color: #c9ffd9; }
+.cr-fences b { font-weight: 500; font-variant-numeric: tabular-nums; text-shadow: 0 0 6px rgba(109, 255, 154, .5); }
+/* the voltage, as a segmented bar whose last cells flicker */
+.cr-volt {
+  position: relative; height: 9px;
+  background: repeating-linear-gradient(90deg, var(--phos-2) 0 7px, transparent 7px 10px);
+  box-shadow: 0 0 8px rgba(109, 255, 154, .25);
+}
+.cr-volt::after {
+  content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 30%;
+  background: repeating-linear-gradient(90deg, #b8ffd0 0 7px, transparent 7px 10px);
+  animation: cr-hum 1.3s steps(3) infinite;
+}
+.cr-fences li:nth-child(2n) .cr-volt::after { animation-duration: 1.7s; }
+.cr-fences li:nth-child(3n) .cr-volt::after { animation-duration: 1.1s; animation-delay: -.4s; }
+@keyframes cr-hum { 0% { opacity: .9; } 33% { opacity: .25; } 66% { opacity: .6; } 100% { opacity: .9; } }
+
+/* the oscilloscope: the trace is drawn twice end to end and slides one
+   length left, so the loop has no seam */
+.cr-scope { margin-top: auto; padding-top: 1.1rem; }
+.cr-scope svg { width: 100%; height: 70px; overflow: hidden; border: 1px solid rgba(109, 255, 154, .22); border-radius: 3px; background: rgba(109, 255, 154, .03); }
+.cr-scope-grid { fill: none; stroke: rgba(109, 255, 154, .12); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.cr-scope-trace {
+  fill: none; stroke: var(--phos); stroke-width: 1.6; vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 3px rgba(109, 255, 154, .8));
+  animation: cr-scope 4s linear infinite;
+}
+@keyframes cr-scope { to { transform: translateX(-400px); } }
+.cr-scope figcaption { margin-top: 0.45rem; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--phos-3); }
+
+.cr-sensors {
+  display: flex; align-items: center; gap: 0.9rem; margin-bottom: 0.8rem; padding-bottom: 0.8rem;
+  border-bottom: 1px dashed rgba(109, 255, 154, .2);
+}
+.cr-sensor-orb { flex: none; width: 60px; height: auto; aspect-ratio: 1; }
+.cr-sensors figcaption { display: flex; flex-direction: column; font-size: 0.86rem; color: #c9ffd9; }
+.cr-sensors figcaption i { font-style: normal; font-size: 0.74rem; color: var(--phos-3); }
+.cr-sys { display: flex; flex-direction: column; gap: 0.4rem; }
+.cr-sys div { display: flex; align-items: baseline; gap: 0.5rem; font-size: 0.84rem; }
+/* dotted leaders between the name and the reading, like a printout */
+.cr-sys dt { color: #c9ffd9; display: flex; flex: 1; gap: 0.5rem; align-items: baseline; }
+.cr-sys dt::after { content: ""; flex: 1; border-bottom: 1px dotted rgba(109, 255, 154, .35); translate: 0 -0.25em; }
+.cr-sys dd { color: var(--phos); text-shadow: 0 0 6px rgba(109, 255, 154, .5); }
+.cr-sys-warn dt { color: var(--amber-3); }
+.cr-sys-warn a {
+  display: inline-flex; align-items: center; min-height: 44px; margin: -0.8rem 0;
+  color: var(--amber-2); text-decoration: underline; text-underline-offset: 3px; text-shadow: 0 0 8px rgba(255, 140, 70, .5);
+  animation: cr-blink 1.4s steps(2) infinite;
+}
+@keyframes cr-blink { 50% { opacity: .55; } }
+
+/* ───────────── security and the file, side by side ───────────── */
+.cr-pair { display: grid; gap: clamp(2.6rem, 4vw, 2rem); align-items: start; }
+@media (min-width: 1000px) {
+  .cr-pair { grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr); gap: clamp(1.4rem, 3vw, 2.2rem); }
+  .cr-sec { position: sticky; top: 1.4rem; }
+}
+
+/* Nedry's Macintosh: a platinum bezel round one System 7 window, black
+   type on white, the opposite of every other screen in the room */
+.cr-mac {
+  position: relative; padding: 14px 14px 18px; border-radius: 14px;
+  background: linear-gradient(180deg, #e2dccb, #c9c2ae);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .7), inset 0 -3px 0 rgba(0, 0, 0, .18), 0 26px 50px -26px #000;
+}
+.cr-mac-bar {
+  position: relative; display: flex; align-items: center; justify-content: center; height: 24px;
+  border: 1px solid #000; border-bottom: 0; background-color: #fff;
+  background-image: repeating-linear-gradient(180deg, transparent 0 4px, #000 4px 5px, transparent 5px 6px);
+  background-size: 100% 14px; background-position: 0 5px; background-repeat: no-repeat;
+}
+.cr-mac-bar b { position: relative; padding: 0 0.6rem; background: #fff; font-family: var(--mono); font-weight: 600; font-size: 0.76rem; color: #000; }
+.cr-mac-box { position: absolute; left: 10px; width: 13px; height: 13px; background: #fff; border: 1px solid #000; }
+.cr-mac-box--r { left: auto; right: 10px; }
+.cr-mac-screen {
+  position: relative; display: flex; flex-direction: column;
+  height: clamp(300px, 34vw, 430px); overflow-y: auto; overscroll-behavior: contain;
+  padding: 0.8rem 0.9rem 0.6rem; border: 1px solid #000; background: #fbfbf6;
+  box-shadow: 2px 2px 0 #000;
+  font-family: var(--mono); font-size: 0.86rem; line-height: 1.5; color: #111;
+}
+.cr-term-log p, .cr-term-flood p { white-space: pre-wrap; overflow-wrap: anywhere; }
+.cr-term-log .is-cmd { color: #000; font-weight: 600; }
+.cr-term-log .is-deny { color: #8a1c0c; }
+.cr-term-log .is-note { color: #4d4d48; }
+.cr-term-flood p { font-weight: 600; letter-spacing: 0.02em; }
+.cr-term-form { display: flex; align-items: center; gap: 0.5rem; margin-top: auto; padding-top: 0.4rem; border-top: 1px dotted #9a9a90; }
+.cr-term-ps { font-weight: 600; }
+.cr-term-in {
+  flex: 1; min-width: 0; min-height: 44px; border: 0; background: transparent; outline: none;
+  font-family: var(--mono); font-size: 1rem; color: #000; caret-color: #000;
+}
+.cr-term-in::placeholder { color: #6c6c64; }
+.cr-term-form:focus-within { box-shadow: inset 0 -2px 0 #000; }
+
+/* ah ah ah: a small window that pops up over the flood and wags at you */
+.cr-ahah {
+  position: absolute; right: 30px; bottom: 82px; z-index: 4;
+  padding: 0.5rem 0.9rem; border: 1px solid #000; background: #fff; box-shadow: 3px 3px 0 #000;
+  font-family: var(--head); font-weight: 800; font-stretch: 80%; font-size: 1.5rem; text-transform: uppercase; color: #000;
+  opacity: 0; visibility: hidden; transform-origin: 50% 100%;
+}
+.cr-ahah span { display: inline-block; }
+.cr-mac.is-flood .cr-ahah { opacity: 1; visibility: visible; animation: cr-wag .9s ease-in-out 8; }   /* about seven seconds, then it just stares */
+.cr-mac.is-flood .cr-ahah span:nth-child(2) { animation: cr-pop .9s ease-in-out 8 .3s; }
+.cr-mac.is-flood .cr-ahah span:nth-child(3) { animation: cr-pop .9s ease-in-out 8 .6s; }
+@keyframes cr-wag { 0%, 100% { rotate: -5deg; } 50% { rotate: 5deg; } }
+@keyframes cr-pop { 0%, 100% { translate: 0 0; } 30% { translate: 0 -4px; } }
+
+.cr-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+.cr-chip {
+  min-height: 44px; padding: 0 0.95rem; border-radius: 6px; cursor: pointer;
+  border: 1px solid rgba(224, 100, 42, .55); background: rgba(224, 100, 42, .06);
+  font-family: var(--mono); font-size: 0.8rem; color: var(--amber-3);
+  transition: background .2s, color .2s, border-color .2s;
+}
+.cr-chip:hover, .cr-chip:focus-visible { background: var(--amber); border-color: var(--amber); color: #170900; }
+
+/* the personnel file, on green-bar paper with the tractor holes still on */
+.cr-print {
+  position: relative; padding: 1.1rem 2.6rem 1.4rem; color: #15241a;
+  background: repeating-linear-gradient(180deg, #dcebd8 0 3.6rem, #f5f5ec 3.6rem 7.2rem);
+  box-shadow: 0 26px 50px -26px #000;
+}
+.cr-print::before, .cr-print::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 26px;
+  background: radial-gradient(circle at 50% 50%, var(--night) 0 4.5px, transparent 5px) 0 6px / 26px 26px repeat-y;
+}
+.cr-print::before { left: 0; border-right: 1px dashed rgba(21, 36, 26, .3); }
+.cr-print::after  { right: 0; border-left: 1px dashed rgba(21, 36, 26, .3); }
+.cr-print-head {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.2rem 1rem;
+  padding-bottom: 0.6rem; margin-bottom: 0.4rem; border-bottom: 2px solid #15241a;
+  font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
+}
+.cr-rec div { display: grid; grid-template-columns: 11.5em minmax(0, 1fr); gap: 0.8rem; padding: 0.42rem 0; border-bottom: 1px dotted rgba(21, 36, 26, .28); }
+.cr-rec dt { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: #3f5245; padding-top: 0.15em; }
+.cr-rec dd { font-size: 0.86rem; line-height: 1.45; color: #0d1710; }
+.cr-rec a { color: #7a2c0a; text-decoration: underline; text-underline-offset: 2px; display: inline-block; padding: 0.6rem 0; margin: -0.6rem 0; }
+
+/* ───────────── the reboot ───────────── */
+.cr-reboot { margin-top: clamp(3rem, 7vw, 5rem); text-align: center; }
+.cr-reboot-k { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--mute); }
+.cr-butts {
+  display: inline-flex; align-items: center; gap: 1rem; margin-top: 1rem;
+  padding: 0.75rem 1.6rem 0.75rem 0.75rem; border-radius: 10px; cursor: pointer;
+  border: 2px solid var(--amber); background: linear-gradient(180deg, #1e110a, #0e0805);
+  box-shadow: 0 0 0 4px rgba(224, 100, 42, .12), 0 18px 40px -18px rgba(224, 100, 42, .5);
+  transition: background .3s, box-shadow .3s;
+}
+.cr-butts-t {
+  font-family: var(--head); font-weight: 800; font-stretch: 75%; text-transform: uppercase;
+  font-size: clamp(1.25rem, 3.4vw, 1.7rem); letter-spacing: 0.02em; color: #ffd8bd; text-align: left;
+}
+/* the switch under a hinged guard, striped; the guard lifts on hover */
+.cr-guard {
+  position: relative; flex: none; width: 52px; height: 52px; border-radius: 6px; perspective: 160px;
+  background: radial-gradient(circle at 50% 45%, #ff6a4a, #b0200c 60%, #4a0a02);
+  box-shadow: inset 0 0 0 2px #2a0802, 0 0 16px rgba(255, 80, 40, .45);
+}
+.cr-guard i {
+  position: absolute; inset: -3px; border-radius: 6px; transform-origin: 50% 0;
+  background: repeating-linear-gradient(-45deg, var(--hazard) 0 7px, #151510 7px 14px);
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, .5);
+  opacity: .92;
+  transition: transform .45s var(--ease);
+}
+.cr-butts:hover, .cr-butts:focus-visible { background: linear-gradient(180deg, #33180a, #160b06); box-shadow: 0 0 0 6px rgba(224, 100, 42, .2), 0 18px 46px -14px rgba(224, 100, 42, .7); }
+.cr-butts:hover .cr-guard i, .cr-butts:focus-visible .cr-guard i { transform: rotateX(72deg); }
+.cr-reboot-by { margin-top: 0.8rem; font-size: 0.74rem; color: var(--mute); }
+
+/* ───────────── powering down ─────────────
+   control-room.js adds .is-down, gives every screen a staggered --off, and
+   a moment later .is-ended. Each screen collapses to a line, the line to a
+   dot, and the dot goes out: the way a tube switches off. */
+.cr.is-down .cr-screen, .cr.is-down .cr-mac-screen { animation: cr-off .55s ease-in var(--off, 0s) forwards; }
+@keyframes cr-off {
+  0%   { transform: none; filter: none; opacity: 1; }
+  40%  { transform: scale(1, .006); filter: brightness(3); opacity: 1; }
+  75%  { transform: scale(.004, .006); filter: brightness(5); opacity: 1; }
+  100% { transform: scale(0, 0); opacity: 0; }
+}
+.cr.is-down .cr-main, .cr.is-down .cr-top { transition: opacity .8s ease .9s; opacity: 0; }
+.cr.is-down .cr-field { transition: opacity 1s ease; opacity: .2; }
+
+.cr-end {
+  position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; overflow-y: auto;
+  padding: calc(2rem + env(safe-area-inset-top, 0px)) max(1rem, env(safe-area-inset-right, 0px)) calc(2rem + env(safe-area-inset-bottom, 0px)) max(1rem, env(safe-area-inset-left, 0px));
+  background: radial-gradient(60% 50% at 50% 40%, #07100b, #010302 75%);
+  text-align: center;
+  opacity: 0; visibility: hidden; transition: opacity 1s ease, visibility 0s linear 1s;
+}
+.cr.is-ended .cr-end { opacity: 1; visibility: visible; transition: opacity 1s ease, visibility 0s; }
+.cr-end-in { max-width: 560px; }
+.cr-end-log { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.3rem 1rem; font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
+.cr-end-log b { font-weight: 600; color: #ff7a5a; }
+.cr.is-ended .cr-end-log li { animation: cr-type .4s steps(6) both; }
+.cr.is-ended .cr-end-log li:nth-child(2) { animation-delay: .25s; }
+.cr.is-ended .cr-end-log li:nth-child(3) { animation-delay: .5s; }
+.cr.is-ended .cr-end-log li:nth-child(4) { animation-delay: .75s; }
+.cr.is-ended .cr-end-log li:nth-child(5) { animation-delay: 1s; }
+@keyframes cr-type { from { opacity: 0; } to { opacity: 1; } }
+.cr-end-orb { display: block; width: 96px; height: 96px; margin: 1.8rem auto 1.2rem; opacity: .9; }
+.cr:not(.is-ended) .cr-end-orb { display: none; }
+.cr-end-k { font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--phos); }
+.cr-end-t {
+  margin-top: 0.5rem; font-family: var(--head); font-weight: 800; font-stretch: 72%; text-transform: uppercase;
+  font-size: clamp(2.2rem, 7vw, 3.8rem); line-height: 0.95; color: #f4ead6; text-wrap: balance;
+}
+.cr-end-p { margin: 1rem auto 0; max-width: 46ch; text-wrap: pretty; font-size: 0.9rem; line-height: 1.65; color: var(--dim); }
+.cr-end-acts { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; margin-top: 1.8rem; }
+.cr-end-home, .cr-end-on {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 1.3rem; border-radius: 100px;
+  font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer;
+  transition: background .25s, color .25s;
+}
+.cr-end-home { background: var(--amber); color: #170900; border: 1px solid var(--amber); }
+.cr-end-home:hover, .cr-end-home:focus-visible { background: #ff8a4c; }
+.cr-end-on { background: transparent; color: var(--phos); border: 1px solid rgba(109, 255, 154, .45); }
+.cr-end-on:hover, .cr-end-on:focus-visible { background: rgba(109, 255, 154, .12); }
+
+/* ───────────── phones ─────────────
+   Nothing is hidden or folded: the columns stack, the map's pins grow so
+   their numbers stay readable at a third of the size, and the rows that
+   sat side by side wrap under each other. */
+@media (max-width: 640px) {
+  .cr-top { font-size: 0.66rem; letter-spacing: 0.12em; }
+  .cr-top-mid { order: 3; width: 100%; color: var(--mute); }
+  .cr-pin > g { transform: scale(1.6); }
+  .cr-pin.is-hot > g { transform: scale(1.85); }
+  .cr-map-key { font-size: 0.66rem; }
+  .cr-mon-note { display: block; }
+  .cr-mon-label { flex-wrap: wrap; row-gap: 0.25rem; }
+  .cr-mon-label > span:first-child { flex-basis: calc(100% - 20px); }
+  .cr-mon-label .cr-led { order: -1; }
+  .cr-screen--fsn { aspect-ratio: 1 / 1; }
+  .cr-fsn-status { grid-template-columns: minmax(0, 1fr); grid-template-areas: "path" "what" "go"; row-gap: 0.4rem; }
+  .cr-fsn-go { justify-content: center; }
+  .cr-fences li { grid-template-columns: minmax(0, 1fr) auto; row-gap: 0.3rem; }
+  .cr-fences .cr-volt { grid-column: 1 / -1; grid-row: 2; }
+  .cr-print { padding: 1rem 2.1rem 1.2rem; }
+  .cr-print::before, .cr-print::after { width: 20px; background-size: 20px 26px; }
+  .cr-rec div { grid-template-columns: minmax(0, 1fr); gap: 0.1rem; }
+  .cr-butts { width: 100%; justify-content: flex-start; }
+  .cr-ahah { font-size: 1.2rem; right: 24px; bottom: 80px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cr-storm, .cr-led, .cr-sweep, .cr-fence, .cr-fence rect, .cr-volt::after, .cr-sys-warn a, .cr-scope-trace,
+  .cr-mac.is-flood .cr-ahah, .cr-mac.is-flood .cr-ahah span, .cr.is-ended .cr-end-log li { animation: none; }
+  .cr-sweep { display: none; }
+  .cr-room, .cr-pin > g, .cr-guard i { transition: none; }
+  .cr-room:hover, .cr-room:focus-visible, .cr-room.is-hot { translate: none; }
+  /* the screens simply go dark instead of collapsing */
+  .cr.is-down .cr-screen, .cr.is-down .cr-mac-screen { animation: none; opacity: 0; }
+  .cr.is-down .cr-main, .cr.is-down .cr-top, .cr.is-down .cr-field { transition: none; }
+  .cr-end, .cr.is-ended .cr-end { transition: none; }
+}

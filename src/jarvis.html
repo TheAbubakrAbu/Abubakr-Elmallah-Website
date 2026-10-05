@@ -20,7 +20,7 @@ standalone: true
   .jv-bar i { width: var(--v, 0%) !important; }
 </style></noscript>
 </head>
-<body class="jv">
+<body class="jv" data-phase="avengers" data-stone="none">
 
 <!-- ═══════════ boot ═══════════ -->
 <div class="jv-boot" id="jvBoot">
@@ -110,7 +110,7 @@ standalone: true
         <div class="jv-mod-h"><span class="jv-dot"></span>Languages · Online</div>
         <div class="jv-rows">
           <div class="jv-row"><span>Primary</span><span>SWIFT · SWIFTUI</span></div>
-          <div class="jv-row"><span>Secondary</span><span>PYTHON · C++ · JAVA</span></div>
+          <div class="jv-row"><span>Secondary</span><span>PYTHON · C · C++ · JAVA</span></div>
           <div class="jv-row"><span>Tertiary</span><span>JAVASCRIPT · BASH</span></div>
           <div class="jv-row"><span>Targets</span><span>iOS · iPadOS · watchOS · macOS</span></div>
           <div class="jv-row"><span>Session</span><span id="jvUptime">00H 00M 00S</span></div>
@@ -136,9 +136,25 @@ standalone: true
           <a class="jv-link" href="/travels/"><i></i>Travels<em>MAP</em></a>
           <a class="jv-link" href="/accents/"><i></i>Accents<em>VOICES</em></a>
           <a class="jv-link" href="/gaming/"><i></i>Gaming<em>STEAM</em></a>
+          <a class="jv-link" href="/lightsabers/"><i></i>Lightsabers<em>GUIDE</em></a>
           <a class="jv-link" href="/elmallah/"><i></i>E.L.M.A.L.L.A.H.<em>TERMINAL</em></a>
           <a class="jv-link" href="/holocron/"><i></i>Holocron<em>TERMINAL</em></a>
           <a class="jv-link" href="/marauders-map/"><i></i>Marauder’s Map<em>TERMINAL</em></a>
+          <a class="jv-link" href="/crafting-table/"><i></i>Crafting Table<em>TERMINAL</em></a>
+          <a class="jv-link" href="/citadel/"><i></i>The Citadel<em>TERMINAL</em></a>
+          <a class="jv-link" href="/compass/"><i></i>The Compass<em>TERMINAL</em></a>
+          <a class="jv-link" href="/control-room/"><i></i>The Control Room<em>TERMINAL</em></a>
+          <a class="jv-link" href="/upside-down/"><i></i>The Upside Down<em>TERMINAL</em></a>
+          <a class="jv-link" href="/starcourt/"><i></i>Starcourt<em>TERMINAL</em></a>
+          <a class="jv-link" href="/spirit-library/"><i></i>The Spirit Library<em>TERMINAL</em></a>
+          <a class="jv-link" href="/monastery/"><i></i>The Monastery<em>TERMINAL</em></a>
+          <a class="jv-link" href="/wanted/"><i></i>The Wanted Board<em>TERMINAL</em></a>
+          <a class="jv-link" href="/dunder-mifflin/"><i></i>Dunder Mifflin<em>TERMINAL</em></a>
+          <a class="jv-link" href="/springfield/"><i></i>Springfield<em>TERMINAL</em></a>
+          <a class="jv-link" href="/vought/"><i></i>Vought Tower<em>TERMINAL</em></a>
+          <a class="jv-link" href="/pokedex/"><i></i>The Pokédex<em>TERMINAL</em></a>
+          <a class="jv-link" href="/batcomputer/"><i></i>The Batcomputer<em>TERMINAL</em></a>
+          <a class="jv-link" href="/daily-bugle/"><i></i>The Daily Bugle<em>TERMINAL</em></a>
         </nav>
       </article>
 
@@ -221,6 +237,138 @@ standalone: true
         </div>
       </article>
 
+      <!-- ─────── threat assessment ───────
+           The saga's four villain eras, one at a time, with the scale each
+           one was fought at: city, world, universe, multiverse. The scale is
+           the whole point of the module, because it is the one number that
+           actually goes up across twenty-five years of films. Radio buttons
+           rather than <button>s: it is a choice of one from four, which is
+           what a radio group already means to the keyboard and to a screen
+           reader, and it needs no JS to be correct. jarvis.js lights the
+           chosen panel; with JS off the checked one is the one that shows. -->
+      <article class="jv-mod jv-threat" id="jvThreat">
+        <div class="jv-mod-h"><span class="jv-dot"></span>Threat Assessment</div>
+        <fieldset class="jv-ph-rail">
+          <legend class="vh">Which phase</legend>
+          <label class="jv-ph-tab is-on" for="jvPh1">
+            <input class="vh" type="radio" name="jvPhase" id="jvPh1" value="0" checked />
+            <b>Avengers</b><i>2012 &#183; 2015</i>
+          </label>
+          <label class="jv-ph-tab" for="jvPh2">
+            <input class="vh" type="radio" name="jvPhase" id="jvPh2" value="1" />
+            <b>Infinity War</b><i>2018 &#183; 2019</i>
+          </label>
+          <label class="jv-ph-tab" for="jvPh3">
+            <input class="vh" type="radio" name="jvPhase" id="jvPh3" value="2" />
+            <b>Kang Dynasty</b><i>cancelled</i>
+          </label>
+          <label class="jv-ph-tab" for="jvPh4">
+            <input class="vh" type="radio" name="jvPhase" id="jvPh4" value="3" />
+            <b>Doomsday</b><i>2026 &#183; 2027</i>
+          </label>
+        </fieldset>
+
+        <div class="jv-ph-panel is-on" data-jv-phase="0">
+          <div class="jv-ph-top">
+            <span class="jv-ph-who">LOKI &#183; ULTRON</span>
+            <span class="jv-ph-scale" data-lvl="1">CITY &#8594; WORLD</span>
+          </div>
+          <div class="jv-bar" style="--v:30%"><i></i></div>
+          <div class="jv-rows" style="margin-top:0.7rem">
+            <div class="jv-row"><span>The Avengers</span><span>CITY LEVEL &#183; MANHATTAN</span></div>
+            <div class="jv-row"><span>Age of Ultron</span><span>WORLD LEVEL &#183; SOKOVIA</span></div>
+            <div class="jv-row"><span>Assets lost</span><span>J.A.R.V.I.S. &#8594; VISION</span></div>
+          </div>
+          <p class="jv-ph-note">A god with a sceptre and an army through a hole in the sky, stopped over
+            roughly eight blocks. Then Stark builds the second one himself and it tries to drop a
+            country, which is the first time the scale goes past one city.</p>
+        </div>
+
+        <div class="jv-ph-panel" data-jv-phase="1" hidden>
+          <div class="jv-ph-top">
+            <span class="jv-ph-who">THANOS</span>
+            <span class="jv-ph-scale" data-lvl="2">UNIVERSE</span>
+          </div>
+          <div class="jv-bar" style="--v:65%"><i></i></div>
+          <div class="jv-rows" style="margin-top:0.7rem">
+            <div class="jv-row"><span>Infinity War</span><span>UNIVERSE LEVEL</span></div>
+            <div class="jv-row"><span>Endgame</span><span>UNIVERSE LEVEL &#183; 5 YEARS</span></div>
+            <div class="jv-row"><span>Casualties</span><span>50% OF ALL LIFE</span></div>
+          </div>
+          <p class="jv-ph-note">Six stones and one snap: half of everything, everywhere, at once. The only
+            villain in the saga who wins, holds it for five years, and gets the arc while the heroes get
+            the losses.</p>
+        </div>
+
+        <div class="jv-ph-panel" data-jv-phase="2" hidden>
+          <div class="jv-ph-top">
+            <span class="jv-ph-who">KANG</span>
+            <span class="jv-ph-scale" data-lvl="3">MULTIVERSE</span>
+          </div>
+          <div class="jv-bar" style="--v:100%"><i></i></div>
+          <div class="jv-rows" style="margin-top:0.7rem">
+            <div class="jv-row"><span>Quantumania</span><span>MULTIVERSE LEVEL</span></div>
+            <div class="jv-row"><span>Loki</span><span>ALL TIMELINES &#183; TVA</span></div>
+            <div class="jv-row"><span>Status</span><span>CANCELLED 2023</span></div>
+          </div>
+          <p class="jv-ph-note">Set up across Quantumania and Loki as the saga's next Thanos: not one
+            villain but every variant of him, at war with himself across all of it. Dropped when Marvel
+            parted ways with Jonathan Majors, and the Multiverse Saga lost its ending.</p>
+        </div>
+
+        <div class="jv-ph-panel" data-jv-phase="3" hidden>
+          <div class="jv-ph-top">
+            <span class="jv-ph-who">DOOM</span>
+            <span class="jv-ph-scale" data-lvl="3">MULTIVERSE</span>
+          </div>
+          <div class="jv-bar" style="--v:100%"><i></i></div>
+          <div class="jv-rows" style="margin-top:0.7rem">
+            <div class="jv-row"><span>Doomsday</span><span>MULTIVERSE LEVEL &#183; 2026</span></div>
+            <div class="jv-row"><span>Secret Wars</span><span>MULTIVERSE LEVEL &#183; 2027</span></div>
+            <div class="jv-row"><span>Operator</span><span>R. DOWNEY JR. &#183; RECAST</span></div>
+          </div>
+          <p class="jv-ph-note">The replacement villain, with the man who played Tony Stark for eleven
+            years coming back as Victor von Doom instead. Recasting your dead lead as your new villain is
+            a genuinely extraordinary thing to try.</p>
+        </div>
+
+        <!-- the Gauntlet: six stones and none. Picking one runs the whole HUD
+             in that stone's colour, over the top of whatever the phase is;
+             "none" hands it back to the phase. -->
+        <fieldset class="jv-stones" id="jvStones">
+          <legend class="vh">Infinity Stone</legend>
+          <label class="jv-stone jv-stone--none is-on" for="jvStNone" title="No stone">
+            <input class="vh" type="radio" name="jvStone" id="jvStNone" value="none" checked />
+            <i aria-hidden="true"></i><span class="vh">No stone</span>
+          </label>
+          <label class="jv-stone" for="jvStSpace" style="--sc:#4f8fe0" title="Space Stone &#183; the Tesseract">
+            <input class="vh" type="radio" name="jvStone" id="jvStSpace" value="space" />
+            <i aria-hidden="true"></i><span class="vh">Space Stone</span>
+          </label>
+          <label class="jv-stone" for="jvStMind" style="--sc:#f0d040" title="Mind Stone &#183; the sceptre, then Vision">
+            <input class="vh" type="radio" name="jvStone" id="jvStMind" value="mind" />
+            <i aria-hidden="true"></i><span class="vh">Mind Stone</span>
+          </label>
+          <label class="jv-stone" for="jvStReality" style="--sc:#e0483a" title="Reality Stone &#183; the Aether">
+            <input class="vh" type="radio" name="jvStone" id="jvStReality" value="reality" />
+            <i aria-hidden="true"></i><span class="vh">Reality Stone</span>
+          </label>
+          <label class="jv-stone" for="jvStPower" style="--sc:#b06fd8" title="Power Stone &#183; the Orb">
+            <input class="vh" type="radio" name="jvStone" id="jvStPower" value="power" />
+            <i aria-hidden="true"></i><span class="vh">Power Stone</span>
+          </label>
+          <label class="jv-stone" for="jvStTime" style="--sc:#5fd07f" title="Time Stone &#183; the Eye of Agamotto">
+            <input class="vh" type="radio" name="jvStone" id="jvStTime" value="time" />
+            <i aria-hidden="true"></i><span class="vh">Time Stone</span>
+          </label>
+          <label class="jv-stone" for="jvStSoul" style="--sc:#f0963c" title="Soul Stone &#183; Vormir">
+            <input class="vh" type="radio" name="jvStone" id="jvStSoul" value="soul" />
+            <i aria-hidden="true"></i><span class="vh">Soul Stone</span>
+          </label>
+        </fieldset>
+        <p class="jv-stone-n" id="jvStoneN">No stone held &#183; HUD running on the phase</p>
+      </article>
+
       <article class="jv-mod">
         <div class="jv-mod-h"><span class="jv-dot"></span>Deployments</div>
         <div class="jv-feed">
@@ -271,13 +419,13 @@ standalone: true
       <span><b>OPERATOR</b> ABUBAKR ELMALLAH</span>
       <span><b>CATALOG</b> 10 APPS · 2 DISCORD BOTS</span>
       <span><b>AWARDS</b> CONGRESSIONAL APP CHALLENGE ’23 · SWIFT STUDENT CHALLENGE ’24</span>
-      <span><b>STACK</b> SWIFT · SWIFTUI · PYTHON · C++ · JAVA</span>
+      <span><b>STACK</b> SWIFT · SWIFTUI · PYTHON · C · C++ · JAVA</span>
       <span><b>BASE</b> IRVINE, CALIFORNIA</span>
       <span><b>STATUS</b> ALL SYSTEMS NOMINAL</span>
       <span><b>OPERATOR</b> ABUBAKR ELMALLAH</span>
       <span><b>CATALOG</b> 10 APPS · 2 DISCORD BOTS</span>
       <span><b>AWARDS</b> CONGRESSIONAL APP CHALLENGE ’23 · SWIFT STUDENT CHALLENGE ’24</span>
-      <span><b>STACK</b> SWIFT · SWIFTUI · PYTHON · C++ · JAVA</span>
+      <span><b>STACK</b> SWIFT · SWIFTUI · PYTHON · C · C++ · JAVA</span>
       <span><b>BASE</b> IRVINE, CALIFORNIA</span>
     </div></div>
     <span>J.A.R.V.I.S. v1.0</span>

@@ -1,8 +1,8 @@
 ---
 permalink: /holocron/
 title: "Holocron · Abubakr Elmallah"
-description: "The Jedi Archives: a Star Wars holocron terminal for Abubakr Elmallah's portfolio, with a turning holocron, archive entries and a Galactic Standard chronometer."
-theme: "#02070c"
+description: "The Jedi Archives: a Star Wars holocron for Abubakr Elmallah's portfolio, with every page filed as a record, a gatekeeper to search them, and Aurebesh."
+theme: "#02060b"
 fonts: "family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500"
 standalone: true
 ---
@@ -13,154 +13,291 @@ standalone: true
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/holocron.css' %}" />
 </head>
-<body class="hc">
+<body class="hc" id="hc">
 
-<!-- ═══════════ the archive room ═══════════ -->
-<div class="hc-field" aria-hidden="true">
-  <span class="hc-grid"></span>
-  <span class="hc-glow"></span>
-  <span class="hc-scan"></span>
+<!-- ═══════════ the hall ═══════════
+     The Archives in one-point perspective: two walls of lit shelving running
+     away to a vanishing point behind the holocron, a polished floor that
+     reflects them, and haze. CSS 3D planes and gradients, nothing else. -->
+<div class="hc-hall" aria-hidden="true">
+  <span class="hc-wall hc-wall--l"></span>
+  <span class="hc-wall hc-wall--r"></span>
+  <span class="hc-floor"></span>
+  <span class="hc-haze"></span>
 </div>
 
 <header class="hc-top">
   <a class="hc-exit" href="/" title="Back to the main site">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Exit archives</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the Archives</span>
   </a>
-  <span>Jedi Archives · Coruscant · Level 4</span>
+  <span class="hc-top-mid" id="hcTopMid">Jedi Archives · Temple of Coruscant · Level 4</span>
   <span id="hcStardate">Stardate ····</span>
 </header>
 
-<main class="hc-stage">
+<main class="hc-main">
 
-  <!-- ─────────── the projector ─────────── -->
-  <section class="hc-proj" aria-label="Holocron">
-    <span class="hc-cone" aria-hidden="true"></span>
-    <span class="hc-base" aria-hidden="true"></span>
-    <!-- the thinking orbs on this page are orbs.js, in projector blue: here
-         the archive's globe, projected round the holocron -->
-    <canvas class="hc-think" data-orb="searching" data-orb-size="fit" data-orb-ink="#7fd6ff" aria-hidden="true"></canvas>
-    <div class="hc-cube" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    <div class="hc-caption">
-      <b>Holocron</b>
-      <span><canvas class="hc-gk" data-orb="listening" data-orb-size="20" data-orb-ink="#7fd6ff" aria-hidden="true"></canvas>Gatekeeper active · archive unsealed</span>
+  <!-- ─────────── the holocron ─────────── -->
+  <section class="hc-hero">
+    <div class="hc-stage" aria-hidden="true">
+      <!-- the archive's globe, projected round the holocron while it waits -->
+      <canvas class="hc-globe" data-orb="searching" data-orb-size="fit" data-orb-ink="#7fd6ff"></canvas>
+      <div class="hc-float">
+        <div class="hc-cube" id="hcCube">
+          <i class="hc-face hc-face--f"></i><i class="hc-face hc-face--b"></i>
+          <i class="hc-face hc-face--l"></i><i class="hc-face hc-face--r"></i>
+          <i class="hc-face hc-face--t"></i><i class="hc-face hc-face--d"></i>
+          <b class="hc-core"></b>
+        </div>
+      </div>
+      <span class="hc-beam"></span>
+      <span class="hc-plinth"></span>
+    </div>
+
+    <p class="hc-kicker">The Jedi Archives</p>
+    <h1 class="hc-title">Holocron</h1>
+    <!-- Aurebesh, spelled the way the alphabet is read aloud: one name for
+         each character. The letterforms are the job of the app I shipped. -->
+    <p class="hc-aur"><span class="vh">In Aurebesh: </span>Herf · Osk · Leth · Osk · Cresh · Resh · Osk · Nern</p>
+    <p class="hc-lede">Every page on this site, filed in the Jedi Archives. Ask the gatekeeper for anything, open the holocron to read the records, and seal it again when you are done.</p>
+    <div class="hc-actions">
+      <button class="hc-btn" id="hcOpen" type="button" aria-controls="records">Open the holocron</button>
+      <a class="hc-btn hc-btn--ghost" href="#records">Browse the records</a>
+    </div>
+    <blockquote class="hc-quote">
+      <p>If an item does not appear in our records, it does not exist.</p>
+      <cite>The Chief Librarian, Jedi Archives</cite>
+    </blockquote>
+  </section>
+
+  <!-- ─────────── the era ───────────
+       The same archive at three points in its history, which is the one thing
+       a holocron really is: a record that outlives the order that kept it.
+       Changing the era re-tints the whole hall (one data-era on .hc, every
+       colour already a token in holocron.css), renames the archive in the top
+       bar, and changes what the keeper's note says about the records. The
+       records themselves never change: that is the point of the Archives.
+
+       Radio buttons rather than <button>s: one choice from three, which is
+       what a radio group already means to the keyboard and a screen reader,
+       and the checked one is correct with no JS at all. -->
+  <section class="hc-era" aria-labelledby="hcEraH">
+    <h2 class="hc-h hc-era-h" id="hcEraH">The era of the archive</h2>
+    <p class="hc-era-lede">A holocron outlasts whoever kept it. Pick when you are reading this one from.</p>
+    <fieldset class="hc-era-rail" id="hcEra">
+      <legend class="vh">Which era</legend>
+      <label class="hc-era-tab is-on" for="hcEraR">
+        <input class="vh" type="radio" name="hcEra" id="hcEraR" value="republic" checked />
+        <b>The Republic</b><i>32 &#8211; 19 BBY</i>
+      </label>
+      <label class="hc-era-tab" for="hcEraE">
+        <input class="vh" type="radio" name="hcEra" id="hcEraE" value="empire" />
+        <b>The Empire</b><i>19 BBY &#8211; 4 ABY</i>
+      </label>
+      <label class="hc-era-tab" for="hcEraN">
+        <input class="vh" type="radio" name="hcEra" id="hcEraN" value="newrepublic" />
+        <b>The New Republic</b><i>4 ABY onward</i>
+      </label>
+    </fieldset>
+    <p class="hc-era-note" id="hcEraNote" aria-live="polite">The Archives are open, the Order is at its height, and every record here is
+      catalogued, cross-referenced and quietly assumed to be complete.</p>
+  </section>
+
+  <!-- ─────────── the gatekeeper ───────────
+       A holocron's gatekeeper is the construct inside it that hears the
+       question, searches the archive and gives the answer its shape. Here it
+       is a real search: type, and the records below are narrowed to the ones
+       that match. When none do, it answers the only way the Archives ever
+       have. -->
+  <section class="hc-gate" aria-labelledby="hcGateH">
+    <div class="hc-gate-orbs" aria-hidden="true">
+      <figure><canvas data-orb="listening" data-orb-size="fit" data-orb-ink="#7fd6ff"></canvas><figcaption>Hears</figcaption></figure>
+      <figure><canvas data-orb="searching" data-orb-size="fit" data-orb-ink="#7fd6ff"></canvas><figcaption>Searches</figcaption></figure>
+      <figure><canvas data-orb="shaping" data-orb-size="fit" data-orb-ink="#ffc94a"></canvas><figcaption>Shapes</figcaption></figure>
+    </div>
+    <div class="hc-gate-body">
+      <h2 class="hc-h" id="hcGateH">Ask the gatekeeper</h2>
+      <label class="vh" for="hcAsk">Search the records</label>
+      <input class="hc-ask" id="hcAsk" type="search" autocomplete="off" spellcheck="false" placeholder="work, Aurebesh, travels, a terminal…" />
+      <p class="hc-answer" id="hcAnswer" aria-live="polite">Twenty-five records in the archive.</p>
     </div>
   </section>
 
-  <!-- ─────────── the panels ─────────── -->
-  <section class="hc-col">
+  <!-- ─────────── the records ───────────
+       Every room on the site, in four wings. Each record carries a catalogue
+       mark, its name, what it holds, and the name spelled in Aurebesh
+       (holocron.js writes that line from the title, so it can never drift
+       from it). data-k is extra words the gatekeeper should know it by. -->
+  <section class="hc-records" id="records" aria-labelledby="hcRecH">
+    <h2 class="hc-h" id="hcRecH">The records</h2>
 
-    <article class="hc-panel">
-      <div class="hc-h"><i></i>Keeper of this archive</div>
-      <div class="hc-name">Abubakr Elmallah</div>
-      <div class="hc-role">Lead Mobile &amp; Backend Developer · Computer Science at UC Irvine, class of 2028</div>
-      <div class="hc-aur">Aurebesh: ABUBAKR ELMALLAH · translated by an app I shipped</div>
-    </article>
+    <div class="hc-wing">
+      <h3 class="hc-wing-h">The Star Wars wing</h3>
+      <div class="hc-shelf">
+        <a class="hc-rec" href="/worlds/star-wars/" data-k="films galaxy fandom world"><span class="hc-rec-n">JA·01</span><b>The galaxy</b><i>Star Wars, the world page</i><em></em></a>
+        <a class="hc-rec" href="/worlds/star-wars/#planets" data-k="planets atlas worlds map"><span class="hc-rec-n">JA·02</span><b>The planet atlas</b><i>126 worlds, charted</i><em></em></a>
+        <a class="hc-rec" href="/star-wars/" data-k="apps datapad aurebesh translator sabacc droid discord"><span class="hc-rec-n">JA·03</span><b>Aurebesh &amp; Sabacc</b><i>The Star Wars apps I built</i><em></em></a>
+        <a class="hc-rec" href="/lightsabers/" data-k="lightsaber proffie xenopixel saber guide"><span class="hc-rec-n">JA·04</span><b>The lightsaber guide</b><i>Proffie, SNV4, SD RGB and Xenopixel</i><em></em></a>
+      </div>
+    </div>
 
-    <!-- a holocron's gatekeeper is the construct inside it that hears the
-         question, searches the archive and gives the answer its shape -->
-    <article class="hc-panel">
-      <div class="hc-h"><i></i>The gatekeeper</div>
-      <div class="hc-think-row">
-        <figure><canvas data-orb="listening" data-orb-size="fit" data-orb-ink="#7fd6ff" aria-hidden="true"></canvas><figcaption>Hears<i>the question</i></figcaption></figure>
-        <figure><canvas data-orb="searching" data-orb-size="fit" data-orb-ink="#7fd6ff" aria-hidden="true"></canvas><figcaption>Searches<i>the archive</i></figcaption></figure>
-        <figure><canvas data-orb="shaping" data-orb-size="fit" data-orb-ink="#ffc94a" aria-hidden="true"></canvas><figcaption>Shapes<i>the answer</i></figcaption></figure>
+    <div class="hc-wing">
+      <h3 class="hc-wing-h">The keeper’s records</h3>
+      <div class="hc-shelf">
+        <a class="hc-rec" href="/" data-k="home main start"><span class="hc-rec-n">JA·05</span><b>The main interface</b><i>Home</i><em></em></a>
+        <a class="hc-rec" href="/work/" data-k="job uci developer mobile backend"><span class="hc-rec-n">JA·06</span><b>Work</b><i>Lead mobile &amp; backend developer, UC Irvine</i><em></em></a>
+        <a class="hc-rec" href="/projects/" data-k="apps catalog builds"><span class="hc-rec-n">JA·07</span><b>Projects</b><i>Every one, catalogued</i><em></em></a>
+        <a class="hc-rec" href="/education/" data-k="school schools"><span class="hc-rec-n">JA·08</span><b>Education</b><i>Both schools</i><em></em></a>
+        <a class="hc-rec" href="/college/" data-k="uci university irvine computer science"><span class="hc-rec-n">JA·09</span><b>College</b><i>UC Irvine, class of 2028</i><em></em></a>
+        <a class="hc-rec" href="/high-school/" data-k="school archive first"><span class="hc-rec-n">JA·10</span><b>High School</b><i>Where it started</i><em></em></a>
+        <a class="hc-rec" href="/resume/" data-k="resume cv record"><span class="hc-rec-n">JA·11</span><b>Résumé</b><i>The record on one page</i><em></em></a>
       </div>
-    </article>
+    </div>
 
-    <article class="hc-panel">
-      <div class="hc-h"><i></i>Archive entries</div>
-      <!-- every page on the site filed here, as the home page promises: the
-           Star Wars entries first, then the rest of the site, then the other
-           terminals and the way out -->
-      <nav class="hc-links">
-        <a class="hc-link" href="/worlds/star-wars/"><i></i>The galaxy<em>Fandom</em></a>
-        <a class="hc-link" href="/star-wars/"><i></i>Aurebesh &amp; Sabacc<em>Apps</em></a>
-        <a class="hc-link" href="/worlds/star-wars/#planets"><i></i>Planet atlas<em>126 worlds</em></a>
-        <a class="hc-link" href="/work/"><i></i>Work<em>UCI</em></a>
-        <a class="hc-link" href="/projects/"><i></i>Projects<em>Catalog</em></a>
-        <a class="hc-link" href="/education/"><i></i>Education<em>Schools</em></a>
-        <a class="hc-link" href="/college/"><i></i>College<em>UCI ’28</em></a>
-        <a class="hc-link" href="/high-school/"><i></i>High School<em>Archive</em></a>
-        <a class="hc-link" href="/resume/"><i></i>Résumé<em>Document</em></a>
-        <a class="hc-link" href="/worlds/"><i></i>Worlds<em>70 pages</em></a>
-        <a class="hc-link" href="/al-islam/"><i></i>Al-Islam<em>Apps</em></a>
-        <a class="hc-link" href="/travels/"><i></i>Travels<em>Map</em></a>
-        <a class="hc-link" href="/accents/"><i></i>Accents<em>Voices</em></a>
-        <a class="hc-link" href="/gaming/"><i></i>Gaming<em>Steam</em></a>
-        <a class="hc-link" href="/elmallah/"><i></i>E.L.M.A.L.L.A.H. holotable<em>Terminal</em></a>
-        <a class="hc-link" href="/jarvis/"><i></i>J.A.R.V.I.S.<em>Terminal</em></a>
-        <a class="hc-link" href="/marauders-map/"><i></i>The Marauder’s Map<em>Terminal</em></a>
-        <a class="hc-link" href="/"><i></i>Main interface<em>Home</em></a>
-      </nav>
-    </article>
+    <div class="hc-wing">
+      <h3 class="hc-wing-h">The other worlds</h3>
+      <div class="hc-shelf">
+        <a class="hc-rec" href="/worlds/" data-k="franchises fandoms"><span class="hc-rec-n">JA·12</span><b>Worlds</b><i>All seventy-one of them</i><em></em></a>
+        <a class="hc-rec" href="/al-islam/" data-k="islam quran adhan prayer apps"><span class="hc-rec-n">JA·13</span><b>Al-Islam</b><i>Three Islamic apps</i><em></em></a>
+        <a class="hc-rec" href="/travels/" data-k="trips map places"><span class="hc-rec-n">JA·14</span><b>Travels</b><i>Thirty-five trips</i><em></em></a>
+        <a class="hc-rec" href="/accents/" data-k="voices impressions impersonations"><span class="hc-rec-n">JA·15</span><b>Accents</b><i>Nineteen accents, four impersonations</i><em></em></a>
+        <a class="hc-rec" href="/gaming/" data-k="games steam achievements"><span class="hc-rec-n">JA·16</span><b>Gaming</b><i>Four Steam Replays</i><em></em></a>
+      </div>
+    </div>
 
-    <article class="hc-panel">
-      <div class="hc-h"><i></i>Kyber readings</div>
-      <div class="hc-bar">
-        <div class="hc-bar-top"><span>Archive integrity</span><span>100%</span></div>
-        <div class="hc-bar-track"><i style="--v:100%"></i></div>
+    <div class="hc-wing">
+      <h3 class="hc-wing-h">The other archives</h3>
+      <div class="hc-shelf">
+        <a class="hc-rec" href="/elmallah/" data-k="terminal holotable star wars"><span class="hc-rec-n">JA·17</span><b>E.L.M.A.L.L.A.H.</b><i>The war-room holotable</i><em></em></a>
+        <a class="hc-rec" href="/jarvis/" data-k="terminal stark avengers iron man"><span class="hc-rec-n">JA·18</span><b>J.A.R.V.I.S.</b><i>A Stark heads-up display</i><em></em></a>
+        <a class="hc-rec" href="/marauders-map/" data-k="terminal harry potter hogwarts"><span class="hc-rec-n">JA·19</span><b>The Marauder’s Map</b><i>Parchment and ink</i><em></em></a>
+        <a class="hc-rec" href="/crafting-table/" data-k="terminal minecraft"><span class="hc-rec-n">JA·20</span><b>The Crafting Table</b><i>Minecraft</i><em></em></a>
+        <a class="hc-rec" href="/citadel/" data-k="terminal game of thrones westeros"><span class="hc-rec-n">JA·21</span><b>The Citadel</b><i>Game of Thrones</i><em></em></a>
+        <a class="hc-rec" href="/compass/" data-k="terminal pirates caribbean"><span class="hc-rec-n">JA·22</span><b>The Compass</b><i>Pirates of the Caribbean</i><em></em></a>
+        <a class="hc-rec" href="/control-room/" data-k="terminal jurassic park dinosaurs"><span class="hc-rec-n">JA·23</span><b>The Control Room</b><i>Jurassic Park</i><em></em></a>
+        <a class="hc-rec" href="/upside-down/" data-k="terminal stranger things hawkins"><span class="hc-rec-n">JA·24</span><b>The Upside Down</b><i>Stranger Things</i><em></em></a>
+        <a class="hc-rec" href="/spirit-library/" data-k="terminal avatar airbender"><span class="hc-rec-n">JA·25</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i><em></em></a>
+        <a class="hc-rec" href="/starcourt/" data-k="terminal stranger things arcade mall starcourt"><span class="hc-rec-n">JA·26</span><b>Starcourt</b><i>Stranger Things</i><em></em></a>
+        <a class="hc-rec" href="/monastery/" data-k="terminal ninjago spinjitzu ninja"><span class="hc-rec-n">JA·27</span><b>The Monastery</b><i>Ninjago</i><em></em></a>
+        <a class="hc-rec" href="/wanted/" data-k="terminal red dead western outlaw bounty"><span class="hc-rec-n">JA·28</span><b>The Wanted Board</b><i>Red Dead Redemption</i><em></em></a>
+        <a class="hc-rec" href="/dunder-mifflin/" data-k="terminal the office scranton paper"><span class="hc-rec-n">JA·29</span><b>Dunder Mifflin</b><i>The Office</i><em></em></a>
+        <a class="hc-rec" href="/springfield/" data-k="terminal simpsons springfield"><span class="hc-rec-n">JA·30</span><b>Springfield</b><i>The Simpsons</i><em></em></a>
+        <a class="hc-rec" href="/vought/" data-k="terminal the boys vought supes"><span class="hc-rec-n">JA·31</span><b>Vought Tower</b><i>The Boys</i><em></em></a>
+        <a class="hc-rec" href="/pokedex/" data-k="terminal pokemon pokedex kanto"><span class="hc-rec-n">JA·32</span><b>The Pokédex</b><i>Pokémon</i><em></em></a>
+        <a class="hc-rec" href="/batcomputer/" data-k="terminal batman gotham batcave"><span class="hc-rec-n">JA·33</span><b>The Batcomputer</b><i>Batman</i><em></em></a>
+        <a class="hc-rec" href="/daily-bugle/" data-k="terminal spider-man spiderman bugle new york"><span class="hc-rec-n">JA·34</span><b>The Daily Bugle</b><i>Spider-Man</i><em></em></a>
       </div>
-      <div class="hc-bar">
-        <div class="hc-bar-top"><span>Worlds charted</span><span>126</span></div>
-        <div class="hc-bar-track"><i style="--v:92%"></i></div>
-      </div>
-      <div class="hc-bar">
-        <div class="hc-bar-top"><span>Builds shipped</span><span>12</span></div>
-        <div class="hc-bar-track"><i style="--v:76%"></i></div>
-      </div>
-    </article>
-
-    <article class="hc-panel">
-      <div class="hc-h"><i></i>Crystal index</div>
-      <div class="hc-sabers">
-        <span class="hc-saber" style="--c:#4fa8ff"><b></b>Guardian</span>
-        <span class="hc-saber" style="--c:#5fd07f"><b></b>Consular</span>
-        <span class="hc-saber" style="--c:#a06fe0"><b></b>Vaapad</span>
-        <span class="hc-saber" style="--c:#f0c840"><b></b>Sentinel</span>
-        <span class="hc-saber" style="--c:#e03a2a"><b></b>Bled</span>
-        <span class="hc-saber" style="--c:#e8eef4"><b></b>Purified</span>
-      </div>
-      <div class="hc-rows" style="margin-top:1rem">
-        <div class="hc-row"><span>Coruscant time</span><span id="hcClock">··:··:··</span></div>
-        <div class="hc-row"><span>Sector</span><span>33.64°N · 117.84°W</span></div>
-        <div class="hc-row"><span>Archive built with</span><span>CSS 3D · no images</span></div>
-      </div>
-    </article>
-
+    </div>
   </section>
+
+  <div class="hc-cols">
+
+    <!-- ─────────── the keeper ─────────── -->
+    <section class="hc-panel" aria-labelledby="hcKeeperH">
+      <h2 class="hc-h hc-h--sm" id="hcKeeperH">Keeper of this archive</h2>
+      <p class="hc-name">Abubakr Elmallah</p>
+      <p class="hc-aur hc-aur--sm"><span class="vh">In Aurebesh: </span>Aurek · Besh · Usk · Besh · Aurek · Krill · Resh &#160; Esk · Leth · Mern · Aurek · Leth · Leth · Aurek · Herf</p>
+      <dl class="hc-facts">
+        <div><dt>Training</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
+        <div><dt>Post</dt><dd>Lead mobile &amp; backend developer, UC Irvine</dd></div>
+        <div><dt>First record</dt><dd>Order 66, in Scratch, 2021</dd></div>
+        <div><dt>Datapad</dt><dd>On the App Store June 26, 2023; Top 10, paid Entertainment</dd></div>
+        <div><dt>Aurebesh Translator</dt><dd>Released October 22, 2024</dd></div>
+        <div><dt>The droids</dt><dd>Sabacc and Aurebesh, in more than 500 servers</dd></div>
+        <div><dt>Recognised</dt><dd>Apple Swift Student Challenge winner, 2024</dd></div>
+      </dl>
+    </section>
+
+    <!-- ─────── the eras, from the world page ───────
+         The other half of taking the interface into the world: the Star Wars
+         page's own era rail, filed here as records rather than as a timeline.
+         The same seven spans and the same lines as /worlds/star-wars/#eras,
+         because a second list that drifts from the first is worse than none. -->
+    <section class="hc-panel" aria-labelledby="hcErasH">
+      <h2 class="hc-h hc-h--sm" id="hcErasH">The eras on file</h2>
+      <p class="hc-panel-p">Everything canon sits in one of these. The Skywalker story is about fifty years wide; the galaxy around it runs for twenty-five thousand.</p>
+      <ol class="hc-eras">
+        <li><span>25,000 BBY</span><b>The Republic is founded</b><i>The Jedi Order and the Republic grow up together, and neither works out how to be separate.</i></li>
+        <li><span>382 &#8211; 82 BBY</span><b>The High Republic</b><i>The Order at its height, expanding into the frontier, with the Nihil waiting in the Drift.</i></li>
+        <li><span>32 &#8211; 19 BBY</span><b>The Fall of the Jedi</b><i>A Republic votes itself into an Empire and applauds while it happens.</i></li>
+        <li><span>19 &#8211; 5 BBY</span><b>Reign of the Empire</b><i>Inquisitors hunt the survivors. Rebel cells form on a hundred worlds that never meet.</i></li>
+        <li><span>5 BBY &#8211; 4 ABY</span><b>Age of Rebellion</b><i>Scarif, then Yavin: two Death Stars and an Emperor, all started by stolen plans.</i></li>
+        <li><span>4 &#8211; 28 ABY</span><b>The New Republic</b><i>A government that will not admit the war is not over, and a Mandalorian in the middle of it.</i></li>
+        <li><span>28 &#8211; 35 ABY</span><b>Rise of the First Order</b><i>Starkiller Base, Crait, Exegol, and the last Skywalker deciding to be one on purpose.</i></li>
+      </ol>
+      <a class="hc-eras-go" href="/worlds/star-wars/#wars">The two sides of each war, on the world page &#8594;</a>
+    </section>
+
+    <!-- ─────────── the crystals ─────────── -->
+    <section class="hc-panel" aria-labelledby="hcKyberH">
+      <h2 class="hc-h hc-h--sm" id="hcKyberH">The crystal index</h2>
+      <p class="hc-panel-p">Kyber, by the colour it sings in. Every one of them leads to the lightsaber guide.</p>
+      <!-- Bonding a crystal re-lights the whole archive in its colour: the
+           hall, the holocron, the shelving and the gatekeeper are all drawn
+           from --holo, so one data-kyber on .hc changes the lot. Radio
+           buttons, because it is one choice from seven, and the link to the
+           lightsaber guide stays underneath so nothing is lost. -->
+      <fieldset class="hc-kyber" id="hcKyber">
+        <legend class="vh">Which crystal</legend>
+        <label class="hc-ky is-on" for="hcKyNone" style="--c:#7fd6ff">
+          <input class="vh" type="radio" name="hcKyber" id="hcKyNone" value="none" checked />
+          <span aria-hidden="true"></span><b>Archive</b><i>Unbonded</i>
+        </label>
+        <label class="hc-ky" for="hcKyBlue" style="--c:#4fa8ff">
+          <input class="vh" type="radio" name="hcKyber" id="hcKyBlue" value="blue" />
+          <span aria-hidden="true"></span><b>Blue</b><i>Guardian</i>
+        </label>
+        <label class="hc-ky" for="hcKyGreen" style="--c:#5fd07f">
+          <input class="vh" type="radio" name="hcKyber" id="hcKyGreen" value="green" />
+          <span aria-hidden="true"></span><b>Green</b><i>Consular</i>
+        </label>
+        <label class="hc-ky" for="hcKyYellow" style="--c:#f0c840">
+          <input class="vh" type="radio" name="hcKyber" id="hcKyYellow" value="yellow" />
+          <span aria-hidden="true"></span><b>Yellow</b><i>Sentinel</i>
+        </label>
+        <label class="hc-ky" for="hcKyPurple" style="--c:#a06fe0">
+          <input class="vh" type="radio" name="hcKyber" id="hcKyPurple" value="purple" />
+          <span aria-hidden="true"></span><b>Purple</b><i>Vaapad</i>
+        </label>
+        <label class="hc-ky" for="hcKyRed" style="--c:#e8402a">
+          <input class="vh" type="radio" name="hcKyber" id="hcKyRed" value="red" />
+          <span aria-hidden="true"></span><b>Red</b><i>Bled</i>
+        </label>
+        <label class="hc-ky" for="hcKyWhite" style="--c:#e8eef4">
+          <input class="vh" type="radio" name="hcKyber" id="hcKyWhite" value="white" />
+          <span aria-hidden="true"></span><b>White</b><i>Purified</i>
+        </label>
+      </fieldset>
+      <p class="hc-ky-n" id="hcKyberN">No crystal bonded. The archive runs on its own projector blue.</p>
+      <a class="hc-ky-go" href="/lightsabers/">Every blade, in the lightsaber guide &#8594;</a>
+      <div class="hc-rows">
+        <div><span>Coruscant time</span><b id="hcClock">··:··:··</b></div>
+        <div><span>Sector</span><b>33.64°N · 117.84°W</b></div>
+        <div><span>Archive built with</span><b>CSS 3D · no images</b></div>
+      </div>
+    </section>
+
+  </div>
+
+  <button class="hc-btn hc-seal" id="hcSeal" type="button">Seal the holocron</button>
+
 </main>
 
 <footer class="hc-bottom">
   <a href="/">◄ Return to the main interface</a>
-  <span>If an item does not appear in our records, it does not exist</span>
-  <span>Holocron v1.0</span>
+  <span>Holocron v2.0</span>
 </footer>
 
-<script>
-  /* smooth scrolling only after load, so back/forward restores the position instantly instead of sliding to it */
-  addEventListener('load', function () {
-    requestAnimationFrame(function () { requestAnimationFrame(function () {
-      document.documentElement.classList.add('smooth');
-    }); });
-  });
-  /* the two live readouts: local time, and a stardate counted from the Battle of Yavin */
-  (function holocron() {
-    var clock = document.getElementById('hcClock');
-    var star  = document.getElementById('hcStardate');
-    function pad(n) { return n < 10 ? '0' + n : '' + n; }
-    function tick() {
-      var d = new Date();
-      if (clock) clock.textContent = pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
-      if (star) {
-        var start = new Date(d.getFullYear(), 0, 1);
-        var day = Math.floor((d - start) / 86400000) + 1;
-        star.textContent = 'Stardate ' + (d.getFullYear() - 1977) + '.' + pad(day % 100)
-          + ' ABY ' + pad(d.getHours()) + pad(d.getMinutes());
-      }
-    }
-    tick(); setInterval(tick, 1000);
-  })();
-</script>
+<!-- sealed: the light goes out of the cube -->
+<div class="hc-done" id="hcDone">
+  <div>
+    <canvas class="hc-done-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#7fd6ff" aria-hidden="true"></canvas>
+    <p class="hc-done-k">The holocron is sealed</p>
+    <p class="hc-done-t">May the Force be with you.</p>
+    <a href="/">Return to the main interface</a>
+  </div>
+</div>
+
+<script src="{% include v.html f='/assets/js/holocron.js' %}"></script>
 {% include analytics.html %}
 </body>
 </html>

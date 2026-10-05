@@ -38,15 +38,6 @@ tab: "/"
     <div class="hero-text">
       <p class="kicker"><span>(000 / Index)</span><span>UC Irvine · Class of 2028</span></p>
 
-      <!-- the newest thing I've shipped. Swap the text and the #app-<id> when
-           something newer lands; the id is the card's key in apps-data.js -->
-      <a class="news-pill" href="/projects/#app-hadith-json-engine" data-magnetic>
-        <i class="news-dot" aria-hidden="true"></i>
-        <span class="news-k">Latest</span>
-        <span class="news-t">Hadith JSON Engine<span class="news-more"> is open source</span></span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
-
       <h1 class="display" data-magnetic>
         <span class="line" data-scramble>Abubakr</span>
         <span class="line line--italic" data-scramble>Elmallah</span>
@@ -135,11 +126,11 @@ tab: "/"
       <div>
         <p class="about-lede reveal">
           I’m <em>Abubakr</em>, an aspiring software engineer specializing in
-          iOS development with SwiftUI.
+          mobile &amp; backend development, with iOS and SwiftUI at the heart of it.
         </p>
         <div class="about-body reveal">
           <p>
-            I have strong experience in Swift, Python, C++, Java, JavaScript,
+            I have strong experience in Swift, Python, C, C++, Java, JavaScript,
             and Bash across macOS and Windows. Right now I’m the Lead Mobile &amp; Backend
             Developer at UCI Student Center &amp; Event Services, and I’ve previously taught
             iOS App Development at STEM Heroes Academy.
@@ -152,8 +143,8 @@ tab: "/"
         </div>
 
         <dl class="facts reveal">
-          <div><dt>Focus</dt><dd>iOS development (SwiftUI)</dd></div>
-          <div><dt>Languages</dt><dd>Swift, Python, C++, Java, JavaScript, Bash</dd></div>
+          <div><dt>Focus</dt><dd>Mobile &amp; backend development (iOS, SwiftUI)</dd></div>
+          <div><dt>Languages</dt><dd>Swift, Python, C, C++, Java, JavaScript, Bash</dd></div>
           <div><dt>Roles</dt><dd>Lead Mobile &amp; Backend Developer @ UCI · Former iOS Teacher @ STEM Heroes Academy</dd></div>
           <div><dt>Awards</dt><dd>Congressional App Challenge ’23 · Swift Student Challenge ’24</dd></div>
           <div><dt>School</dt><dd>UC Irvine · CS · Class of 2028</dd></div>
@@ -236,7 +227,7 @@ tab: "/"
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg>
           </span>
           <h3>And me</h3>
-          <p>My faith, my family’s language, and the seventy worlds I love. Not a résumé.</p>
+          <p>My faith, my family’s language, and the seventy-one worlds I love. Not a résumé.</p>
         </article>
       </div>
     </div>
@@ -247,9 +238,7 @@ tab: "/"
       <a href="/travels/" data-magnetic>↳ Where I have been ↗</a>
       <a href="/accents/" data-magnetic>↳ The voices I do ↗</a>
       <a href="/gaming/" data-magnetic>↳ The games I have played ↗</a>
-      <!-- hidden for now, with the page itself; see src/worlds.html
       <a href="/music/" data-magnetic>↳ The music of every year ↗</a>
-      -->
     </div>
   </section>
 
@@ -300,27 +289,41 @@ tab: "/"
   </section>
 
   <!-- ─────────────── INTERFACES ─────────────── -->
-  <!-- the four terminal teasers, one section with its own heading, above
-       Contact so the page ends on Contact; a 2x2 grid on desktop -->
+  <!-- all twenty-two terminal teasers, one section with its own heading,
+       above Contact so the page ends on Contact. On desktop E.L.M.A.L.L.A.H.
+       has the first row to itself, then Holocron, J.A.R.V.I.S. and the
+       Marauder's Map three across; the other eighteen open on the button
+       below them, three across, the same split /elmallah/ makes. -->
   <section class="interfaces" id="interfaces" data-idle>
     <div class="sec-head reveal">
       <span class="sec-idx">04</span>
       <h2>Interfaces</h2>
-      <span class="sec-note">Four other ways in.</span>
+      <span class="sec-note">Twenty-two other ways in.</span>
     </div>
 
     <div class="jarvis-grid">
       <!-- each card's thinking orb (orbs.js) is the one its interface runs,
            in its colours -->
       <a class="jarvis-cta elm-cta reveal" id="terminals" href="/elmallah/" data-magnetic>
-        <canvas class="cta-orb" data-orb="solving" data-orb-size="fit" data-orb-ink="#f5c63c" aria-hidden="true"></canvas>
-        <span class="elm-holo" aria-hidden="true"><i></i><i></i><i></i></span>
+        <canvas class="cta-orb" data-orb="solving" data-orb-size="fit" data-orb-ink="#5fa3ec" aria-hidden="true"></canvas>
+        <span class="elm-table" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
         <span class="jarvis-txt">
-          <span class="jarvis-k">Holoterminal · Interface</span>
+          <span class="jarvis-k">War room · Interface</span>
           <h3>E.L.M.A.L.L.A.H.</h3>
-          <p><b>E</b>mbedded <b>L</b>ogic <b>M</b>atrix · <b>A</b>daptive <b>L</b>earning, <b>L</b>anguage &amp; <b>A</b>rchive <b>H</b>ub. A Star Wars holotable in UCI blue and gold, Trabuco blue and Islamic green. Spinning holocron, drifting starfield, sector scan, stardate.</p>
+          <p><b>E</b>mbedded <b>L</b>ogic <b>M</b>atrix · <b>A</b>daptive <b>L</b>earning, <b>L</b>anguage &amp; <b>A</b>rchive <b>H</b>ub.</p>
+          <p>A Rebel war-room holotable in UCI blue and gold, Trabuco blue and Islamic green. Every room on this site is a star system in a turning galaxy: lock a target, read the briefing, make the jump to lightspeed.</p>
         </span>
-        <span class="jarvis-go">ENGAGE ↗</span>
+        <span class="jarvis-go">ENTER THE WAR ROOM ↗</span>
+      </a>
+      <a class="jarvis-cta hc-cta reveal" id="holocron" href="/holocron/" data-magnetic>
+        <canvas class="cta-orb" data-orb="shaping" data-orb-size="fit" data-orb-ink="#7fd6ff" aria-hidden="true"></canvas>
+        <span class="hc-mini" aria-hidden="true"><b><i></i><i></i><i></i><i></i><i></i><i></i></b></span>
+        <span class="jarvis-txt">
+          <span class="jarvis-k">Jedi Archives · Interface</span>
+          <h3>H.O.L.O.C.R.O.N.</h3>
+          <p>The Jedi Archives in perspective: a holocron you can open and seal, a gatekeeper that searches every record and answers in the Chief Librarian’s words when it finds nothing, and every page spelled out in Aurebesh.</p>
+        </span>
+        <span class="jarvis-go">UNSEAL ARCHIVE ↗</span>
       </a>
       <a class="jarvis-cta reveal" id="jarvis" href="/jarvis/" data-magnetic>
         <canvas class="cta-orb" data-orb="working" data-orb-size="fit" data-orb-ink="#29e7ff" aria-hidden="true"></canvas>
@@ -332,16 +335,6 @@ tab: "/"
         </span>
         <span class="jarvis-go">BOOT INTERFACE ↗</span>
       </a>
-      <a class="jarvis-cta hc-cta reveal" id="holocron" href="/holocron/" data-magnetic>
-        <canvas class="cta-orb" data-orb="shaping" data-orb-size="fit" data-orb-ink="#7fd6ff" aria-hidden="true"></canvas>
-        <span class="hc-mini" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="jarvis-txt">
-          <span class="jarvis-k">Jedi Archives · Interface</span>
-          <h3>H.O.L.O.C.R.O.N.</h3>
-          <p>A Jedi archive terminal: a holocron turning inside a projector cone, kyber readings, a Galactic Standard stardate, and every page on this site filed as an archive entry.</p>
-        </span>
-        <span class="jarvis-go">UNSEAL ARCHIVE ↗</span>
-      </a>
       <a class="jarvis-cta mm-cta reveal" id="marauders" href="/marauders-map/" data-magnetic>
         <canvas class="cta-orb" data-orb="composing" data-orb-size="fit" data-orb-ink="#e8d5ab" aria-hidden="true"></canvas>
         <span class="mm-mini" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -352,6 +345,189 @@ tab: "/"
         </span>
         <span class="jarvis-go">I SOLEMNLY SWEAR ↗</span>
       </a>
+      <!-- The other eighteen terminals fold away: the page opens on
+           E.L.M.A.L.L.A.H. and the three interfaces for the worlds I know by
+           heart, and this button shows the rest, the Secondary worlds' ones
+           included (asked for 2026-10-04). A details element, so it works with
+           no JS and the cards stay in the DOM for search; data-remember
+           (utils.js) only stores whether it was open. -->
+      <details class="if-more" id="ifMore" data-remember="interfaces">
+        <summary class="if-more-s">
+          <span class="if-more-k">The other eighteen terminals</span>
+          <span class="if-more-n">Crafting Table, Compass, Control Room, Upside Down, Citadel, Spirit Library, Starcourt, Monastery, Wanted Board, Dunder Mifflin, Springfield, Vought Tower, Pokédex, Batcomputer, Daily Bugle, Instruction Booklet, Battle Pass, Security Office</span>
+          <span class="if-more-a" aria-hidden="true">▾</span>
+        </summary>
+        <div class="if-more-grid">
+          <a class="jarvis-cta ct-cta reveal" id="crafting-table" href="/crafting-table/" data-magnetic>
+            <canvas class="cta-orb" data-orb="solving" data-orb-size="fit" data-orb-ink="#8fd14f" aria-hidden="true"></canvas>
+            <span class="ct-mini" aria-hidden="true"><b><i></i><i></i><i></i><i></i><i></i></b></span>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Inventory · Interface</span>
+            <h3>The Crafting Table</h3>
+            <p>Every page on this site as a slot in one Minecraft inventory: blocks drawn pixel by pixel, the recipe my apps are crafted from, an F3 screen running on your clock, and a hotbar to the other terminals.</p>
+            </span>
+            <span class="jarvis-go">PRESS E ↗</span>
+          </a>
+          <a class="jarvis-cta pc-cta reveal" id="compass" href="/compass/" data-magnetic>
+            <canvas class="cta-orb" data-orb="searching" data-orb-size="fit" data-orb-ink="#8cc9c0" aria-hidden="true"></canvas>
+            <span class="pc-mini" aria-hidden="true"><b></b><i></i></span>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Sea chart · Interface</span>
+            <h3>The Compass</h3>
+            <p>Jack Sparrow’s compass, which points to what you want most: every page on this site charted as an island round a brass needle that swings to whichever you choose, a ship’s bell on your clock, and the Pirate Code.</p>
+            </span>
+            <span class="jarvis-go">TAKE WHAT YOU CAN ↗</span>
+          </a>
+          <a class="jarvis-cta jp-cta reveal" id="control-room" href="/control-room/" data-magnetic>
+            <canvas class="cta-orb" data-orb="searching" data-orb-size="fit" data-orb-ink="#6dff9a" aria-hidden="true"></canvas>
+            <span class="jp-mini" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Park systems · Interface</span>
+            <h3>The Control Room</h3>
+            <p>The Isla Nublar control room on early-nineties screens: every page as a paddock on the island map, a 3D file system to fly over, live fences and a park clock, and a security system that will not let you in.</p>
+            </span>
+            <span class="jarvis-go">IT’S A UNIX SYSTEM ↗</span>
+          </a>
+          <a class="jarvis-cta st-cta reveal" id="upside-down" href="/upside-down/" data-magnetic>
+            <canvas class="cta-orb" data-orb="listening" data-orb-size="fit" data-orb-ink="#ff6a5c" aria-hidden="true"></canvas>
+            <span class="st-mini" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Alphabet wall · Interface</span>
+            <h3>The Upside Down</h3>
+            <p>Joyce Byers’ living-room wall, with every page on this site strung under its bulbs: point at one and the lights spell it out, the way Will did, then flip the switch and the whole house turns over into the Upside Down.</p>
+            </span>
+            <span class="jarvis-go">RIGHT HERE ↗</span>
+          </a>
+          <a class="jarvis-cta cd-cta reveal" id="citadel" href="/citadel/" data-magnetic>
+            <canvas class="cta-orb" data-orb="searching" data-orb-size="fit" data-orb-ink="#d8b26a" aria-hidden="true"></canvas>
+            <span class="cd-mini" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Clockwork · Interface</span>
+            <h3>The Citadel</h3>
+            <p>A maester’s archive of the whole site: the brass astrolabe from the opening titles turning over the realm, every page rising from the map as a keep, and the chain of what I have forged.</p>
+            </span>
+            <span class="jarvis-go">VALAR MORGHULIS ↗</span>
+          </a>
+          <a class="jarvis-cta sl-cta reveal" id="spirit-library" href="/spirit-library/" data-magnetic>
+            <canvas class="cta-orb" data-orb="listening" data-orb-size="fit" data-orb-ink="#e8a13f" aria-hidden="true"></canvas>
+            <span class="sl-mini" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Planetarium · Interface</span>
+            <h3>The Spirit Library</h3>
+            <p>Wan Shi Tong’s library under the desert sand: every page on this site shelved as a scroll by nation, a planetarium set to today’s real moon, and a tower that sinks when you leave.</p>
+            </span>
+            <span class="jarvis-go">YIP YIP ↗</span>
+          </a>
+          <a class="jarvis-cta sc-cta reveal" id="starcourt" href="/starcourt/" data-magnetic>
+            <canvas class="cta-orb" data-orb="listening" data-orb-size="fit" data-orb-ink="#ff5fb4" aria-hidden="true"></canvas>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Mall directory · Interface</span>
+            <h3>Starcourt</h3>
+            <p>The Palace Arcade and the mall above it: every page a store on the directory or a cabinet on the arcade floor, and a switch that turns Hawkins over.</p>
+            </span>
+            <span class="jarvis-go">OPEN LATE ↗</span>
+          </a>
+          <a class="jarvis-cta mn-cta reveal" id="monastery" href="/monastery/" data-magnetic>
+            <canvas class="cta-orb" data-orb="shaping" data-orb-size="fit" data-orb-ink="#e0b040" aria-hidden="true"></canvas>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Training course · Interface</span>
+            <h3>The Monastery</h3>
+            <p>The Monastery of Spinjitzu: every room a station on Wu’s training course, turning round a tornado of whichever element you pick.</p>
+            </span>
+            <span class="jarvis-go">NINJA-GO ↗</span>
+          </a>
+          <a class="jarvis-cta wb-cta reveal" id="wanted" href="/wanted/" data-magnetic>
+            <canvas class="cta-orb" data-orb="searching" data-orb-size="fit" data-orb-ink="#e0321d" aria-hidden="true"></canvas>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Bounty board · Interface</span>
+            <h3>The Wanted Board</h3>
+            <p>The sheriff’s board in Valentine, with a bill nailed up for every room on this site, and Dead Eye to mark them and fire.</p>
+            </span>
+            <span class="jarvis-go">DEAD OR ALIVE ↗</span>
+          </a>
+          <a class="jarvis-cta dm-cta reveal" id="dunder-mifflin" href="/dunder-mifflin/" data-magnetic>
+            <canvas class="cta-orb" data-orb="working" data-orb-size="fit" data-orb-ink="#2559a8" aria-hidden="true"></canvas>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Branch floor · Interface</span>
+            <h3>Dunder Mifflin</h3>
+            <p>The Scranton branch from above, every room a page, with a documentary camera that zooms in on whichever one you pick.</p>
+            </span>
+            <span class="jarvis-go">THAT’S WHAT SHE SAID ↗</span>
+          </a>
+          <a class="jarvis-cta sf-cta reveal" id="springfield" href="/springfield/" data-magnetic>
+            <canvas class="cta-orb" data-orb="composing" data-orb-size="fit" data-orb-ink="#ffd90f" aria-hidden="true"></canvas>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Main street · Interface</span>
+            <h3>Springfield</h3>
+            <p>One street of Springfield under the clouds from the opening titles, every landmark a page, with a chalkboard and a couch-gag TV.</p>
+            </span>
+            <span class="jarvis-go">D’OH ↗</span>
+          </a>
+          <a class="jarvis-cta vt-cta reveal" id="vought" href="/vought/" data-magnetic>
+            <canvas class="cta-orb" data-orb="solving" data-orb-size="fit" data-orb-ink="#e2b54a" aria-hidden="true"></canvas>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Intranet · Interface</span>
+            <h3>Vought Tower</h3>
+            <p>Vought’s glass-and-gold intranet with a lift to every floor, and Butcher’s view of it: the same page as a redacted case file.</p>
+            </span>
+            <span class="jarvis-go">GO SUPE ↗</span>
+          </a>
+          <a class="jarvis-cta pk-cta reveal" id="pokedex" href="/pokedex/" data-magnetic>
+            <canvas class="cta-orb" data-orb="searching" data-orb-size="fit" data-orb-ink="#d61f35" aria-hidden="true"></canvas>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Catalogue · Interface</span>
+            <h3>The Pokédex</h3>
+            <p>A Kanto Pokédex open on its hinge: every room a numbered entry, each one with its own cry.</p>
+            </span>
+            <span class="jarvis-go">GOTTA CATCH ’EM ALL ↗</span>
+          </a>
+          <a class="jarvis-cta bc-cta reveal" id="batcomputer" href="/batcomputer/" data-magnetic>
+            <canvas class="cta-orb" data-orb="solving" data-orb-size="fit" data-orb-ink="#f5c542" aria-hidden="true"></canvas>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Case wall · Interface</span>
+            <h3>The Batcomputer</h3>
+            <p>The Batcave console: every page a case on the wall of monitors, the signal thrown up into live weather over Gotham, and detective mode.</p>
+            </span>
+            <span class="jarvis-go">I’M BATMAN ↗</span>
+          </a>
+          <a class="jarvis-cta db-cta reveal" id="daily-bugle" href="/daily-bugle/" data-magnetic>
+            <canvas class="cta-orb" data-orb="composing" data-orb-size="fit" data-orb-ink="#b3121c" aria-hidden="true"></canvas>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Front page · Interface</span>
+            <h3>The Daily Bugle</h3>
+            <p>Today’s front page of the Bugle, every room a story in its editor’s indignant voice, and a web shot to whichever one you point at.</p>
+            </span>
+            <span class="jarvis-go">STOP THE PRESSES ↗</span>
+          </a>
+          <a class="jarvis-cta ib-cta reveal" id="instructions" href="/instructions/" data-magnetic>
+            <canvas class="cta-orb" data-orb="shaping" data-orb-size="fit" data-orb-ink="#f5d222" aria-hidden="true"></canvas>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Build steps · Interface</span>
+            <h3>The Instruction Booklet</h3>
+            <p>The site as the booklet in the box: every page a numbered build step, drawn with the parts it takes.</p>
+            </span>
+            <span class="jarvis-go">STEP ONE ↗</span>
+          </a>
+          <a class="jarvis-cta bp-cta reveal" id="battle-pass" href="/battle-pass/" data-magnetic>
+            <canvas class="cta-orb" data-orb="working" data-orb-size="fit" data-orb-ink="#6fb0ff" aria-hidden="true"></canvas>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Reward tiers · Interface</span>
+            <h3>The Battle Pass</h3>
+            <p>Season four, every page a reward tier up the track, and tier one hundred unlocks another whole interface.</p>
+            </span>
+            <span class="jarvis-go">TIER ONE ↗</span>
+          </a>
+          <a class="jarvis-cta so-cta reveal" id="freddys" href="/freddys/" data-magnetic>
+            <canvas class="cta-orb" data-orb="listening" data-orb-size="fit" data-orb-ink="#f0c840" aria-hidden="true"></canvas>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Camera feeds · Interface</span>
+            <h3>The Security Office</h3>
+            <p>One desk, every page a camera feed on the monitor, and a power meter that drains while you sit there watching them.</p>
+            </span>
+            <span class="jarvis-go">12 AM ↗</span>
+          </a>
+        </div>
+      </details>
     </div>
   </section>
 

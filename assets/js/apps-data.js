@@ -103,7 +103,7 @@ window.APP_CARDS = {
     desc: 'Check arena hours, reserve PCs, discover tournaments and events, watch live Twitch streams, and get reminders so you never miss a match.',
     long: [
       'UCI Esports is the official companion app for the UCI Esports Arena, the 3,500-square-foot arena in the Student Center. This free campus app helps students check arena hours, see which gaming PCs are free, discover upcoming tournaments and events, and follow the UCI Esports community on Twitch, Discord and everywhere else it lives.',
-      { facts: [['Solo', 'iOS developer'], ['~15.4K', 'lines of Swift'], ['5', 'tabs'], ['7', 'reward tiers'], ['85', 'backend tests'], ['1.0', 'shipped March 2, 2026']] },
+      { facts: [['Solo', 'mobile &amp; backend developer'], ['~15.4K', 'lines of Swift'], ['5', 'tabs'], ['7', 'reward tiers'], ['85', 'backend tests'], ['1.0', 'shipped March 2, 2026']] },
       { h: 'In the app' },
       { list: [
         '<b>Home</b>: today’s hours and whether the arena is open, the events you have registered for, pricing, parking and payment information, an FAQ, support, and every one of the program’s channels.',
@@ -149,7 +149,7 @@ window.APP_CARDS = {
         'A <b>VIP Phone Log</b>, a cross-team <b>Latest Updates</b> feed of what everyone did today, and permission-gated <b>user administration</b>.',
       ] },
       { h: 'Keeping it running' },
-      'I am the current maintainer and iOS developer. The app has been in service since 2018 and passed through more than a dozen student developers before me; I took it over in 2025. It is a large legacy UIKit codebase, and the work is the unglamorous kind that keeps a live system running: every release from version 2.7.4 to 2.8.2 (September 2026) is mine, and I own its database migrations, backend tests and documentation.',
+      'I am the current maintainer and its mobile &amp; backend developer. The app has been in service since 2018 and passed through more than a dozen student developers before me; I took it over in 2025. It is a large legacy UIKit codebase, and the work is the unglamorous kind that keeps a live system running: every release from version 2.7.4 to 2.8.2 (September 2026) is mine, and I own its database migrations, backend tests and documentation.',
       'In August 2026 I did a stability pass aimed at crashes, hangs and silent data loss, without changing a single screen. Sending a shift report with photos had been slow, crash-prone and memory-hungry, so photos are now downscaled when they are saved, decoded straight to attachment size and attached one at a time, which keeps memory flat however many there are; downloads got timeouts, so one bad photo can no longer hold up a report; and several places where one team’s data was being saved under another team’s key were untangled.',
       'In September 2026 I followed it with a full bug sweep across the app and backend: <b>45 bugs</b>, each written up with what went wrong and how it was fixed. Some were crashes. The ones I care most about were the quietly wrong ones: a form that could fill itself from the wrong booking, a log-out that left the next person on a shared phone signed in as the previous one, and a feed that had been answering every request with an error for a long time. Reports that fail to upload now retry on their own, carrying an id that makes a repeated attempt safe.',
       'The handbook I wrote for it runs to fourteen documents: the architecture, a feature-by-feature guide, the shared code and its rules, building and releasing, troubleshooting, procedures, and an incident history that explains why parts of the code look the way they do, so the next developer does not have to rediscover any of it.',
@@ -681,7 +681,7 @@ window.APP_CARDS = {
         'On <a href="/star-wars/">Star Wars</a>: type anything and read it back in Aurebesh, play a hand of Corellian Spike sabacc against the house, and forge a lightsaber from eight crystals and four hilts.',
         'On <a href="/al-islam/">Al-Islam</a>: the day’s prayer times worked out from the position of the sun right in the browser, by any of five methods, for Irvine or for wherever you are, the qibla bearing and distance to the Kaʿbah, the Hijri date, and Sūrat al-Ikhlāṣ coloured by its tajweed rules.',
         'A <b>travels map</b> drawn from a dot grid of the whole world packed into under 3 KB and rendered as a single SVG path, with 41 pins and a flight arc to each.',
-        'Nineteen accents and four impersonations in the order I learned them, four Steam Replays, the Billboard year-end charts for every year since 2006, and seventy worlds, each with its own stylesheet and behaviour.',
+        'Nineteen accents and four impersonations in the order I learned them, four Steam Replays, the Billboard year-end charts for every year since 2006, and seventy-one worlds, each with its own stylesheet and behaviour.',
       ] },
       { h: 'History' },
       'The first commit was on <b>June 23, 2026</b>, and it went live at abubakrelmallah.com the next day. J.A.R.V.I.S. arrived on August 2, the fan pages the day after, travels on August 5, the High School page in full on August 19, and the gaming section, new worlds, road trips and collapsible sections through September. It is open source on GitHub, and a fair share of it was written between midnight and five in the morning.',
@@ -747,6 +747,34 @@ window.APP_CARDS = {
    make its At a glance thumbnail; until then the index uses the full file. */
 window.PROJ_CARDS = {
 
+  'mod-star-wars': {
+    date: '2016',
+    img: 'highschool/star-wars-mod-textures.png', alt: 'Every texture in the Star Wars Mod: eight lightsabers, blue and red Cyber Crystals and their ores, and the Darth Vader mob skin',
+    title: 'Star Wars Mod for Minecraft', year: '2016',
+    grade: 'elementary · iD Tech camp',
+    tags: 'Java · Minecraft Forge 1.8',
+    long: [
+      'A Minecraft 1.8 Forge mod in Java, made at an iD Tech camp: eight lightsabers (Luke, Obi-Wan, Vader, Windu, Maul, Grievous, Kylo Ren and a Jedi Guardian; Grievous’s hits for fourteen hearts), Blue and Red Cyber Crystals with ores that poke out of hillsides, and Darth Vader as a 250-health boss whose touch gives you Wither IV.',
+      'The mod has no dates in it, so summer 2016 is a best guess from the clues: the last Forge build for Minecraft 1.8, and a Kylo Ren lightsaber, which cannot predate <i>The Force Awakens</i>. Like the other camp projects it was instructor-led; it is kept exactly as it was built, with its Java recovered from the jar.',
+    ],
+    links: [
+      { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Minecraft-Mods' },
+    ],
+  },
+  'mod-gel': {
+    date: '2017-07-31',
+    img: 'highschool/gel-mod-textures.png', alt: 'Every texture in the GEL Mod: Gel tools and armour, the Fire Sword, Thor’s Hammer, The Sacred Mug, the Blapple, Ketchup, the Teleporter, Mr. Squeakers, Gel Ore, Mold and the Trampoline Block',
+    title: 'GEL Mod for Minecraft', year: '2017',
+    grade: 'elementary · iD Tech camp',
+    tags: 'Java · Minecraft 1.11.2',
+    long: [
+      'A Minecraft 1.11.2 mod in Java, made in one week of iD Tech camp: Gel Ore, Gel Ingots and a full set of Gel tools and armour, plus a Fire Sword, Thor’s Hammer, The Sacred Mug, a Trampoline Block and a squeaky ball called Mr. Squeakers.',
+      'It dates itself: Photoshop saved timestamps inside its textures, five days in a row, Monday 31 July to Friday 4 August 2017. Kept exactly as it was built, with its Java recovered from the jar.',
+    ],
+    links: [
+      { label: 'GitHub ↗', href: 'https://github.com/TheAbubakrAbu/Minecraft-Mods' },
+    ],
+  },
   'hs-datapad': {
     date: '2021-10-07',
     img: 'highschool/datapad.png', alt: 'Star Wars Datapad, a Code.org App Lab project',
@@ -764,7 +792,7 @@ window.PROJ_CARDS = {
         '<b>Search</b> by letter name or sound, filtered to single letters, digraphs or both, and ranked: a match on the first two letters first, then the first letter, then the second, then anywhere in the name, then in the pronunciation, over a search I wrote by hand. There is a random-letter button, and every letter can be spoken aloud, with the spelling adjusted until the computer voice said it right.',
       ] },
       { h: 'The story' },
-      'This was my <b>first coding project</b>, made for AP Computer Science Principles in Fall 2021, my sophomore year, when it was still called Aurebesh Translator. It started as a demo under 200 lines that could only write “Hello there!” in Aurebesh and was not really functional; it only started working properly once I learned what substrings were. I kept refining it every week through Spring and Summer 2022.',
+      'This was my <b>first real coding project</b>, and the second I wrote entirely on my own after Order 66, made for AP Computer Science Principles in Fall 2021, my sophomore year, when it was still called Aurebesh Translator. It started as a demo under 200 lines that could only write “Hello there!” in Aurebesh and was not really functional; it only started working properly once I learned what substrings were. I kept refining it every week through Spring and Summer 2022.',
       'It was my favourite thing I had built at the time, and it is the direct ancestor of <b>Datapad</b>, the iOS app on the App Store today.',
     ],
     links: [
@@ -835,10 +863,10 @@ window.PROJ_CARDS = {
     date: '2021-09-03',
     img: 'highschool/order66.jpg', alt: 'Star Wars: Order 66, a Scratch game',
     title: 'Star Wars: Order 66', year: '2021',
-    grade: '10th grade · my first ever',
+    grade: '10th grade · my first on my own',
     tags: 'Scratch · Game',
     long: [
-      'A Star Wars game built in Scratch in 10th grade, and the very first thing I ever made: play through Order 66 by dragging blocks together, before I had written a line of real code.',
+      'A Star Wars game built in Scratch in 10th grade, and the first project I made entirely on my own: play through Order 66, put together by dragging blocks before I had written a line of real code. The summer camps before it were mostly the instructors’ work; this one was all mine.',
       'It has no repository and no README; Scratch is the whole record of it, and it still runs in the browser on the project page.',
       'Everything else on this page came after it.',
     ],

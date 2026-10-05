@@ -1,0 +1,86 @@
+---
+permalink: /worlds/green-lantern/
+title: "Green Lantern · Abubakr Elmallah"
+description: "Green Lantern as a fandom: how the ring actually works, the oath, the ring-bearers I know from the screen, the emotional spectrum, and what there is on screen."
+tab: "/worlds/"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/lantern.css' %}" />
+</head>
+<body data-intro="none" data-fan="lantern">
+
+<!-- a sector of deep space with the lamp's light reaching into it -->
+<div class="gl-sky" aria-hidden="true">
+  <span class="gl-stars"></span>
+  <span class="gl-glow"></span>
+  <span class="gl-ring"></span>
+  <span class="gl-ring gl-ring--in"></span>
+</div>
+
+{% include fx.html %}
+
+{% include cursor.html %}
+
+{% include rail.html %}
+
+{% include topbar.html %}
+
+<main>
+
+  <section class="fan-hero">
+    {% include crumbs.html parent="Worlds" url="/worlds/#franchises" here="Green Lantern" %}
+    <p class="fan-kicker"><span>Franchise &#183; Tertiary &#183; since 1940</span></p>
+    <h1 class="fan-title">Green Lantern</h1>
+    <p class="fan-lede-hero">A ring that builds whatever you can picture, powered by willpower and stopped by nothing except your own nerve. It is the best premise in DC: the limit is never the ring, it is the person wearing it, which means every story is really about whether they hold steady.</p>
+    <p class="fan-lede-hero">I came to it the way I came to all of DC, through the cartoons, and John Stewart is the Lantern I grew up with. Not the comics, and not the 2011 film, which took an idea about imagination and spent it on a cloud.</p>
+    <div class="fan-links">
+      <a class="fan-link" href="/worlds/justice-league/" data-magnetic>The Justice League &#8599;</a>
+      <a class="fan-link" href="#ring" data-magnetic>How the ring works &#8599;</a>
+      <a class="fan-link" href="#spectrum" data-magnetic>The spectrum &#8599;</a>
+      <a class="fan-link" href="#screen" data-magnetic>On screen &#8599;</a>
+    </div>
+
+    <!-- the power battery, drawn: the lamp a ring is charged on. The chest
+         symbol is a trademark; a lantern is a lantern. -->
+    <figure class="gl-art reveal">
+      <svg viewBox="0 0 420 320" role="img" aria-label="A green lantern power battery, lit, with its light reaching outward">
+        <g class="gla-beam"><path d="M210 150 L40 20 L380 20 Z"/><path d="M210 170 L40 300 L380 300 Z"/></g>
+        <g class="gla-lamp">
+          <rect class="gla-cap" x="176" y="36" width="68" height="16" rx="5"/>
+          <path class="gla-neck" d="M186 54h48l12 30h-72z"/>
+          <rect class="gla-body" x="162" y="86" width="96" height="86" rx="10"/>
+          <rect class="gla-band" x="150" y="118" width="120" height="22" rx="8"/>
+          <path class="gla-neck" d="M186 174h48l12 30h-72z"/>
+          <rect class="gla-cap" x="176" y="206" width="68" height="16" rx="5"/>
+        </g>
+        <circle class="gla-core" cx="210" cy="129" r="20"/>
+      </svg>
+      <figcaption>The power battery &#183; in brightest day, in blackest night</figcaption>
+    </figure>
+  </section>
+
+  <div id="fanPlay"></div>
+
+  <div id="fanBody"></div>
+
+</main>
+
+{% include footer.html back="/worlds/" %}
+
+{% include tabbar.html %}
+
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
+<!-- page content: data then the shared renderer, before reveal.js -->
+<script src="{% include v.html f='/assets/js/fan-lantern.js' %}"></script>
+<script src="{% include v.html f='/assets/js/photos-data.js' %}"></script>
+{% include fan-engine.html %}
+{% include site-scripts.html %}
+<!-- shared interactive, after reveal.js on purpose -->
+<script src="{% include v.html f='/assets/js/fan-play.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

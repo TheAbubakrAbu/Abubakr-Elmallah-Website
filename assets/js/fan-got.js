@@ -296,10 +296,10 @@ window.FAN_PAGE = {
   { id: 'unofficial-songs', kind: 'tiles', compact: true, title: 'Not In The Show', note: 'four songs that still feel like Westeros',
     lede: 'None of these appears in Game of Thrones. They are just four songs from my playlist that make me think of it anyway.',
     items: [
-      { title: 'Runaway', accent: '#7a91b8', sub: 'AURORA · unofficial · reminds me of Game of Thrones',
+      { title: 'Runaway', accent: '#7a91b8', sub: 'AURORA · 2015 · unofficial · reminds me of Game of Thrones',
         desc: 'Not a soundtrack track: just the voice, the cold air around it, and the feeling of somebody trying to get home through a world that is much too big.',
         href: 'https://www.youtube.com/watch?v=d_HlPboLRL8', link: 'Listen' },
-      { title: 'Golden Brown', accent: '#b89054', sub: 'The Stranglers · unofficial · reminds me of Game of Thrones',
+      { title: 'Golden Brown', accent: '#b89054', sub: 'The Stranglers · 1981 · unofficial · reminds me of Game of Thrones',
         desc: 'Not in the show either. Its strange, courtly waltz feel belongs somewhere between a candlelit hall, a scheming Lannister, and the old world underneath the story.',
         href: 'https://www.youtube.com/watch?v=7KIHvuMl4Kk', link: 'Listen' },
       { title: 'Dark Fantasy', accent: '#8a5fb0', sub: 'posssole feat. NNITRO · 2024 · 3:30 · unofficial',

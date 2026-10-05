@@ -1,0 +1,477 @@
+/* ============================================================
+   springfield.css: /springfield/, the Simpsons terminal.
+   Sister page to /citadel/, /compass/ and the rest: the site
+   drawn the way the show draws its town, in flat colour inside
+   thick ink outlines, under the blue of the opening titles. The
+   clouds part, every page stands on the street as a landmark,
+   and the TV switches off at the end.
+   ============================================================ */
+
+/* these pages load no shared stylesheet, so they carry their own reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+ul, ol { list-style: none; }
+html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
+
+.sf {
+  --disp:   "Luckiest Guy", "Arial Black", sans-serif;
+  --body:   "Fredoka", "Trebuchet MS", sans-serif;
+  --chalkf: "Caveat", "Comic Sans MS", cursive;
+  --mono:   "Courier Prime", "Courier New", monospace;
+  --ink:    #1d1b2a;          /* the outline round everything, and the text */
+  --ink-2:  #4a4658;          /* secondary text on cream: 8:1 */
+  --yellow: #ffd90f;
+  --cream:  #fff8e6;
+  --cream-2:#f6ecd2;
+  --pink:   #ff8fc2;
+  --blue:   #3d7fc9;
+  --ease:   cubic-bezier(.16, 1, .3, 1);
+  --pop:    cubic-bezier(.34, 1.56, .64, 1);
+
+  /* the sky, by the visitor's own clock (springfield.js sets the class) */
+  --sky-1:  #4fb0ea;
+  --sky-2:  #b9e4fb;
+  --cloud:  #ffffff;
+  --sun:    #fff2a8;
+  --hill:   #7bc043;
+  --hill-2: #5fa83a;
+  --lawn:   #8fd14f;
+  --win:    #9fd3e8;
+  --on-sky: #1d1b2a;
+
+  background: var(--sky-2);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.04rem;
+  line-height: 1.5;
+  min-height: 100vh;
+  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+}
+.sf.is-dusk {
+  --sky-1: #3a3f8f; --sky-2: #f7a46b; --cloud: #ffd6c0; --sun: #ffb35a;
+  --hill: #6a9a3c; --hill-2: #4f7f30; --lawn: #78a944; --win: #ffd36b;
+}
+.sf.is-night {
+  --sky-1: #0e1438; --sky-2: #2b3a78; --cloud: #4a5694; --sun: #f3f0d8;
+  --hill: #3c6a3a; --hill-2: #2c5530; --lawn: #4a7a3c; --win: #ffd36b;
+  --on-sky: #fff8e6;
+}
+
+/* ───────────── the sky behind it all ───────────── */
+.sf-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: linear-gradient(180deg, var(--sky-1), var(--sky-2) 85%);
+}
+/* a flat cartoon cloud: one rounded bar with three puffs on top, made
+   from radial gradients so it costs no markup */
+.sf-drift {
+  position: absolute; width: 220px; height: 80px;
+  background:
+    radial-gradient(circle at 30% 60%, var(--cloud) 34px, transparent 35px),
+    radial-gradient(circle at 52% 42%, var(--cloud) 42px, transparent 43px),
+    radial-gradient(circle at 74% 62%, var(--cloud) 30px, transparent 31px),
+    linear-gradient(var(--cloud), var(--cloud)) 20% 100% / 64% 34px no-repeat;
+  opacity: .8;
+  animation: sf-drift 140s linear infinite;
+}
+.sf-drift--1 { top: 14%; left: -240px; }
+.sf-drift--2 { top: 48%; left: -240px; animation-delay: -60s; animation-duration: 180s; transform: scale(.7); }
+.sf-drift--3 { top: 78%; left: -240px; animation-delay: -110s; animation-duration: 160s; }
+@keyframes sf-drift { to { translate: calc(100vw + 480px) 0; } }
+
+/* ───────────── header ───────────── */
+.sf-top {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; flex-wrap: wrap;
+  padding: calc(0.8rem + env(safe-area-inset-top, 0px)) clamp(1rem, 4vw, 2.6rem) 0.8rem;
+  background: var(--yellow);
+  border-bottom: 3px solid var(--ink);
+  font-size: 0.86rem; font-weight: 600; color: var(--ink);
+}
+.sf-exit {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.3rem 0.8rem 0.3rem 0.5rem; border: 2.5px solid var(--ink); border-radius: 999px;
+  background: var(--cream); box-shadow: 3px 3px 0 var(--ink);
+  transition: translate .2s var(--ease), box-shadow .2s var(--ease);
+}
+.sf-exit:hover, .sf-exit:focus-visible { outline: none; translate: -1px -1px; box-shadow: 4px 4px 0 var(--ink); }
+.sf-exit:focus-visible { background: #fff; }
+.sf-exit svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.6; }
+.sf-top-mid { font-family: var(--disp); font-weight: 400; letter-spacing: 0.06em; font-size: 0.95rem; }
+/* the sign at the plant gate: the number on its own little card, the way
+   the real one has a slot for it */
+.sf-top-sign { display: inline-flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; }
+.sf-top-sign b {
+  display: inline-grid; place-items: center; min-width: 2rem; height: 1.7rem; padding: 0 0.3rem;
+  font-family: var(--disp); font-weight: 400; font-size: 1.05rem;
+  background: #fff; border: 2.5px solid var(--ink); border-radius: 4px;
+}
+.sf-top-time { margin-left: 0.3rem; padding-left: 0.6rem; border-left: 2px solid rgba(29, 27, 42, .35); font-variant-numeric: tabular-nums; }
+.sf-top-time:empty { display: none; }
+
+.sf-main { position: relative; z-index: 1; max-width: 1240px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.6rem); }
+
+/* ───────────── the clouds part ───────────── */
+.sf-hero { position: relative; text-align: center; padding: clamp(2.2rem, 7vw, 4.6rem) 0 clamp(1.6rem, 4vw, 2.6rem); }
+.sf-part { position: fixed; inset: 0; pointer-events: none; z-index: 30; overflow: hidden; animation: sf-gone-p 0s linear 2.2s both; }
+@keyframes sf-gone-p { to { visibility: hidden; } }
+.sf-bank {
+  position: absolute; top: -10%; bottom: -10%; width: 75%;
+  background:
+    radial-gradient(circle at 20% 30%, var(--cloud) 22%, transparent 23%),
+    radial-gradient(circle at 60% 20%, var(--cloud) 26%, transparent 27%),
+    radial-gradient(circle at 40% 70%, var(--cloud) 28%, transparent 29%),
+    radial-gradient(circle at 80% 60%, var(--cloud) 24%, transparent 25%),
+    radial-gradient(circle at 70% 95%, var(--cloud) 20%, transparent 21%),
+    linear-gradient(var(--cloud), var(--cloud)) 50% 50% / 70% 60% no-repeat;
+  animation: sf-part 1.8s var(--ease) .25s both;
+}
+.sf-bank--l { left: 0; --to: -105%; }
+.sf-bank--r { right: 0; --to: 105%; transform: scaleX(-1); }
+@keyframes sf-part { from { translate: 0 0; } to { translate: var(--to) 0; opacity: 0; } }
+
+.sf-kicker {
+  display: inline-block; padding: 0.25rem 0.9rem; border: 2.5px solid var(--ink); border-radius: 999px;
+  background: var(--cream); font-weight: 600; font-size: 0.86rem; letter-spacing: 0.12em; text-transform: uppercase;
+}
+/* the name comes up at you out of the clouds, as the title does */
+.sf-title {
+  margin-top: 0.6rem;
+  font-family: var(--disp); font-weight: 400; line-height: 1;
+  font-size: clamp(3rem, 13vw, 8.4rem); letter-spacing: 0.02em;
+  color: var(--yellow);
+  -webkit-text-stroke: 3px var(--ink); paint-order: stroke fill;
+  text-shadow: 0 6px 0 var(--ink), 0 10px 22px rgba(0, 0, 0, .18);
+  animation: sf-come 1.6s var(--ease) .5s both;
+}
+@keyframes sf-come { from { transform: scale(.35); opacity: 0; filter: blur(6px); } 60% { opacity: 1; } to { transform: scale(1); opacity: 1; filter: none; } }
+.sf-sub {
+  max-width: 60ch; margin: 1.2rem auto 0; padding: 0.9rem 1.2rem;
+  font-size: 1.08rem; line-height: 1.55; color: var(--ink);
+  background: var(--cream); border: 3px solid var(--ink); border-radius: 18px; box-shadow: 5px 5px 0 var(--ink);
+}
+
+/* ───────────── cards ───────────── */
+.sf-card {
+  position: relative;
+  margin-top: clamp(1.2rem, 3vw, 1.8rem); padding: clamp(1rem, 2.6vw, 1.6rem);
+  background: var(--cream); border: 3px solid var(--ink); border-radius: 22px;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.sf-cols { display: grid; gap: clamp(1.2rem, 3vw, 1.8rem); grid-template-columns: 1fr; }
+.sf-cols > .sf-card { margin-top: 0; }
+.sf-cols { margin-top: clamp(1.2rem, 3vw, 1.8rem); }
+@media (min-width: 900px) { .sf-cols { grid-template-columns: 1fr 1fr; } }
+
+.sf-h {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.2rem 0.7rem;
+  font-family: var(--disp); font-weight: 400; letter-spacing: 0.03em; line-height: 1.1;
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem); margin-bottom: 1rem;
+}
+.sf-h span { font-family: var(--body); font-size: 1rem; font-weight: 500; letter-spacing: 0; color: var(--ink-2); }
+.sf-h--sm { font-size: clamp(1.3rem, 2.6vw, 1.6rem); }
+.sf-think { width: 22px; height: 22px; }
+.sf-h3 { font-family: var(--disp); font-weight: 400; font-size: 1.2rem; letter-spacing: 0.04em; margin: 1.3rem 0 0.8rem; }
+
+.sf-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem;
+  padding: 0.55rem 1.2rem; border: 3px solid var(--ink); border-radius: 999px;
+  background: var(--yellow); box-shadow: 4px 4px 0 var(--ink);
+  font-weight: 600; font-size: 1rem; cursor: pointer;
+  transition: translate .18s var(--ease), box-shadow .18s var(--ease);
+}
+.sf-btn:hover { translate: -1px -1px; box-shadow: 5px 5px 0 var(--ink); }
+.sf-btn:active { translate: 3px 3px; box-shadow: 1px 1px 0 var(--ink); }
+.sf-btn:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.sf-btn--ghost { background: var(--cream-2); }
+
+/* ───────────── the town ───────────── */
+.sf-frame {
+  border: 3px solid var(--ink); border-radius: 14px; overflow-x: auto; overflow-y: hidden;
+  overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
+  background: var(--sky-2);
+}
+.sf-town { display: block; width: 100%; min-width: 1040px; height: auto; }
+.sf-hint { display: none; margin-top: 0.5rem; font-size: 0.92rem; color: var(--ink-2); }
+@media (max-width: 1100px) { .sf-hint { display: block; } }
+
+.sf-st1 { stop-color: var(--sky-1); }
+.sf-st2 { stop-color: var(--sky-2); }
+.sf-t-clouds path { fill: var(--cloud); stroke: var(--ink); stroke-width: 3; animation: sf-bob 9s ease-in-out infinite; }
+.sf-t-clouds path + path { animation-delay: -4s; }
+@keyframes sf-bob { 50% { translate: 18px 0; } }
+.sf-t-sun { fill: var(--sun); stroke: var(--ink); stroke-width: 3; }
+.sf-t-hill2 { fill: var(--hill-2); stroke: var(--ink); stroke-width: 3; }
+.sf-t-hill { fill: var(--hill); stroke: var(--ink); stroke-width: 3; }
+.sf-t-lawn { fill: var(--lawn); }
+
+/* everything in the town carries the show's line: one weight of ink round
+   every shape, joins rounded */
+.sf-ink { stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.sf-ink2 { stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
+.sf-win rect { fill: var(--win); stroke: var(--ink); stroke-width: 2.5; transition: fill .4s; }
+.sf-mast { fill: none; stroke: #6b6f7a; stroke-width: 4; stroke-linejoin: round; }
+
+/* the street signs under each building */
+.sf-lab {
+  font-family: var(--body); font-weight: 600; font-size: 19px; fill: var(--ink);
+  paint-order: stroke; stroke: var(--cream); stroke-width: 5px; stroke-linejoin: round;
+  transition: fill .2s;
+}
+.sf-sign-on { font-family: var(--disp); font-size: 20px; fill: #fff; paint-order: stroke; stroke: var(--ink); stroke-width: 4px; stroke-linejoin: round; letter-spacing: 1px; }
+.sf-six { font-family: var(--disp); font-size: 28px; fill: var(--ink); }
+.sf-shop { font-family: var(--disp); font-size: 12px; fill: var(--yellow); letter-spacing: 1px; }
+.sf-shop--dk { fill: var(--ink); font-size: 11px; }
+.sf-vert { font-family: var(--disp); font-size: 13px; fill: #c8453a; }
+.sf-open-t { font-family: var(--disp); font-size: 9.5px; /* floor-ok: SVG user units on a painted sign, scaled with the drawing */ fill: #fff; letter-spacing: .5px; }
+
+/* each building comes up out of the ground once, in turn, and then lifts
+   and lights when you point at it, here or in the directory */
+.sf-b { cursor: pointer; }
+.sf-b-lift {
+  transform-box: fill-box; transform-origin: 50% 100%;
+  animation: sf-rise .8s var(--pop) both; animation-delay: calc(var(--i, 0) * 70ms + 700ms);
+  transition: translate .3s var(--pop), filter .3s;
+}
+@keyframes sf-rise { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.sf-b:hover .sf-b-lift, .sf-b.is-lit .sf-b-lift { translate: 0 -10px; filter: drop-shadow(0 6px 0 rgba(29, 27, 42, .3)); }
+.sf-b:hover .sf-win rect, .sf-b.is-lit .sf-win rect { fill: #ffe46b; }
+.sf-b:hover .sf-lab, .sf-b.is-lit .sf-lab { fill: #b4231a; }
+
+/* the life of the town: steam off the towers, the mast light, the flag,
+   the OPEN sign, the marquee bulbs chasing, the arcade neon, the car */
+.sf-steam circle { fill: #fff; opacity: .85; stroke: var(--ink); stroke-width: 2.5; transform-box: fill-box; transform-origin: center; animation: sf-steam 4.5s ease-in-out infinite; }
+.sf-steam circle:nth-child(2) { animation-delay: -1.2s; }
+.sf-steam circle:nth-child(3) { animation-delay: -2.4s; }
+.sf-steam circle:nth-child(4) { animation-delay: -3.4s; }
+@keyframes sf-steam { 0% { translate: 0 10px; scale: .7; opacity: 0; } 30% { opacity: .9; } 100% { translate: 10px -40px; scale: 1.3; opacity: 0; } }
+.sf-blink { fill: #ff3b30; stroke: var(--ink); stroke-width: 2.5; animation: sf-blink 1.6s steps(1) infinite; }
+@keyframes sf-blink { 50% { fill: #5a1a16; } }
+.sf-flag { transform-box: fill-box; transform-origin: 0 50%; animation: sf-wave 2.2s ease-in-out infinite; }
+@keyframes sf-wave { 50% { transform: skewY(6deg) scaleX(.9); } }
+.sf-open { fill: #d6342c; animation: sf-open 2.4s steps(1) infinite; }
+@keyframes sf-open { 80% { fill: #6a1a16; } }
+.sf-bulbs circle { fill: #ffd90f; stroke: var(--ink); stroke-width: 1; animation: sf-bulb 1s steps(1) infinite; }
+.sf-bulbs circle:nth-child(odd) { animation-delay: -.5s; }
+@keyframes sf-bulb { 50% { fill: #8a6a1a; } }
+.sf-neon { fill: none; stroke: #ff6fb1; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; animation: sf-neon 5s steps(1) infinite; }
+@keyframes sf-neon { 6% { opacity: .3; } 8% { opacity: 1; } 10% { opacity: .3; } 12% { opacity: 1; } }
+.sf-car { animation: sf-car 18s ease-in-out infinite; }
+@keyframes sf-car { 0%, 6% { translate: 0 0; } 46%, 56% { translate: 1020px 0; } 96%, 100% { translate: 0 0; } }
+
+/* the directory: an address card per room, with a roof in the building's
+   colour along its top */
+.sf-dir { display: grid; gap: 0.9rem; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.sf-room {
+  position: relative; display: flex; flex-direction: column; gap: 0.15rem; height: 100%;
+  padding: 1.25rem 0.95rem 0.85rem;
+  background: #fff; border: 2.5px solid var(--ink); border-radius: 12px;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: translate .2s var(--ease), box-shadow .2s var(--ease), background .2s;
+}
+.sf-room::before {
+  content: ""; position: absolute; left: -2.5px; right: -2.5px; top: -2.5px; height: 12px;
+  background: var(--c); border: 2.5px solid var(--ink); border-radius: 12px 12px 0 0;
+}
+.sf-room b { font-weight: 600; font-size: 1.04rem; line-height: 1.25; }
+.sf-room i { font-style: normal; font-size: 0.94rem; color: var(--ink-2); line-height: 1.35; }
+.sf-room:hover, .sf-room:focus-visible { outline: none; translate: -2px -2px; box-shadow: 5px 5px 0 var(--ink); background: #fffbe0; }
+.sf-room:focus-visible { box-shadow: 5px 5px 0 var(--ink), 0 0 0 3px var(--blue); }
+
+/* ───────────── the chalkboard ───────────── */
+.sf-board {
+  position: relative; padding: 1.1rem 1.2rem 1.6rem;
+  background:
+    radial-gradient(120% 90% at 30% 20%, rgba(255, 255, 255, .06), transparent 60%),
+    #2f5d45;
+  border: 12px solid #b9824a; border-radius: 6px;
+  outline: 3px solid var(--ink); box-shadow: inset 0 0 0 2px rgba(0, 0, 0, .25), inset 0 0 40px rgba(0, 0, 0, .3);
+  min-height: 240px;
+}
+.sf-chalk p {
+  min-height: 1.45em;
+  font-family: var(--chalkf); font-weight: 600; font-size: clamp(1.2rem, 2.6vw, 1.55rem); line-height: 1.45;
+  color: rgba(255, 255, 255, .9);
+  text-shadow: 0 0 1px rgba(255, 255, 255, .7), 0 0 6px rgba(255, 255, 255, .18);
+}
+/* the chalk's tip, at the end of whatever is being written */
+.sf-chalk .sf-unwritten { color: transparent; text-shadow: none; }
+.sf-chalk .is-writing > span:first-child { position: relative; }
+.sf-chalk .is-writing > span:first-child::after {
+  content: ""; position: absolute; right: -0.6em; bottom: 0.5em; width: 0.5em; height: 0.18em;
+  background: #fff; border-radius: 2px; rotate: -20deg;
+}
+.sf-tray { position: absolute; left: 10%; right: 10%; bottom: -12px; height: 10px; background: #8f5f30; border: 2px solid var(--ink); border-radius: 2px; }
+.sf-stick { position: absolute; left: 12%; top: -7px; width: 26px; height: 7px; background: #fff; border: 1.5px solid var(--ink); border-radius: 3px; }
+.sf-eraser { position: absolute; right: 14%; top: -12px; width: 44px; height: 12px; background: #3a3a48; border: 2px solid var(--ink); border-radius: 3px; box-shadow: inset 0 -4px 0 #d9c6a0; }
+.sf-board-cap { margin-top: 1.4rem; font-size: 0.95rem; color: var(--ink-2); }
+.sf-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+
+/* ───────────── the TV ───────────── */
+.sf-tv { max-width: 460px; margin: 0.4rem auto 0; padding-top: 6px; }
+.sf-tv svg { width: 100%; height: auto; overflow: visible; }
+.sf-tv-cap { margin-top: 0.6rem; font-size: 0.98rem; color: var(--ink-2); min-height: 3em; }   /* two lines held open, so a long gag does not push the dial down */
+.sf-tvwrap .sf-btn { margin-top: 0.6rem; }
+.sf-osd { font-family: var(--mono); font-weight: 700; font-size: 20px; fill: #7dff8a; opacity: 0; paint-order: stroke; stroke: #0a2a10; stroke-width: 3px; }
+.sf-static { opacity: 0; }
+.sf-dark { opacity: 0; pointer-events: none; }
+.sf-donut { opacity: 0; }
+.sf-dial-hand { transform-box: view-box; transform-origin: 400px 104px; transition: rotate .45s var(--pop); }
+.sf-lr, .sf-couch, .sf-boat, .sf-paint, .sf-donut { transform-box: fill-box; transform-origin: center; }
+.sf-tv svg .sf-lr { transform-box: view-box; transform-origin: 190px 174px; }
+.sf-couch { transform-origin: 50% 100%; }
+
+/* between channels: a quarter second of snow and the channel number */
+.sf-tv.is-tuning .sf-static { animation: sf-snow .5s steps(4) both; }
+.sf-tv.is-tuning .sf-osd { animation: sf-osd 2.2s ease both; }
+@keyframes sf-snow { 0% { opacity: 1; } 50% { opacity: 1; translate: 3px -2px; } 75% { opacity: 1; translate: -2px 2px; } 100% { opacity: 0; } }
+@keyframes sf-osd { 0%, 80% { opacity: 1; } 100% { opacity: 0; } }
+
+/* the gags. Each runs once when its name lands on data-gag, and each puts
+   the room back as it found it, except the crooked painting, which stays
+   crooked until the next one, as it would. */
+.sf-tv[data-gag="slide"] .sf-couch { animation: sf-slide 2.6s var(--ease) .5s both; }
+@keyframes sf-slide { 0% { translate: 0 0; } 35%, 60% { translate: 260px 0; } 61% { translate: -260px 0; } 100% { translate: 0 0; } }
+.sf-tv[data-gag="flip"] .sf-lr { animation: sf-flip 2.8s var(--pop) .5s both; }
+@keyframes sf-flip { 0% { rotate: 0deg; } 35%, 65% { rotate: 180deg; } 100% { rotate: 360deg; } }
+.sf-tv[data-gag="sail"] .sf-boat { animation: sf-sail 3.4s ease-in-out .5s both; }
+@keyframes sf-sail { 0% { translate: 0 0; } 20% { translate: 0 -3px; rotate: -6deg; } 50% { translate: 120px 40px; rotate: 6deg; } 51% { translate: -140px 40px; } 80% { translate: -20px 6px; rotate: -4deg; } 100% { translate: 0 0; rotate: 0deg; } }
+.sf-tv[data-gag="shrink"] .sf-couch { animation: sf-shrink 2.6s var(--pop) .5s both; }
+@keyframes sf-shrink { 0% { scale: 1; } 30%, 60% { scale: .08; } 100% { scale: 1; } }
+.sf-tv[data-gag="donut"] .sf-couch { animation: sf-gone 3s ease .5s both; }
+.sf-tv[data-gag="donut"] .sf-donut { animation: sf-roll 3s var(--pop) .5s both; }
+@keyframes sf-gone { 0% { opacity: 1; } 15%, 80% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes sf-roll { 0% { opacity: 0; translate: -200px 0; rotate: -360deg; } 15% { opacity: 1; } 45%, 75% { opacity: 1; translate: 0 0; rotate: 0deg; } 80%, 100% { opacity: 0; translate: 0 0; } }
+.sf-tv[data-gag="dark"] .sf-dark { animation: sf-dark 2.8s steps(1) .5s both; }
+.sf-tv[data-gag="dark"] .sf-shade { animation: sf-shade 2.8s steps(1) .5s both; }
+@keyframes sf-dark { 0% { opacity: 0; } 15%, 70% { opacity: .82; } 100% { opacity: 0; } }
+@keyframes sf-shade { 0% { fill: #f6e6a6; } 15%, 70% { fill: #6a6250; } 100% { fill: #f6e6a6; } }
+.sf-tv[data-gag="quake"] .sf-lr { animation: sf-quake .9s linear .5s 2; }
+.sf-tv[data-gag="quake"] .sf-paint { animation: sf-crooked 1.6s var(--pop) .5s both; }
+@keyframes sf-quake { 0%, 100% { translate: 0 0; } 20% { translate: -6px 3px; } 40% { translate: 5px -4px; } 60% { translate: -4px -2px; } 80% { translate: 6px 3px; } }
+@keyframes sf-crooked { to { rotate: 9deg; } }
+
+/* ───────────── the resident file ───────────── */
+.sf-file { display: flex; flex-direction: column; }
+.sf-file div {
+  display: grid; grid-template-columns: minmax(8rem, 38%) minmax(0, 1fr); gap: 0.2rem 1rem; align-items: baseline;
+  padding: 0.6rem 0; border-bottom: 2px dashed rgba(29, 27, 42, .2);
+}
+.sf-file div:last-child { border-bottom: 0; }
+.sf-file dt { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); }
+.sf-file dd { font-weight: 500; }
+.sf-file a { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; text-decoration-color: var(--blue); }
+.sf-file a:hover, .sf-file a:focus-visible { outline: none; background: var(--yellow); }
+
+/* ───────────── the receipt ───────────── */
+/* a till roll: white paper with a torn zigzag top and bottom, slightly
+   turned, in a typewriter face */
+.sf-receipt {
+  position: relative; max-width: 420px; margin: 0.6rem auto 0.4rem; padding: 1.4rem 1.3rem;
+  background: #fff; color: #23212c; font-family: var(--mono); font-size: 0.92rem; line-height: 1.45;
+  rotate: -1.2deg; filter: drop-shadow(4px 5px 0 rgba(29, 27, 42, .85));
+}
+.sf-receipt::before, .sf-receipt::after { content: ""; position: absolute; left: 0; right: 0; height: 7px; background-size: 14px 7px; background-repeat: repeat-x; }
+.sf-receipt::before { top: -7px; background-image: conic-gradient(from 135deg at 50% 0, #fff 90deg, transparent 0); }
+.sf-receipt::after { bottom: -7px; background-image: conic-gradient(from -45deg at 50% 100%, #fff 90deg, transparent 0); }
+.sf-r-head { text-align: center; font-weight: 700; padding-bottom: 0.7rem; border-bottom: 2px dashed #23212c; }
+.sf-r-lines div { display: flex; justify-content: space-between; gap: 0.8rem; padding: 0.35rem 0; flex-wrap: wrap; }
+.sf-r-lines dt { text-transform: uppercase; }
+.sf-r-lines dd { text-align: right; margin-left: auto; }
+.sf-r-total { margin-top: 0.4rem; padding-top: 0.6rem !important; border-top: 2px dashed #23212c; font-weight: 700; font-size: 1.05rem; }
+.sf-r-foot { margin-top: 0.8rem; text-align: center; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ───────────── the TV guide ───────────── */
+.sf-guide { display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+.sf-guide a {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 0.8rem; align-items: center; height: 100%;
+  padding: 0.6rem 0.8rem; border: 2.5px solid var(--ink); border-radius: 12px; background: #fff;
+  transition: background .2s, translate .2s var(--ease), box-shadow .2s var(--ease);
+}
+.sf-ch {
+  grid-row: span 2; display: grid; place-items: center; width: 2.6rem; height: 2.2rem;
+  font-family: var(--mono); font-weight: 700; font-size: 1.05rem;
+  background: var(--ink); color: #7dff8a; border-radius: 8px;
+}
+.sf-guide b { font-weight: 600; line-height: 1.25; align-self: end; }
+.sf-guide i { font-style: normal; font-size: 0.92rem; color: var(--ink-2); align-self: start; }
+.sf-guide a:hover, .sf-guide a:focus-visible { outline: none; background: #fffbe0; translate: -2px -2px; box-shadow: 4px 4px 0 var(--ink); }
+.sf-guide a:focus-visible { box-shadow: 4px 4px 0 var(--ink), 0 0 0 3px var(--blue); }
+
+/* ───────────── lights out ───────────── */
+.sf-off {
+  display: flex; align-items: center; gap: 0.7rem; margin: clamp(2rem, 5vw, 3rem) auto 0;
+  padding: 0.75rem 1.6rem 0.75rem 0.9rem; border: 3px solid var(--ink); border-radius: 999px;
+  background: var(--ink); color: var(--yellow); box-shadow: 5px 5px 0 rgba(29, 27, 42, .45);
+  font-family: var(--disp); font-weight: 400; font-size: 1.2rem; letter-spacing: 0.06em; cursor: pointer;
+  transition: translate .2s var(--ease), background .2s;
+}
+.sf-off-knob { width: 26px; height: 26px; border-radius: 50%; background: #e9dcc0; border: 3px solid var(--yellow); position: relative; transition: rotate .4s var(--pop); }
+.sf-off-knob::after { content: ""; position: absolute; left: 50%; top: 2px; width: 3px; height: 8px; margin-left: -1.5px; background: var(--ink); border-radius: 2px; }
+.sf-off:hover .sf-off-knob, .sf-off:focus-visible .sf-off-knob { rotate: -90deg; }
+.sf-off:hover, .sf-off:focus-visible { translate: 0 -2px; }
+.sf-off:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+
+.sf.is-off .sf-main, .sf.is-off .sf-top { opacity: 0; transition: opacity .35s ease; pointer-events: none; }
+.sf-done {
+  position: fixed; inset: 0; z-index: 20; display: grid; place-items: center;
+  background: #07060c; opacity: 0; pointer-events: none; transition: opacity .3s ease;
+  text-align: center; padding: 2rem; color: #fff8e6;
+}
+.sf.is-off .sf-done { opacity: 1; pointer-events: auto; }
+/* the picture going: full white, folded to a line, then to a dot that
+   fades last of all, right where the orb comes up */
+.sf-crt { position: absolute; left: 50%; top: 50%; width: 100vw; height: 100vh; translate: -50% -50%; background: #fff; border-radius: 50%; opacity: 0; }
+.sf.is-off .sf-crt { animation: sf-crt 1.3s cubic-bezier(.6, 0, .4, 1) .1s both; }
+@keyframes sf-crt {
+  0%   { opacity: 1; scale: 1 1; border-radius: 0; }
+  35%  { opacity: 1; scale: 1 .004; border-radius: 0; }
+  65%  { opacity: 1; scale: .006 .006; border-radius: 50%; }
+  100% { opacity: 0; scale: .006 .006; border-radius: 50%; }
+}
+.sf-done-in { position: relative; opacity: 0; }
+.sf.is-off .sf-done-in { animation: sf-in .9s ease 1.1s both; }
+@keyframes sf-in { from { opacity: 0; translate: 0 8px; } to { opacity: 1; translate: 0 0; } }
+.sf-done-orb { display: block; width: 96px; height: 96px; margin: 0 auto 1.4rem; }
+.sf:not(.is-off) .sf-done-orb { display: none; }
+.sf-done-k { font-weight: 600; font-size: 0.86rem; letter-spacing: 0.24em; text-transform: uppercase; color: #c9c3d6; }
+.sf-done-t {
+  margin-top: 0.5rem; font-family: var(--disp); font-weight: 400; letter-spacing: 0.03em;
+  font-size: clamp(2rem, 7vw, 3.8rem); color: var(--yellow); line-height: 1.1;
+}
+.sf-done a {
+  display: inline-block; margin-top: 1.6rem; padding-bottom: 3px;
+  font-weight: 500; color: #e6e0f0; border-bottom: 2px solid rgba(255, 217, 15, .5);
+}
+.sf-done a:hover, .sf-done a:focus-visible { outline: none; color: var(--yellow); border-color: var(--yellow); }
+
+/* ───────────── phones ───────────── */
+@media (max-width: 560px) {
+  .sf-top { font-size: 0.8rem; }
+  .sf-top-mid { order: 3; width: 100%; font-size: 0.86rem; }
+  .sf-dir { grid-template-columns: 1fr 1fr; gap: 0.75rem 0.55rem; }
+  .sf-room { padding: 1.15rem 0.7rem 0.75rem; }
+  .sf-room b { font-size: 0.95rem; }
+  .sf-room i { font-size: 0.86rem; }
+  .sf-file div { grid-template-columns: 1fr; }
+  .sf-board { padding: 0.9rem 0.9rem 1.4rem; border-width: 9px; }
+  .sf-chalk p { font-size: 1.12rem; }
+  .sf-receipt { font-size: 0.86rem; padding: 1.3rem 1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sf-drift, .sf-part, .sf-t-clouds path, .sf-car, .sf-steam circle, .sf-flag, .sf-neon, .sf-bulbs circle { animation: none; }
+  .sf-part { display: none; }
+  .sf-title, .sf-b-lift { animation: none; }
+  .sf-b-lift { transition: none; }
+  .sf-blink, .sf-open { animation: none; }
+  /* the gags only run when asked for; the two that throw the whole room
+     about (the flip and the quake) are left out, and springfield.js skips
+     them too */
+  .sf-tv[data-gag="flip"] .sf-lr, .sf-tv[data-gag="quake"] .sf-lr { animation: none; }
+  .sf.is-off .sf-crt { animation: none; }
+  .sf.is-off .sf-done-in { animation: none; opacity: 1; }
+}

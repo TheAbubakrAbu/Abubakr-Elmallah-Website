@@ -149,6 +149,14 @@ window.FANDOMS = [
       when: 'Since I was a kid, on the cartoons',
       meta: 'Comics · 1960', href: '/worlds/justice-league/',
       desc: 'Shorthand for the DC guys: Batman, Superman, Green Lantern, Cyborg, the Flash, Aquaman. The cartoons got me, not the comics.' },
+    /* Green Lantern sits straight after the Justice League (the owner's call,
+       2026-10-04): he is one of the six the League page is on this site for,
+       and the only one of them with a corps, an oath and a rule set of his
+       own, which is enough page for a tile. */
+    { name: 'Green Lantern', wm: 'lantern', glyph: 'lantern', c1: '#4fd07f', c2: '#0b2416',
+      when: 'Since I was a kid, on the cartoons',
+      meta: 'Comics · 1940', href: '/worlds/green-lantern/',
+      desc: 'A ring that builds whatever you can picture, powered by willpower and stopped by nothing except your own nerve. The best premise in DC and the one the films have never once got right.' },
     { name: 'Indiana Jones', wm: 'indiana', glyph: 'fedora', c1: '#d8b06a', c2: '#221a0e',
       when: 'As a kid, through the LEGO games',
       meta: 'Film · 1981', href: '/worlds/indiana-jones/', desc: 'Archaeology as an action sport, with the best-scored opening scene in cinema.' },

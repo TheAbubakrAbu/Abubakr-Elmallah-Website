@@ -1,0 +1,340 @@
+---
+permalink: /daily-bugle/
+title: "The Daily Bugle · Abubakr Elmallah"
+description: "The Daily Bugle: a Spider-Man interface for Abubakr Elmallah's portfolio, today's front page with every room a headline and a web that finds each story."
+theme: "#171412"
+fonts: "family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Oswald:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/daily-bugle.css' %}" />
+</head>
+<body class="db" id="db">
+
+<!-- newsprint: warm paper, a faint grain of fibres, and the darker edges a
+     page picks up from being handled. Nothing here is an image. -->
+<div class="db-field" aria-hidden="true">
+  <span class="db-grain"></span>
+  <span class="db-edge"></span>
+</div>
+
+<!-- the web and the spider-sense: one canvas over the whole page, drawn by
+     daily-bugle.js. It never takes a click; everything under it is a real
+     link with its own focus ring. -->
+<canvas class="db-web" id="dbWeb" aria-hidden="true"></canvas>
+
+<header class="db-top">
+  <a class="db-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the Daily Bugle</span>
+  </a>
+  <span class="db-top-mid">Bugle Building · Midtown · New York</span>
+  <!-- the edition on the street right now, from your clock: Morning until
+       eleven, then Afternoon, Late City from four, Night Final after nine -->
+  <span class="db-edition" id="dbEdition">Today’s edition</span>
+</header>
+
+<main class="db-main">
+
+  <!-- ─────────── the masthead ───────────
+       The nameplate, between its ears: the left one carries the weather (as
+       the spider-sense forecasts it), the right one the slogan and the
+       price. The dateline under it is today's real date; the volume counts
+       the years since 1962, when the spider first turned up in print. -->
+  <section class="db-mast" aria-labelledby="dbTitle">
+    <div class="db-ears">
+      <p class="db-ear">
+        <b>Weather</b>
+        <span>Clear over Queens, with a chance of web after dark. Spider-sense: tingling.</span>
+      </p>
+      <h1 class="db-title" id="dbTitle"><span>The</span> Daily Bugle</h1>
+      <p class="db-ear db-ear--r">
+        <b>All the news that’s fit to sling</b>
+        <span>Fifteen rooms · one menace · free to every reader</span>
+      </p>
+    </div>
+    <p class="db-dateline">
+      <span id="dbVol">Vol. LXIV</span>
+      <span id="dbDate">New York, today</span>
+      <span>Price: one click</span>
+    </p>
+  </section>
+
+  <!-- ─────────── today's edition ───────────
+       Every room on the site, as a story on the front page: the section of
+       the paper it would run in is its in-world name, the real name sits
+       beside it, and the headline is the editor's, shouted. The list is the
+       real thing: plain links in reading order. Hover one (or tab to it)
+       and a web shoots to it from your cursor; on a phone, a line drops
+       from the top of the screen to the story you are reading. -->
+  <section class="db-front" aria-labelledby="dbFrontH">
+    <h2 class="db-h" id="dbFrontH">
+      <canvas class="db-think" data-orb="searching" data-orb-size="22" data-orb-ink="#b3121c" aria-hidden="true"></canvas>Today’s edition<span>every room on this site, as a story the editor wants you to read</span>
+    </h2>
+    <p class="db-hint" id="dbHint">Point at a story and the web will find it.</p>
+
+    <ol class="db-stories">
+      <li class="db-st db-st--lead" style="--i:0">
+        <a class="db-story" href="/" data-web>
+          <span class="db-lead-text">
+            <span class="db-kick">Page One<i>home</i></span>
+            <b class="db-hl">Who is Abubakr Elmallah, and why does he need fifteen rooms?</b>
+            <span class="db-by">By the Editor-in-Chief</span>
+            <span class="db-deck">A computer science student has built an entire website, put every app he ever shipped inside it, and filled the rest with seventy-one worlds he cares about. This newspaper has questions. Start here, read everything, and do not trust a word of it until you have seen the photos.</span>
+          </span>
+          <!-- the lead photo: the only picture of the menace this paper
+               ever got, blurred, grainy and printed in halftone. SVG, with a
+               dot screen laid over it in CSS. -->
+          <span class="db-photo">
+            <svg viewBox="0 0 600 380" aria-hidden="true">
+              <defs>
+                <linearGradient id="dbSky" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#cfc8b8"/>
+                  <stop offset="1" stop-color="#8e877a"/>
+                </linearGradient>
+              </defs>
+              <rect width="600" height="380" fill="url(#dbSky)"/>
+              <circle cx="470" cy="92" r="46" fill="#e4dece" opacity=".7"/>
+              <g class="db-ph-far">
+                <path d="M0 380V250h40v-30h34v30h40v-64h48v64h36v-90h44v90h40v-42h38v42h48V170h44v80h40v-46h42v46h48v-60h40v60h42v-26h40v26h36v130z"/>
+              </g>
+              <g class="db-ph-near">
+                <path d="M0 380V286h56v-40h44v40h62v-58h50v58h46v-34h58v34h60v-82h28v-38h22v38h28v82h52v-52h52v52h46v-30h40v30h56v94z"/>
+                <!-- a water tower, because it is the city's rooftops -->
+                <path d="M118 246v-18h-8l10-12h36l10 12h-8v18h-6v-16h-28v16z"/>
+              </g>
+              <!-- the web, from out of frame to the figure -->
+              <path class="db-ph-line" d="M140 -10 L330 168"/>
+              <!-- speed lines behind the swing -->
+              <g class="db-ph-speed">
+                <path d="M220 200h70M200 216h84M226 232h60M244 184h40"/>
+              </g>
+              <!-- the figure, mid-swing: one arm up the line, knees tucked -->
+              <g class="db-ph-guy" transform="translate(338 190) rotate(-18)">
+                <circle cx="0" cy="-30" r="11"/>
+                <path d="M0 -18 L4 14" class="db-ph-limb" stroke-width="15"/>
+                <path d="M-2 -14 L-10 -42" class="db-ph-limb"/>
+                <path d="M2 -12 L24 4" class="db-ph-limb"/>
+                <path d="M3 12 L26 22 L18 44" class="db-ph-limb"/>
+                <path d="M2 14 L-12 34 L4 50" class="db-ph-limb"/>
+              </g>
+            </svg>
+            <span class="db-caption">Bugle photo: the menace, mid-swing over Queens. The photographer swears it is not a man in a costume on a string.</span>
+          </span>
+        </a>
+      </li>
+
+      <li class="db-st db-st--wide" style="--i:1">
+        <a class="db-story" href="/work/" data-web>
+          <span class="db-kick">The City Desk<i>work at UC Irvine</i></span>
+          <b class="db-hl">UC Irvine app team led by one man; Bugle demands to see the code</b>
+          <span class="db-deck">He is the lead mobile &amp; backend developer, and he will not stop shipping. The whole job, from the desk that never sleeps.</span>
+        </a>
+      </li>
+      <li class="db-st db-st--wide" style="--i:2">
+        <a class="db-story" href="/projects/" data-web>
+          <span class="db-kick">Business<i>every project</i></span>
+          <b class="db-hl">Twelve apps, four platforms, and not one cleared with this editor</b>
+          <span class="db-deck">Every project, back to the first solo ones in 2021. The Bugle has read them all and is furious about how good some of them are.</span>
+        </a>
+      </li>
+      <li class="db-st" style="--i:3">
+        <a class="db-story" href="/education/" data-web>
+          <span class="db-kick">The Schools Page<i>education</i></span>
+          <b class="db-hl">Student caught learning, again</b>
+          <span class="db-deck">The whole education record in one place. Sources say it has been going on for years.</span>
+        </a>
+      </li>
+      <li class="db-st" style="--i:4">
+        <a class="db-story" href="/college/" data-web>
+          <span class="db-kick">Campus Beat<i>college, UC Irvine</i></span>
+          <b class="db-hl">Computer science major at large in Irvine; class of 2028 warned</b>
+          <span class="db-deck">The courses, the campus and the esports app he built for the arena, its PCs and its events. This reporter checked: it is real.</span>
+        </a>
+      </li>
+      <li class="db-st" style="--i:5">
+        <a class="db-story" href="/high-school/" data-web>
+          <span class="db-kick">The Morgue<i>high school</i></span>
+          <b class="db-hl">From the files: where the whole thing started</b>
+          <span class="db-deck">High school, in old clippings. A newspaper keeps its archive in a room called the morgue, and the editor will not explain why.</span>
+        </a>
+      </li>
+      <li class="db-st" style="--i:6">
+        <a class="db-story" href="/worlds/" data-web>
+          <span class="db-kick">Arts &amp; Leisure<i>all 71 worlds</i></span>
+          <b class="db-hl">Seventy-one worlds reviewed by one reader; Bugle critics outnumbered</b>
+          <span class="db-deck">Films, shows, games and books, all seventy, ranked and argued over. Our own critic managed four.</span>
+        </a>
+      </li>
+      <li class="db-st db-st--wide db-st--special" style="--i:7">
+        <a class="db-story" href="/worlds/spider-man/" data-web>
+          <span class="db-kick">Special Report<i>the world page</i></span>
+          <b class="db-hl">Web-slinger gets his own page. This paper does not endorse it.</b>
+          <span class="db-deck">Every spider in the multiverse, the rogues who make it personal, and the films and games worth the time, written by a fan since he was little, with the Amazing era, 2012–14, singled out for praise. Disgraceful.</span>
+        </a>
+      </li>
+      <li class="db-st" style="--i:8">
+        <a class="db-story" href="/star-wars/" data-web>
+          <span class="db-kick">Science &amp; Technology<i>Star Wars apps</i></span>
+          <b class="db-hl">Apps for a galaxy far, far away; none for this newsroom</b>
+          <span class="db-deck">Order 66, Datapad and the rest. Datapad made the Top 10 of the paid Entertainment chart, and nobody here got a cut.</span>
+        </a>
+      </li>
+      <li class="db-st" style="--i:9">
+        <a class="db-story" href="/al-islam/" data-web>
+          <span class="db-kick">Faith<i>Al-Islam</i></span>
+          <b class="db-hl">Prayer times worked out twenty-two ways; even this desk tips its hat</b>
+          <span class="db-deck">Al-Islam and Al-Adhan, the apps he built for the faith. The one story in this edition the editor read twice and did not complain about once.</span>
+        </a>
+      </li>
+      <li class="db-st" style="--i:10">
+        <a class="db-story" href="/travels/" data-web>
+          <span class="db-kick">Travel<i>travels</i></span>
+          <b class="db-hl">Elmallah seen abroad; Bugle photographers one step behind</b>
+          <span class="db-deck">Where he has been, in pictures he took himself, which this paper resents.</span>
+        </a>
+      </li>
+      <li class="db-st" style="--i:11">
+        <a class="db-story" href="/accents/" data-web>
+          <span class="db-kick">Talk of the Town<i>accents &amp; impersonations</i></span>
+          <b class="db-hl">Impersonator at large: no voice in the city is safe</b>
+          <span class="db-deck">Accents and impersonations, on the record. If you hear this editor in there, it was not authorised.</span>
+        </a>
+      </li>
+      <li class="db-st" style="--i:12">
+        <a class="db-story" href="/gaming/" data-web>
+          <span class="db-kick">Sports<i>gaming</i></span>
+          <b class="db-hl">Local gamer logs the hours, calls it research</b>
+          <span class="db-deck">Every game, the completions and the screenshots. The box scores are in, and the Bugle wants a recount.</span>
+        </a>
+      </li>
+      <li class="db-st" style="--i:13">
+        <a class="db-story" href="/lightsabers/" data-web>
+          <span class="db-kick">Classifieds<i>the lightsaber guide</i></span>
+          <b class="db-hl">Lightsabers, catalogued: a public hazard in print</b>
+          <span class="db-deck">The full guide to every blade. Do not try any of it in the newsroom.</span>
+        </a>
+      </li>
+      <li class="db-st db-st--wide db-st--foot" style="--i:14">
+        <a class="db-story" href="/resume/" data-web>
+          <span class="db-kick">Help Wanted<i>résumé</i></span>
+          <b class="db-hl">Read the résumé first, then come and talk to me</b>
+          <span class="db-deck">One page, every role. Not a single photo of Spider-Man on it, which is the only thing this paper would have hired him for.</span>
+        </a>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ─────────── the staff ─────────── -->
+  <div class="db-cols">
+
+    <!-- the press pass a Bugle photographer clips to his jacket: red band,
+         a camera where the photo should be (nobody here has ever got a
+         clear picture of anyone), and a barcode drawn in CSS. It leans
+         toward the pointer, the way a card on a lanyard turns in the hand. -->
+    <section class="db-panel db-panel--card" aria-labelledby="dbCardH">
+      <h2 class="db-h db-h--sm" id="dbCardH">The press card<span>on staff, as of this edition</span></h2>
+      <div class="db-card" id="dbCard">
+        <span class="db-card-hole" aria-hidden="true"></span>
+        <p class="db-card-band"><b>Press</b><span>The Daily Bugle</span></p>
+        <div class="db-card-body">
+          <span class="db-card-photo" aria-hidden="true">
+            <svg viewBox="0 0 80 96">
+              <rect x="10" y="34" width="60" height="40" rx="5"/>
+              <path d="M28 34l5-9h14l5 9z"/>
+              <circle class="db-card-lens" cx="40" cy="54" r="13"/>
+              <circle class="db-card-glass" cx="40" cy="54" r="7"/>
+              <rect x="56" y="39" width="8" height="5" rx="1.5" class="db-card-glass"/>
+            </svg>
+          </span>
+          <dl class="db-card-dl">
+            <div><dt>Name</dt><dd>Abubakr Elmallah</dd></div>
+            <div><dt>Desk</dt><dd>Lead mobile &amp; backend developer</dd></div>
+            <div><dt>Bureau</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
+            <div><dt>Reading the Bugle</dt><dd>Since he was little; the Amazing era, 2012–14</dd></div>
+          </dl>
+        </div>
+        <p class="db-card-foot"><span class="db-barcode" aria-hidden="true"></span><span>Access: all 71 worlds</span></p>
+      </div>
+    </section>
+
+    <!-- the clippings file: what the paper has on him, each a brief with a
+         headline. Every line here is on the record elsewhere on the site. -->
+    <section class="db-panel" aria-labelledby="dbClipsH">
+      <h2 class="db-h db-h--sm" id="dbClipsH">Clippings on file<span>what this paper has on him</span></h2>
+      <ul class="db-clips">
+        <li><b>Twelve apps out the door</b><p>Shipped across four platforms. The editor counted twice.</p></li>
+        <li><b>Winner, Apple Swift Student Challenge</b><p>2024. The Bugle ran the story on page nine and regrets it.</p></li>
+        <li><b>Datapad climbs the charts</b><p>Into the Top 10 of the paid Entertainment chart.</p></li>
+        <li><b>Two Discord bots, everywhere</b><p>Running in more than 500 servers, unsupervised.</p></li>
+        <li><b>Al-Adhan, by the sun</b><p>Prayer times computed 22 ways.</p></li>
+        <li><b>UCI Esports, in one app</b><p>The arena, its PCs and its events.</p></li>
+        <li><b>Where it began</b><p>Order 66 and Datapad, the first solo projects, in 2021.</p></li>
+        <li><b>Seventy-one worlds</b><p>Every one of them on /worlds/, reviewed.</p></li>
+      </ul>
+    </section>
+
+  </div>
+
+  <!-- ─────────── the wire ───────────
+       The other terminals, as wire copy: each dispatch with a dateline in
+       capitals, the way an agency story opens. -->
+  <section class="db-panel db-wire" aria-labelledby="dbWireH">
+    <h2 class="db-h db-h--sm" id="dbWireH">Over the wire<span>dispatches from eighteen other universes</span></h2>
+    <ul class="db-wires">
+      <li><a class="db-dispatch" href="/elmallah/" data-web><span>The holotable</span><b>E.L.M.A.L.L.A.H.</b><i>Star Wars</i></a></li>
+      <li><a class="db-dispatch" href="/holocron/" data-web><span>Jedi archive</span><b>The Holocron</b><i>Star Wars</i></a></li>
+      <li><a class="db-dispatch" href="/jarvis/" data-web><span>Stark Tower</span><b>J.A.R.V.I.S.</b><i>Avengers</i></a></li>
+      <li><a class="db-dispatch" href="/marauders-map/" data-web><span>Hogwarts</span><b>The Marauder’s Map</b><i>Harry Potter</i></a></li>
+      <li><a class="db-dispatch" href="/crafting-table/" data-web><span>The Overworld</span><b>The Crafting Table</b><i>Minecraft</i></a></li>
+      <li><a class="db-dispatch" href="/citadel/" data-web><span>Oldtown</span><b>The Citadel</b><i>Game of Thrones</i></a></li>
+      <li><a class="db-dispatch" href="/compass/" data-web><span>Tortuga</span><b>The Compass</b><i>Pirates of the Caribbean</i></a></li>
+      <li><a class="db-dispatch" href="/control-room/" data-web><span>Isla Nublar</span><b>The Control Room</b><i>Jurassic Park</i></a></li>
+      <li><a class="db-dispatch" href="/upside-down/" data-web><span>Hawkins</span><b>The Upside Down</b><i>Stranger Things</i></a></li>
+      <li><a class="db-dispatch" href="/starcourt/" data-web><span>Hawkins</span><b>Starcourt</b><i>Stranger Things</i></a></li>
+      <li><a class="db-dispatch" href="/spirit-library/" data-web><span>Si Wong Desert</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a></li>
+      <li><a class="db-dispatch" href="/monastery/" data-web><span>Ninjago</span><b>The Monastery</b><i>Ninjago</i></a></li>
+      <li><a class="db-dispatch" href="/wanted/" data-web><span>The frontier</span><b>The Wanted Board</b><i>Red Dead Redemption</i></a></li>
+      <li><a class="db-dispatch" href="/dunder-mifflin/" data-web><span>Scranton</span><b>Dunder Mifflin</b><i>The Office</i></a></li>
+      <li><a class="db-dispatch" href="/springfield/" data-web><span>Springfield</span><b>Springfield</b><i>The Simpsons</i></a></li>
+      <li><a class="db-dispatch" href="/vought/" data-web><span>Vought Tower</span><b>Vought Tower</b><i>The Boys</i></a></li>
+      <li><a class="db-dispatch" href="/pokedex/" data-web><span>Pallet Town</span><b>The Pokédex</b><i>Pokémon</i></a></li>
+      <li><a class="db-dispatch" href="/batcomputer/" data-web><span>Gotham</span><b>The Batcomputer</b><i>Batman</i></a></li>
+    </ul>
+  </section>
+
+  <button class="db-stop" id="dbStop" type="button" data-web>Stop the presses!</button>
+  <p class="db-colophon">Printed in New York. Set in Playfair, Oswald and Source Serif; drawn in CSS, SVG and canvas, with no photographs, which this paper considers a scandal.</p>
+
+</main>
+
+<!-- the extra edition: the presses stop, and a fresh front page spins in off
+     the press toward you, the way it does in every old newspaper montage -->
+<div class="db-done" id="dbDone">
+  <div class="db-extra">
+    <p class="db-extra-k">Extra! Extra!</p>
+    <p class="db-extra-t">Reader finishes the entire front page</p>
+    <p class="db-extra-d">Editor stunned; orders a second printing and a full investigation.</p>
+    <div class="db-extra-photo">
+      <canvas class="db-done-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#b3121c" aria-hidden="true"></canvas>
+      <span>The newsroom, listening for the next story.</span>
+    </div>
+    <a href="/" id="dbHome">Back to the newsroom</a>
+  </div>
+</div>
+
+<script>
+  /* smooth scrolling only after load, so back/forward restores the position instantly instead of sliding to it */
+  addEventListener('load', function () {
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      document.documentElement.classList.add('smooth');
+    }); });
+  });
+</script>
+<script src="{% include v.html f='/assets/js/daily-bugle.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

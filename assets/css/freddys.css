@@ -1,0 +1,241 @@
+/* ============================================================
+   freddys.css: /freddys/, the Five Nights at Freddy's terminal.
+   The site watched from the security office: every page a camera
+   feed, pulled up on a monitor that drains the power while it is
+   up. CRT static, a dark room and a battery meter; no character,
+   logo or asset is reproduced, and everything is drawn with CSS.
+   ============================================================ */
+
+/* these pages load no shared stylesheet, so they carry their own reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+html.smooth { scroll-behavior: smooth; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.fz {
+  --sans:  "Space Grotesk", system-ui, sans-serif;
+  --mono:  "JetBrains Mono", ui-monospace, monospace;
+  --bg:    #0a0806;
+  --ink:   #e8e0d4;
+  --dim:   #b0a494;
+  --mute:  #85796c;
+  --line:  rgba(232, 224, 212, .14);
+  --amber: #f0c840;
+  --rust:  #c98f4f;
+  --red:   #c04a3a;
+  --ease:  cubic-bezier(.16, 1, .3, 1);
+
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ───────────── the room ───────────── */
+.fz-room { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.fz-room > * { position: absolute; inset: 0; }
+.fz-dark {
+  background:
+    radial-gradient(60% 40% at 50% 0%, #1c1510 0%, #110c09 46%, #0a0806 100%);
+}
+/* the static a CRT never quite settles down from: one tiled noise layer,
+   moved on transform so it costs nothing */
+.fz-static {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(232,224,212,.028) 0 1px, transparent 1px 3px);
+  opacity: .8;
+  animation: fz-roll 7s linear infinite;
+}
+@keyframes fz-roll { to { transform: translate3d(0, 3px, 0); } }
+.fz-vign {
+  background: radial-gradient(70% 60% at 50% 45%, transparent 40%, rgba(0,0,0,.72) 100%);
+}
+
+/* ───────────── top bar ───────────── */
+.fz-top {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; flex-wrap: wrap;
+  padding: calc(1rem + env(safe-area-inset-top, 0px)) clamp(1rem, 4vw, 2.6rem) 1rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--dim);
+}
+.fz-exit { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--amber); }
+.fz-exit:hover { color: #fff; }
+.fz-exit svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; }
+.fz-top-t b { color: var(--amber); font-size: 1rem; }
+
+.fz-main { position: relative; z-index: 1; padding: 0 clamp(1rem, 4vw, 2.6rem); max-width: 1180px; margin-inline: auto; }
+
+/* ───────────── the desk ───────────── */
+.fz-desk {
+  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(1.4rem, 4vw, 3rem); align-items: start;
+  padding: clamp(2rem, 5vw, 3.4rem) 0;
+}
+.fz-kicker {
+  font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--amber);
+}
+.fz-title {
+  font-size: clamp(1.7rem, 5vw, 3rem); line-height: 1.04; letter-spacing: -0.01em;
+  margin: 0.3rem 0 0.9rem; font-weight: 700;
+}
+.fz-lede { color: var(--dim); font-size: 0.92rem; line-height: 1.75; max-width: 60ch; }
+.fz-lede + .fz-lede { margin-top: 0.8rem; }
+
+.fz-acts { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.3rem; }
+.fz-btn {
+  cursor: pointer; padding: 0.62rem 1.2rem; border-radius: 6px;
+  border: 1px solid var(--amber); background: rgba(240,200,64,.12);
+  color: var(--amber); font-size: 0.8rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  transition: background .16s var(--ease), color .16s var(--ease);
+}
+.fz-btn:hover { background: var(--amber); color: #140e06; }
+.fz-btn--ghost { border-color: var(--line); color: var(--dim); background: transparent; }
+.fz-btn--ghost:hover { background: rgba(232,224,212,.08); color: var(--ink); }
+.fz-btn:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
+/* the power meter */
+.fz-power {
+  border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.2rem 1.2rem;
+  background: linear-gradient(180deg, rgba(32,24,18,.8), rgba(14,10,8,.86));
+}
+.fz-power-top {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute); margin-bottom: 0.5rem;
+}
+.fz-power-top b { font-size: 1.3rem; color: var(--amber); }
+.fz-bar { height: 12px; border: 1px solid var(--line); background: rgba(0,0,0,.4); overflow: hidden; }
+.fz-bar i {
+  display: block; height: 100%; width: 100%;
+  background: linear-gradient(90deg, var(--amber), var(--rust));
+  transition: width .4s linear, background .4s linear;
+}
+/* low power: the bar turns, which is the only warning the office gives you */
+.fz-power.is-low .fz-bar i { background: linear-gradient(90deg, var(--red), #8f2f22); }
+.fz-power.is-low .fz-power-top b { color: var(--red); }
+
+.fz-usage {
+  display: flex; align-items: center; gap: 0.5rem; margin-top: 0.9rem;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+.fz-pips { display: inline-flex; gap: 3px; }
+.fz-pips i {
+  width: 9px; height: 14px; background: rgba(232,224,212,.14); border-radius: 1px;
+}
+.fz-pips i.is-on { background: var(--amber); }
+.fz-usage em { font-style: normal; color: var(--ink); }
+.fz-power-n { margin-top: 0.9rem; font-size: 0.74rem; line-height: 1.7; color: var(--mute); }
+
+/* ───────────── the cameras ───────────── */
+.fz-cams { padding-bottom: clamp(2rem, 5vw, 3.4rem); }
+.fz-h { font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.01em; }
+.fz-h-sub { color: var(--mute); font-size: 0.84rem; margin: 0.3rem 0 1.4rem; }
+
+.fz-grid { display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+
+.fz-cam {
+  position: relative; display: block; padding: 1.9rem 0.85rem 0.85rem;
+  border: 1px solid var(--line); border-radius: 6px;
+  background: rgba(20, 14, 10, .7);
+  transition: border-color .16s var(--ease), background .16s var(--ease);
+}
+/* the feed's own scanlines, so a camera tile reads as a screen */
+.fz-cam::before {
+  content: ""; position: absolute; inset: 0; border-radius: 6px; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,.26) 0 1px, transparent 1px 3px);
+  opacity: .6;
+}
+@media (hover: hover) {
+  .fz-cam:hover { border-color: var(--amber); background: rgba(40, 30, 16, .8); }
+}
+.fz-cam:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.fz-cam-n {
+  position: absolute; top: 0.5rem; left: 0.7rem;
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; color: var(--amber);
+}
+.fz-cam b { display: block; font-size: 0.92rem; font-weight: 600; position: relative; }
+.fz-cam i { display: block; font-style: normal; font-size: 0.72rem; color: var(--mute); margin-top: 0.18rem; line-height: 1.5; position: relative; }
+
+/* `display: grid` on these two overlays beats the browser's own rule for
+   [hidden], so a hidden overlay would still cover the page and swallow every
+   click. Both are toggled by the hidden attribute, so it has to win. */
+.fz-monitor[hidden], .fz-out[hidden] { display: none; }
+
+/* ───────────── the monitor ───────────── */
+.fz-monitor {
+  position: fixed; inset: 0; z-index: 40; display: grid; place-items: center;
+  padding: 1rem; background: rgba(4,3,2,.62);
+  backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+}
+.fz-mon-shell {
+  width: min(720px, 100%); border: 2px solid var(--line); border-radius: 10px;
+  background: #0d0a08; overflow: hidden;
+  box-shadow: 0 30px 80px -30px #000;
+}
+.fz-mon-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem;
+  padding: 0.6rem 0.8rem; border-bottom: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--amber);
+}
+.fz-mon-x { background: none; border: 0; cursor: pointer; color: var(--dim); font-size: 1.2rem; line-height: 1; padding: 0 0.2rem; }
+.fz-mon-x:hover { color: #fff; }
+.fz-mon-screen {
+  position: relative; padding: 2.4rem 1.4rem 2.6rem; min-height: 230px;
+  background: radial-gradient(90% 70% at 50% 40%, rgba(240,200,64,.07), transparent 72%);
+}
+.fz-mon-static {
+  position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background-image: repeating-linear-gradient(0deg, rgba(232,224,212,.05) 0 1px, transparent 1px 3px);
+  animation: fz-roll 5s linear infinite;
+}
+.fz-mon-body { position: relative; }
+.fz-mon-body b { display: block; font-size: 1.5rem; font-weight: 700; }
+.fz-mon-body i { display: block; font-style: normal; color: var(--mute); margin-top: 0.3rem; font-size: 0.86rem; }
+.fz-mon-go {
+  display: inline-block; margin-top: 1.4rem; color: var(--amber);
+  font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.fz-mon-go:hover { color: #fff; }
+.fz-mon-rec {
+  position: absolute; top: 0.8rem; right: 1.2rem;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; color: var(--red);
+  animation: fz-blink 1.6s steps(2) infinite;
+}
+@keyframes fz-blink { 50% { opacity: 0; } }
+
+/* ───────────── power out ───────────── */
+.fz-out {
+  position: fixed; inset: 0; z-index: 60; display: grid; place-items: center;
+  padding: 1rem; background: rgba(2,2,2,.95);
+}
+.fz-out-box { max-width: 460px; text-align: center; }
+.fz-out-t { font-size: 1.8rem; font-weight: 700; color: var(--red); }
+.fz-out-s { margin-top: 0.7rem; color: var(--dim); font-size: 0.88rem; line-height: 1.75; }
+.fz-out-acts { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-top: 1.4rem; }
+
+/* ───────────── footer ───────────── */
+.fz-bottom {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; flex-wrap: wrap;
+  padding: 1.2rem clamp(1rem, 4vw, 2.6rem) calc(1.6rem + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+.fz-back { color: var(--amber); }
+.fz-back:hover { color: #fff; }
+
+@media (max-width: 860px) { .fz-desk { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) {
+  .fz-static, .fz-mon-static, .fz-mon-rec { animation: none; }
+  .fz-cam, .fz-btn, .fz-bar i { transition: none; }
+}

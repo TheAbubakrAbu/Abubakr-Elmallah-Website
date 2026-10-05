@@ -304,10 +304,15 @@ window.LEGO_GAMES =
         hundred: { needs: '180 treasure pieces for 18 artifacts · 18 parcels, its red bricks · 83 characters, and no gold bricks',
           reward: 'Studs rain across Barnett College, the stud fountain in the shot.' },
         worlds: ['indiana'] },
-      { title: 'LEGO Star Wars: The Complete Saga', accent: '#ffd21f', year: 2007, series: 'Star Wars', proj: '40.2', rating: 10, sub: '2007 · Steam', desc: 'All six films in one. The definitive version of the old formula.',
+      { title: 'LEGO Star Wars: The Complete Saga', accent: '#ffd21f', year: 2007, series: 'Star Wars', proj: '40.2', rating: 10, sub: '2007 · Steam', desc: 'All six films in one. The definitive version of the old formula. The one I have finished twice: on an iPhone first, all twenty of its achievements on 24 October 2021, then on Steam the summer after.',
         done: true, hours: '35.2', shot: '/assets/img/franchises/lego/complete-saga/banner.jpg',
         finished: '2022-07-10',
         shots: ['start-screen', 'pause-screen', 'load-game', 'characters', 'stud-fountain'],
+        /* the iPhone hundred percent, from the library's (2) iOS/Completion:
+           the Cantina at 100.0%, the 20/20 achievements card and the stud
+           counter at four billion. In the viewer only; `finished`, `hours`
+           and the six frames above stay the Steam run's */
+        more: ['ios-100-percent', 'ios-achievements', 'ios-stud-fountain'],
         shotAlt: 'Steam library banner for LEGO Star Wars: The Complete Saga, showing my play time',
         hundred: { needs: '160 gold bricks · 36 red power bricks · 360 minikit pieces · 126 characters',
           reward: 'All 160 gold bricks build a stud fountain outside the Mos Eisley Cantina.' },
@@ -359,3 +364,77 @@ window.LEGO_FOR = function (tag, over) {
   if (over) for (var k in over) sec[k] = over[k];
   return sec;
 };
+
+/* ── the catalogue, counted ──
+   LEGO_STATS and LEGO_BY_YEAR are worked out from the list above every time
+   the page loads, never typed: finish a game, give it `done`, `hours`,
+   `rating` and `finished`, and both of these follow. The LEGO page and
+   /gaming/ show them straight above the catalogue. */
+(function legoNumbers() {
+  var cat = window.LEGO_GAMES;
+  if (!cat) return;
+  var all = cat.items;
+  var done = all.filter(function (g) { return g.done; });
+  var buyable = all.filter(function (g) { return !g.unavailable; }).length;
+  var num = function (v) { return parseFloat(v) || 0; };
+  var one = function (v) { return (Math.round(v * 10) / 10).toFixed(1).replace(/\.0$/, ''); };
+  var hours = done.reduce(function (n, g) { return n + num(g.hours); }, 0);
+  var timed = done.filter(function (g) { return g.hours && g.proj; });
+  var mine = timed.reduce(function (n, g) { return n + num(g.hours); }, 0);
+  var proj = timed.reduce(function (n, g) { return n + num(g.proj); }, 0);
+  var rated = done.filter(function (g) { return g.rating != null; });
+  var avg = rated.reduce(function (n, g) { return n + g.rating; }, 0) / (rated.length || 1);
+  var tens = rated.filter(function (g) { return g.rating === 10; }).length;
+  var byH = timed.slice().sort(function (a, b) { return num(a.hours) - num(b.hours); });
+  var quick = byH[0], long = byH[byH.length - 1];
+  var short = function (t) { return t.replace(/^LEGO\s+/, ''); };
+  var pct = proj ? Math.round((1 - mine / proj) * 100) : 0;
+
+  window.LEGO_STATS = {
+    id: 'lego-numbers', kind: 'stats', title: 'The Catalogue, Counted', note: 'worked out from the list below',
+    items: [
+      { title: done.length + ' of ' + buyable, sub: 'finished at a hundred percent',
+        desc: 'Out of the ' + buyable + ' you can still buy on Steam; ' + all.length + ' LEGO games in all.' },
+      { title: Math.round(hours) + ' hours', sub: 'across the finished ones',
+        desc: 'Steam play time off each banner, added up.' },
+      { title: pct >= 0 ? pct + '% quicker' : -pct + '% slower', sub: 'than HowLongToBeat reckons',
+        desc: one(mine) + ' hours against a projected ' + one(proj) + ' for the same ' + timed.length + ' games.' },
+      { title: one(avg) + ' / 10', sub: 'my average rating',
+        desc: tens + ' of the ' + rated.length + ' rated games get a ten.' },
+      quick && { title: one(num(quick.hours)) + ' hours', sub: 'the quickest hundred',
+        desc: short(quick.title) + '.' },
+      long && { title: one(num(long.hours)) + ' hours', sub: 'the longest hundred',
+        desc: short(long.title) + '.' },
+    ].filter(Boolean),
+  };
+
+  /* one row per year I finished something; LEGO Batman: The Videogame has
+     no date (its save slot carries none) and is the one finished game left out */
+  var years = {};
+  done.forEach(function (g) {
+    if (!g.finished) return;
+    var y = g.finished.slice(0, 4);
+    (years[y] = years[y] || []).push(g);
+  });
+  window.LEGO_BY_YEAR = {
+    id: 'lego-by-year', kind: 'table', title: 'Finished, Year by Year', note: 'click a column to sort',
+    sort: 'year', dir: 'descending',
+    cols: [
+      { key: 'year',  label: 'Year' },
+      { key: 'n',     label: 'Finished', num: true, bar: true },
+      { key: 'hours', label: 'Hours', num: true, bar: true },
+      { key: 'avg',   label: 'Average rating', num: true },
+      { key: 'games', label: 'Which ones' },
+    ],
+    items: Object.keys(years).map(function (y) {
+      var list = years[y].sort(function (a, b) { return a.finished < b.finished ? -1 : 1; });
+      var r = list.filter(function (g) { return g.rating != null; });
+      return {
+        year: +y, n: list.length,
+        hours: one(list.reduce(function (n, g) { return n + num(g.hours); }, 0)),
+        avg: r.length ? one(r.reduce(function (n, g) { return n + g.rating; }, 0) / r.length) : null,
+        games: list.map(function (g) { return short(g.title); }).join(', '),
+      };
+    }),
+  };
+}());

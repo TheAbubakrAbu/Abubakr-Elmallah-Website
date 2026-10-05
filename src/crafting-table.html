@@ -1,0 +1,327 @@
+---
+permalink: /crafting-table/
+title: "The Crafting Table · Abubakr Elmallah"
+description: "The Crafting Table: a Minecraft interface for Abubakr Elmallah's portfolio, with every page as an inventory slot, a crafting recipe and an F3 screen."
+theme: "#1e1e1e"
+fonts: "family=Pixelify+Sans:wght@400;500;600;700"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/crafting-table.css' %}" />
+</head>
+<body class="ct" id="ct" data-sky="day">
+
+<!-- ═══════════ the sky ═══════════
+     Follows the real time of day (crafting-table.js): blue by day, orange
+     at sunrise and sunset, and stars with a square moon at night. The sun,
+     the moon and the clouds are squares, because everything up there is. -->
+<div class="ct-sky" aria-hidden="true">
+  <span class="ct-stars"></span>
+  <span class="ct-sun"></span>
+  <span class="ct-moon"></span>
+  <span class="ct-cloud ct-cloud--1"></span>
+  <span class="ct-cloud ct-cloud--2"></span>
+  <span class="ct-cloud ct-cloud--3"></span>
+</div>
+
+<header class="ct-top">
+  <a class="ct-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Save and quit</span>
+  </a>
+  <span class="ct-top-mid">Minecraft · abubakrelmallah.com</span>
+  <button class="ct-escbtn" id="ctEscBtn" type="button" aria-haspopup="dialog">Esc · Game menu</button>
+</header>
+
+<!-- ═══════════ F3 ═══════════
+     The debug screen, with readings that are real: the coordinates are
+     Irvine's, the time is your clock in game ticks (0 is six in the
+     morning), the window is your window and the targeted block is whatever
+     slot you are pointing at. -->
+<section class="ct-f3" aria-label="Debug screen">
+  <div class="ct-f3-col">
+    <p>Minecraft 1.21 (abubakrelmallah.com/vanilla)</p>
+    <p>XYZ: 33.640 / 64.00000 / -117.840</p>
+    <p>Block: 33 64 -118 [Irvine, California]</p>
+    <p id="ctFacing">Facing: north (Towards negative Z)</p>
+    <p>Biome: minecraft:uc_irvine</p>
+    <p id="ctTicks">Day ··· · time ····· ticks</p>
+  </div>
+  <div class="ct-f3-col ct-f3-col--r">
+    <p id="ctDisplay">Display: ····x····</p>
+    <p>Renderer: CSS and 2D canvas</p>
+    <p>Image files loaded: 0</p>
+    <p id="ctLight">Light: 15 (15 sky, 0 block)</p>
+    <p id="ctTarget">Targeted Block: none</p>
+    <p id="ctPlayed">Time played: 0:00</p>
+  </div>
+</section>
+
+<main class="ct-main">
+
+  <!-- ─────────── the title screen ─────────── -->
+  <section class="ct-title">
+    <div class="ct-logo-wrap">
+      <h1 class="ct-logo"><span>The Crafting</span> <span>Table</span></h1>
+      <!-- the yellow splash, hung off the logo's corner: one at random on every visit -->
+      <p class="ct-splash" id="ctSplash" aria-hidden="true">Also try Datapad!</p>
+    </div>
+    <p class="ct-sub">Every page on this site, as a slot in one inventory. Blocks drawn pixel by pixel in the browser, the recipe every app of mine is crafted from, the statistics and the advancements, and a hotbar to the other terminals.</p>
+
+    <nav class="ct-menu" aria-label="Title screen">
+      <a class="ct-btn" href="/projects/">Singleplayer<small>every project</small></a>
+      <a class="ct-btn" href="/work/">Multiplayer<small>work at UC Irvine</small></a>
+      <a class="ct-btn" href="/worlds/">Minecraft Realms<small>all 71 worlds</small></a>
+      <div class="ct-menu-row">
+        <a class="ct-btn" href="/resume/">Options...<small>résumé</small></a>
+        <a class="ct-btn" href="/">Quit Game<small>main site</small></a>
+      </div>
+    </nav>
+  </section>
+
+  <!-- ─────────── the inventory ─────────── -->
+  <!-- every room on the site, as the copy above promises: the main
+       sections, both schools, the worlds and their personal pages, and the
+       other terminals. The grid is auto-fill, so a new page is one more
+       slot here. data-block names the texture crafting-table.js draws. -->
+  <section class="ct-gui" id="inv" aria-labelledby="ctInvH">
+    <h2 class="ct-gui-h" id="ctInvH">Inventory<span>every page on this site</span></h2>
+    <div class="ct-inv">
+      <a class="ct-item" href="/" data-id="grass_block"><span class="ct-slot"><canvas data-block="grass" aria-hidden="true"></canvas></span><b>Grass Block</b><i>Home · spawn point</i></a>
+      <a class="ct-item" href="/work/" data-id="gold_block"><span class="ct-slot"><canvas data-block="gold" aria-hidden="true"></canvas></span><b>Block of Gold</b><i>Work at UC Irvine</i></a>
+      <a class="ct-item" href="/projects/" data-id="crafting_table"><span class="ct-slot"><canvas data-block="table" aria-hidden="true"></canvas></span><b>Crafting Table</b><i>Every project</i></a>
+      <a class="ct-item" href="/education/" data-id="bookshelf"><span class="ct-slot"><canvas data-block="bookshelf" aria-hidden="true"></canvas></span><b>Bookshelf</b><i>Education</i></a>
+      <a class="ct-item" href="/college/" data-id="lapis_block"><span class="ct-slot"><canvas data-block="lapis" aria-hidden="true"></canvas></span><b>Block of Lapis</b><i>College · UC Irvine</i></a>
+      <a class="ct-item" href="/high-school/" data-id="oak_log"><span class="ct-slot"><canvas data-block="log" aria-hidden="true"></canvas></span><b>Oak Log</b><i>High School · where it started</i></a>
+      <a class="ct-item" href="/worlds/" data-id="diamond_ore"><span class="ct-slot"><canvas data-block="diamond_ore" aria-hidden="true"></canvas></span><b>Diamond Ore</b><i>All 71 worlds</i></a>
+      <a class="ct-item" href="/worlds/minecraft/" data-id="creeper_head"><span class="ct-slot"><canvas data-block="creeper" aria-hidden="true"></canvas></span><b>Creeper Head</b><i>Minecraft · the world page</i></a>
+      <a class="ct-item" href="/star-wars/" data-id="obsidian"><span class="ct-slot"><canvas data-block="obsidian" aria-hidden="true"></canvas></span><b>Obsidian</b><i>Star Wars apps</i></a>
+      <a class="ct-item" href="/al-islam/" data-id="emerald_block"><span class="ct-slot"><canvas data-block="emerald" aria-hidden="true"></canvas></span><b>Block of Emerald</b><i>Al-Islam</i></a>
+      <a class="ct-item" href="/travels/" data-id="sand"><span class="ct-slot"><canvas data-block="sand" aria-hidden="true"></canvas></span><b>Sand</b><i>Travels · where I have been</i></a>
+      <a class="ct-item" href="/accents/" data-id="note_block"><span class="ct-slot"><canvas data-block="note" aria-hidden="true"></canvas></span><b>Note Block</b><i>Accents &amp; impersonations</i></a>
+      <a class="ct-item" href="/gaming/" data-id="tnt"><span class="ct-slot"><canvas data-block="tnt" aria-hidden="true"></canvas></span><b>TNT</b><i>Gaming</i></a>
+      <a class="ct-item" href="/lightsabers/" data-id="redstone_block"><span class="ct-slot"><canvas data-block="redstone" aria-hidden="true"></canvas></span><b>Block of Redstone</b><i>The lightsaber guide</i></a>
+      <a class="ct-item" href="/resume/" data-id="iron_block"><span class="ct-slot"><canvas data-block="iron" aria-hidden="true"></canvas></span><b>Block of Iron</b><i>Résumé</i></a>
+    </div>
+
+    <h3 class="ct-gui-sub">Other terminals</h3>
+    <div class="ct-inv">
+      <a class="ct-item" href="/elmallah/" data-id="beacon"><span class="ct-slot"><canvas data-block="beacon" aria-hidden="true"></canvas></span><b>Beacon</b><i>E.L.M.A.L.L.A.H. holotable</i></a>
+      <a class="ct-item" href="/holocron/" data-id="diamond_block"><span class="ct-slot"><canvas data-block="diamond" aria-hidden="true"></canvas></span><b>Block of Diamond</b><i>Holocron archive</i></a>
+      <a class="ct-item" href="/jarvis/" data-id="sea_lantern"><span class="ct-slot"><canvas data-block="lantern" aria-hidden="true"></canvas></span><b>Sea Lantern</b><i>J.A.R.V.I.S. display</i></a>
+      <a class="ct-item" href="/marauders-map/" data-id="birch_planks"><span class="ct-slot"><canvas data-block="birch" aria-hidden="true"></canvas></span><b>Birch Planks</b><i>The Marauder’s Map</i></a>
+      <a class="ct-item" href="/citadel/" data-id="deepslate"><span class="ct-slot"><canvas data-block="deepslate" aria-hidden="true"></canvas></span><b>Deepslate</b><i>The Citadel</i></a>
+      <a class="ct-item" href="/compass/" data-id="barrel"><span class="ct-slot"><canvas data-block="barrel" aria-hidden="true"></canvas></span><b>Barrel</b><i>The Compass</i></a>
+      <a class="ct-item" href="/control-room/" data-id="moss_block"><span class="ct-slot"><canvas data-block="moss" aria-hidden="true"></canvas></span><b>Moss Block</b><i>The Control Room</i></a>
+      <a class="ct-item" href="/upside-down/" data-id="sculk"><span class="ct-slot"><canvas data-block="sculk" aria-hidden="true"></canvas></span><b>Sculk</b><i>The Upside Down</i></a>
+      <a class="ct-item" href="/starcourt/" data-id="note_block"><span class="ct-slot"><canvas data-block="note" aria-hidden="true"></canvas></span><b>Note Block</b><i>Starcourt</i></a>
+      <a class="ct-item" href="/spirit-library/" data-id="sandstone"><span class="ct-slot"><canvas data-block="sandstone" aria-hidden="true"></canvas></span><b>Sandstone</b><i>The Spirit Library</i></a>
+      <a class="ct-item" href="/monastery/" data-id="gold"><span class="ct-slot"><canvas data-block="gold" aria-hidden="true"></canvas></span><b>Block of Gold</b><i>The Monastery</i></a>
+      <a class="ct-item" href="/wanted/" data-id="hay"><span class="ct-slot"><canvas data-block="hay" aria-hidden="true"></canvas></span><b>Hay Bale</b><i>The Wanted Board</i></a>
+      <a class="ct-item" href="/dunder-mifflin/" data-id="bookshelf"><span class="ct-slot"><canvas data-block="bookshelf" aria-hidden="true"></canvas></span><b>Bookshelf</b><i>Dunder Mifflin</i></a>
+      <a class="ct-item" href="/springfield/" data-id="sponge"><span class="ct-slot"><canvas data-block="sponge" aria-hidden="true"></canvas></span><b>Sponge</b><i>Springfield</i></a>
+      <a class="ct-item" href="/vought/" data-id="quartz"><span class="ct-slot"><canvas data-block="quartz" aria-hidden="true"></canvas></span><b>Block of Quartz</b><i>Vought Tower</i></a>
+      <a class="ct-item" href="/pokedex/" data-id="wool"><span class="ct-slot"><canvas data-block="wool" aria-hidden="true"></canvas></span><b>Red Wool</b><i>The Pokédex</i></a>
+      <a class="ct-item" href="/batcomputer/" data-id="coal"><span class="ct-slot"><canvas data-block="coal" aria-hidden="true"></canvas></span><b>Block of Coal</b><i>The Batcomputer</i></a>
+      <a class="ct-item" href="/daily-bugle/" data-id="lapis"><span class="ct-slot"><canvas data-block="lapis" aria-hidden="true"></canvas></span><b>Block of Lapis Lazuli</b><i>The Daily Bugle</i></a>
+    </div>
+  </section>
+
+  <!-- ─────────── the map ───────────
+       A map item, as the game draws one: top-down, one pixel a block, in
+       the game's own map colours, shaded by height the way it shades a
+       slope. The terrain is generated in crafting-table.js from a seed, with
+       land raised under every banner so none of them ends up in the sea.
+       Banners on a map carry their names in the game; here they carry a
+       number, and the legend beside the map carries the name, because
+       fifteen names on a phone-sized map would be fifteen smudges. The
+       banners on the map are for the mouse; the legend is the real list. -->
+  <section class="ct-gui" id="map" aria-labelledby="ctMapH">
+    <h2 class="ct-gui-h" id="ctMapH">Map #0<span>scaling at 1:1 · a banner on every page</span></h2>
+    <div class="ct-mapwrap">
+      <div class="ct-map" id="ctMapBox">
+        <canvas id="ctMap" width="128" height="128" aria-hidden="true"></canvas>
+        <span class="ct-player" id="ctPlayer" style="--x:50; --y:52" aria-hidden="true"></span>
+        <div aria-hidden="true">
+        <a class="ct-banner" href="/" style="--x:52; --y:46; --b:#f9fffe" tabindex="-1" data-n="1"><i></i><b>1</b></a>
+        <a class="ct-banner" href="/work/" style="--x:30; --y:30; --b:#fed83d" tabindex="-1" data-n="2"><i></i><b>2</b></a>
+        <a class="ct-banner" href="/projects/" style="--x:70; --y:28; --b:#f9801d" tabindex="-1" data-n="3"><i></i><b>3</b></a>
+        <a class="ct-banner" href="/education/" style="--x:22; --y:60; --b:#835432" tabindex="-1" data-n="4"><i></i><b>4</b></a>
+        <a class="ct-banner" href="/college/" style="--x:40; --y:72; --b:#3c44aa" tabindex="-1" data-n="5"><i></i><b>5</b></a>
+        <a class="ct-banner" href="/high-school/" style="--x:62; --y:70; --b:#3ab3da" tabindex="-1" data-n="6"><i></i><b>6</b></a>
+        <a class="ct-banner" href="/worlds/" style="--x:80; --y:52; --b:#169c9c" tabindex="-1" data-n="7"><i></i><b>7</b></a>
+        <a class="ct-banner" href="/worlds/minecraft/" style="--x:47; --y:22; --b:#80c71f" tabindex="-1" data-n="8"><i></i><b>8</b></a>
+        <a class="ct-banner" href="/star-wars/" style="--x:86; --y:80; --b:#1d1d21" tabindex="-1" data-n="9"><i></i><b>9</b></a>
+        <a class="ct-banner" href="/al-islam/" style="--x:14; --y:40; --b:#5e7c16" tabindex="-1" data-n="10"><i></i><b>10</b></a>
+        <a class="ct-banner" href="/travels/" style="--x:24; --y:86; --b:#9d9d97" tabindex="-1" data-n="11"><i></i><b>11</b></a>
+        <a class="ct-banner" href="/accents/" style="--x:68; --y:88; --b:#f38baa" tabindex="-1" data-n="12"><i></i><b>12</b></a>
+        <a class="ct-banner" href="/gaming/" style="--x:36; --y:46; --b:#c74ebd" tabindex="-1" data-n="13"><i></i><b>13</b></a>
+        <a class="ct-banner" href="/lightsabers/" style="--x:84; --y:16; --b:#b02e26" tabindex="-1" data-n="14"><i></i><b>14</b></a>
+        <a class="ct-banner" href="/resume/" style="--x:60; --y:38; --b:#474f52" tabindex="-1" data-n="15"><i></i><b>15</b></a>
+        </div>
+      </div>
+      <ol class="ct-legend">
+      <li><a href="/" data-n="1"><i style="--b:#f9fffe"></i><b>1</b><span>Home<em>world spawn</em></span></a></li>
+      <li><a href="/work/" data-n="2"><i style="--b:#fed83d"></i><b>2</b><span>Work<em>UC Irvine</em></span></a></li>
+      <li><a href="/projects/" data-n="3"><i style="--b:#f9801d"></i><b>3</b><span>Projects<em>every one</em></span></a></li>
+      <li><a href="/education/" data-n="4"><i style="--b:#835432"></i><b>4</b><span>Education<em>both schools</em></span></a></li>
+      <li><a href="/college/" data-n="5"><i style="--b:#3c44aa"></i><b>5</b><span>College<em>UC Irvine</em></span></a></li>
+      <li><a href="/high-school/" data-n="6"><i style="--b:#3ab3da"></i><b>6</b><span>High School<em>where it started</em></span></a></li>
+      <li><a href="/worlds/" data-n="7"><i style="--b:#169c9c"></i><b>7</b><span>Worlds<em>all 70</em></span></a></li>
+      <li><a href="/worlds/minecraft/" data-n="8"><i style="--b:#80c71f"></i><b>8</b><span>Minecraft<em>the world page</em></span></a></li>
+      <li><a href="/star-wars/" data-n="9"><i style="--b:#1d1d21"></i><b>9</b><span>Star Wars<em>the apps</em></span></a></li>
+      <li><a href="/al-islam/" data-n="10"><i style="--b:#5e7c16"></i><b>10</b><span>Al-Islam<em>the apps</em></span></a></li>
+      <li><a href="/travels/" data-n="11"><i style="--b:#9d9d97"></i><b>11</b><span>Travels<em>35 trips</em></span></a></li>
+      <li><a href="/accents/" data-n="12"><i style="--b:#f38baa"></i><b>12</b><span>Accents<em>and impersonations</em></span></a></li>
+      <li><a href="/gaming/" data-n="13"><i style="--b:#c74ebd"></i><b>13</b><span>Gaming<em>Steam</em></span></a></li>
+      <li><a href="/lightsabers/" data-n="14"><i style="--b:#b02e26"></i><b>14</b><span>Lightsabers<em>the guide</em></span></a></li>
+      <li><a href="/resume/" data-n="15"><i style="--b:#474f52"></i><b>15</b><span>Résumé<em>the record</em></span></a></li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="ct-cols">
+
+    <!-- ─────────── crafting ─────────── -->
+    <section class="ct-gui" aria-labelledby="ctCraftH">
+      <h2 class="ct-gui-h" id="ctCraftH">
+        <canvas class="ct-think" data-orb="solving" data-orb-size="20" data-orb-ink="#3f3f3f" aria-hidden="true"></canvas>Crafting<span>what my apps are made of</span>
+      </h2>
+      <div class="ct-craft">
+        <div class="ct-grid" role="list" aria-label="Ingredients">
+          <span class="ct-slot ct-slot--big" role="listitem"><canvas data-item="ingot" data-tint="#f05138" aria-hidden="true"></canvas><em>Swift</em></span>
+          <span class="ct-slot ct-slot--big" role="listitem"><canvas data-item="ingot" data-tint="#1f8fff" aria-hidden="true"></canvas><em>SwiftUI</em></span>
+          <span class="ct-slot ct-slot--big" role="listitem"><canvas data-item="ingot" data-tint="#7a86e0" aria-hidden="true"></canvas><em>UIKit</em></span>
+          <span class="ct-slot ct-slot--big" role="listitem"><canvas data-item="ingot" data-tint="#3178c6" aria-hidden="true"></canvas><em>TypeScript</em></span>
+          <span class="ct-slot ct-slot--big" role="listitem"><canvas data-item="ingot" data-tint="#61dafb" aria-hidden="true"></canvas><em>React</em></span>
+          <span class="ct-slot ct-slot--big" role="listitem"><canvas data-item="ingot" data-tint="#d6d6d6" aria-hidden="true"></canvas><em>Next.js</em></span>
+          <span class="ct-slot ct-slot--big" role="listitem"><canvas data-item="ingot" data-tint="#ffd43b" aria-hidden="true"></canvas><em>Python</em></span>
+          <span class="ct-slot ct-slot--big" role="listitem"><canvas data-item="ingot" data-tint="#e38c00" aria-hidden="true"></canvas><em>SQL</em></span>
+          <span class="ct-slot ct-slot--big" role="listitem"><canvas data-item="ingot" data-tint="#5fa04e" aria-hidden="true"></canvas><em>Node.js</em></span>
+        </div>
+        <span class="ct-arrow" aria-hidden="true"></span>
+        <div class="ct-result">
+          <span class="ct-slot ct-slot--out"><canvas data-item="diamond" aria-hidden="true"></canvas><em>An app</em><b class="ct-count">12</b></span>
+        </div>
+      </div>
+      <p class="ct-note">Twelve shipped, across four platforms.</p>
+    </section>
+
+    <!-- ─────────── statistics ─────────── -->
+    <section class="ct-gui" id="stats" aria-labelledby="ctStatsH">
+      <h2 class="ct-gui-h" id="ctStatsH">Statistics<span>general</span></h2>
+      <dl class="ct-stats">
+        <div><dt>Apps Shipped</dt><dd>12</dd></div>
+        <div><dt>Worlds on This Site</dt><dd>70</dd></div>
+        <div><dt>Trips Taken</dt><dd>35</dd></div>
+        <div><dt>Accents Learned</dt><dd>19</dd></div>
+        <div><dt>Steam Achievements, 2022–2025</dt><dd>747</dd></div>
+        <div><dt>Discord Servers With My Droids</dt><dd>500+</dd></div>
+        <div><dt>Minecraft Mods Made</dt><dd>2</dd></div>
+        <div><dt>Time Played (this visit)</dt><dd id="ctStatTime">0:00</dd></div>
+        <div><dt>Distance Scrolled</dt><dd id="ctStatDist">0 blocks</dd></div>
+      </dl>
+    </section>
+
+  </div>
+
+  <!-- ─────────── advancements ─────────── -->
+  <section class="ct-gui" id="adv" aria-labelledby="ctAdvH">
+    <h2 class="ct-gui-h" id="ctAdvH">Advancements<span>in the order I earned them</span></h2>
+    <ol class="ct-advs">
+      <li class="ct-adv"><span class="ct-frame"><canvas data-block="stone" aria-hidden="true"></canvas></span><div><b>Stone Age</b><p>Order 66, a Star Wars game in Scratch: the first project I made entirely on my own.</p><i>2021 · 10th grade</i></div></li>
+      <li class="ct-adv"><span class="ct-frame"><canvas data-block="table" aria-hidden="true"></canvas></span><div><b>Getting an Upgrade</b><p>The Star Wars Datapad on Code.org, my first real coding project, 812 lines of JavaScript.</p><i>2021 · 10th grade</i></div></li>
+      <li class="ct-adv"><span class="ct-frame"><canvas data-block="iron" aria-hidden="true"></canvas></span><div><b>Acquire Hardware</b><p>Datapad goes live on the App Store, the first app of mine anyone could download.</p><i>June 26, 2023</i></div></li>
+      <li class="ct-adv"><span class="ct-frame ct-frame--goal"><canvas data-block="lapis" aria-hidden="true"></canvas></span><div><b>Enchanter</b><p>Datapad climbs into the Top 10 of the paid Entertainment chart.</p><i>App Store</i></div></li>
+      <li class="ct-adv ct-adv--challenge"><span class="ct-frame ct-frame--challenge"><canvas data-item="diamond" aria-hidden="true"></canvas></span><div><b>Diamonds!</b><p>Winner of the Apple Swift Student Challenge with Al-Quran, and a trip to WWDC.</p><i>2024 · challenge complete</i></div></li>
+      <li class="ct-adv"><span class="ct-frame"><canvas data-block="obsidian" aria-hidden="true"></canvas></span><div><b>We Need to Go Deeper</b><p>Computer Science at UC Irvine, class of 2028.</p><i>2024 to now</i></div></li>
+      <li class="ct-adv"><span class="ct-frame ct-frame--goal"><canvas data-block="gold" aria-hidden="true"></canvas></span><div><b>Hired Help</b><p>Lead mobile &amp; backend developer at UC Irvine, rebuilding the campus apps in SwiftUI.</p><i>UC Irvine</i></div></li>
+    </ol>
+  </section>
+
+  <!-- ─────── the three dimensions, from the world page ───────
+       The other half of taking the interface into the world: the Minecraft
+       page's own three dimensions, shown here as the world-select screen
+       would show them. Same three and same lines as
+       /worlds/minecraft/#dimensions. -->
+  <section class="ct-gui" id="dims" aria-labelledby="ctDimsH">
+    <h2 class="ct-gui-h" id="ctDimsH">The three dimensions<span>each with its own physics and its own thing that wants you dead</span></h2>
+    <ul class="ct-dims">
+      <li style="--d:#7fbf4f"><b>The Overworld</b><em>Y &#8722;64 to 320</em><p>Three hundred and twenty blocks up to sixty-four down, day and night, and about sixty biomes. Everything below Y 0 is deepslate.</p></li>
+      <li style="--d:#c04a3a"><b>The Nether</b><em>1:8 travel ratio</em><p>A ceiling instead of a sky, lava oceans, no water, and beds explode. Eight Overworld blocks for every one here, which makes it the fastest road in the game.</p></li>
+      <li style="--d:#c0a8e0"><b>The End</b><em>Elytra &#183; shulkers</em><p>One island in black nothing with a dragon on it, then a thousand blocks of empty before the outer islands. Beds explode here too.</p></li>
+    </ul>
+    <a class="ct-dims-go" href="/worlds/minecraft/#dimensions">The whole world page &#8594;</a>
+  </section>
+
+  <button class="ct-btn ct-btn--wide ct-quit" id="ctQuit" type="button">Save and Quit to Title</button>
+
+</main>
+
+<!-- the ground the page stands on: grass blocks, tiled by crafting-table.js -->
+<div class="ct-ground" id="ctGround" aria-hidden="true"></div>
+
+<!-- ═══════════ the HUD ═══════════
+     Hearts, the experience bar (it fills as you scroll; the level is the
+     number of apps shipped) and the hotbar, which holds the nine other
+     terminals.
+     1 to 9 select a slot, as in the game; Enter goes there. -->
+<div class="ct-hud">
+  <p class="ct-held" id="ctHeld" aria-live="polite"></p>
+  <div class="ct-bars" aria-hidden="true">
+    <span class="ct-hearts"><canvas data-item="heart"></canvas><canvas data-item="heart"></canvas><canvas data-item="heart"></canvas><canvas data-item="heart"></canvas><canvas data-item="heart"></canvas><canvas data-item="heart"></canvas><canvas data-item="heart"></canvas><canvas data-item="heart"></canvas><canvas data-item="heart"></canvas><canvas data-item="heart"></canvas></span>
+    <span class="ct-xp"><i id="ctXp"></i><b>12</b></span>
+  </div>
+  <nav class="ct-hotbar" id="ctHotbar" aria-label="Hotbar">
+    <a href="/elmallah/" data-name="Beacon · E.L.M.A.L.L.A.H."><canvas data-block="beacon" aria-hidden="true"></canvas><span class="vh">E.L.M.A.L.L.A.H.</span></a>
+    <a href="/holocron/" data-name="Block of Diamond · Holocron"><canvas data-block="diamond" aria-hidden="true"></canvas><span class="vh">Holocron</span></a>
+    <a href="/jarvis/" data-name="Sea Lantern · J.A.R.V.I.S."><canvas data-block="lantern" aria-hidden="true"></canvas><span class="vh">J.A.R.V.I.S.</span></a>
+    <a href="/marauders-map/" data-name="Birch Planks · The Marauder’s Map"><canvas data-block="birch" aria-hidden="true"></canvas><span class="vh">The Marauder’s Map</span></a>
+    <a href="/compass/" data-name="Barrel · The Compass"><canvas data-block="barrel" aria-hidden="true"></canvas><span class="vh">The Compass</span></a>
+    <a href="/control-room/" data-name="Moss Block · The Control Room"><canvas data-block="moss" aria-hidden="true"></canvas><span class="vh">The Control Room</span></a>
+    <a href="/upside-down/" data-name="Sculk · The Upside Down"><canvas data-block="sculk" aria-hidden="true"></canvas><span class="vh">The Upside Down</span></a>
+    <a href="/citadel/" data-name="Deepslate · The Citadel"><canvas data-block="deepslate" aria-hidden="true"></canvas><span class="vh">The Citadel</span></a>
+    <a href="/spirit-library/" data-name="Sandstone · The Spirit Library"><canvas data-block="sandstone" aria-hidden="true"></canvas><span class="vh">The Spirit Library</span></a>
+  </nav>
+</div>
+
+<!-- the advancement toast, once per visit -->
+<div class="ct-toast" id="ctToast" role="status">
+  <canvas data-block="table" aria-hidden="true"></canvas>
+  <span><b>Advancement Made!</b>Open the Crafting Table</span>
+</div>
+
+<!-- Esc: the game menu -->
+<dialog class="ct-pause" id="ctPause" aria-labelledby="ctPauseH">
+  <h2 id="ctPauseH">Game Menu</h2>
+  <div class="ct-pause-btns">
+    <button class="ct-btn ct-btn--wide" type="button" data-close>Back to Game</button>
+    <div class="ct-menu-row">
+      <a class="ct-btn" href="#adv" data-close>Advancements</a>
+      <a class="ct-btn" href="#stats" data-close>Statistics</a>
+    </div>
+    <div class="ct-menu-row">
+      <a class="ct-btn" href="mailto:ammelmallah@gmail.com">Open to LAN<small>say hello</small></a>
+      <a class="ct-btn" href="/resume/">Options...<small>résumé</small></a>
+    </div>
+    <button class="ct-btn ct-btn--wide" type="button" data-quit>Save and Quit to Title</button>
+  </div>
+</dialog>
+
+<!-- saving the world, then back to the title screen (the main site) -->
+<div class="ct-saving" id="ctSaving" aria-live="assertive">
+  <div>
+    <canvas class="ct-saving-orb" data-orb="working" data-orb-size="64" data-orb-ink="#ffffff" aria-hidden="true"></canvas>
+    <p id="ctSavingT">Saving world</p>
+    <span class="ct-progress"><i></i></span>
+    <a href="/">Back to the title screen</a>
+  </div>
+</div>
+
+<script src="{% include v.html f='/assets/js/crafting-table.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

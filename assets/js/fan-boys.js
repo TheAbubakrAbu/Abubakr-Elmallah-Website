@@ -161,7 +161,7 @@ window.FAN_PAGE = {
       { title: 'Piano Man', accent: '#d09a4f', sub: 'Billy Joel · Season 5 · 2026',
         desc: 'The one the show goes out on. It plays over the closing scene of “Blood and Bone”, the walk away from the cemetery and everybody after it, and it pays off a joke five seasons deep: Hughie is wearing a Billy Joel shirt in the first episode, and one episode before the end Butcher tries to hide the pair of them from a telepath by asking Hughie to name his top ten Billy Joel songs. It does not work. Then this plays, and that is the series.',
         href: 'https://www.youtube.com/watch?v=gxEPV4kolz0', link: 'Listen' },
-      { title: 'Party in the U.S.A. (Sped Up)', accent: '#6f9fd0', sub: 'Miley Cyrus · The Boys meme edit',
+      { title: 'Party in the U.S.A. (Sped Up)', accent: '#6f9fd0', sub: 'Miley Cyrus · 2009 · The Boys meme edit',
         desc: 'The “walked into LAX” sped-up meme version. A meme association, not a song used in the series.',
         links: [
           { href: 'https://www.youtube.com/watch?v=E-H_nzP52A8', label: 'Listen' },

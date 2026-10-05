@@ -4,18 +4,16 @@
    near-black field, 1px cyan wireframes, concentric gauges, uppercase telemetry. */
 
 :root {
-  --cy:        #29e7ff;
-  --cy-hi:     #b8f6ff;
-  --cy-mid:    rgba(41, 231, 255, 0.55);
-  --cy-dim:    rgba(41, 231, 255, 0.28);
-  --cy-faint:  rgba(41, 231, 255, 0.12);
-  --cy-ghost:  rgba(41, 231, 255, 0.05);
+  /* The HUD's colour is ONE value used eighty-odd times below, so the phase
+     switch (and the stone switch) only has to redefine these and the whole
+     interface re-tints: wireframes, gauges, reactor, ticker, every module.
+     --cy-rgb is the same colour as raw channels, because the translucent
+     variants have to be mixed from it rather than written out. */
+  --cy-rgb:    41, 231, 255;
   --amber:     #ffb347;
   --red:       #ff5468;
   --bg:        #00060b;
   --bg-2:      #000d16;
-  --glow:      0 0 12px rgba(41, 231, 255, 0.45);
-  --glow-soft: 0 0 26px rgba(41, 231, 255, 0.22);
   /* standalone page: no shared stylesheet, so the tokens are real values here */
   --mono:      'JetBrains Mono', ui-monospace, monospace;
   --disp:      'Orbitron', 'JetBrains Mono', monospace;
@@ -23,7 +21,29 @@
   --ease:      cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Everything below is mixed from --cy-rgb, and these live on <body> rather
+   than :root on purpose: the phase and the stone put their attribute on
+   <body>, and a custom property resolved on :root would already have been
+   computed one level above the override and could never change. */
+body.jv {
+  --cy:        rgb(var(--cy-rgb));
+  --cy-hi:     color-mix(in srgb, rgb(var(--cy-rgb)) 55%, #fff);
+  --cy-mid:    rgba(var(--cy-rgb), 0.55);
+  --cy-dim:    rgba(var(--cy-rgb), 0.28);
+  --cy-faint:  rgba(var(--cy-rgb), 0.12);
+  --cy-ghost:  rgba(var(--cy-rgb), 0.05);
+  --glow:      0 0 12px rgba(var(--cy-rgb), 0.45);
+  --glow-soft: 0 0 26px rgba(var(--cy-rgb), 0.22);
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* standalone page: no shared stylesheet, so the visually-hidden helper the
+   phase rail and the Gauntlet label themselves with lives here too */
+.vh {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
 
 html, body { height: 100%; }
 
@@ -512,6 +532,130 @@ body.jv.is-live .jv-reactor { animation: reactor-in 1.2s var(--ease) .25s forwar
   .jv-corner { width: 30px; height: 30px; }
   body.jv { cursor: auto; }
   .jv-reticle { display: none; }
+}
+
+/* ═══════════ the phase, and the stone ═══════════
+   The villain era is not a panel on this page, it is the page: one data-phase
+   on <body> redefines --cy-rgb and the whole HUD changes colour, because every
+   wireframe, gauge, bar and glyph on it is drawn from that one value.
+
+     avengers   the HUD's own cyan: Loki and Ultron, before the scale got big
+     infinity   Thanos, in the Power Stone's violet
+     kang       Kang, in the TVA's orange
+     doom       Doom, in green (the owner's call, 2026-10-04)
+
+   The six Infinity Stones work the same way and sit on top of the phase: pick
+   one and the HUD runs in that stone's colour instead, which is the closest
+   this interface gets to actually holding the Gauntlet. "None" hands it back
+   to the phase. */
+body.jv[data-phase="avengers"] { --cy-rgb: 41, 231, 255; }
+body.jv[data-phase="infinity"] { --cy-rgb: 160, 79, 224; }
+body.jv[data-phase="kang"]     { --cy-rgb: 240, 150, 60; }
+body.jv[data-phase="doom"]     { --cy-rgb: 63, 213, 137; }
+
+body.jv[data-stone="space"]   { --cy-rgb: 79, 143, 224; }
+body.jv[data-stone="mind"]    { --cy-rgb: 240, 208, 64; }
+body.jv[data-stone="reality"] { --cy-rgb: 224, 72, 58; }
+body.jv[data-stone="power"]   { --cy-rgb: 176, 111, 216; }
+body.jv[data-stone="time"]    { --cy-rgb: 95, 208, 127; }
+body.jv[data-stone="soul"]    { --cy-rgb: 240, 150, 60; }
+
+/* the whole page eases between phases rather than cutting */
+body.jv, .jv-mod, .jv-bar i, .jv-reactor svg * {
+  transition: color .5s var(--ease), background-color .5s var(--ease),
+              border-color .5s var(--ease), stroke .5s var(--ease), fill .5s var(--ease);
+}
+@media (prefers-reduced-motion: reduce) {
+  body.jv, .jv-mod, .jv-bar i, .jv-reactor svg * { transition: none; }
+}
+
+/* ── the gauntlet: six stones, and none ──
+   A radio group, same as the phase rail: one choice from seven. Each swatch is
+   its own stone's colour whatever the HUD is currently running in, so the row
+   reads as the Gauntlet rather than as six copies of the current tint. */
+.jv-stones { display: flex; flex-wrap: wrap; gap: 0.3rem; border: 0; padding: 0; margin: 0; }
+.jv-stone {
+  position: relative; cursor: pointer; width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1px solid rgba(var(--cy-rgb), 0.3);
+  background: color-mix(in srgb, var(--sc, #666) 30%, transparent);
+  transition: transform .16s var(--ease), border-color .16s var(--ease);
+}
+.jv-stone i {
+  display: block; width: 13px; height: 13px; border-radius: 50%;
+  background: var(--sc, #666); box-shadow: 0 0 9px var(--sc, #666);
+}
+.jv-stone--none i { background: transparent; box-shadow: none; border: 1px dashed rgba(var(--cy-rgb), 0.5); }
+@media (hover: hover) { .jv-stone:hover { transform: translateY(-2px); } }
+.jv-stone.is-on { border-color: var(--sc, var(--cy)); transform: translateY(-2px); }
+.jv-stone.is-on::after {
+  content: ""; position: absolute; inset: -4px; border-radius: 50%;
+  border: 1px solid var(--sc, var(--cy)); opacity: .7;
+}
+.jv-stone:focus-within { outline: 2px solid var(--cy); outline-offset: 3px; }
+.jv-stone-n {
+  margin-top: 0.5rem; font-family: var(--mono); font-size: 0.56rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--cy-mid);
+}
+
+/* ═══════════ threat assessment ═══════════
+   The saga's four villain eras, one panel at a time. The rail is a radio
+   group styled as tabs; the scale chip and the bar are graded by data-lvl,
+   which is the only thing that says how big the fight got: 1 city/world in
+   the HUD's own cyan, 2 universe in amber, 3 multiverse in red. */
+.jv-ph-rail {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem;
+  border: 0; padding: 0; margin: 0 0 0.9rem;
+}
+.jv-ph-tab {
+  display: flex; flex-direction: column; gap: 0.1rem; cursor: pointer;
+  padding: 0.4rem 0.5rem; border: 1px solid var(--cy-dim);
+  background: var(--cy-ghost); transition: background .18s ease, border-color .18s ease;
+}
+.jv-ph-tab b {
+  font-size: 0.64rem; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--cy-mid);
+}
+.jv-ph-tab i {
+  font-style: normal; font-size: 0.56rem; letter-spacing: 0.06em;
+  color: rgba(184, 246, 255, 0.4);
+}
+@media (hover: hover) { .jv-ph-tab:hover { border-color: var(--cy-mid); } }
+.jv-ph-tab.is-on { border-color: var(--cy); background: var(--cy-faint); }
+.jv-ph-tab.is-on b { color: var(--cy); text-shadow: var(--glow); }
+/* the keyboard lands on the hidden radio, so the ring goes on its label */
+.jv-ph-tab:focus-within { outline: 1px solid var(--cy); outline-offset: 1px; }
+
+.jv-ph-top {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  justify-content: space-between; gap: 0.3rem 0.6rem; margin-bottom: 0.5rem;
+}
+.jv-ph-who {
+  font-size: 0.78rem; letter-spacing: 0.1em; color: var(--cy);
+  text-shadow: var(--glow);
+}
+.jv-ph-scale {
+  font-size: 0.58rem; letter-spacing: 0.12em; padding: 0.16rem 0.44rem;
+  border: 1px solid currentColor; color: var(--cy);
+}
+.jv-ph-scale[data-lvl="2"] { color: var(--amber); }
+.jv-ph-scale[data-lvl="3"] { color: var(--red); }
+/* the bar is the scale drawn: it fills further as the threat gets bigger */
+.jv-ph-panel .jv-bar { --bc: var(--cy); }
+.jv-ph-panel:has(.jv-ph-scale[data-lvl="2"]) .jv-bar { --bc: var(--amber); }
+.jv-ph-panel:has(.jv-ph-scale[data-lvl="3"]) .jv-bar { --bc: var(--red); }
+.jv-ph-panel .jv-bar i {
+  background: var(--bc);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--bc) 60%, transparent);
+}
+
+.jv-ph-note {
+  margin: 0.7rem 0 0; font-size: 0.62rem; line-height: 1.75;
+  letter-spacing: 0.02em; color: rgba(184, 246, 255, 0.55);
+}
+
+@media (max-width: 420px) {
+  .jv-ph-rail { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {

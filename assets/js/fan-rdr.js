@@ -77,7 +77,7 @@ window.FAN_PAGE = {
         href: 'https://www.youtube.com/watch?v=bNV0gXtpCfc', link: 'Listen' },
       { title: 'Far Away', series: 'Red Dead Redemption', year: 2010, accent: '#d0a060', sub: 'José González · Red Dead Redemption · 2010',
         href: 'https://www.youtube.com/watch?v=7rasK2RlrOU', link: 'Listen' },
-      { title: 'Cowpoke', series: 'Outside the games', year: 2015, accent: '#a56d42', sub: 'Colter Wall · not featured in Red Dead Redemption 2',
+      { title: 'Cowpoke', series: 'Outside the games', year: 2020, accent: '#a56d42', sub: 'Colter Wall · 2020 · not featured in Red Dead Redemption 2',
         href: 'https://www.youtube.com/watch?v=Qy69ucV_sRg', link: 'Listen' },
       { title: 'Outlaws from the West', series: 'Red Dead Redemption 2', year: 2018, accent: '#c9402f', sub: 'Red Dead Redemption 2 · 2018',
         href: 'https://www.youtube.com/watch?v=aLDHRR_EYko', link: 'Listen' },

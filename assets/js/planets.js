@@ -38,7 +38,7 @@
     var c = w.colors;
     var css = '--c1:' + c[0] + ';--c2:' + c[1] + ';--c3:' + c[2] + ';--glow:' + w.glow
             + ';--spin:' + (w.spin || 44) + 's';
-    return '<article class="pl-card reveal" style="' + css + '">'
+    return '<article class="pl-card reveal' + (w.key ? '' : ' is-minor') + '" style="' + css + '">'
       + sphere(w)
       + '<div class="pl-body">'
       +   '<div class="pl-titlerow"><h4>' + esc(w.name) + '</h4><span class="pl-src">' + esc(w.src) + '</span></div>'
@@ -48,13 +48,21 @@
       + '</article>';
   }
 
+  /* Each era opens on its big, important worlds (`key` in the data) and a
+     button under the grid shows the rest. The choice holds across eras: once
+     everything is showing, switching chips keeps everything showing. */
   function group(g, i) {
+    var main = g.worlds.filter(function (w) { return w.key; }).length;
+    var more = g.worlds.length - main;
     return '<section class="pl-group" data-era="' + g.id + '"' + (i === 0 ? '' : ' hidden') + '>'
       + '<h3 class="subsec subsec--sw reveal">' + esc(g.label)
       +   '<span class="subsec-yr">' + esc(g.note) + '</span>'
       +   '<span class="pl-count">' + g.worlds.length + '</span>'
       + '</h3>'
       + '<div class="pl-grid">' + g.worlds.map(card).join('') + '</div>'
+      + (more ? '<button class="chip chip--sw pl-more" type="button" aria-expanded="false"'
+        + ' data-all="Show all ' + g.worlds.length + ' planets" data-key="Show only the main ' + main + '">'
+        + 'Show all ' + g.worlds.length + ' planets</button>' : '')
       + '</section>';
   }
 
@@ -86,10 +94,21 @@
   /* ── filtering: show one era, or all of them ── */
   var sections = root.querySelectorAll('.pl-group');
   root.addEventListener('click', function (e) {
+    var all = e.target.closest('.pl-more');
+    if (all) {
+      var on = !root.classList.contains('is-all');
+      root.classList.toggle('is-all', on);
+      root.querySelectorAll('.pl-more').forEach(function (b) {
+        b.textContent = b.getAttribute(on ? 'data-key' : 'data-all');
+        b.setAttribute('aria-expanded', on ? 'true' : 'false');
+      });
+      if (on) all.closest('.pl-group').querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
     var btn = e.target.closest('.chip--sw');
     if (!btn) return;
     var era = btn.dataset.era;
-    root.querySelectorAll('.chip--sw').forEach(function (c) {
+    root.querySelectorAll('.pl-filters .chip--sw').forEach(function (c) {
       c.classList.toggle('is-active', c === btn);
     });
     sections.forEach(function (s) {

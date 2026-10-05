@@ -297,8 +297,11 @@ const FAN_PAGES = [
    this pass downloaded /assets/js/years.js while every page asked for
    /assets/js/years.js?v=1755..., so the warmed copy could never be hit: 60-odd
    files fetched, stored, and never read once. */
+/* /assets/video/ is left out: a clip plays from the network when its play
+   button is pressed (preload none), and this worker never touches it, so
+   Safari gets the range requests it plays video with. */
 const ALL_ASSETS = [
-{%- for f in site.static_files %}{% if f.path contains '/assets/' %}{% unless f.path contains '/assets/img/years/' or f.path contains '/assets/img/years-large/' %}
+{%- for f in site.static_files %}{% if f.path contains '/assets/' %}{% unless f.path contains '/assets/img/years/' or f.path contains '/assets/img/years-large/' or f.path contains '/assets/video/' %}
   '{% if f.path contains '/assets/css/' or f.path contains '/assets/js/' %}{% include v.html f=f.path %}{% else %}{{ f.path }}{% endif %}',
 {%- endunless %}{% endif %}{% endfor %}
 ];

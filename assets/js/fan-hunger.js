@@ -99,7 +99,7 @@ window.FAN_PAGE = {
       { title: 'Anthem: Gem of Panem', accent: '#c9a05f', sub: 'James Newton Howard · The Hunger Games · 2012 · 0:44',
         desc: 'The shorter, older anthem: forty-four seconds of brass that the Capitol plays over its own propaganda, and which the Ballad of Songbirds and Snakes later reveals the words to.',
         href: 'https://www.youtube.com/watch?v=YGE5HlSl1zQ', link: 'Listen' },
-      { title: 'Rue\'s Whistle', accent: '#8fbf6a', sub: 'The four notes · 0:58',
+      { title: 'Rue\'s Whistle', accent: '#8fbf6a', sub: 'The four notes · 2012 · 0:58',
         desc: 'Four notes to say the day’s work is over and everyone can come in. Katniss gives them to Rue, the mockingjays carry them, and by the third film they are what a country whistles instead of the anthem. The single best idea in the books.',
         href: 'https://www.youtube.com/watch?v=ufhcG_FAZX4', link: 'Fan upload' },
       { title: 'Rue\'s Farewell', accent: '#8fbf6a', sub: 'James Newton Howard · The Hunger Games · 2012 · 5:00',

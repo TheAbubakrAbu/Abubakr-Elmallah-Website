@@ -2,7 +2,7 @@
 
    Most of them are written into the pages as <canvas data-orb> and drawn by
    orbs.js on its own: the footer mark, the home page's interfaces and
-   contact, 404 and offline, the four terminals. This file places the ones
+   contact, 404 and offline, the ten terminals. This file places the ones
    that follow a pattern instead of a page:
 
      the heading      a large orb behind the title of every page with a

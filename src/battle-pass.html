@@ -1,0 +1,160 @@
+---
+permalink: /battle-pass/
+title: "The Battle Pass · Abubakr Elmallah"
+description: "A Fortnite Battle Pass for Abubakr Elmallah's portfolio: every page on the site as a reward tier, unlocked as you go, drawn entirely in the browser."
+theme: "#141a30"
+fonts: "family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/battle-pass.css' %}" />
+</head>
+<body class="bp" id="bp">
+
+<!-- the lobby behind the pass: a storm wall closing, and the drop sky -->
+<div class="bp-sky" aria-hidden="true">
+  <span class="bp-grad"></span>
+  <span class="bp-storm"></span>
+  <span class="bp-grid"></span>
+</div>
+
+<header class="bp-top">
+  <a class="bp-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the lobby</span>
+  </a>
+  <span class="bp-top-mid">Chapter 1 &#183; Season 4 &#183; Abubakr Elmallah</span>
+  <span class="bp-top-v" id="bpStars">&#9733; <b id="bpTier">1</b>/100</span>
+</header>
+
+<main class="bp-main">
+
+  <!-- ─────────── the pass header ─────────── -->
+  <section class="bp-hero">
+    <div class="bp-hero-l">
+      <p class="bp-kicker">Battle Pass</p>
+      <h1 class="bp-title">Abubakr<br />Elmallah</h1>
+      <p class="bp-lede">The whole site as a Battle Pass: every page is a reward tier, the good ones are
+        further up, and tier one hundred is the one worth the grind. Season four, because season four is
+        the one with Omega in it, and nothing since has come close.</p>
+      <p class="bp-lede">Unlocked tiers are remembered, so the pass fills in as you actually go through
+        the site. Nothing here is a screenshot: every tile, rarity border and progress bar is drawn.</p>
+      <div class="bp-acts">
+        <button class="bp-btn" id="bpClaim" type="button">Claim every tier</button>
+        <a class="bp-btn bp-btn--ghost" href="#tiers">See the rewards</a>
+      </div>
+    </div>
+
+    <!-- the progress meter: tiers unlocked out of the tiers there are -->
+    <div class="bp-meter">
+      <div class="bp-meter-top"><span>Pass progress</span><b id="bpPct">0%</b></div>
+      <div class="bp-bar"><i id="bpFill"></i></div>
+      <dl class="bp-stats">
+        <div><dt>Tiers</dt><dd id="bpTotal">&#183;&#183;</dd></div>
+        <div><dt>Unlocked</dt><dd id="bpDone">0</dd></div>
+        <div><dt>Legendary</dt><dd id="bpLeg">&#183;&#183;</dd></div>
+      </dl>
+      <p class="bp-meter-n">Tier 100 is the LEGO booklet, which is the only reward on this pass that is
+        another whole interface.</p>
+    </div>
+  </section>
+
+  <!-- ─────────── the rewards ───────────
+       Every room on the site as a tier. Each carries its rarity and tier
+       number in data- attributes; battle-pass.js draws the rarity border,
+       counts the pass and remembers what you have unlocked. The list is
+       ordinary links, so it reads and works with no JS at all. -->
+  <section class="bp-tiers" id="tiers" aria-labelledby="bpTiersH">
+    <h2 class="bp-h" id="bpTiersH">The rewards</h2>
+    <p class="bp-h-sub">Five rarities, lowest to highest: common, uncommon, rare, epic, legendary.</p>
+
+    <div class="bp-grid-r">
+      <a class="bp-tier" href="/" data-t="1" data-r="common" data-k="Landing spot">
+        <span class="bp-tier-n">1</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>Home</b><i>where everybody drops in</i></a>
+      <a class="bp-tier" href="/work/" data-t="5" data-r="rare" data-k="Contract">
+        <span class="bp-tier-n">5</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>Work</b><i>lead mobile &amp; backend developer, UCI</i></a>
+      <a class="bp-tier" href="/projects/" data-t="10" data-r="epic" data-k="Loadout">
+        <span class="bp-tier-n">10</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>Projects</b><i>twelve apps, catalogued</i></a>
+      <a class="bp-tier" href="/resume/" data-t="14" data-r="uncommon" data-k="Document">
+        <span class="bp-tier-n">14</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>R&#233;sum&#233;</b><i>the whole record on one page</i></a>
+      <a class="bp-tier" href="/education/" data-t="18" data-r="common" data-k="Training">
+        <span class="bp-tier-n">18</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>Education</b><i>both schools</i></a>
+      <a class="bp-tier" href="/college/" data-t="22" data-r="rare" data-k="Campus">
+        <span class="bp-tier-n">22</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>College</b><i>UC Irvine, class of 2028</i></a>
+      <a class="bp-tier" href="/high-school/" data-t="26" data-r="common" data-k="Archive">
+        <span class="bp-tier-n">26</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>High School</b><i>where it started</i></a>
+      <a class="bp-tier" href="/worlds/" data-t="30" data-r="epic" data-k="Map">
+        <span class="bp-tier-n">30</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>Worlds</b><i>all seventy-one of them</i></a>
+      <a class="bp-tier" href="/worlds/fortnite/" data-t="34" data-r="legendary" data-k="Season 4">
+        <span class="bp-tier-n">34</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>Fortnite</b><i>Chapter 1, seasons three to seven</i></a>
+      <a class="bp-tier" href="/worlds/star-wars/" data-t="40" data-r="legendary" data-k="Galaxy">
+        <span class="bp-tier-n">40</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>Star Wars</b><i>126 planets, charted</i></a>
+      <a class="bp-tier" href="/star-wars/" data-t="44" data-r="epic" data-k="Datapad">
+        <span class="bp-tier-n">44</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>Aurebesh &amp; Sabacc</b><i>the Star Wars apps</i></a>
+      <a class="bp-tier" href="/al-islam/" data-t="48" data-r="legendary" data-k="Three apps">
+        <span class="bp-tier-n">48</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>Al-Islam</b><i>three Islamic apps</i></a>
+      <a class="bp-tier" href="/travels/" data-t="52" data-r="rare" data-k="Glider">
+        <span class="bp-tier-n">52</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>Travels</b><i>thirty-five trips</i></a>
+      <a class="bp-tier" href="/accents/" data-t="56" data-r="uncommon" data-k="Voice">
+        <span class="bp-tier-n">56</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>Accents</b><i>nineteen of them</i></a>
+      <a class="bp-tier" href="/gaming/" data-t="60" data-r="epic" data-k="Replay">
+        <span class="bp-tier-n">60</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>Gaming</b><i>four Steam Replays</i></a>
+      <a class="bp-tier" href="/lightsabers/" data-t="64" data-r="rare" data-k="Pickaxe">
+        <span class="bp-tier-n">64</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>Lightsabers</b><i>the build guide</i></a>
+      <a class="bp-tier" href="/elmallah/" data-t="70" data-r="legendary" data-k="Holotable">
+        <span class="bp-tier-n">70</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>E.L.M.A.L.L.A.H.</b><i>every interface, on one table</i></a>
+      <a class="bp-tier" href="/jarvis/" data-t="76" data-r="epic" data-k="HUD">
+        <span class="bp-tier-n">76</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>J.A.R.V.I.S.</b><i>the Stark terminal</i></a>
+      <a class="bp-tier" href="/holocron/" data-t="80" data-r="epic" data-k="Archive">
+        <span class="bp-tier-n">80</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>Holocron</b><i>the Jedi Archives</i></a>
+      <a class="bp-tier" href="/crafting-table/" data-t="84" data-r="rare" data-k="Crafting">
+        <span class="bp-tier-n">84</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>The Crafting Table</b><i>the Minecraft terminal</i></a>
+      <a class="bp-tier" href="/pokedex/" data-t="88" data-r="rare" data-k="Device">
+        <span class="bp-tier-n">88</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>The Pok&#233;dex</b><i>every page a numbered entry</i></a>
+      <a class="bp-tier" href="/batcomputer/" data-t="92" data-r="epic" data-k="Console">
+        <span class="bp-tier-n">92</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>The Batcomputer</b><i>the Batman terminal</i></a>
+      <a class="bp-tier" href="/freddys/" data-t="96" data-r="epic" data-k="Cameras">
+        <span class="bp-tier-n">96</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>The Security Office</b><i>the FNAF terminal</i></a>
+      <a class="bp-tier bp-tier--100" href="/instructions/" data-t="100" data-r="legendary" data-k="Tier 100">
+        <span class="bp-tier-n">100</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>The Instruction Booklet</b><i>the LEGO terminal &#183; the Omega slot</i></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bp-bottom">
+  <a class="bp-back" href="/">&#9668; Back to the main site</a>
+  <span class="bp-foot-n">Season 4 &#183; <span id="bpFootN">&#183;&#183;</span> tiers &#183; Omega at one hundred</span>
+</footer>
+
+<script src="{% include v.html f='/assets/js/battle-pass.js' %}" defer></script>
+{% include analytics.html %}
+</body>
+</html>

@@ -1,0 +1,227 @@
+---
+permalink: /batcomputer/
+title: "The Batcomputer · Abubakr Elmallah"
+description: "The Batcomputer: a Batman interface for Abubakr Elmallah's portfolio, with a bat-signal to aim over Gotham, every page a case file and detective mode."
+theme: "#07080b"
+fonts: "family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Share+Tech+Mono"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/batcomputer.css' %}" />
+</head>
+<body class="bc" id="bc">
+
+<!-- The emblem, drawn once and used everywhere on the page (the title, the
+     comms array, the bats that leave at the end). It is this page's own bat,
+     not a tracing of any official one: two short ears, wings swept up to a
+     point, three scallops on the trailing edge and a tail at the centre. The
+     same outline is in batcomputer.js as BAT, for the canvas; keep the two
+     in step. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="bcBat" viewBox="-100 -40 200 82">
+    <path d="M0 -12 L8 -12 L12 -30 L16 -10 C34 -12 60 -22 96 -34 C84 -18 82 -2 90 12 C78 4 64 4 56 16 C48 6 36 6 30 20 C20 18 10 24 0 38 C-10 24 -20 18 -30 20 C-36 6 -48 6 -56 16 C-64 4 -78 4 -90 12 C-82 -2 -84 -18 -96 -34 C-60 -22 -34 -12 -16 -10 L-12 -30 L-8 -12 Z"/>
+  </symbol>
+</svg>
+
+<!-- the cave: cold light from the wall of monitors above, the dark rock
+     round the edges, and a faint drip line here and there. Detective mode
+     washes all of it blue. -->
+<div class="bc-field" aria-hidden="true">
+  <span class="bc-glow"></span>
+  <span class="bc-scan"></span>
+</div>
+
+<header class="bc-top">
+  <a class="bc-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the Batcave</span>
+  </a>
+  <span class="bc-top-mid">The Batcave · beneath Wayne Manor · Gotham City</span>
+  <!-- Gotham keeps New York's clock; after dark the cave is empty -->
+  <span class="bc-top-clock"><i class="bc-led" aria-hidden="true"></i><span id="bcClock">Gotham ··:··:··</span></span>
+</header>
+
+<main class="bc-main">
+
+  <section class="bc-hero">
+    <p class="bc-kicker">Sublevel two · the main console</p>
+    <h1 class="bc-title"><svg class="bc-title-bat" aria-hidden="true"><use href="#bcBat"/></svg><span>The Batcomputer</span></h1>
+    <p class="bc-sub">Every room on this site, worked from the console under Wayne Manor. Light the signal and aim it at the clouds over Gotham, open any room as a case file, switch on detective mode to see what is hiding in each one, and read the file the cave keeps on the man who built it.</p>
+  </section>
+
+  <!-- ─────────── the signal ───────────
+       The centrepiece, on the biggest monitor: Gotham from the cave's
+       rooftop camera. A canvas, because the point is light: rolling cloud
+       drifts over the skyline, and when the signal is lit the beam climbs
+       from the GCPD roof and every puff of cloud near the spot is lit by
+       it, so the bat sits in the weather rather than on top of it. Drag or
+       move over the sky to aim it. The picture is decoration (aria-hidden);
+       what it says is in the switch and the status line under it. -->
+  <section class="bc-signal" aria-labelledby="bcSignalH">
+    <h2 class="bc-h" id="bcSignalH">The signal<span>GCPD headquarters, the roof camera</span></h2>
+    <div class="bc-mon bc-mon--main">
+      <div class="bc-mon-label" aria-hidden="true"><span>CAM 04 · GCPD ROOF</span><span id="bcAim">AIM 000 · ELEV 00</span><i class="bc-led"></i></div>
+      <div class="bc-scene" id="bcScene">
+        <canvas id="bcSky" aria-hidden="true"></canvas>
+        <span class="bc-reticle" aria-hidden="true"></span>
+        <p class="bc-scene-hint" aria-hidden="true">Move over the sky to aim the light</p>
+      </div>
+      <div class="bc-controls">
+        <!-- a breaker on the console: the lever drops, the lamp warms up -->
+        <button class="bc-switch" id="bcSwitch" type="button" aria-pressed="false">
+          <span class="bc-switch-track" aria-hidden="true"><span class="bc-switch-lever"></span></span>
+          <span class="bc-switch-t" id="bcSwitchT">Light the signal</span>
+        </button>
+        <button class="bc-detect" id="bcDetect" type="button" aria-pressed="false">
+          <span class="bc-detect-eye" aria-hidden="true"></span>
+          <span>Detective mode</span>
+        </button>
+        <p class="bc-status" id="bcStatus" role="status">Signal dark. Gotham is quiet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── the case wall ───────────
+       Every room on the site, each one a case on its own monitor. Hover or
+       focus one and the scanner sweeps it Arkham-style and turns up its
+       evidence (the real address); detective mode runs the scan on all of
+       them at once. --i staggers the screens coming on. -->
+  <section class="bc-cases" aria-labelledby="bcCasesH">
+    <h2 class="bc-h" id="bcCasesH">
+      <canvas class="bc-think" data-orb="searching" data-orb-size="22" data-orb-ink="#4cc3ff" aria-hidden="true"></canvas>The case wall<span>every room on the site, filed as a case</span>
+    </h2>
+    <ol class="bc-wall" id="bcWall">
+      <li><a class="bc-case" href="/" style="--i:0"><span class="bc-case-n" aria-hidden="true">Case 01</span><b>Wayne Manor</b><i>Home · the house above the cave</i><em>/</em></a></li>
+      <li><a class="bc-case" href="/work/" style="--i:1"><span class="bc-case-n" aria-hidden="true">Case 02</span><b>Wayne Enterprises</b><i>Work at UC Irvine · the day job</i><em>/work/</em></a></li>
+      <li><a class="bc-case" href="/projects/" style="--i:2"><span class="bc-case-n" aria-hidden="true">Case 03</span><b>The Trophy Room</b><i>Every project · each one kept, like the giant penny</i><em>/projects/</em></a></li>
+      <li><a class="bc-case" href="/education/" style="--i:3"><span class="bc-case-n" aria-hidden="true">Case 04</span><b>The Training Floor</b><i>Education · preparation, not powers</i><em>/education/</em></a></li>
+      <li><a class="bc-case" href="/college/" style="--i:4"><span class="bc-case-n" aria-hidden="true">Case 05</span><b>Gotham University</b><i>College · UC Irvine</i><em>/college/</em></a></li>
+      <li><a class="bc-case" href="/high-school/" style="--i:5"><span class="bc-case-n" aria-hidden="true">Case 06</span><b>Gotham Academy</b><i>High school · where it started</i><em>/high-school/</em></a></li>
+      <li><a class="bc-case" href="/worlds/" style="--i:6"><span class="bc-case-n" aria-hidden="true">Case 07</span><b>The Watchtower</b><i>All 71 worlds · the view of everything</i><em>/worlds/</em></a></li>
+      <li><a class="bc-case" href="/worlds/batman/" style="--i:7"><span class="bc-case-n" aria-hidden="true">Case 08</span><b>Gotham City</b><i>Batman · the world page</i><em>/worlds/batman/</em></a></li>
+      <li><a class="bc-case" href="/star-wars/" style="--i:8"><span class="bc-case-n" aria-hidden="true">Case 09</span><b>Wayne Aerospace</b><i>Star Wars apps · built for a galaxy far away</i><em>/star-wars/</em></a></li>
+      <li><a class="bc-case" href="/al-islam/" style="--i:9"><span class="bc-case-n" aria-hidden="true">Case 10</span><b>The Clock Tower</b><i>Al-Islam · prayer times, by the clock</i><em>/al-islam/</em></a></li>
+      <li><a class="bc-case" href="/travels/" style="--i:10"><span class="bc-case-n" aria-hidden="true">Case 11</span><b>The Years Abroad</b><i>Travels · the trips beyond Gotham</i><em>/travels/</em></a></li>
+      <li><a class="bc-case" href="/accents/" style="--i:11"><span class="bc-case-n" aria-hidden="true">Case 12</span><b>The Voice Modulator</b><i>Accents &amp; impersonations</i><em>/accents/</em></a></li>
+      <li><a class="bc-case" href="/gaming/" style="--i:12"><span class="bc-case-n" aria-hidden="true">Case 13</span><b>Arkham Asylum</b><i>Gaming · where the games are locked up</i><em>/gaming/</em></a></li>
+      <li><a class="bc-case" href="/lightsabers/" style="--i:13"><span class="bc-case-n" aria-hidden="true">Case 14</span><b>The Armoury</b><i>The lightsaber guide · every blade, catalogued</i><em>/lightsabers/</em></a></li>
+      <li><a class="bc-case" href="/resume/" style="--i:14"><span class="bc-case-n" aria-hidden="true">Case 15</span><b>The Personnel File</b><i>Résumé · for Lucius Fox’s desk</i><em>/resume/</em></a></li>
+    </ol>
+  </section>
+
+  <!-- ─────────── the file and the belt ─────────── -->
+  <div class="bc-cols">
+
+    <!-- The cave's file on the subject. The answers come up redacted and the
+         bars lift as the file scrolls into view, the way the computer
+         decrypts a record in the games. The redaction is only ever a layer
+         over real text: screen readers read straight through it, and without
+         the script (or with reduced motion) it is never drawn at all. -->
+    <section class="bc-panel bc-dossier" aria-labelledby="bcFileH">
+      <h2 class="bc-h bc-h--sm" id="bcFileH">Subject file<span>Elmallah, Abubakr · cleared for the cave</span></h2>
+      <dl class="bc-file" id="bcFile">
+        <div><dt>Subject</dt><dd><span>Abubakr Elmallah</span></dd></div>
+        <div><dt>Studying</dt><dd><span>Computer Science, UC Irvine, class of 2028</span></dd></div>
+        <div><dt>Day job</dt><dd><span>Lead mobile &amp; backend developer</span></dd></div>
+        <div><dt>Apps shipped</dt><dd><span>Twelve, across four platforms</span></dd></div>
+        <div><dt>First cases</dt><dd><span>Order 66 and Datapad, 2021, solo</span></dd></div>
+        <div><dt>Worlds on file</dt><dd><span>Seventy-one, at /worlds/</span></dd></div>
+        <div><dt>In the cave since</dt><dd><span>5th grade, 2016–17</span></dd></div>
+        <div><dt>Powers</dt><dd><span>None. Just preparation.</span></dd></div>
+      </dl>
+    </section>
+
+    <!-- ─────── the rogues, from the world page ───────
+         The other half of taking the interface into the world: the Batman
+         page's own rogues gallery, filed here the way the cave would file
+         it, as suspects with a status rather than as cards. Nine names, the
+         same nine and the same reasons as /worlds/batman/, because a second
+         list that drifts from the first is worse than no list. -->
+    <section class="bc-panel bc-rogues-panel" aria-labelledby="bcRoguesH">
+      <h2 class="bc-h bc-h--sm" id="bcRoguesH">The rogues gallery<span>filed from the world page, as suspects</span></h2>
+      <ul class="bc-rogues">
+        <li><b>The Joker</b><em>At large</em><p>No origin, and that is the point: give him one and he becomes explicable.</p></li>
+        <li><b>Two-Face</b><em>Arkham</em><p>A district attorney who decided the fairest thing in Gotham was a coin.</p></li>
+        <li><b>The Riddler</b><em>At large</em><p>Leaves clues compulsively: being caught matters less than being understood.</p></li>
+        <li><b>The Penguin</b><em>At large</em><p>Not mad at all. A mob boss with a nightclub and better taste in umbrellas.</p></li>
+        <li><b>Scarecrow</b><em>Arkham</em><p>A psychologist who weaponised the thing Batman himself runs on.</p></li>
+        <li><b>Bane</b><em>Arkham</em><p>Broke the Bat by working out the schedule first and fighting him last.</p></li>
+        <li><b>Ra&#8217;s al Ghul</b><em>Unknown</em><p>Thinks he and Batman want the same thing, and is nearly right.</p></li>
+        <li><b>Catwoman</b><em>Grey</em><p>A thief the story keeps having to decide about, which is the whole point of her.</p></li>
+        <li><b>Mr Freeze</b><em>Arkham</em><p>Rewritten into the saddest villain in the canon, in twenty-two minutes.</p></li>
+      </ul>
+      <a class="bc-rogues-go" href="/worlds/batman/#rogues">The full gallery on the world page &#8594;</a>
+    </section>
+
+    <!-- the belt from the world page, restocked: no powers, so everything
+         he can do is something he made and brought along -->
+    <section class="bc-panel bc-belt-panel" aria-labelledby="bcBeltH">
+      <h2 class="bc-h bc-h--sm" id="bcBeltH">The utility belt<span>everything he built and brought along</span></h2>
+      <ul class="bc-belt">
+        <li><b>Gold pouch</b><p>Winner of the Apple Swift Student Challenge, 2024.</p></li>
+        <li><b>Datapad</b><p>Reached the Top 10 of the paid Entertainment chart.</p></li>
+        <li><b>Two comms droids</b><p>Discord bots, running in more than 500 servers.</p></li>
+        <li><b>Al-Adhan</b><p>Computes prayer times, 22 different ways.</p></li>
+        <li><b>UCI Esports</b><p>The arena, its PCs and its events, in one app.</p></li>
+        <li><b>The first two</b><p>Order 66 and Datapad, the solo projects of 2021.</p></li>
+      </ul>
+    </section>
+
+  </div>
+
+  <!-- ─────────── the comms array ─────────── -->
+  <section class="bc-panel bc-comms" aria-labelledby="bcCommsH">
+    <h2 class="bc-h bc-h--sm" id="bcCommsH">The comms array<span>open channels to the other terminals</span></h2>
+    <ul class="bc-chans">
+      <li><a class="bc-chan" href="/elmallah/" style="--w:#d9a441"><span class="bc-chan-n" aria-hidden="true">CH 01</span><b>E.L.M.A.L.L.A.H.</b><i>Star Wars · the holotable hub</i></a></li>
+      <li><a class="bc-chan" href="/holocron/" style="--w:#4f9fe0"><span class="bc-chan-n" aria-hidden="true">CH 02</span><b>The Holocron</b><i>Star Wars · a Jedi archive</i></a></li>
+      <li><a class="bc-chan" href="/jarvis/" style="--w:#3fc7d8"><span class="bc-chan-n" aria-hidden="true">CH 03</span><b>J.A.R.V.I.S.</b><i>Avengers · a Stark display</i></a></li>
+      <li><a class="bc-chan" href="/marauders-map/" style="--w:#c08a55"><span class="bc-chan-n" aria-hidden="true">CH 04</span><b>The Marauder’s Map</b><i>Harry Potter</i></a></li>
+      <li><a class="bc-chan" href="/crafting-table/" style="--w:#6fbf4a"><span class="bc-chan-n" aria-hidden="true">CH 05</span><b>The Crafting Table</b><i>Minecraft</i></a></li>
+      <li><a class="bc-chan" href="/citadel/" style="--w:#d8b26a"><span class="bc-chan-n" aria-hidden="true">CH 06</span><b>The Citadel</b><i>Game of Thrones</i></a></li>
+      <li><a class="bc-chan" href="/compass/" style="--w:#4fb0a8"><span class="bc-chan-n" aria-hidden="true">CH 07</span><b>The Compass</b><i>Pirates of the Caribbean</i></a></li>
+      <li><a class="bc-chan" href="/control-room/" style="--w:#e07a3a"><span class="bc-chan-n" aria-hidden="true">CH 08</span><b>The Control Room</b><i>Jurassic Park</i></a></li>
+      <li><a class="bc-chan" href="/upside-down/" style="--w:#e2453a"><span class="bc-chan-n" aria-hidden="true">CH 09</span><b>The Upside Down</b><i>Stranger Things</i></a></li>
+      <li><a class="bc-chan" href="/starcourt/" style="--w:#e85fb0"><span class="bc-chan-n" aria-hidden="true">CH 10</span><b>Starcourt</b><i>Stranger Things</i></a></li>
+      <li><a class="bc-chan" href="/spirit-library/" style="--w:#d6a24e"><span class="bc-chan-n" aria-hidden="true">CH 11</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a></li>
+      <li><a class="bc-chan" href="/monastery/" style="--w:#e0563f"><span class="bc-chan-n" aria-hidden="true">CH 12</span><b>The Monastery</b><i>Ninjago</i></a></li>
+      <li><a class="bc-chan" href="/wanted/" style="--w:#c9864a"><span class="bc-chan-n" aria-hidden="true">CH 13</span><b>The Wanted Board</b><i>Red Dead Redemption</i></a></li>
+      <li><a class="bc-chan" href="/dunder-mifflin/" style="--w:#8fa9c4"><span class="bc-chan-n" aria-hidden="true">CH 14</span><b>Dunder Mifflin</b><i>The Office</i></a></li>
+      <li><a class="bc-chan" href="/springfield/" style="--w:#f2d43f"><span class="bc-chan-n" aria-hidden="true">CH 15</span><b>Springfield</b><i>The Simpsons</i></a></li>
+      <li><a class="bc-chan" href="/vought/" style="--w:#d94848"><span class="bc-chan-n" aria-hidden="true">CH 16</span><b>Vought Tower</b><i>The Boys</i></a></li>
+      <li><a class="bc-chan" href="/pokedex/" style="--w:#e8504a"><span class="bc-chan-n" aria-hidden="true">CH 17</span><b>The Pokédex</b><i>Pokémon</i></a></li>
+      <li><a class="bc-chan" href="/daily-bugle/" style="--w:#e33b48"><span class="bc-chan-n" aria-hidden="true">CH 18</span><b>The Daily Bugle</b><i>Spider-Man</i></a></li>
+    </ul>
+  </section>
+
+  <!-- ─────────── the turn ───────────
+       Every story with Gordon on the roof ends the same way: he turns to
+       say thank you and there is nobody there. -->
+  <div class="bc-end">
+    <p class="bc-end-k">Commissioner Gordon, on the roof, beside the signal</p>
+    <button class="bc-turn" id="bcTurn" type="button">Turn around to say thanks</button>
+  </div>
+
+</main>
+
+<!-- the bats that leave with him; batcomputer.js fills this with a flock -->
+<div class="bc-flock" id="bcFlock" aria-hidden="true"></div>
+
+<!-- the empty roof, after you turn -->
+<div class="bc-done" id="bcDone">
+  <div>
+    <canvas class="bc-done-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#f5c542" aria-hidden="true"></canvas>
+    <p class="bc-done-k">You turned around.</p>
+    <p class="bc-done-t">He’s already gone.</p>
+    <p class="bc-done-s">Only the signal, still burning on the clouds.</p>
+    <a href="/">Back up to Wayne Manor</a>
+  </div>
+</div>
+
+<script src="{% include v.html f='/assets/js/batcomputer.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

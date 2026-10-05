@@ -246,7 +246,7 @@ window.FAN_PAGE = {
       { title: 'The Incredits', series: 'The Incredibles', accent: '#e03a2a', year: 2004, secs: 442, sub: 'Michael Giacchino · The Incredibles · 2004 · 7:22',
         desc: 'Seven minutes of the same brass for the end credits, which is where the theme everybody calls the Incredibles theme actually lives.',
         href: 'https://www.youtube.com/watch?v=voLQroAnoLI', link: 'Listen' },
-      { title: 'Route 66', series: 'Cars', accent: '#c02020', year: 1961, secs: 173, sub: 'Chuck Berry · Cars · 2:53',
+      { title: 'Route 66', series: 'Cars', accent: '#c02020', year: 1961, secs: 173, sub: 'Chuck Berry · Cars · 1961 · 2:53',
         desc: 'Bobby Troup wrote it in 1946 driving the road it is named after; Chuck Berry recorded the version Cars uses. A song that is literally a set of directions, for a film about the towns the interstate killed.',
         href: 'https://www.youtube.com/watch?v=11TyAd2fkho', link: 'Listen' },
       { title: 'Life Is a Highway', series: 'Cars', accent: '#e0704a', year: 2006, secs: 299, sub: 'Rascal Flatts · Cars · 2006 · 4:59',

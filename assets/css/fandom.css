@@ -184,13 +184,16 @@
   display: grid; gap: clamp(1rem, 2vw, 1.5rem);
   grid-template-columns: repeat(var(--cols, 3), 1fr);
 }
-.fr-group--identity  .fr-grid { --cols: 3; }
+/* Who I Am is the one group that is not a grid of equals: see the mosaic
+   block under "who I am" further down. Six columns is the scaffold the mosaic
+   spans across: 6 for the hero, 3+3 for the pair, 2+2+2 for the trio. */
+.fr-group--identity  .fr-grid { --cols: 6; }
 .fr-group--core      .fr-grid { --cols: 3; }
 .fr-group--primary   .fr-grid { --cols: 3; }
 .fr-group--secondary .fr-grid { --cols: 4; }
 .fr-group--tertiary  .fr-grid { --cols: 5; }
 .fr-group--kid       .fr-grid { --cols: 6; }
-.fr-group--parks     .fr-grid { --cols: 3; }
+.fr-group--parks     .fr-grid { --cols: 6; }
 
 /* Step-downs. Each group loses a column when its tiles would otherwise get too
    narrow to hold a name (about 150px), so the ranking still reads on a laptop
@@ -198,22 +201,24 @@
    the phone block below puts everything two across. */
 @media (max-width: 1180px) {
   .fr-group--kid       .fr-grid { --cols: 5; }
+  .fr-group--parks     .fr-grid { --cols: 5; }
 }
 @media (max-width: 1024px) {
   .fr-group--secondary .fr-grid { --cols: 3; }
   .fr-group--tertiary  .fr-grid { --cols: 4; }
+  .fr-group--parks     .fr-grid { --cols: 4; }
 }
 @media (max-width: 900px) {
-  .fr-group--identity  .fr-grid,
   .fr-group--core      .fr-grid,
   .fr-group--primary   .fr-grid,
-  .fr-group--secondary .fr-grid,
-  .fr-group--parks     .fr-grid { --cols: 2; }
+  .fr-group--secondary .fr-grid { --cols: 2; }
   .fr-group--tertiary  .fr-grid { --cols: 3; }
-  .fr-group--kid       .fr-grid { --cols: 4; }
+  .fr-group--kid       .fr-grid,
+  .fr-group--parks     .fr-grid { --cols: 4; }
 }
 @media (max-width: 720px) {
   .fr-group--kid       .fr-grid { --cols: 3; }
+  .fr-group--parks     .fr-grid { --cols: 3; }
 }
 /* On a phone every rank is two across (the owner's call, 2026-09-27): one
    per row made the higher ranks screens long. Rank still reads by plate
@@ -222,7 +227,6 @@
    rather than leaving it alone beside an empty cell. */
 @media (max-width: 620px) {
   .fr-grid { --cols: 2; }
-  .fr-group--identity  .fr-grid,
   .fr-group--core      .fr-grid,
   .fr-group--primary   .fr-grid,
   .fr-group--secondary .fr-grid,
@@ -235,11 +239,9 @@
    Only where the rank really is two across: on a tablet Tertiary is three
    across and As a Kid four, and there an odd last tile belongs in its row. */
 @media (max-width: 900px) {
-  .fr-group--identity  .fr-grid > .fr-card:last-child:nth-child(odd),
   .fr-group--core      .fr-grid > .fr-card:last-child:nth-child(odd),
   .fr-group--primary   .fr-grid > .fr-card:last-child:nth-child(odd),
-  .fr-group--secondary .fr-grid > .fr-card:last-child:nth-child(odd),
-  .fr-group--parks     .fr-grid > .fr-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .fr-group--secondary .fr-grid > .fr-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
 @media (max-width: 620px) {
   .fr-grid > .fr-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
@@ -346,7 +348,9 @@ a.fr-card { cursor: pointer; }
 .fr-group--core .fr-plate { min-height: 210px; }
 .fr-group--primary .fr-plate { min-height: 195px; }
 .fr-group--secondary .fr-plate { min-height: 170px; }
-.fr-group--parks .fr-plate { min-height: 170px; }
+/* Six across since 2026-10-04, so the plate is the shortest on the page
+   alongside As a Kid rather than the 170px it had at three across. */
+.fr-group--parks .fr-plate { min-height: 138px; }
 .fr-group--tertiary .fr-plate { min-height: 150px; }
 .fr-group--kid .fr-plate { min-height: 138px; }
 .fr-plate::before {                       /* faint scan texture, keeps it from going flat */
@@ -428,15 +432,75 @@ a.fr-card { cursor: pointer; }
 /* six across, the narrowest tile on a desktop: a name one step smaller, so
    How to Train Your Dragon wraps to two lines instead of three */
 .fr-group--kid .fr-name { font-size: 1.04rem; }
+/* Theme Parks run six across too (the owner's call, 2026-10-04), so the name
+   takes the same step down: these are the shortest names on the page. */
+.fr-group--parks .fr-name { font-size: 1.04rem; }
 .fr-group--core .fr-name { font-size: 1.7rem; }
 
 /* ── who I am ──
    These three are not franchises and must not look like one. No neon, no
    studio pastiche: the lettering is quiet and the plate is what carries them,
    which is why they get the tallest plate on the page. */
-.fr-group--identity .fr-plate { min-height: 240px; }
+/* ── the mosaic ──
+   Every other rank on this page is a grid of equals, which is exactly what
+   Who I Am is not: these six are ranked among themselves and the old three
+   across said they were interchangeable. So the group runs on a six-column
+   scaffold and each tile spans across it, in three rows that get quieter as
+   they go (the owner's call, 2026-10-04):
+
+     row 1   Islam, all six columns, the hero
+     row 2   Qur'an + Sunnah, three each, the two sources
+     row 3   Arab + Minshawi + Egypt, two each, language, voice and country
+
+   The spans are written per child rather than per name, so the order in
+   fandom-data.js is the only place the ranking lives. Six columns and the
+   spans 6 / 3+3 / 2+2+2 all divide cleanly, so no row ever leaves a gap. */
+.fr-group--identity .fr-grid > .fr-card:nth-child(1) { grid-column: span 6; }
+.fr-group--identity .fr-grid > .fr-card:nth-child(2),
+.fr-group--identity .fr-grid > .fr-card:nth-child(3) { grid-column: span 3; }
+.fr-group--identity .fr-grid > .fr-card:nth-child(n+4) { grid-column: span 2; }
+
+/* Height carries the ranking inside the group the same way it carries it
+   between groups: the hero is the tallest plate on the site, and the rows
+   below it step down. */
+.fr-group--identity .fr-plate { min-height: 200px; }
+.fr-group--identity .fr-grid > .fr-card:nth-child(1) .fr-plate { min-height: 300px; }
+.fr-group--identity .fr-grid > .fr-card:nth-child(2) .fr-plate,
+.fr-group--identity .fr-grid > .fr-card:nth-child(3) .fr-plate { min-height: 240px; }
+
 .fr-group--identity .fr-glyph { width: 50px; height: 50px; }
-.fr-group--identity .fr-name { font-size: 2rem; }
+.fr-group--identity .fr-grid > .fr-card:nth-child(1) .fr-glyph { width: 68px; height: 68px; }
+
+.fr-group--identity .fr-name { font-size: 1.72rem; }
+.fr-group--identity .fr-grid > .fr-card:nth-child(1) .fr-name { font-size: 2.8rem; }
+.fr-group--identity .fr-grid > .fr-card:nth-child(2) .fr-name,
+.fr-group--identity .fr-grid > .fr-card:nth-child(3) .fr-name { font-size: 2.1rem; }
+
+/* The hero sets its name and blurb beside each other rather than stacked:
+   full width stacked left a band of empty plate and a blurb running the
+   whole measure, which is the one thing a hero must not look like. */
+@media (min-width: 901px) {
+  .fr-group--identity .fr-grid > .fr-card:nth-child(1) .fr-plate {
+    display: flex; flex-direction: column; justify-content: flex-end;
+  }
+}
+
+/* Tablet: the trio is too narrow at two columns of six, so the mosaic goes
+   to hero / pair / pair + one, still on the six-column scaffold. */
+@media (max-width: 900px) {
+  .fr-group--identity .fr-grid > .fr-card:nth-child(n+4) { grid-column: span 3; }
+  .fr-group--identity .fr-grid > .fr-card:last-child:nth-child(even) { grid-column: span 6; }
+  .fr-group--identity .fr-grid > .fr-card:nth-child(1) .fr-name { font-size: 2.3rem; }
+}
+
+/* Phone: the hero keeps the full width and everything under it pairs up, so
+   this stays two across like every other rank rather than going one per row
+   (the owner's call, 2026-09-27) and nothing is hidden or dropped. */
+@media (max-width: 620px) {
+  .fr-group--identity .fr-grid > .fr-card:nth-child(1) { grid-column: span 6; }
+  .fr-group--identity .fr-grid > .fr-card:nth-child(n+2) { grid-column: span 3; }
+  .fr-group--identity .fr-grid > .fr-card:last-child:nth-child(odd) { grid-column: span 6; }
+}
 
 /* the eight-point lattice behind the plate: geometry, not imagery, and the
    same figure the Rubʿ al-Ḥizb glyph above it is built from */
@@ -630,6 +694,13 @@ a.fr-card { cursor: pointer; }
   font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans); font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.03em;
   text-shadow: 2px 2px 0 #1a2a5a, 4px 4px 0 rgba(0,0,0,.5);
+}
+/* the oath is set in capitals in every version of it, and the ring's light is
+   the only colour on the tile */
+.wm--lantern {
+  font-family: var(--serif); font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 10px rgba(79,208,127,.55), 0 0 30px rgba(79,208,127,.35);
 }
 .wm--httyd {
   font-family: Copperplate, "Copperplate Gothic Light", Georgia, serif; font-weight: 600;
@@ -936,9 +1007,18 @@ a.fr-card { cursor: pointer; }
    rank lowest had bigger names than the three I know by heart. */
 @media (max-width: 560px) {
   .fr-plate { padding: 1.1rem 0.8rem; }
+  /* The mosaic keeps its own ranking here too: these would otherwise flatten
+     the hero to the same plate and name as the trio under it. */
   .fr-group--identity .fr-plate { min-height: 150px; }
+  .fr-group--identity .fr-grid > .fr-card:nth-child(1) .fr-plate { min-height: 210px; }
+  .fr-group--identity .fr-grid > .fr-card:nth-child(2) .fr-plate,
+  .fr-group--identity .fr-grid > .fr-card:nth-child(3) .fr-plate { min-height: 168px; }
   .fr-group--identity .fr-name { font-size: 1.28rem; }
+  .fr-group--identity .fr-grid > .fr-card:nth-child(1) .fr-name { font-size: 1.9rem; }
+  .fr-group--identity .fr-grid > .fr-card:nth-child(2) .fr-name,
+  .fr-group--identity .fr-grid > .fr-card:nth-child(3) .fr-name { font-size: 1.46rem; }
   .fr-group--identity .fr-glyph { width: 38px; height: 38px; }
+  .fr-group--identity .fr-grid > .fr-card:nth-child(1) .fr-glyph { width: 50px; height: 50px; }
   .fr-group--core .fr-plate { min-height: 140px; }
   .fr-group--core .fr-name { font-size: 1.2rem; }
   .fr-group--core .fr-glyph { width: 34px; height: 34px; }
@@ -1088,6 +1168,11 @@ a.fr-card { cursor: pointer; }
 .fr-travels-btn--ac { --d: var(--gold, #f5c63c); }
 .fr-travels-btn--gm { --d: var(--green-2, #3fd589); }
 .fr-travels-btn--mu { --d: var(--violet, #a98cf0); }
+/* E.L.M.A.L.L.A.H. above the Core Three: the holotable's own amber. It sits
+   between two groups rather than at the foot, so it drops the doors' top
+   margin and keeps the gap a group heading would have. */
+.fr-travels-btn--if { --d: #e8b04a; }
+.fr-ifaces { margin-top: 0; }
 
 @media (max-width: 720px) {
   .fr-travels-btn { min-height: 108px; padding: 1.2rem 1.2rem 1.2rem 1.1rem; gap: 0.95rem; }
@@ -1340,3 +1425,5 @@ body > main, body > footer, body > .picsw {
 @media (prefers-reduced-motion: reduce) {
   .rift-glow, .rift-glow::after, .rift-ring, .rift-dust { animation: none; }
 }
+
+.fr-travels-btn--ls { --d: #ff5a5f; }

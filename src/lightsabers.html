@@ -1,0 +1,184 @@
+---
+permalink: /lightsabers/
+title: "Lightsaber Guide · Abubakr Elmallah"
+description: "One-button controls for every saber I own: Proffie, SNV4, SD RGB and Xenopixel."
+tab: "/worlds/"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/lightsabers.css' %}" />
+</head>
+<body data-intro="none" data-fan="lightsabers">
+
+<!-- the backdrop: two blades crossed in the dark over a scatter of stars,
+     drawn in CSS gradients, no images and no JS. Red for the Sith side,
+     blue for the Jedi side, meeting in a clash glow in the middle. -->
+<div class="ls-sky" aria-hidden="true">
+  <span class="ls-stars"></span>
+  <span class="ls-blade ls-blade--r"></span>
+  <span class="ls-blade ls-blade--b"></span>
+  <span class="ls-clash"></span>
+</div>
+
+{% include fx.html %}
+
+{% include cursor.html %}
+
+{% include rail.html %}
+
+{% include topbar.html %}
+
+<main>
+
+  <section class="fan-hero">
+    {% include crumbs.html parent="Worlds" url="/worlds/#fr-doors" here="Lightsabers" %}
+    <p class="fan-kicker"><span>(Worlds I can ignite)</span><span>Four boards</span><span>One button each</span></p>
+    <h1 class="fan-title">Lightsaber Guide</h1>
+    <p class="fan-lede-hero">Mostly for me. Every saber I own runs on one button, and every board counts the holds differently. Proffie, SNV4 and SD RGB are Theory Sabers; the Xenopixel is Imperial Workshop. The Theory boards are from Theory&#8217;s own support page.</p>
+    <div class="fan-links">
+      <a class="fan-link" href="#proffie" data-magnetic>The boards &#8599;</a>
+      <a class="fan-link" href="/star-wars/" data-magnetic>Star Wars &#8599;</a>
+      <a class="fan-link" href="/worlds/#fr-doors" data-magnetic>All worlds &#8599;</a>
+    </div>
+
+    <!-- the four sabers, one per board, each in its own blade colour. Each
+         one jumps to its card further down the page. -->
+    <nav class="ls-art reveal" aria-label="The four boards">
+      <a class="ls-hilt" href="#proffie" style="--k:#5fa3ec" data-magnetic><span class="ls-hilt-blade"></span><span class="ls-hilt-grip"></span><b>Proffie</b></a>
+      <a class="ls-hilt" href="#snv4" style="--k:#3fd589" data-magnetic><span class="ls-hilt-blade"></span><span class="ls-hilt-grip"></span><b>SNV4</b></a>
+      <a class="ls-hilt" href="#sdrgb" style="--k:#a98cf0" data-magnetic><span class="ls-hilt-blade"></span><span class="ls-hilt-grip"></span><b>SD RGB</b></a>
+      <a class="ls-hilt" href="#xeno" style="--k:#ff5a5f" data-magnetic><span class="ls-hilt-blade"></span><span class="ls-hilt-grip"></span><b>Xenopixel</b></a>
+    </nav>
+  </section>
+
+  <!-- Lightsaber Guide: a cheat sheet for my own sabers, one button each.
+       Four boards, four different ideas of what "hold" means. Native
+       <details>, so it opens with no script. Proffie, SNV4 and SD RGB are
+       the Theory Sabers boards; the Xenopixel is the Imperial Workshop one. -->
+  <section class="saberguide" aria-label="The four boards">
+        <div class="sg-list reveal">
+      <details class="sg-board" open id="proffie" style="--k:#5fa3ec">
+        <summary><span class="sg-dot" aria-hidden="true"></span><b>Proffie</b><i>Theory Sabers</i></summary>
+        <div class="sg-tables">
+        <table class="sg-t">
+          <caption>Blade off</caption>
+          <tr><th scope="row">Ignite</th><td>Short click</td></tr>
+          <tr><th scope="row">Ignite muted</th><td>Double click and hold</td></tr>
+          <tr><th scope="row">Music on / off</th><td>Double click</td></tr>
+          <tr><th scope="row">Next font</th><td>Hold, then release</td></tr>
+          <tr><th scope="row">Previous font</th><td>Hold and wait</td></tr>
+          <tr><th scope="row">Volume menu</th><td>Hold and clash; click for louder, hold and release for quieter; hold and clash again to leave</td></tr>
+          <tr><th scope="row">Battery check</th><td>Triple click</td></tr>
+        </table>
+        <table class="sg-t">
+          <caption>Blade on</caption>
+          <tr><th scope="row">Blaster block</th><td>Short click</td></tr>
+          <tr><th scope="row">Multi-blast</th><td>Swing and hold 1 second, release; short click to stop</td></tr>
+          <tr><th scope="row">Lockup</th><td>Hold and clash</td></tr>
+          <tr><th scope="row">Drag</th><td>Hold and clash with the tip pointing down</td></tr>
+          <tr><th scope="row">Melt</th><td>Hold, thrust forward and clash</td></tr>
+          <tr><th scope="row">Stab</th><td>Thrust forward and clash</td></tr>
+          <tr><th scope="row">Lightning block</th><td>Double click and hold</td></tr>
+          <tr><th scope="row">Force</th><td>Point up, hold and twist</td></tr>
+          <tr><th scope="row">Colour change</th><td>Point down, hold and twist; turn the hilt to the colour; hold until the confirm sound</td></tr>
+          <tr><th scope="row">Battle mode</th><td>Triple click and hold</td></tr>
+          <tr><th scope="row">Retract</th><td>Hold until the blade is off</td></tr>
+        </table>
+        </div>
+      </details>
+      <details class="sg-board" open id="snv4" style="--k:#3fd589">
+        <summary><span class="sg-dot" aria-hidden="true"></span><b>SNV4 (SN Pro)</b><i>Theory Sabers</i></summary>
+        <div class="sg-tables">
+        <table class="sg-t">
+          <caption>Standby (blade off)</caption>
+          <tr><th scope="row">Wake</th><td>Hold until it says &#8220;Power On&#8221;</td></tr>
+          <tr><th scope="row">Ignite</th><td>Tap, or twist</td></tr>
+          <tr><th scope="row">Volume</th><td>Hold 1 second, release (3 levels)</td></tr>
+          <tr><th scope="row">Blade style</th><td>Hold 2 seconds, release</td></tr>
+          <tr><th scope="row">Ignition effect</th><td>Hold 3 seconds, release</td></tr>
+          <tr><th scope="row">Sound font</th><td>Hold 4 seconds, release; or point up, hold and twist</td></tr>
+          <tr><th scope="row">Background music</th><td>Point down, hold and twist</td></tr>
+          <tr><th scope="row">Blade length</th><td>Click 3 times</td></tr>
+          <tr><th scope="row">Sleep</th><td>Hold until it says &#8220;Power Off&#8221;</td></tr>
+        </table>
+        <table class="sg-t">
+          <caption>Blade on</caption>
+          <tr><th scope="row">Blaster</th><td>Tap</td></tr>
+          <tr><th scope="row">Lockup</th><td>Hold 1 second, release</td></tr>
+          <tr><th scope="row">Blade colour</th><td>Hold 2 seconds, release; or point down, hold and twist</td></tr>
+          <tr><th scope="row">Flash on clash</th><td>Hold 3 seconds, release to toggle</td></tr>
+          <tr><th scope="row">Force</th><td>Point up, hold and twist</td></tr>
+          <tr><th scope="row">Drag</th><td>Hold and hit</td></tr>
+          <tr><th scope="row">Melt</th><td>Hold and thrust forward</td></tr>
+          <tr><th scope="row">Retract</th><td>Hold 4 seconds, release; or twist</td></tr>
+        </table>
+        </div>
+      </details>
+      <details class="sg-board" open id="sdrgb" style="--k:#a98cf0">
+        <summary><span class="sg-dot" aria-hidden="true"></span><b>SD RGB</b><i>Theory Sabers</i></summary>
+        <div class="sg-tables">
+        <table class="sg-t">
+          <caption>Standby (blade off)</caption>
+          <tr><th scope="row">Wake</th><td>Hold until the button light turns on</td></tr>
+          <tr><th scope="row">Ignite</th><td>Tap, or twist</td></tr>
+          <tr><th scope="row">Volume</th><td>Hold 1 second, release</td></tr>
+          <tr><th scope="row">Sound font</th><td>Hold 2 seconds, release; or point up, hold and twist</td></tr>
+          <tr><th scope="row">Blade effect</th><td>Hold 3 seconds, release</td></tr>
+          <tr><th scope="row">Background music</th><td>Point down, hold and twist</td></tr>
+          <tr><th scope="row">Sleep</th><td>Hold until it says &#8220;Power Off&#8221;</td></tr>
+        </table>
+        <table class="sg-t">
+          <caption>Blade on</caption>
+          <tr><th scope="row">Blaster</th><td>Tap</td></tr>
+          <tr><th scope="row">Lockup</th><td>Hold 1 second, release</td></tr>
+          <tr><th scope="row">Blade colour</th><td>Hold 2 seconds, release, then tap to cycle; or point down, hold and twist</td></tr>
+          <tr><th scope="row">Blade effect</th><td>Point up, hold and twist</td></tr>
+          <tr><th scope="row">Flash on clash</th><td>Hold 3 seconds, release to toggle</td></tr>
+          <tr><th scope="row">Retract</th><td>Hold 5 seconds, release; or twist</td></tr>
+        </table>
+        </div>
+      </details>
+      <details class="sg-board" open id="xeno" style="--k:#ff5a5f">
+        <summary><span class="sg-dot" aria-hidden="true"></span><b>Xenopixel V3</b><i>Imperial Workshop</i></summary>
+        <div class="sg-tables">
+        <table class="sg-t">
+          <caption>Blade off</caption>
+          <tr><th scope="row">Ignite</th><td>Press</td></tr>
+          <tr><th scope="row">Volume</th><td>Hold for 1 flash, release (high, low, mute)</td></tr>
+          <tr><th scope="row">Blade effect</th><td>Hold for 2 flashes, release</td></tr>
+          <tr><th scope="row">Blade mode</th><td>Hold for 3 flashes, release</td></tr>
+          <tr><th scope="row">Sound font</th><td>Hold for 4 flashes, release</td></tr>
+          <tr><th scope="row">Sleep</th><td>Hold 10 seconds</td></tr>
+        </table>
+        <table class="sg-t">
+          <caption>Blade on</caption>
+          <tr><th scope="row">Blaster</th><td>Press</td></tr>
+          <tr><th scope="row">Lockup</th><td>Hold and clash</td></tr>
+          <tr><th scope="row">Drag</th><td>Hold for 1 flash, release</td></tr>
+          <tr><th scope="row">Colour</th><td>Hold for 2 flashes, release; press to lock it in</td></tr>
+          <tr><th scope="row">Fast colour</th><td>Point down, twist one way and back, release on the colour</td></tr>
+          <tr><th scope="row">Force</th><td>Thrust forward</td></tr>
+          <tr><th scope="row">Retract</th><td>Keep holding past 2 flashes</td></tr>
+        </table>
+        </div>
+        <p class="sg-note">Imperial Workshop publishes no manual of its own; these are the standard Xeno V3 controls, so the card in the box wins if it disagrees.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+{% include footer.html back="/" %}
+
+<!-- mobile bottom tab bar -->
+{% include tabbar.html %}
+
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
+{% include site-scripts.html %}
+<script src="{% include v.html f='/assets/js/intro.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

@@ -1,0 +1,554 @@
+---
+permalink: /springfield/
+title: "Springfield · Abubakr Elmallah"
+description: "Springfield: a Simpsons interface for Abubakr Elmallah's portfolio, with every page a landmark in town, a fresh chalkboard line each visit and a couch-gag TV."
+theme: "#5fb8ea"
+fonts: "family=Luckiest+Guy&family=Fredoka:wght@400;500;600;700&family=Caveat:wght@600;700&family=Courier+Prime:wght@400;700"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/springfield.css' %}" />
+</head>
+<body class="sf" id="sf">
+
+<!-- the opening-titles sky: a soft blue that follows your own clock (day,
+     dusk or night, set by springfield.js), with a few flat clouds drifting
+     behind everything -->
+<div class="sf-sky" aria-hidden="true">
+  <span class="sf-drift sf-drift--1"></span>
+  <span class="sf-drift sf-drift--2"></span>
+  <span class="sf-drift sf-drift--3"></span>
+</div>
+
+<header class="sf-top">
+  <a class="sf-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave Springfield</span>
+  </a>
+  <!-- the running joke: nobody ever says which state it is in -->
+  <span class="sf-top-mid">Springfield · USA · state withheld</span>
+  <!-- the sign at the plant gate, and the town clock (springfield.js) -->
+  <span class="sf-top-sign" id="sfSign"><b id="sfDays">0</b> days without an accident<span class="sf-top-time" id="sfTime"></span></span>
+</header>
+
+<!-- the clouds part: the camera comes down through the clouds, they part,
+     and the name comes up at you. Two banks of cloud cover the whole screen
+     at load and slide off either side; with reduced motion they are simply
+     not there. -->
+<div class="sf-part" aria-hidden="true">
+  <span class="sf-bank sf-bank--l"></span>
+  <span class="sf-bank sf-bank--r"></span>
+</div>
+
+<main class="sf-main" id="sfMain">
+
+  <!-- ─────────── the name ─────────── -->
+  <section class="sf-hero">
+    <p class="sf-kicker">Seen from the clouds</p>
+    <h1 class="sf-title">Springfield</h1>
+    <p class="sf-sub">Every room on this site, built as a landmark in town. Pick a building, or pick its address from the directory under it. The chalkboard has a new line for you every visit, and the TV runs a different couch gag every time you change the channel.</p>
+  </section>
+
+  <!-- ─────────── the town ───────────
+       Springfield laid out flat along one street, in the show's own way:
+       thick ink outlines and flat colour, no shading. The plant, the
+       observatory, the university and Channel 6 stand on the hill behind;
+       the street runs in front with everything else, and the monorail
+       crosses over the lot. Every building is a link, but the drawing is
+       for the eye and the mouse: the directory under it is the real list,
+       so the drawing is hidden from screen readers and out of the tab
+       order. On a phone it keeps its size and scrolls sideways inside its
+       frame rather than shrinking every sign to a smudge. -->
+  <section class="sf-card sf-townwrap" aria-labelledby="sfTownH">
+    <h2 class="sf-h" id="sfTownH"><canvas class="sf-think" data-orb="searching" data-orb-size="22" data-orb-ink="dark" aria-hidden="true"></canvas>The town<span>every page, a landmark on the street</span></h2>
+
+    <div class="sf-frame" id="sfFrame">
+      <svg class="sf-town" id="sfTown" viewBox="0 170 1600 470" aria-hidden="true">
+        <defs>
+          <linearGradient id="sfSkyG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" class="sf-st1"/>
+            <stop offset="1" class="sf-st2"/>
+          </linearGradient>
+        </defs>
+
+        <rect class="sf-t-sky" y="170" width="1600" height="470" fill="url(#sfSkyG)"/>
+        <!-- two flat clouds and the sun (or moon) in the town's own sky -->
+        <g class="sf-t-clouds">
+          <!-- (the frame shows y 170 down: the sky above that was only sky) -->
+          <path transform="translate(0 142)" d="M520 120h170a30 30 0 0 0 0-60a40 40 0 0 0-72-22a46 46 0 0 0-84 18a32 32 0 0 0-14 64z"/>
+          <path transform="translate(-20 80)" d="M1100 180h130a24 24 0 0 0 0-48a32 32 0 0 0-58-16a36 36 0 0 0-66 14a26 26 0 0 0-6 50z"/>
+        </g>
+        <circle class="sf-t-sun" cx="1500" cy="222" r="32"/>
+
+        <!-- the hill the back row stands on -->
+        <path class="sf-t-hill2" d="M0 455C180 420 380 410 560 428C700 442 760 452 900 448C1100 440 1300 420 1600 440V540H0Z"/>
+
+        <!-- the monorail: a beam on pillars over the lot, and the car that
+             runs the length of it and back. It is drawn before the back row,
+             so it passes behind the hill's buildings and their signs rather
+             than covering a name on its way through. -->
+        <g class="sf-rail">
+          <path class="sf-ink" d="M380 356H1600V368H380Z" fill="#c9ccd4"/>
+          <path class="sf-ink" d="M440 368h12v100h-12zM760 368h12v100h-12zM1080 368h12v100h-12zM1290 368h12v100h-12z" fill="#b0b4be"/>
+        </g>
+        <g class="sf-car">
+          <path class="sf-ink" d="M392 354V336q0-14 16-16h120q22 0 34 18l6 16z" fill="#f2f2f2"/>
+          <path d="M404 334h20v-8h-20zM434 334h20v-8h-20zM464 334h20v-8h-20zM494 334h20v-8h-20z" fill="#3d7fc9"/>
+          <path d="M392 348h176" stroke="#d6342c" stroke-width="5"/>
+        </g>
+
+        <!-- ═══ the back row, on the hill ═══ -->
+
+        <!-- the Nuclear Power Plant: two cooling towers, the reactor block
+             and a stack, with steam always coming off the towers -->
+        <a class="sf-b" href="/work/" tabindex="-1" data-room="/work/" style="--i:0">
+          <g class="sf-b-lift">
+            <rect class="sf-ink" x="18" y="392" width="330" height="80" fill="#9aa0a8"/>
+            <rect class="sf-ink" x="300" y="300" width="22" height="92" fill="#7d838c"/>
+            <path class="sf-ink" d="M60 470Q102 352 92 250H168Q158 352 200 470Z" fill="#a9c7b4"/>
+            <path class="sf-ink" d="M196 470Q234 372 226 292H294Q286 372 324 470Z" fill="#a9c7b4"/>
+            <path d="M94 268H166M228 308H292" stroke="#5f7d6b" stroke-width="6"/>
+            <g class="sf-win"><rect x="34" y="410" width="22" height="16"/><rect x="66" y="410" width="22" height="16"/><rect x="306" y="410" width="22" height="16"/></g>
+            <text class="sf-sign-on" x="186" y="446" text-anchor="middle">SECTOR 7G</text>
+          </g>
+          <g class="sf-steam"><circle cx="130" cy="232" r="20"/><circle cx="150" cy="214" r="15"/><circle cx="260" cy="274" r="17"/><circle cx="278" cy="256" r="13"/></g>
+          <text class="sf-lab" x="186" y="378" text-anchor="middle">Power Plant</text>
+        </a>
+
+        <!-- the observatory up the hill: a white dome with the slit open -->
+        <a class="sf-b" href="/al-islam/" tabindex="-1" data-room="/al-islam/" style="--i:1">
+          <g class="sf-b-lift">
+            <rect class="sf-ink" x="574" y="418" width="74" height="44" fill="#e8e1cf"/>
+            <path class="sf-ink" d="M570 420a41 41 0 0 1 82 0Z" fill="#f4f1ea"/>
+            <path class="sf-ink" d="M604 382h14v38h-14z" fill="#2b3550"/>
+            <path class="sf-ink" d="M612 392l38-26 6 8-38 26z" fill="#7c86a0"/>
+            <rect class="sf-ink" x="602" y="436" width="18" height="26" fill="#8a6a4a"/>
+          </g>
+          <text class="sf-lab" x="611" y="352" text-anchor="middle">Observatory</text>
+        </a>
+
+        <!-- Springfield University: a brick hall and its clock tower -->
+        <a class="sf-b" href="/college/" tabindex="-1" data-room="/college/" style="--i:2">
+          <g class="sf-b-lift">
+            <rect class="sf-ink" x="926" y="300" width="42" height="90" fill="#c46a4f"/>
+            <path class="sf-ink" d="M920 302l27-36 27 36z" fill="#5d6f8a"/>
+            <circle class="sf-ink" cx="947" cy="330" r="12" fill="#f6f0dc"/>
+            <path d="M947 330v-8M947 330l6 3" stroke="#1d1b2a" stroke-width="2.5" stroke-linecap="round"/>
+            <rect class="sf-ink" x="852" y="380" width="190" height="84" fill="#c46a4f"/>
+            <path class="sf-ink" d="M846 382h202l-10-16H856z" fill="#8f4a36"/>
+            <g class="sf-win"><rect x="868" y="398" width="16" height="22"/><rect x="896" y="398" width="16" height="22"/><rect x="982" y="398" width="16" height="22"/><rect x="1010" y="398" width="16" height="22"/></g>
+            <rect class="sf-ink" x="934" y="420" width="26" height="44" fill="#6b3a2a"/>
+          </g>
+          <text class="sf-lab" x="947" y="254" text-anchor="middle">University</text>
+        </a>
+
+        <!-- Channel 6: a squat studio and its broadcast mast, with the red
+             light on top that never stops blinking -->
+        <a class="sf-b" href="/accents/" tabindex="-1" data-room="/accents/" style="--i:3">
+          <g class="sf-b-lift">
+            <path class="sf-mast" d="M1356 400L1376 250L1396 400M1361 360H1391M1366 320H1386M1371 284H1381M1361 360L1386 320M1391 360L1366 320M1366 320L1381 284M1386 320L1371 284"/>
+            <rect class="sf-ink" x="1318" y="398" width="116" height="66" fill="#8a6bb8"/>
+            <circle class="sf-ink" cx="1376" cy="428" r="20" fill="#ffd90f"/>
+            <text class="sf-six" x="1376" y="438" text-anchor="middle">6</text>
+          </g>
+          <circle class="sf-blink" cx="1376" cy="246" r="7"/>
+          <text class="sf-lab" x="1376" y="228" text-anchor="middle">Channel 6</text>
+        </a>
+
+        <!-- the near hill, in front of the back row's feet -->
+        <path class="sf-t-hill" d="M0 480C220 462 420 470 640 476C860 482 1100 470 1600 478V540H0Z"/>
+
+        <!-- ═══ the street ═══ -->
+        <rect x="0" y="532" width="1600" height="10" fill="#d8d3c4"/>
+        <rect x="0" y="542" width="1600" height="36" fill="#8d8f99"/>
+        <path d="M0 560H1600" stroke="#ffd90f" stroke-width="3" stroke-dasharray="26 22"/>
+        <rect class="sf-t-lawn" x="0" y="578" width="1600" height="62"/>
+
+        <!-- ═══ the front row ═══ -->
+
+        <!-- Springfield Elementary: orange brick, a little bell cupola and
+             the flag over the door -->
+        <a class="sf-b" href="/education/" tabindex="-1" data-room="/education/" style="--i:4">
+          <g class="sf-b-lift">
+            <path d="M420 400V350" stroke="#1d1b2a" stroke-width="3"/>
+            <path class="sf-flag" d="M421 352h28l-6 8 6 8h-28z" fill="#d6342c" stroke="#1d1b2a" stroke-width="2"/>
+            <rect class="sf-ink" x="400" y="404" width="40" height="30" fill="#e8dcc0"/>
+            <path class="sf-ink" d="M394 406l26-20 26 20z" fill="#7a5a44"/>
+            <rect class="sf-ink" x="340" y="432" width="160" height="104" fill="#e2824f"/>
+            <g class="sf-win"><rect x="354" y="448" width="24" height="20"/><rect x="386" y="448" width="24" height="20"/><rect x="430" y="448" width="24" height="20"/><rect x="462" y="448" width="24" height="20"/><rect x="354" y="482" width="24" height="20"/><rect x="462" y="482" width="24" height="20"/></g>
+            <rect class="sf-ink" x="404" y="490" width="32" height="46" fill="#5a3a2a"/>
+          </g>
+          <text class="sf-lab" x="420" y="604" text-anchor="middle">Elementary</text>
+        </a>
+
+        <!-- Springfield High: tan, taller, with a gabled entrance -->
+        <a class="sf-b" href="/high-school/" tabindex="-1" data-room="/high-school/" style="--i:5">
+          <g class="sf-b-lift">
+            <rect class="sf-ink" x="512" y="420" width="128" height="116" fill="#dcb46e"/>
+            <path class="sf-ink" d="M548 446l28-24 28 24z" fill="#9b6b3d"/>
+            <rect class="sf-ink" x="552" y="446" width="48" height="90" fill="#efd9a8"/>
+            <rect class="sf-ink" x="564" y="494" width="24" height="42" fill="#3d5a8a"/>
+            <g class="sf-win"><rect x="522" y="440" width="18" height="18"/><rect x="612" y="440" width="18" height="18"/><rect x="522" y="476" width="18" height="18"/><rect x="612" y="476" width="18" height="18"/><rect x="566" y="460" width="20" height="18"/></g>
+          </g>
+          <text class="sf-lab" x="576" y="628" text-anchor="middle">Springfield High</text>
+        </a>
+
+        <!-- the Kwik-E-Mart: low and wide, its stripes along the top and the
+             tall pole sign out front, with OPEN blinking in the window -->
+        <a class="sf-b" href="/projects/" tabindex="-1" data-room="/projects/" style="--i:6">
+          <g class="sf-b-lift">
+            <rect class="sf-ink" x="770" y="420" width="10" height="116" fill="#7d838c"/>
+            <rect class="sf-ink" x="744" y="398" width="62" height="34" rx="6" fill="#3a9a5b"/>
+            <path d="M752 412h46M752 420h30" stroke="#ffd90f" stroke-width="5" stroke-linecap="round"/>
+            <rect class="sf-ink" x="654" y="470" width="110" height="66" fill="#efe8d6"/>
+            <path class="sf-ink" d="M650 458h118v16H650z" fill="#f08a24"/>
+            <path d="M650 466h118" stroke="#3a9a5b" stroke-width="5"/>
+            <rect class="sf-ink" x="664" y="484" width="44" height="34" fill="#9fd3e8"/>
+            <rect class="sf-ink" x="718" y="484" width="34" height="52" fill="#9fd3e8"/>
+            <rect class="sf-open" x="670" y="490" width="30" height="12" rx="2"/>
+            <text class="sf-open-t" x="685" y="499.5" text-anchor="middle">OPEN</text>
+          </g>
+          <text class="sf-lab" x="714" y="604" text-anchor="middle">Kwik-E-Mart</text>
+        </a>
+
+        <!-- the Android's Dungeon & Baseball Card Shop: a narrow green
+             front with a striped awning over the window -->
+        <a class="sf-b" href="/worlds/" tabindex="-1" data-room="/worlds/" style="--i:7">
+          <g class="sf-b-lift">
+            <rect class="sf-ink" x="804" y="446" width="80" height="90" fill="#4f8a5c"/>
+            <rect class="sf-ink" x="810" y="454" width="68" height="16" fill="#1d1b2a"/>
+            <text class="sf-shop" x="844" y="466.5" text-anchor="middle">COMICS</text>
+            <path class="sf-ink" d="M802 478h84l-6 14h-72z" fill="#f6f0dc"/>
+            <path d="M816 478l-2 14M832 478l-1 14M848 478v14M864 478l1 14" stroke="#d6342c" stroke-width="7"/>
+            <rect class="sf-ink" x="812" y="494" width="38" height="28" fill="#9fd3e8"/>
+            <rect class="sf-ink" x="856" y="494" width="22" height="42" fill="#3a2a22"/>
+          </g>
+          <text class="sf-lab" x="844" y="628" text-anchor="middle">Android’s Dungeon</text>
+        </a>
+
+        <!-- the Aztec Theater: a red front, the marquee with its chasing
+             bulbs, and the vertical sign -->
+        <a class="sf-b" href="/star-wars/" tabindex="-1" data-room="/star-wars/" style="--i:8">
+          <g class="sf-b-lift">
+            <rect class="sf-ink" x="894" y="414" width="92" height="122" fill="#c8453a"/>
+            <rect class="sf-ink" x="928" y="380" width="24" height="76" fill="#ffd90f"/>
+            <text class="sf-vert" x="940" y="394" text-anchor="middle">A</text><text class="sf-vert" x="940" y="408" text-anchor="middle">Z</text><text class="sf-vert" x="940" y="422" text-anchor="middle">T</text><text class="sf-vert" x="940" y="436" text-anchor="middle">E</text><text class="sf-vert" x="940" y="450" text-anchor="middle">C</text>
+            <rect class="sf-ink" x="888" y="462" width="104" height="26" fill="#f6f0dc"/>
+            <g class="sf-bulbs"><circle cx="896" cy="466" r="2.6"/><circle cx="908" cy="466" r="2.6"/><circle cx="920" cy="466" r="2.6"/><circle cx="932" cy="466" r="2.6"/><circle cx="944" cy="466" r="2.6"/><circle cx="956" cy="466" r="2.6"/><circle cx="968" cy="466" r="2.6"/><circle cx="980" cy="466" r="2.6"/></g>
+            <text class="sf-shop sf-shop--dk" x="940" y="483" text-anchor="middle">NOW SHOWING</text>
+            <rect class="sf-ink" x="918" y="496" width="44" height="40" fill="#3a2a22"/>
+          </g>
+          <text class="sf-lab" x="940" y="604" text-anchor="middle">Aztec Theater</text>
+        </a>
+
+        <!-- Noiseland Arcade: purple, with a neon zigzag that flickers -->
+        <a class="sf-b" href="/gaming/" tabindex="-1" data-room="/gaming/" style="--i:9">
+          <g class="sf-b-lift">
+            <rect class="sf-ink" x="996" y="440" width="82" height="96" fill="#7a4fb0"/>
+            <path class="sf-neon" d="M1006 462l12-10 12 10 12-10 12 10 12-10 10 8"/>
+            <rect class="sf-ink" x="1006" y="478" width="62" height="30" fill="#1d1b2a"/>
+            <circle cx="1022" cy="493" r="6" fill="#ffd90f"/><circle cx="1040" cy="493" r="3" fill="#ff6fb1"/><circle cx="1050" cy="493" r="3" fill="#ff6fb1"/><circle cx="1060" cy="493" r="3" fill="#ff6fb1"/>
+            <rect class="sf-ink" x="1024" y="512" width="26" height="24" fill="#3a2a22"/>
+          </g>
+          <text class="sf-lab" x="1037" y="628" text-anchor="middle">Noiseland Arcade</text>
+        </a>
+
+        <!-- the town square: a stone plinth between two round trees, and on
+             top of it, the founder's coonskin cap and nothing else -->
+        <a class="sf-b" href="/worlds/the-simpsons/" tabindex="-1" data-room="/worlds/the-simpsons/" style="--i:10">
+          <g class="sf-b-lift">
+            <rect class="sf-ink" x="1096" y="498" width="8" height="38" fill="#7a5a3a"/>
+            <circle class="sf-ink" cx="1100" cy="486" r="20" fill="#5fa83a"/>
+            <rect class="sf-ink" x="1160" y="498" width="8" height="38" fill="#7a5a3a"/>
+            <circle class="sf-ink" cx="1164" cy="486" r="20" fill="#5fa83a"/>
+            <rect class="sf-ink" x="1116" y="476" width="32" height="60" fill="#c9c4b6"/>
+            <rect class="sf-ink" x="1110" y="468" width="44" height="10" fill="#b3ad9e"/>
+            <path class="sf-ink" d="M1120 468q0-18 12-18t12 18z" fill="#9b6b3d"/>
+            <path class="sf-ink" d="M1142 462q14 2 18 14l-6 2q-4-8-12-10z" fill="#c9a06a"/>
+          </g>
+          <text class="sf-lab" x="1132" y="604" text-anchor="middle">Town Square</text>
+        </a>
+
+        <!-- Town Hall: cream columns, a pediment and the dome -->
+        <a class="sf-b" href="/resume/" tabindex="-1" data-room="/resume/" style="--i:11">
+          <g class="sf-b-lift">
+            <path class="sf-ink" d="M1208 420a28 28 0 0 1 56 0z" fill="#9fc7c0"/>
+            <rect class="sf-ink" x="1212" y="418" width="48" height="16" fill="#efe6cf"/>
+            <path class="sf-ink" d="M1180 456l56-26 56 26z" fill="#efe6cf"/>
+            <rect class="sf-ink" x="1184" y="456" width="104" height="80" fill="#f6efdc"/>
+            <path d="M1198 462v68M1218 462v68M1254 462v68M1274 462v68" stroke="#c9bfa4" stroke-width="7"/>
+            <rect class="sf-ink" x="1224" y="496" width="24" height="40" fill="#5a3a2a"/>
+          </g>
+          <text class="sf-lab" x="1236" y="628" text-anchor="middle">Town Hall</text>
+        </a>
+
+        <!-- Herman's Military Antiques: olive drab, a camouflage awning -->
+        <a class="sf-b" href="/lightsabers/" tabindex="-1" data-room="/lightsabers/" style="--i:12">
+          <g class="sf-b-lift">
+            <rect class="sf-ink" x="1302" y="464" width="78" height="72" fill="#7d7f45"/>
+            <path class="sf-ink" d="M1298 474h86l-8 16h-70z" fill="#a2a067"/>
+            <path d="M1310 480q8-6 14 0M1338 482q10-6 16 2M1364 478q6 4 10 0" stroke="#55562e" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <rect class="sf-ink" x="1310" y="496" width="36" height="28" fill="#9fd3e8"/>
+            <path d="M1316 518l26-18" stroke="#6fe0ff" stroke-width="4" stroke-linecap="round"/>
+            <rect class="sf-ink" x="1352" y="496" width="20" height="40" fill="#3a2a22"/>
+          </g>
+          <text class="sf-lab" x="1341" y="604" text-anchor="middle">Herman’s</text>
+        </a>
+
+        <!-- the monorail station: a stair tower up to the beam -->
+        <a class="sf-b" href="/travels/" tabindex="-1" data-room="/travels/" style="--i:13">
+          <g class="sf-b-lift">
+            <rect class="sf-ink" x="1392" y="368" width="60" height="168" fill="#d8dce6"/>
+            <path class="sf-ink" d="M1386 370h72v-10h-72z" fill="#3d7fc9"/>
+            <circle class="sf-ink" cx="1422" cy="400" r="14" fill="#3d7fc9"/>
+            <text class="sf-shop" x="1422" y="405" text-anchor="middle">M</text>
+            <path d="M1400 520l10-10h10l10-10h10l10-10" stroke="#8d8f99" stroke-width="5" fill="none"/>
+            <rect class="sf-ink" x="1404" y="430" width="36" height="40" fill="#9fd3e8"/>
+          </g>
+          <text class="sf-lab" x="1422" y="628" text-anchor="middle">Monorail</text>
+        </a>
+
+        <!-- 742 Evergreen Terrace: the peach house with the grey roof, the
+             garage on its left and a chimney, last on the street -->
+        <a class="sf-b" href="/" tabindex="-1" data-room="/" style="--i:14">
+          <g class="sf-b-lift">
+            <rect class="sf-ink" x="1568" y="402" width="14" height="34" fill="#a85a44"/>
+            <rect class="sf-ink" x="1462" y="484" width="44" height="52" fill="#f2b69a"/>
+            <path class="sf-ink" d="M1458 486l24-16 24 16z" fill="#7a7f8c"/>
+            <rect class="sf-ink" x="1468" y="500" width="32" height="36" fill="#e9e2cf"/>
+            <rect class="sf-ink" x="1506" y="452" width="88" height="84" fill="#f2b69a"/>
+            <path class="sf-ink" d="M1498 454l52-40 52 40z" fill="#7a7f8c"/>
+            <g class="sf-win"><rect x="1516" y="468" width="22" height="20"/><rect x="1562" y="468" width="22" height="20"/><rect x="1540" y="428" width="20" height="16"/></g>
+            <rect class="sf-ink" x="1538" y="496" width="24" height="40" fill="#8a4a32"/>
+          </g>
+          <text class="sf-lab" x="1532" y="604" text-anchor="middle">742 Evergreen</text>
+        </a>
+      </svg>
+    </div>
+    <p class="sf-hint" aria-hidden="true">Swipe the town sideways for the rest of the street</p>
+
+    <!-- the directory: the same fifteen rooms as a real list, each with its
+         address and the plain name of the page. Pointing at (or tabbing to)
+         an address lights its building in the drawing above. -->
+    <h3 class="sf-h3" id="sfDirH">The town directory</h3>
+    <ul class="sf-dir" aria-labelledby="sfDirH">
+      <li><a class="sf-room" href="/" data-room="/" style="--c:#f2b69a"><b>742 Evergreen Terrace</b><i>Home</i></a></li>
+      <li><a class="sf-room" href="/work/" data-room="/work/" style="--c:#a9c7b4"><b>The Nuclear Power Plant</b><i>Sector 7G · work at UC Irvine</i></a></li>
+      <li><a class="sf-room" href="/projects/" data-room="/projects/" style="--c:#f08a24"><b>The Kwik-E-Mart</b><i>Open all night · every project on the shelves</i></a></li>
+      <li><a class="sf-room" href="/education/" data-room="/education/" style="--c:#e2824f"><b>Springfield Elementary</b><i>Education</i></a></li>
+      <li><a class="sf-room" href="/college/" data-room="/college/" style="--c:#c46a4f"><b>Springfield University</b><i>College · UC Irvine</i></a></li>
+      <li><a class="sf-room" href="/high-school/" data-room="/high-school/" style="--c:#dcb46e"><b>Springfield High</b><i>High school</i></a></li>
+      <li><a class="sf-room" href="/worlds/" data-room="/worlds/" style="--c:#4f8a5c"><b>The Android’s Dungeon</b><i>Comics, cards and all 71 worlds</i></a></li>
+      <li><a class="sf-room" href="/worlds/the-simpsons/" data-room="/worlds/the-simpsons/" style="--c:#c9c4b6"><b>The Town Square</b><i>The Simpsons · the world page</i></a></li>
+      <li><a class="sf-room" href="/star-wars/" data-room="/star-wars/" style="--c:#c8453a"><b>The Aztec Theater</b><i>Now showing · Star Wars apps</i></a></li>
+      <li><a class="sf-room" href="/al-islam/" data-room="/al-islam/" style="--c:#7c86a0"><b>The Observatory</b><i>Up the hill · Al-Islam</i></a></li>
+      <li><a class="sf-room" href="/travels/" data-room="/travels/" style="--c:#3d7fc9"><b>The Monorail</b><i>Out of town and back · travels</i></a></li>
+      <li><a class="sf-room" href="/accents/" data-room="/accents/" style="--c:#8a6bb8"><b>Channel 6</b><i>The soundstage · accents &amp; impersonations</i></a></li>
+      <li><a class="sf-room" href="/gaming/" data-room="/gaming/" style="--c:#7a4fb0"><b>Noiseland Arcade</b><i>Gaming</i></a></li>
+      <li><a class="sf-room" href="/lightsabers/" data-room="/lightsabers/" style="--c:#7d7f45"><b>Herman’s Military Antiques</b><i>The lightsaber guide</i></a></li>
+      <li><a class="sf-room" href="/resume/" data-room="/resume/" style="--c:#9fc7c0"><b>Springfield Town Hall</b><i>The permanent record · résumé</i></a></li>
+    </ul>
+  </section>
+
+  <!-- ─────────── the board and the box ─────────── -->
+  <div class="sf-cols">
+
+    <!-- The chalkboard from the opening titles: one line, written over and
+         over, a different one on each visit (springfield.js keeps count in
+         this browser). The lines are this site's own jokes, not the show's.
+         The written-out copy is for the eye; the sentence under it is the
+         one screen readers get. -->
+    <section class="sf-card sf-boardwrap" aria-labelledby="sfBoardH">
+      <h2 class="sf-h sf-h--sm" id="sfBoardH">Room 102<span>the chalkboard, after school</span></h2>
+      <div class="sf-board">
+        <div class="sf-chalk" id="sfChalk" aria-hidden="true">
+          <p>I will not ship a thirteenth app during class</p>
+          <p>I will not ship a thirteenth app during class</p>
+          <p>I will not ship a thirteenth app during class</p>
+          <p>I will not ship a thirteenth app during class</p>
+          <p>I will not ship a thirteenth app during class</p>
+        </div>
+        <span class="sf-tray" aria-hidden="true"><span class="sf-stick"></span><span class="sf-eraser"></span></span>
+      </div>
+      <p class="sf-board-cap"><span class="sf-sr" id="sfChalkSr">Today’s line: I will not ship a thirteenth app during class.</span><span aria-hidden="true" id="sfChalkN">A new line every visit.</span></p>
+      <button class="sf-btn sf-btn--ghost" id="sfChalkBtn" type="button">Keep him after school</button>
+    </section>
+
+    <!-- The couch gag: the living room on a wood-cabinet TV, rabbit ears
+         and all, and every press of the dial runs the next gag. Props only:
+         the couch, the lamp, the sailboat over the couch. A burst of static
+         between channels covers the change. -->
+    <section class="sf-card sf-tvwrap" aria-labelledby="sfTvH">
+      <h2 class="sf-h sf-h--sm" id="sfTvH">The couch gag<span>a different one on every channel</span></h2>
+      <div class="sf-tv" id="sfTv" data-gag="">
+        <svg viewBox="0 0 480 400" aria-hidden="true">
+          <defs>
+            <clipPath id="sfScreen"><rect x="40" y="56" width="300" height="236" rx="30"/></clipPath>
+            <filter id="sfNoise" x="0" y="0" width="100%" height="100%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="n"/>
+              <feColorMatrix type="saturate" values="0"/>
+            </filter>
+          </defs>
+          <!-- rabbit ears -->
+          <path d="M190 40L140 0M210 40L270 4" stroke="#1d1b2a" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="140" cy="0" r="6" fill="#1d1b2a"/><circle cx="270" cy="4" r="6" fill="#1d1b2a"/>
+          <path class="sf-ink" d="M168 44a32 18 0 0 1 64 0z" fill="#4a4a52"/>
+          <!-- the cabinet -->
+          <rect class="sf-ink" x="12" y="40" width="456" height="290" rx="26" fill="#b77a45"/>
+          <rect x="24" y="52" width="432" height="266" rx="20" fill="none" stroke="#8f5a2e" stroke-width="4"/>
+          <path class="sf-ink" d="M70 330l-14 40h20l14-40zM410 330l14 40h-20l-14-40z" fill="#7a4a24"/>
+          <rect class="sf-ink" x="40" y="56" width="300" height="236" rx="30" fill="#1d1b2a"/>
+
+          <g clip-path="url(#sfScreen)">
+            <g class="sf-lr">
+              <!-- wall, carpet, window -->
+              <rect x="40" y="56" width="300" height="236" fill="#c9a6d8"/>
+              <rect x="40" y="238" width="300" height="54" fill="#8a6a46"/>
+              <rect class="sf-ink2" x="58" y="96" width="44" height="66" fill="#9fd3e8"/>
+              <path d="M80 96v66M58 129h44" stroke="#1d1b2a" stroke-width="2.5"/>
+              <!-- the sailboat over the couch -->
+              <g class="sf-paint">
+                <rect class="sf-ink2" x="166" y="84" width="76" height="52" fill="#9fd3e8"/>
+                <rect x="168" y="118" width="72" height="16" fill="#3d7fc9"/>
+                <g class="sf-boat"><path d="M190 120h30l-5 8h-20z" fill="#7a4a24" stroke="#1d1b2a" stroke-width="2"/><path d="M204 120V96l14 22z" fill="#fff" stroke="#1d1b2a" stroke-width="2"/></g>
+                <rect x="166" y="84" width="76" height="52" fill="none" stroke="#c9a06a" stroke-width="6"/>
+              </g>
+              <!-- the lamp and its table -->
+              <g class="sf-lamp">
+                <rect class="sf-ink2" x="290" y="200" width="36" height="40" fill="#7a4a24"/>
+                <path d="M308 200v-30" stroke="#1d1b2a" stroke-width="3"/>
+                <path class="sf-ink2 sf-shade" d="M292 172h32l-6-24h-20z" fill="#f6e6a6"/>
+              </g>
+              <!-- the couch -->
+              <g class="sf-couch">
+                <path class="sf-ink2" d="M128 236v-50q0-10 10-10h132q10 0 10 10v50z" fill="#c2683b"/>
+                <path class="sf-ink2" d="M116 250v-36q0-10 12-10h16v46zM264 250v-46h16q12 0 12 10v36z" fill="#b25a30"/>
+                <path class="sf-ink2" d="M144 250v-24h52v24zM196 250v-24h52v24zM248 250v-24h16v24z" fill="#d47a4a"/>
+                <path d="M126 250v10M282 250v10" stroke="#1d1b2a" stroke-width="5" stroke-linecap="round"/>
+              </g>
+              <!-- what turns up where the couch was, in one of the gags -->
+              <g class="sf-donut">
+                <circle cx="204" cy="222" r="40" fill="#e3b06a" stroke="#1d1b2a" stroke-width="3"/>
+                <circle cx="204" cy="222" r="34" fill="#ff8fc2"/>
+                <circle cx="204" cy="222" r="13" fill="#c9a6d8" stroke="#1d1b2a" stroke-width="3"/>
+                <path d="M184 204l6 3M220 200l-4 5M226 230l5 3M180 236l6-2M204 196v6M210 246l4 4M192 222l-4 4" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/>
+              </g>
+              <!-- the dark, for when the lamp goes out -->
+              <rect class="sf-dark" x="40" y="56" width="300" height="236" fill="#0c0b1e"/>
+            </g>
+            <rect class="sf-static" x="40" y="56" width="300" height="236" filter="url(#sfNoise)"/>
+            <text class="sf-osd" x="64" y="88">CH <tspan id="sfCh">6</tspan></text>
+            <!-- the glass: a soft sheen across the curve of the tube -->
+            <path d="M60 80q100-22 220-4" stroke="rgba(255,255,255,.35)" stroke-width="6" fill="none" stroke-linecap="round"/>
+          </g>
+          <rect x="40" y="56" width="300" height="236" rx="30" fill="none" stroke="#1d1b2a" stroke-width="5"/>
+
+          <!-- the dials and the speaker grille -->
+          <circle class="sf-ink sf-dial" cx="400" cy="104" r="26" fill="#e9dcc0"/>
+          <path class="sf-dial-hand" d="M400 104V84" stroke="#1d1b2a" stroke-width="5" stroke-linecap="round"/>
+          <circle class="sf-ink" cx="400" cy="168" r="16" fill="#e9dcc0"/>
+          <path d="M374 212h52M374 226h52M374 240h52M374 254h52M374 268h52" stroke="#8f5a2e" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <p class="sf-tv-cap" id="sfGagCap" aria-live="polite">Channel 6. Press the dial for the couch gag.</p>
+      <button class="sf-btn" id="sfGagBtn" type="button">Turn the dial</button>
+    </section>
+
+  </div>
+
+  <!-- ─────────── who lives here ─────────── -->
+  <div class="sf-cols">
+
+    <section class="sf-card" aria-labelledby="sfFileH">
+      <h2 class="sf-h sf-h--sm" id="sfFileH">Resident file<span>as Town Hall keeps it</span></h2>
+      <dl class="sf-file">
+        <div><dt>Resident</dt><dd>Abubakr Elmallah</dd></div>
+        <div><dt>Studying</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
+        <div><dt>Occupation</dt><dd>Lead mobile &amp; backend developer</dd></div>
+        <div><dt>First solo projects</dt><dd>Order 66 and Datapad, 2021</dd></div>
+        <div><dt>In town since</dt><dd>8th and 9th grade, 2019–21</dd></div>
+        <div><dt>How he got here</dt><dd>Universal Studios, before he had really watched it</dd></div>
+        <div><dt>Other towns</dt><dd><a href="/worlds/">71 worlds, on /worlds/</a></dd></div>
+      </dl>
+    </section>
+
+    <!-- the achievements, rung up at the Kwik-E-Mart: a till roll with a
+         torn edge top and bottom -->
+    <section class="sf-card sf-card--plain" aria-labelledby="sfReceiptH">
+      <h2 class="sf-h sf-h--sm" id="sfReceiptH">The receipt<span>everything rung up so far</span></h2>
+      <div class="sf-receipt">
+        <p class="sf-r-head">KWIK-E-MART #0742<br/>SPRINGFIELD · OPEN 24 HRS</p>
+        <dl class="sf-r-lines">
+          <div><dt>Swift Student Challenge</dt><dd>Winner 2024</dd></div>
+          <div><dt>Apps shipped</dt><dd>12 on 4 platforms</dd></div>
+          <div><dt>Datapad</dt><dd>Top 10 paid Entertainment</dd></div>
+          <div><dt>Discord bots ×2</dt><dd>500+ servers</dd></div>
+          <div><dt>Al-Adhan prayer times</dt><dd>22 ways</dd></div>
+          <div><dt>UCI Esports app</dt><dd>Arena, PCs, events</dd></div>
+          <div><dt>Order 66 + Datapad</dt><dd>2021</dd></div>
+          <div class="sf-r-total"><dt>Total</dt><dd>71 worlds</dd></div>
+        </dl>
+        <p class="sf-r-foot">Thank you, come again</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ─────────── the TV guide ───────────
+       The other terminals, as this week's listings. Channel 6 is this one,
+       so the guide skips it. -->
+  <section class="sf-card sf-guidewrap" aria-labelledby="sfGuideH">
+    <h2 class="sf-h sf-h--sm" id="sfGuideH">TV guide<span>what else is on tonight</span></h2>
+    <ul class="sf-guide">
+      <li><a href="/elmallah/"><span class="sf-ch" aria-hidden="true">2</span><b>E.L.M.A.L.L.A.H.</b><i>Star Wars · the holotable hub</i></a></li>
+      <li><a href="/holocron/"><span class="sf-ch" aria-hidden="true">3</span><b>The Holocron</b><i>Star Wars · a Jedi archive</i></a></li>
+      <li><a href="/jarvis/"><span class="sf-ch" aria-hidden="true">4</span><b>J.A.R.V.I.S.</b><i>Avengers · a Stark display</i></a></li>
+      <li><a href="/marauders-map/"><span class="sf-ch" aria-hidden="true">5</span><b>The Marauder’s Map</b><i>Harry Potter</i></a></li>
+      <li><a href="/crafting-table/"><span class="sf-ch" aria-hidden="true">7</span><b>The Crafting Table</b><i>Minecraft</i></a></li>
+      <li><a href="/citadel/"><span class="sf-ch" aria-hidden="true">8</span><b>The Citadel</b><i>Game of Thrones</i></a></li>
+      <li><a href="/compass/"><span class="sf-ch" aria-hidden="true">9</span><b>The Compass</b><i>Pirates of the Caribbean</i></a></li>
+      <li><a href="/control-room/"><span class="sf-ch" aria-hidden="true">10</span><b>The Control Room</b><i>Jurassic Park</i></a></li>
+      <li><a href="/upside-down/"><span class="sf-ch" aria-hidden="true">11</span><b>The Upside Down</b><i>Stranger Things</i></a></li>
+      <li><a href="/starcourt/"><span class="sf-ch" aria-hidden="true">12</span><b>Starcourt</b><i>Stranger Things</i></a></li>
+      <li><a href="/spirit-library/"><span class="sf-ch" aria-hidden="true">13</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a></li>
+      <li><a href="/monastery/"><span class="sf-ch" aria-hidden="true">14</span><b>The Monastery</b><i>Ninjago</i></a></li>
+      <li><a href="/wanted/"><span class="sf-ch" aria-hidden="true">15</span><b>The Wanted Board</b><i>Red Dead Redemption</i></a></li>
+      <li><a href="/dunder-mifflin/"><span class="sf-ch" aria-hidden="true">16</span><b>Dunder Mifflin</b><i>The Office</i></a></li>
+      <li><a href="/vought/"><span class="sf-ch" aria-hidden="true">17</span><b>Vought Tower</b><i>The Boys</i></a></li>
+      <li><a href="/pokedex/"><span class="sf-ch" aria-hidden="true">18</span><b>The Pokédex</b><i>Pokémon</i></a></li>
+      <li><a href="/batcomputer/"><span class="sf-ch" aria-hidden="true">19</span><b>The Batcomputer</b><i>Batman</i></a></li>
+      <li><a href="/daily-bugle/"><span class="sf-ch" aria-hidden="true">20</span><b>The Daily Bugle</b><i>Spider-Man</i></a></li>
+    </ul>
+  </section>
+
+  <button class="sf-off" id="sfOffBtn" type="button"><span class="sf-off-knob" aria-hidden="true"></span>Turn off the TV</button>
+
+</main>
+
+<!-- lights out: the picture folds to a line, the line to a dot, and the dot
+     stays a moment longer than it should, as the old sets did -->
+<div class="sf-done" id="sfDone">
+  <span class="sf-crt" aria-hidden="true"></span>
+  <div class="sf-done-in">
+    <canvas class="sf-done-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#ffd90f" aria-hidden="true"></canvas>
+    <p class="sf-done-k">Thanks for watching</p>
+    <p class="sf-done-t">Same time next week.</p>
+    <a href="/">Walk home to 742 Evergreen Terrace</a>
+  </div>
+</div>
+
+<script>
+  /* smooth scrolling only after load, so back/forward restores the position instantly instead of sliding to it */
+  addEventListener('load', function () {
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      document.documentElement.classList.add('smooth');
+    }); });
+  });
+</script>
+<script src="{% include v.html f='/assets/js/springfield.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

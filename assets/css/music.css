@@ -204,6 +204,31 @@ body[data-fan="music"] { --a: var(--violet); }
   font-style: normal; font-size: 0.76rem; line-height: 1.4; color: var(--ink-dim);
 }
 
+/* Peak, Peak Peak, Peak Peak Peak: the songs that are more than just kept.
+   Each level a step brighter: an outlined gold pill, then a filled one, then
+   a filled one with a glow, and the row's wash deepens with it. */
+.mu-row.is-peak-1 { background: color-mix(in srgb, var(--gold) 5%, transparent); }
+.mu-row.is-peak-2 { background: color-mix(in srgb, var(--gold) 9%, transparent); }
+.mu-row.is-peak-3 { background: color-mix(in srgb, var(--gold) 14%, transparent); }
+.mu-row.is-peak:hover { background: color-mix(in srgb, var(--gold) 17%, transparent); }
+.mu-peak {
+  display: inline-block; margin-left: 0.4rem; padding: 0.05rem 0.45rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent); border-radius: 100px;
+  font-family: var(--mono); font-size: 0.66rem; font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--gold); vertical-align: 0.12em; white-space: nowrap;
+}
+.mu-peak--2 { background: var(--gold); color: #1a1405; border-color: var(--gold); }
+.mu-peak--3 {
+  background: var(--gold); color: #1a1405; border-color: var(--gold);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--gold) 30%, transparent), 0 0 18px -2px var(--gold);
+}
+/* a song that was never on the chart: a + where the rank would be */
+.mu-row.is-extra .mu-rank { color: var(--green-2); }
+.mu-note {
+  font-style: normal; font-family: var(--mono); font-size: 0.68rem;
+  letter-spacing: 0.04em; color: var(--green-2);
+}
+
 /* ═════════════ the play button ═════════════ */
 /* A SEARCH on YouTube Music rather than an embedded player: see the comment in
    music.js. It is an <a> and not a <button> because it genuinely navigates. */
@@ -285,3 +310,36 @@ body[data-fan="music"] { --a: var(--violet); }
   .mu-play { transition: none; }
   .mu-play:hover { transform: none; }
 }
+
+
+/* ═════════════ order and group ═════════════ */
+.mu-view {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 1rem;
+  max-width: var(--maxw); margin: 0 auto 1.4rem; padding: 0 var(--gutter);
+}
+.mu-view-l { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); }
+.mu-view-s {
+  min-height: 40px; padding: 0.45rem 2rem 0.45rem 0.75rem; border-radius: 8px;
+  border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+  font: inherit; font-size: 0.85rem; color-scheme: dark;
+}
+.mu-years[hidden], .mu-jump[hidden] { display: none; }
+/* the era chips filter the grouped views too, song by song */
+#muRoot[data-era="10s"] .mu-alt .mu-row:not([data-era="10s"]),
+#muRoot[data-era="20s"] .mu-alt .mu-row:not([data-era="20s"]),
+#muRoot[data-era="00s"] .mu-alt .mu-row:not([data-era="00s"]),
+#muRoot[data-era="now"] .mu-alt .mu-row:not([data-era="now"]) { display: none; }
+/* the Show filter: one Peak level, or every Peak (music.js recounts the blocks
+   and marks the ones left empty) */
+#muRoot[data-peak="any"] .mu-row:not(.is-peak),
+#muRoot[data-peak="1"] .mu-row:not(.is-peak-1),
+#muRoot[data-peak="2"] .mu-row:not(.is-peak-2),
+#muRoot[data-peak="3"] .mu-row:not(.is-peak-3),
+#muRoot .mu-year.is-unpeaked,
+#muRoot .mu-jump a.is-unpeaked { display: none; }
+
+/* ═════════════ the worlds' themes ═════════════ */
+.mu-themes { margin-top: 1rem; }
+.mu-theme .mu-rank { color: var(--a); }
+.mu-theme .mu-artist a { color: var(--ink-dim); text-decoration: none; border-bottom: 1px solid var(--line); }
+.mu-theme .mu-artist a:hover { color: var(--a); border-color: var(--a); }

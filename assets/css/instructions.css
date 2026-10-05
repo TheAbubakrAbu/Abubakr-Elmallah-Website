@@ -1,0 +1,213 @@
+/* ============================================================
+   instructions.css: /instructions/, the LEGO instruction booklet.
+   The site as the booklet that comes in the box: a numbered step
+   per page, a parts list per step, and a drawn brick beside each
+   one. Every brick here is CSS and SVG; nothing loads an image,
+   and no studio logo or wordmark is reproduced anywhere.
+   ============================================================ */
+
+/* these pages load no shared stylesheet, so they carry their own reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+html.smooth { scroll-behavior: smooth; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.lg {
+  --sans:  "Space Grotesk", system-ui, sans-serif;
+  --mono:  "JetBrains Mono", ui-monospace, monospace;
+  /* the booklet is printed on white, which is the whole visual joke: every
+     other interface on this site is a dark terminal */
+  --paper: #f7f7f4;
+  --ink:   #16181c;
+  --dim:   #4a4e56;
+  --mute:  #6d727c;
+  --line:  rgba(22, 24, 28, .14);
+  --y:     #f5d222;
+  --r:     #e03a3a;
+  --b:     #4f9fe0;
+  --ease:  cubic-bezier(.16, 1, .3, 1);
+
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ───────────── the table ─────────────
+   A sheet of studs under the whole booklet: two radial gradients per stud,
+   tiled, which is a background rather than a thousand elements. */
+.lg-table { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.lg-table > * { position: absolute; inset: 0; }
+.lg-studs {
+  background-image:
+    radial-gradient(circle at 50% 42%, rgba(22,24,28,.055) 5.5px, transparent 6px),
+    radial-gradient(circle at 50% 58%, rgba(255,255,255,.7) 5.5px, transparent 6px);
+  background-size: 26px 26px;
+  background-position: 0 0, 0 1px;
+  opacity: .9;
+}
+.lg-light {
+  background: radial-gradient(70% 50% at 50% 0%, rgba(255,255,255,.9), transparent 70%);
+}
+
+/* ───────────── top bar ───────────── */
+.lg-top {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; flex-wrap: wrap;
+  padding: calc(1rem + env(safe-area-inset-top, 0px)) clamp(1rem, 4vw, 2.6rem) 1rem;
+  border-bottom: 2px solid var(--ink);
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--dim);
+}
+.lg-exit { display: inline-flex; align-items: center; gap: 0.45rem; font-weight: 500; }
+.lg-exit svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2.4; }
+.lg-exit:hover { color: var(--ink); }
+.lg-top-pc { font-weight: 500; }
+
+.lg-main { position: relative; z-index: 1; padding: 0 clamp(1rem, 4vw, 2.6rem); max-width: 1180px; margin-inline: auto; }
+
+/* ───────────── the box front ───────────── */
+.lg-hero {
+  display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  gap: clamp(1.4rem, 4vw, 3rem); align-items: start;
+  padding: clamp(2rem, 5vw, 3.4rem) 0;
+}
+
+/* the box: yellow, with the age badge in the corner, like every set ever sold */
+.lg-box {
+  position: relative; border: 3px solid var(--ink); border-radius: 10px;
+  background: linear-gradient(180deg, var(--y), #e6c010);
+  padding: 1.2rem 1.2rem 1.4rem;
+  box-shadow: 0 14px 0 -4px rgba(22,24,28,.18), 0 20px 40px -20px rgba(22,24,28,.5);
+}
+.lg-box-age {
+  position: absolute; top: 0.7rem; right: 0.7rem;
+  width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--ink);
+  background: var(--paper); display: grid; place-items: center;
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 500;
+}
+.lg-box-art { background: rgba(255,255,255,.4); border: 2px solid rgba(22,24,28,.25); border-radius: 6px; padding: 0.6rem; }
+.lg-box-art svg { width: min(200px, 100%); margin-inline: auto; }
+
+.lg-fig-sh { fill: rgba(22,24,28,.18); }
+.lg-fig-y { fill: #f5d222; stroke: #16181c; stroke-width: 3; }
+.lg-fig-eye { fill: #16181c; }
+.lg-fig-mouth { fill: none; stroke: #16181c; stroke-width: 3; stroke-linecap: round; }
+.lg-fig-t { fill: #e03a3a; stroke: #16181c; stroke-width: 3; }
+.lg-fig-l { fill: #4f9fe0; stroke: #16181c; stroke-width: 3; }
+.lg-fig-hand { fill: #f5d222; stroke: #16181c; stroke-width: 3; }
+
+.lg-box-k {
+  margin-top: 0.9rem; font-family: var(--mono); font-size: 0.6rem;
+  letter-spacing: 0.18em; text-transform: uppercase; color: rgba(22,24,28,.7);
+}
+.lg-box-t { font-size: clamp(1.5rem, 4vw, 2.1rem); line-height: 1.05; letter-spacing: -0.02em; margin-top: 0.2rem; }
+.lg-box-s { margin-top: 0.4rem; font-size: 0.8rem; color: rgba(22,24,28,.75); }
+
+.lg-lede { font-size: 0.94rem; line-height: 1.75; color: var(--dim); max-width: 66ch; }
+.lg-lede + .lg-lede { margin-top: 0.9rem; }
+
+.lg-acts { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.3rem; }
+.lg-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer;
+  padding: 0.6rem 1.1rem; border: 2px solid var(--ink); border-radius: 8px;
+  background: var(--y); font-size: 0.82rem; font-weight: 600;
+  box-shadow: 0 4px 0 -1px var(--ink);
+  transition: transform .14s var(--ease), box-shadow .14s var(--ease);
+}
+.lg-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 -1px var(--ink); }
+.lg-btn:active { transform: translateY(1px); box-shadow: 0 2px 0 -1px var(--ink); }
+.lg-btn--ghost { background: var(--paper); }
+.lg-btn:focus-visible { outline: 3px solid var(--b); outline-offset: 2px; }
+
+.lg-specs {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 0.7rem; margin-top: 1.6rem;
+  border-top: 2px solid var(--ink); padding-top: 1rem;
+}
+.lg-specs dt { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
+.lg-specs dd { font-size: 1.05rem; font-weight: 600; margin-top: 0.15rem; }
+
+/* ───────────── the steps ───────────── */
+.lg-steps { padding-bottom: clamp(2rem, 5vw, 3.4rem); }
+.lg-h { font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.01em; }
+.lg-h-sub { color: var(--mute); font-size: 0.86rem; margin: 0.3rem 0 1.6rem; }
+
+.lg-bag + .lg-bag { margin-top: 2.4rem; }
+.lg-bag-h {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim);
+  padding-bottom: 0.6rem; border-bottom: 2px dashed var(--line); margin-bottom: 1rem;
+}
+.lg-bag-n {
+  width: 24px; height: 24px; flex: none; display: grid; place-items: center;
+  border: 2px solid var(--ink); border-radius: 50%; background: var(--y);
+  font-size: 0.68rem; color: var(--ink);
+}
+
+.lg-list { list-style: none; display: grid; gap: 0.6rem; }
+/* two across where there is room: a booklet page shows more than one step */
+@media (min-width: 760px) { .lg-list { grid-template-columns: 1fr 1fr; } }
+
+.lg-step {
+  position: relative; display: flex; align-items: center; gap: 0.8rem;
+  padding: 0.75rem 0.9rem; border: 2px solid var(--ink); border-radius: 10px;
+  background: #fff; box-shadow: 0 3px 0 -1px rgba(22,24,28,.5);
+  transition: transform .14s var(--ease), box-shadow .14s var(--ease), background .14s var(--ease);
+}
+@media (hover: hover) {
+  .lg-step:hover { transform: translateY(-2px); box-shadow: 0 6px 0 -1px rgba(22,24,28,.55); background: #fffdf2; }
+}
+.lg-step:focus-visible { outline: 3px solid var(--b); outline-offset: 2px; }
+
+.lg-step-n {
+  flex: none; font-family: var(--mono); font-size: 0.74rem; font-weight: 500;
+  color: var(--mute); width: 1.8em;
+}
+/* the drawn brick: instructions.js puts one in per step, in the step's colour */
+.lg-brick { flex: none; width: 44px; height: 30px; }
+.lg-step-t { min-width: 0; flex: 1; }
+.lg-step-t b { display: block; font-size: 0.9rem; font-weight: 600; letter-spacing: -0.01em; }
+.lg-step-t i { display: block; font-style: normal; font-size: 0.74rem; color: var(--mute); margin-top: 0.1rem; }
+/* the parts list, written by the JS from data-parts */
+.lg-step-p {
+  display: block; margin-top: 0.3rem; font-family: var(--mono);
+  font-size: 0.6rem; letter-spacing: 0.04em; color: var(--dim);
+}
+.lg-step-go { flex: none; color: var(--mute); font-size: 0.9rem; }
+.lg-step:hover .lg-step-go { color: var(--ink); }
+
+/* a step ticked off: the booklet remembers it (localStorage) */
+.lg-step.is-built { background: #f2faf2; }
+.lg-step.is-built .lg-step-n::after {
+  content: " ✓"; color: #3f8f5f; font-weight: 700;
+}
+.lg-tick {
+  flex: none; width: 22px; height: 22px; cursor: pointer;
+  border: 2px solid var(--ink); border-radius: 5px; background: #fff;
+  display: grid; place-items: center; font-size: 0.7rem; line-height: 1;
+}
+.lg-tick[aria-pressed="true"] { background: #4fbf7f; }
+
+/* ───────────── footer ───────────── */
+.lg-bottom {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; flex-wrap: wrap;
+  padding: 1.2rem clamp(1rem, 4vw, 2.6rem) calc(1.6rem + env(safe-area-inset-bottom, 0px));
+  border-top: 2px solid var(--ink);
+  font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--dim);
+}
+.lg-back:hover { color: var(--ink); }
+
+@media (max-width: 760px) {
+  .lg-hero { grid-template-columns: 1fr; }
+  .lg-box { max-width: 320px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lg-step, .lg-btn { transition: none; }
+}

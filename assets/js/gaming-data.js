@@ -78,6 +78,30 @@ window.FAN_PAGE = (function gaming() {
           desc: 'Eight sessions and one percent of 2022. No Replay since has listed a headset among the devices at all.' },
       ] },
 
+    /* The same four cards as rows, so the years can be compared column by
+       column and sorted by any of them. Every figure is the one printed on
+       that year's card (the steam-20xx captions in fan-shots.js); rare
+       achievements are left out because only 2022 and 2024 print theirs. */
+    { id: 'by-year', kind: 'table', title: 'Year by Year', note: 'the four cards as rows · click a column to sort',
+      sort: 'year', dir: 'descending',
+      cols: [
+        { key: 'year',   label: 'Year' },
+        { key: 'played', label: 'Games played', num: true, bar: true },
+        { key: 'fresh',  label: 'New to me',    num: true, bar: true },
+        { key: 'ach',    label: 'Achievements', num: true, bar: true },
+        { key: 'median', label: 'Steam median', num: true },
+        { key: 'streak', label: 'Longest streak', num: true, unit: ' days' },
+        { key: 'top',    label: 'Top game' },
+        { key: 'share',  label: 'Its share', num: true, unit: '%' },
+        { key: 'sess',   label: 'Its sessions', num: true },
+      ],
+      items: [
+        { year: 2022, played: 23, fresh: 19, ach: 132, median: 21, streak: 16, top: 'LEGO Star Wars: The Skywalker Saga', share: 45, sess: 73 },
+        { year: 2023, played: 40, fresh: 28, ach: 96,  median: 16, streak: 8,  top: 'Star Wars Jedi: Survivor',          share: 38, sess: 144 },
+        { year: 2024, played: 46, fresh: 20, ach: 351, median: 13, streak: 12, top: 'Bloons TD 6',                       share: 23, sess: 82 },
+        { year: 2025, played: 28, fresh: 11, ach: 168, median: 11, streak: 11, top: 'Star Wars Battlefront II',          share: 23, sess: 83 },
+      ] },
+
     /* the nine frames: four year cards, four comparisons, and the VR one.
        Captioned once in fan-shots.js, because a screenshot is described in
        exactly one place on this site. */
@@ -91,9 +115,12 @@ window.FAN_PAGE = (function gaming() {
        this file: it is not a copy. `window.LEGO_GAMES` is the same object
        /worlds/lego/ renders, out of lego-games.js, so the two pages cannot
        drift. It sits here because it is the completion wall above it written
-       out game by game, and because its sixteen finished titles carry 116 of
+       out game by game, and because its sixteen finished titles carry 119 of
        the site's screenshots, which is why there is no LEGO sheet lower down.
        A page that fails to load lego-games.js simply skips it. */
+    /* counted from the same list (lego-games.js), straight above it */
+    window.LEGO_STATS,
+    window.LEGO_BY_YEAR,
     window.LEGO_GAMES,
 
     { id: 'where', kind: 'cards', title: 'Where I Actually Play', note: 'five places, one account',
@@ -171,6 +198,9 @@ window.FAN_PAGE = (function gaming() {
        piece of code. It sits here rather than in a franchise sheet because it
        belongs to no franchise; captioned once in fan-shots.js like everything
        else. */
+    /* the Minecraft multiplayer list, shared with /worlds/minecraft/ */
+    window.MC_SERVERS,
+
     { id: 'oi-order', set: 'oi-order' },
   ];
 
@@ -197,10 +227,10 @@ window.FAN_PAGE = (function gaming() {
      itself, which is what makes a new franchise no work at all. */
   var FRANCHISES = [
     { dir: 'minecraft', title: 'Minecraft', accent: '#7fbf4f',
-      lede: 'Every Minecraft frame the site has, and not one of them has ever been through Steam: a Realm with three friends, a Disneyland server, a Pokémon mod on a public server years before either, and the Badlion Client profile that keeps every name the account has had.' },
+      lede: 'Every Minecraft frame the site has, and not one of them has ever been through Steam: a Realm with three friends, a Disneyland server, a Pokémon mod on a public server years before either, the Ender Jedi, the skin the account wears, and the Badlion Client profile that keeps every name it has had.' },
     { dir: 'star-wars', title: 'Star Wars', accent: '#ffe81f',
       lede: 'Three kinds of thing under one flag. The five non-LEGO Star Wars games I have taken to a hundred percent, each with its own banner, save slot and achievement screen; the two Minecraft servers, Imagine Fun, which has Galaxy’s Edge built at real scale, and a Star Wars one with a saber in every colour; and Fortnite’s Star Wars side, the seasons and bundles and Droid Tycoon, filed here the way the screenshot library files them. The folders run in the order they were taken, so the three are mixed together.' },
-    /* LEGO builds NO sheet any more and that is not a mistake: all 116 of its
+    /* LEGO builds NO sheet any more and that is not a mistake: all 119 of its
        frames hang off the catalogue further up this page, so `sheet()` finds
        nothing left and skips it. The entry stays because a LEGO frame that is
        ever added outside a finished game's set would land here. */
@@ -244,8 +274,8 @@ window.FAN_PAGE = (function gaming() {
     { dir: 'pirates', title: 'Pirates of the Caribbean', accent: '#d8c9a0',
       lede: 'Anything not filed under the LEGO game.' },
 
-    { dir: 'gaming', title: 'Steam', accent: '#5fa3ec',
-      lede: 'Steam’s own cards.' },
+    { dir: 'gaming', title: 'Steam and the Rest', accent: '#5fa3ec',
+      lede: 'Steam’s own cards, the faces on my accounts, and one script.' },
   ];
 
   /* What each folder is CALLED when it is printed. Names, not descriptions:
@@ -262,6 +292,9 @@ window.FAN_PAGE = (function gaming() {
     'star-wars/fortnite': 'Star Wars, in Fortnite',
     'star-wars/droid-tycoon': 'Droid Tycoon',
     'minecraft/badlion': 'Badlion Client',
+    'minecraft/lunar': 'Lunar Client Wrapped',
+    'gaming/accounts': 'The Accounts',
+    'minecraft/ender-jedi': 'The Ender Jedi',
     'star-wars/imagine-fun': 'Imagine Fun',
     'star-wars/star-wars-mc': 'Star Wars MC',
     'harry-potter/potterverse': 'Potterverse',

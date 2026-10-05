@@ -189,3 +189,24 @@
   .rt-entry { break-inside: avoid; }
   @page { size: letter; margin: 0.5in; }
 }
+
+/* LinkedIn and GitHub sit beside the two file buttons in the same tint as
+   the header's (layout.css). On a phone this is where they live: the top bar
+   there keeps only Résumé. */
+.embed-actions .cta--linkedin {
+  color: var(--blue-2); border-color: color-mix(in srgb, var(--blue) 55%, transparent);
+  background: color-mix(in srgb, var(--blue) 14%, transparent);
+}
+.embed-actions .cta--github {
+  color: var(--gold); border-color: color-mix(in srgb, var(--gold) 50%, transparent);
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+}
+@media (hover: hover) {
+  .embed-actions .cta--linkedin:hover { background: var(--blue); border-color: var(--blue); color: #04101f; }
+  .embed-actions .cta--github:hover   { background: var(--gold); border-color: var(--gold); color: #1a1405; }
+  .embed-actions .cta--linkedin:hover svg, .embed-actions .cta--github:hover svg { transform: none; }
+}
+/* a phone stacks the file buttons full width; these two share a row */
+@media (max-width: 560px) {
+  .embed-actions .cta--linkedin, .embed-actions .cta--github { flex: 1 1 0; justify-content: center; gap: 0.5rem; }
+}

@@ -128,7 +128,7 @@ window.FAN_PAGE = {
       { title: 'Baby Blue', accent: '#5fa8e0', sub: 'Badfinger · 1971 · 3:38',
         desc: 'The song the finale fades out on, with Walt on the floor of the lab and the police coming in. "Guess I got what I deserved." A 1971 power-pop single about a girl, used as the last word on the whole thing, and the reason it charted again forty-two years later.',
         href: 'https://www.youtube.com/watch?v=33oAuvbRg-c', link: 'Listen' },
-      { title: 'Better Call Saul, in Arabic', accent: '#c98f4f', sub: 'The meme · 0:14',
+      { title: 'Better Call Saul, in Arabic', accent: '#c98f4f', sub: 'The meme · 2022 · 0:14',
         desc: 'The title theme redone as if it had always been a Levantine wedding band, which is the funniest thing anyone has done to a prestige-television cold open. Fourteen seconds, and I cannot hear the original the same way now.',
         href: 'https://www.youtube.com/watch?v=FhyMMo7HirY', link: 'Watch' },
     ] },

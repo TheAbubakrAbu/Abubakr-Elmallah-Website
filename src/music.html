@@ -1,9 +1,5 @@
 ---
 permalink: /music/
-# HIDDEN FOR NOW. Jekyll skips a page with published: false, so /music/
-# is not built and not deployed; delete this line to bring it back, and
-# uncomment the two links (src/worlds.html and index.html).
-published: false
 title: "Music · Abubakr Elmallah"
 description: "The top twenty songs of every year since 2006, the year Abubakr Elmallah was born: twenty-one year-end charts, one block each."
 fonts: "family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700"
@@ -37,13 +33,14 @@ tab: "/worlds/"
 
   <section class="fan-hero">
     {% include crumbs.html parent="Worlds" url="/worlds/" here="Music" %}
-    <p class="fan-kicker"><span>(Worlds I have heard)</span><span>Twenty a year</span><span>2006&#8211;2026</span></p>
+    <p class="fan-kicker"><span>(Worlds I have heard)</span><span>Twenty a year</span><span>2006&#8211;2025</span></p>
     <h1 class="fan-title">Music</h1>
     <p class="fan-lede-hero">Every year I have been alive, twenty songs at a time. 2006 is the first one because that is the year I was born, so this is not a list of what I liked at the time: for the first stretch of it I was a toddler and had no opinion at all. It is what was playing while I was here, which is a different and more honest thing to put on a page.</p>
     <p class="fan-lede-hero">The lists are the Billboard Year-End Hot 100, top twenty, which is the closest thing there is to a neutral record of what a year actually sounded like in America. They are somebody else's ranking rather than mine, and that is the point of starting here: it is the raw material. What I keep, cut and argue with comes after.</p>
     <div class="fan-links">
-      <a class="fan-link" href="#y2026" data-magnetic>This year &#8599;</a>
+      <a class="fan-link" href="#y2025" data-magnetic>The latest year &#8599;</a>
       <a class="fan-link" href="#y2006" data-magnetic>The first year &#8599;</a>
+      <a class="fan-link" href="#themes" data-magnetic>The worlds&#8217; themes &#8595;</a>
       <a class="fan-link" href="/gaming/" data-magnetic>Gaming &#8599;</a>
       <a class="fan-link" href="/worlds/" data-magnetic>All worlds &#8599;</a>
     </div>
@@ -63,6 +60,7 @@ tab: "/worlds/"
 <script src="{% include v.html f='/assets/js/ytplay.js' %}"></script>
 <!-- page content: data then the renderer, before reveal.js -->
 <script src="{% include v.html f='/assets/js/music-data.js' %}"></script>
+<script src="{% include v.html f='/assets/js/music-themes.js' %}"></script>
 <script src="{% include v.html f='/assets/js/music.js' %}"></script>
 {% include site-scripts.html tilt=true %}
 <script src="{% include v.html f='/assets/js/intro.js' %}"></script>

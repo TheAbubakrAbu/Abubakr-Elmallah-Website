@@ -1,0 +1,215 @@
+/* ============================================================
+   battle-pass.css: /battle-pass/, the Fortnite terminal.
+   The site as a Battle Pass: every page a reward tier, graded by
+   rarity, unlocked as you go. The rarity colours are the five the
+   genre has used since long before Fortnite (grey, green, blue,
+   purple, gold); no logo, wordmark or asset is reproduced, and
+   every tile is drawn with CSS.
+   ============================================================ */
+
+/* these pages load no shared stylesheet, so they carry their own reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+html.smooth { scroll-behavior: smooth; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.bp {
+  --sans:  "Space Grotesk", system-ui, sans-serif;
+  --mono:  "JetBrains Mono", ui-monospace, monospace;
+  --bg:    #0b1020;
+  --ink:   #eaf0ff;
+  --dim:   #a8b6d8;
+  --mute:  #7f8db0;
+  --line:  rgba(140, 170, 255, .16);
+  --blue:  #6fb0ff;
+  /* the five rarities, lowest to highest */
+  --c-common:    #9aa4b8;
+  --c-uncommon:  #5fd07f;
+  --c-rare:      #4f9fe0;
+  --c-epic:      #b06fd8;
+  --c-legendary: #f0a83a;
+  --ease:  cubic-bezier(.16, 1, .3, 1);
+
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ───────────── the lobby ───────────── */
+.bp-sky { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.bp-sky > * { position: absolute; inset: 0; }
+.bp-grad {
+  background:
+    radial-gradient(70% 50% at 50% 0%, #1d2a52 0%, #121a36 44%, #0b1020 100%);
+}
+/* the storm wall: one slow sweep of violet across the lobby */
+.bp-storm {
+  background: radial-gradient(60% 80% at 18% 50%, rgba(176,111,216,.16), transparent 70%);
+  animation: bp-drift 26s ease-in-out infinite alternate;
+}
+@keyframes bp-drift { from { transform: translate3d(-6%,0,0); } to { transform: translate3d(10%,0,0); } }
+.bp-grid {
+  background-image:
+    linear-gradient(rgba(140,170,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(140,170,255,.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(90% 70% at 50% 20%, #000 20%, transparent 85%);
+  -webkit-mask-image: radial-gradient(90% 70% at 50% 20%, #000 20%, transparent 85%);
+}
+
+/* ───────────── top bar ───────────── */
+.bp-top {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; flex-wrap: wrap;
+  padding: calc(1rem + env(safe-area-inset-top, 0px)) clamp(1rem, 4vw, 2.6rem) 1rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--dim);
+}
+.bp-exit { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--blue); }
+.bp-exit:hover { color: #fff; }
+.bp-exit svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; }
+.bp-top-v b { color: var(--c-legendary); }
+
+.bp-main { position: relative; z-index: 1; padding: 0 clamp(1rem, 4vw, 2.6rem); max-width: 1180px; margin-inline: auto; }
+
+/* ───────────── the pass header ───────────── */
+.bp-hero {
+  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(1.4rem, 4vw, 3rem); align-items: start;
+  padding: clamp(2rem, 5vw, 3.4rem) 0;
+}
+.bp-kicker {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--c-legendary);
+}
+.bp-title {
+  font-size: clamp(1.8rem, 5.4vw, 3.2rem); line-height: 1.02; letter-spacing: -0.02em;
+  margin: 0.3rem 0 0.9rem; text-transform: uppercase; font-weight: 700;
+  background: linear-gradient(180deg, #fff, #9fc0ff);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.bp-lede { color: var(--dim); font-size: 0.92rem; line-height: 1.75; max-width: 60ch; }
+.bp-lede + .bp-lede { margin-top: 0.8rem; }
+
+.bp-acts { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.3rem; }
+.bp-btn {
+  display: inline-flex; align-items: center; cursor: pointer;
+  padding: 0.62rem 1.2rem; border: 0; border-radius: 4px;
+  background: var(--blue); color: #08142c; font-size: 0.82rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  transform: skewX(-8deg);            /* the whole UI is sheared, so the buttons are too */
+  transition: filter .16s var(--ease), transform .16s var(--ease);
+}
+.bp-btn > * { transform: skewX(8deg); }
+.bp-btn:hover { filter: brightness(1.12); transform: skewX(-8deg) translateY(-2px); }
+.bp-btn--ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+.bp-btn:focus-visible { outline: 2px solid var(--c-legendary); outline-offset: 3px; }
+
+/* the progress meter */
+.bp-meter {
+  border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.2rem 1.2rem;
+  background: linear-gradient(180deg, rgba(28,40,78,.7), rgba(12,18,38,.8));
+}
+.bp-meter-top {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute); margin-bottom: 0.5rem;
+}
+.bp-meter-top b { font-size: 1.1rem; color: var(--c-legendary); }
+.bp-bar { height: 10px; border-radius: 5px; background: rgba(140,170,255,.12); overflow: hidden; }
+.bp-bar i {
+  display: block; height: 100%; width: 0;
+  background: linear-gradient(90deg, var(--blue), var(--c-legendary));
+  transition: width .9s var(--ease);
+}
+.bp-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-top: 1rem; }
+.bp-stats dt { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
+.bp-stats dd { font-size: 1.25rem; font-weight: 700; margin-top: 0.1rem; }
+.bp-meter-n { margin-top: 0.9rem; font-size: 0.72rem; line-height: 1.7; color: var(--mute); }
+
+/* ───────────── the rewards ───────────── */
+.bp-tiers { padding-bottom: clamp(2rem, 5vw, 3.4rem); }
+.bp-h { font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.01em; }
+.bp-h-sub { color: var(--mute); font-size: 0.84rem; margin: 0.3rem 0 1.4rem; }
+
+.bp-grid-r {
+  display: grid; gap: 0.8rem;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+}
+
+/* a reward tile: the rarity is a colour on the border, a wash behind it and
+   the glow under it, which is exactly how every one of these games does it */
+.bp-tier {
+  position: relative; display: block; padding: 2.1rem 0.9rem 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--rar, var(--c-common)) 50%, transparent);
+  border-top: 3px solid var(--rar, var(--c-common));
+  border-radius: 8px; overflow: hidden;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--rar, var(--c-common)) 18%, transparent), transparent 62%),
+    rgba(10, 16, 34, .72);
+  transition: transform .16s var(--ease), box-shadow .16s var(--ease);
+}
+@media (hover: hover) {
+  .bp-tier:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px -12px color-mix(in srgb, var(--rar, var(--c-common)) 70%, transparent);
+  }
+}
+.bp-tier:focus-visible { outline: 2px solid var(--rar, var(--c-common)); outline-offset: 2px; }
+
+.bp-tier-n {
+  position: absolute; top: 0.55rem; left: 0.75rem;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em; color: var(--mute);
+}
+/* the rarity chip, top right: battle-pass.js writes its label from data-k */
+.bp-tier-i {
+  position: absolute; top: 0.5rem; right: 0.6rem;
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 0.14rem 0.4rem; border-radius: 3px;
+  color: var(--rar, var(--c-common));
+  background: color-mix(in srgb, var(--rar, var(--c-common)) 16%, transparent);
+}
+.bp-tier b { display: block; font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em; }
+.bp-tier i { display: block; font-style: normal; font-size: 0.74rem; color: var(--mute); margin-top: 0.2rem; line-height: 1.5; }
+
+/* unlocked: it stops being greyed back and gets its colour properly */
+.bp-tier { opacity: .62; }
+.bp-tier.is-on { opacity: 1; }
+.bp-tier.is-on::after {
+  content: "✓"; position: absolute; right: 0.6rem; bottom: 0.6rem;
+  font-size: 0.7rem; color: var(--rar, var(--c-common));
+}
+
+/* tier one hundred is the one worth the grind, so it spans and glows */
+.bp-tier--100 {
+  grid-column: 1 / -1;
+  background:
+    linear-gradient(120deg, color-mix(in srgb, var(--c-legendary) 24%, transparent), transparent 56%),
+    rgba(10, 16, 34, .72);
+}
+.bp-tier--100 b { font-size: 1.15rem; }
+
+/* ───────────── footer ───────────── */
+.bp-bottom {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; flex-wrap: wrap;
+  padding: 1.2rem clamp(1rem, 4vw, 2.6rem) calc(1.6rem + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+.bp-back { color: var(--blue); }
+.bp-back:hover { color: #fff; }
+
+@media (max-width: 860px) {
+  .bp-hero { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bp-storm { animation: none; }
+  .bp-tier, .bp-btn, .bp-bar i { transition: none; }
+}

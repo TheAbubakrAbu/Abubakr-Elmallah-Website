@@ -170,6 +170,9 @@ window.FAN_PAGE = {
         meta: 'Practice · UHC' },
     ] },
 
+  /* my own list, in mc-servers.js because /gaming/ shows it too */
+  window.MC_SERVERS,
+
   { id: 'minigames', kind: 'tiles', compact: true, title: 'The Minigames', note: 'what you actually queued for',
     items: [
       { title: 'Bed Wars', accent: '#e04a3a', sub: 'Hypixel', desc: 'Protect your bed, break theirs. The best minigame anyone has built in Minecraft, and it is not close.' },
@@ -288,11 +291,36 @@ window.FAN_PAGE = {
 
   { id: 'played', set: 'pixelmon' },
 
-  /* the account itself: Badlion's profile page, the one place its whole name
-     history is still printed. Captioned once, in fan-shots.js. */
-  { id: 'account', kind: 'gallery', title: 'The Account', note: 'Badlion Client · MasterThingW',
-    lede: 'Badlion outlived its PvP servers as a client, and its profile page for my account keeps every name it has ever had, in order: thirteen of them, the Harry Potter ones first.',
-    pick: ['badlion-profile'] },
+  /* the account itself: its skin, the Ender Jedi, then Badlion's profile
+     page, the one place its whole name history is still printed. Captioned
+     once, in fan-shots.js. */
+  { id: 'account', kind: 'gallery', two: true, title: 'The Account', note: 'The Ender Jedi · MasterThingW',
+    lede: 'The account wears the Ender Jedi: an Enderman’s head on a Jedi’s robes, Minecraft and Star Wars in one skin. Badlion outlived its PvP servers as a client, and its profile page for the account keeps every name it has ever had, in order: thirteen of them, the Harry Potter ones first.',
+    pick: ['ender-jedi-front', 'ender-jedi-side', 'ender-jedi-head-turned', 'badlion-profile'] },
+
+  /* the other client: Lunar's own year-end cards for the same account, the
+     years it was called TheAbubakrAbu. Captioned once, in fan-shots.js, and
+     on /gaming/ by themselves like every frame under franchises/. */
+  { id: 'lunar', kind: 'gallery', grid: true, whole: true, title: 'Lunar Client, Wrapped', note: '2022 \u00b7 2023 \u00b7 2024',
+    lede: 'Badlion keeps the names; Lunar keeps the hours. Three years of its own year-end cards, and the year Hypixel gave way to Imagine Fun is right there in the middle one.',
+    pick: ['lunar-2022', 'lunar-2023', 'lunar-2024'] },
+
+  /* my channel, before any of the apps: the intros and the end screen,
+     played here from /assets/video/ (see `video` in fanpage.js). The
+     originals are in _originals/video/thinkcreeper/. */
+  { id: 'thinkcreeper', kind: 'gallery', grid: true, whole: true, title: 'RealThinkCreeper', note: 'My Minecraft YouTube channel',
+    lede: 'Before the apps, before the Discord bots, there was a Minecraft channel with my name under the logo. Its two intros and its end screen.',
+    items: [
+      { title: 'The intro', video: '/assets/video/thinkcreeper/intro.mp4', src: '/assets/video/thinkcreeper/intro.jpg',
+        desc: 'Green lasers, the logo flying in letter by letter, and Abubakr Elmallah underneath it. Ten seconds.',
+        alt: 'The RealThinkCreeper intro: the channel name in chrome letters over green laser beams' },
+      { title: 'Creeper Dimensions', video: '/assets/video/thinkcreeper/intro-globe.mp4', src: '/assets/video/thinkcreeper/intro-globe.jpg',
+        desc: 'The other intro: a blue globe, a red ring around it, and Creeper Dimensions over the name.',
+        meta: '2016', alt: 'The Creeper Dimensions intro: RealThinkCreeper in silver over a blue globe' },
+      { title: 'The end screen', video: '/assets/video/thinkcreeper/end-screen.mp4', src: '/assets/video/thinkcreeper/end-screen.jpg',
+        desc: 'Two creepers by an apple tree, the last video playing in a frame between them, and a Subscribe button under it.',
+        alt: 'The RealThinkCreeper end screen: two creepers either side of a framed Minecraft clip and a red Subscribe button' },
+    ] },
 
   /* the music: the C418 tracks on my playlist and Pigstep, grouped by album.
      `series` is the album, `year` its year, `secs` the length; written

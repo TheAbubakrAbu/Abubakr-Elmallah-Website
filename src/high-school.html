@@ -3,7 +3,7 @@ permalink: /high-school/
 redirect_from:
   - /src/high-school.html
 title: "High School · Abubakr Elmallah"
-description: "Abubakr Elmallah's high-school work: programming projects, custom flyers, custom wallpapers, and the year galleries from middle school onwards."
+description: "Abubakr Elmallah's high-school work: summer coding camps, programming projects, custom flyers, custom wallpapers, and the year galleries from middle school onwards."
 tab: "/education/"
 ---
 <!DOCTYPE html>
@@ -29,7 +29,7 @@ tab: "/education/"
     {% include crumbs.html parent="Education" url="/education/" here="High School" %}
     <p class="kicker"><span>(Archive)</span><span>Where it started</span></p>
     <h1 class="page-title"><em>High School</em></h1>
-    <p class="lede">Where it all started: Code.org &amp; Scratch projects in 10th grade, then the iOS apps I taught myself to build after the IB exams, plus the flyers and wallpapers I designed for clubs and the community.</p>
+    <p class="lede">Where it all started: a few summer coding camps around middle school, then the Code.org &amp; Scratch projects in 10th grade that were the first I wrote on my own, then the iOS apps I taught myself to build after the IB exams, plus the flyers and wallpapers I designed for clubs and the community.</p>
     <nav class="jump" aria-label="Sections">
       <a href="#before-trabuco">Photos</a>
       <a href="#projects">Projects</a>
@@ -40,6 +40,8 @@ tab: "/education/"
       <a href="#academics">Academics</a>
       <a href="#ring">Class Ring</a>
       <a href="#extracurriculars">Activities</a>
+      <a href="#camps">Camps</a>
+      <a href="#mods">Minecraft Mods</a>
     </nav>
   </section>
 
@@ -64,11 +66,11 @@ tab: "/education/"
     <!-- "+ the ID cards" rides on .pic-n, like the counts: the ID card itself
          is hidden until the switch is on, so the heading must not advertise
          something that is not on the page. -->
-    <h2 class="subsec subsec--title reveal" id="before-trabuco">Before Trabuco <span class="subsec-yr"><span class="pic-n">154 photos · </span>2006 – 2020<span class="pic-n"> · + the ID cards</span></span></h2>
+    <h2 class="subsec subsec--title reveal" id="before-trabuco">Before Trabuco <span class="subsec-yr"><span class="pic-n">159 pictures · </span>2006 – 2020<span class="pic-n"> · + the ID cards</span></span></h2>
     <!-- the 'ms' groups in years-data.js; same renderer as the years below -->
     <div class="years" data-years="ms"></div>
 
-    <h2 class="subsec subsec--title reveal" id="photos">Through the Years <span class="subsec-yr"><span class="pic-n">624 photos · </span>2020 – 2024</span></h2>
+    <h2 class="subsec subsec--title reveal" id="photos">Through the Years <span class="subsec-yr"><span class="pic-n">769 pictures · </span>2020 – 2024</span></h2>
     <!-- built by years.js from years-data.js -->
     <div class="years" data-years="hs"></div>
 
@@ -76,6 +78,9 @@ tab: "/education/"
     {% include lightbox.html %}
 
 
+    <!-- the camps come before the projects because they came first, but they
+         are not projects of mine: the instructors wrote most of it with me.
+         Order 66 and the Datapad, below, are the first two I wrote alone. -->
     <h2 class="subsec subsec--title reveal" id="projects">Programming Projects <span class="subsec-yr">Code.org, Scratch &amp; Java</span></h2>
     <div class="hs-grid" data-projects="hs-datapad,hs-calculator,hs-periodic-table,hs-games,hs-order66,hs-periodic-table-explorer" data-chronological></div>
 
@@ -176,11 +181,56 @@ tab: "/education/"
     </div>
 
     <h2 class="subsec subsec--title reveal" id="wallpapers">Custom Wallpapers</h2>
-    <div class="wall-grid">
+    <p class="lede reveal" style="max-width:70ch;margin-bottom:2rem">Palestine, Phone, Laptop and Desktop are the finished set. The two marked <b>original</b> are earlier versions, the first ones I made before the others, and they are not great; they are here as where it started.</p>
+    <!-- the Three Holy Mosques set: four phone wallpapers in a row, then the
+         laptop and desktop ones side by side. Originals and the Pixelmator
+         files are in _originals/wallpapers/. -->
+    <div class="wall-grid wall-grid--phones">
       <a class="wall reveal" href="/assets/img/wallpapers/palestine.jpg" target="_blank" rel="noopener"><img src="/assets/img/wallpapers/palestine.jpg" width="555" height="1200" alt="Palestine wallpaper: Indeed Allah's help is near" loading="lazy" /><span class="flyer-cap"><b>Palestine</b><i>Phone</i></span></a>
-      <a class="wall reveal" href="/assets/img/wallpapers/phone.jpg" target="_blank" rel="noopener"><img src="/assets/img/wallpapers/phone.jpg" width="555" height="1200" alt="Islamic phone wallpaper" loading="lazy" /><span class="flyer-cap"><b>Phone</b><i>9:19.5</i></span></a>
+      <a class="wall reveal" href="/assets/img/wallpapers/phone.jpg" target="_blank" rel="noopener"><img src="/assets/img/wallpapers/phone.jpg" width="555" height="1200" alt="Islamic phone wallpaper: the Kaaba, the Prophet’s Mosque and al-Aqsa under a column of calligraphy roundels" loading="lazy" /><span class="flyer-cap"><b>Phone</b><i>9:19.5</i></span></a>
+      <a class="wall reveal" href="/assets/img/wallpapers/phone-original.jpg" target="_blank" rel="noopener"><img src="/assets/img/wallpapers/phone-original.jpg" width="555" height="1200" alt="An early original draft of the phone wallpaper, on green and yellow, with the three mosques named in Arabic" loading="lazy" /><span class="flyer-cap"><b>Phone, the original</b><i>early draft</i></span></a>
+      <a class="wall reveal" href="/assets/img/wallpapers/black.jpg" target="_blank" rel="noopener"><img src="/assets/img/wallpapers/black.jpg" width="555" height="1200" alt="An early original draft of the phone wallpaper on black, with the Abu Bakr roundel and my name in Arabic across the top" loading="lazy" /><span class="flyer-cap"><b>Phone, original on black</b><i>early draft</i></span></a>
+    </div>
+    <div class="wall-grid wall-grid--wide">
       <a class="wall reveal" href="/assets/img/wallpapers/laptop.jpg" target="_blank" rel="noopener"><img src="/assets/img/wallpapers/laptop.jpg" width="1200" height="776" alt="Islamic laptop wallpaper, 16:9" loading="lazy" /><span class="flyer-cap"><b>Laptop</b><i>16:9</i></span></a>
       <a class="wall reveal" href="/assets/img/wallpapers/desktop.jpg" target="_blank" rel="noopener"><img src="/assets/img/wallpapers/desktop.jpg" width="1200" height="507" alt="Islamic ultrawide desktop wallpaper, 21:9" loading="lazy" /><span class="flyer-cap"><b>Desktop</b><i>21:9</i></span></a>
+    </div>
+
+    <!-- moved here from the home page: the accounts, the typing tests, the Arc
+         cards and the first apps page, each captioned with the school year it
+         comes from. The dates: the Xbox file is from March 2017 at the latest;
+         typing.com dates its certificate; the Arc cards print theirs; each
+         Monkeytype capture shows the version it ran (v1.17.4 shipped
+         2023-03-27, v23.43.1 shipped 2023-10-27); the apps page lists
+         Al-Adhan (Dec 2023) and not yet Aurebesh Translator (Oct 2024).
+         Originals in _originals/archive/home/. -->
+    <h2 class="subsec subsec--title reveal" id="online">Online, Along the Way <span class="subsec-yr">elementary school to 12th grade</span></h2>
+    <div class="flyer-grid flyer-grid--wide">
+      <a class="flyer reveal" href="/assets/img/archive/home/typing-2021.jpg" target="_blank" rel="noopener"><img src="/assets/img/archive/home/typing-2021.jpg" width="1200" height="699" alt="A typing.com certificate for Abubakr Elmallah: a one minute typing test at 116 WPM and 98% accuracy, August 19, 2021" loading="lazy" decoding="async" /><span class="flyer-cap"><b>116 WPM, 98%</b><i>10th grade &#183; Aug 2021</i></span></a>
+      <a class="flyer reveal" href="/assets/img/archive/home/typing-153.jpg" target="_blank" rel="noopener"><img src="/assets/img/archive/home/typing-153.jpg" width="1200" height="414" alt="A Monkeytype result: 153 WPM at 96% accuracy on a 15 second English test" loading="lazy" decoding="async" /><span class="flyer-cap"><b>153 WPM, 96%: a personal best</b><i>11th grade &#183; spring 2023</i></span></a>
+      <a class="flyer reveal" href="/assets/img/archive/home/typing-179.jpg" target="_blank" rel="noopener"><img src="/assets/img/archive/home/typing-179.jpg" width="1200" height="414" alt="A Monkeytype result: 179 WPM at 100% accuracy on a ten word English test" loading="lazy" decoding="async" /><span class="flyer-cap"><b>179 WPM, 100%: a personal best</b><i>12th grade &#183; fall 2023</i></span></a>
+    </div>
+    <div class="flyer-grid flyer-grid--4 edu-online-next">
+      <a class="flyer reveal" href="/assets/img/archive/home/arc-imaginary-inventor.jpg" target="_blank" rel="noopener"><img src="/assets/img/archive/home/arc-imaginary-inventor.jpg" width="931" height="1200" alt="An Arc member card for Abubakr Elmallah, Imaginary Inventor, on purple, dated December 13, 2022" loading="lazy" decoding="async" /><span class="flyer-cap"><b>Arc: Imaginary Inventor</b><i>11th grade &#183; Dec 2022</i></span></a>
+      <a class="flyer reveal" href="/assets/img/archive/home/arc-gifted-mastermind.jpg" target="_blank" rel="noopener"><img src="/assets/img/archive/home/arc-gifted-mastermind.jpg" width="931" height="1200" alt="An Arc member card for Abubakr Elmallah, Gifted Mastermind, in gold, dated December 13, 2022" loading="lazy" decoding="async" /><span class="flyer-cap"><b>Arc: Gifted Mastermind</b><i>11th grade &#183; Dec 2022</i></span></a>
+      <a class="flyer reveal" href="/assets/img/archive/home/arc-gifted-mastermind-1.jpg" target="_blank" rel="noopener"><img src="/assets/img/archive/home/arc-gifted-mastermind-1.jpg" width="931" height="1200" alt="The same Gifted Mastermind Arc card with one badge on it" loading="lazy" decoding="async" /><span class="flyer-cap"><b>Arc: one badge</b><i>11th grade</i></span></a>
+      <a class="flyer reveal" href="/assets/img/archive/home/arc-gifted-mastermind-2.jpg" target="_blank" rel="noopener"><img src="/assets/img/archive/home/arc-gifted-mastermind-2.jpg" width="931" height="1200" alt="The Gifted Mastermind Arc card with two badges and a new shape" loading="lazy" decoding="async" /><span class="flyer-cap"><b>Arc: two badges</b><i>11th grade</i></span></a>
+    </div>
+    <div class="flyer-grid flyer-grid--wide edu-online-next">
+      <a class="flyer flyer--span reveal" href="/assets/img/archive/home/apple-apps-1.jpg" target="_blank" rel="noopener"><img src="/assets/img/archive/home/apple-apps-1.jpg" width="1200" height="466" alt="My first Apple Ecosystem Apps page: five app icons, Al-Quran, Al-Islam, Al-Adhan, ICOI and Datapad, on white" loading="lazy" decoding="async" /><span class="flyer-cap"><b>My apps page, the first</b><i>12th grade &#183; 2024</i></span></a>
+    </div>
+
+    <!-- the three account pictures, kept side by side: the Xbox avatar, the
+         one I use everywhere and the gaming one. The avatar is the oldest of
+         the three, so it leads. The personal and gaming pictures were both
+         taken in high school; their files only carry a modified date from
+         2025, when they were last saved, so the captions say the grade rather
+         than inventing a month.
+         Originals in _originals/archive/home/ and franchises/gaming/accounts/. -->
+    <div class="flyer-grid edu-online-next">
+      <a class="flyer reveal" href="/assets/img/franchises/gaming/accounts/xbox-avatar.jpg" target="_blank" rel="noopener"><img src="/assets/img/franchises/gaming/accounts/xbox-avatar.jpg" width="1080" height="1080" alt="An Xbox avatar in a cowboy hat, blue sunglasses and a long brown coat" loading="lazy" decoding="async" /><span class="flyer-cap"><b>The Xbox avatar</b><i>Elementary &#183; by 2017</i></span></a>
+      <a class="flyer reveal" href="/assets/img/archive/home/account-personal.webp" target="_blank" rel="noopener"><img src="/assets/img/archive/home/account-personal.webp" width="1200" height="1200" alt="Abubakr standing beside a resting camel on desert dunes at sunset, in a round frame" loading="lazy" decoding="async" /><span class="flyer-cap"><b>The personal picture</b><i>High school</i></span></a>
+      <a class="flyer reveal" href="/assets/img/franchises/gaming/accounts/game.jpg" target="_blank" rel="noopener"><img src="/assets/img/franchises/gaming/accounts/game.jpg" width="800" height="1200" alt="Abubakr in the dark, lit only by a white lightsaber held upright in front of him" loading="lazy" decoding="async" /><span class="flyer-cap"><b>The gaming picture</b><i>High school</i></span></a>
     </div>
 
     <h2 class="subsec subsec--title reveal" id="academics">Academics <span class="subsec-yr">Class of 2024</span></h2>
@@ -251,12 +301,17 @@ tab: "/education/"
          I have. The spec list is the order as it was placed, word for word. -->
     <h2 class="subsec subsec--title reveal" id="ring">The Class Ring <span class="subsec-yr">Trabuco Hills &#183; Class of 2024</span></h2>
     <div class="ring reveal">
-      <p class="acad-note">Two designs. The band was only ever concept art; the gem ring is the one I actually got, and the one I still have. Under them is the order exactly as it was placed.</p>
+      <p class="acad-note">Two designs, each rendered in silver and in gold. The gem ring in silver is the one I actually got, and the one I still have; the band was only ever concept art. The gold ones are concept art too: gold is haram for men to wear, so it was never going to be gold, but the renders came out looking good. Under them is the order exactly as it was placed, on 8 October 2023.</p>
       <div class="ring-grid">
         <a class="flyer ring-pic" href="/assets/img/highschool/ring.jpg" target="_blank" rel="noopener"><img src="/assets/img/highschool/ring.jpg" width="1400" height="882" alt="Abubakr&#8217;s Trabuco Hills class ring in silver: THHS and the Mustang on one side, Trabuco Class of 2024 on the other, and ABUBAKR across a blue stone on top" loading="lazy" /><span class="flyer-cap"><b>The gem ring, the one I have</b><i>Silver</i></span></a>
         <a class="flyer ring-pic" href="/assets/img/highschool/ring-concept.jpg" target="_blank" rel="noopener"><img src="/assets/img/highschool/ring-concept.jpg" width="1400" height="912" alt="Concept art for a silver band-style class ring engraved Abubakr Elmallah, Trabuco 2024 and Trabuco Hills around a blue stone" loading="lazy" /><span class="flyer-cap"><b>The band, concept art</b><i>Silver</i></span></a>
+        <a class="flyer ring-pic" href="/assets/img/highschool/ring-gold.jpg" target="_blank" rel="noopener"><img src="/assets/img/highschool/ring-gold.jpg" width="1400" height="889" alt="Concept art of the same gem ring in gold: THHS and the Mustang, Trabuco Class of 2024, and ABUBAKR across a blue stone" loading="lazy" /><span class="flyer-cap"><b>The gem ring, concept art</b><i>Gold</i></span></a>
+        <a class="flyer ring-pic" href="/assets/img/highschool/ring-concept-gold.jpg" target="_blank" rel="noopener"><img src="/assets/img/highschool/ring-concept-gold.jpg" width="1400" height="863" alt="Concept art of the band-style class ring in gold, engraved Abubakr Elmallah, Trabuco 2024 and Trabuco Hills around a blue stone" loading="lazy" /><span class="flyer-cap"><b>The band, concept art</b><i>Gold</i></span></a>
       </div>
       <dl class="ring-spec">
+        <div><dt>Ring</dt><dd>Vanguard&#174; &#8211; Men&#8217;s (T31)</dd></div>
+        <div><dt>School</dt><dd>Trabuco Hills High School (Mission Viejo, CA)</dd></div>
+        <div><dt>Ordered</dt><dd>8 October 2023 &#183; Jostens</dd></div>
         <div><dt>Palm Side</dt><dd>Smooth Band (traditional)</dd></div>
         <div><dt>Stone 1</dt><dd>Blue Spinel BLS</dd></div>
         <div><dt>Stone 2</dt><dd>Blue Spinel BLS</dd></div>
@@ -268,6 +323,11 @@ tab: "/education/"
         <div><dt>Inside Engraving</dt><dd>Full Name Block: ABUBAKR ELMALLAH THHS 2024</dd></div>
         <div><dt>Graduation Year</dt><dd>2024</dd></div>
         <div><dt>Ring Size</dt><dd>09.5</dd></div>
+        <div><dt>Subtotal</dt><dd>$348.99</dd></div>
+        <div><dt>Discount</dt><dd>&#8722;$25.00</dd></div>
+        <div><dt>Service &amp; Delivery</dt><dd>$14.98</dd></div>
+        <div><dt>Tax</dt><dd>$25.88</dd></div>
+        <div><dt>Order Total</dt><dd>USD $364.85</dd></div>
       </dl>
     </div>
 
@@ -347,6 +407,30 @@ tab: "/education/"
       </li>
     </ol>
 
+    <h2 class="subsec subsec--title reveal" id="camps">Summer Coding Camps <span class="subsec-yr">elementary &amp; middle school &#183; iD Tech &amp; UCI APPcamp</span></h2>
+    <p class="hs-p reveal">Before any of the projects above, in the summers of elementary school and into middle school, I went to coding camps. I was a young kid who did not really know anything yet, so the instructors did a lot of the coding with me: this is where I first saw code, not where I first wrote it on my own. That came in 10th grade, with <b>Order 66</b> and the <b>Star Wars Datapad</b>.</p>
+    <ol class="hs-awards" role="list">
+      <li class="hs-award reveal"><span class="hs-when">probably summer 2016 &#183; iD Tech &#183; elementary</span><div><h3>Star Wars Mod for Minecraft</h3><p>A week of camp that produced a Minecraft 1.8 Forge mod in Java. It is the first card below.</p></div></li>
+      <li class="hs-award reveal"><span class="hs-when">31 Jul &#8211; 4 Aug 2017 &#183; iD Tech &#183; elementary</span><div><h3>GEL Mod for Minecraft</h3><p>The next summer, another week and another mod, this one entirely our own invention. It is the second card below.</p></div></li>
+      <li class="hs-award reveal"><span class="hs-when">by 2018 &#183; UCI &#183; elementary</span><div><h3>APPcamp 1.0</h3><p>UCI&#8217;s Donald Bren School of Information &amp; Computer Sciences: Scratch, and an Android app built in MIT App Inventor.</p></div></li>
+      <li class="hs-award reveal"><span class="hs-when">July 2018 &#183; UCI &#183; into middle school</span><div><h3>APPcamp 2.0</h3><p>The follow-on week, July 23 to 27: from blocks to Python on a Raspberry Pi, and a team design challenge to build an app or game around a shared theme.</p></div></li>
+    </ol>
+    <div class="ring-grid reveal">
+      <a class="flyer ring-pic" href="/assets/img/highschool/appcamp-certificate.jpg" target="_blank" rel="noopener"><img src="/assets/img/highschool/appcamp-certificate.jpg" width="1400" height="1080" alt="Certificate of Achievement from the UCI Donald Bren School of Information and Computer Sciences, presented to Abubakr Elmallah for completing APPcamp 2.0 in 2018, dated July 27, 2018" loading="lazy" /><span class="flyer-cap"><b>APPcamp 2.0 certificate</b><i>July 27, 2018</i></span></a>
+      <a class="flyer ring-pic" href="/assets/img/highschool/appcamp-badge.jpg" target="_blank" rel="noopener"><img src="/assets/img/highschool/appcamp-badge.jpg" width="1200" height="867" alt="APPcamp name badge from the UCI Donald Bren School of Information and Computer Sciences reading Abubakr Elmallah" loading="lazy" /><span class="flyer-cap"><b>The camp name badge</b><i>UCI APPcamp</i></span></a>
+    </div>
+
+    <!-- The two mods as real cards, the same ones /projects/ renders
+         (PROJ_CARDS in apps-data.js, one copy). They sit inside Camps because
+         that is when they were built, years before high school: the list above
+         is the record of every camp, these are the two that produced something
+         you can still run. The cards carry each mod's texture sheet, so the
+         pair of flyers that used to sit here would have been the same two
+         pictures twice. -->
+    <h2 class="subsec subsec--title subsec--stack reveal" id="mods">Minecraft Mods<span class="vh">, </span><span class="subsec-yr">the two that produced something</span></h2>
+    <p class="hs-p reveal">Both mods are on GitHub, kept exactly as they were built, with their Java recovered from the jars: <a href="https://github.com/TheAbubakrAbu/Minecraft-Mods" target="_blank" rel="noopener">Minecraft Mods from iD Tech&nbsp;&#8599;</a>. The GEL Mod dates itself: Photoshop saved timestamps inside its textures, five days in a row, Monday 31 July to Friday 4 August 2017, one week of camp. The Star Wars Mod has no dates in it, so summer 2016 is a best guess from the clues: the last Forge build for Minecraft 1.8, and a Kylo Ren lightsaber, which cannot predate <i>The Force Awakens</i>.</p>
+    <div class="hs-grid" data-projects="mod-star-wars,mod-gel" data-chronological></div>
+
     <h2 class="subsec subsec--title reveal" id="activities">Activities &amp; Awards</h2>
     <div class="embed-wrap reveal">
       <div class="embed-facade">
@@ -372,8 +456,12 @@ tab: "/education/"
 
 </main>
 
-<!-- The switch itself is on /worlds/ now, not here. pics.js stays loaded so
-     this page still OBEYS it; it just no longer offers it in three places. -->
+<!-- The switch for personal photographs, asked for where the photographs are.
+     It is the same one as on /worlds/ and /travels/: one localStorage key for
+     the whole site, so turning it on here turns it on everywhere. Every page
+     still LISTS everything with it off; only the photographs wait to be asked
+     for. -->
+<div class="picsw" data-pics-toggle></div>
 
 {% include footer.html back="/" %}
 

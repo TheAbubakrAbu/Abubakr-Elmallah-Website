@@ -61,7 +61,7 @@ window.FAN_PAGE = {
       { title: 'Main Theme', accent: '#d84a3a', sub: 'Tim Haywood · Bloons TD 6 · 1:59',
         desc: 'The BTD6 title music. Two minutes of it, and if you have played this game you have heard it several hundred times without ever getting sick of it.',
         href: 'https://www.youtube.com/watch?v=4mpffFZlNBE', link: 'Listen' },
-      { title: 'Title Music (Party Time)', accent: '#f0a83a', sub: 'Tim Haywood · Bloons TD 6 · 4:13',
+      { title: 'Title Music (Party Time)', accent: '#f0a83a', sub: 'Tim Haywood · Bloons TD 6 · 2018 · 4:13',
         desc: 'The longer, brassier menu variant, and the one that sounds most like the game thinks it is a carnival.',
         href: 'https://www.youtube.com/watch?v=edwooGpMg8g', link: 'Listen' },
       { title: 'Bloons TD 5 Main Theme', accent: '#5fbf7f', sub: 'Ninja Kiwi · 2011 · 1:58',

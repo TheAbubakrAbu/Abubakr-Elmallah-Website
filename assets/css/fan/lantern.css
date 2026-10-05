@@ -1,0 +1,92 @@
+/* fan/lantern.css: /worlds/green-lantern/ only.
+
+   The ring's own green and nothing else: this is the one character whose
+   whole identity is a single colour and a single light source. Behind the
+   page, a sector of deep space with the lamp's glow reaching into it and two
+   slow rings turning, which are the construct's edge rather than any logo.
+   The hero drawing is the power battery, lit. Both rings move on transform
+   only, so the page stays cheap. */
+
+body[data-fan="lantern"] { --a: #4fd07f; }
+
+/* ── the backdrop ── */
+.gl-sky {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  background: radial-gradient(90% 70% at 50% 0%, #0a2418 0%, #061410 48%, #03070a 100%);
+}
+
+.gl-sky > * { position: absolute; inset: 0; }
+
+/* the sector: a still field, drawn rather than animated, so nothing here
+   costs a repaint */
+.gl-stars {
+  background-image:
+    radial-gradient(1.2px 1.2px at 12% 18%, rgba(223,247,236,.75), transparent 60%),
+    radial-gradient(1px 1px at 72% 12%, rgba(223,247,236,.6), transparent 60%),
+    radial-gradient(1.4px 1.4px at 38% 62%, rgba(223,247,236,.7), transparent 60%),
+    radial-gradient(1px 1px at 86% 48%, rgba(223,247,236,.55), transparent 60%),
+    radial-gradient(1.1px 1.1px at 24% 84%, rgba(223,247,236,.6), transparent 60%),
+    radial-gradient(1px 1px at 58% 34%, rgba(223,247,236,.5), transparent 60%),
+    radial-gradient(1.3px 1.3px at 92% 78%, rgba(223,247,236,.6), transparent 60%),
+    radial-gradient(1px 1px at 48% 8%, rgba(223,247,236,.45), transparent 60%);
+}
+
+.gl-glow {
+  background:
+    radial-gradient(44% 30% at 50% 10%, rgba(79,208,127,.16), transparent 72%),
+    radial-gradient(36% 24% at 20% 78%, rgba(79,208,127,.08), transparent 72%);
+}
+
+.gl-ring {
+  inset: auto; left: 50%; top: 50%;
+  width: 112vmax; height: 112vmax; margin: -56vmax 0 0 -56vmax;
+  border-radius: 50%; border: 1px dashed rgba(79,208,127,.14);
+  will-change: transform; animation: gl-turn 260s linear infinite;
+}
+.gl-ring--in {
+  width: 74vmax; height: 74vmax; margin: -37vmax 0 0 -37vmax;
+  border-style: solid; border-color: rgba(79,208,127,.09);
+  animation-duration: 180s; animation-direction: reverse;
+}
+
+@keyframes gl-turn { to { transform: rotate(360deg); } }
+
+/* ── hero ── */
+body[data-fan="lantern"] .fan-title {
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
+  font-size: clamp(1.5rem, 4.6vw, 3.4rem);
+  background: linear-gradient(180deg, #d8ffe8, #4fd07f 58%, #1f7f4f);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* ── the power battery ── */
+.gl-art { padding: 0 var(--gutter); max-width: var(--maxw); margin: 2.6rem 0 0; }
+
+.gl-art svg { display: block; width: min(420px, 100%); margin-inline: auto; }
+
+/* the lamp's light, reaching out both ways: it breathes, because a charged
+   battery is the one thing on this page that is meant to look alive */
+.gla-beam path { fill: rgba(79,208,127,.07); animation: gl-breathe 5.5s ease-in-out infinite alternate; }
+
+.gla-cap  { fill: #7f8f88; }
+.gla-neck { fill: #9fb0a8; }
+.gla-body { fill: #10301f; stroke: #4fd07f; stroke-width: 2.4; }
+.gla-band { fill: #4fd07f; opacity: .9; }
+
+.gla-core {
+  fill: #d8ffe8;
+  filter: drop-shadow(0 0 14px rgba(79,208,127,.9));
+  animation: gl-breathe 5.5s ease-in-out infinite alternate;
+}
+
+@keyframes gl-breathe { from { opacity: .62; } to { opacity: 1; } }
+
+.gl-art figcaption {
+  margin-top: 0.9rem; text-align: center;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--mute);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gl-ring, .gla-beam path, .gla-core { animation: none; }
+}

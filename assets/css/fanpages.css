@@ -25,6 +25,47 @@
   letter-spacing: -0.04em; margin-bottom: 1rem;
 }
 
+/* The world's cool interface, straight under the title
+   (_includes/interface-link.html): a small kicker over the interface's name,
+   in the page's own colour, so it reads as a door and not as one more pill. */
+.fan-ifaces { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0.2rem 0 1.4rem; }
+.fan-iface {
+  display: inline-grid; grid-template-columns: auto auto; align-items: center;
+  column-gap: 1rem; row-gap: 0.2rem;
+  padding: 0.7rem 0.8rem 0.7rem 1.1rem; border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--a, #f5c63c) 45%, transparent);
+  background: color-mix(in srgb, var(--a, #f5c63c) 9%, transparent);
+  color: var(--ink); text-decoration: none;
+  transition: border-color .25s, background .25s, transform .25s var(--ease);
+}
+.fan-iface-k {
+  grid-column: 1; font-family: var(--mono); font-size: 0.66rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--a, var(--gold));
+}
+.fan-iface b { grid-column: 1; font-family: var(--sans); font-weight: 600; font-size: 1rem; letter-spacing: -0.01em; }
+.fan-iface-a {
+  grid-column: 2; grid-row: 1 / span 2;
+  display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+  font-size: 0.85rem; color: var(--a, var(--gold));
+  border: 1px solid color-mix(in srgb, var(--a, #f5c63c) 35%, transparent);
+  transition: transform .25s var(--ease);
+}
+@media (hover: hover) {
+  .fan-iface:hover {
+    transform: translateY(-2px);
+    border-color: var(--a, var(--gold));
+    background: color-mix(in srgb, var(--a, #f5c63c) 15%, transparent);
+  }
+  .fan-iface:hover .fan-iface-a { transform: translateX(3px); }
+}
+@media (max-width: 560px) {
+  .fan-iface { flex: 1 1 100%; grid-template-columns: 1fr auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fan-iface, .fan-iface-a { transition: none; }
+  .fan-iface:hover, .fan-iface:hover .fan-iface-a { transform: none; }
+}
+
 .fan-lede-hero { max-width: 62ch; color: var(--ink-dim); font-size: 1.04rem; line-height: 1.8; }
 
 .fan-hero .crumbs { margin-bottom: 1.6rem; }
@@ -1011,6 +1052,174 @@
 
 .fan-tile.is-done .fan-swatch { box-shadow: 0 0 12px -1px var(--a, #f5c63c), 0 0 0 3px rgba(95,208,160,0.18); }
 
+/* ── the interface peek ──
+   A real fragment of a world's custom interface, on the world's own page
+   (_includes/interface-peek.html). The pill above it says an interface
+   exists; this shows what it looks like.
+
+   It carries the INTERFACE's colours in --pk and --pkbg rather than the
+   page's --a, which is the whole point: the Batcomputer is blue on a page
+   that is gold, and the peek should look like where it is going, not like
+   where it is. */
+.fan-peek {
+  margin: 0.2rem 0 1.4rem; max-width: 420px;
+  border: 1px solid color-mix(in srgb, var(--pk) 38%, transparent);
+  border-radius: 12px; overflow: hidden;
+  background: var(--pkbg);
+  box-shadow: 0 16px 40px -28px #000;
+}
+.fan-peek-bar {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 0.7rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--pk) 24%, transparent);
+  background: color-mix(in srgb, var(--pk) 10%, transparent);
+  font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: color-mix(in srgb, var(--pk) 80%, #fff);
+}
+.fan-peek-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--pk);
+  box-shadow: 0 0 8px var(--pk);
+}
+.fan-peek-k { flex: 1; }
+.fan-peek-live { color: var(--pk); animation: pk-blink 2.4s steps(2) infinite; }
+@keyframes pk-blink { 50% { opacity: .25; } }
+
+.fan-peek-body { padding: 0.8rem 0.9rem 0.9rem; }
+.fan-peek-rows { display: grid; gap: 0.38rem; margin: 0; }
+.fan-peek-rows > div {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem;
+  font-family: var(--mono); font-size: 0.66rem;
+  padding-bottom: 0.32rem;
+  border-bottom: 1px dotted color-mix(in srgb, var(--pk) 20%, transparent);
+}
+.fan-peek-rows > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.fan-peek-rows dt { letter-spacing: 0.1em; text-transform: uppercase; color: color-mix(in srgb, var(--pk) 55%, #9aa4b8); }
+.fan-peek-rows dd { margin: 0; color: color-mix(in srgb, var(--pk) 82%, #fff); text-align: right; }
+
+.fan-peek-n {
+  margin: 0.7rem 0 0; font-size: 0.72rem; line-height: 1.6;
+  color: color-mix(in srgb, var(--pk) 38%, #9aa4b8);
+}
+.fan-peek-go {
+  display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.9rem;
+  font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--pk);
+}
+.fan-peek-go span { transition: transform .2s var(--ease); }
+@media (hover: hover) {
+  .fan-peek-go:hover span { transform: translateX(3px); }
+}
+@media (max-width: 560px) { .fan-peek { max-width: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .fan-peek-live { animation: none; }
+  .fan-peek-go span { transition: none; }
+}
+
+/* ── kind: conflict ──
+   A period of a franchise as its two sides, with a rail of periods above to
+   change which one is shown. Each side carries its own colour in --s (set
+   inline from the data: Republic blue against Separatist red, and so on), and
+   everything inside the side is drawn from that one value, so no faction
+   colour is written twice. The page's own --a still colours the rail. */
+.fan-cf { margin-top: 1.1rem; }
+
+/* the rail: a radio group that looks like a row of tabs */
+.fan-cf-rail {
+  display: flex; flex-wrap: wrap; gap: 0.4rem;
+  border: 0; padding: 0; margin: 0 0 1.1rem;
+}
+.fan-cf-tab {
+  display: flex; flex-direction: column; gap: 0.1rem;
+  padding: 0.5rem 0.85rem; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 10px;
+  background: rgba(255,255,255,.02);
+  transition: border-color .18s ease, background .18s ease, transform .18s ease;
+}
+.fan-cf-tab b {
+  font-size: 0.86rem; font-weight: 600; letter-spacing: -0.01em;
+  color: var(--text);
+}
+.fan-cf-tab i { font-style: normal; font-size: 0.7rem; color: var(--mute); }
+@media (hover: hover) {
+  .fan-cf-tab:hover { border-color: color-mix(in srgb, var(--a, #9a8cff) 50%, var(--line)); }
+}
+.fan-cf-tab.is-on {
+  border-color: color-mix(in srgb, var(--a, #9a8cff) 70%, transparent);
+  background: color-mix(in srgb, var(--a, #9a8cff) 12%, transparent);
+}
+.fan-cf-tab.is-on b { color: color-mix(in srgb, var(--a, #9a8cff) 80%, var(--text)); }
+/* the keyboard lands on the hidden radio, so the lit ring goes on its label */
+.fan-cf-tab:focus-within {
+  outline: 2px solid color-mix(in srgb, var(--a, #9a8cff) 70%, transparent);
+  outline-offset: 2px;
+}
+
+.fan-cf-lede { color: var(--mute); font-size: 0.86rem; margin: 0 0 1rem; max-width: 68ch; }
+
+/* the two sides, with the "vs" in the gutter between them */
+.fan-cf-sides {
+  display: grid; gap: 1rem;
+  grid-template-columns: 1fr auto 1fr; align-items: start;
+}
+.fan-cf-vs {
+  align-self: center; font-family: var(--serif); font-size: 0.8rem;
+  text-transform: uppercase; letter-spacing: 0.14em; color: var(--mute);
+}
+.fan-cf-side {
+  border: 1px solid color-mix(in srgb, var(--s, var(--line)) 34%, transparent);
+  border-top: 2px solid color-mix(in srgb, var(--s, var(--line)) 72%, transparent);
+  border-radius: 12px; padding: 0.95rem 1rem 1.05rem;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--s, #888) 11%, transparent), transparent 60%),
+    rgba(255,255,255,.015);
+}
+.fan-cf-name-h {
+  margin: 0; font-family: var(--serif); font-size: 1.08rem; line-height: 1.2;
+  color: color-mix(in srgb, var(--s, var(--text)) 78%, var(--text));
+}
+.fan-cf-name-h span {
+  display: block; margin-top: 0.15rem;
+  font-family: var(--sans); font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.04em; text-transform: uppercase; color: var(--mute);
+}
+.fan-cf-note { margin: 0.6rem 0 0; font-size: 0.84rem; color: var(--mute); }
+.fan-cf-names { list-style: none; margin: 0.8rem 0 0; padding: 0; display: grid; gap: 0.4rem; }
+.fan-cf-name {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.45rem;
+  padding-left: 0.7rem; position: relative; font-size: 0.82rem;
+}
+.fan-cf-name::before {
+  content: ""; position: absolute; left: 0; top: 0.45em;
+  width: 4px; height: 4px; border-radius: 50%;
+  background: color-mix(in srgb, var(--s, var(--mute)) 75%, transparent);
+}
+.fan-cf-name b { font-weight: 600; color: var(--text); }
+.fan-cf-name i { font-style: normal; color: var(--mute); font-size: 0.78rem; }
+
+/* what the fight is actually over: the one line that scales a period against
+   the others (city, world, universe, multiverse) */
+.fan-cf-scale {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.5rem;
+  margin: 1rem 0 0; padding-top: 0.8rem;
+  border-top: 1px dashed var(--line);
+}
+.fan-cf-scale span {
+  font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--mute);
+}
+.fan-cf-scale b {
+  font-family: var(--serif); font-size: 0.95rem;
+  color: color-mix(in srgb, var(--a, #9a8cff) 70%, var(--text));
+}
+
+/* Phone: the sides stack and the "vs" becomes a divider between them rather
+   than a column in a grid that no longer has one. Nothing is hidden. */
+@media (max-width: 720px) {
+  .fan-cf-sides { grid-template-columns: 1fr; }
+  .fan-cf-vs { justify-self: center; }
+  .fan-cf-tab { flex: 1 1 auto; }
+}
+
 /* ── kind: quotes ── */
 .fan-quotes {
   display: grid; gap: 1rem;
@@ -1056,6 +1265,45 @@
 }
 
 /* ── kind: stats ── a strip of big figures */
+/* ── kind: table ── figures in rows, every header a sort button (fanpage.js).
+   Wider than a phone on purpose rather than squeezed: the wrapper scrolls
+   sideways inside itself, so every column is still there on a phone and the
+   page never scrolls sideways. On a phone the row header stays pinned. */
+.fan-tb-wrap {
+  overflow-x: auto; border: 1px solid var(--line); border-radius: 14px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--a, #f5c63c) 5%, transparent), transparent 60%);
+}
+.fan-tb-wrap:focus-visible { outline: 2px solid var(--a, var(--gold)); outline-offset: 3px; }
+.fan-tb { width: 100%; border-collapse: collapse; font-size: 0.86rem; min-width: 640px; }
+.fan-tb th, .fan-tb td { padding: 0.75rem 0.7rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.fan-tb tbody tr:last-child > * { border-bottom: 0; }
+.fan-tb .is-num { text-align: right; font-variant-numeric: tabular-nums; }
+.fan-tb thead th { padding: 0; border-bottom-color: color-mix(in srgb, var(--a, #f5c63c) 35%, transparent); }
+.fan-tb thead button {
+  display: inline-flex; align-items: center; gap: 0.35rem; width: 100%;
+  padding: 0.8rem 0.7rem; font: inherit; font-family: var(--mono); font-size: 0.66rem;
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute);
+  background: none; border: 0; cursor: pointer; white-space: nowrap;
+}
+.fan-tb thead .is-num button { justify-content: flex-end; }
+.fan-tb thead button:hover, .fan-tb thead [aria-sort] button { color: var(--a, var(--gold)); }
+.fan-tb-dir::after { content: '\2195'; opacity: .35; }
+.fan-tb [aria-sort="ascending"] .fan-tb-dir::after { content: '\2191'; opacity: 1; }
+.fan-tb [aria-sort="descending"] .fan-tb-dir::after { content: '\2193'; opacity: 1; }
+.fan-tb tbody th { font-family: var(--mono); font-weight: 500; color: var(--a, var(--gold)); white-space: nowrap; }
+.fan-tb td:not(.is-num) { min-width: 11rem; }
+/* on a phone the table scrolls sideways, so the row's name stays pinned */
+@media (max-width: 720px) {
+  .fan-tb tbody th, .fan-tb thead th:first-child { position: sticky; left: 0; background: var(--bg, #08080a); z-index: 1; }
+}
+.fan-tb td { color: var(--ink-dim); }
+.fan-tb td.is-num { color: var(--ink); }
+.fan-tb-v { display: block; }
+.fan-tb-bar { display: block; height: 4px; margin-top: 0.4rem; border-radius: 4px; background: color-mix(in srgb, var(--ink) 8%, transparent); min-width: 44px; }
+.fan-tb-bar i { display: block; height: 100%; border-radius: 4px; background: var(--a, var(--gold)); margin-left: auto; }
+.fan-tb-none { color: var(--mute); font-size: 0.75rem; }
+@media (hover: hover) { .fan-tb tbody tr:hover > * { background: color-mix(in srgb, var(--a, #f5c63c) 6%, var(--bg, #0a0a0c)); } }
+
 .fan-stats {
   display: grid; gap: 0.7rem;
   grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
@@ -1326,7 +1574,36 @@
   box-shadow: 0 22px 46px -30px #000, 0 0 34px -26px var(--a, #f5c63c);
 }
 
-.fan-shot img { width: 100%; height: auto; display: block; }
+.fan-shot img, .fan-shot video { width: 100%; height: auto; display: block; }
+
+.fan-shot video { background: #000; }
+
+/* ONE ROW, ONE HEIGHT. In every gallery with more than one column, each
+   picture is a two-row subgrid (the picture, then its caption), so every
+   picture in a row takes the height of the tallest one in it and every
+   caption in that row starts on the same line; the next row sizes itself.
+   Same technique, and the same gap trap, as the app cards in components.css
+   ("Row alignment"): the row gap lives on the figures as a bottom margin,
+   and the grid's negative margin cancels the last one. */
+@supports (grid-template-rows: subgrid) {
+  .fan-shots--grid, .fan-shots--two {
+    --rowgap: clamp(0.9rem, 2vw, 1.4rem);
+    row-gap: 0; margin-bottom: calc(-1 * var(--rowgap));
+  }
+  .fan-shots--grid > .fan-shot, .fan-shots--two > .fan-shot {
+    display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 0;
+    margin-bottom: var(--rowgap);
+  }
+}
+
+/* `whole: true`: posters, tickets, Discord cards and profile pages. Each keeps
+   its own shape, centred in the row's picture cell on a dark mat, so a wide
+   picture beside a tall one sits in a box exactly as tall as its neighbour. */
+.fan-shots--whole .fan-shot > a {
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,.22);
+}
+.fan-shots--grid.fan-shots--whole .fan-shot img { aspect-ratio: auto; object-fit: contain; }
 
 .fan-shot figcaption {
   display: flex; flex-direction: column; gap: 0.3rem;
@@ -3157,3 +3434,72 @@ html:not([data-show-pics="on"]) .fan-beenset .been-hint { display: block; }
 @media (prefers-reduced-motion: reduce) {
   .fan-fold-i { transition: none; }
 }
+
+/* ── kind: serverlist ── the multiplayer screen (mc-servers.js), on
+   /worlds/minecraft/ and /gaming/. The game's own palette: a dirt backdrop
+   in blocky 16px tiles, white names, grey MOTDs, #ff5555 for a server that
+   does not answer, and the hard 2px text shadow every Minecraft label has.
+   The icons are 64px pixel art, so they are scaled with pixelation. */
+.mcs {
+  --mc-shadow: 2px 2px 0 rgba(0,0,0,.55);
+  border: 2px solid #000; border-radius: 4px; overflow: hidden;
+  background-color: #3a2a1c;
+  background-image:
+    repeating-conic-gradient(rgba(0,0,0,.18) 0 25%, transparent 0 50%),
+    repeating-conic-gradient(rgba(255,255,255,.035) 0 25%, transparent 0 50%);
+  background-size: 32px 32px, 16px 16px;
+  background-position: 0 0, 8px 8px;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.06), 0 24px 50px -30px #000;
+  font-family: var(--mono);
+}
+.mcs-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  padding: 0.9rem 1.1rem; background: rgba(0,0,0,.35);
+  border-bottom: 2px solid rgba(0,0,0,.6);
+}
+.mcs-head b { color: #fff; font-weight: 500; font-size: 0.95rem; text-shadow: var(--mc-shadow); }
+.mcs-head i { font-style: normal; color: #aaa; font-size: 0.7rem; text-shadow: var(--mc-shadow); }
+.mcs-list { list-style: none; margin: 0; padding: 0.6rem; display: grid; gap: 0.35rem; }
+.mcs-row {
+  width: 100%; display: grid; grid-template-columns: auto 1fr auto; gap: 0.9rem; align-items: center;
+  padding: 0.45rem 0.6rem; text-align: left; font: inherit; color: inherit; cursor: pointer;
+  background: rgba(0,0,0,.28); border: 2px solid transparent; border-radius: 0;
+  transition: background .2s, border-color .2s;
+}
+.mcs-row:hover, .mcs-row:focus-visible { background: rgba(0,0,0,.55); border-color: #a0a0a0; outline: none; }
+.mcs-icon { width: 52px; height: 52px; flex: none; display: block; }
+.mcs-icon img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+/* the game's placeholder for a server with no icon: the unknown-pack square */
+.mcs-blank {
+  display: block; width: 100%; height: 100%;
+  background:
+    linear-gradient(45deg, #5b5b5b 25%, transparent 25% 75%, #5b5b5b 75%) 0 0 / 26px 26px,
+    linear-gradient(45deg, #5b5b5b 25%, transparent 25% 75%, #5b5b5b 75%) 13px 13px / 26px 26px,
+    #3c3c3c;
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,.4);
+}
+.mcs-row--off .mcs-icon { opacity: .75; }
+.mcs-main { display: flex; flex-direction: column; gap: 0.12rem; min-width: 0; }
+.mcs-main b { color: #fff; font-weight: 500; font-size: 0.88rem; text-shadow: var(--mc-shadow); }
+.mcs-motd { display: flex; flex-direction: column; color: #aaa; font-size: 0.74rem; line-height: 1.4; text-shadow: var(--mc-shadow); overflow-wrap: anywhere; }
+.mcs-err { color: #ff5555; }
+.mcs-host { font-style: normal; color: #7c7c7c; font-size: 0.68rem; text-shadow: var(--mc-shadow); }
+.mcs-side { display: flex; flex-direction: column; align-items: flex-end; gap: 0.35rem; }
+.mcs-n { color: #aaa; font-size: 0.7rem; text-shadow: var(--mc-shadow); white-space: nowrap; }
+.mcs-bars { display: flex; align-items: flex-end; gap: 2px; height: 14px; }
+.mcs-bars i { width: 3px; background: #55ff55; box-shadow: 1px 1px 0 rgba(0,0,0,.6); }
+.mcs-bars i:nth-child(1) { height: 3px; }  .mcs-bars i:nth-child(2) { height: 5px; }
+.mcs-bars i:nth-child(3) { height: 8px; }  .mcs-bars i:nth-child(4) { height: 11px; }
+.mcs-bars i:nth-child(5) { height: 14px; }
+.mcs-bars--off i { background: #4a4a4a; }
+.mcs-bars--off i:nth-child(5) { background: #ff5555; }
+.mcs-foot {
+  margin: 0; padding: 0.7rem 1.1rem; text-align: center;
+  color: #aaa; font-size: 0.72rem; text-shadow: var(--mc-shadow);
+  background: rgba(0,0,0,.35); border-top: 2px solid rgba(0,0,0,.6);
+}
+@media (max-width: 560px) {
+  .mcs-row { gap: 0.65rem; padding: 0.4rem; }
+  .mcs-icon { width: 40px; height: 40px; }
+}
+@media (prefers-reduced-motion: reduce) { .mcs-row { transition: none; } }

@@ -1,0 +1,507 @@
+/* ============================================================
+   batcomputer.css: /batcomputer/, the Batman terminal.
+   Sister page to /citadel/, /control-room/ and the rest: cold
+   steel and monitor light instead of brass. The signal burns on
+   the clouds over Gotham, every page is a case on the wall of
+   screens, detective mode turns the whole cave blue, and the
+   end is the oldest joke in the comics.
+   ============================================================ */
+
+/* these pages load no shared stylesheet, so they carry their own reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+ol, ul { list-style: none; }
+html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
+
+.bc {
+  --cap:   "Barlow Condensed", "Arial Narrow", sans-serif;
+  --body:  "Barlow", system-ui, sans-serif;
+  --mono:  "Share Tech Mono", ui-monospace, monospace;
+  --night: #07080b;
+  --panel: #0e1116;
+  --bezel: #1a1e25;
+  --steel: #c9cdd2;
+  --ink:   #e6e8eb;
+  --dim:   #aab0b9;
+  --mute:  #8d949e;
+  --sig:   #f5c542;          /* the signal's yellow, the page's one warm colour */
+  --scr:   #7fb4d9;          /* monitor glass */
+  --det:   #4cc3ff;          /* detective mode */
+  --hot:   #ff9a3c;          /* what detective mode picks out */
+  --line:  rgba(201, 205, 210, 0.16);
+  --ease:  cubic-bezier(.16, 1, .3, 1);
+
+  background: var(--night);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.5;
+  min-height: 100vh;
+  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+  transition: background-color .6s ease;
+}
+
+/* Detective mode: the same page seen through the cowl. The steel goes
+   cyan, the warm colour becomes the orange the games use for anything
+   worth a second look, and every surface gets a faint wireframe. */
+.bc.is-detective {
+  --night: #030b14;
+  --panel: #06121f;
+  --bezel: #0b2236;
+  --ink:   #dff3ff;
+  --dim:   #9fcbe6;
+  --mute:  #7fb0cf;
+  --sig:   var(--hot);
+  --line:  rgba(76, 195, 255, 0.28);
+}
+
+/* ───────────── the cave ───────────── */
+.bc-field { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.bc-field > span { position: absolute; inset: 0; }
+.bc-glow {
+  background:
+    radial-gradient(70% 40% at 50% 0%, rgba(127, 180, 217, .12), transparent 70%),
+    radial-gradient(30% 25% at 12% 100%, rgba(245, 197, 66, .05), transparent 70%),
+    radial-gradient(120% 90% at 50% 45%, transparent 50%, rgba(0, 0, 0, .7));
+  transition: opacity .6s;
+}
+/* the wireframe grid detective mode lays over everything */
+.bc-scan {
+  opacity: 0; transition: opacity .6s;
+  background:
+    repeating-linear-gradient(0deg, rgba(76, 195, 255, .06) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(90deg, rgba(76, 195, 255, .06) 0 1px, transparent 1px 48px);
+}
+.bc.is-detective .bc-scan { opacity: 1; }
+.bc.is-detective .bc-glow { opacity: .4; }
+
+/* ───────────── header ───────────── */
+.bc-top {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; flex-wrap: wrap;
+  padding: calc(0.9rem + env(safe-area-inset-top, 0px)) clamp(1rem, 4vw, 2.6rem) 0.9rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim);
+}
+.bc-exit { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--sig); border-radius: 3px; }
+.bc-exit:hover { color: #fff; }
+.bc-exit svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; }
+.bc-top-clock { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--ink); }
+.bc-led {
+  display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--sig); box-shadow: 0 0 8px var(--sig);
+  animation: bc-blink 2.4s steps(1) infinite;
+}
+@keyframes bc-blink { 0%, 70% { opacity: 1; } 71%, 100% { opacity: .25; } }
+
+:where(.bc) a:focus-visible, :where(.bc) button:focus-visible {
+  outline: 2px solid var(--sig); outline-offset: 3px;
+}
+
+.bc-main { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.6rem); }
+
+/* ───────────── hero ───────────── */
+.bc-hero { padding-top: clamp(1.8rem, 5vw, 3.2rem); text-align: center; }
+.bc-kicker {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sig);
+}
+.bc-title {
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  margin-top: 0.6rem;
+  font-family: var(--cap); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; line-height: 0.95;
+  font-size: clamp(2.6rem, 9vw, 5.6rem);
+  color: var(--ink);
+}
+.bc-title span {
+  background: linear-gradient(180deg, #ffffff 0%, #c9cdd2 55%, #6f7680 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 3px 0 rgba(0, 0, 0, .6));
+}
+.bc.is-detective .bc-title span { background-image: linear-gradient(180deg, #ffffff 0%, #8fdcff 55%, #2b7fb0 100%); }
+.bc-title-bat { width: clamp(84px, 14vw, 128px); height: auto; aspect-ratio: 200 / 82; fill: var(--sig); filter: drop-shadow(0 0 18px color-mix(in srgb, var(--sig) 45%, transparent)); transition: fill .6s; }
+.bc-sub {
+  max-width: 62ch; margin: 1.1rem auto 0;
+  font-size: 1.1rem; line-height: 1.6; color: var(--dim);
+}
+
+/* ───────────── headings ───────────── */
+.bc-h {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.25rem 0.8rem;
+  font-family: var(--cap); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--ink); margin-bottom: 1rem;
+}
+.bc-h span {
+  font-family: var(--mono); font-weight: 400; text-transform: none; letter-spacing: 0.02em;
+  font-size: 0.84rem; color: var(--mute);
+}
+.bc-h--sm { font-size: 1.3rem; }
+.bc-think { width: 22px; height: 22px; }
+
+/* ───────────── monitors ───────────── */
+.bc-signal { margin-top: clamp(2rem, 5vw, 3.2rem); }
+.bc-mon {
+  border: 1px solid #2a3039; border-radius: 10px;
+  background: linear-gradient(180deg, var(--bezel), #0b0d11);
+  padding: 0.55rem;
+  box-shadow: 0 30px 60px -30px rgba(0, 0, 0, .9), inset 0 1px 0 rgba(255, 255, 255, .06);
+  transition: background .6s, border-color .6s;
+}
+.bc.is-detective .bc-mon { border-color: #14476b; }
+.bc-mon-label {
+  display: flex; align-items: center; gap: 1rem; justify-content: space-between;
+  padding: 0.15rem 0.35rem 0.5rem;
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.08em; color: var(--mute);
+}
+.bc-mon-label span:first-child { margin-right: auto; }
+
+/* The scene is a fixed-ratio window on the sky: wide on a desk, taller on
+   a phone so the skyline and the clouds both still fit. The canvas is
+   sized to it by batcomputer.js. */
+.bc-scene {
+  position: relative; overflow: hidden; border-radius: 6px;
+  aspect-ratio: 16 / 7.4; min-height: 300px;
+  background: linear-gradient(180deg, #0a0e16, #161a22 70%, #2a2420);
+  cursor: crosshair; touch-action: pan-y;
+}
+@media (max-width: 640px) { .bc-scene { aspect-ratio: 4 / 4.2; } }
+.bc-scene canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* scan lines over the glass */
+.bc-scene::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .18) 0 1px, transparent 1px 3px);
+  mix-blend-mode: multiply;
+}
+/* the four corners of a camera's frame */
+.bc-reticle {
+  position: absolute; inset: 14px; pointer-events: none;
+  background:
+    linear-gradient(var(--sig), var(--sig)) 0 0 / 18px 2px no-repeat,
+    linear-gradient(var(--sig), var(--sig)) 0 0 / 2px 18px no-repeat,
+    linear-gradient(var(--sig), var(--sig)) 100% 0 / 18px 2px no-repeat,
+    linear-gradient(var(--sig), var(--sig)) 100% 0 / 2px 18px no-repeat,
+    linear-gradient(var(--sig), var(--sig)) 0 100% / 18px 2px no-repeat,
+    linear-gradient(var(--sig), var(--sig)) 0 100% / 2px 18px no-repeat,
+    linear-gradient(var(--sig), var(--sig)) 100% 100% / 18px 2px no-repeat,
+    linear-gradient(var(--sig), var(--sig)) 100% 100% / 2px 18px no-repeat;
+  opacity: .55;
+}
+.bc-scene-hint {
+  position: absolute; left: 50%; top: 14px; translate: -50% 0; z-index: 1;
+  padding: 0.2rem 0.6rem; border-radius: 3px;
+  background: rgba(7, 8, 11, .7);
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--dim);
+  white-space: nowrap; opacity: 0; transition: opacity .5s;
+}
+.bc-scene.is-lit .bc-scene-hint { opacity: 1; }
+.bc-scene.is-aimed .bc-scene-hint { opacity: 0; }
+
+.bc-controls {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.7rem 1rem;
+  padding: 0.75rem 0.35rem 0.25rem;
+}
+.bc-status {
+  flex: 1 1 220px; text-align: right;
+  font-family: var(--mono); font-size: 0.82rem; color: var(--dim);
+}
+
+/* the breaker: a lever in a slot that drops when the signal is lit */
+.bc-switch, .bc-detect {
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  padding: 0.55rem 1rem 0.55rem 0.6rem; border-radius: 6px;
+  border: 1px solid #353c47; background: #12161c; cursor: pointer;
+  font-family: var(--cap); font-weight: 600; font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink);
+  transition: border-color .3s, background .3s, color .3s;
+}
+.bc-switch:hover, .bc-detect:hover { border-color: var(--sig); }
+.bc-switch-track {
+  position: relative; width: 18px; height: 34px; border-radius: 9px;
+  background: #050608; box-shadow: inset 0 0 0 1px #2d333c;
+}
+.bc-switch-lever {
+  position: absolute; left: 2px; top: 2px; width: 14px; height: 14px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fff, #9aa0a8 60%, #4b5058);
+  transition: top .35s var(--ease), background .3s;
+}
+.bc-switch[aria-pressed="true"] { border-color: var(--sig); background: color-mix(in srgb, var(--sig) 12%, #12161c); }
+.bc-switch[aria-pressed="true"] .bc-switch-lever {
+  top: 18px; background: radial-gradient(circle at 35% 30%, #fff8dc, var(--sig) 55%, #8a6410);
+  box-shadow: 0 0 10px var(--sig);
+}
+
+/* detective mode's button: a lens that lights up blue */
+.bc-detect-eye {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 2px solid #4b5563;
+  background: radial-gradient(circle, #1d2733 30%, transparent 32%), radial-gradient(circle, #0b0f14 60%, #000 100%);
+  transition: border-color .3s, box-shadow .3s, background .3s;
+}
+.bc-detect[aria-pressed="true"] { border-color: var(--det); background: rgba(76, 195, 255, .12); color: #e8f7ff; }
+.bc-detect[aria-pressed="true"] .bc-detect-eye {
+  border-color: var(--det); box-shadow: 0 0 12px var(--det);
+  background: radial-gradient(circle, var(--hot) 22%, transparent 25%), radial-gradient(circle, #0b3654 55%, #04121e 100%);
+}
+
+/* ───────────── the case wall ───────────── */
+.bc-cases { margin-top: clamp(2.4rem, 6vw, 4rem); }
+.bc-wall {
+  display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  padding: 0.75rem; border-radius: 10px;
+  background: linear-gradient(180deg, #13161c, #0b0d11);
+  border: 1px solid #262b33;
+  transition: background .6s, border-color .6s;
+}
+.bc.is-detective .bc-wall { background: linear-gradient(180deg, #071a2a, #04101b); border-color: #14476b; }
+.bc-wall li { display: flex; }
+
+/* A case: one monitor in the wall. The glass has a faint cold glow and
+   scan lines; the scanner (::after) is a band of light parked above the
+   screen until the case is hovered, focused or detective mode is on, and
+   then it sweeps down once while the corners lock on and the evidence
+   (the address) lights up in the games' orange. */
+.bc-case {
+  position: relative; overflow: hidden; flex: 1;
+  display: flex; flex-direction: column; gap: 0.2rem;
+  padding: 0.85rem 0.95rem 0.8rem;
+  border-radius: 5px; border: 1px solid #2b313b;
+  background:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, .018) 0 1px, transparent 1px 3px),
+    radial-gradient(120% 90% at 30% 0%, rgba(127, 180, 217, .1), transparent 60%),
+    #0a0d12;
+  animation: bc-on .7s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 45ms + 150ms);
+  transition: border-color .3s, background-color .3s, translate .3s var(--ease);
+}
+@keyframes bc-on {
+  0% { opacity: 0; transform: scaleY(.02); filter: brightness(3); }
+  45% { opacity: 1; transform: scaleY(.02); }
+  100% { opacity: 1; transform: none; filter: none; }
+}
+.bc-case-n { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sig); }
+.bc-case b {
+  font-family: var(--cap); font-weight: 700; font-size: 1.32rem; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.1;
+  color: var(--ink);
+}
+.bc-case i { font-style: normal; font-size: 0.95rem; color: var(--dim); }
+.bc-case em {
+  margin-top: auto; padding-top: 0.45rem;
+  font-family: var(--mono); font-style: normal; font-size: 0.76rem; color: var(--mute);
+  transition: color .3s, text-shadow .3s;
+}
+.bc-case em::before { content: "evidence: "; opacity: .7; }
+.bc-case::before {   /* corner brackets */
+  content: ""; position: absolute; inset: 6px; pointer-events: none; opacity: 0;
+  --k: var(--det);
+  background:
+    linear-gradient(var(--k), var(--k)) 0 0 / 12px 2px no-repeat,
+    linear-gradient(var(--k), var(--k)) 0 0 / 2px 12px no-repeat,
+    linear-gradient(var(--k), var(--k)) 100% 0 / 12px 2px no-repeat,
+    linear-gradient(var(--k), var(--k)) 100% 0 / 2px 12px no-repeat,
+    linear-gradient(var(--k), var(--k)) 0 100% / 12px 2px no-repeat,
+    linear-gradient(var(--k), var(--k)) 0 100% / 2px 12px no-repeat,
+    linear-gradient(var(--k), var(--k)) 100% 100% / 12px 2px no-repeat,
+    linear-gradient(var(--k), var(--k)) 100% 100% / 2px 12px no-repeat;
+  transform: scale(1.08); transition: opacity .25s, transform .35s var(--ease);
+}
+.bc-case::after {    /* the scanner band */
+  content: ""; position: absolute; left: 0; right: 0; top: -40%; height: 40%; pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(76, 195, 255, .22) 80%, rgba(160, 225, 255, .7) 100%);
+  opacity: 0;
+}
+.bc-case:hover, .bc-case:focus-visible, .bc.is-detective .bc-case {
+  border-color: rgba(76, 195, 255, .55);
+  background-color: #08182a;
+}
+.bc-case:hover, .bc-case:focus-visible { translate: 0 -3px; outline: none; box-shadow: 0 0 0 2px var(--det); }
+.bc-case:hover::before, .bc-case:focus-visible::before, .bc.is-detective .bc-case::before { opacity: 1; transform: none; }
+.bc-case:hover::after, .bc-case:focus-visible::after { animation: bc-sweep 1.1s ease-out 1; }
+.bc.is-detective .bc-case::after { animation: bc-sweep 1.4s ease-out calc(var(--i, 0) * 70ms) 1; }
+.bc-case:hover em, .bc-case:focus-visible em, .bc.is-detective .bc-case em {
+  color: var(--hot); text-shadow: 0 0 10px rgba(255, 154, 60, .5);
+}
+@keyframes bc-sweep {
+  0% { top: -40%; opacity: 1; }
+  85% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* ───────────── panels ───────────── */
+.bc-cols { display: grid; gap: clamp(1rem, 2.4vw, 1.6rem); grid-template-columns: 1fr; margin-top: clamp(1.6rem, 4vw, 2.6rem); }
+@media (min-width: 900px) { .bc-cols { grid-template-columns: 1fr 1fr; } }
+.bc-panel {
+  padding: clamp(1.1rem, 2.6vw, 1.6rem);
+  border: 1px solid var(--line); border-radius: 10px;
+  background: linear-gradient(180deg, rgba(20, 23, 29, .94), rgba(11, 13, 17, .94));
+  transition: background .6s, border-color .6s;
+}
+.bc.is-detective .bc-panel { background: linear-gradient(180deg, rgba(6, 22, 37, .94), rgba(3, 12, 21, .94)); }
+
+/* the file: label left, answer right, each answer behind a bar that lifts */
+.bc-file { display: flex; flex-direction: column; }
+.bc-file div {
+  display: flex; justify-content: space-between; gap: 1rem; align-items: baseline;
+  padding: 0.55rem 0; border-bottom: 1px dashed rgba(201, 205, 210, .14);
+}
+.bc-file dt { flex: none; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); }
+.bc-file dd { text-align: right; color: var(--ink); font-weight: 500; }
+.bc-file dd span { position: relative; display: inline; }
+/* the redaction bar, only once the script has sealed the file */
+.bc-file.is-sealed dd span::after {
+  content: ""; position: absolute; inset: -1px -3px; background: #000;
+  box-shadow: 0 0 0 1px #20252c;
+  transform-origin: 100% 50%;
+  transition: transform .55s var(--ease);
+  transition-delay: calc(var(--k, 0) * 140ms + 200ms);
+}
+.bc-file.is-sealed.is-open dd span::after { transform: scaleX(0); }
+
+/* the belt: the fan page's pouches, as a strap of compartments */
+/* ── the rogues gallery, pulled in from the world page ──
+   The same nine names as /worlds/batman/, filed the way the cave would file
+   them: a name, a status and the line about why they work. The status is the
+   only part that is not on the world page, because a case wall needs one. */
+.bc-rogues { list-style: none; display: grid; gap: 0.7rem; }
+@media (min-width: 620px) { .bc-rogues { grid-template-columns: 1fr 1fr; } }
+.bc-rogues li {
+  position: relative; padding: 0.6rem 0.7rem 0.65rem 1rem;
+  border: 1px solid var(--bezel); border-radius: 8px;
+  background: rgba(10, 13, 18, .6);
+}
+.bc-rogues li::before {
+  content: ""; position: absolute; left: 0; top: 0.6rem; bottom: 0.6rem; width: 3px;
+  border-radius: 2px; background: var(--scr);
+}
+.bc.is-detective .bc-rogues li::before { background: var(--det); }
+.bc-rogues b {
+  font-family: var(--cap); font-weight: 700; font-size: 0.98rem;
+  letter-spacing: 0.06em; text-transform: uppercase; color: #f4e6b8;
+}
+.bc-rogues em {
+  float: right; font-style: normal; font-family: var(--mono);
+  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute);
+}
+.bc-rogues p { margin-top: 0.2rem; font-size: 0.86rem; line-height: 1.45; color: #cfd4da; }
+.bc-rogues-go {
+  display: inline-block; margin-top: 0.9rem; font-family: var(--mono);
+  font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--scr);
+}
+.bc-rogues-go:hover { color: #fff; }
+
+.bc-belt {
+  display: grid; gap: 0.55rem; grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 0.75rem; border-radius: 6px;
+  background:
+    linear-gradient(180deg, transparent 0 46%, rgba(0, 0, 0, .35) 46% 54%, transparent 54%),
+    linear-gradient(180deg, #2b2a26, #1a1916);
+  border-top: 3px solid #3a3830; border-bottom: 3px solid #3a3830;
+}
+.bc-belt li {
+  position: relative; padding: 0.75rem 0.75rem 0.7rem; border-radius: 4px 4px 8px 8px;
+  background: linear-gradient(180deg, #3b3a34, #26251f);
+  border: 1px solid #4a473d;
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, .06), 0 3px 6px rgba(0, 0, 0, .4);
+}
+/* the gold buckle on each flap */
+.bc-belt li::before {
+  content: ""; position: absolute; top: -4px; left: 50%; width: 18px; height: 8px; translate: -50% 0;
+  border-radius: 2px; background: linear-gradient(180deg, #ffe08a, #b88a1c); box-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+}
+.bc.is-detective .bc-belt li::before { background: linear-gradient(180deg, #ffc48a, var(--hot)); }
+.bc-belt b { display: block; font-family: var(--cap); font-weight: 700; font-size: 1.02rem; letter-spacing: 0.06em; text-transform: uppercase; color: #f4e6b8; }
+.bc-belt p { margin-top: 0.15rem; font-size: 0.94rem; line-height: 1.4; color: #e3ddcb; }
+
+/* ───────────── comms ───────────── */
+.bc-comms { margin-top: clamp(1rem, 2.4vw, 1.6rem); }
+.bc-chans { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); }
+.bc-chans li { display: flex; }
+.bc-chan {
+  flex: 1; display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 0.8rem; align-items: center;
+  padding: 0.6rem 0.75rem; border-radius: 5px;
+  border: 1px solid rgba(201, 205, 210, .12); background: rgba(255, 255, 255, .02);
+  transition: border-color .3s, background .3s;
+}
+.bc-chan-n {
+  grid-row: span 2; display: grid; place-items: center;
+  width: 46px; height: 40px; border-radius: 4px;
+  background: #050608; box-shadow: inset 0 0 0 1px #262b33;
+  font-family: var(--mono); font-size: 0.72rem; color: var(--w);
+  text-shadow: 0 0 8px color-mix(in srgb, var(--w) 60%, transparent);
+}
+.bc-chan b { font-family: var(--cap); font-weight: 600; font-size: 1.06rem; letter-spacing: 0.04em; align-self: end; }
+.bc-chan i { font-style: normal; font-size: 0.9rem; color: var(--dim); align-self: start; }
+.bc-chan:hover, .bc-chan:focus-visible { border-color: var(--w); background: color-mix(in srgb, var(--w) 8%, transparent); }
+
+/* ───────────── the turn ───────────── */
+.bc-end { margin-top: clamp(2.4rem, 6vw, 3.6rem); text-align: center; }
+.bc-end-k { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em; color: var(--mute); }
+.bc-turn {
+  margin-top: 0.8rem; padding: 0.85rem 1.8rem; cursor: pointer;
+  border: 1px solid var(--sig); border-radius: 4px; background: transparent; color: var(--sig);
+  font-family: var(--cap); font-weight: 700; font-size: 1.2rem; letter-spacing: 0.12em; text-transform: uppercase;
+  transition: background .3s, color .3s;
+}
+.bc-turn:hover, .bc-turn:focus-visible { background: var(--sig); color: #14110a; }
+
+/* the flock: bats out of the button, scattering up and away */
+.bc-flock { position: fixed; inset: 0; z-index: 30; pointer-events: none; overflow: hidden; }
+.bc-flock svg {
+  position: absolute; width: var(--s, 40px); height: auto; aspect-ratio: 200 / 82; fill: #050507;
+  filter: drop-shadow(0 0 1px rgba(245, 197, 66, .5));
+  animation: bc-fly var(--t, 1.6s) cubic-bezier(.3, .1, .4, 1) var(--d, 0s) both;
+}
+@keyframes bc-fly {
+  0% { transform: translate(0, 0) scale(.3) rotate(0deg); opacity: 0; }
+  12% { opacity: 1; }
+  100% { transform: translate(var(--x), var(--y)) scale(1) rotate(var(--r, 0deg)); opacity: 0; }
+}
+
+.bc.is-gone .bc-main, .bc.is-gone .bc-top { opacity: 0; transition: opacity 1s ease .35s; pointer-events: none; }
+.bc-done {
+  position: fixed; inset: 0; z-index: 20; display: grid; place-items: center;
+  background: radial-gradient(60% 50% at 50% 30%, rgba(245, 197, 66, .08), transparent 70%), var(--night);
+  opacity: 0; pointer-events: none; transition: opacity 1s ease .35s;
+  text-align: center; padding: 2rem;
+}
+.bc.is-gone .bc-done { opacity: 1; pointer-events: auto; }
+.bc-done-orb { display: block; width: 96px; height: 96px; margin: 0 auto 1.4rem; opacity: .85; }
+.bc:not(.is-gone) .bc-done-orb { display: none; }
+.bc-done-k { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
+.bc-done-t {
+  margin-top: 0.4rem; font-family: var(--cap); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  font-size: clamp(2rem, 7vw, 3.8rem); color: var(--sig);
+}
+.bc-done-s { margin-top: 0.4rem; color: var(--dim); }
+.bc-done a {
+  display: inline-block; margin-top: 1.6rem;
+  font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim);
+  border-bottom: 1px solid var(--line); padding-bottom: 3px;
+}
+.bc-done a:hover { color: var(--sig); border-color: var(--sig); }
+
+/* ───────────── phones ───────────── */
+@media (max-width: 560px) {
+  .bc-top { font-size: 0.72rem; }
+  .bc-top-mid { order: 3; flex-basis: 100%; }
+  .bc-wall { grid-template-columns: 1fr 1fr; gap: 0.5rem; padding: 0.5rem; }
+  .bc-case { padding: 0.7rem 0.65rem 0.65rem; }
+  .bc-case b { font-size: 1.08rem; }
+  .bc-case i { font-size: 0.86rem; }
+  .bc-case em { font-size: 0.7rem; overflow-wrap: anywhere; }
+  .bc-case em::before { content: ""; }
+  .bc-belt { grid-template-columns: 1fr; }
+  .bc-file div { flex-direction: column; gap: 0.15rem; }
+  .bc-file dd { text-align: left; }
+  .bc-controls { flex-direction: column; align-items: stretch; }
+  .bc-switch, .bc-detect { justify-content: flex-start; }
+  .bc-status { text-align: left; flex-basis: auto; }
+  .bc-scene-hint { white-space: normal; text-align: center; width: max-content; max-width: 80%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bc-led, .bc-case { animation: none; }
+  .bc-case:hover::after, .bc-case:focus-visible::after, .bc.is-detective .bc-case::after { animation: none; }
+  .bc-case { transition: none; }
+  .bc-flock { display: none; }
+}

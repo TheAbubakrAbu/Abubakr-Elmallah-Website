@@ -1,0 +1,237 @@
+---
+permalink: /wanted/
+title: "The Wanted Board · Abubakr Elmallah"
+description: "The Wanted Board: a Red Dead Redemption interface for Abubakr Elmallah's portfolio, every page a poster on the sheriff's wall, marked in Dead Eye."
+theme: "#1c120b"
+fonts: "family=Rye&family=Ewert&family=Special+Elite&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/wanted.css' %}" />
+</head>
+<body class="wb" id="wb">
+
+<!-- the sheriff's office in Valentine, late afternoon: plank walls, one
+     window throwing a shaft of light across the room, and dust turning in
+     it. Dead Eye (wanted.js) slows all of this down. -->
+<div class="wb-room" aria-hidden="true">
+  <span class="wb-planks"></span>
+  <span class="wb-shaft"></span>
+  <span class="wb-dust">
+    <i style="--x:18%; --y:30%; --t:19s; --d:-2s"></i><i style="--x:26%; --y:62%; --t:23s; --d:-9s"></i>
+    <i style="--x:34%; --y:44%; --t:17s; --d:-5s"></i><i style="--x:41%; --y:20%; --t:27s; --d:-14s"></i>
+    <i style="--x:47%; --y:70%; --t:21s; --d:-3s"></i><i style="--x:55%; --y:38%; --t:25s; --d:-11s"></i>
+    <i style="--x:62%; --y:56%; --t:18s; --d:-7s"></i><i style="--x:70%; --y:26%; --t:29s; --d:-16s"></i>
+  </span>
+  <span class="wb-lamp"></span>
+</div>
+
+<!-- Dead Eye's own layer: the vignette that closes in and beats with the
+     heart. The sepia wash itself is a filter on the room and the paper
+     (wanted.css), so the red marks painted on top stay red, as in the game. -->
+<div class="wb-de-veil" aria-hidden="true"></div>
+
+<!-- the engraving blocks the posters are printed from, cut once and used by
+     every poster: a little woodcut for each room -->
+<svg class="wb-blocks" aria-hidden="true" focusable="false">
+  <symbol id="wbHouse" viewBox="0 0 48 48"><path d="M6 24 24 9l18 15M11 21v19h26V21M20 40V30h8v10M30 14V9h4v8"/><path d="M2 42h44M6 42v-6m6 6v-6m24 6v-6m6 6v-6M3 37h9m24 0h9"/></symbol>
+  <symbol id="wbCity" viewBox="0 0 48 48"><path d="M4 42h40M8 42V24h9v18M17 42V12h13v18M30 42V24h11v18M23 12V6M20 18h3m4 0h-3m-4 6h3m4 0h-3m-12 6h3m22 0h-3m-12 6h3m4 0h-3"/><path d="M36 22c0-4 4-4 4-8s4-4 4-8"/></symbol>
+  <symbol id="wbLedger" viewBox="0 0 48 48"><path d="M10 9h24a4 4 0 0 1 4 4v28H14a4 4 0 0 1-4-4z"/><path d="M14 9v32M19 17h14M19 23h14M19 29h10M10 37a4 4 0 0 1 4-4h24"/></symbol>
+  <symbol id="wbBell" viewBox="0 0 48 48"><path d="M24 6v6M13 33c0-14 4-20 11-20s11 6 11 20zM9 33h30M21 37a3 3 0 0 0 6 0"/><path d="M6 14l4 3m32-3-4 3"/></symbol>
+  <symbol id="wbTrain" viewBox="0 0 48 48"><path d="M4 34h34V24H28V13h-9v11h-8v-6H7v16M38 34l6 6M38 26l4 0"/><circle cx="13" cy="38" r="4"/><circle cx="24" cy="38" r="4"/><circle cx="34" cy="38" r="3"/><path d="M8 18c-1-4 2-6 0-10m4 10c-1-3 2-5 1-8"/></symbol>
+  <symbol id="wbShoe" viewBox="0 0 48 48"><path d="M14 8C5 25 11 41 24 41S43 25 34 8"/><path d="M19 8c-6 14-2 26 5 26s11-12 5-26"/><path d="M14 18h2m-1 8h2m16-8h2m-1 8h-2m-11 9h2"/></symbol>
+  <symbol id="wbMesa" viewBox="0 0 48 48"><path d="M3 40 15 18l7 10 7-12 16 24zM15 18l3 7m11-9 3 8"/><circle cx="36" cy="10" r="4"/><path d="M3 44h42"/></symbol>
+  <symbol id="wbHat" viewBox="0 0 48 48"><path d="M4 31c8 7 32 7 40 0-5-4-12-5-20-5s-15 1-20 5z"/><path d="M13 28c-2-12 1-18 6-18 2 0 3 3 5 3s3-3 5-3c5 0 8 6 6 18"/><path d="M13 24c7 3 15 3 22 0"/></symbol>
+  <symbol id="wbSaucer" viewBox="0 0 48 48"><ellipse cx="24" cy="22" rx="19" ry="6"/><path d="M14 20c1-8 5-12 10-12s9 4 10 12M18 28l-6 14m18-14 6 14m-12-12v12"/><circle cx="12" cy="22" r="1.2"/><circle cx="24" cy="24" r="1.2"/><circle cx="36" cy="22" r="1.2"/></symbol>
+  <symbol id="wbCrescent" viewBox="0 0 48 48"><path d="M28 6a18 18 0 1 0 14 29A15 15 0 1 1 28 6z"/><path d="m36 12 1.6 3.4 3.6.4-2.7 2.5.8 3.6-3.3-1.8-3.3 1.8.8-3.6-2.7-2.5 3.6-.4z"/></symbol>
+  <symbol id="wbWheel" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17"/><circle cx="24" cy="24" r="13"/><circle cx="24" cy="24" r="3.5"/><path d="M24 7v13.5m0 7V41M7 24h13.5m7 0H41M12 12l9.5 9.5m5 5L36 36M36 12l-9.5 9.5m-5 5L12 36"/></symbol>
+  <symbol id="wbMask" viewBox="0 0 48 48"><path d="M8 10c10-4 22-4 32 0 0 18-6 28-16 30C14 38 8 28 8 10z"/><path d="M14 18c2-2 5-2 7 0m6 0c2-2 5-2 7 0M16 28c4 5 12 5 16 0"/></symbol>
+  <symbol id="wbCards" viewBox="0 0 48 48"><path d="m8 14 14-5 9 25-14 5z"/><path d="M20 10h15v30H20"/><path d="M27.5 18c-4 4-5 6-2.5 7.5 1.4.8 2.5 0 2.5-1 0 1 1.1 1.8 2.5 1 2.5-1.5 1.5-3.5-2.5-7.5zm0 6.5v4"/></symbol>
+  <symbol id="wbGun" viewBox="0 0 48 48"><path d="M4 17h28v6H17l-2 3"/><path d="M19 17v-3h10v9"/><path d="M15 26l-5 13h8l3-9h5l3-7"/><path d="M32 18h10v3H32M7 17v-3h3v3"/><circle cx="24" cy="20" r="2"/></symbol>
+  <symbol id="wbEye" viewBox="0 0 48 48"><path d="M3 24c6-9 13-13 21-13s15 4 21 13c-6 9-13 13-21 13S9 33 3 24z"/><circle cx="24" cy="24" r="7.5"/><circle cx="24" cy="24" r="3" class="wb-fill"/><path d="M24 4v4m0 32v4M9 9l3 3m24-3-3 3"/></symbol>
+</svg>
+
+<header class="wb-top">
+  <a class="wb-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave Valentine</span>
+  </a>
+  <span class="wb-top-mid">Sheriff’s Office · Valentine · New Hanover</span>
+  <span class="wb-top-r">
+    <!-- the Dead Eye core, as on the game's HUD: a ring that drains while
+         Dead Eye is on and fills back up afterwards -->
+    <span class="wb-core" aria-hidden="true">
+      <svg viewBox="0 0 36 36"><circle class="wb-core-bg" cx="18" cy="18" r="15"/><circle class="wb-core-fill" id="wbCore" cx="18" cy="18" r="15" pathLength="100"/><use href="#wbEye" x="8" y="8" width="20" height="20"/></svg>
+    </span>
+    <span id="wbDate">····</span>
+  </span>
+</header>
+
+<main class="wb-main">
+
+  <!-- ─────────── the hero, and the poster on him ─────────── -->
+  <section class="wb-hero">
+    <div class="wb-hero-text">
+      <p class="wb-kicker">Posted by order of the sheriff</p>
+      <h1 class="wb-title">The Wanted Board</h1>
+      <p class="wb-sub">Every room on this site, hand-set in woodtype and nailed to the sheriff’s wall. Read the bills, pick one and ride. Or take a breath, use Dead Eye, mark up to six of them, and fire.</p>
+      <div class="wb-de-row">
+        <button class="wb-de" id="wbDE" type="button" aria-pressed="false">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#wbEye"/></svg><span id="wbDEt">Dead Eye</span>
+        </button>
+        <p class="wb-de-hint">Everything slows. Hover, tab to or tap a poster to paint your mark; the cylinder holds six.</p>
+      </div>
+    </div>
+
+    <!-- the poster on Abubakr himself: what the Pinkertons have on him,
+         and only what is true. The portrait is a silhouette under a hat,
+         engraved in crosshatch, because no wanted bill ever got the face
+         right anyway. -->
+    <article class="wb-bill" aria-labelledby="wbBillH">
+      <span class="wb-bill-nail" aria-hidden="true"></span>
+      <p class="wb-bill-k" aria-hidden="true">Wanted</p>
+      <p class="wb-bill-by">for building things, on the Pinkerton Agency’s own account</p>
+      <svg class="wb-portrait" viewBox="0 0 200 150" aria-hidden="true">
+        <defs>
+          <pattern id="wbHatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
+            <path d="M0 0v5" stroke="#3a2412" stroke-width="1.6"/>
+          </pattern>
+          <pattern id="wbHatch2" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-40)">
+            <path d="M0 0v4" stroke="#3a2412" stroke-width="1.1"/>
+          </pattern>
+        </defs>
+        <rect x="6" y="4" width="188" height="142" class="wb-portrait-frame"/>
+        <path d="M30 146c4-28 30-40 70-40s66 12 70 40z" fill="url(#wbHatch)"/>
+        <path d="M84 104c0 8 6 16 16 16s16-8 16-16" fill="url(#wbHatch2)"/>
+        <ellipse cx="100" cy="78" rx="23" ry="28" fill="url(#wbHatch2)"/>
+        <path d="M40 62c18 9 102 9 120 0-10-8-30-11-60-11s-50 3-60 11z" fill="#3a2412"/>
+        <path d="M70 56c-3-24 4-36 14-36 6 0 9 6 16 6s10-6 16-6c10 0 17 12 14 36-20 6-40 6-60 0z" fill="#3a2412"/>
+        <path d="M71 49c19 6 39 6 58 0" stroke="#e7d3a6" stroke-width="3" fill="none"/>
+      </svg>
+      <h2 class="wb-bill-name" id="wbBillH">Abubakr Elmallah</h2>
+      <p class="wb-bill-alias">alias the lead mobile &amp; backend developer</p>
+      <p class="wb-bill-reward"><span>Reward</span> $2,028</p>
+      <h3 class="wb-bill-h">Known for</h3>
+      <ul class="wb-bill-list">
+        <li>Twelve apps shipped, across four platforms</li>
+        <li>Winner of the Apple Swift Student Challenge, 2024</li>
+        <li>Datapad, in the Top 10 of the paid Entertainment chart</li>
+        <li>Two Discord bots, riding in 500+ servers</li>
+        <li>Al-Adhan, which works out prayer times 22 ways</li>
+        <li>The UCI Esports app: the arena, its PCs, its events</li>
+        <li>First jobs alone: Order 66 and Datapad, 2021</li>
+        <li>Seventy-one worlds, charted on <a href="/worlds/">/worlds/</a></li>
+      </ul>
+      <dl class="wb-bill-seen">
+        <div><dt>Last seen</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
+        <div><dt>Rode with the gang</dt><dd>1st year of college, 2024–25</dd></div>
+      </dl>
+    </article>
+  </section>
+
+  <!-- ─────────── the board ─────────── -->
+  <!-- every room on the site, each its own bill: the posters ARE the list,
+       real links in a real list, so nothing here is only for the eye. --r
+       is how crooked each one hangs; --i staggers them going up. The Dead
+       Eye mark (.wb-x) sits outside the paper so the sepia wash on the
+       paper never reaches it. First Light (Al-Islam) is a notice, not a
+       bill: it takes no mark and no bullet. -->
+  <section class="wb-board" aria-labelledby="wbBoardH">
+    <h2 class="wb-h" id="wbBoardH">
+      <canvas class="wb-think" data-orb="searching" data-orb-size="22" data-orb-ink="#e0b070" aria-hidden="true"></canvas>The board<span>every room on the site, posted</span>
+    </h2>
+    <ul class="wb-posters" id="wbPosters">
+      <li><a class="wb-poster" href="/" style="--r:-2.2deg; --i:0"><span class="wb-paper"><span class="wb-k">Notice</span><svg class="wb-ico" aria-hidden="true"><use href="#wbHouse"/></svg><b class="wb-n">Beecher’s Hope</b><span class="wb-real">home</span><span class="wb-f">A ranch raised by hand. The trail starts here.</span><span class="wb-amt">Free &amp; clear</span></span></a></li>
+      <li><a class="wb-poster" href="/work/" style="--r:1.6deg; --i:1"><span class="wb-paper"><span class="wb-k">Wanted</span><svg class="wb-ico" aria-hidden="true"><use href="#wbCity"/></svg><b class="wb-n">Saint Denis</b><span class="wb-real">work at UC Irvine</span><span class="wb-f">For lead mobile &amp; backend work in the big city.</span><span class="wb-amt">$5,000</span></span></a></li>
+      <li><a class="wb-poster" href="/projects/" style="--r:-0.8deg; --i:2"><span class="wb-paper"><span class="wb-k">Reward</span><svg class="wb-ico" aria-hidden="true"><use href="#wbLedger"/></svg><b class="wb-n">The Trading Post Ledger</b><span class="wb-real">every project</span><span class="wb-f">Twelve apps, four platforms, every one accounted for.</span><span class="wb-amt">$12,000</span></span></a></li>
+      <li><a class="wb-poster" href="/education/" style="--r:2.4deg; --i:3"><span class="wb-paper"><span class="wb-k">Notice</span><svg class="wb-ico" aria-hidden="true"><use href="#wbBell"/></svg><b class="wb-n">The Schoolhouse</b><span class="wb-real">education</span><span class="wb-f">Reading, writing and a great deal of arithmetic.</span><span class="wb-amt">$250</span></span></a></li>
+      <li><a class="wb-poster" href="/college/" style="--r:-1.4deg; --i:4"><span class="wb-paper"><span class="wb-k">Wanted</span><svg class="wb-ico" aria-hidden="true"><use href="#wbTrain"/></svg><b class="wb-n">Blackwater</b><span class="wb-real">college, UC Irvine</span><span class="wb-f">The modern city. Computer Science, class of 2028.</span><span class="wb-amt">$2,028</span></span></a></li>
+      <li><a class="wb-poster" href="/high-school/" style="--r:1deg; --i:5"><span class="wb-paper"><span class="wb-k">Reward</span><svg class="wb-ico" aria-hidden="true"><use href="#wbShoe"/></svg><b class="wb-n">Valentine</b><span class="wb-real">high school</span><span class="wb-f">The first town up the trail, mud and all.</span><span class="wb-amt">$150</span></span></a></li>
+      <li><a class="wb-poster" href="/worlds/" style="--r:-2.6deg; --i:6"><span class="wb-paper"><span class="wb-k">Bounty</span><svg class="wb-ico" aria-hidden="true"><use href="#wbMesa"/></svg><b class="wb-n">The Territories</b><span class="wb-real">all 71 worlds</span><span class="wb-f">Seventy of them surveyed, and more country past those.</span><span class="wb-amt">$7,000</span></span></a></li>
+      <li><a class="wb-poster wb-poster--gang" href="/worlds/red-dead/" style="--r:0.6deg; --i:7"><span class="wb-paper"><span class="wb-k">Dead or alive</span><svg class="wb-ico" aria-hidden="true"><use href="#wbHat"/></svg><b class="wb-n">The Van der Linde Gang</b><span class="wb-real">Red Dead Redemption, the world page</span><span class="wb-f">Last seen at Horseshoe Overlook, 1899.</span><span class="wb-amt">$25,000</span></span></a></li>
+      <li><a class="wb-poster" href="/star-wars/" style="--r:-1deg; --i:8"><span class="wb-paper"><span class="wb-k">Sighting</span><svg class="wb-ico" aria-hidden="true"><use href="#wbSaucer"/></svg><b class="wb-n">Lights over Mount Shann</b><span class="wb-real">Star Wars apps</span><span class="wb-f">Strange craft in the sky, from a galaxy far away.</span><span class="wb-amt">$66</span></span></a></li>
+      <li><a class="wb-poster wb-poster--calm" href="/al-islam/" style="--r:1.8deg; --i:9"><span class="wb-paper"><span class="wb-k">Notice</span><svg class="wb-ico" aria-hidden="true"><use href="#wbCrescent"/></svg><b class="wb-n">First Light</b><span class="wb-real">Al-Islam</span><span class="wb-f">Prayer times, kept from dawn to nightfall.</span><span class="wb-amt">Open to all</span></span></a></li>
+      <li><a class="wb-poster" href="/travels/" style="--r:-1.9deg; --i:10"><span class="wb-paper"><span class="wb-k">Reward</span><svg class="wb-ico" aria-hidden="true"><use href="#wbWheel"/></svg><b class="wb-n">The Stagecoach Road</b><span class="wb-real">travels</span><span class="wb-f">Everywhere the wheels have been so far.</span><span class="wb-amt">$300</span></span></a></li>
+      <li><a class="wb-poster" href="/accents/" style="--r:2deg; --i:11"><span class="wb-paper"><span class="wb-k">Tonight</span><svg class="wb-ico" aria-hidden="true"><use href="#wbMask"/></svg><b class="wb-n">Théâtre Râleur</b><span class="wb-real">accents &amp; impersonations</span><span class="wb-f">A different voice every night of the week.</span><span class="wb-amt">$75</span></span></a></li>
+      <li><a class="wb-poster" href="/gaming/" style="--r:-0.6deg; --i:12"><span class="wb-paper"><span class="wb-k">Wanted</span><svg class="wb-ico" aria-hidden="true"><use href="#wbCards"/></svg><b class="wb-n">The Card Table</b><span class="wb-real">gaming</span><span class="wb-f">Poker, dominoes and five finger fillet, all night.</span><span class="wb-amt">$100</span></span></a></li>
+      <li><a class="wb-poster" href="/lightsabers/" style="--r:1.3deg; --i:13"><span class="wb-paper"><span class="wb-k">For sale</span><svg class="wb-ico" aria-hidden="true"><use href="#wbGun"/></svg><b class="wb-n">The Gunsmith</b><span class="wb-real">the lightsaber guide</span><span class="wb-f">A catalogue of arms, from a much longer war.</span><span class="wb-amt">$1,000</span></span></a></li>
+      <li><a class="wb-poster" href="/resume/" style="--r:-1.7deg; --i:14"><span class="wb-paper"><span class="wb-k">Classified</span><svg class="wb-ico" aria-hidden="true"><use href="#wbEye"/></svg><b class="wb-n">The Pinkerton File</b><span class="wb-real">résumé</span><span class="wb-f">Everything the Agency knows, on one page.</span><span class="wb-amt">On request</span></span></a></li>
+    </ul>
+  </section>
+
+  <!-- ─────────── the telegraph office ─────────── -->
+  <!-- the other interfaces, each a telegram form wired down the line -->
+  <section class="wb-wire" aria-labelledby="wbWireH">
+    <h2 class="wb-h" id="wbWireH">The telegraph office<span>wire the other interfaces</span></h2>
+    <ul class="wb-grams">
+      <li><a class="wb-gram" href="/elmallah/"><span class="wb-gram-k">To: Star Wars</span><b>E.L.M.A.L.L.A.H.</b><i>The holotable hub. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/holocron/"><span class="wb-gram-k">To: Star Wars</span><b>The Holocron</b><i>A Jedi archive. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/jarvis/"><span class="wb-gram-k">To: Avengers</span><b>J.A.R.V.I.S.</b><i>A Stark display. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/marauders-map/"><span class="wb-gram-k">To: Harry Potter</span><b>The Marauder’s Map</b><i>Parchment and ink. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/crafting-table/"><span class="wb-gram-k">To: Minecraft</span><b>The Crafting Table</b><i>Blocks and slots. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/citadel/"><span class="wb-gram-k">To: Game of Thrones</span><b>The Citadel</b><i>The maesters of Oldtown. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/compass/"><span class="wb-gram-k">To: Pirates of the Caribbean</span><b>The Compass</b><i>It points where you want. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/control-room/"><span class="wb-gram-k">To: Jurassic Park</span><b>The Control Room</b><i>Isla Nublar. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/upside-down/"><span class="wb-gram-k">To: Stranger Things</span><b>The Upside Down</b><i>Hawkins, Indiana. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/starcourt/"><span class="wb-gram-k">To: Stranger Things</span><b>Starcourt</b><i>The arcade and the mall. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/spirit-library/"><span class="wb-gram-k">To: Avatar: The Last Airbender</span><b>The Spirit Library</b><i>Under the desert sand. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/monastery/"><span class="wb-gram-k">To: Ninjago</span><b>The Monastery</b><i>Up in the mountains. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/dunder-mifflin/"><span class="wb-gram-k">To: The Office</span><b>Dunder Mifflin</b><i>Scranton, Pennsylvania. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/springfield/"><span class="wb-gram-k">To: The Simpsons</span><b>Springfield</b><i>Somewhere in America. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/vought/"><span class="wb-gram-k">To: The Boys</span><b>Vought Tower</b><i>Heroes, for a price. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/pokedex/"><span class="wb-gram-k">To: Pokémon</span><b>The Pokédex</b><i>Every one, catalogued. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/batcomputer/"><span class="wb-gram-k">To: Batman</span><b>The Batcomputer</b><i>Under Wayne Manor. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/daily-bugle/"><span class="wb-gram-k">To: Spider-Man</span><b>The Daily Bugle</b><i>Hold the front page. Stop.</i></a></li>
+    </ul>
+  </section>
+
+  <button class="wb-ride" id="wbRide" type="button">Ride off into the sunset</button>
+
+</main>
+
+<!-- Dead Eye's HUD: the cylinder of a Cattleman revolver, a chamber lit for
+     each mark painted, and the trigger -->
+<div class="wb-hud" id="wbHud" hidden>
+  <svg class="wb-cyl" viewBox="-30 -30 60 60" aria-hidden="true">
+    <circle r="27" class="wb-cyl-body"/>
+    <g id="wbCyl"><circle class="wb-ch" cx="0" cy="-16" r="6"/><circle class="wb-ch" cx="13.9" cy="-8" r="6"/><circle class="wb-ch" cx="13.9" cy="8" r="6"/><circle class="wb-ch" cx="0" cy="16" r="6"/><circle class="wb-ch" cx="-13.9" cy="8" r="6"/><circle class="wb-ch" cx="-13.9" cy="-8" r="6"/></g>
+    <circle r="3" class="wb-cyl-pin"/>
+  </svg>
+  <p class="wb-hud-t" id="wbHudT" aria-live="polite">Paint your marks</p>
+  <button class="wb-fire" id="wbFire" type="button">Fire</button>
+  <button class="wb-holster" id="wbHolster" type="button">Holster</button>
+</div>
+
+<!-- the ending: the sun goes down behind the mesas, and the orb is the sun -->
+<div class="wb-end" id="wbEnd">
+  <div class="wb-end-sky" aria-hidden="true">
+    <span class="wb-end-sun"><canvas class="wb-end-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#c9402f" aria-hidden="true"></canvas></span>
+    <svg class="wb-end-land" viewBox="0 0 1400 300" preserveAspectRatio="xMidYMax slice">
+      <path class="wb-end-far" d="M0 300V200C120 186 200 168 300 182S480 202 560 178 760 150 860 176 1060 198 1160 170 1340 160 1400 176V300z"/>
+      <path class="wb-end-mesa" d="M170 200h150v100H170zM160 200l14-20h142l14 20zM1050 214h190v86h-190zM1038 214l16-22h182l16 22z"/>
+      <path class="wb-end-near" d="M0 300V256C160 236 300 270 460 252S760 236 900 258 1200 240 1400 252V300z"/>
+      <path class="wb-end-poles" d="M250 252v-84M248 180h34M248 194h34M560 258v-72M558 194h30M558 206h30M860 262v-62M858 208h26M858 218h26M1120 266v-52M1118 220h22M1118 229h22M250 172l310 18 300 12 260 12"/>
+    </svg>
+  </div>
+  <div class="wb-end-text">
+    <p class="wb-end-k">Outlaws for life</p>
+    <p class="wb-end-t">So long, partner.</p>
+    <a href="/">Ride back to Beecher’s Hope</a>
+  </div>
+</div>
+
+<script>
+  /* smooth scrolling only after load, so back/forward restores the position instantly instead of sliding to it */
+  addEventListener('load', function () {
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      document.documentElement.classList.add('smooth');
+    }); });
+  });
+</script>
+<script src="{% include v.html f='/assets/js/wanted.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

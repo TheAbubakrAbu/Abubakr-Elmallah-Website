@@ -1,0 +1,658 @@
+/* ============================================================
+   spirit-library.css: /spirit-library/, the Avatar terminal.
+   Sister page to /jarvis/, /holocron/, /marauders-map/,
+   /crafting-table/ and /citadel/: sand and ink instead of glass.
+   The page is a cross-section of Wan Shi Tong's library: the
+   tower's top above the dunes under your real sky, the shelves
+   going down beneath it, the planetarium set to today, and a
+   way out that buries the whole thing. No image files: the
+   tower, the dial and the White Lotus tile are inline SVG.
+   ============================================================ */
+
+/* these pages load no shared stylesheet, so they carry their own reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button, input, output { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.sl {
+  --disp:  "Shippori Mincho", "Songti TC", Georgia, serif;
+  --label: "Zen Kaku Gothic New", "Hiragino Sans", system-ui, sans-serif;
+  --cjk:   "Songti TC", "Noto Serif TC", "Noto Serif CJK TC", "PMingLiU", serif;
+
+  /* the library, underground */
+  --ink:    #0a1222;
+  --ink-2:  #0f1a2f;
+  --ink-3:  #17253f;
+  --text:   #efe6d2;
+  --dim:    #bdb4a2;
+  --mute:   #988f80;          /* 5.3:1 on --ink-2, the AA floor here */
+  --amber:  #e8a13f;          /* the world's tile colour */
+  --amber-hi: #f6c46f;
+  --sand:   #e6c690;
+  --sand-2: #c99a5b;
+  --paper:  #f2e5c6;
+  --paper-ink: #1c2233;
+  --line:   rgba(232, 161, 63, 0.2);
+  --ease:   cubic-bezier(.16, 1, .3, 1);
+
+  /* the four nations, as the world page colours them, and the spirit world */
+  --water:  #4f9fd0;
+  --earth:  #5aa75a;
+  --fire:   #e0593a;
+  --air:    #e8c46a;
+  --spirit: #b6a0f0;
+
+  /* the sky over the desert, by time of day (data-sky, set from your clock
+     by spirit-library.js). Night is the default, so without scripts the
+     page still has a sky that suits its ink. */
+  --sky-1: #050a17; --sky-2: #0c1730; --sky-3: #1d2c50;
+  --h-ink: #f3e3bf; --h-dim: #c9c0ac; --h-acc: #f0b25a;
+  --dune-1: #3b4262; --dune-2: #2c3252; --dune-3: #20263f;
+  --stone-hi: #8c88a4; --stone-lo: #4c4967;
+  --dome-hi: #3c5c98; --dome-lo: #18253f;
+  --win-dark: #141a2c; --win: #f4bd5c;
+  --stars: 1; --wind: .05;
+
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--disp);
+  font-size: 1.05rem;
+  min-height: 100vh;
+  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+}
+.sl[data-sky="dusk"] {
+  --sky-1: #1b2148; --sky-2: #6a3b5c; --sky-3: #e08a4f;
+  --h-ink: #fbeedd; --h-dim: #ecdccb; --h-acc: #f6c46f;
+  --dune-1: #c98d5e; --dune-2: #a7663f; --dune-3: #7a4630;
+  --stone-hi: #e2aa78; --stone-lo: #8c5638;
+  --dome-hi: #43548c; --dome-lo: #1f2752;
+  --win-dark: #3a2230; --win: #ffd27a;
+  --stars: .35; --wind: .08;
+}
+.sl[data-sky="day"] {
+  --sky-1: #ecb25f; --sky-2: #f4cf8e; --sky-3: #fbeccc;
+  --h-ink: #16203a; --h-dim: #3b3328; --h-acc: #7a3510;
+  --dune-1: #efcf98; --dune-2: #e2b472; --dune-3: #cf9853;
+  --stone-hi: #eed3a2; --stone-lo: #b88a56;
+  --dome-hi: #3a5a8f; --dome-lo: #1c2c4e;
+  --win-dark: #3b2a1a; --win: #2a1f14;
+  --stars: 0; --wind: .14;
+}
+
+/* ───────────── the library's own light ───────────── */
+.sl-field { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.sl-field > span { position: absolute; inset: 0; }
+.sl-lamp {
+  background:
+    radial-gradient(50% 40% at 50% 0%, rgba(232, 161, 63, .10), transparent 70%),
+    radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(0, 0, 0, .55));
+}
+/* shelf uprights, very faint, running the whole height of the tower */
+.sl-uprights {
+  opacity: .6;
+  background:
+    repeating-linear-gradient(90deg, rgba(232, 161, 63, .04) 0 2px, transparent 2px 180px),
+    repeating-linear-gradient(0deg, rgba(232, 161, 63, .025) 0 1px, transparent 1px 120px);
+}
+
+/* ───────────── the desert, above ───────────── */
+.sl-hero {
+  position: relative; z-index: 1; overflow: hidden;
+  background: linear-gradient(180deg, var(--sky-1) 0%, var(--sky-2) 52%, var(--sky-3) 100%);
+  transition: background .8s;
+}
+.sl-stars {
+  position: absolute; inset: 0; width: 100%; height: 100%; opacity: var(--stars); transition: opacity .8s;
+  /* kept off the title and its paragraph, where a star reads as a speck on the text */
+  -webkit-mask-image: radial-gradient(ellipse 36% 26% at 50% 27%, transparent 55%, #000 100%);
+          mask-image: radial-gradient(ellipse 36% 26% at 50% 27%, transparent 55%, #000 100%);
+}
+.sl-stars circle { fill: #f4ecd8; }
+.sl-stars .tw { animation: sl-twinkle 4.5s ease-in-out infinite; }
+@keyframes sl-twinkle { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+
+.sl-top {
+  position: relative; z-index: 3;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.4rem 1rem; flex-wrap: wrap;
+  padding: calc(0.5rem + env(safe-area-inset-top, 0px)) max(clamp(1rem, 4vw, 2.6rem), env(safe-area-inset-right, 0px)) 0.5rem max(clamp(1rem, 4vw, 2.6rem), env(safe-area-inset-left, 0px));
+  font-family: var(--label); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--h-dim);
+}
+.sl-exit {
+  display: inline-flex; align-items: center; gap: 0.45rem; min-height: 44px;
+  color: var(--h-ink); transition: color .3s;
+}
+.sl-exit:hover { color: var(--h-acc); }
+.sl-exit svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; }
+.sl-now { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; font-variant-numeric: tabular-nums; }
+.sl-now-moon { width: 18px; height: 18px; flex: none; }
+.sl-moon-dark { fill: #2a3048; stroke: rgba(240, 230, 210, .35); stroke-width: 0.8; }
+.sl-moon-lit { fill: #f3ead2; }
+
+.sl-hero-txt {
+  position: relative; z-index: 2; text-align: center;
+  max-width: 64ch; margin: 0 auto; padding: clamp(1.4rem, 5vw, 3.2rem) 1rem 0;
+}
+.sl-kicker {
+  font-family: var(--label); font-weight: 700; font-size: 0.74rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--h-acc);
+}
+.sl-title {
+  margin-top: 0.5rem;
+  font-family: var(--disp); font-weight: 800; line-height: 1.02; letter-spacing: 0.02em;
+  font-size: clamp(2.6rem, 8.4vw, 5.6rem); color: var(--h-ink);
+  text-shadow: 0 2px 30px rgba(0, 0, 0, .18);
+}
+.sl-sub {
+  max-width: 58ch; margin: 1rem auto 0;
+  font-size: 1.08rem; line-height: 1.65; color: var(--h-dim);
+}
+
+/* the scene: sky bodies behind, the land in front of them */
+.sl-scene { position: relative; height: clamp(290px, 36vw, 520px); margin-top: clamp(0.4rem, 2vw, 1.4rem); }
+.sl-bodies { position: absolute; inset: 0; z-index: 0; }
+.sl-land { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; }
+.sl-land--tower { overflow: visible; }
+
+/* the sun and the moon, placed on a sky arc by spirit-library.js: --x
+   across, --y down, both percentages of the scene, and hidden once they
+   are below the horizon (and so behind the dunes anyway) */
+.sl-sun, .sl-moon {
+  position: absolute; left: var(--x, 80%); top: var(--y, 30%);
+  translate: -50% -50%; opacity: var(--up, 1);
+  transition: opacity .6s;
+}
+.sl-sun {
+  width: clamp(44px, 5vw, 70px); aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 45% 42%, #fffaf0, #ffe7ad 45%, #f6c46f);
+  box-shadow: 0 0 40px 14px rgba(255, 226, 160, .55), 0 0 120px 40px rgba(255, 210, 130, .25);
+}
+.sl[data-sky="dusk"] .sl-sun {
+  background: radial-gradient(circle at 45% 42%, #fff1d0, #ffb25a 50%, #e0602a);
+  box-shadow: 0 0 40px 16px rgba(255, 150, 70, .5), 0 0 140px 50px rgba(255, 120, 60, .25);
+}
+.sl-moon { width: clamp(34px, 3.4vw, 48px); aspect-ratio: 1; filter: drop-shadow(0 0 14px rgba(240, 230, 200, .45)); }
+.sl-moon svg { width: 100%; height: 100%; }
+.sl[data-sky="day"] .sl-moon { filter: none; }
+.sl[data-sky="day"] .sl-moon .sl-moon-dark { fill: transparent; stroke: rgba(255, 255, 255, .35); }
+.sl[data-sky="day"] .sl-moon .sl-moon-lit { fill: rgba(255, 255, 255, .8); }
+
+/* the land's paint, which follows the sky */
+.sl-d1 { fill: var(--dune-1); }
+.sl-d2 { fill: var(--dune-2); }
+.sl-d3 { fill: var(--dune-3); }
+.sl-d1, .sl-d2, .sl-d3 { transition: fill .8s; }
+.sl-st-hi { stop-color: var(--stone-hi); }
+.sl-st-lo { stop-color: var(--stone-lo); }
+.sl-dm-hi { stop-color: var(--dome-hi); }
+.sl-dm-lo { stop-color: var(--dome-lo); }
+.sl-trim { fill: var(--stone-lo); }
+.sl-teeth { fill: none; stroke: var(--stone-lo); stroke-width: 6; stroke-dasharray: 6 6; }
+.sl-win { fill: var(--win-dark); }
+.sl-win--lit { fill: var(--win); }
+.sl[data-sky="night"] .sl-win--lit, .sl[data-sky="dusk"] .sl-win--lit { filter: drop-shadow(0 0 8px rgba(255, 196, 100, .9)); }
+.sl-ribs { fill: none; stroke: rgba(0, 0, 0, .28); stroke-width: 2; }
+.sl-rail { fill: none; stroke: var(--stone-lo); stroke-width: 2.4; }
+.sl-spire { fill: none; stroke: var(--stone-lo); stroke-width: 3; stroke-linecap: round; }
+.sl-finial { fill: var(--amber); }
+.sl-ripples { fill: none; stroke: rgba(0, 0, 0, .14); stroke-width: 2; stroke-linecap: round; }
+.sl-tower { transform-box: view-box; }
+
+/* wind: fine streaks of sand blowing across the dunes, slowly */
+.sl-wind {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 46%; z-index: 2; pointer-events: none;
+  opacity: var(--wind);
+  background: repeating-linear-gradient(176deg, transparent 0 22px, rgba(255, 244, 220, .9) 22px 23px, transparent 23px 61px);
+  background-size: 640px 100%;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 40%, #000 80%, transparent);
+          mask-image: linear-gradient(180deg, transparent, #000 40%, #000 80%, transparent);
+  animation: sl-wind 26s linear infinite;
+}
+@keyframes sl-wind { to { background-position: 640px 0; } }
+
+/* the cross-section: the front dune's sand, going down into the dark */
+.sl-strata {
+  position: relative; z-index: 1;
+  height: 92px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 14px;
+  background:
+    repeating-linear-gradient(180deg, rgba(0, 0, 0, .07) 0 2px, transparent 2px 11px),
+    linear-gradient(180deg, var(--dune-3) 0%, color-mix(in srgb, var(--dune-3) 30%, var(--ink)) 45%, var(--ink) 100%);
+}
+.sl-strata span {
+  font-family: var(--label); font-weight: 700; font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--mute); text-align: center; padding: 0 1rem;
+}
+
+/* ───────────── the library ───────────── */
+.sl-main {
+  position: relative; z-index: 1; max-width: 1200px; margin: 0 auto;
+  padding: 0 max(clamp(1rem, 4vw, 2.6rem), env(safe-area-inset-right, 0px)) 0 max(clamp(1rem, 4vw, 2.6rem), env(safe-area-inset-left, 0px));
+}
+
+.sl-h {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 0.3rem 0.8rem;
+  font-family: var(--disp); font-weight: 800; font-size: clamp(1.6rem, 3.6vw, 2.3rem); letter-spacing: 0.01em;
+  color: var(--text); margin-bottom: 0.9rem;
+}
+.sl-h span {
+  font-family: var(--label); font-weight: 500; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--mute);
+}
+.sl-h--sm { font-size: 1.35rem; }
+.sl-think { width: 26px; height: 26px; }
+.sl-lede { max-width: 68ch; font-size: 1.06rem; line-height: 1.65; color: var(--dim); }
+
+/* ───────────── the shelves ───────────── */
+.sl-shelves { padding-top: clamp(2.2rem, 5vw, 3.6rem); }
+.sl-shelves .sl-lede { margin-bottom: clamp(1.4rem, 3vw, 2.2rem); }
+
+/* a bay: one nation's shelf, its emblem and seal on the left and its
+   scrolls hanging to the right, each from its own peg */
+.sl-bay {
+  display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 1rem clamp(1.4rem, 3vw, 2.4rem);
+  padding: 1.8rem 0 2rem; border-top: 1px solid var(--line);
+}
+.sl-bay-h { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 0.9rem; align-items: start; align-self: start; }
+.sl-emblem {
+  width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
+  background: color-mix(in srgb, var(--n) 14%, var(--ink-2));
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--n) 70%, transparent), 0 0 24px -6px var(--n);
+}
+.sl-emblem svg { width: 30px; height: 30px; }
+.sl-fill { fill: var(--n); }
+.sl-cut { fill: none; stroke: var(--ink-2); stroke-width: 2.4; stroke-linecap: round; }
+.sl-line { fill: none; stroke: var(--n); stroke-width: 3.2; stroke-linecap: round; }
+.sl-bay-h h3 {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-family: var(--disp); font-weight: 800; font-size: 1.3rem; color: var(--n);
+}
+/* a vermilion seal with the nation's character, the way a scroll is stamped */
+.sl-seal {
+  display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 3px;
+  background: #b5372a; color: #f8e9cf;
+  font-family: var(--cjk); font-weight: 700; font-size: 1.02rem; line-height: 1;
+  box-shadow: inset 0 0 0 2px rgba(248, 233, 207, .35);
+  rotate: -4deg;
+}
+.sl-bay-h p { margin-top: 0.35rem; font-size: 0.98rem; line-height: 1.5; color: var(--dim); }
+
+.sl-rack { display: grid; grid-template-columns: repeat(auto-fill, minmax(184px, 1fr)); gap: 2.2rem 1.5rem; align-items: stretch; }
+
+/* a hanging scroll: a peg and a cord, a top rod, the paper in a silk
+   mount of the nation's colour, and a weighted bottom rod. Rolled up
+   until its shelf comes into view (spirit-library.js adds .is-open), then
+   it unrolls: the paper is revealed from the top while the bottom rod
+   drops to its place. */
+.sl-scroll {
+  position: relative; display: block; margin-top: 18px;
+  padding: 12px 0 14px;
+  transform-origin: 50% -16px;
+  transition: rotate .5s var(--ease), translate .5s var(--ease);
+}
+.sl-scroll::before,
+.sl-rod--b {
+  content: ""; position: absolute; left: -9px; right: -9px; height: 11px; border-radius: 6px;
+  background:
+    radial-gradient(circle at 5px 50%, color-mix(in srgb, var(--n) 75%, #fff) 0 3px, var(--n) 3.5px 5.5px, transparent 6px),
+    radial-gradient(circle at calc(100% - 5px) 50%, color-mix(in srgb, var(--n) 75%, #fff) 0 3px, var(--n) 3.5px 5.5px, transparent 6px),
+    linear-gradient(180deg, #8a5a32 0%, #5a3519 55%, #3a210d 100%) 10px 0 / calc(100% - 20px) 100% no-repeat;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .45);
+  z-index: 2;
+}
+.sl-scroll::before { top: 2px; }
+/* the cord, in a V up to the peg */
+.sl-scroll::after {
+  content: ""; position: absolute; left: 50%; top: -16px; width: 52px; height: 20px; translate: -50% 0;
+  background:
+    radial-gradient(circle at 50% 3px, #c99a5b 0 3px, #6b4a26 3.5px 4.5px, transparent 5px),
+    linear-gradient(to top right, transparent calc(50% - 1px), rgba(232, 200, 150, .7) 50%, transparent calc(50% + 1px)) 0 0 / 50% 100% no-repeat,
+    linear-gradient(to top left, transparent calc(50% - 1px), rgba(232, 200, 150, .7) 50%, transparent calc(50% + 1px)) 100% 0 / 50% 100% no-repeat;
+}
+.sl-rod--b { bottom: 2px; transition: bottom .95s var(--ease); transition-delay: calc(var(--i, 0) * 110ms); }
+
+.sl-paper {
+  position: relative; display: flex; flex-direction: column; gap: 0.3rem; height: 100%;
+  padding: 1.05rem 1rem 1.1rem;
+  background:
+    repeating-linear-gradient(92deg, rgba(120, 90, 50, .045) 0 1px, transparent 1px 6px),
+    linear-gradient(180deg, #f6ebcf, #eadab4);
+  border-top: 7px solid var(--n);
+  border-bottom: 7px solid var(--n);
+  box-shadow: inset 3px 0 0 color-mix(in srgb, var(--n) 55%, #3a2a14), inset -3px 0 0 color-mix(in srgb, var(--n) 55%, #3a2a14), 0 10px 22px -10px rgba(0, 0, 0, .8);
+  color: var(--paper-ink);
+  clip-path: inset(0 0 0 0);
+  transition: clip-path .95s var(--ease), filter .3s;
+  transition-delay: calc(var(--i, 0) * 110ms), 0s;
+}
+.sl-paper b { font-family: var(--disp); font-weight: 800; font-size: 1.1rem; line-height: 1.2; }
+.sl-paper i {
+  font-family: var(--label); font-style: normal; font-weight: 700; font-size: 0.8rem; line-height: 1.35;
+  color: #3a3226;
+}
+.sl-paper em { margin-top: auto; padding-top: 0.35rem; font-style: italic; font-size: 0.9rem; line-height: 1.4; color: #574c3a; }
+
+/* rolled up, before the shelf is in view */
+.sl-js .sl-bay:not(.is-open) .sl-paper { clip-path: inset(0 0 100% 0); }
+.sl-js .sl-bay:not(.is-open) .sl-rod--b { bottom: calc(100% - 25px); }
+
+/* touched, it swings a little on its cord */
+.sl-scroll:hover { rotate: -1.4deg; }
+.sl-scroll:hover .sl-paper { filter: brightness(1.05); }
+/* the ring goes on the link, round rods and all: the paper's clip-path
+   would clip an outline drawn on the paper itself */
+.sl-scroll:focus-visible { outline: 3px solid var(--amber-hi); outline-offset: 8px; border-radius: 4px; }
+
+/* ───────────── the planetarium ───────────── */
+.sl-planet {
+  position: relative; margin-top: clamp(2.6rem, 6vw, 4.4rem); padding: clamp(1.4rem, 3.4vw, 2.6rem);
+  border: 1px solid var(--line); border-radius: 6px;
+  background:
+    radial-gradient(70% 60% at 30% 40%, rgba(60, 90, 150, .16), transparent 70%),
+    linear-gradient(180deg, rgba(15, 26, 47, .94), rgba(10, 18, 34, .94));
+  transition: background .9s, border-color .9s;
+}
+/* the room going dark on the day of an eclipse */
+.sl-planet::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(60% 60% at 30% 45%, rgba(0, 0, 0, .2), rgba(0, 0, 0, .7));
+  opacity: 0; transition: opacity 1.2s;
+}
+.sl-planet.is-eclipse::before { opacity: 1; }
+.sl-planet > * { position: relative; }
+
+.sl-pl { display: grid; gap: clamp(1.6rem, 4vw, 3rem); grid-template-columns: 1fr; margin-top: 1.6rem; align-items: center; }
+@media (min-width: 960px) { .sl-pl { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); } }
+.sl-dial-wrap { width: min(100%, 500px); margin: 0 auto; }
+.sl-dial { width: 100%; height: auto; aspect-ratio: 1; overflow: visible; filter: drop-shadow(0 20px 40px rgba(0, 0, 0, .55)); }
+
+.sl-bezel { fill: #0e1729; stroke: #9a7440; stroke-width: 3; }
+.sl-ring-line { fill: none; stroke: rgba(232, 161, 63, .5); stroke-width: 1.2; }
+.sl-ring-line--in { stroke: rgba(232, 161, 63, .7); stroke-width: 2; }
+.sl-ring { transition: transform 1.1s var(--ease); }
+.sl-mlbl { font-family: var(--label); font-weight: 700; font-size: 14px; letter-spacing: 1.5px; fill: #c8b48e; }
+.sl-mlbl.is-on { fill: var(--amber-hi); }
+.sl-msep { stroke: rgba(232, 161, 63, .35); stroke-width: 1; }
+.sl-dtick { stroke: rgba(232, 200, 140, .45); stroke-width: 1.4; }
+.sl-dtick.is-on { stroke: var(--amber-hi); stroke-width: 3; }
+.sl-dlbl { font-family: var(--label); font-weight: 700; font-size: 13px; fill: #b9a682; }
+.sl-dlbl.is-on { fill: var(--amber-hi); font-size: 15px; }
+.sl-pointer { fill: var(--amber); stroke: #3a2208; stroke-width: 1.5; }
+
+.sl-dayfill { opacity: 0; transition: opacity .9s; }
+.sl-under { fill: rgba(3, 6, 14, .55); }
+.sl-hour-t { stroke: rgba(232, 200, 140, .4); stroke-width: 1.2; }
+.sl-hour-t.is-major { stroke: rgba(232, 200, 140, .75); stroke-width: 2; }
+.sl-track { fill: none; stroke: rgba(232, 200, 140, .26); stroke-width: 1.2; stroke-dasharray: 2 6; }
+.sl-horizon { stroke: rgba(232, 161, 63, .75); stroke-width: 1.4; }
+.sl-dial-lbl { font-family: var(--label); font-weight: 700; font-size: 13px; letter-spacing: 1.6px; text-transform: uppercase; fill: #d9c49c; paint-order: stroke; stroke: rgba(8, 12, 24, .7); stroke-width: 3px; }
+.sl-dial-lbl--dim { fill: #9d9078; }
+.sl-cstar { fill: #f4ecd8; }
+
+/* the sun and moon arms turn about the centre of the ceiling; JS keeps
+   the angles continuous so a turn never takes the long way round */
+.sl-arm { transition: transform 1.1s var(--ease); }
+.sl-rays path { stroke: #ffd27a; stroke-width: 2.4; stroke-linecap: round; }
+.sl-rays, .sl-corona { transition: opacity .9s; }
+.sl-corona { opacity: 0; }
+.sl-moonpos { transform: translate(0px, -82px); transition: transform 1.1s var(--ease); }
+.sl-moon-dark--dial { transition: fill .9s; }
+.sl-dark { fill: #02040a; opacity: 0; transition: opacity 1.2s; }
+
+/* the darkest day: the moon moves out onto the sun's track and covers it.
+   A total eclipse covers it completely; an annular one, with the moon too
+   far away, leaves a ring of fire round the edge. */
+.sl-planet.is-eclipse .sl-moonpos { transform: translate(0px, -114px) scale(1.3); }
+.sl-planet.is-eclipse.is-annular .sl-moonpos { transform: translate(0px, -114px) scale(1.04); }
+.sl-planet.is-eclipse .sl-moon-dark--dial { fill: #04060b; stroke: rgba(255, 230, 180, .2); }
+.sl-planet.is-eclipse .sl-corona { opacity: 1; }
+.sl-planet.is-eclipse.is-annular .sl-corona { opacity: .45; }
+.sl-planet.is-eclipse .sl-rays { opacity: 0; }
+.sl-planet.is-eclipse .sl-dark { opacity: .72; }
+.sl-planet.is-eclipse .sl-dayfill { opacity: .08 !important; }
+
+/* the readout */
+.sl-read { min-width: 0; }
+.sl-read-k, .sl-ecl-h {
+  font-family: var(--label); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber);
+}
+.sl-read-date { margin-top: 0.35rem; font-family: var(--disp); font-weight: 800; font-size: clamp(1.5rem, 3.4vw, 2.1rem); line-height: 1.15; }
+.sl-read-time { margin-top: 0.3rem; font-family: var(--label); font-weight: 500; font-size: 0.95rem; color: var(--dim); font-variant-numeric: tabular-nums; }
+.sl-read-moon { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 1rem; align-items: center; margin-top: 1.2rem; }
+.sl-bigmoon { width: 64px; height: 64px; filter: drop-shadow(0 0 16px rgba(240, 230, 200, .25)); }
+.sl-read-moon b { display: block; font-family: var(--disp); font-weight: 700; font-size: 1.3rem; }
+.sl-read-moon span { display: block; margin-top: 0.15rem; font-size: 0.98rem; color: var(--dim); }
+.sl-bend { margin-top: 1rem; font-size: 1.02rem; line-height: 1.6; color: var(--text); max-width: 54ch; }
+.sl-next { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 1.1rem; }
+.sl-next div { padding: 0.6rem 0.8rem; border: 1px solid var(--line); border-radius: 3px; }
+.sl-next dt { font-family: var(--label); font-weight: 700; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); }
+.sl-next dd { margin-top: 0.2rem; font-size: 1rem; }
+
+.sl-ctrl { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 1.4rem; }
+.sl-ctrl-row { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+.sl-btn {
+  min-height: 44px; padding: 0.55rem 1rem; cursor: pointer;
+  border: 1px solid rgba(232, 161, 63, .55); border-radius: 3px; background: rgba(232, 161, 63, .06);
+  font-family: var(--label); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.06em; color: var(--text);
+  transition: background .25s, color .25s, border-color .25s;
+}
+.sl-btn:hover { background: var(--amber); border-color: var(--amber); color: #1a1006; }
+.sl-btn:focus-visible, .sl-datein:focus-visible, .sl-hour:focus-visible, .sl-go:focus-visible,
+.sl-done a:focus-visible, .sl-done-dig:focus-visible, .sl-ecl-list button:focus-visible,
+.sl-exit:focus-visible, .sl-cubby:focus-visible, .sl-mail:focus-visible {
+  outline: 3px solid var(--amber-hi); outline-offset: 3px;
+}
+.sl-btn--sun { border-color: rgba(246, 196, 111, .9); color: var(--amber-hi); }
+.sl-datein {
+  min-height: 44px; padding: 0.4rem 0.7rem; flex: 1 1 150px; min-width: 0;
+  border: 1px solid rgba(232, 161, 63, .45); border-radius: 3px; background: var(--ink-3);
+  font-family: var(--label); font-weight: 500; font-size: 0.95rem; color: var(--text);
+  color-scheme: dark;
+}
+.sl-ctrl-row--hour { flex-wrap: nowrap; }
+.sl-ctrl-row--hour label { font-family: var(--label); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mute); }
+.sl-hour { flex: 1; min-width: 0; height: 44px; accent-color: var(--amber); cursor: pointer; background: transparent; }
+.sl-ctrl-row--hour output { min-width: 3.4em; text-align: right; font-family: var(--label); font-weight: 700; font-variant-numeric: tabular-nums; color: var(--amber-hi); }
+
+.sl-ecl { margin-top: 1.4rem; }
+.sl-ecl-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.5rem; margin-top: 0.6rem; }
+.sl-ecl-list button {
+  width: 100%; min-height: 44px; padding: 0.5rem 0.7rem; text-align: left; cursor: pointer;
+  border: 1px solid rgba(232, 161, 63, .25); border-radius: 3px; background: rgba(255, 255, 255, .02);
+  transition: border-color .25s, background .25s;
+}
+.sl-ecl-list button:hover, .sl-ecl-list button.is-on { border-color: var(--amber); background: rgba(232, 161, 63, .1); }
+.sl-ecl-list b { display: block; font-family: var(--disp); font-weight: 700; font-size: 0.98rem; }
+.sl-ecl-list span { display: block; font-family: var(--label); font-weight: 500; font-size: 0.78rem; color: var(--dim); }
+
+/* ───────────── panels ───────────── */
+.sl-cols { display: grid; gap: clamp(1rem, 2.4vw, 1.6rem); grid-template-columns: 1fr; margin-top: clamp(1rem, 2.4vw, 1.6rem); }
+@media (min-width: 900px) { .sl-cols { grid-template-columns: 1fr 1fr; } }
+.sl-panel {
+  padding: clamp(1.2rem, 2.8vw, 1.8rem);
+  border: 1px solid var(--line); border-radius: 6px;
+  background: linear-gradient(180deg, rgba(15, 26, 47, .92), rgba(10, 18, 34, .92));
+}
+
+.sl-record { display: flex; flex-direction: column; }
+.sl-record div {
+  display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 1rem; align-items: baseline;
+  padding: 0.55rem 0; border-bottom: 1px solid rgba(232, 161, 63, .12);
+}
+.sl-record dt { font-family: var(--label); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
+.sl-record dd { color: var(--text); line-height: 1.45; }
+.sl-mail {
+  display: inline-flex; align-items: center; min-height: 44px; margin: -0.6rem 0;
+  color: var(--amber-hi); border-bottom: 1px solid rgba(246, 196, 111, .4); word-break: break-all;
+}
+.sl-mail:hover { color: #fff1d4; }
+
+/* each contribution, with the end of its scroll in a colour */
+.sl-gifts { list-style: none; display: flex; flex-direction: column; }
+.sl-gifts li {
+  display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0.9rem; align-items: start;
+  padding: 0.6rem 0; border-bottom: 1px solid rgba(232, 161, 63, .1);
+}
+.sl-gifts li:last-child { border-bottom: 0; }
+.sl-knob {
+  width: 26px; height: 26px; margin-top: 2px; border-radius: 50%;
+  background: repeating-radial-gradient(circle, #efe0bd 0 2px, #c9b083 2px 3px);
+  box-shadow: 0 0 0 3px var(--n), 0 2px 6px rgba(0, 0, 0, .5);
+}
+.sl-gifts b { display: block; font-family: var(--label); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber-hi); }
+.sl-gifts p { margin-top: 0.15rem; font-size: 1.02rem; line-height: 1.45; }
+
+/* ───────────── messenger hawks ───────────── */
+.sl-hawks { margin-top: clamp(1rem, 2.4vw, 1.6rem); }
+.sl-cubbies { display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+/* nine terminals: three rows of three, rather than four, four and one */
+@media (min-width: 900px) { .sl-cubbies { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* a cubby in the shelf, with a message scroll lying in it end on: the
+   rolled paper's spiral, tied with a cord of the terminal's colour */
+.sl-cubby {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 0.9rem; align-items: center;
+  min-height: 72px; padding: 0.75rem 0.9rem; border-radius: 4px;
+  background: linear-gradient(180deg, #0a1120, #121d33);
+  box-shadow: inset 0 6px 14px rgba(0, 0, 0, .55), inset 0 0 0 1px rgba(232, 161, 63, .14);
+  transition: box-shadow .3s, background .3s;
+}
+.sl-cubby:hover { box-shadow: inset 0 6px 14px rgba(0, 0, 0, .55), inset 0 0 0 1px var(--w); background: linear-gradient(180deg, #0d1628, #16233c); }
+.sl-end {
+  grid-row: span 2; width: 44px; height: 44px; border-radius: 50%;
+  background: repeating-radial-gradient(circle at 46% 48%, #f2e4c2 0 2px, #c8ad7e 2px 3.2px);
+  box-shadow: 0 0 0 4px var(--w), 0 0 0 5px rgba(0, 0, 0, .5), 0 4px 10px rgba(0, 0, 0, .6);
+  transition: rotate .6s var(--ease);
+}
+.sl-cubby:hover .sl-end { rotate: 40deg; }
+.sl-cubby b { font-family: var(--disp); font-weight: 700; font-size: 1.02rem; align-self: end; }
+.sl-cubby i { font-family: var(--label); font-style: normal; font-weight: 500; font-size: 0.82rem; color: var(--dim); align-self: start; }
+
+/* ───────────── leaving ───────────── */
+.sl-leave { text-align: center; margin-top: clamp(2.6rem, 6vw, 4rem); }
+.sl-leave p { max-width: 54ch; margin: 1rem auto 0; font-size: 1.04rem; line-height: 1.65; color: var(--dim); font-style: italic; }
+.sl-lotus { width: 92px; height: 92px; margin: 0 auto; filter: drop-shadow(0 8px 18px rgba(0, 0, 0, .5)); transition: rotate 1.1s var(--ease); }
+.sl-tile-rim { fill: #b89a68; }
+.sl-tile { fill: #f3ead6; }
+.sl-tile-ring { fill: none; stroke: #c9ad7c; stroke-width: 1.4; }
+.sl-petals use { fill: #fffcf4; stroke: #2a3350; stroke-width: 1.6; stroke-linejoin: round; }
+.sl-petals--in use { fill: #f7e3c0; stroke: #9a6a2e; stroke-width: 1.2; }
+.sl-tile-eye { fill: var(--amber); stroke: #6a4012; stroke-width: 1.2; }
+/* one Pai Sho move: the tile turns a petal's width as you reach for the button */
+.sl-leave:has(.sl-go:hover) .sl-lotus, .sl-leave:has(.sl-go:focus-visible) .sl-lotus { rotate: 45deg; }
+.sl-go {
+  display: inline-block; margin-top: 1.4rem; min-height: 48px; padding: 0.8rem 1.9rem; cursor: pointer;
+  border: 1px solid var(--amber); border-radius: 3px; background: transparent;
+  font-family: var(--disp); font-weight: 800; font-size: 1.1rem; letter-spacing: 0.04em; color: var(--amber-hi);
+  transition: background .3s, color .3s;
+}
+.sl-go:hover { background: var(--amber); color: #1a1006; }
+
+/* ───────────── the library goes under ───────────── */
+.sl-sand {
+  --sand-c: #dcb67a;
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+  height: calc(100vh + 120px); display: flex; flex-direction: column;
+  transform: translateY(100%); visibility: hidden; pointer-events: none;
+}
+.sl-sand svg { flex: none; width: 100%; height: 120px; }
+.sl-sand path { fill: var(--sand-c); }
+.sl-sand span {
+  flex: 1; margin-top: -1px;
+  background:
+    repeating-linear-gradient(176deg, transparent 0 18px, rgba(120, 80, 30, .08) 18px 19px, transparent 19px 47px),
+    radial-gradient(120% 80% at 50% 30%, #e6c48c, var(--sand-c) 50%, #c49758);
+}
+.sl.is-sinking .sl-sand {
+  visibility: visible; transform: translateY(0);
+  transition: transform 2.4s cubic-bezier(.55, 0, .35, 1), visibility 0s;
+}
+/* the tower going down, shaking as it goes, as it did with Toph holding it up */
+.sl.is-sinking .sl-hero, .sl.is-sinking .sl-strata, .sl.is-sinking .sl-main {
+  animation: sl-sink 2.4s cubic-bezier(.55, 0, .35, 1) both;
+}
+@keyframes sl-sink {
+  0%   { transform: translate(0, 0); }
+  8%   { transform: translate(-3px, 2px); }
+  16%  { transform: translate(3px, 6px); }
+  24%  { transform: translate(-4px, 12px); }
+  32%  { transform: translate(4px, 20px); }
+  48%  { transform: translate(-3px, 44px); }
+  64%  { transform: translate(3px, 80px); }
+  100% { transform: translate(0, 30vh); }
+}
+.sl.is-sinking .sl-tower { transform: translateY(460px); transition: transform 2.4s cubic-bezier(.55, 0, .35, 1); }
+
+.sl-done {
+  position: fixed; inset: 0; z-index: 40; display: grid; place-items: center; overflow-y: auto;
+  padding: max(2rem, env(safe-area-inset-top, 0px)) max(1.2rem, env(safe-area-inset-right, 0px)) max(2rem, env(safe-area-inset-bottom, 0px)) max(1.2rem, env(safe-area-inset-left, 0px));
+  text-align: center; color: #1d2338;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 1s ease, visibility 0s 1s;
+}
+.sl.is-sunk .sl-done { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity 1s ease, visibility 0s; }
+.sl-done > div { max-width: 40rem; }
+.sl-done-orb { display: block; width: 96px; height: 96px; margin: 0 auto 1.2rem; opacity: .85; }
+.sl:not(.is-sunk) .sl-done-orb { display: none; }
+.sl-done-k { font-family: var(--label); font-weight: 700; font-size: 0.74rem; letter-spacing: 0.26em; text-transform: uppercase; color: #5a3410; }
+.sl-done-t { margin-top: 0.9rem; font-family: var(--disp); font-weight: 800; font-size: clamp(1.5rem, 4.6vw, 2.5rem); line-height: 1.3; color: #16203a; }
+.sl-done-by { margin-top: 0.6rem; font-style: italic; color: #3b3022; }
+.sl-done-home {
+  display: inline-flex; align-items: center; min-height: 48px; margin-top: 1.8rem; padding: 0.7rem 1.6rem;
+  border-radius: 3px; background: #16203a; color: #f6e2b8;
+  font-family: var(--label); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.16em; text-transform: uppercase;
+  transition: background .3s;
+}
+.sl-done-home:hover { background: #24345c; }
+.sl-done-dig {
+  display: block; margin: 0.8rem auto 0; min-height: 44px; padding: 0.5rem 1rem; cursor: pointer;
+  border: 0; background: transparent; color: #3b3022;
+  font-family: var(--label); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: underline; text-underline-offset: 4px;
+}
+.sl.is-sunk { overflow: hidden; }
+
+/* ───────────── phones ───────────── */
+@media (max-width: 760px) {
+  .sl-top-mid { order: 3; width: 100%; padding-bottom: 0.2rem; }
+  .sl-bay { grid-template-columns: 1fr; padding: 1.5rem 0 1.7rem; }
+  .sl-rack { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem 1.2rem; }
+  .sl-paper { padding: 0.9rem 0.75rem 1rem; }
+  .sl-paper b { font-size: 1rem; }
+  .sl-paper em { font-size: 0.86rem; }
+  .sl-record div { grid-template-columns: 1fr; gap: 0.15rem; }
+  .sl-next { grid-template-columns: 1fr; }
+}
+/* the dial is about 310px across on a phone, three quarters of its drawn
+   size, so its lettering is drawn larger to stay at 0.66rem and up; and the
+   two day buttons share a row under the date instead of one wrapping alone */
+@media (max-width: 560px) {
+  .sl-planet { padding: 1.3rem 1rem; }
+  .sl-mlbl { font-size: 17px; }
+  .sl-dlbl { font-size: 15px; }
+  .sl-dlbl.is-on { font-size: 17px; }
+  .sl-dial-lbl { font-size: 15px; }
+  .sl-ctrl-row--date { display: grid; grid-template-columns: 1fr 1fr; }
+  .sl-datein { grid-column: 1 / -1; order: -1; }
+}
+@media (max-width: 420px) {
+  .sl-top { font-size: 0.66rem; letter-spacing: 0.12em; }
+  .sl-rack { gap: 1.9rem 1rem; }
+  .sl-scroll::before, .sl-rod--b { left: -6px; right: -6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sl-stars .tw, .sl-wind { animation: none; }
+  .sl-scroll, .sl-paper, .sl-rod--b, .sl-ring, .sl-arm, .sl-moonpos, .sl-lotus, .sl-end { transition: none; }
+  .sl-js .sl-bay:not(.is-open) .sl-paper { clip-path: inset(0); }
+  .sl-js .sl-bay:not(.is-open) .sl-rod--b { bottom: 2px; }
+  .sl-scroll:hover, .sl-cubby:hover .sl-end { rotate: none; }
+  .sl-leave:has(.sl-go:hover) .sl-lotus, .sl-leave:has(.sl-go:focus-visible) .sl-lotus { rotate: none; }
+  /* no shaking and no rising: the sand simply fades in over the page */
+  .sl-sand { transform: none; opacity: 0; }
+  .sl.is-sinking .sl-sand { transform: none; opacity: 1; transition: opacity .5s; }
+  .sl.is-sinking .sl-hero, .sl.is-sinking .sl-strata, .sl.is-sinking .sl-main { animation: none; }
+  .sl.is-sinking .sl-tower { transform: none; transition: none; }
+}

@@ -138,6 +138,9 @@ YEARS = [
     ('hs-senior',    'Senior',      '2023–24', 'hs',  '2024-05-30-2200.avif'),
     ('uci-first',    'First Year',  '2024–25', 'uci', '2025-06-13-1549.avif'),
     ('uci-second',   'Second Year', '2025–26', 'uci', '2026-01-17-1622.avif'),
+    # no camera-roll folder yet: everything in it comes from the rest of the
+    # site (see SITE PICTURES below), so its cover is a full path
+    ('uci-third',    'Third Year',  '2026–27', 'uci', '/assets/img/franchises/lego/movie-2/banner.jpg'),
 ]
 
 # chapters: named divisions INSIDE one gallery, keyed by group id. Each entry
@@ -186,7 +189,7 @@ ALIASES = {
 # pre-ms and ms-middle are divided by grade instead (see CHAPTERS above): those
 # two span a decade each, so a month heading would be meaningless there.
 BY_MONTH = ['hs-freshman', 'hs-sophomore', 'hs-junior', 'hs-senior',
-            'uci-first', 'uci-second']
+            'uci-first', 'uci-second', 'uci-third']
 
 TRAVELS = 'assets/js/travels-data.js'
 
@@ -211,7 +214,79 @@ ACADEMIC = {
     'hs-senior':  (None,      '2024-08'),   # nothing from Sept 2024 on: that is college
     'uci-first':  ('2024-09', '2025-08'),
     'uci-second': ('2025-09', '2026-08'),
+    'uci-third':  ('2026-09', '2027-08'),
 }
+
+# ── SITE PICTURES: everything else on the site, in the year it is from ──
+# The year galleries hold every picture on the site, not only the camera roll:
+# the game screenshots, the flyers and wallpapers, the awards, the typing
+# tests, the tickets. None of them is copied. A row's `file` is the picture's
+# own path on the site, starting with '/', and years.js uses it as it is for
+# the grid and the full-screen deck alike (see url() there).
+#
+# Game screenshots come with their dates already: the `dates` table in
+# fan-shots.js, one row per frame. Everything else is listed, dated, and the
+# date explained, in tools/gallery-extras.json.
+#
+# A date that starts with '<' is an upper bound (a re-encoded file, a copy
+# made later): it places the picture by that date and is shown as "before
+# 14 Oct 2023". A bare year needs a `group` to say which school year; an entry
+# with no date at all is placed by its group and shown as "Date unrecorded".
+#
+# Which year a date belongs to: the first month of each year below. High school
+# years start in August (Trabuco starts mid-August), college ones in September,
+# the same seams as ACADEMIC above.
+EXTRAS = 'tools/gallery-extras.json'
+SHOTS_JS = 'assets/js/fan-shots.js'
+YEAR_STARTS = [
+    ('pre-ms',       '0000-00'),
+    ('ms-middle',    '2018-08'),
+    ('hs-freshman',  '2020-08'),
+    ('hs-sophomore', '2021-08'),
+    ('hs-junior',    '2022-08'),
+    ('hs-senior',    '2023-08'),
+    ('uci-first',    '2024-09'),
+    ('uci-second',   '2025-09'),
+    ('uci-third',    '2026-09'),
+]
+
+
+def group_for(date):
+    m = date[:7] if len(date) >= 7 else None
+    if not m:
+        return None
+    gid = None
+    for g, start in YEAR_STARTS:
+        if m >= start:
+            gid = g
+    return gid
+
+
+def site_pictures():
+    """[(group, row)] for every dated picture outside the year galleries."""
+    out, skipped = [], []
+    shots = open(SHOTS_JS, encoding='utf-8').read()
+    table = shots[shots.index('  dates: {'):]
+    entries = [('franchises/' + p, d, None)
+               for p, d in re.findall(r"^\s*'([^']+\.jpg)':\s*'([^']*)'", table, re.M)]
+    for e in json.load(open(EXTRAS, encoding='utf-8'))['pictures']:
+        entries.append((e['path'], e.get('date'), e.get('group')))
+    for path, date, group in entries:
+        disk = os.path.join('assets', 'img', path)
+        if not os.path.exists(disk):
+            skipped.append(path)
+            continue
+        bare = (date or '').lstrip('<') or None
+        gid = group or (bare and group_for(bare))
+        if not gid:
+            skipped.append(path)
+            continue
+        w, h = Image.open(disk).size
+        out.append((gid, {'file': '/assets/img/' + path, 'date': bare, 'show': date or None,
+                          'w': w, 'h': h, 'place': None}))
+    for p in skipped:
+        print('  ! no year for %s (missing, or a bare year with no group)' % p)
+    return out
 
 
 MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
@@ -280,6 +355,9 @@ def month_chapters(gid, rows, trips):
         seen = key
         if key is None:
             out.append((i, 'Undated', 'not yet placed'))
+            continue
+        if '-' not in key:      # a picture dated to the year only (a flyer: "2023")
+            out.append((i, key, 'month not recorded'))
             continue
         y, mo = key.split('-')
         when = '%s %s' % (MONTH_NAMES[int(mo) - 1], y)
@@ -644,10 +722,23 @@ def ingest(force=False):
             borrowed += 1
             print('  %-14s borrows %s' % (gid, target + EXT))
 
+    # third pass: the rest of the site's pictures, each in its own year, and
+    # every year re-sorted so they sit among the photographs by date (ID
+    # cards still first, undated still last)
+    extra = 0
+    for gid, row in site_pictures():
+        manifest.setdefault(gid, []).append(row)
+        extra += 1
+    for gid, rows in manifest.items():
+        order = {id(r): i for i, r in enumerate(rows)}
+        rows.sort(key=lambda r: (0, order[id(r)], '') if os.path.basename(r['file']).startswith('id')
+                  else (1, r['date'] is None, r['date'] or '', order[id(r)]))
+
     write_data(manifest)
     n = sum(len(v) for v in manifest.values())
+    print('%d of them are the rest of the site\'s pictures, shown where they already live' % extra)
     print('\ningested %d photos (%d encoded now, %d already current, %d shown twice from one file)'
-          % (n, n - borrowed - kept, kept, borrowed))
+          % (n, n - borrowed - kept - extra, kept, borrowed))
     shown = sum(1 for rows in manifest.values() for r in rows if r.get('place'))
     print('%d carry a place name' % shown)
     if unlooked:
@@ -687,7 +778,8 @@ window.YEARS = {
     for gid, label, span, school, cover in YEARS:
         L.append("    '%s': [" % gid)
         for r in manifest.get(gid, []):
-            d = "'%s'" % r['date'] if r['date'] else 'null'
+            show = r.get('show', r['date'])
+            d = "'%s'" % show if show else 'null'
             where = ", '%s'" % js_str(r['place']) if r.get('place') else ''
             L.append("      ['%s', %s, %d, %d%s]," % (r['file'], d, r['w'], r['h'], where))
         L.append('    ],')

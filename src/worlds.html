@@ -147,6 +147,26 @@ tab: "/worlds/"
     <div class="fr-vault" id="frVault" hidden>
       <h3 class="subsec subsec--fr subsec--title reveal" id="franchises">Franchises I Love<span class="vh">, </span><span class="subsec-yr">no apps, just taste</span></h3>
       <p class="fr-lede reveal"><b><span class="fr-total">70</span></b> tiles, ranked the way I actually rank them. <b>Who I am comes first, and none of it is a fandom</b>: my faith, my language and where my family is from are not things I chose off a shelf, and everything under them makes more sense once they are on the page. Then the three I know by heart, the ones I have lived in, regular rotation, the rest, the ones that were everything to me as a kid and are not what I put on now, and the theme parks at the end. Every one of them has its own page now, click a tile. Apart from Islam and Star Wars at the top, none of these ship an app; every tile is set in type and drawn by hand, with no studio logos, no posters and no photographs.</p>
+      <!-- The cool interfaces: the whole site rebuilt inside a world. Nineteen
+           of them, and E.L.M.A.L.L.A.H. is the one every other is reached from
+           (each is a star system on its holotable), so it stands for all of
+           them. fandom.js moves it in above the Core Three; each world with an
+           interface of its own links it under its title
+           (_includes/interface-link.html). -->
+      <template id="frIfaces">
+        <section class="fr-group fr-group--ifaces" id="fr-ifaces">
+          <h3 class="subsec subsec--fr subsec--title reveal">Cool Interfaces<span class="vh">, </span><span class="subsec-yr">the whole site, rebuilt inside a world</span></h3>
+          <div class="fr-travels fr-ifaces reveal">
+            <a class="fr-travels-btn fr-travels-btn--if" href="/elmallah/" data-magnetic>
+              <span class="fr-travels-i" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 9.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z M3 12c0-2.2 4-4 9-4s9 1.8 9 4-4 4-9 4-9-1.8-9-4z M12 3v3 M12 18v3 M19 5.5l-1.6 1.6 M6.6 16.9 5 18.5"/></svg>
+              </span>
+              <span class="fr-travels-t"><b>E.L.M.A.L.L.A.H.</b><i><span>the Rebel holotable</span> &#183; <span>every interface</span> <span>is a star system on it</span> &#183; <span>twenty-two interfaces</span> <span>across twenty worlds</span></i></span>
+              <span class="fr-travels-a" aria-hidden="true">&#8594;</span>
+            </a>
+          </div>
+        </section>
+      </template>
       <div id="fandoms"></div>
 
       <!-- The pages that are mine rather than anybody else's: where I have
@@ -183,12 +203,6 @@ tab: "/worlds/"
           <span class="fr-travels-a" aria-hidden="true">&#8594;</span>
         </a>
 
-        <!-- MUSIC IS HIDDEN FOR NOW. The page, its data and its styles are all
-             still in the repo and still work; only the way in is closed, and
-             src/music.html has `published: false` so Jekyll does not build it
-             at all. To bring it back: delete that line from music.html's front
-             matter, uncomment this block, and uncomment the matching line on
-             the home page. Nothing else has to change.
         <a class="fr-travels-btn fr-travels-btn--mu" href="/music/" data-magnetic>
           <span class="fr-travels-i" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M9 18V5.5l11-2V16 M9 18a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z M20 16a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z M9 9.5l11-2"/></svg>
@@ -196,20 +210,27 @@ tab: "/worlds/"
           <span class="fr-travels-t"><b>Worlds I Have Heard</b><i>the top twenty of every year &#183; 2006&#8211;2026 &#183; one block a year</i></span>
           <span class="fr-travels-a" aria-hidden="true">&#8594;</span>
         </a>
-        -->
+
+        <a class="fr-travels-btn fr-travels-btn--ls" href="/lightsabers/" data-magnetic>
+          <span class="fr-travels-i" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M18.5 3.5 9.2 12.8 M8.4 13.6l2 2 M6.3 15.7l2 2 M7.3 16.7 4.2 19.8 M3.6 19.2l1.2 1.2"/></svg>
+          </span>
+          <span class="fr-travels-t"><b>Worlds I Can Ignite</b><i><span>the lightsaber guide</span> &#183; <span>Proffie, SNV4, SD RGB</span> <span>and Xenopixel</span> &#183; <span>one button each</span></i></span>
+          <span class="fr-travels-a" aria-hidden="true">&#8594;</span>
+        </a>
       </div>
     </div>
   </section>
 
 
-
 </main>
 
-<!-- THE one switch for personal photographs, for the whole site. It used to sit
-     at the foot of /high-school/, /college/ and /travels/, which is three
-     places to find the same localStorage key. Worlds is where the franchises
-     are and where the photographs of them are, so it is the honest place to
-     ask. Everything it governs still LISTS itself with the switch off: the
+<!-- The switch for personal photographs. One localStorage key for the whole
+     site, offered on each page that actually holds photographs: here, and at
+     the foot of /high-school/, /college/ and /travels/. Flipping it on any one
+     of them flips it on all of them. Worlds is where the franchises are and
+     where the photographs of them are, so it asks here too.
+     Everything it governs still LISTS itself with the switch off: the
      trips, the places, the franchises and what I have been to are all there,
      and only the photographs wait to be asked for. -->
 <div class="picsw" data-pics-toggle></div>

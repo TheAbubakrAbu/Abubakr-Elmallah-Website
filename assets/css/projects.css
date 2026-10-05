@@ -12,7 +12,6 @@
 .project-sort-note { color: var(--ink-dim); font-size: .8rem; }
 .project-timeline { display: grid; gap: 2rem; }
 .project-timeline > .apps-grid { margin-top: 0; }
-.project-timeline-school { grid-template-columns: 1fr; }
 [data-project-sort][hidden], [data-project-timeline][hidden],
 [data-project-categories][hidden], .jump[hidden] { display: none; }
 @media (max-width: 540px) {

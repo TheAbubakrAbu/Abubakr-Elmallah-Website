@@ -86,7 +86,7 @@ window.FAN_PAGE = {
       { title: 'Happy', accent: '#f2c531', sub: 'Pharrell Williams · Despicable Me 2 · 2013 · 3:53',
         desc: 'Written for the scene where Gru realises he is in love, released as a single months later, and then it went to number one in two dozen countries and was nominated for the Oscar. The twenty-four-hour music video was the first of its kind.',
         href: 'https://www.youtube.com/watch?v=ZbZSe6N_BXs', link: 'Listen' },
-      { title: 'The Songs of Pharrell Williams', accent: '#e0704a', sub: 'Illumination · Despicable Me 2 · 2:56',
+      { title: 'The Songs of Pharrell Williams', accent: '#e0704a', sub: 'Illumination · Despicable Me 2 · 2013 · 2:56',
         desc: 'Illumination’s own reel of what he wrote for the second film: Happy, Just a Cloud Away, Fun Fun Fun and Scream. He produced the score with Heitor Pereira rather than handing over a single and leaving.',
         href: 'https://www.youtube.com/watch?v=Amzufxa5Mok', link: 'Listen' },
       { title: 'Turn Up The Sunshine', accent: '#f0a83a', sub: 'Diana Ross ft. Tame Impala · The Rise of Gru · 2022 · 4:11',

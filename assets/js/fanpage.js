@@ -13,6 +13,7 @@
      kind: 'tiles'     compact colour-chips (legions, spells, ores, stones)
      kind: 'quotes'    pull quotes with an attribution
      kind: 'stats'     a strip of big numbers with a caption
+     kind: 'table'     rows of figures, sortable by any column (`cols`)
      kind: 'era'       a horizontal rail of eras against a drawn time axis
      kind: 'films'     one-sheet panels: a huge numeral behind the title
      kind: 'sabers'    a rack of lightsabers that ignite on hover / click
@@ -609,6 +610,81 @@
       }).join('') + '</div>';
     },
 
+    /* ── kind: conflict ──
+       A period of a franchise as the two sides that define it, and a rail of
+       periods above them to change which one you are looking at.
+
+       Every item is a PERIOD:
+         title     what the period is called ("The Clone Wars")
+         when      the years, printed under the title
+         note      one line on the period
+         left      { name, sub, tone, note, items: [...] }  the first side
+         right     { name, sub, tone, note, items: [...] }  the second side
+         scale     optional: what is at stake, printed between the sides
+       and a side's `items` are its people: plain strings, or { n, d } for a
+       name with a line on it.
+
+       `tone` is the side's own colour and is the only place it is written:
+       the heading, the rule and every chip on that side are drawn from it, so
+       the Republic is blue and the Empire is red because the data says so.
+
+       `open` on the SECTION names the period the block opens on; without it
+       the first period is the one you get. The whole thing is one section with
+       the periods pre-rendered and hidden, not a fetch: the data is already on
+       the page, and a switch that cannot fail is better than one that can. */
+    conflict: function (s) {
+      var open = s.open || (s.items[0] && s.items[0].title) || '';
+      var side = function (sd, which) {
+        if (!sd) return '';
+        var names = (sd.items || []).map(function (it) {
+          var n = typeof it === 'string' ? it : it.n;
+          var d = typeof it === 'string' ? '' : it.d;
+          return '<li class="fan-cf-name"><b>' + esc(n) + '</b>'
+            + (d ? '<i>' + esc(d) + '</i>' : '') + '</li>';
+        }).join('');
+        return '<div class="fan-cf-side fan-cf-side--' + which + '"'
+          + (sd.tone ? ' style="--s:' + esc(sd.tone) + '"' : '') + '>'
+          + '<h4 class="fan-cf-name-h">' + esc(sd.name || '')
+          + (sd.sub ? '<span>' + esc(sd.sub) + '</span>' : '') + '</h4>'
+          + (sd.note ? '<p class="fan-cf-note">' + esc(sd.note) + '</p>' : '')
+          + (names ? '<ul class="fan-cf-names">' + names + '</ul>' : '')
+          + '</div>';
+      };
+      /* The rail is radio buttons in a fieldset rather than <button>s: this is
+         a choice of one from a set, which is what a radio group already is to
+         a screen reader and to the keyboard (arrow keys move, and the choice
+         is announced), and it needs no JS to be correct. */
+      var rail = '<fieldset class="fan-cf-rail" data-cf-rail>'
+        + '<legend class="vh">' + esc(s.railLabel || 'Which period') + '</legend>'
+        + s.items.map(function (it, i) {
+            var on = it.title === open || (!open && !i);
+            var id = 'cf-' + esc(s.id || 'x') + '-' + i;
+            return '<label class="fan-cf-tab' + (on ? ' is-on' : '') + '" for="' + id + '">'
+              + '<input class="vh" type="radio" id="' + id + '"'
+              + ' name="cf-' + esc(s.id || 'x') + '" value="' + i + '"'
+              + (on ? ' checked' : '') + ' />'
+              + '<b>' + esc(it.title) + '</b>'
+              + (it.when ? '<i>' + esc(it.when) + '</i>' : '')
+              + '</label>';
+          }).join('')
+        + '</fieldset>';
+      var panels = s.items.map(function (it, i) {
+        var on = it.title === open || (!open && !i);
+        return '<div class="fan-cf-period' + (on ? ' is-on' : '') + '" data-cf-panel="' + i + '"'
+          + (on ? '' : ' hidden') + '>'
+          + (it.note ? '<p class="fan-cf-lede">' + esc(it.note) + '</p>' : '')
+          + '<div class="fan-cf-sides">'
+          +   side(it.left, 'l')
+          +   '<span class="fan-cf-vs" aria-hidden="true">vs</span>'
+          +   side(it.right, 'r')
+          + '</div>'
+          + (it.scale ? '<p class="fan-cf-scale"><span>Threat level</span><b>'
+              + esc(it.scale) + '</b></p>' : '')
+          + '</div>';
+      }).join('');
+      return '<div class="fan-cf reveal" data-cf>' + rail + panels + '</div>';
+    },
+
     quotes: function (s) {
       return '<div class="fan-quotes">' + s.items.map(function (it) {
         return '<figure class="fan-quote reveal"' + a(it) + '>'
@@ -627,6 +703,47 @@
           + (it.desc ? '<em>' + esc(it.desc) + '</em>' : SLOT)
           + '</div>';
       }).join('') + '</div>';
+    },
+
+    /* ── kind: table ── one row per item, one column per `cols` entry
+       ({ key, label, num, bar, unit }). Every header is a button that sorts
+       by its column, and clicking it again flips the direction; `sort` names
+       the column it opens on. A `bar` column draws the figure as a bar in the
+       page's own colour as well as printing it, scaled to that column's
+       largest value, so the shape of the column reads before the numbers do.
+       The figure is always printed: the bar is never the only way to read it. */
+    table: function (s) {
+      var cols = s.cols || [];
+      var max = {};
+      cols.forEach(function (c) {
+        if (c.bar) max[c.key] = Math.max.apply(null, s.items.map(function (it) { return +it[c.key] || 0; }));
+      });
+      var cell = function (it, c, i) {
+        var v = it[c.key];
+        var has = v != null && v !== '';
+        var show = has ? esc(String(v)) + (c.unit ? esc(c.unit) : '') : '<span class="fan-tb-none">not on record</span>';
+        var sv = has ? (c.num ? +v : String(v)) : (c.num ? -1 : '');
+        var bar = c.bar && has && max[c.key]
+          ? '<span class="fan-tb-bar" aria-hidden="true"><i style="width:' + Math.max(2, Math.round(+v / max[c.key] * 100)) + '%"></i></span>'
+          : '';
+        var tag = i === 0 ? 'th scope="row"' : 'td';
+        return '<' + tag + (c.num ? ' class="is-num"' : '') + ' data-s="' + esc(String(sv)) + '">'
+          + '<span class="fan-tb-v">' + show + '</span>' + bar
+          + '</' + tag.split(' ')[0] + '>';
+      };
+      var start = Math.max(0, cols.map(function (c) { return c.key; }).indexOf(s.sort || cols[0].key));
+      var dir = s.dir || (cols[start] && cols[start].num ? 'descending' : 'ascending');
+      return '<div class="fan-tb-wrap reveal" tabindex="0" role="region" aria-label="' + esc(s.title) + ', sortable table">'
+        + '<table class="fan-tb" data-sort="' + start + '" data-dir="' + dir + '">'
+        + '<thead><tr>' + cols.map(function (c, i) {
+            return '<th scope="col"' + (c.num ? ' class="is-num"' : '')
+              + (i === start ? ' aria-sort="' + dir + '"' : '') + '>'
+              + '<button type="button" data-col="' + i + '">' + esc(c.label)
+              + '<i class="fan-tb-dir" aria-hidden="true"></i></button></th>';
+          }).join('') + '</tr></thead>'
+        + '<tbody>' + s.items.map(function (it) {
+            return '<tr>' + cols.map(function (c, i) { return cell(it, c, i); }).join('') + '</tr>';
+          }).join('') + '</tbody></table></div>';
     },
 
     /* ── kind: era ── a horizontal rail: the time axis is drawn under the
@@ -679,11 +796,47 @@
       }).join('') + '</div>';
     },
 
+    /* ── kind: serverlist ── the multiplayer screen, from mc-servers.js. Each
+       row is a button that copies its address; the click is handled once at
+       the foot of this file. Offline rows say what the game says. */
+    serverlist: function (s) {
+      var bars = function (up) {
+        return '<span class="mcs-bars' + (up ? '' : ' mcs-bars--off') + '" aria-hidden="true">'
+          + '<i></i><i></i><i></i><i></i><i></i></span>';
+      };
+      return '<div class="mcs reveal">'
+        + '<div class="mcs-head"><b>Play Multiplayer</b>'
+        +   (s.checked ? '<i>checked ' + esc(s.checked) + '</i>' : '') + '</div>'
+        + '<ul class="mcs-list">' + s.items.map(function (it) {
+            var icon = it.icon
+              ? '<img src="/assets/img/mc-servers/' + esc(it.icon) + '" width="64" height="64" alt="" loading="lazy" decoding="async" />'
+              : '<span class="mcs-blank" aria-hidden="true"></span>';
+            var motd = it.up
+              ? (it.motd || []).map(function (l) { return '<span>' + esc(l) + '</span>'; }).join('')
+              : '<span class="mcs-err">Can’t connect to server</span>';
+            return '<li><button class="mcs-row' + (it.up ? '' : ' mcs-row--off') + '" type="button"'
+              + ' data-copy="' + esc(it.host) + '"'
+              + ' aria-label="' + esc(it.name + ', ' + it.host + ', ' + (it.up ? it.players + ' players online' : 'offline') + '. Copy the address') + '">'
+              + '<span class="mcs-icon">' + icon + '</span>'
+              + '<span class="mcs-main"><b>' + esc(it.name) + '</b>'
+              +   '<span class="mcs-motd">' + motd + '</span>'
+              +   '<i class="mcs-host">' + esc(it.host) + '</i></span>'
+              + '<span class="mcs-side">' + bars(it.up)
+              +   (it.up ? '<span class="mcs-n">' + esc(it.players) + ' online</span>' : '<span class="mcs-n">gone</span>')
+              + '</span>'
+              + '</button></li>';
+          }).join('') + '</ul>'
+        + '<p class="mcs-foot" aria-live="polite">' + s.items.filter(function (it) { return it.up; }).length
+        +   ' of ' + s.items.length + ' still answer</p>'
+        + '</div>';
+    },
+
     /* ── kind: gallery ── the only place on these pages that uses photographs.
        Everything else is drawn; these are my own screenshots and photos.
 
        `grid: true` packs them as a responsive grid instead of one full-width
-       column. A column is right for a wide app screenshot and wrong for a set
+       column; `whole: true` keeps every picture at its own shape rather than
+       the grid's 4:3 crop, for posters, cards and anything with edges to keep. A column is right for a wide app screenshot and wrong for a set
        of holiday photographs, which want to be seen several at a time. */
     gallery: function (s) {
       /* the last line of every caption, and the only one that is not written
@@ -695,15 +848,25 @@
       };
       return '<div class="fan-shots' + (s.grid ? ' fan-shots--grid' : '')
         + (s.wide ? ' fan-shots--wide' : '')
-        + (s.two ? ' fan-shots--two' : '') + '">' + s.items.map(function (it) {
+        + (s.two ? ' fan-shots--two' : '')
+        + (s.whole ? ' fan-shots--whole' : '') + '">' + s.items.map(function (it) {
         /* a screenshot of one finished game can carry the same completion
            chips as a tile (`done`, `finished`, `hours`); the caption's own
            styles are scoped to its direct children so the chips keep theirs */
         var ch = rate(it) + done(it) + fin(it) + proj(it);
+        /* `video`: a clip of my own, with `src` as its poster frame. Nothing
+           is fetched until play is pressed (preload none), and the service
+           worker leaves /assets/video/ to the network, which is what lets
+           Safari make the range requests it plays video with. */
+        var pic = it.video
+          ? '<video controls playsinline preload="none" poster="' + esc(it.src) + '"'
+            + ' aria-label="' + esc(it.alt || it.title) + '">'
+            + '<source src="' + esc(it.video) + '" type="video/mp4" /></video>'
+          : '<a href="' + esc(it.src) + '" target="_blank" rel="noopener">'
+            + '<img src="' + esc(it.src) + '" alt="' + esc(it.alt || it.title) + '" loading="lazy" decoding="async" />'
+            + '</a>';
         return '<figure class="fan-shot reveal"' + a(it) + '>'
-          + '<a href="' + esc(it.src) + '" target="_blank" rel="noopener">'
-          +   '<img src="' + esc(it.src) + '" alt="' + esc(it.alt || it.title) + '" loading="lazy" decoding="async" />'
-          + '</a>'
+          + pic
           + '<figcaption><b>' + esc(it.title) + '</b>'
           +   (it.desc ? '<span>' + esc(it.desc) + '</span>' : '')
           +   (ch ? '<span class="fan-chips">' + ch + '</span>' : '')
@@ -869,7 +1032,7 @@
     var rows = set.use.map(function (k) { return BEEN.shots[k]; }).filter(function (sh) {
       return sh && Object.prototype.hasOwnProperty.call(YP, sh[0]) && !skip[sh[0]];
     }).map(function (sh) { return { file: sh[0], name: sh[1], where: sh[2], dim: YP[sh[0]] }; });
-    return rows.length ? { title: set.title, note: set.note, rows: rows } : null;
+    return rows.length ? { title: set.title, note: set.note, rows: inOrder(rows) } : null;
   }
 
   function myPhotoSection(list, been) {
@@ -881,7 +1044,7 @@
       title: 'I Have Actually Been',
       note: n + (n === 1 ? ' photo of mine' : ' photos of mine'),
       lede: 'Not press shots: my own camera roll, out of the year galleries.',
-      items: list.map(function (p) {
+      items: inOrder(list.map(function (p) {
         return {
           src: PH + p.src,
           title: p.title,
@@ -890,7 +1053,7 @@
           alt: p.alt || ('Abubakr Elmallah, ' + p.title),
           accent: p.accent,
         };
-      }),
+      })),
       been: been,
     };
   }
@@ -926,6 +1089,39 @@
     return out;
   }
 
+  /* ── every gallery in the order it happened ──
+     Each gallery section, and the photographs, are put in date order WITHIN
+     themselves: a section is already one continuous thing (a Realm, a set of
+     posters, one trip), so it stays together and is only sorted inside. The
+     date is, in turn: an item's own `date` (ISO, as precise as is known);
+     the frame's row in fan-shots.js's `dates` table (a leading '<' is an
+     upper bound and sorts as that date); or the YYYY-MM-DD(-HHMM) its file
+     name carries, which is how the year galleries are named. An item with no
+     date at all keeps its place, and equal dates keep the written order. */
+  function dateOf(it) {
+    if (it.date) return String(it.date);
+    var src = String(it.src || it.file || ''), base = (SHOTS && SHOTS.base) || '';
+    var rel = src.indexOf(base) === 0 ? src.slice(base.length) : src;
+    var v = SHOTS && SHOTS.dates && SHOTS.dates[rel];
+    if (v) return String(v).replace(/^</, '');
+    var m = /(\d{4})-(\d{2})-(\d{2})(?:-(\d{2})(\d{2}))?[^/]*$/.exec(src);
+    return m ? m[1] + '-' + m[2] + '-' + m[3] + (m[4] ? ' ' + m[4] + ':' + m[5] : '') : '';
+  }
+  function inOrder(list) {
+    if (!list || list.length < 2) return list;
+    var dated = [];
+    list.forEach(function (it, i) { var d = dateOf(it); if (d) dated.push({ i: i, d: d, it: it }); });
+    var slots = dated.map(function (x) { return x.i; });
+    dated.sort(function (x, y) { return x.d < y.d ? -1 : x.d > y.d ? 1 : x.i - y.i; });
+    var out = list.slice();
+    dated.forEach(function (x, k) { out[slots[k]] = x.it; });
+    return out;
+  }
+  function sortSection(s) {
+    if ((s.kind === 'gallery' || s.kind === 'irl') && s.items) s.items = inOrder(s.items);
+    return s;
+  }
+
   var tag = document.body.getAttribute('data-fan');
   var mine = window.MYPHOTOS && window.MYPHOTOS.fandom && window.MYPHOTOS.fandom[tag];
 
@@ -935,7 +1131,7 @@
   /* filter(Boolean): a section a page only has when another file is loaded
      (window.LEGO_FOR, window.LEGO_GAMES) is written `window.X && ...`, and
      leaves a gap rather than an error when that file is missing */
-  var all = (page.sections || []).filter(Boolean).map(resolveShots);
+  var all = (page.sections || []).filter(Boolean).map(resolveShots).map(sortSection);
 
   /* ── where the photographs go ──
 
@@ -998,6 +1194,61 @@
      that a load-order dependency is how the atlas on /star-wars/ ended up blank.
      Handing the markup back is idempotent and makes the order irrelevant. */
   if (typeof window.AEreveal === 'function') window.AEreveal(root);
+
+  /* ── sortable tables (kind: table) ──
+     Sorts the rows already in the page by the clicked column's data-s, so
+     nothing is re-rendered. A first click sorts numbers biggest first and
+     words A to Z; a second click on the same column flips it. Each table is
+     put in its opening order straight after it renders. */
+  function sortTable(t, col, dir) {
+    var body = t.tBodies[0];
+    var num = t.tHead.rows[0].cells[col].classList.contains('is-num');
+    var rows = [].slice.call(body.rows);
+    rows.sort(function (x, y) {
+      var a = x.cells[col].getAttribute('data-s'), b = y.cells[col].getAttribute('data-s');
+      var d = num ? (+a - +b) : a.localeCompare(b, undefined, { numeric: true });
+      return dir === 'ascending' ? d : -d;
+    }).forEach(function (r) { body.appendChild(r); });
+    [].forEach.call(t.tHead.rows[0].cells, function (th, i) {
+      if (i === col) th.setAttribute('aria-sort', dir); else th.removeAttribute('aria-sort');
+    });
+    t.setAttribute('data-sort', col); t.setAttribute('data-dir', dir);
+  }
+  [].forEach.call(document.querySelectorAll('.fan-tb'), function (t) {
+    sortTable(t, +t.getAttribute('data-sort'), t.getAttribute('data-dir'));
+  });
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('.fan-tb th button');
+    if (!b) return;
+    var t = b.closest('.fan-tb');
+    var col = +b.getAttribute('data-col');
+    var num = b.parentNode.classList.contains('is-num');
+    var dir = +t.getAttribute('data-sort') === col
+      ? (t.getAttribute('data-dir') === 'ascending' ? 'descending' : 'ascending')
+      : (num ? 'descending' : 'ascending');
+    sortTable(t, col, dir);
+  });
+
+  /* the server list: a row copies its address, and the list's foot says so
+     (it is aria-live, so a screen reader hears it too) */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('.mcs-row[data-copy]');
+    if (!b) return;
+    var host = b.getAttribute('data-copy');
+    var foot = b.closest('.mcs') && b.closest('.mcs').querySelector('.mcs-foot');
+    var was = foot && (foot.getAttribute('data-was') || foot.textContent);
+    var say = function (t) {
+      if (!foot) return;
+      foot.setAttribute('data-was', was);
+      foot.textContent = t;
+      clearTimeout(foot._t);
+      foot._t = setTimeout(function () { foot.textContent = was; }, 2200);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(host).then(function () { say('Copied ' + host); },
+        function () { say(host); });
+    } else say(host);
+  });
 
   /* ── a link into a folded section opens it ──
      Every fan page has a row of jump links, and several of them point at
@@ -1153,6 +1404,54 @@
     Object.keys(patch).forEach(function (k) { cur[k] = patch[k]; });
     try { localStorage.setItem(STORE + (sec.id || ''), JSON.stringify(cur)); } catch (e) { /* private mode */ }
   }
+
+  /* ── the period switch (kind: conflict) ──
+     One radio group per block. Every period is already in the page, so this
+     only moves `hidden` and the lit tab: nothing is fetched, and with JS off
+     the checked period is the one that renders. Remembered per section with
+     the same two helpers the sort controls use, by the period's TITLE rather
+     than its index, so reordering the data cannot restore the wrong one. */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-cf]'), function (cf) {
+    var sec = cf.closest('.fan-sec');
+    var tabs = cf.querySelectorAll('.fan-cf-tab');
+    var panels = cf.querySelectorAll('[data-cf-panel]');
+    if (!tabs.length || tabs.length !== panels.length) return;
+
+    function show(i) {
+      Array.prototype.forEach.call(tabs, function (t, n) {
+        t.classList.toggle('is-on', n === i);
+      });
+      Array.prototype.forEach.call(panels, function (pn, n) {
+        pn.classList.toggle('is-on', n === i);
+        if (n === i) pn.removeAttribute('hidden'); else pn.setAttribute('hidden', '');
+      });
+    }
+
+    /* the saved period, matched on the tab's own label */
+    if (sec) {
+      var want = recall(sec).period;
+      if (want) {
+        Array.prototype.forEach.call(tabs, function (t, n) {
+          var b = t.querySelector('b');
+          if (b && b.textContent === want) {
+            var r = t.querySelector('input[type=radio]');
+            if (r) r.checked = true;
+            show(n);
+          }
+        });
+      }
+    }
+
+    cf.addEventListener('change', function (e) {
+      var r = e.target.closest('input[type=radio]');
+      if (!r) return;
+      var i = parseInt(r.value, 10);
+      if (isNaN(i)) return;
+      show(i);
+      var b = tabs[i] && tabs[i].querySelector('b');
+      if (sec && b) remember(sec, { period: b.textContent });
+    });
+  });
 
   Array.prototype.forEach.call(document.querySelectorAll('.fan-sort'), function (bar) {
     var sec = bar.closest('.fan-sec');

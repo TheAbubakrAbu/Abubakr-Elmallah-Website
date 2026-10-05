@@ -27,7 +27,9 @@
     <span class="mascot-step">{{ forloop.index | prepend: "0" | slice: -2, 2 }} · {{ m.step | escape }}</span>
     <h3>{{ m.mascot | default: "None" | escape }}</h3>
     <span class="mascot-school">{{ m.school | escape }}</span>
-    <span class="mascot-when">{{ m.when | escape }}</span>
+    {%- comment %} the years on one line, what they were (grades, a town) on the next {% endcomment %}
+    {%- assign when = m.when | split: " · " %}
+    <span class="mascot-when">{% for part in when %}<span>{{ part | escape }}</span>{% endfor %}</span>
     <p>{{ m.note | escape }}</p>
   </li>
   {%- endfor %}

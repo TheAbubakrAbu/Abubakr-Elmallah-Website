@@ -188,6 +188,10 @@ body[data-intro="starwars"] #field { opacity: 0.32; }
   gap: clamp(1rem, 2vw, 1.5rem);
 }
 
+/* only the main worlds until "Show all" (planets.js) */
+#planetAtlas:not(.is-all) .pl-card.is-minor { display: none; }
+.pl-more { display: block; margin: 1.4rem auto 0; }
+
 /* ───────────── card ───────────── */
 .pl-card {
   position: relative; overflow: hidden;

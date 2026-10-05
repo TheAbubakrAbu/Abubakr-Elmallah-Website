@@ -68,6 +68,31 @@ window.FAN_PAGE = {
       { when: 'Now', title: 'The default voice', desc: 'Half a century on, his recordings sit in every Qurʾān app and stream from every corner of the world, including the colour-coded recitation in Al-Quran, the app this house shipped. The voice outlived the man by design: he left it where everyone could reach it.' },
     ] },
 
+  /* three portraits of the Sheikh, and the Discord server that wears one of
+     them; originals in _originals/archive/minshawi/ */
+  { id: 'portraits', kind: 'gallery', grid: true, whole: true, title: 'The Sheikh', note: 'three portraits',
+    lede: 'The photograph everybody knows, in black and white and in colour, and one without the dark glasses.',
+    items: [
+      { src: '/assets/img/archive/minshawi/portrait.jpg', accent: '#e0b84f', title: 'In black and white',
+        desc: 'The white kufi and the dark glasses: the best-known picture of him.',
+        alt: 'Sheikh Muhammad Siddiq al-Minshawi in a white kufi and dark glasses, in black and white' },
+      { src: '/assets/img/archive/minshawi/portrait-colour.jpg', accent: '#e0b84f', title: 'In colour',
+        desc: 'The same portrait, coloured.',
+        alt: 'Sheikh Muhammad Siddiq al-Minshawi in a white kufi and dark glasses, in colour' },
+      { src: '/assets/img/archive/minshawi/portrait-circle.webp', accent: '#e0b84f', title: 'Without the glasses',
+        desc: 'Bare-eyed, in a white kufi, in a round frame.',
+        alt: 'Sheikh Muhammad Siddiq al-Minshawi in a white kufi, in a round black and white frame' },
+    ] },
+
+  { id: 'caliphate', kind: 'gallery', grid: true, whole: true, title: 'The Server', note: 'Minshawi Caliphate \u00b7 June 2025',
+    lede: 'My Discord server under his name, with his portrait as the icon.',
+    items: [
+      { src: '/assets/img/archive/minshawi/caliphate-server.jpg', accent: '#e0b84f', title: 'Minshawi Caliphate',
+        desc: 'Four members, founded in June 2025, the same three tags as my Star Wars servers: the two halves of the shahada, and Free Palestine.',
+        meta: 'Discord \u00b7 Est. Jun 2025',
+        alt: 'The Discord card for the Minshawi Caliphate server, with the Sheikh in dark glasses as its icon' },
+    ] },
+
   { id: 'school', kind: 'tiles', title: 'The Egyptian School', note: 'the company he keeps', compact: true,
     lede: 'Twentieth-century Egypt produced a bench of reciters the way it once produced architecture: a whole tradition peaking at once, broadcast on state radio, and never really matched since. Minshāwī is first in this house, but he has company.',
     items: [

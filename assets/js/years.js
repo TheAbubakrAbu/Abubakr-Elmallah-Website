@@ -45,15 +45,21 @@
 
   var GAP = 10;       // gap between frames, px; keep in step with years.css
 
-  function fmt(d) {                       // '2024-05-30 18:06' -> '30 May 2024'
+  /* '2024-05-30 18:06' -> '30 May 2024'. Dates from the rest of the site can
+     be less precise ('2023-12' -> 'Dec 2023', '2023' -> '2023'), and one that
+     starts with '<' is an upper bound -> 'before 14 Oct 2023'. */
+  function fmt(d) {
     if (!d) return '';
-    var p = d.split(/[- :]/);
-    return +p[2] + ' ' + MONTHS[+p[1] - 1] + ' ' + p[0];
+    var before = d.charAt(0) === '<';
+    var p = (before ? d.slice(1) : d).split(/[- :]/);
+    var out = p[2] ? +p[2] + ' ' + MONTHS[+p[1] - 1] + ' ' + p[0]
+            : p[1] ? MONTHS[+p[1] - 1] + ' ' + p[0] : p[0];
+    return (before ? 'before ' : '') + out;
   }
   function fmtShort(d) {                  // -> 'May 2024'
     if (!d) return '';
-    var p = d.split(/[- :]/);
-    return MONTHS[+p[1] - 1] + ' ' + p[0];
+    var p = d.replace(/^</, '').split(/[- :]/);
+    return p[1] ? MONTHS[+p[1] - 1] + ' ' + p[0] : p[0];
   }
 
   function esc(s) { return window.AEesc(s); }
@@ -64,8 +70,13 @@
      containing a slash is a path relative to /assets/img/years/ instead, which
      is how one photograph appears in two galleries without being stored twice:
      the four school ID cards are encoded in their own year, and the ID Pics card
-     points at those same four files. See ALIASES in tools/photos.py. */
+     points at those same four files. See ALIASES in tools/photos.py.
+
+     A file starting with '/' is a picture from elsewhere on the site (a game
+     screenshot, a flyer, an award), shown where it already lives: the year
+     galleries hold every picture on the site. See SITE PICTURES there. */
   function url(gid, file) {
+    if (file.charAt(0) === '/') return file;    // a picture from elsewhere on the site
     return '/assets/img/years/' + (file.indexOf('/') >= 0 ? file : gid + '/' + file);
   }
 
@@ -74,6 +85,7 @@
      1000px frame is what fills the stage first, because it is already in the
      cache; this one is fetched behind it and put in its place. */
   function large(gid, file) {
+    if (file.charAt(0) === '/') return file;    // one size only: the grid's file is the deck's
     return '/assets/img/years-large/' + (file.indexOf('/') >= 0 ? file : gid + '/' + file);
   }
 
@@ -358,7 +370,7 @@
       /* min–max rather than first–last: the ID photo is pinned to the front
          of its year whatever its date says, so row order is no longer the
          same thing as date order. The strings sort lexically as dates do. */
-      var dates = rows.map(function (r) { return r[1]; }).filter(Boolean).sort();
+      var dates = rows.map(function (r) { return r[1] && r[1].replace(/^</, ''); }).filter(Boolean).sort();
       var range = dates.length
         ? fmtShort(dates[0]) + ' – ' + fmtShort(dates[dates.length - 1])
         : 'undated';

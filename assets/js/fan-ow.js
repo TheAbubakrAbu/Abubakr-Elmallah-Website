@@ -68,7 +68,7 @@ window.FAN_PAGE = {
       { title: 'Zero Hour', accent: '#c04a4a', sub: 'Overwatch 2 · 2019 · 7:35',
         desc: 'The short that announced the sequel: Paris under attack, and the team coming back together. Blizzard Animation at full strength.',
         href: 'https://www.youtube.com/watch?v=1uXkvNaSPY0', link: 'Watch' },
-      { title: 'Anthem', accent: '#a06fd0', sub: 'Overwatch: Heroes & Villains · 2:32',
+      { title: 'Anthem', accent: '#a06fd0', sub: 'Overwatch: Heroes & Villains · 2022 · 2:32',
         desc: 'From the later soundtrack releases, and the closest the score gets to a proper concert arrangement of the main theme.',
         href: 'https://www.youtube.com/watch?v=4nXOiBulQcc', link: 'Listen' },
     ] },

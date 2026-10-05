@@ -259,6 +259,81 @@
     })();
   }
 
+  /* ─────────── threat assessment: the four villain eras ───────────
+     Every panel is already in the page, so this only moves `hidden` and the
+     lit tab. The bar inside the shown panel is re-run from zero so the fill
+     animates on each switch rather than appearing already full: the width
+     comes from body.is-live (see .jv-bar i), so dropping --v for one frame
+     and putting it back is what replays it. */
+
+  /* which phase each tab is, in order: this is the value that goes on <body>,
+     and jarvis.css turns it into the colour of the entire HUD */
+  var PHASES = ['avengers', 'infinity', 'kang', 'doom'];
+  var STONE_LABEL = {
+    none:    'No stone held \u00b7 HUD running on the phase',
+    space:   'Space Stone \u00b7 the Tesseract \u00b7 HUD running blue',
+    mind:    'Mind Stone \u00b7 the sceptre, then Vision \u00b7 HUD running yellow',
+    reality: 'Reality Stone \u00b7 the Aether \u00b7 HUD running red',
+    power:   'Power Stone \u00b7 the Orb \u00b7 HUD running violet',
+    time:    'Time Stone \u00b7 the Eye of Agamotto \u00b7 HUD running green',
+    soul:    'Soul Stone \u00b7 Vormir \u00b7 HUD running orange',
+  };
+
+  function threat() {
+    var box = $('#jvThreat');
+    if (!box) return;
+    var tabs = $$('.jv-ph-tab', box);
+    var panels = $$('[data-jv-phase]', box);
+    if (!tabs.length || tabs.length !== panels.length) return;
+
+    function show(i) {
+      tabs.forEach(function (t, n) { t.classList.toggle('is-on', n === i); });
+      panels.forEach(function (pn, n) {
+        var on = n === i;
+        pn.classList.toggle('is-on', on);
+        if (on) pn.removeAttribute('hidden'); else pn.setAttribute('hidden', '');
+      });
+      /* the whole HUD, not just this module: jarvis.css redefines --cy-rgb
+         from this attribute, which every wireframe on the page is drawn from.
+         This is what the switch is actually for. */
+      if (PHASES[i]) document.body.setAttribute('data-phase', PHASES[i]);
+
+      var bar = panels[i] && panels[i].querySelector('.jv-bar');
+      if (!bar || reduce) return;
+      var v = bar.style.getPropertyValue('--v');
+      bar.style.setProperty('--v', '0%');
+      /* two frames: one for the 0% to be taken, one for the real value, or the
+         browser coalesces them and nothing moves */
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { bar.style.setProperty('--v', v); });
+      });
+    }
+
+    box.addEventListener('change', function (e) {
+      var r = e.target.closest('input[type=radio]');
+      if (!r || r.name !== 'jvPhase') return;
+      var i = parseInt(r.value, 10);
+      if (!isNaN(i)) show(i);
+    });
+
+    /* ── the Gauntlet ──
+       A stone sits on top of the phase: hold one and the HUD runs in its
+       colour, let it go and the phase takes the page back. */
+    var stones = $('#jvStones');
+    if (!stones) return;
+    var swatches = $$('.jv-stone', stones);
+    stones.addEventListener('change', function (e) {
+      var r = e.target.closest('input[type=radio]');
+      if (!r || r.name !== 'jvStone') return;
+      document.body.setAttribute('data-stone', r.value);
+      swatches.forEach(function (sw) {
+        sw.classList.toggle('is-on', sw.contains(r));
+      });
+      var note = $('#jvStoneN');
+      if (note) note.textContent = STONE_LABEL[r.value] || STONE_LABEL.none;
+    });
+  }
+
   /* ─────────── escape hatch: skip the boot, then leave ─────────── */
 
   document.addEventListener('keydown', function (e) {
@@ -276,6 +351,7 @@
   wave();
   pointer();
   loadMeter();
+  threat();
   setInterval(tick, 1000);
   setInterval(chrono, 60000);
   boot();

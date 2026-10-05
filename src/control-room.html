@@ -1,0 +1,423 @@
+---
+permalink: /control-room/
+title: "The Control Room · Abubakr Elmallah"
+description: "The Control Room: a Jurassic Park interface for Abubakr Elmallah's portfolio, with the island map, a 3D file system, live fences and a locked security grid."
+theme: "#050806"
+fonts: "family=Archivo:wdth,wght@62..125,500..800&family=IBM+Plex+Mono:wght@400;500;600&family=VT323"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/control-room.css' %}" />
+</head>
+<body class="cr" id="cr">
+
+<!-- the room itself: lamplight from the ceiling, the green spill of a wall
+     of monitors, a faint floor grid, and the storm outside, which flickers
+     now and then the way it does all night in the film -->
+<div class="cr-field" aria-hidden="true">
+  <span class="cr-glow"></span>
+  <span class="cr-grid"></span>
+  <span class="cr-storm"></span>
+</div>
+
+<header class="cr-top">
+  <a class="cr-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the control room</span>
+  </a>
+  <span class="cr-top-mid">Isla Nublar · Visitor Centre · Park systems</span>
+  <span class="cr-top-clock"><i class="cr-led" id="crTopLed" aria-hidden="true"></i><span id="crTopClock">Island time ··:··:··</span></span>
+</header>
+
+<main class="cr-main">
+
+  <!-- ─────────── the console and the island ─────────── -->
+  <section class="cr-hero">
+    <div class="cr-hero-txt">
+      <p class="cr-kicker">Park systems · all online</p>
+      <h1 class="cr-title"><span>The Control</span> <span>Room</span></h1>
+      <div class="cr-hazard" aria-hidden="true"></div>
+      <p class="cr-sub">Every room on this site, run from one console in the visitor centre. Each page is a paddock or a building on the island map, a 3D file system flies you over all of them, the fences are live, and Nedry has locked you out of security.</p>
+
+      <!-- the park clock: the island's own time (Costa Rica, which does not
+           change its clocks), yours, and how long you have been on shift -->
+      <div class="cr-mon cr-mon--clock">
+        <div class="cr-mon-label"><span>Park clock</span><i class="cr-led" aria-hidden="true"></i></div>
+        <div class="cr-screen cr-screen--amber">
+          <p class="cr-clock-k">Island time</p>
+          <p class="cr-clock" id="crIsland">··:··:··</p>
+          <dl class="cr-clock-meta">
+            <div><dt>Zone</dt><dd>Costa Rica · UTC−6</dd></div>
+            <div><dt>Your time</dt><dd id="crLocal">··:··</dd></div>
+            <div><dt>On shift</dt><dd id="crShift">0:00</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <!-- The park map, drawn by hand in SVG like a vector display: the
+         coastline, contour lines round the high ground, the tour road with
+         two cars on it (control-room.js moves them), and every room on the
+         site placed on the island as a numbered pin. The numbers are the
+         directory's below; the pins are a picture of that list, so they are
+         hidden from screen readers and skipped by Tab, and control-room.js
+         takes each pin's address from the list rather than repeating it. -->
+    <figure class="cr-mon cr-mon--map">
+      <div class="cr-mon-label"><span>Park map · Isla Nublar</span><span class="cr-mon-note">Tour in progress</span><i class="cr-led" aria-hidden="true"></i></div>
+      <div class="cr-screen cr-screen--map">
+        <span class="cr-sweep" aria-hidden="true"></span>
+        <svg class="cr-map" id="crMap" viewBox="0 0 640 480" aria-hidden="true">
+          <defs>
+            <path id="crCoast" vector-effect="non-scaling-stroke" d="M330 26C344 24 354 44 366 46C378 48 392 37 404 40C416 43 430 53 440 64C450 75 451 94 462 104C473 114 490 115 504 124C518 133 539 147 546 160C553 173 539 187 544 200C549 213 571 222 574 236C577 250 568 271 560 284C552 297 530 301 526 312C522 323 540 337 536 350C532 363 517 380 504 388C491 396 469 392 456 400C443 408 438 428 424 436C410 444 389 450 374 450C359 450 347 435 334 436C321 437 310 452 296 454C282 456 264 452 250 446C236 440 226 424 212 418C198 412 180 417 168 410C156 403 149 388 138 378C127 368 108 363 104 352C100 341 117 325 114 312C111 299 88 289 86 276C84 263 92 243 100 232C108 221 128 219 136 208C144 197 138 178 146 168C154 158 174 156 184 146C194 136 194 118 204 108C214 98 233 97 246 88C259 79 266 66 280 56C294 46 316 28 330 26Z"/>
+            <!-- the canopy: a scatter of small ticks, like the tree symbol on a survey map -->
+            <pattern id="crCanopy" width="18" height="16" patternUnits="userSpaceOnUse">
+              <path d="M3 6l2-3 2 3M12 14l2-3 2 3" class="cr-tree"/>
+            </pattern>
+            <clipPath id="crLand"><use href="#crCoast"/></clipPath>
+          </defs>
+
+          <!-- the sea: a survey grid, and the surf line just off the coast -->
+          <g class="cr-sea">
+            <path d="M0 80H640M0 160H640M0 240H640M0 320H640M0 400H640M80 0V480M160 0V480M240 0V480M320 0V480M400 0V480M480 0V480M560 0V480"/>
+          </g>
+          <use href="#crCoast" class="cr-surf" transform="translate(330 240) scale(1.045) translate(-330 -240)"/>
+
+          <!-- the land, the canopy over it, and the contours of the high ground -->
+          <use href="#crCoast" class="cr-land"/>
+          <rect width="640" height="480" fill="url(#crCanopy)" clip-path="url(#crLand)" class="cr-canopy"/>
+          <g class="cr-contour">
+            <use href="#crCoast" transform="translate(262 218) scale(.8) translate(-262 -218)"/>
+            <use href="#crCoast" transform="translate(262 218) scale(.6) translate(-262 -218)"/>
+            <use href="#crCoast" transform="translate(262 218) scale(.4) translate(-262 -218)"/>
+            <use href="#crCoast" transform="translate(262 218) scale(.2) translate(-262 -218)"/>
+          </g>
+          <use href="#crCoast" class="cr-coast"/>
+          <!-- the perimeter fence, just inside the shore -->
+          <use href="#crCoast" class="cr-fence cr-fence--perim" data-n="15" transform="translate(330 240) scale(.92) translate(-330 -240)"/>
+
+          <!-- water: the lake and the river out to the east dock -->
+          <path class="cr-water" d="M352 210C359 203 374 203 384 206C394 209 401 218 400 226C399 234 390 243 380 246C370 249 354 247 348 240C342 233 345 217 352 210Z"/>
+          <path class="cr-river" d="M398 232C410 240 420 250 436 258C452 266 470 270 486 282C502 294 520 306 540 316"/>
+
+          <!-- the paddocks, each inside its fence -->
+          <path class="cr-fence" data-n="09" d="M274 96C282 90 321 82 330 84C339 86 351 103 352 110C353 117 347 143 340 148C333 153 305 158 296 156C287 154 265 139 262 132C259 125 266 102 274 96Z"/>
+          <path class="cr-fence" data-n="13" d="M178 160C183 154 213 144 220 146C227 148 238 169 238 176C238 183 223 201 216 204C209 207 182 203 178 198C174 193 173 166 178 160Z"/>
+          <path class="cr-fence" data-n="14" d="M160 236C168 232 198 228 206 232C214 236 227 260 226 268C225 276 205 297 196 300C187 303 157 294 150 290C143 286 137 268 138 262C139 256 152 240 160 236Z"/>
+          <path class="cr-fence" data-n="05" d="M392 96C398 92 431 89 440 92C449 95 468 116 470 124C472 132 463 156 456 160C449 164 420 164 412 160C404 156 388 137 386 130C384 123 386 100 392 96Z"/>
+          <!-- the raptor pen: a double fence, and the only one Nedry left on -->
+          <g class="cr-fence cr-fence--pen" data-n="10">
+            <rect x="484" y="168" width="34" height="32"/>
+            <rect x="489" y="173" width="24" height="22"/>
+          </g>
+          <!-- the paddock grid: seventy-one worlds, nine paddocks deep -->
+          <g class="cr-fence cr-fence--grid" data-n="08">
+            <rect x="374" y="362" width="16" height="16"/><rect x="394" y="362" width="16" height="16"/><rect x="414" y="362" width="16" height="16"/>
+            <rect x="374" y="382" width="16" height="16"/><rect x="394" y="382" width="16" height="16"/><rect x="414" y="382" width="16" height="16"/>
+            <rect x="374" y="402" width="16" height="16"/><rect x="394" y="402" width="16" height="16"/><rect x="414" y="402" width="16" height="16"/>
+          </g>
+
+          <!-- the tour road, the spur up from the helipad through the gate,
+               and the cars, which control-room.js drives round the loop -->
+          <path class="cr-road" id="crRoad" d="M318 318C309 314 281 305 262 296C243 287 217 276 206 262C195 248 193 229 196 214C199 199 211 183 224 170C237 157 258 145 276 136C294 127 311 119 330 118C349 117 374 121 392 128C410 135 427 148 440 160C453 172 467 185 470 200C473 215 466 238 458 252C450 266 434 277 420 286C406 295 389 299 372 304C355 309 327 316 318 318"/>
+          <path class="cr-road cr-road--spur" d="M526 230C510 240 486 256 452 270"/>
+          <g class="cr-car" id="crCar1"><rect x="-6" y="-3.5" width="12" height="7" rx="1.5"/></g>
+          <g class="cr-car" id="crCar2"><rect x="-6" y="-3.5" width="12" height="7" rx="1.5"/></g>
+
+          <!-- the buildings -->
+          <g class="cr-bldg">
+            <rect x="296" y="312" width="48" height="26"/><circle cx="320" cy="312" r="9"/>
+            <rect x="350" y="334" width="22" height="18"/>
+            <rect x="276" y="358" width="20" height="16"/>
+            <rect x="236" y="344" width="20" height="16"/>
+            <circle cx="526" cy="230" r="13"/><path d="M521 223v14M531 223v14M521 230h10"/>
+            <path d="M444 262v14M460 262v14M440 262h24"/>
+            <path d="M532 322L584 336M548 326l-2 8M564 330l-2 8"/>
+          </g>
+
+          <text class="cr-map-name" x="34" y="56">ISLA NUBLAR</text>
+          <g class="cr-north" transform="translate(600 58)">
+            <path d="M0 -30L9 4L0 -3L-9 4Z"/>
+            <text x="0" y="26">N</text>
+          </g>
+
+          <!-- the pins, numbered as in the directory below -->
+          <g class="cr-pins">
+            <g class="cr-pin" data-n="01" transform="translate(320 326)"><g><circle r="13"/><text dy="5">01</text></g></g>
+            <g class="cr-pin" data-n="02" transform="translate(240 374)"><g><circle r="13"/><text dy="5">02</text></g></g>
+            <g class="cr-pin" data-n="03" transform="translate(370 352)"><g><circle r="13"/><text dy="5">03</text></g></g>
+            <g class="cr-pin" data-n="04" transform="translate(452 290)"><g><circle r="13"/><text dy="5">04</text></g></g>
+            <g class="cr-pin" data-n="05" transform="translate(428 126)"><g><circle r="13"/><text dy="5">05</text></g></g>
+            <g class="cr-pin" data-n="06" transform="translate(290 390)"><g><circle r="13"/><text dy="5">06</text></g></g>
+            <g class="cr-pin" data-n="07" transform="translate(546 206)"><g><circle r="13"/><text dy="5">07</text></g></g>
+            <g class="cr-pin" data-n="08" transform="translate(402 390)"><g><circle r="13"/><text dy="5">08</text></g></g>
+            <g class="cr-pin" data-n="09" transform="translate(306 120)"><g><circle r="13"/><text dy="5">09</text></g></g>
+            <g class="cr-pin" data-n="10" transform="translate(501 184)"><g><circle r="13"/><text dy="5">10</text></g></g>
+            <g class="cr-pin" data-n="11" transform="translate(374 226)"><g><circle r="13"/><text dy="5">11</text></g></g>
+            <g class="cr-pin" data-n="12" transform="translate(596 346)"><g><circle r="13"/><text dy="5">12</text></g></g>
+            <g class="cr-pin" data-n="13" transform="translate(206 176)"><g><circle r="13"/><text dy="5">13</text></g></g>
+            <g class="cr-pin" data-n="14" transform="translate(182 266)"><g><circle r="13"/><text dy="5">14</text></g></g>
+            <g class="cr-pin" data-n="15" transform="translate(122 318)"><g><circle r="13"/><text dy="5">15</text></g></g>
+          </g>
+        </svg>
+      </div>
+      <figcaption class="cr-map-key">
+        <span><i class="cr-key cr-key--road" aria-hidden="true"></i>Tour road</span>
+        <span><i class="cr-key cr-key--fence" aria-hidden="true"></i>Electric fence</span>
+        <span><i class="cr-key cr-key--car" aria-hidden="true"></i>Tour car</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- ─────────── the directory ─────────── -->
+  <!-- every room on the site, numbered as on the map: the main sections,
+       both schools, the worlds and their personal pages. The other
+       terminals are the remote hosts under the file system. This list is
+       the one copy of these addresses on the page: the pins, the file
+       system and the security terminal's ls all read it. -->
+  <section class="cr-dir" aria-labelledby="crDirH">
+    <h2 class="cr-h" id="crDirH">The park<span>every room on the site, by its number on the map</span></h2>
+    <ol class="cr-rooms" id="crRooms">
+      <li><a class="cr-room" href="/" data-n="01" data-fsn="/"><span class="cr-room-n" aria-hidden="true">01</span><b>The Visitor Centre</b><i>Home · where every tour starts</i><em>/</em></a></li>
+      <li><a class="cr-room" href="/work/" data-n="02" data-fsn="work"><span class="cr-room-n" aria-hidden="true">02</span><b>The Maintenance Shed</b><i>Work at UC Irvine · keeping the systems up</i><em>/work/</em></a></li>
+      <li><a class="cr-room" href="/projects/" data-n="03" data-fsn="projects"><span class="cr-room-n" aria-hidden="true">03</span><b>The Genetics Lab</b><i>Every project, sequenced</i><em>/projects/</em></a></li>
+      <li><a class="cr-room" href="/education/" data-n="04" data-fsn="education"><span class="cr-room-n" aria-hidden="true">04</span><b>The Main Gate</b><i>Education · the way in</i><em>/education/</em></a></li>
+      <li><a class="cr-room" href="/college/" data-n="05" data-fsn="college"><span class="cr-room-n" aria-hidden="true">05</span><b>Brachiosaurus Valley</b><i>College · UC Irvine</i><em>/college/</em></a></li>
+      <li><a class="cr-room" href="/high-school/" data-n="06" data-fsn="high-school"><span class="cr-room-n" aria-hidden="true">06</span><b>The Hatchery</b><i>High School · where it all hatched</i><em>/high-school/</em></a></li>
+      <li><a class="cr-room" href="/resume/" data-n="07" data-fsn="resume"><span class="cr-room-n" aria-hidden="true">07</span><b>The Helipad</b><i>Résumé · how most visitors arrive</i><em>/resume/</em></a></li>
+      <li><a class="cr-room" href="/worlds/" data-n="08" data-fsn="worlds"><span class="cr-room-n" aria-hidden="true">08</span><b>The Paddocks</b><i>All 71 worlds, behind their fences</i><em>/worlds/</em></a></li>
+      <li><a class="cr-room" href="/worlds/jurassic-park/" data-n="09" data-fsn="jurassic-park"><span class="cr-room-n" aria-hidden="true">09</span><b>The Tyrannosaur Paddock</b><i>Jurassic Park · the world page</i><em>/worlds/jurassic-park/</em></a></li>
+      <li><a class="cr-room" href="/star-wars/" data-n="10" data-fsn="star-wars"><span class="cr-room-n" aria-hidden="true">10</span><b>The Raptor Pen</b><i>Star Wars apps · Datapad and the droids</i><em>/star-wars/</em></a></li>
+      <li><a class="cr-room" href="/al-islam/" data-n="11" data-fsn="al-islam"><span class="cr-room-n" aria-hidden="true">11</span><b>The Lake</b><i>Al-Islam · the Islamic apps</i><em>/al-islam/</em></a></li>
+      <li><a class="cr-room" href="/travels/" data-n="12" data-fsn="travels"><span class="cr-room-n" aria-hidden="true">12</span><b>The East Dock</b><i>Travels · 35 trips off the island</i><em>/travels/</em></a></li>
+      <li><a class="cr-room" href="/accents/" data-n="13" data-fsn="accents"><span class="cr-room-n" aria-hidden="true">13</span><b>The Dilophosaurus Paddock</b><i>Accents &amp; impersonations</i><em>/accents/</em></a></li>
+      <li><a class="cr-room" href="/gaming/" data-n="14" data-fsn="gaming"><span class="cr-room-n" aria-hidden="true">14</span><b>The Gallimimus Field</b><i>Gaming · flocking this way</i><em>/gaming/</em></a></li>
+      <li><a class="cr-room" href="/lightsabers/" data-n="15" data-fsn="lightsabers"><span class="cr-room-n" aria-hidden="true">15</span><b>The Perimeter Fence</b><i>The lightsaber guide · ten thousand volts</i><em>/lightsabers/</em></a></li>
+    </ol>
+  </section>
+
+  <!-- ─────────── the file system ─────────── -->
+  <section class="cr-unix" aria-labelledby="crUnixH">
+    <h2 class="cr-h" id="crUnixH">It’s a UNIX system<span>I know this. Every page as a block on a lit grid</span></h2>
+    <div class="cr-unix-grid">
+
+      <!-- The 3D file system browser from the film, drawn on a 2D canvas by
+           control-room.js: directories are pedestals on a lit floor, the
+           files are blocks standing on them, and wires run from each folder
+           to what is in it. Home is the root, the rooms are under /park and
+           the other terminals under /net. It is a picture of the two lists
+           on this page, so it is hidden from screen readers; pointing at a
+           room in either list flies the camera to it. -->
+      <div class="cr-mon cr-mon--sgi">
+        <div class="cr-mon-label"><span>fsn · file system navigator</span><span class="cr-mon-note" id="crFsnNote">Drag to fly · click to open</span><i class="cr-led" aria-hidden="true"></i></div>
+        <div class="cr-screen cr-screen--fsn">
+          <canvas class="cr-fsn" id="crFsn" aria-hidden="true"></canvas>
+        </div>
+        <p class="cr-fsn-status" id="crFsnStatus">
+          <span class="cr-fsn-path" id="crFsnPath">/</span>
+          <span class="cr-fsn-what"><b id="crFsnName">The Visitor Centre</b><i id="crFsnSub">Home · where every tour starts</i></span>
+          <a class="cr-fsn-go" id="crFsnGo" href="/">Open<span class="vh" id="crFsnGoName"> The Visitor Centre</span> ↗</a>
+        </p>
+      </div>
+
+      <!-- the other terminals, listed the way ls -l lists directories on
+           another machine. The permissions are decoration. -->
+      <div class="cr-hosts-wrap">
+        <h3 class="cr-h3">Remote terminals<span>/net · the other interfaces</span></h3>
+        <ul class="cr-hosts" id="crHosts">
+          <li><a class="cr-host" href="/elmallah/" data-fsn="elmallah"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>E.L.M.A.L.L.A.H.</b><i>Star Wars holotable</i><em>/elmallah/</em></a></li>
+          <li><a class="cr-host" href="/holocron/" data-fsn="holocron"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>Holocron</b><i>Jedi archive</i><em>/holocron/</em></a></li>
+          <li><a class="cr-host" href="/jarvis/" data-fsn="jarvis"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>J.A.R.V.I.S.</b><i>Stark heads-up display</i><em>/jarvis/</em></a></li>
+          <li><a class="cr-host" href="/marauders-map/" data-fsn="marauders-map"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Marauder’s Map</b><i>Harry Potter parchment</i><em>/marauders-map/</em></a></li>
+          <li><a class="cr-host" href="/crafting-table/" data-fsn="crafting-table"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Crafting Table</b><i>Minecraft inventory</i><em>/crafting-table/</em></a></li>
+          <li><a class="cr-host" href="/citadel/" data-fsn="citadel"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Citadel</b><i>Game of Thrones archive</i><em>/citadel/</em></a></li>
+          <li><a class="cr-host" href="/compass/" data-fsn="compass"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Compass</b><i>Pirates of the Caribbean</i><em>/compass/</em></a></li>
+          <li><a class="cr-host" href="/upside-down/" data-fsn="upside-down"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Upside Down</b><i>Stranger Things</i><em>/upside-down/</em></a></li>
+          <li><a class="cr-host" href="/starcourt/" data-fsn="starcourt"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>Starcourt</b><i>Stranger Things arcade and mall</i><em>/starcourt/</em></a></li>
+          <li><a class="cr-host" href="/spirit-library/" data-fsn="spirit-library"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i><em>/spirit-library/</em></a></li>
+          <li><a class="cr-host" href="/monastery/" data-fsn="monastery"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Monastery</b><i>Ninjago</i><em>/monastery/</em></a></li>
+          <li><a class="cr-host" href="/wanted/" data-fsn="wanted"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Wanted Board</b><i>Red Dead Redemption</i><em>/wanted/</em></a></li>
+          <li><a class="cr-host" href="/dunder-mifflin/" data-fsn="dunder-mifflin"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>Dunder Mifflin</b><i>The Office</i><em>/dunder-mifflin/</em></a></li>
+          <li><a class="cr-host" href="/springfield/" data-fsn="springfield"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>Springfield</b><i>The Simpsons</i><em>/springfield/</em></a></li>
+          <li><a class="cr-host" href="/vought/" data-fsn="vought"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>Vought Tower</b><i>The Boys</i><em>/vought/</em></a></li>
+          <li><a class="cr-host" href="/pokedex/" data-fsn="pokedex"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Pokédex</b><i>Pokémon</i><em>/pokedex/</em></a></li>
+          <li><a class="cr-host" href="/batcomputer/" data-fsn="batcomputer"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Batcomputer</b><i>Batman</i><em>/batcomputer/</em></a></li>
+          <li><a class="cr-host" href="/daily-bugle/" data-fsn="daily-bugle"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Daily Bugle</b><i>Spider-Man</i><em>/daily-bugle/</em></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─────────── park status ─────────── -->
+  <section class="cr-status" aria-labelledby="crStatusH">
+    <h2 class="cr-h" id="crStatusH">Park status<span>live, from the control room</span></h2>
+    <div class="cr-status-grid">
+
+      <!-- every fence carries the voltage on the sign at the paddock gate;
+           the bars flicker because live current does -->
+      <div class="cr-mon">
+        <div class="cr-mon-label"><span>Fences</span><span class="cr-mon-note">6 of 6 armed</span><i class="cr-led" aria-hidden="true"></i></div>
+        <div class="cr-screen cr-screen--list">
+          <h3 class="cr-h3 cr-h3--screen">Fence status</h3>
+          <ul class="cr-fences">
+            <li><span>Tyrannosaur paddock</span><i class="cr-volt" aria-hidden="true"></i><b>10,000 V · On</b></li>
+            <li><span>Raptor pen</span><i class="cr-volt" aria-hidden="true"></i><b>10,000 V · On</b></li>
+            <li><span>Dilophosaurus paddock</span><i class="cr-volt" aria-hidden="true"></i><b>10,000 V · On</b></li>
+            <li><span>Gallimimus field</span><i class="cr-volt" aria-hidden="true"></i><b>10,000 V · On</b></li>
+            <li><span>Brachiosaurus valley</span><i class="cr-volt" aria-hidden="true"></i><b>10,000 V · On</b></li>
+            <li><span>Perimeter</span><i class="cr-volt" aria-hidden="true"></i><b>10,000 V · On</b></li>
+          </ul>
+          <!-- the current on the perimeter loop, as an oscilloscope draws it:
+               one trace, drawn twice over, sliding left forever -->
+          <figure class="cr-scope">
+            <svg viewBox="0 0 400 60" preserveAspectRatio="none" aria-hidden="true"><path class="cr-scope-grid" d="M0 15H400M0 30H400M0 45H400M50 0V60M100 0V60M150 0V60M200 0V60M250 0V60M300 0V60M350 0V60"/><path class="cr-scope-trace" d="M0 34.5L5 39.9L10 42.9L15 43.7L20 42.9L25 32.5L30 40.3L35 39.4L40 38.6L45 37.2L50 34.5L55 30.0L60 24.1L65 17.8L70 12.5L75 9.5L80 9.8L85 13.5L90 19.8L95 27.3L100 34.5L105 39.9L110 42.9L115 43.7L120 42.9L125 32.5L130 40.3L135 39.4L140 38.6L145 37.2L150 34.5L155 30.0L160 24.1L165 17.8L170 12.5L175 9.5L180 9.8L185 13.5L190 19.8L195 27.3L200 34.5L205 39.9L210 42.9L215 43.7L220 42.9L225 32.5L230 40.3L235 39.4L240 38.6L245 37.2L250 34.5L255 30.0L260 24.1L265 17.8L270 12.5L275 9.5L280 9.8L285 13.5L290 19.8L295 27.3L300 34.5L305 39.9L310 42.9L315 43.7L320 42.9L325 32.5L330 40.3L335 39.4L340 38.6L345 37.2L350 34.5L355 30.0L360 24.1L365 17.8L370 12.5L375 9.5L380 9.8L385 13.5L390 19.8L395 27.3L400 34.5L405 39.9L410 42.9L415 43.7L420 42.9L425 32.5L430 40.3L435 39.4L440 38.6L445 37.2L450 34.5L455 30.0L460 24.1L465 17.8L470 12.5L475 9.5L480 9.8L485 13.5L490 19.8L495 27.3L500 34.5L505 39.9L510 42.9L515 43.7L520 42.9L525 32.5L530 40.3L535 39.4L540 38.6L545 37.2L550 34.5L555 30.0L560 24.1L565 17.8L570 12.5L575 9.5L580 9.8L585 13.5L590 19.8L595 27.3L600 34.5L605 39.9L610 42.9L615 43.7L620 42.9L625 32.5L630 40.3L635 39.4L640 38.6L645 37.2L650 34.5L655 30.0L660 24.1L665 17.8L670 12.5L675 9.5L680 9.8L685 13.5L690 19.8L695 27.3L700 34.5L705 39.9L710 42.9L715 43.7L720 42.9L725 32.5L730 40.3L735 39.4L740 38.6L745 37.2L750 34.5L755 30.0L760 24.1L765 17.8L770 12.5L775 9.5L780 9.8L785 13.5L790 19.8L795 27.3L800 34.5"/></svg>
+            <figcaption>Current · perimeter loop</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="cr-mon">
+        <div class="cr-mon-label"><span>Systems</span><span class="cr-mon-note">Main power</span><i class="cr-led" aria-hidden="true"></i></div>
+        <div class="cr-screen cr-screen--list">
+          <h3 class="cr-h3 cr-h3--screen">System status</h3>
+          <!-- the motion sensors: the park counts its animals by watching
+               the whole island for movement, so their readout is the
+               searching orb, sweeping a globe -->
+          <figure class="cr-sensors">
+            <canvas class="cr-sensor-orb" data-orb="searching" data-orb-size="fit" data-orb-ink="#6dff9a" aria-hidden="true"></canvas>
+            <figcaption>Motion sensors<i>Scanning the island</i></figcaption>
+          </figure>
+          <dl class="cr-sys">
+            <div><dt>Main power</dt><dd>On</dd></div>
+            <div><dt>Phones</dt><dd>On</dd></div>
+            <div><dt>Door locks</dt><dd>Engaged</dd></div>
+            <div><dt>Tour cars</dt><dd>2 on the track</dd></div>
+            <div><dt>Visitors</dt><dd>1 · you</dd></div>
+            <div class="cr-sys-warn"><dt>Security grid</dt><dd><a href="#security">Locked out</a></dd></div>
+          </dl>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="cr-pair">
+
+    <!-- ─────────── security ─────────── -->
+    <!-- Nedry's lockout. The screen is the one in the film, on the
+         Macintosh at his desk: three tries at the security grid, then the
+         same sentence until somebody gives up. It is a toy in a window and
+         never stands between you and a page; everything it can open is a
+         plain link somewhere else on this page too. -->
+    <section class="cr-sec" id="security" aria-labelledby="crSecH">
+      <h2 class="cr-h" id="crSecH">Security<span>Nedry left something running</span></h2>
+      <div class="cr-mac" id="crMac">
+        <div class="cr-mac-bar" aria-hidden="true"><span class="cr-mac-box"></span><b>Security</b><span class="cr-mac-box cr-mac-box--r"></span></div>
+        <div class="cr-mac-screen" id="crTerm">
+          <div class="cr-term-log" id="crLog" role="log" aria-live="polite" aria-label="Security system output">
+            <p>Jurassic Park, System Security Interface</p>
+            <p>Version 4.0.5, Alpha E</p>
+            <p>Ready...</p>
+          </div>
+          <div class="cr-term-flood" id="crFlood" aria-hidden="true"></div>
+          <form class="cr-term-form" id="crForm" autocomplete="off">
+            <label class="vh" for="crCmd">Command for the security system</label>
+            <span class="cr-term-ps" aria-hidden="true">&gt;</span>
+            <input class="cr-term-in" id="crCmd" type="text" name="cmd" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="type help" />
+          </form>
+        </div>
+        <!-- outside the scrolling screen, so the flood cannot carry it away -->
+        <p class="cr-ahah" id="crAhah" aria-hidden="true"><span>ah</span> <span>ah</span> <span>ah!</span></p>
+      </div>
+      <div class="cr-chips" aria-label="Commands to try">
+        <button class="cr-chip" type="button" data-cmd="access security">access security</button>
+        <button class="cr-chip" type="button" data-cmd="access security grid">access security grid</button>
+        <button class="cr-chip" type="button" data-cmd="access main security grid">access main security grid</button>
+        <button class="cr-chip" type="button" data-cmd="please">please</button>
+        <button class="cr-chip" type="button" data-cmd="whte_rbt.obj">whte_rbt.obj</button>
+        <button class="cr-chip" type="button" data-cmd="help">help</button>
+      </div>
+    </section>
+
+    <!-- ─────────── the personnel file ─────────── -->
+    <!-- printed on the console's dot-matrix printer, on green-bar tractor
+         paper. Only facts the rest of the site already states. -->
+    <section class="cr-file" aria-labelledby="crFileH">
+      <h2 class="cr-h" id="crFileH">Personnel file<span>as the park keeps it</span></h2>
+      <div class="cr-print">
+        <p class="cr-print-head"><span>Park personnel · file 0001</span><span id="crPrinted">Printed today</span></p>
+        <dl class="cr-rec">
+          <div><dt>Name</dt><dd>Abubakr Elmallah</dd></div>
+          <div><dt>Studying</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
+          <div><dt>Post</dt><dd>Lead mobile &amp; backend developer at UC Irvine</dd></div>
+          <div><dt>Apps shipped</dt><dd>Twelve, across four platforms</dd></div>
+          <div><dt>Worlds</dt><dd>70 on this site</dd></div>
+          <div><dt>Trips</dt><dd>35, 19 by plane and 16 by road, 2015–2026</dd></div>
+          <div><dt>Voices</dt><dd>19 accents and 4 impersonations</dd></div>
+          <div><dt>Steam</dt><dd>747 achievements across four Steam Replays, 2022–2025</dd></div>
+          <div><dt>Datapad</dt><dd>On the App Store June 26, 2023; reached the Top 10 of the paid Entertainment chart</dd></div>
+          <div><dt>Swift Student Challenge</dt><dd>Winner, 2024, with Al-Quran; went to WWDC 2024</dd></div>
+          <div><dt>Islamic apps</dt><dd>Al-Islam, Al-Quran, Al-Adhan: three apps, two national awards</dd></div>
+          <div><dt>Discord bots</dt><dd>Sabacc Droid and Aurebesh Droid, in more than 500 servers</dd></div>
+          <div><dt>First solo project</dt><dd>Order 66, in Scratch, 2021</dd></div>
+          <div><dt>First real code</dt><dd>The Star Wars Datapad on Code.org, 2021: 812 lines of JavaScript</dd></div>
+          <div><dt>Location</dt><dd>33.64°N 117.84°W</dd></div>
+          <div><dt>Contact</dt><dd><a href="mailto:ammelmallah@gmail.com">ammelmallah@gmail.com</a></dd></div>
+        </dl>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ─────────── the reboot ─────────── -->
+  <!-- the only way to clear Nedry's program is to switch the whole park off
+       and on again, and the line is the one said over the switch -->
+  <section class="cr-reboot" aria-labelledby="crRebootH">
+    <h2 class="vh" id="crRebootH">Restart the park</h2>
+    <p class="cr-reboot-k">System restart · every fence goes down with it</p>
+    <button class="cr-butts" id="crButts" type="button">
+      <span class="cr-guard" aria-hidden="true"><i></i></span>
+      <span class="cr-butts-t">Hold on to your butts.</span>
+    </button>
+    <p class="cr-reboot-by">Ray Arnold, chief engineer, before the reboot</p>
+  </section>
+
+</main>
+
+<!-- the end: the power off, the fences with it, and a glass of water on the
+     dashboard starting to ripple (the listening orb is the ripple) -->
+<div class="cr-end" id="crEnd">
+  <div class="cr-end-in">
+    <ul class="cr-end-log">
+      <li>Fences <b>off</b></li>
+      <li>Door locks <b>off</b></li>
+      <li>Phones <b>off</b></li>
+      <li>Motion sensors <b>off</b></li>
+      <li>Raptor pen <b>off</b></li>
+    </ul>
+    <canvas class="cr-end-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#6dff9a" aria-hidden="true"></canvas>
+    <p class="cr-end-k">Shutdown complete</p>
+    <p class="cr-end-t">The whole park is dark.</p>
+    <p class="cr-end-p">Every fence is down, the raptor pen with them. The main breakers are in the maintenance shed, and the water in the glass has started to ripple.</p>
+    <div class="cr-end-acts">
+      <a class="cr-end-home" id="crEndHome" href="/">Back to the visitor centre</a>
+      <button class="cr-end-on" id="crBreakers" type="button">Turn the breakers back on</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* smooth scrolling only after load, so back/forward restores the position instantly instead of sliding to it */
+  addEventListener('load', function () {
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      document.documentElement.classList.add('smooth');
+    }); });
+  });
+</script>
+<script src="{% include v.html f='/assets/js/control-room.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

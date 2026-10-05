@@ -84,6 +84,24 @@ window.FAN_PAGE = {
         meta: 'Morocco, al-Andalus' },
     ] },
 
+  /* my name, written; the originals are in _originals/archive/arab/ */
+  { id: 'my-name', kind: 'gallery', grid: true, whole: true, title: 'My Name, Written', note: '\u0623\u0628\u0648 \u0628\u0643\u0631',
+    lede: 'I am named after Abu Bakr al-Siddiq, the Prophet\u2019s closest companion. Four pieces of calligraphy of that name: two with his full title, two of the name alone.',
+    items: [
+      { src: '/assets/img/archive/arab/calligraphy-1.webp', accent: '#f0c840', title: 'Abu Bakr al-Siddiq, in gold',
+        desc: 'The full title in a gold roundel: Abu Bakr al-Siddiq, radiya Allahu anhu, may God be pleased with him.',
+        alt: 'Gold calligraphy of Abu Bakr al-Siddiq, radiya Allahu anhu, in a gold ring' },
+      { src: '/assets/img/archive/arab/calligraphy-2.webp', accent: '#3fbf6a', title: 'On green',
+        desc: 'The same roundel on Islamic green.',
+        alt: 'Gold calligraphy of Abu Bakr al-Siddiq on a green disc' },
+      { src: '/assets/img/archive/arab/calligraphy-3.webp', accent: '#f0c840', title: 'The name alone',
+        desc: 'Just Abu Bakr, two words, filling the ring.',
+        alt: 'Gold calligraphy of the name Abu Bakr alone, in a gold ring' },
+      { src: '/assets/img/archive/arab/calligraphy-4.webp', accent: '#e08a3a', title: 'In brush',
+        desc: 'Abu Bakr in orange brushwork, with no frame at all.',
+        alt: 'The name Abu Bakr in orange brush calligraphy' },
+    ] },
+
   { id: 'dialects', kind: 'tiles', mount: 'end', title: 'The Dialects', note: 'and which one is mine',
     lede: 'Fuṣḥā is what is written and broadcast. Nobody grows up speaking it. What people actually speak splits roughly five ways, and how well any two of them understand each other has more to do with television than with geography.',
     items: [

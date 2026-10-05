@@ -229,13 +229,17 @@ a.footer-mid:hover { color: var(--green-2); }
   transition: transform .25s var(--ease), background .25s, border-color .25s, color .25s;
 }
 .ql svg { width: 15px; height: 15px; }
-/* Résumé is the one filled button up here. LinkedIn and GitHub are outline
-   buttons that take their brand colour on hover: filled by default, the
-   header and the hero between them put six filled pills (two of them green
-   Résumés) on the first screen, and the page's own main action was the
-   quietest button in view. */
-.ql--resume   { order: 2; background: var(--green); color: #05140c; border-color: var(--green); font-weight: 500; }
-.ql--resume:hover   { background: var(--green-2); border-color: var(--green-2); }
+/* All three wear their colour as a tint (coloured icon, text and border
+   over a faint wash) and fill on hover: Résumé green, LinkedIn blue, GitHub
+   gold. Fully filled, the header and the hero between them put six filled
+   pills on the first screen and the page's own main action was the quietest
+   button in view. */
+.ql--resume {
+  order: 2; font-weight: 500;
+  color: var(--green-2); border-color: color-mix(in srgb, var(--green) 55%, transparent);
+  background: color-mix(in srgb, var(--green) 14%, transparent);
+}
+.ql--resume:hover   { background: var(--green); color: #05140c; border-color: var(--green); }
 /* on /resume/ itself it marks where you are rather than asking to be pressed,
    and the page's own Download button is the filled one (resume.css) */
 .ql--resume[aria-current="page"] {
@@ -243,6 +247,14 @@ a.footer-mid:hover { color: var(--green-2); }
   border-color: color-mix(in srgb, var(--green) 50%, transparent);
 }
 .ql--linkedin, .ql--github { font-weight: 500; }
+.ql--linkedin {
+  color: var(--blue-2); border-color: color-mix(in srgb, var(--blue) 55%, transparent);
+  background: color-mix(in srgb, var(--blue) 14%, transparent);
+}
+.ql--github {
+  color: var(--gold); border-color: color-mix(in srgb, var(--gold) 50%, transparent);
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+}
 .ql--linkedin:hover { background: var(--blue); color: #04101f; border-color: var(--blue); }
 .ql--github:hover   { background: var(--gold); color: #1a1405; border-color: var(--gold); }
 
@@ -271,7 +283,7 @@ a.footer-mid:hover { color: var(--green-2); }
 /* top nav controls are commented out, push the toggle+quicklinks group to the right */
 @media (min-width: 561px) { .topbar .toggles { margin-left: auto; } }
 @media (max-width: 560px) {
-  /* One row: brand on the left, sound toggle and the three links on the
+  /* One row: brand on the left, search, sound and Résumé on the
      right. It used to wrap the links onto a second row, and with the tab bar
      that was about a fifth of a phone screen in chrome. */
   .topbar {
@@ -292,10 +304,14 @@ a.footer-mid:hover { color: var(--green-2); }
     clip-path: inset(50%); white-space: nowrap;
   }
   .ql { padding: 0.55rem 0.7rem; }
+  /* LinkedIn and GitHub leave the bar on a phone so the whole name fits next
+     to search, sound and Résumé. They are not gone: /resume/ carries both as
+     buttons beside Download (resume.html), one tap away on the Résumé icon. */
+  .topbar .ql--linkedin, .topbar .ql--github { display: none; }
 }
 
-/* the smallest phones: five icons and the name on one row (search joined
-   the bar on 2026-09-28), so the pills and the gaps between them tighten */
+/* the smallest phones: three icons and the name on one row, so the pills
+   and the gaps between them tighten */
 @media (max-width: 380px) {
   .topbar { gap: 0.4rem; }
   .topbar .toggles, .topbar .quicklinks { gap: 0.35rem; }
@@ -307,14 +323,11 @@ a.footer-mid:hover { color: var(--green-2); }
    on a touch screen for it to switch */
 @media (hover: none) { .ql--cursor { display: none; } }
 
-/* What keeps the bar on one row: a phone shows the avatar and "Abubakr",
-   the narrowest phones the avatar alone. Hidden the accessible way, so the
-   link is still "Abubakr Elmallah" to a screen reader. */
-@media (max-width: 430px) {
+/* What keeps the bar on one row on the narrowest phones: below 360px the
+   name shortens to "Abubakr". Hidden the accessible way, so the link is still
+   "Abubakr Elmallah" to a screen reader. */
+@media (max-width: 359px) {
   .brand-last { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-}
-@media (max-width: 340px) {
-  .brand-glyph { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 }
 
 /* Touch targets: 44px is Apple's minimum for anything a finger has to hit.

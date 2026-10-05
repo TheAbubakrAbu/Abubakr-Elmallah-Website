@@ -1,237 +1,477 @@
 /* ============================================================
-   holocron.css: /holocron/, the Jedi Archives terminal.
-   Sister page to /jarvis/ and /elmallah/: same idea, Star Wars
-   grammar. A holocron turning in a projector cone, archive
-   entries beside it, everything drawn in CSS.
+   holocron.css: /holocron/, the Jedi Archives.
+   The quiet one of the two Star Wars terminals: where the
+   E.L.M.A.L.L.A.H. holotable is a briefing, this is a library.
+   A hall of lit shelving in perspective, a holocron you can open
+   and seal, a gatekeeper that really searches, and every page
+   filed as a record. CSS 3D and gradients; no images.
    ============================================================ */
 
-/* these two pages load no shared stylesheet, so they carry their own reset */
+/* these pages load no shared stylesheet, so they carry their own reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 a { color: inherit; text-decoration: none; }
-button { font: inherit; }
+button, input { font: inherit; color: inherit; }
 img, svg { display: block; max-width: 100%; }
 html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .hc {
-  /* This page loads no shared stylesheet, so it defines the font tokens it
-     uses itself rather than inheriting them from base.css. */
-  --mono:    "JetBrains Mono", ui-monospace, monospace;
-  --serif:   "Space Grotesk", system-ui, sans-serif;
-  --holo:    #7fd6ff;          /* projector blue */
-  --holo-2:  #bfeaff;
-  --amber:   #ffc94a;          /* Sith / warning */
-  --ink:     #dff2ff;
-  --dim:     #7f9db0;
-  --line:    rgba(127, 214, 255, 0.18);
-  --panel:   rgba(8, 20, 30, 0.55);
+  --sans:  "Space Grotesk", system-ui, sans-serif;
+  --mono:  "JetBrains Mono", ui-monospace, monospace;
+  --bg:    #02060b;
+  /* The archive's colour is one value used right through this file, so
+     bonding a crystal (data-kyber on .hc) only has to redefine it and the
+     hall, the holocron, the shelving and the gatekeeper all follow. */
+  --holo-rgb: 127, 214, 255;
+  --holo:  rgb(var(--holo-rgb));   /* projector blue, until a crystal is bonded */
+  --holo-2:color-mix(in srgb, rgb(var(--holo-rgb)) 55%, #fff);
+  --kyber: #eaf8ff;
+  --gold:  #ffc94a;          /* the bronze of the busts that line the real hall */
+  --ink:   #dff3ff;
+  --dim:   #9fbfd4;
+  --mute:  #7f9fb4;
+  --line:  rgba(var(--holo-rgb), .18);
+  --ease:  cubic-bezier(.16, 1, .3, 1);
 
-  background: #02070c;
+  background: var(--bg);
   color: var(--ink);
-  font-family: var(--serif);
+  font-family: var(--sans);
   min-height: 100vh;
-  padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px));
   overflow-x: hidden;
 }
 
-/* ───────────── the room ───────────── */
-.hc-field { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-.hc-field span { position: absolute; inset: 0; display: block; }
-.hc-grid {
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 64px 64px;
-  opacity: .5;
-  mask-image: radial-gradient(ellipse 120% 90% at 50% 40%, #000 15%, transparent 88%);
-  -webkit-mask-image: radial-gradient(ellipse 120% 90% at 50% 40%, #000 15%, transparent 88%);
+/* ───────────── the hall ─────────────
+   Two walls and a floor, each a plane turned into the distance about the
+   same vanishing point. The shelving is repeating gradients: a lit edge
+   every 90px for the stacks, and a slow band of light travelling along
+   them, the way the hall is lit in Attack of the Clones. */
+.hc-hall {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+  perspective: 700px; perspective-origin: 50% 38%;
+  background: radial-gradient(70% 55% at 50% 36%, #0a2236 0%, #04101b 55%, var(--bg) 100%);
 }
-.hc-glow {
+.hc-wall, .hc-floor { position: absolute; }
+.hc-wall {
+  top: -20vh; height: 140vh; width: 1600px;
   background:
-    radial-gradient(46% 34% at 50% 34%, rgba(127,214,255,.13), transparent 72%),
-    radial-gradient(40% 30% at 84% 76%, rgba(255,201,74,.07), transparent 74%);
+    linear-gradient(90deg, transparent 0 40%, rgba(127, 214, 255, .10) 50%, transparent 60%) 0 0 / 300% 100%,
+    repeating-linear-gradient(90deg, rgba(127, 214, 255, .34) 0 2px, rgba(127, 214, 255, .05) 2px 12px, transparent 12px 90px),
+    repeating-linear-gradient(0deg, rgba(127, 214, 255, .10) 0 1px, transparent 1px 46px),
+    linear-gradient(90deg, #06182a, #020a12);
+  animation: hc-light 14s linear infinite;
+  -webkit-mask-image: linear-gradient(90deg, #000 30%, transparent 92%);
+          mask-image: linear-gradient(90deg, #000 30%, transparent 92%);
 }
-.hc-scan {
-  background: repeating-linear-gradient(to bottom, rgba(127,214,255,.05) 0 1px, transparent 1px 4px);
+.hc-wall--l { left: 50%; transform-origin: 0 50%; transform: translateX(-50vw) rotateY(78deg); }
+/* the right wall is the left one mirrored: anchored at the right edge of
+   the screen, turned the other way, and faded towards its far (left) end */
+.hc-wall--r {
+  left: calc(50% - 1600px); transform-origin: 100% 50%; transform: translateX(50vw) rotateY(-78deg);
+  -webkit-mask-image: linear-gradient(270deg, #000 30%, transparent 92%);
+          mask-image: linear-gradient(270deg, #000 30%, transparent 92%);
+}
+@keyframes hc-light { from { background-position: 150% 0, 0 0, 0 0, 0 0; } to { background-position: -150% 0, 0 0, 0 0, 0 0; } }
+.hc-floor {
+  left: -50vw; right: -50vw; bottom: -10vh; height: 70vh;
+  transform-origin: 50% 100%; transform: rotateX(82deg);
+  background:
+    repeating-linear-gradient(90deg, rgba(127, 214, 255, .12) 0 1px, transparent 1px 120px),
+    repeating-linear-gradient(0deg, rgba(127, 214, 255, .08) 0 1px, transparent 1px 120px),
+    linear-gradient(0deg, #05121e, transparent);
+}
+.hc-haze {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(28% 22% at 50% 36%, rgba(127, 214, 255, .16), transparent 70%),
+    linear-gradient(180deg, rgba(2, 6, 11, .2), rgba(2, 6, 11, .75) 70%, var(--bg));
 }
 
-/* ───────────── top strip ───────────── */
+/* ───────────── header ───────────── */
 .hc-top {
-  position: relative; z-index: 3;
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  padding: 1rem clamp(1rem, 4vw, 2.6rem);
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.6rem 1rem; flex-wrap: wrap;
+  padding: calc(1rem + env(safe-area-inset-top, 0px)) clamp(1rem, 4vw, 2.6rem) 1rem;
   border-bottom: 1px solid var(--line);
-  font-family: var(--mono);
-  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim);
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim);
 }
-.hc-exit { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--holo); }
+.hc-exit { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--holo); }
 .hc-exit:hover { color: #fff; }
 .hc-exit svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; }
 
-/* ───────────── stage ───────────── */
+.hc-main { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.6rem) 3rem; }
+
+/* ───────────── the holocron ───────────── */
+.hc-hero { text-align: center; padding-top: clamp(1.4rem, 4vw, 2.6rem); }
 .hc-stage {
-  position: relative; z-index: 2;
-  display: grid; gap: clamp(1.4rem, 4vw, 3rem);
-  grid-template-columns: 1fr;
-  padding: clamp(1.6rem, 5vw, 3.4rem) clamp(1rem, 4vw, 2.6rem) 3rem;
-  max-width: 1320px; margin: 0 auto;
+  position: relative; width: min(420px, 86vw); aspect-ratio: 1; margin: 0 auto;
+  display: grid; place-items: center; perspective: 900px;
 }
-@media (min-width: 940px) { .hc-stage { grid-template-columns: 0.9fr 1.1fr; align-items: start; } }
+.hc-globe { position: absolute; inset: 4%; width: 92%; height: auto; aspect-ratio: 1; opacity: .5; }
+.hc-float { animation: hc-bob 6s ease-in-out infinite; transform-style: preserve-3d; }
+@keyframes hc-bob { 0%, 100% { transform: translateY(-6px); } 50% { transform: translateY(6px); } }
 
-/* the projector: a cone of light with a cube turning in it */
-.hc-proj { position: relative; display: grid; place-items: center; min-height: 380px; }
-.hc-cone {
-  position: absolute; bottom: 6%; left: 50%; translate: -50% 0;
-  width: 62%; height: 78%;
-  background: linear-gradient(to top, rgba(127,214,255,.20), rgba(127,214,255,.02) 70%, transparent);
-  clip-path: polygon(38% 100%, 62% 100%, 96% 0, 4% 0);
-  filter: blur(1px);
-  animation: hc-flicker 5.5s ease-in-out infinite;
-}
-@keyframes hc-flicker { 0%,100% { opacity: .85; } 43% { opacity: 1; } 47% { opacity: .7; } }
-.hc-base {
-  position: absolute; bottom: 4%; left: 50%; translate: -50% 0;
-  width: 34%; height: 14px; border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(127,214,255,.5), transparent 70%);
-}
-
-/* the holocron itself, a real CSS cube */
+/* the cube: six faces, each a pane of light framed in filigree. The frame
+   is gradients: a bright rim, corner brackets, and a diamond at the centre
+   that is the Jedi seal's simplest form. --s is the edge. */
 .hc-cube {
-  position: relative; width: 132px; height: 132px;
+  --s: clamp(120px, 34vw, 168px);
+  position: relative; width: var(--s); height: var(--s);
   transform-style: preserve-3d;
-  animation: hc-turn 18s linear infinite;
-  margin-bottom: 12%;
+  animation: hc-turn 22s linear infinite;
 }
-.hc-cube i {
-  position: absolute; inset: 0; display: block;
-  border: 1px solid rgba(191,234,255,.75);
+@keyframes hc-turn { from { transform: rotateX(-24deg) rotateY(0); } to { transform: rotateX(-24deg) rotateY(360deg); } }
+.hc-face {
+  position: absolute; inset: 0;
+  border: 2px solid rgba(191, 234, 255, .9);
   background:
-    linear-gradient(135deg, rgba(127,214,255,.22), rgba(127,214,255,.05) 60%),
-    repeating-linear-gradient(0deg, rgba(191,234,255,.10) 0 1px, transparent 1px 11px);
-  box-shadow: 0 0 34px -6px rgba(127,214,255,.7), inset 0 0 26px -8px rgba(191,234,255,.9);
+    linear-gradient(var(--holo-2), var(--holo-2)) 8px 8px / 22px 2px no-repeat,
+    linear-gradient(var(--holo-2), var(--holo-2)) 8px 8px / 2px 22px no-repeat,
+    linear-gradient(var(--holo-2), var(--holo-2)) calc(100% - 8px) 8px / 22px 2px no-repeat,
+    linear-gradient(var(--holo-2), var(--holo-2)) calc(100% - 8px) 8px / 2px 22px no-repeat,
+    linear-gradient(var(--holo-2), var(--holo-2)) 8px calc(100% - 8px) / 22px 2px no-repeat,
+    linear-gradient(var(--holo-2), var(--holo-2)) 8px calc(100% - 8px) / 2px 22px no-repeat,
+    linear-gradient(var(--holo-2), var(--holo-2)) calc(100% - 8px) calc(100% - 8px) / 22px 2px no-repeat,
+    linear-gradient(var(--holo-2), var(--holo-2)) calc(100% - 8px) calc(100% - 8px) / 2px 22px no-repeat,
+    repeating-linear-gradient(0deg, rgba(191, 234, 255, .08) 0 1px, transparent 1px 4px),
+    radial-gradient(circle at 50% 50%, rgba(127, 214, 255, .34), rgba(127, 214, 255, .08) 70%);
+  box-shadow: inset 0 0 28px rgba(127, 214, 255, .45), 0 0 26px rgba(127, 214, 255, .3);
+  transition: transform 1.2s var(--ease), opacity 1.2s var(--ease);
 }
-.hc-cube i:nth-child(1) { transform: translateZ(66px); }
-.hc-cube i:nth-child(2) { transform: rotateY(180deg) translateZ(66px); }
-.hc-cube i:nth-child(3) { transform: rotateY(90deg)  translateZ(66px); }
-.hc-cube i:nth-child(4) { transform: rotateY(-90deg) translateZ(66px); }
-.hc-cube i:nth-child(5) { transform: rotateX(90deg)  translateZ(66px); }
-.hc-cube i:nth-child(6) { transform: rotateX(-90deg) translateZ(66px); }
-@keyframes hc-turn { to { transform: rotateX(-18deg) rotateY(360deg); } }
+.hc-face::after {                        /* the seal at the centre of each face */
+  content: ""; position: absolute; left: 50%; top: 50%; width: 30%; height: 30%;
+  translate: -50% -50%; rotate: 45deg;
+  border: 2px solid rgba(234, 248, 255, .85);
+  box-shadow: inset 0 0 0 5px rgba(127, 214, 255, .25), 0 0 14px rgba(127, 214, 255, .6);
+}
+.hc-face--f { transform: translateZ(calc(var(--s) / 2)); }
+.hc-face--b { transform: rotateY(180deg) translateZ(calc(var(--s) / 2)); }
+.hc-face--l { transform: rotateY(-90deg) translateZ(calc(var(--s) / 2)); }
+.hc-face--r { transform: rotateY(90deg) translateZ(calc(var(--s) / 2)); }
+.hc-face--t { transform: rotateX(90deg) translateZ(calc(var(--s) / 2)); }
+.hc-face--d { transform: rotateX(-90deg) translateZ(calc(var(--s) / 2)); }
+.hc-core {
+  position: absolute; left: 50%; top: 50%; width: 34%; height: 34%; translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, var(--kyber) 25%, var(--holo) 60%, transparent 72%);
+  filter: blur(1px);
+  animation: hc-pulse 3.4s ease-in-out infinite;
+}
+@keyframes hc-pulse { 0%, 100% { scale: 1; opacity: .85; } 50% { scale: 1.2; opacity: 1; } }
+
+/* open: every face slides out along its own axis and dims, and the light
+   at the heart grows into the gap, the way a holocron opens for a Jedi */
+.hc.is-open .hc-face--f { transform: translateZ(calc(var(--s) * 1.05)); }
+.hc.is-open .hc-face--b { transform: rotateY(180deg) translateZ(calc(var(--s) * 1.05)); }
+.hc.is-open .hc-face--l { transform: rotateY(-90deg) translateZ(calc(var(--s) * 1.05)); }
+.hc.is-open .hc-face--r { transform: rotateY(90deg) translateZ(calc(var(--s) * 1.05)); }
+.hc.is-open .hc-face--t { transform: rotateX(90deg) translateZ(calc(var(--s) * 1.05)); }
+.hc.is-open .hc-face--d { transform: rotateX(-90deg) translateZ(calc(var(--s) * 1.05)); }
+.hc.is-open .hc-face { opacity: .55; }
+.hc.is-open .hc-core { width: 70%; height: 70%; transition: width 1.2s var(--ease), height 1.2s var(--ease); }
+
+/* the projector beam under it, and the plinth it stands over */
+.hc-beam {
+  position: absolute; left: 50%; bottom: 6%; width: 46%; height: 34%; translate: -50% 0;
+  background: linear-gradient(0deg, rgba(127, 214, 255, .28), transparent);
+  clip-path: polygon(40% 100%, 60% 100%, 100% 0, 0 0);
+}
+.hc-plinth {
+  position: absolute; left: 50%; bottom: 3%; width: 30%; height: 7%; translate: -50% 0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 50% 40%, #bfeaff, #2f7fa8 45%, #062033 75%);
+  box-shadow: 0 0 40px rgba(127, 214, 255, .45);
+}
+
+.hc-kicker { margin-top: 0.6rem; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.34em; text-transform: uppercase; color: var(--holo); }
+.hc-title {
+  margin-top: 0.3rem; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase;
+  font-size: clamp(2.2rem, 8vw, 4.8rem); line-height: 1.05; padding-left: 0.32em;   /* the tracking hangs off the end otherwise */
+  color: var(--kyber);
+  text-shadow: 0 0 22px rgba(127, 214, 255, .7), 0 0 60px rgba(127, 214, 255, .3);
+}
+.hc-aur { margin-top: 0.6rem; font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.08em; color: var(--gold); }
+.hc-aur--sm { margin-top: 0.35rem; font-size: 0.7rem; line-height: 1.6; }
+.hc-lede { max-width: 58ch; margin: 1.1rem auto 0; font-size: 1.04rem; line-height: 1.65; color: var(--dim); }
+.hc-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; margin-top: 1.6rem; }
+.hc-btn {
+  display: inline-flex; align-items: center; justify-content: center; min-height: 46px;
+  padding: 0.7rem 1.4rem; border-radius: 100px; cursor: pointer;
+  border: 1px solid var(--holo); background: rgba(127, 214, 255, .14); color: var(--kyber);
+  font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase;
+  box-shadow: 0 0 22px -6px rgba(127, 214, 255, .8);
+  transition: background .3s, color .3s;
+}
+.hc-btn:hover, .hc-btn:focus-visible { outline: none; background: var(--holo); color: #021018; }
+.hc-btn--ghost { background: transparent; box-shadow: none; border-color: var(--line); color: var(--holo); }
+.hc-quote { max-width: 54ch; margin: 2rem auto 0; padding: 1rem 1.2rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.hc-quote p { font-size: 1.05rem; font-style: italic; color: var(--ink); }
+.hc-quote cite { display: block; margin-top: 0.4rem; font-style: normal; font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mute); }
+
+/* ───────────── headings and panels ───────────── */
+.hc-h { font-weight: 600; font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: 0.04em; color: var(--ink); }
+.hc-h--sm { font-size: 1.05rem; font-family: var(--mono); font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--holo); }
+.hc-panel, .hc-gate {
+  border: 1px solid var(--line); border-radius: 14px;
+  background: linear-gradient(180deg, rgba(8, 26, 42, .82), rgba(3, 12, 20, .9));
+  box-shadow: inset 0 1px 0 rgba(191, 234, 255, .08);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+
+/* ── the eras, pulled in from the world page ──
+   The same seven spans as /worlds/star-wars/#eras, filed here as records on a
+   rule rather than drawn on a rail: this is an archive, not a timeline. */
+.hc-eras { list-style: none; display: grid; gap: 0.7rem; margin-top: 0.9rem; }
+.hc-eras li {
+  display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 0.2rem 1rem;
+  padding-left: 0.9rem; border-left: 1px solid var(--line);
+}
+.hc-eras span {
+  grid-column: 1; font-family: var(--mono); font-size: 0.64rem;
+  letter-spacing: 0.1em; color: var(--holo); padding-top: 0.15rem;
+}
+.hc-eras b { grid-column: 2; font-size: 0.95rem; font-weight: 600; color: var(--ink); }
+.hc-eras i {
+  grid-column: 2; font-style: normal; font-size: 0.8rem; line-height: 1.6; color: var(--mute);
+}
+.hc-eras-go {
+  display: inline-block; margin-top: 1rem; font-family: var(--mono);
+  font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--holo);
+}
+.hc-eras-go:hover { color: #fff; }
+@media (max-width: 560px) {
+  .hc-eras li { grid-template-columns: 1fr; }
+  .hc-eras span, .hc-eras b, .hc-eras i { grid-column: 1; }
+}
+
+/* ── kyber ──
+   A bonded crystal re-lights the whole archive in its colour. The era blocks
+   below still win where they set --holo themselves, which is right: the
+   Empire's archive is red whatever you are carrying. */
+.hc[data-kyber="blue"]   { --holo-rgb: 79, 168, 255; }
+.hc[data-kyber="green"]  { --holo-rgb: 95, 208, 127; }
+.hc[data-kyber="yellow"] { --holo-rgb: 240, 200, 64; }
+.hc[data-kyber="purple"] { --holo-rgb: 160, 111, 224; }
+.hc[data-kyber="red"]    { --holo-rgb: 232, 64, 42; }
+.hc[data-kyber="white"]  { --holo-rgb: 232, 238, 244; }
+
+.hc-kyber { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 0.6rem; margin-top: 1rem; border: 0; padding: 0; }
+.hc-ky {
+  position: relative; display: block; cursor: pointer;
+  padding: 0.6rem 0.7rem; border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--c) 36%, transparent);
+  background: color-mix(in srgb, var(--c) 7%, transparent);
+  transition: border-color .2s var(--ease), background .2s var(--ease), transform .2s var(--ease);
+}
+.hc-ky > span {
+  display: block; width: 100%; height: 5px; border-radius: 3px;
+  background: var(--c); box-shadow: 0 0 12px var(--c); margin-bottom: 0.45rem;
+}
+.hc-ky b { display: block; font-size: 0.84rem; font-weight: 600; color: var(--ink); }
+.hc-ky i { display: block; font-style: normal; font-size: 0.68rem; color: var(--mute); }
+@media (hover: hover) { .hc-ky:hover { transform: translateY(-2px); border-color: var(--c); } }
+.hc-ky.is-on { border-color: var(--c); background: color-mix(in srgb, var(--c) 16%, transparent); }
+.hc-ky:focus-within { outline: 2px solid var(--c); outline-offset: 2px; }
+.hc-ky-n { margin-top: 0.9rem; font-size: 0.8rem; color: var(--dim); }
+.hc-ky-go {
+  display: inline-block; margin-top: 0.5rem; font-family: var(--mono);
+  font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--holo);
+}
+.hc-ky-go:hover { color: #fff; }
+@media (prefers-reduced-motion: reduce) { .hc-ky { transition: none; } }
+
+/* ───────────── the era ─────────────
+   Three points in the archive's own history. Every colour in this file is
+   already a token on .hc, so an era is just those tokens redefined: the hall,
+   the holocron, the shelving and the gatekeeper all follow without a single
+   rule being written twice. The records never change, only the light on them.
+
+     republic      the Archives as they were: projector blue and bronze
+     empire        the same hall under the Empire: the blue goes out of it,
+                   the bronze turns to the Imperial red of the purge
+     newrepublic   found and reopened: warmer, greener, lit again */
+.hc[data-era="empire"] {
+  --holo-rgb: 255, 106, 95;
+  --holo-2: #ffc2bb;
+  --kyber:  #fff0ee;
+  --gold:   #ff9a4a;
+  --ink:    #f3dedc;
+  --dim:    #c69f9c;
+  --mute:   #a8807e;
+  --line:   rgba(var(--holo-rgb), .2);
+  --bg:     #0a0405;
+}
+.hc[data-era="newrepublic"] {
+  --holo-rgb: 111, 224, 176;
+  --holo-2: #c6f6e4;
+  --kyber:  #eefff8;
+  --gold:   #ffd97a;
+  --ink:    #dff7ec;
+  --dim:    #9fd4c0;
+  --mute:   #7fb4a0;
+  --line:   rgba(var(--holo-rgb), .18);
+  --bg:     #030b08;
+}
+/* the tint is a transition, not a cut: the hall is lit by these tokens and a
+   change of era should read as the lights changing */
+.hc, .hc-wall, .hc-floor, .hc-haze, .hc-cube, .hc-core, .hc-rec, .hc-gate, .hc-panel {
+  transition: background-color .5s var(--ease), border-color .5s var(--ease), color .5s var(--ease);
+}
 @media (prefers-reduced-motion: reduce) {
-  .hc-cube { animation: none; transform: rotateX(-18deg) rotateY(-32deg); }
-  .hc-cone { animation: none; }
+  .hc, .hc-wall, .hc-floor, .hc-haze, .hc-cube, .hc-core, .hc-rec, .hc-gate, .hc-panel {
+    transition: none;
+  }
 }
 
-/* the archive's globe (orbs.js), projected round the cube, a little above
-   its centre, where the cone is widest */
-.hc-think {
-  position: absolute; left: 50%; top: 44%; translate: -50% -50%;
-  width: min(300px, 72%); height: auto; aspect-ratio: 1;
-  opacity: 0.55; pointer-events: none;
-  filter: drop-shadow(0 0 6px rgba(127,214,255,0.5));
+.hc-era { position: relative; z-index: 2; padding: 0 clamp(1rem, 4vw, 2.6rem); margin: 2.4rem auto 0; max-width: 1180px; }
+.hc-era-h { margin-bottom: 0.4rem; }
+.hc-era-lede { color: var(--mute); font-size: 0.86rem; margin-bottom: 1rem; }
+.hc-era-rail { display: flex; flex-wrap: wrap; gap: 0.5rem; border: 0; padding: 0; margin: 0; }
+.hc-era-tab {
+  display: flex; flex-direction: column; gap: 0.12rem; cursor: pointer;
+  padding: 0.55rem 0.95rem; border: 1px solid var(--line); border-radius: 10px;
+  background: rgba(127, 214, 255, .04);
+  transition: border-color .2s var(--ease), background .2s var(--ease);
 }
-.hc-caption { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; }
-.hc-caption b {
-  display: block; font-size: 1.15rem; font-weight: 600; letter-spacing: 0.28em;
-  text-transform: uppercase; color: var(--holo-2);
+.hc-era-tab b {
+  font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim);
 }
-.hc-caption span {
-  display: block; margin-top: 0.4rem;
-  font-family: var(--mono); font-size: 0.62rem;
-  letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim);
-}
-
-/* ───────────── panels ───────────── */
-.hc-col { display: flex; flex-direction: column; gap: clamp(1rem, 2.4vw, 1.5rem); }
-.hc-panel {
-  position: relative;
-  padding: 1.3rem 1.4rem 1.4rem;
-  border: 1px solid var(--line); border-radius: 4px;
-  background: var(--panel);
-  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-}
-.hc-panel::before, .hc-panel::after {   /* corner ticks */
-  content: ""; position: absolute; width: 12px; height: 12px;
-  border: 1px solid var(--holo); opacity: .55;
-}
-.hc-panel::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
-.hc-panel::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
-.hc-h {
-  display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.9rem;
-  font-family: var(--mono); font-size: 0.64rem;
-  letter-spacing: 0.22em; text-transform: uppercase; color: var(--holo);
-}
-.hc-h i { width: 6px; height: 6px; border-radius: 50%; background: var(--holo); box-shadow: 0 0 10px var(--holo); }
-
-.hc-name { font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
-.hc-role { margin-top: 0.4rem; color: var(--dim); font-size: 0.9rem; }
-.hc-aur {
-  margin-top: 0.9rem; font-family: var(--mono);
-  font-size: 0.66rem; letter-spacing: 0.16em; color: var(--amber);
+.hc-era-tab i { font-style: normal; font-size: 0.64rem; letter-spacing: 0.1em; color: var(--mute); }
+@media (hover: hover) { .hc-era-tab:hover { border-color: var(--holo); } }
+.hc-era-tab.is-on { border-color: var(--holo); background: rgba(127, 214, 255, .1); }
+.hc-era-tab.is-on b { color: var(--holo); }
+/* the keyboard lands on the hidden radio, so the ring goes on its label */
+.hc-era-tab:focus-within { outline: 2px solid var(--holo); outline-offset: 2px; }
+.hc-era-note {
+  margin-top: 1rem; max-width: 70ch; font-size: 0.86rem; line-height: 1.75;
+  color: var(--dim); border-left: 2px solid var(--line); padding-left: 0.9rem;
 }
 
-/* the gatekeeper beside "Gatekeeper active", and its panel of three */
-.hc-gk { width: 20px; height: 20px; vertical-align: -6px; margin-right: 0.5rem; }
-.hc-think-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
-.hc-think-row figure { margin: 0; display: grid; justify-items: center; gap: 0.5rem; text-align: center; }
-.hc-think-row canvas { width: 64px; height: auto; aspect-ratio: 1; filter: drop-shadow(0 0 5px rgba(127,214,255,0.4)); }
-.hc-think-row figcaption {
-  display: grid; gap: 0.15rem;
-  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--holo-2);
+/* ───────────── the gatekeeper ───────────── */
+.hc-gate {
+  margin-top: clamp(2.4rem, 6vw, 3.6rem); padding: clamp(1.1rem, 3vw, 1.8rem);
+  display: grid; gap: 1.2rem 2rem; grid-template-columns: 1fr; align-items: center;
 }
-.hc-think-row figcaption i { font-style: normal; font-size: 0.66rem; letter-spacing: 0.06em; text-transform: none; color: var(--dim); }
+@media (min-width: 820px) { .hc-gate { grid-template-columns: auto minmax(0, 1fr); } }
+.hc-gate-orbs { display: flex; justify-content: center; gap: 1.2rem; }
+.hc-gate-orbs figure { display: grid; justify-items: center; gap: 0.4rem; }
+.hc-gate-orbs canvas { width: 54px; height: auto; aspect-ratio: 1; }
+.hc-gate-orbs figcaption { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--dim); }
+.hc-ask {
+  display: block; width: 100%; margin-top: 0.8rem; padding: 0.85rem 1rem; min-height: 48px;
+  border: 1px solid rgba(127, 214, 255, .35); border-radius: 10px;
+  background: rgba(0, 8, 16, .6); color: var(--kyber);
+  font-family: var(--mono); font-size: 0.92rem;
+}
+.hc-ask::placeholder { color: var(--mute); }
+.hc-ask:focus { outline: none; border-color: var(--holo); box-shadow: 0 0 0 3px rgba(127, 214, 255, .2); }
+.hc-answer { margin-top: 0.7rem; font-family: var(--mono); font-size: 0.78rem; color: var(--dim); }
+.hc-answer.is-void { color: var(--gold); font-style: italic; }
 
-.hc-rows { display: flex; flex-direction: column; gap: 0.55rem; }
-.hc-row {
-  display: flex; justify-content: space-between; gap: 1rem;
-  font-family: var(--mono); font-size: 0.7rem;
-  padding-bottom: 0.5rem; border-bottom: 1px dashed rgba(127,214,255,.14);
+/* ───────────── the records ───────────── */
+.hc-records { margin-top: clamp(2rem, 5vw, 3rem); scroll-margin-top: 1rem; }
+.hc-wing { margin-top: 1.4rem; }
+.hc-wing-h {
+  display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem;
+  font-family: var(--mono); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold);
 }
-.hc-row span:first-child { color: var(--dim); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.6rem; }
-.hc-row span:last-child { color: var(--ink); text-align: right; }
+.hc-wing-h::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255, 201, 74, .4), transparent); }
+.hc-shelf { display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
 
-.hc-links { display: flex; flex-direction: column; gap: 0.4rem; }
-.hc-link {
-  display: flex; align-items: center; gap: 0.7rem;
-  padding: 0.6rem 0.7rem; border: 1px solid transparent; border-radius: 3px;
-  font-family: var(--mono); font-size: 0.74rem;
-  color: var(--ink); transition: background .25s, border-color .25s, transform .25s, color .25s;
+/* a record: a lit slot in the stacks. The top edge is its light; it
+   brightens and the record lifts when you reach for it. */
+.hc-rec {
+  position: relative; display: flex; flex-direction: column; gap: 0.2rem;
+  padding: 1rem 1rem 0.9rem; border-radius: 10px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(10, 34, 54, .85), rgba(3, 12, 20, .9));
+  transition: border-color .3s, translate .35s var(--ease), box-shadow .35s;
 }
-.hc-link i { width: 5px; height: 5px; background: var(--holo); flex: none; rotate: 45deg; }
-.hc-link em { margin-left: auto; font-style: normal; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); }
-.hc-link:hover {
-  background: rgba(127,214,255,.08); border-color: var(--line);
-  transform: translateX(4px); color: #fff;
+.hc-rec::before {
+  content: ""; position: absolute; left: 12px; right: 12px; top: -1px; height: 2px; border-radius: 2px;
+  background: var(--holo); box-shadow: 0 0 10px var(--holo); opacity: .55; transition: opacity .3s;
 }
+.hc-rec-n { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.18em; color: var(--mute); }
+.hc-rec b { font-weight: 600; font-size: 1.05rem; color: var(--kyber); }
+.hc-rec i { font-style: normal; font-size: 0.88rem; color: var(--dim); }
+.hc-rec em { font-style: normal; font-family: var(--mono); font-size: 0.66rem; line-height: 1.5; color: rgba(255, 201, 74, .8); margin-top: 0.3rem; }
+.hc-rec:hover, .hc-rec:focus-visible {
+  outline: none; translate: 0 -3px; border-color: rgba(127, 214, 255, .6);
+  box-shadow: 0 10px 30px -12px rgba(127, 214, 255, .5);
+}
+.hc-rec:hover::before, .hc-rec:focus-visible::before { opacity: 1; }
+.hc-rec[hidden], .hc-wing[hidden] { display: none; }
 
-/* the kyber bars */
-.hc-bar { display: flex; flex-direction: column; gap: 0.3rem; }
-.hc-bar-top {
-  display: flex; justify-content: space-between;
-  font-family: var(--mono); font-size: 0.6rem;
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim);
-}
-.hc-bar-track { height: 5px; border-radius: 3px; background: rgba(127,214,255,.12); overflow: hidden; }
-.hc-bar-track i { display: block; height: 100%; width: var(--v, 50%); background: linear-gradient(90deg, var(--holo), var(--holo-2)); box-shadow: 0 0 12px var(--holo); }
-.hc-bar + .hc-bar { margin-top: 0.75rem; }
+/* the records come up out of the holocron when it is opened */
+.hc.is-open .hc-rec { animation: hc-project .7s var(--ease) both; animation-delay: calc(var(--n, 0) * 30ms); }
+@keyframes hc-project { from { opacity: 0; transform: translateY(14px) scale(.97); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
 
-/* saber colour chips */
-.hc-sabers { display: flex; flex-wrap: wrap; gap: 0.45rem; }
-.hc-saber {
-  display: flex; align-items: center; gap: 0.4rem;
-  font-family: var(--mono); font-size: 0.6rem;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim);
-  padding: 0.3rem 0.55rem; border: 1px solid var(--line); border-radius: 100px;
+/* ───────────── the keeper and the crystals ───────────── */
+.hc-cols { display: grid; gap: 1.2rem; grid-template-columns: 1fr; margin-top: clamp(2rem, 5vw, 3rem); }
+@media (min-width: 900px) { .hc-cols { grid-template-columns: 1.15fr 1fr; } }
+.hc-panel { padding: clamp(1.1rem, 3vw, 1.6rem); }
+.hc-name { margin-top: 0.8rem; font-weight: 600; font-size: clamp(1.6rem, 4vw, 2.2rem); color: var(--kyber); }
+.hc-facts { margin-top: 1rem; display: flex; flex-direction: column; }
+.hc-facts div { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 1rem; padding: 0.55rem 0; border-top: 1px solid rgba(127, 214, 255, .1); }
+.hc-facts dt { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); padding-top: 0.15rem; }
+.hc-facts dd { font-size: 0.95rem; color: var(--ink); }
+.hc-panel-p { margin-top: 0.6rem; font-size: 0.92rem; color: var(--dim); }
+.hc-kyber { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin-top: 1rem; }
+.hc-kyber a {
+  display: grid; justify-items: center; gap: 0.15rem; padding: 0.8rem 0.4rem; min-height: 44px;
+  border: 1px solid rgba(127, 214, 255, .12); border-radius: 10px; text-align: center;
+  transition: border-color .3s, background .3s;
 }
-.hc-saber b { width: 20px; height: 3px; border-radius: 2px; background: var(--c); box-shadow: 0 0 10px var(--c); }
+.hc-kyber a:hover, .hc-kyber a:focus-visible { outline: none; border-color: var(--c); background: color-mix(in srgb, var(--c) 10%, transparent); }
+.hc-kyber span {                         /* a crystal: a long hexagon, lit from inside */
+  width: 16px; height: 32px; margin-bottom: 0.3rem;
+  clip-path: polygon(50% 0, 100% 22%, 100% 78%, 50% 100%, 0 78%, 0 22%);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--c) 60%, #fff), var(--c) 60%, color-mix(in srgb, var(--c) 60%, #000));
+  filter: drop-shadow(0 0 8px var(--c));
+}
+.hc-kyber b { font-size: 0.86rem; font-weight: 600; }
+.hc-kyber i { font-style: normal; font-family: var(--mono); font-size: 0.66rem; color: var(--mute); }
+.hc-rows { margin-top: 1.1rem; display: flex; flex-direction: column; }
+.hc-rows div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.5rem 0; border-top: 1px solid rgba(127, 214, 255, .1); font-family: var(--mono); font-size: 0.74rem; }
+.hc-rows span { color: var(--mute); }
+.hc-rows b { font-weight: 500; color: var(--ink); text-align: right; }
 
-/* ───────────── bottom ───────────── */
+.hc-seal { display: flex; margin: clamp(2rem, 5vw, 3rem) auto 0; }
+
 .hc-bottom {
-  position: relative; z-index: 3;
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
-  padding: 1rem clamp(1rem, 4vw, 2.6rem);
+  position: relative; z-index: 1;
+  display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+  padding: 1.2rem clamp(1rem, 4vw, 2.6rem) calc(1.2rem + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid var(--line);
-  font-family: var(--mono); font-size: 0.62rem;
-  letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim);
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
 }
 .hc-bottom a { color: var(--holo); }
-.hc-bottom a:hover { color: #fff; }
+
+/* ───────────── sealed ───────────── */
+.hc.is-sealed .hc-main, .hc.is-sealed .hc-bottom { opacity: 0; transition: opacity 1s ease; pointer-events: none; }
+.hc-done {
+  position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; text-align: center; padding: 2rem;
+  background: rgba(2, 6, 11, .96); opacity: 0; pointer-events: none; transition: opacity 1s ease;
+}
+.hc.is-sealed .hc-done { opacity: 1; pointer-events: auto; }
+.hc-done-orb { display: block; width: 96px; height: 96px; margin: 0 auto 1.4rem; opacity: .85; }
+.hc:not(.is-sealed) .hc-done-orb { display: none; }
+.hc-done-k { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--mute); }
+.hc-done-t { margin-top: 0.5rem; font-weight: 600; font-size: clamp(1.6rem, 5vw, 2.8rem); color: var(--kyber); text-shadow: 0 0 24px rgba(127, 214, 255, .6); }
+.hc-done a { display: inline-block; margin-top: 1.6rem; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--holo); border-bottom: 1px solid var(--line); padding-bottom: 3px; }
+
+@media (max-width: 560px) {
+  .hc-shelf { grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+  .hc-rec { padding: 0.85rem 0.75rem 0.75rem; }
+  .hc-rec b { font-size: 0.96rem; }
+  .hc-rec i { font-size: 0.82rem; }
+  .hc-facts div { grid-template-columns: 1fr; gap: 0.15rem; }
+  .hc-kyber { grid-template-columns: repeat(2, 1fr); }
+  .hc-top-mid { order: 3; flex-basis: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hc-wall, .hc-float, .hc-cube, .hc-core { animation: none; }
+  .hc-cube { transform: rotateX(-24deg) rotateY(35deg); }
+  .hc-face, .hc.is-open .hc-core { transition: none; }
+  .hc.is-open .hc-rec { animation: none; }
+}

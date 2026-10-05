@@ -10,6 +10,9 @@ window.FAN_PAGE = {
 
   /* every LEGO game, in lego-games.js, because /gaming/ shows the same
      section and neither page should hold a second copy of the list */
+  /* counted from the same list (lego-games.js), straight above it */
+  window.LEGO_STATS,
+  window.LEGO_BY_YEAR,
   window.LEGO_GAMES,
 
 
