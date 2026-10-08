@@ -12,6 +12,7 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/monastery.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
 <body class="mo" id="mo">
 
@@ -48,6 +49,7 @@ standalone: true
   <a class="mo-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the Monastery</span>
   </a>
+  {% include interface-world.html world="Ninjago" href="/worlds/ninjago/" %}
   <span class="mo-top-mid">Ninjago · the Monastery of Spinjitzu</span>
   <!-- the hour as an old temple bell counts it, from your clock (monastery.js) -->
   <span class="mo-top-hour" id="moHour">Hour of the ·····</span>
@@ -143,7 +145,7 @@ standalone: true
         <li><a class="mo-st" href="/education/" data-el="earth" style="--e:#c9a46a; --i:3"><b>Wu’s Teachings</b><i>Education</i><em>Earth</em></a></li>
         <li><a class="mo-st" href="/college/" data-el="energy" style="--e:#6fe08a; --i:4"><b>Wu’s Academy</b><i>College · UC Irvine</i><em>Energy</em></a></li>
         <li><a class="mo-st" href="/high-school/" data-el="fire" style="--e:#ff5a3c; --i:5"><b>The Training Course</b><i>High school · where it started</i><em>Fire</em></a></li>
-        <li><a class="mo-st" href="/worlds/" data-el="lightning" style="--e:#4fb0ff; --i:6"><b>The Sixteen Realms</b><i>All 71 worlds</i><em>Lightning</em></a></li>
+        <li><a class="mo-st" href="/worlds/" data-el="lightning" style="--e:#4fb0ff; --i:6"><b>The Sixteen Realms</b><i>All 74 worlds</i><em>Lightning</em></a></li>
         <li><a class="mo-st" href="/worlds/ninjago/" data-el="gold" style="--e:#e0b040; --i:7"><b>Ninjago</b><i>The world page</i><em>Gold</em></a></li>
         <li><a class="mo-st" href="/star-wars/" data-el="lightning" style="--e:#4fb0ff; --i:8"><b>The Dark Island</b><i>Star Wars apps</i><em>Lightning</em></a></li>
         <li><a class="mo-st" href="/al-islam/" data-el="energy" style="--e:#6fe08a; --i:9"><b>The Meditation Hall</b><i>Al-Islam</i><em>Energy</em></a></li>
@@ -160,11 +162,11 @@ standalone: true
   <div class="mo-cols">
 
     <!-- a ninja earns an element by mastering it; these are the feats so
-         far, one to an element, each with its colour on the brush stroke -->
+         far, one to an element, each with its color on the brush stroke -->
     <section class="mo-panel" aria-labelledby="moFeatsH">
       <h2 class="mo-h mo-h--sm" id="moFeatsH">Spinjitzu, unlocked<span>a feat for every element</span></h2>
       <ol class="mo-feats">
-        <li style="--e:#e0b040"><b>Gold · the Golden Master’s honour</b><p>Winner of the Apple Swift Student Challenge, 2024.</p></li>
+        <li style="--e:#e0b040"><b>Gold · the Golden Master’s honor</b><p>Winner of the Apple Swift Student Challenge, 2024.</p></li>
         <li style="--e:#4fb0ff"><b>Lightning · the loudest weapon</b><p>Datapad, in the Top 10 of the paid Entertainment chart.</p></li>
         <li style="--e:#dff4ff"><b>Ice · Nindroid work</b><p>Two Discord bots, running in more than 500 servers.</p></li>
         <li style="--e:#6fe08a"><b>Energy · balance</b><p>Al-Adhan, which computes prayer times 22 ways.</p></li>
@@ -200,8 +202,7 @@ standalone: true
       <a class="mo-cr" href="/citadel/" style="--w:#d8b26a"><span class="mo-gem" aria-hidden="true"></span><b>The Citadel</b><i>Game of Thrones</i></a>
       <a class="mo-cr" href="/compass/" style="--w:#5ab0a8"><span class="mo-gem" aria-hidden="true"></span><b>The Compass</b><i>Pirates of the Caribbean</i></a>
       <a class="mo-cr" href="/control-room/" style="--w:#e07a3a"><span class="mo-gem" aria-hidden="true"></span><b>The Control Room</b><i>Jurassic Park</i></a>
-      <a class="mo-cr" href="/upside-down/" style="--w:#e0463a"><span class="mo-gem" aria-hidden="true"></span><b>The Upside Down</b><i>Stranger Things</i></a>
-      <a class="mo-cr" href="/starcourt/" style="--w:#e060b0"><span class="mo-gem" aria-hidden="true"></span><b>Starcourt</b><i>Stranger Things</i></a>
+      <a class="mo-cr" href="/hawkins/" style="--w:#e0463a"><span class="mo-gem" aria-hidden="true"></span><b>Hawkins</b><i>Stranger Things</i></a>
       <a class="mo-cr" href="/spirit-library/" style="--w:#d0a050"><span class="mo-gem" aria-hidden="true"></span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a>
       <a class="mo-cr" href="/wanted/" style="--w:#d0503a"><span class="mo-gem" aria-hidden="true"></span><b>The Wanted Board</b><i>Red Dead Redemption</i></a>
       <a class="mo-cr" href="/dunder-mifflin/" style="--w:#8fb0d0"><span class="mo-gem" aria-hidden="true"></span><b>Dunder Mifflin</b><i>The Office</i></a>
@@ -210,10 +211,16 @@ standalone: true
       <a class="mo-cr" href="/pokedex/" style="--w:#e8504a"><span class="mo-gem" aria-hidden="true"></span><b>The Pokédex</b><i>Pokémon</i></a>
       <a class="mo-cr" href="/batcomputer/" style="--w:#9aa0b0"><span class="mo-gem" aria-hidden="true"></span><b>The Batcomputer</b><i>Batman</i></a>
       <a class="mo-cr" href="/daily-bugle/" style="--w:#d84040"><span class="mo-gem" aria-hidden="true"></span><b>The Daily Bugle</b><i>Spider-Man</i></a>
+      <a class="mo-cr" href="/grail-diary/" style="--w:#d84040"><span class="mo-gem" aria-hidden="true"></span><b>The Grail Diary</b><i>Indiana Jones</i></a>
+      <a class="mo-cr" href="/red-book/" style="--w:#d84040"><span class="mo-gem" aria-hidden="true"></span><b>The Red Book</b><i>The Lord of the Rings</i></a>
+      <a class="mo-cr" href="/power-battery/" style="--w:#d84040"><span class="mo-gem" aria-hidden="true"></span><b>The Power Battery</b><i>Green Lantern</i></a>
+      <a class="mo-cr" href="/watchtower/" style="--w:#d84040"><span class="mo-gem" aria-hidden="true"></span><b>The Watchtower</b><i>The Justice League</i></a>
     </div>
   </section>
 
   <button class="mo-go" id="moGo" type="button"><span class="mo-go-spin" aria-hidden="true"></span>Ninja, go!</button>
+
+  {% include interface-world.html world="Ninjago" href="/worlds/ninjago/" place="foot" %}
 
 </main>
 

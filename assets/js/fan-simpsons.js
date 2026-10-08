@@ -164,7 +164,7 @@ window.FAN_PAGE = {
       { title: 'Simpsons Wiki', href: 'https://simpsons.fandom.com/wiki/Simpsons_Wiki',
         desc: 'Every episode of every season, and every one-line character.' },
       { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/The_Simpsons',
-        desc: 'Thirty-five years of it, summarised.' },
+        desc: 'Thirty-five years of it, summarized.' },
     ] },
 
 ] };

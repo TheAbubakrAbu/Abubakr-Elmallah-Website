@@ -36,7 +36,7 @@ and are not this family's job.
 THE RECIPE, per family:
 
   1. The variable TTF from Google's own repository (github.com/google/fonts,
-     OFL licensed; the licence text is copied next to the output), cached in
+     OFL licensed; the license text is copied next to the output), cached in
      the system temp folder so a rerun is offline.
   2. The wght axis is cut down to the range the CSS actually asks for,
      rounded outward to the hundreds and never narrower than 400 to 700:
@@ -143,7 +143,7 @@ RANGES = [
 FEATURES = ['*']
 
 # Not this family's job: drawn by Amiri / Scheherazade New (Arabic) or the
-# colour emoji font, so they are left out of the verification.
+# color emoji font, so they are left out of the verification.
 OTHER_FONTS = [(0x0600, 0x06FF), (0x0750, 0x077F), (0x08A0, 0x08FF), (0xFB50, 0xFDFF), (0xFE70, 0xFEFF),
                (0xFE00, 0xFE0F), (0x1F000, 0x1FAFF), (0xE000, 0xF8FF)]
 
@@ -207,7 +207,7 @@ def build(fam, src, dst, keep_hinting, keep_opsz):
     # gvar, and the subsetter then asks for them by name (KeyError).
     opts = subset.Options()
     opts.layout_features = list(FEATURES)
-    opts.name_IDs = [0, 1, 2, 3, 4, 5, 6, 13, 14]   # the usual six plus the licence lines
+    opts.name_IDs = [0, 1, 2, 3, 4, 5, 6, 13, 14]   # the usual six plus the license lines
     opts.hinting = keep_hinting
     opts.recalc_timestamp = False
     s = subset.Subsetter(opts)

@@ -84,7 +84,7 @@
                   +   (r.span ? '<i>' + esc(r.span) + '</i>' : '')
                   + '</span>'
                   + '<span class="ts-tags">'
-                  +   (r.tag.indexOf('+') > -1 ? '<u title="Honours, weighted" aria-hidden="true">+</u><span class="vh">honours, weighted</span>' : '')
+                  +   (r.tag.indexOf('+') > -1 ? '<u title="Honors, weighted" aria-hidden="true">+</u><span class="vh">honors, weighted</span>' : '')
                   +   (r.tag.indexOf('p') > -1 ? '<u title="College prep" aria-hidden="true">p</u><span class="vh">college prep</span>' : '')
                   +   (r.tag.indexOf('*') > -1 ? '<u title="Non-academic" aria-hidden="true">*</u><span class="vh">non-academic</span>' : '')
                   + '</span>'
@@ -116,7 +116,7 @@
        used to be explained only in a hover title, which a phone never shows */
     html += '<div class="ts-full reveal">'
       + '<p class="ts-termnote">Every course, grade 9 to 12 &#183; ' + hsRows + ' rows.</p>'
-      + '<p class="ts-key"><span><b>+</b>honours, weighted</span><span><b>p</b>college prep</span><span><b>*</b>non-academic</span></p>'
+      + '<p class="ts-key"><span><b>+</b>honors, weighted</span><span><b>p</b>college prep</span><span><b>*</b>non-academic</span></p>'
       + '<div class="ts-terms">' + termsHtml(hs) + '</div>'
       + '</div>';
 

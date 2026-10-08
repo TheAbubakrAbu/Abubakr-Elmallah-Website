@@ -16,6 +16,8 @@ ol, ul { list-style: none; }
 html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
 
 .bc {
+  --iw-a: #4cc3ff;   /* the shared world button, interface-world.css */
+  --iw-bg: #07080b;
   --cap:   "Barlow Condensed", "Arial Narrow", sans-serif;
   --body:  "Barlow", system-ui, sans-serif;
   --mono:  "Share Tech Mono", ui-monospace, monospace;
@@ -26,7 +28,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   --ink:   #e6e8eb;
   --dim:   #aab0b9;
   --mute:  #8d949e;
-  --sig:   #f5c542;          /* the signal's yellow, the page's one warm colour */
+  --sig:   #f5c542;          /* the signal's yellow, the page's one warm color */
   --scr:   #7fb4d9;          /* monitor glass */
   --det:   #4cc3ff;          /* detective mode */
   --hot:   #ff9a3c;          /* what detective mode picks out */
@@ -45,7 +47,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 }
 
 /* Detective mode: the same page seen through the cowl. The steel goes
-   cyan, the warm colour becomes the orange the games use for anything
+   cyan, the warm color becomes the orange the games use for anything
    worth a second look, and every surface gets a faint wireframe. */
 .bc.is-detective {
   --night: #030b14;

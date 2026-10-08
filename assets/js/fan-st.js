@@ -4,17 +4,17 @@ window.FAN_PAGE = {
   sections: [
 
   { id: 'seasons', kind: 'rank', title: 'The Seasons', note: '2016 – 2025 · scroll and the world changes under you',
-    lede: 'Five seasons, and the backdrop of this page follows whichever one you are reading: 1983 in the woods, 1984 rotting in the fields, 1985 under mall neon, 1986 in Vecna’s violet, 1987 with the rifts open. Three is my favourite and by a distance the most fun: silly in places, and that is exactly the bit that made me love this show. One is the one that started all of it, and it is the best television of the five by a mile. Scroll outside the season run and the whole thing blends into one.',
+    lede: 'Five seasons, and the backdrop of this page follows whichever one you are reading: 1983 in the woods, 1984 rotting in the fields, 1985 under mall neon, 1986 in Vecna’s violet, 1987 with the rifts open. Three is my favorite and by a distance the most fun: silly in places, and that is exactly the bit that made me love this show. One is the one that started all of it, and it is the best television of the five by a mile. Scroll outside the season run and the whole thing blends into one.',
     items: [
       { num: '01', title: 'Stranger Things', sub: '2016 · the best television', accent: '#e8261d', meta: 'Released July 2016 · November 1983', desc: 'A boy vanishes on the way home from a D&D game, and a girl with a shaved head walks out of the woods.' },
       { num: '02', title: 'The Vanishing', sub: '2017', meta: 'Released October 2017 · October and November 1984', desc: 'Will comes back wrong, the Mind Flayer arrives, and Dustin adopts something he should not have.' },
-      { num: '03', title: 'Starcourt', sub: '2019 · my favourite', accent: '#ff5fb0', meta: 'Released July 2019 · summer 1985, over the Fourth of July', desc: 'A mall, a Russian bunker under it, and the best summer-blockbuster season of the lot.' },
+      { num: '03', title: 'Starcourt', sub: '2019 · my favorite', accent: '#ff5fb0', meta: 'Released July 2019 · summer 1985, over the Fourth of July', desc: 'A mall, a Russian bunker under it, and the best summer-blockbuster season of the lot.' },
       { num: '04', title: 'Vecna', sub: '2022', meta: 'Released May and July 2022 · spring 1986', desc: 'Split across three states, and the one where a song saves a life four minutes at a time.' },
       { num: '05', title: 'The Final Season', sub: '2025', meta: 'Released November and December 2025 · autumn 1987', desc: 'Back to Hawkins, with the gates open and the party grown up.' },
     ] },
 
 
-  { id: 'favourites', kind: 'cards', title: 'My Favourites', note: 'Steve, and then the boys',
+  { id: 'favorites', kind: 'cards', title: 'My Favorites', note: 'Steve, and then the boys',
     lede: 'The show is at its best when it stops being about a monster and starts being about a teenager driving three children around in a car he did not agree to.',
     items: [
       { title: 'Steve Harrington', sub: 'Joe Keery', tag: 'No. 1', accent: '#e8261d',
@@ -38,7 +38,7 @@ window.FAN_PAGE = {
     lede: 'Five seasons across ten years, a stage play that is proper canon, a shelf of novels, and a couple of games. The seasons themselves are taken apart one by one below this.',
     items: [
       { title: 'The Seasons', sub: 'Netflix · 2016 – 2026', unit: 'season',
-        desc: 'The Duffers wrote it to five from the start and stopped there. Three is my favourite and one is the best television of the five, which is the argument made above.',
+        desc: 'The Duffers wrote it to five from the start and stopped there. Three is my favorite and one is the best television of the five, which is the argument made above.',
         rows: [
           { n: 'Season One', y: '2016', big: true },
           { n: 'Season Two', y: '2017' },
@@ -76,7 +76,7 @@ window.FAN_PAGE = {
       { title: 'The Demogorgon', sub: 'Named off a character sheet', tag: 'The thing', desc: 'A petal-faced hunter with no eyes, drawn to blood and to sound. The kids name it after a monster in their campaign because nobody has a better word.', meta: 'Mirkwood · the gate' },
       { title: 'Eleven', sub: 'Subject 011', tag: 'The girl', desc: 'Walks out of the woods in a stolen jacket with a shaved head and no idea what a friend is. Closes the gate at the cost of herself.', meta: 'Eggos · the void' },
       { title: 'The wall of lights', sub: 'Joyce', tag: 'The mother', desc: 'Everyone thought she was falling apart. She was reading an alphabet off a string of bulbs, and she was right.', meta: 'The Byers house' },
-      { title: 'Hawkins Lab', sub: 'Dr Brenner', tag: 'The cause', desc: 'A sanctioned programme with a gate in the basement, and a director the children were made to call Papa.', meta: 'Department of Energy' },
+      { title: 'Hawkins Lab', sub: 'Dr Brenner', tag: 'The cause', desc: 'A sanctioned program with a gate in the basement, and a director the children were made to call Papa.', meta: 'Department of Energy' },
       { title: 'Barb', sub: 'Barbara Holland', tag: 'The cost', desc: 'Taken at the pool in episode two, and the show spends a season and a half admitting that mattered.', meta: 'Justice for Barb' },
       { title: 'The campaign', sub: 'The frame', tag: 'The kids', desc: 'The whole season is structured like the D&D game it opens on: a party, a monster, a bad roll, and a plan made on the fly.', meta: 'The Wheeler basement' },
     ] },
@@ -167,7 +167,7 @@ window.FAN_PAGE = {
   { id: 'adults', kind: 'cards', title: 'The Adults', note: 'the ones who believed her, and the ones who did not',
     lede: 'The show’s quiet trick is that the grown-ups are not useless. Joyce is right from the first episode and everybody treats her as though she has lost it, and Hopper is the only person in Hawkins who checks.',
     items: [
-      { title: 'Jim Hopper', sub: 'David Harbour', tag: 'Chief', accent: '#e8261d',
+      { title: 'Jim Hopper', sub: 'David Harbor', tag: 'Chief', accent: '#e8261d',
         desc: 'A wrecked small-town police chief who lost a daughter and gets handed another one. Season one is him doing actual police work while everyone tells him there is nothing to find, and he finds it.',
         meta: 'Three inches · the cabin rules' },
       { title: 'Joyce Byers', sub: 'Winona Ryder', tag: 'The wall', accent: '#f0c840',
@@ -229,6 +229,22 @@ window.FAN_PAGE = {
       { title: 'Master of Puppets', accent: '#8f8f9a', sub: 'Metallica, 1986', desc: 'Eddie in the Upside Down, playing a distraction for the bats.' },
       { title: 'Never Ending Story', accent: '#4f9fd0', sub: 'Limahl, 1984', desc: 'Dustin and Suzie over the radio, in the middle of a Soviet bunker rescue.' },
       { title: 'The Main Title', accent: '#e8261d', sub: 'Kyle Dixon & Michael Stein', desc: 'A Prophet-6 arpeggio and red Benguiat lettering. Two seconds and you know the show.' },
+    ] },
+
+  /* Why the eighties in this show feel like a memory to people who were not
+     there. Anemoia is the word for that, and it is the honest frame for this
+     whole page: I was born in 2006 and the decade I am nostalgic for here is
+     one I have only ever seen through a lens. Sits above the two song lists
+     on purpose, because it is the thing they are both actually about. */
+  { id: 'anemoia', kind: 'tiles', title: 'Anemoia', note: 'nostalgia for a time you never lived',
+    lede: 'Anemoia is nostalgia for a time you never knew. I was born in 2006, so the eighties I miss are not a memory: they are a set of borrowed images, and this show is the best of them. That is the trick of it. Stranger Things is not set in the eighties so much as inside how the eighties are remembered, which is why it feels like a childhood to people who did not have one then.',
+    items: [
+      { title: 'The word', accent: '#e8261d', sub: 'John Koenig', desc: 'Coined in The Dictionary of Obscure Sorrows: anemoia, nostalgia for a time you never lived. Not a real Greek word, which somehow makes it more exact.' },
+      { title: 'A decade, remembered', accent: '#c04a9a', sub: 'not recorded', desc: 'Hawkins is 1983 to 1986 as it is remembered rather than as it was: the bikes, the walkie-talkies, the arcade, the mall. The boring parts of the decade are not in it.' },
+      { title: 'Borrowed from Spielberg', accent: '#4f9fd0', sub: 'E.T. · The Goonies', desc: 'The Duffers built it out of films that were already nostalgic in their own decade. It is a memory of a memory, which is why it has no sharp edges.' },
+      { title: 'The synth does it', accent: '#8f4fd0', sub: 'Dixon & Stein', desc: 'A Prophet-6 and a tape hiss. Analogue warmth is the sound of a thing degrading, and your ear reads that as the past even when the track was made in 2016.' },
+      { title: 'Why reels found it', accent: '#6f7fd0', sub: 'slowed + reverb', desc: 'The whole slowed-and-reverbed genre underneath is anemoia as a format: take anything, slow it, drown it in room, and it becomes a memory of itself. Both song lists below are that.' },
+      { title: 'The honest part', accent: '#e0a83a', sub: '2006', desc: 'I did not live any of this. I miss it anyway, and the show knows that about me, which is the closest thing it has to a thesis.' },
     ] },
 
   { id: 'lines', kind: 'quotes', title: 'Lines', note: 'the ones that stuck',
@@ -361,7 +377,7 @@ window.FAN_PAGE = {
      2020). Sorted by `viral` rather than by release because that is the order
      I met them in. Every release year and viral year below is off Wikipedia
      or the artist's own upload, not memory. */
-  { id: 'reels-songs', kind: 'tiles', compact: true, title: 'Not In The Show', note: 'thirteen songs · the ones reels made sad',
+  { id: 'reels-songs', kind: 'tiles', compact: true, title: 'Not In The Show', note: 'fourteen songs · the ones reels made sad',
     lede: 'None of these appear in Stranger Things. They are the sad ones off my playlist, and most of them got to me the same way: sped up, slowed down, or reverbed under somebody’s edit at two in the morning. They sound like this show even when they have nothing to do with it. Grouped by what they sound like, sorted by the year each one actually went round on reels and TikTok, which is rarely the year it came out.',
     groupable: { key: 'mood', label: 'Group', on: 'By mood', open: 'on' },
     sortable: { label: 'Sort', authored: 'asc', by: [
@@ -398,6 +414,9 @@ window.FAN_PAGE = {
       { title: 'Memory Reboot', mood: 'The phonk ones', accent: '#6f7fd0', year: 2023, viral: 2023, sub: 'VØJ, Narvent · 2023 · viral 2023',
         desc: 'The edit song. If you have seen a slow-motion cut of anything in the last three years, this was probably under it, usually with Blade Runner 2049 on screen.',
         href: 'https://www.youtube.com/watch?v=ivPjMJl9yfY', link: 'Listen' },
+      { title: 'Memory Reboot (slowed)', mood: 'The phonk ones', accent: '#5f6fc0', year: 2023, viral: 2024, sub: 'VØJ, Narvent · slowed + reverb · 2023',
+        desc: 'The version that actually goes under the edits. Dropped a few semitones with the reverb opened up, it stops being a phonk track and turns into weather. The original is above; this is the one in your head.',
+        href: 'https://www.youtube.com/watch?v=BX7exLYSEy8', link: 'Listen' },
 
       { title: 'Chamber of Reflection', mood: 'The lonely ones', accent: '#d09a4f', year: 2014, viral: 2022, sub: 'Mac DeMarco · Salad Days · 2014 · viral from 2022',
         desc: 'Built on a 1975 Shigeo Sekito sample, and the standard soundtrack for being alone on purpose. Alone again.',

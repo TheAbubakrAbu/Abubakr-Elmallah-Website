@@ -1,7 +1,7 @@
 /* fan/minshawi.css: /worlds/minshawi/ only.
 
    The radio era: valve-amp warmth, sepia gold, and sound rippling out from
-   the centre. The hero drawing is the broadcast microphone, because the man
+   the center. The hero drawing is the broadcast microphone, because the man
    himself is not drawn on a site where nothing living is. */
 
 body[data-fan="minshawi"] { --a: #d9b88a; }
@@ -18,7 +18,7 @@ body[data-fan="minshawi"] { --a: #d9b88a; }
   background: radial-gradient(44% 30% at 50% 12%, rgba(217,184,138,.16), transparent 70%);
 }
 
-/* concentric broadcast rings, radiating from high centre like a transmitter */
+/* concentric broadcast rings, radiating from high center like a transmitter */
 .mn-waves {
   background: repeating-radial-gradient(circle at 50% 8%,
     transparent 0 56px, rgba(217,184,138,.07) 56px 57px);
@@ -33,7 +33,7 @@ body[data-fan="minshawi"] .fan-title {
 }
 
 .mn-hero-ar {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: clamp(1.5rem, 4.4vw, 2.6rem); line-height: 1.9;
   color: #d9b88a; opacity: .92; margin-bottom: 0.4rem;
   /* a display line above the title, so it aligns with the title, not the margin */
@@ -64,6 +64,6 @@ body[data-fan="minshawi"] .fan-title {
 
 /* Arabic section notes read as Arabic, not as mono */
 body[data-fan="minshawi"] .subsec--fan .subsec-yr {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: 1.05rem; letter-spacing: 0; text-transform: none; opacity: .9;
 }

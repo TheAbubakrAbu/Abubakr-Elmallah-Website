@@ -4,7 +4,7 @@ redirect_from:
   - /franchises/quran/
 title: "Qurʾān · Abubakr Elmallah"
 description: "The Qurʾān: revelation to print, the ten readings, tajwīd, and the reciters, al-Minshāwī above all."
-fonts: "family=Amiri:ital@0;1&family=Scheherazade+New:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700"
+fonts: "family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700"
 tab: "/worlds/"
 ---
 <!DOCTYPE html>
@@ -13,6 +13,7 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/quran.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="quran">
 
@@ -37,7 +38,7 @@ tab: "/worlds/"
     <p class="fan-kicker"><span>Who I am &#183; the Book</span><span>Since 610 CE</span></p>
     <p class="qr-hero-ar" lang="ar" dir="rtl">&#1575;&#1604;&#1602;&#1585;&#1570;&#1606; &#1575;&#1604;&#1603;&#1585;&#1610;&#1605;</p>
     <h1 class="fan-title">The Qur&#702;&#257;n</h1>
-    <p class="fan-lede-hero">The speech of Allah, revealed to the Prophet &#65018; over twenty-three years, memorised end to end by millions of people, and never revised. The Islam page has its numbers; this page is about the part the numbers cannot carry: that the Qur&#702;&#257;n is a recitation before it is a book, and it is meant to be heard.</p>
+    <p class="fan-lede-hero">The speech of Allah, revealed to the Prophet &#65018; over twenty-three years, memorized end to end by millions of people, and never revised. The Islam page has its numbers; this page is about the part the numbers cannot carry: that the Qur&#702;&#257;n is a recitation before it is a book, and it is meant to be heard.</p>
     <p class="fan-lede-hero">The voice I hear it in (Shaykh Mu&#7717;ammad &#7778;idd&#299;q al-Minsh&#257;w&#299;, Egyptian like everything else in the identity row) earned a whole page of his own, one tile before this one.</p>
     <div class="fan-links">
       <a class="fan-link" href="/worlds/minshawi/" data-magnetic>Al-Minsh&#257;w&#299; &#8599;</a>
@@ -78,6 +79,10 @@ tab: "/worlds/"
   </section>
 
   <div id="fanBody"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 

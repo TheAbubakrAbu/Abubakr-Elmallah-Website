@@ -6,13 +6,13 @@
    done its one scan, the injected markup has to be handed back to it via
    window.AEreveal or it sits invisible forever.
 
-   THE LAYOUT IS A HOTBAR, modelled on the Minecraft one on /worlds/minecraft/.
+   THE LAYOUT IS A HOTBAR, modeled on the Minecraft one on /worlds/minecraft/.
    Every option is a numbered slot in a single row, always visible, and picking
    one lights it. That is a much better fit than the two-column thing this used
    to be: you can see the whole set at once, it survives any number of items, and
    it reads as a game UI rather than as a form.
 
-   Two behaviours, same furniture:
+   Two behaviors, same furniture:
      pick -- click a slot (or press its number).
      roll -- same slots, plus a button that lands on one for you, weighted.
 

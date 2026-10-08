@@ -4,7 +4,7 @@ redirect_from:
   - /franchises/sunnah/
 title: "Sunnah · Abubakr Elmallah"
 description: "The Sunnah: what the Prophet ﷺ said, did and approved of: the six books, the isnād, the grading, and the habits that survive in an ordinary day."
-fonts: "family=Amiri:ital@0;1&family=Scheherazade+New:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700"
+fonts: "family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700"
 tab: "/worlds/"
 ---
 <!DOCTYPE html>
@@ -13,6 +13,7 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/sunnah.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="sunnah">
 
@@ -38,7 +39,7 @@ tab: "/worlds/"
     <p class="sn-hero-ar" lang="ar" dir="rtl">&#1575;&#1604;&#1587;&#1617;&#1615;&#1606;&#1617;&#1614;&#1577; &#1575;&#1604;&#1606;&#1617;&#1614;&#1576;&#1614;&#1608;&#1616;&#1610;&#1617;&#1614;&#1577;</p>
     <h1 class="fan-title">The Sunnah</h1>
     <p class="fan-lede-hero">What the Prophet &#65018; said, did and approved of: the second source of Islam, next to the Qur&#702;&#257;n. The Qur&#702;&#257;n commands the prayer; the Sunnah is where the how of it lives: the words, the movements, the times, and a thousand smaller things down to which foot goes through a door first.</p>
-    <p class="fan-lede-hero">It survives because of the most demanding record-keeping project of the pre-modern world: every report carried by a named chain of people, every person in the chain vetted, and every report graded by how it travelled. This page is that machinery, and the habits it delivers into an ordinary Tuesday.</p>
+    <p class="fan-lede-hero">It survives because of the most demanding record-keeping project of the pre-modern world: every report carried by a named chain of people, every person in the chain vetted, and every report graded by how it traveled. This page is that machinery, and the habits it delivers into an ordinary Tuesday.</p>
     <div class="fan-links">
       <a class="fan-link" href="#six" data-magnetic>The six books &#8599;</a>
       <a class="fan-link" href="#isnad" data-magnetic>The isn&#257;d &#8599;</a>
@@ -78,6 +79,10 @@ tab: "/worlds/"
   </section>
 
   <div id="fanBody"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 

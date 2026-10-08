@@ -12,6 +12,7 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/avatar.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="avatar">
 
@@ -102,7 +103,7 @@ tab: "/worlds/"
 
   <section class="av-floor reveal">
     <div class="av-floor-panel">
-      <h4>The forest lights up where you step</h4>
+      <h2>The forest lights up where you step</h2>
       <p>Almost everything on Pandora is bioluminescent, and it reacts to touch. It is the single best image in the film: Jake walking through the dark and the ground answering him, one footfall at a time. Move your cursor across the floor below, or drag a finger over it.</p>
       <p class="av-floor-hint" id="avHint">Waiting for something to walk past.</p>
     </div>
@@ -118,13 +119,17 @@ tab: "/worlds/"
       <p class="av-tank-cap">Amnio tank · avatar body · driver unlinked</p>
     </div>
     <div class="av-note">
-      <h4>The link</h4>
+      <h2>The link</h2>
       <p>The body is grown from a mix of human and Na’vi DNA, keyed to one driver, and it is useless to anybody else. That is why Jake gets his brother’s: they were twins, so the genome still matched.</p>
       <p>Lie down in the bed, the body wakes up nine feet tall on a moon with air that kills you in four minutes, and you can run again. The film spends its whole first act on how much that matters before it spends anything on the plot.</p>
     </div>
   </section>
 
   <div id="fanBody"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 

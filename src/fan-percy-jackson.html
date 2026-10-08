@@ -12,6 +12,7 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/percy-jackson.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="percy">
 
@@ -96,7 +97,7 @@ tab: "/worlds/"
       <p class="pj-claim-say" id="pjSay">Step up to the fire and wait.</p>
     </div>
     <div class="pj-claim-panel">
-      <h4>The Claiming</h4>
+      <h2>The Claiming</h2>
       <p>At Camp Half-Blood nobody tells you who your godly parent is. You wait, sometimes for years, until a symbol burns into the air over your head in front of the whole camp. Until then you sleep on the floor of the Hermes cabin with everybody else nobody has bothered to acknowledge, which is the first genuine injustice the books put in front of you, and Percy spends five books doing something about it.</p>
       <button class="pj-claim-go" type="button" id="pjGo" data-magnetic>Step forward</button>
       <dl class="pj-claim-out" id="pjOut" hidden>
@@ -121,6 +122,10 @@ tab: "/worlds/"
   </section>
 
   <div id="fanBody"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 

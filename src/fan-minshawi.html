@@ -3,8 +3,8 @@ permalink: /worlds/minshawi/
 redirect_from:
   - /franchises/minshawi/
 title: "Al-Minshāwī · Abubakr Elmallah"
-description: "Shaykh Muḥammad Ṣiddīq al-Minshāwī, 1920–1969: the voice this house hears the Qurʾān in: the murattal, the mujawwad, and the Egyptian radio era he stood at the centre of."
-fonts: "family=Amiri:ital@0;1&family=Scheherazade+New:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700"
+description: "Shaykh Muḥammad Ṣiddīq al-Minshāwī, 1920–1969: the voice this house hears the Qurʾān in: the murattal, the mujawwad, and the Egyptian radio era he stood at the center of."
+fonts: "family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700"
 tab: "/worlds/"
 ---
 <!DOCTYPE html>
@@ -13,6 +13,7 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/minshawi.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="minshawi">
 
@@ -69,7 +70,15 @@ tab: "/worlds/"
 
   <div id="fanBody"></div>
 
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
+
 </main>
+
+<!-- the shared image lightbox: every link to an image on this page opens
+     here rather than in a new tab (see gallery.js). the three portraits and the server card. -->
+{% include lightbox.html %}
 
 {% include footer.html back="/worlds/" %}
 
@@ -80,6 +89,7 @@ tab: "/worlds/"
 <script src="{% include v.html f='/assets/js/fan-minshawi.js' %}"></script>
 <script src="{% include v.html f='/assets/js/photos-data.js' %}"></script>
 {% include fan-engine.html %}
+<script src="{% include v.html f='/assets/js/gallery.js' %}"></script>
 {% include site-scripts.html %}
 {% include analytics.html %}
 </body>

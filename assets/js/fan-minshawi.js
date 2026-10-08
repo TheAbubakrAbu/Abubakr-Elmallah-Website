@@ -14,7 +14,7 @@ window.FAN_PAGE = {
       { title: '1920', sub: 'Born in Sohag', accent: '#d9b88a', desc: 'Upper Egypt, into a family whose trade was the Qurʾān: his father Ṣiddīq was a celebrated reciter before him.' },
       { title: '3', sub: 'Generations of Qurrāʾ', accent: '#e8c56a', desc: 'His father before him, his brother Maḥmūd beside him. Recitation ran in the family the way a craft runs through a workshop.' },
       { title: '2', sub: 'Complete styles', accent: '#3fd589', desc: 'A full murattal muṣḥaf and the mujawwad recordings: the measured reading and the high art, both preserved end to end.' },
-      { title: '49', sub: 'Years', accent: '#a05fd0', desc: 'Dead in 1969, still reciting through his final illness. The catalogue closed early, which is part of why every recording matters.' },
+      { title: '49', sub: 'Years', accent: '#a05fd0', desc: 'Dead in 1969, still reciting through his final illness. The catalog closed early, which is part of why every recording matters.' },
     ] },
 
   { id: 'voice', kind: 'cards', title: 'The Voice', note: 'صوت من السماء',
@@ -34,7 +34,7 @@ window.FAN_PAGE = {
         meta: 'A model muṣḥaf, spoken' },
     ] },
 
-  { id: 'recordings', kind: 'cards', title: 'The Recordings', note: 'the catalogue, complete since 1969',
+  { id: 'recordings', kind: 'cards', title: 'The Recordings', note: 'the catalog, complete since 1969',
     lede: 'Everything he will ever record already exists, and the core of it is four bodies of work. If you have used a Qurʾān app with audio, including mine, you have almost certainly heard the first one.',
     items: [
       { title: 'The murattal muṣḥaf', sub: 'The complete Qurʾān, measured', tag: 'Start here', accent: '#3fd589',
@@ -46,7 +46,7 @@ window.FAN_PAGE = {
       { title: 'Al-Muṣḥaf al-Muʿallim', sub: 'The teaching muṣḥaf', tag: 'For learners', accent: '#e8c56a',
         desc: 'The Qurʾān phrase by phrase, each with a pause built in for a child to repeat into. Generations learned their first sūrahs answering this voice, which is the quietest and maybe largest part of his legacy.',
         meta: 'Recite, pause, repeat' },
-      { title: 'The three holy cities', sub: 'Where the voice travelled', tag: 'The reach', accent: '#5fa3ec',
+      { title: 'The three holy cities', sub: 'Where the voice traveled', tag: 'The reach', accent: '#5fa3ec',
         desc: 'He recited in Makkah, in Madinah and at al-Aqṣā, and Egyptian State Radio carried him into every house in the country and far past its borders. A village voice from Sohag, heard across a civilisation.',
         meta: 'Sohag → everywhere' },
       /* the five I actually put on live on the Qurʾān page, each linked in
@@ -60,25 +60,25 @@ window.FAN_PAGE = {
   { id: 'life', kind: 'timeline', title: 'The Life', note: '1920 – 1969',
     items: [
       { when: '1920', title: 'Born in Sohag, Upper Egypt', desc: 'January 1920, into a house of reciters: his father Ṣiddīq al-Minshāwī was one of the celebrated Qurrāʾ of his generation, and the boy grew up inside the trade.' },
-      { when: 'Childhood', title: 'Ḥifẓ, young', desc: 'He memorised the Qurʾān as a child and was reciting publicly alongside his father while still a boy: the Upper-Egyptian apprenticeship, learned by ear at the source.' },
+      { when: 'Childhood', title: 'Ḥifẓ, young', desc: 'He memorized the Qurʾān as a child and was reciting publicly alongside his father while still a boy: the Upper-Egyptian apprenticeship, learned by ear at the source.' },
       { when: '1950s', title: 'The radio era', desc: 'Egyptian State Radio put the great reciters on the air and made them national figures. Minshāwī, ʿAbd al-Bāsiṭ, al-Ḥuṣarī and Muṣṭafā Ismāʿīl became the golden age, broadcast into every kitchen in Egypt.' },
-      { when: '1950s–60s', title: 'The recordings', desc: 'The complete murattal, the mujawwad sessions, the teaching muṣḥaf. The catalogue that would carry him past his own lifetime was laid down in under two decades.' },
+      { when: '1950s–60s', title: 'The recordings', desc: 'The complete murattal, the mujawwad sessions, the teaching muṣḥaf. The catalog that would carry him past his own lifetime was laid down in under two decades.' },
       { when: '1966–69', title: 'The illness', desc: 'Diagnosed with the illness that would take him, he kept reciting through it for years and turned down the advice to stop. The late recordings are the sound of a man spending what he knew he had left.' },
       { when: '1969', title: 'Gone at forty-nine', desc: 'June 1969. Egypt buried him as a national loss; the radio kept playing him as if nothing had changed, and it has not really stopped since.' },
-      { when: 'Now', title: 'The default voice', desc: 'Half a century on, his recordings sit in every Qurʾān app and stream from every corner of the world, including the colour-coded recitation in Al-Quran, the app this house shipped. The voice outlived the man by design: he left it where everyone could reach it.' },
+      { when: 'Now', title: 'The default voice', desc: 'Half a century on, his recordings sit in every Qurʾān app and stream from every corner of the world, including the color-coded recitation in Al-Quran, the app this house shipped. The voice outlived the man by design: he left it where everyone could reach it.' },
     ] },
 
   /* three portraits of the Sheikh, and the Discord server that wears one of
      them; originals in _originals/archive/minshawi/ */
   { id: 'portraits', kind: 'gallery', grid: true, whole: true, title: 'The Sheikh', note: 'three portraits',
-    lede: 'The photograph everybody knows, in black and white and in colour, and one without the dark glasses.',
+    lede: 'The photograph everybody knows, in black and white and in color, and one without the dark glasses.',
     items: [
       { src: '/assets/img/archive/minshawi/portrait.jpg', accent: '#e0b84f', title: 'In black and white',
         desc: 'The white kufi and the dark glasses: the best-known picture of him.',
         alt: 'Sheikh Muhammad Siddiq al-Minshawi in a white kufi and dark glasses, in black and white' },
-      { src: '/assets/img/archive/minshawi/portrait-colour.jpg', accent: '#e0b84f', title: 'In colour',
-        desc: 'The same portrait, coloured.',
-        alt: 'Sheikh Muhammad Siddiq al-Minshawi in a white kufi and dark glasses, in colour' },
+      { src: '/assets/img/archive/minshawi/portrait-colour.jpg', accent: '#e0b84f', title: 'In color',
+        desc: 'The same portrait, colored.',
+        alt: 'Sheikh Muhammad Siddiq al-Minshawi in a white kufi and dark glasses, in color' },
       { src: '/assets/img/archive/minshawi/portrait-circle.webp', accent: '#e0b84f', title: 'Without the glasses',
         desc: 'Bare-eyed, in a white kufi, in a round frame.',
         alt: 'Sheikh Muhammad Siddiq al-Minshawi in a white kufi, in a round black and white frame' },

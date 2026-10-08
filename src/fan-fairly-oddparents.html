@@ -1,0 +1,62 @@
+---
+permalink: /worlds/fairly-oddparents/
+title: "The Fairly OddParents · Abubakr Elmallah"
+description: "The Fairly OddParents as a fandom: two fairy godparents, a rulebook full of loopholes, and the worst babysitter on television."
+tab: "/worlds/"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/fairly-oddparents.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
+</head>
+<body data-intro="none" data-fan="fop">
+
+<!-- the shared backdrop; the colors are in this page's own stylesheet -->
+<div class="np-sky" aria-hidden="true"><span class="np-glow"></span><span class="np-grid"></span></div>
+
+{% include fx.html %}
+
+{% include cursor.html %}
+
+{% include rail.html %}
+
+{% include topbar.html %}
+
+<main>
+
+  <section class="fan-hero">
+    {% include crumbs.html parent="Worlds" url="/worlds/#franchises" here="The Fairly OddParents" %}
+    <p class="fan-kicker"><span>Franchise &#183; As a kid &#183; since 2001</span></p>
+    <h1 class="fan-title">The Fairly OddParents</h1>
+    <p class="fan-lede-hero">Timmy Turner is ten, nobody listens to him, and that misery is the exact qualification that gets him two fairy godparents. He can wish for anything. The wish is always granted precisely as worded, and that is the whole joke: the magic never malfunctions, it just does what he actually said instead of what he meant.</p>
+    <p class="fan-lede-hero">Holding it together is a thick rulebook with a loophole on every page, a teacher who is completely correct about the fairies and will never be believed, and Vicky, a sixteen-year-old babysitter who is sweet to the parents and runs the house like a prison the second they leave. Ten seasons of a kid getting exactly what he asked for.</p>
+    <div class="fan-links">
+      <a class="fan-link" href="#rules" data-magnetic>Da Rules &#8599;</a>
+      <a class="fan-link" href="#works" data-magnetic>Everything in it &#8599;</a>
+      <a class="fan-link" href="#themes" data-magnetic>The theme &#8599;</a>
+    </div>
+  </section>
+
+  <div id="fanBody"></div>
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
+
+</main>
+
+{% include footer.html back="/worlds/" %}
+
+{% include tabbar.html %}
+
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
+<!-- page content: data then the shared renderer, before reveal.js -->
+<script src="{% include v.html f='/assets/js/fan-fop.js' %}"></script>
+<script src="{% include v.html f='/assets/js/photos-data.js' %}"></script>
+{% include fan-engine.html %}
+{% include site-scripts.html %}
+{% include analytics.html %}
+</body>
+</html>

@@ -2,7 +2,7 @@
 
    The page is a page of writing, so the whole look is paper and ink: warm gold
    on near-black, ruled lines behind the hero, and every Arabic glyph set in
-   Amiri at a size where the joins are actually visible. Nothing here is an
+   the Uthmani script at a size where the joins are actually visible. Nothing here is an
    image; the letterforms are the artwork. */
 
 body[data-fan="arab"] { --a: #e8c56a; }
@@ -20,7 +20,7 @@ body[data-fan="arab"] { --a: #e8c56a; }
 /* one enormous ḍād, because Arabic is "the language of the ḍād" */
 .ar-mark {
   position: absolute; right: -3vw; top: 6vh;
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: min(52vw, 620px); line-height: 1; color: var(--a);
   opacity: .045; user-select: none;
 }
@@ -39,7 +39,7 @@ body[data-fan="arab"] .fan-title {
 }
 
 .ar-hero-ar {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: clamp(2rem, 7vw, 4.4rem); line-height: 1.7;
   color: var(--a); opacity: .92; margin-bottom: 0.2rem;
   text-shadow: 0 0 46px rgba(232,197,106,.25);
@@ -55,7 +55,7 @@ body[data-fan="arab"] .fan-title {
 .ar-lede b { color: var(--a); font-weight: 500; }
 
 body[data-fan="arab"] .subsec--fan .subsec-yr {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: 1.05rem; letter-spacing: 0; text-transform: none;
 }
 
@@ -109,7 +109,7 @@ body[data-fan="arab"] .subsec--fan .subsec-yr {
 /* the glyph itself: big enough that the join on either side is legible, which
    is the entire reason this block exists */
 .ar-glyph {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: 2rem; line-height: 1.35; color: var(--ink);
   transition: color .3s;
 }
@@ -128,7 +128,7 @@ body[data-fan="arab"] .subsec--fan .subsec-yr {
 /* ═════════════ 2. the root explorer ═════════════ */
 .ar-rootpick { margin-bottom: 1.8rem; }
 
-.chip--ar span { font-family: "Amiri", "Scheherazade New", serif; font-size: 1.15rem; }
+.chip--ar span { font-family: var(--ar); font-weight: normal; font-size: 1.15rem; }
 
 .chip--ar:hover { color: var(--ink); border-color: rgba(232,197,106,.55); }
 
@@ -147,7 +147,7 @@ body[data-fan="arab"] .subsec--fan .subsec-yr {
 .ar-roothead { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
 
 .ar-rootbig {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: clamp(2.4rem, 7vw, 4rem); line-height: 1.2; color: var(--a);
   text-shadow: 0 0 40px rgba(232,197,106,.3);
 }
@@ -175,7 +175,7 @@ body[data-fan="arab"] .subsec--fan .subsec-yr {
 .ar-word:hover { border-color: rgba(232,197,106,.4); background: rgba(232,197,106,.05); }
 
 .ar-word-ar {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: 1.6rem; line-height: 1.5; color: var(--ink);
 }
 
@@ -185,7 +185,7 @@ body[data-fan="arab"] .subsec--fan .subsec-yr {
 
 /* ── the numerals section: the digit is the title, so set it properly ── */
 body[data-fan="arab"] #numerals .fan-tiletext b {
-  font-family: "Amiri", "Scheherazade New", serif; font-size: 1.9rem; line-height: 1.2;
+  font-family: var(--ar); font-weight: normal; font-size: 1.9rem; line-height: 1.2;
 }
 
 body[data-fan="arab"] #numerals .fan-tiles { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
@@ -193,7 +193,7 @@ body[data-fan="arab"] #numerals .fan-tiles { grid-template-columns: repeat(auto-
 /* ── loanwords and dialects both carry Arabic in `sub` ── */
 body[data-fan="arab"] #loanwords .fan-tiletext i,
 body[data-fan="arab"] #dialects .fan-tiletext i {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: 1.02rem; letter-spacing: 0; text-transform: none; opacity: 1;
 }
 

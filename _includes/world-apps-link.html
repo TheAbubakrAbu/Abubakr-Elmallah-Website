@@ -1,0 +1,45 @@
+{%- comment -%}
+  The door between a world and the apps built from it, in both directions.
+
+  Two subjects on this site are both a world and a shelf of software, and
+  each was split across two pages: /worlds/islam/ and /al-islam/, and
+  /worlds/star-wars/ and /star-wars/. The pair belong to each other and the
+  only thing joining them was a text link in a `.hs-extra` row near the foot
+  of the page, under everything, which is not where you look when you have
+  just arrived and want the other half.
+
+  So this is the same crossing as a real control, in the hero, above the fold,
+  on BOTH pages: from the apps to the world, and from the world back. It uses
+  the `.fan-iface` shape that already carries "this world has an interface",
+  because this is the same kind of statement (there is more of this subject,
+  through here) and a second shape would have said something it does not mean.
+
+  Params:
+    kicker  the line above, naming what is on the other side
+    name    what that page is called, in bold
+    href    that page
+    more    optional, a ";"-separated list of "label|href" pills after the
+            main button (Al-Islam uses it for the rest of Who I Am:
+            the Qurʾān, the Sunnah, Arab, Egypt, Minshāwī)
+
+  Tinted by the page's own --a, like everything else in these heroes, so it
+  comes out green on Al-Islam and yellow on Star Wars with no per-page CSS.
+  Styled in world-apps.css, which all four pages load; see the note at the
+  top of that file for why it is not part of fanpages.css.
+{%- endcomment -%}
+<div class="fan-cross">
+  <a class="fan-cross-btn" href="{{ include.href }}" data-magnetic>
+    <span class="fan-cross-k">{{ include.kicker }}</span>
+    <b>{{ include.name }}</b>
+    <span class="fan-cross-a" aria-hidden="true">&#8594;</span>
+  </a>
+  {%- if include.more %}
+  <ul class="fan-cross-more">
+    {%- assign pairs = include.more | split: ";" -%}
+    {%- for pair in pairs -%}
+      {%- assign bits = pair | split: "|" -%}
+      <li><a href="{{ bits[1] }}" data-magnetic>{{ bits[0] }}</a></li>
+    {%- endfor -%}
+  </ul>
+  {%- endif %}
+</div>

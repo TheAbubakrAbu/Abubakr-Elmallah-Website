@@ -12,6 +12,7 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/justice-league.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="jl">
 
@@ -68,6 +69,7 @@ tab: "/worlds/"
       <a class="fan-link" href="/worlds/#franchises" data-magnetic>All worlds ↗</a>
       <a class="fan-link" href="#works" data-magnetic>Everything in it ↗</a>
     </div>
+    {% include interface-link.html world="The Justice League" href="/watchtower/" name="The Watchtower" %}
   </section>
 
   <div id="fanPlay"></div>
@@ -153,13 +155,17 @@ tab: "/worlds/"
       <div class="jl-core"><b>Watchtower</b></div>
     </div>
     <div class="jl-legend">
-      <h4>The table</h4>
+      <h2>The table</h2>
       <p>Seven chairs, no chairman, and a rule that any member can call the others in. The headquarters moves with the era: a cave in Rhode Island, a satellite twenty-two thousand miles up, a bunker in Detroit, and finally the Watchtower on the moon.</p>
       <p>The interesting part was never the fights. It is that the most powerful people alive agreed to answer to each other, and that Batman keeps a plan to stop every one of them in a drawer at home.</p>
     </div>
   </section>
 
   <div id="fanBody"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 
@@ -174,7 +180,7 @@ tab: "/worlds/"
 <script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
 <script src="{% include v.html f='/assets/js/batman-music.js' %}"></script>
-<!-- the LEGO catalogue, which this page's LEGO tiles come out of -->
+<!-- the LEGO catalog, which this page's LEGO tiles come out of -->
 <script src="{% include v.html f='/assets/js/lego-games.js' %}"></script>
 <script src="{% include v.html f='/assets/js/fan-jl.js' %}"></script>
 

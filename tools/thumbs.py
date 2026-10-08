@@ -11,7 +11,7 @@ is open under the hero, so a desktop visit fetched all 23 of those at once
 (961 KB of images, 415 KB of it one PNG), and on a phone the first tap on the
 folded index did the same (712 KB). The index now reads these instead.
 
-THE RECIPE. A 96 px square (30 px at up to 3x), cropped from the centre the
+THE RECIPE. A 96 px square (30 px at up to 3x), cropped from the center the
 same way the index's object-fit: cover crops it, WebP quality 80 (it keeps
 the alpha of the few transparent PNGs). About 2 KB each.
 

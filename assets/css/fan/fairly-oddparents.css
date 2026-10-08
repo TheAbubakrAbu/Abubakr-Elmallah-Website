@@ -1,0 +1,10 @@
+/* fan/fairly-oddparents.css: /worlds/fairly-oddparents/ only.
+   The backdrop geometry is shared (.np-sky in fanpages.css); this file
+   only says what color this world is. */
+
+body[data-fan="fop"] {
+  --a: #e05a9f;
+  --np1: #35153a;
+  --np2: #0a0610;
+  --np3: rgba(63,200,154,.16);
+}

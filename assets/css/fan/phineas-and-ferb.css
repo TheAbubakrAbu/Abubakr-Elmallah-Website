@@ -1,6 +1,6 @@
 /* fan/phineas-and-ferb.css: /worlds/phineas-and-ferb/ only.
    The backdrop geometry is shared (.np-sky in fanpages.css); this file
-   only says what colour this world is. */
+   only says what color this world is. */
 
 body[data-fan="pf"] {
   --a: #74c95a;

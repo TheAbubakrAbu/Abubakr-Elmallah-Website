@@ -78,7 +78,7 @@ window.FAN_PAGE = {
       { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Ice_Age_(franchise)',
         desc: 'All five films, the shorts, and the Blue Sky closure.' },
       { title: 'Ice Age Wiki', href: 'https://iceage.fandom.com/wiki/Ice_Age_Wiki',
-        desc: 'Every character and every one of Scrat\'s failures, catalogued.' },
+        desc: 'Every character and every one of Scrat\'s failures, cataloged.' },
     ] },
 
 ] };

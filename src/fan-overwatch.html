@@ -12,10 +12,11 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/overwatch.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="ow">
 
-<!-- the shared backdrop; the colours are in this page's own stylesheet -->
+<!-- the shared backdrop; the colors are in this page's own stylesheet -->
 <div class="np-sky" aria-hidden="true"><span class="np-glow"></span><span class="np-grid"></span></div>
 
 {% include fx.html %}
@@ -32,8 +33,8 @@ tab: "/worlds/"
     {% include crumbs.html parent="Worlds" url="/worlds/#franchises" here="Overwatch" %}
     <p class="fan-kicker"><span>Game &#183; Tertiary &#183; since 2016</span></p>
     <h1 class="fan-title">Overwatch</h1>
-    <p class="fan-lede-hero">Blizzard cancelled an MMO called Titan and built this out of the wreckage: a team shooter where nobody has the same gun, and where switching character mid-match is not a reset but the actual skill. Six a side, then five, and a roster designed so that every problem on the board has an answer somewhere on the bench.</p>
-    <p class="fan-lede-hero">The strange part is the fiction. Overwatch has one of the most fully realised casts in games and told almost none of it in the game itself: the story lives in animated shorts, comics and voice lines, which is either a masterstroke of restraint or a decade-long unforced error, and people are still arguing about which.</p>
+    <p class="fan-lede-hero">Blizzard canceled an MMO called Titan and built this out of the wreckage: a team shooter where nobody has the same gun, and where switching character mid-match is not a reset but the actual skill. Six a side, then five, and a roster designed so that every problem on the board has an answer somewhere on the bench.</p>
+    <p class="fan-lede-hero">The strange part is the fiction. Overwatch has one of the most fully realized casts in games and told almost none of it in the game itself: the story lives in animated shorts, comics and voice lines, which is either a masterstroke of restraint or a decade-long unforced error, and people are still arguing about which.</p>
     <div class="fan-links">
       <a class="fan-link" href="#roles" data-magnetic>How it works &#8599;</a>
       <a class="fan-link" href="#works" data-magnetic>Everything in it &#8599;</a>
@@ -42,6 +43,10 @@ tab: "/worlds/"
   </section>
 
   <div id="fanBody"></div>
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
+
 </main>
 
 {% include footer.html back="/worlds/" %}

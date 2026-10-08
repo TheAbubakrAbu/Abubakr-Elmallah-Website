@@ -14,6 +14,8 @@ tab: "/worlds/"
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/pics.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/star-wars.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-apps.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="sw">
 
@@ -46,7 +48,7 @@ tab: "/worlds/"
     <h1 class="fan-title">Star Wars</h1>
     {% include interface-link.html world="Star Wars" href="/elmallah/" name="E.L.M.A.L.L.A.H." href2="/holocron/" name2="The Holocron" href3="/lightsabers/" name3="The Lightsaber Guide" kind3="guide" %}
     {% include interface-peek.html tone="#7fd6ff" bg="#02060b" rows="Records|34 FILED;Gatekeeper|LISTENING;Era|THE REPUBLIC;Archive|OPEN" note="The Holocron files every page as a record in the Jedi Archives, readable in three eras." href="/elmallah/" name="E.L.M.A.L.L.A.H." world="Star Wars" %}
-    <p class="fan-lede-hero">No apps on this page. This is just the galaxy: where the eras sit on the timeline, why the prequels and the Clone Wars are the ones I keep going back to, what the kyber colours mean, and the lines I have not stopped quoting since I was ten.</p>
+    <p class="fan-lede-hero">No apps on this page. This is just the galaxy: where the eras sit on the timeline, why the prequels and the Clone Wars are the ones I keep going back to, what the kyber colors mean, and the lines I have not stopped quoting since I was ten.</p>
     <div class="sw-crawl" aria-hidden="true">
       <p>It is a period of civil war. Rebel spaceships, striking from a hidden base, have won their first victory against the evil Galactic Empire. And a kid in Mission Viejo has watched it enough times to know the crawl by heart.</p>
     </div>
@@ -55,9 +57,16 @@ tab: "/worlds/"
       <a class="fan-link" href="#clonewars" data-magnetic>The Clone Wars ↗</a>
       <a class="fan-link" href="#kyber" data-magnetic>Kyber ↗</a>
       <a class="fan-link" href="#planets" data-magnetic>The planet atlas ↗</a>
-      <a class="fan-link" href="/star-wars/" data-magnetic>The apps I built for it ↗</a>
       <a class="fan-link" href="#works" data-magnetic>Everything in it ↗</a>
     </div>
+
+    <!-- the four things I built out of this, as a control rather than one
+         more pill above: they are the other half of the subject.
+         /star-wars/ carries the same crossing back to here. -->
+    {% include world-apps-link.html
+       kicker="The apps I built for it"
+       name="Aurebesh, Sabacc and the rest"
+       href="/star-wars/" %}
     <!-- Hero drawing + its line. This is the pattern for every fan page: one
          iconic object drawn as inline SVG, one quote from the thing underneath
          it, wrapped in figure + figcaption. Jurassic Park, LOTR and the rest
@@ -104,13 +113,17 @@ tab: "/worlds/"
   <div id="fanBody"></div>
 
   <section class="planets fan-sec" id="planets">
-    <h3 class="subsec subsec--fan reveal">The Atlas<span class="subsec-yr">every world, drawn in CSS</span></h3>
+    <h2 class="subsec subsec--fan reveal">The Atlas<span class="subsec-yr">every world, drawn in CSS</span></h2>
     <p class="fan-lede reveal">Every world from the films, the shows and the games, sorted by era, the way my Datapad app sorts them. Each planet is drawn entirely in CSS: no images, just gradients, a rotating surface layer, and its own atmosphere. Pick an era, and hover one to scan it.</p>
     <div id="planetAtlas"></div>
   </section>
 
   <!-- sections marked mount:'end' in fan-sw.js land here, under the atlas -->
   <div id="fanBodyEnd"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 
@@ -123,7 +136,7 @@ tab: "/worlds/"
 {% include tabbar.html %}
 
 <script src="{% include v.html f='/assets/js/utils.js' %}"></script>
-<!-- the LEGO catalogue, which this page's LEGO tiles come out of -->
+<!-- the LEGO catalog, which this page's LEGO tiles come out of -->
 <script src="{% include v.html f='/assets/js/lego-games.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
 <script src="{% include v.html f='/assets/js/fan-sw.js' %}"></script>

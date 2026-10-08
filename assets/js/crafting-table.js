@@ -75,9 +75,9 @@
       return g ? pick(GRASS, r()) : pick(DIRT, r());
     });
   }
-  function ore(spots, colour, name) {
+  function ore(spots, color, name) {
     var base = noise(STONE, name), x = base.getContext('2d');
-    x.fillStyle = colour;
+    x.fillStyle = color;
     spots.forEach(function (p) { x.fillRect(p[0], p[1], p[2] || 2, p[3] || 2); });
     x.fillStyle = 'rgba(255,255,255,.55)';
     spots.forEach(function (p) { x.fillRect(p[0], p[1], 1, 1); });
@@ -407,8 +407,8 @@
 
   /* ───────────── the map ─────────────
      Value noise in three octaves over a 128 by 128 grid, pulled down
-     towards the sea at the edges and pushed up under every banner, then
-     coloured with the game's map palette and shaded the way the game
+     toward the sea at the edges and pushed up under every banner, then
+     colored with the game's map palette and shaded the way the game
      shades a map: a block higher than the one north of it is drawn
      lighter, lower is drawn darker. Water is darker the deeper it is. */
   function drawMap() {
@@ -434,7 +434,7 @@
     for (var y = 0; y < N; y++) for (var x = 0; x < N; x++) {
       var h = vnoise(x, y, 32) * 0.55 + vnoise(x + 7, y + 3, 14) * 0.3 + vnoise(x + 1, y + 11, 6) * 0.15;
       var dx = (x - N / 2) / (N / 2), dy = (y - N / 2) / (N / 2);
-      h += 0.06 - Math.max(0, Math.sqrt(dx * dx + dy * dy) - 0.78) * 1.4;  // sea towards the edges
+      h += 0.06 - Math.max(0, Math.sqrt(dx * dx + dy * dy) - 0.78) * 1.4;  // sea toward the edges
       for (var k = 0; k < bumps.length; k++) {
         var bx = x - bumps[k][0], by = y - bumps[k][1];
         h += Math.max(0, 0.6 - h) * 0.9 * Math.exp(-(bx * bx + by * by) / 60); // dry land, not a mountain, under each banner
@@ -478,7 +478,7 @@
   /* ───────────── the splash ───────────── */
   var SPLASHES = [
     'Also try Datapad!', 'Twelve apps shipped!', 'Now with SwiftUI!', '100% CSS, 0 images!',
-    'Class of 2028!', 'As seen at WWDC!', 'Seventy-one worlds!', 'Hello there!', 'Made in Irvine!',
+    'Class of 2028!', 'As seen at WWDC!', 'Seventy-four worlds!', 'Hello there!', 'Made in Irvine!',
     'Press E!', 'Not affiliated with Mojang!', 'Two mods, one camp each!'
   ];
   var splash = document.getElementById('ctSplash');
@@ -512,7 +512,7 @@
   display(); addEventListener('resize', display);
 
   // facing: wherever the pointer is, from the middle of the window
-  var FACING = [['east', 'Towards positive X'], ['south', 'Towards positive Z'], ['west', 'Towards negative X'], ['north', 'Towards negative Z']];
+  var FACING = [['east', 'Toward positive X'], ['south', 'Toward positive Z'], ['west', 'Toward negative X'], ['north', 'Toward negative Z']];
   addEventListener('pointermove', function (e) {
     var a = Math.atan2(e.clientY - innerHeight / 2, e.clientX - innerWidth / 2);
     var q = (Math.round(a / (Math.PI / 2)) + 4) % 4;

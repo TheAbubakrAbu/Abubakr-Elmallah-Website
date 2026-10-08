@@ -105,7 +105,7 @@
       el.style.setProperty('--dur', dur.toFixed(0) + 'ms');
       el.style.left = (46 + Math.random() * 8) + '%';
 
-      /* Restart the animation on a recycled node. Cancelling the running
+      /* Restart the animation on a recycled node. Canceling the running
          animation and re-adding the class restarts it without the forced
          layout that `void el.offsetWidth` cost five times a second. */
       el.classList.remove('is-up');
@@ -136,7 +136,7 @@
     }
 
     /* The fountain only runs while it is on screen and the tab is visible:
-       it sits below a long catalogue, and there is no point firing studs
+       it sits below a long catalog, and there is no point firing studs
        nobody can see. */
     var SPAWN_MS = 190, timer = 0, onScreen = true;
     function run() {

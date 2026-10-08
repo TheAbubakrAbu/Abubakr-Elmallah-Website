@@ -4,7 +4,7 @@ redirect_from:
   - /franchises/arab/
 title: "Arab · Abubakr Elmallah"
 description: "Arabic: twenty-eight letters in all four of their shapes, the three-consonant root system, the calligraphic hands, the dialects, and the English words that came from it."
-fonts: "family=Amiri:ital@0;1&family=Scheherazade+New:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700"
+fonts: "family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700"
 tab: "/worlds/"
 ---
 <!DOCTYPE html>
@@ -13,6 +13,7 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/arab.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="arab">
 
@@ -37,6 +38,9 @@ tab: "/worlds/"
     {% include crumbs.html parent="Worlds" url="/worlds/#franchises" here="Arab" %}
     <p class="fan-kicker"><span>Who I am &#183; my language</span><span>28 letters &#183; 1 alphabet</span></p>
     <p class="ar-hero-ar" lang="ar" dir="rtl">&#1575;&#1604;&#1593;&#1614;&#1585;&#1614;&#1576;&#1616;&#1610;&#1617;&#1614;&#1577;</p>
+    <!-- my own name in the alphabet this page is about, which is the one
+         piece of Arabic on the site that is mine rather than quoted -->
+    <p class="fan-sig"><span class="fan-sig-ar" lang="ar" dir="rtl">&#1571;&#1576;&#1608;&#1576;&#1603;&#1585; &#1575;&#1604;&#1605;&#1604;&#1575;&#1581;</span><span class="fan-sig-en" lang="en" dir="ltr">Abubakr Elmallah</span></p>
     <h1 class="fan-title">Arab</h1>
     <p class="fan-lede-hero">My family&#8217;s language, and the one I heard before I heard English. Twenty-eight letters, each with a different shape depending on where it stands, written right to left, joined up by default, and with the vowels usually left off entirely because you are expected to already know the word.</p>
     <p class="fan-lede-hero">It is also, structurally, the most elegant language I know. Almost every word in it is three consonants poured into a pattern, so a whole family of meanings shares a visible skeleton, and both blocks below are there to show you that rather than tell you about it.</p>
@@ -53,13 +57,13 @@ tab: "/worlds/"
   <div id="fanBody"></div>
 
   <section class="ar-sec" id="alphabet">
-    <h3 class="subsec subsec--fan reveal">The Alphabet<span class="subsec-yr">&#1575;&#1604;&#1571;&#1576;&#1580;&#1583;&#1610;&#1577;</span></h3>
+    <h2 class="subsec subsec--fan reveal">The Alphabet<span class="subsec-yr">&#1575;&#1604;&#1571;&#1576;&#1580;&#1583;&#1610;&#1577;</span></h2>
     <p class="ar-lede reveal">All twenty-eight, and every shape each one takes. A letter is drawn differently depending on whether it <b>starts</b> a word, sits in the <b>middle</b> of one, <b>ends</b> one, or stands <b>alone</b>, and that is not handwriting, it is the alphabet itself. Six of them (&#1575; &#1583; &#1584; &#1585; &#1586; &#1608;) never join to whatever comes after them, so they have no start or middle shape at all and every word containing one visibly breaks apart around it. Those six are the dashed tiles.</p>
     <div id="arAlphabet"></div>
   </section>
 
   <section class="ar-sec" id="roots">
-    <h3 class="subsec subsec--fan reveal">The Root System<span class="subsec-yr">&#1575;&#1604;&#1580;&#1584;&#1585;</span></h3>
+    <h2 class="subsec subsec--fan reveal">The Root System<span class="subsec-yr">&#1575;&#1604;&#1580;&#1584;&#1585;</span></h2>
     <p class="ar-lede reveal">Pick three consonants. Every word below is those same three letters poured into a different mould, and the English column looks like six unrelated words while the Arabic column is visibly one. This is why an Arabic dictionary is ordered by root rather than by spelling, and why you can meet a word you have never seen and still know roughly what it means.</p>
     <div id="arRoot"></div>
   </section>
@@ -67,7 +71,15 @@ tab: "/worlds/"
   <!-- numerals, loanwords, the hands, the dialects, links -->
   <div id="fanBodyEnd"></div>
 
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
+
 </main>
+
+<!-- the shared image lightbox: every link to an image on this page opens
+     here rather than in a new tab (see gallery.js). four pieces of calligraphy. -->
+{% include lightbox.html %}
 
 {% include footer.html back="/worlds/" %}
 
@@ -78,6 +90,7 @@ tab: "/worlds/"
 <script src="{% include v.html f='/assets/js/fan-arab.js' %}"></script>
 <script src="{% include v.html f='/assets/js/photos-data.js' %}"></script>
 {% include fan-engine.html %}
+<script src="{% include v.html f='/assets/js/gallery.js' %}"></script>
 {% include site-scripts.html %}
 <!-- the alphabet and the root explorer, after reveal.js on purpose -->
 <script src="{% include v.html f='/assets/js/fan-arab-ui.js' %}"></script>

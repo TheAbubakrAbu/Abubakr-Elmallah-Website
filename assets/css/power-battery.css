@@ -1,0 +1,427 @@
+/* ============================================================
+   power-battery.css: /power-battery/, the Green Lantern
+   terminal. Sister page to /citadel/, /red-book/ and the rest:
+   hard light on deep space instead of paper. Every room on the
+   site is a construct, the oath recharges the ring, and the
+   seven corps re-tint the whole page.
+
+   ONE TOKEN RUNS THE WHOLE PAGE. --w is the color of the
+   light, and nothing below names a corps color of its own:
+   every border, glow, beam and rule mixes from --w. So the
+   spectrum switch is one line of JavaScript setting one
+   property on .pb, and the page comes out in seven colors
+   with no second set of rules.
+
+   IT IS SET ON .pb AND NEVER ON :root. Setting it on :root
+   would reach the thinking orbs and anything else outside
+   this page's scope, which is the gotcha that silently broke
+   this trick the first time.
+   ============================================================ */
+
+/* these pages load no shared stylesheet, so they carry their own reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+img, svg { display: block; max-width: 100%; }
+ul, ol { list-style: none; }
+html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
+
+.pb {
+  /* the light. Everything on this page is mixed from it. */
+  --w: #4fd07f;
+  /* the charge, 0-100, written by the script and read by the HUD ring */
+  --charge: 100;
+
+  --iw-a: #4fd07f;   /* the shared world button, interface-world.css */
+  --iw-bg: #04120a;
+  --disp:  "Orbitron", "Space Grotesk", system-ui, sans-serif;
+  --body:  "Rajdhani", system-ui, sans-serif;
+  --sans:  "Rajdhani", system-ui, sans-serif;   /* interface-world.css reads this */
+  --mono:  "JetBrains Mono", ui-monospace, monospace;
+  --void:   #04120a;
+  --void-2: #020806;
+  --cream:  #eafff2;
+  --dim:    #b4ccbe;
+  --mute:   #8aa396;
+  --ease:   cubic-bezier(.16, 1, .3, 1);
+
+  background: var(--void);
+  color: var(--cream);
+  font-family: var(--body);
+  font-size: 1.07rem;
+  min-height: 100vh;
+  padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+  /* the whole page shifts color when a corps is picked, and this is the
+     only transition that has to cover it */
+  transition: background .7s var(--ease);
+}
+/* the ring itself carries the light's color, so `currentColor` inside the
+   lamp's SVG gradient resolves to whichever corps is selected */
+.pb { color: var(--cream); }
+
+/* ───────────── deep space ───────────── */
+.pb-space { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.pb-space > span { position: absolute; inset: 0; }
+/* the starfield: three sizes of point, laid down as radial gradients rather
+   than a thousand elements */
+.pb-stars {
+  background-image:
+    radial-gradient(1.4px 1.4px at 12% 18%, rgba(255, 255, 255, .9), transparent),
+    radial-gradient(1.2px 1.2px at 27% 62%, rgba(255, 255, 255, .7), transparent),
+    radial-gradient(1.6px 1.6px at 41% 31%, rgba(255, 255, 255, .85), transparent),
+    radial-gradient(1px 1px at 54% 74%, rgba(255, 255, 255, .6), transparent),
+    radial-gradient(1.5px 1.5px at 68% 22%, rgba(255, 255, 255, .8), transparent),
+    radial-gradient(1.1px 1.1px at 79% 58%, rgba(255, 255, 255, .65), transparent),
+    radial-gradient(1.3px 1.3px at 88% 36%, rgba(255, 255, 255, .75), transparent),
+    radial-gradient(1px 1px at 33% 88%, rgba(255, 255, 255, .55), transparent),
+    radial-gradient(1.2px 1.2px at 61% 48%, rgba(255, 255, 255, .7), transparent),
+    radial-gradient(1px 1px at 8% 44%, rgba(255, 255, 255, .5), transparent);
+  background-repeat: repeat;
+  background-size: 620px 620px;
+}
+/* the lamp's light reaching into the sector */
+.pb-glow {
+  background:
+    radial-gradient(52% 44% at 50% 26%, color-mix(in srgb, var(--w) 20%, transparent), transparent 72%),
+    radial-gradient(120% 92% at 50% 48%, transparent 42%, rgba(0, 0, 0, .78));
+  transition: background .7s var(--ease);
+}
+/* the Corps' own grid, faint, as every Oa interior has */
+.pb-grid {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--w) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--w) 7%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(120% 90% at 50% 40%, #000 20%, transparent 72%);
+  transition: background-image .7s var(--ease);
+}
+
+.pb-blocks { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* ───────────── the header ───────────── */
+.pb-top {
+  position: sticky; top: 0; z-index: 7;
+  display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
+  padding: 0.7rem clamp(0.9rem, 3vw, 2rem);
+  background: linear-gradient(180deg, rgba(2, 8, 6, .95), rgba(2, 8, 6, .68));
+  border-bottom: 1px solid color-mix(in srgb, var(--w) 26%, transparent);
+  backdrop-filter: blur(8px);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  transition: border-color .7s var(--ease);
+}
+.pb-exit {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.4rem 0.78rem; border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--w) 30%, transparent);
+  color: var(--dim);
+  background: color-mix(in srgb, var(--w) 7%, transparent);
+  transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
+}
+.pb-exit svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.pb-exit:hover, .pb-exit:focus-visible {
+  color: color-mix(in srgb, var(--w) 80%, #fff);
+  border-color: var(--w);
+  background: color-mix(in srgb, var(--w) 16%, transparent);
+}
+.pb-top-mid { color: var(--mute); flex: 1 1 auto; min-width: 0; }
+.pb-top-r { display: inline-flex; align-items: center; gap: 0.5rem; color: color-mix(in srgb, var(--w) 72%, #fff); }
+
+/* the charge ring on the HUD: one stroke-dasharray driven by --charge */
+.pb-charge { width: 26px; height: 26px; }
+.pb-charge svg { width: 26px; height: 26px; transform: rotate(-90deg); }
+.pb-charge-bg { fill: none; stroke: color-mix(in srgb, var(--w) 18%, transparent); stroke-width: 4; }
+.pb-charge-fill {
+  fill: none; stroke: var(--w); stroke-width: 4; stroke-linecap: round;
+  stroke-dasharray: calc(var(--charge) * 1) 100;
+  transition: stroke-dasharray .6s var(--ease), stroke .7s var(--ease);
+}
+.pb.is-low .pb-charge-fill { stroke: #ff6b4f; }
+.pb.is-low .pb-top-r { color: #ff9a85; }
+
+/* ───────────── the layout ───────────── */
+.pb-main {
+  position: relative; z-index: 1;
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: clamp(1.4rem, 4vw, 3rem) clamp(0.9rem, 3vw, 2rem) 0;
+  display: grid; gap: clamp(2.2rem, 5vw, 3.6rem);
+}
+
+/* ───────────── the lamp and the oath ───────────── */
+.pb-hero { display: grid; gap: clamp(1.4rem, 4vw, 2.6rem); align-items: center; }
+@media (min-width: 900px) { .pb-hero { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); } }
+
+.pb-lamp-stage { display: grid; place-items: center; }
+.pb-lamp { width: min(380px, 86vw); height: auto; color: var(--w); }
+/* the beam: two cones out of the lamp, which is how it is always drawn */
+.pba-beam path {
+  fill: color-mix(in srgb, var(--w) 12%, transparent);
+  transition: fill .7s var(--ease);
+}
+.pba-lamp rect, .pba-lamp path {
+  fill: color-mix(in srgb, var(--w) 14%, #06130c);
+  stroke: color-mix(in srgb, var(--w) 70%, transparent);
+  stroke-width: 2.4;
+  transition: fill .7s var(--ease), stroke .7s var(--ease);
+}
+.pba-band { fill: color-mix(in srgb, var(--w) 26%, #06130c) !important; }
+.pba-core {
+  fill: url(#pbCore);
+  filter: drop-shadow(0 0 14px color-mix(in srgb, var(--w) 85%, transparent));
+}
+.pba-core-glow {
+  fill: color-mix(in srgb, var(--w) 16%, transparent);
+  animation: pb-pulse 3.4s ease-in-out infinite;
+}
+@keyframes pb-pulse { 0%, 100% { opacity: .5; transform: scale(1); } 50% { opacity: .95; transform: scale(1.1); } }
+.pba-core-glow { transform-box: fill-box; transform-origin: center; }
+
+.pb-kicker {
+  font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: color-mix(in srgb, var(--w) 72%, #fff);
+  margin-bottom: 0.5rem;
+}
+.pb-title {
+  font-family: var(--disp); font-weight: 800;
+  font-size: clamp(1.8rem, 5.4vw, 3rem); line-height: 1.06;
+  letter-spacing: 0.01em;
+  color: color-mix(in srgb, var(--w) 40%, #fff);
+  text-shadow: 0 0 26px color-mix(in srgb, var(--w) 40%, transparent);
+  margin-bottom: 0.7rem;
+  transition: color .7s var(--ease), text-shadow .7s var(--ease);
+}
+.pb-sub { font-size: 1.05rem; line-height: 1.6; color: var(--dim); margin-bottom: 1.2rem; max-width: 56ch; }
+
+/* the oath: four lines, each lit in turn while it is being said */
+.pb-oath {
+  display: grid; gap: 0.18rem;
+  padding: 0.9rem 1.1rem; margin-bottom: 1.1rem;
+  border-left: 2px solid var(--w);
+  background: color-mix(in srgb, var(--w) 6%, transparent);
+  transition: border-color .7s var(--ease), background .7s var(--ease);
+}
+.pb-oath p {
+  font-family: var(--disp); font-weight: 600;
+  font-size: clamp(0.9rem, 2.2vw, 1.04rem); line-height: 1.5;
+  color: var(--dim);
+  transition: color .3s var(--ease), text-shadow .3s var(--ease);
+}
+.pb.is-saying .pb-oath p {
+  animation: pb-say 2.6s var(--ease) forwards;
+  animation-delay: calc(var(--i) * 0.6s);
+}
+@keyframes pb-say {
+  0%   { color: var(--dim); text-shadow: none; }
+  22%  { color: #fff; text-shadow: 0 0 18px color-mix(in srgb, var(--w) 90%, transparent); }
+  100% { color: color-mix(in srgb, var(--w) 75%, #fff); text-shadow: 0 0 8px color-mix(in srgb, var(--w) 50%, transparent); }
+}
+
+.pb-recharge {
+  padding: 0.7rem 1.5rem; border-radius: 999px;
+  border: 1px solid var(--w);
+  color: color-mix(in srgb, var(--w) 80%, #fff);
+  background: color-mix(in srgb, var(--w) 10%, transparent);
+  font-family: var(--disp); font-weight: 600; font-size: 0.94rem;
+  letter-spacing: 0.04em; cursor: pointer;
+  transition: background .25s var(--ease), color .25s var(--ease), transform .25s var(--ease), border-color .7s var(--ease);
+}
+.pb-recharge:hover, .pb-recharge:focus-visible {
+  background: var(--w); color: #04120a; transform: translateY(-2px);
+}
+.pb-hint { font-family: var(--mono); font-size: 0.74rem; color: var(--mute); margin-top: 0.6rem; }
+
+/* ───────────── headings ───────────── */
+.pb-h {
+  display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+  font-family: var(--disp); font-weight: 700;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  color: color-mix(in srgb, var(--w) 55%, #fff);
+  margin-bottom: 1.1rem;
+  transition: color .7s var(--ease);
+}
+.pb-h--sm { font-size: clamp(1.05rem, 2.4vw, 1.3rem); }
+.pb-h span {
+  font-family: var(--mono); font-weight: 400; font-size: 0.7rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--mute);
+}
+.pb-think { width: 22px; height: 22px; flex: 0 0 auto; }
+
+/* ───────────── the spectrum ───────────── */
+.pb-corps { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.pb-corp {
+  display: grid; gap: 0.06rem; text-align: left;
+  padding: 0.5rem 0.85rem; border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--c) 42%, transparent);
+  background: color-mix(in srgb, var(--c) 8%, transparent);
+  color: var(--dim); cursor: pointer;
+  transition: background .2s var(--ease), border-color .2s var(--ease), transform .2s var(--ease);
+}
+.pb-corp b {
+  font-family: var(--disp); font-weight: 700; font-size: 0.9rem;
+  color: color-mix(in srgb, var(--c) 72%, #fff);
+}
+.pb-corp i {
+  font-style: normal; font-family: var(--mono); font-size: 0.66rem;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute);
+}
+.pb-corp:hover, .pb-corp:focus-visible {
+  background: color-mix(in srgb, var(--c) 18%, transparent);
+  border-color: var(--c); transform: translateY(-2px);
+}
+/* the corps in force: its own color, filled */
+.pb-corp.is-on {
+  background: color-mix(in srgb, var(--c) 26%, transparent);
+  border-color: var(--c);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--c) 34%, transparent);
+}
+.pb-corp.is-on i { color: color-mix(in srgb, var(--c) 60%, #fff); }
+.pb-spec-note {
+  font-size: 0.96rem; line-height: 1.55; color: var(--dim);
+  margin-top: 0.9rem; max-width: 70ch;
+}
+
+/* ───────────── the constructs ───────────── */
+.pb-constructs {
+  display: grid; gap: clamp(0.7rem, 2vw, 1rem);
+  grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+}
+.pb-c { display: block; height: 100%; }
+/* a construct is hard light: an outline that glows, and nothing solid */
+.pb-c-in {
+  position: relative; display: flex; flex-direction: column; height: 100%;
+  gap: 0.26rem; padding: 1rem;
+  border: 1px solid color-mix(in srgb, var(--w) 34%, transparent);
+  border-radius: 10px;
+  background: linear-gradient(170deg, color-mix(in srgb, var(--w) 9%, transparent), rgba(0, 0, 0, .3));
+  box-shadow: inset 0 0 22px color-mix(in srgb, var(--w) 10%, transparent);
+  opacity: 0;
+  animation: pb-build .5s var(--ease) forwards;
+  animation-delay: calc(var(--i) * 0.05s);
+  transition: border-color .22s var(--ease), box-shadow .22s var(--ease),
+              transform .22s var(--ease), background .7s var(--ease);
+}
+@keyframes pb-build { from { opacity: 0; transform: translateY(12px) scale(.98); } to { opacity: 1; transform: none; } }
+.pb-c:hover .pb-c-in, .pb-c:focus-visible .pb-c-in {
+  border-color: var(--w);
+  box-shadow: inset 0 0 26px color-mix(in srgb, var(--w) 18%, transparent),
+              0 0 24px color-mix(in srgb, var(--w) 26%, transparent);
+  transform: translateY(-4px);
+}
+.pb-c:focus-visible { outline: none; }
+.pb-ico {
+  width: 30px; height: 30px; margin-bottom: 0.2rem;
+  fill: none; stroke: var(--w); stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+  filter: drop-shadow(0 0 7px color-mix(in srgb, var(--w) 60%, transparent));
+  transition: stroke .7s var(--ease), filter .7s var(--ease);
+}
+.pb-k {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: color-mix(in srgb, var(--w) 62%, #fff);
+}
+.pb-n { font-family: var(--disp); font-weight: 700; font-size: 1.06rem; color: var(--cream); }
+.pb-real { font-family: var(--mono); font-size: 0.68rem; color: var(--mute); }
+.pb-f { font-size: 0.94rem; line-height: 1.48; color: var(--dim); margin-top: 0.18rem; }
+.pb-c--own .pb-c-in { background: linear-gradient(170deg, color-mix(in srgb, var(--w) 16%, transparent), rgba(0, 0, 0, .3)); }
+.pb-c--calm .pb-k { color: #5fd9a0; }
+
+/* ───────────── panels ───────────── */
+.pb-cols { display: grid; gap: clamp(1.2rem, 3vw, 2rem); }
+@media (min-width: 900px) { .pb-cols { grid-template-columns: 1fr 1fr; align-items: start; } }
+.pb-panel {
+  padding: clamp(1.1rem, 3vw, 1.8rem);
+  border: 1px solid color-mix(in srgb, var(--w) 22%, transparent);
+  border-radius: 12px;
+  background: linear-gradient(170deg, color-mix(in srgb, var(--w) 5%, transparent), rgba(0, 0, 0, .26));
+  transition: border-color .7s var(--ease), background .7s var(--ease);
+}
+.pb-duty { display: grid; gap: 0.5rem; }
+.pb-duty > div {
+  display: grid; grid-template-columns: 9.4rem 1fr; gap: 0.6rem;
+  align-items: baseline;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--w) 12%, transparent);
+}
+.pb-duty > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.pb-duty dt {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mute);
+}
+.pb-duty dd { font-size: 0.97rem; color: var(--cream); }
+
+.pb-sigs { display: grid; gap: 0.45rem; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+.pb-sig {
+  display: grid; gap: 0.04rem;
+  padding: 0.5rem 0.7rem; border-radius: 7px;
+  border: 1px solid color-mix(in srgb, var(--s) 30%, transparent);
+  background: color-mix(in srgb, var(--s) 7%, transparent);
+  transition: border-color .2s var(--ease), background .2s var(--ease), transform .2s var(--ease);
+}
+.pb-sig:hover, .pb-sig:focus-visible {
+  border-color: var(--s); background: color-mix(in srgb, var(--s) 16%, transparent);
+  transform: translateY(-2px);
+}
+.pb-sig b { font-family: var(--disp); font-weight: 600; font-size: 0.93rem; color: var(--cream); }
+.pb-sig i {
+  font-style: normal; font-family: var(--mono); font-size: 0.66rem;
+  letter-spacing: 0.08em; color: color-mix(in srgb, var(--s) 60%, #fff);
+}
+
+/* ───────────── the flood ───────────── */
+.pb-done {
+  position: fixed; inset: 0; z-index: 30;
+  display: grid; place-items: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(70% 55% at 50% 45%, color-mix(in srgb, var(--w) 30%, transparent), transparent 72%),
+    rgba(2, 8, 6, .97);
+  opacity: 0; visibility: hidden;
+  transition: opacity .6s var(--ease), visibility .6s;
+  text-align: center;
+}
+.pb.is-charged .pb-done { opacity: 1; visibility: visible; }
+.pb-done-orb { width: 96px; height: 96px; margin: 0 auto 1rem; }
+.pb-done-k {
+  font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--mute); margin-bottom: 0.4rem;
+}
+.pb-done-t {
+  font-family: var(--disp); font-weight: 800;
+  font-size: clamp(1.5rem, 5vw, 2.4rem);
+  color: color-mix(in srgb, var(--w) 45%, #fff);
+  text-shadow: 0 0 28px color-mix(in srgb, var(--w) 60%, transparent);
+  margin-bottom: 1.2rem;
+}
+.pb-done a {
+  display: inline-block; padding: 0.6rem 1.3rem; border-radius: 999px;
+  border: 1px solid var(--w); color: color-mix(in srgb, var(--w) 80%, #fff);
+  font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.06em;
+  transition: background .2s var(--ease), color .2s var(--ease);
+}
+.pb-done a:hover, .pb-done a:focus-visible { background: var(--w); color: #04120a; }
+
+/* ───────────── the world button at the foot ───────────── */
+.pb-main > .iw--foot { justify-self: center; margin-bottom: 2rem; }
+
+/* ───────────── narrow ───────────── */
+/* The spectrum stays a full row of seven on a phone: they wrap, and every
+   corps is still reachable. Only the header's middle line goes. */
+@media (max-width: 620px) {
+  .pb-duty > div { grid-template-columns: 1fr; gap: 0.1rem; }
+  .pb-top-mid { display: none; }
+}
+
+/* ───────────── reduced motion ───────────── */
+/* The pulse, the build-in and the oath's lighting are decoration over a
+   page that is already complete. Stopped, every construct is in place and
+   the oath is simply printed. */
+@media (prefers-reduced-motion: reduce) {
+  .pba-core-glow { animation: none; opacity: .7; }
+  .pb-c-in { animation: none; opacity: 1; }
+  .pb.is-saying .pb-oath p { animation: none; }
+  .pb-c:hover .pb-c-in, .pb-c:focus-visible .pb-c-in { transform: none; }
+  .pb-corp:hover, .pb-sig:hover, .pb-recharge:hover { transform: none; }
+}

@@ -13,7 +13,7 @@ window.FAN_PAGE = {
     lede: 'Three kinds of report, one standard of evidence. A ḥadīth is not a quotation floating loose; it is a text plus the named chain of people who carried it, and the chain is the part the scholars spent their lives on.',
     items: [
       { title: 'Qawl', sub: 'قول · What he said', tag: 'Sayings', accent: '#6fcfa4',
-        desc: 'The words themselves: rulings, warnings, duʿāʾs, and one-line sentences that have organised whole lives: actions are by intentions, the best of you are the best to their families, say good or stay silent.',
+        desc: 'The words themselves: rulings, warnings, duʿāʾs, and one-line sentences that have organized whole lives: actions are by intentions, the best of you are the best to their families, say good or stay silent.',
         meta: 'The largest category' },
       { title: 'Fiʿl', sub: 'فعل · What he did', tag: 'Actions', accent: '#e8c56a',
         desc: 'How he ﷺ prayed, fasted, ate, slept and dealt with people, observed and reported by the companions in detail. The prayer you see in any mosque tonight is a seventh-century motion, transmitted body to body.',
@@ -27,13 +27,13 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'six', kind: 'cards', title: 'The Six Books', note: 'الكتب الستة',
-    lede: 'The canonical collections, compiled in the third Islamic century by men who travelled thousands of miles to hear one narration from one reliable mouth. Al-Bukhārī is said to have sifted six hundred thousand reports for the few thousand that met his bar. These six, plus the Muwaṭṭaʾ and the Musnad of Aḥmad and more, are the corpus my Hadith JSON Engine packages: 50,884 ḥadīth, structured.',
+    lede: 'The canonical collections, compiled in the third Islamic century by men who traveled thousands of miles to hear one narration from one reliable mouth. Al-Bukhārī is said to have sifted six hundred thousand reports for the few thousand that met his bar. These six, plus the Muwaṭṭaʾ and the Musnad of Aḥmad and more, are the corpus my Hadith JSON Engine packages: 50,884 ḥadīth, structured.',
     items: [
       { title: 'Ṣaḥīḥ al-Bukhārī', sub: 'Muḥammad al-Bukhārī · d. 870', tag: 'The benchmark', accent: '#6fcfa4',
         desc: 'The most rigorously authenticated book in Islam after the Qurʾān itself. His conditions were the strictest: proven meeting between every two links in every chain, or the report stayed out.',
         meta: '7,563 with repetitions' },
       { title: 'Ṣaḥīḥ Muslim', sub: 'Muslim ibn al-Ḥajjāj · d. 875', tag: 'The pair', accent: '#6fcfa4',
-        desc: 'Bukhārī’s student, with a book organised so cleanly by topic that scholars reach for Muslim first even when both carry the report. Together the two Ṣaḥīḥs are the gold standard: agreed upon.',
+        desc: 'Bukhārī’s student, with a book organized so cleanly by topic that scholars reach for Muslim first even when both carry the report. Together the two Ṣaḥīḥs are the gold standard: agreed upon.',
         meta: '~7,500 with repetitions' },
       { title: 'Sunan Abī Dāwūd', sub: 'Abū Dāwūd as-Sijistānī · d. 889', tag: 'Law', accent: '#e8c56a',
         desc: 'The jurist’s collection: gathered specifically for legal rulings, with his own notes on weaknesses. The book a faqīh opens to find what the madhhabs were built from.',
@@ -51,10 +51,10 @@ window.FAN_PAGE = {
 
   { id: 'isnad', kind: 'timeline', title: 'The Isnād', note: 'how a sentence survives 1,400 years',
     items: [
-      { when: '610–632', title: 'The words are said', desc: 'The Prophet ﷺ teaches for twenty-three years in front of thousands of companions, many of whom memorise professionally the way their culture memorised poetry: exactly.' },
+      { when: '610–632', title: 'The words are said', desc: 'The Prophet ﷺ teaches for twenty-three years in front of thousands of companions, many of whom memorize professionally the way their culture memorized poetry: exactly.' },
       { when: '632–700', title: 'The companions carry it', desc: 'Abū Hurayrah, ʿĀʾishah, Ibn ʿUmar, Anas and hundreds more transmit what they saw and heard, each report tagged with who heard it from whom. The isnād, the chain, is born as a habit before it is a science.' },
       { when: '717–720', title: 'The order to write', desc: 'Caliph ʿUmar ibn ʿAbd al-ʿAzīz orders the systematic writing-down of ḥadīth, worried the carriers were dying faster than the knowledge was settling.' },
-      { when: 'c. 767', title: 'The Muwaṭṭaʾ', desc: 'Mālik ibn Anas compiles the first great organised collection in Madinah, the city where the Sunnah was still a living practice you could watch out the window.' },
+      { when: 'c. 767', title: 'The Muwaṭṭaʾ', desc: 'Mālik ibn Anas compiles the first great organized collection in Madinah, the city where the Sunnah was still a living practice you could watch out the window.' },
       { when: '810–875', title: 'The sifting', desc: 'Al-Bukhārī and Muslim apply the hardest filter in the tradition: biography of every narrator, proof the links met, cross-checking of every text. Ḥadīth criticism becomes the most sophisticated information-audit of the medieval world.' },
       { when: '9th–10th c.', title: 'The canon settles', desc: 'The six books take their place, alongside the narrator encyclopaedias (ʿilm ar-rijāl, the science of men), recording the memory, honesty and travels of tens of thousands of transmitters.' },
       { when: '1233–1277', title: 'An-Nawawī', desc: 'The great organiser: his Forty Ḥadīth puts the essentials in one short list, and Riyāḍ aṣ-Ṣāliḥīn arranges the Sunnah by the life it is meant to produce. Still the two most-read ḥadīth books in the world.' },
@@ -67,8 +67,8 @@ window.FAN_PAGE = {
       { title: 'Mutawātir', accent: '#6fcfa4', sub: 'متواتر', desc: 'Mass-transmitted: so many independent chains that fabrication is impossible. The prayer itself travels this way.' },
       { title: 'Ṣaḥīḥ', accent: '#6fcfa4', sub: 'صحيح', desc: 'Authentic: unbroken chain of reliable, precise narrators, no hidden defect. The standard for creed and law.' },
       { title: 'Ḥasan', accent: '#e8c56a', sub: 'حسن', desc: 'Sound: a chain with a slightly lighter memory in it. Acceptable as evidence, ranked honestly below ṣaḥīḥ.' },
-      { title: 'Ḍaʿīf', accent: '#e0642a', sub: 'ضعيف', desc: 'Weak: a broken chain or a doubted narrator. Recorded rather than hidden, and labelled so nobody builds on it.' },
-      { title: 'Mawḍūʿ', accent: '#a05fd0', sub: 'موضوع', desc: 'Fabricated: identified, catalogued in dedicated books of forgeries, and thrown out. The system caught its own counterfeits.' },
+      { title: 'Ḍaʿīf', accent: '#e0642a', sub: 'ضعيف', desc: 'Weak: a broken chain or a doubted narrator. Recorded rather than hidden, and labeled so nobody builds on it.' },
+      { title: 'Mawḍūʿ', accent: '#a05fd0', sub: 'موضوع', desc: 'Fabricated: identified, cataloged in dedicated books of forgeries, and thrown out. The system caught its own counterfeits.' },
       { title: 'ʿIlm ar-rijāl', accent: '#5fa3ec', sub: 'علم الرجال', desc: 'The science of men: biographical audits of tens of thousands of narrators. The database the grades run on.' },
     ] },
 
@@ -83,7 +83,7 @@ window.FAN_PAGE = {
       { title: 'A smile is charity', accent: '#6fcfa4', sub: 'Ṣadaqah, priced at zero', desc: 'The Sunnah counts a smile at your brother as charity, which reprices every hallway you ever walk down.' },
     ] },
 
-  { id: 'quotes', kind: 'quotes', title: 'Two Ḥadīth', note: 'the ones that organise the rest',
+  { id: 'quotes', kind: 'quotes', title: 'Two Ḥadīth', note: 'the ones that organize the rest',
     items: [
       { title: 'Actions are only by intentions, and every person will have only what they intended.', sub: 'Ṣaḥīḥ al-Bukhārī 1 · Ṣaḥīḥ Muslim 1907', accent: '#6fcfa4' },
       { title: 'I have left among you two things; you will never go astray so long as you hold fast to them: the Book of Allah and the Sunnah of His Prophet.', sub: 'Muwaṭṭaʾ Mālik', accent: '#e0b84f' },

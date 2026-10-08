@@ -9,7 +9,7 @@ window.FAN_PAGE = {
     lede: 'Every one of them, in the order they came out, which is the only order he has ever been willing to respect. Six thousand pounds and a borrowed camera to a film shot entirely on IMAX, and the same obsessions the whole way.',
     items: [
       { title: 'Following', sub: '1998', meta: 'Released November 1998 · contemporary London, told out of order', desc: 'Shot on weekends over a year, on 16mm black and white, for about six thousand pounds, with a cast of friends. Already told out of order.' },
-      { title: 'Memento', sub: '2000', meta: 'Released September 2000 · a few days in Los Angeles, run backwards', desc: 'Backwards, in colour, with a black-and-white strand running forwards until the two meet. Polaroids and tattoos for a memory. The one that got him everything after.' },
+      { title: 'Memento', sub: '2000', meta: 'Released September 2000 · a few days in Los Angeles, run backwards', desc: 'Backwards, in color, with a black-and-white strand running forwards until the two meet. Polaroids and tattoos for a memory. The one that got him everything after.' },
       { title: 'Insomnia', sub: '2002', meta: 'Released May 2002 · one Alaskan summer, under the midnight sun', desc: 'Pacino, Robin Williams, and an Alaskan summer where the sun never sets on a detective who badly needs it to. The only one he did not write.' },
       { title: 'Batman Begins', sub: '2005', meta: 'Released June 2005 · Gotham, Bruce’s first year in the cowl', desc: 'The origin, done as a crime film: Ra’s al Ghul, the fear toxin, and a Batmobile that is a tank. The reboot every reboot since has copied.' },
       { title: 'The Prestige', sub: '2006', meta: 'Released October 2006 · London, the 1890s', desc: 'Two magicians, three diaries, and David Bowie as Tesla. Are you watching closely? The trick is in the first line.' },
@@ -19,7 +19,7 @@ window.FAN_PAGE = {
       { title: 'Interstellar', sub: '2014', meta: 'Released November 2014 · a near-future Earth, then eighty-odd years of relativity', desc: 'A black hole rendered from Kip Thorne’s equations, a bookshelf tesseract, and Zimmer on a church organ. An hour on Miller’s planet is seven years at home.' },
       { title: 'Dunkirk', sub: '2017', meta: 'Released July 2017 · May and June 1940', desc: 'A week on the mole, a day on the sea, an hour in the air, cut into one. Almost no dialogue, and a ticking watch under the whole score.' },
       { title: 'Tenet', sub: '2020', meta: 'Released August 2020 · contemporary, running in both directions', desc: 'Time running backwards through the middle of a spy film, opened into a pandemic. The one you have to watch twice, and the palindrome is the point.' },
-      { title: 'Oppenheimer', sub: '2023', meta: 'Released July 2023 · 1926 to 1963, Trinity in July 1945', desc: 'Three hours of men talking in rooms, in colour and in black and white, and it took seven Oscars including Picture and Director. Murphy in the role of his life.' },
+      { title: 'Oppenheimer', sub: '2023', meta: 'Released July 2023 · 1926 to 1963, Trinity in July 1945', desc: 'Three hours of men talking in rooms, in color and in black and white, and it took seven Oscars including Picture and Director. Murphy in the role of his life.' },
       { title: 'The Odyssey', sub: '2026', meta: 'Out July 2026 · Bronze Age Greece, the ten years home from Troy', desc: 'Homer, shot entirely on IMAX film, with Matt Damon as Odysseus and Göransson scoring it on lyres and gongs instead of an orchestra. Out July 2026.' },
     ] },
 
@@ -33,7 +33,7 @@ window.FAN_PAGE = {
       { num: 'III', title: 'Interstellar', sub: 'November 2014', accent: '#d0d8e0', meta: 'McConaughey · Gargantua · a near-future Earth, then relativity',
         desc: 'A father leaving a daughter, with the physics done honestly enough that a paper came out of the black hole render. Docking scene, tesseract, and Zimmer’s organ, which is the sound this page is built around.' },
       { num: 'IV', title: 'Oppenheimer', sub: 'July 2023', accent: '#e0703a', meta: 'Murphy · Trinity · 1926 to 1963',
-        desc: 'The bomb as a courtroom drama, told twice: in colour from inside his head and in black and white from Strauss’s. Three hours without an action scene, and the biggest film of its summer anyway.' },
+        desc: 'The bomb as a courtroom drama, told twice: in color from inside his head and in black and white from Strauss’s. Three hours without an action scene, and the biggest film of its summer anyway.' },
       { num: 'V', title: 'The Odyssey', sub: 'July 2026', accent: '#5fa8a0', meta: 'Damon · the Sirens · Bronze Age Greece',
         desc: 'Homer, shot entirely on IMAX film cameras, the first feature ever to be. Matt Damon as Odysseus, a decade at sea in one summer, and Göransson scoring it on ancient instruments and gongs instead of an orchestra: Sirens, further down, is the whole approach in two and a half minutes.' },
     ] },
@@ -53,13 +53,13 @@ window.FAN_PAGE = {
 
   { id: 'time', kind: 'timeline', title: 'How Each One Handles Time', note: 'the obsession, film by film',
     items: [
-      { when: '2000 · Memento', title: 'Backwards', desc: 'Colour scenes in reverse order, black and white forwards, meeting in the middle. You know exactly as much as Leonard does, which is nothing.' },
+      { when: '2000 · Memento', title: 'Backwards', desc: 'Color scenes in reverse order, black and white forwards, meeting in the middle. You know exactly as much as Leonard does, which is nothing.' },
       { when: '2006 · The Prestige', title: 'Three diaries', desc: 'Two men reading each other’s journals, so the film is three timelines pretending to be one.' },
       { when: '2010 · Inception', title: 'Nested', desc: 'Five minutes at the top is an hour a level down. The van falls off the bridge for the whole third act.' },
       { when: '2014 · Interstellar', title: 'Relative', desc: 'An hour on Miller’s planet is seven years on the Endurance, and twenty-three years of messages waiting when they get back.' },
       { when: '2017 · Dunkirk', title: 'Three speeds', desc: 'A week, a day and an hour, intercut so the same events arrive three times from three directions.' },
       { when: '2020 · Tenet', title: 'Inverted', desc: 'Objects and people moving backwards through forward time, and a battle fought in both directions at once.' },
-      { when: '2023 · Oppenheimer', title: 'Fission and fusion', desc: 'Colour for what he saw, black and white for what Strauss saw, and the two strands only line up at the very end.' },
+      { when: '2023 · Oppenheimer', title: 'Fission and fusion', desc: 'Color for what he saw, black and white for what Strauss saw, and the two strands only line up at the very end.' },
       { when: '2026 · The Odyssey', title: 'Twenty years gone', desc: 'Ten at Troy and ten at sea, and a son who has spent his whole life waiting for a man he has never met.' },
     ] },
 

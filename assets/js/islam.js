@@ -3,7 +3,7 @@
    Mosques are drawn, not photographed: each one is an SVG elevation built from
    the same parts (facade, arcade, dome, minarets) with a different architectural
    grammar per style: Ottoman semi-domes, Mughal onion domes, Andalusi horseshoe
-   arches, Maghribi square minarets, Sahelian mud towers, and so on. Colours come
+   arches, Maghribi square minarets, Sahelian mud towers, and so on. Colors come
    from the data file. Scholars get a Rubʿ al-Ḥizb medallion with their name in
    Arabic; no faces, by design.
 
@@ -28,7 +28,7 @@
     return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" fill="' + fill + '"' + (extra || '') + '/>';
   }
 
-  // dome outlines: cx centre, b base line, r half-width, h height
+  // dome outlines: cx center, b base line, r half-width, h height
   function domeD(cx, b, r, h, shape) {
     if (shape === 'tent') return 'M' + (cx - r) + ' ' + b + 'L' + cx + ' ' + (b - h) + 'L' + (cx + r) + ' ' + b + 'Z';
     if (shape === 'hemi') return 'M' + (cx - r) + ' ' + b + 'A' + r + ' ' + h + ' 0 0 1 ' + (cx + r) + ' ' + b + 'Z';
@@ -163,7 +163,7 @@
   /* Each drawing's sky gradient needs an id of its own. The nine mosques
      used to share "msqSky", nine duplicate ids in one document, and a
      url(#msqSky) resolves to the FIRST element with that id, so every
-     mosque's glow was drawn with the first mosque's colour (the gradient's
+     mosque's glow was drawn with the first mosque's color (the gradient's
      var(--glow) reads from the card the gradient element sits in, not the
      card that references it). Counted across the document, like `seat` in
      ytplay.js, because the holy and the famous lists each start at 0. */
@@ -326,7 +326,7 @@
       + '<div class="msq-art">' + elevation(m) + '</div>'
       + '<div class="msq-body">'
       +   '<p class="msq-ar" lang="ar" dir="rtl">' + esc(m.ar) + '</p>'
-      +   '<h4>' + esc(m.name) + '</h4>'
+      +   '<h3>' + esc(m.name) + '</h3>'
       +   '<span class="msq-when">' + esc(m.year) + '</span>'
       +   '<p class="msq-desc">' + esc(m.desc) + '</p>'
       +   '<span class="msq-place">' + esc(m.place) + '</span>'
@@ -341,7 +341,7 @@
     return '<article class="msq-card reveal" style="' + mosqueVars(m) + '">'
       + '<div class="msq-art">' + elevation(m) + '</div>'
       + '<div class="msq-body">'
-      +   '<div class="msq-titlerow"><h4>' + esc(m.name) + '</h4><span class="msq-yr">' + esc(m.year) + '</span></div>'
+      +   '<div class="msq-titlerow"><h3>' + esc(m.name) + '</h3><span class="msq-yr">' + esc(m.year) + '</span></div>'
       +   '<p class="msq-ar msq-ar--sm" lang="ar" dir="rtl">' + esc(m.ar) + '</p>'
       +   '<p class="msq-desc">' + esc(m.desc) + '</p>'
       +   (m.note ? '<p class="msq-note">' + esc(m.note) + '</p>' : '')
@@ -391,13 +391,13 @@
       return '<article class="sch-card reveal">'
         + '<div class="sch-medal">' + STAR + '<span class="sch-ar" lang="ar" dir="rtl">' + esc(p.ar) + '</span></div>'
         + '<div class="sch-body">'
-        +   '<div class="sch-titlerow"><h4>' + esc(p.name) + '</h4>'
+        +   '<div class="sch-titlerow"><h3>' + esc(p.name) + '</h3>'
         +     (p.azm ? '<span class="sch-tag sch-tag--azm">Ulul-\u02BFAzm</span>' : '') + '</div>'
         /* The English name where there is one. Hud and Salih have no biblical
            counterpart at all, so the data says so in words rather than leaving
            the field blank. */
         /* the empty stand-ins keep every card's parts on the same rows as its
-           neighbours' (subgrid, see al-islam.css) */
+           neighbors' (subgrid, see al-islam.css) */
         +   (p.en ? '<span class="sch-en">' + esc(p.en) + '</span>' : SCH_SLOT)
         +   '<span class="sch-died">' + esc(p.sent) + '</span>'
         +   '<p class="sch-desc">' + esc(p.desc) + '</p>'
@@ -410,8 +410,8 @@
     prRoot.innerHTML = '<div class="filters sch-filters reveal">' + prChips + '</div>'
       + P.map(function (g, i) {
           return '<section class="sch-group" data-pgen="' + g.id + '"' + (i === 0 ? '' : ' hidden') + '>'
-            + '<h3 class="subsec subsec--isl reveal">' + esc(g.label)
-            +   '<span class="subsec-yr">' + esc(g.note) + '</span></h3>'
+            + '<h2 class="subsec subsec--isl reveal">' + esc(g.label)
+            +   '<span class="subsec-yr">' + esc(g.note) + '</span></h2>'
             + '<div class="sch-grid">' + g.people.map(prophetCard).join('') + '</div>'
             + '</section>';
         }).join('');
@@ -435,7 +435,7 @@
     return '<article class="sch-card reveal">'
       + '<div class="sch-medal">' + STAR + '<span class="sch-ar" lang="ar" dir="rtl">' + esc(p.ar) + '</span></div>'
       + '<div class="sch-body">'
-      +   '<div class="sch-titlerow"><h4>' + esc(p.name) + '</h4></div>'
+      +   '<div class="sch-titlerow"><h3>' + esc(p.name) + '</h3></div>'
       +   '<span class="sch-died">' + esc(p.died) + '</span>'
       +   '<p class="sch-desc">' + esc(p.desc) + '</p>'
       +   (p.work ? '<span class="sch-work">' + esc(p.work) + '</span>' : SCH_SLOT)
@@ -455,12 +455,12 @@
     schRoot.innerHTML = '<div class="filters sch-filters reveal">' + chips + '</div>'
       + S.map(function (g, i) {
           return '<section class="sch-group" data-gen="' + g.id + '"' + (i === 0 ? '' : ' hidden') + '>'
-            + '<h3 class="subsec subsec--isl reveal">' + esc(g.label)
+            + '<h2 class="subsec subsec--isl reveal">' + esc(g.label)
             +   (g.sahabah ? '<span class="sch-tag sch-tag--sahabah">Ṣaḥābah</span>' : '')
             +   (g.salaf ? '<span class="sch-tag sch-tag--salaf">Salaf</span>' : '')
             +   '<span class="subsec-yr">' + esc(g.note) + '</span>'
             +   '<span class="sch-count">' + g.people.length + '</span>'
-            + '</h3>'
+            + '</h2>'
             + '<div class="sch-grid">' + g.people.map(scholarCard).join('') + '</div>'
             + '</section>';
         }).join('');

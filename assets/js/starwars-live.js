@@ -212,7 +212,7 @@
 
     /* ═══════════ 3. The kyber forge ═══════════
        A crystal, a focusing array and a power cell, in a hilt every Jedi builds
-       by hand. The colours below are the canon ones and what they signify; the
+       by hand. The colors below are the canon ones and what they signify; the
        blade is drawn, so changing the crystal is a change of one CSS variable. */
     var CRYSTALS = [
       { k: 'blue',   name: 'Blue',    c: '#3f9fe8', who: 'Guardian', note: 'The Jedi who leads with the blade. Obi-Wan, Anakin, Rey at the end.' },
@@ -220,14 +220,14 @@
       { k: 'purple', name: 'Purple',  c: '#a05fe0', who: 'Sentinel',  note: 'Mace Windu, and only because Samuel L. Jackson asked George Lucas for one.' },
       { k: 'yellow', name: 'Yellow',  c: '#e8cf3f', who: 'Temple Guard', note: 'The sentinels who policed the Order itself, and Rey’s own at the very end.' },
       { k: 'white',  name: 'White',   c: '#eaf2ff', who: 'Purified',  note: 'A red crystal healed of the Sith who bled it. Ahsoka’s, after the Empire.' },
-      { k: 'red',    name: 'Red',     c: '#e83f3f', who: 'Sith',      note: 'Not a colour a crystal comes in. A Sith pours rage into it until it bleeds.' },
+      { k: 'red',    name: 'Red',     c: '#e83f3f', who: 'Sith',      note: 'Not a color a crystal comes in. A Sith pours rage into it until it bleeds.' },
       { k: 'orange', name: 'Orange',  c: '#e8853f', who: 'Rare',      note: 'A handful of Jedi and the odd Inquisitor. Mostly seen in the games.' },
       { k: 'dark',   name: 'Darksaber', c: '#141419', who: 'Mandalore', note: 'One of a kind, made by the first Mandalorian Jedi. A flat black blade with a white edge, and whoever holds it rules Mandalore.' },
     ];
 
     var HILTS = [
       { k: 'standard', name: 'Standard', note: 'One blade, one hand.' },
-      { k: 'curved',   name: 'Curved',   note: 'Dooku’s: angled for one-handed duelling in Makashi form.' },
+      { k: 'curved',   name: 'Curved',   note: 'Dooku’s: angled for one-handed dueling in Makashi form.' },
       { k: 'double',   name: 'Double-bladed', note: 'Maul’s saberstaff: two emitters, one hilt.' },
       { k: 'shoto',    name: 'Shoto',    note: 'A short blade for the off hand. Ahsoka’s second.' },
     ];

@@ -21,7 +21,7 @@
 /* ══ the symbiote takeover ══
    The Venom section carries data-symbiote; fan-spidey-ui.js puts .is-symbiote
    on <body> while it is the thing on screen. Everything below is the page
-   losing its colour: red and blue drain out, the city dims, the swinging
+   losing its color: red and blue drain out, the city dims, the swinging
    figure leaves, and the tendrils crawl in. */
 .spdr-tendrils {
   position: absolute; inset: 0; display: block;

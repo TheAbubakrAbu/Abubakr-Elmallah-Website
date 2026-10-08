@@ -1,5 +1,5 @@
 /* fan-pokemon.js: content for /worlds/pokemon/. Rendered by fanpage.js.
-   Type colours below are the ones the games have used since Gen VI. */
+   Type colors below are the ones the games have used since Gen VI. */
 window.FAN_PAGE = {
   when: { at: 'Elementary school; big surge 5th grade, 2016\u201317', note: 'Around since I was small, then two things blew it open: Pokémon GO the summer before fifth grade, and fifth grade itself when everybody had cards and we traded constantly. Pixelmon in Minecraft got an enormous amount of my time too.' },
   sections: [
@@ -87,7 +87,7 @@ window.FAN_PAGE = {
       { title: 'Water', accent: '#6890f0', sub: 'Beats Fire, Ground, Rock' },
       { title: 'Grass', accent: '#78c850', sub: 'Beats Water, Ground, Rock' },
       { title: 'Electric', accent: '#f8d030', sub: 'Nothing beats Ground for it' },
-      { title: 'Ice', accent: '#98d8d8', sub: 'Great offence, terrible defence' },
+      { title: 'Ice', accent: '#98d8d8', sub: 'Great offense, terrible defense' },
       { title: 'Fighting', accent: '#c03028', sub: 'Beats Normal, Ice, Rock, Dark, Steel' },
       { title: 'Poison', accent: '#a040a0', sub: 'The Fairy answer' },
       { title: 'Ground', accent: '#e0c068', sub: 'The only Electric immunity' },
@@ -102,11 +102,11 @@ window.FAN_PAGE = {
       { title: 'Fairy', accent: '#ee99ac', sub: 'Added in Gen VI to answer Dragon' },
     ] },
 
-  { id: 'favourites', kind: 'cards', title: 'Mine', note: 'the ones I would actually put on a team',
+  { id: 'favorites', kind: 'cards', title: 'Mine', note: 'the ones I would actually put on a team',
     lede: 'Charizard first, and it has never been close. After that a very specific set: one sky dragon, three birds, and the two that made the first film work.',
     items: [
       { title: 'Charizard', sub: 'No. 006 · Fire, Flying', tag: 'No. 1', accent: '#e0602a',
-        desc: 'My favourite, permanently and without argument. Not even the best Fire starter on paper (it is four times weak to Rock, which is a genuinely terrible thing to be in Kanto), and none of that has ever mattered for a second.',
+        desc: 'My favorite, permanently and without argument. Not even the best Fire starter on paper (it is four times weak to Rock, which is a genuinely terrible thing to be in Kanto), and none of that has ever mattered for a second.',
         meta: 'Mega X · Mega Y · Gigantamax' },
       { title: 'Charmander & Charmeleon', sub: 'No. 004 · No. 005 · Fire', tag: 'The line', accent: '#f0a03a',
         desc: 'The hardest first pick in the original game and the one I took every time. Charmander’s tail flame is a health bar: if it goes out, so does he, which is a lot to put on a child. Then Charmeleon: the awkward middle stage everybody skips past, bad-tempered, hard to control, and visibly halfway to being something enormous.',
@@ -115,7 +115,7 @@ window.FAN_PAGE = {
         desc: 'Lives in the ozone layer and comes down only when Kyogre and Groudon start tearing the planet apart. It Mega Evolves without a stone, by knowing Dragon Ascent, which no other Pokémon can do. And the shiny is <b>black</b>, which is the single best recolour in the entire series.',
         meta: 'Shiny: black · Delta Episode' },
       { title: 'Articuno', sub: 'No. 144 · Ice, Flying', tag: 'Birds', accent: '#7fd0f0',
-        desc: 'My favourite of the three birds. The Seafoam Islands, a trail of snow behind it, and the calmest of the trio by a distance.',
+        desc: 'My favorite of the three birds. The Seafoam Islands, a trail of snow behind it, and the calmest of the trio by a distance.',
         meta: 'The Seafoam Islands' },
       { title: 'Zapdos', sub: 'No. 145 · Electric, Flying', tag: 'Birds', accent: '#f0c840',
         desc: 'Asleep in the Power Plant, and the one that actually feels dangerous to walk up to. I love all three of them, so this is here on merit rather than politeness.',
@@ -137,7 +137,7 @@ window.FAN_PAGE = {
       { title: 'Charizard', sub: 'No. 006 · Fire, Flying', tag: 'Starter', desc: 'Not part Dragon, which every child on a playground has argued about at least once.', meta: 'Gen I' },
       { title: 'Mewtwo', sub: 'No. 150 · Psychic', tag: 'Legendary', desc: 'Made in a lab from Mew\u2019s DNA, and the first Pok\u00e9mon the series let be genuinely angry about it.', meta: 'Cerulean Cave' },
       { title: 'Eevee', sub: 'No. 133 · Normal', tag: 'Branching', desc: 'Eight evolutions and counting, which turned one design into an entire mechanic.', meta: 'Gen I onward' },
-      { title: 'Gengar', sub: 'No. 094 · Ghost, Poison', tag: 'Fan favourite', desc: 'Grins in the background of half the games and has the best competitive history of any Ghost type.', meta: 'Gen I' },
+      { title: 'Gengar', sub: 'No. 094 · Ghost, Poison', tag: 'Fan favorite', desc: 'Grins in the background of half the games and has the best competitive history of any Ghost type.', meta: 'Gen I' },
       { title: 'Snorlax', sub: 'No. 143 · Normal', tag: 'Obstacle', desc: 'Blocks a road until you play a flute at it. An entire route design built around one sleeping animal.', meta: 'Gen I' },
       { title: 'Lucario', sub: 'No. 448 · Fighting, Steel', tag: 'Gen IV', desc: 'Reads aura, carries a film on its own, and has been in every crossover since.', meta: 'Sinnoh' },
       { title: 'Greninja', sub: 'No. 658 · Water, Dark', tag: 'Gen VI', desc: 'A ninja frog that throws shuriken made of compressed water. Voted the single most popular Pok\u00e9mon in a global poll.', meta: 'Kalos' },
@@ -208,7 +208,7 @@ window.FAN_PAGE = {
       { title: 'Dive Ball', accent: '#3f8fd0', sub: '\u00d73.5 underwater', desc: 'Narrow window, superb inside it.' },
       { title: 'Nest Ball', accent: '#5fbf5f', sub: 'Better on low levels', desc: 'Early routes only.' },
       { title: 'Repeat Ball', accent: '#e0a83a', sub: '\u00d73.5 if already in the Pokedex', desc: 'Best exactly when you care least.' },
-      { title: 'Heal Ball', accent: '#f0a8c4', sub: '\u00d71, heals fully', desc: 'Saves the trip to the Centre.' },
+      { title: 'Heal Ball', accent: '#f0a8c4', sub: '\u00d71, heals fully', desc: 'Saves the trip to the Center.' },
       { title: 'Luxury Ball', accent: '#c9a05f', sub: '\u00d71, double friendship', desc: 'Matters for Umbreon and Return.' },
       { title: 'Premier Ball', accent: '#e8e2d0', sub: '\u00d71, free in bulk', desc: 'Purely cosmetic, and hoarded anyway.' },
       { title: 'Level Ball', accent: '#8f9fd0', sub: 'Up to \u00d74 on level gap', desc: 'Kurt\u2019s Apricorn balls, from Johto.' },
@@ -289,7 +289,7 @@ window.FAN_PLAY = {
     { n: "Dive Ball", s: "x3.5 underwater", c: "#3f8fd0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 3, said: "A Dive Ball, underwater.", note: "Only useful while surfing or diving, which is a narrow window, but inside that window it is excellent." },
     { n: "Nest Ball", s: "Better on weak targets", c: "#5fbf5f", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 3, said: "A Nest Ball. Low level, high chance.", note: "Scales inversely with the target\u2019s level, so it is superb on early routes and completely useless later." },
     { n: "Repeat Ball", s: "x3.5 if already caught", c: "#e0a83a", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 3, said: "A Repeat Ball. You have caught one of these before.", note: "The completionist\u2019s ball: it gets better on species already in your Pokedex, which is exactly when you are least likely to care." },
-    { n: "Heal Ball", s: "x1, heals on catch", c: "#f0a8c4", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 3, said: "A Heal Ball. No better odds, but it comes out healthy.", note: "No catch bonus at all. Restores HP, PP and status the moment it lands, which saves a trip to the Centre and is quietly very convenient." },
+    { n: "Heal Ball", s: "x1, heals on catch", c: "#f0a8c4", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 3, said: "A Heal Ball. No better odds, but it comes out healthy.", note: "No catch bonus at all. Restores HP, PP and status the moment it lands, which saves a trip to the Center and is quietly very convenient." },
     { n: "Luxury Ball", s: "x1, friendship", c: "#c9a05f", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 2, said: "A Luxury Ball. It will like you faster.", note: "Black and gold, no catch bonus, doubles friendship gain. Matters far more than it sounds if you want an Umbreon or a Return build." },
     { n: "Premier Ball", s: "x1, free", c: "#e8e2d0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 3, said: "A Premier Ball. Free with ten Poke Balls.", note: "Purely cosmetic (plain white with a red rim) and handed out when you buy in bulk. People hoard them anyway because the release animation is white." },
     { n: "Level Ball", s: "Apricorn", c: "#8f9fd0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h6 M15 12h6 M12 12a3 3 0 1 1 0 .1", w: 2, said: "A Level Ball. Yours is much higher level than theirs.", note: "One of Kurt\u2019s Apricorn balls from Johto. Scales with the level gap between your Pokemon and the target, and at 4x it is the strongest conditional in the game." },

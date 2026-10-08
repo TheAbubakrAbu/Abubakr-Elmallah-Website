@@ -79,7 +79,7 @@
   opacity: calc(1 - var(--depth) * 1.5);
 }
 
-/* fill only, no stroke: the two mirrored halves meet down the centreline and a
+/* fill only, no stroke: the two mirrored halves meet down the centerline and a
    stroke would draw a seam straight through the middle of the blade */
 .btr-body  { fill: #262b33; }
 

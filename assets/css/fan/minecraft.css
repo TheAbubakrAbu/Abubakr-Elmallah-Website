@@ -28,7 +28,7 @@
 }
 
 /* real ore blocks, sat at roughly the depth each one generates at. Stone base
-   above Y 0, deepslate below it, and mineral blobs in the ore's own colour.
+   above Y 0, deepslate below it, and mineral blobs in the ore's own color.
    Selecting a tier in the hotbar flares that ore (see body[data-ore]). */
 .mc-ores i {
   position: absolute; left: var(--x); top: var(--y);

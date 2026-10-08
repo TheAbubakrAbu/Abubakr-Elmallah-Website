@@ -1,0 +1,306 @@
+---
+permalink: /grail-diary/
+title: "The Grail Diary · Abubakr Elmallah"
+description: "The Grail Diary: an Indiana Jones interface for Abubakr Elmallah's portfolio, every page a dig site pinned to the map, in Henry Jones Senior's own hand."
+theme: "#241a0e"
+fonts: "family=IM+Fell+English:ital@0;1&family=Special+Elite&family=Cinzel:wght@400;600;700"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/grail-diary.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
+</head>
+<body class="gd" id="gd">
+
+<!-- the desk the diary is open on: green blotter, lamplight from the left,
+     and the dust that is in every frame of these films -->
+<div class="gd-desk" aria-hidden="true">
+  <span class="gd-felt"></span>
+  <span class="gd-lamp"></span>
+  <span class="gd-dust">
+    <i style="--x:14%; --y:28%; --t:21s; --d:-3s"></i><i style="--x:28%; --y:64%; --t:25s; --d:-11s"></i>
+    <i style="--x:39%; --y:41%; --t:18s; --d:-6s"></i><i style="--x:52%; --y:22%; --t:29s; --d:-15s"></i>
+    <i style="--x:63%; --y:71%; --t:23s; --d:-4s"></i><i style="--x:77%; --y:36%; --t:27s; --d:-13s"></i>
+  </span>
+</div>
+
+<!-- the line of pencil marks the films draw across a map, reused by every
+     site on the itinerary below -->
+<svg class="gd-blocks" aria-hidden="true" focusable="false">
+  <symbol id="gdHouse" viewBox="0 0 48 48"><path d="M6 23 24 8l18 15M11 20v20h26V20M20 40V29h8v11"/><path d="M3 41h42"/></symbol>
+  <symbol id="gdTemple" viewBox="0 0 48 48"><path d="M4 41h40M8 41V20h32v21M6 20 24 7l18 13M14 41V28h7v13M27 41V28h7v13"/></symbol>
+  <symbol id="gdLedger" viewBox="0 0 48 48"><path d="M10 8h26a3 3 0 0 1 3 3v29H13a3 3 0 0 1-3-3z"/><path d="M13 8v32M19 17h13M19 24h13M19 31h9"/></symbol>
+  <symbol id="gdBell" viewBox="0 0 48 48"><path d="M24 6v6M13 33c0-14 4-20 11-20s11 6 11 20zM9 33h30M21 37a3 3 0 0 0 6 0"/></symbol>
+  <symbol id="gdColumn" viewBox="0 0 48 48"><path d="M12 41h24M14 41V15h20v26M11 15h26l-3-5H14zM19 38V18M29 38V18"/></symbol>
+  <symbol id="gdSatchel" viewBox="0 0 48 48"><path d="M9 18h30v22H9zM15 18v-4a9 9 0 0 1 18 0v4M9 26h30M22 26v6h4v-6"/></symbol>
+  <symbol id="gdGlobe" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17"/><path d="M7 19h34M7 29h34M24 7a20 20 0 0 1 0 34 20 20 0 0 1 0-34z"/></symbol>
+  <symbol id="gdFedora" viewBox="0 0 48 48"><path d="M5 31c8 7 30 7 38 0-5-4-11-5-19-5s-14 1-19 5z"/><path d="M13 28c-2-12 1-18 6-18 2 0 3 3 5 3s3-3 5-3c5 0 8 6 6 18"/><path d="M13 24c7 3 15 3 22 0"/></symbol>
+  <symbol id="gdSaber" viewBox="0 0 48 48"><path d="M19 29h10v15H19zM21 29V9a3 3 0 0 1 6 0v20M24 13v12"/></symbol>
+  <symbol id="gdCrescent" viewBox="0 0 48 48"><path d="M28 6a18 18 0 1 0 14 29A15 15 0 1 1 28 6z"/><path d="m36 12 1.6 3.4 3.6.4-2.7 2.5.8 3.6-3.3-1.8-3.3 1.8.8-3.6-2.7-2.5 3.6-.4z"/></symbol>
+  <symbol id="gdPlane" viewBox="0 0 48 48"><path d="M24 4c3 0 5 6 5 14l13 8v5l-13-4v9l5 5v3l-10-3-10 3v-3l5-5v-9l-13 4v-5l13-8c0-8 2-14 5-14z"/></symbol>
+  <symbol id="gdMask" viewBox="0 0 48 48"><path d="M8 10c10-4 22-4 32 0 0 18-6 28-16 30C14 38 8 28 8 10z"/><path d="M14 18c2-2 5-2 7 0m6 0c2-2 5-2 7 0M16 28c4 5 12 5 16 0"/></symbol>
+  <symbol id="gdDie" viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="5"/><circle cx="18" cy="18" r="2.6"/><circle cx="30" cy="30" r="2.6"/><circle cx="24" cy="24" r="2.6"/></symbol>
+  <symbol id="gdGrail" viewBox="0 0 48 48"><path d="M14 10h20c0 12-5 17-10 18-5-1-10-6-10-18zM24 28v9M17 41h14M18 41c0-3 3-4 6-4s6 1 6 4"/></symbol>
+  <symbol id="gdScroll" viewBox="0 0 48 48"><path d="M12 9h24v30H12zM12 9a4 4 0 0 0 0 8h24M12 39a4 4 0 0 0 0-8h24"/><path d="M19 22h11M19 28h11"/></symbol>
+</svg>
+
+<header class="gd-top">
+  <a class="gd-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Close the diary</span>
+  </a>
+  {% include interface-world.html world="Indiana Jones" href="/worlds/indiana-jones/" %}
+  <span class="gd-top-mid">Field notes · H. Jones Snr · Venice to the Canyon of the Crescent Moon</span>
+  <span class="gd-top-r">
+    <button class="gd-torch-btn" id="gdTorchBtn" type="button" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c2 4 1 6-1 8 4 1 7 4 7 7a6 6 0 0 1-12 0c0-2 1-4 3-5-1 3 1 5 3 5"/></svg>
+      <span id="gdTorchT">Torchlight</span>
+    </button>
+    <span id="gdDate">····</span>
+  </span>
+</header>
+
+<main class="gd-main">
+
+  <!-- ─────────── the open diary ─────────── -->
+  <!-- the book itself: the left leaf carries the X that marks the spot and
+       the right leaf the particulars, because the diary in the films is
+       always a drawing facing a page of handwriting -->
+  <section class="gd-hero">
+    <div class="gd-book">
+      <span class="gd-spine" aria-hidden="true"></span>
+
+      <!-- left leaf: the grail, drawn in sepia ink with the crosshatch the
+           diary's own illustrations use -->
+      <div class="gd-leaf gd-leaf--l">
+        <p class="gd-folio" aria-hidden="true">Fol. I</p>
+        <svg class="gd-grail" viewBox="0 0 260 300" role="img" aria-label="The Cup of Christ, drawn in ink: a plain carpenter's cup on a page of handwriting">
+          <defs>
+            <pattern id="gdHatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(38)">
+              <path d="M0 0v5" stroke="#6b4a24" stroke-width="1.1"/>
+            </pattern>
+            <radialGradient id="gdShine" cx="0.4" cy="0.3" r="0.8">
+              <stop offset="0" stop-color="#f6dca2"/>
+              <stop offset="1" stop-color="#b98a3c"/>
+            </radialGradient>
+          </defs>
+          <!-- the three trials, as marginal sketches -->
+          <g class="gd-trial">
+            <path d="M24 44h44M24 52h30"/>
+            <path d="M24 250h40M24 258h26"/>
+          </g>
+          <!-- the cup: plain, because the whole point is that it is plain -->
+          <g class="gd-cup">
+            <path class="gd-cup-bowl" d="M86 96h88c0 52-21 72-44 78-23-6-44-26-44-78z" fill="url(#gdHatch)"/>
+            <path class="gd-cup-rim" d="M84 96h92"/>
+            <path class="gd-cup-shine" d="M100 104h20c0 30 4 44 12 52-14-6-30-22-32-52z" fill="url(#gdShine)" opacity=".5"/>
+            <path class="gd-cup-stem" d="M130 174v40"/>
+            <path class="gd-cup-foot" d="M104 238c0-14 12-20 26-20s26 6 26 20z"/>
+            <path class="gd-cup-base" d="M98 238h64"/>
+          </g>
+          <!-- the X, in pencil, because he is wrong about where X is -->
+          <g class="gd-x"><path d="M176 196l34 34M210 196l-34 34"/></g>
+          <text class="gd-cap" x="130" y="282" text-anchor="middle">He who finds me</text>
+        </svg>
+      </div>
+
+      <!-- right leaf: the particulars, in the Senior's hand -->
+      <div class="gd-leaf gd-leaf--r">
+        <p class="gd-folio" aria-hidden="true">Fol. II</p>
+        <p class="gd-kicker">Grail Diary · private</p>
+        <h1 class="gd-title">The Grail Diary</h1>
+        <p class="gd-sub">Every room on this site, entered as a dig: the site, the year, and what was actually brought back. Fifty years of notes, pasted tickets and one rubbing from a knight’s shield. It belongs in a museum.</p>
+        <dl class="gd-hand">
+          <div><dt>Kept by</dt><dd>Abubakr Elmallah</dd></div>
+          <div><dt>Reading</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
+          <div><dt>Field title</dt><dd>Lead mobile &amp; backend developer</dd></div>
+          <div><dt>Recovered</dt><dd>Twelve apps, across four platforms</dd></div>
+          <div><dt>Sites charted</dt><dd>Seventy-four worlds</dd></div>
+          <div><dt>Drawn with</dt><dd>CSS and SVG, no images</dd></div>
+        </dl>
+        <p class="gd-marg">Fortune and glory, kid. Fortune and glory.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────── the itinerary ─────────── -->
+  <!-- the dotted red line from the films, with every page a stop on it. The
+       map is for the eye; the list below it is the real navigation, so the
+       map is hidden from screen readers and out of the tab order. -->
+  <section class="gd-route" aria-labelledby="gdRouteH">
+    <h2 class="gd-h" id="gdRouteH">
+      <canvas class="gd-think" data-orb="searching" data-orb-size="22" data-orb-ink="#d8b06a" aria-hidden="true"></canvas>The itinerary<span>every page, a stop on the line</span>
+    </h2>
+
+    <div class="gd-mapframe">
+      <svg class="gd-map" viewBox="0 0 1000 420" aria-hidden="true">
+        <rect width="1000" height="420" class="gd-map-paper"/>
+        <!-- the coastlines are drawn by hand and only roughly true: this is
+             a diary's map, not an atlas -->
+        <g class="gd-map-land">
+          <path d="M-10 150 C80 120 150 132 210 120 S330 96 400 110 480 140 540 130 640 96 700 110 820 140 880 128 980 100 1010 112 L1010 -10 L-10 -10 Z"/>
+          <path d="M-10 330 C90 316 160 340 240 332 S390 300 470 318 600 346 680 330 820 300 900 318 1010 340 1010 340 L1010 430 L-10 430 Z"/>
+        </g>
+        <g class="gd-map-grid">
+          <path d="M0 105h1000M0 210h1000M0 315h1000"/>
+          <path d="M160 0v420M360 0v420M560 0v420M760 0v420"/>
+        </g>
+        <text class="gd-map-sea" x="470" y="300" text-anchor="middle">Mare Nostrum</text>
+        <!-- the dotted line, drawn once and stroked as it animates -->
+        <path class="gd-line" id="gdLine" d="M90 318 C180 300 220 248 300 236 S420 262 470 220 560 150 640 164 760 212 830 180 920 128 950 112"/>
+        <g class="gd-stops">
+          <g class="gd-stop" style="--i:0"><circle cx="90" cy="318" r="6"/><text x="90" y="344" text-anchor="middle">Home</text></g>
+          <g class="gd-stop" style="--i:1"><circle cx="300" cy="236" r="6"/><text x="300" y="262" text-anchor="middle">Venice</text></g>
+          <g class="gd-stop" style="--i:2"><circle cx="470" cy="220" r="6"/><text x="470" y="246" text-anchor="middle">Cairo</text></g>
+          <g class="gd-stop" style="--i:3"><circle cx="640" cy="164" r="6"/><text x="640" y="190" text-anchor="middle">Pankot</text></g>
+          <g class="gd-stop" style="--i:4"><circle cx="830" cy="180" r="6"/><text x="830" y="206" text-anchor="middle">Hatay</text></g>
+          <g class="gd-stop" style="--i:5"><circle cx="950" cy="112" r="6"/><text x="950" y="138" text-anchor="middle">The Canyon</text></g>
+        </g>
+        <!-- the airplane that rides the line, as in every transition -->
+        <g class="gd-plane"><use href="#gdPlane" x="-11" y="-11" width="22" height="22"/></g>
+      </svg>
+    </div>
+    <p class="gd-maphint" aria-hidden="true">The line draws itself as you read. Swipe the map sideways for the Canyon.</p>
+
+    <!-- the sites: real links in a real list. --i staggers them pasting in. -->
+    <ul class="gd-sites" id="gdSites">
+      <li><a class="gd-site" href="/" style="--i:0; --c:#c9a227"><span class="gd-card"><span class="gd-tape" aria-hidden="true"></span><span class="gd-k">Site I</span><svg class="gd-ico" aria-hidden="true"><use href="#gdHouse"/></svg><b class="gd-n">Base Camp</b><span class="gd-real">home</span><span class="gd-f">Where every expedition is outfitted and every map is unrolled.</span><span class="gd-y">Est. 2021</span></span></a></li>
+      <li><a class="gd-site" href="/work/" style="--i:1; --c:#b4521f"><span class="gd-card"><span class="gd-tape" aria-hidden="true"></span><span class="gd-k">Site II</span><svg class="gd-ico" aria-hidden="true"><use href="#gdTemple"/></svg><b class="gd-n">The Temple at Irvine</b><span class="gd-real">work at UC Irvine</span><span class="gd-f">Lead mobile &amp; backend work. The traps here are deadlines.</span><span class="gd-y">2024–</span></span></a></li>
+      <li><a class="gd-site" href="/projects/" style="--i:2; --c:#8f6b2a"><span class="gd-card"><span class="gd-tape" aria-hidden="true"></span><span class="gd-k">Catalog</span><svg class="gd-ico" aria-hidden="true"><use href="#gdLedger"/></svg><b class="gd-n">The Accession Register</b><span class="gd-real">every project</span><span class="gd-f">Twelve apps, four platforms, each one cataloged on recovery.</span><span class="gd-y">2021–</span></span></a></li>
+      <li><a class="gd-site" href="/education/" style="--i:3; --c:#7a8f3a"><span class="gd-card"><span class="gd-tape" aria-hidden="true"></span><span class="gd-k">Faculty</span><svg class="gd-ico" aria-hidden="true"><use href="#gdBell"/></svg><b class="gd-n">The Lecture Hall</b><span class="gd-real">education</span><span class="gd-f">Where archaeology is taught, between digs. X never marks the spot.</span><span class="gd-y">Term time</span></span></a></li>
+      <li><a class="gd-site" href="/college/" style="--i:4; --c:#4f7f9f"><span class="gd-card"><span class="gd-tape" aria-hidden="true"></span><span class="gd-k">Site III</span><svg class="gd-ico" aria-hidden="true"><use href="#gdColumn"/></svg><b class="gd-n">Marshall College</b><span class="gd-real">college · UC Irvine</span><span class="gd-f">Computer Science, class of 2028. Seventy per cent of it is library work.</span><span class="gd-y">2024–28</span></span></a></li>
+      <li><a class="gd-site" href="/high-school/" style="--i:5; --c:#9f6b4f"><span class="gd-card"><span class="gd-tape" aria-hidden="true"></span><span class="gd-k">Site IV</span><svg class="gd-ico" aria-hidden="true"><use href="#gdSatchel"/></svg><b class="gd-n">The First Dig</b><span class="gd-real">high school</span><span class="gd-f">A trowel, a notebook and no idea what any of it was worth yet.</span><span class="gd-y">2020–24</span></span></a></li>
+      <li><a class="gd-site" href="/worlds/" style="--i:6; --c:#c9a227"><span class="gd-card"><span class="gd-tape" aria-hidden="true"></span><span class="gd-k">The survey</span><svg class="gd-ico" aria-hidden="true"><use href="#gdGlobe"/></svg><b class="gd-n">The Whole Survey</b><span class="gd-real">all 74 worlds</span><span class="gd-f">Seventy-four sites mapped, and country past the edge of the page.</span><span class="gd-y">Ongoing</span></span></a></li>
+      <li><a class="gd-site gd-site--own" href="/worlds/indiana-jones/" style="--i:7; --c:#d8b06a"><span class="gd-card"><span class="gd-tape" aria-hidden="true"></span><span class="gd-k">This diary</span><svg class="gd-ico" aria-hidden="true"><use href="#gdFedora"/></svg><b class="gd-n">The Jones Papers</b><span class="gd-real">Indiana Jones · the world page</span><span class="gd-f">Five films, five artifacts, and a man who is wrong about where X is.</span><span class="gd-y">Since 1981</span></span></a></li>
+      <li><a class="gd-site" href="/star-wars/" style="--i:8; --c:#6f6aa8"><span class="gd-card"><span class="gd-tape" aria-hidden="true"></span><span class="gd-k">Site V</span><svg class="gd-ico" aria-hidden="true"><use href="#gdSaber"/></svg><b class="gd-n">A Galaxy Far Away</b><span class="gd-real">Star Wars apps</span><span class="gd-f">The same producer, a longer war, and rather better lit tombs.</span><span class="gd-y">Cataloged</span></span></a></li>
+      <li><a class="gd-site gd-site--calm" href="/al-islam/" style="--i:9; --c:#3f9d6a"><span class="gd-card"><span class="gd-tape" aria-hidden="true"></span><span class="gd-k">Observance</span><svg class="gd-ico" aria-hidden="true"><use href="#gdCrescent"/></svg><b class="gd-n">The Hours</b><span class="gd-real">Al-Islam</span><span class="gd-f">Prayer times, worked out twenty-two ways, from dawn to nightfall.</span><span class="gd-y">Daily</span></span></a></li>
+      <li><a class="gd-site" href="/travels/" style="--i:10; --c:#a8742a"><span class="gd-card"><span class="gd-tape" aria-hidden="true"></span><span class="gd-k">Passage</span><svg class="gd-ico" aria-hidden="true"><use href="#gdPlane"/></svg><b class="gd-n">The Dotted Line</b><span class="gd-real">travels</span><span class="gd-f">Everywhere the airplane has actually been, no dissolve required.</span><span class="gd-y">So far</span></span></a></li>
+      <li><a class="gd-site" href="/accents/" style="--i:11; --c:#9a4f6b"><span class="gd-card"><span class="gd-tape" aria-hidden="true"></span><span class="gd-k">Fieldcraft</span><svg class="gd-ico" aria-hidden="true"><use href="#gdMask"/></svg><b class="gd-n">Local Dialects</b><span class="gd-real">accents &amp; impersonations</span><span class="gd-f">Speak the language and the village opens up. Usually.</span><span class="gd-y">Practiced</span></span></a></li>
+      <li><a class="gd-site" href="/gaming/" style="--i:12; --c:#c97f2a"><span class="gd-card"><span class="gd-tape" aria-hidden="true"></span><span class="gd-k">Diversion</span><svg class="gd-ico" aria-hidden="true"><use href="#gdDie"/></svg><b class="gd-n">The Club Obi-Wan</b><span class="gd-real">gaming</span><span class="gd-f">Where the evening goes sideways, musical number and all.</span><span class="gd-y">Most nights</span></span></a></li>
+      <li><a class="gd-site" href="/lightsabers/" style="--i:13; --c:#7d8894"><span class="gd-card"><span class="gd-tape" aria-hidden="true"></span><span class="gd-k">Armory</span><svg class="gd-ico" aria-hidden="true"><use href="#gdScroll"/></svg><b class="gd-n">The Reliquary Guide</b><span class="gd-real">the lightsaber guide</span><span class="gd-f">A catalog of blades, each one attributed and dated.</span><span class="gd-y">Reference</span></span></a></li>
+      <li><a class="gd-site" href="/resume/" style="--i:14; --c:#b98a3c"><span class="gd-card"><span class="gd-tape" aria-hidden="true"></span><span class="gd-k">Credentials</span><svg class="gd-ico" aria-hidden="true"><use href="#gdGrail"/></svg><b class="gd-n">The Grail Itself</b><span class="gd-real">résumé</span><span class="gd-f">One page, plainly made, and the only one anybody asks for.</span><span class="gd-y">On request</span></span></a></li>
+    </ul>
+  </section>
+
+  <!-- ─────────── the three trials ─────────── -->
+  <!-- the only part of the Last Crusade everyone remembers, and it maps
+       neatly onto three things that are actually true about the work -->
+  <section class="gd-panel gd-trials" aria-labelledby="gdTrialsH">
+    <h2 class="gd-h gd-h--sm" id="gdTrialsH">The three trials<span>only the penitent man will pass</span></h2>
+    <ol class="gd-trials-list">
+      <li style="--i:0"><span class="gd-trial-n" aria-hidden="true">I</span><div><b>The Breath of God</b><p>Winner of the Apple Swift Student Challenge, 2024. You kneel, or the blades take your head off.</p></div></li>
+      <li style="--i:1"><span class="gd-trial-n" aria-hidden="true">II</span><div><b>The Word of God</b><p>Datapad, in the Top 10 of the paid Entertainment chart. Spell it correctly and the floor holds.</p></div></li>
+      <li style="--i:2"><span class="gd-trial-n" aria-hidden="true">III</span><div><b>The Path of God</b><p>Two Discord bots in more than 500 servers, and Al-Adhan reading the sun 22 ways. Only a leap from the lion’s head will prove his worth.</p></div></li>
+    </ol>
+  </section>
+
+  <!-- ─────────── the other diaries ─────────── -->
+  <section class="gd-panel gd-others" aria-labelledby="gdOthersH">
+    <h2 class="gd-h gd-h--sm" id="gdOthersH">Other men’s notebooks<span>the rest of the terminals</span></h2>
+    <ul class="gd-notes">
+      <li><a class="gd-note" href="/elmallah/"><span class="gd-note-k">Star Wars</span><b>E.L.M.A.L.L.A.H.</b><i>The holotable</i></a></li>
+      <li><a class="gd-note" href="/holocron/"><span class="gd-note-k">Star Wars</span><b>The Holocron</b><i>A Jedi archive</i></a></li>
+      <li><a class="gd-note" href="/jarvis/"><span class="gd-note-k">Avengers</span><b>J.A.R.V.I.S.</b><i>A Stark display</i></a></li>
+      <li><a class="gd-note" href="/marauders-map/"><span class="gd-note-k">Harry Potter</span><b>The Marauder’s Map</b><i>Parchment and ink</i></a></li>
+      <li><a class="gd-note" href="/crafting-table/"><span class="gd-note-k">Minecraft</span><b>The Crafting Table</b><i>Blocks and slots</i></a></li>
+      <li><a class="gd-note" href="/citadel/"><span class="gd-note-k">Game of Thrones</span><b>The Citadel</b><i>Oldtown</i></a></li>
+      <li><a class="gd-note" href="/compass/"><span class="gd-note-k">Pirates of the Caribbean</span><b>The Compass</b><i>It points where you want</i></a></li>
+      <li><a class="gd-note" href="/control-room/"><span class="gd-note-k">Jurassic Park</span><b>The Control Room</b><i>Isla Nublar</i></a></li>
+      <li><a class="gd-note" href="/hawkins/"><span class="gd-note-k">Stranger Things</span><b>Hawkins</b><i>The mall, and what is under it</i></a></li>
+      <li><a class="gd-note" href="/spirit-library/"><span class="gd-note-k">Avatar: The Last Airbender</span><b>The Spirit Library</b><i>Under the desert sand</i></a></li>
+      <li><a class="gd-note" href="/monastery/"><span class="gd-note-k">Ninjago</span><b>The Monastery</b><i>Up in the mountains</i></a></li>
+      <li><a class="gd-note" href="/wanted/"><span class="gd-note-k">Red Dead Redemption</span><b>The Wanted Board</b><i>Valentine</i></a></li>
+      <li><a class="gd-note" href="/dunder-mifflin/"><span class="gd-note-k">The Office</span><b>Dunder Mifflin</b><i>Scranton</i></a></li>
+      <li><a class="gd-note" href="/springfield/"><span class="gd-note-k">The Simpsons</span><b>Springfield</b><i>Somewhere in America</i></a></li>
+      <li><a class="gd-note" href="/vought/"><span class="gd-note-k">The Boys</span><b>Vought Tower</b><i>Heroes, for a price</i></a></li>
+      <li><a class="gd-note" href="/pokedex/"><span class="gd-note-k">Pokémon</span><b>The Pokédex</b><i>Every one, cataloged</i></a></li>
+      <li><a class="gd-note" href="/batcomputer/"><span class="gd-note-k">Batman</span><b>The Batcomputer</b><i>Under Wayne Manor</i></a></li>
+      <li><a class="gd-note" href="/daily-bugle/"><span class="gd-note-k">Spider-Man</span><b>The Daily Bugle</b><i>Hold the front page</i></a></li>
+      <li><a class="gd-note" href="/red-book/"><span class="gd-note-k">The Lord of the Rings</span><b>The Red Book</b><i>There and back again</i></a></li>
+      <li><a class="gd-note" href="/power-battery/"><span class="gd-note-k">Green Lantern</span><b>The Power Battery</b><i>In brightest day</i></a></li>
+      <li><a class="gd-note" href="/watchtower/"><span class="gd-note-k">The Justice League</span><b>The Watchtower</b><i>Monitor duty</i></a></li>
+      <li><a class="gd-note" href="/instructions/"><span class="gd-note-k">LEGO</span><b>The Instruction Booklet</b><i>Step one of many</i></a></li>
+      <li><a class="gd-note" href="/battle-pass/"><span class="gd-note-k">Fortnite</span><b>The Battle Pass</b><i>One hundred tiers</i></a></li>
+      <li><a class="gd-note" href="/freddys/"><span class="gd-note-k">Five Nights at Freddy’s</span><b>The Security Office</b><i>Watch the cameras</i></a></li>
+    </ul>
+  </section>
+
+  <button class="gd-leap" id="gdLeap" type="button">Take the leap from the lion’s head</button>
+
+  {% include interface-world.html world="Indiana Jones" href="/worlds/indiana-jones/" place="foot" %}
+
+</main>
+
+<!-- the invisible bridge: the step that is there once you have taken it -->
+<div class="gd-done" id="gdDone">
+  <div>
+    <canvas class="gd-done-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#d8b06a" aria-hidden="true"></canvas>
+    <p class="gd-done-k">A leap of faith</p>
+    <p class="gd-done-t">The bridge was there the whole time.</p>
+    <a href="/">Walk back to base camp</a>
+  </div>
+</div>
+
+<script>
+  /* smooth scrolling only after load, so back/forward restores the position instantly instead of sliding to it */
+  addEventListener('load', function () {
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      document.documentElement.classList.add('smooth');
+    }); });
+  });
+  (function grail() {
+    var root = document.getElementById('gd');
+
+    /* the date, as a field note is headed */
+    var el = document.getElementById('gdDate');
+    var M = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function tick() {
+      var d = new Date();
+      if (el) el.textContent = d.getDate() + ' ' + M[d.getMonth()] + ' ' + d.getFullYear() + ' · ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+    }
+    tick(); setInterval(tick, 20000);
+
+    /* torchlight: the diary is read by a torch held close, so the page
+       dims to a pool of light that follows the pointer. It is a toggle
+       rather than always on, because a permanent spotlight makes a page
+       of text hard to read, which is the opposite of the point. */
+    var tb = document.getElementById('gdTorchBtn');
+    var tt = document.getElementById('gdTorchT');
+    if (tb) tb.addEventListener('click', function () {
+      var on = root.classList.toggle('is-torch');
+      tb.setAttribute('aria-pressed', on ? 'true' : 'false');
+      if (tt) tt.textContent = on ? 'Lamp up' : 'Torchlight';
+    });
+    addEventListener('pointermove', function (e) {
+      if (!root.classList.contains('is-torch')) return;
+      root.style.setProperty('--tx', e.clientX + 'px');
+      root.style.setProperty('--ty', e.clientY + 'px');
+    }, { passive: true });
+
+    /* the leap, and the bridge that appears */
+    var lp = document.getElementById('gdLeap');
+    if (lp) lp.addEventListener('click', function () { root.classList.add('is-leapt'); });
+    addEventListener('pageshow', function (e) { if (e.persisted) root.classList.remove('is-leapt'); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') root.classList.remove('is-leapt');
+    });
+
+    /* the dotted line draws itself as the map comes into view, which is the
+       one transition these films are actually famous for */
+    var line = document.getElementById('gdLine');
+    if (line && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (es, o) {
+        es.forEach(function (en) {
+          if (en.isIntersecting) { root.classList.add('is-flying'); o.disconnect(); }
+        });
+      }, { threshold: 0.3 }).observe(line);
+    } else { root.classList.add('is-flying'); }
+  })();
+</script>
+{% include analytics.html %}
+</body>
+</html>

@@ -12,6 +12,7 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/avatar-last-airbender.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="atla">
 
@@ -90,28 +91,28 @@ tab: "/worlds/"
   <div class="crest-grid">
     <article class="crest reveal" style="--h1:#e8c46a;--h2:#f0e0a8">
       <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><path d="M50 4 92 18v38c0 26-20 41-42 52C28 97 8 82 8 56V18z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M50 24a26 26 0 1 0 26 26 20 20 0 0 0-20-20 15 15 0 0 0-15 15 10 10 0 0 0 10 10 6 6 0 0 0 6-6" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg>
-      <h4>Air</h4>
+      <h2>Air</h2>
       <span class="crest-sub">Airbending · Baguazhang</span>
       <p>Circles and evasion: never meet force head on. Four temples, and after the comet, one airbender left.</p>
       <div class="crest-tags"><span>Nomads</span><span>Evasion</span><span>Gliders</span></div>
     </article>
     <article class="crest reveal" style="--h1:#4f9fd0;--h2:#a8dcff">
       <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><path d="M50 4 92 18v38c0 26-20 41-42 52C28 97 8 82 8 56V18z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M50 24c14 12 22 22 22 32a22 22 0 0 1-44 0c0-10 8-20 22-32z" fill="currentColor"/><path d="M34 58c6-4 10 4 16 0s10-4 16 0" fill="none" stroke="#000" stroke-width="3" opacity=".35"/></svg>
-      <h4>Water</h4>
+      <h2>Water</h2>
       <span class="crest-sub">Waterbending · Tai chi</span>
       <p>Push and pull, and the strength of the full moon. The only art that also heals.</p>
       <div class="crest-tags"><span>Tribes</span><span>Healing</span><span>The Moon</span></div>
     </article>
     <article class="crest reveal" style="--h1:#4f9a4f;--h2:#a8e08f">
       <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><path d="M50 4 92 18v38c0 26-20 41-42 52C28 97 8 82 8 56V18z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M50 26 76 46 66 76H34L24 46z" fill="currentColor"/><path d="M50 26v50M24 46h52" stroke="#000" stroke-width="3" opacity=".3"/></svg>
-      <h4>Earth</h4>
+      <h2>Earth</h2>
       <span class="crest-sub">Earthbending · Hung Gar</span>
       <p>Rooted, direct, immovable. Neutral jing: listen, wait, and strike at exactly the right moment.</p>
       <div class="crest-tags"><span>Kingdom</span><span>Metal</span><span>Listening</span></div>
     </article>
     <article class="crest reveal" style="--h1:#d04a2a;--h2:#f0a060">
       <svg class="crest-sigil" viewBox="0 0 100 112" aria-hidden="true"><path d="M50 4 92 18v38c0 26-20 41-42 52C28 97 8 82 8 56V18z" fill="none" stroke="currentColor" stroke-width="3"/><path d="M50 22c4 12-2 16-8 22-6 6-10 12-10 20a18 18 0 0 0 36 0c0-8-4-13-8-18-2 4-4 6-7 7 4-10 3-22-3-31z" fill="currentColor"/></svg>
-      <h4>Fire</h4>
+      <h2>Fire</h2>
       <span class="crest-sub">Firebending · Northern Shaolin</span>
       <p>Breath first, aggression second, and after the dragons, a nation that forgot the difference.</p>
       <div class="crest-tags"><span>Nation</span><span>Lightning</span><span>Breath</span></div>
@@ -127,7 +128,7 @@ tab: "/worlds/"
       <div class="atla-core"><b>Avatar</b></div>
     </div>
     <div class="atla-legend">
-      <h4>The cycle</h4>
+      <h2>The cycle</h2>
       <p>One Avatar per generation, reborn into the next nation in a fixed order: fire, air, water, earth, and round again. Roku was Fire, Aang is Air, Korra is Water, and Kyoshi was Earth four hundred years before either of them.</p>
       <p>Each Avatar starts with the element of their own nation and learns the other three in cycle order, which is why Aang has to go water, earth, fire, in that sequence, with a war on and a comet coming.</p>
       <p>The Avatar State opens every past life at once. The catch is permanent: die in it and the cycle ends there, for good.</p>
@@ -135,6 +136,10 @@ tab: "/worlds/"
   </section>
 
   <div id="fanBody"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 

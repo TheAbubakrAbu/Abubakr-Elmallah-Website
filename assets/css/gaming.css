@@ -7,7 +7,7 @@
    An arcade horizon: a grid running back to a vanishing point with a green
    glow sitting on the line, and scanlines over the whole thing. All of it is
    CSS gradients, so there is nothing to download and nothing to run. Green
-   because that is the colour of a hundred-percent stamp everywhere else on
+   because that is the color of a hundred-percent stamp everywhere else on
    this site (see .fan-done in fanpages.css), and this page is mostly about
    those. */
 
@@ -29,7 +29,7 @@ body[data-fan="gaming"] { --a: #3fd589; }
 
 /* the floor: two sets of lines, one across and one along, tilted into the
    distance. `perspective` on the wrapper and one rotateX on the plane is what
-   makes the spacing bunch up towards the horizon on its own, without every
+   makes the spacing bunch up toward the horizon on its own, without every
    line being drawn at its own position. */
 /* OVERFLOW HIDDEN IS LOAD-BEARING, and so is mask-repeat. The plane below is
    larger than this box in every direction; without the clip its far half

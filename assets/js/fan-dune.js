@@ -8,7 +8,7 @@ window.FAN_PAGE = {
       { title: 'House Atreides', sub: 'Caladan → Arrakis', tag: 'Great House', desc: 'Popular, honourable, and handed a desert planet precisely because both of those are a threat.', meta: 'Duke Leto · Paul' },
       { title: 'House Harkonnen', sub: 'Giedi Prime', tag: 'Great House', desc: 'Eighty years of spice profit on Arrakis, and a grudge older than that.', meta: 'Baron Vladimir' },
       { title: 'The Fremen', sub: 'Arrakis', tag: 'Native', desc: 'Written off as desert rabble; in fact the deadliest fighting force in the Imperium, and the ones who actually own the planet.', meta: 'Sietch · Stilgar · Chani' },
-      { title: 'The Bene Gesserit', sub: 'Sisterhood', tag: 'Power', desc: 'Ninety generations of a breeding programme, the Voice, and a religion planted on Arrakis centuries in advance for exactly this.', meta: 'Jessica · Mohiam' },
+      { title: 'The Bene Gesserit', sub: 'Sisterhood', tag: 'Power', desc: 'Ninety generations of a breeding program, the Voice, and a religion planted on Arrakis centuries in advance for exactly this.', meta: 'Jessica · Mohiam' },
       { title: 'The Spacing Guild', sub: 'Navigators', tag: 'Monopoly', desc: 'Folds space using prescience that only spice provides. Nothing moves between stars without them.', meta: 'Heighliners' },
       { title: 'The Emperor', sub: 'House Corrino', tag: 'Throne', desc: 'Shaddam IV, the Sardaukar, and a throne that rests entirely on the other four not co-operating.', meta: 'Salusa Secundus' },
     ] },
@@ -71,7 +71,7 @@ window.FAN_PAGE = {
   { id: 'arrakis', kind: 'tiles', fold: true, title: 'Arrakis', note: 'the spice must flow',
     items: [
       { title: 'Melange', accent: '#e0a050', sub: 'The spice', desc: 'Extends life, opens prescience, and exists in exactly one place in the universe.' },
-      { title: 'Shai-Hulud', accent: '#c98040', sub: 'Sandworm', desc: 'Up to four hundred metres. Makes the spice, destroys the harvesters, and is ridden by the Fremen.' },
+      { title: 'Shai-Hulud', accent: '#c98040', sub: 'Sandworm', desc: 'Up to four hundred meters. Makes the spice, destroys the harvesters, and is ridden by the Fremen.' },
       { title: 'Stillsuits', accent: '#8fa0a8', sub: 'Reclaims everything', desc: 'A well-fitted suit loses a thimbleful of moisture a day. Water discipline is the whole culture.' },
       { title: 'The Sietch', accent: '#a08060', sub: 'Cave communities', desc: 'Hidden in the rock, with water stored against a plan to terraform the planet over centuries.' },
       { title: 'The Voice', accent: '#c0a0d0', sub: 'Bene Gesserit', desc: 'Pitch and cadence that bypass the will. Absolutely terrifying used well.' },
@@ -81,10 +81,10 @@ window.FAN_PAGE = {
   { id: 'people', kind: 'cards', title: 'The People', note: 'House Atreides, and the ones waiting on Arrakis',
     items: [
       { title: 'Paul Atreides', sub: 'Muad\u2019Dib', tag: 'Atreides', desc: 'Fifteen at the start, trained by a Mentat, a swordmaster and a Bene Gesserit mother, and the books are clear that this is a warning rather than a triumph.', meta: 'Kwisatz Haderach' },
-      { title: 'Lady Jessica', sub: 'Bene Gesserit', tag: 'Atreides', desc: 'Told to bear a daughter and bore a son anyway, out of love, and broke a ninety generation programme doing it.', meta: 'The Voice' },
+      { title: 'Lady Jessica', sub: 'Bene Gesserit', tag: 'Atreides', desc: 'Told to bear a daughter and bore a son anyway, out of love, and broke a ninety generation program doing it.', meta: 'The Voice' },
       { title: 'Duke Leto', sub: 'The Red Duke', tag: 'Atreides', desc: 'Knows Arrakis is a trap, walks into it anyway because refusing is also a trap, and spends his last months trying to earn the Fremen.', meta: 'Caladan' },
       { title: 'Chani', sub: 'Fremen', tag: 'Arrakis', desc: 'Sayyadina, fighter, and in Villeneuve\u2019s version the character who refuses the myth everybody else is building.', meta: 'Sietch Tabr' },
-      { title: 'Stilgar', sub: 'Naib', tag: 'Arrakis', desc: 'Leads Sietch Tabr, tests Paul properly rather than sentimentally, and slowly turns from sceptic into believer.', meta: 'Water discipline' },
+      { title: 'Stilgar', sub: 'Naib', tag: 'Arrakis', desc: 'Leads Sietch Tabr, tests Paul properly rather than sentimentally, and slowly turns from skeptic into believer.', meta: 'Water discipline' },
       { title: 'Baron Harkonnen', sub: 'Vladimir', tag: 'Harkonnen', desc: 'Runs the whole plot from a floating chair and is written to be genuinely repellent rather than charming.', meta: 'Giedi Prime' },
       { title: 'Gurney and Duncan', sub: 'The swordmasters', tag: 'Atreides', desc: 'One teaches Paul to fight and to sing, the other dies buying him twenty seconds. Both come back in the sequels.', meta: 'Ginaz · the ballisets' },
       { title: 'Alia', sub: 'Born aware', tag: 'Atreides', desc: 'Awakened in the womb by the water of life, and the price the family pays for the shortcut.', meta: 'St Alia of the Knife' },
@@ -171,7 +171,7 @@ window.FAN_PLAY = {
   kind: "roll",
   title: "Walk Without Rhythm",
   intro: "Anything with a regular step draws a worm. The Fremen developed a walk with no pattern in it (drag, pause, shuffle, long stride) so the sand reads them as weather rather than as prey. Try crossing.",
-  prompt: "Open sand. Two hundred metres to rock.",
+  prompt: "Open sand. Two hundred meters to rock.",
   button: "Cross the sand",
   again: "Cross again",
   wait: [
@@ -181,7 +181,7 @@ window.FAN_PLAY = {
       ],
   items: [
     { n: "You make it", s: "Clean crossing", c: "#e0a050", w: 4, said: "Rock under your boots. Nothing followed you.", d: "M3 17c3-2 5 2 8 0s5-3 8-1 M6 13v.01 M14 11v.01", note: "The walk works, which is the point: it is not luck, it is a technique an entire culture developed because the alternative was dying. Everything about the Fremen is like this." },
-    { n: "Worm sign", s: "Northeast, closing", c: "#c04a3a", w: 3, said: "Worm sign. Big one. Run for the rock.", d: "M4 19c0-6 3-11 8-11s6 4 6 7-2 5-5 4 M15 12a4 4 0 1 0 .1 0", note: "A ridge travelling across the dunes, and the only correct response is to stop being on the sand. Stilgar can read the distance from the shape of it." },
+    { n: "Worm sign", s: "Northeast, closing", c: "#c04a3a", w: 3, said: "Worm sign. Big one. Run for the rock.", d: "M4 19c0-6 3-11 8-11s6 4 6 7-2 5-5 4 M15 12a4 4 0 1 0 .1 0", note: "A ridge traveling across the dunes, and the only correct response is to stop being on the sand. Stilgar can read the distance from the shape of it." },
     { n: "A thumper", s: "Deliberate rhythm", c: "#c9a05f", w: 2, said: "You plant a thumper and walk away from it. Let it call something else.", d: "M12 4v9 M8 13h8l1 7H7z M10 16h4", note: "A stake that beats the sand steadily, used to draw a worm somewhere you are not, or to call one deliberately, if you intend to get on it." },
     { n: "You ride it", s: "The maker hooks", c: "#f0c840", w: 1, said: "You get the hooks in and it turns. You are riding it.", d: "M3 16c4-4 8 2 12-1s5-4 6-2 M7 12l2-3 M15 10l2-3", note: "Prying a ring segment open forces the worm to roll that part above the sand so it does not get abrasive grit inside. Riding one is how a Fremen becomes an adult." },
     { n: "Spice blow", s: "The sand goes orange", c: "#8f6fd0", w: 2, said: "The sand ahead turns orange and the air goes sharp with cinnamon.", d: "M12 3v18 M5 8l14 8 M19 8L5 16 M12 12a3 3 0 1 0 .1 0", note: "A pre-spice mass reaching the surface. It is worth a fortune, it means a worm is close, and both of those are true at the same time, which is Arrakis in one image." },

@@ -51,7 +51,7 @@
   /* ───────────── the signal ───────────── */
 
   // The bat, as on the page's <symbol id="bcBat">: the same outline in the
-  // same units, centred on (0, 0), 192 wide and 72 tall.
+  // same units, centered on (0, 0), 192 wide and 72 tall.
   var BAT = 'M0 -12 L8 -12 L12 -30 L16 -10 C34 -12 60 -22 96 -34 C84 -18 82 -2 90 12 C78 4 64 4 56 16 C48 6 36 6 30 20 C20 18 10 24 0 38 C-10 24 -20 18 -30 20 C-36 6 -48 6 -56 16 C-64 4 -78 4 -90 12 C-82 -2 -84 -18 -96 -34 C-60 -22 -34 -12 -16 -10 L-12 -30 L-8 -12 Z';
 
   var scene = $('bcScene'), cv = $('bcSky');

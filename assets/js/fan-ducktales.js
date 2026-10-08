@@ -13,8 +13,8 @@ window.FAN_PAGE = {
         desc: 'Carl Barks invented him in 1947 for one Christmas story and never got him back. A Scottish-born duck in a top hat and pince-nez who made every coin the hard way and will tell you so, at length, in the accent. Tougher than the toughies and smarter than the smarties, which is a claim the show makes him earn in nearly every episode.',
         meta: 'Created 1947 · Christmas on Bear Mountain' },
       { title: 'Huey, Dewey and Louie', sub: 'Red, blue, green', tag: 'The nephews', accent: '#4fbf72',
-        desc: 'Identical triplets in the 1987 run, told apart only by hat colour, and that is the joke. The 2017 series did the obvious thing nobody had done in fifty years and made them three different people: Huey has the guidebook, Dewey wants the spotlight, Louie is the one running an angle. Danny Pudi, Ben Schwartz and Bobby Moynihan.',
-        meta: 'One colour each, finally used for something' },
+        desc: 'Identical triplets in the 1987 run, told apart only by hat color, and that is the joke. The 2017 series did the obvious thing nobody had done in fifty years and made them three different people: Huey has the guidebook, Dewey wants the spotlight, Louie is the one running an angle. Danny Pudi, Ben Schwartz and Bobby Moynihan.',
+        meta: 'One color each, finally used for something' },
       { title: 'Webby Vanderquack', sub: 'Russi Taylor, then Kate Micucci', tag: 'The one they rewrote', accent: '#d8483c',
         desc: 'In 1987 she was the small girl the boys had to be talked into including. In 2017 she is a grappling-hook expert who has read the entire McDuck adventure archive and is better at all of this than any of them. The single biggest improvement between the two versions.',
         meta: 'Same character, forty years of rethinking' },
@@ -47,7 +47,7 @@ window.FAN_PAGE = {
       { title: 'Gyro Gearloose', sub: 'And Little Helper', accent: '#f07a3a',
         desc: 'The inventor whose devices always work and always have one consequence nobody costed. A Barks character too, and the reason half the plots can start at all.' },
       { title: 'Duckburg, Calisota', sub: 'The invented state', accent: '#3fb8b0',
-        desc: 'Barks put it roughly where northern California is and left it vague on purpose. It means the ducks can have a harbour, a desert and a mountain within driving distance without anyone checking.' },
+        desc: 'Barks put it roughly where northern California is and left it vague on purpose. It means the ducks can have a harbor, a desert and a mountain within driving distance without anyone checking.' },
     ] },
 
   { id: 'barks', kind: 'cards', title: 'It Was a Comic First', note: 'and the comics are better than the reputation',
@@ -57,7 +57,7 @@ window.FAN_PAGE = {
         desc: 'Drew Donald Duck comics anonymously for decades and in the process invented Scrooge, Gladstone, Gyro, the Beagle Boys, Magica, Duckburg and the Money Bin. Disney did not put creator credits on the books, so for years readers knew only that one of the artists was much better than the others.',
         meta: 'Scrooge invented in 1947, for one story' },
       { title: 'Don Rosa', sub: 'The Life and Times of Scrooge McDuck', tag: 'Who finished it', accent: '#4fbf72',
-        desc: 'Twelve chapters that take Scrooge from 1877 to 1947 and reconcile every stray line of backstory Barks ever dropped into a single continuous life. It won the Eisner Award for Best Serialized Story in 1995, and it is the best argument that any of this was ever more than a licence.',
+        desc: 'Twelve chapters that take Scrooge from 1877 to 1947 and reconcile every stray line of backstory Barks ever dropped into a single continuous life. It won the Eisner Award for Best Serialized Story in 1995, and it is the best argument that any of this was ever more than a license.',
         href: 'https://en.wikipedia.org/wiki/The_Life_and_Times_of_Scrooge_McDuck', link: 'The twelve chapters',
         meta: '1992–1994 · Eisner, 1995' },
       { title: 'The 1987 series', sub: 'Jymn Magon, Tedd Anasti, Patsy Cameron', tag: 'Who adapted it', accent: '#d8483c',
@@ -68,7 +68,7 @@ window.FAN_PAGE = {
         meta: '2017–2021 · 69 episodes · Disney XD' },
     ] },
 
-  { id: 'moon', kind: 'cards', title: 'The Moon Theme', note: 'a licensed platformer that outlived its licence',
+  { id: 'moon', kind: 'cards', title: 'The Moon Theme', note: 'a licensed platformer that outlived its license',
     lede: 'Capcom made a DuckTales game for the NES in 1989 with the Mega Man people on it, and one of its five stages is set on the Moon. The music for that stage escaped the game entirely and is now better known than most of the show.',
     items: [
       { title: 'Capcom, 1989', sub: 'Directed by Keiji Inafune', tag: 'The game', accent: '#f0b333',

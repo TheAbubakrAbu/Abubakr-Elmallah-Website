@@ -20,6 +20,8 @@ ol, ul { list-style: none; }
 html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
 
 .vt {
+  --iw-a: #e2b54a;   /* the shared world button, interface-world.css */
+  --iw-bg: #06101f;
   --hd:    "Archivo", "Helvetica Neue", Arial, sans-serif;
   --tx:    "Archivo", "Helvetica Neue", Arial, sans-serif;
   --mono:  "IBM Plex Mono", ui-monospace, Menlo, monospace;
@@ -49,7 +51,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 
 /* Butcher's file: the same tokens, read off paper. Manila for the page,
    a whiter typed sheet for the panels, typewriter for headings and notes,
-   and the gold becomes the red of a CLASSIFIED stamp. Every colour here
+   and the gold becomes the red of a CLASSIFIED stamp. Every color here
    holds AA on the manila. */
 .vt.is-butcher {
   --hd:    "Special Elite", "Courier New", monospace;
@@ -310,7 +312,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .vt-stack { position: relative; }
 .vt-floor { position: relative; display: grid; grid-template-columns: var(--tw) minmax(0, 1fr); }
 
-/* a band of the facade: glass, gold mullions, a slab line at each storey,
+/* a band of the facade: glass, gold mullions, a slab line at each story,
    and some windows lit (how many is --lit, set per floor) */
 .vt-seg {
   position: relative;
@@ -369,7 +371,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .vt.is-butcher .vt-ap--none .vt-ap-n { text-decoration: none; }
 .vt.is-butcher .vt-ap-bar::before { background: var(--ink); opacity: .35; }
 
-/* in the file, the tower is a surveillance photograph: grey, contrasty,
+/* in the file, the tower is a surveillance photograph: gray, contrasty,
    and the floor under watch gets a red crosshair */
 .vt.is-butcher .vt-seg { filter: grayscale(1) contrast(1.25) brightness(.85); }
 .vt.is-butcher .vt-floor.is-here .vt-seg {
@@ -480,7 +482,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   transition: background .3s, border-color .3s;
 }
 .vt-logos a:hover, .vt-logos a:focus-visible { background: rgba(226, 181, 74, .1); border-color: var(--acc); }
-/* a brand tile: the catalogue number in a gold-edged square; in the file,
+/* a brand tile: the catalog number in a gold-edged square; in the file,
    the folder tab */
 .vt-tag {
   grid-row: span 2; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 6px;

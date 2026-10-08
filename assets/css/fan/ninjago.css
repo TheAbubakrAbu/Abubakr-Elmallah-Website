@@ -108,7 +108,7 @@
   animation: nj-pulse 4.6s ease-in-out infinite alternate;
 }
 
-.njg h4 { font-family: var(--serif); font-weight: 600; font-size: 1rem; color: var(--g); letter-spacing: -0.02em; }
+.njg :is(h2, h3, h4, h5) { font-family: var(--serif); font-weight: 600; font-size: 1rem; color: var(--g); letter-spacing: -0.02em; }
 
 .njg-sub { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); }
 
@@ -160,7 +160,7 @@
   text-transform: uppercase; font-size: 0.98rem; letter-spacing: 0.04em; color: #ffe9a8;
 }
 
-.nj-legend h4 {
+.nj-legend :is(h2, h3, h4, h5) {
   font-family: var(--serif); font-style: italic; font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.05em; font-size: 1.2rem; color: var(--a); margin-bottom: 0.6rem;
 }

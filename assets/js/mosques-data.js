@@ -25,7 +25,7 @@ window.ISL_MOSQUES = {
       year: 'The Kaʿbah, raised by Ibrāhīm & Ismāʿīl',
       style: 'kaaba', minarets: 4,
       colors: { wall: '#d8cfbc', dome: '#0d0d10', trim: '#d9b45f', arch: '#1a1712', glow: '#e8c56a' },
-      desc: 'The house every Muslim turns to five times a day, and the only mosque where the prayer is offered in a circle rather than a line. The Kaʿbah stands at its centre under the kiswah; the mosque around it has been rebuilt and widened for fourteen centuries and now holds well over a million worshippers.',
+      desc: 'The house every Muslim turns to five times a day, and the only mosque where the prayer is offered in a circle rather than a line. The Kaʿbah stands at its center under the kiswah; the mosque around it has been rebuilt and widened for fourteen centuries and now holds well over a million worshippers.',
       stats: [['Qiblah for', 'the whole ummah'], ['Ṭawāf', 'never stops'], ['Reward', '100,000× a prayer']],
     },
     {
@@ -41,7 +41,7 @@ window.ISL_MOSQUES = {
       year: 'The first qiblah · Umayyad rebuild 705 CE',
       style: 'aqsa', minarets: 4,
       colors: { wall: '#dcd2bb', dome: '#8f9aa3', trim: '#d9b45f', arch: '#241f17', glow: '#c9b06a' },
-      desc: 'The first of the two qiblahs and the third of the three mosques worth travelling to. The whole walled compound is Al-Masjid al-Aqṣā: the silver-grey Qiblī Mosque at its south end, the golden Dome of the Rock at its centre, and the night journey of Isrāʾ and Miʿrāj in its history.',
+      desc: 'The first of the two qiblahs and the third of the three mosques worth traveling to. The whole walled compound is Al-Masjid al-Aqṣā: the silver-gray Qiblī Mosque at its south end, the golden Dome of the Rock at its center, and the night journey of Isrāʾ and Miʿrāj in its history.',
       stats: [['First qiblah', 'before the Kaʿbah'], ['Isrāʾ & Miʿrāj', 'the night journey'], ['Reward', '500× a prayer']],
     },
   ],
@@ -129,7 +129,7 @@ window.ISL_MOSQUES = {
     // { name: 'Ḥassan II Mosque', ar: 'مسجد الحسن الثاني', place: 'Casablanca · Morocco', year: '1993',
     // style: 'maghribi', minarets: 1,
     // colors: { wall: '#e0d5bd', dome: '#4f8f7a', trim: '#2f7f5f', arch: '#22201a', glow: '#5fc9a0' },
-    // desc: 'Built out over the Atlantic, with a 210-metre minaret: the tallest in the world, and a roof that opens to the sky.' },
+    // desc: 'Built out over the Atlantic, with a 210-meter minaret: the tallest in the world, and a roof that opens to the sky.' },
 
     // { name: 'Fayṣal Mosque', ar: 'مسجد الملك فيصل', place: 'Islamabad · Pakistan', year: '1986',
     // style: 'modern', minarets: 4,

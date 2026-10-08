@@ -1,8 +1,8 @@
 /* ============================================================
    battle-pass.css: /battle-pass/, the Fortnite terminal.
    The site as a Battle Pass: every page a reward tier, graded by
-   rarity, unlocked as you go. The rarity colours are the five the
-   genre has used since long before Fortnite (grey, green, blue,
+   rarity, unlocked as you go. The rarity colors are the five the
+   genre has used since long before Fortnite (gray, green, blue,
    purple, gold); no logo, wordmark or asset is reproduced, and
    every tile is drawn with CSS.
    ============================================================ */
@@ -16,6 +16,8 @@ html.smooth { scroll-behavior: smooth; }
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .bp {
+  --iw-a: #f0a83a;   /* the shared world button, interface-world.css */
+  --iw-bg: #0b1020;
   --sans:  "Space Grotesk", system-ui, sans-serif;
   --mono:  "JetBrains Mono", ui-monospace, monospace;
   --bg:    #0b1020;
@@ -132,6 +134,172 @@ html.smooth { scroll-behavior: smooth; }
 .bp-stats dd { font-size: 1.25rem; font-weight: 700; margin-top: 0.1rem; }
 .bp-meter-n { margin-top: 0.9rem; font-size: 0.72rem; line-height: 1.7; color: var(--mute); }
 
+/* the wallet: the two currencies a pass runs on */
+.bp-wallet {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem;
+  margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid var(--line);
+}
+.bp-wallet dt {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+.bp-wallet dd { font-size: 1.1rem; font-weight: 700; margin-top: 0.1rem; color: var(--blue); }
+.bp-wallet div:last-child dd { color: var(--c-legendary); }
+
+/* ═══════════ the tier track ═══════════
+   One long horizontal road of tier nodes. The track scrolls rather than
+   wrapping, which is the whole shape of that screen. */
+.bp-track-s { padding-bottom: clamp(2rem, 5vw, 3rem); }
+.bp-track-wrap { display: flex; align-items: stretch; gap: 0.5rem; }
+.bp-trk-btn {
+  flex: 0 0 auto; width: 34px; cursor: pointer; border-radius: 5px;
+  border: 1px solid var(--line); background: rgba(20,30,60,.6); color: var(--dim);
+  font-size: 0.7rem; transition: background .14s var(--ease), color .14s var(--ease);
+}
+.bp-trk-btn:hover { background: rgba(111,176,255,.18); color: #fff; }
+.bp-trk-btn:focus-visible { outline: 2px solid var(--c-legendary); outline-offset: 2px; }
+
+.bp-track {
+  flex: 1; min-width: 0; display: flex; gap: 0.55rem;
+  overflow-x: auto; scroll-behavior: smooth; padding: 0.9rem 0.3rem 1.1rem;
+  /* the road under the nodes */
+  background:
+    linear-gradient(90deg, transparent, rgba(111,176,255,.22) 6%, rgba(111,176,255,.22) 94%, transparent) center/100% 2px no-repeat;
+  scrollbar-width: thin;
+}
+.bp-track:focus-visible { outline: 2px solid var(--c-legendary); outline-offset: 2px; border-radius: 6px; }
+
+/* a node on the road: the tier number, the reward, and the rarity ring */
+.bp-node {
+  position: relative; flex: 0 0 auto; width: 104px;
+  display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
+  padding: 0.5rem 0.3rem; border-radius: 7px;
+  text-align: center; opacity: .55;
+  transition: opacity .16s var(--ease), transform .16s var(--ease);
+}
+.bp-node.is-on { opacity: 1; }
+@media (hover: hover) { .bp-node:hover { transform: translateY(-3px); opacity: 1; } }
+.bp-node:focus-visible { outline: 2px solid var(--rar, var(--c-common)); outline-offset: 2px; }
+.bp-node-d {
+  width: 46px; height: 46px; border-radius: 50%;
+  border: 2px solid var(--rar, var(--c-common));
+  background:
+    radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--rar, var(--c-common)) 40%, transparent), rgba(10,16,34,.9));
+  display: grid; place-items: center;
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 700; color: #fff;
+}
+.bp-node.is-on .bp-node-d { box-shadow: 0 0 16px -4px var(--rar, var(--c-common)); }
+.bp-node-t { font-size: 0.68rem; line-height: 1.35; color: var(--dim); }
+.bp-node.is-on .bp-node-t { color: var(--ink); }
+/* the hundredth node, which is the one the whole road is for */
+.bp-node--100 .bp-node-d { width: 56px; height: 56px; border-width: 3px; }
+
+/* ═══════════ the challenges ═══════════ */
+.bp-chal { padding-bottom: clamp(2rem, 5vw, 3rem); }
+.bp-chals { list-style: none; display: grid; gap: 0.5rem; }
+/* a challenge: the state is carried by the tick in the corner and a wash
+   behind it rather than a stripe down the edge, so it sits in the same
+   visual language as the reward tiles above */
+.bp-chals li {
+  position: relative; display: grid; grid-template-columns: 1fr auto auto;
+  align-items: center; gap: 0.6rem 0.9rem;
+  border: 1px solid var(--line); border-radius: 7px;
+  padding: 0.75rem 0.9rem 0.75rem 2.1rem; background: rgba(14,20,42,.66);
+}
+/* the tick box, which is what a challenge list actually has */
+.bp-chals li::before {
+  content: ""; position: absolute; left: 0.8rem; top: 50%;
+  width: 11px; height: 11px; margin-top: -5.5px; border-radius: 3px;
+  border: 1.5px solid var(--mute);
+}
+.bp-chals li.is-done {
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--c-uncommon) 12%, transparent), transparent 42%),
+    rgba(14,20,42,.66);
+}
+.bp-chals li.is-done::before {
+  border-color: var(--c-uncommon); background: var(--c-uncommon);
+}
+.bp-chals b { font-size: 0.9rem; font-weight: 600; grid-column: 1; }
+.bp-chals i {
+  grid-column: 1; grid-row: 2; font-style: normal; font-size: 0.74rem;
+  color: var(--mute); line-height: 1.5;
+}
+.bp-chals em {
+  grid-row: 1 / span 2; font-style: normal; font-family: var(--mono);
+  font-size: 0.68rem; letter-spacing: 0.08em; color: var(--dim);
+}
+/* the stars a challenge pays, which is how a pass actually moves */
+.bp-chal-st {
+  grid-row: 1 / span 2; display: inline-flex; align-items: center; gap: 0.25rem;
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 700; color: var(--c-legendary);
+  white-space: nowrap;
+}
+.bp-chal-n { margin-top: 1rem; font-size: 0.76rem; line-height: 1.75; color: var(--mute); max-width: 68ch; }
+
+/* ═══════════ the locker ═══════════ */
+.bp-locker-s { padding-bottom: clamp(2rem, 5vw, 3rem); }
+.bp-locker { display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+/* a locker slot carries its rarity exactly the way a reward tile does: the
+   color on the top edge, a wash under it, and the grade spelled out at the
+   foot. Same convention, so the two sections read as one system. */
+.bp-slot {
+  position: relative; padding: 2rem 0.9rem 2.1rem; border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--rar) 46%, transparent);
+  border-top: 3px solid var(--rar);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--rar) 20%, transparent), transparent 64%),
+    rgba(10,16,34,.74);
+}
+.bp-slot-k {
+  position: absolute; top: 0.55rem; left: 0.8rem;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute);
+}
+.bp-slot b { display: block; font-size: 1.05rem; font-weight: 700; }
+.bp-slot i { display: block; font-style: normal; font-size: 0.76rem; color: var(--dim); margin-top: 0.25rem; line-height: 1.55; }
+.bp-slot-r {
+  position: absolute; bottom: 0.6rem; left: 0.8rem;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--rar);
+}
+
+/* ═══════════ the map ═══════════ */
+.bp-map-s { padding-bottom: clamp(2rem, 5vw, 3.4rem); }
+.bp-map {
+  position: relative; max-width: 560px; aspect-ratio: 1;
+  border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  background: radial-gradient(70% 70% at 50% 40%, #16224a, #0a1024);
+}
+.bp-map-art { position: absolute; inset: 0; width: 100%; height: 100%; }
+.bp-coast { fill: rgba(111,176,255,.12); stroke: var(--blue); stroke-width: .8; }
+.bp-river { fill: none; stroke: rgba(111,176,255,.5); stroke-width: 1.2; stroke-linecap: round; }
+.bp-mgrid path { stroke: rgba(140,170,255,.1); stroke-width: .4; }
+
+/* a named location: a marker at its own --x/--y, with its name beside it */
+.bp-poi {
+  position: absolute; left: calc(var(--x) * 1%); top: calc(var(--y) * 1%);
+  transform: translate(-50%, -50%);
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.bp-poi i {
+  flex: 0 0 auto; width: 11px; height: 11px; border-radius: 2px;
+  background: var(--c-legendary); transform: rotate(45deg);
+  box-shadow: 0 0 10px -1px var(--c-legendary);
+}
+.bp-poi span {
+  font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink); white-space: nowrap;
+  text-shadow: 0 1px 4px #000;
+}
+.bp-poi em {
+  display: block; font-style: normal; font-family: var(--sans);
+  font-size: 0.66rem; letter-spacing: 0; text-transform: none; color: var(--blue);
+}
+.bp-poi:hover i { background: #fff; }
+.bp-poi:hover span { color: #fff; }
+.bp-poi:focus-visible { outline: 2px solid var(--c-legendary); outline-offset: 4px; border-radius: 4px; }
+
 /* ───────────── the rewards ───────────── */
 .bp-tiers { padding-bottom: clamp(2rem, 5vw, 3.4rem); }
 .bp-h { font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.01em; }
@@ -142,7 +310,7 @@ html.smooth { scroll-behavior: smooth; }
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
 }
 
-/* a reward tile: the rarity is a colour on the border, a wash behind it and
+/* a reward tile: the rarity is a color on the border, a wash behind it and
    the glow under it, which is exactly how every one of these games does it */
 .bp-tier {
   position: relative; display: block; padding: 2.1rem 0.9rem 0.9rem;
@@ -177,7 +345,7 @@ html.smooth { scroll-behavior: smooth; }
 .bp-tier b { display: block; font-size: 0.95rem; font-weight: 600; letter-spacing: -0.01em; }
 .bp-tier i { display: block; font-style: normal; font-size: 0.74rem; color: var(--mute); margin-top: 0.2rem; line-height: 1.5; }
 
-/* unlocked: it stops being greyed back and gets its colour properly */
+/* unlocked: it stops being grayed back and gets its color properly */
 .bp-tier { opacity: .62; }
 .bp-tier.is-on { opacity: 1; }
 .bp-tier.is-on::after {
@@ -209,7 +377,22 @@ html.smooth { scroll-behavior: smooth; }
 @media (max-width: 860px) {
   .bp-hero { grid-template-columns: 1fr; }
 }
+/* the track on a phone: still the whole track, still every node, just
+   turned upright and swiped vertically. Nothing here is dropped. */
+@media (max-width: 620px) {
+  .bp-track-wrap { flex-direction: column; }
+  .bp-trk-btn { width: auto; height: 32px; }
+  .bp-track {
+    flex-direction: column; max-height: 62vh; overflow-x: hidden; overflow-y: auto;
+    background:
+      linear-gradient(180deg, transparent, rgba(111,176,255,.22) 6%, rgba(111,176,255,.22) 94%, transparent) center/2px 100% no-repeat;
+  }
+  .bp-node { width: 100%; flex-direction: row; text-align: left; gap: 0.7rem; }
+  .bp-node-t { flex: 1; }
+  .bp-chals li { grid-template-columns: 1fr auto; }
+}
 @media (prefers-reduced-motion: reduce) {
   .bp-storm { animation: none; }
-  .bp-tier, .bp-btn, .bp-bar i { transition: none; }
+  .bp-tier, .bp-btn, .bp-bar i, .bp-node, .bp-trk-btn { transition: none; }
+  .bp-track { scroll-behavior: auto; }
 }

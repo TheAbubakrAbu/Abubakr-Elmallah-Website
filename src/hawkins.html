@@ -1,7 +1,10 @@
 ---
-permalink: /starcourt/
-title: "Starcourt · Abubakr Elmallah"
-description: "Starcourt: a Stranger Things interface for Abubakr Elmallah's portfolio, after the Palace Arcade and Starcourt Mall. Every page is a store in Starcourt Mall or a cabinet in the Palace Arcade, Joyce's alphabet wall spells them out, and a switch turns Hawkins over."
+permalink: /hawkins/
+redirect_from:
+  - /starcourt/
+  - /upside-down/
+title: "Hawkins · Abubakr Elmallah"
+description: "Hawkins: a Stranger Things interface for Abubakr Elmallah's portfolio. Starcourt Mall at the top, and scrolling turns the town into the Upside Down."
 theme: "#120c1f"
 fonts: "family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Permanent+Marker&family=VT323&family=Monoton&family=Bungee&family=Yellowtail"
 standalone: true
@@ -11,7 +14,7 @@ standalone: true
 <head>
 {% include head.html %}
 
-<link rel="stylesheet" href="{% include v.html f='/assets/css/starcourt.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/hawkins.css' %}" />
 </head>
 <body class="ud" id="ud">
 
@@ -39,7 +42,7 @@ standalone: true
     <div class="ud-face ud-face--up">
       <span class="ud-stars"></span>
       <span class="ud-glow"></span>
-      <!-- the Fourth of July over the parking lot, drawn by starcourt.js -->
+      <!-- the Fourth of July over the parking lot, drawn by hawkins.js -->
       <canvas class="ud-fire" id="udFire"></canvas>
       <svg class="ud-trees" viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax slice">
         <defs>
@@ -75,14 +78,21 @@ standalone: true
     </div>
   </div>
 </div>
-<!-- the spores that drift on the far side, drawn by starcourt.js -->
+<!-- the spores that drift on the far side, drawn by hawkins.js -->
 <canvas class="ud-spores" id="udSpores" aria-hidden="true"></canvas>
 
 <header class="ud-top" id="udTop">
   <a class="ud-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Ride home</span>
   </a>
+  {% include interface-world.html world="Stranger Things" href="/worlds/stranger-things/" %}
   <span class="ud-top-mid" id="udWhere">Hawkins, Indiana · Starcourt Mall</span>
+  <!-- the depth gauge: how far under the town you are, filled by hawkins.js.
+       It is the one readout that says the descent is a thing you control. -->
+  <span class="ud-depth" id="udDepth" aria-hidden="true">
+    <i class="ud-depth-bar"><b id="udDepthFill"></b></i>
+    <em id="udDepthT">Hawkins</em>
+  </span>
   <span class="ud-clock" id="udClock">··· ··· · 1985</span>
 </header>
 
@@ -101,7 +111,7 @@ standalone: true
            its marquee, lit from behind, with the page's name in neon -->
       <div class="ud-headline">
         <p class="ud-kicker">An interface · Hawkins, Indiana · 1985</p>
-        <h1 class="ud-title" id="udTitle"><span class="ud-title-a">The</span> <span class="ud-title-b">Starcourt</span></h1>
+        <h1 class="ud-title" id="udTitle"><span class="ud-title-a">Hawkins</span> <span class="ud-title-b">Indiana</span></h1>
         <p class="ud-credit" aria-hidden="true"><span>1 player</span><span>25¢</span><span>Palace Arcade</span></p>
       </div>
 
@@ -159,7 +169,7 @@ standalone: true
 
           <p class="ud-wall-cap" aria-hidden="true">
             <span class="ud-cap-k" id="udCapK">Will is spelling</span>
-            <b class="ud-spelt" id="udSpelt">R I G H T &nbsp; H E R E</b>
+            <b class="ud-spelled" id="udSpelt">R I G H T &nbsp; H E R E</b>
           </p>
         </div>
       </div>
@@ -168,6 +178,9 @@ standalone: true
     <div class="ud-right">
       <div class="ud-intro">
         <p class="ud-sub">Every room on this site, as a store in Starcourt Mall or a cabinet in the Palace Arcade. Point at one, tab to it, or on a phone scroll it into the middle of the screen, and the bulbs on Joyce Byers’ wall light one at a time to spell it out, the way Will talked through them from the other side.</p>
+        <!-- the descent, stated once in words, because the whole page turns
+             on it and a reader who does not scroll would never find out -->
+        <p class="ud-sub ud-sub--go">Start at the mall. <b>Keep scrolling and the town goes over:</b> the lights go cold, the vines come in, and by the bottom of the page you are reading the same rooms from the other side. The switch on the wall takes you there at once if you would rather not walk.</p>
         <button class="ud-cross" id="udCross" type="button">
           <span class="ud-cross-i" aria-hidden="true"></span><span id="udCrossT">Turn it upside down</span>
         </button>
@@ -182,9 +195,18 @@ standalone: true
            on the floor plan. -->
       <section class="ud-sec ud-board" aria-labelledby="udTownH">
         <div class="ud-board-top">
-          <p class="ud-board-k" aria-hidden="true">Hawkins, Indiana · open 10 to 9</p>
-          <h2 class="ud-board-h" id="udTownH"><span class="ud-neon">Starcourt</span> <span class="ud-board-d">Mall directory</span></h2>
-          <p class="ud-board-s">Every room on the site, as a store</p>
+          <p class="ud-board-k" aria-hidden="true">
+            <span class="ud-palace-up">Hawkins, Indiana · open 10 to 9</span>
+            <span class="ud-palace-dn" aria-hidden="true">Hawkins, Indiana · closed since November</span>
+          </p>
+          <h2 class="ud-board-h" id="udTownH">
+            <span class="ud-palace-up"><span class="ud-neon">Starcourt</span> <span class="ud-board-d">Mall directory</span></span>
+            <span class="ud-palace-dn" aria-hidden="true"><span class="ud-neon">Starcourt</span> <span class="ud-board-d">what is left of it</span></span>
+          </h2>
+          <p class="ud-board-s">
+            <span class="ud-palace-up">Every room on the site, as a store</span>
+            <span class="ud-palace-dn" aria-hidden="true">The same rooms, grown over</span>
+          </p>
         </div>
 
         <!-- the floor plan: level 2 along the top, level 1 along the bottom,
@@ -243,7 +265,7 @@ standalone: true
         <h3 class="ud-lvl ud-lvl--below"><span>Below the mall <i>· authorized personnel only</i></span></h3>
         <div class="ud-rooms">
           <a class="ud-room ud-room--below" href="/work/" data-spell="WORK" data-unit="B1" style="--b:#ff6a5c"><span class="ud-unit" aria-hidden="true">B1</span><b>The Lab</b><span>Work at UC Irvine</span></a>
-          <a class="ud-room ud-room--below" href="/worlds/" data-spell="WORLDS" data-unit="B2" style="--b:#ff6a5c"><span class="ud-unit" aria-hidden="true">B2</span><b>The Gate</b><span>All 71 worlds · a door to each</span></a>
+          <a class="ud-room ud-room--below" href="/worlds/" data-spell="WORLDS" data-unit="B2" style="--b:#ff6a5c"><span class="ud-unit" aria-hidden="true">B2</span><b>The Gate</b><span>All 74 worlds · a door to each</span></a>
         </div>
       </section>
 
@@ -254,8 +276,14 @@ standalone: true
       <section class="ud-sec ud-arcade" aria-labelledby="udRadioH">
         <div class="ud-palace">
           <span class="ud-chase" aria-hidden="true"></span>
-          <h2 class="ud-palace-h" id="udRadioH"><span class="ud-palace-a">Palace</span> <span class="ud-palace-b">Arcade</span></h2>
-          <p class="ud-palace-s">The other terminals, one cabinet each</p>
+          <h2 class="ud-palace-h" id="udRadioH">
+            <span class="ud-palace-up"><span class="ud-palace-a">Palace</span> <span class="ud-palace-b">Arcade</span></span>
+            <span class="ud-palace-dn" aria-hidden="true">Channel<span> by channel</span></span>
+          </h2>
+          <p class="ud-palace-s">
+            <span class="ud-palace-up">The other terminals, one cabinet each</span>
+            <span class="ud-palace-dn" aria-hidden="true">No power down here: the same terminals, raised on the walkie-talkie instead</span>
+          </p>
         </div>
         <div class="ud-attract" aria-hidden="true">
           <canvas class="ud-lcd-orb" data-orb="listening" data-orb-size="fit" data-orb-ink="#3ee6d6" aria-hidden="true"></canvas>
@@ -272,15 +300,18 @@ standalone: true
           <li><a class="ud-cab" href="/compass/" data-spell="COMPASS" data-ch="07" style="--c:#ff8a2a"><span class="ud-cab-m"><b>The Compass</b></span><span class="ud-cab-s"><i>Pirates of the Caribbean</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">07</span></a></li>
           <li><a class="ud-cab" href="/control-room/" data-spell="CONTROL ROOM" data-ch="08" style="--c:#ff5fb4"><span class="ud-cab-m"><b>The Control Room</b></span><span class="ud-cab-s"><i>Jurassic Park</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">08</span></a></li>
           <li><a class="ud-cab" href="/spirit-library/" data-spell="SPIRIT LIBRARY" data-ch="09" style="--c:#3ee6d6"><span class="ud-cab-m"><b>The Spirit Library</b></span><span class="ud-cab-s"><i>Avatar: The Last Airbender</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">09</span></a></li>
-          <li><a class="ud-cab" href="/upside-down/" data-spell="UPSIDE DOWN" data-ch="10" style="--c:#ff4a3d"><span class="ud-cab-m"><b>The Upside Down</b></span><span class="ud-cab-s"><i>The original Hawkins wall</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">10</span></a></li>
-          <li><a class="ud-cab" href="/monastery/" data-spell="MONASTERY" data-ch="11" style="--c:#e0b040"><span class="ud-cab-m"><b>The Monastery</b></span><span class="ud-cab-s"><i>Ninjago</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">11</span></a></li>
-          <li><a class="ud-cab" href="/wanted/" data-spell="WANTED" data-ch="12" style="--c:#c9402f"><span class="ud-cab-m"><b>The Wanted Board</b></span><span class="ud-cab-s"><i>Red Dead Redemption</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">12</span></a></li>
-          <li><a class="ud-cab" href="/dunder-mifflin/" data-spell="DUNDER MIFFLIN" data-ch="13" style="--c:#e8e6e0"><span class="ud-cab-m"><b>Dunder Mifflin</b></span><span class="ud-cab-s"><i>The Office</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">13</span></a></li>
-          <li><a class="ud-cab" href="/springfield/" data-spell="SPRINGFIELD" data-ch="14" style="--c:#ffd21f"><span class="ud-cab-m"><b>Springfield</b></span><span class="ud-cab-s"><i>The Simpsons</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">14</span></a></li>
-          <li><a class="ud-cab" href="/vought/" data-spell="VOUGHT" data-ch="15" style="--c:#e02a2a"><span class="ud-cab-m"><b>Vought Tower</b></span><span class="ud-cab-s"><i>The Boys</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">15</span></a></li>
-          <li><a class="ud-cab" href="/pokedex/" data-spell="POKEDEX" data-ch="16" style="--c:#ffd43f"><span class="ud-cab-m"><b>The Pokédex</b></span><span class="ud-cab-s"><i>Pokémon</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">16</span></a></li>
-          <li><a class="ud-cab" href="/batcomputer/" data-spell="BATCOMPUTER" data-ch="17" style="--c:#c9cdd2"><span class="ud-cab-m"><b>The Batcomputer</b></span><span class="ud-cab-s"><i>Batman</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">17</span></a></li>
-          <li><a class="ud-cab" href="/daily-bugle/" data-spell="DAILY BUGLE" data-ch="18" style="--c:#e02a3a"><span class="ud-cab-m"><b>The Daily Bugle</b></span><span class="ud-cab-s"><i>Spider-Man</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">18</span></a></li>
+          <li><a class="ud-cab" href="/monastery/" data-spell="MONASTERY" data-ch="10" style="--c:#e0b040"><span class="ud-cab-m"><b>The Monastery</b></span><span class="ud-cab-s"><i>Ninjago</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">10</span></a></li>
+          <li><a class="ud-cab" href="/wanted/" data-spell="WANTED" data-ch="11" style="--c:#c9402f"><span class="ud-cab-m"><b>The Wanted Board</b></span><span class="ud-cab-s"><i>Red Dead Redemption</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">11</span></a></li>
+          <li><a class="ud-cab" href="/dunder-mifflin/" data-spell="DUNDER MIFFLIN" data-ch="12" style="--c:#e8e6e0"><span class="ud-cab-m"><b>Dunder Mifflin</b></span><span class="ud-cab-s"><i>The Office</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">12</span></a></li>
+          <li><a class="ud-cab" href="/springfield/" data-spell="SPRINGFIELD" data-ch="13" style="--c:#ffd21f"><span class="ud-cab-m"><b>Springfield</b></span><span class="ud-cab-s"><i>The Simpsons</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">13</span></a></li>
+          <li><a class="ud-cab" href="/vought/" data-spell="VOUGHT" data-ch="14" style="--c:#e02a2a"><span class="ud-cab-m"><b>Vought Tower</b></span><span class="ud-cab-s"><i>The Boys</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">14</span></a></li>
+          <li><a class="ud-cab" href="/pokedex/" data-spell="POKEDEX" data-ch="15" style="--c:#ffd43f"><span class="ud-cab-m"><b>The Pokédex</b></span><span class="ud-cab-s"><i>Pokémon</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">15</span></a></li>
+          <li><a class="ud-cab" href="/batcomputer/" data-spell="BATCOMPUTER" data-ch="16" style="--c:#c9cdd2"><span class="ud-cab-m"><b>The Batcomputer</b></span><span class="ud-cab-s"><i>Batman</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">16</span></a></li>
+          <li><a class="ud-cab" href="/daily-bugle/" data-spell="DAILY BUGLE" data-ch="17" style="--c:#e02a3a"><span class="ud-cab-m"><b>The Daily Bugle</b></span><span class="ud-cab-s"><i>Spider-Man</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">17</span></a></li>
+          <li><a class="ud-cab" href="/grail-diary/" data-spell="GRAIL DIARY" data-ch="18" style="--c:#d8b06a"><span class="ud-cab-m"><b>The Grail Diary</b></span><span class="ud-cab-s"><i>Indiana Jones</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">18</span></a></li>
+          <li><a class="ud-cab" href="/red-book/" data-spell="RED BOOK" data-ch="19" style="--c:#d9b45f"><span class="ud-cab-m"><b>The Red Book</b></span><span class="ud-cab-s"><i>The Lord of the Rings</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">19</span></a></li>
+          <li><a class="ud-cab" href="/power-battery/" data-spell="POWER BATTERY" data-ch="20" style="--c:#4fd07f"><span class="ud-cab-m"><b>The Power Battery</b></span><span class="ud-cab-s"><i>Green Lantern</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">20</span></a></li>
+          <li><a class="ud-cab" href="/watchtower/" data-spell="WATCHTOWER" data-ch="21" style="--c:#5f9fe0"><span class="ud-cab-m"><b>The Watchtower</b></span><span class="ud-cab-s"><i>The Justice League</i><em aria-hidden="true">Press start</em></span><span class="ud-cab-c" aria-hidden="true"></span><span class="ud-cab-n" aria-hidden="true">21</span></a></li>
         </ol>
       </section>
     </div>
@@ -341,8 +372,12 @@ standalone: true
   </div>
 
   <!-- ─────────── the way out ───────────
-       the tape Jonathan made for Will, and the question on its label -->
+       the tape Jonathan made for Will, and the question on its label. The
+       world button sits above it: by here you are at the bottom of the
+       descent, which is the point at which "what is this all from?" is the
+       next question, so the answer is in reach before the tape asks its own. -->
   <div class="ud-out">
+    {% include interface-world.html world="Stranger Things" href="/worlds/stranger-things/" place="foot" %}
     <p class="ud-out-k">The song Jonathan played for Will</p>
     <button class="ud-tape" id="udTape" type="button">
       <span class="ud-tape-label">Should I stay or should I go?</span>
@@ -375,7 +410,7 @@ standalone: true
     }); });
   });
 </script>
-<script src="{% include v.html f='/assets/js/starcourt.js' %}"></script>
+<script src="{% include v.html f='/assets/js/hawkins.js' %}"></script>
 {% include analytics.html %}
 </body>
 </html>

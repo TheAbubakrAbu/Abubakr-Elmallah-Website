@@ -120,7 +120,7 @@
   animation: lotr-breathe 8s ease-in-out infinite alternate;
 }
 
-.ring-note h4 {
+.ring-note :is(h2, h3, h4, h5) {
   font-family: Copperplate, Georgia, serif; text-transform: uppercase;
   letter-spacing: 0.14em; font-size: 1.1rem; color: var(--a); margin-bottom: 0.6rem;
 }

@@ -9,7 +9,7 @@
      2. Qibla:        the true bearing and the great-circle distance to the
                       Kaʿbah from that same point.
      3. The date:     today in both calendars, and the gap between them.
-     4. Tajweed:      a sūrah coloured by rule, which is what the Quran
+     4. Tajweed:      a sūrah colored by rule, which is what the Quran
                       Tajweed Engine does to all 6,236 verses.
 
    LOAD ORDER MATTERS. Runs AFTER reveal.js, whole body in a try/catch: this
@@ -204,7 +204,7 @@
         + '<section class="isl-panel isl-panel--times reveal">'
         +   '<header class="isl-panel-h">'
         +     '<span class="isl-panel-k">Al-Adhan</span>'
-        +     '<h4>Prayer times</h4>'
+        +     '<h3>Prayer times</h3>'
         +     '<p class="isl-place" id="islPlace"></p>'
         +   '</header>'
         +   '<div class="isl-next" id="islNext"></div>'
@@ -228,7 +228,7 @@
         + '<section class="isl-panel isl-panel--qibla reveal">'
         +   '<header class="isl-panel-h">'
         +     '<span class="isl-panel-k">Al-Islam</span>'
-        +     '<h4>Qiblah</h4>'
+        +     '<h3>Qiblah</h3>'
         +     '<p class="isl-place">The direction of the Kaʿbah, as a great circle</p>'
         +   '</header>'
         +   '<div class="isl-compass" id="islCompass">'
@@ -257,7 +257,7 @@
         + '<section class="isl-panel isl-panel--date reveal">'
         +   '<header class="isl-panel-h">'
         +     '<span class="isl-panel-k">Both calendars</span>'
-        +     '<h4>Today</h4>'
+        +     '<h3>Today</h3>'
         +     '<p class="isl-place">The Hijri year is lunar, so it runs about eleven days short</p>'
         +   '</header>'
         +   '<p class="isl-hijri" id="islHijri" lang="ar" dir="rtl">…</p>'
@@ -406,79 +406,15 @@
       render();
       setInterval(render, 30000);
     }
+    /* The tajwīd demo that sat here (Sūrat al-Ikhlāṣ segmented by rule, with
+       a legend that filtered it) was removed on 2026-10-06 along with its
+       section in al-islam.html: the sūrah is not something to decorate a
+       portfolio page with. tj-* styles stay in al-islam.css unused for now. */
 
-    /* ═══════════ 4: tajweed ═══════════
-       Sūrat al-Ikhlāṣ, segmented by rule. The engine behind Al-Quran does this
-       to the whole muṣḥaf from the rules rather than from a table; this is four
-       verses of it, marked by hand, so the colours can be explained.
-
-       Each segment is [text, ruleKey]. A null rule is plain text. */
-    var RULES = [
-      { k: 'madd',     name: 'Madd',     ar: 'مد',    desc: 'A vowel held long: two counts for the natural one, four to six where a hamzah or a sukūn follows.' },
-      { k: 'qalqalah', name: 'Qalqalah', ar: 'قلقلة', desc: 'An echo on ق ط ب ج د when the letter carries no vowel. You bounce off it rather than stopping dead.' },
-      { k: 'idgham',   name: 'Idghām',   ar: 'إدغام', desc: 'One letter merged into the next so the first is not heard at all, including the lām of “al-” before a sun letter.' },
-      { k: 'ghunnah',  name: 'Ghunnah',  ar: 'غنة',   desc: 'A nasal hum held about two counts, on a doubled nūn or mīm and on the merges that carry it.' },
-      { k: 'izhar',    name: 'Iẓhār',    ar: 'إظهار', desc: 'The opposite: the nūn or tanwīn is pronounced clearly, with no hum, because a throat letter follows.' },
-    ];
-
-    var SURAH = [
-      { n: 1, seg: [['قُلْ ', null], ['هُوَ ', null], ['ٱللَّهُ ', 'ghunnah'], ['أَحَدٌ', 'madd']] },
-      { n: 2, seg: [['ٱللَّهُ ', 'ghunnah'], ['ٱلصَّ', 'idgham'], ['مَدُ', 'qalqalah']] },
-      { n: 3, seg: [['لَمْ ', null], ['يَلِدْ ', 'qalqalah'], ['وَلَمْ ', null], ['يُو', 'madd'], ['لَدْ', 'qalqalah']] },
-      { n: 4, seg: [['وَلَمْ ', null], ['يَكُن ', null], ['لَّهُۥ ', 'idgham'], ['كُفُوًا ', 'madd'], ['أَحَدٌۢ', 'izhar']] },
-    ];
-
-    var taj = document.getElementById('islTajweed');
-    if (taj) {
-      taj.innerHTML =
-        '<div class="tj-legend" id="tjLegend" role="group" aria-label="Tajweed rules">'
-        + '<button class="tj-chip is-on" type="button" data-rule="all">All rules</button>'
-        + RULES.map(function (r) {
-            return '<button class="tj-chip tj-chip--' + r.k + '" type="button" data-rule="' + r.k + '">'
-              + '<i aria-hidden="true"></i>' + r.name
-              + '<span lang="ar" dir="rtl">' + r.ar + '</span></button>';
-          }).join('')
-        + '</div>'
-        + '<div class="tj-sheet" id="tjSheet" lang="ar" dir="rtl">'
-        + SURAH.map(function (v) {
-            /* The verse number goes inside the ornate parentheses U+FD3E/U+FD3F,
-               the pair a muṣḥaf actually uses, with Arabic-Indic digits. Written
-               as escapes rather than literal glyphs so the file stays readable
-               in an editor that does not do bidi well. */
-            var digits = String(v.n).replace(/[0-9]/g, function (d) {
-              return String.fromCharCode(0x0660 + (+d));
-            });
-            return '<p class="tj-ayah">' + v.seg.map(function (s) {
-              return s[1] ? '<span class="tj tj--' + s[1] + '">' + s[0] + '</span>' : s[0];
-            }).join('') + '<span class="tj-num">﴾' + digits + '﴿</span></p>';
-          }).join('')
-        + '</div>'
-        + '<div class="tj-notes" id="tjNotes">'
-        + RULES.map(function (r) {
-            return '<p class="tj-note tj-note--' + r.k + '"><b>' + r.name + '</b>' + r.desc + '</p>';
-          }).join('')
-        + '</div>';
-
-      var sheet = document.getElementById('tjSheet');
-      document.getElementById('tjLegend').addEventListener('click', function (e) {
-        var b = e.target.closest('[data-rule]');
-        if (!b) return;
-        var rule = b.getAttribute('data-rule');
-        this.querySelectorAll('[data-rule]').forEach(function (x) { x.classList.toggle('is-on', x === b); });
-        // `data-only` narrows the sheet to one rule; absent means show them all
-        if (rule === 'all') sheet.removeAttribute('data-only');
-        else sheet.setAttribute('data-only', rule);
-        taj.querySelectorAll('.tj-note').forEach(function (n) {
-          n.classList.toggle('is-dim', rule !== 'all' && !n.classList.contains('tj-note--' + rule));
-        });
-      });
-    }
-
-    /* Both blocks were written after reveal.js ran; handing them back is
+    /* The block was written after reveal.js ran; handing it back is
        idempotent and picks up the new nodes. */
     if (typeof window.AEreveal === 'function') {
       if (root) window.AEreveal(root);
-      if (taj) window.AEreveal(taj);
     }
 
   } catch (err) { /* never take the page down with it */ }

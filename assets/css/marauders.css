@@ -13,6 +13,8 @@ img, svg { display: block; max-width: 100%; }
 html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
 
 .mm {
+  --iw-a: #a8783f;   /* the shared world button, interface-world.css */
+  --iw-bg: #e8d5ab;
   /* This page loads no shared stylesheet, so it defines the font tokens it
      uses itself rather than inheriting them from base.css. */
   --mono:     "JetBrains Mono", ui-monospace, monospace;
@@ -41,7 +43,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   box-shadow: 0 40px 90px -40px #000;
   min-height: 100vh;
 }
-.mm-sheet::before {                    /* fibres and foxing */
+.mm-sheet::before {                    /* fibers and foxing */
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background-image:
     repeating-linear-gradient(94deg, rgba(120,90,50,.05) 0 1px, transparent 1px 7px),
@@ -155,7 +157,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   100% { opacity: 0; }
 }
 
-/* a labelled figure, standing still */
+/* a labeled figure, standing still */
 .mm-you {
   position: absolute; right: 1.2rem; top: -0.75rem; padding: 0 0.5rem;
   background: var(--parch);

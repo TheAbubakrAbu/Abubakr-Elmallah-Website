@@ -111,6 +111,7 @@ import hashlib
 import json
 import os
 import re
+import subprocess
 import sys
 import time
 from html.parser import HTMLParser
@@ -1089,6 +1090,30 @@ def check_counts(report):
     if d['fan_pages'] != d['tile_links']:
         c.add('%d fan pages in src/ but %d linked tiles in fandom-data.js' % (d['fan_pages'], d['tile_links']))
 
+    # _data/worlds.yml is generated from fandom-data.js (tools/worlds.py) and
+    # every world page prints its rank's other worlds from it. If a tile is
+    # added, renamed, re-ranked or re-linked and the script is not re-run, the
+    # sibling strips go stale silently, so the freshness is checked here.
+    # assets/js/files-pics-data.js is generated from assets/img/archive/ by
+    # tools/filespics.py and drives the picture grids on /files/. A picture
+    # added to the folder but not regenerated here simply never appears.
+    c.checked += 1
+    fp = os.path.join(ROOT, 'tools', 'filespics.py')
+    if os.path.exists(fp):
+        r = subprocess.run([sys.executable, fp, '--check'], capture_output=True, text=True)
+        if r.returncode != 0:
+            c.add((r.stdout + r.stderr).strip().split('\n')[-1]
+                  or 'assets/js/files-pics-data.js is out of date: run python3 tools/filespics.py')
+
+    c.checked += 1
+    worlds_py = os.path.join(ROOT, 'tools', 'worlds.py')
+    if os.path.exists(worlds_py):
+        r = subprocess.run([sys.executable, worlds_py, '--check'],
+                           capture_output=True, text=True)
+        if r.returncode != 0:
+            c.add((r.stdout + r.stderr).strip().split('\n')[-1]
+                  or '_data/worlds.yml is out of date: run python3 tools/worlds.py')
+
 
 # ── SOFT: orphans ─────────────────────────────────────────────────────────
 
@@ -1132,6 +1157,16 @@ def check_orphans(site, report, referenced):
             for prefix in ('img/years/', 'img/franchises/', 'img/'):
                 if mark(prefix + lit):
                     break
+    # stylesheets reference assets too, and only from inside url(): a webfont
+    # is named by its @font-face and by nothing else in the tree, so without
+    # this every self-hosted font reads as unreferenced. (base.css loads the
+    # Arabic face this way.)
+    for f in walk_files(os.path.join(ROOT, 'assets', 'css')):
+        if not f.endswith('.css'):
+            continue
+        css = read_text(os.path.join(ROOT, 'assets', 'css', f))
+        for m in re.finditer(r'url\(\s*[\'"]?(/assets/[^\s\'")?#]+)', css):
+            mark(m.group(1)[len('/assets/'):])
     # the same for the source pages and includes, whose paths are root-relative
     for f in ['index.html', 'sw.js', 'manifest.webmanifest'] + ['src/' + n for n in os.listdir(os.path.join(ROOT, 'src'))] + ['_includes/' + n for n in os.listdir(os.path.join(ROOT, '_includes'))]:
         p = os.path.join(ROOT, f)

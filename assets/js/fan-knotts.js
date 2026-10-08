@@ -37,8 +37,8 @@ window.FAN_PAGE = {
         desc: 'The thrill corner. Xcelerator launching a fifties hot rod to eighty-two miles an hour in a bit over two seconds, HangTime hanging you over a drop before it takes it, and the funnel cake.',
         meta: 'Xcelerator · HangTime' },
       { title: 'Camp Snoopy', sub: 'Since 1983', tag: 'Land', accent: '#f0c840',
-        desc: 'The first Peanuts land anywhere, and the licence that every Cedar Fair park ended up sharing. Built as a High Sierra camp around a creek, and genuinely charming rather than just a place to park children.',
-        meta: 'The oldest Peanuts licence in parks' },
+        desc: 'The first Peanuts land anywhere, and the license that every Cedar Fair park ended up sharing. Built as a High Sierra camp around a creek, and genuinely charming rather than just a place to park children.',
+        meta: 'The oldest Peanuts license in parks' },
     ] },
 
   /* The ride pages live on sixflags.com since the Cedar Fair merger: every
@@ -78,7 +78,7 @@ window.FAN_PAGE = {
       { title: 'Ghost Town Alive', accent: '#d8934a', sub: 'Summer', desc: 'The whole street becomes an improvised play. Actors stay in character all day and will give you a job in it.' },
       { title: 'The Haunt', accent: '#6f7f4f', sub: 'Autumn, since 1973', desc: 'Knott\u2019s invented the seasonal theme park scare event. Every park running one now is copying this park.' },
       { title: 'Merry Farm', accent: '#8fb0d0', sub: 'Winter', desc: 'Ghost Town in snow, a tree lighting, and the calmest the place gets all year.' },
-      { title: 'Peanuts Celebration', accent: '#f0c840', sub: 'Late winter', desc: 'Camp Snoopy has had the Peanuts licence since 1983, longer than most park licences last.' },
+      { title: 'Peanuts Celebration', accent: '#f0c840', sub: 'Late winter', desc: 'Camp Snoopy has had the Peanuts license since 1983, longer than most park licenses last.' },
     ] },
 
   { id: 'haunt', kind: 'cards', title: 'Knott\u2019s Scary Farm', note: 'they invented this, in 1973',

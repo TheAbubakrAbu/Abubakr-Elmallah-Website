@@ -96,7 +96,7 @@
     links.forEach(a => a.addEventListener('click', e => { e.preventDefault(); open(label, images); }));
   });
 
-  /* franchise-catalogue tiles: a finished game carries every image it has in
+  /* franchise-catalog tiles: a finished game carries every image it has in
      data-images (fanpage.js writes it), and clicking anywhere on the tile
      opens the whole set; in grid view the thumbnail is hidden, so the tile
      itself is the only thing there is to click. */
@@ -108,16 +108,26 @@
     });
   });
 
-  // every other image link (flyers, wallpapers, WWDC photos, …) opens singly
-  document.querySelectorAll('a[href]').forEach(a => {
-    if (a.closest('.app-shots')) return;            // already handled as a group above
+  /* Every other image link (flyers, wallpapers, WWDC photos, …) opens singly.
+
+     DELEGATED, on purpose. This used to walk a[href] once at load and bind
+     each match, which missed every link written afterwards: the picture grids
+     on /files/ are rendered from a data file (files-pics.js), so none of
+     their eighty-eight links existed when this ran and all of them dumped the
+     raw file in a tab. One listener on the document covers whatever the page
+     builds later, and costs one closest() per click. */
+  document.addEventListener('click', e => {
+    const a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    if (a.closest('.app-shots')) return;             // handled as a group above
     if (a.closest('.fan-tile[data-images]')) return; // the tile handler owns these
     const href = a.getAttribute('href');
     if (!isImg(href)) return;
     const cap = a.querySelector('.flyer-cap b');
     const img = a.querySelector('img');
     const label = a.dataset.label || (cap && cap.textContent.trim()) || (img && img.alt) || '';
-    a.addEventListener('click', e => { e.preventDefault(); open(label, [href]); });
+    e.preventDefault();
+    open(label, [href]);
   });
 
   closeBtn.addEventListener('click', close);

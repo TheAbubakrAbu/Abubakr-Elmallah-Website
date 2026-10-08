@@ -1,7 +1,7 @@
 ---
 permalink: /freddys/
 title: "The Security Office · Abubakr Elmallah"
-description: "A Five Nights at Freddy's security office: every page on Abubakr Elmallah's site is a camera feed, watched from one desk on a draining power meter."
+description: "A Five Nights at Freddy's security office: every page on Abubakr Elmallah's site is a camera feed, watched from one desk on a draining power meter, with two doors, two lights and something moving between the rooms."
 theme: "#0a0806"
 fonts: "family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500"
 standalone: true
@@ -12,8 +12,9 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/freddys.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
-<body class="fz" id="fz">
+<body class="fz" id="fz" data-hour="12">
 
 <!-- the office: a dark room, the desk fan's shadow, and the static that
      never quite leaves a CRT alone -->
@@ -27,6 +28,7 @@ standalone: true
   <a class="fz-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Clock out</span>
   </a>
+  {% include interface-world.html world="Five Nights at Freddy’s" href="/worlds/five-nights-at-freddys/" %}
   <span class="fz-top-mid">Freddy Fazbear&#8217;s Pizza &#183; Night Guard &#183; Abubakr Elmallah</span>
   <span class="fz-top-t"><b id="fzHour">12</b> AM</span>
 </header>
@@ -61,7 +63,101 @@ standalone: true
         <em id="fzUsage">1</em>
       </div>
       <p class="fz-power-n" id="fzNote">The monitor is down. Nothing is drawing power except the lights.</p>
+
+      <!-- the night, hour by hour: six pips that fill as the power goes down,
+           because the hour on this page is only ever the power in disguise -->
+      <div class="fz-night" aria-hidden="true">
+        <span class="fz-night-k">The night</span>
+        <span class="fz-hours" id="fzHours"></span>
+      </div>
     </div>
+  </section>
+
+  <!-- ═══════════ the office controls ═══════════
+       The other half of the game, and the half this page was missing: the
+       two doorways either side of the desk, each with a door you can shut
+       and a light you can flick on. Both cost power, which is the trade the
+       whole game is built on, and the door is the only thing that actually
+       stops what is coming down the hall.
+       freddys.js runs the animatronic that makes them matter. -->
+  <section class="fz-office" aria-labelledby="fzOfficeH">
+    <h2 class="fz-h" id="fzOfficeH">The office</h2>
+    <p class="fz-h-sub">Two doors, two lights, two vents. Everything here costs power, and the door is the
+      only one of them that stops anything.</p>
+
+    <div class="fz-office-box">
+
+      <!-- left doorway -->
+      <div class="fz-door-side" id="fzSideL" data-side="left">
+        <p class="fz-door-k">West hall</p>
+        <div class="fz-hall" aria-hidden="true">
+          <span class="fz-hall-floor"></span>
+          <!-- what is standing in the hall when the light is on -->
+          <span class="fz-shape" id="fzShapeL">
+            <svg viewBox="0 0 60 90">
+              <ellipse class="fz-sh-sh" cx="30" cy="86" rx="20" ry="4"/>
+              <rect class="fz-sh-b" x="12" y="30" width="36" height="42" rx="6"/>
+              <circle class="fz-sh-b" cx="30" cy="20" r="15"/>
+              <circle class="fz-sh-eye" cx="24" cy="18" r="3.4"/>
+              <circle class="fz-sh-eye" cx="36" cy="18" r="3.4"/>
+              <rect class="fz-sh-b" x="20" y="4" width="20" height="7" rx="3"/>
+              <path class="fz-sh-l" d="M14 72h11v16H14zM35 72h11v16H35z"/>
+            </svg>
+          </span>
+        </div>
+        <div class="fz-door-ctl">
+          <button class="fz-dbtn" id="fzDoorL" type="button" aria-pressed="false">
+            <span class="fz-dbtn-i" aria-hidden="true"></span>Door
+          </button>
+          <button class="fz-dbtn" id="fzLightL" type="button" aria-pressed="false">
+            <span class="fz-dbtn-i" aria-hidden="true"></span>Light
+          </button>
+        </div>
+      </div>
+
+      <!-- the desk between them -->
+      <div class="fz-desk-mid">
+        <p class="fz-desk-mid-k">Desk</p>
+        <div class="fz-fan" aria-hidden="true">
+          <span class="fz-fan-cage"></span>
+          <span class="fz-fan-blades"></span>
+        </div>
+        <p class="fz-desk-mid-s" id="fzWhere">Nothing on the cameras yet.</p>
+        <!-- the only thing on this desk that is not drawn: a thinking orb,
+             because every surface on this site has one -->
+        <canvas class="fz-orb" data-orb="searching" data-orb-size="22" data-orb-ink="#f0c840" aria-hidden="true"></canvas>
+      </div>
+
+      <!-- right doorway -->
+      <div class="fz-door-side" id="fzSideR" data-side="right">
+        <p class="fz-door-k">East hall</p>
+        <div class="fz-hall" aria-hidden="true">
+          <span class="fz-hall-floor"></span>
+          <span class="fz-shape" id="fzShapeR">
+            <svg viewBox="0 0 60 90">
+              <ellipse class="fz-sh-sh" cx="30" cy="86" rx="20" ry="4"/>
+              <rect class="fz-sh-b" x="12" y="30" width="36" height="42" rx="6"/>
+              <circle class="fz-sh-b" cx="30" cy="20" r="15"/>
+              <circle class="fz-sh-eye" cx="24" cy="18" r="3.4"/>
+              <circle class="fz-sh-eye" cx="36" cy="18" r="3.4"/>
+              <rect class="fz-sh-b" x="20" y="4" width="20" height="7" rx="3"/>
+              <path class="fz-sh-l" d="M14 72h11v16H14zM35 72h11v16H35z"/>
+            </svg>
+          </span>
+        </div>
+        <div class="fz-door-ctl">
+          <button class="fz-dbtn" id="fzDoorR" type="button" aria-pressed="false">
+            <span class="fz-dbtn-i" aria-hidden="true"></span>Door
+          </button>
+          <button class="fz-dbtn" id="fzLightR" type="button" aria-pressed="false">
+            <span class="fz-dbtn-i" aria-hidden="true"></span>Light
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <p class="fz-office-n">A door shut draws power the whole time it is shut, and a light only while it is
+      on. That is the game: everything that keeps you safe is the same meter that runs out.</p>
   </section>
 
   <!-- ─────────── the cameras ───────────
@@ -76,12 +172,12 @@ standalone: true
     <div class="fz-grid">
       <a class="fz-cam" href="/" data-cam="1A" data-room="Show Stage"><span class="fz-cam-n">CAM 1A</span><b>Home</b><i>Show Stage &#183; where everybody starts</i></a>
       <a class="fz-cam" href="/work/" data-cam="1B" data-room="Dining Area"><span class="fz-cam-n">CAM 1B</span><b>Work</b><i>lead mobile &amp; backend developer, UCI</i></a>
-      <a class="fz-cam" href="/projects/" data-cam="1C" data-room="Pirate Cove"><span class="fz-cam-n">CAM 1C</span><b>Projects</b><i>twelve apps, catalogued</i></a>
+      <a class="fz-cam" href="/projects/" data-cam="1C" data-room="Pirate Cove"><span class="fz-cam-n">CAM 1C</span><b>Projects</b><i>twelve apps, cataloged</i></a>
       <a class="fz-cam" href="/resume/" data-cam="2A" data-room="West Hall"><span class="fz-cam-n">CAM 2A</span><b>R&#233;sum&#233;</b><i>the whole record on one page</i></a>
       <a class="fz-cam" href="/education/" data-cam="2B" data-room="W. Hall Corner"><span class="fz-cam-n">CAM 2B</span><b>Education</b><i>both schools</i></a>
       <a class="fz-cam" href="/college/" data-cam="3" data-room="Supply Closet"><span class="fz-cam-n">CAM 3</span><b>College</b><i>UC Irvine, class of 2028</i></a>
       <a class="fz-cam" href="/high-school/" data-cam="4A" data-room="East Hall"><span class="fz-cam-n">CAM 4A</span><b>High School</b><i>where it started</i></a>
-      <a class="fz-cam" href="/worlds/" data-cam="4B" data-room="E. Hall Corner"><span class="fz-cam-n">CAM 4B</span><b>Worlds</b><i>all seventy-one of them</i></a>
+      <a class="fz-cam" href="/worlds/" data-cam="4B" data-room="E. Hall Corner"><span class="fz-cam-n">CAM 4B</span><b>Worlds</b><i>all seventy-four of them</i></a>
       <a class="fz-cam" href="/worlds/five-nights-at-freddys/" data-cam="5" data-room="Backstage"><span class="fz-cam-n">CAM 5</span><b>Five Nights at Freddy&#8217;s</b><i>Backstage &#183; the world page</i></a>
       <a class="fz-cam" href="/worlds/star-wars/" data-cam="6" data-room="Kitchen"><span class="fz-cam-n">CAM 6</span><b>Star Wars</b><i>126 planets, charted</i></a>
       <a class="fz-cam" href="/star-wars/" data-cam="7" data-room="Restrooms"><span class="fz-cam-n">CAM 7</span><b>Aurebesh &amp; Sabacc</b><i>the Star Wars apps</i></a>
@@ -98,15 +194,40 @@ standalone: true
       <a class="fz-cam" href="/batcomputer/" data-cam="18" data-room="Basement"><span class="fz-cam-n">CAM 18</span><b>The Batcomputer</b><i>the Batman terminal</i></a>
       <a class="fz-cam" href="/instructions/" data-cam="19" data-room="Parts Room"><span class="fz-cam-n">CAM 19</span><b>The Instruction Booklet</b><i>the LEGO terminal</i></a>
       <a class="fz-cam" href="/battle-pass/" data-cam="20" data-room="Lobby"><span class="fz-cam-n">CAM 20</span><b>The Battle Pass</b><i>the Fortnite terminal</i></a>
+      <a class="fz-cam" href="/grail-diary/" data-cam="21" data-room="Map Room"><span class="fz-cam-n">CAM 21</span><b>The Grail Diary</b><i>the Indiana Jones terminal</i></a>
+      <a class="fz-cam" href="/red-book/" data-cam="22" data-room="Study"><span class="fz-cam-n">CAM 22</span><b>The Red Book</b><i>the Lord of the Rings terminal</i></a>
+      <a class="fz-cam" href="/power-battery/" data-cam="23" data-room="Lamp Chamber"><span class="fz-cam-n">CAM 23</span><b>The Power Battery</b><i>the Green Lantern terminal</i></a>
+      <a class="fz-cam" href="/watchtower/" data-cam="24" data-room="Monitor Womb"><span class="fz-cam-n">CAM 24</span><b>The Watchtower</b><i>the Justice League terminal</i></a>
     </div>
+  </section>
+
+  <!-- ═══════════ the night report ═══════════
+       What a shift on this site actually adds up to. The game puts your
+       night on a check at six in the morning, so this page does too: the
+       figures are the real ones from the rest of the site, and the last
+       line is the only one that moves. -->
+  <section class="fz-report" aria-labelledby="fzRepH">
+    <h2 class="fz-h" id="fzRepH">The night report</h2>
+    <p class="fz-h-sub">What the shift covers, which is the whole site.</p>
+    <dl class="fz-figs">
+      <div><dt>Feeds on this desk</dt><dd>24</dd></div>
+      <div><dt>Apps shipped</dt><dd>12</dd></div>
+      <div><dt>Worlds cataloged</dt><dd>74</dd></div>
+      <div><dt>Trips taken</dt><dd>35</dd></div>
+      <div><dt>Accents learned</dt><dd>19</dd></div>
+      <div><dt>Cameras checked tonight</dt><dd id="fzChecked">0</dd></div>
+    </dl>
+    <p class="fz-report-n">Four dollars and fifty cents is what the game pays for five of these. This one
+      pays in links.</p>
   </section>
 
 </main>
 
 <!-- ─────────── the monitor ───────────
-     Pulled up over the office, the way the game does it. It shows the feed
-     you have chosen, with the static and the room label; closing it puts the
-     power back to only the lights. -->
+     Pulled up over the office, the way the game does it: the feed you have
+     chosen big, with the static and the room label, and the whole camera
+     wall down the side so you can flick between them without putting it
+     down. Closing it puts the power back to only the lights. -->
 <div class="fz-monitor" id="fzMonitor" hidden>
   <div class="fz-mon-shell">
     <div class="fz-mon-bar">
@@ -114,14 +235,31 @@ standalone: true
       <span id="fzMonRoom">Show Stage</span>
       <button class="fz-mon-x" id="fzMonX" type="button" aria-label="Put the monitor down">&#215;</button>
     </div>
-    <div class="fz-mon-screen">
-      <span class="fz-mon-static" aria-hidden="true"></span>
-      <div class="fz-mon-body">
-        <b id="fzMonT">Home</b>
-        <i id="fzMonD">Show Stage &#183; where everybody starts</i>
-        <a class="fz-mon-go" id="fzMonGo" href="/">Go to this room &#8594;</a>
+    <div class="fz-mon-body-wrap">
+      <div class="fz-mon-screen">
+        <span class="fz-mon-static" aria-hidden="true"></span>
+        <!-- the animatronic, when the feed you are on is the room it is in -->
+        <span class="fz-mon-figure" id="fzMonFig" aria-hidden="true">
+          <svg viewBox="0 0 60 90">
+            <ellipse class="fz-sh-sh" cx="30" cy="86" rx="20" ry="4"/>
+            <rect class="fz-sh-b" x="12" y="30" width="36" height="42" rx="6"/>
+            <circle class="fz-sh-b" cx="30" cy="20" r="15"/>
+            <circle class="fz-sh-eye" cx="24" cy="18" r="3.4"/>
+            <circle class="fz-sh-eye" cx="36" cy="18" r="3.4"/>
+            <rect class="fz-sh-b" x="20" y="4" width="20" height="7" rx="3"/>
+            <path class="fz-sh-l" d="M14 72h11v16H14zM35 72h11v16H35z"/>
+          </svg>
+        </span>
+        <div class="fz-mon-body">
+          <b id="fzMonT">Home</b>
+          <i id="fzMonD">Show Stage &#183; where everybody starts</i>
+          <a class="fz-mon-go" id="fzMonGo" href="/">Go to this room &#8594;</a>
+        </div>
+        <span class="fz-mon-rec" aria-hidden="true">&#9679; REC</span>
       </div>
-      <span class="fz-mon-rec" aria-hidden="true">&#9679; REC</span>
+
+      <!-- the camera wall: the map in the corner of the real monitor -->
+      <nav class="fz-mon-wall" id="fzWall" aria-label="Switch camera"></nav>
     </div>
   </div>
 </div>
@@ -139,7 +277,21 @@ standalone: true
   </div>
 </div>
 
+<!-- 6 AM: the one screen in the game that is a reward -->
+<div class="fz-six" id="fzSix" hidden>
+  <div class="fz-six-box">
+    <p class="fz-six-t">6 AM</p>
+    <p class="fz-six-s">You made it to morning with the power still on, which on night one means you were
+      sensible with the cameras. The rest of the site is still open.</p>
+    <div class="fz-out-acts">
+      <button class="fz-btn" id="fzSixReset" type="button">Work it again</button>
+      <a class="fz-btn fz-btn--ghost" href="/worlds/five-nights-at-freddys/">The world page</a>
+    </div>
+  </div>
+</div>
+
 <footer class="fz-bottom">
+  {% include interface-world.html world="Five Nights at Freddy’s" href="/worlds/five-nights-at-freddys/" place="foot" %}
   <a class="fz-back" href="/">&#9668; Back to the main site</a>
   <span class="fz-foot-n">24 cameras &#183; 12 AM to 6 AM &#183; watch the power</span>
 </footer>

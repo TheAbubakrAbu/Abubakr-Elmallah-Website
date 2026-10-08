@@ -17,7 +17,7 @@ window.FAN_PAGE = {
       { num: '08', title: 'The Iron Throne', sub: '2019', meta: 'Aired April – May 2019 · 304 AC · the year winter arrives', desc: 'Six episodes to land eight seasons. It did not.' },
     ] },
 
-  { id: 'favourites', kind: 'cards', title: 'My Eight', note: 'the Stark men, the Lannisters, and two from the novellas',
+  { id: 'favorites', kind: 'cards', title: 'My Eight', note: 'the Stark men, the Lannisters, and two from the novellas',
     lede: 'Three Stark men, the three Lannisters who between them drive most of the plot, and the two from the novellas who are the best thing Martin has ever written. The Starks are who you want to be and the Lannisters are who is actually running the place.',
     items: [
       { title: 'Eddard Stark', sub: 'Sean Bean · Lord of Winterfell', tag: 'No. 1', accent: '#c9cdd2',
@@ -33,10 +33,10 @@ window.FAN_PAGE = {
         desc: 'Introduced pushing a child out of a window and slowly revealed as the man who broke his oath to stop a king burning a city alive, and got called Kingslayer for it for twenty years. The bath scene at Harrenhal is the best-acted scene in the series.',
         meta: 'Kingslayer · the bath' },
       { title: 'Tyrion Lannister', sub: 'Peter Dinklage', tag: 'No. 5', accent: '#e0a020',
-        desc: 'The cleverest person in Westeros, held in contempt by his own family for his entire life, and he never once stops being funny about it. He runs the defence of King’s Landing, gets tried for a murder he did not commit, demands a trial by combat, and delivers the best speech in the series to a room that has already decided.',
+        desc: 'The cleverest person in Westeros, held in contempt by his own family for his entire life, and he never once stops being funny about it. He runs the defense of King’s Landing, gets tried for a murder he did not commit, demands a trial by combat, and delivers the best speech in the series to a room that has already decided.',
         meta: '“I demand a trial by combat.”' },
       { title: 'Tywin Lannister', sub: 'Charles Dance', tag: 'No. 6', accent: '#a8823a',
-        desc: 'The most frightening man in the story and he never raises his voice or picks up a sword. He wins the war with a letter and a wedding, and the Harrenhal scenes where he talks to a servant girl he has not realised is Arya Stark are the best-written stretch in the show. He dies on the privy, which is exactly the indignity he spent his whole life avoiding.',
+        desc: 'The most frightening man in the story and he never raises his voice or picks up a sword. He wins the war with a letter and a wedding, and the Harrenhal scenes where he talks to a servant girl he has not realized is Arya Stark are the best-written stretch in the show. He dies on the privy, which is exactly the indignity he spent his whole life avoiding.',
         meta: 'The Rains of Castamere' },
       { title: 'Ser Duncan the Tall', sub: 'Dunk · the hedge knight', tag: 'No. 7', accent: '#a8823a',
         desc: 'Seven feet of hedge knight with no land, no lineage and a borrowed sword, who keeps doing the right thing at enormous personal cost because nobody ever told him he was allowed not to. Martin at his warmest, and his best.',
@@ -337,6 +337,6 @@ window.FAN_PLAY = {
     { n: "Greyjoy", s: "Pyke \u00b7 the Iron Islands", c: "#4f7f7f", d: "M12 3v14 M8 7h8 M7 13c0 4 2 6 5 6s5-2 5-6", note: "We do not sow. Reaving as a national identity, which works until somebody with a bigger fleet takes an interest." },
     { n: "Tyrell", s: "Highgarden \u00b7 the Reach", c: "#5fbf7f", d: "M12 21V10 M12 10c-4 0-6-3-6-6 4 0 6 2 6 6z M12 10c4 0 6-3 6-6-4 0-6 2-6 6z", note: "Growing strong. The richest house in Westeros and the one that plays the game best, largely through Olenna, who is the only person in the series who is never once outmanoeuvred." },
     { n: "Martell", s: "Sunspear \u00b7 Dorne", c: "#e0762a", d: "M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16z M12 8v8 M8 12h8", note: "Unbowed, unbent, unbroken. The only kingdom Aegon never conquered; they simply refused, for two hundred years, until it was settled by marriage instead." },
-    { n: "Tully", s: "Riverrun \u00b7 the Riverlands", c: "#5f9fd0", d: "M4 9c4-3 6 3 8 0s4-3 8 0 M4 15c4-3 6 3 8 0s4-3 8 0", note: "Family, duty, honour: in that order, which the show quietly points out is the wrong order for anybody who wants to survive King\u2019s Landing." },
+    { n: "Tully", s: "Riverrun \u00b7 the Riverlands", c: "#5f9fd0", d: "M4 9c4-3 6 3 8 0s4-3 8 0 M4 15c4-3 6 3 8 0s4-3 8 0", note: "Family, duty, honor: in that order, which the show quietly points out is the wrong order for anybody who wants to survive King\u2019s Landing." },
   ],
 };

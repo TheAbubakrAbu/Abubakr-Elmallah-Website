@@ -15,6 +15,8 @@ img, svg { display: block; max-width: 100%; }
 html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
 
 .pc {
+  --iw-a: #d2ad62;   /* the shared world button, interface-world.css */
+  --iw-bg: #0c0a07;
   /* IM Fell is the type John Fell bought for the Oxford press in the
      1670s: rough, inky and fifty years older than the films' Caribbean,
      which is exactly what a chart of the 1720s would have been lettered in.
@@ -25,7 +27,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   --sea-2:  #0c1f28;
   --sea-3:  #123241;
   --glass:  #8cc9c0;          /* sea glass: the orbs on the dark */
-  --parch:  #d8c9a0;          /* the Pirates world's tile colour */
+  --parch:  #d8c9a0;          /* the Pirates world's tile color */
   --ink:    #2b1d0e;          /* iron gall */
   --ink-2:  #5a4326;
   --blood:  #7a2416;          /* oxblood: the course, the point of the needle */
@@ -117,7 +119,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   border-radius: 3px;
   box-shadow: 0 50px 90px -40px #000, 0 0 0 1px rgba(0, 0, 0, .45);
 }
-.pc-chart::before {                    /* fibres and foxing */
+.pc-chart::before {                    /* fibers and foxing */
   content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background-image:
     repeating-linear-gradient(93deg, rgba(120, 90, 50, .05) 0 1px, transparent 1px 7px),
@@ -247,7 +249,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   /* the pivot of the needle, (0, 0) in the compass's drawing, is 250 of its
      400 units down and halfway across. At 24% of the chart's width the
      drawing is 48% of its height, so 20% from the top puts the pivot on the
-     chart's centre. */
+     chart's center. */
   .pc-binn { position: absolute; left: 38%; top: 20%; width: 24%; }
   /* the slip hangs just under the catch and has to stay clear of the two
      islands due south of it, so it is narrow and its type shrinks with the
@@ -279,7 +281,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 /* ── the log lines: anything narrower, the same islands as a list ── */
 @media (max-width: 1099.98px) {
   .pc-chart { padding: clamp(1rem, 4vw, 1.6rem); padding-bottom: clamp(1.2rem, 4vw, 1.8rem); }
-  /* the drawing sits with its centre under the compass, so the rhumb lines
+  /* the drawing sits with its center under the compass, so the rhumb lines
      still run out of it, and fades out just below it: the rest of the
      sheet is plain paper, which is what the list wants to be read on */
   .pc-art {
@@ -412,7 +414,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .pc-ship:hover, .pc-ship:focus-visible { background: rgba(236, 227, 203, .07); border-color: var(--brass); }
 .pc-ship b { font-size: 1.08rem; line-height: 1.2; align-self: end; }
 .pc-ship i { font-size: 0.96rem; line-height: 1.3; color: var(--dim); align-self: start; }
-/* a mast with a swallow-tailed pennant in the ship's two colours, lifting
+/* a mast with a swallow-tailed pennant in the ship's two colors, lifting
    in the wind */
 .pc-flag { grid-row: span 2; position: relative; width: 46px; height: 46px; }
 .pc-flag::before {

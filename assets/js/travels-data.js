@@ -8,7 +8,7 @@
      grade   the school year I was in, which is how the page groups them
      flags   one per country actually visited, in order
      via     layover country, shown faintly and not counted as a visit
-     c1/c2   the two colours its section is drawn in
+     c1/c2   the two colors its section is drawn in
      look    which backdrop treatment the section gets
      lived   true if this is somewhere I LIVED rather than somewhere I went.
              Three of these, all from before I can remember any of it. They sit
@@ -344,7 +344,7 @@ window.TRAVELS = {
       flags: '\u{1F1E8}\u{1F1E6}', c1: '#6fb0d8', c2: '#06151f', look: 'coast',
       note: 'Up the coast and onto Vancouver Island by ferry. The first time out of the country that was not Mexico, and the first border crossed going north.',
       spots: [
-        ['The Inner Harbour', 'Victoria'],
+        ['The Inner Harbor', 'Victoria'],
         ['Oak Bay', 'Victoria'],
       ],
       cover: 'pre-ms/2015-07-22-1846.avif',
@@ -502,7 +502,7 @@ window.TRAVELS = {
         ['The hanging bridges', 'Cabo Corrientes'],
         ['Quads above the coast', 'Higuera Blanca'],
         ['Sayulita', 'Nayarit'],
-        ['The pirate ship in the harbour', 'Puerto Vallarta'],
+        ['The pirate ship in the harbor', 'Puerto Vallarta'],
       ],
       cover: 'hs-freshman/2021-08-12-1311.avif',
       shots: ['hs-freshman/2021-08-06-1611.avif', 'hs-freshman/2021-08-06-1706.avif',
@@ -793,7 +793,7 @@ window.TRAVELS = {
         ['Chott el Djerid', 'Tozeur'],
         ['Chebika oasis', 'Tozeur'],
         ['Ribat of Sousse', 'Sousse'],
-        ['The Roman theatre', 'Dougga'],
+        ['The Roman theater', 'Dougga'],
       ],
       onscreen: {
         lede: 'Tatooine is named after Tataouine in the south of this country, and it is a real place you can stand in. These are the sets.',

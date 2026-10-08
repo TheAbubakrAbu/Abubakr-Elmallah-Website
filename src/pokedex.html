@@ -12,6 +12,7 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/pokedex.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
 <body class="px" id="px">
 
@@ -26,6 +27,7 @@ standalone: true
   <a class="px-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave Kanto</span>
   </a>
+  {% include interface-world.html world="Pokémon" href="/worlds/pokemon/" %}
   <span class="px-top-mid">The Pokédex · Kanto regional edition</span>
   <!-- the clock the way the second generation kept it: weekday, MORN, DAY
        or NITE, and the time, from your own clock (pokedex.js) -->
@@ -37,7 +39,7 @@ standalone: true
   <section class="px-hero">
     <p class="px-kicker">A field guide to one website</p>
     <h1 class="px-title">The Pokédex</h1>
-    <p class="px-sub">Every room on this site, catalogued as a numbered entry: an invented type, a height and a weight that are mostly jokes, a line of field notes, and a cry. Point at an entry, or walk the list with the D-pad or the arrow keys, and press A to go there.</p>
+    <p class="px-sub">Every room on this site, cataloged as a numbered entry: an invented type, a height and a weight that are mostly jokes, a line of field notes, and a cry. Point at an entry, or walk the list with the D-pad or the arrow keys, and press A to go there.</p>
   </section>
 
   <!-- ─────────── the device ───────────
@@ -128,14 +130,14 @@ standalone: true
           <li><a class="px-row" href="/education/" data-glyph="book" data-ht="2 schools" data-wt="a lot of notes" data-dex="Keeps everything it has learned in one nest: a high school and a university, side by side."><span class="px-row-no">004</span><span class="px-row-t"><b>Lecturtle</b><i>education</i></span><span class="px-row-ty"><em class="px-ty" data-ty="mind">Mind</em></span></a></li>
           <li><a class="px-row" href="/college/" data-glyph="cap" data-ht="class of 2028" data-wt="1 backpack" data-dex="Native to Irvine, where it studies Computer Science. Expected to evolve in 2028."><span class="px-row-no">005</span><span class="px-row-t"><b>Anteatrix</b><i>college, UC Irvine</i></span><span class="px-row-ty"><em class="px-ty" data-ty="mind">Mind</em><em class="px-ty" data-ty="zot">Zot</em></span></a></li>
           <li><a class="px-row" href="/high-school/" data-glyph="bell" data-ht="1 hallway" data-wt="1 locker" data-dex="Where it all started. It still flinches a little at the sound of a bell."><span class="px-row-no">006</span><span class="px-row-t"><b>Hallmonitar</b><i>high school</i></span><span class="px-row-ty"><em class="px-ty" data-ty="mind">Mind</em><em class="px-ty" data-ty="normal">Normal</em></span></a></li>
-          <li><a class="px-row" href="/worlds/" data-glyph="globe" data-ht="71 worlds" data-wt="endless trivia" data-dex="Seventy-one worlds live in its den, each with a page of its own. It is never quite finished adding to them."><span class="px-row-no">007</span><span class="px-row-t"><b>Worldwander</b><i>all 71 worlds</i></span><span class="px-row-ty"><em class="px-ty" data-ty="cosmic">Cosmic</em></span></a></li>
-          <li><a class="px-row" href="/worlds/pokemon/" data-glyph="ball" data-ht="150 names" data-wt="1 first partner" data-dex="Memorised a hundred and fifty creatures before it memorised its times tables. The type chart is the whole game, and it knows it."><span class="px-row-no">008</span><span class="px-row-t"><b>Kantophile</b><i>Pokémon, the world page</i></span><span class="px-row-ty"><em class="px-ty" data-ty="fan">Fan</em></span></a></li>
+          <li><a class="px-row" href="/worlds/" data-glyph="globe" data-ht="74 worlds" data-wt="endless trivia" data-dex="Seventy-four worlds live in its den, each with a page of its own. It is never quite finished adding to them."><span class="px-row-no">007</span><span class="px-row-t"><b>Worldwander</b><i>all 74 worlds</i></span><span class="px-row-ty"><em class="px-ty" data-ty="cosmic">Cosmic</em></span></a></li>
+          <li><a class="px-row" href="/worlds/pokemon/" data-glyph="ball" data-ht="150 names" data-wt="1 first partner" data-dex="Memorized a hundred and fifty creatures before it memorized its times tables. The type chart is the whole game, and it knows it."><span class="px-row-no">008</span><span class="px-row-t"><b>Kantophile</b><i>Pokémon, the world page</i></span><span class="px-row-ty"><em class="px-ty" data-ty="fan">Fan</em></span></a></li>
           <li><a class="px-row" href="/star-wars/" data-glyph="pad" data-ht="Top 10" data-wt="a whole galaxy" data-dex="Its Datapad climbed into the Top 10 of the paid Entertainment chart. Order 66, its first, came the same year."><span class="px-row-no">009</span><span class="px-row-t"><b>Datapadawan</b><i>Star Wars apps</i></span><span class="px-row-ty"><em class="px-ty" data-ty="force">Force</em><em class="px-ty" data-ty="code">Code</em></span></a></li>
           <li><a class="px-row" href="/al-islam/" data-glyph="moon" data-ht="22 methods" data-wt="5 times a day" data-dex="Reads the sun to know each prayer time, and can work it out twenty-two different ways."><span class="px-row-no">010</span><span class="px-row-t"><b>Dawnward</b><i>Al-Islam</i></span><span class="px-row-ty"><em class="px-ty" data-ty="light">Light</em></span></a></li>
           <li><a class="px-row" href="/travels/" data-glyph="plane" data-ht="cruising altitude" data-wt="1 carry-on" data-dex="Migrates widely, and keeps a record of everywhere it has landed."><span class="px-row-no">011</span><span class="px-row-t"><b>Wayfarrow</b><i>travels</i></span><span class="px-row-ty"><em class="px-ty" data-ty="roam">Roam</em></span></a></li>
           <li><a class="px-row" href="/accents/" data-glyph="talk" data-ht="1 voice" data-wt="many accents" data-dex="Imitates the voices it hears so closely that the originals check twice."><span class="px-row-no">012</span><span class="px-row-t"><b>Mimicoo</b><i>accents &amp; impersonations</i></span><span class="px-row-ty"><em class="px-ty" data-ty="sound">Sound</em><em class="px-ty" data-ty="normal">Normal</em></span></a></li>
           <li><a class="px-row" href="/gaming/" data-glyph="pad2" data-ht="one more game" data-wt="2 thumbs" data-dex="Happiest with a controller in hand. Leave it alone near a console and it will not come back for hours."><span class="px-row-no">013</span><span class="px-row-t"><b>Joypadra</b><i>gaming</i></span><span class="px-row-ty"><em class="px-ty" data-ty="play">Play</em></span></a></li>
-          <li><a class="px-row" href="/lightsabers/" data-glyph="saber" data-ht="1 hilt" data-wt="1 crystal" data-dex="Every blade in the galaxy is catalogued in its hilt, colour by colour, owner by owner."><span class="px-row-no">014</span><span class="px-row-t"><b>Kyberling</b><i>the lightsaber guide</i></span><span class="px-row-ty"><em class="px-ty" data-ty="light">Light</em><em class="px-ty" data-ty="force">Force</em></span></a></li>
+          <li><a class="px-row" href="/lightsabers/" data-glyph="saber" data-ht="1 hilt" data-wt="1 crystal" data-dex="Every blade in the galaxy is cataloged in its hilt, color by color, owner by owner."><span class="px-row-no">014</span><span class="px-row-t"><b>Kyberling</b><i>the lightsaber guide</i></span><span class="px-row-ty"><em class="px-ty" data-ty="light">Light</em><em class="px-ty" data-ty="force">Force</em></span></a></li>
           <li><a class="px-row" href="/resume/" data-glyph="page" data-ht="1 page" data-wt="12 apps" data-dex="Folds a whole career onto a single page, and molts into a new one whenever something ships."><span class="px-row-no">015</span><span class="px-row-t"><b>Curriculix</b><i>résumé</i></span><span class="px-row-ty"><em class="px-ty" data-ty="paper">Paper</em></span></a></li>
         </ol>
         <p class="px-keys" id="pxKeys">On a keyboard: up and down walk the list, left and right jump five, Enter or A opens, B plays the cry.</p>
@@ -176,7 +178,7 @@ standalone: true
         <li style="--b1:#a8e6ff; --b2:#1f6fa8"><svg viewBox="-20 -20 40 40" aria-hidden="true"><path d="M0,-17 L15,-11 L13,6 L0,17 L-13,6 L-15,-11 Z"/></svg><b>Arena Badge</b><i>The UCI Esports app: arena, PCs and events</i></li>
         <li style="--b1:#b6f0b0; --b2:#2c8a3a"><svg viewBox="-20 -20 40 40" aria-hidden="true"><path d="M0,-17 C10,-12 15,-2 0,17 C-15,-2 -10,-12 0,-17 Z"/></svg><b>Sprout Badge</b><i>First solo projects: Order 66 and Datapad, 2021</i></li>
         <li style="--b1:#ffb8d8; --b2:#b02a6a"><svg viewBox="-20 -20 40 40" aria-hidden="true"><path d="M-14,-14 H-2 V-2 H-14 Z M2,-14 H14 V-2 H2 Z M-14,2 H-2 V14 H-14 Z M2,2 H14 V14 H2 Z"/></svg><b>Platform Badge</b><i>Twelve apps shipped, on four platforms</i></li>
-        <li style="--b1:#d8e4ee; --b2:#5a6e80"><svg viewBox="-20 -20 40 40" aria-hidden="true"><path d="M0,-17 A17,17 0 1,1 -0.01,-17 Z M0,-9 A9,9 0 1,0 0.01,-9 Z" fill-rule="evenodd"/></svg><b>World Badge</b><i>71 worlds, every one with a page</i></li>
+        <li style="--b1:#d8e4ee; --b2:#5a6e80"><svg viewBox="-20 -20 40 40" aria-hidden="true"><path d="M0,-17 A17,17 0 1,1 -0.01,-17 Z M0,-9 A9,9 0 1,0 0.01,-9 Z" fill-rule="evenodd"/></svg><b>World Badge</b><i>74 worlds, every one with a page</i></li>
       </ol>
     </div>
   </section>
@@ -184,7 +186,7 @@ standalone: true
   <!-- ─────────── the link cable ───────────
        Trading meant two handhelds and a cable between them. Here the cable
        runs to the other devices: every other cool interface on the site,
-       each shown as a cartridge with its world's label colour. -->
+       each shown as a cartridge with its world's label color. -->
   <section class="px-box px-cable" aria-labelledby="pxCableH">
     <h2 class="px-h" id="pxCableH">Link cable<span>trade over to another device</span></h2>
     <ul class="px-carts">
@@ -196,8 +198,7 @@ standalone: true
       <li><a class="px-cart" href="/citadel/" style="--k:#a8823a"><span class="px-cart-shell" aria-hidden="true">C</span><b>The Citadel</b><i>Game of Thrones</i></a></li>
       <li><a class="px-cart" href="/compass/" style="--k:#2f7a7a"><span class="px-cart-shell" aria-hidden="true">C</span><b>The Compass</b><i>Pirates of the Caribbean</i></a></li>
       <li><a class="px-cart" href="/control-room/" style="--k:#c25a22"><span class="px-cart-shell" aria-hidden="true">C</span><b>The Control Room</b><i>Jurassic Park</i></a></li>
-      <li><a class="px-cart" href="/upside-down/" style="--k:#b0261f"><span class="px-cart-shell" aria-hidden="true">U</span><b>The Upside Down</b><i>Stranger Things</i></a></li>
-      <li><a class="px-cart" href="/starcourt/" style="--k:#c4479a"><span class="px-cart-shell" aria-hidden="true">S</span><b>Starcourt</b><i>Stranger Things</i></a></li>
+      <li><a class="px-cart" href="/hawkins/" style="--k:#b0261f"><span class="px-cart-shell" aria-hidden="true">U</span><b>Hawkins</b><i>Stranger Things</i></a></li>
       <li><a class="px-cart" href="/spirit-library/" style="--k:#b0802e"><span class="px-cart-shell" aria-hidden="true">S</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a></li>
       <li><a class="px-cart" href="/monastery/" style="--k:#3a9a5a"><span class="px-cart-shell" aria-hidden="true">M</span><b>The Monastery</b><i>Ninjago</i></a></li>
       <li><a class="px-cart" href="/wanted/" style="--k:#a0602a"><span class="px-cart-shell" aria-hidden="true">W</span><b>The Wanted Board</b><i>Red Dead Redemption</i></a></li>
@@ -206,6 +207,10 @@ standalone: true
       <li><a class="px-cart" href="/vought/" style="--k:#2a5aa8"><span class="px-cart-shell" aria-hidden="true">V</span><b>Vought Tower</b><i>The Boys</i></a></li>
       <li><a class="px-cart" href="/batcomputer/" style="--k:#5a6270"><span class="px-cart-shell" aria-hidden="true">B</span><b>The Batcomputer</b><i>Batman</i></a></li>
       <li><a class="px-cart" href="/daily-bugle/" style="--k:#c0322a"><span class="px-cart-shell" aria-hidden="true">D</span><b>The Daily Bugle</b><i>Spider-Man</i></a></li>
+      <li><a class="px-cart" href="/grail-diary/" style="--k:#d8b06a"><span class="px-cart-shell" aria-hidden="true">G</span><b>The Grail Diary</b><i>Indiana Jones</i></a></li>
+      <li><a class="px-cart" href="/red-book/" style="--k:#d9b45f"><span class="px-cart-shell" aria-hidden="true">R</span><b>The Red Book</b><i>The Lord of the Rings</i></a></li>
+      <li><a class="px-cart" href="/power-battery/" style="--k:#4fd07f"><span class="px-cart-shell" aria-hidden="true">P</span><b>The Power Battery</b><i>Green Lantern</i></a></li>
+      <li><a class="px-cart" href="/watchtower/" style="--k:#5f9fe0"><span class="px-cart-shell" aria-hidden="true">W</span><b>The Watchtower</b><i>The Justice League</i></a></li>
     </ul>
   </section>
 
@@ -228,6 +233,8 @@ standalone: true
   </section>
 
   <button class="px-save-btn" id="pxSaveBtn" type="button"><span aria-hidden="true">▶</span> Save the game</button>
+
+  {% include interface-world.html world="Pokémon" href="/worlds/pokemon/" place="foot" %}
 
 </main>
 

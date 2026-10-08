@@ -9,8 +9,8 @@
    powers: the Republic (the interfaces) and the Empire (the
    main site).
 
-   Four colours for the table: UCI blue is the hologram itself,
-   UCI gold is the target (the colour a targeting computer
+   Four colors for the table: UCI blue is the hologram itself,
+   UCI gold is the target (the color a targeting computer
    locks in), Trabuco blue is the table's own light, Islamic
    green is "go". Each Imperial sector wears one of them. Two
    more for the powers: Republic red, from the crest on a
@@ -29,6 +29,8 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .el-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 
 .el {
+  --iw-a: #7fd6ff;   /* the shared world button, interface-world.css */
+  --iw-bg: #02060b;
   --bg:      #02050b;
   --ink:     #dce8f7;
   --dim:     #8fa3bf;        /* 7.9:1 on --bg: it carries real text */
@@ -43,7 +45,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   --green:   #3fd589;        /* Islamic green: go */
   --green-lo:#1f9d5c;
   /* Republic blue against Imperial red (the owner's call, 2026-10-04): the
-     two factions now read the way the films colour them, and the Republic no
+     two factions now read the way the films color them, and the Republic no
      longer shares the Empire's old red. Both clear AA on --bg by a distance. */
   --rep:     #5fa8ff;        /* Republic blue, 8.2:1 on --bg */
   --rep-hi:  #c4ddff;
@@ -193,7 +195,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .el-pins.is-mid .el-pin b { font-size: 0.74rem; letter-spacing: 0.05em; }
 
 /* On a phone there is no room on the table for twenty-four names, so each
-   system is labelled by its grid square, the way a real chart is, and the
+   system is labeled by its grid square, the way a real chart is, and the
    charts right under the table read every square out with its name. The
    name is still the button's accessible name, and the briefing shows it
    the moment a square is tapped. */
@@ -621,7 +623,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   .el-stage { grid-column: 1; grid-row: 2; height: auto; min-height: min(46vw, 760px); }
   /* The briefing fills its column without sizing the rows: a target with a
      long briefing must not make the table taller, or locking it would
-     redraw the whole map under the pointer. Centred when it fits; when it
+     redraw the whole map under the pointer. Centered when it fits; when it
      cannot (a short screen and a long briefing) the column scrolls. */
   .el-brief {
     position: absolute; inset: 0; grid-column: 2; grid-row: 1 / 3;

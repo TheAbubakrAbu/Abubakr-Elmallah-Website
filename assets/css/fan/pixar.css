@@ -14,7 +14,7 @@ body[data-fan="pixar"] { --a: #4fa8e0; }
 
 .px-sky > * { position: absolute; inset: 0; }
 
-/* the lamp's pool of light, off-centre because the lamp is */
+/* the lamp's pool of light, off-center because the lamp is */
 .px-pool {
   background:
     radial-gradient(42% 30% at 34% 14%, rgba(240,200,110,.20), transparent 72%),

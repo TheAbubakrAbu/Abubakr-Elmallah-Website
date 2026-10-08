@@ -1,0 +1,259 @@
+---
+permalink: /files/
+title: "Files · Abubakr Elmallah"
+description: "Every file this site is made of: nine Google documents, decks and PDFs, and the forty-seven pictures behind the pages, with where each one lives."
+tab: "/worlds/"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+<!-- the "show all pictures" switch and the section it hides (.files-pics) -->
+<link rel="stylesheet" href="{% include v.html f='/assets/css/pics.css' %}" />
+</head>
+<body data-intro="none">
+{% include fx.html %}
+
+{% include cursor.html %}
+
+{% include rail.html %}
+
+{% include topbar.html %}
+
+<main>
+
+  <section class="page-hero">
+    {% include crumbs.html parent="Worlds" url="/worlds/" here="Files" %}
+    <!-- the picture count rides on .pic-n, like every other count on the
+         site: with the switch off there are no pictures on this page, so
+         the kicker must not promise forty-seven of them. -->
+    <p class="kicker"><span>(Nine documents)</span><span class="pic-n">(Forty-seven pictures)</span></p>
+    <h1 class="page-title"><em>Files</em></h1>
+    <p class="lede">Every Google document, deck and PDF this site embeds, in one list. They are scattered across six pages by subject, which is right for reading them in context and useless for finding one, so this is the index: what each file is, where it lives on the site, and a button straight into Drive.<span class="pic-n"> The forty-seven pictures behind the pages are below.</span></p>
+  </section>
+
+  <section class="sec">
+
+    <!-- ─────────── the index ───────────
+         One row per file. Every one of these is embedded somewhere else on
+         the site behind a load-on-demand panel; this page deliberately does
+         NOT embed them, because nine Google viewers on one page is several
+         megabytes of iframe before anything is read. Each row links to the
+         file in Drive and to the page that gives it its context.
+
+         The id is the only thing that identifies a Google file, so it is
+         written once per row. If a file is ever replaced, the id changes in
+         exactly two places: here, and on the page that embeds it. -->
+
+    <h2 class="subsec subsec--title reveal" id="resume">Résumé <span class="subsec-yr">PDF &#183; the source of truth</span></h2>
+    <ul class="file-list" role="list">
+      <li class="file-row reveal">
+        <div class="file-main">
+          <h3>Abubakr Elmallah &#183; Résumé</h3>
+          <p>The PDF itself, the one every other version of the résumé on this site is transcribed from. If this and the site ever disagree, this is right.</p>
+          <p class="file-where">On <a href="/resume/" data-magnetic>Résumé</a></p>
+        </div>
+        <div class="file-acts">
+          <a class="cta" href="https://drive.google.com/file/d/1o_S34-5F7B7Kb6jZfOuIz2TYWOfNs55s/view?usp=sharing" target="_blank" rel="noopener" data-magnetic>
+            <span>Open</span><span class="vh"> the résumé PDF in Google Drive (opens in a new tab)</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+          <a class="cta cta--download" href="https://drive.google.com/uc?export=download&amp;id=1o_S34-5F7B7Kb6jZfOuIz2TYWOfNs55s" rel="noopener" download="Abubakr-Elmallah-Resume.pdf" data-magnetic>
+            <span>Download</span><span class="vh"> the résumé as a PDF</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <h2 class="subsec subsec--title reveal" id="decks">Workshop Decks <span class="subsec-yr">MTC &amp; MSU &#183; four</span></h2>
+    <p class="lede reveal" style="max-width:70ch">The three MTC workshops I wrote and taught, and the deck that closed the MSU year. All four are on <a href="/msu-mtc/" data-magnetic>MSU &amp; MTC</a> with the flyers that went with them.</p>
+    <ul class="file-list" role="list">
+      <li class="file-row reveal">
+        <div class="file-main">
+          <h3>Introduction to iOS Development</h3>
+          <p>Building a beginner-friendly Quran app in SwiftUI on Swift Playgrounds. Taught Nov 4.</p>
+          <p class="file-where">On <a href="/msu-mtc/#mtc-decks" data-magnetic>MSU &amp; MTC</a></p>
+        </div>
+        <div class="file-acts">
+          <a class="cta" href="https://docs.google.com/presentation/d/1VDE4tZiRVEUsrevl_qD8kOVKCDVKQzF41quqxTBik4c/edit?usp=sharing" target="_blank" rel="noopener" data-magnetic>
+            <span>Open</span><span class="vh"> the iOS Development deck in Google Slides (opens in a new tab)</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </li>
+      <li class="file-row reveal">
+        <div class="file-main">
+          <h3>Introduction to VibeCoding and AI</h3>
+          <p>Where AI begins: building with it rather than around it. Taught May 11.</p>
+          <p class="file-where">On <a href="/msu-mtc/#mtc-decks" data-magnetic>MSU &amp; MTC</a></p>
+        </div>
+        <div class="file-acts">
+          <a class="cta" href="https://docs.google.com/presentation/d/15n0pyRQtL1mWrJdIc6KXFcTYQy7jXwCcSkNvfsUKUFw/edit?usp=sharing" target="_blank" rel="noopener" data-magnetic>
+            <span>Open</span><span class="vh"> the VibeCoding and AI deck in Google Slides (opens in a new tab)</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </li>
+      <li class="file-row reveal">
+        <div class="file-main">
+          <h3>LeetCode Workshop</h3>
+          <p>Levelling up interview skills: how to think, not just how to code. Taught Jan 27.</p>
+          <p class="file-where">On <a href="/msu-mtc/#mtc-decks" data-magnetic>MSU &amp; MTC</a></p>
+        </div>
+        <div class="file-acts">
+          <a class="cta" href="https://docs.google.com/presentation/d/1WZBUnEiT8wV4SRHKWOTiBi7OFb_rgpLTp5sBEWgxX9c/edit?usp=sharing" target="_blank" rel="noopener" data-magnetic>
+            <span>Open</span><span class="vh"> the LeetCode deck in Google Slides (opens in a new tab)</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </li>
+      <li class="file-row reveal">
+        <div class="file-main">
+          <h3>Bros Awards Night Ceremony</h3>
+          <p>The deck that closed MSU 2025&#8211;26: every event recapped, the awards, and the send-off for the coordinators. May 21.</p>
+          <p class="file-where">On <a href="/msu-mtc/#awards-night" data-magnetic>MSU &amp; MTC</a></p>
+        </div>
+        <div class="file-acts">
+          <a class="cta" href="https://docs.google.com/presentation/d/1jg3ND7yApXAUKj1q99nWdRld6k_Jkyrb7wPO2D1ycR8/edit?usp=sharing" target="_blank" rel="noopener" data-magnetic>
+            <span>Open</span><span class="vh"> the Bros Awards Night deck in Google Slides (opens in a new tab)</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <h2 class="subsec subsec--title reveal" id="records">The Records <span class="subsec-yr">activities &amp; awards</span></h2>
+    <p class="lede reveal" style="max-width:70ch">The two long documents behind the education pages: everything done in high school, and everything since.</p>
+    <ul class="file-list" role="list">
+      <li class="file-row reveal">
+        <div class="file-main">
+          <h3>College Activities &amp; Awards</h3>
+          <p>The full record at UC Irvine: roles, awards and everything that did not fit on a page.</p>
+          <p class="file-where">On <a href="/college/#activities" data-magnetic>College</a></p>
+        </div>
+        <div class="file-acts">
+          <a class="cta" href="https://docs.google.com/document/d/1zioMjAZAw8NhcJAiqedlRzqNQ3OM0sFF8d6uAy7p1v4/edit?usp=sharing" target="_blank" rel="noopener" data-magnetic>
+            <span>Open</span><span class="vh"> the College activities document in Google Docs (opens in a new tab)</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </li>
+      <li class="file-row reveal">
+        <div class="file-main">
+          <h3>High School Activities</h3>
+          <p>The same thing for the four years before it: clubs, competitions, the teaching and the awards.</p>
+          <p class="file-where">On <a href="/high-school/" data-magnetic>High School</a></p>
+        </div>
+        <div class="file-acts">
+          <a class="cta" href="https://docs.google.com/document/d/1T7b_Pa1ShLFYjpGPapTChNVMuvpCA-K38JaWMgspUy0/edit?usp=sharing" target="_blank" rel="noopener" data-magnetic>
+            <span>Open</span><span class="vh"> the High School activities document in Google Docs (opens in a new tab)</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <h2 class="subsec subsec--title reveal" id="writeups">Al-Islam <span class="subsec-yr">the write-ups</span></h2>
+    <p class="lede reveal" style="max-width:70ch">Two documents about the app, both written in high school. They appear on <a href="/al-islam/" data-magnetic>Al-Islam</a> and again on <a href="/high-school/" data-magnetic>High School</a>, where they were written.</p>
+    <ul class="file-list" role="list">
+      <li class="file-row reveal">
+        <div class="file-main">
+          <h3>Al-Islam App &#183; the backstory</h3>
+          <p>Why the app exists, written 24 May 2023, in 11th grade.</p>
+          <p class="file-where">On <a href="/al-islam/" data-magnetic>Al-Islam</a> and <a href="/high-school/" data-magnetic>High School</a></p>
+        </div>
+        <div class="file-acts">
+          <a class="cta" href="https://docs.google.com/document/d/1QnOlzlriKa6JstmrvC3wtPe2zmv3lY-7z-DEjsGhuXY/edit?usp=sharing" target="_blank" rel="noopener" data-magnetic>
+            <span>Open</span><span class="vh"> the Al-Islam backstory in Google Docs (opens in a new tab)</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </li>
+      <li class="file-row reveal">
+        <div class="file-main">
+          <h3>Congressional App Challenge &#183; write-up</h3>
+          <p>Written by Ms. Kerawalla for the Congressional App Challenge, in 12th grade.</p>
+          <p class="file-where">On <a href="/al-islam/" data-magnetic>Al-Islam</a> and <a href="/high-school/" data-magnetic>High School</a></p>
+        </div>
+        <div class="file-acts">
+          <a class="cta" href="https://docs.google.com/document/d/1lOCNUbrgj3dY12VZVpt7saqotd-GwAgAP4jS_Oaj_zQ/edit?usp=sharing" target="_blank" rel="noopener" data-magnetic>
+            <span>Open</span><span class="vh"> the Congressional App Challenge write-up in Google Docs (opens in a new tab)</span>
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <p class="lede reveal" style="max-width:70ch;margin-top:2.4rem">Everything above is read-only and shared from my own Drive. Each one is also embedded in place on the page it belongs to, behind a panel that only loads Google&#8217;s viewer when you ask for it.</p>
+
+    <!-- ─────────── the pictures ───────────
+         The other half of what "files" means here: the scans, screenshots and
+         photographs I pulled out of my own iCloud Drive and committed to the
+         repo, as opposed to the Google documents above. Shown rather than
+         listed, every one of them, each opening full size in the lightbox.
+
+         NOT everything under assets/img/archive/ qualifies. The MSU and MTC
+         material (forty-one flyers, decks and event photographs) was made for
+         those organizations and never came out of my Drive, so it is skipped:
+         see SKIP in tools/filespics.py. It lives on /msu-mtc/ and nowhere
+         else. Eighty-eight pictures in the folder, forty-seven of them mine.
+
+         The whole section is behind the "show all pictures" switch (pics.css,
+         .files-pics): the documents above are the public half of this page and
+         are always there, the photographs are personal and are not. Hidden in
+         CSS rather than by the script, so it is never painted and then
+         yanked. -->
+    <div class="files-pics">
+      <h2 class="subsec subsec--title reveal" id="pictures">Pictures <span class="subsec-yr">from my iCloud Drive &#183; <span id="filesPicsN">47</span></span></h2>
+      <p class="lede reveal" style="max-width:70ch">Every picture in the repo, shown rather than listed. Each one opens full size, and each group says which page it is shown on in context.</p>
+
+      <!-- filled by files-pics.js from files-pics-data.js, which tools/filespics.py
+           generates from the folder itself. Forty-seven <a><img> blocks written
+           out by hand would be nine hundred lines to re-edit every time a picture
+           is added, and the captions already exist on the pages that show them. -->
+      <div id="filesPics"></div>
+    </div>
+
+    <div class="hs-extra reveal">
+      <a href="/resume/" data-magnetic><span aria-hidden="true">↳ </span>Résumé<span aria-hidden="true">&nbsp;↗</span></a>
+      <a href="/msu-mtc/" data-magnetic><span aria-hidden="true">↳ </span>MSU &amp; MTC<span aria-hidden="true">&nbsp;↗</span></a>
+      <a href="/projects/" data-magnetic><span aria-hidden="true">↳ </span>Everything I&#8217;ve built<span aria-hidden="true">&nbsp;↗</span></a>
+    </div>
+
+  </section>
+
+</main>
+
+<!-- the shared image lightbox: every picture in the grids above opens
+     here rather than in a new tab (see gallery.js). -->
+{% include lightbox.html %}
+
+<!-- the "show all pictures" switch. The same one as on /worlds/,
+     /travels/, /high-school/ and /college/: one localStorage key for the
+     whole site, so turning it on here turns it on everywhere. With it off
+     this page is the nine Google documents; the forty-seven photographs
+     wait to be asked for. -->
+<div class="picsw" data-pics-toggle></div>
+
+{% include footer.html back="/" %}
+
+{% include tabbar.html %}
+
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
+<script src="{% include v.html f='/assets/js/cursor.js' %}"></script>
+<script src="{% include v.html f='/assets/js/reveal.js' %}"></script>
+<script src="{% include v.html f='/assets/js/magnetic.js' %}"></script>
+<script src="{% include v.html f='/assets/js/clock.js' %}"></script>
+<script src="{% include v.html f='/assets/js/flowfield.js' %}"></script>
+<script src="{% include v.html f='/assets/js/scroll.js' %}"></script>
+<script src="{% include v.html f='/assets/js/sound.js' %}"></script>
+<script src="{% include v.html f='/assets/js/intro.js' %}"></script>
+<!-- the picture grids: the generated data, then the renderer, then the
+     lightbox they open in -->
+<script src="{% include v.html f='/assets/js/files-pics-data.js' %}"></script>
+<script src="{% include v.html f='/assets/js/files-pics.js' %}"></script>
+<script src="{% include v.html f='/assets/js/gallery.js' %}"></script>
+<script src="{% include v.html f='/assets/js/pics.js' %}"></script>
+{% include analytics.html %}
+</body>
+</html>

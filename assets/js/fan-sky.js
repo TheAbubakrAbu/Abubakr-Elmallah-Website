@@ -23,7 +23,7 @@ window.FAN_PAGE = {
         desc: 'Zimmer and Lorne Balfe wrote the main theme. Activision spent money on this the way it spent money on Call of Duty, and for about four years that was the right call.',
         meta: 'Over three billion dollars in sales' },
       { title: 'And then it stopped', sub: 'Imaginators, 2016', tag: 'The end', accent: '#c9ced6',
-        desc: 'The category peaked and collapsed within five years: too many figures, too much shelf space, and every publisher trying it at once. Imaginators was the last one, and Disney Infinity had already been cancelled.',
+        desc: 'The category peaked and collapsed within five years: too many figures, too much shelf space, and every publisher trying it at once. Imaginators was the last one, and Disney Infinity had already been canceled.',
         meta: 'The whole genre went with it' },
     ] },
 

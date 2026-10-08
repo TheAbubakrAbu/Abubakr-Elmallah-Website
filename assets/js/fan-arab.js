@@ -42,14 +42,14 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'loanwords', kind: 'tiles', mount: 'end', title: 'Words You Already Say', note: 'English, via Arabic', compact: true, cols: 3,
-    lede: 'A few hundred everyday English words came out of Arabic, most of them through Spain and Sicily between the tenth and thirteenth centuries, and most of them in the fields the Arabic-speaking world was leading in at the time: mathematics, astronomy, chemistry, navigation and trade. The al- on the front of several of them is just the definite article, carried across whole because nobody realised it was a separate word.',
+    lede: 'A few hundred everyday English words came out of Arabic, most of them through Spain and Sicily between the tenth and thirteenth centuries, and most of them in the fields the Arabic-speaking world was leading in at the time: mathematics, astronomy, chemistry, navigation and trade. The al- on the front of several of them is just the definite article, carried across whole because nobody realized it was a separate word.',
     items: [
       { title: 'Algebra', sub: 'al-jabr · الجبر', desc: 'The restoring. From the title of al-Khwārizmī’s book, which is where the subject starts.', accent: '#e8c56a' },
       { title: 'Algorithm', sub: 'al-Khwārizmī · الخوارزمي', desc: 'Not a word at all; it is his name, Latinised. Every algorithm is named after one man.', accent: '#e8c56a' },
       { title: 'Alcohol', sub: 'al-kuḥl · الكحل', desc: 'The powdered kohl, then any distilled essence, then specifically the one in wine.', accent: '#5fa3ec' },
       { title: 'Chemistry', sub: 'al-kīmiyāʾ · الكيمياء', desc: 'Through alchemy, which was the same word before the discipline split in two.', accent: '#5fa3ec' },
       { title: 'Sugar', sub: 'sukkar · سكر', desc: 'Sanskrit into Arabic into Italian into English, following the crop itself.', accent: '#3fd589' },
-      { title: 'Coffee', sub: 'qahwah · قهوة', desc: 'Through Turkish kahve. The drink and the word both travelled from Yemen.', accent: '#3fd589' },
+      { title: 'Coffee', sub: 'qahwah · قهوة', desc: 'Through Turkish kahve. The drink and the word both traveled from Yemen.', accent: '#3fd589' },
       { title: 'Cotton', sub: 'quṭn · قطن', desc: 'Straight across, barely changed, via Spanish.', accent: '#3fd589' },
       { title: 'Admiral', sub: 'amīr al-baḥr · أمير البحر', desc: 'Commander of the sea. English kept the first two words and dropped the sea.', accent: '#5fa3ec' },
       { title: 'Magazine', sub: 'makhzan · مخزن', desc: 'A storehouse, which is why a rifle and a periodical share a word.', accent: '#5fa3ec' },

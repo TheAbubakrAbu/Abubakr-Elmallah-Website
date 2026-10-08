@@ -87,7 +87,7 @@ window.FAN_PAGE = {
       { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Phineas_and_Ferb',
         desc: 'The full run, the format, and how Povenmire pitched it for sixteen years before anyone bought it.' },
       { title: 'Phineas and Ferb Wiki', href: 'https://phineasandferb.fandom.com/wiki/Phineas_and_Ferb_Wiki',
-        desc: 'Every -inator, every song, and the running gags catalogued to an alarming degree.' },
+        desc: 'Every -inator, every song, and the running gags cataloged to an alarming degree.' },
     ] },
 
 ] };

@@ -12,6 +12,7 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/elmallah.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 <!-- without scripts there is no table to draw and nothing to brief, so the
      page is the title and the charts, which hold every link anyway -->
 <noscript><style>.el-stage, .el-brief, .el-clock { display: none !important; } .el-deck { display: block !important; min-height: 0 !important; }</style></noscript>
@@ -39,6 +40,7 @@ standalone: true
   <a class="el-exit" href="/" title="Back to the main site (Esc)">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the war room</span>
   </a>
+  {% include interface-world.html world="Star Wars" href="/worlds/star-wars/" %}
   <span class="el-top-mid">E.L.M.A.L.L.A.H. · Holotable · Irvine</span>
   <!-- the stardate: years after the Battle of Yavin, counted from the day
        A New Hope opened (May 25, 1977), then the day of that year and your
@@ -83,11 +85,11 @@ standalone: true
 
         <div class="el-brief-body" id="elBriefBody">
           <p class="el-brief-name">The portfolio galaxy</p>
-          <p class="el-brief-sub">Thirty-seven systems, two powers, one frontier</p>
+          <p class="el-brief-sub">Thirty-six systems, two powers, one frontier</p>
           <p class="el-brief-p">The Republic holds the interfaces, the Empire the main site. Pick a system on the table to read its briefing, or take one straight from the charts below.</p>
-          <p class="el-legend-f" style="--f: var(--rep)"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#elCrestRep"/></svg>Galactic Republic<i>22 systems</i></p>
+          <p class="el-legend-f" style="--f: var(--rep)"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#elCrestRep"/></svg>Galactic Republic<i>24 systems</i></p>
           <ul class="el-legend">
-            <li style="--c: var(--rep)"><b>Interfaces</b><i>Republic blue · 22</i></li>
+            <li style="--c: var(--rep)"><b>Interfaces</b><i>Republic blue · 24</i></li>
           </ul>
           <p class="el-legend-f" style="--f: var(--emp)"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#elCrestEmp"/></svg>Galactic Empire<i>15 systems</i></p>
           <ul class="el-legend">
@@ -112,7 +114,7 @@ standalone: true
 
   <!-- ═══════════ the galaxy, divided ═══════════
        Every room on the site, always visible, in plain words, split
-       between the two powers. The Republic is the interfaces: twenty-two worlds,
+       between the two powers. The Republic is the interfaces: twenty-four worlds,
        each with its own government, every one the whole site rebuilt inside
        one story. The Empire is the main site: one design, one capital, every
        room in its place.
@@ -123,7 +125,7 @@ standalone: true
        floats over the plane, data-grid the square it sits in. data-brief
        and data-facts are what the briefing reads out; facts are
        "Label: value" pairs split by "|". Each .el-faction names its power
-       and its crest, and the table colours its territory from them. -->
+       and its crest, and the table colors its territory from them. -->
   <section class="el-charts" aria-labelledby="elChartsH">
     <h2 class="el-h" id="elChartsH">The galaxy, divided<span>every room on this site, by allegiance</span></h2>
 
@@ -132,7 +134,7 @@ standalone: true
       <a class="el-vs-side el-vs-side--rep" href="#elRepublic">
         <svg class="el-vs-crest" viewBox="0 0 100 100" aria-hidden="true"><use href="#elCrestRep"/></svg>
         <span class="el-vs-name">The Galactic Republic</span>
-        <span class="el-vs-n"><b>19</b> interfaces</span>
+        <span class="el-vs-n"><b>24</b> interfaces</span>
       </a>
       <span class="el-vs-x" aria-hidden="true">VS</span>
       <a class="el-vs-side el-vs-side--emp" href="#elEmpire">
@@ -140,7 +142,7 @@ standalone: true
         <span class="el-vs-name">The Galactic Empire</span>
         <span class="el-vs-n"><b>15</b> systems</span>
       </a>
-      <p class="el-vs-bar" role="img" aria-label="Balance of power: 19 interfaces for the Republic, 15 systems for the Empire"><span style="--n: 19"></span><i></i><span style="--n: 15"></span></p>
+      <p class="el-vs-bar" role="img" aria-label="Balance of power: 24 interfaces for the Republic, 15 systems for the Empire"><span style="--n: 24"></span><i></i><span style="--n: 15"></span></p>
     </div>
 
     <!-- ─────────── the Republic: the interfaces ─────────── -->
@@ -150,9 +152,9 @@ standalone: true
         <svg class="el-fac-mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#elCrestRep"/></svg>
         <p class="el-fac-k">The interfaces · member worlds</p>
         <h3 class="el-fac-name" id="elRepH">The Galactic Republic</h3>
-        <p class="el-fac-p">Twenty-two worlds, each with its own government. Every one of them is the whole site rebuilt inside one story, and the flagship is this war room.</p>
+        <p class="el-fac-p">Twenty-four worlds, each with its own government. Every one of them is the whole site rebuilt inside one story, and the flagship is this war room.</p>
         <dl class="el-fac-stats">
-          <div><dt>Interfaces</dt><dd>22</dd></div>
+          <div><dt>Interfaces</dt><dd>21</dd></div>
           <div><dt>Stories</dt><dd>20</dd></div>
           <div><dt>Flagship</dt><dd>This war room</dd></div>
         </dl>
@@ -166,7 +168,7 @@ standalone: true
           <li><a class="el-sys el-world" data-station href="/marauders-map/" data-a="180" data-r="0.96" data-h="0.06" data-grid="A-11" data-brief="The site as parchment and ink, every room a corridor, with footprints." data-facts=""><span class="el-sys-g">A-11</span><span class="el-sys-t"><em class="el-sys-w">Harry Potter</em><b>The Marauder’s Map</b><i>Parchment, ink and footprints</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
         </ul>
 
-        <!-- The rest of the fleet. The Republic has twenty-two systems and all of
+        <!-- The rest of the fleet. The Republic has twenty-four systems and all of
              them at once buried the flagship and the three worlds I actually know
              by heart, so those four are the sector and the other eighteen open on
              a button (the owner’s call, 2026-10-04). Not hidden: a <details> that
@@ -183,17 +185,20 @@ standalone: true
           <li><a class="el-sys el-world" data-station href="/citadel/" data-a="212" data-r="0.96" data-h="0.1" data-grid="B-5" data-brief="The maesters’ archive in Oldtown, every page raised as a keep." data-facts=""><span class="el-sys-g">B-5</span><span class="el-sys-t"><em class="el-sys-w">Game of Thrones</em><b>The Citadel</b><i>Every page raised as a keep</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
           <li><a class="el-sys el-world" data-station href="/compass/" data-side="r" data-a="226" data-r="0.66" data-h="0.12" data-grid="F-6" data-brief="A compass whose needle swings to whichever room on the site you want most." data-facts=""><span class="el-sys-g">F-6</span><span class="el-sys-t"><em class="el-sys-w">Pirates of the Caribbean</em><b>The Compass</b><i>It points to what you want most</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
           <li><a class="el-sys el-world" data-station href="/control-room/" data-a="254" data-r="0.74" data-h="0.07" data-grid="H-3" data-brief="The island map, a 3D file system, live fences and a locked security grid." data-facts=""><span class="el-sys-g">H-3</span><span class="el-sys-t"><em class="el-sys-w">Jurassic Park</em><b>The Control Room</b><i>The island map and live fences</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
-          <li><a class="el-sys el-world" data-station href="/upside-down/" data-a="282" data-r="0.62" data-h="0.1" data-grid="L-4" data-brief="Joyce’s alphabet wall spells every page, and a switch turns the house over." data-facts=""><span class="el-sys-g">L-4</span><span class="el-sys-t"><em class="el-sys-w">Stranger Things</em><b>The Upside Down</b><i>Joyce’s alphabet wall</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
-          <li><a class="el-sys el-world" data-station href="/starcourt/" data-a="296" data-r="0.86" data-h="0.09" data-grid="M-5" data-brief="Every page a store in Starcourt Mall or a cabinet in the Palace Arcade, and a switch turns Hawkins over." data-facts=""><span class="el-sys-g">M-5</span><span class="el-sys-t"><em class="el-sys-w">Stranger Things</em><b>Starcourt</b><i>The Palace Arcade and the mall</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/hawkins/" data-a="282" data-r="0.62" data-h="0.1" data-grid="L-4" data-brief="Every page a store in Starcourt Mall or a cabinet in the Palace Arcade, and scrolling turns the town into the Upside Down." data-facts=""><span class="el-sys-g">L-4</span><span class="el-sys-t"><em class="el-sys-w">Stranger Things</em><b>Hawkins</b><i>The mall, and the Upside Down under it</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
           <li><a class="el-sys el-world" data-station href="/spirit-library/" data-a="240" data-r="0.98" data-h="0.13" data-grid="F-2" data-brief="Every page shelved by nation, under the real moon of the night you visit." data-facts=""><span class="el-sys-g">F-2</span><span class="el-sys-t"><em class="el-sys-w">Avatar: The Last Airbender</em><b>The Spirit Library</b><i>Shelved by nation, under the real moon</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
           <li><a class="el-sys el-world" data-station href="/monastery/" data-a="173" data-r="0.84" data-h="0.08" data-grid="C-9" data-brief="The Monastery of Spinjitzu, every room a station on the training course, round a tornado of whichever element you pick." data-facts=""><span class="el-sys-g">C-9</span><span class="el-sys-t"><em class="el-sys-w">Ninjago</em><b>The Monastery</b><i>Every page a station on Wu’s training course</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
           <li><a class="el-sys el-world" data-station href="/wanted/" data-a="191" data-r="0.8" data-h="0.1" data-grid="D-4" data-brief="The sheriff’s board in Valentine, a bill nailed up for every room, and Dead Eye to mark them and fire." data-facts=""><span class="el-sys-g">D-4</span><span class="el-sys-t"><em class="el-sys-w">Red Dead Redemption</em><b>The Wanted Board</b><i>Every page posted as a bounty</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
           <li><a class="el-sys el-world" data-station href="/dunder-mifflin/" data-a="219" data-r="0.82" data-h="0.07" data-grid="G-7" data-brief="The Scranton branch from above, every room a page, with a documentary camera zooming in on whichever one you pick." data-facts=""><span class="el-sys-g">G-7</span><span class="el-sys-t"><em class="el-sys-w">The Office</em><b>Dunder Mifflin</b><i>Every page a room in the Scranton branch</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
           <li><a class="el-sys el-world" data-station href="/springfield/" data-a="233" data-r="0.86" data-h="0.11" data-grid="G-10" data-brief="One street of Springfield under the clouds from the opening titles, every landmark a page, with a chalkboard and a couch-gag TV." data-facts=""><span class="el-sys-g">G-10</span><span class="el-sys-t"><em class="el-sys-w">The Simpsons</em><b>Springfield</b><i>Every page built as a landmark in town</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
           <li><a class="el-sys el-world" data-station href="/vought/" data-a="247" data-r="0.84" data-h="0.09" data-grid="H-8" data-brief="Vought’s glass-and-gold intranet, a lift to every floor, and Butcher’s view: the same page as a redacted case file." data-facts=""><span class="el-sys-g">H-8</span><span class="el-sys-t"><em class="el-sys-w">The Boys</em><b>Vought Tower</b><i>Every page a floor, every rating approved</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
-          <li><a class="el-sys el-world" data-station href="/pokedex/" data-a="261" data-r="0.86" data-h="0.08" data-grid="I-5" data-brief="A Kanto Pokédex open on its hinge, every room a numbered entry with its own cry." data-facts=""><span class="el-sys-g">I-5</span><span class="el-sys-t"><em class="el-sys-w">Pokémon</em><b>The Pokédex</b><i>Every page catalogued as an entry</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/pokedex/" data-a="261" data-r="0.86" data-h="0.08" data-grid="I-5" data-brief="A Kanto Pokédex open on its hinge, every room a numbered entry with its own cry." data-facts=""><span class="el-sys-g">I-5</span><span class="el-sys-t"><em class="el-sys-w">Pokémon</em><b>The Pokédex</b><i>Every page cataloged as an entry</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
           <li><a class="el-sys el-world" data-station href="/batcomputer/" data-a="275" data-r="0.8" data-h="0.12" data-grid="K-3" data-brief="The Batcave console: every page a case on the wall, the signal thrown into live weather over Gotham, and detective mode." data-facts=""><span class="el-sys-g">K-3</span><span class="el-sys-t"><em class="el-sys-w">Batman</em><b>The Batcomputer</b><i>Every page a case on the wall of monitors</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
           <li><a class="el-sys el-world" data-station href="/daily-bugle/" data-a="289" data-r="0.74" data-h="0.1" data-grid="L-9" data-brief="Today’s front page of the Bugle, every room a story in its editor’s indignant voice, and a web shot to whichever one you point at." data-facts=""><span class="el-sys-g">L-9</span><span class="el-sys-t"><em class="el-sys-w">Spider-Man</em><b>The Daily Bugle</b><i>Every page a headline on today’s front page</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/grail-diary/" data-a="301" data-r="0.80" data-h="0.1" data-grid="M-1" data-brief="A field journal in the Senior’s hand, every room a dig site pinned to the itinerary, and the line drawing itself across the map." data-facts=""><span class="el-sys-g">M-1</span><span class="el-sys-t"><em class="el-sys-w">Indiana Jones</em><b>The Grail Diary</b><i>Field notes, every page a dig site</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/red-book/" data-a="313" data-r="0.80" data-h="0.1" data-grid="M-2" data-brief="The book Bilbo began and Frodo finished, every room a waypoint on one road, and the Ring’s inscription lighting when you put it on." data-facts=""><span class="el-sys-g">M-2</span><span class="el-sys-t"><em class="el-sys-w">The Lord of the Rings</em><b>The Red Book</b><i>Every page a waypoint on one road</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/power-battery/" data-a="325" data-r="0.80" data-h="0.1" data-grid="M-3" data-brief="The lamp a ring is charged on, every room a construct held in mind, and the seven corps re-tinting the whole page." data-facts=""><span class="el-sys-g">M-3</span><span class="el-sys-t"><em class="el-sys-w">Green Lantern</em><b>The Power Battery</b><i>Every page a construct, built out of will</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+          <li><a class="el-sys el-world" data-station href="/watchtower/" data-a="337" data-r="0.80" data-h="0.1" data-grid="M-4" data-brief="Monitor duty in orbit, every room a station on the big board, and the founding seven on call." data-facts=""><span class="el-sys-g">M-4</span><span class="el-sys-t"><em class="el-sys-w">The Justice League</em><b>The Watchtower</b><i>Monitor duty, every page a station</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
           <li><a class="el-sys el-world" data-station href="/instructions/" data-a="303" data-r="0.9" data-h="0.11" data-grid="M-7" data-brief="The site as the booklet in the box: every page a numbered build step, with the parts it takes." data-facts=""><span class="el-sys-g">M-7</span><span class="el-sys-t"><em class="el-sys-w">LEGO</em><b>The Instruction Booklet</b><i>Every page a numbered build step</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
           <li><a class="el-sys el-world" data-station href="/battle-pass/" data-a="317" data-r="0.82" data-h="0.07" data-grid="N-2" data-brief="Season four, every page a reward tier, and tier one hundred is another whole interface." data-facts=""><span class="el-sys-g">N-2</span><span class="el-sys-t"><em class="el-sys-w">Fortnite</em><b>The Battle Pass</b><i>Every page a reward tier</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
           <li><a class="el-sys el-world" data-station href="/freddys/" data-a="331" data-r="0.88" data-h="0.13" data-grid="O-6" data-brief="One desk, every page a camera feed, and a power meter that drains while you watch them." data-facts=""><span class="el-sys-g">O-6</span><span class="el-sys-t"><em class="el-sys-w">Five Nights at Freddy’s</em><b>The Security Office</b><i>Every page a camera on the wall</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
@@ -253,7 +258,7 @@ standalone: true
         <section class="el-sector" style="--c: var(--trab)" data-sector="Worlds" aria-labelledby="elSecWorlds">
           <h4 id="elSecWorlds"><span class="el-sw" aria-hidden="true"></span>Worlds<em>6 systems</em></h4>
           <ul>
-            <li><a class="el-sys" href="/worlds/" data-a="334" data-r="0.42" data-h="0.14" data-grid="N-9" data-brief="Every world on this site in one place: the stories and the games the rest of it is built around." data-facts="Charted: 71 worlds"><span class="el-sys-g">N-9</span><span class="el-sys-t"><b>Worlds</b><i>All 71 worlds</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
+            <li><a class="el-sys" href="/worlds/" data-a="334" data-r="0.42" data-h="0.14" data-grid="N-9" data-brief="Every world on this site in one place: the stories and the games the rest of it is built around." data-facts="Charted: 74 worlds"><span class="el-sys-g">N-9</span><span class="el-sys-t"><b>Worlds</b><i>All 74 worlds</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
             <li><a class="el-sys" href="/worlds/star-wars/" data-a="300" data-r="0.92" data-h="0.1" data-grid="O-3" data-brief="The galaxy itself: the eras, the prequels, the Clone Wars, Order 66, kyber crystals, a planet atlas and the lines that stuck." data-facts=""><span class="el-sys-g">O-3</span><span class="el-sys-t"><b>Star Wars</b><i>The world page: the galaxy itself</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
             <li><a class="el-sys" href="/lightsabers/" data-a="312" data-r="0.68" data-h="0.07" data-grid="O-5" data-brief="The lightsaber guide: one-button controls, board by board." data-facts=""><span class="el-sys-g">O-5</span><span class="el-sys-t"><b>Lightsabers</b><i>The lightsaber guide</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
             <li><a class="el-sys" href="/travels/" data-a="340" data-r="0.97" data-h="0.09" data-grid="T-7" data-brief="Where I have been, trip by trip, by plane and by road." data-facts="Trips: 35, from 2015 to 2026|By plane: 19|By road: 16"><span class="el-sys-g">T-7</span><span class="el-sys-t"><b>Travels</b><i>Where I have been</i></span><span class="el-sys-go" aria-hidden="true">↗</span></a></li>
@@ -291,6 +296,7 @@ standalone: true
 
   <footer class="el-foot">
     <p class="el-quote">“Then man your ships, and may the Force be with you.”<span>General Dodonna, the briefing on Yavin 4</span></p>
+    {% include interface-world.html world="Star Wars" href="/worlds/star-wars/" place="foot" %}
     <a class="el-foot-exit" href="/">Return to base</a>
     <p class="el-note">The stardate counts in ABY, years after the Battle of Yavin, starting from May 25, 1977, the day A New Hope opened. The map, the table and the jump are drawn in the browser, with no image files.</p>
   </footer>

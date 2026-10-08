@@ -11,7 +11,7 @@ window.FAN_PAGE = {
         desc: 'Eight sections, rotating on a schedule. Three years of Runners mapping it and the answer is not a route: the changing walls are spelling out words, one section per day, and you have to have mapped all of it to read any of it.',
         meta: 'Float. Catch. Bleed. Death. Stiff. Push.' },
       { title: 'The Runners', sub: 'Out at dawn, back before dusk', tag: 'The job', accent: '#5fa86f',
-        desc: 'The only Gladers allowed outside the doors: they run the corridors all day, memorise a section, and draw it when they get back. Anyone still out there when the doors shut does not come back.',
+        desc: 'The only Gladers allowed outside the doors: they run the corridors all day, memorize a section, and draw it when they get back. Anyone still out there when the doors shut does not come back.',
         meta: 'Minho is the Keeper' },
       { title: 'The Grievers', sub: 'Half animal, half machine', tag: 'The threat', accent: '#c04a4a',
         desc: 'Bio-mechanical things that live in the maze at night, with needles and blades and an engine noise. Being stung by one gives you the Changing, which gives you fragments of your memory back, which is worse than not having it.',

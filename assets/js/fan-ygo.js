@@ -9,7 +9,7 @@ window.FAN_PAGE = {
     lede: 'Two players, eight thousand life points in the anime and four thousand on the table, and a deck of at least forty cards. Reduce the other player to zero, or make them draw from an empty deck. Everything else is the interaction between three card types and a lot of exceptions.',
     items: [
       { title: 'Monsters', sub: 'The things that attack', tag: 'The board', accent: '#e0a83a',
-        desc: 'Attack and defence values, a level in stars, and a summoning cost paid in other monsters. Anything above four stars has to be tributed for, which is the resource system the whole game hangs on.',
+        desc: 'Attack and defense values, a level in stars, and a summoning cost paid in other monsters. Anything above four stars has to be tributed for, which is the resource system the whole game hangs on.',
         meta: 'Normal, Effect, Ritual, Fusion, Synchro, Xyz, Pendulum, Link' },
       { title: 'Spells and Traps', sub: 'The things that ruin it', tag: 'The board', accent: '#5fbf7f',
         desc: 'Set face-down and flipped at the moment of maximum inconvenience. The trap card reveal is the single most imitated dramatic beat in children\'s television.',
@@ -74,7 +74,7 @@ window.FAN_PAGE = {
         desc: 'The GX opening, for the spin-off set at a duel academy on an island. Sillier than the original and much better liked than it was at the time.',
         href: 'https://www.youtube.com/watch?v=CN_DjYDHEVU', link: 'Watch' },
       { title: 'Passionate Duelist', accent: '#e0483a', sub: 'Duel Monsters score · 2000 · 4:57',
-        desc: 'The battle cue: the one that starts when somebody is about to summon something they should not have. Not an opening, and probably the most recognised piece of music in the whole franchise.',
+        desc: 'The battle cue: the one that starts when somebody is about to summon something they should not have. Not an opening, and probably the most recognized piece of music in the whole franchise.',
         href: 'https://www.youtube.com/watch?v=m8pZjRTHIa0', link: 'Fan upload' },
     ] },
 

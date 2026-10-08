@@ -15,7 +15,7 @@
              desert ice ocean tropic city volcanic gas forest jungle swamp
              rock crystal storm station salt toxic plains mist junk
      colors  required: [base, shadow, highlight] hex, used by every layer
-     glow    required: atmosphere / halo colour
+     glow    required: atmosphere / halo color
      src     required: where it first showed up (short label)
      meta    required: climate · region line
      desc    required, one sentence
@@ -36,7 +36,7 @@ window.SW_PLANETS = [
     { name: 'Tatooine', type: 'desert', colors: ['#e0ad6d', '#8a5220', '#ffeccb'], glow: '#f2b25a', src: 'Ep. I', meta: 'Desert · Outer Rim', desc: 'Twin suns, endless dunes, and the moisture farm that started it all.', key: true },
     { name: 'Coruscant', type: 'city', colors: ['#8a95ad', '#232a45', '#ffe0a3'], glow: '#ffc86a', src: 'Ep. I', meta: 'City-world · Core', desc: 'One city wrapped around one planet, the capital of the galaxy.', key: true },
     { name: 'Kamino', type: 'ocean', colors: ['#6b8fc7', '#16264a', '#e2edff'], glow: '#8fc0ff', src: 'Ep. II', meta: 'Ocean · Wild Space', desc: 'A storm-lashed water world where the clone army was grown.', key: true },
-    { name: 'Geonosis', type: 'desert', colors: ['#c76840', '#5a2211', '#f7c39a'], glow: '#e07a3f', src: 'Ep. II', meta: 'Rock · Outer Rim', desc: 'Rust-coloured hives, droid foundries, and the first battle of the war.', ring: true, key: true },
+    { name: 'Geonosis', type: 'desert', colors: ['#c76840', '#5a2211', '#f7c39a'], glow: '#e07a3f', src: 'Ep. II', meta: 'Rock · Outer Rim', desc: 'Rust-colored hives, droid foundries, and the first battle of the war.', ring: true, key: true },
     { name: 'Utapau', type: 'rock', colors: ['#c4a882', '#493826', '#f4e6cd'], glow: '#d8bb86', src: 'Ep. III', meta: 'Arid · Outer Rim', desc: 'Sinkhole cities drilled beneath a wind-scoured surface.' },
     { name: 'Kashyyyk', type: 'jungle', colors: ['#4e8a44', '#15311a', '#cfe9a6'], glow: '#6fd06a', src: 'Ep. III', meta: 'Forest · Mid Rim', desc: 'Wroshyr trees the size of towers, the Wookiee homeworld.', key: true },
     { name: 'Mustafar', type: 'volcanic', colors: ['#a83318', '#280a05', '#ffd08a'], glow: '#ff5c1f', src: 'Ep. III', meta: 'Volcanic · Outer Rim', desc: 'Rivers of lava, and the duel that ended Anakin Skywalker.', key: true },
@@ -139,7 +139,7 @@ window.SW_PLANETS = [
     { name: 'Jedha', type: 'desert', colors: ['#c9a479', '#4a3117', '#f4e2c0'], glow: '#d8ac66', src: 'Rogue One', meta: 'Desert moon · Mid Rim', desc: 'The kyber pilgrimage city, the Death Star’s first single-reactor test.', moon: true, key: true },
     { name: 'Eadu', type: 'storm', colors: ['#4f5a63', '#12171b', '#c0cfd8'], glow: '#6f96b0', src: 'Rogue One', meta: 'Storm-wracked · Outer Rim', desc: 'Rain, cliffs, and a research facility Galen never left.', key: true },
     { name: 'Scarif', type: 'tropic', colors: ['#3fb0b0', '#0f4045', '#e2fff5'], glow: '#5fe0d6', src: 'Rogue One', meta: 'Tropical · Outer Rim', desc: 'Turquoise shallows, a shield gate, and the plans that changed everything.', key: true },
-    { name: 'Wobani', type: 'toxic', colors: ['#7a7a68', '#22221b', '#d0d0bc'], glow: '#a0a074', src: 'Rogue One', meta: 'Labour camp · Mid Rim', desc: 'An Imperial work colony, where Jyn Erso was serving twenty years.' },
+    { name: 'Wobani', type: 'toxic', colors: ['#7a7a68', '#22221b', '#d0d0bc'], glow: '#a0a074', src: 'Rogue One', meta: 'Labor camp · Mid Rim', desc: 'An Imperial work colony, where Jyn Erso was serving twenty years.' },
     { name: 'Corellia', type: 'city', colors: ['#7f8794', '#22262e', '#e6dcc0'], glow: '#d6a85f', src: 'Solo', meta: 'Shipyards · Core', desc: 'Coronet City’s shipyards, and two kids trying to buy their way off.', key: true },
     { name: 'Vandor', type: 'ice', colors: ['#c0d2e2', '#3f5468', '#ffffff'], glow: '#9fc0e0', src: 'Solo', meta: 'Frozen · Outer Rim', desc: 'Mountain snow, Fort Ypso, and a conveyex worth robbing.' },
     { name: 'Kessel', type: 'toxic', colors: ['#8a6a4f', '#241610', '#e0bd94'], glow: '#c98a4f', src: 'Solo', meta: 'Mining · Outer Rim', desc: 'The run, the Maw, and twelve parsecs of creative rounding.', key: true },
@@ -180,7 +180,7 @@ window.SW_PLANETS = [
   /* ═══════════ The Bad Batch ═══════════ */
   { id: 'badbatch', label: 'Bad Batch Planets', note: 'The Bad Batch (2021–2024)', worlds: [
     { name: 'Kamino', type: 'ocean', colors: ['#6b8fc7', '#16264a', '#e2edff'], glow: '#8fc0ff', src: 'S1', meta: 'Ocean · Wild Space', desc: 'Tipoca City, and the day the Empire dropped it into the sea.', key: true },
-    { name: 'Ord Mantell', type: 'junk', colors: ['#9a8a6a', '#2c261a', '#e6dcc0'], glow: '#c9b07f', src: 'S1', meta: 'Harbour city · Mid Rim', desc: 'Cid’s parlour, the scrap markets, and every job that went sideways.', key: true },
+    { name: 'Ord Mantell', type: 'junk', colors: ['#9a8a6a', '#2c261a', '#e6dcc0'], glow: '#c9b07f', src: 'S1', meta: 'Harbor city · Mid Rim', desc: 'Cid’s parlour, the scrap markets, and every job that went sideways.', key: true },
     { name: 'Pabu', type: 'tropic', colors: ['#4fb0c9', '#134048', '#e2fbff'], glow: '#5fd6f0', src: 'S3', meta: 'Island · Outer Rim', desc: 'A cliffside town that rebuilds after every wave, and a home, briefly.', key: true },
     { name: 'Wayland', type: 'jungle', colors: ['#4f7a4f', '#152618', '#cfe8b8'], glow: '#7fc47f', src: 'S3', meta: 'Mountain · Outer Rim', desc: 'Mount Tantiss, Hemlock’s vault, and every stolen clone inside it.', key: true },
     { name: 'Daro', type: 'rock', colors: ['#7a7f8a', '#1e2126', '#d6dce6'], glow: '#9fb0c4', src: 'S1', meta: 'Cliffside · Outer Rim', desc: 'A secret Imperial base carved into the rock spires.' },

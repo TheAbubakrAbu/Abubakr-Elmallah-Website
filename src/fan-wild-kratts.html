@@ -12,10 +12,11 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/wild-kratts.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="kratts">
 
-<!-- the shared backdrop; the colours are in this page's own stylesheet -->
+<!-- the shared backdrop; the colors are in this page's own stylesheet -->
 <div class="np-sky" aria-hidden="true"><span class="np-glow"></span><span class="np-grid"></span></div>
 
 {% include fx.html %}
@@ -32,7 +33,7 @@ tab: "/worlds/"
     {% include crumbs.html parent="Worlds" url="/worlds/#franchises" here="Wild Kratts" %}
     <p class="fan-kicker"><span>Animation &#183; As a kid &#183; since 2011</span></p>
     <h1 class="fan-title">Wild Kratts</h1>
-    <p class="fan-lede-hero">Chris and Martin Kratt are real brothers with real degrees, zoology from Duke and biology from Carleton, and they had been making animal television for fifteen years before this one. Every episode starts with the two of them actually outdoors with an actual animal, then one of them says "what if?" and the whole programme turns into a cartoon.</p>
+    <p class="fan-lede-hero">Chris and Martin Kratt are real brothers with real degrees, zoology from Duke and biology from Carleton, and they had been making animal television for fifteen years before this one. Every episode starts with the two of them actually outdoors with an actual animal, then one of them says "what if?" and the whole program turns into a cartoon.</p>
     <p class="fan-lede-hero">The format is the lesson. Aviva builds a suit, the suit gives you one ability the animal really has, and you have to have seen the real animal to charge the disc. So the fact is the price of the superpower, and a six-year-old will pay it every time.</p>
     <div class="fan-links">
       <a class="fan-link" href="#crew" data-magnetic>The crew &#8599;</a>
@@ -42,6 +43,10 @@ tab: "/worlds/"
   </section>
 
   <div id="fanBody"></div>
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
+
 </main>
 
 {% include footer.html back="/worlds/" %}

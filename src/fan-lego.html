@@ -13,10 +13,11 @@ tab: "/worlds/"
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/pics.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/lego.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="lego">
 
-<!-- a baseplate, in primary colours -->
+<!-- a baseplate, in primary colors -->
 <div class="lg-sky" aria-hidden="true">
   <div class="lg-plate"></div>
   <div class="lg-bricks">
@@ -59,7 +60,7 @@ tab: "/worlds/"
 
   <section class="lg-stud reveal">
     <div class="lg-stud-panel">
-      <h4>The studs</h4>
+      <h2>The studs</h2>
       <p>Every LEGO game runs on the same four studs, and the values never changed across twenty years and thirty-five titles. Smash anything at all and they come out of it, which is the actual core loop, and the reason you end up demolishing a whole hub area for no reason.</p>
       <div class="lg-stud-pick" id="lgPick" role="group" aria-label="Stud type"></div>
       <div class="lg-stud-read">
@@ -74,7 +75,7 @@ tab: "/worlds/"
   </section>
 
   <!-- the games come first: they are the reason LEGO is on the list at all.
-       fan-lego.js renders the catalogue, the design notes and the completion
+       fan-lego.js renders the catalog, the design notes and the completion
        gallery into #fanBody, then the brick itself, then everything marked
        mount:'end' lands in #fanBodyEnd underneath it. -->
   <div id="fanBody"></div>
@@ -89,13 +90,17 @@ tab: "/worlds/"
       </div>
     </div>
     <div class="lg-note">
-      <h4>Why it clutches</h4>
+      <h2>Why it clutches</h2>
       <p>The studs on top press against the tubes underneath and the walls between them. That single idea, patented in 1958, is the reason a brick from that year still grips one moulded this morning.</p>
       <p>Every dimension in the system is a multiple of the same numbers, which is why a wheel, a hinge, a minifigure hand and a spaceship canopy all agree with each other sixty-seven years later.</p>
     </div>
   </section>
 
   <div id="fanBodyEnd"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 
@@ -109,7 +114,7 @@ tab: "/worlds/"
 
 <script src="{% include v.html f='/assets/js/utils.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
-<!-- the catalogue itself, shared with /gaming/; must load before the page data -->
+<!-- the catalog itself, shared with /gaming/; must load before the page data -->
 <script src="{% include v.html f='/assets/js/lego-games.js' %}"></script>
 <script src="{% include v.html f='/assets/js/fan-lego.js' %}"></script>
 <script src="{% include v.html f='/assets/js/fan-shots.js' %}"></script>

@@ -12,6 +12,7 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/control-room.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
 <body class="cr" id="cr">
 
@@ -28,6 +29,7 @@ standalone: true
   <a class="cr-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the control room</span>
   </a>
+  {% include interface-world.html world="Jurassic Park" href="/worlds/jurassic-park/" %}
   <span class="cr-top-mid">Isla Nublar · Visitor Centre · Park systems</span>
   <span class="cr-top-clock"><i class="cr-led" id="crTopLed" aria-hidden="true"></i><span id="crTopClock">Island time ··:··:··</span></span>
 </header>
@@ -40,7 +42,7 @@ standalone: true
       <p class="cr-kicker">Park systems · all online</p>
       <h1 class="cr-title"><span>The Control</span> <span>Room</span></h1>
       <div class="cr-hazard" aria-hidden="true"></div>
-      <p class="cr-sub">Every room on this site, run from one console in the visitor centre. Each page is a paddock or a building on the island map, a 3D file system flies you over all of them, the fences are live, and Nedry has locked you out of security.</p>
+      <p class="cr-sub">Every room on this site, run from one console in the visitor center. Each page is a paddock or a building on the island map, a 3D file system flies you over all of them, the fences are live, and Nedry has locked you out of security.</p>
 
       <!-- the park clock: the island's own time (Costa Rica, which does not
            change its clocks), yours, and how long you have been on shift -->
@@ -112,7 +114,7 @@ standalone: true
             <rect x="484" y="168" width="34" height="32"/>
             <rect x="489" y="173" width="24" height="22"/>
           </g>
-          <!-- the paddock grid: seventy-one worlds, nine paddocks deep -->
+          <!-- the paddock grid: seventy-four worlds, nine paddocks deep -->
           <g class="cr-fence cr-fence--grid" data-n="08">
             <rect x="374" y="362" width="16" height="16"/><rect x="394" y="362" width="16" height="16"/><rect x="414" y="362" width="16" height="16"/>
             <rect x="374" y="382" width="16" height="16"/><rect x="394" y="382" width="16" height="16"/><rect x="414" y="382" width="16" height="16"/>
@@ -187,7 +189,7 @@ standalone: true
       <li><a class="cr-room" href="/college/" data-n="05" data-fsn="college"><span class="cr-room-n" aria-hidden="true">05</span><b>Brachiosaurus Valley</b><i>College · UC Irvine</i><em>/college/</em></a></li>
       <li><a class="cr-room" href="/high-school/" data-n="06" data-fsn="high-school"><span class="cr-room-n" aria-hidden="true">06</span><b>The Hatchery</b><i>High School · where it all hatched</i><em>/high-school/</em></a></li>
       <li><a class="cr-room" href="/resume/" data-n="07" data-fsn="resume"><span class="cr-room-n" aria-hidden="true">07</span><b>The Helipad</b><i>Résumé · how most visitors arrive</i><em>/resume/</em></a></li>
-      <li><a class="cr-room" href="/worlds/" data-n="08" data-fsn="worlds"><span class="cr-room-n" aria-hidden="true">08</span><b>The Paddocks</b><i>All 71 worlds, behind their fences</i><em>/worlds/</em></a></li>
+      <li><a class="cr-room" href="/worlds/" data-n="08" data-fsn="worlds"><span class="cr-room-n" aria-hidden="true">08</span><b>The Paddocks</b><i>All 74 worlds, behind their fences</i><em>/worlds/</em></a></li>
       <li><a class="cr-room" href="/worlds/jurassic-park/" data-n="09" data-fsn="jurassic-park"><span class="cr-room-n" aria-hidden="true">09</span><b>The Tyrannosaur Paddock</b><i>Jurassic Park · the world page</i><em>/worlds/jurassic-park/</em></a></li>
       <li><a class="cr-room" href="/star-wars/" data-n="10" data-fsn="star-wars"><span class="cr-room-n" aria-hidden="true">10</span><b>The Raptor Pen</b><i>Star Wars apps · Datapad and the droids</i><em>/star-wars/</em></a></li>
       <li><a class="cr-room" href="/al-islam/" data-n="11" data-fsn="al-islam"><span class="cr-room-n" aria-hidden="true">11</span><b>The Lake</b><i>Al-Islam · the Islamic apps</i><em>/al-islam/</em></a></li>
@@ -234,8 +236,7 @@ standalone: true
           <li><a class="cr-host" href="/crafting-table/" data-fsn="crafting-table"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Crafting Table</b><i>Minecraft inventory</i><em>/crafting-table/</em></a></li>
           <li><a class="cr-host" href="/citadel/" data-fsn="citadel"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Citadel</b><i>Game of Thrones archive</i><em>/citadel/</em></a></li>
           <li><a class="cr-host" href="/compass/" data-fsn="compass"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Compass</b><i>Pirates of the Caribbean</i><em>/compass/</em></a></li>
-          <li><a class="cr-host" href="/upside-down/" data-fsn="upside-down"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Upside Down</b><i>Stranger Things</i><em>/upside-down/</em></a></li>
-          <li><a class="cr-host" href="/starcourt/" data-fsn="starcourt"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>Starcourt</b><i>Stranger Things arcade and mall</i><em>/starcourt/</em></a></li>
+          <li><a class="cr-host" href="/hawkins/" data-fsn="hawkins"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>Hawkins</b><i>Stranger Things</i><em>/hawkins/</em></a></li>
           <li><a class="cr-host" href="/spirit-library/" data-fsn="spirit-library"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i><em>/spirit-library/</em></a></li>
           <li><a class="cr-host" href="/monastery/" data-fsn="monastery"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Monastery</b><i>Ninjago</i><em>/monastery/</em></a></li>
           <li><a class="cr-host" href="/wanted/" data-fsn="wanted"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Wanted Board</b><i>Red Dead Redemption</i><em>/wanted/</em></a></li>
@@ -245,6 +246,10 @@ standalone: true
           <li><a class="cr-host" href="/pokedex/" data-fsn="pokedex"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Pokédex</b><i>Pokémon</i><em>/pokedex/</em></a></li>
           <li><a class="cr-host" href="/batcomputer/" data-fsn="batcomputer"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Batcomputer</b><i>Batman</i><em>/batcomputer/</em></a></li>
           <li><a class="cr-host" href="/daily-bugle/" data-fsn="daily-bugle"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Daily Bugle</b><i>Spider-Man</i><em>/daily-bugle/</em></a></li>
+          <li><a class="cr-host" href="/grail-diary/" data-fsn="grail-diary"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Grail Diary</b><i>Indiana Jones</i><em>/grail-diary/</em></a></li>
+          <li><a class="cr-host" href="/red-book/" data-fsn="red-book"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Red Book</b><i>The Lord of the Rings</i><em>/red-book/</em></a></li>
+          <li><a class="cr-host" href="/power-battery/" data-fsn="power-battery"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Power Battery</b><i>Green Lantern</i><em>/power-battery/</em></a></li>
+          <li><a class="cr-host" href="/watchtower/" data-fsn="watchtower"><span class="cr-perm" aria-hidden="true">drwxr-xr-x</span><b>The Watchtower</b><i>The Justice League</i><em>/watchtower/</em></a></li>
         </ul>
       </div>
 
@@ -385,6 +390,8 @@ standalone: true
     <p class="cr-reboot-by">Ray Arnold, chief engineer, before the reboot</p>
   </section>
 
+  {% include interface-world.html world="Jurassic Park" href="/worlds/jurassic-park/" place="foot" %}
+
 </main>
 
 <!-- the end: the power off, the fences with it, and a glass of water on the
@@ -403,7 +410,7 @@ standalone: true
     <p class="cr-end-t">The whole park is dark.</p>
     <p class="cr-end-p">Every fence is down, the raptor pen with them. The main breakers are in the maintenance shed, and the water in the glass has started to ripple.</p>
     <div class="cr-end-acts">
-      <a class="cr-end-home" id="crEndHome" href="/">Back to the visitor centre</a>
+      <a class="cr-end-home" id="crEndHome" href="/">Back to the visitor center</a>
       <button class="cr-end-on" id="crBreakers" type="button">Turn the breakers back on</button>
     </div>
   </div>

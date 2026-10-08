@@ -1,7 +1,7 @@
 /* ============================================================
    springfield.css: /springfield/, the Simpsons terminal.
    Sister page to /citadel/, /compass/ and the rest: the site
-   drawn the way the show draws its town, in flat colour inside
+   drawn the way the show draws its town, in flat color inside
    thick ink outlines, under the blue of the opening titles. The
    clouds part, every page stands on the street as a landmark,
    and the TV switches off at the end.
@@ -16,6 +16,8 @@ ul, ol { list-style: none; }
 html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
 
 .sf {
+  --iw-a: #ffd90f;   /* the shared world button, interface-world.css */
+  --iw-bg: #4fb0ea;
   --disp:   "Luckiest Guy", "Arial Black", sans-serif;
   --body:   "Fredoka", "Trebuchet MS", sans-serif;
   --chalkf: "Caveat", "Comic Sans MS", cursive;
@@ -263,7 +265,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 @keyframes sf-car { 0%, 6% { translate: 0 0; } 46%, 56% { translate: 1020px 0; } 96%, 100% { translate: 0 0; } }
 
 /* the directory: an address card per room, with a roof in the building's
-   colour along its top */
+   color along its top */
 .sf-dir { display: grid; gap: 0.9rem; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
 .sf-room {
   position: relative; display: flex; flex-direction: column; gap: 0.15rem; height: 100%;

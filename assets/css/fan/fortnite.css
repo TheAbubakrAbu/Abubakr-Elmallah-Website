@@ -133,7 +133,7 @@
   text-transform: uppercase; color: rgba(200,220,255,.7);
 }
 
-.fn-hud-note h4 {
+.fn-hud-note :is(h2, h3, h4, h5) {
   font-family: Futura, "Century Gothic", "Trebuchet MS", var(--sans); font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.08em; font-size: 1.15rem;
   color: var(--a); margin-bottom: 0.6rem;

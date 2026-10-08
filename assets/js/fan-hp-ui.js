@@ -6,7 +6,7 @@
       Hat takes your choice into account, but only if you argue with it.
 
    2. Castable spells. Clicking a tile in #spells throws sparks in that spell's
-      own colour. Lumos actually lights the page up, and only Nox puts it out
+      own color. Lumos actually lights the page up, and only Nox puts it out
       again, which is the whole joke.
 
    Loads AFTER fanpage.js (the spell tiles do not exist until it has run). */
@@ -114,7 +114,7 @@
   var LIGHT_MS = 6000;
   var lumos = 0;
 
-  function sparks(tile, colour) {
+  function sparks(tile, color) {
     if (reduceMotion) return;
     var burst = document.createElement('span');
     burst.className = 'spell-burst';
@@ -127,7 +127,7 @@
       s.style.setProperty('--d', (Math.random() * 120).toFixed(0) + 'ms');
       burst.appendChild(s);
     }
-    burst.style.setProperty('--c', colour || '#f6e8a8');
+    burst.style.setProperty('--c', color || '#f6e8a8');
     tile.appendChild(burst);
     setTimeout(function () { burst.remove(); }, 900);
   }
@@ -137,13 +137,13 @@
     if (!tile) return;
 
     var name = (tile.querySelector('b') || {}).textContent || '';
-    var colour = tile.style.getPropertyValue('--a').trim();
+    var color = tile.style.getPropertyValue('--a').trim();
 
     tile.classList.remove('is-cast');
     void tile.offsetWidth;                 // restart the flash
     tile.classList.add('is-cast');
     setTimeout(function () { tile.classList.remove('is-cast'); }, 700);
-    sparks(tile, colour);
+    sparks(tile, color);
 
     if (name === 'Lumos') {
       document.body.classList.add('is-lumos');

@@ -1,15 +1,28 @@
 /* ============================================================
-   starcourt.css: /starcourt/, the Palace Arcade and Starcourt Mall take on
-   the Stranger Things terminal (the original is /upside-down/).
-   Sister page to /jarvis/, /holocron/, /marauders-map/,
-   /crafting-table/ and /citadel/: Hawkins in the summer of 1985
-   instead of glass. The site's rooms are the stores on the
-   Starcourt Mall directory and the other terminals are cabinets
-   on the Palace Arcade's carpet. Joyce's alphabet stands in the
-   arcade as a machine of its own, its bulbs spelling whatever you
-   point at, and the light switch on it turns the whole town over
-   into the Upside Down. Drawn in CSS and SVG; the fireworks, the
-   spores and the lightning are starcourt.js.
+   hawkins.css: /hawkins/, the Stranger Things interface.
+
+   One page where there used to be two. /starcourt/ was the mall
+   and the Palace Arcade; /upside-down/ was the Byers house and
+   the walkie-talkie; both drew the same town and both carried
+   the same alphabet wall, so they were one page that had been
+   typed twice. This is the merge, and both old addresses
+   redirect here.
+
+   WHAT THE SCROLL DOES, which is the point of the merge: the top
+   of the page is Hawkins in the summer of 1985, the mall open and
+   lit. Scrolling IS the descent. hawkins.js writes one number,
+   --dp (0 at the top, 1 at the foot), onto the body on every
+   frame of scroll, and everything cold on this page is keyed to
+   it: the sky warms down, the vines come in, the carpet dims, the
+   neon goes out. Past the halfway mark the body also takes
+   .is-down, which is the old binary state the switch always set,
+   so the readouts, the fireworks and the spores keep working
+   exactly as they did and the light switch on the wall still
+   throws the whole town over at once for anyone who would rather
+   not walk down.
+
+   Drawn in CSS and SVG; the fireworks, the spores, the lightning
+   and the descent itself are hawkins.js.
    ============================================================ */
 
 /* these pages load no shared stylesheet, so they carry their own reset */
@@ -99,7 +112,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .ud.is-down .ud-card { transform: rotateX(180deg); }
 .ud-face { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
 .ud-face > span { position: absolute; }
-/* WebKit does not always honour backface-visibility on a face this large,
+/* WebKit does not always honor backface-visibility on a face this large,
    and the back would show through the front; so the face turned away is
    also hidden outright, swapped at the halfway point of the turn, where
    both faces are edge-on and neither can be seen anyway */
@@ -306,7 +319,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   box-shadow: 0 26px 44px -20px rgba(0, 0, 0, .85), inset 0 0 0 1px rgba(255, 240, 210, .14);
 }
 /* the other side's wallpaper, faded in over this one: the same pattern,
-   gone blue-grey, with the plaster showing through where it has peeled */
+   gone blue-gray, with the plaster showing through where it has peeled */
 .ud-wall::before {
   content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0;
   transition: opacity var(--swap);
@@ -462,7 +475,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   color: var(--paintc); transition: color var(--swap);
 }
 .ud-cap-k { font-weight: 700; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; }
-.ud-spelt { font-family: var(--paint); font-weight: 400; font-size: clamp(0.9rem, 3.8cqi, 1.35rem); letter-spacing: 0.06em; white-space: pre; }
+.ud-spelled { font-family: var(--paint); font-weight: 400; font-size: clamp(0.9rem, 3.8cqi, 1.35rem); letter-spacing: 0.06em; white-space: pre; }
 
 
 /* behind the machine's glass, the wall takes the screen's rounded corners */
@@ -513,7 +526,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .ud-board-d { font-family: var(--block); font-size: clamp(0.82rem, 3.4cqi, 1.05rem); letter-spacing: 0.24em; color: var(--teal); transition: color var(--swap); }
 .ud-board-s { margin-top: 0.35rem; font-style: italic; font-size: 0.95rem; color: var(--mute); transition: color var(--swap); }
 
-/* the floor plan; a shop lights in its own colour when its listing is chosen */
+/* the floor plan; a shop lights in its own color when its listing is chosen */
 .ud-plan { width: 100%; height: auto; margin-top: 1.1rem; overflow: visible; }
 .ud-plan-wall { fill: rgba(255, 255, 255, .025); stroke: color-mix(in srgb, var(--teal) 55%, transparent); stroke-width: 2; }
 .ud-plan-floor path { fill: color-mix(in srgb, var(--violet) 10%, transparent); }
@@ -559,7 +572,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   background: rgba(0, 0, 0, .28);
   transition: border-color .3s, background-color .3s, box-shadow .3s;
 }
-/* on the far side every shop's colour is drained most of the way to red */
+/* on the far side every shop's color is drained most of the way to red */
 .ud.is-down .ud-room { --a: color-mix(in srgb, var(--b) 30%, #ff5446); }
 .ud-unit {
   grid-row: span 2; align-self: center; min-width: 2.6ch; text-align: center;
@@ -655,7 +668,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   position: relative; flex: 1; display: flex; flex-direction: column; min-height: 44px;
   padding: 7px 9px 9px;
   border-radius: 10px 10px 4px 4px;
-  /* the sides, with a stripe of the game's colour painted down each */
+  /* the sides, with a stripe of the game's color painted down each */
   background: linear-gradient(180deg, var(--cab-1), var(--cab-2));
   box-shadow:
     inset 4px 0 0 color-mix(in srgb, var(--k) 70%, #000), inset -4px 0 0 color-mix(in srgb, var(--k) 70%, #000),
@@ -945,4 +958,123 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   .ud *, .ud *::before, .ud *::after { animation: none !important; transition: none !important; }
   .ud { transition: none; }
   .ud-flash, .ud-bolt { display: none; }
+}
+
+/* ════════════════════════════════════════════════════════════
+   THE DESCENT
+   Everything below is what the merge added: the scroll turning
+   the town over, rather than only the switch doing it.
+   ════════════════════════════════════════════════════════════ */
+
+/* --dp is written by hawkins.js: 0 at the top of the page, 1 at the foot.
+   It is declared here too so the page is correct before the script runs
+   and if the script never runs at all. */
+.ud { --dp: 0; }
+
+/* ── the sky goes over gradually ──
+   The card still turns on .is-down (that is a 3D flip and cannot be done
+   halfway without looking broken), but the color over it is continuous, so
+   the descent is felt long before the flip happens. A single overlay, its
+   opacity the depth, in the cold of the far side. */
+.ud-field::after {
+  content: ""; position: absolute; inset: 0; z-index: 3;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(255, 84, 70, .20), transparent 60%),
+    linear-gradient(180deg, rgba(10, 14, 19, .55), rgba(6, 9, 12, .85));
+  opacity: calc(var(--dp) * .92);
+}
+
+/* ── the town dims as you go down ──
+   The whole main column loses its warmth on the way. Kept off the sky (which
+   has its own overlay above) and off the header, which must stay readable. */
+.ud-main {
+  filter:
+    saturate(calc(1 - var(--dp) * .55))
+    brightness(calc(1 - var(--dp) * .14))
+    hue-rotate(calc(var(--dp) * -14deg));
+}
+
+/* the vines, which on the old page only existed on the far side, now grow in
+   as you descend: this is the clearest single signal that the page is turning */
+.ud-vines { opacity: calc(var(--dp) * .9); }
+.ud-vines path { stroke-dashoffset: calc(1 - var(--dp)); }
+
+/* the arcade's carpet and the mall's neon go out on the way down */
+.ud-arcade::before { filter: grayscale(var(--dp)); }
+.ud-neon, .ud-mallname, .ud-palace-h {
+  filter: saturate(calc(1 - var(--dp) * .7)) brightness(calc(1 - var(--dp) * .25));
+}
+
+/* ── the two-faced headings ──
+   A sign that reads one way in the mall and another in the Upside Down. Both
+   faces are in the markup; only one is ever shown, so the links beneath are
+   never duplicated. The far-side face is aria-hidden, because the near-side
+   one is the accessible name and it does not change meaning.
+
+   WHY grid AND NOT display:none: the sign must not change height when it
+   swaps, or the page would jump under the reader at the halfway mark. Both
+   faces are stacked in one grid cell and cross-faded. */
+.ud-palace-h, .ud-board-h, .ud-board-k, .ud-palace-s, .ud-board-s { display: grid; }
+.ud-palace-up, .ud-palace-dn {
+  grid-area: 1 / 1;
+  transition: opacity .5s var(--ease);
+}
+.ud-palace-dn { opacity: 0; }
+.ud.is-down .ud-palace-up { opacity: 0; }
+.ud.is-down .ud-palace-dn { opacity: 1; }
+
+/* the far-side face of the arcade sign is the AV Club's label tape, not neon */
+.ud-palace-dn {
+  font-family: var(--lcd); letter-spacing: .04em; text-transform: uppercase;
+  color: var(--sun);
+}
+.ud-palace-dn span { color: var(--mute); }
+.ud-palace-s .ud-palace-dn, .ud-board-s .ud-palace-dn, .ud-board-k .ud-palace-dn {
+  font-family: var(--type); text-transform: none; letter-spacing: 0;
+  color: var(--mute); font-size: inherit;
+}
+
+/* ── the line that tells you to keep going ── */
+.ud-sub--go {
+  margin-top: .7rem; padding-top: .7rem;
+  border-top: 1px solid var(--line);
+}
+.ud-sub--go b { color: var(--sun); font-weight: 700; }
+
+/* ── the depth gauge in the header ──
+   How far under the town you are. It is the only readout that says the
+   descent is a thing the reader is doing, so it is always visible, and it
+   doubles as the proof that scrolling is what moves it. */
+.ud-depth { display: inline-flex; align-items: center; gap: .5rem; min-width: 0; }
+.ud-depth-bar {
+  position: relative; display: block;
+  width: clamp(44px, 9vw, 86px); height: 5px; border-radius: 999px;
+  background: rgba(170, 196, 220, .22);
+  overflow: hidden; flex: 0 0 auto;
+}
+.ud-depth-bar b {
+  position: absolute; inset: 0 auto 0 0; display: block;
+  width: calc(var(--dp) * 100%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--teal), var(--sun));
+}
+.ud-depth em {
+  font-style: normal; font-family: var(--lcd);
+  font-size: .8rem; letter-spacing: .06em; color: var(--dim);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* the header is a tight row; on a phone the gauge keeps the bar and drops
+   its word, because the bar is the part that carries the information */
+@media (max-width: 720px) {
+  .ud-depth em { display: none; }
+}
+
+/* ── reduced motion ──
+   The descent is a color change and a width, not movement, so it is kept:
+   it is the page's only way of saying where you are. What goes is the
+   cross-fade on the signs, which becomes instant. */
+@media (prefers-reduced-motion: reduce) {
+  .ud-palace-up, .ud-palace-dn { transition: none; }
 }

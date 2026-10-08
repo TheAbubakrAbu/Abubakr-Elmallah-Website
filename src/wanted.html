@@ -12,6 +12,7 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/wanted.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
 <body class="wb" id="wb">
 
@@ -59,6 +60,7 @@ standalone: true
   <a class="wb-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave Valentine</span>
   </a>
+  {% include interface-world.html world="Red Dead Redemption" href="/worlds/red-dead/" %}
   <span class="wb-top-mid">Sheriff’s Office · Valentine · New Hanover</span>
   <span class="wb-top-r">
     <!-- the Dead Eye core, as on the game's HUD: a ring that drains while
@@ -123,7 +125,7 @@ standalone: true
         <li>Al-Adhan, which works out prayer times 22 ways</li>
         <li>The UCI Esports app: the arena, its PCs, its events</li>
         <li>First jobs alone: Order 66 and Datapad, 2021</li>
-        <li>Seventy-one worlds, charted on <a href="/worlds/">/worlds/</a></li>
+        <li>Seventy-four worlds, charted on <a href="/worlds/">/worlds/</a></li>
       </ul>
       <dl class="wb-bill-seen">
         <div><dt>Last seen</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
@@ -150,14 +152,14 @@ standalone: true
       <li><a class="wb-poster" href="/education/" style="--r:2.4deg; --i:3"><span class="wb-paper"><span class="wb-k">Notice</span><svg class="wb-ico" aria-hidden="true"><use href="#wbBell"/></svg><b class="wb-n">The Schoolhouse</b><span class="wb-real">education</span><span class="wb-f">Reading, writing and a great deal of arithmetic.</span><span class="wb-amt">$250</span></span></a></li>
       <li><a class="wb-poster" href="/college/" style="--r:-1.4deg; --i:4"><span class="wb-paper"><span class="wb-k">Wanted</span><svg class="wb-ico" aria-hidden="true"><use href="#wbTrain"/></svg><b class="wb-n">Blackwater</b><span class="wb-real">college, UC Irvine</span><span class="wb-f">The modern city. Computer Science, class of 2028.</span><span class="wb-amt">$2,028</span></span></a></li>
       <li><a class="wb-poster" href="/high-school/" style="--r:1deg; --i:5"><span class="wb-paper"><span class="wb-k">Reward</span><svg class="wb-ico" aria-hidden="true"><use href="#wbShoe"/></svg><b class="wb-n">Valentine</b><span class="wb-real">high school</span><span class="wb-f">The first town up the trail, mud and all.</span><span class="wb-amt">$150</span></span></a></li>
-      <li><a class="wb-poster" href="/worlds/" style="--r:-2.6deg; --i:6"><span class="wb-paper"><span class="wb-k">Bounty</span><svg class="wb-ico" aria-hidden="true"><use href="#wbMesa"/></svg><b class="wb-n">The Territories</b><span class="wb-real">all 71 worlds</span><span class="wb-f">Seventy of them surveyed, and more country past those.</span><span class="wb-amt">$7,000</span></span></a></li>
+      <li><a class="wb-poster" href="/worlds/" style="--r:-2.6deg; --i:6"><span class="wb-paper"><span class="wb-k">Bounty</span><svg class="wb-ico" aria-hidden="true"><use href="#wbMesa"/></svg><b class="wb-n">The Territories</b><span class="wb-real">all 74 worlds</span><span class="wb-f">Seventy-four of them surveyed, and more country past those.</span><span class="wb-amt">$7,000</span></span></a></li>
       <li><a class="wb-poster wb-poster--gang" href="/worlds/red-dead/" style="--r:0.6deg; --i:7"><span class="wb-paper"><span class="wb-k">Dead or alive</span><svg class="wb-ico" aria-hidden="true"><use href="#wbHat"/></svg><b class="wb-n">The Van der Linde Gang</b><span class="wb-real">Red Dead Redemption, the world page</span><span class="wb-f">Last seen at Horseshoe Overlook, 1899.</span><span class="wb-amt">$25,000</span></span></a></li>
       <li><a class="wb-poster" href="/star-wars/" style="--r:-1deg; --i:8"><span class="wb-paper"><span class="wb-k">Sighting</span><svg class="wb-ico" aria-hidden="true"><use href="#wbSaucer"/></svg><b class="wb-n">Lights over Mount Shann</b><span class="wb-real">Star Wars apps</span><span class="wb-f">Strange craft in the sky, from a galaxy far away.</span><span class="wb-amt">$66</span></span></a></li>
       <li><a class="wb-poster wb-poster--calm" href="/al-islam/" style="--r:1.8deg; --i:9"><span class="wb-paper"><span class="wb-k">Notice</span><svg class="wb-ico" aria-hidden="true"><use href="#wbCrescent"/></svg><b class="wb-n">First Light</b><span class="wb-real">Al-Islam</span><span class="wb-f">Prayer times, kept from dawn to nightfall.</span><span class="wb-amt">Open to all</span></span></a></li>
       <li><a class="wb-poster" href="/travels/" style="--r:-1.9deg; --i:10"><span class="wb-paper"><span class="wb-k">Reward</span><svg class="wb-ico" aria-hidden="true"><use href="#wbWheel"/></svg><b class="wb-n">The Stagecoach Road</b><span class="wb-real">travels</span><span class="wb-f">Everywhere the wheels have been so far.</span><span class="wb-amt">$300</span></span></a></li>
       <li><a class="wb-poster" href="/accents/" style="--r:2deg; --i:11"><span class="wb-paper"><span class="wb-k">Tonight</span><svg class="wb-ico" aria-hidden="true"><use href="#wbMask"/></svg><b class="wb-n">Théâtre Râleur</b><span class="wb-real">accents &amp; impersonations</span><span class="wb-f">A different voice every night of the week.</span><span class="wb-amt">$75</span></span></a></li>
       <li><a class="wb-poster" href="/gaming/" style="--r:-0.6deg; --i:12"><span class="wb-paper"><span class="wb-k">Wanted</span><svg class="wb-ico" aria-hidden="true"><use href="#wbCards"/></svg><b class="wb-n">The Card Table</b><span class="wb-real">gaming</span><span class="wb-f">Poker, dominoes and five finger fillet, all night.</span><span class="wb-amt">$100</span></span></a></li>
-      <li><a class="wb-poster" href="/lightsabers/" style="--r:1.3deg; --i:13"><span class="wb-paper"><span class="wb-k">For sale</span><svg class="wb-ico" aria-hidden="true"><use href="#wbGun"/></svg><b class="wb-n">The Gunsmith</b><span class="wb-real">the lightsaber guide</span><span class="wb-f">A catalogue of arms, from a much longer war.</span><span class="wb-amt">$1,000</span></span></a></li>
+      <li><a class="wb-poster" href="/lightsabers/" style="--r:1.3deg; --i:13"><span class="wb-paper"><span class="wb-k">For sale</span><svg class="wb-ico" aria-hidden="true"><use href="#wbGun"/></svg><b class="wb-n">The Gunsmith</b><span class="wb-real">the lightsaber guide</span><span class="wb-f">A catalog of arms, from a much longer war.</span><span class="wb-amt">$1,000</span></span></a></li>
       <li><a class="wb-poster" href="/resume/" style="--r:-1.7deg; --i:14"><span class="wb-paper"><span class="wb-k">Classified</span><svg class="wb-ico" aria-hidden="true"><use href="#wbEye"/></svg><b class="wb-n">The Pinkerton File</b><span class="wb-real">résumé</span><span class="wb-f">Everything the Agency knows, on one page.</span><span class="wb-amt">On request</span></span></a></li>
     </ul>
   </section>
@@ -175,20 +177,25 @@ standalone: true
       <li><a class="wb-gram" href="/citadel/"><span class="wb-gram-k">To: Game of Thrones</span><b>The Citadel</b><i>The maesters of Oldtown. Stop.</i></a></li>
       <li><a class="wb-gram" href="/compass/"><span class="wb-gram-k">To: Pirates of the Caribbean</span><b>The Compass</b><i>It points where you want. Stop.</i></a></li>
       <li><a class="wb-gram" href="/control-room/"><span class="wb-gram-k">To: Jurassic Park</span><b>The Control Room</b><i>Isla Nublar. Stop.</i></a></li>
-      <li><a class="wb-gram" href="/upside-down/"><span class="wb-gram-k">To: Stranger Things</span><b>The Upside Down</b><i>Hawkins, Indiana. Stop.</i></a></li>
-      <li><a class="wb-gram" href="/starcourt/"><span class="wb-gram-k">To: Stranger Things</span><b>Starcourt</b><i>The arcade and the mall. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/hawkins/"><span class="wb-gram-k">To: Stranger Things</span><b>Hawkins</b><i>The mall, and what is under it. Stop.</i></a></li>
       <li><a class="wb-gram" href="/spirit-library/"><span class="wb-gram-k">To: Avatar: The Last Airbender</span><b>The Spirit Library</b><i>Under the desert sand. Stop.</i></a></li>
       <li><a class="wb-gram" href="/monastery/"><span class="wb-gram-k">To: Ninjago</span><b>The Monastery</b><i>Up in the mountains. Stop.</i></a></li>
       <li><a class="wb-gram" href="/dunder-mifflin/"><span class="wb-gram-k">To: The Office</span><b>Dunder Mifflin</b><i>Scranton, Pennsylvania. Stop.</i></a></li>
       <li><a class="wb-gram" href="/springfield/"><span class="wb-gram-k">To: The Simpsons</span><b>Springfield</b><i>Somewhere in America. Stop.</i></a></li>
       <li><a class="wb-gram" href="/vought/"><span class="wb-gram-k">To: The Boys</span><b>Vought Tower</b><i>Heroes, for a price. Stop.</i></a></li>
-      <li><a class="wb-gram" href="/pokedex/"><span class="wb-gram-k">To: Pokémon</span><b>The Pokédex</b><i>Every one, catalogued. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/pokedex/"><span class="wb-gram-k">To: Pokémon</span><b>The Pokédex</b><i>Every one, cataloged. Stop.</i></a></li>
       <li><a class="wb-gram" href="/batcomputer/"><span class="wb-gram-k">To: Batman</span><b>The Batcomputer</b><i>Under Wayne Manor. Stop.</i></a></li>
       <li><a class="wb-gram" href="/daily-bugle/"><span class="wb-gram-k">To: Spider-Man</span><b>The Daily Bugle</b><i>Hold the front page. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/grail-diary/"><span class="wb-gram-k">To: Indiana Jones</span><b>The Grail Diary</b><i>Field notes, every page a dig site. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/red-book/"><span class="wb-gram-k">To: The Lord of the Rings</span><b>The Red Book</b><i>Every page a waypoint on one road. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/power-battery/"><span class="wb-gram-k">To: Green Lantern</span><b>The Power Battery</b><i>Every page a construct, built out of will. Stop.</i></a></li>
+      <li><a class="wb-gram" href="/watchtower/"><span class="wb-gram-k">To: The Justice League</span><b>The Watchtower</b><i>Monitor duty, every page a station. Stop.</i></a></li>
     </ul>
   </section>
 
   <button class="wb-ride" id="wbRide" type="button">Ride off into the sunset</button>
+
+  {% include interface-world.html world="Red Dead Redemption" href="/worlds/red-dead/" place="foot" %}
 
 </main>
 

@@ -1,0 +1,294 @@
+---
+permalink: /power-battery/
+title: "The Power Battery · Abubakr Elmallah"
+description: "The Power Battery: a Green Lantern interface for Abubakr Elmallah's portfolio, every page a construct built out of will."
+theme: "#04120a"
+fonts: "family=Orbitron:wght@500;600;700;800&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/power-battery.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
+</head>
+<body class="pb" id="pb">
+
+<!-- a sector of deep space, with the lamp's light reaching into it. The
+     color of all of it is one token, --w, which the spectrum switch moves. -->
+<div class="pb-space" aria-hidden="true">
+  <span class="pb-stars"></span>
+  <span class="pb-glow"></span>
+  <span class="pb-grid"></span>
+</div>
+
+<!-- the constructs: a ring builds whatever you can picture, so each room
+     gets a thing built rather than an icon. Cut once, used below. -->
+<svg class="pb-blocks" aria-hidden="true" focusable="false">
+  <symbol id="pbHouse" viewBox="0 0 48 48"><path d="M6 23 24 8l18 15M11 20v20h26V20M20 40V29h8v11"/><path d="M3 41h42"/></symbol>
+  <symbol id="pbBridge" viewBox="0 0 48 48"><path d="M3 34h42M8 34V20M40 34V20M3 22c8-8 34-8 42 0M16 34v-8M24 34v-11M32 34v-8"/></symbol>
+  <symbol id="pbFist" viewBox="0 0 48 48"><path d="M12 22v-6a4 4 0 0 1 8 0v4M20 20v-8a4 4 0 0 1 8 0v8M28 20v-6a4 4 0 0 1 8 0v12c0 8-5 14-12 14s-12-5-12-13v-5"/></symbol>
+  <symbol id="pbChart" viewBox="0 0 48 48"><path d="M7 41h34M11 41V26M21 41V15M31 41V22M41 41V9"/></symbol>
+  <symbol id="pbBook" viewBox="0 0 48 48"><path d="M9 10h26a3 3 0 0 1 3 3v29H12a3 3 0 0 1-3-3z"/><path d="M12 10v32M18 18h13M18 25h13M18 32h9"/></symbol>
+  <symbol id="pbTower" viewBox="0 0 48 48"><path d="M14 42V14h20v28M11 14 24 5l13 9M19 42V30h10v12M18 20h12M18 25h12"/></symbol>
+  <symbol id="pbGlobe" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17"/><path d="M7 19h34M7 29h34M24 7a20 20 0 0 1 0 34 20 20 0 0 1 0-34z"/></symbol>
+  <symbol id="pbRing" viewBox="0 0 48 48"><circle cx="24" cy="24" r="13"/><circle cx="24" cy="24" r="7"/><path d="M24 6v5M24 37v5"/></symbol>
+  <symbol id="pbStar" viewBox="0 0 48 48"><path d="M24 5l5 14 15 1-11 10 4 14-13-8-13 8 4-14L4 20l15-1z"/></symbol>
+  <symbol id="pbCrescent" viewBox="0 0 48 48"><path d="M28 6a18 18 0 1 0 14 29A15 15 0 1 1 28 6z"/><path d="m36 12 1.6 3.4 3.6.4-2.7 2.5.8 3.6-3.3-1.8-3.3 1.8.8-3.6-2.7-2.5 3.6-.4z"/></symbol>
+  <symbol id="pbJet" viewBox="0 0 48 48"><path d="M24 4c3 0 5 6 5 14l13 8v5l-13-4v9l5 5v3l-10-3-10 3v-3l5-5v-9l-13 4v-5l13-8c0-8 2-14 5-14z"/></symbol>
+  <symbol id="pbMic" viewBox="0 0 48 48"><rect x="18" y="6" width="12" height="22" rx="6"/><path d="M12 24a12 12 0 0 0 24 0M24 36v6M17 42h14"/></symbol>
+  <symbol id="pbPad" viewBox="0 0 48 48"><rect x="5" y="14" width="38" height="22" rx="7"/><path d="M14 21v8M10 25h8M31 22h.01M36 28h.01M28 28h.01M33 33h.01"/></symbol>
+  <symbol id="pbSaber" viewBox="0 0 48 48"><path d="M19 29h10v15H19zM21 29V9a3 3 0 0 1 6 0v20M24 13v12"/></symbol>
+  <symbol id="pbBadge" viewBox="0 0 48 48"><path d="M24 4l6 4 7-1 2 7 5 5-4 6 1 7-7 2-5 5-5-4-7 1-2-7-5-5 4-6-1-7 7-2z"/><path d="M18 24l5 5 9-10"/></symbol>
+</svg>
+
+<header class="pb-top">
+  <a class="pb-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Power down</span>
+  </a>
+  {% include interface-world.html world="Green Lantern" href="/worlds/green-lantern/" %}
+  <span class="pb-top-mid">Sector 2814 · Oa · Green Lantern Corps</span>
+  <span class="pb-top-r">
+    <!-- the ring's charge, as the HUD shows it: a ring that fills -->
+    <span class="pb-charge" aria-hidden="true">
+      <svg viewBox="0 0 36 36"><circle class="pb-charge-bg" cx="18" cy="18" r="15"/><circle class="pb-charge-fill" cx="18" cy="18" r="15" pathLength="100"/></svg>
+    </span>
+    <span id="pbPct">100%</span>
+  </span>
+</header>
+
+<main class="pb-main">
+
+  <!-- ─────────── the lamp and the oath ─────────── -->
+  <section class="pb-hero">
+    <!-- the power battery, drawn: the lamp a ring is charged on. The chest
+         symbol is a trademark, so a lantern is just a lantern. -->
+    <div class="pb-lamp-stage">
+      <svg class="pb-lamp" viewBox="0 0 420 360" role="img" aria-label="A power battery, lit, its light reaching outward">
+        <defs>
+          <radialGradient id="pbCore" cx="0.5" cy="0.45" r="0.6">
+            <stop offset="0" stop-color="#ffffff"/>
+            <stop offset="0.4" stop-color="currentColor"/>
+            <stop offset="1" stop-color="currentColor" stop-opacity="0.1"/>
+          </radialGradient>
+        </defs>
+        <g class="pba-beam"><path d="M210 168 L30 26 L390 26 Z"/><path d="M210 192 L30 334 L390 334 Z"/></g>
+        <g class="pba-lamp">
+          <rect class="pba-cap" x="172" y="44" width="76" height="18" rx="6"/>
+          <path class="pba-neck" d="M184 62h52l13 32h-78z"/>
+          <rect class="pba-body" x="158" y="96" width="104" height="94" rx="11"/>
+          <rect class="pba-band" x="144" y="132" width="132" height="24" rx="9"/>
+          <path class="pba-neck" d="M184 192h52l13 32h-78z"/>
+          <rect class="pba-cap" x="172" y="224" width="76" height="18" rx="6"/>
+        </g>
+        <circle class="pba-core" cx="210" cy="143" r="23"/>
+        <circle class="pba-core-glow" cx="210" cy="143" r="38"/>
+      </svg>
+    </div>
+
+    <div class="pb-hero-text">
+      <p class="pb-kicker">Power battery · Sector 2814</p>
+      <h1 class="pb-title">The Power Battery</h1>
+      <p class="pb-sub">Every room on this site, built out of will: the ring makes whatever you can picture clearly enough, so each page here is a construct rather than a link. The limit is never the ring. It is the person wearing it.</p>
+
+      <!-- the oath, which is the thing everyone actually knows. Typed out
+           line by line when charged, because that is how it is said. -->
+      <blockquote class="pb-oath" id="pbOath">
+        <p style="--i:0">In brightest day, in blackest night,</p>
+        <p style="--i:1">No evil shall escape my sight.</p>
+        <p style="--i:2">Let those who worship evil’s might</p>
+        <p style="--i:3">Beware my power, Green Lantern’s light.</p>
+      </blockquote>
+
+      <button class="pb-recharge" id="pbRecharge" type="button">Recharge the ring</button>
+      <p class="pb-hint" id="pbHint" aria-live="polite">The ring holds its charge. Say the oath to top it up.</p>
+    </div>
+  </section>
+
+  <!-- ─────────── the spectrum ─────────── -->
+  <!-- the seven corps, each a color and an emotion. Picking one re-tints
+       the whole page, because the only thing that changes between corps IS
+       the color of the light: one token, --w, and every surface follows it.
+       Green is where it starts, and where the page goes back to. -->
+  <section class="pb-spectrum" aria-labelledby="pbSpecH">
+    <h2 class="pb-h" id="pbSpecH">
+      <canvas class="pb-think" data-orb="solving" data-orb-size="22" data-orb-ink="#4fd07f" aria-hidden="true"></canvas>The emotional spectrum<span>seven corps, seven colors of light</span>
+    </h2>
+    <div class="pb-corps" id="pbCorps" role="group" aria-label="Choose a corps; it re-tints this page">
+      <button type="button" class="pb-corp is-on" data-w="#4fd07f" data-corp="Green" aria-pressed="true"  style="--c:#4fd07f"><b>Green</b><i>Willpower</i></button>
+      <button type="button" class="pb-corp"       data-w="#ffd23f" data-corp="Sinestro" aria-pressed="false" style="--c:#ffd23f"><b>Yellow</b><i>Fear</i></button>
+      <button type="button" class="pb-corp"       data-w="#ff4f4f" data-corp="Red" aria-pressed="false" style="--c:#ff4f4f"><b>Red</b><i>Rage</i></button>
+      <button type="button" class="pb-corp"       data-w="#ff9a3f" data-corp="Orange" aria-pressed="false" style="--c:#ff9a3f"><b>Orange</b><i>Avarice</i></button>
+      <button type="button" class="pb-corp"       data-w="#5fa8ff" data-corp="Blue" aria-pressed="false" style="--c:#5fa8ff"><b>Blue</b><i>Hope</i></button>
+      <button type="button" class="pb-corp"       data-w="#c77fff" data-corp="Indigo" aria-pressed="false" style="--c:#c77fff"><b>Indigo</b><i>Compassion</i></button>
+      <button type="button" class="pb-corp"       data-w="#ff7fc7" data-corp="Star Sapphire" aria-pressed="false" style="--c:#ff7fc7"><b>Violet</b><i>Love</i></button>
+    </div>
+    <p class="pb-spec-note" id="pbSpecNote" aria-live="polite">Green: willpower. The only one on the spectrum that is a choice rather than a feeling, which is why the Corps runs on it.</p>
+  </section>
+
+  <!-- ─────────── the constructs ─────────── -->
+  <!-- every room on the site, each built as a construct: real links in a
+       real list, so nothing here is only for the eye. --i brings them into
+       being one after another, the way a construct draws itself. -->
+  <section class="pb-built" aria-labelledby="pbBuiltH">
+    <h2 class="pb-h" id="pbBuiltH">Everything built<span>every page, a construct held in mind</span></h2>
+    <ul class="pb-constructs" id="pbConstructs">
+      <li style="--i:0"><a class="pb-c" href="/"><span class="pb-c-in"><svg class="pb-ico" aria-hidden="true"><use href="#pbHouse"/></svg><span class="pb-k">Construct 001</span><b class="pb-n">Home</b><span class="pb-real">home</span><span class="pb-f">The first thing a ring makes is somewhere to stand.</span></span></a></li>
+      <li style="--i:1"><a class="pb-c" href="/work/"><span class="pb-c-in"><svg class="pb-ico" aria-hidden="true"><use href="#pbBridge"/></svg><span class="pb-k">Construct 002</span><b class="pb-n">The Bridge</b><span class="pb-real">work at UC Irvine</span><span class="pb-f">Lead mobile &amp; backend work: a span held up by concentration alone.</span></span></a></li>
+      <li style="--i:2"><a class="pb-c" href="/projects/"><span class="pb-c-in"><svg class="pb-ico" aria-hidden="true"><use href="#pbChart"/></svg><span class="pb-k">Construct 003</span><b class="pb-n">The Record</b><span class="pb-real">every project</span><span class="pb-f">Twelve apps, four platforms, every one of them finished.</span></span></a></li>
+      <li style="--i:3"><a class="pb-c" href="/education/"><span class="pb-c-in"><svg class="pb-ico" aria-hidden="true"><use href="#pbBook"/></svg><span class="pb-k">Construct 004</span><b class="pb-n">The Book of Oa</b><span class="pb-real">education</span><span class="pb-f">Everything the Corps writes down, and keeps revising.</span></span></a></li>
+      <li style="--i:4"><a class="pb-c" href="/college/"><span class="pb-c-in"><svg class="pb-ico" aria-hidden="true"><use href="#pbTower"/></svg><span class="pb-k">Construct 005</span><b class="pb-n">The Citadel of Oa</b><span class="pb-real">college · UC Irvine</span><span class="pb-f">Computer Science, class of 2028. Training, mostly, and a lot of it.</span></span></a></li>
+      <li style="--i:5"><a class="pb-c" href="/high-school/"><span class="pb-c-in"><svg class="pb-ico" aria-hidden="true"><use href="#pbFist"/></svg><span class="pb-k">Construct 006</span><b class="pb-n">The First Construct</b><span class="pb-real">high school</span><span class="pb-f">A giant fist, because that is what everybody makes first.</span></span></a></li>
+      <li style="--i:6"><a class="pb-c" href="/worlds/"><span class="pb-c-in"><svg class="pb-ico" aria-hidden="true"><use href="#pbGlobe"/></svg><span class="pb-k">Construct 007</span><b class="pb-n">The Sector Map</b><span class="pb-real">all 74 worlds</span><span class="pb-f">Seventy-four worlds, patrolled. 3600 sectors is somebody else’s problem.</span></span></a></li>
+      <li style="--i:7"><a class="pb-c pb-c--own" href="/worlds/green-lantern/"><span class="pb-c-in"><svg class="pb-ico" aria-hidden="true"><use href="#pbRing"/></svg><span class="pb-k">Construct 008</span><b class="pb-n">The Ring Itself</b><span class="pb-real">Green Lantern · the world page</span><span class="pb-f">How the ring actually works, the oath, and John Stewart.</span></span></a></li>
+      <li style="--i:8"><a class="pb-c" href="/star-wars/"><span class="pb-c-in"><svg class="pb-ico" aria-hidden="true"><use href="#pbStar"/></svg><span class="pb-k">Construct 009</span><b class="pb-n">A Farther Sector</b><span class="pb-real">Star Wars apps</span><span class="pb-f">Another galaxy with its own order of ring-bearers, differently armed.</span></span></a></li>
+      <li style="--i:9"><a class="pb-c pb-c--calm" href="/al-islam/"><span class="pb-c-in"><svg class="pb-ico" aria-hidden="true"><use href="#pbCrescent"/></svg><span class="pb-k">Construct 010</span><b class="pb-n">Brightest Day</b><span class="pb-real">Al-Islam</span><span class="pb-f">Prayer times from dawn to nightfall, worked out twenty-two ways.</span></span></a></li>
+      <li style="--i:10"><a class="pb-c" href="/travels/"><span class="pb-c-in"><svg class="pb-ico" aria-hidden="true"><use href="#pbJet"/></svg><span class="pb-k">Construct 011</span><b class="pb-n">Flight</b><span class="pb-real">travels</span><span class="pb-f">The ring flies, which makes a sector patrol much more reasonable.</span></span></a></li>
+      <li style="--i:11"><a class="pb-c" href="/accents/"><span class="pb-c-in"><svg class="pb-ico" aria-hidden="true"><use href="#pbMic"/></svg><span class="pb-k">Construct 012</span><b class="pb-n">The Translator</b><span class="pb-real">accents &amp; impersonations</span><span class="pb-f">Standard issue on every ring, and the single most useful feature.</span></span></a></li>
+      <li style="--i:12"><a class="pb-c" href="/gaming/"><span class="pb-c-in"><svg class="pb-ico" aria-hidden="true"><use href="#pbPad"/></svg><span class="pb-k">Construct 013</span><b class="pb-n">Off Duty</b><span class="pb-real">gaming</span><span class="pb-f">Even a Lantern gets to put the ring down for an evening.</span></span></a></li>
+      <li style="--i:13"><a class="pb-c" href="/lightsabers/"><span class="pb-c-in"><svg class="pb-ico" aria-hidden="true"><use href="#pbSaber"/></svg><span class="pb-k">Construct 014</span><b class="pb-n">The Blade Catalog</b><span class="pb-real">the lightsaber guide</span><span class="pb-f">Other people’s hard light, cataloged and dated.</span></span></a></li>
+      <li style="--i:14"><a class="pb-c" href="/resume/"><span class="pb-c-in"><svg class="pb-ico" aria-hidden="true"><use href="#pbBadge"/></svg><span class="pb-k">Construct 015</span><b class="pb-n">The Commission</b><span class="pb-real">résumé</span><span class="pb-f">One page. The Guardians read it before they hand out a ring.</span></span></a></li>
+    </ul>
+  </section>
+
+  <!-- ─────────── the duty roster ─────────── -->
+  <div class="pb-cols">
+    <section class="pb-panel" aria-labelledby="pbDutyH">
+      <h2 class="pb-h pb-h--sm" id="pbDutyH">The duty log<span>what the ring has actually done</span></h2>
+      <dl class="pb-duty">
+        <div><dt>Bearer</dt><dd>Abubakr Elmallah</dd></div>
+        <div><dt>Sector</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
+        <div><dt>Rank</dt><dd>Lead mobile &amp; backend developer</dd></div>
+        <div><dt>Constructs held</dt><dd>Twelve apps, across four platforms</dd></div>
+        <div><dt>Commendation</dt><dd>Apple Swift Student Challenge, 2024</dd></div>
+        <div><dt>Widest reach</dt><dd>Two Discord bots, 500+ servers</dd></div>
+        <div><dt>Worlds patrolled</dt><dd>Seventy-four</dd></div>
+        <div><dt>Drawn with</dt><dd>CSS and SVG, no images</dd></div>
+      </dl>
+    </section>
+
+    <section class="pb-panel" aria-labelledby="pbSigH">
+      <h2 class="pb-h pb-h--sm" id="pbSigH">Other rings<span>the rest of the terminals</span></h2>
+      <ul class="pb-sigs">
+        <li><a class="pb-sig" href="/elmallah/" style="--s:#c79a3c"><b>E.L.M.A.L.L.A.H.</b><i>Star Wars</i></a></li>
+        <li><a class="pb-sig" href="/holocron/" style="--s:#2f6d9a"><b>The Holocron</b><i>Star Wars</i></a></li>
+        <li><a class="pb-sig" href="/jarvis/" style="--s:#1f8a9a"><b>J.A.R.V.I.S.</b><i>Avengers</i></a></li>
+        <li><a class="pb-sig" href="/marauders-map/" style="--s:#7a4a24"><b>The Marauder’s Map</b><i>Harry Potter</i></a></li>
+        <li><a class="pb-sig" href="/crafting-table/" style="--s:#3f7a2a"><b>The Crafting Table</b><i>Minecraft</i></a></li>
+        <li><a class="pb-sig" href="/citadel/" style="--s:#b8862f"><b>The Citadel</b><i>Game of Thrones</i></a></li>
+        <li><a class="pb-sig" href="/compass/" style="--s:#2f6a6a"><b>The Compass</b><i>Pirates</i></a></li>
+        <li><a class="pb-sig" href="/control-room/" style="--s:#b4521f"><b>The Control Room</b><i>Jurassic Park</i></a></li>
+        <li><a class="pb-sig" href="/hawkins/" style="--s:#9a1f1a"><b>Hawkins</b><i>Stranger Things</i></a></li>
+        <li><a class="pb-sig" href="/spirit-library/" style="--s:#a8742a"><b>The Spirit Library</b><i>Avatar</i></a></li>
+        <li><a class="pb-sig" href="/monastery/" style="--s:#b3261e"><b>The Monastery</b><i>Ninjago</i></a></li>
+        <li><a class="pb-sig" href="/wanted/" style="--s:#d9c08c"><b>The Wanted Board</b><i>Red Dead</i></a></li>
+        <li><a class="pb-sig" href="/dunder-mifflin/" style="--s:#3d6fb4"><b>Dunder Mifflin</b><i>The Office</i></a></li>
+        <li><a class="pb-sig" href="/springfield/" style="--s:#4a8fd8"><b>Springfield</b><i>The Simpsons</i></a></li>
+        <li><a class="pb-sig" href="/vought/" style="--s:#2a6fdb"><b>Vought Tower</b><i>The Boys</i></a></li>
+        <li><a class="pb-sig" href="/pokedex/" style="--s:#e3242b"><b>The Pokédex</b><i>Pokémon</i></a></li>
+        <li><a class="pb-sig" href="/batcomputer/" style="--s:#f2c230"><b>The Batcomputer</b><i>Batman</i></a></li>
+        <li><a class="pb-sig" href="/daily-bugle/" style="--s:#1f4fa8"><b>The Daily Bugle</b><i>Spider-Man</i></a></li>
+        <li><a class="pb-sig" href="/grail-diary/" style="--s:#d8b06a"><b>The Grail Diary</b><i>Indiana Jones</i></a></li>
+        <li><a class="pb-sig" href="/red-book/" style="--s:#d9b45f"><b>The Red Book</b><i>The Lord of the Rings</i></a></li>
+        <li><a class="pb-sig" href="/watchtower/" style="--s:#5f9fe0"><b>The Watchtower</b><i>The Justice League</i></a></li>
+        <li><a class="pb-sig" href="/instructions/" style="--s:#ffd21f"><b>The Instruction Booklet</b><i>LEGO</i></a></li>
+        <li><a class="pb-sig" href="/battle-pass/" style="--s:#6fb0ff"><b>The Battle Pass</b><i>Fortnite</i></a></li>
+        <li><a class="pb-sig" href="/freddys/" style="--s:#c98f4f"><b>The Security Office</b><i>Five Nights at Freddy’s</i></a></li>
+      </ul>
+    </section>
+  </div>
+
+  {% include interface-world.html world="Green Lantern" href="/worlds/green-lantern/" place="foot" %}
+
+</main>
+
+<!-- the oath, said in full: the screen floods with the light of whichever
+     corps is selected -->
+<div class="pb-done" id="pbDone">
+  <div>
+    <canvas class="pb-done-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#4fd07f" aria-hidden="true"></canvas>
+    <p class="pb-done-k">Ring at full charge</p>
+    <p class="pb-done-t">Beware my power.</p>
+    <a href="/">Fly back to sector one</a>
+  </div>
+</div>
+
+<script>
+  /* smooth scrolling only after load, so back/forward restores the position instantly instead of sliding to it */
+  addEventListener('load', function () {
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      document.documentElement.classList.add('smooth');
+    }); });
+  });
+  (function battery() {
+    var root = document.getElementById('pb');
+
+    /* ── the spectrum switch ──
+       The only thing that differs between the seven corps is the color of
+       the light, so the page keeps ONE token for it and every rule below
+       paints with that. Setting it on .pb (not :root) matters: the orbs and
+       anything outside this page's own scope keep their own colors. */
+    var note = document.getElementById('pbSpecNote');
+    var NOTES = {
+      'Green':   'Green: willpower. The only one on the spectrum that is a choice rather than a feeling, which is why the Corps runs on it.',
+      'Sinestro': 'Yellow: fear. The counter to willpower, and the reason the Corps had a yellow impurity in the first place.',
+      'Red':     'Red: rage. The ring replaces the bearer’s heart, which tells you how much of them is left afterwards.',
+      'Orange':  'Orange: avarice. One bearer, who will not share the light, which is the joke of the entire corps.',
+      'Blue':    'Blue: hope. Useless alone and enormous beside a green ring, which is a very good idea about hope.',
+      'Indigo':  'Indigo: compassion. Worn mostly by people who had none, and made to feel it.',
+      'Star Sapphire': 'Violet: love. The one corps that recruits by finding what you would not give up.'
+    };
+    var corps = document.getElementById('pbCorps');
+    if (corps) corps.addEventListener('click', function (e) {
+      var b = e.target.closest('.pb-corp');
+      if (!b) return;
+      corps.querySelectorAll('.pb-corp').forEach(function (x) {
+        x.classList.toggle('is-on', x === b);
+        x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+      });
+      root.style.setProperty('--w', b.dataset.w);
+      if (note) note.textContent = NOTES[b.dataset.corp] || '';
+    });
+
+    /* ── the charge ──
+       The ring drains slowly while the page is open and the oath fills it,
+       which is the one mechanic every version of this character has. It is
+       cosmetic: nothing on the page is gated behind it. */
+    var pct = 100;
+    var out = document.getElementById('pbPct');
+    var hint = document.getElementById('pbHint');
+    function paint() {
+      root.style.setProperty('--charge', pct);
+      if (out) out.textContent = Math.round(pct) + '%';
+      root.classList.toggle('is-low', pct < 35);
+    }
+    paint();
+    setInterval(function () {
+      if (pct > 12) { pct -= 1; paint(); }
+      if (pct < 35 && hint) hint.textContent = 'The charge is running down. Say the oath.';
+    }, 9000);
+
+    var rc = document.getElementById('pbRecharge');
+    if (rc) rc.addEventListener('click', function () {
+      root.classList.add('is-saying');
+      pct = 100; paint();
+      if (hint) hint.textContent = 'In brightest day, in blackest night.';
+      /* the oath takes four lines to say; the flood comes at the end of it */
+      setTimeout(function () { root.classList.add('is-charged'); }, 2600);
+      setTimeout(function () {
+        root.classList.remove('is-saying');
+        if (hint) hint.textContent = 'The ring holds its charge. Say the oath to top it up.';
+      }, 4200);
+    });
+
+    addEventListener('pageshow', function (e) { if (e.persisted) root.classList.remove('is-charged', 'is-saying'); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') root.classList.remove('is-charged');
+    });
+  })();
+</script>
+{% include analytics.html %}
+</body>
+</html>

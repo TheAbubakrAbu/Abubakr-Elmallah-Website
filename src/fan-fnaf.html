@@ -12,6 +12,7 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/fnaf.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="fnaf">
 
@@ -106,16 +107,16 @@ tab: "/worlds/"
     </div>
     <div class="fnaf-hud">
       <div class="fnaf-panel">
-        <h5>Power left</h5>
+        <h2>Power left</h2>
         <div class="fnaf-power"><b id="fnafPct">99%</b><span id="fnafUsageLbl">usage 1</span></div>
         <div class="fnaf-usage" id="fnafUsage"><i class="is-on"></i><i></i><i></i><i></i></div>
       </div>
       <div class="fnaf-panel">
-        <h5 id="fnafNight">Night 4</h5>
+        <h2 id="fnafNight">Night 4</h2>
         <div class="fnaf-hour"><span id="fnafHour">12 AM</span><span>of 6 AM</span></div>
       </div>
       <div class="fnaf-panel">
-        <h5>The whole game</h5>
+        <h2>The whole game</h2>
         <p class="fnaf-note" id="fnafNote">Two doors, two lights, eleven cameras and one battery, and every one of those costs power. The horror is a spreadsheet you are losing.</p>
       </div>
     </div>
@@ -123,7 +124,15 @@ tab: "/worlds/"
 
   <div id="fanBody"></div>
 
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
+
 </main>
+
+<!-- the shared image lightbox: every link to an image on this page opens
+     here rather than in a new tab (see gallery.js). the two game banners. -->
+{% include lightbox.html %}
 
 {% include footer.html back="/worlds/" %}
 
@@ -137,6 +146,7 @@ tab: "/worlds/"
 
 <script src="{% include v.html f='/assets/js/photos-data.js' %}"></script>
 {% include fan-engine.html %}
+<script src="{% include v.html f='/assets/js/gallery.js' %}"></script>
 {% include site-scripts.html %}
 <!-- page UI, after reveal.js on purpose: see the comment in fan-fnaf-ui.js -->
 <script src="{% include v.html f='/assets/js/fan-fnaf-ui.js' %}"></script>

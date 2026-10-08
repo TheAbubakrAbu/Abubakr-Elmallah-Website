@@ -1,0 +1,62 @@
+{%- comment -%}
+  The rest of this world's section, at the foot of every world page.
+
+  A world page used to end at its own content: the only way from Pokémon to
+  Minecraft was back to /worlds/ and down the page to find it again. The two
+  are in the same rank and belong beside each other, so each page now ends
+  with the others in ITS rank: inside the Core Three you get the other two,
+  inside Primary all of Primary, inside Who I Am the other five.
+
+  It takes nothing. The page already says which world it is, in the `fan`
+  front-matter key that also drives data-fan, and _data/worlds.yml (written
+  by tools/worlds.py from fandom-data.js) says which rank that world is in
+  and who else is there. So this walks the ranks, finds the one holding this
+  page, and prints its other members. Adding a world to a rank adds it to
+  every sibling strip in that rank, with no page edited.
+
+  Params: none. It matches on page.url, which Jekyll sets to the page's own
+  permalink verbatim, trailing slash and all, exactly as the href in
+  worlds.yml is written (topbar.html compares the same way). tools/check.py
+  holds the two sides to that: every href in the file is a real page and
+  every world page appears in the file.
+
+  Styled in world-siblings.css, tinted by the page's own --a.
+{%- endcomment -%}
+
+{%- comment -%} this page's own URL, to match it inside a rank {%- endcomment -%}
+{%- assign me = page.url -%}
+
+{%- for g in site.data.worlds -%}
+  {%- assign mine = false -%}
+  {%- for t in g.items -%}
+    {%- if t.href == me %}{% assign mine = true %}{% endif -%}
+  {%- endfor -%}
+
+  {%- if mine -%}
+    {%- assign others = '' | split: '' -%}
+    {%- for t in g.items -%}
+      {%- unless t.href == me -%}
+        {%- assign others = others | push: t -%}
+      {%- endunless -%}
+    {%- endfor -%}
+
+    {%- if others.size > 0 -%}
+<section class="wsib" aria-labelledby="wsib-h">
+  <h2 class="wsib-h" id="wsib-h">
+    <span class="wsib-k">The rest of</span>
+    <b>{{ g.label }}</b>
+    <span class="wsib-note">{{ g.note }}</span>
+  </h2>
+  <ul class="wsib-grid">
+    {%- for t in others %}
+    <li class="wsib-i"><a href="{{ t.href }}" data-magnetic>
+      <span class="wsib-n">{{ t.name }}</span>
+      <span class="wsib-a" aria-hidden="true">&#8594;</span>
+    </a></li>
+    {%- endfor %}
+  </ul>
+  <a class="wsib-all" href="/worlds/#fr-{{ g.id }}" data-magnetic>All {{ g.items.size }} in {{ g.label }}, on the worlds page &#8599;</a>
+</section>
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}

@@ -163,7 +163,7 @@
   }
 
   /* Fetch the large copy behind the frame on the stage and put it in its
-     place when it lands, unless the deck has moved on. The two neighbours
+     place when it lands, unless the deck has moved on. The two neighbors
      are fetched next, their grid frames and, where the screen can use it,
      their large copies, so an arrow press or a swipe finds the next photo
      already here instead of an empty frame. */
@@ -338,7 +338,7 @@
       }
 
       /* the ID Pics card shows the whole group shot at its own aspect ratio,
-         double-wide, instead of a square centre crop of it */
+         double-wide, instead of a square center crop of it */
       /* The ID cards are school photographs of me with my name and school on
          them, so the whole card is behind the switch: `year-card--ids` is
          display:none until "show other pictures" is on (pics.css). It is the

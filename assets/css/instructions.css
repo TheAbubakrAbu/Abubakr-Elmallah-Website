@@ -15,6 +15,8 @@ html.smooth { scroll-behavior: smooth; }
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .lg {
+  --iw-a: #f5d222;   /* the shared world button, interface-world.css */
+  --iw-bg: #f7f7f4;
   --sans:  "Space Grotesk", system-ui, sans-serif;
   --mono:  "JetBrains Mono", ui-monospace, monospace;
   /* the booklet is printed on white, which is the whole visual joke: every
@@ -131,6 +133,127 @@ html.smooth { scroll-behavior: smooth; }
 .lg-specs dt { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
 .lg-specs dd { font-size: 1.05rem; font-weight: 600; margin-top: 0.15rem; }
 
+.lg-btn--sm { padding: 0.45rem 0.8rem; font-size: 0.74rem; box-shadow: 0 3px 0 -1px var(--ink); }
+
+/* ═══════════ the build so far ═══════════
+   The model, stacked from whatever you have ticked off. */
+.lg-build { padding-bottom: clamp(2rem, 5vw, 3.4rem); }
+.lg-build-box {
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(1rem, 3vw, 2rem); align-items: start;
+}
+
+/* the baseplate the pile sits on, and the pile itself */
+.lg-model {
+  position: relative; display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-end;
+  min-height: 300px; padding: 1.4rem 1rem 0;
+  border: 2px solid var(--ink); border-radius: 10px;
+  background:
+    linear-gradient(180deg, #fff, #efefea);
+  box-shadow: 0 4px 0 -1px var(--ink);
+  overflow: hidden;
+}
+.lg-model-plate {
+  order: 2; width: min(86%, 260px); height: 18px; margin-top: 2px;
+  border: 2px solid var(--ink); border-radius: 3px; background: var(--y);
+  /* the studs along the front edge of a baseplate */
+  background-image: radial-gradient(circle at 50% 50%, rgba(22,24,28,.22) 2.6px, transparent 3px);
+  background-size: 14px 100%;
+}
+/* the stack grows upward, so it is column-reverse: the newest brick on top */
+.lg-stack {
+  order: 1; display: flex; flex-direction: column-reverse; align-items: center;
+  gap: 1px; width: 100%; padding-bottom: 2px;
+}
+.lg-stack .lg-brick {
+  width: auto; height: 22px;
+  /* each brick drops into place rather than appearing */
+  animation: lg-drop .28s var(--ease) both;
+}
+@keyframes lg-drop {
+  from { transform: translateY(-14px); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+.lg-model-empty {
+  position: absolute; inset: auto 1rem 50%; text-align: center;
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--mute);
+}
+.lg-model.is-built .lg-model-empty { display: none; }
+.lg-model-cap { font-size: 0.8rem; color: var(--mute); line-height: 1.6; }
+
+/* the progress panel beside the model */
+.lg-build-side { display: flex; flex-direction: column; gap: 1rem; }
+.lg-prog { border: 2px solid var(--ink); border-radius: 10px; padding: 0.9rem 1rem; background: #fff; }
+.lg-prog-top {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--mute); margin-bottom: 0.45rem;
+}
+.lg-prog-top b { font-size: 1.2rem; color: var(--ink); }
+.lg-pbar { height: 12px; border: 2px solid var(--ink); border-radius: 3px; background: #fff; overflow: hidden; }
+.lg-pbar i { display: block; height: 100%; width: 0; background: var(--y); transition: width .4s var(--ease); }
+.lg-prog-n { margin-top: 0.6rem; font-size: 0.76rem; color: var(--dim); }
+
+/* the four bags */
+.lg-bags { list-style: none; display: grid; gap: 0.4rem; }
+.lg-bags li {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0.6rem;
+  border: 2px solid var(--ink); border-radius: 7px; padding: 0.45rem 0.7rem; background: #fff;
+  font-size: 0.78rem;
+}
+.lg-bags li.is-done { background: var(--y); }
+.lg-bags b {
+  width: 20px; height: 20px; border: 2px solid var(--ink); border-radius: 50%;
+  display: grid; place-items: center; font-size: 0.62rem; font-family: var(--mono);
+  background: var(--paper);
+}
+.lg-bags em { font-style: normal; font-family: var(--mono); font-size: 0.66rem; color: var(--mute); }
+.lg-bags li.is-done em { color: var(--ink); }
+
+.lg-build-acts { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+/* ═══════════ the callout ═══════════
+   The gray parts box in the corner of a real instruction page. */
+.lg-callout-s { padding-bottom: clamp(2rem, 5vw, 3.4rem); }
+.lg-callout {
+  display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+  border: 2px solid var(--ink); border-radius: 10px;
+  padding: 1.1rem 1.2rem; background: #e9e9e4;
+  box-shadow: 0 4px 0 -1px var(--ink);
+}
+.lg-callout-bricks { display: flex; align-items: flex-end; gap: 0.5rem; flex-wrap: wrap; min-height: 32px; }
+.lg-callout-bricks .lg-brick { width: auto; height: 30px; }
+.lg-callout-t b { display: block; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute); }
+.lg-callout-t i { display: block; font-style: normal; font-size: 0.9rem; margin-top: 0.2rem; }
+
+/* ═══════════ the back of the box ═══════════ */
+.lg-boxback-s { padding-bottom: clamp(2rem, 5vw, 3.4rem); }
+.lg-boxback { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.lg-feat {
+  position: relative; border: 2px solid var(--ink); border-radius: 10px;
+  padding: 2.2rem 1rem 1rem; background: #fff;
+  box-shadow: 0 4px 0 -1px var(--ink);
+}
+.lg-feat-n {
+  position: absolute; top: 0.6rem; left: 0.8rem;
+  width: 24px; height: 24px; border: 2px solid var(--ink); border-radius: 50%;
+  display: grid; place-items: center; background: var(--y);
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 700;
+}
+.lg-feat b { display: block; font-size: 0.95rem; font-weight: 600; line-height: 1.4; }
+.lg-feat p { margin-top: 0.4rem; font-size: 0.8rem; line-height: 1.65; color: var(--dim); }
+.lg-feat a {
+  display: inline-block; margin-top: 0.7rem; font-family: var(--mono);
+  font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink); border-bottom: 2px solid var(--y);
+}
+.lg-feat a:hover { border-bottom-color: var(--ink); }
+.lg-smallprint {
+  margin-top: 1.2rem; font-size: 0.7rem; line-height: 1.7; color: var(--mute); max-width: 76ch;
+}
+
 /* ───────────── the steps ───────────── */
 .lg-steps { padding-bottom: clamp(2rem, 5vw, 3.4rem); }
 .lg-h { font-size: clamp(1.3rem, 3vw, 1.8rem); letter-spacing: -0.01em; }
@@ -168,7 +291,7 @@ html.smooth { scroll-behavior: smooth; }
   flex: none; font-family: var(--mono); font-size: 0.74rem; font-weight: 500;
   color: var(--mute); width: 1.8em;
 }
-/* the drawn brick: instructions.js puts one in per step, in the step's colour */
+/* the drawn brick: instructions.js puts one in per step, in the step's color */
 .lg-brick { flex: none; width: 44px; height: 30px; }
 .lg-step-t { min-width: 0; flex: 1; }
 .lg-step-t b { display: block; font-size: 0.9rem; font-weight: 600; letter-spacing: -0.01em; }
@@ -207,7 +330,18 @@ html.smooth { scroll-behavior: smooth; }
 @media (max-width: 760px) {
   .lg-hero { grid-template-columns: 1fr; }
   .lg-box { max-width: 320px; }
+  /* the model goes above its progress panel rather than beside it: both are
+     still there, because nothing on this site gets hidden on a phone */
+  .lg-build-box { grid-template-columns: 1fr; }
+  .lg-model { min-height: 240px; }
+}
+/* on a wide screen the model stays in view while you work down the steps,
+   which is where the real booklet sits: open, next to the pile */
+@media (min-width: 1040px) {
+  .lg-build-box { align-items: start; }
+  .lg-model { position: sticky; top: 1rem; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .lg-step, .lg-btn { transition: none; }
+  .lg-step, .lg-btn, .lg-pbar i { transition: none; }
+  .lg-stack .lg-brick { animation: none; }
 }

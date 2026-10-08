@@ -40,7 +40,7 @@ window.FAN_PAGE = {
     lede: 'Every LEGOLAND is arranged around one section, and it is not a ride. It is a set of cities laid out at one twentieth scale, and it is the only thing in the park that could not exist anywhere else.',
     items: [
       { title: 'One to twenty', sub: 'The scale, everywhere', tag: 'The rule', accent: '#f5d222',
-        desc: 'Every Miniland in every park is built at 1:20, which is roughly the scale at which a minifigure is a person. It means a six-storey building is about a metre, and a city block is a table.',
+        desc: 'Every Miniland in every park is built at 1:20, which is roughly the scale at which a minifigure is a person. It means a six-story building is about a meter, and a city block is a table.',
         meta: 'A minifigure is a person at this scale' },
       { title: 'Millions of pieces', sub: 'And a model shop on site', tag: 'The build', accent: '#e0452f',
         desc: 'Carlsbad’s Miniland is around thirty million bricks. Every park keeps its own model shop with full-time builders, because the models are outdoors and the sun and the visitors take a constant toll on them.',
@@ -59,7 +59,7 @@ window.FAN_PAGE = {
   { id: 'lands', kind: 'lands', fold: true, title: 'Inside Carlsbad', note: 'the areas, and what is in them',
     lede: 'Twelve areas on about a hundred and eighty acres, plus a water park and an aquarium next door. It is a park built for people who are eight, and it does not pretend otherwise, which is why it is better at it than the parks that hedge.',
     items: [
-      { title: 'Miniland USA', sub: 'The centre of the park', unit: 'section',
+      { title: 'Miniland USA', sub: 'The center of the park', unit: 'section',
         desc: 'Seven American regions at 1:20, and the thing everything else is arranged around. Star Wars is in my photographs twice: with the life-size brick Darth Vader in October 2010, five months before the Miniland section itself opened, and on Hoth in 2016.',
         rides: [
           { n: 'Washington, D.C.', y: '' },
@@ -90,7 +90,7 @@ window.FAN_PAGE = {
           { n: 'Enchanted Walk', y: '1999' },
         ] },
       { title: 'Fun Town', sub: 'The one everybody remembers', unit: 'attraction',
-        desc: 'The Driving School is the reason a lot of children ask to come back, and the licence they hand you at the end is the souvenir. I am in car 15, in August 2016.',
+        desc: 'The Driving School is the reason a lot of children ask to come back, and the license they hand you at the end is the souvenir. I am in car 15, in August 2016.',
         rides: [
           { n: 'Driving School', y: '1999', big: true },
           { n: 'Junior Driving School', y: '1999' },
@@ -127,7 +127,7 @@ window.FAN_PAGE = {
     ] },
 
   /* the complete index. On a park page this is the chain rather than a
-     filmography: every resort, every discovery centre, and the two hotels. */
+     filmography: every resort, every discovery center, and the two hotels. */
   { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the whole chain',
     lede: 'Eleven parks, and a much larger number of the small indoor version, which is the format the company actually expands with now.',
     items: [
@@ -151,7 +151,7 @@ window.FAN_PAGE = {
         rows: [
           { n: 'LEGOLAND Sierksdorf · Germany', y: '1973', gone: 'closed 1976' },
         ] },
-      { title: 'The Small Format', sub: 'Discovery Centres', unit: 'centre',
+      { title: 'The Small Format', sub: 'Discovery Centres', unit: 'center',
         desc: 'Indoor, about two hours long, and there are now over thirty of them worldwide. It is how the brand actually reaches most cities.',
         rows: [
           { n: 'First one · Duisburg, Germany', y: '2007' },

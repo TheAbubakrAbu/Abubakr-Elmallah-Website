@@ -12,6 +12,7 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/fortnite.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="fortnite">
 
@@ -105,13 +106,17 @@ tab: "/worlds/"
       </div>
     </div>
     <div class="fn-hud-note">
-      <h4>Wood, stone, metal</h4>
+      <h2>Wood, stone, metal</h2>
       <p>Wood goes up fastest and breaks fastest. Metal takes the longest to reach full health and stops almost anything once it does. Choosing between them mid-fight is the actual skill.</p>
       <p>Four pieces, one key each, and the whole ceiling of the game is how fast your hands can put a box around you and then cut a window in it.</p>
     </div>
   </section>
 
   <div id="fanBody"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 

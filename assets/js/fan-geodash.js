@@ -1,21 +1,21 @@
 /* fan-geodash.js: content for /worlds/geometry-dash/. Rendered by fanpage.js.
    One button, no checkpoints, and an editor that outgrew the game around it. */
 /* The `when:` line and the ranking are Abubakr's own, not mine. He got as
-   far as Theory of Everything. Hexagon Force was the favourite as a kid even
+   far as Theory of Everything. Hexagon Force was the favorite as a kid even
    though 40% was as far as he ever got in it, because it has the best theme
    track in the game; Cycles second; then Theory of Everything, then Jumper;
    Can't Let Go, Stereo Madness and Back on Track all level; and xStep for its
    ending. The ◆ marks in the index follow that list exactly. */
 window.FAN_PAGE = {
   when: { at: 'As a kid, as far as Theory of Everything',
-          note: 'Hexagon Force was the favourite and beat me at 40%. Cycles second. Then Theory of Everything, then Jumper. One of the three games I actually recorded myself playing and put on YouTube as a kid, along with Minecraft and Clash of Clans.' },
+          note: 'Hexagon Force was the favorite and beat me at 40%. Cycles second. Then Theory of Everything, then Jumper. One of the three games I actually recorded myself playing and put on YouTube as a kid, along with Minecraft and Clash of Clans.' },
   sections: [
 
   { id: 'levels', kind: 'rank', title: 'The Levels, Ranked', note: 'my order, not the game’s',
     lede: 'I got as far as Theory of Everything, which is the twelfth of the twenty-two classic levels, and the order below is mine. It is mostly an order of songs, because in this game the song is the level. The complete list is further down.',
     items: [
       { num: '01', title: 'Hexagon Force', sub: 'Insane · 2014 · Waterflame',
-        desc: 'The favourite, as a kid and still, and 40% is the furthest I ever got in it. That is the honest measure of this game: the level that beat me hardest is the one I love most, because the track is the best theme in the game and the first forty per cent of it is enough to know that.' },
+        desc: 'The favorite, as a kid and still, and 40% is the furthest I ever got in it. That is the honest measure of this game: the level that beat me hardest is the one I love most, because the track is the best theme in the game and the first forty per cent of it is enough to know that.' },
       { num: '02', title: 'Cycles', sub: 'Harder · 2013 · DJVI',
         desc: 'Second. The first level with the ball, and the gravity flips land on the drops, which is when it clicked that every level in this game is a rhythm chart with spikes drawn on it.' },
       { num: '03', title: 'Theory of Everything', sub: 'Insane · 2014 · dj-Nate',
@@ -36,7 +36,7 @@ window.FAN_PAGE = {
         meta: 'The attempt counter is the story' },
       { title: 'The jump is fixed', sub: 'One height, one length', tag: 'The physics', accent: '#4ae0a8',
         desc: 'Same arc every time, no variable height, no air control. So the level is not a test of reaction, it is a test of memory, and every death teaches you exactly one frame of it.',
-        meta: 'You are memorising, not reacting' },
+        meta: 'You are memorizing, not reacting' },
       { title: 'The music is the level', sub: 'Not a backing track', tag: 'The sync', accent: '#e04a9a',
         desc: 'Obstacles land on the beat, so once you know the song you know when to press. Players who beat hard levels routinely say they are playing by ear rather than by eye, and turning the sound off makes a level measurably harder.',
         meta: 'Turn it off and it gets harder' },
@@ -123,7 +123,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'twenty-three tracks · one per level',
-    lede: 'In this game the song is the level. RobTop licensed every one of these from Newgrounds musicians, which is why several were already well known before a cube ever jumped over anything, and why the whole soundtrack sounds like 2012 in a way no commissioned score would. All twenty-two classic levels in order, plus Dash. Hexagon Force is the best track in the game and it is why that level is the favourite, even at 40%.',
+    lede: 'In this game the song is the level. RobTop licensed every one of these from Newgrounds musicians, which is why several were already well known before a cube ever jumped over anything, and why the whole soundtrack sounds like 2012 in a way no commissioned score would. All twenty-two classic levels in order, plus Dash. Hexagon Force is the best track in the game and it is why that level is the favorite, even at 40%.',
     sortable: { label: 'Sort', authored: 'asc', by: [
       { key: 'lvl', label: 'Level', asc: 'First', desc: 'Last' },
       { key: 'secs', label: 'Length', asc: 'Shortest', desc: 'Longest' },
@@ -154,7 +154,7 @@ window.FAN_PAGE = {
         desc: 'The longest of the early tracks, and the one that most sounds like it was written for something else first.',
         href: 'https://www.youtube.com/watch?v=zZ1L9JD6l0g', link: 'Listen' },
       { title: 'Cycles', accent: '#4ae0a8', lvl: 9, secs: 185, sub: 'Level 9 · DJVI · Harder · 2013 · 3:05',
-        desc: 'Second favourite. The first level with the ball, and the gravity flips land on the drops, which is when it clicked that every level here is a rhythm chart with spikes drawn on it.',
+        desc: 'Second favorite. The first level with the ball, and the gravity flips land on the drops, which is when it clicked that every level here is a rhythm chart with spikes drawn on it.',
         href: 'https://www.youtube.com/watch?v=KDdvGZn6Gfs', link: 'Listen' },
       { title: 'xStep', accent: '#e0c040', lvl: 10, secs: 193, sub: 'Level 10 · DJVI · Insane · 2013 · 3:13',
         desc: 'Here for the ending. The last stretch of the song is the best thirty seconds in the first year of the game, and the level knows it.',
@@ -175,13 +175,13 @@ window.FAN_PAGE = {
         desc: 'The first level to run at triple speed, and the track that makes it feel survivable.',
         href: 'https://www.youtube.com/watch?v=n0CwuexLakU', link: 'Fan upload' },
       { title: 'Hexagon Force', accent: '#39d6f0', lvl: 16, secs: 261, sub: 'Level 16 · Waterflame · Insane · 2014 · 4:21',
-        desc: 'The best track in the game, on the level I never got past 40% of. The first forty per cent is enough. Favourite as a kid and still.',
+        desc: 'The best track in the game, on the level I never got past 40% of. The first forty per cent is enough. Favorite as a kid and still.',
         href: 'https://www.youtube.com/watch?v=afwK743PL2Y', link: 'Listen' },
       { title: 'Blast Processing', accent: '#f07f3a', lvl: 17, secs: 299, sub: 'Level 17 · Waterflame · Harder · 2014 · 4:59',
         desc: 'Named after the Sega marketing term, and the level that introduced the wave. Easier than the two either side of it, on purpose.',
         href: 'https://www.youtube.com/watch?v=Z5RufkDHsdM', link: 'Listen' },
       { title: 'Theory of Everything 2', accent: '#e04a9a', lvl: 18, secs: 222, sub: 'Level 18 · dj-Nate · Demon · 2014 · 3:42',
-        desc: 'The second Demon. Where the game stops being a game you finish and starts being a game you practise.',
+        desc: 'The second Demon. Where the game stops being a game you finish and starts being a game you practice.',
         href: 'https://www.youtube.com/watch?v=dWiRhEBRZZM', link: 'Fan upload' },
       { title: 'Geometrical Dominator', accent: '#7fd07f', lvl: 19, secs: 193, sub: 'Level 19 · Waterflame · Harder · 2015 · 3:13',
         desc: 'The robot form’s level, and a track that sounds like a boss fight in a game that has no bosses.',

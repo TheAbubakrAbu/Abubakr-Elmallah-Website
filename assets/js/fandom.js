@@ -63,6 +63,14 @@
              + '<ellipse cx="12" cy="15" rx="6" ry="7.4"/>'
              + '<path d="M7.2 11l9.6 8M16.8 11l-9.6 8M6.1 15h11.8" fill="none" stroke="#000" stroke-width="1" opacity=".3"/>',
 
+    // a fairy godparent's wand: a star on a stick, granted exactly as worded
+    wand:    '<path d="M15.4 2.2l1.2 3.1 3.2 1.1-3.2 1.2-1.2 3.1-1.1-3.1L11 6.4l3.3-1.1z"/>'
+             + '<path d="M12.7 9.6 3.6 20.4" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>',
+    // an atom, for the lab in the basement
+    atom:    '<circle cx="12" cy="12" r="2.1"/>'
+             + '<ellipse cx="12" cy="12" rx="10" ry="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/>'
+             + '<ellipse cx="12" cy="12" rx="10" ry="4.2" fill="none" stroke="currentColor" stroke-width="1.6" transform="rotate(60 12 12)"/>'
+             + '<ellipse cx="12" cy="12" rx="10" ry="4.2" fill="none" stroke="currentColor" stroke-width="1.6" transform="rotate(120 12 12)"/>',
     burst:   '<path d="M12 1l1.9 6.4L20 5l-2.6 5.9L23 12l-5.6 1.1L20 19l-6.1-2.4L12 23l-1.9-6.4L4 19l2.6-5.9L1 12l5.6-1.1L4 5l6.1 2.4z"/>',
     bolt:    '<path d="M13.4 1.5 4.8 13.2h5.1L9 22.5l9-12.1h-5.2z"/>',
     circleA:  '<circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/>'
@@ -211,7 +219,7 @@
              + '<path d="M17.6 12.9 23 22.4H12.2z"/>',
     // Splatoon: a blot of ink with two drops thrown off it. The squid would be
     // the obvious pick and the game is not about the squid, it is about the
-    // floor being your colour.
+    // floor being your color.
     ink:     '<path d="M12 2.6c2.6 0 3.9 1.9 5.4 3.2 1.6 1.4 3.8 2 3.8 4.6 0 2.4-1.9'
              + ' 3.6-2.8 5.3-1 1.9-.9 4.4-3.2 5.1-2.2.7-3.7-1-5.7-1.3-2.1-.3-4.4.9-5.8-.8'
              + '-1.4-1.7-.2-3.8-.5-5.9-.3-2.2-1.9-3.9-.9-5.9C3.2 6.1 5.7 6.3 7.4 5.3'
@@ -335,6 +343,18 @@
              + '<circle cx="14.6" cy="19.4" r="1.5" opacity=".72"/>'
              + '<path d="M18.4 12.4c0-4.2 1-6.6 3.4-8.2-1 2.6-1.2 4.8-.6 6.6l.8 2.6'
              + 'c.4 1.4-.2 2.4-1.6 2.4h-2z"/>'
+    ,
+    /* ── Transformers, added 2026-10-06 ── */
+    // The Autobot face, which is the only mark in this franchise that
+    // survives being drawn at 24 pixels. A logo with a transformation
+    // sequence in it would be a smear; a helmet with a jaw and two eyes
+    // reads immediately, and it is the shape on every box since 1984.
+    autobot: '<path d="M12 2.4 20.2 7.1v4.3c0 4.6-3.3 8.4-8.2 10.2'
+             + 'C7.1 19.8 3.8 16 3.8 11.4V7.1z"/>'
+             + '<path d="M12 5.1 17.6 8.3v3c0 3.1-2.2 5.7-5.6 7-3.4-1.3-5.6-3.9-5.6-7v-3z"'
+             + ' fill="#0b0b0f"/>'
+             + '<path d="M8.9 9.4h2v2.2h-2z"/><path d="M13.1 9.4h2v2.2h-2z"/>'
+             + '<path d="M9.6 13.6h4.8l-.9 2.4h-3z" opacity=".85"/>'
   };
 
   function glyph(key) {
@@ -391,7 +411,7 @@
       + '<span class="fr-body">'
       +   '<span class="fr-desc" id="' + id + 'd">' + esc(f.desc) + '</span>'
       /* when I got into it -- the one line that makes this a personal list
-         rather than a catalogue. Optional, so a tile without it still works. */
+         rather than a catalog. Optional, so a tile without it still works. */
       /* the empty stand-in matters: the tiles share the rows of their grid
          (subgrid, see fandom.css) so every tile in a row puts its blurb, its
          "when" line and its meta line on the same lines. A tile with no `when`
@@ -410,14 +430,14 @@
      screens), and the ranks were only reachable by scrolling. Built from the
      same data as the groups, so it cannot drift from them. */
   var doors = document.getElementById('fr-doors');
-  /* The cool interfaces (worlds.html's #frIfaces): E.L.M.A.L.L.A.H., the hub
+  /* The Terminal Interfaces (worlds.html's #frIfaces): E.L.M.A.L.L.A.H., the hub
      every other interface is reached from, goes in above the Core Three. A
      template rather than data here, because it is a door and not a tile. */
   var ifaces = document.getElementById('frIfaces');
   var ifacesHtml = ifaces ? ifaces.innerHTML : '';
   var jump = '<nav class="jump fr-jump" aria-label="Ranks">'
     + data.map(function (g) {
-        return (g.id === 'core' && ifacesHtml ? '<a href="#fr-ifaces">Cool Interfaces</a>' : '')
+        return (g.id === 'core' && ifacesHtml ? '<a href="#fr-ifaces">Terminal Interfaces</a>' : '')
           + '<a href="#fr-' + g.id + '">' + esc(g.label) + '</a>';
       }).join('')
     + (doors ? '<a href="#fr-doors">Travels, Accents &amp; Gaming</a>' : '')
@@ -428,11 +448,25 @@
   root.innerHTML = jump + data.map(function (g) {
     return (g.id === 'core' ? ifacesHtml : '')
       + '<section class="fr-group fr-group--' + g.id + '" id="fr-' + g.id + '">'
-      + '<h3 class="subsec subsec--fr subsec--title reveal">' + esc(g.label)
+      + '<h2 class="subsec subsec--fr subsec--title reveal">' + esc(g.label)
       +   '<span class="vh">, </span><span class="subsec-yr">' + esc(g.note) + '</span>'
       +   '<span class="fr-count" aria-hidden="true">' + g.items.length + '</span>'
       +   '<span class="vh">, ' + g.items.length + ' tiles</span>'
-      + '</h3>'
+      + '</h2>'
+      /* Who I Am is the one group that is about me rather than about things
+         I like, so it signs itself: my name in the script of the language
+         and the country two of its six tiles are. The other groups get
+         nothing here. The same line opens /worlds/arab/ and /worlds/egypt/. */
+      /* the Arabic carries dir="rtl" on its OWN span, not on the <p>: an RTL
+         flex row packs its children from the right edge, which put the whole
+         line against the far side of the page (see .fan-sig in fanpages.css,
+         where the same thing happened on the Arab and Egypt heroes). */
+      + (g.id === 'identity'
+          ? '<p class="fr-sig reveal">'
+            + '<span class="fr-sig-ar" lang="ar" dir="rtl">'
+            + 'أبوبكر الملاح</span>'
+            + '<span class="fr-sig-en" lang="en" dir="ltr">Abubakr Elmallah</span></p>'
+          : '')
       + '<div class="fr-grid">' + g.items.map(tile).join('') + '</div>'
       + '</section>';
   }).join('');
@@ -624,7 +658,7 @@
 
   /* ── where you were ──
      Click a tile, read the franchise, press Back: you used to land at the top
-     of the page with all seventy-one tiles above you again, which on the longest
+     of the page with all seventy-four tiles above you again, which on the longest
      block on the site is a long way from the tile you had just been looking
      at.
 

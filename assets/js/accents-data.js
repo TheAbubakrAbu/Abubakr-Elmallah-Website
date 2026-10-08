@@ -43,7 +43,7 @@ window.ACCENT_PAGE = {
         { id: 'midwestern', n: 1, name: 'Midwestern White American', ar: 'US',
           note: 'General American · the broadcast standard',
           line: 'Yeah, no, for sure.',
-          desc: 'The accent that sounds like no accent, which is the trick of it: it is what American broadcast news standardised on, so a whole country hears it as neutral. Fully rhotic, every R pronounced, and cot and caught are the same word. It is the floor everything else on this page is measured against.' },
+          desc: 'The accent that sounds like no accent, which is the trick of it: it is what American broadcast news standardized on, so a whole country hears it as neutral. Fully rhotic, every R pronounced, and cot and caught are the same word. It is the floor everything else on this page is measured against.' },
       ] },
 
     { id: 'g5', label: '5th grade', note: '2016–17 · where the habit actually starts',
@@ -82,8 +82,8 @@ window.ACCENT_PAGE = {
           desc: 'The glottal stop is everything: "butter" loses its T entirely and becomes "bu’er". TH fronts to F and V, so "think" is "fink" and "brother" is "bruvver", and the H at the front of a word is gone. The exact opposite of the RP two cards up, from the same city.' },
         { id: 'noble', n: 9, name: 'Noble British', ar: 'NB',
           note: 'Theatrical · Shakespearean',
-          line: 'You dare speak to me of honour?',
-          desc: 'RP taken to the stage: the vowels open right up, the consonants get carved, and the pitch range doubles. Less an accent than a posture: the Royal Shakespeare Company built it to carry to the back of a theatre without a microphone, and it is what every screen villain borrows.' },
+          line: 'You dare speak to me of honor?',
+          desc: 'RP taken to the stage: the vowels open right up, the consonants get carved, and the pitch range doubles. Less an accent than a posture: the Royal Shakespeare Company built it to carry to the back of a theater without a microphone, and it is what every screen villain borrows.' },
       ] },
 
     { id: 'g8', label: '8th grade', note: '2019–20 · the European run',

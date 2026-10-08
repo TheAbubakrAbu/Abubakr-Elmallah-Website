@@ -103,7 +103,7 @@
      a long title wraps under itself rather than under the number. */
   function row(s, i) {
     // `r`: the chart rank, where a year has been cut down; an `extra` was never
-    // on the chart, so it has no number. `peak` is my one favourite of the year.
+    // on the chart, so it has no number. `peak` is my one favorite of the year.
     var n = s.extra ? 0 : (s.r || (s.i != null ? s.i : i) + 1);   // `i`: its place in its own year, in the grouped views
     return '<li class="mu-row' + (n === 1 ? ' is-top' : '') + (s.peak ? ' is-peak is-peak-' + (+s.peak || 1) : '')
       + (s.extra ? ' is-extra' : '') + '"' + (s.era ? ' data-era="' + esc(s.era) + '"' : '') + '>'

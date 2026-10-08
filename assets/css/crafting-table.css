@@ -1,7 +1,7 @@
 /* ============================================================
    crafting-table.css: /crafting-table/, the Minecraft terminal.
    Sister page to /jarvis/, /holocron/, /marauders-map/ and
-   /citadel/: grey bevelled panels instead of glass, a square sun
+   /citadel/: gray bevelled panels instead of glass, a square sun
    instead of an arc reactor. Every block on the page is drawn
    pixel by pixel by crafting-table.js; there are no image files.
    ============================================================ */
@@ -15,7 +15,9 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .ct {
-  /* the game's own GUI colours */
+  --iw-a: #80ff20;   /* the shared world button, interface-world.css */
+  --iw-bg: #1d1f23;
+  /* the game's own GUI colors */
   --px:      "Pixelify Sans", ui-monospace, monospace;
   --panel:   #c6c6c6;
   --hi:      #ffffff;
@@ -158,7 +160,7 @@ canvas { display: block; image-rendering: pixelated; }
   color: #fff; text-shadow: 2px 2px 0 rgba(0, 0, 0, .55);
 }
 
-/* buttons: the game's stone-grey slab with a black rim; white rim on hover */
+/* buttons: the game's stone-gray slab with a black rim; white rim on hover */
 .ct-menu { display: grid; gap: 8px; max-width: 420px; margin: 2rem auto 0; }
 .ct-menu-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .ct-btn {
@@ -190,7 +192,7 @@ canvas { display: block; image-rendering: pixelated; }
 }
 /* ── the three dimensions, pulled in from the world page ──
    The same three as /worlds/minecraft/#dimensions, set as the world-select
-   screen would set them: a coloured spine per dimension, GUI panels. */
+   screen would set them: a colored spine per dimension, GUI panels. */
 .ct-dims { list-style: none; display: grid; gap: 0.6rem; }
 @media (min-width: 720px) { .ct-dims { grid-template-columns: repeat(3, 1fr); } }
 .ct-dims li {

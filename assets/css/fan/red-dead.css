@@ -87,7 +87,7 @@
     repeating-linear-gradient(0deg, rgba(0,0,0,.10) 0 2px, transparent 2px 5px);
 }
 
-/* ═════════════ Red Dead: a wanted poster and the honour meter ═════════════ */
+/* ═════════════ Red Dead: a wanted poster and the honor meter ═════════════ */
 .rdr-kit {
   padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 3.4rem;
   display: grid; gap: clamp(1.2rem, 3vw, 2.4rem); align-items: center;
@@ -134,7 +134,7 @@
 
 .rdr-honor { display: flex; flex-direction: column; gap: 0.6rem; }
 
-.rdr-honor h4 {
+.rdr-honor :is(h2, h3, h4, h5) {
   font-family: "American Typewriter", "Courier New", var(--mono); font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.1em; font-size: 1.05rem; color: var(--a);
 }
@@ -156,7 +156,7 @@
 .rdr-track i {
   position: absolute; top: -5px; left: 50%; width: 3px; height: 20px; border-radius: 2px;
   background: #f2e6c8; box-shadow: 0 0 10px 2px rgba(242,230,200,.6);
-  animation: rdr-honour 14s ease-in-out infinite alternate;
+  animation: rdr-honor 14s ease-in-out infinite alternate;
 }
 
 @media (prefers-reduced-motion: reduce) { .rdr-track i { animation: none; left: 72%; } }

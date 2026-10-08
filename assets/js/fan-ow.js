@@ -6,7 +6,7 @@ window.FAN_PAGE = {
   sections: [
 
   { id: 'roles', kind: 'cards', title: 'How It Works', note: 'nobody has the same gun',
-    lede: 'Blizzard cancelled an MMO called Titan in 2014 and built this out of the pieces in about eighteen months. The design decision everything else follows from is that there is no default weapon: every hero is a different set of verbs, and the counter to a problem is usually a different character rather than better aim.',
+    lede: 'Blizzard canceled an MMO called Titan in 2014 and built this out of the pieces in about eighteen months. The design decision everything else follows from is that there is no default weapon: every hero is a different set of verbs, and the counter to a problem is usually a different character rather than better aim.',
     items: [
       { title: 'Tank', sub: 'Makes the space', tag: 'The role', accent: '#5f9fe0',
         desc: 'Barriers, bulk and the job of deciding where the fight happens. Reinhardt with a shield walking his team down a corridor is still the clearest picture of what this game is.',
@@ -24,7 +24,7 @@ window.FAN_PAGE = {
         desc: 'You can change hero every time you die. Reading what is beating you and answering it is a completely different competence from aiming, and it is the thing this game has that its imitators mostly do not.',
         meta: 'Counter-picking as a core loop' },
       { title: 'The story is elsewhere', sub: 'Shorts, comics, voice lines', tag: 'The problem', accent: '#c9ced6',
-        desc: 'Overwatch has one of the most fully realised casts in games and told almost none of it inside the game. The animated shorts are genuinely excellent short films; the campaign they were advertising took six years to arrive and then arrived thin.',
+        desc: 'Overwatch has one of the most fully realized casts in games and told almost none of it inside the game. The animated shorts are genuinely excellent short films; the campaign they were advertising took six years to arrive and then arrived thin.',
         meta: 'A decade-long argument' },
     ] },
 

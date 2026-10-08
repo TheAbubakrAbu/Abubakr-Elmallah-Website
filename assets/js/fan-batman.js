@@ -95,7 +95,7 @@ window.FAN_PAGE = {
       { title: 'Scarecrow', sub: 'Jonathan Crane', tag: 'Fear', desc: 'A psychologist who weaponised the thing Batman himself runs on.', meta: 'Debut · 1941' },
       { title: 'Bane', sub: 'Not just muscle', tag: 'Strategy', desc: 'Broke the Bat by working out the schedule first and fighting him last.', meta: 'Knightfall · 1993' },
       { title: 'Ra’s al Ghul', sub: 'The Demon’s Head', tag: 'Ideology', desc: 'The only villain who thinks he and Batman want the same thing, and is nearly right.', meta: 'Debut · 1971' },
-      { title: 'Catwoman', sub: 'Selina Kyle', tag: 'Grey', desc: 'A thief the story keeps having to decide about, which is the whole point of her.', meta: 'Debut · 1940' },
+      { title: 'Catwoman', sub: 'Selina Kyle', tag: 'Gray', desc: 'A thief the story keeps having to decide about, which is the whole point of her.', meta: 'Debut · 1940' },
       { title: 'Mr Freeze', sub: 'Victor Fries', tag: 'Tragedy', desc: 'Rewritten by the animated series into the saddest villain in the canon, in twenty-two minutes.', meta: 'Heart of Ice · 1992' },
     ] },
 

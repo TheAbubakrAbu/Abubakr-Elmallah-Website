@@ -13,6 +13,7 @@ tab: "/worlds/"
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/pics.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/batman.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="batman">
 
@@ -131,7 +132,7 @@ tab: "/worlds/"
         <svg viewBox="0 0 400 170" role="img" aria-label="A batarang">
           <defs>
             <!-- right half only: the wing sweeps out to a point, then three
-                 downward scallops back to the centre. Mirrored below, so the
+                 downward scallops back to the center. Mirrored below, so the
                  two sides are identical by construction. -->
             <path id="btrHalf" d="M200 24 L228 64 C252 44 300 30 350 34 L392 52
                                   C360 62 342 76 334 94 L316 122 L298 88
@@ -184,6 +185,10 @@ tab: "/worlds/"
 
   <div id="fanBody"></div>
 
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
+
 </main>
 
 <!-- the shared image lightbox: every link to an image on this page opens here
@@ -199,7 +204,7 @@ tab: "/worlds/"
 <script src="{% include v.html f='/assets/js/batman-descent.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
 <script src="{% include v.html f='/assets/js/batman-music.js' %}"></script>
-<!-- the LEGO catalogue, which this page's LEGO tiles come out of -->
+<!-- the LEGO catalog, which this page's LEGO tiles come out of -->
 <script src="{% include v.html f='/assets/js/lego-games.js' %}"></script>
 <script src="{% include v.html f='/assets/js/fan-batman.js' %}"></script>
 

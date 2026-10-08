@@ -10,7 +10,7 @@
      kind: 'works'     the same shelf: every film, book, show and game
      kind: 'rank'      numbered list: films in order, books, phases
      kind: 'timeline'  when → what, stacked down a rule
-     kind: 'tiles'     compact colour-chips (legions, spells, ores, stones)
+     kind: 'tiles'     compact color-chips (legions, spells, ores, stones)
      kind: 'quotes'    pull quotes with an attribution
      kind: 'stats'     a strip of big numbers with a caption
      kind: 'table'     rows of figures, sortable by any column (`cols`)
@@ -22,7 +22,7 @@
 
    A section may also carry `tone: '#rrggbb'`, which sets --a for everything
    inside it. Nintendo uses that too: the Zelda block reads gold and the
-   Splatoon block green on a page whose own colour is red.
+   Splatoon block green on a page whose own color is red.
 
    A section may also carry `art: { cls, svg, cap }`, an inline drawing under
    its lede. Nintendo uses it: Zelda and Splatoon were folded into that page
@@ -40,7 +40,7 @@
    between the two, so the Links block still lands underneath it. Pages without
    a #fanBodyEnd just render everything into #fanBody, in order.
 
-   Every item may carry `accent` (a colour) which the CSS picks up as --a.
+   Every item may carry `accent` (a color) which the CSS picks up as --a.
    Loads AFTER its data file and BEFORE reveal.js. */
 (function fanpage() {
   var root = document.getElementById('fanBody');
@@ -70,7 +70,7 @@
      link, which drops a player in under the item and takes it away again.
 
      NOTHING IS HOSTED HERE and nothing is meant to be. These are commercial
-     recordings; the file is not mine to put in /assets, and the licence to
+     recordings; the file is not mine to put in /assets, and the license to
      stream one is not something a personal site can buy. The album's own
      upload, played through the embed the rights holder publishes it with, is
      both the legal path and the free one. So this stores no audio, ships no
@@ -264,7 +264,7 @@
 
      `authored: 'asc'` says the data file is written earliest-first. Ties fall
      back to the authored position, mirrored with the direction, and that
-     mirroring assumes the newest-first order TT Games list their catalogue
+     mirroring assumes the newest-first order TT Games list their catalog
      in; a list written the other way round (the Star Wars themes, in
      timeline order) would otherwise have its ties read backwards. */
   var sortBy = function (s) {
@@ -277,7 +277,7 @@
     var by = sortBy(s);
     if (!by.length) return '';
     var first = by[0];
-    /* Which way round the section OPENS. Ascending suits a year (the catalogue
+    /* Which way round the section OPENS. Ascending suits a year (the catalog
        should read forwards from 2005) and descending suits a score (nobody
        wants a ratings list that opens on the worst one), so the first `by`
        entry says which it wants and everything else defaults to ascending. */
@@ -303,16 +303,16 @@
   };
 
   /* A section may carry `groupable: { key, label, on, open }`, which puts an
-     Off/On switch beside the sort control. On, the tiles fold into labelled
+     Off/On switch beside the sort control. On, the tiles fold into labeled
      sections, one per distinct value of `key` on the items ('Star Wars',
      'Batman & DC', 'Standalone'). Grouping composes with the sort rather than
      replacing it: tiles keep the active order inside their section, and the
      sections themselves run in order of their best-placed tile, so sorting by
-     rating ranks the licences by their best game.
+     rating ranks the licenses by their best game.
 
      `open: 'on'` opens the section already grouped, the way `dir` opens a
      sort descending: right for a list whose sections are the point of it
-     (the themes by trilogy and show) and wrong for a catalogue. */
+     (the themes by trilogy and show) and wrong for a catalog. */
   var grouper = function (s) {
     if (!s.groupable) return '';
     var open = s.groupable.open === 'on' ? 'on' : 'off';
@@ -327,7 +327,7 @@
 
   /* A section may also carry `views: true`, which puts a grid/list switch beside
      the sort control. The two views show DIFFERENT amounts of the same tiles
-     rather than different data: grid is the colour banner, the title and the
+     rather than different data: grid is the color banner, the title and the
      numbers, and list opens each row out full width with its screenshot next to
      it. Grid is the default because thirty tiles at once is the point of it. */
   var VIEWS = [
@@ -442,7 +442,7 @@
       return '<article class="fan-land reveal"' + a(it) + '>'
         + '<span class="fan-land-bar" aria-hidden="true"></span>'
         + '<span class="fan-land-head">'
-        +   '<h4>' + esc(it.title) + '</h4>'
+        +   '<h3>' + esc(it.title) + '</h3>'
         +   (it.sub ? '<span class="fan-land-sub">' + esc(it.sub) + '</span>' : '')
         + '</span>'
         + (it.desc ? '<p class="fan-land-desc">' + esc(it.desc) + '</p>' : '')
@@ -477,7 +477,7 @@
         var ch = wantsChips ? rate(it) + done(it) + fin(it) + proj(it) : '';
         return '<article class="fan-card reveal"' + a(it) + '>'
           + (it.tag ? '<span class="fan-tag">' + esc(it.tag) + '</span>' : SLOT)
-          + '<h4>' + esc(it.title) + '</h4>'
+          + '<h3>' + esc(it.title) + '</h3>'
           + (it.sub ? '<span class="fan-sub">' + esc(it.sub) + '</span>' : SLOT)
           + (it.desc ? '<p>' + esc(it.desc) + '</p>' : SLOT)
           + (wantsChips ? (ch ? '<span class="fan-chips">' + ch + '</span>' : SLOT) : '')
@@ -496,7 +496,7 @@
        A row is { n: title, y: year } and takes the same two flags:
          big: true   one of mine, set heavier with a marker beside it
          gone: '...' printed in place of the year and struck through: a
-                     cancelled game, a series that ended, a book never
+                     canceled game, a series that ended, a book never
                      finished.
        `unit` names what the group counts ('films', 'books'), since a shelf
        that says "12 attractions" under the novels would be nonsense. */
@@ -624,7 +624,7 @@
        and a side's `items` are its people: plain strings, or { n, d } for a
        name with a line on it.
 
-       `tone` is the side's own colour and is the only place it is written:
+       `tone` is the side's own color and is the only place it is written:
        the heading, the rule and every chip on that side are drawn from it, so
        the Republic is blue and the Empire is red because the data says so.
 
@@ -644,8 +644,8 @@
         }).join('');
         return '<div class="fan-cf-side fan-cf-side--' + which + '"'
           + (sd.tone ? ' style="--s:' + esc(sd.tone) + '"' : '') + '>'
-          + '<h4 class="fan-cf-name-h">' + esc(sd.name || '')
-          + (sd.sub ? '<span>' + esc(sd.sub) + '</span>' : '') + '</h4>'
+          + '<h3 class="fan-cf-name-h">' + esc(sd.name || '')
+          + (sd.sub ? '<span>' + esc(sd.sub) + '</span>' : '') + '</h3>'
           + (sd.note ? '<p class="fan-cf-note">' + esc(sd.note) + '</p>' : '')
           + (names ? '<ul class="fan-cf-names">' + names + '</ul>' : '')
           + '</div>';
@@ -709,7 +709,7 @@
        ({ key, label, num, bar, unit }). Every header is a button that sorts
        by its column, and clicking it again flips the direction; `sort` names
        the column it opens on. A `bar` column draws the figure as a bar in the
-       page's own colour as well as printing it, scaled to that column's
+       page's own color as well as printing it, scaled to that column's
        largest value, so the shape of the column reads before the numbers do.
        The figure is always printed: the bar is never the only way to read it. */
     table: function (s) {
@@ -747,13 +747,13 @@
     },
 
     /* ── kind: era ── a horizontal rail: the time axis is drawn under the
-       cards, so scrolling the rail reads as travelling down the timeline */
+       cards, so scrolling the rail reads as traveling down the timeline */
     era: function (s) {
       return '<div class="fan-rail"><div class="fan-rail-track">' + s.items.map(function (it) {
         return '<article class="fan-era reveal"' + a(it) + '>'
           + '<span class="fan-era-when">' + esc(it.when) + '</span>'
           + '<span class="fan-era-dot" aria-hidden="true"></span>'
-          + '<h4>' + esc(it.title) + '</h4>'
+          + '<h3>' + esc(it.title) + '</h3>'
           + (it.desc ? '<p>' + esc(it.desc) + '</p>' : '')
           + (it.meta ? '<span class="fan-meta">' + esc(it.meta) + '</span>' : '')
           + '</article>';
@@ -768,7 +768,7 @@
         return '<article class="fan-film reveal"' + a(it) + '>'
           + '<span class="fan-film-num" aria-hidden="true">' + esc(it.num || i + 1) + '</span>'
           + '<span class="fan-film-body">'
-          +   '<h4>' + esc(it.title) + '</h4>'
+          +   '<h3>' + esc(it.title) + '</h3>'
           +   (it.sub ? '<span class="fan-sub">' + esc(it.sub) + '</span>' : '')
           +   (it.desc ? '<p>' + esc(it.desc) + '</p>' : '')
           +   out(it)
@@ -890,7 +890,7 @@
       if (!b) return html;
       var head = b.title && !/actually (stood|been)/i.test(b.title) ? b.title : '';
       return html + '<div class="fan-beenset reveal">'
-        + (head ? '<h4 class="been-t">' + esc(head) + '</h4>' : '')
+        + (head ? '<h3 class="been-t">' + esc(head) + '</h3>' : '')
         + (b.note ? '<p class="fan-lede">' + esc(b.note) + '</p>' : '')
         + '<div class="been-grid">'
         + b.rows.map(function (r) {
@@ -961,9 +961,9 @@
     var hint = s.foldNote || (n ? n + (n === 1 ? ' entry' : ' entries') : '');
     return '<details class="fan-fold reveal"' + (s.open ? ' open' : '') + '>'
       + '<summary class="fan-fold-sum">'
-      +   '<h3 class="subsec subsec--fan">' + esc(s.title)
+      +   '<h2 class="subsec subsec--fan">' + esc(s.title)
       +     (s.note ? '<span class="subsec-yr">' + esc(s.note) + '</span>' : '')
-      +   '</h3>'
+      +   '</h2>'
       +   (hint ? '<span class="fan-fold-n">' + esc(hint) + '</span>' : '')
       +   '<i class="fan-fold-i" aria-hidden="true">↓</i>'
       + '</summary>'
@@ -975,9 +975,9 @@
     if (!Array.isArray(s.items)) s.items = [];   // a section with no items renders empty, not a blank page
     s.items = s.items.filter(Boolean);            // a shared entry that did not load (window.LEGO_GAME) leaves no hole
     var build = KINDS[s.kind] || KINDS.cards;
-    var head = '<h3 class="subsec subsec--fan reveal">' + esc(s.title)
+    var head = '<h2 class="subsec subsec--fan reveal">' + esc(s.title)
       + (s.note ? '<span class="subsec-yr">' + esc(s.note) + '</span>' : '')
-      + '</h3>';
+      + '</h2>';
     var body = (s.lede ? '<p class="fan-lede reveal">' + esc(s.lede) + '</p>' : '')
       + art(s)
       + controls(s)
@@ -1366,7 +1366,7 @@
       var h = document.createElement('h4');
       h.className = 'fan-grouphead';
       /* the header borrows its accent from its first tile, so the Star Wars
-         section reads yellow and Batman blue without a second colour table */
+         section reads yellow and Batman blue without a second color table */
       var accent = buckets[g][0].style.getPropertyValue('--a');
       if (accent) h.style.setProperty('--a', accent);
       var name = document.createElement('b'); name.textContent = g;
@@ -1388,7 +1388,7 @@
 
   /* ── the controls remember themselves ──
      Sort key, direction, grouping and grid/list are kept in localStorage, one
-     entry per page and section, so the catalogue opens the way it was left
+     entry per page and section, so the catalog opens the way it was left
      rather than snapping back to release order on every visit. Same shape as
      the pics switch, the cursor and the sound toggle, and wrapped the same
      way for private mode, where storage throws. A saved value is only ever
@@ -1519,7 +1519,7 @@
     if (savedGrp) pick(savedGrp);
 
     /* The data files are authored newest-first (that is how TT Games list their
-       own catalogue), so the opening order has to be applied, not assumed. */
+       own catalog), so the opening order has to be applied, not assumed. */
     applySort(group, key, dir, grouped);
   });
 

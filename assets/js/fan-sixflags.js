@@ -38,7 +38,7 @@ window.FAN_PAGE = {
       { num: '01', title: 'X2', sub: '2002 · 4th Dimension',
         desc: 'The first fourth-dimension coaster ever built: the seats hang off the sides of the track and rotate independently of it, so you are flipped forwards and backwards while the train is doing something else entirely. It is genuinely disorienting in a way nothing else is.' },
       { num: '02', title: 'Twisted Colossus', sub: '2015 · hybrid',
-        desc: 'A 1978 wooden coaster rebuilt on steel track by Rocky Mountain Construction, running as two duelling tracks that meet three times. The best thing in the park.' },
+        desc: 'A 1978 wooden coaster rebuilt on steel track by Rocky Mountain Construction, running as two dueling tracks that meet three times. The best thing in the park.' },
       { num: '03', title: 'Tatsu', sub: '2006 · flying',
         desc: 'You ride face-down, and it has the tallest pretzel loop of any flying coaster in the world, 124 feet of it, taken with your back to the track off a 170-foot lift.' },
       { num: '04', title: 'Superman: Escape from Krypton', sub: '1997 – 2025 · shuttle',

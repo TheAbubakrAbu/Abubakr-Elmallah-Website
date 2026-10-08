@@ -3,7 +3,7 @@ permalink: /worlds/dinosaur-train/
 redirect_from:
   - /franchises/dinosaur-train/
 title: "Dinosaur Train · Abubakr Elmallah"
-description: "Dinosaur Train as a fandom: a T. rex raised by pteranodons, a Troodon driving, three geological periods on a timetable, and a real palaeontologist on the payroll."
+description: "Dinosaur Train as a fandom: a T. rex raised by pteranodons, a Troodon driving, three geological periods on a timetable, and a real paleontologist on the payroll."
 tab: "/worlds/"
 ---
 <!DOCTYPE html>
@@ -12,10 +12,11 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/dinosaur-train.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="dinotrain">
 
-<!-- the shared backdrop; the colours are in this page's own stylesheet -->
+<!-- the shared backdrop; the colors are in this page's own stylesheet -->
 <div class="np-sky" aria-hidden="true"><span class="np-glow"></span><span class="np-grid"></span></div>
 
 {% include fx.html %}
@@ -33,15 +34,19 @@ tab: "/worlds/"
     <p class="fan-kicker"><span>Animation &#183; As a kid &#183; since 2009</span></p>
     <h1 class="fan-title">Dinosaur Train</h1>
     <p class="fan-lede-hero">A Tyrannosaurus egg ends up in a Pteranodon nest, hatches, and the family simply gets on with it. That is an adoption story told to four-year-olds without a single heavy sentence in it, and the dinosaurs are the sugar around the outside.</p>
-    <p class="fan-lede-hero">The train runs through tunnels that come out in the Triassic, the Jurassic and the Cretaceous, which is the cleverest thing in the show: two animals that never overlapped can meet without the programme lying about when either of them lived. Craig Bartlett, who made Hey Arnold!, created it; the Jim Henson Company produced it; and a real palaeontologist turns up on camera at the end of segments to say which parts were true.</p>
+    <p class="fan-lede-hero">The train runs through tunnels that come out in the Triassic, the Jurassic and the Cretaceous, which is the cleverest thing in the show: two animals that never overlapped can meet without the program lying about when either of them lived. Craig Bartlett, who made Hey Arnold!, created it; the Jim Henson Company produced it; and a real paleontologist turns up on camera at the end of segments to say which parts were true.</p>
     <div class="fan-links">
       <a class="fan-link" href="#family" data-magnetic>The family &#8599;</a>
       <a class="fan-link" href="#tunnel" data-magnetic>The time tunnel &#8599;</a>
-      <a class="fan-link" href="#science" data-magnetic>The palaeontologist &#8599;</a>
+      <a class="fan-link" href="#science" data-magnetic>The paleontologist &#8599;</a>
     </div>
   </section>
 
   <div id="fanBody"></div>
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
+
 </main>
 
 {% include footer.html back="/worlds/" %}

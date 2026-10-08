@@ -5,7 +5,7 @@
    TWO HALVES, AND THE RULE IS DIFFERENT IN EACH.
 
    The top half is a hub. Every game already lives on the page of the world it
-   belongs to: the TT Games catalogue with its sort control on /worlds/lego/,
+   belongs to: the TT Games catalog with its sort control on /worlds/lego/,
    the thirty-six Star Wars games on /worlds/star-wars/, the Realm on
    /worlds/minecraft/. Copying any of those LISTS here would give the site two
    versions of the same games that drift apart the first time one is
@@ -14,7 +14,7 @@
    card per world with games in it, pointing at the page that holds the list.
 
    ONE LIST BREAKS THAT RULE, and only because it does not copy anything. The
-   TT Games catalogue is rendered here from `window.LEGO_GAMES`, which is the
+   TT Games catalog is rendered here from `window.LEGO_GAMES`, which is the
    SAME object /worlds/lego/ renders, out of lego-games.js. One list, in one
    file, on two pages, so there is nothing that can drift.
 
@@ -143,7 +143,7 @@ window.FAN_PAGE = (function gaming() {
        the page that holds the actual list. The line on each card is about the
        GAMES, since the worlds themselves are described on /worlds/. */
     { id: 'worlds', kind: 'cards', title: 'The Game Worlds', note: 'fourteen pages · the lists live there',
-      lede: 'Every world on this site I have played rather than only watched or read. The catalogues, the completion screens and the write-ups are all on those pages; this is the index to them, and every picture is underneath.',
+      lede: 'Every world on this site I have played rather than only watched or read. The catalogs, the completion screens and the write-ups are all on those pages; this is the index to them, and every picture is underneath.',
       items: [
         { tag: 'Since I was a kid', title: 'Minecraft', sub: 'Java · Realms · four servers', accent: '#7fbf4f',
           desc: 'A Realm with three friends from July to August 2026, the dragon on the nineteenth, and twelve named tools with Mending on every one. Four public servers before it.',
@@ -151,7 +151,7 @@ window.FAN_PAGE = (function gaming() {
         { tag: 'Steam · 36 in one collection', title: 'Star Wars', sub: 'nine at a hundred percent', accent: '#ffe81f',
           desc: 'Four LEGO ones, both Jedi games, Outlaws, Droid Repair Bay and Battlefront II, every one of them with its own banner, save slot and achievement screen on that page. Six of the nine are the row the collection view shows when it is sorted by achievements.',
           href: '/worlds/star-wars/', link: 'The page', meta: 'Sorted by achievements' },
-        { tag: 'TT Games · the whole catalogue', title: 'LEGO', sub: 'sixteen finished', accent: '#ffd21f',
+        { tag: 'TT Games · the whole catalog', title: 'LEGO', sub: 'sixteen finished', accent: '#ffd21f',
           desc: 'Every LEGO game since 2005 with a sort control on it: by release date, by my rating, by my time, or by how long each one is reckoned to take. Sixteen at a hundred percent, and the Skywalker Saga alone is 79 hours of that.',
           href: '/worlds/lego/', link: 'The page', meta: 'Grid or list' },
         { tag: 'Wizarding World · 5', title: 'Harry Potter', sub: 'three platinums', accent: '#d9b45f',
@@ -190,7 +190,7 @@ window.FAN_PAGE = (function gaming() {
           desc: 'No powers, just preparation: the animated series and the Arkham games especially. My Arkham City captures go back far enough that Steam still stamped the game’s own id onto the file name.',
           href: '/worlds/batman/', link: 'The page', meta: 'Plus LEGO Batman 1 and 2' },
         /* Pirates of the Caribbean had a card here too, and its only game is
-           LEGO Pirates, which is already a tile in the catalogue above like
+           LEGO Pirates, which is already a tile in the catalog above like
            every other finished LEGO game. Taken out on 2026-09-28. */
       ] },
 
@@ -212,7 +212,7 @@ window.FAN_PAGE = (function gaming() {
         { title: 'Steam Replay', href: 'https://store.steampowered.com/replay/',
           desc: 'Steam builds one of these per account per year in December. It is the source of every number on this page, and it goes away again, which is why the four above are captures.' },
         { title: 'HowLongToBeat', href: 'https://howlongtobeat.com/',
-          desc: 'Where the projected completion times on the LEGO catalogue come from: the community Completionist average per title, one methodology across the whole column.' },
+          desc: 'Where the projected completion times on the LEGO catalog come from: the community Completionist average per title, one methodology across the whole column.' },
       ] };
 
   /* ── the sheets: every picture, grouped by the folder it sits in ───────── */
@@ -229,13 +229,13 @@ window.FAN_PAGE = (function gaming() {
     { dir: 'minecraft', title: 'Minecraft', accent: '#7fbf4f',
       lede: 'Every Minecraft frame the site has, and not one of them has ever been through Steam: a Realm with three friends, a Disneyland server, a Pokémon mod on a public server years before either, the Ender Jedi, the skin the account wears, and the Badlion Client profile that keeps every name it has had.' },
     { dir: 'star-wars', title: 'Star Wars', accent: '#ffe81f',
-      lede: 'Three kinds of thing under one flag. The five non-LEGO Star Wars games I have taken to a hundred percent, each with its own banner, save slot and achievement screen; the two Minecraft servers, Imagine Fun, which has Galaxy’s Edge built at real scale, and a Star Wars one with a saber in every colour; and Fortnite’s Star Wars side, the seasons and bundles and Droid Tycoon, filed here the way the screenshot library files them. The folders run in the order they were taken, so the three are mixed together.' },
+      lede: 'Three kinds of thing under one flag. The five non-LEGO Star Wars games I have taken to a hundred percent, each with its own banner, save slot and achievement screen; the two Minecraft servers, Imagine Fun, which has Galaxy’s Edge built at real scale, and a Star Wars one with a saber in every color; and Fortnite’s Star Wars side, the seasons and bundles and Droid Tycoon, filed here the way the screenshot library files them. The folders run in the order they were taken, so the three are mixed together.' },
     /* LEGO builds NO sheet any more and that is not a mistake: all 119 of its
-       frames hang off the catalogue further up this page, so `sheet()` finds
+       frames hang off the catalog further up this page, so `sheet()` finds
        nothing left and skips it. The entry stays because a LEGO frame that is
        ever added outside a finished game's set would land here. */
     { dir: 'lego', title: 'LEGO', accent: '#ffd21f',
-      lede: 'One frame, and it is not a game: LEGO’s own anniversary page for the games, three decades of them from LEGO Island to the Skywalker Saga. Every other LEGO screenshot the site has is hanging off a finished game in the catalogue further up.' },
+      lede: 'One frame, and it is not a game: LEGO’s own anniversary page for the games, three decades of them from LEGO Island to the Skywalker Saga. Every other LEGO screenshot the site has is hanging off a finished game in the catalog further up.' },
     { dir: 'harry-potter', title: 'Wizarding World', accent: '#d9b45f',
       lede: 'Three different things under one heading: Hogwarts Legacy, Quidditch Champions, and a Hogwarts server in Minecraft from February of sophomore year.' },
     { dir: 'spider-man', title: 'Spider-Man', accent: '#e02a3a',
@@ -417,7 +417,7 @@ window.FAN_PAGE = (function gaming() {
       if (!s) return;
       var keys = s.pick || (s.set && sets[s.set] && sets[s.set].items) || [];
       keys.forEach(function (key) { if (shots[key]) USED[shots[key].src] = 1; });
-      /* A tiles section can carry screenshots too: the LEGO catalogue holds
+      /* A tiles section can carry screenshots too: the LEGO catalog holds
          every LEGO frame the site has, on its sixteen finished games. Those
          are shown, so they are used, and the sheets below must not print them
          a second time. Same shorthand fanpage.js resolves: a `shots` entry

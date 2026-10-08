@@ -113,7 +113,7 @@
     republic: {
       bar: 'Jedi Archives \u00b7 Temple of Coruscant \u00b7 Level 4',
       note: 'The Archives are open, the Order is at its height, and every record here is '
-          + 'catalogued, cross-referenced and quietly assumed to be complete.',
+          + 'cataloged, cross-referenced and quietly assumed to be complete.',
     },
     empire: {
       bar: 'Imperial Archive \u00b7 Seized Holdings \u00b7 Coruscant',
@@ -123,7 +123,7 @@
     },
     newrepublic: {
       bar: 'Recovered Holocron \u00b7 New Jedi Archive \u00b7 Unlisted',
-      note: 'Found, carried a long way, and read again. The catalogue marks are the original ones, '
+      note: 'Found, carried a long way, and read again. The catalog marks are the original ones, '
           + 'because whoever reopened this had no authority to renumber anything and knew better '
           + 'than to try.',
     },
@@ -162,7 +162,7 @@
   })();
 
   /* ── 6. kyber ──
-     Bonding a crystal re-lights the whole archive in its colour: one
+     Bonding a crystal re-lights the whole archive in its color: one
      data-kyber on .hc, and holocron.css does the rest. Remembered the same
      way the era is, and "Archive" hands the hall back to its projector blue. */
   var KY = {

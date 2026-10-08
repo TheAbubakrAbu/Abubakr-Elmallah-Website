@@ -101,7 +101,7 @@
 
 @media (min-width: 880px) { .av-floor { grid-template-columns: 0.9fr 1.1fr; } }
 
-.av-floor-panel h4 { font-family: var(--sans); font-weight: 650; font-size: 1.15rem; margin-bottom: 0.6rem; }
+.av-floor-panel :is(h2, h3, h4, h5) { font-family: var(--sans); font-weight: 650; font-size: 1.15rem; margin-bottom: 0.6rem; }
 
 .av-floor-panel p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 60ch; }
 
@@ -192,7 +192,7 @@
   text-transform: uppercase; color: var(--mute);
 }
 
-.av-note h4 {
+.av-note :is(h2, h3, h4, h5) {
   font-family: Papyrus, "Bradley Hand", Georgia, fantasy;
   font-size: 1.3rem; letter-spacing: 0.04em; color: var(--a); margin-bottom: 0.6rem;
 }

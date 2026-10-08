@@ -48,8 +48,8 @@
 
 .jls-hubring { fill: none; stroke: #8fb8e8; stroke-width: 1.6; opacity: .3; animation: jl-ping 7s ease-out infinite; }
 
-/* Each node carries its member's colour through a custom property, so the
-   emblem colours and the backdrop stay in step from one place. */
+/* Each node carries its member's color through a custom property, so the
+   emblem colors and the backdrop stay in step from one place. */
 .jls-node circle { fill: var(--m); opacity: .75; filter: drop-shadow(0 0 6px var(--m)); animation: jl-blip 5s ease-in-out infinite; }
 
 .jls-node circle:nth-child(2) { animation-delay: -.8s; }
@@ -192,7 +192,7 @@
   letter-spacing: 0.12em; font-size: 0.72rem; color: #e8d8a8;
 }
 
-.jl-legend h4 {
+.jl-legend :is(h2, h3, h4, h5) {
   font-family: var(--serif); font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.1em; font-size: 1.2rem; color: var(--a); margin-bottom: 0.6rem;
 }

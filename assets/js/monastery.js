@@ -8,7 +8,7 @@
                    with sparks flung off it. It idles slowly, turning
                    through the elements on its own; point at a station on
                    the course, pick an element or press Spinjitzu! and it
-                   spins up, taller and faster, in that colour
+                   spins up, taller and faster, in that color
      the rack      the four Golden Weapons (drawn in monastery.html),
                    carried round the tornado on an ellipse at a speed tied
                    to the spin, passing behind it on the far side
@@ -42,8 +42,8 @@
 
   /* ───────────── the elements ───────────── */
 
-  // The colours each element spins in, bright enough to read as light on
-  // the night courtyard (Cole's black would vanish, so earth is the colour
+  // The colors each element spins in, bright enough to read as light on
+  // the night courtyard (Cole's black would vanish, so earth is the color
   // of the rock he moves). The same values are on the buttons and the
   // stations in monastery.html, as --e.
   var EL = {
@@ -68,7 +68,7 @@
 
   /* ───────────── state ───────────── */
 
-  var col = EL.gold.rgb.slice();   // the colour on screen, eased toward goal
+  var col = EL.gold.rgb.slice();   // the color on screen, eased toward goal
   var goalEl = 'gold';
   var picked = null;               // an element chosen with a button, held until unchosen
   var hovered = null;              // the station pointed at, if any

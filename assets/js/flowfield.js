@@ -1,6 +1,6 @@
 /* flowfield.js : ambient circuit field.
    Light packets run along the same lattice the CSS HUD grid draws, cornering at
-   intersections like traces on a board. Colours come from <body data-intro>, so
+   intersections like traces on a board. Colors come from <body data-intro>, so
    every page routes its own palette. The cursor brightens and accelerates any
    packet it gets close to. (Replaces the old organic particle trails.) */
 (function circuitField() {
@@ -8,7 +8,7 @@
   if (!canvas || reduceMotion) return;
   const ctx = canvas.getContext('2d');
 
-  /* trace colour, then head colour */
+  /* trace color, then head color */
   const THEMES = {
     home:       { line: [47, 127, 214], head: [245, 198, 60] },  // UCI blue, gold head
     alislam:    { line: [31, 157, 92],  head: [63, 213, 137] },  // green, emerald head

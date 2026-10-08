@@ -15,7 +15,7 @@ window.FAN_PAGE = {
       { title: 'It runs on willpower', sub: 'not strength', tag: 'Rule',
         desc: 'The charge is literal, from a lamp, but the output is nerve. Hesitate and the construct thins out. It is the only power set where doubt is the failure state.',
         meta: 'Recharged on the power battery' },
-      { title: 'Fear beats it', sub: 'Parallax, and the colour yellow', tag: 'Weakness',
+      { title: 'Fear beats it', sub: 'Parallax, and the color yellow', tag: 'Weakness',
         desc: 'The original impurity in the Central Power Battery, later retconned into an entity made of fear. Either way the meaning is the same: the ring fails exactly when you are frightened.',
         meta: 'Yellow · the Sinestro Corps' },
       { title: 'And so does the wearer', sub: 'the real limit', tag: 'Weakness',
@@ -48,7 +48,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'spectrum', kind: 'tiles', compact: true, title: 'The Emotional Spectrum', note: 'one corps per emotion',
-    lede: 'The idea that turned one ring into a cosmology: seven colours, each powered by a different emotion, each with a corps behind it. Green is in the middle on purpose, because will is the balance point.',
+    lede: 'The idea that turned one ring into a cosmology: seven colors, each powered by a different emotion, each with a corps behind it. Green is in the middle on purpose, because will is the balance point.',
     items: [
       { title: 'Red', accent: '#e03a3a', sub: 'Rage', desc: 'The Red Lanterns, who replace their own blood with it.' },
       { title: 'Orange', accent: '#f0902a', sub: 'Avarice', desc: 'One bearer, Larfleeze, because greed does not share.' },
@@ -65,7 +65,7 @@ window.FAN_PAGE = {
       { num: '1', title: 'Justice League', sub: '2001 – 2004', accent: '#4fd07f', meta: 'John Stewart · the one that got me',
         desc: 'John Stewart as the Lantern, and the show that introduced me to all six of the DC guys I like. Still the best use of the character on screen.' },
       { num: '2', title: 'Green Lantern: The Animated Series', sub: '2011 – 2013', accent: '#4fd07f', meta: 'Hal Jordan · Razer · Aya',
-        desc: 'CG, cancelled after one season, and far better than it had any right to be. The Aya arc is the best story the character has had anywhere.' },
+        desc: 'CG, canceled after one season, and far better than it had any right to be. The Aya arc is the best story the character has had anywhere.' },
       { num: '3', title: 'Green Lantern', sub: '2011 · the film', accent: '#8f8f9f', meta: 'Reynolds · Hal Jordan',
         desc: 'The premise is unfilmable only if you are frightened of it, and this one was. A ring that builds anything, spent mostly on a CGI suit and a cloud.' },
       { num: '4', title: 'Lanterns', sub: '2026 · HBO', accent: '#4fd07f', meta: 'Hal Jordan · John Stewart',
@@ -79,7 +79,7 @@ window.FAN_PAGE = {
       { title: 'The emotional spectrum', href: 'https://en.wikipedia.org/wiki/Emotional_Spectrum',
         desc: 'All seven corps, and which emotion powers which.' },
       { title: 'The Animated Series', href: 'https://en.wikipedia.org/wiki/Green_Lantern:_The_Animated_Series',
-        desc: 'One season, cancelled, and the best version of the character.' },
+        desc: 'One season, canceled, and the best version of the character.' },
     ] },
 
   ],

@@ -1,0 +1,10 @@
+/* fan/johnny-test.css: /worlds/johnny-test/ only.
+   The backdrop geometry is shared (.np-sky in fanpages.css); this file
+   only says what color this world is. */
+
+body[data-fan="jt"] {
+  --a: #e07a2a;
+  --np1: #3a1f0d;
+  --np2: #0b0705;
+  --np3: rgba(79,184,224,.16);
+}

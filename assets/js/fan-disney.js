@@ -145,7 +145,7 @@ window.FAN_PAGE = {
           { n: 'Adventureland Treehouse', y: '1962' },
         ] },
       { title: 'New Orleans Square', sub: '1966', accent: '#b58fd0',
-        desc: 'Three attractions and two of them are the best in the park. The last land Walt approved, and the only one modelled on a real city.',
+        desc: 'Three attractions and two of them are the best in the park. The last land Walt approved, and the only one modeled on a real city.',
         rides: [
           { n: 'Pirates of the Caribbean', y: '1967', big: true },
           { n: 'Haunted Mansion', y: '1969', big: true },

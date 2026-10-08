@@ -12,10 +12,11 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/daily-bugle.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
 <body class="db" id="db">
 
-<!-- newsprint: warm paper, a faint grain of fibres, and the darker edges a
+<!-- newsprint: warm paper, a faint grain of fibers, and the darker edges a
      page picks up from being handled. Nothing here is an image. -->
 <div class="db-field" aria-hidden="true">
   <span class="db-grain"></span>
@@ -31,6 +32,7 @@ standalone: true
   <a class="db-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the Daily Bugle</span>
   </a>
+  {% include interface-world.html world="Spider-Man" href="/worlds/spider-man/" %}
   <span class="db-top-mid">Bugle Building · Midtown · New York</span>
   <!-- the edition on the street right now, from your clock: Morning until
        eleven, then Afternoon, Late City from four, Night Final after nine -->
@@ -83,7 +85,7 @@ standalone: true
             <span class="db-kick">Page One<i>home</i></span>
             <b class="db-hl">Who is Abubakr Elmallah, and why does he need fifteen rooms?</b>
             <span class="db-by">By the Editor-in-Chief</span>
-            <span class="db-deck">A computer science student has built an entire website, put every app he ever shipped inside it, and filled the rest with seventy-one worlds he cares about. This newspaper has questions. Start here, read everything, and do not trust a word of it until you have seen the photos.</span>
+            <span class="db-deck">A computer science student has built an entire website, put every app he ever shipped inside it, and filled the rest with seventy-four worlds he cares about. This newspaper has questions. Start here, read everything, and do not trust a word of it until you have seen the photos.</span>
           </span>
           <!-- the lead photo: the only picture of the menace this paper
                ever got, blurred, grainy and printed in halftone. SVG, with a
@@ -164,9 +166,9 @@ standalone: true
       </li>
       <li class="db-st" style="--i:6">
         <a class="db-story" href="/worlds/" data-web>
-          <span class="db-kick">Arts &amp; Leisure<i>all 71 worlds</i></span>
-          <b class="db-hl">Seventy-one worlds reviewed by one reader; Bugle critics outnumbered</b>
-          <span class="db-deck">Films, shows, games and books, all seventy, ranked and argued over. Our own critic managed four.</span>
+          <span class="db-kick">Arts &amp; Leisure<i>all 74 worlds</i></span>
+          <b class="db-hl">Seventy-four worlds reviewed by one reader; Bugle critics outnumbered</b>
+          <span class="db-deck">Films, shows, games and books, all seventy-four, ranked and argued over. Our own critic managed four.</span>
         </a>
       </li>
       <li class="db-st db-st--wide db-st--special" style="--i:7">
@@ -214,7 +216,7 @@ standalone: true
       <li class="db-st" style="--i:13">
         <a class="db-story" href="/lightsabers/" data-web>
           <span class="db-kick">Classifieds<i>the lightsaber guide</i></span>
-          <b class="db-hl">Lightsabers, catalogued: a public hazard in print</b>
+          <b class="db-hl">Lightsabers, cataloged: a public hazard in print</b>
           <span class="db-deck">The full guide to every blade. Do not try any of it in the newsroom.</span>
         </a>
       </li>
@@ -257,7 +259,7 @@ standalone: true
             <div><dt>Reading the Bugle</dt><dd>Since he was little; the Amazing era, 2012–14</dd></div>
           </dl>
         </div>
-        <p class="db-card-foot"><span class="db-barcode" aria-hidden="true"></span><span>Access: all 71 worlds</span></p>
+        <p class="db-card-foot"><span class="db-barcode" aria-hidden="true"></span><span>Access: all 74 worlds</span></p>
       </div>
     </section>
 
@@ -273,7 +275,7 @@ standalone: true
         <li><b>Al-Adhan, by the sun</b><p>Prayer times computed 22 ways.</p></li>
         <li><b>UCI Esports, in one app</b><p>The arena, its PCs and its events.</p></li>
         <li><b>Where it began</b><p>Order 66 and Datapad, the first solo projects, in 2021.</p></li>
-        <li><b>Seventy-one worlds</b><p>Every one of them on /worlds/, reviewed.</p></li>
+        <li><b>Seventy-four worlds</b><p>Every one of them on /worlds/, reviewed.</p></li>
       </ul>
     </section>
 
@@ -293,8 +295,7 @@ standalone: true
       <li><a class="db-dispatch" href="/citadel/" data-web><span>Oldtown</span><b>The Citadel</b><i>Game of Thrones</i></a></li>
       <li><a class="db-dispatch" href="/compass/" data-web><span>Tortuga</span><b>The Compass</b><i>Pirates of the Caribbean</i></a></li>
       <li><a class="db-dispatch" href="/control-room/" data-web><span>Isla Nublar</span><b>The Control Room</b><i>Jurassic Park</i></a></li>
-      <li><a class="db-dispatch" href="/upside-down/" data-web><span>Hawkins</span><b>The Upside Down</b><i>Stranger Things</i></a></li>
-      <li><a class="db-dispatch" href="/starcourt/" data-web><span>Hawkins</span><b>Starcourt</b><i>Stranger Things</i></a></li>
+      <li><a class="db-dispatch" href="/hawkins/" data-web><span>Hawkins</span><b>Hawkins</b><i>Stranger Things</i></a></li>
       <li><a class="db-dispatch" href="/spirit-library/" data-web><span>Si Wong Desert</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a></li>
       <li><a class="db-dispatch" href="/monastery/" data-web><span>Ninjago</span><b>The Monastery</b><i>Ninjago</i></a></li>
       <li><a class="db-dispatch" href="/wanted/" data-web><span>The frontier</span><b>The Wanted Board</b><i>Red Dead Redemption</i></a></li>
@@ -308,6 +309,8 @@ standalone: true
 
   <button class="db-stop" id="dbStop" type="button" data-web>Stop the presses!</button>
   <p class="db-colophon">Printed in New York. Set in Playfair, Oswald and Source Serif; drawn in CSS, SVG and canvas, with no photographs, which this paper considers a scandal.</p>
+
+  {% include interface-world.html world="Spider-Man" href="/worlds/spider-man/" place="foot" %}
 
 </main>
 

@@ -1,5 +1,5 @@
 /* fan-dinotrain.js: content for /worlds/dinosaur-train/. Rendered by fanpage.js.
-   A preschool show with a real palaeontologist on the payroll, made by the Jim
+   A preschool show with a real paleontologist on the payroll, made by the Jim
    Henson Company and created by the man who made Hey Arnold!. */
 window.FAN_PAGE = {
   when: { at: 'As a kid, before I could read', note: 'The earliest thing on this whole site. It is the reason I knew the word Cretaceous before I knew what a continent was, and it is why the Jurassic Park page further up this list landed on ground that was already prepared.' },
@@ -23,12 +23,12 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'tunnel', kind: 'tiles', fold: true, title: 'The Time Tunnel', note: 'the three periods, on a timetable',
-    lede: 'The train runs through tunnels that come out in different geological periods, which is the cleverest thing in the show: it means a Cretaceous animal can meet a Triassic one without the programme having to lie about when either of them lived. The date is the destination.',
+    lede: 'The train runs through tunnels that come out in different geological periods, which is the cleverest thing in the show: it means a Cretaceous animal can meet a Triassic one without the program having to lie about when either of them lived. The date is the destination.',
     items: [
       { title: 'Triassic', sub: '252 to 201 million years ago', accent: '#e0763a',
         desc: 'The first stop and the emptiest. Dinosaurs are new here and mostly small, which the show uses to explain that they were not always the biggest thing around.' },
       { title: 'Jurassic', sub: '201 to 145 million years ago', accent: '#4fce6a',
-        desc: 'The long necks. This is where the scale arrives, and where a preschool programme gets to put a Brachiosaurus next to a child for comparison.' },
+        desc: 'The long necks. This is where the scale arrives, and where a preschool program gets to put a Brachiosaurus next to a child for comparison.' },
       { title: 'Cretaceous', sub: '145 to 66 million years ago', accent: '#3fb8b0',
         desc: 'Home. Buddy and the family live here, and so does nearly everything a small child can already name.' },
       { title: 'The Nest Exchange', sub: 'The hub', accent: '#d8a53f',
@@ -39,12 +39,12 @@ window.FAN_PAGE = {
         desc: 'The Conductor says it, the horn goes, and the tunnel lights up. Twelve years of children heard that as the signal that the interesting part was starting.' },
     ] },
 
-  { id: 'science', kind: 'cards', title: 'It Has a Palaeontologist',
+  { id: 'science', kind: 'cards', title: 'It Has a Paleontologist',
     note: 'and he is not a character',
     lede: 'This is the part that makes the show unusual rather than merely good. Every episode stops and hands over to a real scientist, on camera, who tells you which bits were true.',
     items: [
       { title: 'Dr Scott', sub: 'Scott D. Sampson', tag: 'The real one', accent: '#3fb8b0',
-        desc: 'A palaeontologist with a doctorate in zoology from Toronto, who appears in live action at the end of segments to explain the actual science behind what just happened in the cartoon. He is now the chief executive of Science World in Vancouver.',
+        desc: 'A paleontologist with a doctorate in zoology from Toronto, who appears in live action at the end of segments to explain the actual science behind what just happened in the cartoon. He is now the chief executive of Science World in Vancouver.',
         meta: 'PhD, University of Toronto, 1993' },
       { title: 'Craig Bartlett', sub: 'The creator', tag: 'Who made it', accent: '#f0913a',
         desc: 'The man who created Hey Arnold! for Nickelodeon made this. Knowing that, the writing on the Pteranodon siblings stops being a surprise: it is the same ear for how children actually talk to each other.',

@@ -1,7 +1,7 @@
 /* ============================================================
    control-room.css: /control-room/, the Jurassic Park terminal.
    Sister page to /jarvis/, /holocron/, /marauders-map/,
-   /crafting-table/ and /citadel/: grey plastic bezels and green
+   /crafting-table/ and /citadel/: gray plastic bezels and green
    phosphor instead of glass, because the room this copies was
    built in 1993 out of workstations and one Macintosh. The map,
    the file system and the lockout are all drawn here or in
@@ -18,6 +18,8 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .cr {
+  --iw-a: #e0642a;   /* the shared world button, interface-world.css */
+  --iw-bg: #050806;
   /* Archivo, narrowed, for the signage; IBM Plex Mono for everything a
      workstation would print; VT323 only for big phosphor numerals, where
      its pixels read as a CRT rather than as a blur */
@@ -27,7 +29,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 
   --night:  #050806;
   --plate:  #0b110d;
-  --amber:  #e0642a;          /* the world's tile colour */
+  --amber:  #e0642a;          /* the world's tile color */
   --amber-2:#ff9a5c;          /* the same, lifted for small text on black */
   --amber-3:#ffc49a;
   --phos:   #6dff9a;          /* P1 green phosphor */
@@ -111,7 +113,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 }
 
 /* ───────────── monitors ─────────────
-   Every screen on the page sits in the same bezel: warm grey plastic
+   Every screen on the page sits in the same bezel: warm gray plastic
    with a label strip and a power lamp, the way the workstations in the
    room are. The glass inside is a little rounded, a little curved by its
    vignette, and ruled with scanlines that sit over the content. */
@@ -231,7 +233,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .cr-north path { fill: var(--phos); }
 .cr-north text { font-family: var(--mono); font-weight: 600; font-size: 20px; fill: var(--phos); text-anchor: middle; }
 
-/* the pins. The inner group is what scales, about the pin's own centre,
+/* the pins. The inner group is what scales, about the pin's own center,
    so the translate on the outer one is never overwritten */
 .cr-pin { cursor: pointer; }
 .cr-pin > g { transform-box: fill-box; transform-origin: center; transition: transform .35s var(--ease); }

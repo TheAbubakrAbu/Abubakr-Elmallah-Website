@@ -1,4 +1,4 @@
-/* lego-games.js: the TT Games catalogue, written down once.
+/* lego-games.js: the TT Games catalog, written down once.
 
    Every LEGO game TT has made, with my rating, my hours, the date I finished
    it and the screenshots behind that. It used to live inside fan-lego.js. It
@@ -43,7 +43,7 @@
      `hours` are the only play records I keep. A score on a game I never
      touched would be a review of its reputation, so the rest simply carry no
      rating and sink to the bottom of that sort. It is a rating of the GAME
-     rather than of the licence: The Clone Wars outscores The Force Awakens
+     rather than of the license: The Clone Wars outscores The Force Awakens
      because the older, messier one is the better game, not because I prefer
      one era of Star Wars to another.
 
@@ -60,14 +60,14 @@
      makes the comparison work. Two of them rest on thin samples, LEGO Worlds
      (11 submissions) and LEGO Dimensions (14), against 80–690 for the rest.
 
-     `series` is the licence each game adapts, and it exists for the Group
-     control (`groupable`, see fanpage.js): switched on, the catalogue folds
+     `series` is the license each game adapts, and it exists for the Group
+     control (`groupable`, see fanpage.js): switched on, the catalog folds
      into one section per series, still in whatever order the sort buttons have
      picked. DC Super-Villains sits under Batman & DC on purpose; it is the
      same continuity from the villains' side. The Ninjago Movie game rides
      with The LEGO Movie, because the film it adapts belongs to that film
      series. The games built on LEGO's own toy lines (Worlds, Dimensions,
-     LEGO City) get their own banner, LEGO Originals; an outside licence TT
+     LEGO City) get their own banner, LEGO Originals; an outside license TT
      only visited once (Pirates, Jurassic World, The Incredibles) goes under
      Standalone rather than getting a one-game section to itself.
 
@@ -93,7 +93,7 @@
      is how those pages show their own games (LEGO_FOR, at the foot). */
 
 window.LEGO_GAMES =
-  { id: 'catalogue', kind: 'tiles', title: 'The LEGO Games', note: 'from ttgames.com/games', compact: true, cols: 3,
+  { id: 'catalog', kind: 'tiles', title: 'The LEGO Games', note: 'from ttgames.com/games', compact: true, cols: 3,
     tally: 'at 100%',
     views: true,
     groupable: { key: 'series', label: 'Group by series', on: 'On' },
@@ -107,7 +107,7 @@ window.LEGO_GAMES =
          the way an unrated game sinks in the rating sort. */
       { key: 'finished', label: 'When I finished it', asc: 'First', desc: 'Most recent' },
     ] },
-    lede: 'TT Games’ own catalogue, running from LEGO Star Wars in 2005 forwards, sortable by release date, by what I rate it, by how long each one took me, or by how long it is reckoned to take. Click any finished game to open its screenshots full size. Switch between grid and list: grid is the banner and the numbers, list opens every screenshot out next to it and adds what a hundred percent takes. Or group it by series, which folds the same list into its licences (the six Star Wars games together, the whole Batman and DC run including Super-Villains, LEGO’s own inventions under LEGO Originals, and the one-visit licences under Standalone), each section still in whatever order the sort has picked. Ratings are only on the games I have actually played; the rest stay unscored and sink to the bottom of that sort. The handheld-only spin-offs and the console bundles are left out, because a bundle is not really its own game and the handheld ones were made by a different studio entirely; what is left is the main line: twenty-six you can buy on Steam, and three you cannot, the first two LEGO Star Wars games (sold on disc and folded into The Complete Saga) and LEGO Dimensions (toys-to-life with a physical portal, never on PC), which are marked and left out of the count. In list view every tile also says what a hundred percent takes, in gold bricks, red bricks, minikits and characters, and what the game gives you for it, stud fountain included. The green stamp is mine: every one with a screenshot under it is one I took to a hundred percent, and the Steam library page is the receipt for the hours next to it. The grey figure beside it is the HowLongToBeat community Completionist average for that game, so every title carries a projected run whether I have finished it or not, and the finished ones show the gap, in hours and as a percentage of the estimate. The row above the tiles averages those percentages: on a typical game I come in about a fifth under.',
+    lede: 'TT Games’ own catalog, running from LEGO Star Wars in 2005 forwards, sortable by release date, by what I rate it, by how long each one took me, or by how long it is reckoned to take. Click any finished game to open its screenshots full size. Switch between grid and list: grid is the banner and the numbers, list opens every screenshot out next to it and adds what a hundred percent takes. Or group it by series, which folds the same list into its licenses (the six Star Wars games together, the whole Batman and DC run including Super-Villains, LEGO’s own inventions under LEGO Originals, and the one-visit licenses under Standalone), each section still in whatever order the sort has picked. Ratings are only on the games I have actually played; the rest stay unscored and sink to the bottom of that sort. The handheld-only spin-offs and the console bundles are left out, because a bundle is not really its own game and the handheld ones were made by a different studio entirely; what is left is the main line: twenty-six you can buy on Steam, and three you cannot, the first two LEGO Star Wars games (sold on disc and folded into The Complete Saga) and LEGO Dimensions (toys-to-life with a physical portal, never on PC), which are marked and left out of the count. In list view every tile also says what a hundred percent takes, in gold bricks, red bricks, minikits and characters, and what the game gives you for it, stud fountain included. The green stamp is mine: every one with a screenshot under it is one I took to a hundred percent, and the Steam library page is the receipt for the hours next to it. The gray figure beside it is the HowLongToBeat community Completionist average for that game, so every title carries a projected run whether I have finished it or not, and the finished ones show the gap, in hours and as a percentage of the estimate. The row above the tiles averages those percentages: on a typical game I come in about a fifth under.',
     items: [
       { title: 'LEGO Batman: Legacy of the Dark Knight', accent: '#8f98a8', year: 2026, series: 'Batman & DC', proj: '33.4', sub: '2026 · Steam', desc: 'The most recent one, out this year. Not played yet, so it gets no rating.',
         hundred: { needs: '23 red bricks · 10 Batcave minikits · 7 playable characters, and every suit, vehicle, WayneTech cache and puzzle room',
@@ -286,7 +286,7 @@ window.LEGO_GAMES =
         finished: '2026-08-07',
         shots: ['start-screen', 'pause-screen', 'load-game'],
         shotAlt: 'Steam library banner for LEGO Indiana Jones 2: The Adventure Continues, showing my play time',
-        hundred: { needs: '60 artifacts · 180 coloured bricks · 82 characters, and no gold bricks',
+        hundred: { needs: '60 artifacts · 180 colored bricks · 82 characters, and no gold bricks',
           reward: 'No reward on record, and no stud fountain.' },
         worlds: ['indiana'] },
       { title: 'LEGO Batman: The Videogame', accent: '#0055bf', year: 2008, series: 'Batman & DC', proj: '29.3', rating: 8, sub: '2008 · Steam', desc: 'Hero and villain campaigns, and still silent. Old enough to predate Steam achievements entirely.',
@@ -356,7 +356,7 @@ window.LEGO_FOR = function (tag, over) {
     title: n === 1 ? 'The LEGO Game' : 'The LEGO Games',
     note: (n === 1 ? 'one' : word(n)) + ' from TT Games'
       + (done ? ' \u00b7 ' + (done === n ? (n === 1 ? 'finished' : 'all finished') : word(done) + ' finished') : ''),
-    lede: 'The same tiles as the catalogue on the LEGO page, out of the same list: my rating, my time and the screenshots on any I have finished, and how far under or over the projected time I came, in hours and as a percentage. Switch to the list view for every screenshot, what a hundred percent takes, and what the game hands you for it.',
+    lede: 'The same tiles as the catalog on the LEGO page, out of the same list: my rating, my time and the screenshots on any I have finished, and how far under or over the projected time I came, in hours and as a percentage. Switch to the list view for every screenshot, what a hundred percent takes, and what the game hands you for it.',
     tally: n > 1 ? 'at 100%' : false,
     items: items,
   };
@@ -365,11 +365,11 @@ window.LEGO_FOR = function (tag, over) {
   return sec;
 };
 
-/* ── the catalogue, counted ──
+/* ── the catalog, counted ──
    LEGO_STATS and LEGO_BY_YEAR are worked out from the list above every time
    the page loads, never typed: finish a game, give it `done`, `hours`,
    `rating` and `finished`, and both of these follow. The LEGO page and
-   /gaming/ show them straight above the catalogue. */
+   /gaming/ show them straight above the catalog. */
 (function legoNumbers() {
   var cat = window.LEGO_GAMES;
   if (!cat) return;
@@ -391,7 +391,7 @@ window.LEGO_FOR = function (tag, over) {
   var pct = proj ? Math.round((1 - mine / proj) * 100) : 0;
 
   window.LEGO_STATS = {
-    id: 'lego-numbers', kind: 'stats', title: 'The Catalogue, Counted', note: 'worked out from the list below',
+    id: 'lego-numbers', kind: 'stats', title: 'The Catalog, Counted', note: 'worked out from the list below',
     items: [
       { title: done.length + ' of ' + buyable, sub: 'finished at a hundred percent',
         desc: 'Out of the ' + buyable + ' you can still buy on Steam; ' + all.length + ' LEGO games in all.' },

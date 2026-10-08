@@ -14,6 +14,8 @@ img, svg { display: block; max-width: 100%; }
 html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
 
 .cd {
+  --iw-a: #d8b26a;   /* the shared world button, interface-world.css */
+  --iw-bg: #0b0a09;
   --cap:    "Cinzel", Georgia, serif;
   --body:   "Cormorant Garamond", Georgia, serif;
   --stone:  #0b0a09;
@@ -81,7 +83,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 }
 .cd-corona { fill: rgba(255, 190, 90, .14); }
 
-/* SVG transforms here turn about the centre of the drawing, (0, 0) in the
+/* SVG transforms here turn about the center of the drawing, (0, 0) in the
    viewBox above, which is what transform-origin 0 0 means for SVG */
 .cd-ring, .cd-band, .cd-sun { transform-origin: 0 0; transform-box: view-box; }
 .cd-ring--words { animation: cd-turn 240s linear infinite; }
@@ -140,7 +142,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .cd-keeps { display: grid; gap: 0.8rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 
 /* a keep: a tower block with battlements along its top, in its house
-   colour, rising out of the map once when the page opens */
+   color, rising out of the map once when the page opens */
 .cd-keep {
   position: relative; display: flex; flex-direction: column; gap: 0.25rem;
   padding: 1.35rem 1rem 1rem;
@@ -188,7 +190,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .cd-rose path { fill: rgba(216, 178, 106, .5); }
 .cd-rose text { font-family: var(--cap); font-size: 12px; fill: var(--brass); }
 
-/* a pin: a little tower in its house colour that rises out of the map once,
+/* a pin: a little tower in its house color that rises out of the map once,
    staggered, the way the castles come up in the opening titles */
 .cd-pin-rise { transform-box: fill-box; transform-origin: 50% 100%; animation: cd-rise .9s var(--ease) both; animation-delay: calc(var(--i, 0) * 80ms + 400ms); }
 .cd-pin-tower { fill: var(--c); stroke: #120f0b; stroke-width: 1; }
@@ -256,7 +258,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   transition: background .3s, border-color .3s;
 }
 .cd-raven:hover, .cd-raven:focus-visible { outline: none; background: rgba(236, 227, 207, .07); border-color: var(--brass); }
-/* a wax seal: an uneven blob of the colour, pressed with a letter */
+/* a wax seal: an uneven blob of the color, pressed with a letter */
 .cd-seal {
   grid-row: span 2; display: grid; place-items: center;
   width: 44px; height: 44px;

@@ -3,7 +3,7 @@ permalink: /worlds/bloons/
 redirect_from:
   - /franchises/bloons/
 title: "Bloons TD · Abubakr Elmallah"
-description: "Bloons Tower Defense as a fandom: monkeys, darts, and the most quietly deep tower defence game ever made."
+description: "Bloons Tower Defense as a fandom: monkeys, darts, and the most quietly deep tower defense game ever made."
 tab: "/worlds/"
 ---
 <!DOCTYPE html>
@@ -12,10 +12,11 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/bloons.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="bloons">
 
-<!-- the shared backdrop; the colours are in this page's own stylesheet -->
+<!-- the shared backdrop; the colors are in this page's own stylesheet -->
 <div class="np-sky" aria-hidden="true"><span class="np-glow"></span><span class="np-grid"></span></div>
 
 {% include fx.html %}
@@ -42,6 +43,10 @@ tab: "/worlds/"
   </section>
 
   <div id="fanBody"></div>
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
+
 </main>
 
 {% include footer.html back="/worlds/" %}

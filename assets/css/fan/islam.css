@@ -16,7 +16,7 @@ body[data-fan="islam"] .fan-title {
 
 /* the bismillah above the title, set properly rather than as a picture */
 .isl-bismillah {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: clamp(1.5rem, 4.4vw, 2.6rem); line-height: 1.9;
   color: var(--green-2); opacity: .9; margin-bottom: 0.4rem;
   /* dir="rtl" would otherwise push it to the right edge of the hero; it is a
@@ -32,9 +32,9 @@ body[data-fan="islam"] .fan-title {
 
 /* ── the ninety-nine names ──
    The tile `i` slot is mono by default, which is fine for a year and entirely
-   wrong for a name of Allah. Amiri, at a size that can actually be read. */
+   wrong for a name of Allah. The Uthmani script, at a readable size. */
 body[data-fan="islam"] #names .fan-tiletext i {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: 1.32rem; line-height: 1.6; letter-spacing: 0;
   direction: rtl; text-align: right; opacity: 1;
   color: var(--green-2); text-transform: none;
@@ -50,14 +50,14 @@ body[data-fan="islam"] #names .fan-tile { align-items: center; }
 
 /* the same treatment for the six articles, which also carry Arabic in `sub` */
 body[data-fan="islam"] #iman .fan-tiletext i {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: 1.15rem; direction: rtl; letter-spacing: 0; text-transform: none;
   color: var(--a); opacity: 1;
 }
 
 /* ── the section headings on this page take the Arabic name as their note ── */
 body[data-fan="islam"] .subsec--fan .subsec-yr {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: 1.05rem; letter-spacing: 0; text-transform: none;
 }
 
@@ -91,7 +91,7 @@ body[data-fan="islam"] .isl-lede {
 }
 
 .isl-verse-ar {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: clamp(1.3rem, 3.4vw, 2rem); line-height: 2.1;
   color: var(--ink); margin-bottom: 1rem;
 }
@@ -109,4 +109,18 @@ body[data-fan="islam"] .isl-lede {
 @media (max-width: 520px) {
   body[data-fan="islam"] #names .fan-tiles { grid-template-columns: 1fr 1fr; }
   body[data-fan="islam"] #names .fan-tiletext em { display: none; }
+}
+
+/* ── the five pillars, five across ──
+   The shared .fan-cards grid is auto-fill minmax(250px, 1fr), which at a
+   desktop width fits four and drops Al-Ḥajj onto a row of its own. There are
+   five pillars and they are a set, so on a wide screen they get one row of
+   five; the card's natural minimum (250px) is what decides when that stops
+   being readable, so the override only applies above it.
+
+   1240px is five 250px columns plus four gaps at the clamp's 1.4rem ceiling,
+   with the page gutters on top. Below that it falls back to the shared rule
+   and wraps as it always did. */
+@media (min-width: 1240px) {
+  body[data-fan="islam"] #pillars .fan-cards { grid-template-columns: repeat(5, 1fr); }
 }

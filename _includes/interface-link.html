@@ -1,6 +1,6 @@
 {%- comment -%}
-  The cool interface a world has, straight under its title: the whole site
-  rebuilt inside that world (/upside-down/, /citadel/ and the rest). It used to
+  The Terminal Interface a world has, straight under its title: the whole site
+  rebuilt inside that world (/hawkins/, /citadel/ and the rest). It used to
   be one more pill in .fan-links, the same weight as "Everything in it", and
   it is the most made thing on the page, so it gets a line of its own.
 
@@ -8,14 +8,18 @@
   href3/name3 for a world with more (Star Wars: E.L.M.A.L.L.A.H., the
   Holocron and the Lightsaber Guide). kindN says what each one is, "interface"
   unless given ("guide" for the lightsabers). Styled in fanpages.css,
-  coloured by the page's own --a.
+  colored by the page's own --a.
+
+  Stranger Things used to take two of these (the Upside Down and Starcourt);
+  they are one page now, /hawkins/, where the scroll does what the second
+  page used to.
 {%- endcomment -%}
 <div class="fan-ifaces">
-  <a class="fan-iface" href="{{ include.href }}" data-magnetic><span class="fan-iface-k">Custom {{ include.world }} {{ include.kind | default: "interface" }}</span><b>{{ include.name }}</b><span class="fan-iface-a" aria-hidden="true">&#8594;</span></a>
+  <a class="fan-iface" href="{{ include.href }}" data-magnetic><span class="fan-iface-k">Custom {{ include.world }} {{ include.kind | default: "terminal interface" }}</span><b>{{ include.name }}</b><span class="fan-iface-a" aria-hidden="true">&#8594;</span></a>
   {%- if include.href2 %}
-  <a class="fan-iface" href="{{ include.href2 }}" data-magnetic><span class="fan-iface-k">Custom {{ include.world }} {{ include.kind2 | default: "interface" }}</span><b>{{ include.name2 }}</b><span class="fan-iface-a" aria-hidden="true">&#8594;</span></a>
+  <a class="fan-iface" href="{{ include.href2 }}" data-magnetic><span class="fan-iface-k">Custom {{ include.world }} {{ include.kind2 | default: "terminal interface" }}</span><b>{{ include.name2 }}</b><span class="fan-iface-a" aria-hidden="true">&#8594;</span></a>
   {%- endif %}
   {%- if include.href3 %}
-  <a class="fan-iface" href="{{ include.href3 }}" data-magnetic><span class="fan-iface-k">Custom {{ include.world }} {{ include.kind3 | default: "interface" }}</span><b>{{ include.name3 }}</b><span class="fan-iface-a" aria-hidden="true">&#8594;</span></a>
+  <a class="fan-iface" href="{{ include.href3 }}" data-magnetic><span class="fan-iface-k">Custom {{ include.world }} {{ include.kind3 | default: "terminal interface" }}</span><b>{{ include.name3 }}</b><span class="fan-iface-a" aria-hidden="true">&#8594;</span></a>
   {%- endif %}
 </div>

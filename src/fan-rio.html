@@ -12,10 +12,11 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/rio.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="rio">
 
-<!-- the shared backdrop; the colours are in this page's own stylesheet -->
+<!-- the shared backdrop; the colors are in this page's own stylesheet -->
 <div class="np-sky" aria-hidden="true"><span class="np-glow"></span><span class="np-grid"></span></div>
 
 {% include fx.html %}
@@ -33,7 +34,7 @@ tab: "/worlds/"
     <p class="fan-kicker"><span>Franchise &#183; As a kid &#183; since 2011</span></p>
     <h1 class="fan-title">Rio</h1>
     <p class="fan-lede-hero">A macaw from Minnesota who cannot fly, flown to Brazil to meet the only other one of his kind left alive. Carlos Saldanha made it about the city he grew up in, and the whole film is an excuse to animate Carnival.</p>
-    <p class="fan-lede-hero">The bird is real, and its story is worse than the film&#8217;s. The last known wild Spix&#8217;s macaw went in 2000, and BirdLife International formally declared the species extinct in the wild in 2019; every one left was in captivity. Rio came out in 2011 and helped fund the breeding programme, and in 2022 they started putting them back into the caatinga. The San Diego Zoo page on this site is about the same job done at scale.</p>
+    <p class="fan-lede-hero">The bird is real, and its story is worse than the film&#8217;s. The last known wild Spix&#8217;s macaw went in 2000, and BirdLife International formally declared the species extinct in the wild in 2019; every one left was in captivity. Rio came out in 2011 and helped fund the breeding program, and in 2022 they started putting them back into the caatinga. The San Diego Zoo page on this site is about the same job done at scale.</p>
     <div class="fan-links">
       <a class="fan-link" href="#works" data-magnetic>Both films &#8599;</a>
       <a class="fan-link" href="#bird" data-magnetic>The real bird &#8599;</a>
@@ -42,6 +43,10 @@ tab: "/worlds/"
   </section>
 
   <div id="fanBody"></div>
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
+
 </main>
 
 {% include footer.html back="/worlds/" %}

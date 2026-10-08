@@ -12,6 +12,7 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/lotr.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="lotr">
 
@@ -53,6 +54,7 @@ tab: "/worlds/"
       <a class="fan-link" href="/worlds/#franchises" data-magnetic>All worlds ↗</a>
       <a class="fan-link" href="#works" data-magnetic>Everything in it ↗</a>
     </div>
+    {% include interface-link.html world="Lord of the Rings" href="/red-book/" name="The Red Book of Westmarch" %}
   </section>
 
   <div id="fanPlay"></div>
@@ -96,7 +98,7 @@ tab: "/worlds/"
       <span class="ring-text"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ringOuter" d="M100 29a71 71 0 1 1 -0.1 0"/><path id="ringInner" d="M100 38a62 62 0 1 0 0.1 0"/></defs><text><textPath href="#ringOuter" startOffset="2%">One Ring to rule them all · One Ring to find them</textPath></text><text><textPath href="#ringInner" startOffset="2%">One Ring to bring them all and in the darkness bind them</textPath></text></svg></span>
     </div>
     <div class="ring-note">
-      <h4>The inscription</h4>
+      <h2>The inscription</h2>
       <p>Invisible until the ring is put in a fire, and then written in the letters of the elves, in the language of Mordor, which Gandalf refuses to speak aloud in the Shire.</p>
       <blockquote>One Ring to rule them all, One Ring to find them, One Ring to bring them all, and in the darkness bind them.</blockquote>
       <p>Tolkien built the languages first and the story second, which is why the couplet scans in both tongues and why the world underneath it holds up to this much reading.</p>
@@ -104,6 +106,10 @@ tab: "/worlds/"
   </section>
 
   <div id="fanBody"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 
@@ -116,7 +122,7 @@ tab: "/worlds/"
 {% include tabbar.html %}
 
 <script src="{% include v.html f='/assets/js/utils.js' %}"></script>
-<!-- the LEGO catalogue, which this page's LEGO tiles come out of -->
+<!-- the LEGO catalog, which this page's LEGO tiles come out of -->
 <script src="{% include v.html f='/assets/js/lego-games.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
 <script src="{% include v.html f='/assets/js/fan-lotr.js' %}"></script>

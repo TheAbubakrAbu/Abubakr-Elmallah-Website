@@ -59,7 +59,7 @@
 
 /* the six stones, loose and circling. Each .mcu-orbit is a tilted ring that
    turns; the stone rides at the top of it and counter-rotates on X so it stays
-   a disc rather than an ellipse. --r radius, --t period, --tilt lean, --c colour. */
+   a disc rather than an ellipse. --r radius, --t period, --tilt lean, --c color. */
 .mcu-orbits { position: absolute; inset: 0; display: block; perspective: 900px; }
 
 .mcu-orbit {
@@ -154,7 +154,7 @@
 
 .bust-art .b-line-f { fill: var(--v); }
 
-.bust h4 { font-family: var(--serif); font-weight: 600; font-size: 1.06rem; letter-spacing: -0.02em; color: var(--v); }
+.bust :is(h2, h3, h4, h5) { font-family: var(--serif); font-weight: 600; font-size: 1.06rem; letter-spacing: -0.02em; color: var(--v); }
 
 .bust-sub { font-family: var(--mono); font-size: 0.56rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); }
 
@@ -185,7 +185,7 @@
 
 /* ── one stone per film ──
    Six rows: an uncut gem, the title in this site's lettering tinted to its
-   stone, and the stone's name on the right. The colour is the whole point. */
+   stone, and the stone's name on the right. The color is the whole point. */
 .av-saga { display: grid; gap: 0.7rem; grid-template-columns: 1fr; }
 @media (min-width: 720px) { .av-saga { grid-template-columns: 1fr 1fr; } }
 .av-saga-row {

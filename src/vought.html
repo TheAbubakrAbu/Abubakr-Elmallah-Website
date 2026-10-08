@@ -12,6 +12,7 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/vought.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
 <body class="vt" id="vt">
 <!-- the view you left it in, set before the first paint so the file does
@@ -35,6 +36,7 @@ standalone: true
   <a class="vt-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave Vought Tower</span>
   </a>
+  {% include interface-world.html world="The Boys" href="/worlds/the-boys/" %}
   <!-- the live element: Vought's clock and the Seven's approval index,
        which drifts a point or so every few seconds, as polling does when
        it is being watched. In Butcher's file it is a surveillance log. -->
@@ -91,7 +93,7 @@ standalone: true
           <li>Two Discord bots now serve more than 500 servers</li>
           <li>UCI Esports app maps the arena, the PCs and the events</li>
           <li>Twelve apps shipped across four platforms</li>
-          <li>Seventy-one worlds open on /worlds/</li>
+          <li>Seventy-four worlds open on /worlds/</li>
         </ul>
         <ul class="vt-vnn-list" aria-hidden="true">
           <li>Abubakr Elmallah named an Apple Swift Student Challenge winner, 2024</li>
@@ -100,7 +102,7 @@ standalone: true
           <li>Two Discord bots now serve more than 500 servers</li>
           <li>UCI Esports app maps the arena, the PCs and the events</li>
           <li>Twelve apps shipped across four platforms</li>
-          <li>Seventy-one worlds open on /worlds/</li>
+          <li>Seventy-four worlds open on /worlds/</li>
         </ul>
       </div>
     </div>
@@ -137,9 +139,9 @@ standalone: true
           <li class="vt-floor" data-fl="88" data-n="88" style="--ap:94%; --lit:.55"><span class="vt-seg" aria-hidden="true"></span><a href="/resume/"><span class="vt-no">88</span><span class="vt-txt"><b>Personnel</b><i>Résumé</i><span class="vt-note v-only">Every role, on one page.</span><span class="vt-note b-only">Personnel files are <span class="vt-x">shredded on Fridays</span>. This one was not.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">94%</span></span></a></li>
           <li class="vt-floor" data-fl="80" data-n="80" style="--ap:97%; --lit:.8"><span class="vt-seg" aria-hidden="true"></span><a href="/projects/"><span class="vt-no">80</span><span class="vt-txt"><b>Product Development</b><i>Every project</i><span class="vt-note v-only">Built in-house, shipped worldwide.</span><span class="vt-note b-only">Nothing on this floor was <span class="vt-x">made with Compound V</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">97%</span></span></a></li>
           <li class="vt-floor" data-fl="72" data-n="72" style="--ap:93%; --lit:.35"><span class="vt-seg" aria-hidden="true"></span><a href="/star-wars/"><span class="vt-no">72</span><span class="vt-txt"><b>Vought Studios</b><i>Star Wars apps</i><span class="vt-note v-only">Now in production: the next big franchise.</span><span class="vt-note b-only">The slate is <span class="vt-x">rewritten after every focus group</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">93%</span></span></a></li>
-          <li class="vt-floor" data-fl="64" data-n="64" style="--ap:98%; --lit:.6"><span class="vt-seg" aria-hidden="true"></span><a href="/worlds/"><span class="vt-no">64</span><span class="vt-txt"><b>Vought Cinematic Universe</b><i>All 71 worlds</i><span class="vt-note v-only">Seventy-one worlds, one brand.</span><span class="vt-note b-only">Vought owns <span class="vt-x">exactly one of the seventy-one</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">98%</span></span></a></li>
+          <li class="vt-floor" data-fl="64" data-n="64" style="--ap:98%; --lit:.6"><span class="vt-seg" aria-hidden="true"></span><a href="/worlds/"><span class="vt-no">64</span><span class="vt-txt"><b>Vought Cinematic Universe</b><i>All 74 worlds</i><span class="vt-note v-only">Seventy-four worlds, one brand.</span><span class="vt-note b-only">Vought owns <span class="vt-x">exactly one of the seventy-one</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">98%</span></span></a></li>
           <li class="vt-floor" data-fl="57" data-n="57" style="--ap:89%; --lit:.45"><span class="vt-seg" aria-hidden="true"></span><a href="/worlds/the-boys/"><span class="vt-no">57</span><span class="vt-txt"><b>Vought News Network</b><i>The Boys · the world page</i><span class="vt-note v-only">The news, as approved.</span><span class="vt-note b-only">Every headline is <span class="vt-x">cleared by marketing first</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">89%</span></span></a></li>
-          <li class="vt-floor" data-fl="49" data-n="49" style="--ap:90%; --lit:.3"><span class="vt-seg" aria-hidden="true"></span><a href="/lightsabers/"><span class="vt-no">49</span><span class="vt-txt"><b>The Armoury</b><i>The lightsaber guide</i><span class="vt-note v-only">Licensed replicas, every one of them safe.</span><span class="vt-note b-only">Inventory includes <span class="vt-x">items on no manifest</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">90%</span></span></a></li>
+          <li class="vt-floor" data-fl="49" data-n="49" style="--ap:90%; --lit:.3"><span class="vt-seg" aria-hidden="true"></span><a href="/lightsabers/"><span class="vt-no">49</span><span class="vt-txt"><b>The Armory</b><i>The lightsaber guide</i><span class="vt-note v-only">Licensed replicas, every one of them safe.</span><span class="vt-note b-only">Inventory includes <span class="vt-x">items on no manifest</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">90%</span></span></a></li>
           <li class="vt-floor" data-fl="41" data-n="41" style="--ap:95%; --lit:.65"><span class="vt-seg" aria-hidden="true"></span><a href="/accents/"><span class="vt-no">41</span><span class="vt-txt"><b>Media Training</b><i>Accents &amp; impersonations</i><span class="vt-note v-only">Find your on-camera voice.</span><span class="vt-note b-only">Coaches here <span class="vt-x">make rehearsed lines sound sincere</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">95%</span></span></a></li>
           <li class="vt-floor" data-fl="33" data-n="33" style="--ap:99%; --lit:.9"><span class="vt-seg" aria-hidden="true"></span><a href="/gaming/"><span class="vt-no">33</span><span class="vt-txt"><b>Vought Land</b><i>Gaming</i><span class="vt-note v-only">Rides, games and a gift shop.</span><span class="vt-note b-only">The rides last passed inspection <span class="vt-x">in a previous decade</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">99%</span></span></a></li>
           <li class="vt-floor" data-fl="26" data-n="26" style="--ap:92%; --lit:.5"><span class="vt-seg" aria-hidden="true"></span><a href="/education/"><span class="vt-no">26</span><span class="vt-txt"><b>Talent Development</b><i>Education</i><span class="vt-note v-only">Growing tomorrow’s heroes.</span><span class="vt-note b-only">Curriculum approved by <span class="vt-x">the brand team, not teachers</span>.</span></span><span class="vt-ap"><span class="vt-ap-bar"></span><span class="vt-ap-n">92%</span></span></a></li>
@@ -167,7 +169,7 @@ standalone: true
         <div><dt>Studying</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
         <div><dt>Role</dt><dd>Lead mobile &amp; backend developer</dd></div>
         <div><dt>Apps shipped</dt><dd>Twelve, across four platforms</dd></div>
-        <div><dt>Honours</dt><dd>Apple Swift Student Challenge winner, 2024</dd></div>
+        <div><dt>Honors</dt><dd>Apple Swift Student Challenge winner, 2024</dd></div>
         <div><dt>Chart</dt><dd>Datapad, Top 10 of the paid Entertainment chart</dd></div>
         <div><dt>Reach</dt><dd>Two Discord bots in 500+ servers</dd></div>
         <div><dt>Precision</dt><dd>Al-Adhan, prayer times computed 22 ways</dd></div>
@@ -209,8 +211,7 @@ standalone: true
       <li><a href="/citadel/"><span class="vt-tag" aria-hidden="true">06</span><b>The Citadel</b><i>Game of Thrones</i></a></li>
       <li><a href="/compass/"><span class="vt-tag" aria-hidden="true">07</span><b>The Compass</b><i>Pirates of the Caribbean</i></a></li>
       <li><a href="/control-room/"><span class="vt-tag" aria-hidden="true">08</span><b>The Control Room</b><i>Jurassic Park</i></a></li>
-      <li><a href="/upside-down/"><span class="vt-tag" aria-hidden="true">09</span><b>The Upside Down</b><i>Stranger Things</i></a></li>
-      <li><a href="/starcourt/"><span class="vt-tag" aria-hidden="true">10</span><b>Starcourt</b><i>Stranger Things</i></a></li>
+      <li><a href="/hawkins/"><span class="vt-tag" aria-hidden="true">09</span><b>Hawkins</b><i>Stranger Things</i></a></li>
       <li><a href="/spirit-library/"><span class="vt-tag" aria-hidden="true">11</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a></li>
       <li><a href="/monastery/"><span class="vt-tag" aria-hidden="true">12</span><b>The Monastery</b><i>Ninjago</i></a></li>
       <li><a href="/wanted/"><span class="vt-tag" aria-hidden="true">13</span><b>The Wanted Board</b><i>Red Dead Redemption</i></a></li>
@@ -219,12 +220,18 @@ standalone: true
       <li><a href="/pokedex/"><span class="vt-tag" aria-hidden="true">16</span><b>The Pokédex</b><i>Pokémon</i></a></li>
       <li><a href="/batcomputer/"><span class="vt-tag" aria-hidden="true">17</span><b>The Batcomputer</b><i>Batman</i></a></li>
       <li><a href="/daily-bugle/"><span class="vt-tag" aria-hidden="true">18</span><b>The Daily Bugle</b><i>Spider-Man</i></a></li>
+      <li><a href="/grail-diary/"><span class="vt-tag" aria-hidden="true">19</span><b>The Grail Diary</b><i>Indiana Jones</i></a></li>
+      <li><a href="/red-book/"><span class="vt-tag" aria-hidden="true">20</span><b>The Red Book</b><i>The Lord of the Rings</i></a></li>
+      <li><a href="/power-battery/"><span class="vt-tag" aria-hidden="true">21</span><b>The Power Battery</b><i>Green Lantern</i></a></li>
+      <li><a href="/watchtower/"><span class="vt-tag" aria-hidden="true">22</span><b>The Watchtower</b><i>The Justice League</i></a></li>
     </ul>
   </section>
 
   <!-- the sign-off: Vought hands you the NDA; in Butcher's file you close
        the folder. Either way the last word is his. -->
   <button class="vt-sign" id="vtSignBtn" type="button"><span class="v-only">Sign the NDA</span><span class="b-only">Close the file</span></button>
+
+  {% include interface-world.html world="The Boys" href="/worlds/the-boys/" place="foot" %}
 
 </main>
 

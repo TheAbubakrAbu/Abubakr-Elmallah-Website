@@ -59,7 +59,7 @@ window.FAN_PAGE = {
      mono (see fan/islam.css) because a name of Allah in a monospace fallback
      is not something I am willing to ship. */
   { id: 'names', kind: 'tiles', title: 'The Ninety-Nine Names', note: 'أسماء الله الحسنى', compact: true,
-    lede: 'Al-Asmāʾ al-Ḥusnā, the beautiful names, all of them, in the order of the narration of at-Tirmidhī. They are not synonyms: each one is a distinct attribute, and several of them are deliberately paired with their opposite (the one who gives life and the one who takes it, the one who honours and the one who humbles) because both are His.',
+    lede: 'Al-Asmāʾ al-Ḥusnā, the beautiful names, all of them, in the order of the narration of at-Tirmidhī. They are not synonyms: each one is a distinct attribute, and several of them are deliberately paired with their opposite (the one who gives life and the one who takes it, the one who honors and the one who humbles) because both are His.',
     items: [
       { title: 'Ar-Raḥmān', sub: 'الرحمن', desc: 'The Most Compassionate', accent: '#3fd589' },
       { title: 'Ar-Raḥīm', sub: 'الرحيم', desc: 'The Most Merciful', accent: '#3fd589' },
@@ -145,7 +145,7 @@ window.FAN_PAGE = {
       { title: 'Al-ʿAfū', sub: 'العفو', desc: 'The Pardoner', accent: '#3fd589' },
       { title: 'Ar-Raʾūf', sub: 'الرؤوف', desc: 'The Most Kind', accent: '#3fd589' },
       { title: 'Mālik al-Mulk', sub: 'مالك الملك', desc: 'Master of the Kingdom', accent: '#e8c56a' },
-      { title: 'Dhū al-Jalāl wa-l-Ikrām', sub: 'ذو الجلال والإكرام', desc: 'Lord of Majesty and Honour', accent: '#e8c56a' },
+      { title: 'Dhū al-Jalāl wa-l-Ikrām', sub: 'ذو الجلال والإكرام', desc: 'Lord of Majesty and Honor', accent: '#e8c56a' },
       { title: 'Al-Muqsiṭ', sub: 'المقسط', desc: 'The Equitable', accent: '#e8c56a' },
       { title: 'Al-Jāmiʿ', sub: 'الجامع', desc: 'The Gatherer', accent: '#5fa3ec' },
       { title: 'Al-Ghanī', sub: 'الغني', desc: 'The Self-Sufficient', accent: '#e8c56a' },

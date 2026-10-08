@@ -4,7 +4,7 @@
    components.css), and the real text stays where it is, transparent, for the
    whole effect. This used to empty the element and grow it back a character
    at a time, which collapsed each line of the name to nothing: the hero
-   column re-centred twice while it decoded (almost all of the page's layout
+   column re-centered twice while it decoded (almost all of the page's layout
    shift), the email shrank to 41px on hover and the link beside it jumped,
    and a screen reader got random glyphs for the h1. */
 (function scramble() {

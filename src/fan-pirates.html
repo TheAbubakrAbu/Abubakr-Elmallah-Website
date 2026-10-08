@@ -12,6 +12,7 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/pirates.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="potc">
 
@@ -151,6 +152,10 @@ tab: "/worlds/"
 
   <div id="fanBody"></div>
 
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
+
 </main>
 
 <!-- the shared image lightbox: every link to an image on this page opens here
@@ -162,7 +167,7 @@ tab: "/worlds/"
 {% include tabbar.html %}
 
 <script src="{% include v.html f='/assets/js/utils.js' %}"></script>
-<!-- the LEGO catalogue, which this page's LEGO tiles come out of -->
+<!-- the LEGO catalog, which this page's LEGO tiles come out of -->
 <script src="{% include v.html f='/assets/js/lego-games.js' %}"></script>
 <!-- page content: data then the shared renderer, before reveal.js -->
 <script src="{% include v.html f='/assets/js/fan-potc.js' %}"></script>

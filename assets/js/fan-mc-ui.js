@@ -1,7 +1,7 @@
 /* fan-mc-ui.js: the hotbar on /worlds/minecraft/.
 
    Pick a tier and three things change together: the pickaxe and the sword in
-   the hero drawing take that material's colours, and the matching ore in the
+   the hero drawing take that material's colors, and the matching ore in the
    background strata flares up. Number keys 1-7 select, exactly as they do in
    the game. Everything visual is CSS; this only sets a class, two custom
    properties and a data attribute.

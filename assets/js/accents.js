@@ -42,7 +42,7 @@
       + '<div class="ac-head">'
       +   '<span class="ac-medal" aria-hidden="true"><b>' + esc(it.ar) + '</b></span>'
       +   '<span class="ac-titles">'
-      +     '<h4>' + esc(it.name) + '</h4>'
+      +     '<h3>' + esc(it.name) + '</h3>'
       +     '<span class="ac-from">' + esc(kind === 'imp' ? it.from : it.note) + '</span>'
       +   '</span>'
       +   (it.n ? '<span class="ac-n" aria-label="Number ' + it.n + ' in the order I learned them">'
@@ -70,19 +70,19 @@
     + '<section class="ac-sec" id="accents">'
     +   groups.map(function (g) {
           return '<div class="ac-group">'
-            + '<h3 class="subsec subsec--ac reveal">' + esc(g.label)
+            + '<h2 class="subsec subsec--ac reveal">' + esc(g.label)
             +   '<span class="subsec-yr">' + esc(g.note) + '</span>'
             +   '<span class="ac-count">' + g.items.length + '</span>'
-            + '</h3>'
+            + '</h2>'
             + '<div class="ac-grid">' + g.items.map(function (it) { return card(it, 'acc'); }).join('') + '</div>'
             + '</div>';
         }).join('')
     + '</section>'
     + '<section class="ac-sec" id="impressions">'
-    +   '<h3 class="subsec subsec--ac reveal">Impersonations'
+    +   '<h2 class="subsec subsec--ac reveal">Impersonations'
     +     '<span class="subsec-yr">one person, not one region</span>'
     +     '<span class="ac-count">' + imps.length + '</span>'
-    +   '</h3>'
+    +   '</h2>'
     +   '<p class="ac-lede reveal">An accent is a system you can run any sentence through. An impersonation is one specific voice, which means the pitch, the pace and the damage matter as much as the vowels do. These four are the ones I actually do rather than the ones I can approximate.</p>'
     +   '<div class="ac-grid ac-grid--imp">' + imps.map(function (it) { return card(it, 'imp'); }).join('') + '</div>'
     + '</section>';

@@ -13,7 +13,7 @@
 
 .ij-route svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 
-/* The travelling dashes are the series' one piece of visual grammar: a red line
+/* The traveling dashes are the series' one piece of visual grammar: a red line
    crossing a map. dashoffset animates the line rather than moving an element. */
 .ijr-path {
   fill: none; stroke: #c04a2a; stroke-width: 3; stroke-linecap: round;

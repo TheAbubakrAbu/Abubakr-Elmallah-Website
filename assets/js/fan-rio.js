@@ -7,7 +7,7 @@ window.FAN_PAGE = {
   sections: [
 
   { id: 'works', kind: 'films', fold: true, title: 'Both Films', note: 'Blue Sky · 2011 and 2014',
-    lede: 'Carlos Saldanha directed both, and he is from Rio, which is why the city has weather and traffic in it rather than a beach on a postcard: Corcovado kept small on its hill, the favelas as stacked colour up the slopes, and the wave pattern in the Copacabana pavement that almost nobody bothers to animate.',
+    lede: 'Carlos Saldanha directed both, and he is from Rio, which is why the city has weather and traffic in it rather than a beach on a postcard: Corcovado kept small on its hill, the favelas as stacked color up the slopes, and the wave pattern in the Copacabana pavement that almost nobody bothers to animate.',
     items: [
       { title: 'Rio', sub: 'April 2011', accent: '#3fc8d8',
         desc: 'Blu is a domesticated macaw from Moose Lake, Minnesota, who cannot fly, flown to Brazil because he is believed to be the last male of his species and there is one female left. The plot is a smuggling caper; the film is an excuse to animate Carnival, and it is a very good excuse.',
@@ -27,7 +27,7 @@ window.FAN_PAGE = {
         desc: 'The last known wild individual disappeared in 2000. BirdLife International formally declared the species extinct in the wild in 2019, five years after the sequel came out. Everything alive was in captivity, most of it in private collections in Europe and Qatar.',
         meta: 'Declared extinct in the wild, 2019' },
       { title: 'Put back, in 2022', sub: 'Curaçá, Bahia', tag: 'The return', accent: '#3fd589',
-        desc: 'Captive-bred birds from a German breeding programme were released into the caatinga at Curaçá in June 2022, and some have bred in the wild since. The films are part of why anyone outside ornithology knew the name.',
+        desc: 'Captive-bred birds from a German breeding program were released into the caatinga at Curaçá in June 2022, and some have bred in the wild since. The films are part of why anyone outside ornithology knew the name.',
         href: '/worlds/san-diego-zoo/', link: 'The same argument, at the zoo',
         meta: 'And they have bred since' },
       { title: 'Blue Sky is gone', sub: 'Closed April 2021', tag: 'The studio', accent: '#c9ced6',
@@ -63,7 +63,7 @@ window.FAN_PAGE = {
       { title: 'Spix’s macaw', href: 'https://en.wikipedia.org/wiki/Spix%27s_macaw',
         desc: 'The species: the 1819 specimen, the collapse, and the 2022 release at Curaçá.' },
       { title: 'BirdLife International', href: 'https://www.birdlife.org/',
-        desc: 'The organisation that made the extinct-in-the-wild assessment in 2019.' },
+        desc: 'The organization that made the extinct-in-the-wild assessment in 2019.' },
     ] },
 
 ] };

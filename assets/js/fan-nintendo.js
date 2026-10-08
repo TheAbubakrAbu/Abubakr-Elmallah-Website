@@ -35,7 +35,7 @@ window.FAN_PAGE = {
       { when: '1983 · 1985', title: 'Famicom, then the NES',
         desc: 'Japan in 1983, America in 1985 into a market that had just collapsed, sold as a toy with a robot next to it because no shop would stock a games console. Sixty-two million.' },
       { when: '1989', title: 'Game Boy',
-        desc: 'Weaker than both its rivals, green and grey instead of colour, and it beat them by an order of magnitude on battery life and price. Yokoi called this lateral thinking with withered technology and it is still the clearest statement of what this company does.' },
+        desc: 'Weaker than both its rivals, green and gray instead of color, and it beat them by an order of magnitude on battery life and price. Yokoi called this lateral thinking with withered technology and it is still the clearest statement of what this company does.' },
       { when: '1990 · 1991', title: 'Super Famicom, then the SNES',
         desc: 'Forty-nine million, and the sharpest first-party run in the company’s history: Super Mario World, A Link to the Past, Super Metroid, Star Fox, Yoshi’s Island.' },
       { when: '1995', title: 'Virtual Boy',
@@ -71,7 +71,7 @@ window.FAN_PAGE = {
       { title: 'A strange controller, every time', sub: 'The input is the product', tag: 'The habit', accent: '#3fd589',
         desc: 'A cross, then shoulder buttons, then an analogue stick, then a rumble pack, then two screens, then a pointer, then detachable halves. Roughly half fail. The company treats the input device as the thing being designed and the games as what proves it.',
         meta: 'Half of them fail' },
-      { title: 'They keep the catalogue', sub: 'Nothing is sold off', tag: 'The library', accent: '#b06fd8',
+      { title: 'They keep the catalog', sub: 'Nothing is sold off', tag: 'The library', accent: '#b06fd8',
         desc: 'Mario, Zelda, Metroid, Kirby, Donkey Kong, Pokémon, Animal Crossing, Splatoon, Fire Emblem. All still first-party, all still shipping, none of it licensed away, which is why a bad console generation is survivable here and nowhere else.',
         meta: 'Every one of them still running' },
       { title: 'Finish it, then ship it', sub: 'The delay is the policy', tag: 'The discipline', accent: '#f5c63c',
@@ -269,7 +269,7 @@ window.FAN_PAGE = {
       { num: '03', title: 'A Link to the Past', sub: 'SNES · 1991',
         desc: 'The template. Two overlapping worlds, a dungeon order, an item in each dungeon that opens the next, and a map that rewards going back. Every 2D entry for the next twenty years is a variation on this one, and so is most of the genre.' },
       { num: '04', title: "Majora's Mask", sub: 'N64 · 2000',
-        desc: 'Made in a year on the previous game’s engine, and the strangest thing Nintendo has ever published. Three days on a loop, a moon with a face falling towards the town, and a cast whose entire lives you watch on repeat while failing to save them.' },
+        desc: 'Made in a year on the previous game’s engine, and the strangest thing Nintendo has ever published. Three days on a loop, a moon with a face falling toward the town, and a cast whose entire lives you watch on repeat while failing to save them.' },
       { num: '05', title: 'The Legend of Zelda', sub: 'Famicom Disk System · 1986',
         desc: 'The battery. A cartridge that remembered, which meant a game that could be bigger than one sitting, which meant a game that could be about exploring rather than about finishing. It also drops you in a field with a sword in a cave and no instructions at all.' },
     ] },
@@ -394,10 +394,10 @@ window.FAN_PAGE = {
     lede: 'Every other thing in this game falls out of a single choice: the ink is both the scoreboard and the terrain. Nobody else has done this, and it is not obvious why not.',
     items: [
       { title: 'The floor is the score', sub: 'Not the kill count', tag: 'The objective', accent: '#c6f03a',
-        desc: 'Four on four, three minutes, and at the end they measure the percentage of the ground in each colour. Splatting somebody buys you a few seconds of their absence; it does not score. A player who never fights anybody can carry a match.',
+        desc: 'Four on four, three minutes, and at the end they measure the percentage of the ground in each color. Splatting somebody buys you a few seconds of their absence; it does not score. A player who never fights anybody can carry a match.',
         meta: 'Three minutes, then they measure' },
       { title: 'You swim in your own ink', sub: 'The paint is the movement', tag: 'The verb', accent: '#8fd8f0',
-        desc: 'Turn into a squid and you move through your own colour faster than you can run, hidden, refilling your tank as you go. So painting is the objective, the movement system and the reload, all at once, and the enemy’s colour is quicksand.',
+        desc: 'Turn into a squid and you move through your own color faster than you can run, hidden, refilling your tank as you go. So painting is the objective, the movement system and the reload, all at once, and the enemy’s color is quicksand.',
         meta: 'Faster, hidden, and reloading' },
       { title: 'Nobody dies', sub: 'It is why it exists', tag: 'The rating', accent: '#e04a9a',
         desc: 'The reason Nintendo could publish a shooter. You are splatted and you respawn in a second, there is no blood and no gun in the ordinary sense, and the whole aesthetic is a skate park rather than a battlefield.',
@@ -483,7 +483,7 @@ window.FAN_PAGE = {
      described twice, and they are two different pieces of music, so they are
      both here and now say which is which. */
   { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'nine tracks',
-    lede: 'Koji Kondo wrote the first three of these on a handful of channels in the 1980s, and two of them are probably the most recognised pieces of music written since. The Splatoon three are credited to bands who exist inside the game and sing in a language that does not.',
+    lede: 'Koji Kondo wrote the first three of these on a handful of channels in the 1980s, and two of them are probably the most recognized pieces of music written since. The Splatoon three are credited to bands who exist inside the game and sing in a language that does not.',
     items: [
       { title: 'Super Mario Bros. Theme', accent: '#e0403a', sub: 'Koji Kondo · 1985 · 1:26',
         desc: 'Written to fit three channels and a drum, and tested against a prototype of the walking speed so the tempo matched the legs.',

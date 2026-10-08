@@ -7,7 +7,7 @@
    the original is kept in `code` so it can still be matched against the
    document (the RSM reports carry no course codes).
 
-   Tags follow the transcript's own key: + honours (weighted), p college prep,
+   Tags follow the transcript's own key: + honors (weighted), p college prep,
    * non-academic. */
 window.TRANSCRIPT = {
   school: 'Trabuco Hills High School',

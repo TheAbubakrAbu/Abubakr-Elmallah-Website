@@ -84,7 +84,7 @@ window.FAN_PAGE = {
   { id: 'quotes', kind: 'quotes', title: 'Lines', note: 'the four that carry it',
     items: [
       { title: 'I volunteer as tribute.', sub: 'Katniss Everdeen · The Hunger Games', accent: '#e0b040' },
-      { title: 'May the odds be ever in your favour.', sub: 'Effie Trinket · the Capitol’s entire ideology in one sentence', accent: '#b06fd8' },
+      { title: 'May the odds be ever in your favor.', sub: 'Effie Trinket · the Capitol’s entire ideology in one sentence', accent: '#b06fd8' },
       { title: 'Fire is catching. And if we burn, you burn with us.', sub: 'Katniss Everdeen · Mockingjay', accent: '#c94a3a' },
       { title: 'Real or not real?', sub: 'Peeta Mellark · Mockingjay', accent: '#8f9ab0' },
     ] },

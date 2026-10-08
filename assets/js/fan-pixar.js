@@ -49,7 +49,7 @@ window.FAN_PAGE = {
         desc: 'Forty minutes with almost no dialogue, on a dead Earth, in a children’s film released in July. Then it swerves into a much softer second half and people have argued about that for seventeen years.',
         meta: 'Set in 2805, seven hundred years after Earth was left · the bravest first act' },
       { num: '09', title: 'Up', sub: 'May 2009', accent: '#b06fd8',
-        desc: 'The four-minute married-life montage is the most efficient piece of storytelling in the studio’s catalogue: no dialogue, one theme, an entire life, and the rest of the film is the widower it produced. Nominated for Best Picture.',
+        desc: 'The four-minute married-life montage is the most efficient piece of storytelling in the studio’s catalog: no dialogue, one theme, an entire life, and the rest of the film is the widower it produced. Nominated for Best Picture.',
         meta: 'A whole life, then a few days of it · the first four minutes' },
       { num: '10', title: 'Toy Story 3', sub: 'June 2010', accent: '#e0a050',
         desc: 'The incinerator scene: five toys stop struggling and hold hands, in a film about a boy leaving for college. Also nominated for Best Picture, and the point at which the trilogy should have stopped.',
@@ -308,7 +308,7 @@ window.FAN_PAGE = {
   { id: 'links', kind: 'links', title: 'Links', note: 'the studio, on the record',
     items: [
       { title: 'Pixar', href: 'https://www.pixar.com/',
-        desc: 'The official site: the features, the shorts, and the SparkShorts programme.' },
+        desc: 'The official site: the features, the shorts, and the SparkShorts program.' },
       { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/Pixar',
         desc: 'The Lucasfilm years, the hardware business, the Disney deal, and every feature in order.' },
       { title: 'RenderMan', href: 'https://renderman.pixar.com/',

@@ -13,6 +13,7 @@ tab: "/worlds/"
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/pics.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/pokemon.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="pokemon">
 
@@ -59,7 +60,7 @@ tab: "/worlds/"
     <h1 class="fan-title">Pokémon</h1>
     {% include interface-link.html world="Pokémon" href="/pokedex/" name="The Pokédex" %}
     {% include interface-peek.html tone="#f0485a" bg="#0d1120" rows="No.|001 HEARTHLING;Type|HOME;Height|1 SCROLL;Cry|READY" note="The Pokédex gives every page a number, a type, a field note and a cry of its own." href="/pokedex/" name="The Pokédex" world="Pokémon" %}
-    <p class="fan-lede-hero">A hundred and fifty creatures memorised before the times tables. Nine generations of regions, the eighteen-type chart the entire game actually is, and the choice you make in the first five minutes.</p>
+    <p class="fan-lede-hero">A hundred and fifty creatures memorized before the times tables. Nine generations of regions, the eighteen-type chart the entire game actually is, and the choice you make in the first five minutes.</p>
     <div class="fan-links">
       <a class="fan-link" href="/worlds/#franchises" data-magnetic>All worlds ↗</a>
       <a class="fan-link" href="#works" data-magnetic>Everything in it ↗</a>
@@ -114,13 +115,17 @@ tab: "/worlds/"
       <p class="dex-cap">Entry written for this page, not lifted from the games</p>
     </div>
     <div class="pkm-legend">
-      <h4>The Pokédex</h4>
-      <p>The device is the pitch. You are handed an empty catalogue on the first screen of every game and told to go and fill it in, and thirty years later people are still filling it in.</p>
+      <h2>The Pokédex</h2>
+      <p>The device is the pitch. You are handed an empty catalog on the first screen of every game and told to go and fill it in, and thirty years later people are still filling it in.</p>
       <p>It also explains why the type chart below matters more than any stat: the games are a rock, paper, scissors tournament with a thousand pieces, and knowing what beats what is the entire skill.</p>
     </div>
   </section>
 
   <div id="fanBody"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 

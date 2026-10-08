@@ -1,4 +1,4 @@
-/* pics.css: the "show other pictures" switch, and everything it hides.
+/* pics.css: the "show all pictures" switch, and everything it hides.
 
    The default is OFF, and OFF is written as the plain rule with ON as the
    override rather than the other way round. That is on purpose: the photo
@@ -14,6 +14,16 @@
 .year-card .year-more,
 .tv-photo .tv-photo-n,
 .yg-head .yg-n { display: none; }
+
+/* ── the pictures index on /files/ ──
+   That page lists the eighty-eight photographs in the repo the same way it
+   lists the Google documents. The documents are the public half and are always
+   there; the pictures are personal, so the whole section goes behind this
+   switch like every other gallery on the site. Hidden with the heading, its
+   lede and the rows, so nothing is left announcing a section that is not
+   there. */
+.files-pics { display: none; }
+html[data-show-pics="on"] .files-pics { display: block; }
 
 html[data-show-pics="on"] .pic-n { display: inline; }
 html[data-show-pics="on"] .year-card .year-more,
@@ -61,11 +71,12 @@ html:not([data-show-pics="on"]) .tv-photo:active { transform: none; }
 /* ── the switch ──
    Sits between the last section and the footer, quiet enough that you only find
    it if you have read to the bottom of the page and gone looking. */
-/* Share the same leading edge as the page sections. This is a utility control,
-   not a closing verse, so it should read from the left instead of floating in
-   the middle of the page. */
+/* Centered, on request (2026-10-06). It used to sit on the page's leading edge
+   on the argument that a utility control should not float in the middle; it
+   now closes the page from the center, which is where you look after reading
+   to the bottom, and it is the only control down there. */
 .picsw {
-  display: flex; justify-content: flex-start;
+  display: flex; justify-content: center;
   width: 100%; max-width: var(--maxw);
   margin: 3.5rem auto 0.5rem;
   padding: 0 var(--gutter);
@@ -75,7 +86,7 @@ html:not([data-show-pics="on"]) .tv-photo:active { transform: none; }
   padding-right: calc(var(--gutter) + env(safe-area-inset-right, 0px));
 }
 
-/* Quiet by its colour, its size and its place at the foot of the page, not by
+/* Quiet by its color, its size and its place at the foot of the page, not by
    opacity: at .38 it was 1.7:1, the faintest text on the site and a control
    that looked disabled. Plain --mute is still the quietest thing here. */
 .picsw-btn {
@@ -132,4 +143,99 @@ html:not([data-show-pics="on"]) .tv-photo:active { transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .picsw-btn, .picsw-track, .picsw-knob { transition: none; }
+}
+
+/* ── the picture grids on /files/ ──
+   One group per folder under assets/img/archive/, each a .flyer-grid of the
+   same tiles the rest of the site uses for a captioned picture. Only the
+   group heading and the link under it are new here. */
+.files-picgroup + .files-picgroup { margin-top: 3.2rem; }
+
+/* The caption, stacked. .flyer-cap is a baseline row built for a title beside
+   a short tag ("Sep 25"), with `flex: none` on the <i> so the tag never
+   shrinks. The lines here are whole sentences taken from the page each
+   picture is shown on, and in a row they ran straight over the title. So on
+   these grids only, the caption is two lines: the title, then the sentence
+   under it, free to wrap. */
+#filesPics .flyer-cap {
+  display: block; padding-top: 0.7rem;
+}
+#filesPics .flyer-cap b { display: block; }
+#filesPics .flyer-cap i {
+  display: block; margin-top: 0.3rem;
+  font-family: var(--sans); font-size: 0.74rem; line-height: 1.5;
+  color: var(--ink-dim);
+}
+
+/* The pictures are posters, certificates and screenshots of wildly different
+   shapes, and `object-fit: contain` in a fixed 340px box left the short ones
+   floating in a lot of empty card. A little shorter suits them. */
+#filesPics .flyer img { height: 290px; }
+
+/* How many across: files-pics.js measures each group and writes the count
+   that leaves nobody alone on the last row (see colsFor there). Groups here
+   run from three pictures to twenty-three, so a single count for all of them
+   always stranded one: three across left the two groups of four at 3 + 1.
+
+   The flyer grid's own `repeat(3, 1fr)` above 761px is what has to be
+   overridden, hence the explicit count rather than auto-fill: auto-fill can
+   only divide the width, it cannot know how many tiles there are. */
+#filesPics .flyer-grid { grid-template-columns: repeat(var(--fp-cols, 3), 1fr); }
+#filesPics .flyer-grid[data-cols="3"] { --fp-cols: 3; }
+#filesPics .flyer-grid[data-cols="4"] { --fp-cols: 4; }
+#filesPics .flyer-grid[data-cols="5"] { --fp-cols: 5; }
+
+/* The counts hold as far down as the tiles stay legible, and no further.
+   Measured in the column these actually sit in (1320px capped, two gutters,
+   so about 1020px of grid at a 1512px window): five across is a 186px tile,
+   four is 238px, three is 324px. Each step-down is the width at which the
+   count above it would put a tile under about 160px, measured rather than
+   guessed, which is where these titles start wrapping badly: five holds to
+   1200px, four to 900px.
+
+   Stepping down can strand a tile again, and for one group it always will:
+   thirteen has no divisor between two and five, so at four across it is
+   4 + 4 + 4 + 1. Holding each count to its real limit is what keeps that to
+   the narrow end rather than making it the normal case; from 1200px up, the
+   width a laptop actually opens at, no group strands anybody. */
+@media (max-width: 1199px) {
+  #filesPics .flyer-grid[data-cols="5"] { --fp-cols: 4; }
+}
+@media (max-width: 899px) {
+  #filesPics .flyer-grid[data-cols="4"],
+  #filesPics .flyer-grid[data-cols="5"] { --fp-cols: 3; }
+}
+
+/* A phone keeps the flyer grid's own two across. Without this the counts
+   above would hold all the way down and put five tiles on a 390px screen;
+   content is never hidden on a phone here, only reorganised, so it is two
+   across and a longer scroll. */
+@media (max-width: 760px) {
+  #filesPics .flyer-grid[data-cols],
+  #filesPics .flyer-grid { --fp-cols: 2; }
+}
+
+
+/* The first group's heading is :first-child of its own <section>, so the
+   .subsec:first-child rule zeroes its top margin and it sat against the lede
+   introducing the whole block. It is not the first thing on the page, so it
+   keeps the gap. */
+#filesPics > .files-picgroup:first-child .subsec { margin-top: 2.2rem; }
+
+/* h3, under the page's "Pictures" h2. .subsec sets the look; the level is
+   the outline's business, not the type's. */
+.subsec--fp { color: var(--green-2); }
+
+.files-picmore {
+  display: inline-block; margin-top: 1.1rem;
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em;
+  color: var(--mute); text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+@media (hover: hover) {
+  .files-picmore:hover {
+    color: var(--green-2);
+    border-bottom-color: color-mix(in srgb, var(--green) 55%, transparent);
+  }
 }

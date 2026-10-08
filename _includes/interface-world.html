@@ -1,0 +1,42 @@
+{%- comment -%}
+  The big way out of an interface, into the world the interface is OF.
+
+  Every interface already had one small exit, and all of them went to "/".
+  So from inside the Batcomputer there was no way to Batman, from inside the
+  Pokédex no way to Pokémon: the only door led home, and the world page the
+  interface was built out of was unreachable without the back button. This is
+  that door, and it is deliberately the biggest control in the header.
+
+  It goes in twice on every interface: once in the header beside the small
+  exit, so it is there before any scrolling, and once at the foot beside the
+  "back to the main site" line, so it is there when you have read to the end
+  and are deciding where to go next. The two are the same include; `place`
+  only changes which modifier class it carries.
+
+  Params:
+    world  the world, as its own page's title spells it ("Batman")
+    href   that world page ("/worlds/batman/")
+    place  "top" (default) or "foot"
+    label  overrides the whole line, for a world whose name does not read
+           well after "The" (rare; the Office and LEGO use it)
+
+  Styled in interface-world.css, which every interface loads. It is colored
+  by whatever --iw-a the interface sets (each one sets it to its own accent),
+  so this is one include that comes out in twenty-five different colors.
+{%- endcomment -%}
+<a class="iw iw--{{ include.place | default: 'top' }}" href="{{ include.href }}"
+   title="Leave the interface and read about {{ include.world }} itself">
+  <span class="iw-i" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+         stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M3.2 9.5h17.6M3.2 14.5h17.6"/>
+      <path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18z"/>
+    </svg>
+  </span>
+  <span class="iw-t">
+    <span class="iw-k">The world this is built from</span>
+    <b>{{ include.label | default: include.world }}</b>
+  </span>
+  <span class="iw-a" aria-hidden="true">&#8594;</span>
+</a>

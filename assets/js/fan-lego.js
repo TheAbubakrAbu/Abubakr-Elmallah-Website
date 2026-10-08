@@ -3,7 +3,7 @@
 
    The games come FIRST on this page, because they are the actual reason LEGO
    is on the franchises list at all: the bricks I grew up with, and the TT Games
-   catalogue is how I met half the other franchises on this website. */
+   catalog is how I met half the other franchises on this website. */
 window.FAN_PAGE = {
   when: { at: 'Since I was a young kid', note: 'Everyone is into LEGO. LEGO Star Wars first, and then I grew up on the whole run of games: Star Wars, Indiana Jones, Batman, the superheroes, Pirates of the Caribbean.' },
   sections: [
@@ -28,14 +28,14 @@ window.FAN_PAGE = {
        and on its own page from the same row. LEGO Pirates used to have its
        pause screen here as well, a special frame no other finished game got
        (it was simply the first one added); it came out on 2026-09-28 and is
-       one tile in the catalogue above like the rest. */
+       one tile in the catalog above like the rest. */
     pick: ['lego-star-wars-hundred'] },
   /* the complete index. Every other section on this page is a choice; this one
      is the whole list, so nothing is missing just because it is not worth a
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
   { id: 'works', kind: 'works', fold: true, title: 'On Screen', note: 'the films and the series',
-    lede: 'The games are the catalogue above: twenty-six you can buy on Steam, and three that never were. This is the other half: five cinema films and the television line, which by now has run longer than most of the things it parodies.',
+    lede: 'The games are the catalog above: twenty-six you can buy on Steam, and three that never were. This is the other half: five cinema films and the television line, which by now has run longer than most of the things it parodies.',
     items: [
       { title: 'The Films', sub: '2010 – 2024', unit: 'film',
         desc: 'Four in the LEGO Movie universe, one direct-to-video before it, and one documentary after. The first one is a genuinely good film about creativity that also happens to be a two-hour toy advert, and it knows it.',
@@ -64,7 +64,7 @@ window.FAN_PAGE = {
   { id: 'system', kind: 'tiles', mount: 'end', title: 'The System', note: 'why any brick fits any other brick',
     lede: 'Every element made since 1958 still clutches with every element made this morning. That is the whole company.',
     items: [
-      { title: 'The stud', accent: '#ffd21f', sub: '4.8 mm across', desc: 'Spaced 8 mm centre to centre. Every dimension in the system is a multiple of it.' },
+      { title: 'The stud', accent: '#ffd21f', sub: '4.8 mm across', desc: 'Spaced 8 mm center to center. Every dimension in the system is a multiple of it.' },
       { title: 'The tube', accent: '#d01012', sub: 'Patented 1958', desc: 'The hollow tube underneath is what makes the clutch work, and the patent that built the company.' },
       { title: 'Plates', accent: '#0055bf', sub: 'Three to a brick', desc: 'Three plates stack to exactly one brick height. Once you know it you cannot unsee it.' },
       { title: '±0.005 mm', accent: '#00852b', sub: 'Moulding tolerance', desc: 'About eighteen elements per million come out out of spec. That is the tolerance a sixty-year-old brick still meets.' },
@@ -76,7 +76,7 @@ window.FAN_PAGE = {
     items: [
       { title: 'LEGO City', sub: 'Since 1978', tag: 'Core', desc: 'The default: fire stations, police, trains, and the theme every kid starts on. It got a genuinely good open-world game out of it too, LEGO City Undercover, which is a full Grand Theft Auto parody rated for seven-year-olds.', meta: 'Town → City · Undercover, 2013' },
       { title: 'LEGO Technic', sub: 'Since 1977', tag: 'Core', desc: 'Gears, axles, pneumatics and differentials: the doorway from toy to engineering.', meta: 'Studless since 2000' },
-      { title: 'LEGO Star Wars', sub: 'Since 1999', tag: 'Licence', desc: 'The licence that saved the company, and still its biggest line by a distance.', meta: 'First licensed theme' },
+      { title: 'LEGO Star Wars', sub: 'Since 1999', tag: 'License', desc: 'The license that saved the company, and still its biggest line by a distance.', meta: 'First licensed theme' },
       { title: 'LEGO Ninjago', sub: 'Since 2011', tag: 'Own IP', desc: 'A spinner game that turned into sixteen seasons of television and its own mythology.',
         href: 'https://www.lego.com/en-us/themes/ninjago', link: 'Ninjago at LEGO', meta: 'Spinjitzu' },
       { title: 'LEGO Icons & Ideas', sub: '2008 · 2014', tag: 'Adult', desc: 'Sets aimed squarely at grown-ups, and a platform where fan designs with 10,000 supporters get made for real.',
@@ -85,13 +85,13 @@ window.FAN_PAGE = {
       { title: 'Legends of Chima', sub: '2013 – 2015', tag: 'Own IP', desc: 'Animal tribes fighting over a magic energy source called Chi, with speedorz. Three seasons, and the closest LEGO came to repeating Ninjago on purpose.', meta: 'Chi' },
       { title: 'Nexo Knights', sub: '2015 – 2017', tag: 'Own IP', desc: 'Knights with holographic shields you scanned into a phone app, which is a very 2016 idea. Four seasons and a good theme song.', meta: 'Merlok 2.0' },
       { title: 'LEGO Mindstorms & SPIKE', sub: '1998 – now', tag: 'Robotics', desc: 'A programmable brick that put robotics in classrooms two decades before it was standard.', meta: 'RCX → EV3 → SPIKE' },
-      { title: 'LEGO Architecture', sub: 'Since 2008', tag: 'Adult', desc: 'Landmarks in greys and tans, and the theme that proved the bricks could be a display object.', meta: 'Skylines' },
+      { title: 'LEGO Architecture', sub: 'Since 2008', tag: 'Adult', desc: 'Landmarks in grays and tans, and the theme that proved the bricks could be a display object.', meta: 'Skylines' },
     ] },
 
   { id: 'beyond', kind: 'cards', mount: 'end', title: 'Beyond the Bricks', note: 'films, games and parks',
     items: [
       { title: 'The LEGO Movie', sub: '2014', tag: 'Film', desc: 'Everything is awesome, and a film about a corporate toy that is genuinely about creativity versus instructions.', meta: 'Lord & Miller' },
-      { title: 'TT Games', sub: 'Since 2005', tag: 'Games', desc: 'LEGO Star Wars, Batman, Indiana Jones, Marvel: thirty years of licences, all in stud form.', meta: 'Silent-era humour' },
+      { title: 'TT Games', sub: 'Since 2005', tag: 'Games', desc: 'LEGO Star Wars, Batman, Indiana Jones, Marvel: thirty years of licenses, all in stud form.', meta: 'Silent-era humour' },
       { title: 'LEGOLAND', sub: 'Since 1968', tag: 'Parks', desc: 'Ten resorts worldwide, starting at Billund next to the original factory.',
         href: 'https://www.legoland.com/', link: 'LEGOLAND' },
       { title: 'LEGO Ideas', sub: 'Since 2008', tag: 'Community', desc: 'Ten thousand supporters gets a fan design reviewed, and a royalty if it ships.',
@@ -142,13 +142,13 @@ window.FAN_PAGE = {
   { id: 'links', kind: 'links', mount: 'end', title: 'Links', note: 'where I actually read about it',
     items: [
       { title: 'TT Games', href: 'https://www.ttgames.com/games',
-        desc: 'The studio behind every LEGO game above, and the full catalogue in their own words.' },
+        desc: 'The studio behind every LEGO game above, and the full catalog in their own words.' },
       { title: 'LEGO.com', href: 'https://www.lego.com/',
         desc: 'The official site.' },
       { title: 'Brickipedia', href: 'https://brickipedia.fandom.com/wiki/Brickipedia',
         desc: 'Every set, every minifigure, every theme since 1949.' },
       { title: 'BrickLink', href: 'https://www.bricklink.com/',
-        desc: 'The parts marketplace, and the best part catalogue anywhere.' },
+        desc: 'The parts marketplace, and the best part catalog anywhere.' },
     ] },
 
 ] };

@@ -55,7 +55,7 @@
 
 body[data-fan="travels"] { --a: #7fb8e8; }
 
-/* ── NOTHING ON THIS PAGE IS CENTRED ──
+/* ── NOTHING ON THIS PAGE IS CENTERED ──
    Every block below is `max-width: var(--maxw)` with a LEFT margin of zero,
    not `margin: 0 auto`. The site is a left-aligned layout: layout.css sets
    `main { padding-left: var(--gutter) }` and `section { padding: 0 var(--gutter);
@@ -140,7 +140,7 @@ body[data-fan="travels"] { --a: #7fb8e8; }
 
 /* ───────── what kind of places ─────────
    The block under the summary, and the badges down the right of every trip
-   below it, are the same three families in the same three colours: continent,
+   below it, are the same three families in the same three colors: continent,
    who lives there, region. So a pill means the same thing wherever it appears
    on the page, and you can read the tally and then spot it on a trip.
 
@@ -281,7 +281,7 @@ body[data-fan="travels"] { --a: #7fb8e8; }
 }
 
 /* ───────── one section per trip ─────────
-   Each carries its own two colours through --c1/--c2, and a data-look that
+   Each carries its own two colors through --c1/--c2, and a data-look that
    picks which shapes get drawn behind it. One set of rules, eighteen looks. */
 .tv-trip {
   position: relative; overflow: hidden;
@@ -308,7 +308,7 @@ body[data-fan="travels"] { --a: #7fb8e8; }
 /* ── road trips ──
    A drive is a trip like any other and sits in the same school-year timeline,
    so it needs one mark rather than a section of its own: the chip is the road
-   itself, in asphalt grey with a dashed centre line, so it never reads as a
+   itself, in asphalt gray with a dashed center line, so it never reads as a
    second gold badge competing with Umrah. Set `road: true` on the trip. */
 .tv-trip-tag--rd {
   display: inline-flex; align-items: center; gap: 0.32rem;
@@ -324,7 +324,7 @@ body[data-fan="travels"] { --a: #7fb8e8; }
 
 /* ── lived there ──
    Three entries on this page are not trips: they are the places I lived
-   before I can remember any of it. Green rather than the road's grey or
+   before I can remember any of it. Green rather than the road's gray or
    Umrah's gold, and a house rather than a road, because the distinction it
    marks is not how I got there but that I did not leave. The counts treat
    these apart too: see `lived` in travels-data.js. */
@@ -575,7 +575,7 @@ body[data-fan="travels"] { --a: #7fb8e8; }
   color: var(--mute); opacity: .5;
 }
 
-/* the eighteen backdrops, all built from the trip's own two colours */
+/* the eighteen backdrops, all built from the trip's own two colors */
 [data-look="coast"]  .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 42%; background: radial-gradient(80% 100% at 50% 100%, var(--c1), transparent 70%); opacity: .3; }
 [data-look="coast"]  .tv-trip-bg i:nth-child(2) { right: 8%; top: 14%; width: 90px; height: 90px; border-radius: 50%; background: var(--c1); opacity: .18; }
 [data-look="reef"]   .tv-trip-bg i:nth-child(1) { inset: 0; background: repeating-linear-gradient(115deg, transparent 0 26px, color-mix(in srgb, var(--c1) 12%, transparent) 26px 28px); }
@@ -596,8 +596,8 @@ body[data-fan="travels"] { --a: #7fb8e8; }
 [data-look="volcano"] .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 50%; background: var(--c1); opacity: .18; clip-path: polygon(0 100%, 40% 12%, 60% 12%, 100% 100%); }
 [data-look="andes"]  .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 46%; background: var(--c1); opacity: .16; clip-path: polygon(0 100%, 22% 22%, 44% 70%, 66% 8%, 88% 60%, 100% 40%, 100% 100%); }
 [data-look="cliffs"] .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 40%; background: linear-gradient(180deg, color-mix(in srgb, var(--c1) 30%, transparent), transparent); clip-path: polygon(0 30%, 30% 0, 62% 22%, 100% 6%, 100% 100%, 0 100%); }
-/* a road running away from you: the verge, the asphalt and a dashed centre
-   line, all built from the trip's own colour like every other look here */
+/* a road running away from you: the verge, the asphalt and a dashed center
+   line, all built from the trip's own color like every other look here */
 [data-look="road"]  .tv-trip-bg i:nth-child(1) { inset: auto 0 0 0; height: 40%; background: linear-gradient(0deg, color-mix(in srgb, var(--c1) 22%, transparent), transparent); clip-path: polygon(34% 0, 66% 0, 100% 100%, 0 100%); }
 [data-look="road"]  .tv-trip-bg i:nth-child(2) { inset: auto 0 0 0; height: 40%; background: repeating-linear-gradient(0deg, color-mix(in srgb, var(--c1) 46%, transparent) 0 8px, transparent 8px 22px); clip-path: polygon(49.5% 0, 50.5% 0, 53.4% 100%, 46.6% 100%); }
 [data-look="road"]  .tv-trip-bg i:nth-child(3) { right: 8%; top: 16%; width: 84px; height: 84px; border-radius: 50%; background: var(--c1); opacity: .14; }
@@ -648,7 +648,7 @@ body[data-fan="travels"] { --a: #7fb8e8; }
    page and read as the page breaking rather than as a feature.
 
    So the card has to look touchable: a pointer cursor and a border that lifts
-   toward the trip's own colour. Only while the photographs switch is on,
+   toward the trip's own color. Only while the photographs switch is on,
    though. With it off there is nothing behind the gesture, and a card that
    invites a press and then does nothing is worse than one that never asked.
 
@@ -670,8 +670,8 @@ html[data-show-pics="on"] .tv-trip .tv-shots { cursor: default; }
 @media (prefers-reduced-motion: reduce) { .tv-trip { transition: none; } }
 
 /* ───────── the map ─────────
-   A dot-matrix world drawn by travels-map.js: land in grey-blue, the US in its
-   own warm tone, visited countries in the accent, pins in each trip's colour,
+   A dot-matrix world drawn by travels-map.js: land in gray-blue, the US in its
+   own warm tone, visited countries in the accent, pins in each trip's color,
    and flight arcs redrawing themselves from Southern California. */
 .tv-map { padding: 0 var(--gutter); max-width: var(--maxw); margin: 0 0 2.6rem; }
 .tv-map > h2 {
@@ -783,12 +783,12 @@ html[data-show-pics="on"] .tv-trip .tv-shots { cursor: default; }
 /* At 1x every label at once is a pile of overlapping type, which is why they
    were hover-only. Zoomed in there is room for them, and reading the names is
    the whole reason for zooming, so past 2x they all come on. */
-.tvm-frame.is-labelled .tvm-pin text { opacity: .92; }
-.tvm-frame.is-labelled .tvm-pin--lay text { opacity: .6; }
+.tvm-frame.is-labeled .tvm-pin text { opacity: .92; }
+.tvm-frame.is-labeled .tvm-pin--lay text { opacity: .6; }
 
 /* ── what does NOT grow when you zoom ──
    Zooming scales the whole SVG, so a label at 4x is drawn four times the size
-   and sits exactly as far from its neighbour, in proportion, as it did at 1x.
+   and sits exactly as far from its neighbor, in proportion, as it did at 1x.
    That is a bigger picture of the same collision, not a better one, and the
    point of zooming here is to pull San Felipe, Ensenada and La Bufadora apart
    far enough to read all three.
@@ -831,7 +831,7 @@ html[data-show-pics="on"] .tv-trip .tv-shots { cursor: default; }
 /* --fs above sets the size; only the weighting of a layover belongs here */
 .tvm-pin--lay:hover text { opacity: .8; }
 
-/* what the four dot colours mean, before the country list */
+/* what the four dot colors mean, before the country list */
 .tvm-key { display: flex; flex-wrap: wrap; gap: 0.5rem 1.1rem; margin-top: 0.9rem; }
 .tvm-k {
   display: inline-flex; align-items: center; gap: 0.4rem;

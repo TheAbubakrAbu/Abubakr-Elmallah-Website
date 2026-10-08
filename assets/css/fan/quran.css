@@ -35,7 +35,7 @@ body[data-fan="quran"] .fan-title {
 
 /* the Arabic line above the title, set properly rather than as a picture */
 .qr-hero-ar {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: clamp(1.5rem, 4.4vw, 2.6rem); line-height: 1.9;
   color: #e0b84f; opacity: .92; margin-bottom: 0.4rem;
   /* dir="rtl" would otherwise push it to the right edge of the hero; it is a
@@ -68,6 +68,6 @@ body[data-fan="quran"] .fan-title {
 /* the Arabic section notes and tile subs read as Arabic, not as mono */
 body[data-fan="quran"] .subsec--fan .subsec-yr,
 body[data-fan="quran"] #tajwid .fan-tiletext i {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: 1.05rem; letter-spacing: 0; text-transform: none; opacity: .9;
 }

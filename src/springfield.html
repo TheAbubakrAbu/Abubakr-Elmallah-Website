@@ -12,6 +12,7 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/springfield.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
 <body class="sf" id="sf">
 
@@ -28,6 +29,7 @@ standalone: true
   <a class="sf-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave Springfield</span>
   </a>
+  {% include interface-world.html world="The Simpsons" href="/worlds/the-simpsons/" %}
   <!-- the running joke: nobody ever says which state it is in -->
   <span class="sf-top-mid">Springfield · USA · state withheld</span>
   <!-- the sign at the plant gate, and the town clock (springfield.js) -->
@@ -54,7 +56,7 @@ standalone: true
 
   <!-- ─────────── the town ───────────
        Springfield laid out flat along one street, in the show's own way:
-       thick ink outlines and flat colour, no shading. The plant, the
+       thick ink outlines and flat color, no shading. The plant, the
        observatory, the university and Channel 6 stand on the hill behind;
        the street runs in front with everything else, and the monorail
        crosses over the lot. Every building is a link, but the drawing is
@@ -311,7 +313,7 @@ standalone: true
           <text class="sf-lab" x="1422" y="628" text-anchor="middle">Monorail</text>
         </a>
 
-        <!-- 742 Evergreen Terrace: the peach house with the grey roof, the
+        <!-- 742 Evergreen Terrace: the peach house with the gray roof, the
              garage on its left and a chimney, last on the street -->
         <a class="sf-b" href="/" tabindex="-1" data-room="/" style="--i:14">
           <g class="sf-b-lift">
@@ -341,7 +343,7 @@ standalone: true
       <li><a class="sf-room" href="/education/" data-room="/education/" style="--c:#e2824f"><b>Springfield Elementary</b><i>Education</i></a></li>
       <li><a class="sf-room" href="/college/" data-room="/college/" style="--c:#c46a4f"><b>Springfield University</b><i>College · UC Irvine</i></a></li>
       <li><a class="sf-room" href="/high-school/" data-room="/high-school/" style="--c:#dcb46e"><b>Springfield High</b><i>High school</i></a></li>
-      <li><a class="sf-room" href="/worlds/" data-room="/worlds/" style="--c:#4f8a5c"><b>The Android’s Dungeon</b><i>Comics, cards and all 71 worlds</i></a></li>
+      <li><a class="sf-room" href="/worlds/" data-room="/worlds/" style="--c:#4f8a5c"><b>The Android’s Dungeon</b><i>Comics, cards and all 74 worlds</i></a></li>
       <li><a class="sf-room" href="/worlds/the-simpsons/" data-room="/worlds/the-simpsons/" style="--c:#c9c4b6"><b>The Town Square</b><i>The Simpsons · the world page</i></a></li>
       <li><a class="sf-room" href="/star-wars/" data-room="/star-wars/" style="--c:#c8453a"><b>The Aztec Theater</b><i>Now showing · Star Wars apps</i></a></li>
       <li><a class="sf-room" href="/al-islam/" data-room="/al-islam/" style="--c:#7c86a0"><b>The Observatory</b><i>Up the hill · Al-Islam</i></a></li>
@@ -471,7 +473,7 @@ standalone: true
         <div><dt>First solo projects</dt><dd>Order 66 and Datapad, 2021</dd></div>
         <div><dt>In town since</dt><dd>8th and 9th grade, 2019–21</dd></div>
         <div><dt>How he got here</dt><dd>Universal Studios, before he had really watched it</dd></div>
-        <div><dt>Other towns</dt><dd><a href="/worlds/">71 worlds, on /worlds/</a></dd></div>
+        <div><dt>Other towns</dt><dd><a href="/worlds/">74 worlds, on /worlds/</a></dd></div>
       </dl>
     </section>
 
@@ -489,7 +491,7 @@ standalone: true
           <div><dt>Al-Adhan prayer times</dt><dd>22 ways</dd></div>
           <div><dt>UCI Esports app</dt><dd>Arena, PCs, events</dd></div>
           <div><dt>Order 66 + Datapad</dt><dd>2021</dd></div>
-          <div class="sf-r-total"><dt>Total</dt><dd>71 worlds</dd></div>
+          <div class="sf-r-total"><dt>Total</dt><dd>74 worlds</dd></div>
         </dl>
         <p class="sf-r-foot">Thank you, come again</p>
       </div>
@@ -511,8 +513,7 @@ standalone: true
       <li><a href="/citadel/"><span class="sf-ch" aria-hidden="true">8</span><b>The Citadel</b><i>Game of Thrones</i></a></li>
       <li><a href="/compass/"><span class="sf-ch" aria-hidden="true">9</span><b>The Compass</b><i>Pirates of the Caribbean</i></a></li>
       <li><a href="/control-room/"><span class="sf-ch" aria-hidden="true">10</span><b>The Control Room</b><i>Jurassic Park</i></a></li>
-      <li><a href="/upside-down/"><span class="sf-ch" aria-hidden="true">11</span><b>The Upside Down</b><i>Stranger Things</i></a></li>
-      <li><a href="/starcourt/"><span class="sf-ch" aria-hidden="true">12</span><b>Starcourt</b><i>Stranger Things</i></a></li>
+      <li><a href="/hawkins/"><span class="sf-ch" aria-hidden="true">11</span><b>Hawkins</b><i>Stranger Things</i></a></li>
       <li><a href="/spirit-library/"><span class="sf-ch" aria-hidden="true">13</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a></li>
       <li><a href="/monastery/"><span class="sf-ch" aria-hidden="true">14</span><b>The Monastery</b><i>Ninjago</i></a></li>
       <li><a href="/wanted/"><span class="sf-ch" aria-hidden="true">15</span><b>The Wanted Board</b><i>Red Dead Redemption</i></a></li>
@@ -521,10 +522,16 @@ standalone: true
       <li><a href="/pokedex/"><span class="sf-ch" aria-hidden="true">18</span><b>The Pokédex</b><i>Pokémon</i></a></li>
       <li><a href="/batcomputer/"><span class="sf-ch" aria-hidden="true">19</span><b>The Batcomputer</b><i>Batman</i></a></li>
       <li><a href="/daily-bugle/"><span class="sf-ch" aria-hidden="true">20</span><b>The Daily Bugle</b><i>Spider-Man</i></a></li>
+      <li><a href="/grail-diary/"><span class="sf-ch" aria-hidden="true">21</span><b>The Grail Diary</b><i>Indiana Jones</i></a></li>
+      <li><a href="/red-book/"><span class="sf-ch" aria-hidden="true">22</span><b>The Red Book</b><i>The Lord of the Rings</i></a></li>
+      <li><a href="/power-battery/"><span class="sf-ch" aria-hidden="true">23</span><b>The Power Battery</b><i>Green Lantern</i></a></li>
+      <li><a href="/watchtower/"><span class="sf-ch" aria-hidden="true">24</span><b>The Watchtower</b><i>The Justice League</i></a></li>
     </ul>
   </section>
 
   <button class="sf-off" id="sfOffBtn" type="button"><span class="sf-off-knob" aria-hidden="true"></span>Turn off the TV</button>
+
+  {% include interface-world.html world="The Simpsons" href="/worlds/the-simpsons/" place="foot" %}
 
 </main>
 

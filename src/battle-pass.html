@@ -12,6 +12,7 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/battle-pass.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
 <body class="bp" id="bp">
 
@@ -26,6 +27,7 @@ standalone: true
   <a class="bp-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the lobby</span>
   </a>
+  {% include interface-world.html world="Fortnite" href="/worlds/fortnite/" %}
   <span class="bp-top-mid">Chapter 1 &#183; Season 4 &#183; Abubakr Elmallah</span>
   <span class="bp-top-v" id="bpStars">&#9733; <b id="bpTier">1</b>/100</span>
 </header>
@@ -59,7 +61,55 @@ standalone: true
       </dl>
       <p class="bp-meter-n">Tier 100 is the LEGO booklet, which is the only reward on this pass that is
         another whole interface.</p>
+
+      <!-- the two currencies every one of these passes runs on, counted from
+           the tiles rather than written down -->
+      <dl class="bp-wallet">
+        <div><dt>V-Bucks earned</dt><dd id="bpVb">0</dd></div>
+        <div><dt>Battle Stars</dt><dd id="bpStars2">0</dd></div>
+      </dl>
     </div>
+  </section>
+
+  <!-- ═══════════ the tier track ═══════════
+       The thing the Battle Pass screen actually is, and the thing this page
+       was missing: one long horizontal track you drag along, every node a
+       tier, the next reward always in front of you. The nodes are the same
+       pages as the grid below, built by battle-pass.js from that list so the
+       two can never disagree.
+       Vertical on a phone rather than hidden, because nothing on this site
+       gets folded away on a small screen. -->
+  <section class="bp-track-s" aria-labelledby="bpTrackH">
+    <h2 class="bp-h" id="bpTrackH">The track</h2>
+    <p class="bp-h-sub">Tier one to tier one hundred. Drag it, or use the arrows: the pass is a road, not
+      a list.</p>
+    <div class="bp-track-wrap">
+      <button class="bp-trk-btn" id="bpTrkL" type="button" aria-label="Earlier tiers">&#9664;</button>
+      <div class="bp-track" id="bpTrack" tabindex="0" role="list" aria-label="Battle Pass tiers"></div>
+      <button class="bp-trk-btn" id="bpTrkR" type="button" aria-label="Later tiers">&#9654;</button>
+    </div>
+  </section>
+
+  <!-- ═══════════ the challenges ═══════════
+       A pass is only a bar; the challenges are what fill it. These are the
+       real ones: the things on this site that are actually countable, each
+       worth the stars it would be worth in a season. Ticking one off grants
+       its stars and moves the pass, which is the loop the game runs on. -->
+  <section class="bp-chal" aria-labelledby="bpChalH">
+    <h2 class="bp-h" id="bpChalH">The challenges</h2>
+    <p class="bp-h-sub">Seven of them, which is a week. Every one is something on this site you can
+      actually go and check.</p>
+    <ul class="bp-chals" id="bpChals">
+      <li data-stars="10"><b>Ship an app to the App Store</b><i>Datapad, June 26 2023 &#183; then eleven more</i><em>12 / 12</em></li>
+      <li data-stars="10"><b>Win the Swift Student Challenge</b><i>Al-Quran, 2024 &#183; and a trip to WWDC</i><em>1 / 1</em></li>
+      <li data-stars="5"><b>Catalog seventy-four worlds</b><i>every franchise on the Worlds page</i><em>74 / 74</em></li>
+      <li data-stars="5"><b>Visit thirty-five places</b><i>the Travels page, one card each</i><em>35 / 35</em></li>
+      <li data-stars="5"><b>Learn nineteen accents</b><i>the Accents page, with clips</i><em>19 / 19</em></li>
+      <li data-stars="5"><b>Build twenty-five interfaces</b><i>this one included</i><em>25 / 25</em></li>
+      <li data-stars="10"><b>Read to the bottom of this page</b><i>the only one still open</i><em>0 / 1</em></li>
+    </ul>
+    <p class="bp-chal-n">Every challenge here is already done except the last one, which is the only
+      honest way to build a progress bar out of a r&#233;sum&#233;.</p>
   </section>
 
   <!-- ─────────── the rewards ───────────
@@ -80,7 +130,7 @@ standalone: true
         <b>Work</b><i>lead mobile &amp; backend developer, UCI</i></a>
       <a class="bp-tier" href="/projects/" data-t="10" data-r="epic" data-k="Loadout">
         <span class="bp-tier-n">10</span><span class="bp-tier-i" aria-hidden="true"></span>
-        <b>Projects</b><i>twelve apps, catalogued</i></a>
+        <b>Projects</b><i>twelve apps, cataloged</i></a>
       <a class="bp-tier" href="/resume/" data-t="14" data-r="uncommon" data-k="Document">
         <span class="bp-tier-n">14</span><span class="bp-tier-i" aria-hidden="true"></span>
         <b>R&#233;sum&#233;</b><i>the whole record on one page</i></a>
@@ -95,7 +145,7 @@ standalone: true
         <b>High School</b><i>where it started</i></a>
       <a class="bp-tier" href="/worlds/" data-t="30" data-r="epic" data-k="Map">
         <span class="bp-tier-n">30</span><span class="bp-tier-i" aria-hidden="true"></span>
-        <b>Worlds</b><i>all seventy-one of them</i></a>
+        <b>Worlds</b><i>all seventy-four of them</i></a>
       <a class="bp-tier" href="/worlds/fortnite/" data-t="34" data-r="legendary" data-k="Season 4">
         <span class="bp-tier-n">34</span><span class="bp-tier-i" aria-hidden="true"></span>
         <b>Fortnite</b><i>Chapter 1, seasons three to seven</i></a>
@@ -120,12 +170,21 @@ standalone: true
       <a class="bp-tier" href="/lightsabers/" data-t="64" data-r="rare" data-k="Pickaxe">
         <span class="bp-tier-n">64</span><span class="bp-tier-i" aria-hidden="true"></span>
         <b>Lightsabers</b><i>the build guide</i></a>
+      <a class="bp-tier" href="/grail-diary/" data-t="68" data-r="epic" data-k="Diary">
+        <span class="bp-tier-n">68</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>The Grail Diary</b><i>the Indiana Jones terminal</i></a>
       <a class="bp-tier" href="/elmallah/" data-t="70" data-r="legendary" data-k="Holotable">
         <span class="bp-tier-n">70</span><span class="bp-tier-i" aria-hidden="true"></span>
         <b>E.L.M.A.L.L.A.H.</b><i>every interface, on one table</i></a>
+      <a class="bp-tier" href="/red-book/" data-t="72" data-r="epic" data-k="Red Book">
+        <span class="bp-tier-n">72</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>The Red Book</b><i>the Lord of the Rings terminal</i></a>
       <a class="bp-tier" href="/jarvis/" data-t="76" data-r="epic" data-k="HUD">
         <span class="bp-tier-n">76</span><span class="bp-tier-i" aria-hidden="true"></span>
         <b>J.A.R.V.I.S.</b><i>the Stark terminal</i></a>
+      <a class="bp-tier" href="/power-battery/" data-t="78" data-r="legendary" data-k="Ring">
+        <span class="bp-tier-n">78</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>The Power Battery</b><i>the Green Lantern terminal</i></a>
       <a class="bp-tier" href="/holocron/" data-t="80" data-r="epic" data-k="Archive">
         <span class="bp-tier-n">80</span><span class="bp-tier-i" aria-hidden="true"></span>
         <b>Holocron</b><i>the Jedi Archives</i></a>
@@ -138,6 +197,9 @@ standalone: true
       <a class="bp-tier" href="/batcomputer/" data-t="92" data-r="epic" data-k="Console">
         <span class="bp-tier-n">92</span><span class="bp-tier-i" aria-hidden="true"></span>
         <b>The Batcomputer</b><i>the Batman terminal</i></a>
+      <a class="bp-tier" href="/watchtower/" data-t="94" data-r="epic" data-k="Orbit">
+        <span class="bp-tier-n">94</span><span class="bp-tier-i" aria-hidden="true"></span>
+        <b>The Watchtower</b><i>the Justice League terminal</i></a>
       <a class="bp-tier" href="/freddys/" data-t="96" data-r="epic" data-k="Cameras">
         <span class="bp-tier-n">96</span><span class="bp-tier-i" aria-hidden="true"></span>
         <b>The Security Office</b><i>the FNAF terminal</i></a>
@@ -147,9 +209,79 @@ standalone: true
     </div>
   </section>
 
+  <!-- ═══════════ the locker ═══════════
+       The other screen in that game, and the one that is really about the
+       person playing: the loadout. These are my actual tools in the slots a
+       locker has, which is a skills list that earns its place by being a
+       locker instead of a list of bars. -->
+  <section class="bp-locker-s" aria-labelledby="bpLockH">
+    <h2 class="bp-h" id="bpLockH">The locker</h2>
+    <p class="bp-h-sub">The loadout I actually carry. Every slot is a real tool, graded the way the
+      locker grades everything else.</p>
+    <div class="bp-locker">
+      <div class="bp-slot" style="--rar: var(--c-legendary)">
+        <span class="bp-slot-k">Outfit</span>
+        <b>Swift</b><i>and SwiftUI &#183; twelve shipped apps</i>
+        <span class="bp-slot-r">Legendary</span>
+      </div>
+      <div class="bp-slot" style="--rar: var(--c-epic)">
+        <span class="bp-slot-k">Back Bling</span>
+        <b>UIKit</b><i>the older half of every iOS app</i>
+        <span class="bp-slot-r">Epic</span>
+      </div>
+      <div class="bp-slot" style="--rar: var(--c-epic)">
+        <span class="bp-slot-k">Pickaxe</span>
+        <b>TypeScript</b><i>React, Next.js, this site</i>
+        <span class="bp-slot-r">Epic</span>
+      </div>
+      <div class="bp-slot" style="--rar: var(--c-rare)">
+        <span class="bp-slot-k">Glider</span>
+        <b>Python</b><i>the tools behind this repo</i>
+        <span class="bp-slot-r">Rare</span>
+      </div>
+      <div class="bp-slot" style="--rar: var(--c-rare)">
+        <span class="bp-slot-k">Wrap</span>
+        <b>SQL &amp; Node</b><i>the backend at UC Irvine</i>
+        <span class="bp-slot-r">Rare</span>
+      </div>
+      <div class="bp-slot" style="--rar: var(--c-uncommon)">
+        <span class="bp-slot-k">Emote</span>
+        <b>Nineteen accents</b><i>the one skill with no repo</i>
+        <span class="bp-slot-r">Uncommon</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ the map ═══════════
+       Where you drop, which on this site means which page you start on. The
+       named locations are the five pages worth landing on, placed on the
+       island the way a map screen places them, and each one is a link.
+       Drawn: a coastline path, a grid, and five markers. -->
+  <section class="bp-map-s" id="map" aria-labelledby="bpMapH">
+    <h2 class="bp-h" id="bpMapH">Where to drop</h2>
+    <p class="bp-h-sub">Five named locations. Tilted Towers is the r&#233;sum&#233;, because that is where
+      everybody goes first and it is always busy.</p>
+    <div class="bp-map">
+      <svg class="bp-map-art" viewBox="0 0 100 100" aria-hidden="true">
+        <!-- the island: one hand-drawn coast, no real map reproduced -->
+        <path class="bp-coast" d="M30 10q24-4 40 10t16 32q0 20-18 30T34 90Q18 82 12 64T14 28q6-14 16-18z"/>
+        <path class="bp-river" d="M26 32q18 10 24 26t16 22"/>
+        <g class="bp-mgrid">
+          <path d="M0 25h100M0 50h100M0 75h100M25 0v100M50 0v100M75 0v100"/>
+        </g>
+      </svg>
+      <a class="bp-poi" href="/resume/" style="--x:38; --y:28"><i></i><span>Tilted Towers<em>R&#233;sum&#233;</em></span></a>
+      <a class="bp-poi" href="/projects/" style="--x:52; --y:38"><i></i><span>Retail Row<em>Projects</em></span></a>
+      <a class="bp-poi" href="/worlds/" style="--x:50; --y:64"><i></i><span>Loot Lake<em>Worlds</em></span></a>
+      <a class="bp-poi" href="/work/" style="--x:30; --y:54"><i></i><span>Dusty Depot<em>Work</em></span></a>
+      <a class="bp-poi" href="/" style="--x:40; --y:80"><i></i><span>Spawn Island<em>Home</em></span></a>
+    </div>
+  </section>
+
 </main>
 
 <footer class="bp-bottom">
+  {% include interface-world.html world="Fortnite" href="/worlds/fortnite/" place="foot" %}
   <a class="bp-back" href="/">&#9668; Back to the main site</a>
   <span class="bp-foot-n">Season 4 &#183; <span id="bpFootN">&#183;&#183;</span> tiers &#183; Omega at one hundred</span>
 </footer>

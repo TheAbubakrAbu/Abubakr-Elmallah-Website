@@ -164,7 +164,7 @@
   .rt-contact { flex-direction: column; gap: 0.2rem; }
   .rt-contact span[aria-hidden] { display: none; }
   /* the preview as a page, not 78% of the screen: at 78vh Drive drew the PDF
-     256px wide with 285px of grey under it */
+     256px wide with 285px of gray under it */
   .embed--preview .embed-frame { height: auto; min-height: 0; aspect-ratio: 8.5 / 11; }
 }
 

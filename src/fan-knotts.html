@@ -12,6 +12,7 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/knotts.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="knotts">
 
@@ -86,7 +87,7 @@ tab: "/worlds/"
       <q>We just wanted to give people something to look at while they waited for a table.</q>
       <p class="fan-art-by">The reason Ghost Town exists</p>
       <p>The best origin story in theme parks. Walter Knott sold berries by the road; his wife Cordelia started serving fried chicken dinners in 1934; the queue got so long that in 1940 he built a ghost town out of real buildings, moved in from actual abandoned towns, purely to entertain people waiting to eat. That accident is now the oldest themed land in America, fifteen years older than Disneyland seven miles down the road.</p>
-      <p>And it never lost that. The Calico Mine Ride and the Log Ride were designed and built by the park’s own workshop rather than bought from a catalogue, and both are still running. It is a small park you can cross in ten minutes, which after a day of queueing anywhere else is exactly why it is the one I keep going back to.</p>
+      <p>And it never lost that. The Calico Mine Ride and the Log Ride were designed and built by the park’s own workshop rather than bought from a catalog, and both are still running. It is a small park you can cross in ten minutes, which after a day of queueing anywhere else is exactly why it is the one I keep going back to.</p>
     </div>
   </section>
 
@@ -111,13 +112,17 @@ tab: "/worlds/"
       <p class="kn-jar-cap">Preserves · Buena Park</p>
     </div>
     <div class="kn-jar-note">
-      <h4>Why the place is purple</h4>
+      <h2>Why the place is purple</h2>
       <p>Rudolph Boysen crossed a raspberry, a blackberry and a loganberry in the twenties and then gave up on it. Walter Knott heard about the abandoned vines, went and found the last few surviving on a neglected farm, and nursed them back on his own land.</p>
-      <p>He named the berry after the man who quit, sold it at the stand, put it in the pies that filled the restaurant that grew the queue that needed the ghost town. The whole park is downstream of one rescued plant, which is why the colour of the place is boysenberry.</p>
+      <p>He named the berry after the man who quit, sold it at the stand, put it in the pies that filled the restaurant that grew the queue that needed the ghost town. The whole park is downstream of one rescued plant, which is why the color of the place is boysenberry.</p>
     </div>
   </section>
 
   <div id="fanBody"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 

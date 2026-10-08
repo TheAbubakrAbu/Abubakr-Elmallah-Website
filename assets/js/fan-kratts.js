@@ -46,13 +46,13 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'villains', kind: 'cards', title: 'The Villains', note: 'four ways to be wrong about animals',
-    lede: 'Every one of them wants animals for something other than what they are, and the show is careful that they are each wrong in a different way. It is a surprisingly precise piece of writing for a programme aimed at six-year-olds.',
+    lede: 'Every one of them wants animals for something other than what they are, and the show is careful that they are each wrong in a different way. It is a surprisingly precise piece of writing for a program aimed at six-year-olds.',
     items: [
       { title: 'Zach Varmitech', sub: 'The technologist', tag: 'Wants to replace them', accent: '#5f9fe0',
         desc: 'Builds robots, hates real animals, and would rather have a machine that does the same job. The recurring one, and the one whose plans are always the most fun to watch fail.',
         meta: 'Zachbots' },
       { title: 'Donita Donata', sub: 'The fashion designer', tag: 'Wants to wear them', accent: '#e04a9f',
-        desc: 'Turns living animals into accessories, with Dabio carrying the equipment. The most direct point the show ever makes, and it never labours it.',
+        desc: 'Turns living animals into accessories, with Dabio carrying the equipment. The most direct point the show ever makes, and it never labors it.',
         meta: 'And Dabio' },
       { title: 'Gaston Gourmand', sub: 'The chef', tag: 'Wants to eat them', accent: '#f0913a',
         desc: 'A chef pursuing rarity for its own sake, which is a real thing that really happens to real species, put in front of children without a lecture attached.',

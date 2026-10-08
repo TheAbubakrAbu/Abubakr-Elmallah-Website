@@ -106,7 +106,7 @@ body:not([data-season]) .st-era--0 { opacity: 1; }
     repeating-linear-gradient(-64deg, rgba(224,96,20,.055) 0 1px, transparent 1px 52px);
 }
 
-/* each season gets its own motion, not just its own colour */
+/* each season gets its own motion, not just its own color */
 .st-era--1::after {                    /* season one: a torch sweeping the woods */
   content: ""; position: absolute; inset: 0;
   background: radial-gradient(28% 60% at 50% 40%, rgba(255,220,180,.09), transparent 68%);
@@ -382,7 +382,7 @@ body.is-upside-down .st-flip { transform: rotate(180deg); }
   box-shadow: inset 0 -2px 3px rgba(0,0,0,.6), 0 0 7px 1px color-mix(in srgb, var(--b, #b06a4a) 22%, transparent);
 }
 
-/* the real prop is a string of mixed colours, so the wall reads as bulbs even unlit */
+/* the real prop is a string of mixed colors, so the wall reads as bulbs even unlit */
 .st-letter:nth-child(6n+1) .st-bulb { --b: #e8261d; }
 
 .st-letter:nth-child(6n+2) .st-bulb { --b: #f0c840; }

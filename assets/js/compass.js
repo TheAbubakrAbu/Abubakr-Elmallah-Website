@@ -218,7 +218,7 @@
   });
   onScroll();
 
-  // On a phone the drawing's centre goes under the compass, so the rhumb
+  // On a phone the drawing's center goes under the compass, so the rhumb
   // lines still run out of it: measured, because the cartouche above it
   // wraps to a different height on every width.
   var chart = $('pcChart');

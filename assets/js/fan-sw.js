@@ -38,7 +38,7 @@ window.FAN_PAGE = {
       { num: 'II', title: 'Attack of the Clones', sub: 'May 2002', accent: '#e08a3a', meta: 'Kamino · Geonosis · 22 BBY',
         desc: 'Obi-Wan works a murder case across half the galaxy and finds an army nobody ordered. The Republic marches out to Geonosis and calls it a rescue.' },
       { num: 'III', title: 'Revenge of the Sith', sub: 'May 2005', accent: '#ff4b2b', meta: 'Coruscant · Mustafar · 19 BBY',
-        desc: 'The one everything was built toward. Order 66, the opera house, and a friendship that ends on a lava bank. My favourite film of the eleven.' },
+        desc: 'The one everything was built toward. Order 66, the opera house, and a friendship that ends on a lava bank. My favorite film of the eleven.' },
     ] },
 
   { id: 'originals', kind: 'films', title: 'The Originals', note: '1977 – 1983 · 0 BBY – 4 ABY · the ones that made the rest possible',
@@ -68,7 +68,7 @@ window.FAN_PAGE = {
     items: [
       { title: 'I · The Phantom Menace', accent: '#f0c840', sub: 'May 1999 · 32 BBY', desc: 'Podracing, Darth Maul, and Duel of the Fates.' },
       { title: 'II · Attack of the Clones', accent: '#e08a3a', sub: 'May 2002 · 22 BBY', desc: 'Kamino, Geonosis, and the war that hands Palpatine his army.' },
-      { title: 'III · Revenge of the Sith', accent: '#ff4b2b', sub: 'May 2005 · 19 BBY', desc: 'Order 66 and Mustafar. My favourite of the eleven.' },
+      { title: 'III · Revenge of the Sith', accent: '#ff4b2b', sub: 'May 2005 · 19 BBY', desc: 'Order 66 and Mustafar. My favorite of the eleven.' },
       { title: 'IV · A New Hope', accent: '#3f8fff', sub: 'May 1977 · 0 BBY', desc: 'A farm boy, two droids and a trench run.' },
       { title: 'V · The Empire Strikes Back', accent: '#9fc4e8', sub: 'May 1980 · 3 ABY', desc: 'Hoth, Dagobah, Bespin. The best made of them.' },
       { title: 'VI · Return of the Jedi', accent: '#3fd07f', sub: 'May 1983 · 4 ABY', desc: 'The throne room, and a refusal rather than a victory.' },
@@ -81,7 +81,7 @@ window.FAN_PAGE = {
      it was released (the originals are in _originals/archive/star-wars/
      anniversaries/). Only two say I was in the cinema, because only those two
      have a ticket behind them, and the tickets sit beside their posters,
-     cropped above the theatre, the QR code and the order number. `date` is
+     cropped above the theater, the QR code and the order number. `date` is
      each campaign's release (the ticket's is its showtime), which is what
      fanpage.js orders the section by. */
   { id: 'anniversaries', kind: 'gallery', grid: true, whole: true, title: 'The Anniversaries', note: 'back on the big screen',
@@ -100,7 +100,7 @@ window.FAN_PAGE = {
         desc: 'The forty, with Luke and Vader cut into it.', meta: '2020',
         alt: 'The Empire Strikes Back 40th anniversary badge' },
       { src: '/assets/img/archive/star-wars/anniversaries/rotj-40-poster.jpg', date: '2023-04-28', accent: '#3fd07f', title: 'Return of the Jedi at forty',
-        desc: 'Back in theatres on 28 April 2023. I saw it the next night, Saturday the 29th, at half past seven.', meta: 'Seen in a cinema \u00b7 29 Apr 2023',
+        desc: 'Back in theaters on 28 April 2023. I saw it the next night, Saturday the 29th, at half past seven.', meta: 'Seen in a cinema \u00b7 29 Apr 2023',
         alt: 'The Return of the Jedi 40th anniversary poster: Vader above Luke and the second Death Star' },
       { src: '/assets/img/archive/star-wars/anniversaries/rotj-40-ticket.jpg', date: '2023-04-29 19:30', accent: '#3fd07f', title: 'The ticket',
         desc: 'One seat, E17, auditorium 14, Saturday 29 April at 7:30 PM.',
@@ -113,7 +113,7 @@ window.FAN_PAGE = {
         desc: 'The second Death Star set inside the zero.', meta: '2023',
         alt: 'The Return of the Jedi 40th anniversary logo in gold' },
       { src: '/assets/img/archive/star-wars/anniversaries/tpm-25-poster.jpg', date: '2024-05-03', accent: '#f0c840', title: 'The Phantom Menace at twenty-five',
-        desc: 'Every saga has a beginning. Back in theatres on 3 May 2024, and I was there that evening with four seats in a row.', meta: 'Seen in a cinema \u00b7 3 May 2024',
+        desc: 'Every saga has a beginning. Back in theaters on 3 May 2024, and I was there that evening with four seats in a row.', meta: 'Seen in a cinema \u00b7 3 May 2024',
         alt: 'The Phantom Menace 25th anniversary poster: Maul\u2019s eyes over Padm\u00e9, Qui-Gon and Obi-Wan' },
       { src: '/assets/img/archive/star-wars/anniversaries/tpm-25-ticket.jpg', date: '2024-05-03 17:50', accent: '#f0c840', title: 'The ticket',
         desc: 'Four seats, F9 to F12, auditorium 12, Friday 3 May at 5:50 PM. Rated five stars on the way out.',
@@ -126,7 +126,7 @@ window.FAN_PAGE = {
         desc: 'R2-D2 on the badge, 1999 to 2024.', meta: '2024',
         alt: 'The 25 years of LEGO Star Wars badge with R2-D2' },
       { src: '/assets/img/archive/star-wars/anniversaries/rots-20-poster.jpg', date: '2025-04-25', accent: '#ff4b2b', title: 'Revenge of the Sith at twenty',
-        desc: 'Back in theatres on 25 April 2025: Vader\u2019s mask over Mustafar, Anakin under it. My favourite of the eleven.', meta: '2025',
+        desc: 'Back in theaters on 25 April 2025: Vader\u2019s mask over Mustafar, Anakin under it. My favorite of the eleven.', meta: '2025',
         alt: 'The Revenge of the Sith 20th anniversary poster: Vader\u2019s mask over Anakin on Mustafar' },
       { src: '/assets/img/archive/star-wars/anniversaries/rots-20-wide.jpg', date: '2025-04-25', accent: '#ff4b2b', title: 'Revenge of the Sith, wide',
         desc: 'Mustafar across the whole frame.', meta: '2025',
@@ -242,7 +242,7 @@ window.FAN_PAGE = {
   /* Three wars, one shape: a galactic government against the thing trying to
      replace it, every time. The rail changes which one you are looking at and
      the block opens on the Clone Wars (the owner's call, 2026-10-04), which is
-     the era this page is mostly about. Each side's colour is its own: Republic
+     the era this page is mostly about. Each side's color is its own: Republic
      and Rebellion blue, Separatists and Empire red. */
   { id: 'wars', kind: 'conflict', title: 'The Two Sides', railLabel: 'Which war',
     note: 'three wars, one shape',
@@ -320,8 +320,8 @@ window.FAN_PAGE = {
           ] } },
     ] },
 
-  { id: 'legions', kind: 'tiles', title: 'The Legions', note: 'they painted their own armour',
-    lede: 'The clones were issued identical plastoid and then, one unit at a time, made it theirs: colour, kill markings, names, jaig eyes. The paint is the whole argument the show is making.',
+  { id: 'legions', kind: 'tiles', title: 'The Legions', note: 'they painted their own armor',
+    lede: 'The clones were issued identical plastoid and then, one unit at a time, made it theirs: color, kill markings, names, jaig eyes. The paint is the whole argument the show is making.',
     items: [
       { title: '501st Legion', accent: '#3f7fe0', sub: 'Vader’s Fist', desc: 'Anakin and Rex. Torrent Company: Fives, Echo, Jesse, Hardcase, Kix.' },
       { title: '212th Attack Battalion', accent: '#f0a63c', sub: 'Ghost Company', desc: 'Obi-Wan and Cody. Waxer and Boil, and a Twi’lek kid on Ryloth called Numa.' },
@@ -351,20 +351,20 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'kyber', kind: 'sabers', title: 'Kyber', note: 'the crystal picks the Jedi, not the other way round',
-    lede: 'A kyber crystal is colourless until it is bonded, and then it stays that colour for good. The blade is a record of who bonded it and how. Hover a hilt to ignite it, or click to leave it burning.',
+    lede: 'A kyber crystal is colourless until it is bonded, and then it stays that color for good. The blade is a record of who bonded it and how. Hover a hilt to ignite it, or click to leave it burning.',
     items: [
       { title: 'Blue', accent: '#3f8fff', sub: 'Guardian', desc: 'The Jedi who leads with the blade: Obi-Wan, Anakin, Rex’s general on every front of the war.' },
       { title: 'Green', accent: '#3fd07f', sub: 'Consular', desc: 'The Jedi who leads with the Force: Yoda, Qui-Gon, and Luke walking onto the skiff at Jabba’s.' },
       { title: 'Purple', accent: '#a06fe0', sub: 'Vaapad', desc: 'Mace Windu, and a form that works by walking right up to the edge of the dark and staying there.' },
       { title: 'Yellow', accent: '#f0c840', sub: 'Sentinel', desc: 'Temple Guards and their pikes, and Rey’s own blade on Tatooine at the very end.' },
-      { title: 'Orange', accent: '#e08a3a', sub: 'Rare', desc: 'A handful of Jedi and Inquisitors. Mostly a games-and-comics colour, and better for it.' },
+      { title: 'Orange', accent: '#e08a3a', sub: 'Rare', desc: 'A handful of Jedi and Inquisitors. Mostly a games-and-comics color, and better for it.' },
       { title: 'Red', accent: '#e83a2a', sub: 'Bled', desc: 'A Sith takes a crystal and pours rage into it until it bleeds. Not grown, stolen.' },
-      { title: 'White', accent: '#e8eef4', sub: 'Purified', desc: 'Ahsoka healed two bled crystals after she left the Order. The colour of a blade that answers to nobody.' },
+      { title: 'White', accent: '#e8eef4', sub: 'Purified', desc: 'Ahsoka healed two bled crystals after she left the Order. The color of a blade that answers to nobody.' },
       { title: 'Darksaber', accent: '#aab6c6', sub: 'Unique', dark: true, desc: 'Forged by Tarre Vizsla, the first Mandalorian Jedi. A black blade you only see by the white edge burning off it, and whoever holds it rules Mandalore, if they won it properly.' },
     ] },
 
   { id: 'lines', kind: 'quotes', title: 'Lines', note: 'the ones that stuck',
-    lede: 'Every quote below is graded to whoever said it: their blade colour if they carried one, and their faction’s if they never did. Senate gold for Padmé, 501st blue for the clones, beskar for Mandalore, Alliance orange for the Rebellion, Sith red for Vader.',
+    lede: 'Every quote below is graded to whoever said it: their blade color if they carried one, and their faction’s if they never did. Senate gold for Padmé, 501st blue for the clones, beskar for Mandalore, Alliance orange for the Rebellion, Sith red for Vader.',
     items: [
       { title: 'Do. Or do not. There is no try.', sub: 'Yoda · The Empire Strikes Back · green blade', accent: '#3fd07f' },
       { title: 'Hello there.', sub: 'Obi-Wan Kenobi · twice, twenty-six years apart · blue blade', accent: '#3f8fff' },
@@ -381,6 +381,34 @@ window.FAN_PAGE = {
     ] },
 
 
+  /* My own two Discord servers, as Discord draws them. These used to sit on
+     /star-wars/, which is the APPS page (the Apple apps, the Discord bots,
+     the high-school games): a server I run is fandom, not something I built
+     and shipped, so it belongs here with the rest of the galaxy. The frames
+     are the same files that page used, in _originals/archive/star-wars/. */
+  { id: 'servers', kind: 'gallery', grid: true, whole: true, title: 'The Servers', note: 'two of them · Battlefront II',
+    lede: 'Two Star Wars servers of my own. The Skywalker Order came first, in February 2021, under Ahsoka’s Fulcrum; FOR THE REPUBLIC followed in June 2024, and I boosted it to Level 1 twice in the same two minutes at three in the morning. Both are playing Battlefront II, and both carry the same three tags: the two halves of the shahada, and Free Palestine.',
+    items: [
+      { src: '/assets/img/archive/star-wars/skywalker-order.jpg', date: 'Feb 2021', accent: '#e8731d', title: 'The Skywalker Order',
+        desc: 'Founded February 2021, eight members, playing Battlefront II. Named for the order Luke was rebuilding, not the one the Emperor gave.', meta: 'Feb 2021',
+        alt: 'The Discord card for The Skywalker Order: 8 members, established February 2021, playing STAR WARS Battlefront II' },
+      { src: '/assets/img/archive/star-wars/skywalker-order-logo.jpg', date: 'Feb 2021', accent: '#e8731d', title: 'The Order’s icon',
+        desc: 'Ahsoka’s Fulcrum in white on black. She left the Order and kept the symbol, which is the whole point of it.', meta: 'Fulcrum',
+        alt: 'The Skywalker Order’s icon: Ahsoka’s Fulcrum symbol in white on black' },
+      { src: '/assets/img/archive/star-wars/republic.jpg', date: 'Jun 2024', accent: '#c9a227', title: 'FOR THE REPUBLIC',
+        desc: 'Founded June 2024, nine members, a clone trooper helmet for an icon. The name is what the 501st shout before they are told to stop.', meta: 'Jun 2024',
+        alt: 'The Discord card for FOR THE REPUBLIC: 9 members, established June 2024, a clone trooper helmet as its icon' },
+      { src: '/assets/img/archive/star-wars/republic-boost.jpg', date: 'Jun 2024', accent: '#f47fff', title: 'Two boosts, Level 1',
+        desc: 'Two notices a minute apart, 2:53 and 2:54 in the morning: I boosted it, then boosted it again, and it hit Level 1.', meta: '2:53 and 2:54 AM',
+        alt: 'Two Discord notices a minute apart: Abubakr just boosted the server, and FOR THE REPUBLIC has achieved Level 1' },
+      { src: '/assets/img/archive/star-wars/discord-profile.jpg', date: 'ThingW', accent: '#8f4fd0', title: 'My profile',
+        desc: 'ThingW, with a banner of Vader coming down a red-lit corridor. The one from the end of Rogue One.', meta: 'ThingW',
+        alt: 'My Discord profile, ThingW, with a banner of Darth Vader in a red-lit corridor' },
+      { src: '/assets/img/archive/star-wars/sheikh-anakin.jpg', date: 'Meme', accent: '#4fd07f', title: 'Sheikh Anakin',
+        desc: 'A Jedi in the desert between the Saudi and Palestinian flags, over Anakin beside a bearded man in a white kufi. It is funnier the longer you look at it.', meta: 'Meme',
+        alt: 'Sheikh Anakin: a Jedi in the desert between the Saudi and Palestinian flags and a man in Saudi dress, over Anakin Skywalker beside a bearded man in a white kufi' },
+    ] },
+
   // mount:'end' → renders into #fanBodyEnd, below the hand-written planet atlas
   { id: 'parks', kind: 'cards', title: 'Where It Exists', note: 'Batuu, and the places you can stand in it',
     lede: 'Galaxy’s Edge is Black Spire Outpost on Batuu, set between The Last Jedi and The Rise of Skywalker so it belongs to no film in particular. It is the most expensive land Disney has ever built, and the detail is absurd: the bins are in-universe, the signage is all Aurebesh, and nothing anywhere says “Star Wars” on it.',
@@ -392,7 +420,7 @@ window.FAN_PAGE = {
         desc: 'Opened three months after Anaheim and slightly larger. Same two rides, same Droid Depot and Savi’s Workshop, same Black Spire Outpost.',
         meta: 'The bigger of the two' },
       { title: 'Savi’s Workshop', sub: 'Both parks', tag: 'Build', accent: '#3f8fff',
-        desc: 'You build a lightsaber. An actual one, from parts, in a room with a ceremony and no photographs, and you pick the kyber colour. It costs a fortune and everybody who does it says it was worth it.',
+        desc: 'You build a lightsaber. An actual one, from parts, in a room with a ceremony and no photographs, and you pick the kyber color. It costs a fortune and everybody who does it says it was worth it.',
         meta: 'Handbuilt Lightsabers' },
       { title: 'Droid Depot', sub: 'Both parks', tag: 'Build', accent: '#e08a3a',
         desc: 'Build an astromech off a conveyor of parts. It moves, it beeps, and it reacts to things elsewhere in the land.',
@@ -415,11 +443,11 @@ window.FAN_PAGE = {
      (`finished`, see fanpage.js), the play time off its own library banner,
      and the screenshots that prove it: `shot` is the banner and `shots` the
      rest of that game's set, opening together in the lightbox, the same shape
-     the LEGO catalogue and the Wizarding World page use. A `shots` name with
+     the LEGO catalog and the Wizarding World page use. A `shots` name with
      no slash resolves beside the banner, so each game names its folder once.
      Raw captures in _originals/franchises/, and every frame is on /gaming/
      with the date it was taken. The LEGO four are not written here at all:
-     they are the catalogue's own entries (LEGO_GAME, from lego-games.js), so
+     they are the catalog's own entries (LEGO_GAME, from lego-games.js), so
      this page and the LEGO page show the same tile, with the same hours,
      rating and hundred-percent line, and cannot drift apart. */
   { id: 'finished', kind: 'tiles', compact: true, cols: 2, views: true, tally: 'at 100%',
@@ -697,14 +725,14 @@ window.FAN_PAGE = {
 window.FAN_PLAY = {
   kind: "pick",
   title: "Build Your Lightsaber",
-  intro: "Kyber crystals are colourless until a Jedi meditates on one and it responds to them. The colour is not chosen; it is what the crystal decides you are. Pick one and see what it means.",
+  intro: "Kyber crystals are colourless until a Jedi meditates on one and it responds to them. The color is not chosen; it is what the crystal decides you are. Pick one and see what it means.",
   prompt: "Take a crystal and hold it.",
   said: "The crystal settles. %.",
   items: [
-    { n: "Blue", s: "Jedi Guardian", c: "#4fa8f0", d: "M12 2v14M12 16v6M9 16h6", note: "The most common blade, and the one carried by Jedi who lean on the lightsaber form of the Order: Anakin, Obi-Wan, Luke on Hoth. Straightforward, and the colour most people picture." },
+    { n: "Blue", s: "Jedi Guardian", c: "#4fa8f0", d: "M12 2v14M12 16v6M9 16h6", note: "The most common blade, and the one carried by Jedi who lean on the lightsaber form of the Order: Anakin, Obi-Wan, Luke on Hoth. Straightforward, and the color most people picture." },
     { n: "Green", s: "Jedi Consular", c: "#4fd07f", d: "M12 2v14M12 16v6M9 16h6", note: "The scholars and negotiators. Luke builds a green one for the sail barge because the blue one went down the reactor shaft with his hand, and it is the better-looking blade." },
     { n: "Purple", s: "Mace Windu", c: "#a86ff0", d: "M12 2v14M12 16v6M9 16h6", note: "Exists because Samuel L. Jackson asked George Lucas for it so he could find himself in the crowd scenes. It stayed, and the fandom built a whole philosophy on top of it afterwards." },
-    { n: "Yellow", s: "Jedi Sentinel", c: "#f0d040", d: "M12 2v14M12 16v6M9 16h6", note: "The Temple Guards, and Rey at the very end of the sequels: a blade built out of a staff, in the one colour nobody in the family had used." },
+    { n: "Yellow", s: "Jedi Sentinel", c: "#f0d040", d: "M12 2v14M12 16v6M9 16h6", note: "The Temple Guards, and Rey at the very end of the sequels: a blade built out of a staff, in the one color nobody in the family had used." },
     { n: "Red", s: "Sith", c: "#e0342a", d: "M12 2v14M12 16v6M9 16h6", note: "Not a crystal that chose you. A Sith takes a kyber crystal and forces it (bleeds it) until it turns red. Every red blade in the galaxy is a crystal that was made to scream." },
     { n: "Darksaber", s: "Mandalore", c: "#8f98a8", d: "M12 3l3 4-3 11-3-11z M12 18v3", note: "One of a kind, black with a white edge, forged by the only Mandalorian ever admitted to the Jedi Order. Whoever holds it holds a claim to Mandalore, which is why it keeps changing hands." },
   ],

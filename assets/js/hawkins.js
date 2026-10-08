@@ -1,5 +1,9 @@
-/* starcourt.js: /starcourt/, the Palace Arcade and Starcourt Mall take on
-   the Stranger Things terminal (the original is /upside-down/).
+/* hawkins.js: /hawkins/, the Stranger Things interface.
+
+   One page where there used to be two: /starcourt/ (the mall and the Palace
+   Arcade) and /upside-down/ (the Byers house and the walkie-talkie). Both
+   drew the same town, both carried the same alphabet wall, and both are
+   this. Their old addresses redirect here.
 
    The page is drawn in CSS and SVG; this is the part of it that is alive:
 
@@ -9,10 +13,18 @@
                    as you stay. A finger cannot hover, so on a touch screen
                    the wall (which rides over the rooms) spells whichever
                    room you stop scrolling at instead.
-     the switch    two controls for one state: the light switch on the wall
-                   and the button under the intro. Every bulb surges once,
-                   the sky turns over like a card, and the mall is on the
-                   other side.
+     the descent   THE MERGE'S WHOLE POINT. Scrolling turns the town over.
+                   One number, --dp, goes on the body on every frame of
+                   scroll: 0 at the top, 1 at the foot. hawkins.css keys
+                   everything cold to it, so the mall dims, the vines grow
+                   in and the neon goes out continuously as you read down.
+                   Past the halfway mark the body also takes .is-down, the
+                   binary state the switch has always set, which is what the
+                   readouts, the fireworks and the spores already watch.
+     the switch    still there, and still throws the whole town over at once,
+                   for a reader who would rather not walk down. Throwing it
+                   scrolls the page to match, so the switch and the scroll
+                   can never disagree about which side you are on.
      this side     fireworks over Starcourt's parking lot now and then, the
                    Fourth of July of 1985, only while you are on this side.
      the far side  spores on a canvas and a soft red pulse of lightning every
@@ -20,9 +32,10 @@
                    sky moves at all with reduced motion.
      the readouts  the header clock (today's date as it fell in 1985, or, on
                    the other side, the date it stopped and how long you have
-                   been in), the arcade's attract screen, which cycles the
-                   machines until you choose one, and the mall's floor plan,
-                   which lights the shop you are pointing at.
+                   been in), the depth gauge, the arcade's attract screen,
+                   which cycles the machines until you choose one, and the
+                   mall's floor plan, which lights the shop you are
+                   pointing at.
 
    Then the tape, which asks the question, and the Void, which answers it. */
 (function upsideDown() {
@@ -41,7 +54,7 @@
   var cellList = Array.prototype.slice.call(document.querySelectorAll('.ud-cell[data-c]'));
   var cells = {};
   cellList.forEach(function (c) { cells[c.dataset.c] = c; });
-  var spelt = $('udSpelt'), capK = $('udCapK');
+  var spelled = $('udSpelt'), capK = $('udCapK');
   var IDLE = canHover ? 'Point at a room' : 'Scroll to a room';
 
   var word = '', idx = 0, timer = 0, looping = false, asker = null;
@@ -52,13 +65,13 @@
   function readout(n) {
     var out = [];
     for (var i = 0; i < word.length; i++) out.push(word[i] === ' ' ? ' ' : i < n ? word[i] : '·');
-    if (spelt) spelt.textContent = out.join(' ');
+    if (spelled) spelled.textContent = out.join(' ');
   }
   function quiet() {
     clearTimeout(timer); dark();
     word = ''; asker = null; looping = false;
     if (capK) capK.textContent = 'The wall is quiet';
-    if (spelt) spelt.textContent = IDLE;
+    if (spelled) spelled.textContent = IDLE;
   }
 
   // loop: say it again for as long as whoever asked (who) is still asking
@@ -120,7 +133,7 @@
     }, 1800);
   }
   function channel(el) {
-    // the shop on the plan, in the colour of its listing
+    // the shop on the plan, in the color of its listing
     var u = el && el.dataset.unit, g = u && plan ? plan.querySelector('[data-u="' + u + '"]') : null;
     if (lit && lit !== g) lit.classList.remove('is-lit');
     lit = g;
@@ -204,7 +217,7 @@
   /* ───────────── this side: fireworks ─────────────
      One shell at a time, every few seconds: a spark climbs out of the
      parking lot, opens into a ring of embers in one of the mall's neon
-     colours, and the embers fall and fade. The canvas lives on the front
+     colors, and the embers fall and fade. The canvas lives on the front
      face of the sky, so it turns over with the town. */
   var fc = $('udFire'), fx = fc && fc.getContext ? fc.getContext('2d') : null;
   var FW = ['#ff5fb4', '#3ee6d6', '#ffd23f', '#b48cff', '#ffffff', '#4aa8ff'];
@@ -380,12 +393,16 @@
   function paint() {
     var d = isDown();
     if (sw) sw.setAttribute('aria-checked', d ? 'true' : 'false');
-    if (crossT) crossT.textContent = d ? 'Turn it upside up' : 'Turn it upside down';
-    if (where) where.textContent = d ? 'The Upside Down · Starcourt Mall' : 'Hawkins, Indiana · Starcourt Mall';
+    if (crossT) crossT.textContent = d ? 'Walk back up' : 'Take me straight down';
+    if (where) where.textContent = d ? 'The Upside Down · under Starcourt' : 'Hawkins, Indiana · Starcourt Mall';
   }
   function cross(d) {
     root.classList.toggle('is-down', d);
     downSince = Date.now();
+    // the switch is a shortcut for the scroll, so it takes the page with it:
+    // otherwise the class and --dp would disagree and the sky would say one
+    // side while the color over it said the other
+    ride(d);
     paint(); tick(); spores(); schedule(true); fireworks();
     // what Will spelled first, and what he spelled when it came
     spell(d ? 'RUN' : 'RIGHT HERE', false);
@@ -406,6 +423,106 @@
   if (sw) sw.addEventListener('click', flip);
   if (crossBtn) crossBtn.addEventListener('click', flip);
   paint();
+
+  /* ───────────── the descent ─────────────
+     The merge's one new mechanism. Scrolling the page walks the town over:
+     --dp is how far down you are (0 at the top, 1 at the foot) and
+     hawkins.css keys every cold thing on the page to it.
+
+     WHY A CLASS AS WELL AS A NUMBER. The gradual part is --dp, but the flip
+     of the sky is a 3D card turn that cannot be done halfway without
+     looking broken, and the fireworks, the spores, the clock and the signs
+     were all already written against the binary .is-down that the switch
+     sets. So the scroll sets --dp continuously and trips the SAME class at
+     the halfway mark. Nothing that existed had to be rewritten, and the
+     switch keeps working for a reader who would rather not walk.
+
+     WHY A DEAD BAND ROUND THE TRIP POINT. Flipping exactly at .5 would turn
+     the sky over and back on every small scroll near the middle, so the
+     class goes on at .55 going down and only comes off again at .45. */
+  /* the gauge is aria-hidden: it is a picture of the scroll, and the
+     header's where-line is what a screen reader is actually told. Only
+     its word needs writing. */
+  var depthT = $('udDepthT');
+  var dp = 0, dpRaf = 0, swept = false;
+
+  // what the gauge is called at this depth: the five names the show gives it
+  function depthName(v) {
+    if (v < .12) return 'Hawkins';
+    if (v < .40) return 'Starcourt';
+    if (v < .58) return 'The gate';
+    if (v < .84) return 'Going under';
+    return 'The Upside Down';
+  }
+
+  function measure() {
+    var h = document.documentElement;
+    var run = (h.scrollHeight - innerHeight);
+    return run > 40 ? Math.min(1, Math.max(0, (pageYOffset || h.scrollTop || 0) / run)) : 0;
+  }
+
+  function writeDepth() {
+    dpRaf = 0;
+    root.style.setProperty('--dp', dp.toFixed(4));
+    if (depthT) {
+      var n = depthName(dp);
+      if (depthT.textContent !== n) depthT.textContent = n;
+    }
+
+    // the class, with the dead band, and only when neither the switch's
+    // animation nor the scroll it started is still running
+    if (!busy && !autoScroll) {
+      var d = isDown();
+      if (!d && dp > .55) { root.classList.add('is-down'); settleSide(); }
+      else if (d && dp < .45) { root.classList.remove('is-down'); settleSide(); }
+    }
+  }
+
+  // everything that watches the side, after the scroll has changed it
+  function settleSide() {
+    paint(); tick(); spores(); schedule(true); fireworks();
+    // Will says it once, the first time the scroll takes you under
+    if (isDown() && !swept) { swept = true; spell('RUN', false); }
+  }
+
+  function onScroll() {
+    dp = measure();
+    if (!dpRaf) dpRaf = requestAnimationFrame(writeDepth);
+  }
+
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  onScroll(); writeDepth();
+
+  /* the switch and the scroll must never disagree about which side you are
+     on, so throwing the switch also takes the page to that end. The class is
+     set by flip() first and the scroll then arrives at a matching --dp. */
+  /* WHY THE LOCK. ride() scrolls, the scroll calls writeDepth(), and
+     writeDepth() is the thing that sets the class from the depth: without a
+     lock the switch would set the class, the scroll it started would pass
+     back through the dead band and set it straight back. So the scroll the
+     switch causes is marked as the switch's own and writeDepth() only writes
+     the number while it runs, not the class. The lock is cleared when the
+     page stops moving, not on a timer, so a slow smooth scroll is safe.
+     (pick() has its own local `riding`, meaning something else entirely:
+     whether the wall is alongside the rooms. These must not be confused.) */
+  var autoScroll = 0;
+  function ride(d) {
+    var h = document.documentElement;
+    var y = d ? (h.scrollHeight - innerHeight) : 0;
+    autoScroll++;
+    var last = -1, still = 0;
+    (function watch() {
+      var now = pageYOffset || h.scrollTop || 0;
+      if (Math.abs(now - last) < 1) { still++; } else { still = 0; }
+      last = now;
+      // two quiet frames in a row, or the far end reached, and it has landed
+      if (still > 1 || Math.abs(now - y) < 2) { autoScroll = Math.max(0, autoScroll - 1); return; }
+      requestAnimationFrame(watch);
+    })();
+    try { scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' }); }
+    catch (e) { scrollTo(0, y); }   /* older WebKit: no options object */
+  }
 
   /* ───────────── the tape, and the Void ───────────── */
   var tape = $('udTape'), main = $('udMain'), top = $('udTop'), home = $('udHome'), stay = $('udStay');

@@ -13,7 +13,7 @@
                    keyboard and screen-reader reachable, and the list and
                    the map cannot drift apart.
      the powers    each holds one unbroken stretch of the rim: its
-                   territory is tinted in its colour, its crest is laid
+                   territory is tinted in its color, its crest is laid
                    flat on the plane, and a frontier runs between them.
      the briefing  locking a target reads its data-brief and data-facts out
                    in the column beside the table, with the jump.
@@ -66,7 +66,7 @@
   }
 
   // The two powers, each read off its own section of the charts: its
-  // colour (--f), the name of its space and its crest, whose path the
+  // color (--f), the name of its space and its crest, whose path the
   // table borrows from the page's sprite so there is only one drawing of it.
   var FACTIONS = {};
   function factionOf(a) {
@@ -89,7 +89,7 @@
     var box = a.closest('.el-sector');
     var name = box ? box.dataset.sector : 'Core';
     if (!SECTORS[name]) {
-      // the colour is the sector's own --c, so the CSS stays its only source
+      // the color is the sector's own --c, so the CSS stays its only source
       var c = box ? getComputedStyle(box).getPropertyValue('--c').trim() : '#5fa3ec';
       SECTORS[name] = { name: name, c: c, rgb: rgbOf(c), list: [] };
     }
@@ -113,7 +113,7 @@
   });
 
   /* each sector's wedge, worked out from where its systems sit: the bounds
-     fall halfway across the gaps between neighbouring sectors */
+     fall halfway across the gaps between neighboring sectors */
   var wedges = [];
   (function () {
     var spans = [];
@@ -138,7 +138,7 @@
     wedges = spans;
   })();
 
-  /* each power's territory: the run of neighbouring wedges it holds,
+  /* each power's territory: the run of neighboring wedges it holds,
      joined up round the rim. Where one run ends and the next begins is
      the frontier. Each crest goes where its territory has the most open
      space, so it lies on the plane between the systems, not under them. */
@@ -549,7 +549,7 @@
     }
     ctx.stroke();
 
-    // the powers' territories, each tinted towards its rim in its colour
+    // the powers' territories, each tinted toward its rim in its color
     if (realms.length > 1) realms.forEach(function (rm) {
       var mine = sel && sel.faction === rm.f;
       ctx.beginPath(); proj(0, 0, Z); ctx.moveTo(PX, PY);
@@ -589,7 +589,7 @@
     });
 
     // the powers: a heavier band outside the sectors' arcs, and between
-    // them the frontier, a bright seam with each side's colour along it
+    // them the frontier, a bright seam with each side's color along it
     if (realms.length > 1) {
       ctx.lineWidth = Math.max(2.4, 4 * u);
       realms.forEach(function (rm) {
@@ -645,7 +645,7 @@
 
     // the crests, laid flat on the plane in the middle of each territory.
     // A crest is small next to the camera's distance, so the projection
-    // across it is taken as flat: its centre and two unit steps, one along
+    // across it is taken as flat: its center and two unit steps, one along
     // each of the table's axes, make the transform its path is filled with.
     realms.forEach(function (rm) {
       if (!rm.f.crest) return;
@@ -969,7 +969,7 @@
     if (reduced || !sctx) { location.href = s.href; return; }
     jumping = { href: s.href };
     if (jumpTo) jumpTo.textContent = s.name;
-    // the HUD wears the colours of the space you are jumping into
+    // the HUD wears the colors of the space you are jumping into
     if (jumpSpace) jumpSpace.textContent = s.faction.space;
     if (jumpCrest && s.faction.crestId) jumpCrest.setAttribute('href', '#' + s.faction.crestId);
     if (jumpBox) jumpBox.style.setProperty('--f', s.faction.c);

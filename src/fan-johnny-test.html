@@ -1,0 +1,62 @@
+---
+permalink: /worlds/johnny-test/
+title: "Johnny Test · Abubakr Elmallah"
+description: "Johnny Test as a fandom: a talking dog, two genius sisters in the basement, and a whip-crack on every single cut."
+tab: "/worlds/"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/johnny-test.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
+</head>
+<body data-intro="none" data-fan="jt">
+
+<!-- the shared backdrop; the colors are in this page's own stylesheet -->
+<div class="np-sky" aria-hidden="true"><span class="np-glow"></span><span class="np-grid"></span></div>
+
+{% include fx.html %}
+
+{% include cursor.html %}
+
+{% include rail.html %}
+
+{% include topbar.html %}
+
+<main>
+
+  <section class="fan-hero">
+    {% include crumbs.html parent="Worlds" url="/worlds/#franchises" here="Johnny Test" %}
+    <p class="fan-kicker"><span>Franchise &#183; As a kid &#183; since 2005</span></p>
+    <h1 class="fan-title">Johnny Test</h1>
+    <p class="fan-lede-hero">Johnny is eleven, wants a shortcut to everything, and happens to live above a laboratory run by his thirteen-year-old twin sisters, who are both genuine geniuses. The trade is the entire show: they will build him whatever he asks for, provided he agrees to be the one they test it on. He always agrees.</p>
+    <p class="fan-lede-hero">His dog Dukey can talk, courtesy of an earlier experiment, and spends every episode as the only character who can see what is about to happen. What people actually remember is the sound design: a whip-crack on every scene transition, for six seasons, loud enough that you could hear which show was on from another room.</p>
+    <div class="fan-links">
+      <a class="fan-link" href="#lab" data-magnetic>The lab &#8599;</a>
+      <a class="fan-link" href="#works" data-magnetic>Everything in it &#8599;</a>
+      <a class="fan-link" href="#themes" data-magnetic>The theme &#8599;</a>
+    </div>
+  </section>
+
+  <div id="fanBody"></div>
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
+
+</main>
+
+{% include footer.html back="/worlds/" %}
+
+{% include tabbar.html %}
+
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
+<!-- page content: data then the shared renderer, before reveal.js -->
+<script src="{% include v.html f='/assets/js/fan-jt.js' %}"></script>
+<script src="{% include v.html f='/assets/js/photos-data.js' %}"></script>
+{% include fan-engine.html %}
+{% include site-scripts.html %}
+{% include analytics.html %}
+</body>
+</html>

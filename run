@@ -5,6 +5,7 @@
 #
 # And for anything else running on this Mac (not just the site):
 #                        ./run ports              list every program serving a port
+#                        ./run kill               stop every website of yours
 #                        ./run kill <PID>         stop one program by its PID
 #                        ./run kill -9 <PID>      force it, if it will not stop
 #                        ./run killall <name>     stop every program of yours matching <name>
@@ -119,7 +120,40 @@ case "$1" in
   kill)
     sig=""; [ "$2" = "-9" ] && { sig="-9"; shift; }
     pid="$2"
-    case "$pid" in ''|*[!0-9]*) echo "Usage: ./run kill [-9] <PID>   (./run ports lists them)"; exit 1 ;; esac
+    # ── ./run kill  with no PID: stop every website of yours ──
+    # "kill" on its own used to be a usage error, which is useless when the
+    # real question is "something is still serving a site and I do not care
+    # what". This stops every DEV WEB SERVER this user owns: the Jekyll site
+    # on any port or terminal, a stray `python3 -m http.server`, a node/vite/
+    # next/webpack dev server, `php -S`, `ruby -run -e httpd`, http-server,
+    # live-server, serve.
+    #
+    # WHY IT IS A LIST AND NOT "EVERYTHING LISTENING". Plenty of things of
+    # yours hold a TCP port that you would be furious to lose: VS Code's
+    # helpers, Control Centre on 5000/7000, rapportd, a database. Killing by
+    # "it listens on a port" takes those with it. So this matches on what the
+    # process actually IS, and anything not on the list is left alone.
+    if [ -z "$pid" ]; then
+      stop_all >/dev/null   # the site server and its log tails, politely first
+      pat='bin/jekyll serve|http\.server|http-server|live-server|SimpleHTTPServer|vite|webpack-dev-server|next dev|nuxt dev|ng serve|php -S|ruby -run|node .*\bserve\b'
+      mine=$(pgrep -u "$(id -u)" -f "$pat" | grep -v -e "^$$\$" -e "^$PPID\$" | sort -un)
+      if [ -z "$mine" ]; then echo "No website of yours is running."; exit 0; fi
+      echo "Stopping:"
+      for p in $mine; do
+        printf '    %-7s %s\n' "$p" "$(ps -o command= -p "$p" 2>/dev/null | cut -c1-88)"
+      done
+      kill $mine 2>/dev/null
+      still=""
+      for i in $(seq 1 20); do
+        still=$(pgrep -u "$(id -u)" -f "$pat" | grep -v -e "^$$\$" -e "^$PPID\$")
+        [ -z "$still" ] && break
+        sleep 0.25
+      done
+      [ -n "$still" ] && kill -9 $still 2>/dev/null
+      echo "Done. (./run ports lists anything still holding a port.)"
+      exit 0
+    fi
+    case "$pid" in *[!0-9]*) echo "Usage: ./run kill             stop every web server of yours"; echo "       ./run kill [-9] <PID>  stop one   (./run ports lists them)"; exit 1 ;; esac
     what=$(ps -o command= -p "$pid" 2>/dev/null | cut -c1-100)
     [ -n "$what" ] || { echo "No process with PID $pid."; exit 1; }
     kill $sig "$pid" && echo "Stopped PID $pid:  $what"

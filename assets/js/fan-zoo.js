@@ -4,12 +4,12 @@
 /* The `when:` line is read off the photographs and off Abubakr's own words.
    The first frame is the Skyfari in August 2010, then the zoo gate in March
    2018; the Safari Park is July 2020, on the Africa Tram with a rhino at the
-   rail, and again in January 2021. The Safari Park is the favourite, in his
+   rail, and again in January 2021. The Safari Park is the favorite, in his
    words: the cheetah, everything to do with a safari, the camels, the little
    blue compass, and the giant build-your-own Icee machine. The ◆ marks
    follow that and nothing else. */
 window.FAN_PAGE = {
-  when: { at: 'Since I was small; the Safari Park is the favourite',
+  when: { at: 'Since I was small; the Safari Park is the favorite',
           note: 'The first photograph is the Skyfari in August 2010. The Safari Park is the cheetah, the camels, the little blue compass and the giant Icee machine.' },
   sections: [
 
@@ -27,15 +27,15 @@ window.FAN_PAGE = {
       { when: '1969', title: 'The Skyfari',
         desc: 'A Swiss-built aerial tramway strung across the main canyon, which remains the only way to actually read the shape of the place. Still running, and it is the first photograph I have of this place: August 2010, in the gondola, small.' },
       { when: '1972', title: 'The Safari Park',
-        desc: 'Eighteen hundred acres at Escondido, thirty miles north, opened as the San Diego Wild Animal Park. Same institution, fences moved a very long way out, and it exists mainly as breeding space. The favourite of the two, by a distance.' },
+        desc: 'Eighteen hundred acres at Escondido, thirty miles north, opened as the San Diego Wild Animal Park. Same institution, fences moved a very long way out, and it exists mainly as breeding space. The favorite of the two, by a distance.' },
       { when: '1987', title: 'The condors',
-        desc: 'The last wild California condor was taken into captivity, leaving twenty-seven birds alive on earth. San Diego and Los Angeles ran the breeding programme between them. There are now more than five hundred, and over half of those are flying.' },
+        desc: 'The last wild California condor was taken into captivity, leaving twenty-seven birds alive on earth. San Diego and Los Angeles ran the breeding program between them. There are now more than five hundred, and over half of those are flying.' },
       { when: '1996 · 2019 · 2024', title: 'Pandas, and then no pandas, and then pandas',
         desc: 'Giant pandas arrived on loan in 1996, and the zoo worked out enough about their reproduction that the technique spread everywhere. The last two went back to China in 2019. Two more, Yun Chuan and Xin Bao, arrived in 2024.' },
     ] },
 
   { id: 'places', kind: 'lands', fold: true, title: 'Inside The Zoo', note: 'both sites, and what is in them',
-    lede: 'It is organised by climate and terrain rather than by continent, which is why the map does not look like a world map. The canyon does most of the sorting.',
+    lede: 'It is organized by climate and terrain rather than by continent, which is why the map does not look like a world map. The canyon does most of the sorting.',
     items: [
       { title: 'Africa Rocks', sub: 'Opened 2017', unit: 'habitat',
         desc: 'The largest project the zoo has ever built, replacing enclosures that dated to the 1930s. Six African habitats along one canyon wall.',
@@ -81,11 +81,11 @@ window.FAN_PAGE = {
           { n: 'Giraffe', y: '' },
           { n: 'Koala · the largest colony outside Australia', y: '', big: true },
         ] },
-      { title: 'The Safari Park', sub: 'Escondido · the favourite', unit: 'thing',
-        desc: 'The favourite, by a distance: eighteen hundred acres, a tram that loops the African field, and cheetahs with a straight to run on. Two visits are in my photographs, July 2020 on the tram with masks on and a rhino walking up to the rail, and January 2021.',
+      { title: 'The Safari Park', sub: 'Escondido · the favorite', unit: 'thing',
+        desc: 'The favorite, by a distance: eighteen hundred acres, a tram that loops the African field, and cheetahs with a straight to run on. Two visits are in my photographs, July 2020 on the tram with masks on and a rhino walking up to the rail, and January 2021.',
         rides: [
           { n: 'Africa Tram · the loop of the field', y: '', big: true },
-          { n: 'Cheetah · the favourite animal', y: '', big: true },
+          { n: 'Cheetah · the favorite animal', y: '', big: true },
           { n: 'The camels', y: '', big: true },
           { n: 'Giraffes and a rhino at the tram rail', y: '2020', big: true },
           { n: 'The giant build-your-own Icee machine', y: '', big: true },
@@ -120,7 +120,7 @@ window.FAN_PAGE = {
         desc: 'The Safari Park holds cell lines from twelve individuals and is working on producing embryos from them with southern white surrogates. This is the honest version of what conservation looks like when it has already nearly failed.',
         meta: 'And the work is still going' },
       { title: 'Eighteen hundred acres', sub: 'The Safari Park', tag: 'The space', accent: '#e0a050',
-        desc: 'Escondido exists so that herd animals can be kept in numbers large enough for the herd behaviour to be real, which is what breeding programmes actually need. It is not a bigger zoo, it is a different tool.',
+        desc: 'Escondido exists so that herd animals can be kept in numbers large enough for the herd behavior to be real, which is what breeding programs actually need. It is not a bigger zoo, it is a different tool.',
         meta: 'Not a bigger zoo, a different tool' },
     ] },
 
@@ -130,7 +130,7 @@ window.FAN_PAGE = {
      a thing you could walk into, with the toys, and that is the memory. It
      earns the space twice over, because the bird the cartoon was about went
      extinct in the wild five years after the first film and was put back by
-     exactly the kind of programme the section above this one is about.
+     exactly the kind of program the section above this one is about.
 
      The first card is his, in his words: the tie-in is a childhood memory
      rather than something with a press release behind it, so it does not
@@ -143,7 +143,7 @@ window.FAN_PAGE = {
         desc: 'Rio came to the zoo as a tie-in, with the toys and the film attached to the real macaws, which is a fair trade: the animals get the audience the cartoon brought them. This card is memory rather than record, so it carries no date.',
         meta: 'His own, and undated on purpose' },
       { title: 'The two films', sub: '2011 and 2014', tag: 'The films', accent: '#4a9ae8',
-        desc: 'Blue Sky Studios made both and Carlos Saldanha directed both. He is from Rio, which is why the city in them has weather and traffic in it rather than a beach on a postcard: Corcovado kept small on its hill, the favelas as stacked colour up the slopes, the wave pattern in the Copacabana pavement that almost nobody animates.',
+        desc: 'Blue Sky Studios made both and Carlos Saldanha directed both. He is from Rio, which is why the city in them has weather and traffic in it rather than a beach on a postcard: Corcovado kept small on its hill, the favelas as stacked color up the slopes, the wave pattern in the Copacabana pavement that almost nobody animates.',
         meta: 'Real in Rio was nominated for an Oscar' },
       { title: 'The Spix’s macaw', sub: 'Cyanopsitta spixii', tag: 'The species', accent: '#5fa3ec',
         desc: 'A small blue macaw from one strip of dry caatinga along the Rio São Francisco in Bahia, and nowhere else. Named for Johann Baptist von Spix, who collected one in 1819 and shot it. The premise of a children’s cartoon, the last male of his species flown in to breed, was a live emergency at the time it was written.',
@@ -152,7 +152,7 @@ window.FAN_PAGE = {
         desc: 'BirdLife International formally declared it extinct in the wild in 2019, five years after the sequel. The last known wild bird had gone in 2000. Everything alive was in captivity, most of it in private collections in Europe and Qatar.',
         meta: 'Five years after Rio 2' },
       { title: 'Put back, in 2022', sub: 'Curaçá, Bahia', tag: 'The return', accent: '#3fd589',
-        desc: 'Captive-bred birds from a German breeding programme were released into the caatinga at Curaçá in June 2022, and some have bred in the wild since. It is the same argument as the condor two sections up, run by somebody else and won.',
+        desc: 'Captive-bred birds from a German breeding program were released into the caatinga at Curaçá in June 2022, and some have bred in the wild since. It is the same argument as the condor two sections up, run by somebody else and won.',
         meta: 'And they have bred since' },
       { title: 'Blue Sky is gone', sub: 'Closed April 2021', tag: 'The studio', accent: '#c9ced6',
         desc: 'The studio that made both films, and Ice Age, was shut by Disney in April 2021 after the Fox acquisition. There will not be a third one.',
@@ -160,12 +160,12 @@ window.FAN_PAGE = {
     ] },
 
   /* the complete index. On a zoo page this is the whole institution rather
-     than a filmography: both sites, the habitats, and the programmes. */
+     than a filmography: both sites, the habitats, and the programs. */
   { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'two sites, and the record',
     lede: 'One institution on two sites, about twelve thousand animals across some six hundred and fifty species, and a research arm older than most of them.',
     items: [
       { title: 'The Two Sites', sub: '1916 · 1972', unit: 'site',
-        desc: 'Same organisation, thirty miles apart, doing two different jobs. I have been to both; the Safari Park is the favourite.',
+        desc: 'Same organization, thirty miles apart, doing two different jobs. I have been to both; the Safari Park is the favorite.',
         rows: [
           { n: 'San Diego Zoo · Balboa Park', y: '1916', big: true },
           { n: 'Safari Park · Escondido', y: '1972', big: true },
@@ -182,7 +182,7 @@ window.FAN_PAGE = {
           { n: 'Discovery Outpost', y: '' },
           { n: "Wildlife Explorers Basecamp", y: '2022' },
         ] },
-      { title: 'The Programmes', sub: 'what it is actually for', unit: 'programme',
+      { title: 'The Programs', sub: 'what it is actually for', unit: 'program',
         desc: 'The reason the institution describes itself as a wildlife alliance rather than a zoo.',
         rows: [
           { n: 'California Condor Recovery', y: '1987', big: true },
@@ -201,7 +201,7 @@ window.FAN_PAGE = {
         desc: 'Written as a private joke and suppressed by the composer during his lifetime because he thought it would damage his reputation. It is now the piece every zoo on earth plays.',
         href: 'https://www.youtube.com/watch?v=clK9rM9JoIs', link: 'Listen' },
       { title: 'Balboa Park Organ Pavilion', accent: '#e0a050', sub: 'Spreckels Organ · since 1915',
-        desc: 'Not the zoo, but a hundred metres from its gate: the largest outdoor pipe organ in the world, installed for the same 1915 exposition the animals were left over from, and still played free on Sundays.',
+        desc: 'Not the zoo, but a hundred meters from its gate: the largest outdoor pipe organ in the world, installed for the same 1915 exposition the animals were left over from, and still played free on Sundays.',
         links: [
           { href: 'https://www.youtube.com/watch?v=rZOKxmpJ9g4', label: 'Listen' },
           { href: 'https://spreckelsorgan.org/', label: 'The pavilion' },
@@ -213,7 +213,7 @@ window.FAN_PAGE = {
       { title: 'San Diego Zoo', href: 'https://sandiegozoo.org/',
         desc: 'The zoo itself: what is currently on exhibit, and the live cameras.' },
       { title: 'San Diego Zoo Wildlife Alliance', href: 'https://sandiegozoowildlifealliance.org/',
-        desc: 'The conservation arm, the Frozen Zoo, and the field programmes.' },
+        desc: 'The conservation arm, the Frozen Zoo, and the field programs.' },
       { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/San_Diego_Zoo',
         desc: 'The 1915 exposition, the lion, and everything since.' },
     ] },

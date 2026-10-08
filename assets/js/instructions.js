@@ -1,12 +1,12 @@
 /* instructions.js: /instructions/, the LEGO instruction booklet.
 
    The steps are the ordinary list of links in instructions.html, each
-   carrying its brick, colour and parts in data- attributes; this file is the
+   carrying its brick, color and parts in data- attributes; this file is the
    booklet around them:
 
-     the brick    one drawn brick per step, in that step's colour, built from
+     the brick    one drawn brick per step, in that step's color, built from
                   its data-brick shape. SVG written here, so a step only has
-                  to name a shape and a colour
+                  to name a shape and a color
      the parts    the parts list printed under each step, from data-parts
      the count    the piece total, added up from every step's data-pcs rather
                   than written down, so it cannot drift from the list
@@ -32,7 +32,7 @@
 
   /* ───────────── the bricks ─────────────
      One drawing per shape, in studs. Each returns the brick's body and its
-     studs; the colour is passed in, and the outline is always the ink so a
+     studs; the color is passed in, and the outline is always the ink so a
      pale brick still reads on white paper. */
 
   function studs(n, y, w) {
@@ -91,11 +91,11 @@
     'plate': ['plate', 4], 'tile': ['tile', 3], 'arch': ['arch', 4],
   };
 
-  function draw(name, colour) {
+  function draw(name, color) {
     var spec = BRICKS[name] || BRICKS['2x2'];
     var made = SHAPES[spec[0]](spec[1]);
     return '<svg class="lg-brick" viewBox="0 0 ' + made.w + ' ' + made.h + '"'
-      + ' aria-hidden="true" style="color:' + colour + '">' + made.body + '</svg>';
+      + ' aria-hidden="true" style="color:' + color + '">' + made.body + '</svg>';
   }
 
   /* ───────────── build the booklet ───────────── */
@@ -112,16 +112,91 @@
 
   var total = 0;
 
+  /* ───────────── the model ─────────────
+     The pile the booklet is building. It is stacked from the steps that are
+     ticked off, in step order, so it is never anything other than the
+     booklet's own state drawn upward. */
+  var stack = $('lgStack'), model = $('lgModel');
+
+  function remodel() {
+    if (!stack) return;
+    var on = steps.filter(function (s) {
+      return s.classList.contains('is-built');
+    });
+    /* the bricks, bottom of the model first: the baseplate step is step one,
+       which is why the stack is laid out in reverse by CSS rather than here */
+    stack.innerHTML = on.map(function (s) {
+      return draw(s.getAttribute('data-brick'), s.getAttribute('data-c') || '#f5d222');
+    }).join('');
+    if (model) model.classList.toggle('is-built', on.length > 0);
+
+    /* the figures beside it, all counted from the list rather than written */
+    var pcs = on.reduce(function (sum, s) {
+      var n = parseInt(s.getAttribute('data-pcs'), 10);
+      return sum + (isNaN(n) ? 0 : n);
+    }, 0);
+    var pct = Math.round((on.length / steps.length) * 100);
+    if ($('lgBuiltPct')) $('lgBuiltPct').textContent = pct + '%';
+    if ($('lgPFill')) $('lgPFill').style.width = pct + '%';
+    if ($('lgBuiltN')) $('lgBuiltN').textContent = on.length;
+    if ($('lgBuiltT')) $('lgBuiltT').textContent = steps.length;
+    if ($('lgBuiltPc')) $('lgBuiltPc').textContent = pcs.toLocaleString();
+    if ($('lgEmpty')) {
+      $('lgEmpty').textContent = on.length
+        ? '' : 'Nothing built yet. Tick a step.';
+    }
+    bags();
+  }
+
+  /* ───────────── the bags ─────────────
+     Each .lg-bag in the booklet is one bag; its count is its own steps, so
+     adding a step to a bag in the HTML needs no change here. */
+  function bags() {
+    var box = $('lgBags');
+    if (!box) return;
+    var groups = Array.prototype.slice.call(document.querySelectorAll('.lg-bag'));
+    box.innerHTML = groups.map(function (g, i) {
+      var mine = Array.prototype.slice.call(g.querySelectorAll('.lg-step'));
+      var done = mine.filter(function (s) { return s.classList.contains('is-built'); }).length;
+      var h = g.querySelector('.lg-bag-h');
+      /* the bag's own name, without the number chip the heading starts with */
+      var name = h ? h.textContent.replace(/^\s*\d+\s*/, '').trim() : 'Bag ' + (i + 1);
+      return '<li class="' + (done === mine.length && mine.length ? 'is-done' : '') + '">'
+        + '<b>' + (i + 1) + '</b>'
+        + '<span>' + name + '</span>'
+        + '<em>' + done + '/' + mine.length + '</em></li>';
+    }).join('');
+  }
+
+  /* ───────────── the callout ─────────────
+     The parts box in the corner, following whichever step you point at. */
+  function callout(step) {
+    var b = $('lgCalloutB'), n = $('lgCalloutN'), p = $('lgCalloutP');
+    if (!b || !step) return;
+    var pcs = parseInt(step.getAttribute('data-pcs'), 10);
+    var color = step.getAttribute('data-c') || '#f5d222';
+    var brick = step.getAttribute('data-brick');
+    /* up to six of the step's bricks, which is as many as a callout ever
+       shows before it starts printing "6x" instead */
+    var many = Math.max(1, Math.min(6, isNaN(pcs) ? 1 : pcs));
+    var out = '';
+    for (var i = 0; i < many; i++) out += draw(brick, color);
+    b.innerHTML = out;
+    var num = step.querySelector('.lg-step-n');
+    if (n) n.textContent = 'Step ' + (num ? num.textContent : '');
+    if (p) p.textContent = step.getAttribute('data-parts') || '';
+  }
+
   steps.forEach(function (step) {
     var brick = step.getAttribute('data-brick');
-    var colour = step.getAttribute('data-c') || '#f5d222';
+    var color = step.getAttribute('data-c') || '#f5d222';
     var parts = step.getAttribute('data-parts');
     var pcs = parseInt(step.getAttribute('data-pcs'), 10);
     if (!isNaN(pcs)) total += pcs;
 
     /* the brick goes between the number and the text */
     var n = step.querySelector('.lg-step-n');
-    if (n && brick) n.insertAdjacentHTML('afterend', draw(brick, colour));
+    if (n && brick) n.insertAdjacentHTML('afterend', draw(brick, color));
 
     /* the parts list under the step's own title */
     var t = step.querySelector('.lg-step-t');
@@ -152,7 +227,13 @@
       tick.textContent = on ? '✓' : '';
       step.classList.toggle('is-built', on);
       save();
+      /* the model is the whole point of ticking a step off */
+      remodel();
     });
+
+    /* pointing at a step puts its parts in the callout */
+    step.addEventListener('mouseenter', function () { callout(step); });
+    step.addEventListener('focus', function () { callout(step); });
     step.parentNode.insertBefore(tick, step.nextSibling);
     /* the tick and its step share a row */
     step.parentNode.style.display = 'flex';
@@ -175,4 +256,22 @@
     first.scrollIntoView({ behavior: 'smooth', block: 'center' });
     first.focus({ preventScroll: true });
   });
+
+  /* ───────────── build it all, or take it apart ─────────────
+     Every tick, set at once. It goes through each step's own tick button so
+     there is exactly one place that knows what ticking a step means. */
+  function setAll(on) {
+    steps.forEach(function (step) {
+      var isOn = step.classList.contains('is-built');
+      if (isOn === on) return;
+      var tick = step.parentNode.querySelector('.lg-tick');
+      if (tick) tick.click();
+    });
+  }
+  if ($('lgAll')) $('lgAll').addEventListener('click', function () { setAll(true); });
+  if ($('lgClear')) $('lgClear').addEventListener('click', function () { setAll(false); });
+
+  /* the model and the callout start from whatever the booklet remembers */
+  remodel();
+  callout(steps[0]);
 })();

@@ -1,7 +1,7 @@
 /* wanted.js: /wanted/, the Red Dead Redemption terminal.
 
    The sheriff's board in Valentine, and the one trick every player
-   remembers: Dead Eye. Time slows, the world goes the colour of an old
+   remembers: Dead Eye. Time slows, the world goes the color of an old
    photograph, you paint a red mark on each target, and when you let go
    the shots land one after another. This file is that, for the bills on
    the board:
@@ -205,7 +205,7 @@
   }
 
   // the mark lives outside the paper, so the wash on the paper never
-  // greys it; each bill gets its own the first time it is marked
+  // grays it; each bill gets its own the first time it is marked
   function xOf(p) {
     var x = p.querySelector('.wb-x');
     if (!x) {

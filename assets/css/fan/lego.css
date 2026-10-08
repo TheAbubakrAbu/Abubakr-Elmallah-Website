@@ -5,7 +5,7 @@
   background: radial-gradient(80% 60% at 50% 0%, #1c1410 0%, #120c0a 46%, #060404 100%);
 }
 
-.lg-sky::before {                      /* studs, in the primary colours */
+.lg-sky::before {                      /* studs, in the primary colors */
   content: ""; position: absolute; inset: 0;
   background-image:
     radial-gradient(circle at 12px 12px, rgba(255,210,31,.10) 5px, transparent 6px),
@@ -65,7 +65,7 @@
 
 @media (min-width: 880px) { .lg-stud { grid-template-columns: 1.05fr 0.95fr; } }
 
-.lg-stud-panel h4 { font-family: var(--sans); font-weight: 650; font-size: 1.15rem; margin-bottom: 0.6rem; }
+.lg-stud-panel :is(h2, h3, h4, h5) { font-family: var(--sans); font-weight: 650; font-size: 1.15rem; margin-bottom: 0.6rem; }
 
 .lg-stud-panel > p { font-size: 0.94rem; line-height: 1.75; color: var(--ink-dim); max-width: 60ch; }
 
@@ -194,7 +194,7 @@
   text-transform: uppercase; color: var(--mute);
 }
 
-.lg-note h4 {
+.lg-note :is(h2, h3, h4, h5) {
   font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans); font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.03em; font-size: 1.2rem;
   color: var(--a); margin-bottom: 0.6rem;

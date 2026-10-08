@@ -77,7 +77,7 @@
   // counted in this browser; a random one if the browser will not keep count.
   var LINES = [
     'I will not ship a thirteenth app during class',
-    'Seventy-one worlds is not too many worlds',
+    'Seventy-four worlds is not too many worlds',
     'I will not compute prayer times a twenty-third way',
     'The Discord bots are not doing my homework',
     'Order 66 was a school project, not a plan',

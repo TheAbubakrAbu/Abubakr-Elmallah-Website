@@ -301,7 +301,7 @@ def trips_by_month():
     by the trip's month alone. A trip lands in whichever year contains its
     photographs, and the two do not always agree: Maui is September 2025, but it
     falls after the First/Second Year boundary, so it belongs to Second Year's
-    September and not First Year's. Going by month alone labelled both.
+    September and not First Year's. Going by month alone labeled both.
 
     A trip with no photographs annotates nothing, which is right -- there is no
     month heading to hang it on.
@@ -588,7 +588,7 @@ def place_label(entry, hide):
     """'Irvine, California' / 'Seville, Spain' from a cached address, or None
     when the address mentions anything on the hide list or says nothing
     useful. Town then state for the US, town then country elsewhere. The
-    hide check reads EVERY field of the address, down to the neighbourhood,
+    hide check reads EVERY field of the address, down to the neighborhood,
     so a photo from inside a hidden town is caught whichever level
     Nominatim happened to name it at."""
     a = entry.get('address') or {}

@@ -101,7 +101,7 @@ window.FAN_PAGE = {
         desc: 'The same melody with the gravity taken out: strings, a choir and a lot of reverb, because the birds are in orbit now. The best of the re-orchestrations.',
         href: 'https://www.youtube.com/watch?v=bgeZ1XBEZls', link: 'Listen' },
       { title: 'Angry Birds Star Wars Theme', accent: '#f0d040', sub: 'Angry Birds Star Wars · 2012 · 2:06',
-        desc: 'Rovio got a real Star Wars licence and the theme got a real Star Wars arrangement: Williams’s fanfare shape wrapped round Pulkkinen’s tune, for a game where the Red bird is Luke and the pigs are the Empire. It should not work.',
+        desc: 'Rovio got a real Star Wars license and the theme got a real Star Wars arrangement: Williams’s fanfare shape wrapped round Pulkkinen’s tune, for a game where the Red bird is Luke and the pigs are the Empire. It should not work.',
         href: 'https://www.youtube.com/watch?v=_Rt0jW3hl8o', link: 'Fan upload' },
       { title: 'Bad Piggies Theme', accent: '#7fbf4f', sub: 'Ilmari Hakkola · Bad Piggies · 2012 · 2:41',
         desc: 'The spin-off where you play as the pigs and build vehicles instead of firing birds, with a theme that is genuinely a better piece of music than the one it is spinning off from. Two and a half minutes of accordion and bad intentions.',

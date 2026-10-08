@@ -26,7 +26,7 @@
 #   id     what `mark` names on a page's rail
 #   short  the school's name on the rail
 #   step   the ladder's label for that stage
-#   tint   the card's own colour (--m)
+#   tint   the card's own color (--m)
 
 - id: minaret
   school: Minaret Academy

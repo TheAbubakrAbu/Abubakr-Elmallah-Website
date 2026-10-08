@@ -12,6 +12,7 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/holocron.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
 <body class="hc" id="hc">
 
@@ -30,6 +31,7 @@ standalone: true
   <a class="hc-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the Archives</span>
   </a>
+  {% include interface-world.html world="Star Wars" href="/worlds/star-wars/" %}
   <span class="hc-top-mid" id="hcTopMid">Jedi Archives · Temple of Coruscant · Level 4</span>
   <span id="hcStardate">Stardate ····</span>
 </header>
@@ -73,7 +75,7 @@ standalone: true
        The same archive at three points in its history, which is the one thing
        a holocron really is: a record that outlives the order that kept it.
        Changing the era re-tints the whole hall (one data-era on .hc, every
-       colour already a token in holocron.css), renames the archive in the top
+       color already a token in holocron.css), renames the archive in the top
        bar, and changes what the keeper's note says about the records. The
        records themselves never change: that is the point of the Archives.
 
@@ -99,7 +101,7 @@ standalone: true
       </label>
     </fieldset>
     <p class="hc-era-note" id="hcEraNote" aria-live="polite">The Archives are open, the Order is at its height, and every record here is
-      catalogued, cross-referenced and quietly assumed to be complete.</p>
+      cataloged, cross-referenced and quietly assumed to be complete.</p>
   </section>
 
   <!-- ─────────── the gatekeeper ───────────
@@ -123,7 +125,7 @@ standalone: true
   </section>
 
   <!-- ─────────── the records ───────────
-       Every room on the site, in four wings. Each record carries a catalogue
+       Every room on the site, in four wings. Each record carries a catalog
        mark, its name, what it holds, and the name spelled in Aurebesh
        (holocron.js writes that line from the title, so it can never drift
        from it). data-k is extra words the gatekeeper should know it by. -->
@@ -145,7 +147,7 @@ standalone: true
       <div class="hc-shelf">
         <a class="hc-rec" href="/" data-k="home main start"><span class="hc-rec-n">JA·05</span><b>The main interface</b><i>Home</i><em></em></a>
         <a class="hc-rec" href="/work/" data-k="job uci developer mobile backend"><span class="hc-rec-n">JA·06</span><b>Work</b><i>Lead mobile &amp; backend developer, UC Irvine</i><em></em></a>
-        <a class="hc-rec" href="/projects/" data-k="apps catalog builds"><span class="hc-rec-n">JA·07</span><b>Projects</b><i>Every one, catalogued</i><em></em></a>
+        <a class="hc-rec" href="/projects/" data-k="apps catalog builds"><span class="hc-rec-n">JA·07</span><b>Projects</b><i>Every one, cataloged</i><em></em></a>
         <a class="hc-rec" href="/education/" data-k="school schools"><span class="hc-rec-n">JA·08</span><b>Education</b><i>Both schools</i><em></em></a>
         <a class="hc-rec" href="/college/" data-k="uci university irvine computer science"><span class="hc-rec-n">JA·09</span><b>College</b><i>UC Irvine, class of 2028</i><em></em></a>
         <a class="hc-rec" href="/high-school/" data-k="school archive first"><span class="hc-rec-n">JA·10</span><b>High School</b><i>Where it started</i><em></em></a>
@@ -156,7 +158,7 @@ standalone: true
     <div class="hc-wing">
       <h3 class="hc-wing-h">The other worlds</h3>
       <div class="hc-shelf">
-        <a class="hc-rec" href="/worlds/" data-k="franchises fandoms"><span class="hc-rec-n">JA·12</span><b>Worlds</b><i>All seventy-one of them</i><em></em></a>
+        <a class="hc-rec" href="/worlds/" data-k="franchises fandoms"><span class="hc-rec-n">JA·12</span><b>Worlds</b><i>All seventy-four of them</i><em></em></a>
         <a class="hc-rec" href="/al-islam/" data-k="islam quran adhan prayer apps"><span class="hc-rec-n">JA·13</span><b>Al-Islam</b><i>Three Islamic apps</i><em></em></a>
         <a class="hc-rec" href="/travels/" data-k="trips map places"><span class="hc-rec-n">JA·14</span><b>Travels</b><i>Thirty-five trips</i><em></em></a>
         <a class="hc-rec" href="/accents/" data-k="voices impressions impersonations"><span class="hc-rec-n">JA·15</span><b>Accents</b><i>Nineteen accents, four impersonations</i><em></em></a>
@@ -174,17 +176,20 @@ standalone: true
         <a class="hc-rec" href="/citadel/" data-k="terminal game of thrones westeros"><span class="hc-rec-n">JA·21</span><b>The Citadel</b><i>Game of Thrones</i><em></em></a>
         <a class="hc-rec" href="/compass/" data-k="terminal pirates caribbean"><span class="hc-rec-n">JA·22</span><b>The Compass</b><i>Pirates of the Caribbean</i><em></em></a>
         <a class="hc-rec" href="/control-room/" data-k="terminal jurassic park dinosaurs"><span class="hc-rec-n">JA·23</span><b>The Control Room</b><i>Jurassic Park</i><em></em></a>
-        <a class="hc-rec" href="/upside-down/" data-k="terminal stranger things hawkins"><span class="hc-rec-n">JA·24</span><b>The Upside Down</b><i>Stranger Things</i><em></em></a>
+        <a class="hc-rec" href="/hawkins/" data-k="terminal stranger things hawkins starcourt palace arcade mall upside down"><span class="hc-rec-n">JA·24</span><b>Hawkins</b><i>Stranger Things</i><em></em></a>
         <a class="hc-rec" href="/spirit-library/" data-k="terminal avatar airbender"><span class="hc-rec-n">JA·25</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i><em></em></a>
-        <a class="hc-rec" href="/starcourt/" data-k="terminal stranger things arcade mall starcourt"><span class="hc-rec-n">JA·26</span><b>Starcourt</b><i>Stranger Things</i><em></em></a>
-        <a class="hc-rec" href="/monastery/" data-k="terminal ninjago spinjitzu ninja"><span class="hc-rec-n">JA·27</span><b>The Monastery</b><i>Ninjago</i><em></em></a>
-        <a class="hc-rec" href="/wanted/" data-k="terminal red dead western outlaw bounty"><span class="hc-rec-n">JA·28</span><b>The Wanted Board</b><i>Red Dead Redemption</i><em></em></a>
-        <a class="hc-rec" href="/dunder-mifflin/" data-k="terminal the office scranton paper"><span class="hc-rec-n">JA·29</span><b>Dunder Mifflin</b><i>The Office</i><em></em></a>
-        <a class="hc-rec" href="/springfield/" data-k="terminal simpsons springfield"><span class="hc-rec-n">JA·30</span><b>Springfield</b><i>The Simpsons</i><em></em></a>
-        <a class="hc-rec" href="/vought/" data-k="terminal the boys vought supes"><span class="hc-rec-n">JA·31</span><b>Vought Tower</b><i>The Boys</i><em></em></a>
-        <a class="hc-rec" href="/pokedex/" data-k="terminal pokemon pokedex kanto"><span class="hc-rec-n">JA·32</span><b>The Pokédex</b><i>Pokémon</i><em></em></a>
-        <a class="hc-rec" href="/batcomputer/" data-k="terminal batman gotham batcave"><span class="hc-rec-n">JA·33</span><b>The Batcomputer</b><i>Batman</i><em></em></a>
-        <a class="hc-rec" href="/daily-bugle/" data-k="terminal spider-man spiderman bugle new york"><span class="hc-rec-n">JA·34</span><b>The Daily Bugle</b><i>Spider-Man</i><em></em></a>
+        <a class="hc-rec" href="/monastery/" data-k="terminal ninjago spinjitzu ninja"><span class="hc-rec-n">JA·26</span><b>The Monastery</b><i>Ninjago</i><em></em></a>
+        <a class="hc-rec" href="/wanted/" data-k="terminal red dead western outlaw bounty"><span class="hc-rec-n">JA·27</span><b>The Wanted Board</b><i>Red Dead Redemption</i><em></em></a>
+        <a class="hc-rec" href="/dunder-mifflin/" data-k="terminal the office scranton paper"><span class="hc-rec-n">JA·28</span><b>Dunder Mifflin</b><i>The Office</i><em></em></a>
+        <a class="hc-rec" href="/springfield/" data-k="terminal simpsons springfield"><span class="hc-rec-n">JA·29</span><b>Springfield</b><i>The Simpsons</i><em></em></a>
+        <a class="hc-rec" href="/vought/" data-k="terminal the boys vought supes"><span class="hc-rec-n">JA·30</span><b>Vought Tower</b><i>The Boys</i><em></em></a>
+        <a class="hc-rec" href="/pokedex/" data-k="terminal pokemon pokedex kanto"><span class="hc-rec-n">JA·31</span><b>The Pokédex</b><i>Pokémon</i><em></em></a>
+        <a class="hc-rec" href="/batcomputer/" data-k="terminal batman gotham batcave"><span class="hc-rec-n">JA·32</span><b>The Batcomputer</b><i>Batman</i><em></em></a>
+        <a class="hc-rec" href="/daily-bugle/" data-k="terminal spider-man spiderman bugle new york"><span class="hc-rec-n">JA·33</span><b>The Daily Bugle</b><i>Spider-Man</i><em></em></a>
+        <a class="hc-rec" href="/grail-diary/" data-k="terminal indiana jones grail diary archaeology field notes"><span class="hc-rec-n">JA·34</span><b>The Grail Diary</b><i>Indiana Jones</i><em></em></a>
+        <a class="hc-rec" href="/red-book/" data-k="terminal lord of the rings lotr red book westmarch shire"><span class="hc-rec-n">JA·35</span><b>The Red Book</b><i>The Lord of the Rings</i><em></em></a>
+        <a class="hc-rec" href="/power-battery/" data-k="terminal green lantern power battery oath corps spectrum"><span class="hc-rec-n">JA·36</span><b>The Power Battery</b><i>Green Lantern</i><em></em></a>
+        <a class="hc-rec" href="/watchtower/" data-k="terminal justice league watchtower monitor duty orbit"><span class="hc-rec-n">JA·37</span><b>The Watchtower</b><i>The Justice League</i><em></em></a>
       </div>
     </div>
   </section>
@@ -203,7 +208,7 @@ standalone: true
         <div><dt>Datapad</dt><dd>On the App Store June 26, 2023; Top 10, paid Entertainment</dd></div>
         <div><dt>Aurebesh Translator</dt><dd>Released October 22, 2024</dd></div>
         <div><dt>The droids</dt><dd>Sabacc and Aurebesh, in more than 500 servers</dd></div>
-        <div><dt>Recognised</dt><dd>Apple Swift Student Challenge winner, 2024</dd></div>
+        <div><dt>Recognized</dt><dd>Apple Swift Student Challenge winner, 2024</dd></div>
       </dl>
     </section>
 
@@ -230,8 +235,8 @@ standalone: true
     <!-- ─────────── the crystals ─────────── -->
     <section class="hc-panel" aria-labelledby="hcKyberH">
       <h2 class="hc-h hc-h--sm" id="hcKyberH">The crystal index</h2>
-      <p class="hc-panel-p">Kyber, by the colour it sings in. Every one of them leads to the lightsaber guide.</p>
-      <!-- Bonding a crystal re-lights the whole archive in its colour: the
+      <p class="hc-panel-p">Kyber, by the color it sings in. Every one of them leads to the lightsaber guide.</p>
+      <!-- Bonding a crystal re-lights the whole archive in its color: the
            hall, the holocron, the shelving and the gatekeeper are all drawn
            from --holo, so one data-kyber on .hc changes the lot. Radio
            buttons, because it is one choice from seven, and the link to the
@@ -279,6 +284,8 @@ standalone: true
   </div>
 
   <button class="hc-btn hc-seal" id="hcSeal" type="button">Seal the holocron</button>
+
+  {% include interface-world.html world="Star Wars" href="/worlds/star-wars/" place="foot" %}
 
 </main>
 

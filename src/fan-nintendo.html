@@ -10,10 +10,11 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/nintendo.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="nintendo">
 
-<!-- a pixel grid drifting under a red sky: the company colour, and the
+<!-- a pixel grid drifting under a red sky: the company color, and the
      resolution everything up to the N64 actually lived at -->
 <div class="nt-sky" aria-hidden="true">
   <span class="nt-glow"></span>
@@ -35,7 +36,7 @@ tab: "/worlds/"
     <p class="fan-kicker"><span>Company &#183; Tertiary &#183; since 1889</span></p>
     <h1 class="fan-title">Nintendo</h1>
     <p class="fan-lede-hero">A playing-card company founded in Kyoto in 1889 that then spent eighty years failing at taxis, instant rice and a love hotel before it worked out what it was for. Everything since runs on one rule: find the toy first, and build the game around it.</p>
-    <p class="fan-lede-hero">It is also the only one of the three console makers that keeps refusing to compete on the axis the other two picked. No arms race on resolution, a controller nobody asked for every generation, and a first-party catalogue deep enough that it has never had to.</p>
+    <p class="fan-lede-hero">It is also the only one of the three console makers that keeps refusing to compete on the axis the other two picked. No arms race on resolution, a controller nobody asked for every generation, and a first-party catalog deep enough that it has never had to.</p>
     <p class="fan-lede-hero">Mario, Zelda and Splatoon are all on this page rather than three of their own. They are one company, one machine at a time and the same afternoons, and splitting them meant introducing the same launch-week Switch three times over.</p>
     <div class="fan-links">
       <a class="fan-link" href="#hardware" data-magnetic>The machines &#8599;</a>
@@ -67,6 +68,10 @@ tab: "/worlds/"
   <div id="fanPlay"></div>
 
   <div id="fanBody"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 

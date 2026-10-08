@@ -8,7 +8,7 @@
 .fandoms { padding-bottom: 4rem; }
 
 /* The rift's glow lifts the backdrop under the text about five times over
-   (see "the rift" below), and on it the site's caption grey fell to about
+   (see "the rift" below), and on it the site's caption gray fell to about
    3.5:1. On this page only (this file loads nowhere else) it is a step
    lighter: still darker than --ink-dim, so captions stay quieter than body
    copy, and 4.5:1 over the glow. Lighter, never darker, as base.css asks;
@@ -111,7 +111,7 @@
 
 /* ── the two portals ──
    On their own worlds' light: Star Wars on gold, Al-Islam on green, where
-   every tile below gets a tint and the two builds got plain grey. The strip
+   every tile below gets a tint and the two builds got plain gray. The strip
    is shorter than the /education/ photographs', so on a 1440x900 laptop the
    second portal's name clears the floating tab bar on the first screen (at
    230px it loaded behind it). Scoped by .portal-grid--worlds; /education/
@@ -184,6 +184,28 @@
   display: grid; gap: clamp(1rem, 2vw, 1.5rem);
   grid-template-columns: repeat(var(--cols, 3), 1fr);
 }
+/* My name in Arabic, between the Who I Am heading and its mosaic. Only that
+   group has one (fandom.js), because it is the only group about me rather
+   than about things I like. Quiet on purpose: it signs the section, it does
+   not head it, so it sits below the heading at a fraction of its size. */
+.fr-sig {
+  font-family: var(--ar); font-weight: normal;
+  font-size: clamp(1.05rem, 2vw, 1.45rem); line-height: 1.9;
+  color: var(--gold); opacity: .7;
+  margin: -0.5rem 0 1.15rem;
+  /* plain inline layout, deliberately. The Arabic carries dir="rtl" on its
+     own span (fandom.js) rather than on this block, because a flex row inside
+     an RTL box packs its children from the right edge and threw the whole
+     line to the far side of the page. */
+  display: block; text-align: left;
+}
+.fr-sig-ar { unicode-bidi: isolate; }
+.fr-sig-en {
+  font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--mute); opacity: .9;
+  margin-left: 0.7rem; unicode-bidi: isolate;
+}
+
 /* Who I Am is the one group that is not a grid of equals: see the mosaic
    block under "who I am" further down. Six columns is the scaffold the mosaic
    spans across: 6 for the hero, 3+3 for the pair, 2+2+2 for the trio. */
@@ -324,7 +346,7 @@ a.fr-card { cursor: pointer; }
     box-shadow: 0 24px 52px -30px #000, 0 0 44px -26px var(--c1);
   }
 }
-/* the ring in the tile's own colour, lifted toward --ink so the dark reds and
+/* the ring in the tile's own color, lifted toward --ink so the dark reds and
    purples still stand out against the backdrop */
 .fr-card:focus-visible { outline: 2px solid color-mix(in srgb, var(--c1) 70%, var(--ink)); outline-offset: 3px; }
 
@@ -370,7 +392,7 @@ a.fr-card { cursor: pointer; }
    fandom.js puts data-magnetic on this, not on .fr-plate, so the glyph and
    the name drift toward the cursor while the plate itself holds still (see
    the note in fandom.js). It fills the plate and keeps the plate's own
-   centring, so nothing about the layout changes when it is not moving.
+   centering, so nothing about the layout changes when it is not moving.
 
    It must NOT be position:relative: .fr-enter is absolutely positioned
    against the plate and has to stay pinned to the plate's real corner rather
@@ -396,7 +418,42 @@ a.fr-card { cursor: pointer; }
 .fr-card:focus-visible .fr-enter { opacity: 1; }
 
 .fr-body { padding: 1rem 1.1rem 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
-.fr-desc { font-size: 0.84rem; line-height: 1.6; color: var(--ink-dim); }
+/* THREE LINES, EVERY TILE, EVERY GROUP (the owner's call, 2026-10-07).
+   The captions themselves are short (median 65 characters), but the grids
+   are not: Tertiary is five across and As a Kid and Theme Parks are six, so
+   a perfectly ordinary sentence wrapped to four and five lines and the tiles
+   in a row all ended up different heights. Clamping is the fix rather than
+   cutting the words, because the same caption has to sit in a six-across
+   tile here and full width on the world page itself.
+
+   -webkit-line-clamp is the only thing that actually ships for this; it is
+   prefixed and still the standard, supported everywhere this site runs. The
+   min-height holds three lines' worth of space even when a caption only
+   fills one, so every card in a row lines up at the meta line underneath. */
+.fr-desc {
+  font-size: 0.84rem; line-height: 1.6; color: var(--ink-dim);
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;
+  overflow: hidden;
+  min-height: calc(0.84rem * 1.6 * 3);
+}
+/* The widths where a tile is at its narrowest for its group: As a Kid and
+   Theme Parks at five and six across on a laptop, and every rank two across
+   on a phone. The captions are written to fit three lines, but at these
+   widths a tile is only ~150px of text and the longest of them tipped onto a
+   fourth line, which the clamp would then cut mid-word. Dropping the caption
+   a step (and tightening its leading to match) buys the character or two
+   that keeps the whole sentence visible. Nothing is hidden: this is the
+   difference between a caption that fits and one that gets truncated. */
+@media (max-width: 1180px) and (min-width: 721px) {
+  .fr-group--kid .fr-desc,
+  .fr-group--parks .fr-desc { font-size: 0.8rem; line-height: 1.52; min-height: calc(0.8rem * 1.52 * 3); }
+}
+@media (max-width: 1024px) and (min-width: 721px) {
+  .fr-desc { font-size: 0.8rem; line-height: 1.52; min-height: calc(0.8rem * 1.52 * 3); }
+}
+@media (max-width: 470px) {
+  .fr-desc { font-size: 0.78rem; line-height: 1.5; min-height: calc(0.78rem * 1.5 * 3); }
+}
 @media (hover: hover) { .fr-card:hover .fr-desc { color: var(--ink); } }
 .fr-card:focus-visible .fr-desc { color: var(--ink); }
 /* When I got into it. Sits directly under the description and above the meta
@@ -404,7 +461,7 @@ a.fr-card { cursor: pointer; }
 /* The tile's own ink mixed toward --ink rather than dimmed with opacity: at
    .85 opacity a third of the reds and purples (Red Dead, The Boys,
    Spider-Man) were under 3.5:1. Mixed, every one of the 70 is over 5:1 and
-   still reads as its tile's colour. */
+   still reads as its tile's color. */
 .fr-when {
   display: flex; align-items: baseline; gap: 0.4rem;
   font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.04em;
@@ -696,7 +753,7 @@ a.fr-card { cursor: pointer; }
   text-shadow: 2px 2px 0 #1a2a5a, 4px 4px 0 rgba(0,0,0,.5);
 }
 /* the oath is set in capitals in every version of it, and the ring's light is
-   the only colour on the tile */
+   the only color on the tile */
 .wm--lantern {
   font-family: var(--serif); font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -840,10 +897,10 @@ a.fr-card { cursor: pointer; }
 
 /* ── the nine added in September 2026 ───────────────────────────────────────
    Same rule as everything above: the tile is set in type, so each of these is
-   a typeface choice plus one offset in the mark's own colour. No logos, no
+   a typeface choice plus one offset in the mark's own color. No logos, no
    images, and nothing here loads a font the site does not already have. */
 
-/* Rio: the title card is a fat rounded sans over Carnival colour. */
+/* Rio: the title card is a fat rounded sans over Carnival color. */
 .wm--rio {
   font-family: "Arial Rounded MT Bold", "Trebuchet MS", var(--sans);
   font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
@@ -895,6 +952,18 @@ a.fr-card { cursor: pointer; }
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
   text-shadow: 2px 2px 0 #16303f, 3px 3px 0 rgba(143,208,232,.25);
+}
+
+/* Transformers: the real wordmark is a wide, slightly slanted techno face
+   with the letters cut on a diagonal. Impact, tracked out and sheared a
+   couple of degrees, is the honest approximation at this size, with an
+   Autobot-red offset under it. */
+.wm--transformers {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  font-size: .92rem;
+  transform: skewX(-6deg);
+  text-shadow: 2px 2px 0 #4a120e;
 }
 
 /* Skylanders: a fantasy-game wordmark, so the same rounded bold with a gold
@@ -1071,7 +1140,7 @@ a.fr-card { cursor: pointer; }
    These are not footnotes under the grid, they are the other three worlds on
    this page: one I walked into, one I can do the voice of, and one I played.
    So they are built as doors. Everything below is driven by --d, the door's
-   own colour, set once per button, which is what keeps the blue one, the gold
+   own color, set once per button, which is what keeps the blue one, the gold
    one and the green one from being three copies of the same rules.
 
    Tall on purpose. They used to be 0.9rem of padding around one line of mono
@@ -1174,6 +1243,12 @@ a.fr-card { cursor: pointer; }
 .fr-travels-btn--if { --d: #e8b04a; }
 .fr-ifaces { margin-top: 0; }
 
+/* Files, the documents index. Teal because the five rows above it have taken
+   blue (travels), gold (accents), green (gaming), violet (music) and red
+   (the sabers), and a sixth door in a color already on the page would read
+   as a repeat of one of them rather than a room of its own. */
+.fr-travels-btn--fi { --d: #4fc9c0; }
+
 @media (max-width: 720px) {
   .fr-travels-btn { min-height: 108px; padding: 1.2rem 1.2rem 1.2rem 1.1rem; gap: 0.95rem; }
   .fr-travels-i { width: 46px; height: 46px; border-radius: 11px; }
@@ -1197,7 +1272,7 @@ a.fr-card { cursor: pointer; }
    than the screen in BOTH directions, so every ring runs off all four sides
    and there is no edge of it to find at any window size or scroll position.
 
-   Built from six rings, two slow fields of colour and one dust layer, all of
+   Built from six rings, two slow fields of color and one dust layer, all of
    them <span>s with no content. No images (nothing to download), no canvas
    (nothing to run), no JS.
 
@@ -1211,14 +1286,14 @@ a.fr-card { cursor: pointer; }
    looks like from the chair is the tiles below the fold arriving late or not
    at all, one row painted and the next blank until the cursor touched it. So:
 
-     no filters: the colour fields are radial gradients, which are soft by
+     no filters: the color fields are radial gradients, which are soft by
        construction and rasterise once;
-     no group opacity and no mask: the old .72 is baked into every colour,
-       and the fade at the foot is one ::after gradient in the page colour;
+     no group opacity and no mask: the old .72 is baked into every color,
+       and the fade at the foot is one ::after gradient in the page color;
      only transform animates, which the compositor does without a repaint.
 
    The dust was also wrong on its own terms: repeating-radial-gradient at 1px
-   draws rings, not dust, and two sets of rings from two centres make a moiré
+   draws rings, not dust, and two sets of rings from two centers make a moiré
    lattice that crawls as it turns. It is a dot grid now, which is what the
    comment on it always claimed it was.
 
@@ -1230,13 +1305,13 @@ a.fr-card { cursor: pointer; }
   pointer-events: none; overflow: hidden;
 }
 /* the only fade left is at the foot of the screen, and it is there to keep
-   the tab bar legible, not to shape the rift: a gradient in the page colour,
+   the tab bar legible, not to shape the rift: a gradient in the page color,
    not a mask, because a mask is an offscreen pass over everything under it */
 .rift::after {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(transparent 72%, rgba(8,8,10,.45));
 }
-/* Square, centred, and bigger than the viewport diagonal at any aspect ratio,
+/* Square, centered, and bigger than the viewport diagonal at any aspect ratio,
    which is what guarantees the rings always leave the screen rather than
    ending inside it. */
 .rift-core {
@@ -1245,8 +1320,8 @@ a.fr-card { cursor: pointer; }
   transform: translate(-50%, -50%);
 }
 
-/* two fields of colour, turning against each other. Each is a few off-centre
-   radial blobs, so as the layer turns the colour orbits across the screen;
+/* two fields of color, turning against each other. Each is a few off-center
+   radial blobs, so as the layer turns the color orbits across the screen;
    no blur, because a radial gradient is already soft out to its edge. */
 .rift-glow, .rift-glow::after {
   content: ''; position: absolute; inset: 0; border-radius: 50%;
@@ -1282,7 +1357,7 @@ a.fr-card { cursor: pointer; }
 .rift-ring:nth-child(5) { --n: 3; }
 .rift-ring:nth-child(6) { --n: 4; }
 .rift-ring:nth-child(7) { --n: 5; }
-/* two dashed and two coloured, so the set does not read as a target */
+/* two dashed and two colored, so the set does not read as a target */
 .rift-ring:nth-child(3), .rift-ring:nth-child(6) {
   border-style: dashed; border-color: rgba(190,214,236,.08);
 }
@@ -1331,7 +1406,7 @@ body > main, body > footer, body > .picsw {
 
 /* ── the invitation ──
    Not in the hero any more: it belongs to the button under it, which is the
-   thing that actually opens the worlds. Centred and given room, because it is
+   thing that actually opens the worlds. Centered and given room, because it is
    the one sentence on the page that says what the page is.
 
    NOT .fr-enter, which is already the "Enter" label in the corner of every
@@ -1344,11 +1419,11 @@ body > main, body > footer, body > .picsw {
    working typeface. Large and on a short measure, because at 52ch in Inter it
    read as a paragraph of body copy that had wandered into the middle of the
    page rather than as the door it is. */
-/* Leading, not centred. The button underneath it is full width and its label
-   starts at the left gutter, so a centred sentence above it hung in the middle
+/* Leading, not centered. The button underneath it is full width and its label
+   starts at the left gutter, so a centered sentence above it hung in the middle
    of nothing; set flush left, the two share an edge and the invitation reads as
    the label on the door rather than as a caption floating over it. `balance`
-   went with the centring: it is meant for short centred display lines, and on a
+   went with the centering: it is meant for short centered display lines, and on a
    flush-left block it evens the rag at the cost of the last line. `pretty` just
    keeps the orphan off the end. */
 .fr-invite {
@@ -1421,7 +1496,7 @@ body > main, body > footer, body > .picsw {
 }
 
 /* Everything here is decoration and none of it is worth making somebody ill.
-   The rings and the colour stay, exactly as composed; only the motion stops. */
+   The rings and the color stay, exactly as composed; only the motion stops. */
 @media (prefers-reduced-motion: reduce) {
   .rift-glow, .rift-glow::after, .rift-ring, .rift-dust { animation: none; }
 }

@@ -18,6 +18,8 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 .sl {
+  --iw-a: #e8a13f;   /* the shared world button, interface-world.css */
+  --iw-bg: #0a1222;
   --disp:  "Shippori Mincho", "Songti TC", Georgia, serif;
   --label: "Zen Kaku Gothic New", "Hiragino Sans", system-ui, sans-serif;
   --cjk:   "Songti TC", "Noto Serif TC", "Noto Serif CJK TC", "PMingLiU", serif;
@@ -29,7 +31,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   --text:   #efe6d2;
   --dim:    #bdb4a2;
   --mute:   #988f80;          /* 5.3:1 on --ink-2, the AA floor here */
-  --amber:  #e8a13f;          /* the world's tile colour */
+  --amber:  #e8a13f;          /* the world's tile color */
   --amber-hi: #f6c46f;
   --sand:   #e6c690;
   --sand-2: #c99a5b;
@@ -38,7 +40,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   --line:   rgba(232, 161, 63, 0.2);
   --ease:   cubic-bezier(.16, 1, .3, 1);
 
-  /* the four nations, as the world page colours them, and the spirit world */
+  /* the four nations, as the world page colors them, and the spirit world */
   --water:  #4f9fd0;
   --earth:  #5aa75a;
   --fire:   #e0593a;
@@ -283,7 +285,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .sl-rack { display: grid; grid-template-columns: repeat(auto-fill, minmax(184px, 1fr)); gap: 2.2rem 1.5rem; align-items: stretch; }
 
 /* a hanging scroll: a peg and a cord, a top rod, the paper in a silk
-   mount of the nation's colour, and a weighted bottom rod. Rolled up
+   mount of the nation's color, and a weighted bottom rod. Rolled up
    until its shelf comes into view (spirit-library.js adds .is-open), then
    it unrolls: the paper is revealed from the top while the bottom rod
    drops to its place. */
@@ -392,7 +394,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .sl-dial-lbl--dim { fill: #9d9078; }
 .sl-cstar { fill: #f4ecd8; }
 
-/* the sun and moon arms turn about the centre of the ceiling; JS keeps
+/* the sun and moon arms turn about the center of the ceiling; JS keeps
    the angles continuous so a turn never takes the long way round */
 .sl-arm { transition: transform 1.1s var(--ease); }
 .sl-rays path { stroke: #ffd27a; stroke-width: 2.4; stroke-linecap: round; }
@@ -490,7 +492,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 }
 .sl-mail:hover { color: #fff1d4; }
 
-/* each contribution, with the end of its scroll in a colour */
+/* each contribution, with the end of its scroll in a color */
 .sl-gifts { list-style: none; display: flex; flex-direction: column; }
 .sl-gifts li {
   display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 0.9rem; align-items: start;
@@ -511,7 +513,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 /* nine terminals: three rows of three, rather than four, four and one */
 @media (min-width: 900px) { .sl-cubbies { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 /* a cubby in the shelf, with a message scroll lying in it end on: the
-   rolled paper's spiral, tied with a cord of the terminal's colour */
+   rolled paper's spiral, tied with a cord of the terminal's color */
 .sl-cubby {
   display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 0.9rem; align-items: center;
   min-height: 72px; padding: 0.75rem 0.9rem; border-radius: 4px;

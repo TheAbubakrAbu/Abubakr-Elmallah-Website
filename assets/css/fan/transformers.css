@@ -1,0 +1,13 @@
+/* fan/transformers.css: /worlds/transformers/ only.
+   The backdrop geometry is shared (.np-sky in fanpages.css); this file
+   only says what color this world is.
+
+   Autobot red against the blue of the 2007 film's night scenes, which is
+   also roughly the palette of the Universal ride's queue. */
+
+body[data-fan="transformers"] {
+  --a: #c9342b;
+  --np1: #2a1416;
+  --np2: #07090e;
+  --np3: rgba(201,52,43,.16);
+}

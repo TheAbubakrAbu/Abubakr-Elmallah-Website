@@ -144,7 +144,7 @@ addEventListener('load', () => {
   function loop() {
     x += (tx - x) * 0.14;
     y += (ty - y) * 0.14;
-    /* the patch is centred on the pointer; the lattice inside is pushed back
+    /* the patch is centered on the pointer; the lattice inside is pushed back
        by the same amount so it stays at the viewport origin */
     light.style.transform = 'translate3d(' + (x - reach).toFixed(1) + 'px,' + (y - reach).toFixed(1) + 'px,0)';
     lattice.style.transform = 'translate3d(' + (reach - x).toFixed(1) + 'px,' + (reach - y).toFixed(1) + 'px,0)';
@@ -346,16 +346,17 @@ function installed() {
   });
 })();
 
-/* A <details> with data-remember="<key>" reopens the way you left it. Used by
-   the Interfaces fold on the home page, so the other eighteen terminals stay
-   open for anyone who opened them once. Wrapped because localStorage throws
-   outright in private mode. */
+/* A <details> with data-remember="<key>" used to reopen the way you left it,
+   across visits, which meant the Terminal Interfaces fold on the home page
+   could already be open before you had asked for it: the page you came back
+   to was not the page it is designed to be. It now starts closed every time,
+   and only opens when you open it (the owner's call, 2026-10-07).
+
+   The fold ships closed in the markup, so there is nothing to close here.
+   This only clears the old key off anyone still carrying one, and never
+   forces `open`, so a deep link that wants it open can still open it. */
 (function rememberFolds() {
   document.querySelectorAll('details[data-remember]').forEach(function (d) {
-    var key = 'ae-fold-' + d.dataset.remember;
-    try { if (localStorage.getItem(key) === 'on') d.open = true; } catch (e) { /* private mode */ }
-    d.addEventListener('toggle', function () {
-      try { localStorage.setItem(key, d.open ? 'on' : 'off'); } catch (e) { /* private mode */ }
-    });
+    try { localStorage.removeItem('ae-fold-' + d.dataset.remember); } catch (e) { /* private mode */ }
   });
 })();

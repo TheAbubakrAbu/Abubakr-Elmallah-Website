@@ -1,0 +1,228 @@
+---
+permalink: /watchtower/
+title: "The Watchtower · Abubakr Elmallah"
+description: "The Watchtower: a Justice League interface for Abubakr Elmallah's portfolio, monitor duty in orbit with every page a station and the founding seven on call."
+theme: "#070c18"
+fonts: "family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500"
+standalone: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+
+<link rel="stylesheet" href="{% include v.html f='/assets/css/watchtower.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
+</head>
+<body class="wt" id="wt">
+
+<!-- the view from the monitor womb: the curve of the earth below, the
+     terminator line across it, and the station's own grid on the glass -->
+<div class="wt-view" aria-hidden="true">
+  <span class="wt-stars"></span>
+  <span class="wt-earth"></span>
+  <span class="wt-term"></span>
+  <span class="wt-glass"></span>
+</div>
+
+<!-- the station badges: one device per room, cut once -->
+<svg class="wt-blocks" aria-hidden="true" focusable="false">
+  <symbol id="wtHouse" viewBox="0 0 48 48"><path d="M6 23 24 8l18 15M11 20v20h26V20M20 40V29h8v11"/><path d="M3 41h42"/></symbol>
+  <symbol id="wtCity" viewBox="0 0 48 48"><path d="M4 42h40M8 42V22h10v20M18 42V12h12v30M30 42V26h10v16"/><path d="M11 27h4M11 33h4M22 18h4M22 25h4M22 32h4M33 31h4"/></symbol>
+  <symbol id="wtChart" viewBox="0 0 48 48"><path d="M7 41h34M11 41V26M21 41V15M31 41V22M41 41V9"/></symbol>
+  <symbol id="wtBook" viewBox="0 0 48 48"><path d="M9 10h26a3 3 0 0 1 3 3v29H12a3 3 0 0 1-3-3z"/><path d="M12 10v32M18 18h13M18 25h13M18 32h9"/></symbol>
+  <symbol id="wtCap" viewBox="0 0 48 48"><path d="M24 10 4 18l20 8 20-8z"/><path d="M12 22v10c0 4 6 7 12 7s12-3 12-7V22M40 26v10"/></symbol>
+  <symbol id="wtRocket" viewBox="0 0 48 48"><path d="M24 4c6 6 9 14 9 22l-9 8-9-8c0-8 3-16 9-22z"/><circle cx="24" cy="19" r="4"/><path d="M15 28l-6 8 7-2M33 28l6 8-7-2M24 34v8"/></symbol>
+  <symbol id="wtGlobe" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17"/><path d="M7 19h34M7 29h34M24 7a20 20 0 0 1 0 34 20 20 0 0 1 0-34z"/></symbol>
+  <symbol id="wtLeague" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17"/><path d="M24 7v34M7 24h34"/><circle cx="24" cy="24" r="7"/></symbol>
+  <symbol id="wtStar" viewBox="0 0 48 48"><path d="M24 5l5 14 15 1-11 10 4 14-13-8-13 8 4-14L4 20l15-1z"/></symbol>
+  <symbol id="wtCrescent" viewBox="0 0 48 48"><path d="M28 6a18 18 0 1 0 14 29A15 15 0 1 1 28 6z"/><path d="m36 12 1.6 3.4 3.6.4-2.7 2.5.8 3.6-3.3-1.8-3.3 1.8.8-3.6-2.7-2.5 3.6-.4z"/></symbol>
+  <symbol id="wtJet" viewBox="0 0 48 48"><path d="M24 4c3 0 5 6 5 14l13 8v5l-13-4v9l5 5v3l-10-3-10 3v-3l5-5v-9l-13 4v-5l13-8c0-8 2-14 5-14z"/></symbol>
+  <symbol id="wtMic" viewBox="0 0 48 48"><rect x="18" y="6" width="12" height="22" rx="6"/><path d="M12 24a12 12 0 0 0 24 0M24 36v6M17 42h14"/></symbol>
+  <symbol id="wtPad" viewBox="0 0 48 48"><rect x="5" y="14" width="38" height="22" rx="7"/><path d="M14 21v8M10 25h8M31 22h.01M36 28h.01M28 28h.01M33 33h.01"/></symbol>
+  <symbol id="wtSaber" viewBox="0 0 48 48"><path d="M19 29h10v15H19zM21 29V9a3 3 0 0 1 6 0v20M24 13v12"/></symbol>
+  <symbol id="wtFile" viewBox="0 0 48 48"><path d="M12 6h16l8 8v28H12z"/><path d="M28 6v8h8M18 24h12M18 30h12M18 36h8"/></symbol>
+</svg>
+
+<header class="wt-top">
+  <a class="wt-exit" href="/" title="Back to the main site">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Teleport down</span>
+  </a>
+  {% include interface-world.html world="The Justice League" href="/worlds/justice-league/" label="The Justice League" %}
+  <span class="wt-top-mid">Watchtower · geosynchronous orbit · monitor duty</span>
+  <span class="wt-top-r">
+    <span class="wt-stat" id="wtStat"><i aria-hidden="true"></i>All quiet</span>
+    <span id="wtClock">··:··</span>
+  </span>
+</header>
+
+<main class="wt-main">
+
+  <!-- ─────────── the monitor womb ─────────── -->
+  <section class="wt-hero">
+    <div class="wt-hero-text">
+      <p class="wt-kicker">Monitor duty · Sector: Earth</p>
+      <h1 class="wt-title">The Watchtower</h1>
+      <p class="wt-sub">Every room on this site, on the big board: somebody is always up here watching all of it, and tonight it is you. Shorthand, on this site, for the DC guys, which means six characters and the cartoons that introduced me to them.</p>
+      <div class="wt-hero-meta">
+        <dl>
+          <div><dt>On duty</dt><dd>Abubakr Elmallah</dd></div>
+          <div><dt>Civilian ID</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
+          <div><dt>Post</dt><dd>Lead mobile &amp; backend developer</dd></div>
+          <div><dt>Missions logged</dt><dd>Twelve apps, four platforms</dd></div>
+          <div><dt>Worlds monitored</dt><dd>Seventy-four</dd></div>
+          <div><dt>Drawn with</dt><dd>CSS and SVG, no images</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <!-- the founding seven, as the roll call on the wall. Batman has his own
+         page, and Green Lantern now has his own interface, so both link out
+         rather than sitting here as decoration. The chest symbols are
+         trademarks; each cell is a plain device in the member's color. -->
+    <div class="wt-roll" role="group" aria-label="The founding members">
+      <a class="wt-member" href="/worlds/batman/" style="--m:#8f98a8">
+        <span class="wt-m-disc" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 14c2-5 7-8 11-9-2 3-2 6-1 8 5-3 11-4 16-2-3 1-6 3-7 5 4 0 8 1 11 4-6-1-11 1-14 4" transform="scale(.62) translate(14 10)"/><path d="M24 14c-2-5-7-8-11-9 2 3 2 6 1 8-5-3-11-4-16-2 3 1 6 3 7 5-4 0-8 1-11 4 6-1 11 1 14 4" transform="scale(.62) translate(14 10)"/></svg></span>
+        <b>Batman</b><i>He has his own page</i>
+      </a>
+      <a class="wt-member" href="/worlds/justice-league/" style="--m:#4f8fe0">
+        <span class="wt-m-disc" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 10l14 5-3 16-11 10-11-10-3-16z" fill="none" stroke="currentColor" stroke-width="3"/></svg></span>
+        <b>Superman</b><i>The one who sets the bar</i>
+      </a>
+      <a class="wt-member" href="/power-battery/" style="--m:#4fd07f">
+        <span class="wt-m-disc" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="12" fill="none" stroke="currentColor" stroke-width="3"/><path d="M8 19h32M8 29h32" stroke="currentColor" stroke-width="3"/></svg></span>
+        <b>Green Lantern</b><i>His own interface, now</i>
+      </a>
+      <a class="wt-member" href="/worlds/justice-league/" style="--m:#e04a3a">
+        <span class="wt-m-disc" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M28 8l-14 20h10l-4 12 14-20H24z" fill="none" stroke="currentColor" stroke-width="3"/></svg></span>
+        <b>The Flash</b><i>Fastest man alive</i>
+      </a>
+      <a class="wt-member" href="/worlds/justice-league/" style="--m:#4fc9c0">
+        <span class="wt-m-disc" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 8v32M14 14l10 6 10-6M14 34l10-6 10 6" fill="none" stroke="currentColor" stroke-width="3"/></svg></span>
+        <b>Aquaman</b><i>Better than the jokes allow</i>
+      </a>
+      <a class="wt-member" href="/worlds/justice-league/" style="--m:#d8b45f">
+        <span class="wt-m-disc" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="8" fill="none" stroke="currentColor" stroke-width="3"/><path d="M24 4v10M24 34v10M4 24h10M34 24h10" stroke="currentColor" stroke-width="3"/></svg></span>
+        <b>Cyborg</b><i>Half the League’s systems</i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ─────────── the big board ─────────── -->
+  <!-- every room on the site, each a station on the wall of monitors: real
+       links in a real list. --i brings the screens up one after another,
+       the way a bank of monitors actually powers on. -->
+  <section class="wt-board" aria-labelledby="wtBoardH">
+    <h2 class="wt-h" id="wtBoardH">
+      <canvas class="wt-think" data-orb="searching" data-orb-size="22" data-orb-ink="#5f9fe0" aria-hidden="true"></canvas>The big board<span>every page, a station on the wall</span>
+    </h2>
+    <ul class="wt-screens" id="wtScreens">
+      <li style="--i:0"><a class="wt-screen" href="/" style="--m:#4f8fe0"><span class="wt-s-in"><span class="wt-s-top"><span class="wt-k">CH 01</span><span class="wt-live" aria-hidden="true"></span></span><svg class="wt-ico" aria-hidden="true"><use href="#wtHouse"/></svg><b class="wt-n">Home</b><span class="wt-real">home</span><span class="wt-f">Ground level, where the whole thing starts.</span></span></a></li>
+      <li style="--i:1"><a class="wt-screen" href="/work/" style="--m:#8f98a8"><span class="wt-s-in"><span class="wt-s-top"><span class="wt-k">CH 02</span><span class="wt-live" aria-hidden="true"></span></span><svg class="wt-ico" aria-hidden="true"><use href="#wtCity"/></svg><b class="wt-n">The City Desk</b><span class="wt-real">work at UC Irvine</span><span class="wt-f">Lead mobile &amp; backend work, which is mostly keeping a city running.</span></span></a></li>
+      <li style="--i:2"><a class="wt-screen" href="/projects/" style="--m:#6f6aa8"><span class="wt-s-in"><span class="wt-s-top"><span class="wt-k">CH 03</span><span class="wt-live" aria-hidden="true"></span></span><svg class="wt-ico" aria-hidden="true"><use href="#wtChart"/></svg><b class="wt-n">Mission Log</b><span class="wt-real">every project</span><span class="wt-f">Twelve apps on four platforms, each one closed out properly.</span></span></a></li>
+      <li style="--i:3"><a class="wt-screen" href="/education/" style="--m:#4fc9c0"><span class="wt-s-in"><span class="wt-s-top"><span class="wt-k">CH 04</span><span class="wt-live" aria-hidden="true"></span></span><svg class="wt-ico" aria-hidden="true"><use href="#wtBook"/></svg><b class="wt-n">The Archive</b><span class="wt-real">education</span><span class="wt-f">What the League knows, and keeps having to update.</span></span></a></li>
+      <li style="--i:4"><a class="wt-screen" href="/college/" style="--m:#d8b45f"><span class="wt-s-in"><span class="wt-s-top"><span class="wt-k">CH 05</span><span class="wt-live" aria-hidden="true"></span></span><svg class="wt-ico" aria-hidden="true"><use href="#wtCap"/></svg><b class="wt-n">UC Irvine</b><span class="wt-real">college</span><span class="wt-f">Computer Science, class of 2028. The secret identity, more or less.</span></span></a></li>
+      <li style="--i:5"><a class="wt-screen" href="/high-school/" style="--m:#e04a3a"><span class="wt-s-in"><span class="wt-s-top"><span class="wt-k">CH 06</span><span class="wt-live" aria-hidden="true"></span></span><svg class="wt-ico" aria-hidden="true"><use href="#wtRocket"/></svg><b class="wt-n">Origin Story</b><span class="wt-real">high school</span><span class="wt-f">Where the powers turned up, and nobody knew what to do with them.</span></span></a></li>
+      <li style="--i:6"><a class="wt-screen" href="/worlds/" style="--m:#4fd07f"><span class="wt-s-in"><span class="wt-s-top"><span class="wt-k">CH 07</span><span class="wt-live" aria-hidden="true"></span></span><svg class="wt-ico" aria-hidden="true"><use href="#wtGlobe"/></svg><b class="wt-n">Global Sweep</b><span class="wt-real">all 74 worlds</span><span class="wt-f">Seventy-four worlds on the board at once, all of them quiet tonight.</span></span></a></li>
+      <li style="--i:7"><a class="wt-screen wt-screen--own" href="/worlds/justice-league/" style="--m:#5f9fe0"><span class="wt-s-in"><span class="wt-s-top"><span class="wt-k">CH 08</span><span class="wt-live" aria-hidden="true"></span></span><svg class="wt-ico" aria-hidden="true"><use href="#wtLeague"/></svg><b class="wt-n">The League</b><span class="wt-real">The Justice League · the world page</span><span class="wt-f">The founding seven, the opposition, and the eras of it.</span></span></a></li>
+      <li style="--i:8"><a class="wt-screen" href="/star-wars/" style="--m:#6f6aa8"><span class="wt-s-in"><span class="wt-s-top"><span class="wt-k">CH 09</span><span class="wt-live" aria-hidden="true"></span></span><svg class="wt-ico" aria-hidden="true"><use href="#wtStar"/></svg><b class="wt-n">Deep Space</b><span class="wt-real">Star Wars apps</span><span class="wt-f">Outside the League’s jurisdiction, and much further out.</span></span></a></li>
+      <li style="--i:9"><a class="wt-screen wt-screen--calm" href="/al-islam/" style="--m:#3f9d6a"><span class="wt-s-in"><span class="wt-s-top"><span class="wt-k">CH 10</span><span class="wt-live" aria-hidden="true"></span></span><svg class="wt-ico" aria-hidden="true"><use href="#wtCrescent"/></svg><b class="wt-n">The Hours</b><span class="wt-real">Al-Islam</span><span class="wt-f">Prayer times, twenty-two ways, kept from orbit as well as anywhere.</span></span></a></li>
+      <li style="--i:10"><a class="wt-screen" href="/travels/" style="--m:#a88a5a"><span class="wt-s-in"><span class="wt-s-top"><span class="wt-k">CH 11</span><span class="wt-live" aria-hidden="true"></span></span><svg class="wt-ico" aria-hidden="true"><use href="#wtJet"/></svg><b class="wt-n">The Javelin</b><span class="wt-real">travels</span><span class="wt-f">Everywhere it has actually flown, which is a shorter list than orbit.</span></span></a></li>
+      <li style="--i:11"><a class="wt-screen" href="/accents/" style="--m:#b07fa8"><span class="wt-s-in"><span class="wt-s-top"><span class="wt-k">CH 12</span><span class="wt-live" aria-hidden="true"></span></span><svg class="wt-ico" aria-hidden="true"><use href="#wtMic"/></svg><b class="wt-n">Comms</b><span class="wt-real">accents &amp; impersonations</span><span class="wt-f">Every voice on the channel, and a few that are not supposed to be.</span></span></a></li>
+      <li style="--i:12"><a class="wt-screen" href="/gaming/" style="--m:#e2b33c"><span class="wt-s-in"><span class="wt-s-top"><span class="wt-k">CH 13</span><span class="wt-live" aria-hidden="true"></span></span><svg class="wt-ico" aria-hidden="true"><use href="#wtPad"/></svg><b class="wt-n">The Rec Room</b><span class="wt-real">gaming</span><span class="wt-f">What the off-duty half of the roster is doing right now.</span></span></a></li>
+      <li style="--i:13"><a class="wt-screen" href="/lightsabers/" style="--m:#7d8894"><span class="wt-s-in"><span class="wt-s-top"><span class="wt-k">CH 14</span><span class="wt-live" aria-hidden="true"></span></span><svg class="wt-ico" aria-hidden="true"><use href="#wtSaber"/></svg><b class="wt-n">The Armory</b><span class="wt-real">the lightsaber guide</span><span class="wt-f">Cataloged, dated and locked, as the Batman insists.</span></span></a></li>
+      <li style="--i:14"><a class="wt-screen" href="/resume/" style="--m:#f2c230"><span class="wt-s-in"><span class="wt-s-top"><span class="wt-k">CH 15</span><span class="wt-live" aria-hidden="true"></span></span><svg class="wt-ico" aria-hidden="true"><use href="#wtFile"/></svg><b class="wt-n">The File</b><span class="wt-real">résumé</span><span class="wt-f">One page. Batman has a copy, because of course he does.</span></span></a></li>
+    </ul>
+  </section>
+
+  <!-- ─────────── the hall of terminals ─────────── -->
+  <section class="wt-panel" aria-labelledby="wtHallH">
+    <h2 class="wt-h wt-h--sm" id="wtHallH">The teleporter<span>send to the other terminals</span></h2>
+    <ul class="wt-pads">
+      <li><a class="wt-pad" href="/elmallah/" style="--p:#c79a3c"><span class="wt-pad-ring" aria-hidden="true"></span><b>E.L.M.A.L.L.A.H.</b><i>Star Wars</i></a></li>
+      <li><a class="wt-pad" href="/holocron/" style="--p:#2f6d9a"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Holocron</b><i>Star Wars</i></a></li>
+      <li><a class="wt-pad" href="/jarvis/" style="--p:#1f8a9a"><span class="wt-pad-ring" aria-hidden="true"></span><b>J.A.R.V.I.S.</b><i>Avengers</i></a></li>
+      <li><a class="wt-pad" href="/marauders-map/" style="--p:#7a4a24"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Marauder’s Map</b><i>Harry Potter</i></a></li>
+      <li><a class="wt-pad" href="/crafting-table/" style="--p:#3f7a2a"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Crafting Table</b><i>Minecraft</i></a></li>
+      <li><a class="wt-pad" href="/citadel/" style="--p:#b8862f"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Citadel</b><i>Game of Thrones</i></a></li>
+      <li><a class="wt-pad" href="/compass/" style="--p:#2f6a6a"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Compass</b><i>Pirates</i></a></li>
+      <li><a class="wt-pad" href="/control-room/" style="--p:#b4521f"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Control Room</b><i>Jurassic Park</i></a></li>
+      <li><a class="wt-pad" href="/hawkins/" style="--p:#9a1f1a"><span class="wt-pad-ring" aria-hidden="true"></span><b>Hawkins</b><i>Stranger Things</i></a></li>
+      <li><a class="wt-pad" href="/spirit-library/" style="--p:#a8742a"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Spirit Library</b><i>Avatar</i></a></li>
+      <li><a class="wt-pad" href="/monastery/" style="--p:#b3261e"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Monastery</b><i>Ninjago</i></a></li>
+      <li><a class="wt-pad" href="/wanted/" style="--p:#d9c08c"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Wanted Board</b><i>Red Dead</i></a></li>
+      <li><a class="wt-pad" href="/dunder-mifflin/" style="--p:#3d6fb4"><span class="wt-pad-ring" aria-hidden="true"></span><b>Dunder Mifflin</b><i>The Office</i></a></li>
+      <li><a class="wt-pad" href="/springfield/" style="--p:#4a8fd8"><span class="wt-pad-ring" aria-hidden="true"></span><b>Springfield</b><i>The Simpsons</i></a></li>
+      <li><a class="wt-pad" href="/vought/" style="--p:#2a6fdb"><span class="wt-pad-ring" aria-hidden="true"></span><b>Vought Tower</b><i>The Boys</i></a></li>
+      <li><a class="wt-pad" href="/pokedex/" style="--p:#e3242b"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Pokédex</b><i>Pokémon</i></a></li>
+      <li><a class="wt-pad" href="/batcomputer/" style="--p:#f2c230"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Batcomputer</b><i>Batman</i></a></li>
+      <li><a class="wt-pad" href="/daily-bugle/" style="--p:#1f4fa8"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Daily Bugle</b><i>Spider-Man</i></a></li>
+      <li><a class="wt-pad" href="/grail-diary/" style="--p:#d8b06a"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Grail Diary</b><i>Indiana Jones</i></a></li>
+      <li><a class="wt-pad" href="/red-book/" style="--p:#d9b45f"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Red Book</b><i>The Lord of the Rings</i></a></li>
+      <li><a class="wt-pad" href="/power-battery/" style="--p:#4fd07f"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Power Battery</b><i>Green Lantern</i></a></li>
+      <li><a class="wt-pad" href="/instructions/" style="--p:#ffd21f"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Instruction Booklet</b><i>LEGO</i></a></li>
+      <li><a class="wt-pad" href="/battle-pass/" style="--p:#6fb0ff"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Battle Pass</b><i>Fortnite</i></a></li>
+      <li><a class="wt-pad" href="/freddys/" style="--p:#c98f4f"><span class="wt-pad-ring" aria-hidden="true"></span><b>The Security Office</b><i>Five Nights at Freddy’s</i></a></li>
+    </ul>
+  </section>
+
+  <button class="wt-signal" id="wtSignal" type="button">Call the League</button>
+
+  {% include interface-world.html world="The Justice League" href="/worlds/justice-league/" label="The Justice League" place="foot" %}
+
+</main>
+
+<!-- the signal goes up, and the whole roster answers -->
+<div class="wt-done" id="wtDone">
+  <div>
+    <canvas class="wt-done-orb" data-orb="listening" data-orb-size="96" data-orb-ink="#5f9fe0" aria-hidden="true"></canvas>
+    <p class="wt-done-k">Signal acknowledged</p>
+    <p class="wt-done-t">The League is on its way.</p>
+    <a href="/">Teleport back down</a>
+  </div>
+</div>
+
+<script>
+  /* smooth scrolling only after load, so back/forward restores the position instantly instead of sliding to it */
+  addEventListener('load', function () {
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      document.documentElement.classList.add('smooth');
+    }); });
+  });
+  (function watchtower() {
+    var root = document.getElementById('wt');
+
+    /* the clock, in UTC, because a station in orbit has no local time and
+       the League has to agree on one */
+    var el = document.getElementById('wtClock');
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function tick() {
+      var d = new Date();
+      if (el) el.textContent = pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ' UTC';
+    }
+    tick(); setInterval(tick, 20000);
+
+    /* the signal */
+    var sg = document.getElementById('wtSignal');
+    var st = document.getElementById('wtStat');
+    if (sg) sg.addEventListener('click', function () {
+      root.classList.add('is-called');
+      if (st) { st.textContent = 'League inbound'; st.classList.add('is-alert'); }
+    });
+    addEventListener('pageshow', function (e) {
+      if (e.persisted) {
+        root.classList.remove('is-called');
+        if (st) { st.textContent = 'All quiet'; st.classList.remove('is-alert'); }
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        root.classList.remove('is-called');
+        if (st) { st.textContent = 'All quiet'; st.classList.remove('is-alert'); }
+      }
+    });
+  })();
+</script>
+{% include analytics.html %}
+</body>
+</html>

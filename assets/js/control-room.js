@@ -238,7 +238,7 @@
       ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
     }
 
-    // a colour lit or shaded by k, as hex so it can be shaded again
+    // a color lit or shaded by k, as hex so it can be shaded again
     function shade(hex, k) {
       var v = parseInt(hex.slice(1), 16), out = '#';
       [16, 8, 0].forEach(function (sh) {
@@ -366,7 +366,7 @@
 
       // the names on the floor in front of each pedestal, last, so a tall
       // block nearer the camera cannot hide one; an outline in the floor's
-      // colour keeps them readable where they cross a block. Only names big
+      // color keeps them readable where they cross a block. Only names big
       // enough to read are drawn (the lists beside the screen carry them all).
       ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.lineJoin = 'round';
       order.forEach(function (o) {

@@ -1,5 +1,5 @@
 /* orbs.js: the "thinking orb" loading indicators, from Thinking Orbs by
-   Jakub Antalik (github.com/RareFormLabs/thinking-orbs, MIT, licence below).
+   Jakub Antalik (github.com/RareFormLabs/thinking-orbs, MIT, license below).
 
    Six dotted, animated states for "something is happening": working,
    searching, solving, listening, composing, shaping. Drawn on a plain 2D
@@ -13,7 +13,7 @@
    size the canvas for the screen, run the clock, pause offscreen and in a
    background tab, and draw one still frame for reduced motion. The engine
    has three additions of this site's own, each marked "(this site)": a
-   coloured ink in paint(), and a third "big" tier in PRESETS (the library's
+   colored ink in paint(), and a third "big" tier in PRESETS (the library's
    full-size profiles, slowed down) for the orbs drawn behind the headings.
 
    Loaded on every page from head.html, with thinking.js after it, which
@@ -23,7 +23,7 @@
        drawn by scan(), which runs once the page is parsed. data-orb-size is
        pixels, or "fit" to take the canvas's own CSS width and follow it as
        it changes. data-orb-ink is "dark" for dark ink on a light page, a
-       colour (#29e7ff), or a custom property (--a) read off the canvas.
+       color (#29e7ff), or a custom property (--a) read off the canvas.
        data-orb-speed scales the clock.
 
      AEorb.mount(canvas, 'listening', 64, { ink, speed })   -> stop()
@@ -110,7 +110,7 @@
       if (alpha < 0.02) continue;
       const w = Math.min(1, Math.max(0, d.white));
       if (dark && dark.rgb) {
-        // (this site) a coloured ink: bright for light ink, strong for dark
+        // (this site) a colored ink: bright for light ink, strong for dark
         const k = dark.light ? 1 - w : 1 - w * 0.75;
         const c = dark.rgb;
         ctx.fillStyle = dark.light
@@ -714,13 +714,13 @@
     try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; }
   };
 
-  /* A colour as the engine wants it, [r, g, b], from anything CSS takes:
+  /* A color as the engine wants it, [r, g, b], from anything CSS takes:
      a 2D context normalises whatever it is given to #rrggbb or rgba(). */
   var probe = null;
   function rgbOf(c) {
     if (!c) return null;
     probe = probe || document.createElement('canvas').getContext('2d');
-    probe.fillStyle = '#010203';            // kept if c is not a colour
+    probe.fillStyle = '#010203';            // kept if c is not a color
     probe.fillStyle = String(c).trim();
     var v = probe.fillStyle, m;
     if (v === '#010203') return null;
@@ -732,8 +732,8 @@
   }
 
   /* opt.ink: undefined for the light ink of a dark page, 'dark' for dark ink
-     on a light one, or a colour, light by default ({ c, dark: true } for a
-     coloured dark ink, the Marauder's Map's iron gall) */
+     on a light one, or a color, light by default ({ c, dark: true } for a
+     colored dark ink, the Marauder's Map's iron gall) */
   function inkOf(ink) {
     if (!ink) return true;
     if (ink === 'dark') return false;

@@ -1,6 +1,6 @@
 /* fan/beyblade.css: /worlds/beyblade/ only.
    The backdrop geometry is shared (.np-sky in fanpages.css); this file
-   only says what colour this world is. */
+   only says what color this world is. */
 
 body[data-fan="beyblade"] {
   --a: #4f9fe0;

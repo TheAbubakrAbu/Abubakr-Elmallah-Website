@@ -94,7 +94,7 @@ window.FAN_PAGE = {
       { title: 'Thragg', sub: 'Grand Regent', tag: 'Viltrumite', desc: 'What Nolan would be with the doubt taken out. The empire\u2019s belief system with a face on it.', meta: 'Purebred' },
       { title: 'Conquest', sub: 'Enforcer', tag: 'Viltrumite', desc: 'Sent when a posting has gone wrong, and the fight that finally shows Mark what he is up against.', meta: 'One arm, one mace' },
       { title: 'Anissa', sub: 'Agent', tag: 'Viltrumite', desc: 'Genuinely cannot understand why Mark objects to any of it, which makes her more frightening than the ones who enjoy it.', meta: 'Sent for Mark' },
-      { title: 'Allen the Alien', sub: 'Coalition of Planets', tag: 'Opposition', desc: 'The one organised resistance, run by a species that keeps upgrading him every time he loses.', meta: 'Unopan' },
+      { title: 'Allen the Alien', sub: 'Coalition of Planets', tag: 'Opposition', desc: 'The one organized resistance, run by a species that keeps upgrading him every time he loses.', meta: 'Unopan' },
       { title: 'Mark Grayson', sub: 'Invincible', tag: 'Half', desc: 'Half Viltrumite, raised entirely human, and the argument the empire has no answer for.', meta: 'Powers at 17' },
     ] },
 

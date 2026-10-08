@@ -12,6 +12,7 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/crafting-table.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
 <body class="ct" id="ct" data-sky="day">
 
@@ -32,6 +33,7 @@ standalone: true
   <a class="ct-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Save and quit</span>
   </a>
+  {% include interface-world.html world="Minecraft" href="/worlds/minecraft/" %}
   <span class="ct-top-mid">Minecraft · abubakrelmallah.com</span>
   <button class="ct-escbtn" id="ctEscBtn" type="button" aria-haspopup="dialog">Esc · Game menu</button>
 </header>
@@ -46,7 +48,7 @@ standalone: true
     <p>Minecraft 1.21 (abubakrelmallah.com/vanilla)</p>
     <p>XYZ: 33.640 / 64.00000 / -117.840</p>
     <p>Block: 33 64 -118 [Irvine, California]</p>
-    <p id="ctFacing">Facing: north (Towards negative Z)</p>
+    <p id="ctFacing">Facing: north (Toward negative Z)</p>
     <p>Biome: minecraft:uc_irvine</p>
     <p id="ctTicks">Day ··· · time ····· ticks</p>
   </div>
@@ -74,7 +76,7 @@ standalone: true
     <nav class="ct-menu" aria-label="Title screen">
       <a class="ct-btn" href="/projects/">Singleplayer<small>every project</small></a>
       <a class="ct-btn" href="/work/">Multiplayer<small>work at UC Irvine</small></a>
-      <a class="ct-btn" href="/worlds/">Minecraft Realms<small>all 71 worlds</small></a>
+      <a class="ct-btn" href="/worlds/">Minecraft Realms<small>all 74 worlds</small></a>
       <div class="ct-menu-row">
         <a class="ct-btn" href="/resume/">Options...<small>résumé</small></a>
         <a class="ct-btn" href="/">Quit Game<small>main site</small></a>
@@ -96,7 +98,7 @@ standalone: true
       <a class="ct-item" href="/education/" data-id="bookshelf"><span class="ct-slot"><canvas data-block="bookshelf" aria-hidden="true"></canvas></span><b>Bookshelf</b><i>Education</i></a>
       <a class="ct-item" href="/college/" data-id="lapis_block"><span class="ct-slot"><canvas data-block="lapis" aria-hidden="true"></canvas></span><b>Block of Lapis</b><i>College · UC Irvine</i></a>
       <a class="ct-item" href="/high-school/" data-id="oak_log"><span class="ct-slot"><canvas data-block="log" aria-hidden="true"></canvas></span><b>Oak Log</b><i>High School · where it started</i></a>
-      <a class="ct-item" href="/worlds/" data-id="diamond_ore"><span class="ct-slot"><canvas data-block="diamond_ore" aria-hidden="true"></canvas></span><b>Diamond Ore</b><i>All 71 worlds</i></a>
+      <a class="ct-item" href="/worlds/" data-id="diamond_ore"><span class="ct-slot"><canvas data-block="diamond_ore" aria-hidden="true"></canvas></span><b>Diamond Ore</b><i>All 74 worlds</i></a>
       <a class="ct-item" href="/worlds/minecraft/" data-id="creeper_head"><span class="ct-slot"><canvas data-block="creeper" aria-hidden="true"></canvas></span><b>Creeper Head</b><i>Minecraft · the world page</i></a>
       <a class="ct-item" href="/star-wars/" data-id="obsidian"><span class="ct-slot"><canvas data-block="obsidian" aria-hidden="true"></canvas></span><b>Obsidian</b><i>Star Wars apps</i></a>
       <a class="ct-item" href="/al-islam/" data-id="emerald_block"><span class="ct-slot"><canvas data-block="emerald" aria-hidden="true"></canvas></span><b>Block of Emerald</b><i>Al-Islam</i></a>
@@ -116,8 +118,7 @@ standalone: true
       <a class="ct-item" href="/citadel/" data-id="deepslate"><span class="ct-slot"><canvas data-block="deepslate" aria-hidden="true"></canvas></span><b>Deepslate</b><i>The Citadel</i></a>
       <a class="ct-item" href="/compass/" data-id="barrel"><span class="ct-slot"><canvas data-block="barrel" aria-hidden="true"></canvas></span><b>Barrel</b><i>The Compass</i></a>
       <a class="ct-item" href="/control-room/" data-id="moss_block"><span class="ct-slot"><canvas data-block="moss" aria-hidden="true"></canvas></span><b>Moss Block</b><i>The Control Room</i></a>
-      <a class="ct-item" href="/upside-down/" data-id="sculk"><span class="ct-slot"><canvas data-block="sculk" aria-hidden="true"></canvas></span><b>Sculk</b><i>The Upside Down</i></a>
-      <a class="ct-item" href="/starcourt/" data-id="note_block"><span class="ct-slot"><canvas data-block="note" aria-hidden="true"></canvas></span><b>Note Block</b><i>Starcourt</i></a>
+      <a class="ct-item" href="/hawkins/" data-id="sculk"><span class="ct-slot"><canvas data-block="sculk" aria-hidden="true"></canvas></span><b>Sculk</b><i>Hawkins</i></a>
       <a class="ct-item" href="/spirit-library/" data-id="sandstone"><span class="ct-slot"><canvas data-block="sandstone" aria-hidden="true"></canvas></span><b>Sandstone</b><i>The Spirit Library</i></a>
       <a class="ct-item" href="/monastery/" data-id="gold"><span class="ct-slot"><canvas data-block="gold" aria-hidden="true"></canvas></span><b>Block of Gold</b><i>The Monastery</i></a>
       <a class="ct-item" href="/wanted/" data-id="hay"><span class="ct-slot"><canvas data-block="hay" aria-hidden="true"></canvas></span><b>Hay Bale</b><i>The Wanted Board</i></a>
@@ -127,12 +128,16 @@ standalone: true
       <a class="ct-item" href="/pokedex/" data-id="wool"><span class="ct-slot"><canvas data-block="wool" aria-hidden="true"></canvas></span><b>Red Wool</b><i>The Pokédex</i></a>
       <a class="ct-item" href="/batcomputer/" data-id="coal"><span class="ct-slot"><canvas data-block="coal" aria-hidden="true"></canvas></span><b>Block of Coal</b><i>The Batcomputer</i></a>
       <a class="ct-item" href="/daily-bugle/" data-id="lapis"><span class="ct-slot"><canvas data-block="lapis" aria-hidden="true"></canvas></span><b>Block of Lapis Lazuli</b><i>The Daily Bugle</i></a>
+      <a class="ct-item" href="/grail-diary/" data-id="lapis"><span class="ct-slot"><canvas data-block="lapis" aria-hidden="true"></canvas></span><b>Block of Lapis Lazuli</b><i>The Grail Diary</i></a>
+      <a class="ct-item" href="/red-book/" data-id="lapis"><span class="ct-slot"><canvas data-block="lapis" aria-hidden="true"></canvas></span><b>Block of Lapis Lazuli</b><i>The Red Book</i></a>
+      <a class="ct-item" href="/power-battery/" data-id="lapis"><span class="ct-slot"><canvas data-block="lapis" aria-hidden="true"></canvas></span><b>Block of Lapis Lazuli</b><i>The Power Battery</i></a>
+      <a class="ct-item" href="/watchtower/" data-id="lapis"><span class="ct-slot"><canvas data-block="lapis" aria-hidden="true"></canvas></span><b>Block of Lapis Lazuli</b><i>The Watchtower</i></a>
     </div>
   </section>
 
   <!-- ─────────── the map ───────────
        A map item, as the game draws one: top-down, one pixel a block, in
-       the game's own map colours, shaded by height the way it shades a
+       the game's own map colors, shaded by height the way it shades a
        slope. The terrain is generated in crafting-table.js from a seed, with
        land raised under every banner so none of them ends up in the sea.
        Banners on a map carry their names in the game; here they carry a
@@ -259,6 +264,8 @@ standalone: true
 
   <button class="ct-btn ct-btn--wide ct-quit" id="ctQuit" type="button">Save and Quit to Title</button>
 
+  {% include interface-world.html world="Minecraft" href="/worlds/minecraft/" place="foot" %}
+
 </main>
 
 <!-- the ground the page stands on: grass blocks, tiled by crafting-table.js -->
@@ -282,7 +289,7 @@ standalone: true
     <a href="/marauders-map/" data-name="Birch Planks · The Marauder’s Map"><canvas data-block="birch" aria-hidden="true"></canvas><span class="vh">The Marauder’s Map</span></a>
     <a href="/compass/" data-name="Barrel · The Compass"><canvas data-block="barrel" aria-hidden="true"></canvas><span class="vh">The Compass</span></a>
     <a href="/control-room/" data-name="Moss Block · The Control Room"><canvas data-block="moss" aria-hidden="true"></canvas><span class="vh">The Control Room</span></a>
-    <a href="/upside-down/" data-name="Sculk · The Upside Down"><canvas data-block="sculk" aria-hidden="true"></canvas><span class="vh">The Upside Down</span></a>
+    <a href="/hawkins/" data-name="Sculk · Hawkins"><canvas data-block="sculk" aria-hidden="true"></canvas><span class="vh">Hawkins</span></a>
     <a href="/citadel/" data-name="Deepslate · The Citadel"><canvas data-block="deepslate" aria-hidden="true"></canvas><span class="vh">The Citadel</span></a>
     <a href="/spirit-library/" data-name="Sandstone · The Spirit Library"><canvas data-block="sandstone" aria-hidden="true"></canvas><span class="vh">The Spirit Library</span></a>
   </nav>

@@ -143,7 +143,7 @@ window.FAN_PAGE = {
     lede: 'Three films shot back to back over 438 days in New Zealand by a director best known for low-budget horror, on a book the industry had spent forty years calling unfilmable. It is still the benchmark, and the reason is that almost all of it is physically there.',
     items: [
       { title: 'They built it', sub: 'Miniatures and practical effects', tag: 'Craft', accent: '#d9b45f',
-        desc: 'WETA built enormous miniatures (the crew called them bigatures) for Helm\u2019s Deep, Minas Tirith and Orthanc, and shot them properly rather than rendering them. Forty-eight thousand pieces of armour and nineteen thousand costumes were made by hand. That is why it has not aged the way its digital contemporaries have.',
+        desc: 'WETA built enormous miniatures (the crew called them bigatures) for Helm\u2019s Deep, Minas Tirith and Orthanc, and shot them properly rather than rendering them. Forty-eight thousand pieces of armor and nineteen thousand costumes were made by hand. That is why it has not aged the way its digital contemporaries have.',
         meta: '438 days of shooting' },
       { title: 'Forced perspective', sub: 'Making hobbits small', tag: 'Craft', accent: '#c9a05f',
         desc: 'Mostly done in camera, with sets built at two scales, seats on sliding rigs, and actors placed further from the lens rather than shrunk afterwards. An old trick executed better than anyone had bothered to before.',
@@ -158,7 +158,7 @@ window.FAN_PAGE = {
         desc: 'Roughly two extra hours across the three, and unusually for extended cuts they genuinely improve the films: the added material is mostly character rather than spectacle.',
         meta: '~11 hours total' },
       { title: 'And then The Hobbit', sub: '2012 – 2014', tag: 'The honest bit', accent: '#6f7f92',
-        desc: 'A short children\u2019s book stretched into three long films on a troubled production, with far more digital work and far less of it built. It is not the same thing and pretending otherwise does the first trilogy no favours.',
+        desc: 'A short children\u2019s book stretched into three long films on a troubled production, with far more digital work and far less of it built. It is not the same thing and pretending otherwise does the first trilogy no favors.',
         meta: 'Three films, one small book' },
     ] },
 
@@ -250,12 +250,12 @@ window.FAN_PAGE = {
 window.FAN_PLAY = {
   kind: "roll",
   title: "Cast The Ring Into The Fire",
-  intro: "It is not jewellery. It wants to be found, it is trying to get back to its maker, and it works on whoever is holding it by offering them exactly the thing they would not admit to wanting.",
+  intro: "It is not jewelry. It wants to be found, it is trying to get back to its maker, and it works on whoever is holding it by offering them exactly the thing they would not admit to wanting.",
   prompt: "Gold, plain, warm to the touch.",
   button: "Put on the Ring",
   again: "Take it off, then put it on again",
   wait: [
-        "The world goes grey and thin.",
+        "The world goes gray and thin.",
         "Something enormous notices you.",
         "It offers you something."
       ],

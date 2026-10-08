@@ -12,6 +12,7 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/compass.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
 <body class="pc" id="pc">
 
@@ -26,6 +27,7 @@ standalone: true
   <a class="pc-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Shut the compass</span>
   </a>
+  {% include interface-world.html world="Pirates of the Caribbean" href="/worlds/pirates/" %}
   <span class="pc-top-mid">The Caribbean · a chart of abubakrelmallah.com</span>
   <!-- ship's time, from your clock (compass.js) -->
   <span class="pc-top-bell" id="pcBell">·· bells</span>
@@ -90,7 +92,7 @@ standalone: true
          with a thirty-two point rose under the glass. The card is fixed to
          the chart; only the needle moves, and compass.js turns it (a
          rotate() on #pcNeedle and its shadow) about the pivot at (0, 0),
-         which is the centre of the chart. -->
+         which is the center of the chart. -->
     <div class="pc-binn" id="pcBinn" aria-hidden="true">
       <svg class="pc-cmp" viewBox="-150 -250 300 400">
         <defs>
@@ -196,7 +198,7 @@ standalone: true
       <li class="pc-port" style="--x:75.12%;--y:71.75%;--ax:-6.7%;--ay:-25%;--ox:19.1px;--oy:11px;--ta:left"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10c3 0 5.5-1.8 8.5-5 3 3.2 5.5 5 8.5 5"/><path d="M5.5 15c2.5 0 4.2-1.2 6.5-3.4 2.3 2.2 4 3.4 6.5 3.4"/><path d="M8 10.8v8.7M16 10.8v8.7M5 19.5h14"/></svg><a href="/college/" data-b="120" data-line="Sao Feng’s charts: the way to the edge of the world."><b>Singapore</b><span class="vh">: </span><i>College, UC Irvine</i><span class="vh">, bearing </span><span class="pc-brg">120°</span></a></li>
       <li class="pc-port" style="--x:65.65%;--y:82.31%;--ax:-20.6%;--ay:-9.5%;--ox:12.9px;--oy:17.8px;--ta:left"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3c3 3-1.5 6 1.5 9S3 18 6 21"/><path d="M8 3c3 3-1.5 6 1.5 9S8 18 11 21"/><path d="M14 13.5 17.5 10l3.5 3.5V17H14z"/><path d="M15 17v3.5M20 17v3.5"/></svg><a href="/high-school/" data-b="144" data-line="Up the river to Tia Dalma’s, where it all started."><b>The Pantano River</b><span class="vh">: </span><i>High School</i><span class="vh">, bearing </span><span class="pc-brg">144°</span></a></li>
       <li class="pc-port" style="--x:55.24%;--y:86.96%;--ax:-39.6%;--ay:-1.1%;--ox:4.6px;--oy:21.5px;--ta:center"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 19c3-3.5 6.5-4.5 10-4.5s7 1 10 4.5"/><path class="r" d="M8.6 4.6l6.8 6.8M15.4 4.6l-6.8 6.8"/><path d="M4 22h4M11 22h3M17 22h3"/></svg><a href="/resume/" data-b="168" data-line="Where the chest is buried: the heart of it, in one place."><b>Isla Cruces</b><span class="vh">: </span><i>Résumé</i><span class="vh">, bearing </span><span class="pc-brg">168°</span></a></li>
-      <li class="pc-port" style="--x:44.76%;--y:86.96%;--ax:-60.4%;--ay:-1.1%;--ox:-4.6px;--oy:21.5px;--ta:center"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 8.5h12.5c2.5 0 3.5 1.5 3.5 4V21"/><path d="M2 12.5h9.5c1.8 0 2.5 1 2.5 3V21"/><path d="M21.2 12.5v2M21.2 17v1.4M21.2 20.6v.8"/></svg><a href="/worlds/" data-b="192" data-line="Over the edge of the map, and out the other side."><b>World’s End</b><span class="vh">: </span><i>All 71 worlds</i><span class="vh">, bearing </span><span class="pc-brg">192°</span></a></li>
+      <li class="pc-port" style="--x:44.76%;--y:86.96%;--ax:-60.4%;--ay:-1.1%;--ox:-4.6px;--oy:21.5px;--ta:center"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 8.5h12.5c2.5 0 3.5 1.5 3.5 4V21"/><path d="M2 12.5h9.5c1.8 0 2.5 1 2.5 3V21"/><path d="M21.2 12.5v2M21.2 17v1.4M21.2 20.6v.8"/></svg><a href="/worlds/" data-b="192" data-line="Over the edge of the map, and out the other side."><b>World’s End</b><span class="vh">: </span><i>All 74 worlds</i><span class="vh">, bearing </span><span class="pc-brg">192°</span></a></li>
       <li class="pc-port" style="--x:34.35%;--y:82.31%;--ax:-79.4%;--ay:-9.5%;--ox:-12.9px;--oy:17.8px;--ta:right"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M3 16h18l-2.5 4h-13z"/><path d="M9 16V3.5M15 16V5"/><path class="f" d="M5.6 5.6q3.4-1 6.8 0v3.8q-3.4-1-6.8 0z"/><path class="f" d="M5.6 10.6q3.4-1 6.8 0v3.4q-3.4-.8-6.8 0z"/><path class="f" d="M12.2 7q2.8-.9 5.6 0v3.4q-2.8-.9-5.6 0z"/><path d="M9 3.5l2.6.8L9 5.1"/></svg><a href="/worlds/pirates/" data-b="216" data-line="Black sails, and everything I love about the films."><b>The Black Pearl</b><span class="vh">: </span><i>Pirates of the Caribbean, the world page</i><span class="vh">, bearing </span><span class="pc-brg">216°</span></a></li>
       <li class="pc-port" style="--x:24.88%;--y:71.75%;--ax:-93.3%;--ay:-25%;--ox:-19.1px;--oy:11px;--ta:right"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path class="f" d="M12 3.2l2.2 5.4 5.8.5-4.4 3.8 1.4 5.7L12 15.6l-5 3 1.4-5.7L4 9.1l5.8-.5z"/><circle class="f" cx="20" cy="18.6" r=".9"/><circle class="f" cx="4.4" cy="17.4" r=".7"/><circle class="f" cx="19.4" cy="3.6" r=".7"/></svg><a href="/star-wars/" data-b="240" data-line="Where an astronomer is tried as a witch for reading the stars."><b>Saint Martin</b><span class="vh">: </span><i>Star Wars apps</i><span class="vh">, bearing </span><span class="pc-brg">240°</span></a></li>
       <li class="pc-port" style="--x:19.42%;--y:54.82%;--ax:-99.7%;--ay:-44.8%;--ox:-21.9px;--oy:2.3px;--ta:right"><svg class="pc-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 15.5h20"/><path d="M7 15.5a5 5 0 0 1 10 0"/><path d="M12 6.5v2M6 9l1.3 1.3M18 9l-1.3 1.3M3.5 12.5h2M18.5 12.5h2"/><path d="M5 19h5M13 19h6M8 22h8"/></svg><a href="/travels/" data-b="264" data-line="“Now, bring me that horizon.”"><b>The Horizon</b><span class="vh">: </span><i>Travels</i><span class="vh">, bearing </span><span class="pc-brg">264°</span></a></li>
@@ -238,14 +240,14 @@ standalone: true
         <div><dt>Post</dt><dd>Lead mobile &amp; backend developer, UC Irvine</dd></div>
         <div><dt>Ships launched</dt><dd>Twelve apps, across four platforms</dd></div>
         <div><dt>First to sea</dt><dd>Datapad, on the App Store June 26, 2023; it reached the Top 10 of the paid Entertainment chart</dd></div>
-        <div><dt>Honours</dt><dd>Winner of the Apple Swift Student Challenge 2024 with Al-Quran, and to WWDC 2024</dd></div>
+        <div><dt>Honors</dt><dd>Winner of the Apple Swift Student Challenge 2024 with Al-Quran, and to WWDC 2024</dd></div>
         <div><dt>Islamic apps</dt><dd>Al-Islam, Al-Quran and Al-Adhan: three apps, two national awards</dd></div>
         <div><dt>Crew</dt><dd>Sabacc Droid and Aurebesh Droid, Discord bots in more than 500 servers</dd></div>
         <div><dt>Maiden voyages</dt><dd>Order 66 in Scratch (2021), the first solo project; the Star Wars Datapad on Code.org (2021, 812 lines of JavaScript), the first real coding project</dd></div>
         <div><dt>Voyages logged</dt><dd>35 trips, 19 by plane and 16 by road, 2015–2026</dd></div>
         <div><dt>Voices</dt><dd>19 accents and 4 impersonations</dd></div>
         <div><dt>Plunder</dt><dd>747 Steam achievements across four Steam Replays, 2022–2025</dd></div>
-        <div><dt>Waters charted</dt><dd>71 worlds</dd></div>
+        <div><dt>Waters charted</dt><dd>74 worlds</dd></div>
         <div><dt>Home port</dt><dd>33.64°N 117.84°W</dd></div>
         <div><dt>Letters</dt><dd><a href="mailto:ammelmallah@gmail.com">ammelmallah@gmail.com</a></dd></div>
       </dl>
@@ -253,7 +255,7 @@ standalone: true
 
     <!-- ═══════════ the fleet ═══════════
          The other terminals, as other ships in these waters, each flying its
-         own colours. They have bearings too (off this chart), so the log's
+         own colors. They have bearings too (off this chart), so the log's
          heading follows them. -->
     <section class="pc-panel pc-fleet" aria-labelledby="pcFleetH">
       <h2 class="pc-h" id="pcFleetH">Other ships in these waters<span>the other terminals</span></h2>
@@ -265,8 +267,7 @@ standalone: true
         <a class="pc-ship" href="/crafting-table/" data-b="90" style="--f:#8fd14f; --f2:#866043"><span class="pc-flag" aria-hidden="true"></span><b>The Crafting Table</b><i>Minecraft</i></a>
         <a class="pc-ship" href="/citadel/" data-b="110" style="--f:#d8b26a; --f2:#6f4a14"><span class="pc-flag" aria-hidden="true"></span><b>The Citadel</b><i>Game of Thrones</i></a>
         <a class="pc-ship" href="/control-room/" data-b="130" style="--f:#e2b33c; --f2:#b3342b"><span class="pc-flag" aria-hidden="true"></span><b>The Control Room</b><i>Jurassic Park</i></a>
-        <a class="pc-ship" href="/upside-down/" data-b="150" style="--f:#d4343f; --f2:#3a0d14"><span class="pc-flag" aria-hidden="true"></span><b>The Upside Down</b><i>Stranger Things</i></a>
-        <a class="pc-ship" href="/starcourt/" data-b="170" style="--f:#ff6ec7; --f2:#2b1450"><span class="pc-flag" aria-hidden="true"></span><b>Starcourt</b><i>Stranger Things</i></a>
+        <a class="pc-ship" href="/hawkins/" data-b="150" style="--f:#d4343f; --f2:#3a0d14"><span class="pc-flag" aria-hidden="true"></span><b>Hawkins</b><i>Stranger Things</i></a>
         <a class="pc-ship" href="/spirit-library/" data-b="190" style="--f:#6aa0d8; --f2:#c9a25a"><span class="pc-flag" aria-hidden="true"></span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a>
         <a class="pc-ship" href="/monastery/" data-b="210" style="--f:#e0b040; --f2:#b3261e"><span class="pc-flag" aria-hidden="true"></span><b>The Monastery</b><i>Ninjago</i></a>
         <a class="pc-ship" href="/wanted/" data-b="230" style="--f:#c9402f; --f2:#d9c08c"><span class="pc-flag" aria-hidden="true"></span><b>The Wanted Board</b><i>Red Dead Redemption</i></a>
@@ -276,6 +277,10 @@ standalone: true
         <a class="pc-ship" href="/pokedex/" data-b="310" style="--f:#ffd43f; --f2:#e3242b"><span class="pc-flag" aria-hidden="true"></span><b>The Pokédex</b><i>Pokémon</i></a>
         <a class="pc-ship" href="/batcomputer/" data-b="330" style="--f:#c9cdd2; --f2:#f2c230"><span class="pc-flag" aria-hidden="true"></span><b>The Batcomputer</b><i>Batman</i></a>
         <a class="pc-ship" href="/daily-bugle/" data-b="350" style="--f:#e02a3a; --f2:#1f4fa8"><span class="pc-flag" aria-hidden="true"></span><b>The Daily Bugle</b><i>Spider-Man</i></a>
+        <a class="pc-ship" href="/grail-diary/" data-b="358" style="--f:#d8b06a; --f2:#d8b06a"><span class="pc-flag" aria-hidden="true"></span><b>The Grail Diary</b><i>Indiana Jones</i></a>
+        <a class="pc-ship" href="/red-book/" data-b="6" style="--f:#d9b45f; --f2:#d9b45f"><span class="pc-flag" aria-hidden="true"></span><b>The Red Book</b><i>The Lord of the Rings</i></a>
+        <a class="pc-ship" href="/power-battery/" data-b="14" style="--f:#4fd07f; --f2:#4fd07f"><span class="pc-flag" aria-hidden="true"></span><b>The Power Battery</b><i>Green Lantern</i></a>
+        <a class="pc-ship" href="/watchtower/" data-b="22" style="--f:#5f9fe0; --f2:#5f9fe0"><span class="pc-flag" aria-hidden="true"></span><b>The Watchtower</b><i>The Justice League</i></a>
       </div>
     </section>
 
@@ -283,6 +288,8 @@ standalone: true
 
   <!-- the Pirate Code's call; the crew's answer is the end screen -->
   <button class="pc-take" id="pcTake" type="button">Take what you can.</button>
+
+  {% include interface-world.html world="Pirates of the Caribbean" href="/worlds/pirates/" place="foot" %}
 
 </main>
 

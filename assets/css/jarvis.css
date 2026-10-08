@@ -4,10 +4,10 @@
    near-black field, 1px cyan wireframes, concentric gauges, uppercase telemetry. */
 
 :root {
-  /* The HUD's colour is ONE value used eighty-odd times below, so the phase
+  /* The HUD's color is ONE value used eighty-odd times below, so the phase
      switch (and the stone switch) only has to redefine these and the whole
      interface re-tints: wireframes, gauges, reactor, ticker, every module.
-     --cy-rgb is the same colour as raw channels, because the translucent
+     --cy-rgb is the same color as raw channels, because the translucent
      variants have to be mixed from it rather than written out. */
   --cy-rgb:    41, 231, 255;
   --amber:     #ffb347;
@@ -26,6 +26,8 @@
    <body>, and a custom property resolved on :root would already have been
    computed one level above the override and could never change. */
 body.jv {
+  --iw-a: #29e7ff;   /* the shared world button, interface-world.css */
+  --iw-bg: #00060b;
   --cy:        rgb(var(--cy-rgb));
   --cy-hi:     color-mix(in srgb, rgb(var(--cy-rgb)) 55%, #fff);
   --cy-mid:    rgba(var(--cy-rgb), 0.55);
@@ -274,8 +276,12 @@ body.jv.is-live .jv-mod { animation: mod-in .7s var(--ease) forwards; }
 
 /* ── identity module ── */
 
+/* This is the page's <h1> (see jarvis.html), so the weight is stated here:
+   left to the browser's default an h1 comes out bold, and the readout sets
+   its own weight through --disp like every other panel on the page. */
 .jv-id-name {
-  font-family: var(--disp); font-size: clamp(1.05rem, 2vw, 1.5rem); line-height: 1.15;
+  font-family: var(--disp); font-weight: 400;
+  font-size: clamp(1.05rem, 2vw, 1.5rem); line-height: 1.15;
   letter-spacing: 0.06em; color: var(--cy-hi); text-shadow: var(--glow);
 }
 .jv-id-role {
@@ -364,7 +370,7 @@ body.jv.is-live .jv-gauge .arc { stroke-dashoffset: var(--off); }
 .jv-link:hover i { background: var(--cy); border-color: var(--cy); box-shadow: var(--glow); }
 .jv-link em { margin-left: auto; font-style: normal; font-size: 0.52rem; color: var(--cy-dim); letter-spacing: 0.14em; }
 
-/* ═══════════════ centre: arc reactor ═══════════════ */
+/* ═══════════════ center: arc reactor ═══════════════ */
 
 .jv-core { display: flex; flex-direction: column; align-items: center; gap: 1rem; padding-top: 0.5rem; }
 
@@ -536,7 +542,7 @@ body.jv.is-live .jv-reactor { animation: reactor-in 1.2s var(--ease) .25s forwar
 
 /* ═══════════ the phase, and the stone ═══════════
    The villain era is not a panel on this page, it is the page: one data-phase
-   on <body> redefines --cy-rgb and the whole HUD changes colour, because every
+   on <body> redefines --cy-rgb and the whole HUD changes color, because every
    wireframe, gauge, bar and glyph on it is drawn from that one value.
 
      avengers   the HUD's own cyan: Loki and Ultron, before the scale got big
@@ -545,7 +551,7 @@ body.jv.is-live .jv-reactor { animation: reactor-in 1.2s var(--ease) .25s forwar
      doom       Doom, in green (the owner's call, 2026-10-04)
 
    The six Infinity Stones work the same way and sit on top of the phase: pick
-   one and the HUD runs in that stone's colour instead, which is the closest
+   one and the HUD runs in that stone's color instead, which is the closest
    this interface gets to actually holding the Gauntlet. "None" hands it back
    to the phase. */
 body.jv[data-phase="avengers"] { --cy-rgb: 41, 231, 255; }
@@ -571,7 +577,7 @@ body.jv, .jv-mod, .jv-bar i, .jv-reactor svg * {
 
 /* ── the gauntlet: six stones, and none ──
    A radio group, same as the phase rail: one choice from seven. Each swatch is
-   its own stone's colour whatever the HUD is currently running in, so the row
+   its own stone's color whatever the HUD is currently running in, so the row
    reads as the Gauntlet rather than as six copies of the current tint. */
 .jv-stones { display: flex; flex-wrap: wrap; gap: 0.3rem; border: 0; padding: 0; margin: 0; }
 .jv-stone {

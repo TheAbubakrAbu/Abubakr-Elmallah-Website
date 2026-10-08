@@ -17,8 +17,8 @@ window.FAN_PAGE = {
       { title: 'The towers', sub: 'Two princesses, one king', tag: 'The objective', accent: '#5f8fe8',
         desc: 'Take a princess tower and you are winning; wake the king by hitting him too early and he starts shooting back, which is the game’s best built-in punishment for greed.',
         meta: 'First tower wins most games' },
-      { title: 'The counter-push', sub: 'Defence becomes offence', tag: 'The rhythm', accent: '#f0b040',
-        desc: 'Whatever survives your defence walks into their half with your next play behind it. The whole game breathes in this rhythm: absorb, survive, counter, spending less than your opponent and keeping the change.',
+      { title: 'The counter-push', sub: 'Defense becomes offense', tag: 'The rhythm', accent: '#f0b040',
+        desc: 'Whatever survives your defense walks into their half with your next play behind it. The whole game breathes in this rhythm: absorb, survive, counter, spending less than your opponent and keeping the change.',
         meta: 'Positive elixir trades' },
       { title: 'Overtime', sub: 'Sudden death, double elixir', tag: 'The panic', accent: '#e0483a',
         desc: 'Tied after three minutes: first tower wins, elixir pours in at double rate, and every carefully learned instinct dissolves into two players throwing everything at one bridge.',
@@ -41,7 +41,7 @@ window.FAN_PAGE = {
           { n: 'Brawl Stars', y: '2018' },
           { n: 'Clash Quest', gone: 'shut down, 2022' },
           { n: 'Clash Mini', gone: 'shut down, 2024' },
-          { n: 'Clash Heroes', gone: 'cancelled, 2024' },
+          { n: 'Clash Heroes', gone: 'canceled, 2024' },
           { n: 'Squad Busters', y: '2024' },
         ] },
       { title: 'On Screen', sub: '2016 – 2017', unit: 'series',
@@ -52,10 +52,10 @@ window.FAN_PAGE = {
     ] },
 
 
-  { id: 'rarity', kind: 'tiles', title: 'The Rarities', note: 'the colour tells you the cost to grow it',
-    lede: 'Like every collection game, the colours are a language you learn before you notice learning it. Rarity in Royale is about how hard a card is to level, not how strong it is: a common at high level beats a legendary at low one, which keeps the whole thing honest-ish.',
+  { id: 'rarity', kind: 'tiles', title: 'The Rarities', note: 'the color tells you the cost to grow it',
+    lede: 'Like every collection game, the colors are a language you learn before you notice learning it. Rarity in Royale is about how hard a card is to level, not how strong it is: a common at high level beats a legendary at low one, which keeps the whole thing honest-ish.',
     items: [
-      { title: 'Common', accent: '#9aa0a8', sub: 'Grey', desc: 'Skeletons, archers, the knight. The backbone cards, and some of the best in the game.' },
+      { title: 'Common', accent: '#9aa0a8', sub: 'Gray', desc: 'Skeletons, archers, the knight. The backbone cards, and some of the best in the game.' },
       { title: 'Rare', accent: '#e8a13f', sub: 'Orange', desc: 'The hog rider, the musketeer, the fireball. Where most decks actually live.' },
       { title: 'Epic', accent: '#a05fd0', sub: 'Purple', desc: 'P.E.K.K.A, the prince, the witch. Big swings, big elixir bills.' },
       { title: 'Legendary', accent: '#f0d040', sub: 'Rainbow', desc: 'The log, the mega knight, the princess. The chest-opening animation everyone was really playing for.' },
@@ -63,7 +63,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'cast', kind: 'tiles', title: 'The Shared Cast', note: 'one universe, two games', compact: true,
-    lede: 'Every character below existed in Clash of Clans before Royale ever shipped. Supercell built a second game out of pieces the whole world already recognised, which is the smartest asset reuse in mobile gaming.',
+    lede: 'Every character below existed in Clash of Clans before Royale ever shipped. Supercell built a second game out of pieces the whole world already recognized, which is the smartest asset reuse in mobile gaming.',
     items: [
       { title: 'The Barbarian', accent: '#e8c56a', sub: 'The mascot', desc: 'The moustached face of the entire franchise since 2012. Cheap, angry, everywhere.' },
       { title: 'The Giant', accent: '#e8a13f', sub: 'The tank', desc: 'Walks past everything and punches buildings only. Both games’ first lesson in what a win condition is.' },
@@ -77,10 +77,10 @@ window.FAN_PAGE = {
     lede: 'The older game, 2012, and the reason any of this exists: a village you build, an army you brew, and other people’s villages you relieve of their gold. Royale is the tournament; Clash of Clans is the hometown. It was the iPad game of an entire generation of elementary schools, mine included.',
     items: [
       { title: 'The village', sub: 'Your base, your problem', tag: 'The build', accent: '#7fd07f',
-        desc: 'Gold mines, elixir collectors, walls, and the eternal question of whether your defences are arranged well enough to survive the night. Half the game is town planning with cannons.',
+        desc: 'Gold mines, elixir collectors, walls, and the eternal question of whether your defenses are arranged well enough to survive the night. Half the game is town planning with cannons.',
         meta: 'Log off, get raided' },
       { title: 'Town Hall', sub: 'The number that is you', tag: 'The ladder', accent: '#e8a13f',
-        desc: 'Your Town Hall level is your identity: TH7 was serious, TH9 was a lifestyle. Upgrading it reset your defences to "temporarily terrible" and told every raider in range that dinner was served.',
+        desc: 'Your Town Hall level is your identity: TH7 was serious, TH9 was a lifestyle. Upgrading it reset your defenses to "temporarily terrible" and told every raider in range that dinner was served.',
         meta: 'The whole progression' },
       { title: 'The raid', sub: 'Three minutes, three stars', tag: 'The attack', accent: '#e0483a',
         desc: 'Scout a base, brew an army for ten minutes, spend it in three. Dropping troops around someone’s walls is the same muscle Royale later turned into a whole game; Royale is just the raid with the village removed.',

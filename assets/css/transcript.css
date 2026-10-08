@@ -167,7 +167,7 @@
 }
 .role:last-child { padding-bottom: 0; }
 /* the node. Filled and ringed for the current role, hollow for past ones, so
-   "where I am now" is legible without a slab of colour. */
+   "where I am now" is legible without a slab of color. */
 .role::before {
   content: ""; position: absolute; left: calc(-1.35rem - 4px); top: 0.42rem;
   width: 9px; height: 9px; border-radius: 50%;
@@ -180,8 +180,8 @@
 }
 @media (hover: hover) { .role:hover::before { border-color: var(--accent, #5fbf8f); } }
 /* A current role's node is a small "working" thinking orb instead (put in
-   by thinking.js): still going. Centred where the dot was, on a disc of the
-   page's colour so the timeline's line does not run through it. */
+   by thinking.js): still going. Centered where the dot was, on a disc of the
+   page's color so the timeline's line does not run through it. */
 .role.has-orb::before { display: none; }
 .role-orb {
   position: absolute; left: calc(-1.35rem - 9.5px); top: calc(0.42rem - 5.5px);

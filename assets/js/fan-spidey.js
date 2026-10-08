@@ -7,7 +7,7 @@ window.FAN_PAGE = {
     lede: 'Three live-action Peters, one animated Miles, and one in a game, and I genuinely love all of them. The received wisdom is that Tobey is the best Peter and Andrew is the best Spider-Man. Mine is Tom, for both.',
     items: [
       { title: 'Tom Holland', sub: '2016 – 2026 · the MCU', tag: 'My No. 1', accent: '#e02a3a',
-        desc: 'My favourite, and my pick for the best Peter <b>and</b> the best Spider-Man. He is the only one who is actually a kid: out of his depth in every single film, doing it anyway, and by the end of No Way Home he has lost every single person who knew his name.',
+        desc: 'My favorite, and my pick for the best Peter <b>and</b> the best Spider-Man. He is the only one who is actually a kid: out of his depth in every single film, doing it anyway, and by the end of No Way Home he has lost every single person who knew his name.',
         meta: 'Civil War → Brand New Day' },
       { title: 'Tobey Maguire', sub: '2002 – 2007 · Raimi', tag: 'Best Peter', accent: '#8f4ac0',
         desc: 'The one most people will tell you is the best Peter, and they are not wrong. Raimi understood that the character is a melodrama about a boy who cannot catch a break, and the train scene in Spider-Man 2 is still the high-water mark for the whole genre.',
@@ -65,7 +65,7 @@ window.FAN_PAGE = {
           { n: 'Marvel’s Spider-Man', y: '2018', big: true },
           { n: 'Marvel’s Spider-Man: Miles Morales', y: '2020', big: true },
           { n: 'Marvel’s Spider-Man 2', y: '2023', big: true },
-          { n: 'Marvel’s Spider-Man: The Great Web', gone: 'cancelled, 2024' },
+          { n: 'Marvel’s Spider-Man: The Great Web', gone: 'canceled, 2024' },
         ] },
       { title: 'On Television', sub: '1967 – now', unit: 'series',
         desc: 'The 1994 series is how a whole generation met the rogues gallery; Spectacular is the one people defend hardest.',
@@ -166,7 +166,7 @@ window.FAN_PAGE = {
       { title: 'The Iron Spider', accent: '#c9a040', sub: '2007', desc: 'Stark-built, with the arms. Reused in the films for exactly the same effect.' },
       { title: 'The Advanced Suit', accent: '#4f8fd0', sub: '2018 game', desc: 'The white spider, designed for the PS4 game and adopted by the comics afterwards.' },
       { title: 'The Scarlet Spider', accent: '#c04a3a', sub: '1994', desc: 'A hoodie over the suit, from the clone saga, and beloved out of all proportion to that story.' },
-      { title: 'The Noir coat', accent: '#8f8f9a', sub: 'Earth-90214', desc: 'A trench coat, a fedora and goggles, in a world with no colour in it.' },
+      { title: 'The Noir coat', accent: '#8f8f9a', sub: 'Earth-90214', desc: 'A trench coat, a fedora and goggles, in a world with no color in it.' },
     ] },
 
   { id: 'runs', kind: 'cards', title: 'The Runs', note: 'sixty years of comics, five worth starting with',

@@ -46,10 +46,10 @@
     var btns = document.querySelectorAll('.picsw-btn');
     for (var i = 0; i < btns.length; i++) {
       btns[i].setAttribute('aria-checked', v ? 'true' : 'false');
-      /* the label stays "show other pictures" either way: the knob and
+      /* the label stays "show all pictures" either way: the knob and
          aria-checked carry the state. It used to flip to "hide other
          pictures", so a screen reader said "hide other pictures, switch, on". */
-      btns[i].querySelector('.picsw-label').textContent = 'show other pictures';
+      btns[i].querySelector('.picsw-label').textContent = 'show all pictures';
     }
     if (announce) document.dispatchEvent(new CustomEvent('ae:pics', { detail: { on: v } }));
   }
@@ -100,7 +100,7 @@
       + ' aria-checked="' + (showing ? 'true' : 'false') + '">'
       +   '<span class="picsw-track" aria-hidden="true"><span class="picsw-knob"></span></span>'
       +   '<span class="picsw-label">'
-      +     'show other pictures'
+      +     'show all pictures'
       +   '</span>'
       + '</button>';
 

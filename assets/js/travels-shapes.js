@@ -12,7 +12,7 @@
 
    Each entry is a path in a box 100 units on its long edge, with w/h giving
    the real aspect so travels.js can set a viewBox that does not distort it.
-   Each country is projected about its OWN centre latitude, so these are not
+   Each country is projected about its OWN center latitude, so these are not
    in one shared coordinate space and cannot be assembled into a world map;
    travels-map-data.js is the file for that. See the tool for why. */
 window.TRAVELS_SHAPES = {

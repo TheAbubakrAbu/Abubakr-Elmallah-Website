@@ -1,0 +1,87 @@
+/* world-siblings.css: the rest of a world's rank, at the foot of its page.
+
+   WHY CHIPS AND NOT TILES. /worlds/ shows each world as a full lettered
+   plate, and the first instinct was to reuse them here. They are the wrong
+   size for this: As a Kid holds 25 worlds, so a strip of plates would have
+   been a second copy of the worlds page stapled under every page, louder
+   than the page it is closing. These are names, set in the page's own
+   accent, laid out as many to a row as fit: a way on, not a display.
+
+   It inherits --a from the page, so it arrives in that world's color on
+   all 72 without a single per-page rule. */
+
+.wsib {
+  max-width: var(--maxw); margin: 3.5rem auto 0;
+  padding: 2rem var(--gutter) 0;
+  border-top: 1px solid var(--line, rgba(255, 255, 255, .08));
+}
+
+.wsib-h {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.3rem 0.7rem;
+  margin-bottom: 1.1rem;
+}
+.wsib-k {
+  font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--a, var(--gold));
+}
+.wsib-h b {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(1.1rem, 2.4vw, 1.45rem); letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.wsib-note {
+  font-family: var(--sans); font-size: 0.78rem; color: var(--mute);
+}
+
+.wsib-grid {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+}
+
+.wsib-i a {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.5rem 0.75rem 0.5rem 0.9rem; border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--a, #f5c63c) 26%, transparent);
+  background: color-mix(in srgb, var(--a, #f5c63c) 6%, transparent);
+  color: var(--ink); text-decoration: none;
+  transition: border-color .22s, background .22s,
+              transform .22s var(--ease, cubic-bezier(.16,1,.3,1));
+}
+.wsib-n {
+  font-family: var(--sans); font-weight: 600; font-size: 0.86rem;
+  letter-spacing: -0.01em;
+}
+.wsib-a {
+  font-size: 0.78rem; color: var(--a, var(--gold)); opacity: .75;
+  transition: transform .22s var(--ease, cubic-bezier(.16,1,.3,1));
+}
+
+@media (hover: hover) {
+  .wsib-i a:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--a, #f5c63c) 70%, transparent);
+    background: color-mix(in srgb, var(--a, #f5c63c) 13%, transparent);
+  }
+  .wsib-i a:hover .wsib-a { transform: translateX(3px); opacity: 1; }
+}
+
+/* back to the rank on the worlds page, for the ones not listed above */
+.wsib-all {
+  display: inline-block; margin-top: 1.1rem;
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.08em;
+  color: var(--mute); text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+@media (hover: hover) {
+  .wsib-all:hover {
+    color: var(--a, var(--gold));
+    border-bottom-color: color-mix(in srgb, var(--a, #f5c63c) 50%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wsib-i a, .wsib-a { transition: none; }
+  .wsib-i a:hover { transform: none; }
+  .wsib-i a:hover .wsib-a { transform: none; }
+}

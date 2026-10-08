@@ -53,7 +53,7 @@ window.FAN_SHOTS = {
       alt: 'The Ender Dragon flying at the camera with its hitboxes drawn as green boxes' },
     'realm-under-the-dragon': { src: 'minecraft/realms/2026-08-19-1826-under-the-dragon.jpg', title: 'Under the dragon',
       desc: 'Third person: ItsDauntless and me in diamond on the end stone, the dragon crossing overhead, endermen wandering through the fight.',
-      alt: 'Two players in diamond armour on the End island with the dragon overhead' },
+      alt: 'Two players in diamond armor on the End island with the dragon overhead' },
     'realm-quatic': { src: 'minecraft/realms/2026-08-19-1828-quatic.jpg', title: 'Teleported Quatic',
       desc: 'The chat line reads Teleported Quatic to MasterThingW, which is me. Everybody back on the island for the last of it.',
       alt: 'A player named Quatic arriving on the End island beside the camera' },
@@ -85,8 +85,8 @@ window.FAN_SHOTS = {
       desc: 'Ice Longclaw raised at the sun going down over a lukewarm ocean, shaders on.',
       alt: 'A sword raised at a Minecraft sunset over the ocean' },
     'realm-in-the-water': { src: 'minecraft/realms/2026-08-23-2349-in-the-water.jpg', title: 'In the water',
-      desc: 'Third person, waist deep, name tag and all: diamond armour and a purple sword against a gold sky.',
-      alt: 'A player in diamond armour standing in the sea at sunset' },
+      desc: 'Third person, waist deep, name tag and all: diamond armor and a purple sword against a gold sky.',
+      alt: 'A player in diamond armor standing in the sea at sunset' },
     'realm-underwater': { src: 'minecraft/realms/2026-08-23-2350-underwater.jpg', title: 'Underwater',
       desc: 'Light through the surface, seagrass, a shoal of fish. Respiration III on the helmet makes this somewhere you can stay.',
       alt: 'Underwater in Minecraft with light rays, seagrass and fish' },
@@ -210,10 +210,10 @@ window.FAN_SHOTS = {
       alt: 'The Esplanade fountain on Imagine Fun with the First Order Fight scoreboard in the corner' },
     'if-vs-anakin': { src: 'star-wars/imagine-fun/vs-anakin.jpg', title: 'Abu Vizsla vs Anakin',
       desc: 'A Magic Shot on Mustafar: blades crossed in front of the lava, imaginefun.net in the corner.',
-      meta: 'Magic Shot', alt: 'A Magic Shot of two Minecraft characters duelling with lightsabers in front of lava' },
+      meta: 'Magic Shot', alt: 'A Magic Shot of two Minecraft characters dueling with lightsabers in front of lava' },
     'if-vs-obi-wan': { src: 'star-wars/imagine-fun/vs-obi-wan.jpg', title: 'Abu Vizsla vs Obi-Wan',
       desc: 'The same set, the other duellist. He has the high ground in neither.',
-      meta: 'Magic Shot', alt: 'A Magic Shot of two Minecraft characters duelling with blue lightsabers in front of lava' },
+      meta: 'Magic Shot', alt: 'A Magic Shot of two Minecraft characters dueling with blue lightsabers in front of lava' },
     'if-luke-leia-han': { src: 'star-wars/imagine-fun/luke-leia-and-han.jpg', title: 'Luke, Leia and Han',
       desc: 'Three characters crossing the plaza in front of the Falcon at midday, long shadows on the ground.',
       meta: 'Black Spire Outpost', alt: 'Luke, Leia and Han characters walking in front of the Millennium Falcon on Imagine Fun' },
@@ -246,9 +246,9 @@ window.FAN_SHOTS = {
       meta: 'Star Wars Trivia', alt: 'The trivia stage on Imagine Fun, in purple and pink' },
 
     /* ── the Star Wars MC server ── */
-    'swmc-sabers': { src: 'star-wars/star-wars-mc/saber-inventory.jpg', title: 'Every colour',
+    'swmc-sabers': { src: 'star-wars/star-wars-mc/saber-inventory.jpg', title: 'Every color',
       desc: 'The inventory on the Star Wars MC server: three rows of hilts, a blaster in the corner, and the robed skin in the middle.',
-      meta: 'Star Wars MC', alt: 'A Minecraft inventory full of lightsaber hilts of every colour' },
+      meta: 'Star Wars MC', alt: 'A Minecraft inventory full of lightsaber hilts of every color' },
     'swmc-legacy': { src: 'star-wars/star-wars-mc/legacy-sabers.jpg', title: 'The ender chest',
       desc: 'Legacy sabers on the top rows and health potions filling the rest.',
       meta: 'Star Wars MC', alt: 'An ender chest window with lightsabers and potions' },
@@ -298,7 +298,7 @@ window.FAN_SHOTS = {
        captures stay in the library. */
     'fn-omega': { src: 'fortnite/omega/omega.jpg', title: 'Omega, still',
       desc: 'Still the one I would put on: Omega in a lobby years after season four, with the Millennium Falcon parked behind him.',
-      alt: 'Omega, the black armoured Fortnite outfit, in a lobby in front of the Millennium Falcon' },
+      alt: 'Omega, the black armored Fortnite outfit, in a lobby in front of the Millennium Falcon' },
     'fn-got-bundle': { src: 'fortnite/game-of-thrones/ice-and-fire-bundle.jpg', title: 'Ice and Fire',
       desc: 'The Game of Thrones bundle in the item shop: Jon Snow, Daenerys and the Night King, twelve items for 2,200 V-Bucks.',
       alt: 'The Fortnite item shop page for the Game of Thrones Ice and Fire bundle' },
@@ -381,11 +381,11 @@ window.FAN_SHOTS = {
        account is TheAbubakrAbu on all three, which is what it was called
        from 2021 to 2025. */
     'lunar-2022': { src: 'minecraft/lunar/2022.jpg', title: 'Lunar Client, 2022',
-      desc: '46.1 hours in the client, 191 launches (the top 15.4% of players), 1.12 as the favourite version and Hypixel as the favourite server, joined 26 times. The longest streak was four days, 19 to 22 November.',
-      meta: '#LunarClientWrapped \u00b7 2022', alt: 'Lunar Client Wrapped 2022 for TheAbubakrAbu: 46.1 hours, 191 launches, favourite server Hypixel' },
+      desc: '46.1 hours in the client, 191 launches (the top 15.4% of players), 1.12 as the favorite version and Hypixel as the favorite server, joined 26 times. The longest streak was four days, 19 to 22 November.',
+      meta: '#LunarClientWrapped \u00b7 2022', alt: 'Lunar Client Wrapped 2022 for TheAbubakrAbu: 46.1 hours, 191 launches, favorite server Hypixel' },
     'lunar-2023': { src: 'minecraft/lunar/2023.jpg', title: 'Lunar Client, 2023',
       desc: '27.5 hours, but 244 launches, the top 8.99%. 1.19 was the version and Imagine Fun took over as the server, joined 22 times. A three-day streak, 6 to 8 April.',
-      meta: '#LunarClientWrapped \u00b7 2023', alt: 'Lunar Client Wrapped 2023 for TheAbubakrAbu: 27.5 hours, 244 launches, favourite server ImagineFun' },
+      meta: '#LunarClientWrapped \u00b7 2023', alt: 'Lunar Client Wrapped 2023 for TheAbubakrAbu: 27.5 hours, 244 launches, favorite server ImagineFun' },
     'lunar-2024': { src: 'minecraft/lunar/2024.jpg', title: 'Lunar Client, 2024',
       desc: 'Seventeen hours and 57 launches, and Imagine Fun joined 559 times, which is what a Disneyland server does to a year. 1.20, and a three-day streak from 18 to 20 December.',
       meta: '#LunarClientWrapped \u00b7 2024', alt: 'Lunar Client Wrapped 2024 for TheAbubakrAbu: 17 hours, 57 launches, ImagineFun joined 559 times' },
@@ -429,16 +429,16 @@ window.FAN_SHOTS = {
     'njm-cole': { src: 'lego/ninjago-movie/2026-09-27-2033-cole.jpg', title: 'Cole',
       alt: 'The Gold Ninja beside Cole' },
     'njm-nya': { src: 'lego/ninjago-movie/2026-09-27-2033-nya.jpg', title: 'Nya',
-      desc: 'As Samurai X, water sparking off the armour.',
-      alt: 'The Gold Ninja beside Nya in red samurai armour' },
+      desc: 'As Samurai X, water sparking off the armor.',
+      alt: 'The Gold Ninja beside Nya in red samurai armor' },
     'njm-zane': { src: 'lego/ninjago-movie/2026-09-27-2034-zane.jpg', title: 'Zane',
       alt: 'The Gold Ninja beside Zane, ice in hand' },
     'njm-jay': { src: 'lego/ninjago-movie/2026-09-27-2035-jay.jpg', title: 'Jay',
       alt: 'The Gold Ninja beside Jay, lightning in hand' },
     'njm-the-horned-helmet': { src: 'lego/ninjago-movie/2026-09-27-2035-the-horned-helmet.jpg', title: 'The horned helmet',
-      alt: 'A character in dark armour and a gold horned helmet beside the Gold Ninja' },
+      alt: 'A character in dark armor and a gold horned helmet beside the Gold Ninja' },
     'njm-garmadon': { src: 'lego/ninjago-movie/2026-09-27-2036-garmadon.jpg', title: 'Garmadon',
-      alt: 'The Gold Ninja beside Garmadon in his horned armour and cape' },
+      alt: 'The Gold Ninja beside Garmadon in his horned armor and cape' },
     'njm-pythor': { src: 'lego/ninjago-movie/2026-09-27-2036-pythor.jpg', title: 'Pythor',
       alt: 'Pythor, white and purple, with his staff, beside the Gold Ninja' },
     'njm-hypnobrai': { src: 'lego/ninjago-movie/2026-09-27-2037-hypnobrai.jpg', title: 'A Hypnobrai general',
@@ -464,7 +464,7 @@ window.FAN_SHOTS = {
     'njm-master-wu': { src: 'lego/ninjago-movie/2026-09-27-2040-master-wu.jpg', title: 'Master Wu, and a ghost',
       alt: 'Master Wu in white with a straw hat beside a glowing green ghost in a hat' },
     'njm-in-violet': { src: 'lego/ninjago-movie/2026-09-27-2041-in-violet.jpg', title: 'In violet',
-      alt: 'A character in black and violet armour beside the Gold Ninja' },
+      alt: 'A character in black and violet armor beside the Gold Ninja' },
     'njm-the-antlers': { src: 'lego/ninjago-movie/2026-09-27-2041-the-antlers.jpg', title: 'Antlers and a hammer',
       alt: 'A red antlered warrior with a hammer beside the Gold Ninja' },
     'njm-the-scythe': { src: 'lego/ninjago-movie/2026-09-27-2041-the-scythe.jpg', title: 'Antlers and a blade',
@@ -489,7 +489,7 @@ window.FAN_SHOTS = {
       alt: 'Steam library banner for The LEGO Ninjago Movie Video Game, 14.4 hours and 50 of 50 achievements' },
 
     /* The three Steam collection views. Each one is the library filtered to a
-       licence and sorted by percentage of achievements complete, so the row of
+       license and sorted by percentage of achievements complete, so the row of
        hundreds at the top is the receipt and the count in the tab is how many
        games that collection holds. Shown on the franchise page each belongs to
        and again on /gaming/, where the four of them are the wall. */
@@ -625,7 +625,7 @@ window.FAN_SHOTS = {
       items: ['if-trivia-seventy-five', 'if-trivia-top-three', 'if-trivia-quiz-stage', 'if-trivia-first', 'if-trivia-stage'] },
 
     'star-wars-mc': { title: 'Star Wars MC', note: 'the other server', grid: true, wide: true,
-      lede: 'A Star Wars server rather than a Disneyland one: sabers in every colour, a blaster, and parkour in the lobby. Three frames, undated.',
+      lede: 'A Star Wars server rather than a Disneyland one: sabers in every color, a blaster, and parkour in the lobby. Three frames, undated.',
       items: ['swmc-sabers', 'swmc-legacy', 'swmc-parkour'] },
 
     potterverse: { title: 'Potterverse', note: 'Hogwarts in Minecraft · February 2022', grid: true, wide: true,
@@ -690,7 +690,7 @@ window.FAN_SHOTS = {
        used to be a fifth frame here and came out on 2026-08-31: a single
        paused game sitting beside three whole collections was the odd one out,
        and it is still on /gaming/ a section further down, inside the LEGO
-       catalogue where the other twelve finished games are. */
+       catalog where the other twelve finished games are. */
     'hundred-percent': { title: 'The Hundred Percents', note: 'every receipt I have', two: true,
       lede: 'Steam sorts a collection by percentage of achievements complete, which turns the library into a scoreboard. These are the three collection views I keep, plus the completion screens for the four LEGO Star Wars games in one frame. Each one is also on the page of the world it belongs to.',
       items: ['sw-shelf', 'ww-shelf', 'spidey-shelf', 'lego-star-wars-hundred'] },

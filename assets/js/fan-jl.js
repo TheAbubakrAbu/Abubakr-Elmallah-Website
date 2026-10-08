@@ -4,9 +4,9 @@ window.FAN_PAGE = {
   when: { at: 'Since I was a kid, on the cartoons', note: 'The animated shows were on when I was small, and I have never read a comic. This one is here for six characters, and for liking the films most people did not.' },
   sections: [
   { id: 'guys', kind: 'cards', title: 'The Ones I Actually Like', note: 'Batman first, then five more',
-    lede: 'If I say DC, this is who I mean. Batman is the favourite by a distance and has his own page here; the other five I love outright, which is more than I can say for any comic, since I have never read one. All six came to me through television.',
+    lede: 'If I say DC, this is who I mean. Batman is the favorite by a distance and has his own page here; the other five I love outright, which is more than I can say for any comic, since I have never read one. All six came to me through television.',
     items: [
-      { title: 'Batman', sub: 'Bruce Wayne · Gotham', tag: 'My favourite', accent: '#8f98a8',
+      { title: 'Batman', sub: 'Bruce Wayne · Gotham', tag: 'My favorite', accent: '#8f98a8',
         desc: 'No powers on a team of gods, and a contingency plan for every one of them in a drawer at home. He has his own page on this site, which tells you where he actually ranks for me. On this team he is the interesting one precisely because he should not be able to keep up and does.',
         meta: 'Has his own page here' },
       { title: 'Superman', sub: 'Clark Kent · Metropolis', tag: 'Love', accent: '#4f8fe0',
@@ -111,7 +111,7 @@ window.FAN_PAGE = {
       { title: 'The Flash', sub: 'Barry Allen · Wally West', tag: 'Speed Force', desc: 'Fastest man alive, and in most versions the one holding the team together socially.', meta: 'Debut 1940 · Central City' },
       { title: 'Green Lantern', sub: 'Hal Jordan · John Stewart', tag: 'Corps', desc: 'A ring that builds anything you can picture, powered by willpower and limited by imagination.', meta: 'Debut 1940 · Sector 2814' },
       { title: 'Aquaman', sub: 'Arthur Curry', tag: 'Atlantis', desc: 'King of two thirds of the planet, and the running joke that the comics have spent forty years dismantling.', meta: 'Debut 1941 · Atlantis' },
-      { title: 'Martian Manhunter', sub: "J'onn J'onzz", tag: 'Mars', desc: 'Telepath, shapeshifter, and the emotional centre of the animated series. Replaced by Cyborg in the New 52 founding.', meta: 'Debut 1955 · Mars' },
+      { title: 'Martian Manhunter', sub: "J'onn J'onzz", tag: 'Mars', desc: 'Telepath, shapeshifter, and the emotional center of the animated series. Replaced by Cyborg in the New 52 founding.', meta: 'Debut 1955 · Mars' },
     ] },
 
   { id: 'cartoons', kind: 'cards', title: 'The Cartoons', note: 'how I actually met these people',
@@ -142,7 +142,7 @@ window.FAN_PAGE = {
       { title: 'A detective story', sub: 'Rushville, Nebraska', tag: 'The case', accent: '#5f9fe0',
         desc: 'An Earthbound investigation into a murder in the American heartland: more cops on a case than heroes assembling for a sky beam. The sci-fi is there, but it arrives through the mystery.', meta: 'Rural noir' },
       { title: 'The larger DCU', sub: 'Manhunters · Sinestro · Guy Gardner', tag: 'Beyond Earth', accent: '#d8b45f',
-        desc: 'It is grounded without pretending the Green Lantern mythos is small. The show reaches toward the Corps, the Manhunters and Sinestro, while still making John and Hal’s partnership the centre.', meta: 'Cosmic stakes' },
+        desc: 'It is grounded without pretending the Green Lantern mythos is small. The show reaches toward the Corps, the Manhunters and Sinestro, while still making John and Hal’s partnership the center.', meta: 'Cosmic stakes' },
     ] },
 
   { id: 'films', kind: 'cards', title: 'The Films', note: 'the ones I liked, against the consensus',

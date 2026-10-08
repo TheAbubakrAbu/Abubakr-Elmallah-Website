@@ -41,7 +41,7 @@
     return '<article class="pl-card reveal' + (w.key ? '' : ' is-minor') + '" style="' + css + '">'
       + sphere(w)
       + '<div class="pl-body">'
-      +   '<div class="pl-titlerow"><h4>' + esc(w.name) + '</h4><span class="pl-src">' + esc(w.src) + '</span></div>'
+      +   '<div class="pl-titlerow"><h3>' + esc(w.name) + '</h3><span class="pl-src">' + esc(w.src) + '</span></div>'
       +   '<p class="pl-desc">' + esc(w.desc) + '</p>'
       +   '<span class="pl-meta">' + esc(w.meta) + '</span>'
       + '</div>'
@@ -55,10 +55,10 @@
     var main = g.worlds.filter(function (w) { return w.key; }).length;
     var more = g.worlds.length - main;
     return '<section class="pl-group" data-era="' + g.id + '"' + (i === 0 ? '' : ' hidden') + '>'
-      + '<h3 class="subsec subsec--sw reveal">' + esc(g.label)
+      + '<h2 class="subsec subsec--sw reveal">' + esc(g.label)
       +   '<span class="subsec-yr">' + esc(g.note) + '</span>'
       +   '<span class="pl-count">' + g.worlds.length + '</span>'
-      + '</h3>'
+      + '</h2>'
       + '<div class="pl-grid">' + g.worlds.map(card).join('') + '</div>'
       + (more ? '<button class="chip chip--sw pl-more" type="button" aria-expanded="false"'
         + ' data-all="Show all ' + g.worlds.length + ' planets" data-key="Show only the main ' + main + '">'

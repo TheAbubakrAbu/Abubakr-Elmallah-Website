@@ -227,7 +227,7 @@ tab: "/"
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9l6.5 2-6.5 2-2 6.5-2-6.5L3.5 11 10 9z"/></svg>
           </span>
           <h3>And me</h3>
-          <p>My faith, my family’s language, and the seventy-one worlds I love. Not a résumé.</p>
+          <p>My faith, my family’s language, and the seventy-four worlds I love. Not a résumé.</p>
         </article>
       </div>
     </div>
@@ -289,7 +289,7 @@ tab: "/"
   </section>
 
   <!-- ─────────────── INTERFACES ─────────────── -->
-  <!-- all twenty-two terminal teasers, one section with its own heading,
+  <!-- all twenty-five terminal teasers, one section with its own heading,
        above Contact so the page ends on Contact. On desktop E.L.M.A.L.L.A.H.
        has the first row to itself, then Holocron, J.A.R.V.I.S. and the
        Marauder's Map three across; the other eighteen open on the button
@@ -297,13 +297,13 @@ tab: "/"
   <section class="interfaces" id="interfaces" data-idle>
     <div class="sec-head reveal">
       <span class="sec-idx">04</span>
-      <h2>Interfaces</h2>
-      <span class="sec-note">Twenty-two other ways in.</span>
+      <h2>Terminal Interfaces</h2>
+      <span class="sec-note">Twenty-one other ways in.</span>
     </div>
 
     <div class="jarvis-grid">
       <!-- each card's thinking orb (orbs.js) is the one its interface runs,
-           in its colours -->
+           in its colors -->
       <a class="jarvis-cta elm-cta reveal" id="terminals" href="/elmallah/" data-magnetic>
         <canvas class="cta-orb" data-orb="solving" data-orb-size="fit" data-orb-ink="#5fa3ec" aria-hidden="true"></canvas>
         <span class="elm-table" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
@@ -345,16 +345,18 @@ tab: "/"
         </span>
         <span class="jarvis-go">I SOLEMNLY SWEAR ↗</span>
       </a>
-      <!-- The other eighteen terminals fold away: the page opens on
+      <!-- The other twenty-one terminals fold away: the page opens on
            E.L.M.A.L.L.A.H. and the three interfaces for the worlds I know by
            heart, and this button shows the rest, the Secondary worlds' ones
            included (asked for 2026-10-04). A details element, so it works with
-           no JS and the cards stay in the DOM for search; data-remember
-           (utils.js) only stores whether it was open. -->
+           no JS and the cards stay in the DOM for search. It opens closed on
+           every visit: the fold used to be remembered across visits, which
+           meant the page could greet you already unfolded (changed
+           2026-10-07; see rememberFolds in utils.js). -->
       <details class="if-more" id="ifMore" data-remember="interfaces">
         <summary class="if-more-s">
-          <span class="if-more-k">The other eighteen terminals</span>
-          <span class="if-more-n">Crafting Table, Compass, Control Room, Upside Down, Citadel, Spirit Library, Starcourt, Monastery, Wanted Board, Dunder Mifflin, Springfield, Vought Tower, Pokédex, Batcomputer, Daily Bugle, Instruction Booklet, Battle Pass, Security Office</span>
+          <span class="if-more-k">The other twenty-one terminals</span>
+          <span class="if-more-n">Crafting Table, Compass, Control Room, Hawkins, Citadel, Spirit Library, Monastery, Wanted Board, Dunder Mifflin, Springfield, Vought Tower, Pokédex, Batcomputer, Daily Bugle, Instruction Booklet, Battle Pass, Security Office, Grail Diary, Red Book, Power Battery, Watchtower</span>
           <span class="if-more-a" aria-hidden="true">▾</span>
         </summary>
         <div class="if-more-grid">
@@ -388,13 +390,13 @@ tab: "/"
             </span>
             <span class="jarvis-go">IT’S A UNIX SYSTEM ↗</span>
           </a>
-          <a class="jarvis-cta st-cta reveal" id="upside-down" href="/upside-down/" data-magnetic>
+          <a class="jarvis-cta st-cta reveal" id="hawkins" href="/hawkins/" data-magnetic>
             <canvas class="cta-orb" data-orb="listening" data-orb-size="fit" data-orb-ink="#ff6a5c" aria-hidden="true"></canvas>
             <span class="st-mini" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="jarvis-txt">
-            <span class="jarvis-k">Alphabet wall · Interface</span>
-            <h3>The Upside Down</h3>
-            <p>Joyce Byers’ living-room wall, with every page on this site strung under its bulbs: point at one and the lights spell it out, the way Will did, then flip the switch and the whole house turns over into the Upside Down.</p>
+            <span class="jarvis-k">Mall directory · Interface</span>
+            <h3>Hawkins</h3>
+            <p>Starcourt Mall and the Palace Arcade, with every page on this site a store on the directory or a cabinet on the floor, and Joyce Byers’ wall spelling out whichever one you point at. Keep scrolling and the whole town turns over into the Upside Down.</p>
             </span>
             <span class="jarvis-go">RIGHT HERE ↗</span>
           </a>
@@ -418,17 +420,9 @@ tab: "/"
             </span>
             <span class="jarvis-go">YIP YIP ↗</span>
           </a>
-          <a class="jarvis-cta sc-cta reveal" id="starcourt" href="/starcourt/" data-magnetic>
-            <canvas class="cta-orb" data-orb="listening" data-orb-size="fit" data-orb-ink="#ff5fb4" aria-hidden="true"></canvas>
-            <span class="jarvis-txt">
-            <span class="jarvis-k">Mall directory · Interface</span>
-            <h3>Starcourt</h3>
-            <p>The Palace Arcade and the mall above it: every page a store on the directory or a cabinet on the arcade floor, and a switch that turns Hawkins over.</p>
-            </span>
-            <span class="jarvis-go">OPEN LATE ↗</span>
-          </a>
           <a class="jarvis-cta mn-cta reveal" id="monastery" href="/monastery/" data-magnetic>
             <canvas class="cta-orb" data-orb="shaping" data-orb-size="fit" data-orb-ink="#e0b040" aria-hidden="true"></canvas>
+            <span class="mn-mini" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="jarvis-txt">
             <span class="jarvis-k">Training course · Interface</span>
             <h3>The Monastery</h3>
@@ -438,6 +432,7 @@ tab: "/"
           </a>
           <a class="jarvis-cta wb-cta reveal" id="wanted" href="/wanted/" data-magnetic>
             <canvas class="cta-orb" data-orb="searching" data-orb-size="fit" data-orb-ink="#e0321d" aria-hidden="true"></canvas>
+            <span class="wb-mini" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="jarvis-txt">
             <span class="jarvis-k">Bounty board · Interface</span>
             <h3>The Wanted Board</h3>
@@ -447,6 +442,7 @@ tab: "/"
           </a>
           <a class="jarvis-cta dm-cta reveal" id="dunder-mifflin" href="/dunder-mifflin/" data-magnetic>
             <canvas class="cta-orb" data-orb="working" data-orb-size="fit" data-orb-ink="#2559a8" aria-hidden="true"></canvas>
+            <span class="dm-mini" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
             <span class="jarvis-txt">
             <span class="jarvis-k">Branch floor · Interface</span>
             <h3>Dunder Mifflin</h3>
@@ -456,6 +452,7 @@ tab: "/"
           </a>
           <a class="jarvis-cta sf-cta reveal" id="springfield" href="/springfield/" data-magnetic>
             <canvas class="cta-orb" data-orb="composing" data-orb-size="fit" data-orb-ink="#ffd90f" aria-hidden="true"></canvas>
+            <span class="sf-mini" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="jarvis-txt">
             <span class="jarvis-k">Main street · Interface</span>
             <h3>Springfield</h3>
@@ -465,6 +462,7 @@ tab: "/"
           </a>
           <a class="jarvis-cta vt-cta reveal" id="vought" href="/vought/" data-magnetic>
             <canvas class="cta-orb" data-orb="solving" data-orb-size="fit" data-orb-ink="#e2b54a" aria-hidden="true"></canvas>
+            <span class="vt-mini" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="jarvis-txt">
             <span class="jarvis-k">Intranet · Interface</span>
             <h3>Vought Tower</h3>
@@ -474,8 +472,9 @@ tab: "/"
           </a>
           <a class="jarvis-cta pk-cta reveal" id="pokedex" href="/pokedex/" data-magnetic>
             <canvas class="cta-orb" data-orb="searching" data-orb-size="fit" data-orb-ink="#d61f35" aria-hidden="true"></canvas>
+            <span class="pk-mini" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="jarvis-txt">
-            <span class="jarvis-k">Catalogue · Interface</span>
+            <span class="jarvis-k">Catalog · Interface</span>
             <h3>The Pokédex</h3>
             <p>A Kanto Pokédex open on its hinge: every room a numbered entry, each one with its own cry.</p>
             </span>
@@ -483,6 +482,7 @@ tab: "/"
           </a>
           <a class="jarvis-cta bc-cta reveal" id="batcomputer" href="/batcomputer/" data-magnetic>
             <canvas class="cta-orb" data-orb="solving" data-orb-size="fit" data-orb-ink="#f5c542" aria-hidden="true"></canvas>
+            <span class="bc-mini" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="jarvis-txt">
             <span class="jarvis-k">Case wall · Interface</span>
             <h3>The Batcomputer</h3>
@@ -492,6 +492,7 @@ tab: "/"
           </a>
           <a class="jarvis-cta db-cta reveal" id="daily-bugle" href="/daily-bugle/" data-magnetic>
             <canvas class="cta-orb" data-orb="composing" data-orb-size="fit" data-orb-ink="#b3121c" aria-hidden="true"></canvas>
+            <span class="db-mini" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="jarvis-txt">
             <span class="jarvis-k">Front page · Interface</span>
             <h3>The Daily Bugle</h3>
@@ -501,6 +502,7 @@ tab: "/"
           </a>
           <a class="jarvis-cta ib-cta reveal" id="instructions" href="/instructions/" data-magnetic>
             <canvas class="cta-orb" data-orb="shaping" data-orb-size="fit" data-orb-ink="#f5d222" aria-hidden="true"></canvas>
+            <span class="ib-mini" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
             <span class="jarvis-txt">
             <span class="jarvis-k">Build steps · Interface</span>
             <h3>The Instruction Booklet</h3>
@@ -510,6 +512,7 @@ tab: "/"
           </a>
           <a class="jarvis-cta bp-cta reveal" id="battle-pass" href="/battle-pass/" data-magnetic>
             <canvas class="cta-orb" data-orb="working" data-orb-size="fit" data-orb-ink="#6fb0ff" aria-hidden="true"></canvas>
+            <span class="bp-mini" aria-hidden="true"><i></i><i></i><i></i></span>
             <span class="jarvis-txt">
             <span class="jarvis-k">Reward tiers · Interface</span>
             <h3>The Battle Pass</h3>
@@ -519,12 +522,53 @@ tab: "/"
           </a>
           <a class="jarvis-cta so-cta reveal" id="freddys" href="/freddys/" data-magnetic>
             <canvas class="cta-orb" data-orb="listening" data-orb-size="fit" data-orb-ink="#f0c840" aria-hidden="true"></canvas>
+            <span class="so-mini" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
             <span class="jarvis-txt">
             <span class="jarvis-k">Camera feeds · Interface</span>
             <h3>The Security Office</h3>
             <p>One desk, every page a camera feed on the monitor, and a power meter that drains while you sit there watching them.</p>
             </span>
             <span class="jarvis-go">12 AM ↗</span>
+          </a>
+          <a class="jarvis-cta gd-cta reveal" id="grail-diary" href="/grail-diary/" data-magnetic>
+            <canvas class="cta-orb" data-orb="searching" data-orb-size="fit" data-orb-ink="#d8b06a" aria-hidden="true"></canvas>
+            <span class="gd-mini" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Field journal &#183; Interface</span>
+            <h3>The Grail Diary</h3>
+            <p>The Senior&#8217;s own notebook, every page a dig site pasted onto the itinerary, and a dotted line that draws itself across the map.</p>
+            </span>
+            <span class="jarvis-go">X NEVER MARKS THE SPOT &#8599;</span>
+          </a>
+          <a class="jarvis-cta rb-cta reveal" id="red-book" href="/red-book/" data-magnetic>
+            <canvas class="cta-orb" data-orb="listening" data-orb-size="fit" data-orb-ink="#d9b45f" aria-hidden="true"></canvas>
+            <span class="rb-mini" aria-hidden="true"><i></i><i></i></span>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Bound volume &#183; Interface</span>
+            <h3>The Red Book of Westmarch</h3>
+            <p>The book Bilbo began and Frodo finished: every page a waypoint on one road, and an inscription that lights when you put the Ring on.</p>
+            </span>
+            <span class="jarvis-go">THERE AND BACK AGAIN &#8599;</span>
+          </a>
+          <a class="jarvis-cta pb-cta reveal" id="power-battery" href="/power-battery/" data-magnetic>
+            <canvas class="cta-orb" data-orb="solving" data-orb-size="fit" data-orb-ink="#4fd07f" aria-hidden="true"></canvas>
+            <span class="pb-mini" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Hard light &#183; Interface</span>
+            <h3>The Power Battery</h3>
+            <p>The lamp a ring charges on: every page a construct built out of will, and seven corps that re-tint the whole thing one color at a time.</p>
+            </span>
+            <span class="jarvis-go">IN BRIGHTEST DAY &#8599;</span>
+          </a>
+          <a class="jarvis-cta wt-cta reveal" id="watchtower" href="/watchtower/" data-magnetic>
+            <canvas class="cta-orb" data-orb="searching" data-orb-size="fit" data-orb-ink="#5f9fe0" aria-hidden="true"></canvas>
+            <span class="wt-mini" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="jarvis-txt">
+            <span class="jarvis-k">Monitor duty &#183; Interface</span>
+            <h3>The Watchtower</h3>
+            <p>Geosynchronous orbit, the curve of the earth under the glass, every page a station on the big board and the founding seven on call.</p>
+            </span>
+            <span class="jarvis-go">ALL QUIET &#8599;</span>
           </a>
         </div>
       </details>

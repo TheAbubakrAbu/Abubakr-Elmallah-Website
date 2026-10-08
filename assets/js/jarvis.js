@@ -162,7 +162,7 @@
     });
   }
 
-  // decorative live load meter: HUD flavour, not a real measurement
+  // decorative live load meter: HUD flavor, not a real measurement
   function loadMeter() {
     var g = $('#jvLoad'), v = $('#jvLoadV');
     if (!g || reduce) return;
@@ -194,16 +194,16 @@
     window.addEventListener('resize', size);
 
     var t = 0;
-    function series(arr, colour, amp, glow) {
+    function series(arr, color, amp, glow) {
       ctx.beginPath();
       for (var i = 0; i < N; i++) {
         var x = (i / (N - 1)) * w;
         var y = h - 4 - arr[i] * (h - 10) * amp;
         i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
       }
-      ctx.strokeStyle = colour;
+      ctx.strokeStyle = color;
       ctx.lineWidth = 1.2;
-      ctx.shadowBlur = glow; ctx.shadowColor = colour;
+      ctx.shadowBlur = glow; ctx.shadowColor = color;
       ctx.stroke();
       ctx.shadowBlur = 0;
     }
@@ -267,12 +267,12 @@
      and putting it back is what replays it. */
 
   /* which phase each tab is, in order: this is the value that goes on <body>,
-     and jarvis.css turns it into the colour of the entire HUD */
+     and jarvis.css turns it into the color of the entire HUD */
   var PHASES = ['avengers', 'infinity', 'kang', 'doom'];
   var STONE_LABEL = {
     none:    'No stone held \u00b7 HUD running on the phase',
     space:   'Space Stone \u00b7 the Tesseract \u00b7 HUD running blue',
-    mind:    'Mind Stone \u00b7 the sceptre, then Vision \u00b7 HUD running yellow',
+    mind:    'Mind Stone \u00b7 the scepter, then Vision \u00b7 HUD running yellow',
     reality: 'Reality Stone \u00b7 the Aether \u00b7 HUD running red',
     power:   'Power Stone \u00b7 the Orb \u00b7 HUD running violet',
     time:    'Time Stone \u00b7 the Eye of Agamotto \u00b7 HUD running green',
@@ -318,7 +318,7 @@
 
     /* ── the Gauntlet ──
        A stone sits on top of the phase: hold one and the HUD runs in its
-       colour, let it go and the phase takes the page back. */
+       color, let it go and the phase takes the page back. */
     var stones = $('#jvStones');
     if (!stones) return;
     var swatches = $$('.jv-stone', stones);

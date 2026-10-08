@@ -1,0 +1,143 @@
+/* interface-world.css: the big "go to the world" button, on every interface.
+
+   One stylesheet for twenty-five differently themed pages, so nothing in here
+   names a color of its own. Every rule paints with --iw-a (the accent) and
+   --iw-bg (the ink behind it), and each interface sets those two at the top
+   of its own stylesheet to the colors it already uses. The result is one
+   control that is red in the Upside Down, amber in the security office and
+   Batman gray in the cave, with no per-page copy of these rules.
+
+   It is the only element on an interface allowed to be this loud, because it
+   is the answer to the one question an interface cannot answer by itself:
+   "what is this a interface OF, and where do I read about that?"
+
+   WHY IT IS A LINK AND NOT A BUTTON. It navigates, so it is an <a>. The
+   whole thing is one tap target; the kicker and the name are inside it. */
+
+.iw {
+  --iw-a: #9a8cff;
+  --iw-bg: #0a0c14;
+
+  display: inline-flex; align-items: center; gap: 0.7rem;
+  padding: 0.5rem 0.95rem 0.5rem 0.6rem;
+  border: 1px solid color-mix(in srgb, var(--iw-a) 48%, transparent);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--iw-a) 15%, transparent),
+      color-mix(in srgb, var(--iw-a) 7%, transparent));
+  color: color-mix(in srgb, var(--iw-a) 88%, #fff);
+  text-decoration: none;
+  /* the type is the interface's own: --mono and --sans come from whichever
+     stylesheet is in front of this one, and every interface defines both */
+  font-family: var(--mono, ui-monospace, monospace);
+  line-height: 1.15;
+  max-width: 100%;
+  transition: border-color .2s ease, background .2s ease, transform .2s ease,
+              box-shadow .2s ease, color .2s ease;
+}
+
+/* the globe */
+.iw-i {
+  flex: 0 0 auto; display: grid; place-items: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: color-mix(in srgb, var(--iw-a) 20%, transparent);
+  color: color-mix(in srgb, var(--iw-a) 95%, #fff);
+}
+.iw-i svg { width: 15px; height: 15px; display: block; }
+
+/* the two lines: what it is, then the world's name */
+.iw-t { display: grid; gap: 1px; min-width: 0; }
+.iw-k {
+  /* 0.66rem is the site's smallest text, enforced by tools/check.py */
+  font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase;
+  opacity: .72; white-space: nowrap;
+}
+.iw-t b {
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 0.92rem; font-weight: 600; letter-spacing: 0.01em;
+  color: color-mix(in srgb, var(--iw-a) 70%, #fff);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.iw-a { flex: 0 0 auto; opacity: .65; font-size: 0.95rem; }
+
+/* hover: it lifts, brightens and the arrow slides, the same gesture the
+   rest of the site uses for a link that leaves the page */
+@media (hover: hover) and (pointer: fine) {
+  .iw:hover {
+    border-color: color-mix(in srgb, var(--iw-a) 85%, transparent);
+    background:
+      linear-gradient(180deg,
+        color-mix(in srgb, var(--iw-a) 26%, transparent),
+        color-mix(in srgb, var(--iw-a) 13%, transparent));
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px -8px color-mix(in srgb, var(--iw-a) 55%, transparent);
+  }
+  .iw:hover .iw-a { opacity: 1; transform: translateX(2px); }
+}
+.iw-a { transition: opacity .2s ease, transform .2s ease; }
+
+.iw:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--iw-a) 90%, #fff);
+  outline-offset: 2px;
+}
+.iw:active { transform: translateY(0); }
+
+/* ── at the foot ──
+   the header copy is one item in a tight flex row, so it stays compact; the
+   footer copy has the width to be a proper block, and it is centered over
+   the "back to the main site" line it sits above. */
+.iw--foot {
+  display: inline-flex;
+  padding: 0.6rem 1.15rem 0.6rem 0.7rem;
+}
+.iw--foot .iw-t b { font-size: 1rem; }
+
+/* ── phones ──
+   never hidden, only tightened: the kicker is the first thing to go because
+   the name under it already says where the link goes. */
+@media (max-width: 560px) {
+  .iw { gap: 0.55rem; padding: 0.45rem 0.8rem 0.45rem 0.5rem; }
+  .iw-k { letter-spacing: 0.1em; }
+  .iw-t b { font-size: 0.85rem; }
+  .iw-i { width: 23px; height: 23px; }
+  .iw-i svg { width: 13px; height: 13px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iw, .iw-a { transition: none; }
+  .iw:hover { transform: none; }
+  .iw:hover .iw-a { transform: none; }
+}
+
+/* ── on a light interface ──
+   four of these pages are ink on paper, not light on black: the Bugle's
+   newsprint, the Marauder's Map's parchment, Dunder Mifflin's beige office
+   and Springfield's daytime sky. On those, mixing the accent toward white
+   (which is what every rule above does) lifts it off the page and leaves
+   roughly nothing to read, so the mix goes the other way, toward the ink.
+   The interface opts in by setting --iw-dark on its body class. */
+.iw { --iw-on: #fff; }
+.iw { color: color-mix(in srgb, var(--iw-a) 88%, var(--iw-on)); }
+.iw-i { color: color-mix(in srgb, var(--iw-a) 95%, var(--iw-on)); }
+.iw-t b { color: color-mix(in srgb, var(--iw-a) 70%, var(--iw-on)); }
+.iw:focus-visible { outline-color: color-mix(in srgb, var(--iw-a) 90%, var(--iw-on)); }
+
+.db .iw, .mm .iw, .dm .iw, .sf .iw { --iw-on: #14100a; }
+.db .iw, .mm .iw, .dm .iw, .sf .iw {
+  border-color: color-mix(in srgb, var(--iw-a) 62%, transparent);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--iw-a) 22%, transparent),
+      color-mix(in srgb, var(--iw-a) 12%, transparent));
+}
+@media (hover: hover) and (pointer: fine) {
+  .db .iw:hover, .mm .iw:hover, .dm .iw:hover, .sf .iw:hover {
+    border-color: color-mix(in srgb, var(--iw-a) 95%, transparent);
+    background:
+      linear-gradient(180deg,
+        color-mix(in srgb, var(--iw-a) 34%, transparent),
+        color-mix(in srgb, var(--iw-a) 20%, transparent));
+  }
+}

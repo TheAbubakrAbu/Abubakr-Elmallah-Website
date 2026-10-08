@@ -12,6 +12,7 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/instructions.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
 <body class="lg" id="lg">
 
@@ -25,6 +26,7 @@ standalone: true
   <a class="lg-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Close the booklet</span>
   </a>
+  {% include interface-world.html world="LEGO" href="/worlds/lego/" %}
   <span class="lg-top-mid">Set 10179 &#183; Abubakr Elmallah &#183; Ages 4&#8211;99</span>
   <span class="lg-top-pc" id="lgCount">&#183;&#183; pcs</span>
 </header>
@@ -63,7 +65,7 @@ standalone: true
         whichever bag you feel like opening. Nothing here is a photograph: every brick on this page is
         drawn with CSS and SVG, the same way the rest of these interfaces are.</p>
       <p class="lg-lede">I grew up on the LEGO games far more than the sets, which is why there is a whole
-        catalogue of them on the LEGO world page. This is the other half of it.</p>
+        catalog of them on the LEGO world page. This is the other half of it.</p>
       <div class="lg-acts">
         <button class="lg-btn" id="lgStart" type="button">Open bag 1</button>
         <a class="lg-btn lg-btn--ghost" href="#steps">Jump to the steps</a>
@@ -77,6 +79,63 @@ standalone: true
     </div>
   </section>
 
+  <!-- ═══════════ the build so far ═══════════
+       The thing a booklet is actually for, and the thing this page was
+       missing: the model. Every step you tick off puts its brick on the
+       pile, so the page in front of you is the set as far as you have got.
+       instructions.js stacks it from the same steps as the list below, which
+       means the model can never disagree with the booklet.
+       It sticks to the side of the screen on a desktop, the way the real
+       booklet stays open beside the pile. -->
+  <section class="lg-build" id="build" aria-labelledby="lgBuildH">
+    <h2 class="lg-h" id="lgBuildH">The build so far</h2>
+    <p class="lg-h-sub">Every step you tick off adds its brick. Tick them all and the minifigure goes on
+      top.</p>
+
+    <div class="lg-build-box">
+      <div class="lg-model" id="lgModel" role="img" aria-labelledby="lgModelCap">
+        <span class="lg-model-plate" aria-hidden="true"></span>
+        <div class="lg-stack" id="lgStack" aria-hidden="true"></div>
+        <span class="lg-model-empty" id="lgEmpty">Nothing built yet. Tick a step.</span>
+      </div>
+      <div class="lg-build-side">
+        <p class="lg-model-cap" id="lgModelCap">The model, as far as you have built it.</p>
+        <div class="lg-prog">
+          <div class="lg-prog-top"><span>Built</span><b id="lgBuiltPct">0%</b></div>
+          <div class="lg-pbar"><i id="lgPFill"></i></div>
+          <p class="lg-prog-n"><b id="lgBuiltN">0</b> of <span id="lgBuiltT">&#183;&#183;</span> steps
+            &#183; <b id="lgBuiltPc">0</b> pieces placed</p>
+        </div>
+
+        <!-- the four bags, each with its own count: the real way you know
+             how far through a big set you are -->
+        <ul class="lg-bags" id="lgBags"></ul>
+
+        <div class="lg-build-acts">
+          <button class="lg-btn lg-btn--sm" id="lgAll" type="button">Build the whole set</button>
+          <button class="lg-btn lg-btn--sm lg-btn--ghost" id="lgClear" type="button">Take it apart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════ the callout ═══════════
+       The gray panel in the corner of a real instruction page: the parts
+       this step needs, drawn at one to one, before you place them. It
+       follows whichever step you are pointing at. -->
+  <section class="lg-callout-s" aria-labelledby="lgCalloutH">
+    <h2 class="lg-h" id="lgCalloutH">The parts for this step</h2>
+    <p class="lg-h-sub">Point at any step below and its parts are laid out here, the way the booklet puts
+      them in the box in the corner.</p>
+    <div class="lg-callout" id="lgCallout">
+      <div class="lg-callout-bricks" id="lgCalloutB" aria-hidden="true"></div>
+      <div class="lg-callout-t">
+        <b id="lgCalloutN">Step 01</b>
+        <i id="lgCalloutP">1&#215; baseplate 32&#215;32, yellow</i>
+      </div>
+    </div>
+  </section>
+
   <!-- ─────────── the steps ───────────
        Every room on the site, as a build step. Each one carries its parts in
        data- attributes and instructions.js draws the brick for it, counts the
@@ -84,7 +143,7 @@ standalone: true
        booklet reads and works with no JS at all. -->
   <section class="lg-steps" id="steps" aria-labelledby="lgStepsH">
     <h2 class="lg-h" id="lgStepsH">The build</h2>
-    <p class="lg-h-sub">Four bags, twenty-five steps. Tick a step off and the booklet remembers it.</p>
+    <p class="lg-h-sub">Four bags, twenty-nine steps. Tick a step off and the booklet remembers it.</p>
 
     <div class="lg-bag">
       <h3 class="lg-bag-h"><span class="lg-bag-n">1</span>Bag one &#183; the baseplate</h3>
@@ -94,7 +153,7 @@ standalone: true
         <li><a class="lg-step" href="/work/" data-brick="2x4" data-c="#4f9fe0" data-pcs="6" data-parts="4&#215; brick 2&#215;4, blue &#183; 2&#215; plate 2&#215;2">
           <span class="lg-step-n">02</span><span class="lg-step-t"><b>The frame</b><i>Work &#183; lead mobile &amp; backend developer, UC Irvine</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
         <li><a class="lg-step" href="/projects/" data-brick="2x2" data-c="#e03a3a" data-pcs="12" data-parts="12&#215; brick 2&#215;2, red &#183; one per app">
-          <span class="lg-step-n">03</span><span class="lg-step-t"><b>The twelve modules</b><i>Projects &#183; every app, catalogued</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
+          <span class="lg-step-n">03</span><span class="lg-step-t"><b>The twelve modules</b><i>Projects &#183; every app, cataloged</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
         <li><a class="lg-step" href="/resume/" data-brick="tile" data-c="#e8e8e8" data-pcs="1" data-parts="1&#215; tile 2&#215;4 printed, white">
           <span class="lg-step-n">04</span><span class="lg-step-t"><b>The printed tile</b><i>R&#233;sum&#233; &#183; the whole record on one page</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
         <li><a class="lg-step" href="/education/" data-brick="2x3" data-c="#7fc86a" data-pcs="2" data-parts="2&#215; brick 2&#215;3, green">
@@ -109,10 +168,10 @@ standalone: true
     <div class="lg-bag">
       <h3 class="lg-bag-h"><span class="lg-bag-n">2</span>Bag two &#183; the worlds</h3>
       <ol class="lg-list">
-        <li><a class="lg-step" href="/worlds/" data-brick="plate" data-c="#5fd6e0" data-pcs="71" data-parts="71&#215; tile 1&#215;1, assorted &#183; one per world">
-          <span class="lg-step-n">08</span><span class="lg-step-t"><b>The mosaic</b><i>Worlds &#183; all seventy-one of them</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
+        <li><a class="lg-step" href="/worlds/" data-brick="plate" data-c="#5fd6e0" data-pcs="74" data-parts="74&#215; tile 1&#215;1, assorted &#183; one per world">
+          <span class="lg-step-n">08</span><span class="lg-step-t"><b>The mosaic</b><i>Worlds &#183; all seventy-four of them</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
         <li><a class="lg-step" href="/worlds/lego/" data-brick="2x4" data-c="#f5d222" data-pcs="29" data-parts="29&#215; brick 2&#215;4, yellow &#183; one per game">
-          <span class="lg-step-n">09</span><span class="lg-step-t"><b>The LEGO shelf</b><i>LEGO &#183; the games, and the catalogue</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
+          <span class="lg-step-n">09</span><span class="lg-step-t"><b>The LEGO shelf</b><i>LEGO &#183; the games, and the catalog</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
         <li><a class="lg-step" href="/worlds/star-wars/" data-brick="2x2" data-c="#ffe81f" data-pcs="126" data-parts="126&#215; stud, assorted &#183; one per planet">
           <span class="lg-step-n">10</span><span class="lg-step-t"><b>The galaxy</b><i>Star Wars &#183; the world page</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
         <li><a class="lg-step" href="/star-wars/" data-brick="1x2" data-c="#3f8fff" data-pcs="4" data-parts="4&#215; brick 1&#215;2, blue &#183; Datapad, Aurebesh, Sabacc, Order 66">
@@ -143,10 +202,18 @@ standalone: true
           <span class="lg-step-n">20</span><span class="lg-step-t"><b>The crafting grid</b><i>The Crafting Table</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
         <li><a class="lg-step" href="/pokedex/" data-brick="1x4" data-c="#e03a3a" data-pcs="2" data-parts="2&#215; panel 1&#215;4, red &#183; on a hinge">
           <span class="lg-step-n">21</span><span class="lg-step-t"><b>The hinged case</b><i>The Pok&#233;dex</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
-        <li><a class="lg-step" href="/batcomputer/" data-brick="1x2" data-c="#5f9fe0" data-pcs="3" data-parts="3&#215; slope 1&#215;2, dark grey">
+        <li><a class="lg-step" href="/batcomputer/" data-brick="1x2" data-c="#5f9fe0" data-pcs="3" data-parts="3&#215; slope 1&#215;2, dark gray">
           <span class="lg-step-n">22</span><span class="lg-step-t"><b>The console</b><i>The Batcomputer</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
         <li><a class="lg-step" href="/marauders-map/" data-brick="tile" data-c="#d9b45f" data-pcs="1" data-parts="1&#215; tile 2&#215;4 printed, tan">
           <span class="lg-step-n">23</span><span class="lg-step-t"><b>The folded map</b><i>The Marauder&#8217;s Map</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
+        <li><a class="lg-step" href="/grail-diary/" data-brick="tile" data-c="#d8b06a" data-pcs="1" data-parts="1&#215; tile 2&#215;4 printed, tan &#183; a diary page">
+          <span class="lg-step-n">24</span><span class="lg-step-t"><b>The grail diary</b><i>Indiana Jones</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
+        <li><a class="lg-step" href="/red-book/" data-brick="1x2" data-c="#d9b45f" data-pcs="2" data-parts="2&#215; book cover, dark red">
+          <span class="lg-step-n">25</span><span class="lg-step-t"><b>The red book</b><i>The Lord of the Rings</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
+        <li><a class="lg-step" href="/power-battery/" data-brick="1x4" data-c="#4fd07f" data-pcs="3" data-parts="3&#215; brick 1&#215;4, trans-green &#183; a lantern">
+          <span class="lg-step-n">26</span><span class="lg-step-t"><b>The power battery</b><i>Green Lantern</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
+        <li><a class="lg-step" href="/watchtower/" data-brick="2x2" data-c="#5f9fe0" data-pcs="4" data-parts="4&#215; plate 2&#215;2, trans-blue &#183; the orbit ring">
+          <span class="lg-step-n">27</span><span class="lg-step-t"><b>The watchtower</b><i>The Justice League</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
       </ol>
     </div>
 
@@ -154,16 +221,52 @@ standalone: true
       <h3 class="lg-bag-h"><span class="lg-bag-n">4</span>Bag four &#183; the minifigure</h3>
       <ol class="lg-list">
         <li><a class="lg-step" href="/worlds/legoland/" data-brick="2x3" data-c="#f0a83a" data-pcs="1" data-parts="1&#215; minifigure, complete">
-          <span class="lg-step-n">24</span><span class="lg-step-t"><b>LEGOLAND</b><i>the park, and the one I have actually been to</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
+          <span class="lg-step-n">28</span><span class="lg-step-t"><b>LEGOLAND</b><i>the park, and the one I have actually been to</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
         <li><a class="lg-step" href="/worlds/#franchises" data-brick="plate" data-c="#f5d222" data-pcs="1" data-parts="1&#215; sticker sheet &#183; apply last">
-          <span class="lg-step-n">25</span><span class="lg-step-t"><b>The sticker sheet</b><i>back to all the worlds</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
+          <span class="lg-step-n">29</span><span class="lg-step-t"><b>The sticker sheet</b><i>back to all the worlds</i></span><span class="lg-step-go" aria-hidden="true">&#8594;</span></a></li>
       </ol>
     </div>
+  </section>
+
+  <!-- ═══════════ the back of the box ═══════════
+       The panel every set has on the reverse: what it does, what it goes
+       with, and the one line of small print. The three play features are
+       the three real ones this site has. -->
+  <section class="lg-boxback-s" aria-labelledby="lgBackH">
+    <h2 class="lg-h" id="lgBackH">The back of the box</h2>
+    <p class="lg-h-sub">What the set does, in the three panels a box back always has.</p>
+    <div class="lg-boxback">
+      <div class="lg-feat">
+        <span class="lg-feat-n">1</span>
+        <b>It comes apart into twenty-five interfaces</b>
+        <p>Every one of these terminals is the same site rebuilt in another world's furniture. The
+          holotable at E.L.M.A.L.L.A.H. is the one that lists them all.</p>
+        <a href="/elmallah/">The holotable &#8594;</a>
+      </div>
+      <div class="lg-feat">
+        <span class="lg-feat-n">2</span>
+        <b>Combine with the LEGO world page</b>
+        <p>Twenty-nine LEGO games, with what I finished in each: the hundred per cent runs, the worlds,
+          and which of them you still cannot buy.</p>
+        <a href="/worlds/lego/">The LEGO catalog &#8594;</a>
+      </div>
+      <div class="lg-feat">
+        <span class="lg-feat-n">3</span>
+        <b>Includes one minifigure</b>
+        <p>Me, in the only format this page has. The r&#233;sum&#233; is the printed tile at step four, and
+          it is the same record as the PDF.</p>
+        <a href="/resume/">The r&#233;sum&#233; &#8594;</a>
+      </div>
+    </div>
+    <p class="lg-smallprint">Not a LEGO product and not endorsed by the LEGO Group. Every brick on this
+      page is drawn with SVG and CSS: no logo, wordmark, photograph or asset is reproduced. Set number
+      10179 is a joke about the Millennium Falcon, which is the set I never had.</p>
   </section>
 
 </main>
 
 <footer class="lg-bottom">
+  {% include interface-world.html world="LEGO" href="/worlds/lego/" place="foot" %}
   <a class="lg-back" href="/">&#9668; Back to the main site</a>
   <span class="lg-foot-n">Set 10179 &#183; 25 steps &#183; <span id="lgFootPc">&#183;&#183;</span> pieces</span>
 </footer>

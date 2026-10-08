@@ -39,7 +39,7 @@
 
 /* ───────────── HUD backdrop ─────────────
    A whisper of the J.A.R.V.I.S. / E.L.M.A.L.L.A.H. terminals on the normal site:
-   engineering grid + CRT scanlines + one slow travelling sweep line. It sits
+   engineering grid + CRT scanlines + one slow traveling sweep line. It sits
    above the flowfield and below all content, so nothing else is affected.
 
    TO TUNE: change the values below. They're the only knobs.
@@ -50,7 +50,7 @@
   --hud-grid:  rgba(95, 163, 236, 0.085);   /* grid lines, UCI blue */
   --hud-cell:  52px;                        /* grid spacing */
   --hud-scan:  rgba(236, 234, 227, 0.022);  /* scanlines */
-  --hud-sweep: rgba(63, 213, 137, 0.055);   /* travelling scan line, green */
+  --hud-sweep: rgba(63, 213, 137, 0.055);   /* traveling scan line, green */
   --hud-lit:   rgba(125, 195, 255, 0.34);   /* grid lit up under the cursor */
   --hud-halo:  rgba(63, 213, 137, 0.07);    /* soft light around the cursor */
   --hud-reach: 240px;                       /* how far the cursor light spreads */
@@ -229,7 +229,7 @@ a.footer-mid:hover { color: var(--green-2); }
   transition: transform .25s var(--ease), background .25s, border-color .25s, color .25s;
 }
 .ql svg { width: 15px; height: 15px; }
-/* All three wear their colour as a tint (coloured icon, text and border
+/* All three wear their color as a tint (colored icon, text and border
    over a faint wash) and fill on hover: Résumé green, LinkedIn blue, GitHub
    gold. Fully filled, the header and the hero between them put six filled
    pills on the first screen and the page's own main action was the quietest
@@ -438,10 +438,10 @@ body { padding-bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
 /* Page-scale blocks are LEFT-ALIGNED, like every other block on this site:
    layout.css sets `main { padding-left: var(--gutter) }` and
    `section { padding: 0 var(--gutter); max-width: var(--maxw) }` with no auto
-   margin. A page block that centres itself instead is invisible up to about
+   margin. A page block that centers itself instead is invisible up to about
    1320px and then wrong: past that the hero stays hard left while the block
-   drifts toward the middle of the window. Anything deliberately centred should
-   be centred INSIDE the column (max-width + padding on the block, auto margins
+   drifts toward the middle of the window. Anything deliberately centered should
+   be centered INSIDE the column (max-width + padding on the block, auto margins
    on the thing inside it), not by floating the block. */
 main { padding-left: var(--gutter); }
 /* Sideways on a phone the Dynamic Island sits at one end of the page, and

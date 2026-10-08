@@ -94,6 +94,8 @@
        { facts: [['6,236', 'ayahs'], …] }   a strip of headline numbers */
   function block(p) {
     if (typeof p === 'string') return '<p>' + p + '</p>';
+    /* h4: this sits inside a card's expanded panel, under the card's own
+       <h3> title, so it is a level deeper and not a sibling of it. */
     if (p.h) return '<h4 class="app-more-h">' + p.h + '</h4>';
     if (p.list) return '<ul class="app-more-list" role="list">' + p.list.map(function (li) {
       return '<li>' + li + '</li>';
@@ -389,7 +391,7 @@
      written by this script, and the lazy images above them settle after the
      browser has already made its one attempt at the fragment, so it can land
      a screen off. Once everything has loaded, bring the card's top in below
-     the top bar ('start' honours the page's scroll-padding; 'center' put a
+     the top bar ('start' honors the page's scroll-padding; 'center' put a
      tall card's top under the bar). */
   var target = /^#(app|proj)-[\w-]+$/.test(location.hash) && document.querySelector(location.hash);
   if (target) {

@@ -177,7 +177,7 @@
     }
 
     /* ── how you got there ──
-       Two ways of travelling and one timeline. The picker at the top of the
+       Two ways of traveling and one timeline. The picker at the top of the
        page switches between them, and everything below it -- the figures, the
        map, the index and the trip sections -- answers to the same choice.
 

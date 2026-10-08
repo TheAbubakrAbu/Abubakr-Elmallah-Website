@@ -68,7 +68,7 @@ window.FAN_PAGE = {
 
 
   { id: 'chars', kind: 'tiles', title: 'Bikini Bottom', note: 'seven engines of comedy', compact: true,
-    lede: 'The golden-age cast is a machine where every pairing produces a different kind of episode: SpongeBob with Patrick is chaos, with Squidward it is torment, with Mr. Krabs it is labour law.',
+    lede: 'The golden-age cast is a machine where every pairing produces a different kind of episode: SpongeBob with Patrick is chaos, with Squidward it is torment, with Mr. Krabs it is labor law.',
     items: [
       { title: 'SpongeBob', accent: '#f0e03f', sub: 'The optimist', desc: 'Unkillable enthusiasm plus total sincerity. The joke is never that he cares too much; the joke is everyone else.' },
       { title: 'Patrick', accent: '#e8a0bc', sub: 'The rock', desc: 'Confidently, serenely wrong about everything. The inner machinations of his mind are an enigma.' },
@@ -120,12 +120,12 @@ window.FAN_PAGE = {
     ] },
 
   /* the music: the show has no score of its own. It is cut to library music,
-     mostly Hawaiian steel guitar from the APM catalogue, and these are the
+     mostly Hawaiian steel guitar from the APM catalog, and these are the
      cues on my playlist, named as the libraries name them, plus the theme.
      Linked to the library's own upload wherever there is one; the two that
      only exist as fan uploads say so. */
   { id: 'themes', kind: 'tiles', compact: true, title: 'The Music', note: 'twenty-two tracks · the library, the themes and the songs',
-    lede: 'Nickelodeon never wrote SpongeBob a score. The show is cut to production-library music, mostly Hawaiian steel guitar licensed from the APM catalogue, which is how a Kapono Beamer track recorded decades earlier became the most recognisable music of a generation. These are the cues on my playlist, named as the libraries name them and linked to their own uploads wherever there is one, and then the themes and the four songs everybody actually knows at the end.',
+    lede: 'Nickelodeon never wrote SpongeBob a score. The show is cut to production-library music, mostly Hawaiian steel guitar licensed from the APM catalog, which is how a Kapono Beamer track recorded decades earlier became the most recognisable music of a generation. These are the cues on my playlist, named as the libraries name them and linked to their own uploads wherever there is one, and then the themes and the four songs everybody actually knows at the end.',
     items: [
       { title: 'Hawaiian Cocktail', accent: '#f0e03f', sub: 'Richard Myhill · Solo Instruments · 1992 · 1:05',
         desc: 'The steel-guitar sting that opens half the scenes in the show. Sixty-five seconds, and the sound of a new day in Bikini Bottom.',
@@ -134,7 +134,7 @@ window.FAN_PAGE = {
         desc: 'Kapono Beamer and his steel guitar, and the cue under more Krusty Krab scenes than anyone has counted.',
         href: 'https://www.youtube.com/watch?v=rPJLuURRwdU', link: 'Listen' },
       { title: 'Hawaiian Hula', accent: '#e8a13f', sub: 'Kapono Beamer · 2:24',
-        desc: 'Beamer again. The playlist has it as a fan upload labelled production music, which is what it is.',
+        desc: 'Beamer again. The playlist has it as a fan upload labeled production music, which is what it is.',
         href: 'https://www.youtube.com/watch?v=q6gRrux-Uvg', link: 'Fan upload' },
       { title: 'Royal Hawaiian Hula', accent: '#e8a13f', sub: 'Kapono Beamer · Authentic Polynesia · 1984 · 1:48',
         desc: 'The third Beamer cue on the playlist. Same guitar, same island, and the show’s default mood.',
@@ -182,7 +182,7 @@ window.FAN_PAGE = {
         desc: 'The steel drums and slide guitar over the end credits, which for a lot of people is the actual sound of the show: the one that means it is over and you have to go and do something else.',
         href: 'https://www.youtube.com/watch?v=1S2BYfGwMFE', link: 'Listen' },
       { title: 'Stadium Rave', accent: '#5fc0e0', sub: 'Production music · 1999 · 1:08',
-        desc: 'The jellyfish rave. Another library cue, given a strobe light and a field of jellyfish, and now one of the most recognised twenty seconds in the show: a meme first and a dance-floor request second. Nobody planned any of that.',
+        desc: 'The jellyfish rave. Another library cue, given a strobe light and a field of jellyfish, and now one of the most recognized twenty seconds in the show: a meme first and a dance-floor request second. Nobody planned any of that.',
         href: 'https://www.youtube.com/watch?v=0Bnhv_3RPYo', link: 'Listen' },
       { title: 'The Best Day Ever', accent: '#7fd0f0', sub: 'SpongeBob · 2006 · 2:04',
         desc: 'From the episode where he tries to have the perfect day and it collapses on him. A genuinely well-built song about optimism, sung by a sponge, and it works.',
@@ -200,7 +200,7 @@ window.FAN_PAGE = {
       { title: 'On Wikipedia', href: 'https://en.wikipedia.org/wiki/SpongeBob_SquarePants',
         desc: 'The show, Hillenburg’s story, and the numbers behind the longest-running Nicktoon.' },
       { title: 'Encyclopedia SpongeBobia', href: 'https://spongebob.fandom.com/wiki/Encyclopedia_SpongeBobia',
-        desc: 'Every episode, every character, every Krusty Krab health violation, catalogued.' },
+        desc: 'Every episode, every character, every Krusty Krab health violation, cataloged.' },
       { title: 'Stephen Hillenburg', href: 'https://en.wikipedia.org/wiki/Stephen_Hillenburg',
         desc: 'The marine biologist who drew the whole ocean. 1961–2018.' },
     ] },

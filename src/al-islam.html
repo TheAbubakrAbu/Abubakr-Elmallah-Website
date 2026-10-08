@@ -4,7 +4,7 @@ redirect_from:
   - /src/al-islam.html
 title: "Al-Islam · Abubakr Elmallah"
 description: "Al-Islam apps by Abubakr Elmallah: Al-Islam, Al-Quran, and Al-Adhan. Award-winning Islamic apps for the Apple ecosystem."
-fonts: "family=Amiri:ital@0;1&family=Scheherazade+New:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700"
+fonts: "family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700"
 tab: "/worlds/"
 ---
 <!DOCTYPE html>
@@ -12,6 +12,7 @@ tab: "/worlds/"
 <head>
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/al-islam.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-apps.css' %}" />
 </head>
 <body data-intro="alislam">
 <div id="introCover" aria-hidden="true" style="position:fixed;inset:0;z-index:11000;background:#08080a"></div>
@@ -46,6 +47,16 @@ tab: "/worlds/"
       </div>
     </div>
     <p class="lede">A family of Islamic apps for the whole Apple ecosystem: an all-in-one companion, a beginner-friendly Quran, and precise prayer times. Two of them earned national recognition.</p>
+
+    <!-- the way across to the faith itself, and from there to the rest of
+         Who I Am. This page is the software; none of it is the point on its
+         own. The same crossing sits in the hero of /worlds/islam/ coming
+         back the other way. -->
+    {% include world-apps-link.html
+       kicker="The faith these are built for"
+       name="Islam itself"
+       href="/worlds/islam/"
+       more="The Qur&#702;&#257;n|/worlds/quran/;The Sunnah|/worlds/sunnah/;Arab|/worlds/arab/;Egypt|/worlds/egypt/;Minsh&#257;w&#299;|/worlds/minshawi/" %}
   </section>
 
   <section class="work alislam">
@@ -55,7 +66,7 @@ tab: "/worlds/"
   </section>
 
   <section class="work alislam">
-    <h3 class="subsec subsec--isl reveal">The Engines<span class="subsec-yr">what the apps are built on</span></h3>
+    <h2 class="subsec subsec--isl reveal">The Engines<span class="subsec-yr">what the apps are built on</span></h2>
     <p class="isl-lede reveal">The data layers underneath. Both exist because the alternative was hand-marking a text that runs to six thousand verses, or scraping someone else&#8217;s HTML.</p>
     <div class="apps-grid apps-grid--2" data-cards="quran-tajweed-engine,hadith-json-engine"></div>
   </section>
@@ -65,7 +76,7 @@ tab: "/worlds/"
        thing they have in common, and because a lone card under its own
        heading twice in a row read as two stubs rather than a closing block. -->
   <section class="work alislam">
-    <h3 class="subsec subsec--isl reveal">Not on the App Store<span class="subsec-yr">one still coming, one retired</span></h3>
+    <h2 class="subsec subsec--isl reveal">Not on the App Store<span class="subsec-yr">one still coming, one retired</span></h2>
     <p class="isl-lede reveal">OC Ummah is the newest of these and is not out yet. ICOI is the oldest: the first app I ever shipped, built for my own mosque in my senior year of high school and maintained for two and a half years, until the mosque moved to another app. It is also what led to teaching iOS at the Muslim Village.</p>
     <div class="apps-grid apps-grid--2" data-cards="oc-ummah,icoi"></div>
   </section>
@@ -82,18 +93,18 @@ tab: "/worlds/"
        software, so they moved to /worlds/islam/ and this took their place:
        the same work the apps do, running in the page. See alislam-live.js. -->
   <section class="work islam-live" id="live">
-    <h3 class="subsec subsec--isl reveal">Live<span class="subsec-yr">the apps, running in this page</span></h3>
+    <h2 class="subsec subsec--isl reveal">Live<span class="subsec-yr">the apps, running in this page</span></h2>
     <p class="isl-lede reveal">Rather than describe what Al-Adhan and Al-Islam do, here they are doing it. The prayer times below are <b>computed in your browser</b> from the sun’s position for the coordinates shown; there is no API behind this and nothing about your location leaves the page. The qiblah is the true great-circle bearing to the Ka&#703;bah from the same point, which is why it does not simply point east.</p>
     <div id="islLive"></div>
   </section>
 
-  <section class="work islam-tajweed" id="tajweed">
-    <h3 class="subsec subsec--isl reveal">Tajwīd<span class="subsec-yr">التجويد</span></h3>
-    <p class="isl-lede reveal">The rules that govern how the Qur&#702;&#257;n is pronounced, shown the way Al-Quran shows them: as colour on the letters themselves. My <b>Quran Tajweed Engine</b> derives this for all 6,236 verses from the rules rather than from a marked-up text; below is S&#363;rat al-Ikhl&#257;&#7779;, four verses of it, marked by hand so each colour can be explained. Pick a single rule to find just that one in the line.</p>
-    <div id="islTajweed"></div>
-
+  <!-- The Tajwīd demo (Sūrat al-Ikhlāṣ colored by rule) was removed on
+       2026-10-06: the sūrah is not something to decorate a portfolio page
+       with. The Quran Tajweed Engine is still on the page as a card, which
+       is the part that is actually mine. See alislam-live.js, where the
+       renderer went with it. -->
+  <section class="work islam-tajweed">
     <div class="hs-extra reveal">
-      <a href="/worlds/islam/" data-magnetic>↳ Islam itself: the prophets, the mosques and the scholars ↗</a>
       <a href="https://github.com/TheAbubakrAbu" target="_blank" rel="noopener" data-magnetic>↳ The engines, on GitHub ↗</a>
     </div>
   </section>
@@ -104,10 +115,10 @@ tab: "/worlds/"
        embed pattern /high-school/ and /college/ use for their Google Docs;
        both also appear on /high-school/, which is where they were written. -->
   <section class="work alislam" id="writing">
-    <h3 class="subsec subsec--isl reveal">The Writing<span class="subsec-yr">the app in its own words</span></h3>
+    <h2 class="subsec subsec--isl reveal">The Writing<span class="subsec-yr">the app in its own words</span></h2>
     <p class="isl-lede reveal">Two documents from the year Al-Islam was built, both written before it won anything. The first is my own account, handed to my computer science teacher in <b>May 2023</b> at the end of junior year, while the app was still unpublished: it runs from the Code.org projects that came before it through to what the app could do at the time. The second is what <b>Ms. Kerawalla</b> wrote after Al-Islam won the <b>Congressional App Challenge</b> that December, with my own account of the journey quoted inside it.</p>
 
-    <h4 class="isl-doc-head reveal">Backstory &#183; 24 May 2023</h4>
+    <h3 class="isl-doc-head reveal">Backstory &#183; 24 May 2023</h3>
     <div class="embed-wrap reveal">
       <div class="embed-facade">
         <button class="cta embed-load" type="button" aria-label="Load the document: Al-Islam app backstory, written May 2023">Load the document</button>
@@ -116,9 +127,13 @@ tab: "/worlds/"
       <iframe class="embed-frame embed-frame--doc" data-doc-src="https://docs.google.com/document/d/1QnOlzlriKa6JstmrvC3wtPe2zmv3lY-7z-DEjsGhuXY/preview" title="Al-Islam app backstory, written May 2023" hidden></iframe>
       <noscript><iframe class="embed-frame embed-frame--doc" src="https://docs.google.com/document/d/1QnOlzlriKa6JstmrvC3wtPe2zmv3lY-7z-DEjsGhuXY/preview" title="Al-Islam app backstory, written May 2023" loading="lazy"></iframe></noscript>
       <p class="embed-note"><b class="embed-live">Full document above. </b>Or <a href="https://docs.google.com/document/d/1QnOlzlriKa6JstmrvC3wtPe2zmv3lY-7z-DEjsGhuXY/edit?usp=sharing" target="_blank" rel="noopener">open it in Google Docs<span aria-hidden="true"> &#8599;</span><span class="vh"> (opens in a new tab)</span></a>.</p>
+      <a class="cta embed-open" href="https://docs.google.com/document/d/1QnOlzlriKa6JstmrvC3wtPe2zmv3lY-7z-DEjsGhuXY/edit?usp=sharing" target="_blank" rel="noopener" data-magnetic>
+        <span>Open the document in Google Docs</span><span class="vh"> (opens in a new tab)</span>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
     </div>
 
-    <h4 class="isl-doc-head reveal">Congressional App Challenge &#183; Ms. Kerawalla</h4>
+    <h3 class="isl-doc-head reveal">Congressional App Challenge &#183; Ms. Kerawalla</h3>
     <div class="embed-wrap reveal">
       <div class="embed-facade">
         <button class="cta embed-load" type="button" aria-label="Load the document: Congressional App Challenge write-up by Ms. Kerawalla">Load the document</button>
@@ -127,6 +142,10 @@ tab: "/worlds/"
       <iframe class="embed-frame embed-frame--doc" data-doc-src="https://docs.google.com/document/d/1lOCNUbrgj3dY12VZVpt7saqotd-GwAgAP4jS_Oaj_zQ/preview" title="Congressional App Challenge write-up by Ms. Kerawalla" hidden></iframe>
       <noscript><iframe class="embed-frame embed-frame--doc" src="https://docs.google.com/document/d/1lOCNUbrgj3dY12VZVpt7saqotd-GwAgAP4jS_Oaj_zQ/preview" title="Congressional App Challenge write-up by Ms. Kerawalla" loading="lazy"></iframe></noscript>
       <p class="embed-note"><b class="embed-live">Full document above. </b>Or <a href="https://docs.google.com/document/d/1lOCNUbrgj3dY12VZVpt7saqotd-GwAgAP4jS_Oaj_zQ/edit?usp=sharing" target="_blank" rel="noopener">open it in Google Docs<span aria-hidden="true"> &#8599;</span><span class="vh"> (opens in a new tab)</span></a>.</p>
+      <a class="cta embed-open" href="https://docs.google.com/document/d/1lOCNUbrgj3dY12VZVpt7saqotd-GwAgAP4jS_Oaj_zQ/edit?usp=sharing" target="_blank" rel="noopener" data-magnetic>
+        <span>Open the document in Google Docs</span><span class="vh"> (opens in a new tab)</span>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </a>
     </div>
 
     <div class="hs-extra reveal">

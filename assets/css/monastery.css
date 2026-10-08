@@ -15,6 +15,8 @@ img, svg { display: block; max-width: 100%; }
 html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
 
 .mo {
+  --iw-a: #e0b040;   /* the shared world button, interface-world.css */
+  --iw-bg: #0f0d14;
   --cap:     "Kaisei Tokumin", "Hiragino Mincho ProN", Georgia, serif;
   --body:    "Shippori Mincho", "Hiragino Mincho ProN", Georgia, serif;
   --ink-0:   #0c0a0b;
@@ -91,7 +93,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   border-bottom: 1px solid var(--line);
   font-family: var(--cap); font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim);
 }
-/* the red lacquer rail along the top, the colour of the monastery gate */
+/* the red lacquer rail along the top, the color of the monastery gate */
 .mo-top::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: linear-gradient(90deg, transparent, var(--lacquer) 15%, var(--lacq-hi) 50%, var(--lacquer) 85%, transparent); }
 .mo-exit { display: inline-flex; align-items: center; gap: 0.45rem; color: var(--gold); }
 .mo-exit:hover { color: var(--gold-hi); }
@@ -216,7 +218,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   transition: background .3s, border-color .3s, translate .3s var(--ease);
 }
 .mo-el span { font-family: var(--body); font-weight: 500; font-size: 0.8rem; letter-spacing: 0; color: var(--dim); }
-.mo-el::before {   /* the element's own colour, as a dot of ink */
+.mo-el::before {   /* the element's own color, as a dot of ink */
   content: ""; width: 9px; height: 9px; border-radius: 50%; margin-bottom: 0.2rem;
   background: var(--e); box-shadow: 0 0 8px var(--e);
 }
@@ -251,7 +253,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .mo-course { padding-top: clamp(2rem, 5vw, 2.8rem); }
 .mo-stations { list-style: none; display: grid; gap: 0.7rem; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
 /* a station: a dark lacquered plaque hung from a gold peg, the element's
-   colour brushed down its left edge. It swings in once when the page
+   color brushed down its left edge. It swings in once when the page
    opens, staggered down the course. */
 .mo-st {
   position: relative; display: flex; flex-direction: column; gap: 0.2rem; height: 100%;
@@ -348,7 +350,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 }
 .mo-cr:hover, .mo-cr:focus-visible { outline: none; background: rgba(241, 232, 214, .07); border-color: var(--w); }
 .mo-cr:focus-visible { box-shadow: 0 0 0 2px var(--gold); }
-/* a shard of the Realm Crystal in the destination's colour: a long
+/* a shard of the Realm Crystal in the destination's color: a long
    diamond with a lit facet, that turns a little on hover */
 .mo-gem {
   grid-row: span 2; width: 26px; height: 40px; margin: 0 6px;

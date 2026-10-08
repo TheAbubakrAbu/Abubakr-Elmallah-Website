@@ -12,13 +12,14 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/batcomputer.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
 <body class="bc" id="bc">
 
 <!-- The emblem, drawn once and used everywhere on the page (the title, the
      comms array, the bats that leave at the end). It is this page's own bat,
      not a tracing of any official one: two short ears, wings swept up to a
-     point, three scallops on the trailing edge and a tail at the centre. The
+     point, three scallops on the trailing edge and a tail at the center. The
      same outline is in batcomputer.js as BAT, for the canvas; keep the two
      in step. -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -39,6 +40,7 @@ standalone: true
   <a class="bc-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the Batcave</span>
   </a>
+  {% include interface-world.html world="Batman" href="/worlds/batman/" %}
   <span class="bc-top-mid">The Batcave · beneath Wayne Manor · Gotham City</span>
   <!-- Gotham keeps New York's clock; after dark the cave is empty -->
   <span class="bc-top-clock"><i class="bc-led" aria-hidden="true"></i><span id="bcClock">Gotham ··:··:··</span></span>
@@ -100,14 +102,14 @@ standalone: true
       <li><a class="bc-case" href="/education/" style="--i:3"><span class="bc-case-n" aria-hidden="true">Case 04</span><b>The Training Floor</b><i>Education · preparation, not powers</i><em>/education/</em></a></li>
       <li><a class="bc-case" href="/college/" style="--i:4"><span class="bc-case-n" aria-hidden="true">Case 05</span><b>Gotham University</b><i>College · UC Irvine</i><em>/college/</em></a></li>
       <li><a class="bc-case" href="/high-school/" style="--i:5"><span class="bc-case-n" aria-hidden="true">Case 06</span><b>Gotham Academy</b><i>High school · where it started</i><em>/high-school/</em></a></li>
-      <li><a class="bc-case" href="/worlds/" style="--i:6"><span class="bc-case-n" aria-hidden="true">Case 07</span><b>The Watchtower</b><i>All 71 worlds · the view of everything</i><em>/worlds/</em></a></li>
+      <li><a class="bc-case" href="/worlds/" style="--i:6"><span class="bc-case-n" aria-hidden="true">Case 07</span><b>The Watchtower</b><i>All 74 worlds · the view of everything</i><em>/worlds/</em></a></li>
       <li><a class="bc-case" href="/worlds/batman/" style="--i:7"><span class="bc-case-n" aria-hidden="true">Case 08</span><b>Gotham City</b><i>Batman · the world page</i><em>/worlds/batman/</em></a></li>
       <li><a class="bc-case" href="/star-wars/" style="--i:8"><span class="bc-case-n" aria-hidden="true">Case 09</span><b>Wayne Aerospace</b><i>Star Wars apps · built for a galaxy far away</i><em>/star-wars/</em></a></li>
       <li><a class="bc-case" href="/al-islam/" style="--i:9"><span class="bc-case-n" aria-hidden="true">Case 10</span><b>The Clock Tower</b><i>Al-Islam · prayer times, by the clock</i><em>/al-islam/</em></a></li>
       <li><a class="bc-case" href="/travels/" style="--i:10"><span class="bc-case-n" aria-hidden="true">Case 11</span><b>The Years Abroad</b><i>Travels · the trips beyond Gotham</i><em>/travels/</em></a></li>
       <li><a class="bc-case" href="/accents/" style="--i:11"><span class="bc-case-n" aria-hidden="true">Case 12</span><b>The Voice Modulator</b><i>Accents &amp; impersonations</i><em>/accents/</em></a></li>
       <li><a class="bc-case" href="/gaming/" style="--i:12"><span class="bc-case-n" aria-hidden="true">Case 13</span><b>Arkham Asylum</b><i>Gaming · where the games are locked up</i><em>/gaming/</em></a></li>
-      <li><a class="bc-case" href="/lightsabers/" style="--i:13"><span class="bc-case-n" aria-hidden="true">Case 14</span><b>The Armoury</b><i>The lightsaber guide · every blade, catalogued</i><em>/lightsabers/</em></a></li>
+      <li><a class="bc-case" href="/lightsabers/" style="--i:13"><span class="bc-case-n" aria-hidden="true">Case 14</span><b>The Armory</b><i>The lightsaber guide · every blade, cataloged</i><em>/lightsabers/</em></a></li>
       <li><a class="bc-case" href="/resume/" style="--i:14"><span class="bc-case-n" aria-hidden="true">Case 15</span><b>The Personnel File</b><i>Résumé · for Lucius Fox’s desk</i><em>/resume/</em></a></li>
     </ol>
   </section>
@@ -128,7 +130,7 @@ standalone: true
         <div><dt>Day job</dt><dd><span>Lead mobile &amp; backend developer</span></dd></div>
         <div><dt>Apps shipped</dt><dd><span>Twelve, across four platforms</span></dd></div>
         <div><dt>First cases</dt><dd><span>Order 66 and Datapad, 2021, solo</span></dd></div>
-        <div><dt>Worlds on file</dt><dd><span>Seventy-one, at /worlds/</span></dd></div>
+        <div><dt>Worlds on file</dt><dd><span>Seventy-four, at /worlds/</span></dd></div>
         <div><dt>In the cave since</dt><dd><span>5th grade, 2016–17</span></dd></div>
         <div><dt>Powers</dt><dd><span>None. Just preparation.</span></dd></div>
       </dl>
@@ -150,7 +152,7 @@ standalone: true
         <li><b>Scarecrow</b><em>Arkham</em><p>A psychologist who weaponised the thing Batman himself runs on.</p></li>
         <li><b>Bane</b><em>Arkham</em><p>Broke the Bat by working out the schedule first and fighting him last.</p></li>
         <li><b>Ra&#8217;s al Ghul</b><em>Unknown</em><p>Thinks he and Batman want the same thing, and is nearly right.</p></li>
-        <li><b>Catwoman</b><em>Grey</em><p>A thief the story keeps having to decide about, which is the whole point of her.</p></li>
+        <li><b>Catwoman</b><em>Gray</em><p>A thief the story keeps having to decide about, which is the whole point of her.</p></li>
         <li><b>Mr Freeze</b><em>Arkham</em><p>Rewritten into the saddest villain in the canon, in twenty-two minutes.</p></li>
       </ul>
       <a class="bc-rogues-go" href="/worlds/batman/#rogues">The full gallery on the world page &#8594;</a>
@@ -184,8 +186,7 @@ standalone: true
       <li><a class="bc-chan" href="/citadel/" style="--w:#d8b26a"><span class="bc-chan-n" aria-hidden="true">CH 06</span><b>The Citadel</b><i>Game of Thrones</i></a></li>
       <li><a class="bc-chan" href="/compass/" style="--w:#4fb0a8"><span class="bc-chan-n" aria-hidden="true">CH 07</span><b>The Compass</b><i>Pirates of the Caribbean</i></a></li>
       <li><a class="bc-chan" href="/control-room/" style="--w:#e07a3a"><span class="bc-chan-n" aria-hidden="true">CH 08</span><b>The Control Room</b><i>Jurassic Park</i></a></li>
-      <li><a class="bc-chan" href="/upside-down/" style="--w:#e2453a"><span class="bc-chan-n" aria-hidden="true">CH 09</span><b>The Upside Down</b><i>Stranger Things</i></a></li>
-      <li><a class="bc-chan" href="/starcourt/" style="--w:#e85fb0"><span class="bc-chan-n" aria-hidden="true">CH 10</span><b>Starcourt</b><i>Stranger Things</i></a></li>
+      <li><a class="bc-chan" href="/hawkins/" style="--w:#e2453a"><span class="bc-chan-n" aria-hidden="true">CH 09</span><b>Hawkins</b><i>Stranger Things</i></a></li>
       <li><a class="bc-chan" href="/spirit-library/" style="--w:#d6a24e"><span class="bc-chan-n" aria-hidden="true">CH 11</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a></li>
       <li><a class="bc-chan" href="/monastery/" style="--w:#e0563f"><span class="bc-chan-n" aria-hidden="true">CH 12</span><b>The Monastery</b><i>Ninjago</i></a></li>
       <li><a class="bc-chan" href="/wanted/" style="--w:#c9864a"><span class="bc-chan-n" aria-hidden="true">CH 13</span><b>The Wanted Board</b><i>Red Dead Redemption</i></a></li>
@@ -194,6 +195,10 @@ standalone: true
       <li><a class="bc-chan" href="/vought/" style="--w:#d94848"><span class="bc-chan-n" aria-hidden="true">CH 16</span><b>Vought Tower</b><i>The Boys</i></a></li>
       <li><a class="bc-chan" href="/pokedex/" style="--w:#e8504a"><span class="bc-chan-n" aria-hidden="true">CH 17</span><b>The Pokédex</b><i>Pokémon</i></a></li>
       <li><a class="bc-chan" href="/daily-bugle/" style="--w:#e33b48"><span class="bc-chan-n" aria-hidden="true">CH 18</span><b>The Daily Bugle</b><i>Spider-Man</i></a></li>
+      <li><a class="bc-chan" href="/grail-diary/" style="--w:#d8b06a"><span class="bc-chan-n" aria-hidden="true">CH 19</span><b>The Grail Diary</b><i>Indiana Jones</i></a></li>
+      <li><a class="bc-chan" href="/red-book/" style="--w:#d9b45f"><span class="bc-chan-n" aria-hidden="true">CH 20</span><b>The Red Book</b><i>The Lord of the Rings</i></a></li>
+      <li><a class="bc-chan" href="/power-battery/" style="--w:#4fd07f"><span class="bc-chan-n" aria-hidden="true">CH 21</span><b>The Power Battery</b><i>Green Lantern</i></a></li>
+      <li><a class="bc-chan" href="/watchtower/" style="--w:#5f9fe0"><span class="bc-chan-n" aria-hidden="true">CH 22</span><b>The Watchtower</b><i>The Justice League</i></a></li>
     </ul>
   </section>
 
@@ -204,6 +209,8 @@ standalone: true
     <p class="bc-end-k">Commissioner Gordon, on the roof, beside the signal</p>
     <button class="bc-turn" id="bcTurn" type="button">Turn around to say thanks</button>
   </div>
+
+  {% include interface-world.html world="Batman" href="/worlds/batman/" place="foot" %}
 
 </main>
 

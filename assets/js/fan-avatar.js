@@ -55,7 +55,7 @@ window.FAN_PAGE = {
 
   { id: 'tech', kind: 'tiles', fold: true, title: 'The Hardware', note: 'what the humans brought',
     items: [
-      { title: 'AMP suits', accent: '#c9a05f', sub: 'Amplified Mobility Platform', desc: 'Four metres of walking exoskeleton with a knife the size of a car door, and the final fight is one of them against a bow.' },
+      { title: 'AMP suits', accent: '#c9a05f', sub: 'Amplified Mobility Platform', desc: 'Four meters of walking exoskeleton with a knife the size of a car door, and the final fight is one of them against a bow.' },
       { title: 'Exopacks', accent: '#8fd0e0', sub: 'Four minutes', desc: 'The Pandoran atmosphere is breathable for about four minutes before it kills you. The mask is the whole tension of every outdoor scene.' },
       { title: 'The link beds', accent: '#5fd6e0', sub: 'Psionic link', desc: 'A coffin of a machine that puts a driver into a grown body several kilometres away.' },
       { title: 'Dragon gunship', accent: '#c04a3a', sub: 'RDA air power', desc: 'The assault ship built for the Hometree operation, and the thing the film wants you to hate.' },

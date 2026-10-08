@@ -44,6 +44,8 @@ window.MUSIC_THEMES = [
   { w: 'Overwatch', href: '/worlds/overwatch/', t: 'Overture', a: 'Overwatch · 2016 · 1:55', v: 'LrA__QQ6RAE' },
   { w: 'Parks and Recreation', href: '/worlds/parks-and-recreation/', t: 'Parks and Recreation (Main Theme)', a: 'Parks and Recreation · 2009 · 1:39', v: 'qQ8eN4z-wRQ' },
   { w: 'Percy Jackson', href: '/worlds/percy-jackson/', t: 'Percy Jackson and the Olympians', a: 'Bear McCreary · Season 1 · 2023 · 5:12', v: '9GqjbGknmYw' },
+  { w: 'The Fairly OddParents', href: '/worlds/fairly-oddparents/', t: 'The Fairly OddParents Theme', a: 'Butch Hartman & Ron Jones \u00b7 2001 \u00b7 0:40', v: 'no8vgXg_rlw' },
+  { w: 'Johnny Test', href: '/worlds/johnny-test/', t: 'Johnny Test Opening Theme', a: 'Aaron Molho \u00b7 season 1 \u00b7 2005 \u00b7 0:45', v: 'e1zxi_bZZPY' },
   { w: 'Phineas and Ferb', href: '/worlds/phineas-and-ferb/', t: 'Today Is Gonna Be a Great Day', a: 'Bowling For Soup · 2007 · 3:02', v: 'tz19bfsVlGs' },
   { w: 'Pirates of the Caribbean', href: '/worlds/pirates/', t: 'He\'s a Pirate', a: 'The Curse of the Black Pearl · 2003 · 1:31', v: 'BuYf0taXoNw' },
   { w: 'Pixar', href: '/worlds/pixar/', t: 'You\'ve Got a Friend in Me', a: 'Randy Newman · Toy Story · 1995 · 2:05', v: 'tL0uGc5gNiA' },

@@ -12,10 +12,11 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/beyblade.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="beyblade">
 
-<!-- the shared backdrop; the colours are in this page's own stylesheet -->
+<!-- the shared backdrop; the colors are in this page's own stylesheet -->
 <div class="np-sky" aria-hidden="true"><span class="np-glow"></span><span class="np-grid"></span></div>
 
 {% include fx.html %}
@@ -33,7 +34,7 @@ tab: "/worlds/"
     <p class="fan-kicker"><span>Franchise &#183; As a kid &#183; since 1999</span></p>
     <h1 class="fan-title">Beyblade</h1>
     <p class="fan-lede-hero">Takara made a spinning top with interchangeable parts and a rip cord, then made an anime about children who take it extremely seriously, and the two sold each other for twenty-five years. Let it rip.</p>
-    <p class="fan-lede-hero">The reason it worked longer than any other toy-anime pairing is that the toy is actually a system: attack, defence, stamina and balance types, weight rings, spin tracks, performance tips, and a real trade-off every time you build one. It is a customisation game about angular momentum, sold to eight-year-olds.</p>
+    <p class="fan-lede-hero">The reason it worked longer than any other toy-anime pairing is that the toy is actually a system: attack, defense, stamina and balance types, weight rings, spin tracks, performance tips, and a real trade-off every time you build one. It is a customisation game about angular momentum, sold to eight-year-olds.</p>
     <div class="fan-links">
       <a class="fan-link" href="#types" data-magnetic>The four types &#8599;</a>
       <a class="fan-link" href="#works" data-magnetic>Everything in it &#8599;</a>
@@ -42,6 +43,10 @@ tab: "/worlds/"
   </section>
 
   <div id="fanBody"></div>
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
+
 </main>
 
 {% include footer.html back="/worlds/" %}

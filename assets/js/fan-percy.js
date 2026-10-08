@@ -34,7 +34,7 @@ window.FAN_PAGE = {
      card. ◆ marks the ones that are mine, taken from what this page already
      says elsewhere rather than picked fresh here. */
   { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'four series, two films, one show',
-    lede: 'Riordan has written five books in the main sequence and about twenty more around it. The films are best treated as a rumour; the Disney+ series is the one that adapts the books properly.',
+    lede: 'Riordan has written five books in the main sequence and about twenty more around it. The films are best treated as a rumor; the Disney+ series is the one that adapts the books properly.',
     items: [
       { title: 'Percy Jackson & the Olympians', sub: '2005 – 2009', unit: 'book',
         desc: 'The five that started it, and still the tightest thing he has written.',
@@ -100,7 +100,7 @@ window.FAN_PAGE = {
       { title: 'Hades', sub: 'The underworld', tag: 'Big Three', desc: 'Written as the villain of book one and revealed to be the one nobody gave a cabin, a seat or the benefit of the doubt.', meta: 'No throne on Olympus' },
       { title: 'Athena', sub: 'Wisdom and strategy', tag: 'Olympian', desc: 'Annabeth\u2019s mother. Her children are born from thought rather than birth, which the books treat matter of factly.', meta: 'Cabin 6' },
       { title: 'Ares', sub: 'War', tag: 'Olympian', desc: 'A biker with sunglasses, and the first god Percy fights. Losing to a twelve year old does not improve his mood.', meta: 'Cabin 5' },
-      { title: 'Hermes', sub: 'Messengers and travellers', tag: 'Olympian', desc: 'Takes in every unclaimed demigod at camp, and has the worst relationship with his own son in the series.', meta: 'Cabin 11' },
+      { title: 'Hermes', sub: 'Messengers and travelers', tag: 'Olympian', desc: 'Takes in every unclaimed demigod at camp, and has the worst relationship with his own son in the series.', meta: 'Cabin 11' },
       { title: 'Artemis and Apollo', sub: 'The twins', tag: 'Olympian', desc: 'The Hunters and the haiku. One of them takes the sky on her shoulders in book three.', meta: 'Cabins 7 and 8' },
       { title: 'Dionysus', sub: 'Mr D', tag: 'Camp director', desc: 'Sentenced to run a summer camp for a century as a punishment, and he makes sure everyone knows it.', meta: 'Diet Coke' },
     ] },

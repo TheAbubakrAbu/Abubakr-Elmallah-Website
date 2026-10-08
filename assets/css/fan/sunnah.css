@@ -36,7 +36,7 @@ body[data-fan="sunnah"] .fan-title {
 }
 
 .sn-hero-ar {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: clamp(1.5rem, 4.4vw, 2.6rem); line-height: 1.9;
   color: #6fcfa4; opacity: .92; margin-bottom: 0.4rem;
   /* a display line above the title, so it aligns with the title, not the margin */
@@ -69,6 +69,6 @@ body[data-fan="sunnah"] .fan-title {
 body[data-fan="sunnah"] .subsec--fan .subsec-yr,
 body[data-fan="sunnah"] #what .fan-card .fan-sub,
 body[data-fan="sunnah"] #grades .fan-tiletext i {
-  font-family: "Amiri", "Scheherazade New", serif;
+  font-family: var(--ar); font-weight: normal;
   font-size: 1.02rem; letter-spacing: 0; text-transform: none; opacity: .9;
 }

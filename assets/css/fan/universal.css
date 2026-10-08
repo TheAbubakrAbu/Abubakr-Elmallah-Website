@@ -71,7 +71,7 @@
 
 /* The meridians squash to a line and open out again: a globe turning, without
    redrawing it. transform-box must be view-box here -- fill-box would measure
-   the group's own bounds and drift the spin off the sphere's centre. */
+   the group's own bounds and drift the spin off the sphere's center. */
 .uni-globefig .ung-grid {
   animation: ung-turn 26s linear infinite;
   transform-box: view-box; transform-origin: 200px 196px;

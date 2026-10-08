@@ -12,6 +12,7 @@ tab: "/worlds/"
 {% include head.html %}
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/the-boys.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="boys">
 
@@ -97,7 +98,7 @@ tab: "/worlds/"
     </div>
     <div class="boys-memo">
       <div class="boys-memo-h"><span>Vought International · internal</span><span>Hover to unredact</span></div>
-      <p>Subject: internal guidance on the <span class="redact" title="redacted">Compound V</span> programme. Circulation limited to <span class="redact" title="redacted">senior management</span> and legal.</p>
+      <p>Subject: internal guidance on the <span class="redact" title="redacted">Compound V</span> program. Circulation limited to <span class="redact" title="redacted">senior management</span> and legal.</p>
       <p>To confirm: no member of the Seven was <span class="redact" title="redacted">born with abilities</span>. Each was administered <span class="redact" title="redacted">Compound V as an infant</span> with parental consent obtained by <span class="redact" title="redacted">the Vought paediatrics division</span>. Public messaging remains <span class="redact" title="redacted">destiny, gift, miracle</span> as previously approved.</p>
       <p>Where an administration results in <span class="redact" title="redacted">an adverse outcome</span>, family liaison is to route all contact through <span class="redact" title="redacted">the crisis management team</span>, and under no circumstance through the hero involved.</p>
       <cite>Not a real document. The show’s whole point in one memo: the powers were manufactured, and so is the story about them.</cite>
@@ -105,6 +106,10 @@ tab: "/worlds/"
   </section>
 
   <div id="fanBody"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 

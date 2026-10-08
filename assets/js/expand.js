@@ -70,7 +70,7 @@
   /* Opening moves things: the card jumps to a full row of its own and the
      cards after it reflow. Done in one frame, the button that was just pressed
      could land half a screen away (a right-hand card drops below its
-     neighbour). So every card in the grid glides from where it was to where
+     neighbor). So every card in the grid glides from where it was to where
      it ends up (FLIP, on `translate`, which tilt.js and the open state's
      `transform: none` leave alone). */
   function flip(card, change, ms) {
@@ -87,7 +87,7 @@
          and one not yet revealed has nothing to show: those just land. */
       if (Math.abs(dy) > innerHeight * 0.75 || !k.classList.contains('in')) return;
       /* The pressed card changing column would slide, see-through, across its
-         neighbour: it fades up in its new place instead. */
+         neighbor: it fades up in its new place instead. */
       if (k === card && Math.abs(dx) > 1) {
         k.animate([{ opacity: 0, translate: '0 10px' }, { opacity: 1, translate: '0 0' }],
           { duration: 260, easing: 'cubic-bezier(.16,1,.3,1)' });

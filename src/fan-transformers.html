@@ -1,0 +1,62 @@
+---
+permalink: /worlds/transformers/
+title: "Transformers · Abubakr Elmallah"
+description: "Transformers as a fandom: the Bay films, the Universal ride that got me first, and a toy line whose whole gimmick is the engineering."
+tab: "/worlds/"
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% include head.html %}
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/fan/transformers.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
+</head>
+<body data-intro="none" data-fan="transformers">
+
+<!-- the shared backdrop; the colors are in this page's own stylesheet -->
+<div class="np-sky" aria-hidden="true"><span class="np-glow"></span><span class="np-grid"></span></div>
+
+{% include fx.html %}
+
+{% include cursor.html %}
+
+{% include rail.html %}
+
+{% include topbar.html %}
+
+<main>
+
+  <section class="fan-hero">
+    {% include crumbs.html parent="Worlds" url="/worlds/#franchises" here="Transformers" %}
+    <p class="fan-kicker"><span>Franchise &#183; As a kid &#183; since 1984</span></p>
+    <h1 class="fan-title">Transformers</h1>
+    <p class="fan-lede-hero">A toy that is honestly two toys: a car that folds into a robot out of exactly the same parts, with nothing added and nothing left over. Everything else, four decades of cartoons and seven live-action films, exists to sell that one trick, and the trick is good enough to have carried all of it.</p>
+    <p class="fan-lede-hero">I came in through the Bay films and through Transformers: The Ride at Universal, which is the thing that actually got me the first time I went: a motion base on a track through 3D screens, on the Lower Lot, before I knew a single character's name. The 1984 material I found backwards, years later, which is the wrong order and probably the usual one.</p>
+    <div class="fan-links">
+      <a class="fan-link" href="#sides" data-magnetic>Robots in disguise &#8599;</a>
+      <a class="fan-link" href="#works" data-magnetic>Everything in it &#8599;</a>
+      <a class="fan-link" href="/worlds/universal-studios/" data-magnetic>The ride, on Universal &#8599;</a>
+    </div>
+  </section>
+
+  <div id="fanBody"></div>
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
+
+</main>
+
+{% include footer.html back="/worlds/" %}
+
+{% include tabbar.html %}
+
+<script src="{% include v.html f='/assets/js/utils.js' %}"></script>
+<!-- page content: data then the shared renderer, before reveal.js -->
+<script src="{% include v.html f='/assets/js/fan-transformers.js' %}"></script>
+<script src="{% include v.html f='/assets/js/photos-data.js' %}"></script>
+{% include fan-engine.html %}
+{% include site-scripts.html %}
+{% include analytics.html %}
+</body>
+</html>

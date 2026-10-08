@@ -6,7 +6,7 @@
      A FIXED LAYER, not inside any section, so no box can crop it.
      NO FILTERS, NO MASKS, NO GROUP OPACITY: every one of those is an
        offscreen pass over a screen-sized layer, and the first rift did all
-       three and made the tiles below the fold paint late. Soft colour comes
+       three and made the tiles below the fold paint late. Soft color comes
        from radial gradients, which are soft by construction and rasterise once.
      ONLY TRANSFORM AND OPACITY ANIMATE, which the compositor handles without
        a repaint.
@@ -21,7 +21,7 @@
   pointer-events: none; overflow: hidden;
 }
 /* the same foot fade as the rift: keeps the tab bar legible over whatever is
-   drifting behind it. A gradient in the page colour, not a mask. */
+   drifting behind it. A gradient in the page color, not a mask. */
 .bd::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(transparent 70%, rgba(8, 8, 10, .5));
@@ -132,8 +132,8 @@
    lit in the site's accents and pulse at their own pace, like apps getting
    notifications.
 
-   The tile is centred on the board (background-position: 50% 50%), so the
-   board's centre is the centre of an icon and each lit one is placed in whole
+   The tile is centered on the board (background-position: 50% 50%), so the
+   board's center is the center of an icon and each lit one is placed in whole
    cells from there: --x / --y count icons, not pixels. It pans with an
    alternate animation rather than a loop, because a loop would have to jump
    back a cell and the lit icons would jump with it. */

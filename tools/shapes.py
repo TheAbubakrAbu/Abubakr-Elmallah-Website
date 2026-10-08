@@ -28,7 +28,7 @@ planet, and the two are not interchangeable.
 Equirectangular (lon, -lat) is what the world map uses, and it is wrong here:
 it stretches a country horizontally by 1/cos(latitude), so Ireland comes out
 fat and Japan comes out squat. Each outline is instead scaled by the cosine of
-its own centre latitude, which is a sinusoidal projection about that country's
+its own center latitude, which is a sinusoidal projection about that country's
 own meridian. Over one country that is close enough to conformal that the shape
 reads as itself, and it costs one multiply.
 
@@ -68,7 +68,7 @@ OUT = os.path.join(ROOT, 'assets', 'js', 'travels-shapes.js')
 NE = 'https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/'
 UA = 'abubakrelmallah.com shape build (tools/shapes.py)'
 
-BOX = 100.0        # the long edge every outline is normalised to
+BOX = 100.0        # the long edge every outline is normalized to
 TOL = 0.004        # Douglas-Peucker tolerance, as a FRACTION of the country's
                    # own projected span rather than a fixed number of degrees.
                    # Fixed degrees does not survive the range here: 0.18 deg is
@@ -321,7 +321,7 @@ def main():
 
    Each entry is a path in a box 100 units on its long edge, with w/h giving
    the real aspect so travels.js can set a viewBox that does not distort it.
-   Each country is projected about its OWN centre latitude, so these are not
+   Each country is projected about its OWN center latitude, so these are not
    in one shared coordinate space and cannot be assembled into a world map;
    travels-map-data.js is the file for that. See the tool for why. */
 window.TRAVELS_SHAPES = {''']

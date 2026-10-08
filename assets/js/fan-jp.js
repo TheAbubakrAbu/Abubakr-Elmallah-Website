@@ -1,5 +1,5 @@
 /* fan-jp.js: content for /worlds/jurassic-park/. Rendered by fanpage.js.
-   Sizes are the films' animals, not strictly the palaeontology. */
+   Sizes are the films' animals, not strictly the paleontology. */
 window.FAN_PAGE = {
   when: { at: 'Middle school, around 2017\u201320', note: 'Middle school, around the same time as Pirates.' },
   sections: [
@@ -15,7 +15,7 @@ window.FAN_PAGE = {
       { num: 'VI', title: 'Dominion', sub: '2022', meta: 'Released June 2022 · set 2022, four years later', desc: 'Both casts, locusts, and dinosaurs loose in the world at last.' },
     ] },
 
-  { id: 'favourites', kind: 'films', title: 'My Three', note: 'the ones I actually rewatch',
+  { id: 'favorites', kind: 'films', title: 'My Three', note: 'the ones I actually rewatch',
     lede: 'Six films, and these are the three that work. The other three are about the same island getting worse.',
     items: [
       { num: 'I', title: 'Jurassic Park', sub: 'June 1993 · Spielberg', accent: '#e0642a', meta: 'Isla Nublar · set 1993',
@@ -137,7 +137,7 @@ window.FAN_PAGE = {
         desc: 'The Florida twin, opened with the park in 1999, with the same drop and the same raptors in the maintenance shed.',
         meta: 'Same drop, different island' },
       { title: 'Jurassic World VelociCoaster', sub: 'Islands of Adventure, Orlando', tag: '2021', accent: '#3fbf6f',
-        desc: 'Widely rated one of the best roller coasters on Earth: two launches, a 155-foot top hat, a 12-storey inverted stall, and a near-miss over the lagoon at 70mph.',
+        desc: 'Widely rated one of the best roller coasters on Earth: two launches, a 155-foot top hat, a 12-story inverted stall, and a near-miss over the lagoon at 70mph.',
         meta: '70 mph · four inversions' },
       { title: 'The Flying Dinosaur', sub: 'Universal Studios Japan', tag: '2016', accent: '#c0a8e0',
         desc: 'A flying coaster where a Pteranodon carries you face-down for the whole ride. It held the world record for longest flying-coaster track when it opened.',

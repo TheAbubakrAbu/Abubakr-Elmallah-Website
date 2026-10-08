@@ -15,6 +15,8 @@ img, svg { display: block; max-width: 100%; }
 html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
 
 .dm {
+  --iw-a: #2559a8;   /* the shared world button, interface-world.css */
+  --iw-bg: #e4e5e0;
   --sans:   "Libre Franklin", "Franklin Gothic Medium", Arial, sans-serif;
   --type:   "Courier Prime", "Courier New", monospace;
   --hand:   "Caveat", "Marker Felt", cursive;
@@ -160,7 +162,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 }
 .dm-h span { font-size: 0.82rem; font-weight: 400; font-style: italic; color: var(--dim); }
 .dm-think { width: 20px; height: 20px; flex: none; }
-/* minimise, maximise, close: drawn, and they do nothing, like most of the intranet */
+/* minimize, maximize, close: drawn, and they do nothing, like most of the intranet */
 .dm-winbtns { display: flex; gap: 3px; flex: none; }
 .dm-winbtns i {
   width: 15px; height: 14px; border-radius: 2px;

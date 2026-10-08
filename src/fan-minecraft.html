@@ -13,6 +13,7 @@ tab: "/worlds/"
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/pics.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/minecraft.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="mc">
 
@@ -132,7 +133,7 @@ tab: "/worlds/"
       <div class="fan-art-body">
         <q>Once upon a time, there was a player. The player was you.</q>
         <span class="fan-art-by">The End Poem · Julian Gough</span>
-        <p>A world of one-metre cubes, generated forever in every direction from a single number, with no goal printed anywhere and no tutorial. Punch a tree, and about forty hours later you are standing on an obsidian pillar shooting an end crystal off the top of it.</p>
+        <p>A world of one-meter cubes, generated forever in every direction from a single number, with no goal printed anywhere and no tutorial. Punch a tree, and about forty hours later you are standing on an obsidian pillar shooting an end crystal off the top of it.</p>
         <p>Redstone was my first logic gate and command blocks were my first scripting language, which is a genuinely strange sentence and completely true. Below: the tiers, the depths, the three dimensions, everything that lives in them, and the servers a whole generation grew up on.</p>
       </div>
     </div>
@@ -164,6 +165,10 @@ tab: "/worlds/"
   </div>
 
   <div id="fanBody"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 

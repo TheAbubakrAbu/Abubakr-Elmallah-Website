@@ -3,14 +3,14 @@ window.FAN_PAGE = {
   when: { at: 'Around 2012\u201313, age six or seven', note: 'Right after Star Wars, and for the same reason: I wanted the whole world of it, not just the episodes.' },
   sections: [
 
-  { id: 'ninja', kind: 'cards', title: 'The Ninja', note: 'in the order they are actually my favourites',
-    lede: 'I like all of them, which is most of the appeal, but Kai is my favourite now, Jay held it for years before that, then Zane, then Lloyd. Cole is the one I was never quite as attached to, and I know that is a minority position.',
+  { id: 'ninja', kind: 'cards', title: 'The Ninja', note: 'in the order they are actually my favorites',
+    lede: 'I like all of them, which is most of the appeal, but Kai is my favorite now, Jay held it for years before that, then Zane, then Lloyd. Cole is the one I was never quite as attached to, and I know that is a minority position.',
     items: [
-      { title: 'Kai', sub: 'Master of Fire', tag: 'No. 1 now', desc: 'The hothead who was a blacksmith first, and the one who charges in before the plan is finished. Currently my favourite, and the one the whole thing starts with.', meta: 'Fire · Ignacia' },
-      { title: 'Jay', sub: 'Master of Lightning', tag: 'Used to be No. 1', desc: 'Inventor, motormouth, and the comic relief that keeps turning out to matter. He was my favourite for years before Kai took it.', meta: 'Lightning · junkyard' },
+      { title: 'Kai', sub: 'Master of Fire', tag: 'No. 1 now', desc: 'The hothead who was a blacksmith first, and the one who charges in before the plan is finished. Currently my favorite, and the one the whole thing starts with.', meta: 'Fire · Ignacia' },
+      { title: 'Jay', sub: 'Master of Lightning', tag: 'Used to be No. 1', desc: 'Inventor, motormouth, and the comic relief that keeps turning out to matter. He was my favorite for years before Kai took it.', meta: 'Lightning · junkyard' },
       { title: 'Zane', sub: 'Master of Ice', tag: 'No. 3', desc: 'A Nindroid who did not know it, and the first of them to die and come back different. Then Zane, and the reveal about what he actually is still lands.', meta: 'Ice · the Titanium Ninja' },
       { title: 'Lloyd', sub: 'The Green Ninja', tag: 'No. 4', desc: 'The prophesied one, son of the villain, and the character the whole sixteen-season arc grows around. Then Lloyd, who goes from the annoying kid brother to the whole prophecy.', meta: 'Energy · Garmadon’s son' },
-      { title: 'Cole', sub: 'Master of Earth', tag: 'The one exception', desc: 'The strongest and the steadiest: a dancer before he was a ninja, which the show never lets him forget. Never quite my favourite, and I seem to be alone in that.', meta: 'Earth · Royal Blacksmiths' },
+      { title: 'Cole', sub: 'Master of Earth', tag: 'The one exception', desc: 'The strongest and the steadiest: a dancer before he was a ninja, which the show never lets him forget. Never quite my favorite, and I seem to be alone in that.', meta: 'Earth · Royal Blacksmiths' },
       { title: 'Nya', sub: 'Master of Water', tag: 'Silver', desc: 'Samurai X first, ninja second, and the better mechanic of the two Smith siblings.', meta: 'Water · Samurai X' },
       { title: 'Master Wu', sub: 'The teacher', tag: 'Sensei', desc: 'Tea, a bamboo staff, and cryptic advice that always turns out to have been literal.', meta: 'Son of the First Spinjitzu Master' },
       { title: 'Dareth', sub: 'The Brown Ninja', tag: 'Self-appointed', accent: '#8f6a3f',
@@ -141,7 +141,7 @@ window.FAN_PAGE = {
   window.LEGO_FOR && window.LEGO_FOR('ninjago'),
 
   /* The movie game at a hundred percent, every frame of it: the LEGO page
-     shows the same run as one catalogue tile with six of these on it, and
+     shows the same run as one catalog tile with six of these on it, and
      this page lays out all thirty-six. Captioned once, in fan-shots.js. */
   { id: 'game', set: 'ninjago-movie' },
 
@@ -162,7 +162,7 @@ window.FAN_PAGE = {
      composers' album; the aired openings are not published by anybody
      official, so those are the cleanest fan uploads of each. */
   { id: 'themes', kind: 'tiles', compact: true, title: 'The Themes', note: 'thirteen tracks · the Overture, the openings and the film',
-    lede: 'The Overture first, because it is the best piece of music in the show and my favourite by a distance: Jay Vincent and Michael Kramer’s main title, the melody most of the openings borrow for their last few seconds. Then the openings, which are one song, The Weekend Whip, remixed once a season from the pilot to Hands of Time. Seasons one and two run the exact same opening, so they share a tile; of the rest, Tournament of Elements is my favourite and Possession is second. Every season from three to seven carries the opening as it actually aired, alongside the band’s full-length single of it. The two from the 2017 film sit with season twelve, since that is roughly where they fall. Sort by season, by when they came out, or by length.',
+    lede: 'The Overture first, because it is the best piece of music in the show and my favorite by a distance: Jay Vincent and Michael Kramer’s main title, the melody most of the openings borrow for their last few seconds. Then the openings, which are one song, The Weekend Whip, remixed once a season from the pilot to Hands of Time. Seasons one and two run the exact same opening, so they share a tile; of the rest, Tournament of Elements is my favorite and Possession is second. Every season from three to seven carries the opening as it actually aired, alongside the band’s full-length single of it. The two from the 2017 film sit with season twelve, since that is roughly where they fall. Sort by season, by when they came out, or by length.',
     sortable: { label: 'Sort', authored: 'asc', by: [
       { key: 'season', label: 'Season',   asc: 'First',    desc: 'Latest' },
       { key: 'year',   label: 'Released', asc: 'Oldest',   desc: 'Newest' },
@@ -170,7 +170,7 @@ window.FAN_PAGE = {
     ] },
     items: [
       { title: 'Ninjago Overture', accent: '#ffd76a', season: 0, year: 2011, secs: 99, sub: 'Pilot · 2011 · 1:39',
-        desc: 'Jay Vincent and Michael Kramer, from the first minute of the first pilot episode. Ninety-nine seconds of the show’s real sound, the tune every remix of the opening ends on, and my favourite piece of music in all of Ninjago. Peak.',
+        desc: 'Jay Vincent and Michael Kramer, from the first minute of the first pilot episode. Ninety-nine seconds of the show’s real sound, the tune every remix of the opening ends on, and my favorite piece of music in all of Ninjago. Peak.',
         href: 'https://www.youtube.com/watch?v=dlnfFk7Rl2A', link: 'Listen' },
       { title: 'The Weekend Whip', accent: '#e07040', season: 1, year: 2011, secs: 210, sub: 'Pilot, seasons 1–2 · 2011 · 3:30',
         desc: 'The Fold, written by Erin Chapman and Zack Jones. Jump up, kick back, whip around and spin: the classic, and the same opening runs unchanged over the pilot, Rise of the Snakes and Legacy of the Green Ninja, which is why seasons one and two are one tile here.',
@@ -190,14 +190,14 @@ window.FAN_PAGE = {
           { href: 'https://www.youtube.com/watch?v=kg9WonGMXHo', label: 'Kai chase video' },
         ] },
       { title: 'The Weekend Whip (Anacondrai Remix)', accent: '#c070ff', season: 4, year: 2015, secs: 161, sub: 'Tournament of Elements · season 4 · 2015 · 2:41',
-        desc: 'The Tournament of Elements opening: faster, heavier, and cut down to the length of an arena bout. My favourite of the openings, and the season I would point anyone to first.',
+        desc: 'The Tournament of Elements opening: faster, heavier, and cut down to the length of an arena bout. My favorite of the openings, and the season I would point anyone to first.',
         links: [
           { href: 'https://www.youtube.com/watch?v=4HbFfsFTGdY', label: 'Season 4 intro' },
           { href: 'https://www.youtube.com/watch?v=AgYl0zHsy_A', label: 'Full song' },
           { href: 'https://www.youtube.com/watch?v=2gLNldzuNjw', label: 'Music video' },
         ] },
       { title: 'The Ghost Whip', accent: '#6ff0b0', season: 5, year: 2015, secs: 226, sub: 'Possession · season 5 · 2015 · 3:46',
-        desc: 'The Fold and Kruegersound, for Possession: The Weekend Whip gone eerie for Morro’s season, the one with Zane’s ghost story and the Cursed Realm. My second favourite of the openings.',
+        desc: 'The Fold and Kruegersound, for Possession: The Weekend Whip gone eerie for Morro’s season, the one with Zane’s ghost story and the Cursed Realm. My second favorite of the openings.',
         links: [
           { href: 'https://www.youtube.com/watch?v=0osMMDYrd9g', label: 'Season 5 intro' },
           { href: 'https://www.youtube.com/watch?v=UZsjNmF_ZII', label: 'Full song' },
@@ -259,14 +259,14 @@ window.FAN_PAGE = {
 window.FAN_PLAY = {
   kind: "pick",
   title: "Choose Your Element",
-  intro: "Each ninja gets one element, one colour and one golden weapon. Kai is my favourite now; it used to be Jay, then Zane, then Lloyd. Cole is the only one I was never really into, which I feel slightly bad about.",
+  intro: "Each ninja gets one element, one color and one golden weapon. Kai is my favorite now; it used to be Jay, then Zane, then Lloyd. Cole is the only one I was never really into, which I feel slightly bad about.",
   prompt: "Six ninja. Pick one.",
   said: "%. Ninja-Go.",
   items: [
-    { n: "Kai", s: "Fire \u00b7 red", c: "#e0402a", d: "M12 3c3 5 5 7 5 10a5 5 0 0 1-10 0c0-2 1-3 2-5 1 3 3 2 3 0 0-2 0-3 0-5z", note: "My current favourite. The Sword of Fire, the hot temper, and the one whose whole arc is learning that being the best is not the same as being useful to the team." },
-    { n: "Jay", s: "Lightning \u00b7 blue", c: "#4f9fe0", d: "M13 3L5 13h5l-2 8 9-11h-5l3-7z", note: "My first favourite, and the funniest of them. The Nunchucks of Lightning, and the inventor of the group; most of the vehicles are his." },
+    { n: "Kai", s: "Fire \u00b7 red", c: "#e0402a", d: "M12 3c3 5 5 7 5 10a5 5 0 0 1-10 0c0-2 1-3 2-5 1 3 3 2 3 0 0-2 0-3 0-5z", note: "My current favorite. The Sword of Fire, the hot temper, and the one whose whole arc is learning that being the best is not the same as being useful to the team." },
+    { n: "Jay", s: "Lightning \u00b7 blue", c: "#4f9fe0", d: "M13 3L5 13h5l-2 8 9-11h-5l3-7z", note: "My first favorite, and the funniest of them. The Nunchucks of Lightning, and the inventor of the group; most of the vehicles are his." },
     { n: "Zane", s: "Ice \u00b7 white", c: "#9fd8e8", d: "M12 3v18 M12 8l-4-3 M12 8l4-3 M12 14l-5-3 M12 14l5-3", note: "The Shurikens of Ice, and the reveal that he is a Nindroid is the best twist the show ever pulled, mostly because it recontextualises every odd thing he had done up to that point." },
-    { n: "Cole", s: "Earth \u00b7 black", c: "#8f7f6a", d: "M4 18h16 M7 18l3-8 3 5 2-3 2 6", note: "The Scythe of Quakes, and the leader early on. Honestly never my favourite, which is nothing against him; every group has one you just do not gravitate to." },
+    { n: "Cole", s: "Earth \u00b7 black", c: "#8f7f6a", d: "M4 18h16 M7 18l3-8 3 5 2-3 2 6", note: "The Scythe of Quakes, and the leader early on. Honestly never my favorite, which is nothing against him; every group has one you just do not gravitate to." },
     { n: "Lloyd", s: "Energy \u00b7 green", c: "#5fbf5f", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M12 7v10 M7 12h10", note: "The Green Ninja, which the first two seasons spend their entire length building toward, and the twist is that the kid nobody took seriously is the prophecy." },
     { n: "Nya", s: "Water \u00b7 the Samurai", c: "#4fc0d0", d: "M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z", note: "Kai\u2019s sister, who spends the early seasons being told she is not part of the team and responds by building a mech suit and outfighting all of them as the Samurai X." },
   ],

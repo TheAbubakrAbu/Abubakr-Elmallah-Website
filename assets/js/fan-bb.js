@@ -49,7 +49,7 @@ window.FAN_PAGE = {
   { id: 'cast', kind: 'cards', title: 'The Cast', note: 'chemistry is the study of change',
     items: [
       { title: 'Walter White', sub: 'Heisenberg', tag: 'Lead', desc: 'A chemistry teacher who tells you it was for his family for five seasons and then, in the last hour, tells the truth.', meta: 'Pontiac Aztek · pork pie hat' },
-      { title: 'Jesse Pinkman', sub: 'Cap n’ Cook', tag: 'Lead', desc: 'The moral centre of a show that keeps punishing him for it. The one who gets out.', meta: 'Yeah, science' },
+      { title: 'Jesse Pinkman', sub: 'Cap n’ Cook', tag: 'Lead', desc: 'The moral center of a show that keeps punishing him for it. The one who gets out.', meta: 'Yeah, science' },
       { title: 'Skyler White', sub: 'The one who knows', tag: 'Family', desc: 'Spends three seasons working out what her husband is, then has to decide what that makes her.', meta: 'A1A Car Wash' },
       { title: 'Hank Schrader', sub: 'DEA', tag: 'Family', desc: 'Comic relief for a season and a half, then the best-written cop on television.', meta: 'Minerals, Marie!' },
       { title: 'Gus Fring', sub: 'Los Pollos Hermanos', tag: 'Antagonist', desc: 'Fast food, chicken batter and a superlab. The most controlled character in the show, until he is not.', meta: 'Box cutter · Season 4' },
@@ -88,7 +88,7 @@ window.FAN_PAGE = {
     items: [
       { title: 'The cold opens', accent: '#4fbf7f', sub: 'Every episode', desc: 'A teddy bear in a pool, a fly, a corrido sung about Heisenberg. Half of them are flash-forwards you do not understand for a year.' },
       { title: 'POV shots', accent: '#8fd0ff', sub: 'The signature', desc: 'Cameras mounted inside a barrel, a shovel, a roomba, a car boot. Objects watch the characters instead of the other way round.' },
-      { title: 'Colour coding', accent: '#f0c840', sub: 'Costume', desc: 'Every main character has a palette and it shifts with them. Walt drifts from beige to black across five seasons.' },
+      { title: 'Color coding', accent: '#f0c840', sub: 'Costume', desc: 'Every main character has a palette and it shifts with them. Walt drifts from beige to black across five seasons.' },
       { title: 'The time-lapses', accent: '#c04a3a', sub: 'New Mexico', desc: 'Long lens desert skies between scenes, and the reason a show about a chemistry teacher feels enormous.' },
       { title: 'Ozymandias', accent: '#a06fe0', sub: 'Directed by Rian Johnson', desc: 'Opens with a flashback to the first cook in the same spot, then takes everything apart in one hour.' },
       { title: 'The foreshadowing', accent: '#5fd0d0', sub: 'Season two', desc: 'The pink bear turns up in four cold opens across a season before you learn what it is. Nothing on the show is accidental.' },

@@ -7,7 +7,7 @@ window.FAN_PAGE = {
     lede: 'You cannot move, you cannot fight, and you have a battery. Everything else is arithmetic.',
     items: [
       { title: 'Power', accent: '#f0c840', sub: '100% at 12 AM', desc: 'Every camera, door and light drains it. Run out and the office goes dark, and then the music starts.' },
-      { title: 'The Doors', accent: '#c96f4f', sub: 'Left and right', desc: 'The only defence in the building, and the most expensive thing you can hold shut.' },
+      { title: 'The Doors', accent: '#c96f4f', sub: 'Left and right', desc: 'The only defense in the building, and the most expensive thing you can hold shut.' },
       { title: 'The Cameras', accent: '#5f9ab0', sub: 'Eleven feeds', desc: 'Watching costs power. Not watching costs more.' },
       { title: 'The Music Box', accent: '#a06fd0', sub: 'FNAF 2', desc: 'Wind it or the Puppet comes out, and no door will help you.' },
       { title: '6 AM', accent: '#7fd07f', sub: 'The win condition', desc: 'Six in-game hours, about eight real minutes, and a paycheque of $4.' },
@@ -99,7 +99,7 @@ window.FAN_PAGE = {
       { when: 'The spring locks', title: 'What happens to him', desc: 'The man hides inside a spring lock suit to escape, and the springs fail. He does not get out, and he does not quite die either.' },
       { when: 'Fazbear\u2019s Fright', title: 'The horror attraction', desc: 'Thirty years on, someone builds a haunted attraction out of the salvage and finds one suit still standing.' },
       { when: 'Pizzeria Simulator', title: 'The trap', desc: 'A restaurant built specifically as a lure, by the one man who wanted all of it in the same room, with one exit.' },
-      { when: 'The Pizzaplex', title: 'The mall', desc: 'A three-storey entertainment complex built on top of the ruins, which is exactly as bad an idea as it sounds.' },
+      { when: 'The Pizzaplex', title: 'The mall', desc: 'A three-story entertainment complex built on top of the ruins, which is exactly as bad an idea as it sounds.' },
     ] },
 
   { id: 'beyond', kind: 'cards', title: 'Beyond The Games', note: 'a horror game that became an industry',
@@ -108,7 +108,7 @@ window.FAN_PAGE = {
       { title: 'The novels', sub: 'Since 2015', tag: 'Books', desc: 'The Silver Eyes and the Fazbear Frights collections, which tell parallel versions rather than canon.', meta: 'Scott Cawthon · Kira Breed-Wrisley' },
       { title: 'Help Wanted', sub: '2019 · VR', tag: 'Game', desc: 'The whole series remade as VR minigames, which is a genuinely cruel idea and works perfectly.', meta: 'Steel Wool' },
       { title: 'The films', sub: '2023 · 2025', tag: 'Film', desc: 'Jim Henson\u2019s Creature Shop built the animatronics practically rather than in a computer, which is the right call and the best thing about them. Critics disliked the first one and it made nearly three hundred million anyway, so a sequel followed.', meta: 'Blumhouse' },
-      { title: 'Made by one person', sub: 'Scott Cawthon', tag: 'Origin', desc: 'A developer whose previous game was criticised for characters that looked like stiff animatronics, who took the note and built a horror franchise out of it.', meta: 'Five months' },
+      { title: 'Made by one person', sub: 'Scott Cawthon', tag: 'Origin', desc: 'A developer whose previous game was criticized for characters that looked like stiff animatronics, who took the note and built a horror franchise out of it.', meta: 'Five months' },
     ] },
 
   { id: 'games', kind: 'rank', title: 'The Games', note: 'released 2014 – now · set 1983 – 2023, in no order at all',
@@ -129,7 +129,7 @@ window.FAN_PAGE = {
      one, both opening in the lightbox). `finished` is the date I actually
      finished each, not the "last played" date on the banner, which is a later
      replay; see the note on `finished` in fanpage.js. `views` gives the
-     grid/list switch the LEGO catalogue has, and the layout that goes with
+     grid/list switch the LEGO catalog has, and the layout that goes with
      it. */
   { id: 'finished', kind: 'tiles', compact: true, cols: 2, views: true, tally: 'at 100%', title: 'Both, at a Hundred Percent', note: 'my own Steam banners · 100%',
     lede: 'The first two, every achievement, with the Steam library banners as proof and the screens the games print for themselves beside them. The dates are when I actually finished them; the banners show the last time I went back.',

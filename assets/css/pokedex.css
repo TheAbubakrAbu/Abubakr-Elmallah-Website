@@ -15,6 +15,8 @@ img, svg { display: block; max-width: 100%; }
 html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
 
 .px {
+  --iw-a: #f0485a;   /* the shared world button, interface-world.css */
+  --iw-bg: #0d1120;
   --pixel:  "Press Start 2P", ui-monospace, monospace;
   --lcdf:   "VT323", ui-monospace, monospace;
   --body:   "Rubik", system-ui, sans-serif;
@@ -102,7 +104,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   filter: drop-shadow(0 26px 40px rgba(0, 0, 0, .55));
 }
 
-/* red plastic: a soft highlight down one side, darker towards the hinge */
+/* red plastic: a soft highlight down one side, darker toward the hinge */
 .px-left, .px-right {
   position: relative;
   background:
@@ -112,7 +114,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 }
 
 /* the left half is taller on its outer side, where the lens sits, and
-   steps down on a diagonal towards the hinge, as the real one does */
+   steps down on a diagonal toward the hinge, as the real one does */
 .px-left {
   --step: 58px;
   display: flex; flex-direction: column;
@@ -162,7 +164,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .px-led--y.is-on { color: rgba(255, 220, 60, .7); }
 .px-led--g.is-on { color: rgba(90, 240, 90, .7); }
 
-/* the screen's frame: pale grey, the bottom-left corner cut away, two red
+/* the screen's frame: pale gray, the bottom-left corner cut away, two red
    pinholes along the top, a red button and a speaker grille below */
 .px-bezel {
   position: relative; margin-top: 4px; flex: 1;
@@ -368,7 +370,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .px-row-t i { font-size: 0.9rem; color: var(--mute); }
 .px-row-ty { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
 
-/* the invented types, each in a colour of its own (white text on every one
+/* the invented types, each in a color of its own (white text on every one
    of them clears AA) */
 .px-ty {
   --t: #5d6275;
@@ -482,8 +484,8 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   transition: border-color .2s, background .2s, translate .2s var(--ease);
 }
 .px-cart:hover, .px-cart:focus-visible { border-color: var(--rule); background: #fff; translate: 0 -2px; }
-/* a cartridge: grey shell, the top-right corner clipped, the grip lines
-   along the top, and a label in the world's colour with its letter */
+/* a cartridge: gray shell, the top-right corner clipped, the grip lines
+   along the top, and a label in the world's color with its letter */
 .px-cart-shell {
   grid-row: span 2; position: relative; width: 42px; height: 48px;
   display: grid; place-items: center; padding-top: 8px;

@@ -4,7 +4,7 @@ redirect_from:
   - /franchises/islam/
 title: "Islam · Abubakr Elmallah"
 description: "Islam: the five pillars, the six articles, the Qur'an in numbers, all ninety-nine names, the three holy mosques, the twenty-five prophets and the chain of scholarship."
-fonts: "family=Amiri:ital@0;1&family=Scheherazade+New:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700"
+fonts: "family=Amiri:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700"
 tab: "/worlds/"
 ---
 <!DOCTYPE html>
@@ -15,6 +15,8 @@ tab: "/worlds/"
 <link rel="stylesheet" href="{% include v.html f='/assets/css/al-islam.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fanpages.css' %}" />
 <link rel="stylesheet" href="{% include v.html f='/assets/css/fan/islam.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-apps.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/world-siblings.css' %}" />
 </head>
 <body data-intro="none" data-fan="islam">
 
@@ -43,7 +45,7 @@ tab: "/worlds/"
     <p class="isl-bismillah-en">In the name of Allah, the Most Compassionate, the Most Merciful</p>
     <h1 class="fan-title">Islam</h1>
     <p class="fan-lede-hero">The first of the three pages about who I am rather than what I like, and the only page on this site about something I did not choose. Everything else here is taste. This is not.</p>
-    <p class="fan-lede-hero">What is on it: the five pillars and the six articles, the Qur&#702;&#257;n as a set of numbers, all ninety-nine names, the three mosques worth setting out to travel for, the twenty-five prophets named by name, and the chain of scholarship every bit of it travelled down. The prophets, the mosques and the scholars used to live on my apps page, which was the wrong home for them: that page is about three pieces of software, and this is not.</p>
+    <p class="fan-lede-hero">What is on it: the five pillars and the six articles, the Qur&#702;&#257;n as a set of numbers, all ninety-nine names, the three mosques worth setting out to travel for, the twenty-five prophets named by name, and the chain of scholarship every bit of it traveled down. The prophets, the mosques and the scholars used to live on my apps page, which was the wrong home for them: that page is about three pieces of software, and this is not.</p>
     <div class="fan-links">
       <a class="fan-link" href="#pillars" data-magnetic>The pillars &#8599;</a>
       <a class="fan-link" href="#names" data-magnetic>The ninety-nine names &#8599;</a>
@@ -52,8 +54,15 @@ tab: "/worlds/"
       <a class="fan-link" href="#scholars-sec" data-magnetic>The scholars &#8599;</a>
       <a class="fan-link" href="/worlds/quran/" data-magnetic>The Qur&#702;&#257;n &#8599;</a>
       <a class="fan-link" href="/worlds/sunnah/" data-magnetic>The Sunnah &#8599;</a>
-      <a class="fan-link" href="/al-islam/" data-magnetic>The apps I built for it &#8599;</a>
     </div>
+
+    <!-- the apps, as a control rather than one more pill in the row above:
+         they are the other half of this subject, not another section of it.
+         /al-islam/ carries the same crossing back to here. -->
+    {% include world-apps-link.html
+       kicker="The apps I built for it"
+       name="Al-Islam, Al-Quran and Al-Adhan"
+       href="/al-islam/" %}
   </section>
 
   <section class="isl-verse reveal" aria-label="Qur'an verse">
@@ -70,17 +79,17 @@ tab: "/worlds/"
   <!-- ─────────── moved here from /al-islam/ ─────────── -->
 
   <section class="mosques" id="mosques-sec">
-    <h3 class="subsec subsec--isl reveal">The Three Holy Mosques<span class="subsec-yr">&#1575;&#1604;&#1581;&#1585;&#1605;&#1575;&#1606; &#1608;&#1575;&#1604;&#1571;&#1602;&#1589;&#1609;</span></h3>
+    <h2 class="subsec subsec--isl reveal">The Three Holy Mosques<span class="subsec-yr">&#1575;&#1604;&#1581;&#1585;&#1605;&#1575;&#1606; &#1608;&#1575;&#1604;&#1571;&#1602;&#1589;&#1609;</span></h2>
     <p class="isl-lede reveal">The three mosques the Prophet &#65018; said are worth setting out to travel for: <b>Makkah</b>, <b>Madinah</b>, and <b>Jerusalem</b>. Every mosque here is drawn, not photographed: each one is an SVG elevation built from the same parts, in its own architectural language.</p>
     <div class="holy-grid" id="holyMosques"></div>
 
-    <h3 class="subsec subsec--isl reveal">And the Ones After Them<span class="subsec-yr">&#1575;&#1604;&#1605;&#1587;&#1575;&#1580;&#1583;</span></h3>
+    <h2 class="subsec subsec--isl reveal">And the Ones After Them<span class="subsec-yr">&#1575;&#1604;&#1605;&#1587;&#1575;&#1580;&#1583;</span></h2>
     <p class="isl-lede reveal">The mosques the rest of the architecture came out of, in the order they were built. Ottoman semi-domes, Mughal onion domes, Andalusi horseshoe arches, Maghribi square minarets: the same building solved a dozen different ways by a dozen different places.</p>
     <div id="mosques"></div>
   </section>
 
   <section class="prophets" id="prophets-sec">
-    <h3 class="subsec subsec--isl reveal">Prophets in the Qur&#702;&#257;n<span class="subsec-yr">&#1575;&#1604;&#1571;&#1606;&#1576;&#1610;&#1575;&#1569;</span></h3>
+    <h2 class="subsec subsec--isl reveal">Prophets in the Qur&#702;&#257;n<span class="subsec-yr">&#1575;&#1604;&#1571;&#1606;&#1576;&#1610;&#1575;&#1569;</span></h2>
     <p class="isl-lede reveal">Twenty-five are named. Grouped the way the Qur&#702;&#257;n tends to introduce them: the first prophets, the ones sent to the Arab peoples, the house of Ibr&#257;h&#299;m, the Israelites who came through Is&#7717;&#257;q, and finally the one who came through Ism&#257;&#703;&#299;l. Filter by line.</p>
 
     <div class="salaf-card reveal">
@@ -94,8 +103,8 @@ tab: "/worlds/"
   </section>
 
   <section class="scholars" id="scholars-sec">
-    <h3 class="subsec subsec--isl reveal">Scholars<span class="subsec-yr">the athari chain</span></h3>
-    <p class="isl-lede reveal">The line the ummah&#8217;s knowledge actually travelled down: the rightly guided caliphs, the ten promised Jannah, the Muh&#257;jir&#363;n and the An&#7779;&#257;r, the two generations after them, then the four im&#257;ms, the &#7717;ad&#299;th masters, the writers of &#703;aq&#299;dah and tafs&#299;r, Ibn Taymiyyah&#8217;s circle in Damascus, and the revivalists after them. Filter by generation.</p>
+    <h2 class="subsec subsec--isl reveal">Scholars<span class="subsec-yr">the athari chain</span></h2>
+    <p class="isl-lede reveal">The line the ummah&#8217;s knowledge actually traveled down: the rightly guided caliphs, the ten promised Jannah, the Muh&#257;jir&#363;n and the An&#7779;&#257;r, the two generations after them, then the four im&#257;ms, the &#7717;ad&#299;th masters, the writers of &#703;aq&#299;dah and tafs&#299;r, Ibn Taymiyyah&#8217;s circle in Damascus, and the revivalists after them. Filter by generation.</p>
 
     <div class="salaf-card reveal">
       <p class="salaf-ar" lang="ar" dir="rtl">&#1582;&#1614;&#1610;&#1618;&#1585;&#1615; &#1575;&#1604;&#1606;&#1617;&#1614;&#1575;&#1587;&#1616; &#1602;&#1614;&#1585;&#1618;&#1606;&#1616;&#1610;&#1548; &#1579;&#1615;&#1605;&#1617;&#1614; &#1575;&#1604;&#1617;&#1614;&#1584;&#1616;&#1610;&#1606;&#1614; &#1610;&#1614;&#1604;&#1615;&#1608;&#1606;&#1614;&#1607;&#1615;&#1605;&#1618;&#1548; &#1579;&#1615;&#1605;&#1617;&#1614; &#1575;&#1604;&#1617;&#1614;&#1584;&#1616;&#1610;&#1606;&#1614; &#1610;&#1614;&#1604;&#1615;&#1608;&#1606;&#1614;&#1607;&#1615;&#1605;&#1618;</p>
@@ -109,6 +118,10 @@ tab: "/worlds/"
 
   <!-- sections marked mount:'end' in fan-islam.js land here -->
   <div id="fanBodyEnd"></div>
+
+
+  <!-- the other worlds in this world's rank; see world-siblings.html -->
+  {% include world-siblings.html %}
 
 </main>
 

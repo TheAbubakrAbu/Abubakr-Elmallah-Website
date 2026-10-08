@@ -42,7 +42,7 @@ can open and read.
 | --- | --- |
 | `/star-wars/` | Datapad, Aurebesh Translator, the droids, plus the alphabet, a playable hand of sabacc and a kyber forge, all running in the page |
 | `/al-islam/` | Al-Islam, Al-Quran, Al-Adhan, the open-source engines, plus prayer times and a qiblah computed in the browser, and a tajwīd sheet |
-| `/worlds/` | Index of **70** pages: **who I am** (Islam, Arab, Egypt) first, then Star Wars, Harry Potter, LEGO, Pokémon, Minecraft, LOTR, Marvel, Avatar and the rest, each with its own stylesheet and behaviour |
+| `/worlds/` | Index of **70** pages: **who I am** (Islam, Arab, Egypt) first, then Star Wars, Harry Potter, LEGO, Pokémon, Minecraft, LOTR, Marvel, Avatar and the rest, each with its own stylesheet and behavior |
 
 **Alternate interfaces**, the same content re-skinned end to end:
 

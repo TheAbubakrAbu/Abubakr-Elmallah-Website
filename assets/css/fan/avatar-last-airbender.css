@@ -192,7 +192,7 @@
 
 .atla-core b { font-family: var(--serif); font-size: 0.86rem; color: #a8e0ff; }
 
-.atla-legend h4 {
+.atla-legend :is(h2, h3, h4, h5) {
   font-family: Papyrus, "Bradley Hand", Georgia, fantasy;
   font-size: 1.3rem; letter-spacing: 0.02em; color: var(--a); margin-bottom: 0.6rem;
 }

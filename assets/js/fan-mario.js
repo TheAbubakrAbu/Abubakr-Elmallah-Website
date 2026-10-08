@@ -9,7 +9,7 @@ window.FAN_PAGE = {
     lede: 'Forty-odd years and a hundred-odd games. These are the ones that changed what the next twenty looked like.',
     items: [
       { num: '01', title: 'Super Mario Bros.', sub: 'NES · 1985',
-        desc: 'The one that taught a generation to read a video game. World 1-1 is still the most studied level ever built: a Goomba walks at you, the pipe is a wall, the mushroom moves towards you rather than away, and nobody ever had to write any of that down.' },
+        desc: 'The one that taught a generation to read a video game. World 1-1 is still the most studied level ever built: a Goomba walks at you, the pipe is a wall, the mushroom moves toward you rather than away, and nobody ever had to write any of that down.' },
       { num: '02', title: 'Super Mario World', sub: 'SNES · 1990',
         desc: 'The spin jump, the cape and Yoshi. Ninety-six exits and a map with secret paths threaded through it, which is still the best-structured 2D game Nintendo has made.' },
       { num: '03', title: 'Super Mario 64', sub: 'Nintendo 64 · 1996',
@@ -82,7 +82,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'themes', kind: 'tiles', compact: true, title: 'The Music', note: 'four tracks · Koji Kondo and after',
-    lede: 'Koji Kondo wrote the ground theme on a keyboard with hardware that could play three notes at once, and it is still the most recognised piece of music written in the last fifty years. Nintendo does not upload its soundtracks, so most of these are the copies everybody actually uses.',
+    lede: 'Koji Kondo wrote the ground theme on a keyboard with hardware that could play three notes at once, and it is still the most recognized piece of music written in the last fifty years. Nintendo does not upload its soundtracks, so most of these are the copies everybody actually uses.',
     items: [
       { title: 'Super Mario Bros. Ground Theme', accent: '#e0403a', sub: 'Koji Kondo · 1985 · 1:39',
         desc: 'Three channels, a Latin shuffle, and a melody Kondo rewrote after playing the game because his first version did not match how it felt to move. That is the whole philosophy of Nintendo music in one anecdote.',

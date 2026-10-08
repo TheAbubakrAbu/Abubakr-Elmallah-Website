@@ -16,6 +16,8 @@ ul { list-style: none; }
 html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
 
 .wb {
+  --iw-a: #e0321d;   /* the shared world button, interface-world.css */
+  --iw-bg: #1c120b;
   --wood:   "Rye", Georgia, serif;           /* the woodtype on every bill */
   --orn:    "Ewert", "Rye", Georgia, serif;  /* the ornate face, for WANTED alone */
   --body:   "Old Standard TT", Georgia, serif;
@@ -27,7 +29,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
   --ink:    #2b1a0f;
   --ink-2:  #5a3c22;
   --blood:  #9a2416;   /* red ink on paper: 7:1 on the parchment */
-  --mark:   #e0321d;   /* Dead Eye's mark: the one colour the wash never touches */
+  --mark:   #e0321d;   /* Dead Eye's mark: the one color the wash never touches */
   --sun:    #e0b070;
   --cream:  #f1e2c4;
   --dim:    #c9b28c;
@@ -51,7 +53,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .wb-room > span { position: absolute; inset: 0; }
 
 /* planks: vertical boards with dark seams and the grain running down them.
-   The grain is SVG turbulence stretched tall, so it reads as long fibres
+   The grain is SVG turbulence stretched tall, so it reads as long fibers
    rather than noise; the knots are two soft radial blots. */
 .wb-planks {
   background:
@@ -153,8 +155,8 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 .wb-de-hint { flex: 1 1 16rem; font-style: italic; font-size: 1rem; color: var(--mute); }
 
 /* ───────────── paper ───────────── */
-/* The parchment every bill is printed on: a cream base, tea-coloured
-   stains, the fibre of the paper (more turbulence), and a burnt edge. */
+/* The parchment every bill is printed on: a cream base, tea-colored
+   stains, the fiber of the paper (more turbulence), and a burnt edge. */
 .wb-paper, .wb-bill {
   color: var(--ink);
   background:
@@ -311,7 +313,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 @keyframes wb-paint { to { stroke-dashoffset: 0; } }
 .wb-x.is-spent { opacity: 0; transition: opacity .3s; }
 
-/* a bullet hole: a dark punch with a scorched ring and torn fibres */
+/* a bullet hole: a dark punch with a scorched ring and torn fibers */
 .wb-hole {
   position: absolute; z-index: 3; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
   background: radial-gradient(circle, #0d0805 0 38%, #3a2412 46%, rgba(90, 55, 25, .55) 62%, transparent 72%);
@@ -328,7 +330,7 @@ html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward 
 
 /* ───────────── Dead Eye ───────────── */
 /* The wash: the room, the paper and the type go warm sepia and lose their
-   colour; the marks, painted on top, do not. */
+   color; the marks, painted on top, do not. */
 .wb.is-deadeye .wb-room,
 .wb.is-deadeye .wb-top,
 .wb.is-deadeye .wb-h,

@@ -1,6 +1,6 @@
 /* photos-data.js: my own photographs, sorted by what they are OF.
 
-   THE POINT: the fan pages are otherwise entirely drawn -- type, colour and
+   THE POINT: the fan pages are otherwise entirely drawn -- type, color and
    CSS, no artwork. The one honest exception is a photograph of me actually
    standing in the place, so /franchises/star-wars/ can show the saber I built
    at Savi's Workshop rather than describing it, and the Disney page can say
@@ -125,7 +125,7 @@ window.MYPHOTOS = {
         when: 'Dec 2020 · Florida' },
       { src: 'hs-freshman/2020-12-24-1630.avif',
         title: 'Diagon Alley',
-        desc: 'Potage’s Cauldron Shop, behind the London facade at Universal Studios Florida. Still the best-realised themed land anywhere.',
+        desc: 'Potage’s Cauldron Shop, behind the London facade at Universal Studios Florida. Still the best-realized themed land anywhere.',
         when: 'Dec 2020 · Florida' },
       { src: 'uci-second/2026-07-15-1214.avif',
         title: 'Studio Tour Tokyo',
@@ -194,7 +194,7 @@ window.MYPHOTOS = {
         when: 'Apr 2026 · Northern Ireland' },
       { src: 'uci-second/2026-04-11-1446.avif',
         title: 'The Studio Tour',
-        desc: 'Winterfell interiors, the Chamber of the Painted Table, the Hall of Faces, and the Armoury with Longclaw and Ice in it.',
+        desc: 'Winterfell interiors, the Chamber of the Painted Table, the Hall of Faces, and the Armory with Longclaw and Ice in it.',
         when: 'Apr 2026 · Banbridge' },
       { src: 'uci-second/2026-04-11-1339.avif',
         title: 'The Night’s Watch',
@@ -202,7 +202,7 @@ window.MYPHOTOS = {
         when: 'Apr 2026 · Banbridge' },
     ],
 
-    /* Japan has a Pokémon Center roughly every four hundred metres and I found
+    /* Japan has a Pokémon Center roughly every four hundred meters and I found
        most of them. */
     pokemon: [
       { src: 'uci-second/2026-07-20-1551.avif',
@@ -215,7 +215,7 @@ window.MYPHOTOS = {
         when: 'July 2026 · Tokyo' },
       { src: 'uci-second/2026-07-15-1546.avif',
         title: 'Mewtwo, in Shibuya',
-        desc: 'The containment tube at the Shibuya Parco centre, minutes after Nintendo TOKYO.',
+        desc: 'The containment tube at the Shibuya Parco center, minutes after Nintendo TOKYO.',
         when: 'July 2026 · Tokyo' },
       { src: 'uci-second/2026-07-16-2042.avif',
         title: 'Rayquaza',
@@ -386,8 +386,8 @@ window.MYPHOTOS = {
         desc: 'The Collector’s Fortress, and the Quinjet parked on the roof of Avengers HQ.',
         when: 'Jan 2022 · California Adventure' },
       { src: 'uci-second/2026-05-06-1801.avif',
-        title: 'Licence of Tomorrow',
-        desc: 'The Autopia licence. I have three of them now, collected about a decade apart.',
+        title: 'License of Tomorrow',
+        desc: 'The Autopia license. I have three of them now, collected about a decade apart.',
         when: 'May 2026 · Disneyland' },
       { src: 'ms-middle/2020-07-12-1245.avif',
         title: 'The year it shut',

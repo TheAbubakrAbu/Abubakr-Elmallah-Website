@@ -1,6 +1,6 @@
 /* fan-bloons.js: content for /worlds/bloons/. Rendered by fanpage.js.
    A Flash game about monkeys that turned into one of the deepest tower
-   defence systems anyone has shipped. */
+   defense systems anyone has shipped. */
 window.FAN_PAGE = {
   when: { at: 'Since the browser days', note: 'Started on the Flash versions in a school computer lab, the way everyone did, and BTD6 is the one that stuck.' },
   sections: [
@@ -28,8 +28,8 @@ window.FAN_PAGE = {
         meta: 'Ninja Kiwi, Auckland' },
     ] },
 
-  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the tower defence line, and the rest',
-    lede: 'Bloons started in 2007 as a puzzle game about a monkey throwing darts. The tower defence spin-off arrived a few months later and completely ate the parent series.',
+  { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the tower defense line, and the rest',
+    lede: 'Bloons started in 2007 as a puzzle game about a monkey throwing darts. The tower defense spin-off arrived a few months later and completely ate the parent series.',
     items: [
       { title: 'Bloons TD', sub: '2007 – now', unit: 'game',
         desc: 'The main line. BTD5 is the browser and mobile classic; BTD6 is the one still being updated.',
@@ -45,7 +45,7 @@ window.FAN_PAGE = {
           { n: 'Bloons Card Storm', y: '2024' },
         ] },
       { title: 'The Rest of Bloons', sub: '2007 – 2016', unit: 'game',
-        desc: 'The original puzzle series the tower defence games were spun out of, plus the odd experiment.',
+        desc: 'The original puzzle series the tower defense games were spun out of, plus the odd experiment.',
         rows: [
           { n: 'Bloons', y: '2007' },
           { n: 'Bloons 2', y: '2008' },

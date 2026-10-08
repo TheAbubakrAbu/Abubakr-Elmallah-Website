@@ -1,0 +1,449 @@
+/* ============================================================
+   grail-diary.css: /grail-diary/, the Indiana Jones terminal.
+   Sister page to /citadel/, /wanted/ and the rest: aged paper
+   and sepia ink instead of glass. The diary lies open on a
+   desk, every room on the site is a dig site pasted onto the
+   itinerary, and the page ends on the leap of faith.
+
+   The whole thing is CSS and SVG. There is no picture of
+   paper anywhere: the grain is one turbulence filter, the
+   foxing is three radial blots, and the ink is one color at
+   several opacities, which is how a real sepia drawing works.
+   ============================================================ */
+
+/* these pages load no shared stylesheet, so they carry their own reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+img, svg { display: block; max-width: 100%; }
+ul, ol { list-style: none; }
+html.smooth { scroll-behavior: smooth; }   /* added after load, so back/forward restoration is not animated */
+
+.gd {
+  --iw-a: #d8b06a;   /* the shared world button, interface-world.css */
+  --iw-bg: #241a0e;
+  --hand:  "IM Fell English", Georgia, serif;      /* the Senior's handwriting */
+  --type:  "Special Elite", "Courier New", monospace;  /* pasted labels and tickets */
+  --titl:  "Cinzel", Georgia, serif;               /* the museum's own lettering */
+  --sans:  "Cinzel", Georgia, serif;               /* interface-world.css reads this */
+  --mono:  "Special Elite", "Courier New", monospace;
+  --desk:   #241a0e;
+  --desk-2: #15100a;
+  --paper:  #e8d7b0;
+  --paper-2:#d6c092;
+  --paper-3:#c4a877;
+  --ink:    #3b2a16;
+  --ink-2:  #6b4a24;
+  --ink-3:  #8c6a3c;
+  --gold:   #d8b06a;
+  --red:    #9a3b24;   /* the dotted line, and the pencilled X */
+  --cream:  #f2e4c6;
+  --dim:    #c9b28c;
+  --mute:   #a8916c;
+  --line:   rgba(216, 176, 106, 0.24);
+  --ease:   cubic-bezier(.16, 1, .3, 1);
+
+  background: var(--desk);
+  color: var(--cream);
+  font-family: var(--hand);
+  font-size: 1.05rem;
+  min-height: 100vh;
+  padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+}
+
+/* ───────────── the desk ───────────── */
+.gd-desk { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.gd-desk > span { position: absolute; inset: 0; }
+
+/* green blotter leather, with the grain pulled across it */
+.gd-felt {
+  background:
+    radial-gradient(18px 14px at 31% 22%, rgba(0, 0, 0, .3), transparent 70%),
+    radial-gradient(14px 11px at 74% 68%, rgba(0, 0, 0, .26), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' seed='11'/%3E%3CfeColorMatrix values='0 0 0 0 0.2 0 0 0 0 0.15 0 0 0 0 0.08 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"),
+    linear-gradient(160deg, #2b2013, #1d150c 55%, #241a0e);
+}
+/* the reading lamp, from the left, as it is lit in every interior in these films */
+.gd-lamp {
+  background:
+    radial-gradient(46% 38% at 14% 8%, rgba(255, 196, 110, .16), transparent 70%),
+    radial-gradient(120% 90% at 50% 45%, transparent 48%, rgba(0, 0, 0, .66));
+}
+.gd-dust i {
+  position: absolute; left: var(--x); top: var(--y);
+  width: 3px; height: 3px; border-radius: 50%;
+  background: rgba(255, 224, 170, .5);
+  box-shadow: 0 0 6px rgba(255, 206, 130, .55);
+  animation: gd-drift var(--t) ease-in-out var(--d) infinite;
+}
+@keyframes gd-drift {
+  0%, 100% { transform: translate(0, 0); opacity: .18; }
+  50%      { transform: translate(26px, -34px); opacity: .62; }
+}
+
+/* torchlight: the page dims to a pool of light under the pointer. The mask
+   is a radial gradient on a full-screen overlay, so no element has to know
+   where the torch is; only the two custom properties move. */
+.gd::after {
+  content: ""; position: fixed; inset: 0; z-index: 6; pointer-events: none;
+  background: radial-gradient(180px 180px at var(--tx, 50%) var(--ty, 40%), transparent 0 36%, rgba(8, 5, 2, .9) 100%);
+  opacity: 0; transition: opacity .45s var(--ease);
+}
+.gd.is-torch::after { opacity: 1; }
+
+.gd-blocks { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* ───────────── the header ───────────── */
+.gd-top {
+  position: sticky; top: 0; z-index: 7;
+  display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap;
+  padding: 0.7rem clamp(0.9rem, 3vw, 2rem);
+  background: linear-gradient(180deg, rgba(20, 14, 8, .95), rgba(20, 14, 8, .72));
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+  font-family: var(--type);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+.gd-exit, .gd-torch-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.4rem 0.75rem; border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--dim);
+  background: rgba(216, 176, 106, .06);
+  transition: color .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease);
+  cursor: pointer;
+}
+.gd-exit svg, .gd-torch-btn svg {
+  width: 15px; height: 15px; fill: none; stroke: currentColor;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.gd-exit:hover, .gd-exit:focus-visible,
+.gd-torch-btn:hover, .gd-torch-btn:focus-visible { color: var(--gold); border-color: var(--gold); background: rgba(216, 176, 106, .14); }
+.gd-torch-btn[aria-pressed="true"] { color: #241a0e; background: var(--gold); border-color: var(--gold); }
+.gd-top-mid { color: var(--mute); flex: 1 1 auto; min-width: 0; }
+.gd-top-r { display: inline-flex; align-items: center; gap: 0.7rem; color: var(--mute); }
+
+/* ───────────── the layout ───────────── */
+.gd-main {
+  position: relative; z-index: 1;
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: clamp(1.4rem, 4vw, 3rem) clamp(0.9rem, 3vw, 2rem) 0;
+  display: grid; gap: clamp(2.2rem, 5vw, 3.6rem);
+}
+
+/* ───────────── the open book ───────────── */
+.gd-book {
+  position: relative;
+  display: grid; grid-template-columns: 1fr 1fr;
+  border-radius: 6px;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, .6), 0 2px 0 rgba(255, 230, 180, .06);
+  overflow: hidden;
+}
+/* the paper itself: the base of both leaves, so the grain is continuous
+   across the spine the way a single sheet folded would be */
+.gd-leaf {
+  position: relative;
+  padding: clamp(1.3rem, 3.4vw, 2.4rem);
+  color: var(--ink);
+  background:
+    radial-gradient(34px 26px at 18% 12%, rgba(140, 106, 60, .16), transparent 70%),
+    radial-gradient(28px 22px at 82% 78%, rgba(140, 106, 60, .14), transparent 70%),
+    radial-gradient(20px 16px at 62% 34%, rgba(140, 106, 60, .1), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.62' numOctaves='4' seed='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.3 0 0 0 0 0.14 0 0 0 0.16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"),
+    linear-gradient(170deg, var(--paper), var(--paper-2));
+}
+/* the gutter shadow: the curve of the paper into the spine */
+.gd-leaf--l { box-shadow: inset -24px 0 36px -22px rgba(59, 42, 22, .55); }
+.gd-leaf--r { box-shadow: inset 24px 0 36px -22px rgba(59, 42, 22, .55); }
+.gd-spine {
+  position: absolute; top: 0; bottom: 0; left: 50%; width: 3px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(59, 42, 22, .1), rgba(59, 42, 22, .5), rgba(59, 42, 22, .1));
+  z-index: 2;
+}
+.gd-folio {
+  font-family: var(--type); font-size: 0.7rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.8rem;
+}
+
+/* the grail drawing */
+.gd-grail { width: 100%; height: auto; }
+.gd-grail .gd-cup-rim, .gd-grail .gd-cup-stem, .gd-grail .gd-cup-foot,
+.gd-grail .gd-cup-base, .gd-grail .gd-cup-bowl, .gd-trial path {
+  fill: none; stroke: var(--ink-2); stroke-width: 2.4; stroke-linecap: round;
+}
+.gd-grail .gd-cup-bowl { stroke-width: 2.8; }
+.gd-trial path { stroke-width: 1.6; opacity: .5; }
+/* the X is pencil, not ink: thinner, redder and a little crooked */
+.gd-x path { fill: none; stroke: var(--red); stroke-width: 3.4; stroke-linecap: round; opacity: .82; }
+.gd-x { transform: rotate(-6deg); transform-origin: 193px 213px; }
+.gd-cap {
+  font-family: var(--hand); font-style: italic; font-size: 15px;
+  fill: var(--ink-3);
+}
+
+/* the right leaf: the particulars */
+.gd-kicker {
+  font-family: var(--type); font-size: 0.72rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem;
+}
+.gd-title {
+  font-family: var(--titl); font-weight: 700;
+  font-size: clamp(1.9rem, 5.4vw, 3.1rem); line-height: 1.04;
+  letter-spacing: 0.01em; color: var(--ink); margin-bottom: 0.7rem;
+}
+.gd-sub { font-size: 1.02rem; line-height: 1.62; color: var(--ink-2); margin-bottom: 1.3rem; }
+.gd-hand { display: grid; gap: 0.45rem; margin-bottom: 1.2rem; }
+.gd-hand > div { display: grid; grid-template-columns: 8.2rem 1fr; gap: 0.6rem; align-items: baseline; }
+.gd-hand dt {
+  font-family: var(--type); font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-3);
+}
+.gd-hand dd { font-size: 0.98rem; color: var(--ink); }
+/* the margin note, written at a slant as the Senior does */
+.gd-marg {
+  font-style: italic; font-size: 1.04rem; color: var(--ink-2);
+  transform: rotate(-1.4deg); transform-origin: left center;
+  border-left: 2px solid var(--red); padding-left: 0.7rem;
+}
+
+/* ───────────── headings ───────────── */
+.gd-h {
+  display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+  font-family: var(--titl); font-weight: 600;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  color: var(--gold); margin-bottom: 1.1rem;
+}
+.gd-h--sm { font-size: clamp(1.1rem, 2.4vw, 1.4rem); }
+.gd-h span {
+  font-family: var(--type); font-weight: 400; font-size: 0.74rem;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute);
+}
+.gd-think { width: 22px; height: 22px; flex: 0 0 auto; }
+
+/* ───────────── the map ───────────── */
+/* On a phone the map keeps its size and scrolls sideways inside its frame,
+   rather than shrinking every name to a smudge. */
+.gd-mapframe {
+  border: 1px solid var(--line); border-radius: 8px;
+  background: linear-gradient(170deg, rgba(216, 176, 106, .05), rgba(0, 0, 0, .2));
+  overflow-x: auto; overscroll-behavior-x: contain;
+}
+.gd-map { width: 100%; min-width: 760px; height: auto; }
+.gd-map-paper { fill: rgba(232, 215, 176, .05); }
+.gd-map-land path { fill: rgba(216, 176, 106, .09); stroke: rgba(216, 176, 106, .3); stroke-width: 1.4; }
+.gd-map-grid path { stroke: rgba(216, 176, 106, .12); stroke-width: 1; fill: none; }
+.gd-map-sea {
+  font-family: var(--hand); font-style: italic; font-size: 20px;
+  fill: rgba(216, 176, 106, .34); letter-spacing: 0.1em;
+}
+/* the dotted line: stroked out as the map scrolls into view */
+.gd-line {
+  fill: none; stroke: var(--red); stroke-width: 3.4;
+  stroke-linecap: round; stroke-dasharray: 9 11;
+  /* the line is ~1020 units long; one length covers it with room to spare */
+  stroke-dashoffset: 1100;
+}
+.gd.is-flying .gd-line { animation: gd-draw 3.4s linear forwards; }
+@keyframes gd-draw { to { stroke-dashoffset: 0; } }
+.gd-stops circle { fill: var(--red); stroke: var(--paper); stroke-width: 2; opacity: 0; }
+.gd-stops text {
+  font-family: var(--type); font-size: 13px; letter-spacing: 0.06em;
+  fill: var(--dim); opacity: 0;
+}
+.gd.is-flying .gd-stop circle,
+.gd.is-flying .gd-stop text { animation: gd-pin .5s var(--ease) forwards; animation-delay: calc(0.45s + var(--i) * 0.52s); }
+@keyframes gd-pin { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: scale(1); } }
+.gd-stop circle { transform-box: fill-box; transform-origin: center; }
+/* the airplane rides the line, which is what the line is for */
+.gd-plane { fill: var(--red); opacity: 0; }
+.gd.is-flying .gd-plane {
+  offset-path: path("M90 318 C180 300 220 248 300 236 S420 262 470 220 560 150 640 164 760 212 830 180 920 128 950 112");
+  offset-rotate: auto;
+  animation: gd-fly 3.4s linear forwards;
+}
+@keyframes gd-fly {
+  0%   { offset-distance: 0%; opacity: 0; }
+  6%   { opacity: .95; }
+  94%  { opacity: .95; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+.gd-maphint {
+  font-family: var(--type); font-size: 0.72rem; letter-spacing: 0.06em;
+  color: var(--mute); margin-top: 0.6rem;
+}
+@media (min-width: 860px) { .gd-maphint { display: none; } }
+
+/* ───────────── the sites ───────────── */
+.gd-sites {
+  display: grid; gap: clamp(0.8rem, 2vw, 1.2rem);
+  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+  margin-top: 1.4rem;
+}
+.gd-site { display: block; height: 100%; }
+/* each site is a card pasted into the diary, hanging a degree or two off
+   square, with a strip of gummed tape across the top corner */
+.gd-card {
+  position: relative; display: flex; flex-direction: column; height: 100%;
+  gap: 0.34rem; padding: 1.05rem 1rem 1rem;
+  color: var(--ink);
+  background:
+    radial-gradient(26px 20px at 86% 14%, rgba(140, 106, 60, .14), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' seed='5'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.3 0 0 0 0 0.14 0 0 0 0.13 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E"),
+    linear-gradient(168deg, var(--paper), var(--paper-3));
+  border-radius: 3px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, .44);
+  transform: rotate(var(--r, -0.6deg));
+  opacity: 0;
+  animation: gd-paste .55s var(--ease) forwards;
+  animation-delay: calc(var(--i) * 0.055s);
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.gd-site:nth-child(even) .gd-card { --r: 0.7deg; }
+.gd-site:nth-child(3n) .gd-card { --r: -1.1deg; }
+@keyframes gd-paste { from { opacity: 0; transform: rotate(var(--r, -0.6deg)) translateY(14px); } to { opacity: 1; transform: rotate(var(--r, -0.6deg)); } }
+.gd-site:hover .gd-card, .gd-site:focus-visible .gd-card {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, .54);
+}
+.gd-site:focus-visible { outline: none; }
+.gd-site:focus-visible .gd-card { outline: 2px solid var(--gold); outline-offset: 3px; }
+.gd-tape {
+  position: absolute; top: -9px; right: 16px; width: 54px; height: 20px;
+  background: linear-gradient(170deg, rgba(232, 215, 176, .66), rgba(198, 172, 122, .5));
+  border-left: 1px solid rgba(255, 255, 255, .22);
+  border-right: 1px solid rgba(255, 255, 255, .22);
+  transform: rotate(7deg);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+}
+.gd-k {
+  font-family: var(--type); font-size: 0.66rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--c, var(--ink-3));
+}
+.gd-ico {
+  width: 30px; height: 30px; margin: 0.2rem 0 0.1rem;
+  fill: none; stroke: var(--c, var(--ink-2));
+  stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round;
+}
+.gd-n { font-family: var(--titl); font-weight: 600; font-size: 1.12rem; line-height: 1.22; color: var(--ink); }
+.gd-real {
+  font-family: var(--type); font-size: 0.68rem; letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+.gd-f { font-size: 0.93rem; line-height: 1.48; color: var(--ink-2); margin-top: 0.18rem; }
+.gd-y {
+  margin-top: auto; padding-top: 0.5rem;
+  font-family: var(--type); font-size: 0.72rem; letter-spacing: 0.08em;
+  color: var(--red);
+}
+/* the diary's own page, and the one entry that is not a dig */
+.gd-site--own .gd-card { box-shadow: 0 10px 22px rgba(0, 0, 0, .44), inset 0 0 0 2px rgba(154, 59, 36, .34); }
+.gd-site--calm .gd-y { color: #2f7a52; }
+
+/* ───────────── panels ───────────── */
+.gd-panel {
+  padding: clamp(1.1rem, 3vw, 1.8rem);
+  border: 1px solid var(--line); border-radius: 10px;
+  background: linear-gradient(170deg, rgba(216, 176, 106, .05), rgba(0, 0, 0, .22));
+}
+
+/* the three trials */
+.gd-trials-list { display: grid; gap: 1rem; }
+.gd-trials-list li { display: grid; grid-template-columns: auto 1fr; gap: 0.9rem; align-items: start; }
+.gd-trial-n {
+  display: grid; place-items: center; width: 42px; height: 42px;
+  border: 1px solid var(--gold); border-radius: 50%;
+  font-family: var(--titl); font-size: 1.05rem; color: var(--gold);
+  background: rgba(216, 176, 106, .08);
+}
+.gd-trials-list b { font-family: var(--titl); font-weight: 600; font-size: 1.06rem; color: var(--cream); }
+.gd-trials-list p { font-size: 0.96rem; line-height: 1.56; color: var(--dim); margin-top: 0.2rem; }
+
+/* the other notebooks */
+.gd-notes { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.gd-note {
+  display: grid; gap: 0.1rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--line); border-radius: 6px;
+  background: rgba(216, 176, 106, .04);
+  transition: border-color .2s var(--ease), background .2s var(--ease), transform .2s var(--ease);
+}
+.gd-note:hover, .gd-note:focus-visible { border-color: var(--gold); background: rgba(216, 176, 106, .1); transform: translateY(-2px); }
+.gd-note-k {
+  font-family: var(--type); font-size: 0.66rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--mute);
+}
+.gd-note b { font-family: var(--titl); font-weight: 600; font-size: 1rem; color: var(--cream); }
+.gd-note i { font-style: italic; font-size: 0.86rem; color: var(--dim); }
+
+/* ───────────── the leap ───────────── */
+.gd-leap {
+  justify-self: center;
+  padding: 0.75rem 1.6rem; border-radius: 999px;
+  border: 1px solid var(--gold); color: var(--gold);
+  background: rgba(216, 176, 106, .08);
+  font-family: var(--titl); font-size: 1rem; letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+}
+.gd-leap:hover, .gd-leap:focus-visible { background: var(--gold); color: #241a0e; transform: translateY(-2px); }
+
+/* ───────────── the ending ───────────── */
+.gd-done {
+  position: fixed; inset: 0; z-index: 30;
+  display: grid; place-items: center;
+  padding: 1.5rem;
+  background: radial-gradient(90% 70% at 50% 45%, rgba(36, 26, 14, .96), rgba(8, 5, 2, .99));
+  opacity: 0; visibility: hidden;
+  transition: opacity .6s var(--ease), visibility .6s;
+  text-align: center;
+}
+.gd.is-leapt .gd-done { opacity: 1; visibility: visible; }
+.gd-done-orb { width: 96px; height: 96px; margin: 0 auto 1rem; }
+.gd-done-k {
+  font-family: var(--type); font-size: 0.74rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--mute); margin-bottom: 0.4rem;
+}
+.gd-done-t {
+  font-family: var(--titl); font-size: clamp(1.5rem, 5vw, 2.4rem);
+  color: var(--gold); margin-bottom: 1.2rem;
+}
+.gd-done a {
+  display: inline-block; padding: 0.6rem 1.3rem; border-radius: 999px;
+  border: 1px solid var(--gold); color: var(--gold);
+  font-family: var(--type); font-size: 0.84rem; letter-spacing: 0.06em;
+  transition: background .2s var(--ease), color .2s var(--ease);
+}
+.gd-done a:hover, .gd-done a:focus-visible { background: var(--gold); color: #241a0e; }
+
+/* ───────────── the world button at the foot ───────────── */
+.gd-main > .iw--foot { justify-self: center; margin-bottom: 2rem; }
+
+/* ───────────── narrow ───────────── */
+/* The book folds to one column rather than shrinking: a two-page spread at
+   360px makes both leaves unreadable. Nothing is hidden, only restacked. */
+@media (max-width: 760px) {
+  .gd-book { grid-template-columns: 1fr; }
+  .gd-spine { display: none; }
+  .gd-leaf--l { box-shadow: inset 0 -24px 36px -22px rgba(59, 42, 22, .55); }
+  .gd-leaf--r { box-shadow: inset 0 24px 36px -22px rgba(59, 42, 22, .55); }
+  .gd-hand > div { grid-template-columns: 1fr; gap: 0.1rem; }
+  .gd-top-mid { display: none; }   /* the header line only; the page keeps every word */
+}
+
+/* ───────────── reduced motion ───────────── */
+/* Everything here is decoration over a page that is already complete:
+   the dust, the flight, the pasting-in and the pins. Stopped, the map is
+   simply drawn and every card is already in place. */
+@media (prefers-reduced-motion: reduce) {
+  .gd-dust i { animation: none; opacity: .35; }
+  .gd-card { animation: none; opacity: 1; }
+  .gd-line { stroke-dashoffset: 0; animation: none; }
+  .gd-plane { display: none; }
+  .gd-stops circle, .gd-stops text { opacity: 1; animation: none; }
+  .gd-site:hover .gd-card, .gd-site:focus-visible .gd-card { transform: rotate(var(--r, -0.6deg)); }
+  .gd-leap:hover, .gd-note:hover { transform: none; }
+}

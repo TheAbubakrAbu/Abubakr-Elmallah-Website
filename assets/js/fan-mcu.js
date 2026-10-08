@@ -6,10 +6,10 @@
    The six Infinity Stones (as crests) and the five villain caricatures are
    drawn in the page itself, in fan-avengers.html. Everything below is data. */
 window.FAN_PAGE = {
-  when: { at: '7th grade, 2018 \u00b7 Infinity War', note: 'Infinity War is what pulled me in, in seventh grade, and Endgame the year after, in eighth, is still my favourite film of all time. Nothing else has ever matched that opening weekend.' },
+  when: { at: '7th grade, 2018 \u00b7 Infinity War', note: 'Infinity War is what pulled me in, in seventh grade, and Endgame the year after, in eighth, is still my favorite film of all time. Nothing else has ever matched that opening weekend.' },
   sections: [
 
-  { id: 'favourites', kind: 'cards', title: 'My Four', note: 'the ones I actually turn up for',
+  { id: 'favorites', kind: 'cards', title: 'My Four', note: 'the ones I actually turn up for',
     lede: 'Everything else on this page is the map. These four are why I keep walking back into the cinema.',
     items: [
       { title: 'Spider-Man', sub: 'Peter Parker · Tom Holland', tag: 'No. 1', accent: '#e0403a',
@@ -159,7 +159,7 @@ window.FAN_PAGE = {
 
 
   { id: 'assemble', kind: 'rank', title: 'The Avengers Films', note: 'the team-ups, including the one that never happened',
-    lede: 'Six made, one cancelled, and Civil War is an Avengers film wearing a Captain America title. Everybody knows it. The one figure that actually climbs across all of them is the scale: The Avengers is city level, Age of Ultron is world level, Infinity War and Endgame are universe level, and Kang, Doomsday and Secret Wars are multiversal.',
+    lede: 'Six made, one canceled, and Civil War is an Avengers film wearing a Captain America title. Everybody knows it. The one figure that actually climbs across all of them is the scale: The Avengers is city level, Age of Ultron is world level, Infinity War and Endgame are universe level, and Kang, Doomsday and Secret Wars are multiversal.',
     items: [
       { num: '1', title: 'The Avengers', sub: 'May 2012 · Whedon', accent: '#e0403a', meta: 'Set 2012 · New York',
         desc: 'New York, the Chitauri, and the circle shot. The first time a crossover this size had ever actually landed on screen. Loki is a city-level threat: the whole film is fought over about eight blocks of Manhattan.' },
@@ -171,7 +171,7 @@ window.FAN_PAGE = {
         desc: 'Told from Thanos’s point of view, which is exactly why it works. He gets the arc; the heroes get the losses. Thanos is a universe-level threat: half of all life everywhere, in one snap.' },
       { num: '4', title: 'Avengers: Endgame', sub: 'April 2019 · the Russos', accent: '#f0d040', meta: 'Set 2018, then five years on in 2023',
         desc: 'Three hours, a time heist, and the best crowd reaction in modern cinema. It closes the Infinity Saga properly, which almost nothing manages. Still universe level: the same snap, undone across the same universe.' },
-      { num: '5', title: 'Avengers: The Kang Dynasty', sub: 'Cancelled', accent: '#5f5f6f', meta: 'Would have been dated May 2025',
+      { num: '5', title: 'Avengers: The Kang Dynasty', sub: 'Canceled', accent: '#5f5f6f', meta: 'Would have been dated May 2025',
         desc: 'Announced for 2025 with Kang set up as the saga’s Thanos across Quantumania and Loki, then dropped when Marvel parted ways with Jonathan Majors. The Multiverse Saga lost its villain and had to rebuild its ending from scratch. Kang is a multiversal threat: not one villain but every variant of him, across all of it.' },
       { num: '5', title: 'Avengers: Doomsday', sub: 'December 2026 · the Russos', accent: '#3f7f5f', meta: 'Set after the Multiverse Saga films, 2025 onward',
         desc: 'The replacement, with Robert Downey Jr. returning as Victor von Doom rather than as Tony Stark. Recasting your dead lead as your new villain is a genuinely extraordinary thing to try. Doom is a multiversal threat, the same scale Kang was being built to.' },
@@ -226,8 +226,8 @@ window.FAN_PAGE = {
         desc: 'Grieving her sister and doing wet work for a woman she despises. The film is hers, and she wins it by walking into someone else’s head and holding on.', meta: 'Widow' },
       { title: 'Bucky Barnes', sub: 'Sebastian Stan', tag: 'Congressman', accent: '#5f7f9f',
         desc: 'A hundred-year-old former assassin who got himself elected to Congress, which is a sentence the MCU somehow earned.', meta: 'Winter Soldier' },
-      { title: 'Red Guardian', sub: 'David Harbour', tag: 'Heart', accent: '#e0403a',
-        desc: 'The Soviet Captain America, decades past his prime and desperate to be needed. The emotional centre of the whole thing.', meta: 'Alexei' },
+      { title: 'Red Guardian', sub: 'David Harbor', tag: 'Heart', accent: '#e0403a',
+        desc: 'The Soviet Captain America, decades past his prime and desperate to be needed. The emotional center of the whole thing.', meta: 'Alexei' },
       { title: 'U.S. Agent', sub: 'Wyatt Russell', tag: 'Liability', accent: '#3f8fe0',
         desc: 'The man they handed the shield to first, still furious about how that went for him.', meta: 'John Walker' },
       { title: 'Ghost', sub: 'Hannah John-Kamen', tag: 'Phase', accent: '#8f9fb0',
@@ -431,7 +431,7 @@ window.FAN_PLAY = {
   said: "%. It burns.",
   items: [
     { n: "Space", s: "Tesseract \u00b7 blue", c: "#4f9fe0", d: "M12 3l8 4.5v9L12 21l-8-4.5v-9z M12 3v18 M4 7.5l16 9 M20 7.5l-16 9", note: "Lets you be anywhere. Spends most of the Infinity Saga as a glowing cube being fought over, and it is the first stone the films ever show you." },
-    { n: "Mind", s: "Sceptre \u00b7 yellow", c: "#f0d040", d: "M12 4a5 5 0 0 1 5 5c0 3-2 4-2 7h-6c0-3-2-4-2-7a5 5 0 0 1 5-5z M10 19h4", note: "Controls thought, and creates one: Ultron and then Vision come out of it. Vision is the only being who wears a stone and stays himself." },
+    { n: "Mind", s: "Scepter \u00b7 yellow", c: "#f0d040", d: "M12 4a5 5 0 0 1 5 5c0 3-2 4-2 7h-6c0-3-2-4-2-7a5 5 0 0 1 5-5z M10 19h4", note: "Controls thought, and creates one: Ultron and then Vision come out of it. Vision is the only being who wears a stone and stays himself." },
     { n: "Reality", s: "Aether \u00b7 red", c: "#e0483a", d: "M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z", note: "The odd one, a liquid rather than a stone. Makes anything true. Barely used, which is a shame, because it is the most frightening of the six." },
     { n: "Power", s: "Orb \u00b7 purple", c: "#a86ff0", d: "M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M12 7v10 M7 12h10", note: "Destroys anything, and destroys whoever holds it, until Thanos picks it up in the opening ten minutes of Infinity War and simply is not harmed, which tells you the whole film in one shot." },
     { n: "Time", s: "Eye of Agamotto \u00b7 green", c: "#4fd07f", d: "M12 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16z M12 8v4l3 2", note: "Strange uses it to loop Dormammu into agreeing to leave, which is the only time a Marvel film has been won by being annoying. Also how he sees fourteen million futures." },

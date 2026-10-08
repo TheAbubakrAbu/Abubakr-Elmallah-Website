@@ -1,0 +1,80 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "src/msu-mtc.html"
+        ],
+        "createdAt": "2026-10-06T09:09:06.489Z",
+        "reason": "Site-wide type scale, not authored here: page-title 112px to lede 19px is 5.9x and lede to sub-heading 1.64x, both well past 1.25x. The only sub-1.25x pair (.isl-doc-head 12px vs .subsec 10px) is two different mono label kinds separated by colour and weight, not consecutive heading levels. Pre-existing tokens in components.css; fires equally on untouched pages using the same pattern."
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "src/resume.html"
+        ],
+        "createdAt": "2026-10-06T09:09:06.621Z",
+        "reason": "Site-wide type scale, not authored here: page-title 112px to lede 19px is 5.9x and lede to sub-heading 1.64x, both well past 1.25x. The only sub-1.25x pair (.isl-doc-head 12px vs .subsec 10px) is two different mono label kinds separated by colour and weight, not consecutive heading levels. Pre-existing tokens in components.css; fires equally on untouched pages using the same pattern."
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "src/college.html"
+        ],
+        "createdAt": "2026-10-06T09:09:06.752Z",
+        "reason": "Site-wide type scale, not authored here: page-title 112px to lede 19px is 5.9x and lede to sub-heading 1.64x, both well past 1.25x. The only sub-1.25x pair (.isl-doc-head 12px vs .subsec 10px) is two different mono label kinds separated by colour and weight, not consecutive heading levels. Pre-existing tokens in components.css; fires equally on untouched pages using the same pattern."
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "src/al-islam.html"
+        ],
+        "createdAt": "2026-10-06T22:25:41.719Z",
+        "reason": "Site-wide type scale, not authored here: page-title 112px to lede 19px is 5.9x, well past 1.25x, so 'flat at every step' is false. This session's only change to this file was removing one paragraph and adding two buttons; no type or heading was touched. Same pre-existing tokens already ignored on college/resume/msu-mtc."
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "src/worlds.html"
+        ],
+        "createdAt": "2026-10-07T00:59:59.226Z",
+        "reason": "Measured in Chromium on the built page: header 44px, row title 19.84px, row sub 10.56px = steps of 2.22x and 1.88x, both above the 1.25x floor. The rule reads .subsec's base font-size: 0.7rem and misses the .subsec--title override to clamp(2rem, 3.6vw, 2.75rem) in components.css:1230."
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "src/freddys.html"
+        ],
+        "createdAt": "2026-10-07T21:45:00.984Z",
+        "reason": "user precedent: flat-type-hierarchy=* already sanctioned on src/resume.html, src/college.html, src/al-islam.html, src/worlds.html, src/msu-mtc.html; these interfaces use the same shared heading scale"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "src/battle-pass.html"
+        ],
+        "createdAt": "2026-10-07T21:45:01.005Z",
+        "reason": "user precedent: flat-type-hierarchy=* already sanctioned on src/resume.html, src/college.html, src/al-islam.html, src/worlds.html, src/msu-mtc.html; these interfaces use the same shared heading scale"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "src/instructions.html"
+        ],
+        "createdAt": "2026-10-07T21:45:01.027Z",
+        "reason": "user precedent: flat-type-hierarchy=* already sanctioned on src/resume.html, src/college.html, src/al-islam.html, src/worlds.html, src/msu-mtc.html; these interfaces use the same shared heading scale"
+      }
+    ]
+  }
+}

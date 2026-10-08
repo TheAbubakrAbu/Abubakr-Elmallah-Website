@@ -12,6 +12,9 @@ body[data-intro="starwars"] {
   --hud-sweep: rgba(255, 232, 31, 0.04);
   --hud-lit:   rgba(255, 232, 31, 0.22);
   --hud-halo:  rgba(245, 198, 60, 0.06);
+  /* the accent world-apps.css paints the crossing with: crawl yellow, the
+     color this page is already themed in. */
+  --a: #ffe81f;
 }
 body[data-intro="starwars"] #field { opacity: 0.32; }
 
@@ -214,11 +217,11 @@ body[data-intro="starwars"] #field { opacity: 0.32; }
 
 .pl-body { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.45rem; }
 .pl-titlerow { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; }
-.pl-titlerow h4 {
+.pl-titlerow :is(h3, h4) {
   font-family: var(--serif); font-weight: 600; letter-spacing: -0.02em;
   font-size: 1.12rem; line-height: 1.1; transition: color .3s;
 }
-.pl-card:hover .pl-titlerow h4 { color: var(--glow); }
+.pl-card:hover .pl-titlerow :is(h3, h4) { color: var(--glow); }
 .pl-src { font-family: var(--mono); font-size: 0.62rem; color: var(--mute); flex: none; }
 .pl-desc { font-size: 0.84rem; line-height: 1.6; color: var(--ink-dim); }
 .pl-meta {

@@ -27,7 +27,7 @@ tab: "/worlds/"
      nothing but the screen itself, so there is no edge of it to see at any
      window size or scroll position.
 
-     Six rings, two drifting fields of colour and a dust layer; all CSS, all
+     Six rings, two drifting fields of color and a dust layer; all CSS, all
      decorative, no images and no JS. -->
 <div class="rift" aria-hidden="true">
   <div class="rift-core">
@@ -139,29 +139,34 @@ tab: "/worlds/"
       </span>
       <span class="fr-vaultbtn-t">
         <b class="fr-vaultbtn-l">Show the other worlds</b>
-        <i><span><span class="fr-total">70</span> tiles</span> &#183; <span>who I am,</span> <span>and every franchise I love</span> &#183; <span>no apps</span></i>
+        <i><span><span class="fr-total">74</span> tiles</span> &#183; <span>who I am,</span> <span>and every franchise I love</span> &#183; <span>no apps</span></i>
       </span>
       <span class="fr-vaultbtn-a" aria-hidden="true">&#8595;</span>
     </button>
 
     <div class="fr-vault" id="frVault" hidden>
-      <h3 class="subsec subsec--fr subsec--title reveal" id="franchises">Franchises I Love<span class="vh">, </span><span class="subsec-yr">no apps, just taste</span></h3>
-      <p class="fr-lede reveal"><b><span class="fr-total">70</span></b> tiles, ranked the way I actually rank them. <b>Who I am comes first, and none of it is a fandom</b>: my faith, my language and where my family is from are not things I chose off a shelf, and everything under them makes more sense once they are on the page. Then the three I know by heart, the ones I have lived in, regular rotation, the rest, the ones that were everything to me as a kid and are not what I put on now, and the theme parks at the end. Every one of them has its own page now, click a tile. Apart from Islam and Star Wars at the top, none of these ship an app; every tile is set in type and drawn by hand, with no studio logos, no posters and no photographs.</p>
-      <!-- The cool interfaces: the whole site rebuilt inside a world. Nineteen
-           of them, and E.L.M.A.L.L.A.H. is the one every other is reached from
-           (each is a star system on its holotable), so it stands for all of
-           them. fandom.js moves it in above the Core Three; each world with an
-           interface of its own links it under its title
-           (_includes/interface-link.html). -->
+      <h2 class="subsec subsec--fr subsec--title reveal" id="franchises">Franchises I Love<span class="vh">, </span><span class="subsec-yr">no apps, just taste</span></h2>
+      <p class="fr-lede reveal"><b><span class="fr-total">74</span></b> tiles, ranked the way I actually rank them. <b>Who I am comes first, and none of it is a fandom</b>: my faith, my language and where my family is from are not things I chose off a shelf, and everything under them makes more sense once they are on the page. Then the three I know by heart, the ones I have lived in, regular rotation, the rest, the ones that were everything to me as a kid and are not what I put on now, and the theme parks at the end. Every one of them has its own page now, click a tile. Apart from Islam and Star Wars at the top, none of these ship an app; every tile is set in type and drawn by hand, with no studio logos, no posters and no photographs.</p>
+      <!-- The Terminal Interfaces: the whole site rebuilt inside a world.
+           Twenty-one of them, and E.L.M.A.L.L.A.H. is the one every other is
+           reached from (each is a star system on its holotable), so it stands
+           for all of them. fandom.js moves it in above the Core Three; each
+           world with an interface of its own links it under its title
+           (_includes/interface-link.html).
+
+           The count in the pill is written here rather than counted, because
+           the interfaces live on /elmallah/ and there is nothing on this page
+           to count. A new interface changes it in four places: here, the line
+           below, the VS banner on /elmallah/ and that page's faction stats. -->
       <template id="frIfaces">
         <section class="fr-group fr-group--ifaces" id="fr-ifaces">
-          <h3 class="subsec subsec--fr subsec--title reveal">Cool Interfaces<span class="vh">, </span><span class="subsec-yr">the whole site, rebuilt inside a world</span></h3>
+          <h2 class="subsec subsec--fr subsec--title reveal">Terminal Interfaces<span class="vh">, </span><span class="subsec-yr">the whole site, rebuilt inside a world</span><span class="fr-count" aria-hidden="true">25</span><span class="vh">, 25 interfaces</span></h2>
           <div class="fr-travels fr-ifaces reveal">
             <a class="fr-travels-btn fr-travels-btn--if" href="/elmallah/" data-magnetic>
               <span class="fr-travels-i" aria-hidden="true">
                 <svg viewBox="0 0 24 24"><path d="M12 9.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z M3 12c0-2.2 4-4 9-4s9 1.8 9 4-4 4-9 4-9-1.8-9-4z M12 3v3 M12 18v3 M19 5.5l-1.6 1.6 M6.6 16.9 5 18.5"/></svg>
               </span>
-              <span class="fr-travels-t"><b>E.L.M.A.L.L.A.H.</b><i><span>the Rebel holotable</span> &#183; <span>every interface</span> <span>is a star system on it</span> &#183; <span>twenty-two interfaces</span> <span>across twenty worlds</span></i></span>
+              <span class="fr-travels-t"><b>E.L.M.A.L.L.A.H.</b><i><span>the Rebel holotable</span> &#183; <span>every interface</span> <span>is a star system on it</span> &#183; <span>twenty-five interfaces</span> <span>across twenty-four worlds</span></i></span>
               <span class="fr-travels-a" aria-hidden="true">&#8594;</span>
             </a>
           </div>
@@ -178,12 +183,14 @@ tab: "/worlds/"
            reads as a destination. A <div> rather than a <section> on purpose,
            or the global `section { padding: 0 var(--gutter) }` gutters it a
            second time and it stops lining up with the bar above. -->
+      <h2 class="subsec subsec--fr subsec--title reveal">Worlds I Have Been In<span class="vh">, </span><span class="subsec-yr">mine, not anybody else&#8217;s</span></h2>
+
       <div class="fr-travels reveal" id="fr-doors">
         <a class="fr-travels-btn" href="/travels/" data-magnetic>
           <span class="fr-travels-i" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18z M3 12h18 M12 3c3 4 3 14 0 18 M12 3c-3 4-3 14 0 18"/></svg>
           </span>
-          <span class="fr-travels-t"><b>Worlds I Have Travelled To</b><i><span>35 trips</span> &#183; <span>19 by plane,</span> <span>16 by road</span> &#183; <span>2015&#8211;2026</span> &#183; <span>the ones I have</span> <span>actually stood in</span></i></span>
+          <span class="fr-travels-t"><b>Worlds I Have Traveled To</b><i><span>35 trips</span> &#183; <span>19 by plane,</span> <span>16 by road</span> &#183; <span>2015&#8211;2026</span> &#183; <span>the ones I have</span> <span>actually stood in</span></i></span>
           <span class="fr-travels-a" aria-hidden="true">&#8594;</span>
         </a>
 
@@ -208,6 +215,23 @@ tab: "/worlds/"
             <svg viewBox="0 0 24 24"><path d="M9 18V5.5l11-2V16 M9 18a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z M20 16a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z M9 9.5l11-2"/></svg>
           </span>
           <span class="fr-travels-t"><b>Worlds I Have Heard</b><i>the top twenty of every year &#183; 2006&#8211;2026 &#183; one block a year</i></span>
+          <span class="fr-travels-a" aria-hidden="true">&#8594;</span>
+        </a>
+
+        <!-- The documents index. Every Google doc, deck and PDF the site
+             embeds is scattered across six pages by subject, which is right
+             for reading one in context and useless for finding one, so
+             /files/ lists them all. It was reachable from the lightsaber
+             guide and nowhere else, which is far too deep for a site-wide
+             index; this row is where someone actually goes looking. It sits
+             above the sabers because the documents are the last of the rows
+             anyone would come here FOR, and the saber guide is the one that
+             is openly just for me. -->
+        <a class="fr-travels-btn fr-travels-btn--fi" href="/files/" data-magnetic>
+          <span class="fr-travels-i" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4L11 8.5h8.5A1.5 1.5 0 0 1 21 10v8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18z"/></svg>
+          </span>
+          <span class="fr-travels-t"><b>Worlds I Have Written Down</b><i><span>every document, deck and PDF</span> &#183; <span>the r&#233;sum&#233;, four workshop decks,</span> <span>the records and the write-ups</span></i></span>
           <span class="fr-travels-a" aria-hidden="true">&#8594;</span>
         </a>
 

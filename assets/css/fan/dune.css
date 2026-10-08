@@ -45,7 +45,7 @@
   animation: dn-blow 24s linear infinite;
 }
 
-/* Spice: the blue glint in the sand, which is the one cold colour on Arrakis. */
+/* Spice: the blue glint in the sand, which is the one cold color on Arrakis. */
 .dn-spice {
   background-image:
     radial-gradient(2px 2px at 24% 78%, rgba(120,190,240,.4), transparent),
@@ -141,7 +141,7 @@
 
 .dn-water { display: flex; flex-direction: column; gap: 0.9rem; }
 
-.dn-water h4 {
+.dn-water :is(h2, h3, h4, h5) {
   text-transform: uppercase; letter-spacing: 0.24em; font-weight: 300;
   font-size: 1.05rem; color: var(--a);
 }

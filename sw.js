@@ -255,7 +255,7 @@ const FILL_HOLD = 6000;
    page out of PAGES, its stylesheets out of the shell, a 504 for reveal.js,
    and a page of invisible content. (utils.js also shows the blocks itself if
    reveal.js has not turned up a couple of seconds after load, as a second
-   line of defence.) The 512px icon is not in here any more: 95 KB the
+   line of defense.) The 512px icon is not in here any more: 95 KB the
    browser only reads when the app is installed, and it fetches it itself
    then. The offline page is what servePage() answers with for a page that is
    not on the device when there is no network. */
@@ -404,7 +404,7 @@ self.addEventListener('activate', e => {
    in the gaps when nobody is asking for anything.
 
    `yield` is the strong form, used for navigations: it also cancels whatever
-   the fill has open right now. Holding without cancelling leaves the pass's
+   the fill has open right now. Holding without canceling leaves the pass's
    existing connections in place, and on a slow network those are precisely what
    the navigation is stuck behind.
 
@@ -734,7 +734,7 @@ async function warm(cache, urls, concurrency, refresh) {
         const res = await fetch(u, { cache: 'no-cache', signal: inFlight.signal });
         if (res && res.ok) await cache.put(u, res);
       } catch (err) {
-        /* Cancelled to get out of a navigation's way: that is the gate doing
+        /* Canceled to get out of a navigation's way: that is the gate doing
            its job, not a failure, so put the URL back and come to it once the
            page has settled. gate() blocks first, so this cannot spin.
            No room left: stop, see above. Anything else -- a 404, a dead
@@ -783,7 +783,7 @@ async function warmGallery() {
         if (res && res.ok) await gallery.put(u, res);
       }
     } catch (err) {
-      // cancelled for a navigation: the same file again once the page has settled
+      // canceled for a navigation: the same file again once the page has settled
       if (err && err.name === 'AbortError') continue;
       if (outOfSpace(err)) { storageFull = true; break; }
       /* anything else is dropped: one bad file must not stop the pass */
@@ -799,7 +799,11 @@ async function warmGallery() {
 
 const isHTML      = (req, url) => req.mode === 'navigate' || url.pathname.endsWith('.html');
 const isCodeAsset = url => /\/assets\/(css|js)\//.test(url.pathname);
-const isMedia     = url => /\/assets\/img\//.test(url.pathname) ||
+/* /assets/fonts/ is ours and is here for the Arabic face (base.css): it is
+   in ALL_ASSETS like every other asset, so it is already on the device, and
+   without this line it would still go to the network on every page and be
+   missing entirely offline, which on an Arabic page is the whole text. */
+const isMedia     = url => /\/assets\/(img|fonts)\//.test(url.pathname) ||
                            url.hostname === 'fonts.gstatic.com' ||
                            url.hostname === 'fonts.googleapis.com';
 
@@ -881,7 +885,7 @@ async function serveMedia(e) {
   const hit = await cache.match(req);
   /* A miss means the page needs the pipe right now. Cancel whatever the fill
      has open so this file is not queued behind a gallery frame nobody has
-     asked to see; the fill puts the cancelled file back and carries on once
+     asked to see; the fill puts the canceled file back and carries on once
      the page has what it wants. */
   if (!hit) yieldFill(1500);
   /* The Google Fonts stylesheet is requested no-cors by the <link>, which makes

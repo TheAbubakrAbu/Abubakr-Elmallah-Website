@@ -3,7 +3,7 @@
    The four house crests and the Sorting Hat are drawn in the page itself
    (fan-harry-potter.html + fan-hp-ui.js); everything below is data.
 
-   Quote accents are house colours: scarlet Gryffindor, blue Ravenclaw, gold
+   Quote accents are house colors: scarlet Gryffindor, blue Ravenclaw, gold
    Hufflepuff, green Slytherin, and Dumbledore's gold for anyone unsorted. */
 window.FAN_PAGE = {
   when: { at: '5th grade, 2016\u201317', note: 'Read the whole set in fifth grade, before I could have told you what a compiler was. The first series I finished on my own, and still the bar.' },
@@ -29,7 +29,7 @@ window.FAN_PAGE = {
   { id: 'eras', kind: 'conflict', title: 'The Three Movements', railLabel: 'Which years',
     note: 'a school story, a hinge, and a war',
     open: 'Years 1\u20133',
-    lede: 'Seven books, but three movements. The first three are a mystery a year inside a castle, with Voldemort a rumour at the edge of it. The fourth is the hinge. The last three are a war, and the school is the thing being fought over.',
+    lede: 'Seven books, but three movements. The first three are a mystery a year inside a castle, with Voldemort a rumor at the edge of it. The fourth is the hinge. The last three are a war, and the school is the thing being fought over.',
     items: [
       { title: 'Years 1\u20133', when: '1991 \u2013 1994 \u00b7 Books I\u2013III',
         note: 'A boarding-school mystery with one puzzle a year and a monster at the end of it. Voldemort is a presence rather than an enemy: a face on the back of a head, a diary, a name nobody will say. Nobody who matters dies.',
@@ -43,7 +43,7 @@ window.FAN_PAGE = {
             { n: 'Remus Lupin', d: 'the best teacher they get' },
             { n: 'Sirius Black', d: 'the godfather, once cleared' },
           ] },
-        right: { name: 'The rumour of Voldemort', sub: 'never quite present', tone: '#5f8f6a',
+        right: { name: 'The rumor of Voldemort', sub: 'never quite present', tone: '#5f8f6a',
           note: 'He has no body for all three books: a parasite on a teacher, a memory in a diary, a story told about the night Harry survived. The villains you can actually see are small.',
           items: [
             { n: 'Quirinus Quirrell', d: 'and the face under the turban' },
@@ -61,7 +61,7 @@ window.FAN_PAGE = {
             { n: 'Harry Potter', d: 'the fourth champion' },
             { n: 'Cedric Diggory', d: 'the Hogwarts champion' },
             { n: 'Viktor Krum & Fleur Delacour', d: 'Durmstrang and Beauxbatons' },
-            { n: 'Mad-Eye Moody', d: 'the new Defence teacher, supposedly' },
+            { n: 'Mad-Eye Moody', d: 'the new Defense teacher, supposedly' },
           ] },
         right: { name: 'The return', sub: 'Little Hangleton', tone: '#8f3f4a',
           note: 'The whole tournament was a delivery mechanism. Bone of the father, flesh of the servant, blood of the enemy, and the Death Eaters are called back for the first time in thirteen years.',
@@ -225,7 +225,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'unforgivable', kind: 'cards', title: 'The Unforgivable Curses', note: 'a life sentence in Azkaban for any one of them',
-    lede: 'Three curses so bad the Ministry stopped arguing about intent: use one on another human being and you go to Azkaban for life. Barty Crouch Jr. teaches all three to a class of fourteen-year-olds, which is the point at which you realise nobody is coming to save them.',
+    lede: 'Three curses so bad the Ministry stopped arguing about intent: use one on another human being and you go to Azkaban for life. Barty Crouch Jr. teaches all three to a class of fourteen-year-olds, which is the point at which you realize nobody is coming to save them.',
     items: [
       { title: 'Avada Kedavra', sub: 'The Killing Curse', tag: 'I', accent: '#4fbf5f',
         desc: 'A flash of green light and a rushing sound. No counter-curse and no shield; the only thing that has ever stopped it is someone stepping in front of it on purpose. One person has survived it, twice.',
@@ -249,7 +249,7 @@ window.FAN_PAGE = {
         alt: 'My Wizarding World profile: Ravenclaw, a Fox Terrier Patronus, and a 13 inch chestnut wand with a dragon heartstring core' },
     ] },
 
-  { id: 'cores', kind: 'tiles', fold: true, title: 'Wand Cores', note: 'the substance at the centre',
+  { id: 'cores', kind: 'tiles', fold: true, title: 'Wand Cores', note: 'the substance at the center',
     lede: 'Ollivander used only three, and held that no others were worth the trouble. A wand is the wood and the core together, and it is the core that decides the temperament.',
     items: [
       { title: 'Phoenix Feather', accent: '#e07a3a', sub: 'Ollivander · rarest', desc: 'The rarest of the three and the hardest to win over. Fawkes gave exactly two feathers, and both of them ended up pointed at each other.' },
@@ -310,7 +310,7 @@ window.FAN_PAGE = {
       { title: 'Platform Nine and Three-Quarters', accent: '#c04a4a', sub: 'King’s Cross', desc: 'Straight at the barrier between nine and ten, and best at a run if you are nervous.' },
       { title: 'Hogsmeade', accent: '#9fd0f0', sub: 'The only all-wizarding village', desc: 'Signed permission slips, snow, and the whole school out at once.' },
       { title: 'The Three Broomsticks', accent: '#e0a05f', sub: 'Madam Rosmerta’s', desc: 'Warm, crowded, and where Harry sits under the Cloak and overhears that Sirius was his parents’ Secret-Keeper.' },
-      { title: 'Honeydukes', accent: '#e0607a', sub: 'Sweetshop', desc: 'Chocolate frogs, Every Flavour Beans, and a trapdoor in the cellar leading straight into the castle.' },
+      { title: 'Honeydukes', accent: '#e0607a', sub: 'Sweetshop', desc: 'Chocolate frogs, Every Flavor Beans, and a trapdoor in the cellar leading straight into the castle.' },
       { title: 'The Shrieking Shack', accent: '#8f8f9f', sub: 'End of the Whomping Willow', desc: 'The most haunted building in Britain, and never haunted at all: just a boy turning into a wolf once a month.' },
       { title: 'The Forbidden Forest', accent: '#3f7f4f', sub: 'The castle grounds', desc: 'Centaurs, Aragog’s colony, thestrals, and the clearing Harry walks into at the end.' },
       { title: 'The Room of Requirement', accent: '#c0a8e0', sub: 'Seventh floor', desc: 'It becomes what you need and it hides what you hide, which is why a diadem sat in it for fifty years.' },
@@ -338,13 +338,13 @@ window.FAN_PAGE = {
       { title: 'Beauxbatons', sub: 'The Pyrenees', tag: 'France', accent: '#9fd0f0',
         desc: 'A palace with fountains and ice sculptures, and Madame Maxime arriving by winged horses the size of elephants. Fleur’s school.', meta: 'Triwizard · winged horses' },
       { title: 'Durmstrang', sub: 'Northernmost Europe', tag: 'Scandinavia', accent: '#8f8f9f',
-        desc: 'Unplottable, teaches the Dark Arts rather than just defence against them, and arrives by ship out of the bottom of the lake. Krum’s school, and Grindelwald’s.', meta: 'Triwizard · Karkaroff' },
+        desc: 'Unplottable, teaches the Dark Arts rather than just defense against them, and arrives by ship out of the bottom of the lake. Krum’s school, and Grindelwald’s.', meta: 'Triwizard · Karkaroff' },
       { title: 'Ilvermorny', sub: 'Mount Greylock, Massachusetts', tag: 'North America', accent: '#c04a4a',
         desc: 'Founded by an Irish orphan who fled the Scourers, and built up from a stone cottage. Four houses named for magical creatures: Horned Serpent, Wampus, Thunderbird and Pukwudgie.', meta: 'Isolt Sayre · c. 1627' },
       { title: 'Uagadou', sub: 'Mountains of the Moon, Uganda', tag: 'Africa', accent: '#e0a05f',
         desc: 'The largest of the eleven and the oldest by a long way, cut into a mountainside. Its students are famous for wandless magic, Transfiguration and Astronomy.', meta: 'Largest · a thousand years' },
       { title: 'Mahoutokoro', sub: 'Minami Iwo Jima', tag: 'Japan', accent: '#e0607a',
-        desc: 'A palace of jade on a volcanic island. Robes are given to students at seven and grow with them, changing colour as they learn, and turn white if they betray the code.', meta: 'Jade · Quidditch' },
+        desc: 'A palace of jade on a volcanic island. Robes are given to students at seven and grow with them, changing color as they learn, and turn white if they betray the code.', meta: 'Jade · Quidditch' },
       { title: 'Castelobruxo', sub: 'The Amazon rainforest', tag: 'Brazil', accent: '#3f9f5f',
         desc: 'A golden temple in the rainforest that Muggles see as a ruin, guarded by Caipora. Strong on Herbology and Magizoology.', meta: 'Caipora · gold rock' },
       { title: 'Koldovstoretz', sub: 'Russia', tag: 'Russia', accent: '#7b9be0',
@@ -426,7 +426,7 @@ window.FAN_PAGE = {
     ] },
 
   { id: 'parks', kind: 'cards', title: 'Where It Exists', note: 'the Wizarding World, park by park',
-    lede: 'Universal has been building this since 2010 and it is the reason their attendance doubled. The trick is that they never break character: the wands actually work on windows all round the land, the shopfronts are all trading, and nothing anywhere is labelled with a logo.',
+    lede: 'Universal has been building this since 2010 and it is the reason their attendance doubled. The trick is that they never break character: the wands actually work on windows all round the land, the shopfronts are all trading, and nothing anywhere is labeled with a logo.',
     items: [
       { title: 'Hogsmeade · Islands of Adventure', sub: 'Orlando, Florida', tag: '2010', accent: '#d3a625',
         desc: 'The first one, and the one that changed theme parks. Hogwarts castle over the village, Forbidden Journey inside it on a robotic arm, and Hagrid’s Magical Creatures Motorbike Adventure, which is the best coaster Universal has ever built.',
@@ -460,7 +460,7 @@ window.FAN_PAGE = {
      (`finished`, see fanpage.js) and, where I have one, the library banner
      as the receipt (`shot`, opening in the lightbox, same as the FNAF page;
      the raw captures live in _originals/franchises/harry-potter/). The LEGO
-     pair are the catalogue's own entries (LEGO_GAME, from lego-games.js), the
+     pair are the catalog's own entries (LEGO_GAME, from lego-games.js), the
      same tiles the LEGO page shows. */
   { id: 'finished', kind: 'tiles', compact: true, cols: 2, views: true, tally: 'at 100%', title: 'When I Finished Them', note: 'to a hundred percent',
     items: [

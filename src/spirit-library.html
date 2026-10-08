@@ -12,6 +12,7 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/spirit-library.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 <!-- set before the first paint, so the scrolls below the fold can start rolled
      up and unroll as their shelf comes into view; without scripts nothing is
      rolled up and every scroll simply shows. If spirit-library.js never runs
@@ -41,6 +42,7 @@ standalone: true
     <a class="sl-exit" href="/" title="Back to the main site">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Climb back out</span>
     </a>
+    {% include interface-world.html world="Avatar: The Last Airbender" href="/worlds/avatar-last-airbender/" %}
     <span class="sl-top-mid">Wan Shi Tong’s Library · the Si Wong Desert</span>
     <span class="sl-now"><svg class="sl-now-moon" viewBox="-12 -12 24 24" aria-hidden="true"><circle r="10" class="sl-moon-dark"/><path id="slNowLit" class="sl-moon-lit" d=""/></svg><span id="slNow">····</span></span>
   </header>
@@ -226,11 +228,11 @@ standalone: true
         <span class="sl-emblem" aria-hidden="true"><svg viewBox="0 0 48 48"><path class="sl-line" d="M24 8c9 0 16 7 16 16S33 40 24 40 8 33 8 24M24 14c5.5 0 10 4.5 10 10s-4.5 10-10 10-10-4.5-10-10M24 20a4 4 0 1 1-4 4"/></svg></span>
         <div>
           <h3>The Spirit World <span class="sl-seal" lang="zh-Hant" aria-hidden="true">靈</span></h3>
-          <p>Other worlds: seventy-one of them, and this one.</p>
+          <p>Other worlds: seventy-four of them, and this one.</p>
         </div>
       </div>
       <div class="sl-rack">
-        <a class="sl-scroll" href="/worlds/" style="--i:0"><span class="sl-paper"><b>Ten Thousand Things</b><i>All 71 worlds</i><em>Wan Shi Tong knows that many. This site has seventy.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
+        <a class="sl-scroll" href="/worlds/" style="--i:0"><span class="sl-paper"><b>Ten Thousand Things</b><i>All 74 worlds</i><em>Wan Shi Tong knows that many. This site has seventy.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
         <a class="sl-scroll" href="/worlds/avatar-last-airbender/" style="--i:1"><span class="sl-paper"><b>The Bridge Between Worlds</b><i>Avatar: The Last Airbender · the world page</i><em>The Avatar’s whole job, and this library’s own world.</em></span><span class="sl-rod sl-rod--b" aria-hidden="true"></span></a>
       </div>
     </div>
@@ -369,7 +371,7 @@ standalone: true
   <!-- ─────────── two panels ─────────── -->
   <div class="sl-cols">
     <section class="sl-panel" aria-labelledby="slRecordH">
-      <h2 class="sl-h sl-h--sm" id="slRecordH">The record<span>the keeper, as the catalogue has him</span></h2>
+      <h2 class="sl-h sl-h--sm" id="slRecordH">The record<span>the keeper, as the catalog has him</span></h2>
       <dl class="sl-record">
         <div><dt>Keeper</dt><dd>Abubakr Elmallah</dd></div>
         <div><dt>Studying</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
@@ -401,7 +403,7 @@ standalone: true
 
   <!-- ─────────── messenger hawks ───────────
        The other terminals, each a message scroll seen end on in its cubby,
-       sealed in its own colour. -->
+       sealed in its own color. -->
   <section class="sl-panel sl-hawks" aria-labelledby="slHawksH">
     <h2 class="sl-h sl-h--sm" id="slHawksH">Messenger hawks<span>to the other terminals</span></h2>
     <div class="sl-cubbies">
@@ -413,8 +415,7 @@ standalone: true
       <a class="sl-cubby" href="/citadel/" style="--w:#d8b26a"><span class="sl-end" aria-hidden="true"></span><b>The Citadel</b><i>Game of Thrones</i></a>
       <a class="sl-cubby" href="/compass/" style="--w:#4fb3a9"><span class="sl-end" aria-hidden="true"></span><b>The Compass</b><i>Pirates of the Caribbean</i></a>
       <a class="sl-cubby" href="/control-room/" style="--w:#e0783a"><span class="sl-end" aria-hidden="true"></span><b>The Control Room</b><i>Jurassic Park</i></a>
-      <a class="sl-cubby" href="/upside-down/" style="--w:#d2405a"><span class="sl-end" aria-hidden="true"></span><b>The Upside Down</b><i>Stranger Things</i></a>
-      <a class="sl-cubby" href="/starcourt/" style="--w:#c0408f"><span class="sl-end" aria-hidden="true"></span><b>Starcourt</b><i>Stranger Things</i></a>
+      <a class="sl-cubby" href="/hawkins/" style="--w:#d2405a"><span class="sl-end" aria-hidden="true"></span><b>Hawkins</b><i>Stranger Things</i></a>
       <a class="sl-cubby" href="/monastery/" style="--w:#e0b040"><span class="sl-end" aria-hidden="true"></span><b>The Monastery</b><i>Ninjago</i></a>
       <a class="sl-cubby" href="/wanted/" style="--w:#c9402f"><span class="sl-end" aria-hidden="true"></span><b>The Wanted Board</b><i>Red Dead Redemption</i></a>
       <a class="sl-cubby" href="/dunder-mifflin/" style="--w:#e8e6e0"><span class="sl-end" aria-hidden="true"></span><b>Dunder Mifflin</b><i>The Office</i></a>
@@ -423,6 +424,10 @@ standalone: true
       <a class="sl-cubby" href="/pokedex/" style="--w:#ffd43f"><span class="sl-end" aria-hidden="true"></span><b>The Pokédex</b><i>Pokémon</i></a>
       <a class="sl-cubby" href="/batcomputer/" style="--w:#c9cdd2"><span class="sl-end" aria-hidden="true"></span><b>The Batcomputer</b><i>Batman</i></a>
       <a class="sl-cubby" href="/daily-bugle/" style="--w:#e02a3a"><span class="sl-end" aria-hidden="true"></span><b>The Daily Bugle</b><i>Spider-Man</i></a>
+      <a class="sl-cubby" href="/grail-diary/" style="--w:#e02a3a"><span class="sl-end" aria-hidden="true"></span><b>The Grail Diary</b><i>Indiana Jones</i></a>
+      <a class="sl-cubby" href="/red-book/" style="--w:#e02a3a"><span class="sl-end" aria-hidden="true"></span><b>The Red Book</b><i>The Lord of the Rings</i></a>
+      <a class="sl-cubby" href="/power-battery/" style="--w:#e02a3a"><span class="sl-end" aria-hidden="true"></span><b>The Power Battery</b><i>Green Lantern</i></a>
+      <a class="sl-cubby" href="/watchtower/" style="--w:#e02a3a"><span class="sl-end" aria-hidden="true"></span><b>The Watchtower</b><i>The Justice League</i></a>
     </div>
   </section>
 
@@ -451,6 +456,8 @@ standalone: true
     <p>When Wan Shi Tong decided people could not be trusted with what was on his shelves, he took the whole tower back under the sand. You can leave the same way.</p>
     <button class="sl-go" id="slLeave" type="button">Leave the library</button>
   </section>
+
+  {% include interface-world.html world="Avatar: The Last Airbender" href="/worlds/avatar-last-airbender/" place="foot" %}
 
 </main>
 

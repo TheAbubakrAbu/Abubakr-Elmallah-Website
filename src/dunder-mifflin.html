@@ -12,6 +12,7 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/dunder-mifflin.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
 <body class="dm" id="dm">
 
@@ -31,6 +32,7 @@ standalone: true
     <a class="dm-exit" href="/" title="Back to the main site">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the branch</span>
     </a>
+    {% include interface-world.html world="The Office" href="/worlds/the-office/" %}
     <span class="dm-top-mid">DMI Intranet · Scranton Branch</span>
     <!-- the tray clock, from your clock (dunder-mifflin.js) -->
     <span class="dm-tray"><span class="dm-tray-dot" aria-hidden="true"></span><span id="dmClock">Business hours</span></span>
@@ -113,7 +115,7 @@ standalone: true
 <a class="dm-r" href="/work/" data-room="sales" tabindex="-1"><rect class="dm-r-hit" x="260" y="200" width="550" height="190"/><rect class="dm-r-lit" x="260" y="200" width="550" height="190"/><rect class="dm-desk" x="278" y="240" width="60" height="30" rx="2"/><rect class="dm-mon" x="297" y="261" width="22" height="6" rx="1"/><circle class="dm-chair" cx="308" cy="229" r="9"/><rect class="dm-desk" x="278" y="270" width="60" height="30" rx="2"/><rect class="dm-mon" x="297" y="273" width="22" height="6" rx="1"/><circle class="dm-chair" cx="308" cy="311" r="9"/><rect class="dm-desk" x="362" y="240" width="60" height="30" rx="2"/><rect class="dm-mon" x="381" y="261" width="22" height="6" rx="1"/><circle class="dm-chair" cx="392" cy="229" r="9"/><rect class="dm-desk" x="362" y="270" width="60" height="30" rx="2"/><rect class="dm-mon" x="381" y="273" width="22" height="6" rx="1"/><circle class="dm-chair" cx="392" cy="311" r="9"/><rect class="dm-desk" x="470" y="240" width="60" height="30" rx="2"/><rect class="dm-mon" x="489" y="261" width="22" height="6" rx="1"/><circle class="dm-chair" cx="500" cy="229" r="9"/><rect class="dm-jello" x="505" y="249" width="16" height="12" rx="3"/><rect class="dm-stapler" x="508" y="253" width="10" height="4" rx="1"/><rect class="dm-desk" x="664" y="240" width="60" height="30" rx="2"/><rect class="dm-mon" x="683" y="261" width="22" height="6" rx="1"/><circle class="dm-chair" cx="694" cy="229" r="9"/><rect class="dm-desk" x="664" y="270" width="60" height="30" rx="2"/><rect class="dm-mon" x="683" y="273" width="22" height="6" rx="1"/><circle class="dm-chair" cx="694" cy="311" r="9"/><rect class="dm-desk" x="740" y="240" width="56" height="30" rx="2"/><rect class="dm-mon" x="757" y="261" width="22" height="6" rx="1"/><circle class="dm-chair" cx="768" cy="229" r="9"/><rect class="dm-desk" x="740" y="270" width="56" height="30" rx="2"/><rect class="dm-mon" x="757" y="273" width="22" height="6" rx="1"/><circle class="dm-chair" cx="768" cy="311" r="9"/><text class="dm-r-t" x="272" y="356" text-anchor="start">The Sales Floor</text><text class="dm-r-s" x="272" y="373" text-anchor="start">work at UC Irvine</text></a>
 <a class="dm-r dm-r--desk" href="/star-wars/" data-room="dwight" tabindex="-1"><rect class="dm-r-hit" x="462" y="266" width="186" height="70"/><rect class="dm-r-lit" x="462" y="266" width="186" height="70"/><rect class="dm-desk" x="470" y="270" width="60" height="30" rx="2"/><rect class="dm-mon" x="489" y="273" width="22" height="6" rx="1"/><circle class="dm-chair" cx="500" cy="311" r="9"/><circle class="dm-bobble" cx="484" cy="290" r="4"/><text class="dm-r-t dm-r-t--sm" x="540" y="292" text-anchor="start">Dwight’s Desk</text><text class="dm-r-s" x="540" y="309" text-anchor="start">Star Wars apps</text></a>
 <a class="dm-r" href="/college/" data-room="accounting" tabindex="-1"><rect class="dm-r-hit" x="170" y="390" width="270" height="90"/><rect class="dm-r-lit" x="170" y="390" width="270" height="90"/><rect class="dm-desk" x="312" y="404" width="52" height="26" rx="2"/><rect class="dm-mon" x="327" y="407" width="22" height="6" rx="1"/><circle class="dm-chair" cx="338" cy="441" r="9"/><rect class="dm-desk" x="376" y="404" width="52" height="26" rx="2"/><rect class="dm-mon" x="391" y="407" width="22" height="6" rx="1"/><circle class="dm-chair" cx="402" cy="441" r="9"/><circle class="dm-jar dm-jar--mm" cx="420" cy="452" r="6"/><text class="dm-r-t" x="182" y="420" text-anchor="start">Accounting</text><text class="dm-r-s" x="182" y="437" text-anchor="start">college · UC Irvine</text></a>
-<a class="dm-r" href="/worlds/" data-room="breakroom" tabindex="-1"><rect class="dm-r-hit" x="440" y="390" width="260" height="90"/><rect class="dm-r-lit" x="440" y="390" width="260" height="90"/><rect class="dm-vend" x="452" y="440" width="26" height="34" rx="2"/><rect class="dm-vend dm-vend--b" x="482" y="440" width="26" height="34" rx="2"/><rect class="dm-tv" x="690" y="402" width="6" height="46" rx="1"/><circle class="dm-desk" cx="620" cy="452" r="15"/><circle class="dm-chair" cx="596" cy="452" r="7"/><circle class="dm-chair" cx="644" cy="452" r="7"/><text class="dm-r-t" x="452" y="420" text-anchor="start">The Break Room</text><text class="dm-r-s" x="452" y="437" text-anchor="start">all 71 worlds</text></a>
+<a class="dm-r" href="/worlds/" data-room="breakroom" tabindex="-1"><rect class="dm-r-hit" x="440" y="390" width="260" height="90"/><rect class="dm-r-lit" x="440" y="390" width="260" height="90"/><rect class="dm-vend" x="452" y="440" width="26" height="34" rx="2"/><rect class="dm-vend dm-vend--b" x="482" y="440" width="26" height="34" rx="2"/><rect class="dm-tv" x="690" y="402" width="6" height="46" rx="1"/><circle class="dm-desk" cx="620" cy="452" r="15"/><circle class="dm-chair" cx="596" cy="452" r="7"/><circle class="dm-chair" cx="644" cy="452" r="7"/><text class="dm-r-t" x="452" y="420" text-anchor="start">The Break Room</text><text class="dm-r-s" x="452" y="437" text-anchor="start">all 74 worlds</text></a>
 <g class="dm-deco"><rect class="dm-deco-floor" x="700" y="390" width="110" height="90"/><rect class="dm-copier" x="722" y="424" width="56" height="40" rx="3"/><rect class="dm-paper" x="738" y="430" width="24" height="12"/><text class="dm-deco-t" x="710" y="410">Copy room</text></g>
 <a class="dm-r" href="/education/" data-room="annex" tabindex="-1"><rect class="dm-r-hit" x="810" y="200" width="200" height="190"/><rect class="dm-r-lit" x="810" y="200" width="200" height="190"/><rect class="dm-desk" x="830" y="262" width="56" height="30" rx="2"/><rect class="dm-mon" x="847" y="265" width="22" height="6" rx="1"/><circle class="dm-chair" cx="858" cy="303" r="9"/><rect class="dm-desk" x="920" y="262" width="56" height="30" rx="2"/><rect class="dm-mon" x="937" y="265" width="22" height="6" rx="1"/><circle class="dm-chair" cx="948" cy="303" r="9"/><rect class="dm-desk" x="830" y="326" width="56" height="30" rx="2"/><rect class="dm-mon" x="847" y="329" width="22" height="6" rx="1"/><circle class="dm-chair" cx="858" cy="367" r="9"/><rect class="dm-closet" x="930" y="320" width="66" height="54" rx="2"/><text class="dm-r-t" x="822" y="226" text-anchor="start">The Annex</text><text class="dm-r-s" x="822" y="243" text-anchor="start">education</text></a>
 <a class="dm-r" href="/resume/" data-room="hr" tabindex="-1"><rect class="dm-r-hit" x="810" y="390" width="200" height="90"/><rect class="dm-r-lit" x="810" y="390" width="200" height="90"/><rect class="dm-cab" x="822" y="446" width="22" height="26"/><rect class="dm-cab" x="848" y="446" width="22" height="26"/><rect class="dm-desk" x="944" y="434" width="52" height="24" rx="2"/><rect class="dm-mon" x="959" y="437" width="22" height="6" rx="1"/><circle class="dm-chair" cx="970" cy="469" r="9"/><text class="dm-r-t" x="822" y="416" text-anchor="start">Human Resources</text><text class="dm-r-s" x="822" y="433" text-anchor="start">résumé</text></a>
@@ -154,7 +156,7 @@ standalone: true
         <li><a class="dm-seat" href="/education/" data-room="annex"><span class="dm-seat-n">04</span><b>The Annex</b><i>Where the new hires learn the job · education</i></a></li>
         <li><a class="dm-seat" href="/college/" data-room="accounting"><span class="dm-seat-n">05</span><b>Accounting</b><i>The numbers people · college, UC Irvine</i></a></li>
         <li><a class="dm-seat" href="/high-school/" data-room="stamford"><span class="dm-seat-n">06</span><b>The Stamford Branch</b><i>Before the merger · high school</i></a></li>
-        <li><a class="dm-seat" href="/worlds/" data-room="breakroom"><span class="dm-seat-n">07</span><b>The Break Room</b><i>The vending machines and the TV · all 71 worlds</i></a></li>
+        <li><a class="dm-seat" href="/worlds/" data-room="breakroom"><span class="dm-seat-n">07</span><b>The Break Room</b><i>The vending machines and the TV · all 74 worlds</i></a></li>
         <li><a class="dm-seat" href="/worlds/the-office/" data-room="michael"><span class="dm-seat-n">08</span><b>Michael’s Office</b><i>The World’s Best Boss mug · The Office, the world page</i></a></li>
         <li><a class="dm-seat" href="/star-wars/" data-room="dwight"><span class="dm-seat-n">09</span><b>Dwight’s Desk</b><i>Assistant to the Regional Manager · Star Wars apps</i></a></li>
         <li><a class="dm-seat" href="/al-islam/" data-room="roof"><span class="dm-seat-n">10</span><b>The Roof</b><i>The quiet place above it all · Al-Islam</i></a></li>
@@ -189,7 +191,7 @@ standalone: true
             <div><dt>Education</dt><dd>Computer Science, UC Irvine, class of 2028</dd></div>
             <div><dt>Output</dt><dd>Twelve apps shipped, across four platforms</dd></div>
             <div><dt>First accounts</dt><dd>Order 66 and Datapad, the first solo projects (2021)</dd></div>
-            <div><dt>Territory</dt><dd><a href="/worlds/">71 worlds</a>, on /worlds/</dd></div>
+            <div><dt>Territory</dt><dd><a href="/worlds/">74 worlds</a>, on /worlds/</dd></div>
           </dl>
           <p class="dm-sticky">Re: The Office. The comfort rewatch, and the first of the two. Parks might be funnier; this is the one that stuck.</p>
         </div>
@@ -249,8 +251,7 @@ standalone: true
       <li><a href="/citadel/"><span class="dm-ext">x106</span><b>The Citadel</b><i>Game of Thrones</i></a></li>
       <li><a href="/compass/"><span class="dm-ext">x107</span><b>The Compass</b><i>Pirates of the Caribbean</i></a></li>
       <li><a href="/control-room/"><span class="dm-ext">x108</span><b>The Control Room</b><i>Jurassic Park</i></a></li>
-      <li><a href="/upside-down/"><span class="dm-ext">x109</span><b>The Upside Down</b><i>Stranger Things</i></a></li>
-      <li><a href="/starcourt/"><span class="dm-ext">x110</span><b>Starcourt</b><i>Stranger Things</i></a></li>
+      <li><a href="/hawkins/"><span class="dm-ext">x109</span><b>Hawkins</b><i>Stranger Things</i></a></li>
       <li><a href="/spirit-library/"><span class="dm-ext">x111</span><b>The Spirit Library</b><i>Avatar: The Last Airbender</i></a></li>
       <li><a href="/monastery/"><span class="dm-ext">x112</span><b>The Monastery</b><i>Ninjago</i></a></li>
       <li><a href="/wanted/"><span class="dm-ext">x113</span><b>The Wanted Board</b><i>Red Dead Redemption</i></a></li>
@@ -259,6 +260,10 @@ standalone: true
       <li><a href="/pokedex/"><span class="dm-ext">x116</span><b>The Pokédex</b><i>Pokémon</i></a></li>
       <li><a href="/batcomputer/"><span class="dm-ext">x117</span><b>The Batcomputer</b><i>Batman</i></a></li>
       <li><a href="/daily-bugle/"><span class="dm-ext">x118</span><b>The Daily Bugle</b><i>Spider-Man</i></a></li>
+      <li><a href="/grail-diary/"><span class="dm-ext">x119</span><b>The Grail Diary</b><i>Indiana Jones</i></a></li>
+      <li><a href="/red-book/"><span class="dm-ext">x120</span><b>The Red Book</b><i>The Lord of the Rings</i></a></li>
+      <li><a href="/power-battery/"><span class="dm-ext">x121</span><b>The Power Battery</b><i>Green Lantern</i></a></li>
+      <li><a href="/watchtower/"><span class="dm-ext">x122</span><b>The Watchtower</b><i>The Justice League</i></a></li>
     </ul>
   </section>
 
@@ -267,6 +272,8 @@ standalone: true
   <div class="dm-close">
     <button class="dm-twss" id="dmTwss" type="button">That’s what she said.</button>
   </div>
+
+  {% include interface-world.html world="The Office" href="/worlds/the-office/" place="foot" %}
 
 </main>
 

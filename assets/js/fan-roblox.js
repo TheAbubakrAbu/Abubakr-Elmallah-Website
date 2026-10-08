@@ -22,7 +22,7 @@ window.FAN_PAGE = {
       { title: 'Not Minecraft', sub: 'The comparison everybody makes', tag: 'The difference', accent: '#7fbf4f',
         desc: 'Minecraft hands you one world and a set of rules and gets out of the way. Roblox hands you an engine and a shopfront and takes a cut. I spent far more hours in the first and far more different games in the second.',
         href: '/worlds/minecraft/', link: 'The one I actually lived in',
-        meta: 'One world, versus a shopping centre of them' },
+        meta: 'One world, versus a shopping center of them' },
     ] },
 
   { id: 'works', kind: 'works', fold: true, title: 'Everything In It', note: 'the platform, and the games I actually played',

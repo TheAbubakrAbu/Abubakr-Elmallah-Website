@@ -25,7 +25,7 @@ folder because /gaming/ lists everything under franchises/.
 THE RECIPE. 1200 px on the long edge, JPEG quality 50, 4:2:0, progressive,
 then jpegtran to squeeze the entropy coding losslessly. It was q62 until
 2026-08-30; these are screenshots rather than photographs, mostly HUD and
-flat colour, and at 1200 px q50 reads the same on the page while the
+flat color, and at 1200 px q50 reads the same on the page while the
 Minecraft frames, the densest thing in the set, come in about a sixth
 smaller. Compare tools/photos.py, which keeps the photographs at q62/AVIF
 and two sizes: the galleries carry the pixels there, the shots only have

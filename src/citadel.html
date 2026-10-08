@@ -12,6 +12,7 @@ standalone: true
 {% include head.html %}
 
 <link rel="stylesheet" href="{% include v.html f='/assets/css/citadel.css' %}" />
+<link rel="stylesheet" href="{% include v.html f='/assets/css/interface-world.css' %}" />
 </head>
 <body class="cd" id="cd">
 
@@ -26,6 +27,7 @@ standalone: true
   <a class="cd-exit" href="/" title="Back to the main site">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6"/></svg><span>Leave the Citadel</span>
   </a>
+  {% include interface-world.html world="Game of Thrones" href="/worlds/game-of-thrones/" %}
   <span class="cd-top-mid">The Citadel · Oldtown · the Reach</span>
   <span id="cdMoon">····</span>
 </header>
@@ -146,7 +148,7 @@ standalone: true
           <a class="cd-pin" href="/gaming/" tabindex="-1" style="--c:#e2b33c; --i:9"><g transform="translate(235 482)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="248" y="476" text-anchor="start">Ashford</text><text class="cd-pin-s" x="248" y="489" text-anchor="start">the tourney grounds · gaming</text></a>
           <a class="cd-pin" href="/projects/" tabindex="-1" style="--c:#6f6aa8; --i:10"><g transform="translate(455 232)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="468" y="226" text-anchor="start">Braavos</text><text class="cd-pin-s" x="468" y="239" text-anchor="start">the Iron Bank · every project</text></a>
           <a class="cd-pin" href="/accents/" tabindex="-1" style="--c:#d9d4c7; --i:11"><g transform="translate(466 276)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="479" y="270" text-anchor="start">The House of Black and White</text><text class="cd-pin-s" x="479" y="283" text-anchor="start">accents</text></a>
-          <a class="cd-pin" href="/worlds/" tabindex="-1" style="--c:#c9a25a; --i:12"><g transform="translate(450 345)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="463" y="339" text-anchor="start">Pentos</text><text class="cd-pin-s" x="463" y="352" text-anchor="start">across the Narrow Sea · all 71 worlds</text></a>
+          <a class="cd-pin" href="/worlds/" tabindex="-1" style="--c:#c9a25a; --i:12"><g transform="translate(450 345)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="463" y="339" text-anchor="start">Pentos</text><text class="cd-pin-s" x="463" y="352" text-anchor="start">across the Narrow Sea · all 74 worlds</text></a>
           <a class="cd-pin" href="/lightsabers/" tabindex="-1" style="--c:#7d8894; --i:13"><g transform="translate(610 586)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="623" y="580" text-anchor="start">Old Valyria</text><text class="cd-pin-s" x="623" y="593" text-anchor="start">the lightsaber guide</text></a>
           <a class="cd-pin" href="/star-wars/" tabindex="-1" style="--c:#7a5bb0; --i:14"><g transform="translate(960 505)"><g class="cd-pin-rise"><path class="cd-pin-tower" d="M-5,0 V-14 H-6 V-18 H-3 V-16 H-1 V-18 H1 V-16 H3 V-18 H6 V-14 H5 V0 Z"/><circle class="cd-pin-base" r="3.2"/></g></g><text class="cd-pin-t" x="947" y="499" text-anchor="end">Asshai by the Shadow</text><text class="cd-pin-s" x="947" y="512" text-anchor="end">Star Wars apps</text></a>
         </g>
@@ -161,7 +163,7 @@ standalone: true
       <a class="cd-keep" href="/education/" style="--i:3; --c:#b0793a"><b>The Library</b><i>Oldtown · education</i></a>
       <a class="cd-keep" href="/college/" style="--i:4; --c:#9aa3ab"><b>Winterfell</b><i>College · UC Irvine</i></a>
       <a class="cd-keep" href="/high-school/" style="--i:5; --c:#6f9fd1"><b>The Eyrie</b><i>High school · where it started</i></a>
-      <a class="cd-keep" href="/worlds/" style="--i:6; --c:#c9a25a"><b>Across the Narrow Sea</b><i>All 71 worlds</i></a>
+      <a class="cd-keep" href="/worlds/" style="--i:6; --c:#c9a25a"><b>Across the Narrow Sea</b><i>All 74 worlds</i></a>
       <a class="cd-keep" href="/worlds/game-of-thrones/" style="--i:7; --c:#b9c2cc"><b>Westeros</b><i>Game of Thrones · the world page</i></a>
       <a class="cd-keep" href="/star-wars/" style="--i:8; --c:#7a5bb0"><b>Asshai by the Shadow</b><i>Star Wars apps</i></a>
       <a class="cd-keep" href="/al-islam/" style="--i:9; --c:#3f9d6a"><b>The Quiet Isle</b><i>Al-Islam</i></a>
@@ -198,7 +200,7 @@ standalone: true
         <div><dt>Office</dt><dd>Lead mobile &amp; backend developer</dd></div>
         <div><dt>Words</dt><dd>Chosen by the reader</dd></div>
         <div><dt>Apps shipped</dt><dd>Twelve, across four platforms</dd></div>
-        <div><dt>Realms charted</dt><dd>Seventy</dd></div>
+        <div><dt>Realms charted</dt><dd>Seventy-four</dd></div>
         <div><dt>Drawn with</dt><dd>CSS and SVG, no images</dd></div>
       </dl>
     </section>
@@ -216,8 +218,7 @@ standalone: true
       <a class="cd-raven" href="/crafting-table/" style="--w:#3f7a2a"><span class="cd-seal" aria-hidden="true">C</span><b>The Crafting Table</b><i>Blocks and slots</i></a>
       <a class="cd-raven" href="/compass/" style="--w:#2f6a6a"><span class="cd-seal" aria-hidden="true">P</span><b>The Compass</b><i>It points where you want</i></a>
       <a class="cd-raven" href="/control-room/" style="--w:#b4521f"><span class="cd-seal" aria-hidden="true">N</span><b>The Control Room</b><i>Isla Nublar</i></a>
-      <a class="cd-raven" href="/upside-down/" style="--w:#9a1f1a"><span class="cd-seal" aria-hidden="true">U</span><b>The Upside Down</b><i>Hawkins, Indiana</i></a>
-      <a class="cd-raven" href="/starcourt/" style="--w:#c0408f"><span class="cd-seal" aria-hidden="true">S</span><b>Starcourt</b><i>The arcade and the mall</i></a>
+      <a class="cd-raven" href="/hawkins/" style="--w:#9a1f1a"><span class="cd-seal" aria-hidden="true">U</span><b>Hawkins</b><i>Stranger Things</i></a>
       <a class="cd-raven" href="/spirit-library/" style="--w:#a8742a"><span class="cd-seal" aria-hidden="true">S</span><b>The Spirit Library</b><i>Under the desert sand</i></a>
       <a class="cd-raven" href="/monastery/" style="--w:#b3261e"><span class="cd-seal" aria-hidden="true">N</span><b>The Monastery</b><i>Ninjago</i></a>
       <a class="cd-raven" href="/wanted/" style="--w:#d9c08c"><span class="cd-seal" aria-hidden="true">W</span><b>The Wanted Board</b><i>Red Dead Redemption</i></a>
@@ -227,10 +228,16 @@ standalone: true
       <a class="cd-raven" href="/pokedex/" style="--w:#e3242b"><span class="cd-seal" aria-hidden="true">P</span><b>The Pokédex</b><i>Pokémon</i></a>
       <a class="cd-raven" href="/batcomputer/" style="--w:#f2c230"><span class="cd-seal" aria-hidden="true">B</span><b>The Batcomputer</b><i>Batman</i></a>
       <a class="cd-raven" href="/daily-bugle/" style="--w:#1f4fa8"><span class="cd-seal" aria-hidden="true">B</span><b>The Daily Bugle</b><i>Spider-Man</i></a>
+      <a class="cd-raven" href="/grail-diary/" style="--w:#1f4fa8"><span class="cd-seal" aria-hidden="true">B</span><b>The Grail Diary</b><i>Indiana Jones</i></a>
+      <a class="cd-raven" href="/red-book/" style="--w:#1f4fa8"><span class="cd-seal" aria-hidden="true">B</span><b>The Red Book</b><i>The Lord of the Rings</i></a>
+      <a class="cd-raven" href="/power-battery/" style="--w:#1f4fa8"><span class="cd-seal" aria-hidden="true">B</span><b>The Power Battery</b><i>Green Lantern</i></a>
+      <a class="cd-raven" href="/watchtower/" style="--w:#1f4fa8"><span class="cd-seal" aria-hidden="true">B</span><b>The Watchtower</b><i>The Justice League</i></a>
     </div>
   </section>
 
   <button class="cd-words" id="cdWordsBtn" type="button">Valar morghulis.</button>
+
+  {% include interface-world.html world="Game of Thrones" href="/worlds/game-of-thrones/" place="foot" %}
 
 </main>
 

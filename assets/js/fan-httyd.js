@@ -2,7 +2,7 @@
    by fanpage.js. The rare trilogy that starts great, stays great, and then
    actually ends, on purpose, with the dragons leaving. */
 window.FAN_PAGE = {
-  when: { at: 'Since the first film, as a kid', note: 'The second one is my favourite film of the three and the one I actually wanted to live in: the flight suit, and Inferno, the sword that catches fire when you swing it. I wanted that sword and I wanted the costume, because Hiccup was the coolest thing I had seen. The Test Drive sequence is separately the reason a generation of kids briefly considered aerospace engineering, and I make no claims about being an exception.' },
+  when: { at: 'Since the first film, as a kid', note: 'The second one is my favorite film of the three and the one I actually wanted to live in: the flight suit, and Inferno, the sword that catches fire when you swing it. I wanted that sword and I wanted the costume, because Hiccup was the coolest thing I had seen. The Test Drive sequence is separately the reason a generation of kids briefly considered aerospace engineering, and I make no claims about being an exception.' },
   sections: [
 
   { id: 'films', kind: 'films', title: 'The Trilogy', note: 'DreamWorks · released 2010 – 2019 · set over about six years on Berk',
@@ -12,7 +12,7 @@ window.FAN_PAGE = {
         desc: 'The one where the fin gets built. A village that kills dragons, a boy who cannot, and the discovery that everything the vikings knew was wrong. The last act costs Hiccup a leg, and the film does not flinch about it; the boy and the dragon end the story with matching prosthetics.',
         meta: 'Berk, a mythic Viking age · where it starts' },
       { title: 'How to Train Your Dragon 2', sub: 'June 2014', accent: '#5fa86f',
-        desc: 'Five years on: the flight suit, Inferno (the sword with the Zippleback gas in the handle, which catches fire when he swings it), the hidden nest, Hiccup’s mother, and a middle chapter with actual consequences. Stoick does not make it out, and Toothless is the reason. Bigger in every direction and darker than a sequel to a kids’ film had any right to be, and my favourite of the three: I wanted the sword and the costume for years.',
+        desc: 'Five years on: the flight suit, Inferno (the sword with the Zippleback gas in the handle, which catches fire when he swings it), the hidden nest, Hiccup’s mother, and a middle chapter with actual consequences. Stoick does not make it out, and Toothless is the reason. Bigger in every direction and darker than a sequel to a kids’ film had any right to be, and my favorite of the three: I wanted the sword and the costume for years.',
         meta: 'Set five years on · the best one' },
       { title: 'The Hidden World', sub: 'February 2019', accent: '#c9a0e8',
         desc: 'The goodbye. A Light Fury, a world under the sea’s edge, and the conclusion the first film quietly promised: if you love the dragons, you let them go where people cannot follow. The epilogue jump-cut to Hiccup’s kids meeting Toothless again is the franchise sticking its landing.',
@@ -80,7 +80,7 @@ window.FAN_PAGE = {
 
 
   { id: 'dragons', kind: 'tiles', fold: true, title: 'The Dragons', note: 'the Book of Dragons, abridged', compact: true,
-    lede: 'The franchise’s quiet masterstroke: dragons designed like animals, not monsters, each species with its own silhouette, gait and personality, catalogued by the vikings into classes like a field guide.',
+    lede: 'The franchise’s quiet masterstroke: dragons designed like animals, not monsters, each species with its own silhouette, gait and personality, cataloged by the vikings into classes like a field guide.',
     items: [
       { title: 'Night Fury', accent: '#3a3f4a', sub: 'Strike class', desc: 'The unholy offspring of lightning and death itself, who turns out to move like a cat and act like a dog. Speed: unknown. Size: unknown.' },
       { title: 'Light Fury', accent: '#dfe8f0', sub: 'Strike class', desc: 'The Hidden World’s answer to Toothless: cloaking through heated scales, and no patience for saddles.' },
@@ -108,7 +108,7 @@ window.FAN_PAGE = {
         desc: 'Powell with Jónsi of Sigur Rós, over the flight-suit sequence. The moment the sequel announces it intends to be bigger, and briefly is.',
         href: 'https://www.youtube.com/watch?v=EnSN9PYPldA', link: 'Listen', meta: 'HTTYD 2 · opening' },
       { title: 'Flying With Mother', sub: 'The one that got me · 2014', tag: 'Film 2', accent: '#8fc0d8',
-        desc: 'Valka and Hiccup in the air over the nest, twenty years of not knowing each other closed without a line of dialogue. The second film is my favourite of the three and this is why: it does the first film’s trick again, on a harder relationship.',
+        desc: 'Valka and Hiccup in the air over the nest, twenty years of not knowing each other closed without a line of dialogue. The second film is my favorite of the three and this is why: it does the first film’s trick again, on a harder relationship.',
         href: 'https://www.youtube.com/watch?v=iX5SZTNetx8', link: 'Listen', meta: 'HTTYD 2 · the reunion' },
     ] },
 

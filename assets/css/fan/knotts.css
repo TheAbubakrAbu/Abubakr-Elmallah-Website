@@ -208,7 +208,7 @@
   font-size: 0.52rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mute);
 }
 
-.kn-jar-note h4 {
+.kn-jar-note :is(h2, h3, h4, h5) {
   font-family: "American Typewriter", Georgia, serif; font-weight: 700;
   font-variant: small-caps; letter-spacing: 0.05em; font-size: 1.25rem;
   color: var(--a); margin-bottom: 0.6rem;

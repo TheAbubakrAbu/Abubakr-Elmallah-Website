@@ -377,7 +377,7 @@
 
         /* ── why playVideo() is called by hand ──
            `autoplay: 1` below is a playerVar and the browser does not reliably
-           honour it. The API builds its own iframe a beat or two after the click
+           honor it. The API builds its own iframe a beat or two after the click
            that asked for it, and by then the gesture no longer reaches the new
            document; what you get instead is the embed sitting on its poster
            frame with YouTube's play button in the middle, which is the exact

@@ -18,7 +18,7 @@
        `e` is the legend chip's flag; the map itself stays drawn, not iconed. */
     var HOME = { name: 'Home · Southern California', lat: 33.64, lon: -117.84 };
 
-    /* `w` is the trip's `when` from travels-data.js, and the colour and the
+    /* `w` is the trip's `when` from travels-data.js, and the color and the
        jump target are both looked up from it below.
 
        This used to be a hardcoded `t`, the trip's INDEX in that array, and a
@@ -81,12 +81,12 @@
 
     /* Resolve every pin against travels-data.js: `t` is the index its links
        need, `c` is the trip's own c1 so the map and the list below it can
-       never disagree about a colour. A pin naming a trip that is not there
+       never disagree about a color. A pin naming a trip that is not there
        keeps its dot and loses its link rather than throwing. */
     var TRIPS = (window.TRAVELS && window.TRAVELS.trips) || [];
     PINS.forEach(function (p) {
       for (var i = 0; i < TRIPS.length; i++) {
-        /* `road` comes along with the index and the colour so the map can be
+        /* `road` comes along with the index and the color so the map can be
            filtered by the picker at the top of the page without knowing
            anything about it beyond this flag */
         if (TRIPS[i].when === p.w) { p.t = i; p.c = TRIPS[i].c1; p.road = !!TRIPS[i].road; return; }
@@ -246,7 +246,7 @@
       + 'in Southern California, which is why they all fan out from the same point. Tap a country to '
       + 'jump to it. The routes to Japan and Southeast Asia leave the left edge and come back in on '
       + 'the right, because west across the Pacific is genuinely the short way round. The United '
-      + 'States is drawn in its own colour rather than as a destination: I have been all over it, '
+      + 'States is drawn in its own color rather than as a destination: I have been all over it, '
       + 'coast to coast, and those trips would need a map of their own. Small faint dots are '
       + 'layovers, which do not count as visits.</p>';
 
@@ -283,7 +283,7 @@
       frame.scrollLeft = ox * z - ax;
       frame.scrollTop = oy * z - ay;
       frame.classList.toggle('is-zoomed', z > 1);
-      frame.classList.toggle('is-labelled', z >= 2);
+      frame.classList.toggle('is-labeled', z >= 2);
       /* the divisor the stylesheet holds the type and the pins at, so they
          stay one size on screen while the map grows under them */
       frame.style.setProperty('--z', z);
@@ -328,7 +328,7 @@
       setZoom(z >= MAXZ ? 1 : z * 2, e.clientX - r.left, e.clientY - r.top);
     });
 
-    /* Drag to pan, but only once the pointer has actually travelled: a plain
+    /* Drag to pan, but only once the pointer has actually traveled: a plain
        click has to keep working on the pins underneath, so nothing is
        captured until the movement passes a few pixels. */
     var drag = null;
@@ -382,7 +382,7 @@
     }
 
     /* Jump to the trip entry. It used to select it as well, which dimmed the
-       rest of the page; that behaviour is gone, so this only scrolls. */
+       rest of the page; that behavior is gone, so this only scrolls. */
     function goto(t) {
       if (t == null || t === '') return;
       var card = document.getElementById('trip' + t);
